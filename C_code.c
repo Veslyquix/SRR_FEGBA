@@ -113,10 +113,8 @@ int RandNewWeapon(struct Unit* unit, int item, int slot) {
 		if (wexpMask & (1<<i)) { 
 			c++; 
 			if (isWep) { 
-				int min = WepByType[i*2];
-				item = WepByType[i*2]; 
-				break; 
-				//item = HashByte_Ch(item, WepByType[(i*2)+1]-WepByType[i*2], unit->pClassData->number)+min; 
+				int min = WepByType[i*2]; 
+				item = HashByte_Ch(item, WepByType[(i*2)+1]-WepByType[i*2], unit->pClassData->number)+min; 
 			}
 			else { 
 				//item = HashByte_Ch(item, WepByType[(i*2)+1]-WepByType[i*2], unit->pClassData->number);
@@ -229,6 +227,37 @@ extern u16 gBG0TilemapBuffer[32 * 32]; //2022C60
 extern u16 gBG1TilemapBuffer[32 * 32]; //2023460
 extern u16 gBG2TilemapBuffer[32 * 32]; //2023C60
 extern u16 gBG3TilemapBuffer[32 * 32]; //2024460
+#define BG_SYNC_BIT(aBg) (1 << (aBg))
+enum {
+    BG_0 = 0,
+    BG_1,
+    BG_2,
+    BG_3,
+};
+
+enum {
+    BG0_SYNC_BIT = BG_SYNC_BIT(0),
+    BG1_SYNC_BIT = BG_SYNC_BIT(1),
+    BG2_SYNC_BIT = BG_SYNC_BIT(2),
+    BG3_SYNC_BIT = BG_SYNC_BIT(3),
+};
+
+#define white 1
+#define gray 2
+#define grey 2
+#define blue 3
+#define gold 4
+#define green 5
+#define black 6
+struct Text {
+    u16 chr_position;
+    u8 x;
+    u8 colorId;
+    u8 tile_width;
+    s8 db_enabled;
+    u8 db_id;
+    u8 is_printing;
+};
 // current unit 3004690
 struct KeyStatusBuffer {
     /* 00 */ u8 repeatDelay;     // initial delay before generating auto-repeat presses
@@ -239,11 +268,32 @@ struct KeyStatusBuffer {
     /* 08 */ u16 newKeys;        // keys that went down this frame
     /* 0A */ u16 prevKeys;       // keys that were held down last frame
     /* 0C */ u16 LastPressState;
-    /* 0E */ bool16 ABLRPressed; // 1 for Release (A B L R Only), 0 Otherwise
+    /* 0E */ u16 ABLRPressed; // 1 for Release (A B L R Only), 0 Otherwise
     /* 10 */ u16 newKeys2;
     /* 12 */ u16 TimeSinceStartSelect; // Time since last Non-Start Non-Select Button was pressed
 };
+
 extern struct KeyStatusBuffer sKeyStatusBuffer; // 2024C78
+extern void BG_EnableSyncByMask(int bg); // 0x8000FFC 
+void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
+void ResetText(void); //80053B0
+void SetTextFontGlyphs(int a); //8005410
+void ResetTextFont(void); //8005438
+struct StatScreenSt
+{
+    /* 00 */ u8 page;
+    /* 01 */ u8 pageAmt;
+    /* 02 */ u16 pageSlideKey; // 0, DPAD_RIGHT or DPAD_LEFT
+    /* 04 */ short xDispOff; // Note: Always 0, not properly taked into account by most things
+    /* 06 */ short yDispOff;
+    /* 08 */ s8 inTransition;
+    /* 0C */ struct Unit* unit;
+    /* 10 */ struct MUProc* mu;
+    /* 14 */ const struct HelpBoxInfo* help;
+    /* 18 */ struct Text text[0x34];
+};
+extern struct StatScreenSt gStatScreen; //0x200310C
+
 
 typedef struct {
     /* 00 */ PROC_HEADER;
@@ -255,7 +305,7 @@ typedef struct {
 	s8 Option[15];
 } ConfigMenuProc;
 
-static void ConfigMenuLoop(ConfigMenuProc* proc); 
+void ConfigMenuLoop(ConfigMenuProc* proc); 
 const struct ProcCmd ConfigMenuProcCmd[] =
 {
     PROC_CALL(LockGame),
@@ -270,4 +320,73 @@ const struct ProcCmd ConfigMenuProcCmd[] =
     PROC_CALL(BMapDispResume),
     PROC_END,
 };
+
+#define MENU_X 18
+#define MENU_Y 16
+typedef const struct {
+  u32 x;
+  u32 y;
+} LocationTable;
+
+static const LocationTable SRR_CursorLocationTable[] = {
+  {MENU_X, MENU_Y + (16*0)},
+  {MENU_X, MENU_Y + (16*1)},
+  {MENU_X, MENU_Y + (16*2)},
+  {MENU_X, MENU_Y + (16*3)},
+  {MENU_X, MENU_Y + (16*4)},
+  {MENU_X, MENU_Y + (16*5)},
+  {MENU_X, MENU_Y + (16*6)}, //,
+  {MENU_X, MENU_Y + (16*7)} //,
+  // {10, 0x88} //leave room for a description?
+};
+void DrawConfigMenu(ConfigMenuProc* proc) { 
+	BG_Fill(gBG0TilemapBuffer, 0xFFFF); 
+	BG_Fill(gBG3TilemapBuffer, 0); 
+	ResetText(); 
+	ResetTextFont(); 
+    //&gPrepUnitTexts[ilist],
+	//GetStringFromIndex(unit->pClassData->nameTextId)
+	struct Text* th = &gStatScreen.text[0]; // max 34 
+	PutDrawText(th, TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 2), 2, 0, 5, "Test");
+	
+	BG_EnableSyncByMask(BG0_SYNC_BIT|BG3_SYNC_BIT); 
+	
+} 
+void ConfigMenuLoop(ConfigMenuProc* proc) { 
+	DrawConfigMenu(proc); 
+	return; 
+} 
+
+
+void StartConfigMenu(ProcPtr parent) { 
+	ConfigMenuProc* proc; 
+	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
+	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
+	if (proc) { 
+		//proc->id = 0; 
+		//proc->offset = 0; 
+		//proc->redraw = false; 
+		//proc->cannotCatch = false; 
+		//proc->cannotEvolve = false; 
+		//proc->updateSMS = true; 
+		//proc->handleID = 0; 
+		//ResetText();
+		BG_Fill(gBG3TilemapBuffer, 0);
+		BG_Fill(gBG2TilemapBuffer, 0);
+
+		//UnpackUiVArrowGfx(0x240, 3);
+		//SetTextFontGlyphs(0);
+		//SetTextFont(0);
+		//ResetTextFont();
+		//SetupMapSpritesPalettes();
+		//CR_EraseText(proc);
+		DrawConfigMenu(proc);
+		//DrawChallengeRun(proc);
+		//BG_EnableSyncByMask(BG0_SYNC_BIT);
+		//StartGreenText(proc); 
+		BG_EnableSyncByMask(BG3_SYNC_BIT);
+		BG_EnableSyncByMask(BG2_SYNC_BIT);
+	} 
+} 
+
 

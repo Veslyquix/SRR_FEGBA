@@ -9,8 +9,13 @@ ORG FreeSpace
 #include "C_code.lyn.event" 
 
 
-
-
+PUSH 
+ORG $CA7A58
+ORG $CA7A90
+WORD 0x3E // asmc 
+POIN StartConfigMenu
+SHORT 0x2 0x3C // stal 
+POP 
 
 
 

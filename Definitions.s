@@ -40,12 +40,21 @@ SET_FUNC StartFastFadeFromBlack, 0x8013FD5
 SET_FUNC StartFastFadeToBlack, 0x8013FB1
 SET_FUNC WaitForFade, 0x8014299
 SET_FUNC BG_Fill, 0x8001811
+SET_FUNC BG_EnableSyncByMask, 0x8000FFD 
+SET_FUNC Proc_Start, 0x8004495 
+SET_FUNC Proc_StartBlocking, 0x80044F9
+SET_FUNC PutDrawText, 0x8005AD5
+SET_FUNC ResetText, 0x80053B1
+SET_FUNC SetTextFontGlyphs, 0x8005411
+SET_FUNC ResetTextFont, 0x8005439
 
 SET_DATA gBG0TilemapBuffer, 0x2022C60
 SET_DATA gBG1TilemapBuffer, 0x2023460
 SET_DATA gBG2TilemapBuffer, 0x2023C60
 SET_DATA gBG3TilemapBuffer, 0x2024460
 SET_DATA sKeyStatusBuffer, 0x2024C78
+SET_DATA gStatScreen, 0x200310C @ for text handles 
+
 
 SET_DATA gPlaySt, 0x202BBF8
 SET_DATA gCh, 0x202BC06
