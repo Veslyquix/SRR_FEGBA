@@ -1,7 +1,7 @@
 #include "include/prelude.h"
 #include "include/types.h"
-//#include "include/unit.h"
-#include "C_code.h" 
+
+#include "headers/gbafe.h" 
 #define PUREFUNC __attribute__((pure))
 #define ARMFUNC __attribute__((target("arm")))
 int Div(int a, int b) PUREFUNC;
@@ -211,9 +211,63 @@ void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* c
 }
 
 
+// MENU 
+void LockGame(void); //8015308
+void UnlockGame(void); //8015318
+void BMapDispSuspend(void); //802D3B4
+void BMapDispResume(void); //802D3E8
+void StartFastFadeFromBlack(void); //8013FD4
+void StartFastFadeToBlack(void); //8013FB0
+void WaitForFade(ProcPtr); //8014298
+#define BG_SYNC_BIT(aBg) (1 << (aBg))
+#define TILEMAP_INDEX(aX, aY) (0x20 * (aY) + (aX))
+#define TILEMAP_INDEX2(aX, aY) (((aY) << 5) + (aX))
+#define TILEMAP_LOCATED(aMap, aX, aY) (TILEMAP_INDEX((aX), (aY)) + (aMap))
+#define TILEREF(aChar, aPal) ((aChar) + ((aPal) << 12))
+void BG_Fill(void *dest, int b); //8001810
+extern u16 gBG0TilemapBuffer[32 * 32]; //2022C60
+extern u16 gBG1TilemapBuffer[32 * 32]; //2023460
+extern u16 gBG2TilemapBuffer[32 * 32]; //2023C60
+extern u16 gBG3TilemapBuffer[32 * 32]; //2024460
+// current unit 3004690
+struct KeyStatusBuffer {
+    /* 00 */ u8 repeatDelay;     // initial delay before generating auto-repeat presses
+    /* 01 */ u8 repeatInterval;  // time between auto-repeat presses
+    /* 02 */ u8 repeatTimer;     // (decreased by one each frame, reset to repeatDelay when Presses change and repeatInterval when reaches 0)
+    /* 04 */ u16 heldKeys;       // keys that are currently held down
+    /* 06 */ u16 repeatedKeys;   // auto-repeated keys
+    /* 08 */ u16 newKeys;        // keys that went down this frame
+    /* 0A */ u16 prevKeys;       // keys that were held down last frame
+    /* 0C */ u16 LastPressState;
+    /* 0E */ bool16 ABLRPressed; // 1 for Release (A B L R Only), 0 Otherwise
+    /* 10 */ u16 newKeys2;
+    /* 12 */ u16 TimeSinceStartSelect; // Time since last Non-Start Non-Select Button was pressed
+};
+extern struct KeyStatusBuffer sKeyStatusBuffer; // 2024C78
 
+typedef struct {
+    /* 00 */ PROC_HEADER;
+	/* 2c */ u8 id; // menu id 
+	u8 offset; 
+	u8 handleID; 
+	u8 redraw; 
+	u8 updateSMS; 
+	s8 Option[15];
+} ConfigMenuProc;
 
-
-
-
+static void ConfigMenuLoop(ConfigMenuProc* proc); 
+const struct ProcCmd ConfigMenuProcCmd[] =
+{
+    PROC_CALL(LockGame),
+    PROC_CALL(BMapDispSuspend),
+	PROC_CALL(StartFastFadeFromBlack), 
+	PROC_REPEAT(WaitForFade), 
+    PROC_YIELD,
+	PROC_REPEAT(ConfigMenuLoop), 
+	PROC_CALL(StartFastFadeToBlack), 
+	PROC_REPEAT(WaitForFade), 
+    PROC_CALL(UnlockGame),
+    PROC_CALL(BMapDispResume),
+    PROC_END,
+};
 
