@@ -27,6 +27,13 @@ SET_FUNC GetCharacterData, 0x8018D39
 SET_FUNC GetClassData, 0x8018D21
 SET_FUNC UnitLoadStatsFromCharacter, 0x8017931
 SET_FUNC UnitInitFromDefinition, 0x8017869
+SET_FUNC GetAutoleveledStatIncrease, 0x8029605
+SET_FUNC CanBattleUnitGainLevels, 0x8029635
+SET_FUNC GetUnit, 0x8018D0D
+SET_FUNC CheckBattleUnitLevelUp, 0x8029661
+SET_FUNC UnitLevelUp, 0x802A995
+SET_FUNC UnitAutolevelCore, 0x8017AC1
+
 SET_FUNC UnitLoadItemsFromDefinition, 0x80178F5
 SET_FUNC UnitAddItem, 0x8017655 
 SET_FUNC MakeNewItem, 0x8016175

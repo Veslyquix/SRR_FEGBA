@@ -41,3 +41,52 @@ BYTE 0x32 0 0 0 // LOAD
 WORD 0x8CC5B70 // unit group 
 BYTE 0x3B 0 0 0 // ENUN 
 BYTE 0xA 0 0 0; WORD 0 // ENDA 
+
+
+
+
+// QoL for testing 
+// by Gryz 
+PUSH 
+ORG $BC58E 
+SHORT 0x46C0 
+ORG $BC580 
+SHORT $46C0 
+ORG $BAA25 
+BYTE 0xE0 
+
+
+//Patches Tutorial Disabler (PatchForm) Tutorial Disabler2024-03-13 6:22:07 PM
+ORG $D7C6
+BYTE  $00 $00;
+ORG $D842
+BYTE  $04 $E0;
+ORG $02DF06
+BYTE  $07 $E0;
+ORG $078FC8
+BYTE  $00 $20 $70 $47;
+ORG $079004
+BYTE  $00 $20 $70 $47;
+ORG $07905C
+BYTE  $00 $20 $70 $47;
+ORG $0790C4
+BYTE  $00 $20 $70 $47;
+ORG $079104
+BYTE  $00 $20 $70 $47;
+
+
+
+POP 
+
+
+
+
+
+
+
+
+
+
+
+
+
