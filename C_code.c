@@ -275,8 +275,10 @@ struct KeyStatusBuffer {
 
 extern struct KeyStatusBuffer sKeyStatusBuffer; // 2024C78
 extern void BG_EnableSyncByMask(int bg); // 0x8000FFC 
+extern void BG_SetPosition(u16 bg, u16 x, u16 y); // 0x8001D8C
 void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
 void ClearText(struct Text* text); // 80054E0
+void InitText(struct Text* text, int width); // 8005474
 void ResetText(void); //80053B0
 void SetTextFontGlyphs(int a); //8005410
 void ResetTextFont(void); //8005438
@@ -340,22 +342,30 @@ static const LocationTable SRR_CursorLocationTable[] = {
   {MENU_X, MENU_Y + (16*7)} //,
   // {10, 0x88} //leave room for a description?
 };
+
+extern u16 LCDControl
+  11    Screen Display BG3
 void DrawConfigMenu(ConfigMenuProc* proc) { 
+	BG_SetPosition(BG_3, 0, 0); 
+	
+	gLCDControlBuffer.dispcnt.bg3_on = 0; // don't display bg3 
 	BG_Fill(gBG0TilemapBuffer, 0); 
 	BG_Fill(gBG3TilemapBuffer, 0); 
+	BG_EnableSyncByMask(BG0_SYNC_BIT|BG3_SYNC_BIT); 
 	ResetText(); 
 	ResetTextFont(); 
     //&gPrepUnitTexts[ilist],
 	//GetStringFromIndex(unit->pClassData->nameTextId)
 	struct Text* th = &gStatScreen.text[0]; // max 34 
-	ClearText(th); 
+	InitText(th, 5); 
+	//ClearText(th); 
 	PutDrawText(th, TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 2), 2, 0, 5, "Test");
 	
 	BG_EnableSyncByMask(BG0_SYNC_BIT|BG3_SYNC_BIT); 
 	
 } 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
-	DrawConfigMenu(proc); 
+	//DrawConfigMenu(proc); 
 	return; 
 } 
 
@@ -373,6 +383,7 @@ void StartConfigMenu(ProcPtr parent) {
 		//proc->updateSMS = true; 
 		//proc->handleID = 0; 
 		//ResetText();
+		
 		BG_Fill(gBG3TilemapBuffer, 0);
 		BG_Fill(gBG2TilemapBuffer, 0);
 
