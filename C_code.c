@@ -242,13 +242,13 @@ enum {
     BG3_SYNC_BIT = BG_SYNC_BIT(3),
 };
 
-#define white 1
-#define gray 2
-#define grey 2
-#define blue 3
-#define gold 4
-#define green 5
-#define black 6
+#define white 0
+#define gray 1
+#define grey 1
+#define blue 2
+#define gold 3
+#define green 4
+#define black 5
 struct Text {
     u16 chr_position;
     u8 x;
@@ -276,12 +276,20 @@ struct KeyStatusBuffer {
 extern struct KeyStatusBuffer sKeyStatusBuffer; // 2024C78
 extern void BG_EnableSyncByMask(int bg); // 0x8000FFC 
 extern void BG_SetPosition(u16 bg, u16 x, u16 y); // 0x8001D8C
+extern void LoadUiFrameGraphics(void); // 804A210
+extern void LoadObjUIGfx(void); // 8015590
+
 void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
 void ClearText(struct Text* text); // 80054E0
 void InitText(struct Text* text, int width); // 8005474
 void ResetText(void); //80053B0
 void SetTextFontGlyphs(int a); //8005410
 void ResetTextFont(void); //8005438
+
+extern void DisplayUiHand(int x, int y); //8049F58
+#define true 1 
+#define false 0
+
 struct StatScreenSt
 {
     /* 00 */ u8 page;
@@ -300,8 +308,8 @@ extern struct StatScreenSt gStatScreen; //0x200310C
 
 typedef struct {
     /* 00 */ PROC_HEADER;
-	/* 2c */ u8 id; // menu id 
-	u8 offset; 
+	/* 2c */ s8 id; // menu id 
+	s8 offset; 
 	u8 handleID; 
 	u8 redraw; 
 	u8 updateSMS; 
@@ -342,31 +350,293 @@ static const LocationTable SRR_CursorLocationTable[] = {
   {MENU_X, MENU_Y + (16*7)} //,
   // {10, 0x88} //leave room for a description?
 };
+struct DispCnt {
+    /* bit  0 */ u16 mode : 3;
+    /* bit  3 */ u16 cgbMode : 1; // reserved, do not use
+    /* bit  4 */ u16 bmpFrameNum : 1;
+    /* bit  5 */ u16 hblankIntervalFree : 1;
+    /* bit  6 */ u16 obj1dMap : 1;
+    /* bit  7 */ u16 forcedBlank : 1;
+    /* bit  8 */ u16 bg0_on : 1;
+    /* bit  9 */ u16 bg1_on : 1;
+    /* bit 10 */ u16 bg2_on : 1;
+    /* bit 11 */ u16 bg3_on : 1;
+    /* bit 12 */ u16 obj_on : 1;
+    /* bit 13 */ u16 win0_on : 1;
+    /* bit 14 */ u16 win1_on : 1;
+    /* bit 15 */ u16 objWin_on : 1;
+    //STRUCT_PAD(0x02, 0x04);
+} BITPACKED;
+struct LCDControlBuffer {
+    /* 00 */ struct DispCnt dispcnt;
+    ///* 04 */ struct DispStat dispstat;
+    ///* 08 */ STRUCT_PAD(0x08, 0x0C);
+    ///* 0C */ struct BgCnt bg0cnt;
+    ///* 10 */ struct BgCnt bg1cnt;
+    ///* 14 */ struct BgCnt bg2cnt;
+    ///* 18 */ struct BgCnt bg3cnt;
+    ///* 1C */ struct BgCoords bgoffset[4];
+    ///* 2C */ u8 win0_right, win0_left;
+    ///* 2C */ u8 win1_right, win1_left;
+    ///* 30 */ u8 win0_bottom, win0_top;
+    ///* 30 */ u8 win1_bottom, win1_top;
+    ///* 34 */ struct WinCnt wincnt;
+    ///* 38 */ u16 mosaic;
+    //         STRUCT_PAD(0x3A, 0x3C);
+    ///* 3C */ struct BlendCnt bldcnt;
+    ///* 44 */ u8 blendCoeffA;
+    ///* 45 */ u8 blendCoeffB;
+    ///* 46 */ u8 blendY;
+    ///* 48 */ u16 bg2pa;
+    ///* 4A */ u16 bg2pb;
+    ///* 4C */ u16 bg2pc;
+    ///* 4E */ u16 bg2pd;
+    ///* 50 */ u32 bg2x;
+    ///* 54 */ u32 bg2y;
+    ///* 58 */ u16 bg3pa;
+    ///* 5A */ u16 bg3pb;
+    ///* 5C */ u16 bg3pc;
+    ///* 5E */ u16 bg3pd;
+    ///* 60 */ u32 bg3x;
+    ///* 64 */ u32 bg3y;
+    ///* 68 */ s8 colorAddition;
+};
+extern struct LCDControlBuffer gLCDControlBuffer;
 
-extern u16 LCDControl
-  11    Screen Display BG3
+#define OPT0NUM 21
+const char Option0[OPT0NUM][5] = { // 2nd number is max number of characters for the text (+1) 
+"0%",
+"5%",
+"10%",
+"15%",
+"20%",
+"25%",
+"30%",
+"35%",
+"40%",
+"45%",
+"50%",
+"55%",
+"60%",
+"65%",
+"70%",
+"75%",
+"80%",
+"85%",
+"90%",
+"95%",
+"100%",
+}; 
+
+#define OPT1NUM 2
+const char Option1[OPT1NUM][8] = { // Base Stats 
+"Random",
+"Vanilla",
+}; 
+
+#define OPT2NUM 2
+const char Option2[OPT2NUM][8] = { // Growths
+"Random",
+"Vanilla",
+}; 
+
+#define OPT3NUM 2
+const char Option3[OPT3NUM][8] = { // Stat Caps 
+"Random",
+"Vanilla",
+}; 
+
+#define OPT4NUM 4
+const char Option4[OPT4NUM][20] = { // Class
+"Random",
+"Random for players",
+"Random for enemies",
+"Vanilla",
+}; 
+
+#define OPT5NUM 2
+const char Option5[OPT5NUM][10] = { // Items
+"Random",
+"Vanilla",
+}; 
+
+#define OPT6NUM 21
+const char Option6[OPT6NUM][10] = { // Enemies 
+"Vanilla",
+"+1",
+"+2",
+"+3",
+"+4",
+"+5",
+"+6",
+"+7",
+"+8",
+"+9",
+"+10",
+"+11",
+"+12",
+"+13",
+"+14",
+"+15",
+"+16",
+"+17",
+"+18",
+"+19",
+"+20",
+}; 
+
+#define OPT7NUM 2
+const char Option7[OPT7NUM][10] = { // Enemies 
+"Classic",
+"Casual",
+}; 
+
+struct RandomizerSettings { 
+	u16 variance : 5; // up to 5*31 / 100% 
+	u16 bonus : 5; // up to +31 / +20 levels 
+	u16 base : 1; 
+	u16 growth : 1; 
+	u16 caps : 1; 
+	u16 class : 1; 
+	u16 items : 1; 
+	u16 mode : 1; // final bit of the u16 ram used 
+}; 
+extern struct RandomizerSettings RandFlags; 
+
+const u8 OptionAmounts[8] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM }; 
+
 void DrawConfigMenu(ConfigMenuProc* proc) { 
-	BG_SetPosition(BG_3, 0, 0); 
-	
-	gLCDControlBuffer.dispcnt.bg3_on = 0; // don't display bg3 
+
 	BG_Fill(gBG0TilemapBuffer, 0); 
-	BG_Fill(gBG3TilemapBuffer, 0); 
-	BG_EnableSyncByMask(BG0_SYNC_BIT|BG3_SYNC_BIT); 
+	BG_EnableSyncByMask(BG0_SYNC_BIT); 
 	ResetText(); 
-	ResetTextFont(); 
+
     //&gPrepUnitTexts[ilist],
 	//GetStringFromIndex(unit->pClassData->nameTextId)
-	struct Text* th = &gStatScreen.text[0]; // max 34 
-	InitText(th, 5); 
-	//ClearText(th); 
-	PutDrawText(th, TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 2), 2, 0, 5, "Test");
+	struct Text* th = gStatScreen.text; // max 34 
+	int i = 0; 
+	InitText(&th[i], 5); i++; 
+	InitText(&th[i], 7); i++; 
+	InitText(&th[i], 5); i++; 
+	InitText(&th[i], 6); i++; 
+	InitText(&th[i], 5); i++; 
+	InitText(&th[i], 5); i++; 
+	InitText(&th[i], 13); i++; 
+	InitText(&th[i], 5); i++; 
+	
+	InitText(&th[i], 5); i++; 
+	InitText(&th[i], 5); i++; 
+	InitText(&th[i], 5); i++; 
+	InitText(&th[i], 5); i++; 
+	InitText(&th[i], 12); i++; 
+	InitText(&th[i], 5); i++; 
+	InitText(&th[i], 5); i++; 
+	InitText(&th[i], 5); i++; 
+	
+	i = 0; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 5, "Variance"); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 7, "Base Stats"); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 5, "Growths"); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 6, "Stat Caps"); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 5, "Class"); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 5, "Items"); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 13, "Enemy Diff. Bonus"); i++;  // make enemies have more bonus levels? 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 5, "Mode"); i++;  // Classic/Casual 
+/* What Circles did: 
+% variation (0 - 100%) 
+Don't change: Thieves, Generics, Both, None 
+Random Skills: Personal, Class, None 
+Peak/Water Units: 1 Tile Move, Limit Classes, Pure Random 
+Weapon Stats: Fixed, Random 
+Random Items: Chests, Events, Both, Neither 
+Mode: Classic, Casual 
+-- Page 2 -- 
+Map Music: Random, Normal 
+Playable Monsters: Yes, No 
+Min Growth: 0
+Max Growth: 100 
+*/ 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option0[proc->Option[0]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option1[proc->Option[1]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option2[proc->Option[2]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option3[proc->Option[3]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 12, Option4[proc->Option[4]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option5[proc->Option[5]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option6[proc->Option[6]]); i++;  
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option7[proc->Option[7]]); i++;  
+
+	RandFlags.mode = true; 
+
 	
 	BG_EnableSyncByMask(BG0_SYNC_BIT|BG3_SYNC_BIT); 
 	
 } 
+
+
+
+void DisplayHand(int x, int y, int type) { 
+	// type is 0 (horizontal) or 1 (vertical) if I make it 
+	DisplayUiHand(x, y); 
+} 
+
+#define SRR_MAXDISP 7 
+#define A_BUTTON        0x0001
+#define B_BUTTON        0x0002
+#define SELECT_BUTTON   0x0004
+#define START_BUTTON    0x0008
+#define DPAD_RIGHT      0x0010
+#define DPAD_LEFT       0x0020
+#define DPAD_UP         0x0040
+#define DPAD_DOWN       0x0080
+#define R_BUTTON        0x0100
+#define L_BUTTON        0x0200
+
+extern void m4aSongNumStart(u16 n); 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
-	//DrawConfigMenu(proc); 
-	return; 
+
+	u16 keys = sKeyStatusBuffer.newKeys; 
+	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
+	int id = proc->id;
+	
+	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
+		
+
+
+		
+		
+		Proc_Break((ProcPtr)proc);
+		m4aSongNumStart(0x2D9); // idk which to use 
+	};
+	
+    if (keys & DPAD_DOWN) {
+		if (proc->id < SRR_MAXDISP) { proc->id++; } 
+		else { proc->id = 0; } 
+		//proc->redraw = true; 
+	}
+	
+    if (keys & DPAD_UP) {
+		if (proc->id <= 0) { proc->id = SRR_MAXDISP; } 
+		else { proc->id--;  } 
+		//proc->redraw = true; 
+	}
+	
+    if (keys & DPAD_RIGHT) {
+		if (proc->Option[proc->id] < (OptionAmounts[proc->id]-1)) { proc->Option[proc->id]++; } 
+		else { proc->Option[proc->id] = 0;  } 
+		proc->redraw = true; 
+	}
+    if (keys & DPAD_LEFT) {
+		if (proc->Option[proc->id] > 0) { proc->Option[proc->id]--; } 
+		else { proc->Option[proc->id] = OptionAmounts[proc->id] - 1;  } 
+		proc->redraw = true; 
+	}
+	
+	DisplayHand(SRR_CursorLocationTable[proc->id].x, SRR_CursorLocationTable[proc->id].y, 0); 	
+	if (proc->redraw) { 
+		proc->redraw = false; 
+		DrawConfigMenu(proc); 
+	
+	} 
 } 
 
 
@@ -375,7 +645,21 @@ void StartConfigMenu(ProcPtr parent) {
 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
 	if (proc) { 
-		//proc->id = 0; 
+		proc->id = 0; 
+		proc->Option[0] = 0; 
+		proc->Option[1] = 0; 
+		proc->Option[2] = 0; 
+		proc->Option[3] = 0; 
+		proc->Option[4] = 0; 
+		proc->Option[5] = 0; 
+		proc->Option[6] = 0; 
+		proc->Option[7] = 0; 
+		proc->redraw = 0; 
+
+		BG_SetPosition(BG_3, 0, 0); 
+		gLCDControlBuffer.dispcnt.bg3_on = 0; // don't display bg3 
+		LoadUiFrameGraphics(); 
+		LoadObjUIGfx(); 
 		//proc->offset = 0; 
 		//proc->redraw = false; 
 		//proc->cannotCatch = false; 
@@ -386,7 +670,7 @@ void StartConfigMenu(ProcPtr parent) {
 		
 		BG_Fill(gBG3TilemapBuffer, 0);
 		BG_Fill(gBG2TilemapBuffer, 0);
-
+		ResetTextFont(); 
 		//UnpackUiVArrowGfx(0x240, 3);
 		//SetTextFontGlyphs(0);
 		//SetTextFont(0);
@@ -394,7 +678,6 @@ void StartConfigMenu(ProcPtr parent) {
 		//SetupMapSpritesPalettes();
 		//CR_EraseText(proc);
 		DrawConfigMenu(proc);
-		//DrawChallengeRun(proc);
 		//BG_EnableSyncByMask(BG0_SYNC_BIT);
 		//StartGreenText(proc); 
 		BG_EnableSyncByMask(BG3_SYNC_BIT);
