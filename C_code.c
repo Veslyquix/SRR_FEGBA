@@ -276,6 +276,7 @@ struct KeyStatusBuffer {
 extern struct KeyStatusBuffer sKeyStatusBuffer; // 2024C78
 extern void BG_EnableSyncByMask(int bg); // 0x8000FFC 
 void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
+void ClearText(struct Text* text); // 80054E0
 void ResetText(void); //80053B0
 void SetTextFontGlyphs(int a); //8005410
 void ResetTextFont(void); //8005438
@@ -340,13 +341,14 @@ static const LocationTable SRR_CursorLocationTable[] = {
   // {10, 0x88} //leave room for a description?
 };
 void DrawConfigMenu(ConfigMenuProc* proc) { 
-	BG_Fill(gBG0TilemapBuffer, 0xFFFF); 
+	BG_Fill(gBG0TilemapBuffer, 0); 
 	BG_Fill(gBG3TilemapBuffer, 0); 
 	ResetText(); 
 	ResetTextFont(); 
     //&gPrepUnitTexts[ilist],
 	//GetStringFromIndex(unit->pClassData->nameTextId)
 	struct Text* th = &gStatScreen.text[0]; // max 34 
+	ClearText(th); 
 	PutDrawText(th, TILEMAP_LOCATED(gBG0TilemapBuffer, 2, 2), 2, 0, 5, "Test");
 	
 	BG_EnableSyncByMask(BG0_SYNC_BIT|BG3_SYNC_BIT); 

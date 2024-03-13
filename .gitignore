@@ -9,6 +9,12 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # Windows Installer files
+# *.exe
+
+*.gba.7z
+*.ups
+*.sym
+
 *.cab
 *.msi
 *.msm
@@ -19,7 +25,8 @@ $RECYCLE.BIN/
 
 # rom stuff
 *.gba
-*.ups
+*.bak
+
 *.sav
 *.sgm
 *.ss1
@@ -31,8 +38,15 @@ $RECYCLE.BIN/
 *.ss7
 *.ss8
 *.ss9
-*.sym
-/*.png
+*.st1
+*.st2
+*.st3
+*.st4
+*.st5
+*.st6
+*.st7
+*.st8
+*.st9
 !Tools/sym/*.sym
 
 # python cache
