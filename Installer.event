@@ -8,13 +8,23 @@ ORG FreeSpace
 
 #include "C_code.lyn.event" 
 
+ALIGN 4 
+NewSomeProc: 
+WORD 2; POIN StartConfigMenu|1
+WORD 0xE 0 // sleep 
+WORD 2 0x801F2E1 
+WORD 3 0x801F2F1 
+
+WORD 0 0 
 
 PUSH 
+ORG $B93950 //B9391C
+POIN NewSomeProc
 //ORG $CA7A58
-ORG $CA7A90
-WORD 0x3E // asmc 
-POIN StartConfigMenu
-SHORT 0x2 0x3C // stal 
+//ORG $CA7A90
+//WORD 0x3E // asmc 
+//POIN StartConfigMenu
+//SHORT 0x2 0x3C // stal 
 POP 
 
 

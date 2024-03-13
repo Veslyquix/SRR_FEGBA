@@ -10,11 +10,25 @@ int DivArm(int b, int a) PUREFUNC;
 extern u8 gCh; 
 extern char* TacticianName;
 
-u8 HashByte_Ch(int number, int max, int variance){
+struct RandomizerSettings { 
+	u16 variance : 5; // up to 5*31 / 100% 
+	u16 bonus : 5; // up to +31 / +20 levels 
+	u16 base : 1; 
+	u16 growth : 1; 
+	u16 caps : 1; 
+	u16 class : 1; 
+	u16 items : 1; 
+	u16 mode : 1; // final bit of the u16 ram used 
+}; 
+extern struct RandomizerSettings RandFlags; 
+
+
+
+u8 HashByte_Ch(int number, int max, int noise){
   if (max==0) return 0;
   u32 hash = 5381;
   hash = ((hash << 5) + hash) ^ number;
-  hash = ((hash << 5) + hash) ^ variance; 
+  hash = ((hash << 5) + hash) ^ noise; 
   hash = ((hash << 5) + hash) ^ gCh;
   //hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
   for (int i = 0; i < 9; ++i){
@@ -24,11 +38,11 @@ u8 HashByte_Ch(int number, int max, int variance){
   return Mod((hash & 0x2FFFFFFF), max);
 };
 
-u8 HashByte_Global(int number, int max, int variance) {
+u8 HashByte_Global(int number, int max, int noise) {
   if (max==0) return 0;
   u32 hash = 5381;
   hash = ((hash << 5) + hash) ^ number;
-  hash = ((hash << 5) + hash) ^ variance; 
+  hash = ((hash << 5) + hash) ^ noise; 
   //hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
   for (int i = 0; i < 9; ++i){
     if (TacticianName[i]==0) break;
@@ -37,6 +51,46 @@ u8 HashByte_Global(int number, int max, int variance) {
   return Mod((hash & 0x2FFFFFFF), max);
 };
 
+
+s16 HashByPercent_Ch(int number, int noise){ // Copied Circles 
+  if (number < 0) number = 0;
+  int variation = (RandFlags.variance)*5;
+  int percentage = HashByte_Ch(number, variation*2, noise); //rn up to 150 e.g. 125
+  percentage += (100-variation); // 125 + 25 = 150
+  int ret = percentage * number / 100; //1.5 * 120 (we want to negate this)
+  if (ret > 127) ret = (200 - percentage) * number / 100;
+  if (ret < 0) ret = 0;
+  return ret;
+};
+
+s16 HashByPercent(int number, int noise){
+  if (number < 0) number = 0;
+  int variation = (RandFlags.variance)*5;
+  int percentage = HashByte_Global(number, variation*2, noise); //rn up to 150 e.g. 125
+  percentage += (100-variation); // 125 + 25 = 150
+  int ret = percentage * number / 100; //1.5 * 120 (we want to negate this)
+  if (ret > 127) ret = (200 - percentage) * number / 100;
+  if (ret < 0) ret = 0;
+  return ret;
+};
+
+
+s16 HashMight(int number, int noise) { 
+	if (!RandFlags.items) { return number; } 
+	return HashByPercent(number, noise); 
+} 
+s16 HashHit(int number, int noise) { 
+	if (!RandFlags.items) { return number; } 
+	return HashByPercent(number, noise); 
+} 
+s16 HashCrit(int number, int noise) { 
+	if (!RandFlags.items) { return number; } 
+	return HashByPercent(number, noise); 
+} 
+s16 HashWeight(int number, int noise) { 
+	if (!RandFlags.items) { return number; } 
+	return HashByPercent(number, noise); 
+} 
 // Random: 
 // Class, Growths, Base stats, Caps, Item Stats, Chest items 
 #define Extra 25
@@ -44,39 +98,31 @@ extern struct ItemData* GetItemData(int item);
 int GetItemMight(int item) { 
 	item &= 0xFF; 
 	int might = GetItemData(item&0xFF)->might;
-	int max = ((might * 3)/2) + Extra; 
-	return HashByte_Global(might, max, item); 
+	return HashMight(might, item); 
 } 
 
 int GetItemHit(int item) { 
 	item &= 0xFF; 
 	int hit = GetItemData(item&0xFF)->hit;
-	int max = ((hit * 3)/2) + 25 + Extra;
-	int min = 40; 
-	max -= min; 
-	if (max < 0) { max = 0; } 
-	return HashByte_Global(hit, max, item) + min; 
+	return HashHit(hit, item); 
 } 
 
 int GetItemCrit(int item) { 
 	item &= 0xFF; 
 	int crit = GetItemData(item&0xFF)->crit;
-	int max = ((crit * 3)/2) + 25 + Extra; 
-	return HashByte_Global(crit, max, item); 
+	return HashCrit(crit, item); 
 } 
 
 int GetItemWeight(int item) { 
 	item &= 0xFF; 
 	int weight = GetItemData(item&0xFF)->weight;
-	int max = ((weight * 3)/2) + 5 + Extra; 
-	return HashByte_Global(weight, max, item); 
+	return HashWeight(weight, item); 
 } 
 
 //extern bool UnitAddItem(struct Unit* unit, int item);
 int RandNewItem(int item) { 
 	item &= 0xFF; 
-	
-
+	if (!RandFlags.items) { return MakeNewItem(item); } 
 	return MakeNewItem(item); 
 } 
 
@@ -106,6 +152,7 @@ int GetValidWEXPMask(struct Unit* unit) {
 int RandNewWeapon(struct Unit* unit, int item, int slot) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
+	if (!RandFlags.items) { return MakeNewItem(item); } 
 	int wexpMask = GetValidWEXPMask(unit); 
 	int c = 0; 
 	int isWep = GetItemAttributes(item) & 1; // IA_WEAPON 
@@ -124,19 +171,21 @@ int RandNewWeapon(struct Unit* unit, int item, int slot) {
 		} 
 	}
 	
-	
+	//asm("mov r11, r11"); 
 	return MakeNewItem(item); 
 } 
 
 int RandClass(int id, int coord) { 
-
+	if (!RandFlags.class) { return id; } 
 	return T1Class[HashByte_Ch(id, sizeof(T1Class), coord)]; 
 } 
-
-int RandStat(struct Unit* unit, int stat) { 
-	int max = ((stat*3)/2)+5 + Extra; 
-
-	return HashByte_Global(stat, max, unit->pClassData->number); 
+s16 HashStat(int number, int noise) { 
+	return HashByPercent_Ch(number, noise); 
+} 
+	
+int RandStat(struct Unit* unit, int stat, int noise) { 
+	if (!RandFlags.base) { return stat; } 
+	return HashStat(stat, unit->pClassData->number+noise); 
 } 
 
 
@@ -175,31 +224,35 @@ void UnitLoadItemsFromDefinition(struct Unit* unit, const struct UnitDefinition*
     for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i)
         UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], i));
 }
-
+s16 HashWexp(int number, int noise, int noise2) { 
+	if (!number) { return number; } 
+	if (!RandFlags.class) { return number; } 
+	noise += noise2; 
+	return HashByPercent(number, noise); 
+} 
 
 void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* character) {
     int i;
 
-    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP);
-    unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow);
-    unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl);
-    unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd);
-    unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef);
-    unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes);
-    unit->lck   = RandStat(unit, character->baseLck);
+    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, 0);
+    unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, 1);
+    unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, 2);
+    unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, 3);
+    unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, 4);
+    unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, 5);
+    unit->lck   = RandStat(unit, character->baseLck, 6);
 
     unit->conBonus = 0;
 
 	int wexp = 0; 
     for (i = 0; i < 8; ++i) {
-        wexp = unit->pClassData->baseRanks[i];
-		if (wexp) { 
-			int max = ((wexp*3)/2)+30; 
-			if (max > 255) { max = 255; } 
-			unit->ranks[i] = HashByte_Global(wexp, max, unit->pClassData->number)+1; 
-		}
-        //if (unit->pCharacterData->baseRanks[i]) // original 
-        //    unit->ranks[i] = unit->pCharacterData->baseRanks[i];
+        wexp = HashWexp(unit->pClassData->baseRanks[i], unit->pClassData->number, i);
+		unit->ranks[i] = wexp; 
+		
+		if (!RandFlags.class) { 
+			if (unit->pCharacterData->baseRanks[i]) { // original
+				unit->ranks[i] = unit->pCharacterData->baseRanks[i]; } 
+		} 
     }
 
     if (UNIT_FACTION(unit) == FACTION_BLUE && (unit->level != 20))
@@ -309,11 +362,8 @@ extern struct StatScreenSt gStatScreen; //0x200310C
 typedef struct {
     /* 00 */ PROC_HEADER;
 	/* 2c */ s8 id; // menu id 
-	s8 offset; 
-	u8 handleID; 
 	u8 redraw; 
-	u8 updateSMS; 
-	s8 Option[15];
+	s8 Option[8];
 } ConfigMenuProc;
 
 void ConfigMenuLoop(ConfigMenuProc* proc); 
@@ -446,11 +496,11 @@ const char Option3[OPT3NUM][8] = { // Stat Caps
 "Vanilla",
 }; 
 
-#define OPT4NUM 4
+#define OPT4NUM 2
 const char Option4[OPT4NUM][20] = { // Class
 "Random",
-"Random for players",
-"Random for enemies",
+//"Random for players",
+//"Random for enemies",
 "Vanilla",
 }; 
 
@@ -491,57 +541,21 @@ const char Option7[OPT7NUM][10] = { // Enemies
 "Casual",
 }; 
 
-struct RandomizerSettings { 
-	u16 variance : 5; // up to 5*31 / 100% 
-	u16 bonus : 5; // up to +31 / +20 levels 
-	u16 base : 1; 
-	u16 growth : 1; 
-	u16 caps : 1; 
-	u16 class : 1; 
-	u16 items : 1; 
-	u16 mode : 1; // final bit of the u16 ram used 
-}; 
-extern struct RandomizerSettings RandFlags; 
-
 const u8 OptionAmounts[8] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM }; 
 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 
-	BG_Fill(gBG0TilemapBuffer, 0); 
-	BG_EnableSyncByMask(BG0_SYNC_BIT); 
-	ResetText(); 
+	
+	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
+	//asm("mov r11, r11"); 
+	//ResetText(); 
 
     //&gPrepUnitTexts[ilist],
 	//GetStringFromIndex(unit->pClassData->nameTextId)
 	struct Text* th = gStatScreen.text; // max 34 
-	int i = 0; 
-	InitText(&th[i], 5); i++; 
-	InitText(&th[i], 7); i++; 
-	InitText(&th[i], 5); i++; 
-	InitText(&th[i], 6); i++; 
-	InitText(&th[i], 5); i++; 
-	InitText(&th[i], 5); i++; 
-	InitText(&th[i], 13); i++; 
-	InitText(&th[i], 5); i++; 
-	
-	InitText(&th[i], 5); i++; 
-	InitText(&th[i], 5); i++; 
-	InitText(&th[i], 5); i++; 
-	InitText(&th[i], 5); i++; 
-	InitText(&th[i], 12); i++; 
-	InitText(&th[i], 5); i++; 
-	InitText(&th[i], 5); i++; 
-	InitText(&th[i], 5); i++; 
-	
-	i = 0; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 5, "Variance"); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 7, "Base Stats"); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 5, "Growths"); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 6, "Stat Caps"); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 5, "Class"); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 5, "Items"); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 13, "Enemy Diff. Bonus"); i++;  // make enemies have more bonus levels? 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), white, 0, 5, "Mode"); i++;  // Classic/Casual 
+	int i = 0; 	
+	ClearText(&th[8+proc->id]); 
+
 /* What Circles did: 
 % variation (0 - 100%) 
 Don't change: Thieves, Generics, Both, None 
@@ -556,19 +570,17 @@ Playable Monsters: Yes, No
 Min Growth: 0
 Max Growth: 100 
 */ 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option0[proc->Option[0]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option1[proc->Option[1]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option2[proc->Option[2]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option3[proc->Option[3]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 12, Option4[proc->Option[4]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option5[proc->Option[5]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option6[proc->Option[6]]); i++;  
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), gold, 0, 5, Option7[proc->Option[7]]); i++;  
+	i = 8; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option0[proc->Option[0]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option1[proc->Option[1]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option2[proc->Option[2]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option3[proc->Option[3]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 12, Option4[proc->Option[4]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option5[proc->Option[5]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option6[proc->Option[6]]); i++;  
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
 
-	RandFlags.mode = true; 
-
-	
-	BG_EnableSyncByMask(BG0_SYNC_BIT|BG3_SYNC_BIT); 
+	BG_EnableSyncByMask(BG0_SYNC_BIT); 
 	
 } 
 
@@ -599,12 +611,18 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	int id = proc->id;
 	
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
-		
-
-
-		
+		RandFlags.variance = proc->Option[0];
+		RandFlags.bonus = proc->Option[6];
+		RandFlags.base = !proc->Option[1]; 
+		RandFlags.growth = !proc->Option[2]; 
+		RandFlags.caps = !proc->Option[3]; 
+		RandFlags.class = !proc->Option[4]; 
+		RandFlags.items = !proc->Option[5]; 
+		RandFlags.mode = !proc->Option[7]; 
 		
 		Proc_Break((ProcPtr)proc);
+		gLCDControlBuffer.dispcnt.bg3_on = 1; // don't display bg3 
+		gLCDControlBuffer.dispcnt.bg0_on = 0; // don't display bg3 
 		m4aSongNumStart(0x2D9); // idk which to use 
 	};
 	
@@ -655,9 +673,46 @@ void StartConfigMenu(ProcPtr parent) {
 		proc->Option[6] = 0; 
 		proc->Option[7] = 0; 
 		proc->redraw = 0; 
+		
+		ResetText();
+		ResetTextFont(); 
+		BG_Fill(gBG0TilemapBuffer, 0); 
+		
+		struct Text* th = gStatScreen.text; // max 34 
+		int i = 0; 
+		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 7); i++; 
+		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 6); i++; 
+		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 13); i++; 
+		InitText(&th[i], 5); i++; 
+		
+		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 12); i++; 
+		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 5); i++; 
+		
+		i = 0; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Variance"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 7, "Base Stats"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Growths"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 6, "Stat Caps"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Class"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Items"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 13, "Enemy Diff. Bonus"); i++;  // make enemies have more bonus levels? 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Mode"); i++;  // Classic/Casual 
 
 		BG_SetPosition(BG_3, 0, 0); 
 		gLCDControlBuffer.dispcnt.bg3_on = 0; // don't display bg3 
+		gLCDControlBuffer.dispcnt.bg2_on = 0; // don't display bg2
+		gLCDControlBuffer.dispcnt.bg1_on = 0; // don't display bg1 
+		gLCDControlBuffer.dispcnt.bg0_on = 1; // display bg3 
 		LoadUiFrameGraphics(); 
 		LoadObjUIGfx(); 
 		//proc->offset = 0; 
@@ -668,9 +723,6 @@ void StartConfigMenu(ProcPtr parent) {
 		//proc->handleID = 0; 
 		//ResetText();
 		
-		BG_Fill(gBG3TilemapBuffer, 0);
-		BG_Fill(gBG2TilemapBuffer, 0);
-		ResetTextFont(); 
 		//UnpackUiVArrowGfx(0x240, 3);
 		//SetTextFontGlyphs(0);
 		//SetTextFont(0);

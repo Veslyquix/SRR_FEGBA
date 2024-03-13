@@ -13,6 +13,7 @@
 .endm
 
 SET_DATA TacticianName, 0x202BC18
+SET_FUNC __aeabi_idiv, 0x80BFA15 
 SET_FUNC Div, 0x80BFA15
 SET_FUNC Mod, 0x80BFA19
 
@@ -67,7 +68,7 @@ SET_DATA gStatScreen, 0x200310C @ for text handles
 SET_DATA gLCDControlBuffer, 0x3002870
 
 
-SET_DATA RandFlags, 0x203FFFE 
+SET_DATA RandFlags, 0x202BC3C @ GameOptions + 0x44 (unk, 4 bytes) 
 
 SET_DATA gPlaySt, 0x202BBF8
 SET_DATA gCh, 0x202BC06
