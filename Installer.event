@@ -18,14 +18,26 @@ WORD 3 0x801F2F1
 WORD 0 0 
 
 PUSH 
-ORG $B93950 //B9391C
-POIN NewSomeProc
-//ORG $CA7A58
+ORG $B93950 
+//POIN NewSomeProc
+ORG $CA7A44
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN SomeEvent // CALL 
+
 //ORG $CA7A90
-//WORD 0x3E // asmc 
-//POIN StartConfigMenu
+
 //SHORT 0x2 0x3C // stal 
 POP 
 
-
-
+ALIGN 4 
+SomeEvent: 
+//BYTE 0xC 0 0 0 // Don't start from black 
+BYTE 0x87 0 0 0 // No skipping 
+//BYTE 0x8F 0 16 0 // fadu 
+//BYTE 0x93 0 0 0 // showmap 
+WORD 0x3E; POIN StartConfigMenu // asmc 
+//BYTE 0x8E 0 16 0 // fadi 
+BYTE 0x89 0 0 0 // allow skipping 
+BYTE 0x32 0 0 0 // LOAD 
+WORD 0x8CC5B70 // unit group 
+BYTE 0x3B 0 0 0 // ENUN 
+BYTE 0xA 0 0 0; WORD 0 // ENDA 

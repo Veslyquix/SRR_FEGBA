@@ -416,15 +416,39 @@ struct DispCnt {
     /* bit 14 */ u16 win1_on : 1;
     /* bit 15 */ u16 objWin_on : 1;
     //STRUCT_PAD(0x02, 0x04);
-} BITPACKED;
+};
+struct DispStat {
+    /* bit  0 */ u16 vblankFlag : 1;
+    /* bit  1 */ u16 hblankFlag : 1;
+    /* bit  2 */ u16 vcountFlag : 1;
+    /* bit  3 */ u16 vblankIrqEnable : 1;
+    /* bit  4 */ u16 hblankIrqEnable : 1;
+    /* bit  5 */ u16 vcountIrqEnable : 1;
+    /* bit  6 */ u16 dummy : 2;
+    /* bit  8 */ u16 vcountCompare : 8;
+    STRUCT_PAD(0x02, 0x04);
+};
+
+struct BgCnt {
+    /* bit  0 */ u16 priority : 2;
+    /* bit  2 */ u16 charBaseBlock : 2;
+    /* bit  4 */ u16 dummy : 2;
+    /* bit  6 */ u16 mosaic : 1;
+    /* bit  7 */ u16 colorMode : 1;
+    /* bit  8 */ u16 screenBaseBlock : 5;
+    /* bit 13 */ u16 areaOverflowMode : 1;
+    /* bit 14 */ u16 screenSize : 2;
+    STRUCT_PAD(0x02, 0x04);
+};
+
 struct LCDControlBuffer {
     /* 00 */ struct DispCnt dispcnt;
-    ///* 04 */ struct DispStat dispstat;
-    ///* 08 */ STRUCT_PAD(0x08, 0x0C);
-    ///* 0C */ struct BgCnt bg0cnt;
-    ///* 10 */ struct BgCnt bg1cnt;
-    ///* 14 */ struct BgCnt bg2cnt;
-    ///* 18 */ struct BgCnt bg3cnt;
+    /* 04 */ struct DispStat dispstat;
+    /* 08 */ u32 pad;
+    /* 0C */ struct BgCnt bg0cnt;
+    /* 10 */ struct BgCnt bg1cnt;
+    /* 14 */ struct BgCnt bg2cnt;
+    /* 18 */ struct BgCnt bg3cnt;
     ///* 1C */ struct BgCoords bgoffset[4];
     ///* 2C */ u8 win0_right, win0_left;
     ///* 2C */ u8 win1_right, win1_left;
@@ -621,8 +645,9 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandFlags.mode = !proc->Option[7]; 
 		
 		Proc_Break((ProcPtr)proc);
-		gLCDControlBuffer.dispcnt.bg3_on = 1; // don't display bg3 
-		gLCDControlBuffer.dispcnt.bg0_on = 0; // don't display bg3 
+		//BG_SetPosition(BG_3, 0, 0); 
+		//gLCDControlBuffer.dispcnt.bg3_on = 1; // don't display bg3 
+		//gLCDControlBuffer.dispcnt.bg0_on = 0; // don't display bg3 
 		m4aSongNumStart(0x2D9); // idk which to use 
 	};
 	
@@ -677,6 +702,7 @@ void StartConfigMenu(ProcPtr parent) {
 		ResetText();
 		ResetTextFont(); 
 		BG_Fill(gBG0TilemapBuffer, 0); 
+		BG_Fill(gBG1TilemapBuffer, 0); 
 		
 		struct Text* th = gStatScreen.text; // max 34 
 		int i = 0; 
@@ -708,17 +734,29 @@ void StartConfigMenu(ProcPtr parent) {
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 13, "Enemy Diff. Bonus"); i++;  // make enemies have more bonus levels? 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Mode"); i++;  // Classic/Casual 
 
-		BG_SetPosition(BG_3, 0, 0); 
-		gLCDControlBuffer.dispcnt.bg3_on = 0; // don't display bg3 
-		gLCDControlBuffer.dispcnt.bg2_on = 0; // don't display bg2
-		gLCDControlBuffer.dispcnt.bg1_on = 0; // don't display bg1 
-		gLCDControlBuffer.dispcnt.bg0_on = 1; // display bg3 
+		//BG_SetPosition(BG_3, 0, 0); 
+		
+		//*(u16 *)&gLCDControlBuffer.bg0cnt = 0;
+		//*(u16 *)&gLCDControlBuffer.bg1cnt = 0;
+		//*(u16 *)&gLCDControlBuffer.bg2cnt = 0;
+		//*(u16 *)&gLCDControlBuffer.bg3cnt = 0;
+		gLCDControlBuffer.dispcnt.forcedBlank = 0;
+		gLCDControlBuffer.dispcnt.mode = 0;
+		gLCDControlBuffer.dispcnt.win0_on = 0;
+		gLCDControlBuffer.dispcnt.win1_on = 0;
+		gLCDControlBuffer.dispcnt.objWin_on = 0;
+		gLCDControlBuffer.dispcnt.bg0_on = 1;
+		gLCDControlBuffer.dispcnt.bg1_on = 1;
+		gLCDControlBuffer.dispcnt.bg2_on = 0;// don't display bg2
+		gLCDControlBuffer.dispcnt.bg3_on = 0;// don't display bg3
+		gLCDControlBuffer.dispcnt.obj_on = 1;
+		
 		LoadUiFrameGraphics(); 
 		LoadObjUIGfx(); 
 		//proc->offset = 0; 
 		//proc->redraw = false; 
 		//proc->cannotCatch = false; 
-		//proc->cannotEvolve = false; 
+		//proc->cannotEvolve = false; x
 		//proc->updateSMS = true; 
 		//proc->handleID = 0; 
 		//ResetText();
@@ -732,8 +770,7 @@ void StartConfigMenu(ProcPtr parent) {
 		DrawConfigMenu(proc);
 		//BG_EnableSyncByMask(BG0_SYNC_BIT);
 		//StartGreenText(proc); 
-		BG_EnableSyncByMask(BG3_SYNC_BIT);
-		BG_EnableSyncByMask(BG2_SYNC_BIT);
+		BG_EnableSyncByMask(BG0_SYNC_BIT|BG1_SYNC_BIT);
 	} 
 } 
 
