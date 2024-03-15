@@ -125,7 +125,50 @@ int RandNewItem(int item) {
 	return MakeNewItem(item); 
 } 
 
-u8 const T1Class[] = { 1, 2, 3, 0xA, 0xE, 0x12, 0x14 } ; 
+#define MAX_CLASSES 0x63
+u8* BuildAvailableClassList(u8 list[]) {
+	
+	
+	list[0] = 0; // count 
+	int attrExceptions = CA_DANCE|CA_PLAY; 
+	// issues: 0x4D, 0x52, 0x53 prince has A rank swords ? (does he have anim?) 
+	// 0x56 fallen warrior has axes 
+	// no playable manaketes in fe7, but otherwise units without wexp but 
+	// have monster lock could be possibility 
+	for (int i = 1; i <= MAX_CLASSES; i++) { 
+		if ((i == 0x4D) || (i == 0x52) || (i == 0x53) || (i == 0x56)) { 
+			continue; } 
+		const struct ClassData* table = GetClassData(i); 
+		if (attrExceptions & table->attributes) { list[0]++; list[list[0]] = i; } 
+		
+		
+		int wexp = table->baseRanks[0]; 
+		wexp |= table->baseRanks[1]; 
+		wexp |= table->baseRanks[2]; 
+		wexp |= table->baseRanks[3]; 
+		wexp |= table->baseRanks[4]; 
+		wexp |= table->baseRanks[5]; 
+		wexp |= table->baseRanks[6]; 
+		wexp |= table->baseRanks[7]; 
+		if (!wexp) { 
+			continue; 
+		} 
+		// if class has any base wexp, it's good 
+		list[0]++; list[list[0]] = i;
+	
+	} 
+	return list; 
+} 
+
+int RandClass(int id, int coord) { 
+	if (!RandFlags.class) { return id; } 
+	
+	u8 list[MAX_CLASSES]; 
+	list[0] = 99; 
+	BuildAvailableClassList(list); 
+	
+	return list[HashByte_Ch(id, list[0]+1, coord)]; 
+} 
 
 int GetValidWexpMask(struct Unit* unit) { 
 	int result = 0; 
@@ -159,6 +202,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	struct ItemData* table; 
 	int rank, type, attr, badAttr;
 	badAttr = 0x3C1C00; // must be not an unusable locked weapon 
+	badAttr |= 0x80; // no uncounterable / siege weapons? 
 	attr = unit->pCharacterData->attributes | unit->pClassData->attributes; 
 	
 	if (attr & CA_LOCK_1) { badAttr &= ~(0x800); } // "wep lock 1" 
@@ -191,16 +235,21 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 		
 		type = table->weaponType; 
 		rank = table->weaponRank;
+		// weapons that have no lock and no wexp/rank req instead are considered S rank 
+		// eg. Ereshkigal
+		if ((!rank) && (!(attr & 0x3C1C00))) { 
+			rank = 251; 
+		} 
 		if (rank > ranks[type]) { 
 			continue; 
 		} 
+		
 		
 		type = 1<<(type); // now bitmask only 
 		if (rank) { 
 			if (!(type & wexpMask)) { 
 				continue; 
 			} 
-			
 		} 
 		list[0]++; 
 		list[list[0]] = i; 
@@ -222,31 +271,10 @@ int RandNewWeapon(struct Unit* unit, int item, int slot, u8 list[]) {
 		int c = HashByte_Ch(item, list[0]+1, unit->pClassData->number + slot + unit->xPos + unit->yPos); 
 		item = list[c+1]; // never 0  
 	} 
-	
-	//int isWep = GetItemAttributes(item) & 1; // IA_WEAPON 
-	//for (int i = 0; i<8; i++) { 
-	//	if (wexpMask & (1<<i)) { 
-	//		c++; 
-	//		if (isWep) { 
-	//			int min = WepByType[i*2]; 
-	//			item = HashByte_Ch(item, WepByType[(i*2)+1]-WepByType[i*2], unit->pClassData->number)+min; 
-	//		}
-	//		else { 
-	//			//item = HashByte_Ch(item, WepByType[(i*2)+1]-WepByType[i*2], unit->pClassData->number);
-	//		}
-	//		if (c <= (slot)) { break; }  
-	//	
-	//	} 
-	//}
-	
-	//asm("mov r11, r11"); 
 	return MakeNewItem(item); 
 } 
 
-int RandClass(int id, int coord) { 
-	if (!RandFlags.class) { return id; } 
-	return T1Class[HashByte_Ch(id, sizeof(T1Class), coord)]; 
-} 
+
 s16 HashStat(int number, int noise) { 
 	return HashByPercent_Ch(number, noise); 
 } 
@@ -288,7 +316,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		} 
     }
 
-	u8 list[40]; 
+	u8 list[MAX_ITEMS]; 
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	BuildAvailableWeaponList(list, unit); 
 	
@@ -1206,7 +1234,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 
 	u16 keys = sKeyStatusBuffer.newKeys; 
 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
-	int id = proc->id;
+	//int id = proc->id;
 	
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
 		RandFlags.variance = proc->Option[0];
