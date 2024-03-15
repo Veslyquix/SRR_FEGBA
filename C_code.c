@@ -8,7 +8,7 @@ int Div(int a, int b) PUREFUNC;
 int Mod(int a, int b) PUREFUNC;
 int DivArm(int b, int a) PUREFUNC;
 extern u8 gCh; 
-extern char* TacticianName;
+static char* const TacticianName = (char* const) (0x202BC18); //8 bytes long
 extern void SetFlag(int flag); // 80798E4
 extern int CasualModeFlag; 
 
@@ -31,13 +31,14 @@ u8 HashByte_Ch(int number, int max, int noise){
   if (max==0) return 0;
   u32 hash = 5381;
   hash = ((hash << 5) + hash) ^ number;
-  hash = ((hash << 5) + hash) ^ noise; 
   hash = ((hash << 5) + hash) ^ gCh;
   //hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
   for (int i = 0; i < 9; ++i){
+	asm("mov r11, r11"); 
     if (TacticianName[i]==0) break;
     hash = ((hash << 5) + hash) ^ TacticianName[i];
   };
+  hash = ((hash << 5) + hash) + noise; 
   return Mod((hash & 0x2FFFFFFF), max);
 };
 
@@ -100,13 +101,13 @@ extern struct ItemData* GetItemData(int item);
 int GetItemMight(int item) { 
 	item &= 0xFF; 
 	int might = GetItemData(item&0xFF)->might;
-	return HashMight(might, item); 
+	return HashMight(might, item)+2; 
 } 
 
 int GetItemHit(int item) { 
 	item &= 0xFF; 
 	int hit = GetItemData(item&0xFF)->hit;
-	return HashHit(hit, item); 
+	return HashHit(hit, item)+30; 
 } 
 
 int GetItemCrit(int item) { 
@@ -122,11 +123,7 @@ int GetItemWeight(int item) {
 } 
 
 //extern bool UnitAddItem(struct Unit* unit, int item);
-int RandNewItem(int item) { 
-	item &= 0xFF; 
-	if (!RandFlags.foundItems) { return MakeNewItem(item); } 
-	return MakeNewItem(item); 
-} 
+
 
 extern int MaxItems; 
 extern int MaxClasses; 
@@ -141,7 +138,8 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	// no playable manaketes in fe7, but otherwise units without wexp but 
 	// have monster lock could be possibility 
 	for (int i = 1; i <= MaxClasses; i++) { 
-		if ((i == 0x4D) || (i == 0x52) || (i == 0x53) || (i == 0x56)) { 
+	// 4, 5, 6 are duplicate promoted lords 
+		if ((i == 0x4) || (i == 0x5) || (i == 0x6) || (i == 0xB) || (i == 0xF) || (i == 0x11) || (i == 0x15) || (i == 0x17) || (i == 0x19) || (i == 0x1B) || (i == 0x1F) || (i == 0x25) || (i == 0x29) || (i == 0x2B) || (i == 0x2f) || (i == 0x31) || (i == 0x35) || (i == 0x37) || (i == 0x3D) || (i == 0x4D) || (i == 0x52) || (i == 0x53) || (i == 0x56)) { 
 			continue; } 
 		const struct ClassData* table = GetClassData(i); 
 		attr = table->attributes; 
@@ -170,16 +168,19 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	return list; 
 } 
 
-int RandClass(int id, int coord, struct Unit* unit) { 
+int RandClass(int id, int noise, struct Unit* unit) { 
 	if (!RandFlags.class) { return id; } 
 	
 	u8 list[MaxClasses]; 
 	list[0] = 99; 
-	int promotedBitflag = (unit->pCharacterData->attributes | unit->pClassData->attributes)& CA_PROMOTED;
+	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
 	int allegiance = (unit->index)>>6; 
 	BuildAvailableClassList(list, promotedBitflag, allegiance); 
-	id = HashByte_Ch(id, list[0]+1, coord);
+	id = HashByte_Ch(id, list[0]+1, noise);
 	if (!id) { id = 1; } // never 0  
+	noise &= 0xF; 
+	id += noise; 
+	if (id > list[0]) { id = list[0] - 1; } 
 	return list[id]; 
 } 
 
@@ -269,55 +270,77 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	return list; 
 } 
 
-u8* BuildAvailableItemList(u8 list[], struct Unit* unit) { 
+u8* BuildAvailableItemList(u8 list[], struct Unit* unit, int item) { 
 	
-	int badAttr = 0x5; 
+	int effectID; 
+	struct ItemData* table; 
+	int originalPrice = GetItemData(item)->costPerUse; 
+	originalPrice += 200 + (((originalPrice * RandFlags.variance) / 100) * 5);
+	// up to 500% price + 200 
+	list[0] = 0; // count 
 	for (int i = 1; i <= MaxItems; i++) { 
-		table = GetItemData(i);  
-		attr = table->attributes; 
-		
-		if (attr & badAttr) { // must be equippable or a staff 
+		table = GetItemData(i);  		
+		if (table->attributes & 5) { // must not be equippable/staff 
 			continue; 
 		} 
 		
-		type = table->weaponType; 
-		rank = table->weaponRank;
-		// weapons that have no lock and no wexp/rank req instead are considered S rank 
-		// eg. Ereshkigal
-		if ((!rank) && (!(attr & 0x3C1C00))) { 
-			rank = 251; 
+		// some dummy vulnerary items 
+		effectID = table->useEffectId; 
+		if ((effectID == 0x33) || (effectID == 0x34) || (effectID == 0x35)) { 
+			continue; 
 		} 
-		if (rank > ranks[type]) { 
+		if (table->weaponType == 0xC) { // no rings for now 
+			continue; // (dance / play are also rings...) 
+		} 
+		
+		if (table->descTextId == 0x2FF) { // bags of gold description 
 			continue; 
 		} 
 		
-		
-		type = 1<<(type); // now bitmask only 
-		if (rank) { 
-			if (!(type & wexpMask)) { 
-				continue; 
-			} 
+		if (table->costPerUse > originalPrice) { 
+			continue; 
 		} 
 		list[0]++; 
 		list[list[0]] = i; 
+		
+
 	}
 
 	return list; 
 } 
 
 
+int RandNewItem(int item) { 
+	item &= 0xFF; 
+	if (!RandFlags.foundItems) { return MakeNewItem(item); } 
+	return MakeNewItem(item); 
+} 
+
 int RandNewWeapon(struct Unit* unit, int item, int slot, u8 list[]) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
 	if (!RandFlags.class) { return MakeNewItem(item); } 
 	//int wexpMask = GetValidWexpMask(unit); 
-	if (!((GetItemData(item)->attributes) & 5)) { return MakeNewItem(item); } // not a wep/staff 
+	int c; 
+	if (!((GetItemData(item)->attributes) & 5)) { // not a wep/staff 
+		u8 list2[MaxItems]; 
+		list2[0] = 99; // so compiler doesn't assume uninitialized or whatever 
+		asm("mov r11, r11"); 
+		BuildAvailableItemList(list2, unit, item); 
+		if (list2[0]) { 
+			c = HashByte_Ch(item, list2[0]+1, unit->pClassData->number + unit->xPos) + slot; 
+			if (c > list[0]) { c = list[0]-1; } 
+			if (!c) { c = 1; } // never 0  
+			item = list2[c]; 
+		} 
+		return MakeNewItem(item); 
+	} 
 
 	//asm("mov r11, r11"); 
-	if (list[0]) {
-		asm("mov r11, r11"); 
-		int c = HashByte_Ch(item, list[0]+1, unit->pClassData->number + slot + unit->xPos + unit->yPos); 
-		if (!c) { c = 1; } // never 0  
+	if (list[0]) { 
+		c = HashByte_Ch(item, list[0]+1, unit->pClassData->number + unit->xPos) + slot; 
+		if (c > list[0]) { c = list[0]-1; } 
+		if (!c) { c = 1; } // never 0 
 		item = list[c]; 
 	} 
 	return MakeNewItem(item); 
@@ -338,7 +361,9 @@ s16 HashWexp(int number, int noise, int noise2) {
 	if (!number) { return number; } 
 	if (!RandFlags.class) { return number; } 
 	noise += noise2; 
-	return HashByPercent(number, noise); 
+	number = HashByPercent(number, noise)+1; 
+	if (number > 255) { number = 255; } 
+	return number; 
 } 
 
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
@@ -348,16 +373,21 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	unit->yPos = uDef->yPosition; 
 	
     if (uDef->classIndex) { 
-        unit->pClassData = GetClassData(RandClass(uDef->classIndex, uDef->xPosition|(uDef->yPosition<<8), unit));
+        unit->pClassData = GetClassData(RandClass(uDef->classIndex, uDef->xPosition, unit));
 	}
     else {
-        unit->pClassData = GetClassData(RandClass(unit->pCharacterData->defaultClass, uDef->xPosition|(uDef->yPosition<<8), unit));
+        unit->pClassData = GetClassData(RandClass(unit->pCharacterData->defaultClass, uDef->xPosition, unit));
 	}
 
 	int wexp = 0; 
     for (int i = 0; i < 8; ++i) {
         wexp = HashWexp(unit->pClassData->baseRanks[i], unit->pClassData->number, i);
 		unit->ranks[i] = wexp; 
+		
+		if (i == 7) { // dark 
+			if ((unit->ranks[i]) && (unit->ranks[i] < 31)) { unit->ranks[i] = 31; } 
+			// flux is D rank, not E... 
+		}
 		
 		if (!RandFlags.class) { 
 			if (unit->pCharacterData->baseRanks[i]) { // original
@@ -368,6 +398,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	u8 list[MaxItems]; 
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	BuildAvailableWeaponList(list, unit); 
+	
 	
 	for (int i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], i, list)); }
@@ -396,7 +427,7 @@ void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* c
     //int i;
 
     unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, 0);
-	if (unit->maxHP < 10) { unit->maxHP = 10; } 
+	if (unit->maxHP < 10) { unit->maxHP += 10; } 
     unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, 1);
     unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, 2);
     unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, 3);

@@ -9,7 +9,7 @@ ORG FreeSpace
 #include "C_code.lyn.event" 
 
 ALIGN 4 
-NewSomeProc: 
+NewSomeProc: // doesn't work atm 
 WORD 2; POIN StartConfigMenu|1
 WORD 0xE 0 // sleep 
 WORD 2 0x801F2E1 
@@ -21,15 +21,20 @@ PUSH
 ORG $B93950 
 //POIN NewSomeProc
 ORG $CA7A44
-BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN SomeEvent // CALL 
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeEvent // CALL 
 
-//ORG $CA7A90
+ORG $CAE040
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN EliwoodModeEvent  
+
+ORG $CAE610
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent 
+
 
 //SHORT 0x2 0x3C // stal 
 POP 
 
 ALIGN 4 
-SomeEvent: 
+LynModeEvent: 
 //BYTE 0xC 0 0 0 // Don't start from black 
 BYTE 0x87 0 0 0 // No skipping 
 //BYTE 0x8F 0 16 0 // fadu 
@@ -41,6 +46,33 @@ BYTE 0x32 0 0 0 // LOAD
 WORD 0x8CC5B70 // unit group 
 BYTE 0x3B 0 0 0 // ENUN 
 BYTE 0xA 0 0 0; WORD 0 // ENDA 
+
+EliwoodModeEvent: 
+//BYTE 0xC 0 0 0 // Don't start from black 
+BYTE 0x87 0 0 0 // No skipping 
+//BYTE 0x8F 0 16 0 // fadu 
+//BYTE 0x93 0 0 0 // showmap 
+WORD 0x3E; POIN StartConfigMenu // asmc 
+//BYTE 0x8E 0 16 0 // fadi 
+BYTE 0x89 0 0 0 // allow skipping 
+BYTE 0x32 0 0 0 // LOAD 
+WORD 0x8CC7DDC // unit group 
+BYTE 0x3B 0 0 0 // ENUN 
+BYTE 0xA 0 0 0; WORD 0 // ENDA 
+
+HectorModeEvent: 
+//BYTE 0xC 0 0 0 // Don't start from black 
+BYTE 0x87 0 0 0 // No skipping 
+//BYTE 0x8F 0 16 0 // fadu 
+//BYTE 0x93 0 0 0 // showmap 
+WORD 0x3E; POIN StartConfigMenu // asmc 
+//BYTE 0x8E 0 16 0 // fadi 
+BYTE 0x89 0 0 0 // allow skipping 
+BYTE 0xD6 0 0 0 // vanilla 
+BYTE 0x92 0 0 0 
+BYTE 0xD3 0 0x33 0 
+BYTE 0xA 0 0 0; WORD 0 // ENDA 
+
 
 ALIGN 4 
 CasualModeFlag:
@@ -60,6 +92,11 @@ PUSH
 ORG $17E9E // by Circles 
 byte 0x00 0x00
 jumpToHack(CasualMode)
+
+
+ORG $9E9FC // Select any mode on new game 
+// by Doesnt 
+BYTE $1F $20 $70 $47 
 
 
 // in 8019E5C BuildBestMovementScript 
