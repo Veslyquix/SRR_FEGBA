@@ -5,7 +5,7 @@ ORG FreeSpace
 #endif 
 
 
-
+#include "Extensions/Hack Installation.txt" 
 #include "C_code.lyn.event" 
 
 ALIGN 4 
@@ -42,12 +42,37 @@ WORD 0x8CC5B70 // unit group
 BYTE 0x3B 0 0 0 // ENUN 
 BYTE 0xA 0 0 0; WORD 0 // ENDA 
 
+ALIGN 4 
+CasualModeFlag:
+WORD 0xA0 
+MaxItems:
+WORD 0x9E 
+MaxClasses:
+WORD 0x63 
 
+ALIGN 4
+CasualMode:
+BYTE $10 $B4 $14 $1C $00 $F0 $13 $F8 $00 $28 $01 $D1 $05 $23 $00 $E0 $09 $23 $E0 $68 $05 $21 $C9 $43 $08 $40 $19 $1C $08 $43 $E0 $60 $20 $1C $06 $4B $00 $F0 $02 $F8 $10 $BC $05 $4B $18 $47 $00 $B5 $A0 $20 $04 $4B $FF $F7 $FA $FF $00 $BD $00 $00 $45 $68 $02 $08 $B3 $7E $01 $08 $F9 $98 $07 $08
+
+
+PUSH 
+
+ORG $17E9E // by Circles 
+byte 0x00 0x00
+jumpToHack(CasualMode)
+
+
+// in 8019E5C BuildBestMovementScript 
+// Fix REDA / MOVE from crashing on impassible terrain 
+// by 7743 - ported to fe7 by Vesly 
+//ORG 0x01A77E; // fe8 version 
+ORG 0x19F9A // fe7u 
+// looks like code is the same 
+BYTE 0xFF 0x2D 0x29 0xDA 0x02 0x99 0x08 0x70 0x04 0x9B 0x02 0x93
 
 
 // QoL for testing 
 // by Gryz 
-PUSH 
 ORG $BC58E 
 SHORT 0x46C0 
 ORG $BC580 

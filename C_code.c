@@ -9,6 +9,9 @@ int Mod(int a, int b) PUREFUNC;
 int DivArm(int b, int a) PUREFUNC;
 extern u8 gCh; 
 extern char* TacticianName;
+extern void SetFlag(int flag); // 80798E4
+extern int CasualModeFlag; 
+
 
 struct RandomizerSettings { 
 	u16 variance : 5; // up to 5*31 / 100% 
@@ -17,8 +20,8 @@ struct RandomizerSettings {
 	u16 growth : 1; 
 	u16 caps : 1; 
 	u16 class : 1; 
-	u16 items : 1; 
-	u16 mode : 1; // final bit of the u16 ram used 
+	u16 itemStats : 1; 
+	u16 foundItems : 1; // final bit of the u16 ram used 
 }; 
 extern struct RandomizerSettings RandFlags; 
 
@@ -76,19 +79,19 @@ s16 HashByPercent(int number, int noise){
 
 
 s16 HashMight(int number, int noise) { 
-	if (!RandFlags.items) { return number; } 
+	if (!RandFlags.itemStats) { return number; } 
 	return HashByPercent(number, noise); 
 } 
 s16 HashHit(int number, int noise) { 
-	if (!RandFlags.items) { return number; } 
+	if (!RandFlags.itemStats) { return number; } 
 	return HashByPercent(number, noise); 
 } 
 s16 HashCrit(int number, int noise) { 
-	if (!RandFlags.items) { return number; } 
+	if (!RandFlags.itemStats) { return number; } 
 	return HashByPercent(number, noise); 
 } 
 s16 HashWeight(int number, int noise) { 
-	if (!RandFlags.items) { return number; } 
+	if (!RandFlags.itemStats) { return number; } 
 	return HashByPercent(number, noise); 
 } 
 // Random: 
@@ -121,26 +124,33 @@ int GetItemWeight(int item) {
 //extern bool UnitAddItem(struct Unit* unit, int item);
 int RandNewItem(int item) { 
 	item &= 0xFF; 
-	if (!RandFlags.items) { return MakeNewItem(item); } 
+	if (!RandFlags.foundItems) { return MakeNewItem(item); } 
 	return MakeNewItem(item); 
 } 
 
-#define MAX_CLASSES 0x63
-u8* BuildAvailableClassList(u8 list[]) {
+extern int MaxItems; 
+extern int MaxClasses; 
+u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	
 	
 	list[0] = 0; // count 
 	int attrExceptions = CA_DANCE|CA_PLAY; 
+	int attr; 
 	// issues: 0x4D, 0x52, 0x53 prince has A rank swords ? (does he have anim?) 
 	// 0x56 fallen warrior has axes 
 	// no playable manaketes in fe7, but otherwise units without wexp but 
 	// have monster lock could be possibility 
-	for (int i = 1; i <= MAX_CLASSES; i++) { 
+	for (int i = 1; i <= MaxClasses; i++) { 
 		if ((i == 0x4D) || (i == 0x52) || (i == 0x53) || (i == 0x56)) { 
 			continue; } 
 		const struct ClassData* table = GetClassData(i); 
-		if (attrExceptions & table->attributes) { list[0]++; list[list[0]] = i; } 
+		attr = table->attributes; 
+		if (!promotedBitflag) { if (attr & CA_PROMOTED) { continue; } } 
+		else if (!(attr & CA_PROMOTED)) { continue; } 
 		
+		if (!allegiance) { // no enemy bards / dancers 
+			if (attrExceptions & attr) { list[0]++; list[list[0]] = i; } 
+		} 
 		
 		int wexp = table->baseRanks[0]; 
 		wexp |= table->baseRanks[1]; 
@@ -160,14 +170,17 @@ u8* BuildAvailableClassList(u8 list[]) {
 	return list; 
 } 
 
-int RandClass(int id, int coord) { 
+int RandClass(int id, int coord, struct Unit* unit) { 
 	if (!RandFlags.class) { return id; } 
 	
-	u8 list[MAX_CLASSES]; 
+	u8 list[MaxClasses]; 
 	list[0] = 99; 
-	BuildAvailableClassList(list); 
-	
-	return list[HashByte_Ch(id, list[0]+1, coord)]; 
+	int promotedBitflag = (unit->pCharacterData->attributes | unit->pClassData->attributes)& CA_PROMOTED;
+	int allegiance = (unit->index)>>6; 
+	BuildAvailableClassList(list, promotedBitflag, allegiance); 
+	id = HashByte_Ch(id, list[0]+1, coord);
+	if (!id) { id = 1; } // never 0  
+	return list[id]; 
 } 
 
 int GetValidWexpMask(struct Unit* unit) { 
@@ -194,7 +207,6 @@ int GetUsedWexpMask(struct Unit* unit) {
 	return result; 
 } 
 
-#define MAX_ITEMS 0x9E
 u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) { 
 	int wexpMask = GetUsedWexpMask(unit); // only goes up to dark wexp 
 	
@@ -225,7 +237,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	list[0] = 0; // count  
 	
 	
-	for (int i = 1; i <= MAX_ITEMS; i++) { 
+	for (int i = 1; i <= MaxItems; i++) { 
 		table = GetItemData(i);  
 		attr = table->attributes; 
 		
@@ -257,19 +269,56 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	return list; 
 } 
 
+u8* BuildAvailableItemList(u8 list[], struct Unit* unit) { 
+	
+	int badAttr = 0x5; 
+	for (int i = 1; i <= MaxItems; i++) { 
+		table = GetItemData(i);  
+		attr = table->attributes; 
+		
+		if (attr & badAttr) { // must be equippable or a staff 
+			continue; 
+		} 
+		
+		type = table->weaponType; 
+		rank = table->weaponRank;
+		// weapons that have no lock and no wexp/rank req instead are considered S rank 
+		// eg. Ereshkigal
+		if ((!rank) && (!(attr & 0x3C1C00))) { 
+			rank = 251; 
+		} 
+		if (rank > ranks[type]) { 
+			continue; 
+		} 
+		
+		
+		type = 1<<(type); // now bitmask only 
+		if (rank) { 
+			if (!(type & wexpMask)) { 
+				continue; 
+			} 
+		} 
+		list[0]++; 
+		list[list[0]] = i; 
+	}
+
+	return list; 
+} 
 
 
 int RandNewWeapon(struct Unit* unit, int item, int slot, u8 list[]) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
-	if (!RandFlags.items) { return MakeNewItem(item); } 
+	if (!RandFlags.class) { return MakeNewItem(item); } 
 	//int wexpMask = GetValidWexpMask(unit); 
 	if (!((GetItemData(item)->attributes) & 5)) { return MakeNewItem(item); } // not a wep/staff 
 
 	//asm("mov r11, r11"); 
 	if (list[0]) {
+		asm("mov r11, r11"); 
 		int c = HashByte_Ch(item, list[0]+1, unit->pClassData->number + slot + unit->xPos + unit->yPos); 
-		item = list[c+1]; // never 0  
+		if (!c) { c = 1; } // never 0  
+		item = list[c]; 
 	} 
 	return MakeNewItem(item); 
 } 
@@ -296,13 +345,13 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
     unit->level = uDef->level;
 	unit->xPos = uDef->xPosition;
-	unit->yPos = uDef->yPosition;
+	unit->yPos = uDef->yPosition; 
 	
     if (uDef->classIndex) { 
-        unit->pClassData = GetClassData(RandClass(uDef->classIndex, uDef->xPosition|(uDef->yPosition<<8)));
+        unit->pClassData = GetClassData(RandClass(uDef->classIndex, uDef->xPosition|(uDef->yPosition<<8), unit));
 	}
     else {
-        unit->pClassData = GetClassData(RandClass(unit->pCharacterData->defaultClass, uDef->xPosition|(uDef->yPosition<<8)));
+        unit->pClassData = GetClassData(RandClass(unit->pCharacterData->defaultClass, uDef->xPosition|(uDef->yPosition<<8), unit));
 	}
 
 	int wexp = 0; 
@@ -316,7 +365,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		} 
     }
 
-	u8 list[MAX_ITEMS]; 
+	u8 list[MaxItems]; 
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	BuildAvailableWeaponList(list, unit); 
 	
@@ -347,6 +396,7 @@ void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* c
     //int i;
 
     unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, 0);
+	if (unit->maxHP < 10) { unit->maxHP = 10; } 
     unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, 1);
     unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, 2);
     unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, 3);
@@ -569,6 +619,8 @@ int NewGetStatIncrease(int growth, int noise) {
 
 void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
     if (levelCount) {
+		levelCount += RandFlags.bonus; 
+		
         unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit),  levelCount);
         unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit), levelCount);
         unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit), levelCount);
@@ -1243,8 +1295,10 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandFlags.growth = !proc->Option[2]; 
 		RandFlags.caps = !proc->Option[3]; 
 		RandFlags.class = !proc->Option[4]; 
-		RandFlags.items = !proc->Option[5]; 
-		RandFlags.mode = !proc->Option[7]; 
+		RandFlags.itemStats = !proc->Option[5]; 
+		RandFlags.foundItems = !proc->Option[5]; 
+		
+		if (proc->Option[7]) { SetFlag(CasualModeFlag); } 
 		
 		Proc_Break((ProcPtr)proc);
 		//BG_SetPosition(BG_3, 0, 0); 
