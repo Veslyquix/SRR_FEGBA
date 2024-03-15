@@ -93,7 +93,6 @@ s16 HashWeight(int number, int noise) {
 } 
 // Random: 
 // Class, Growths, Base stats, Caps, Item Stats, Chest items 
-#define Extra 25
 extern struct ItemData* GetItemData(int item);
 int GetItemMight(int item) { 
 	item &= 0xFF; 
@@ -126,19 +125,9 @@ int RandNewItem(int item) {
 	return MakeNewItem(item); 
 } 
 
-#define SwordsMin 1
-#define SwordsMax 0x13 
-#define LancesMin 0x14 
-#define LancesMax 0x1E 
-#define AxesMin 0x1F 
-#define AxesMax 0x2B 
-#define BowsMin 0x2C 
-#define BowsMax 0x33 
-
 u8 const T1Class[] = { 1, 2, 3, 0xA, 0xE, 0x12, 0x14 } ; 
-u8 const WepByType[] = {1, 0x13, 0x14, 0x1E, 0x1F, 0x2B, 0x2C, 0x33}; 
 
-int GetValidWEXPMask(struct Unit* unit) { 
+int GetValidWexpMask(struct Unit* unit) { 
 	int result = 0; 
 	int wexp = 0; 
     for (int i = 0; i < 8; ++i) {
@@ -149,27 +138,106 @@ int GetValidWEXPMask(struct Unit* unit) {
 	} 
 	return result; 
 } 
-int RandNewWeapon(struct Unit* unit, int item, int slot) { 
+
+int GetUsedWexpMask(struct Unit* unit) { 
+	int result = 0; 
+	int wexp = 0; 
+    for (int i = 0; i < 8; ++i) {
+        wexp = unit->ranks[i];
+		if (wexp) { 
+			result |= 1<<i;
+		} 		
+	} 
+	return result; 
+} 
+
+#define MAX_ITEMS 0x9E
+u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) { 
+	int wexpMask = GetUsedWexpMask(unit); // only goes up to dark wexp 
+	
+	// iterate through all items 
+	struct ItemData* table; 
+	int rank, type, attr, badAttr;
+	badAttr = 0x3C1C00; // must be not an unusable locked weapon 
+	attr = unit->pCharacterData->attributes | unit->pClassData->attributes; 
+	
+	if (attr & CA_LOCK_1) { badAttr &= ~(0x800); } // "wep lock 1" 
+	if (attr & CA_LOCK_2) { badAttr &= ~(0x1000); } // myrm 
+	if (attr & CA_LOCK_3) { badAttr &= ~(0x400); } // manakete 
+	if (attr & CA_LOCK_4) { badAttr &= ~(0x40000); } // eliwood 
+	if (attr & CA_LOCK_5) { badAttr &= ~(0x80000); } // hector 
+	if (attr & CA_LOCK_6) { badAttr &= ~(0x100000); } // lyn 
+	if (attr & CA_LOCK_7) { badAttr &= ~(0x200000); } // athos 
+	u8 ranks[8]; 
+	ranks[0] = unit->ranks[0]; 
+	ranks[1] = unit->ranks[1]; 
+	ranks[2] = unit->ranks[2]; 
+	ranks[3] = unit->ranks[3]; 
+	ranks[4] = unit->ranks[4]; 
+	ranks[5] = unit->ranks[5]; 
+	ranks[6] = unit->ranks[6]; 
+	ranks[7] = unit->ranks[7]; 
+	
+	list[0] = 0; // count  
+	
+	
+	for (int i = 1; i <= MAX_ITEMS; i++) { 
+		table = GetItemData(i);  
+		attr = table->attributes; 
+		
+		if ((attr & badAttr) || (!(attr & 5))) { // must be equippable or a staff 
+			continue; 
+		} 
+		
+		type = table->weaponType; 
+		rank = table->weaponRank;
+		if (rank > ranks[type]) { 
+			continue; 
+		} 
+		
+		type = 1<<(type); // now bitmask only 
+		if (rank) { 
+			if (!(type & wexpMask)) { 
+				continue; 
+			} 
+			
+		} 
+		list[0]++; 
+		list[list[0]] = i; 
+	}
+	return list; 
+} 
+
+
+
+int RandNewWeapon(struct Unit* unit, int item, int slot, u8 list[]) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
 	if (!RandFlags.items) { return MakeNewItem(item); } 
-	int wexpMask = GetValidWEXPMask(unit); 
-	int c = 0; 
-	int isWep = GetItemAttributes(item) & 1; // IA_WEAPON 
-	for (int i = 0; i<8; i++) { 
-		if (wexpMask & (1<<i)) { 
-			c++; 
-			if (isWep) { 
-				int min = WepByType[i*2]; 
-				item = HashByte_Ch(item, WepByType[(i*2)+1]-WepByType[i*2], unit->pClassData->number)+min; 
-			}
-			else { 
-				//item = HashByte_Ch(item, WepByType[(i*2)+1]-WepByType[i*2], unit->pClassData->number);
-			}
-			if (c <= (slot)) { break; }  
-		
-		} 
-	}
+	//int wexpMask = GetValidWexpMask(unit); 
+	if (!((GetItemData(item)->attributes) & 5)) { return MakeNewItem(item); } // not a wep/staff 
+
+	//asm("mov r11, r11"); 
+	if (list[0]) {
+		int c = HashByte_Ch(item, list[0]+1, unit->pClassData->number + slot + unit->xPos + unit->yPos); 
+		item = list[c+1]; // never 0  
+	} 
+	
+	//int isWep = GetItemAttributes(item) & 1; // IA_WEAPON 
+	//for (int i = 0; i<8; i++) { 
+	//	if (wexpMask & (1<<i)) { 
+	//		c++; 
+	//		if (isWep) { 
+	//			int min = WepByType[i*2]; 
+	//			item = HashByte_Ch(item, WepByType[(i*2)+1]-WepByType[i*2], unit->pClassData->number)+min; 
+	//		}
+	//		else { 
+	//			//item = HashByte_Ch(item, WepByType[(i*2)+1]-WepByType[i*2], unit->pClassData->number);
+	//		}
+	//		if (c <= (slot)) { break; }  
+	//	
+	//	} 
+	//}
 	
 	//asm("mov r11, r11"); 
 	return MakeNewItem(item); 
@@ -189,7 +257,12 @@ int RandStat(struct Unit* unit, int stat, int noise) {
 } 
 
 
-
+s16 HashWexp(int number, int noise, int noise2) { 
+	if (!number) { return number; } 
+	if (!RandFlags.class) { return number; } 
+	noise += noise2; 
+	return HashByPercent(number, noise); 
+} 
 
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
@@ -204,8 +277,23 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
         unit->pClassData = GetClassData(RandClass(unit->pCharacterData->defaultClass, uDef->xPosition|(uDef->yPosition<<8)));
 	}
 
+	int wexp = 0; 
+    for (int i = 0; i < 8; ++i) {
+        wexp = HashWexp(unit->pClassData->baseRanks[i], unit->pClassData->number, i);
+		unit->ranks[i] = wexp; 
+		
+		if (!RandFlags.class) { 
+			if (unit->pCharacterData->baseRanks[i]) { // original
+				unit->ranks[i] = unit->pCharacterData->baseRanks[i]; } 
+		} 
+    }
+
+	u8 list[40]; 
+	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
+	BuildAvailableWeaponList(list, unit); 
+	
 	for (int i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
-	UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], i)); }
+	UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], i, list)); }
 
     unit->ai1 = uDef->ai[0];
 
@@ -220,19 +308,15 @@ void UnitLoadItemsFromDefinition(struct Unit* unit, const struct UnitDefinition*
     int i;
 
     UnitClearInventory(unit);
-
+	u8 list[40]; 
+	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
+	BuildAvailableWeaponList(list, unit); 
     for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i)
-        UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], i));
+        UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], i, list));
 }
-s16 HashWexp(int number, int noise, int noise2) { 
-	if (!number) { return number; } 
-	if (!RandFlags.class) { return number; } 
-	noise += noise2; 
-	return HashByPercent(number, noise); 
-} 
 
 void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* character) {
-    int i;
+    //int i;
 
     unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, 0);
     unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, 1);
@@ -244,16 +328,7 @@ void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* c
 
     unit->conBonus = 0;
 
-	int wexp = 0; 
-    for (i = 0; i < 8; ++i) {
-        wexp = HashWexp(unit->pClassData->baseRanks[i], unit->pClassData->number, i);
-		unit->ranks[i] = wexp; 
-		
-		if (!RandFlags.class) { 
-			if (unit->pCharacterData->baseRanks[i]) { // original
-				unit->ranks[i] = unit->pCharacterData->baseRanks[i]; } 
-		} 
-    }
+
 
     if (UNIT_FACTION(unit) == FACTION_BLUE && (unit->level != 20))
         unit->exp = 0;

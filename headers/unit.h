@@ -354,6 +354,51 @@ struct BattleUnit {
 };
 
 
+// USED FOR LOCKS ONLY 
+// this is the fe8u one, so different than fe7 in some places (but similar) 
+enum
+{
+    // Character/Class attributes
 
+    CA_NONE = 0,
+
+    CA_MOUNTEDAID = (1 << 0),
+    CA_CANTO = (1 << 1),
+    CA_STEAL = (1 << 2),
+    CA_THIEF = (1 << 3),
+    CA_DANCE = (1 << 4),
+    CA_PLAY = (1 << 5),
+    CA_CRITBONUS = (1 << 6),
+    CA_BALLISTAE = (1 << 7),
+    CA_PROMOTED = (1 << 8),
+    CA_SUPPLY = (1 << 9),
+    CA_MOUNTED = (1 << 10),
+    CA_WYVERN = (1 << 11),
+    CA_PEGASUS = (1 << 12),
+    CA_LORD = (1 << 13),
+    CA_FEMALE = (1 << 14),
+    CA_BOSS = (1 << 15),
+    CA_LOCK_1 = (1 << 16),
+    CA_LOCK_2 = (1 << 17),
+    CA_LOCK_3 = (1 << 18), // Dragons or Monster depending of game
+    CA_MAXLEVEL10 = (1 << 19),
+    CA_UNSELECTABLE = (1 << 20),
+    CA_TRIANGLEATTACK_PEGASI = (1 << 21),
+    CA_TRIANGLEATTACK_ARMORS = (1 << 22),
+    CA_BIT_23 = (1 << 23),
+    CA_NEGATE_LETHALITY = (1 << 24),
+    CA_ASSASSIN = (1 << 25),
+    CA_MAGICSEAL = (1 << 26),
+    CA_SUMMON = (1 << 27),
+    CA_LOCK_4 = (1 << 28),
+    CA_LOCK_5 = (1 << 29),
+    CA_LOCK_6 = (1 << 30),
+    CA_LOCK_7 = (1 << 31),
+
+    // Helpers
+    CA_REFRESHER = CA_DANCE | CA_PLAY,
+    CA_FLYER = CA_WYVERN | CA_PEGASUS,
+    CA_TRIANGLEATTACK_ANY = CA_TRIANGLEATTACK_ARMORS | CA_TRIANGLEATTACK_PEGASI,
+};
 
 
