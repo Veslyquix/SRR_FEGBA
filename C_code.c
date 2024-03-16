@@ -712,8 +712,8 @@ int NewGetStatIncrease(int growth, int noise) {
     }
 
 	// this makes it constant by seed instead of by rolling RN 
-	if (HashByte_Global(growth, 100, noise) >= (100 - growth))
-    //if (Roll1RN(growth))
+	//if (HashByte_Global(growth, 100, noise) >= (100 - growth))
+    if (Roll1RN(growth))
         result++;
 
     return result;
@@ -728,7 +728,7 @@ void UnitLevelUp(struct Unit* unit) {
 
         unit->exp = 0;
         unit->level++;
-		int noise = unit->pCharacterData->number; 
+		int noise = unit->pCharacterData->number + (unit->level*14) + (((unit->pClassData->attributes & CA_PROMOTED) != 0)*20); 
 
         if (unit->level == 20)
             unit->exp = UNIT_EXP_DISABLED;
@@ -746,57 +746,57 @@ void UnitLevelUp(struct Unit* unit) {
         hpGain  = NewGetStatIncrease(hpGrowth, noise+0);
         totalGain += hpGain;
 
-        powGain = NewGetStatIncrease(powGrowth, noise+11);
+        powGain = NewGetStatIncrease(powGrowth, noise+1);
         totalGain += powGain;
 
-        sklGain = NewGetStatIncrease(sklGrowth, noise+21);
+        sklGain = NewGetStatIncrease(sklGrowth, noise+2);
         totalGain += sklGain;
 
-        spdGain = NewGetStatIncrease(spdGrowth, noise+31);
+        spdGain = NewGetStatIncrease(spdGrowth, noise+3);
         totalGain += spdGain;
 
-        defGain = NewGetStatIncrease(defGrowth, noise+41);
+        defGain = NewGetStatIncrease(defGrowth, noise+4);
         totalGain += defGain;
 
-        resGain = NewGetStatIncrease(resGrowth, noise+51);
+        resGain = NewGetStatIncrease(resGrowth, noise+5);
         totalGain += resGain;
 
-        lckGain = NewGetStatIncrease(lckGrowth, noise+61);
+        lckGain = NewGetStatIncrease(lckGrowth, noise+6);
         totalGain += lckGain;
 
         if (totalGain == 0) {
             for (totalGain = 0; totalGain < 2; ++totalGain) {
-                hpGain = NewGetStatIncrease(hpGrowth, noise+5);
+                hpGain = NewGetStatIncrease(hpGrowth, noise+7);
 
                 if (hpGain)
                     break;
 
-                powGain = NewGetStatIncrease(powGrowth, noise+15);
+                powGain = NewGetStatIncrease(powGrowth, noise+8);
 
                 if (powGain)
                     break;
 
-                sklGain = NewGetStatIncrease(sklGrowth, noise+25);
+                sklGain = NewGetStatIncrease(sklGrowth, noise+9);
 
                 if (sklGain)
                     break;
 
-                spdGain = NewGetStatIncrease(spdGrowth, noise+35);
+                spdGain = NewGetStatIncrease(spdGrowth, noise+10);
 
                 if (spdGain)
                     break;
 
-                defGain = NewGetStatIncrease(defGrowth, noise+45);
+                defGain = NewGetStatIncrease(defGrowth, noise+11);
 
                 if (defGain)
                     break;
 
-                resGain = NewGetStatIncrease(resGrowth, noise+55);
+                resGain = NewGetStatIncrease(resGrowth, noise+12);
 
                 if (resGain)
                     break;
 
-                lckGain = NewGetStatIncrease(lckGrowth, noise+65);
+                lckGain = NewGetStatIncrease(lckGrowth, noise+13);
 
                 if (lckGain)
                     break;
@@ -839,8 +839,11 @@ extern s8 CanBattleUnitGainLevels(struct BattleUnit* bu); // 8029634
 void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
         int statGainTotal;
-		int noise = bu->unit.pCharacterData->number; 
-        bu->unit.exp -= 100;
+		int max = (bu->unit.pCharacterData->number*10) + (((bu->unit.pClassData->attributes & CA_PROMOTED) != 0)*2);
+		int level = bu->unit.level;
+		int noise; 
+
+		bu->unit.exp -= 100;
         bu->unit.level++;
 
 		if (bu->unit.level == 20) {
@@ -857,60 +860,74 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int resGrowth = GetUnitResGrowth(&bu->unit);
 		int lckGrowth = GetUnitLckGrowth(&bu->unit);
 
-        bu->changeHP  = NewGetStatIncrease(hpGrowth, noise+0); 
+		noise = HashByte_Global(0, max, level); 
+        bu->changeHP  = NewGetStatIncrease(hpGrowth, noise); 
         statGainTotal += bu->changeHP;
 
-        bu->changePow = NewGetStatIncrease(powGrowth, noise+11); 
+		noise = HashByte_Global(1, max, level); 
+        bu->changePow = NewGetStatIncrease(powGrowth, noise); 
         statGainTotal += bu->changePow;
 
-        bu->changeSkl = NewGetStatIncrease(sklGrowth, noise+21); 
+		noise = HashByte_Global(2, max, level); 
+        bu->changeSkl = NewGetStatIncrease(sklGrowth, noise); 
         statGainTotal += bu->changeSkl;
 
-        bu->changeSpd = NewGetStatIncrease(spdGrowth, noise+31); 
+		noise = HashByte_Global(3, max, level); 
+        bu->changeSpd = NewGetStatIncrease(spdGrowth, noise); 
         statGainTotal += bu->changeSpd;
 
-        bu->changeDef = NewGetStatIncrease(defGrowth, noise+41); 
+		noise = HashByte_Global(4, max, level); 
+        bu->changeDef = NewGetStatIncrease(defGrowth, noise); 
         statGainTotal += bu->changeDef;
 
-        bu->changeRes = NewGetStatIncrease(resGrowth, noise+51); 
+		noise = HashByte_Global(5, max, level); 
+        bu->changeRes = NewGetStatIncrease(resGrowth, noise); 
         statGainTotal += bu->changeRes;
 
-        bu->changeLck = NewGetStatIncrease(lckGrowth, noise+61); 
+		noise = HashByte_Global(6, max, level); 
+        bu->changeLck = NewGetStatIncrease(lckGrowth, noise); 
         statGainTotal += bu->changeLck;
 
         if (statGainTotal == 0) {
             for (statGainTotal = 0; statGainTotal < 2; ++statGainTotal) {
-                bu->changeHP = NewGetStatIncrease(hpGrowth, noise+5); 
+				noise = HashByte_Global(7, max, level); 
+                bu->changeHP = NewGetStatIncrease(hpGrowth, noise); 
 
                 if (bu->changeHP)
                     break;
 
-                bu->changePow = NewGetStatIncrease(powGrowth, noise+15); 
+				noise = HashByte_Global(8, max, level); 
+                bu->changePow = NewGetStatIncrease(powGrowth, noise); 
 
                 if (bu->changePow)
                     break;
 
-                bu->changeSkl = NewGetStatIncrease(sklGrowth, noise+25); 
+				noise = HashByte_Global(9, max, level); 
+                bu->changeSkl = NewGetStatIncrease(sklGrowth, noise); 
 
                 if (bu->changeSkl)
                     break;
 
-                bu->changeSpd = NewGetStatIncrease(spdGrowth, noise+35); 
+				noise = HashByte_Global(10, max, level); 
+                bu->changeSpd = NewGetStatIncrease(spdGrowth, noise); 
 
                 if (bu->changeSpd)
                     break;
 
-                bu->changeDef = NewGetStatIncrease(defGrowth, noise+45); 
+				noise = HashByte_Global(11, max, level); 
+                bu->changeDef = NewGetStatIncrease(defGrowth, noise); 
 
                 if (bu->changeDef)
                     break;
 
-                bu->changeRes = NewGetStatIncrease(resGrowth, noise+55); 
+				noise = HashByte_Global(12, max, level); 
+                bu->changeRes = NewGetStatIncrease(resGrowth, noise); 
 
                 if (bu->changeRes)
                     break;
 
-                bu->changeLck = NewGetStatIncrease(lckGrowth, noise+65); 
+				noise = HashByte_Global(13, max, level); 
+                bu->changeLck = NewGetStatIncrease(lckGrowth, noise); 
 
                 if (bu->changeLck)
                     break;

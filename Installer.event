@@ -33,7 +33,10 @@ BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent
 ORG $CAE920
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeUnlockDoor
 
-//SHORT 0x2 0x3C // stal 
+ORG $CABF64
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeUnlockDoor
+
+
 POP 
 
 ALIGN 4 
@@ -88,6 +91,14 @@ HectorModeUnlockDoor:
 BYTE 0x34 0 0 0; BYTE 0x3 0 0x1 0; WORD 0x8CC810C // Hard mode exclusive Load Units
 BYTE 0x5F 00 05 00 // Tile change 5: Open door
 BYTE 0xA 0 0 0; WORD 0 // ENDA 
+
+LynModeUnlockDoor:
+BYTE 0x33 0 0 0; WORD 0x8CC6560; BYTE 0x3b 0 0 0 // Load Units
+BYTE 0x5F 00 1 00 // Tile change 0: Open door
+BYTE 0x5F 00 5 00 // Tile change 0xB: Open door
+BYTE 0xA 0 0 0; WORD 0 // ENDA 
+
+
 
 ALIGN 4 
 CasualModeFlag:
