@@ -11,7 +11,8 @@ extern u8 gCh;
 static char* const TacticianName = (char* const) (0x202BC18); //8 bytes long
 extern void SetFlag(int flag); // 80798E4
 extern int CasualModeFlag; 
-
+#define true 1 
+#define false 0
 
 struct RandomizerSettings { 
 	u16 variance : 5; // up to 5*31 / 100% 
@@ -28,64 +29,65 @@ extern struct RandomizerSettings RandFlags;
 
 
 u8 HashByte_Ch(int number, int max, int noise){
-  if (max==0) return 0;
-  u32 hash = 5381;
-  hash = ((hash << 5) + hash) ^ number;
-  hash = ((hash << 5) + hash) ^ gCh;
-  //hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
-  for (int i = 0; i < 9; ++i){
-	asm("mov r11, r11"); 
-    if (TacticianName[i]==0) break;
-    hash = ((hash << 5) + hash) ^ TacticianName[i];
-  };
-  hash = ((hash << 5) + hash) + noise; 
-  return Mod((hash & 0x2FFFFFFF), max);
+	if (max==0) return 0;
+	u32 hash = 5381;
+	hash = ((hash << 5) + hash) ^ number;
+	hash = ((hash << 5) + hash) + noise; 
+	hash = ((hash << 5) + hash) ^ gCh;
+	//hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
+	for (int i = 0; i < 9; ++i){
+	if (TacticianName[i]==0) break;
+		hash = ((hash << 5) + hash) ^ TacticianName[i];
+	};
+	return Mod((hash & 0x2FFFFFFF), max);
 };
 
 u8 HashByte_Global(int number, int max, int noise) {
-  if (max==0) return 0;
-  u32 hash = 5381;
-  hash = ((hash << 5) + hash) ^ number;
-  hash = ((hash << 5) + hash) ^ noise; 
-  //hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
-  for (int i = 0; i < 9; ++i){
-    if (TacticianName[i]==0) break;
-    hash = ((hash << 5) + hash) ^ TacticianName[i];
-  };
-  return Mod((hash & 0x2FFFFFFF), max);
+	if (max==0) return 0;
+	u32 hash = 5381;
+	hash = ((hash << 5) + hash) ^ number;
+	hash = ((hash << 5) + hash) ^ noise; 
+	//hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
+	for (int i = 0; i < 9; ++i){
+	if (TacticianName[i]==0) break;
+		hash = ((hash << 5) + hash) ^ TacticianName[i];
+	};
+	return Mod((hash & 0x2FFFFFFF), max);
 };
 
 
 s16 HashByPercent_Ch(int number, int noise){ // Copied Circles 
-  if (number < 0) number = 0;
-  int variation = (RandFlags.variance)*5;
-  int percentage = HashByte_Ch(number, variation*2, noise); //rn up to 150 e.g. 125
-  percentage += (100-variation); // 125 + 25 = 150
-  int ret = percentage * number / 100; //1.5 * 120 (we want to negate this)
-  if (ret > 127) ret = (200 - percentage) * number / 100;
-  if (ret < 0) ret = 0;
-  return ret;
+	if (number < 0) number = 0;
+	int variation = (RandFlags.variance)*5;
+	int percentage = HashByte_Ch(number, variation*2, noise); //rn up to 150 e.g. 125
+	percentage += (100-variation); // 125 + 25 = 150
+	int ret = percentage * number / 100; //1.5 * 120 (we want to negate this)
+	if (ret > 127) ret = (200 - percentage) * number / 100;
+	if (ret < 0) ret = 0;
+	return ret;
 };
 
 s16 HashByPercent(int number, int noise){
-  if (number < 0) number = 0;
-  int variation = (RandFlags.variance)*5;
-  int percentage = HashByte_Global(number, variation*2, noise); //rn up to 150 e.g. 125
-  percentage += (100-variation); // 125 + 25 = 150
-  int ret = percentage * number / 100; //1.5 * 120 (we want to negate this)
-  if (ret > 127) ret = (200 - percentage) * number / 100;
-  if (ret < 0) ret = 0;
-  return ret;
+	if (number < 0) number = 0;
+	int variation = (RandFlags.variance)*5;
+	int percentage = HashByte_Global(number, variation*2, noise); //rn up to 150 e.g. 125
+	percentage += (100-variation); // 125 + 25 = 150
+	int ret = percentage * number / 100; //1.5 * 120 (we want to negate this)
+	if (ret > 127) ret = (200 - percentage) * number / 100;
+	if (ret < 0) ret = 0;
+	return ret;
 };
 
 
 s16 HashMight(int number, int noise) { 
 	if (!RandFlags.itemStats) { return number; } 
-	return HashByPercent(number, noise); 
+	return HashByPercent(number, noise)+2; 
 } 
 s16 HashHit(int number, int noise) { 
 	if (!RandFlags.itemStats) { return number; } 
-	return HashByPercent(number, noise); 
+	number = HashByPercent(number, noise);
+	if (number < 50) number += number + (noise & 0x1F); 
+	return number; 
 } 
 s16 HashCrit(int number, int noise) { 
 	if (!RandFlags.itemStats) { return number; } 
@@ -101,13 +103,13 @@ extern struct ItemData* GetItemData(int item);
 int GetItemMight(int item) { 
 	item &= 0xFF; 
 	int might = GetItemData(item&0xFF)->might;
-	return HashMight(might, item)+2; 
+	return HashMight(might, item); 
 } 
 
 int GetItemHit(int item) { 
 	item &= 0xFF; 
 	int hit = GetItemData(item&0xFF)->hit;
-	return HashHit(hit, item)+30; 
+	return HashHit(hit, item); 
 } 
 
 int GetItemCrit(int item) { 
@@ -178,9 +180,6 @@ int RandClass(int id, int noise, struct Unit* unit) {
 	BuildAvailableClassList(list, promotedBitflag, allegiance); 
 	id = HashByte_Ch(id, list[0]+1, noise);
 	if (!id) { id = 1; } // never 0  
-	noise &= 0xF; 
-	id += noise; 
-	if (id > list[0]) { id = list[0] - 1; } 
 	return list[id]; 
 } 
 
@@ -270,17 +269,20 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	return list; 
 } 
 
-u8* BuildAvailableItemList(u8 list[], struct Unit* unit, int item) { 
+u8* BuildSimilarPriceItemList(u8 list[], struct Unit* unit, int item, int noWeapons) { 
 	
 	int effectID; 
 	struct ItemData* table; 
+	int badAttr = 0x400; // manakete lock 
+	if (noWeapons) { badAttr |= 5; } 
+	
 	int originalPrice = GetItemData(item)->costPerUse; 
 	originalPrice += 200 + (((originalPrice * RandFlags.variance) / 100) * 5);
 	// up to 500% price + 200 
 	list[0] = 0; // count 
 	for (int i = 1; i <= MaxItems; i++) { 
 		table = GetItemData(i);  		
-		if (table->attributes & 5) { // must not be equippable/staff 
+		if (table->attributes & badAttr) { // must not be equippable/staff 
 			continue; 
 		} 
 		
@@ -310,26 +312,45 @@ u8* BuildAvailableItemList(u8 list[], struct Unit* unit, int item) {
 } 
 
 
-int RandNewItem(int item) { 
+int RandNewItem(int item, struct Unit *unit) { // unit for coords 
 	item &= 0xFF; 
 	if (!RandFlags.foundItems) { return MakeNewItem(item); } 
+
+	
+	u8 list[MaxItems]; 
+	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
+	int noise = unit->xPos + unit->yPos; 
+	int c; 
+	BuildSimilarPriceItemList(list, unit, item, false); 
+	if (list[0]) { 
+		c = HashByte_Ch(item, list[0]+1, noise); 
+		if (!c) { c = 1; } // never 0  
+		item = list[c]; 
+	} 
 	return MakeNewItem(item); 
 } 
 
-int RandNewWeapon(struct Unit* unit, int item, int slot, u8 list[]) { 
+int RandNewWeapon(struct Unit* unit, int item, int noise, u8 list[]) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
 	if (!RandFlags.class) { return MakeNewItem(item); } 
 	//int wexpMask = GetValidWexpMask(unit); 
 	int c; 
+	// player units that start with a vuln/elixir keep it 
+	if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6B) { return MakeNewItem(0x6B); } }
+	if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6C) { return MakeNewItem(0x6C); } }
+	// if dancer/bard, give random ring instead of a weapon 
+	if ((unit->pCharacterData->attributes | unit->pClassData->attributes)& (CA_DANCE|CA_PLAY)) { 
+		return MakeNewItem(HashByte_Ch(item, 4, noise)+0x7C); // 
+	} 
+	
+	
 	if (!((GetItemData(item)->attributes) & 5)) { // not a wep/staff 
 		u8 list2[MaxItems]; 
 		list2[0] = 99; // so compiler doesn't assume uninitialized or whatever 
-		asm("mov r11, r11"); 
-		BuildAvailableItemList(list2, unit, item); 
+		BuildSimilarPriceItemList(list2, unit, item, true); 
 		if (list2[0]) { 
-			c = HashByte_Ch(item, list2[0]+1, unit->pClassData->number + unit->xPos) + slot; 
-			if (c > list[0]) { c = list[0]-1; } 
+			c = HashByte_Ch(item, list2[0]+1, noise); 
 			if (!c) { c = 1; } // never 0  
 			item = list2[c]; 
 		} 
@@ -338,13 +359,40 @@ int RandNewWeapon(struct Unit* unit, int item, int slot, u8 list[]) {
 
 	//asm("mov r11, r11"); 
 	if (list[0]) { 
-		c = HashByte_Ch(item, list[0]+1, unit->pClassData->number + unit->xPos) + slot; 
-		if (c > list[0]) { c = list[0]-1; } 
+		c = HashByte_Ch(item, list[0]+1, noise); 
 		if (!c) { c = 1; } // never 0 
 		item = list[c]; 
 	} 
 	return MakeNewItem(item); 
 } 
+
+struct GotItemPopupProc {
+    PROC_HEADER;
+    /* 29 */ u8 _pad_29[0x54 - 0x29];
+    /* 54 */ struct Unit* unit;
+    /* 58 */ int item;
+};
+#define PROC_TREE_7     ((ProcPtr) 7)
+#define PROC_IS_ROOT(aProc) ((uintptr_t)aProc <= (u32)PROC_TREE_7)
+extern struct ProcCmd ProcScr_GotItem[]; //8B91DC4
+void NewPopup_ItemGot(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2 instead of r0 like fe8 
+{
+    struct GotItemPopupProc *proc;
+
+    proc = (PROC_IS_ROOT(parent))
+         ? Proc_Start(ProcScr_GotItem, parent)
+         : Proc_StartBlocking(ProcScr_GotItem, parent);
+
+	item = RandNewItem(item, unit); 
+
+
+    proc->item = item;
+    proc->unit = unit;
+
+    if (FACTION_RED == UNIT_FACTION(unit))
+        unit->state |= US_DROP_ITEM;
+}
+
 
 
 s16 HashStat(int number, int noise) { 
@@ -357,31 +405,173 @@ int RandStat(struct Unit* unit, int stat, int noise) {
 } 
 
 
-s16 HashWexp(int number, int noise, int noise2) { 
+s16 HashWexp(int number, int noise) { 
 	if (!number) { return number; } 
 	if (!RandFlags.class) { return number; } 
-	noise += noise2; 
 	number = HashByPercent(number, noise)+1; 
 	if (number > 255) { number = 255; } 
 	return number; 
 } 
+
+
+int GetClassHPGrowth(struct Unit* unit) { 
+	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pClassData->growthHP; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pClassData->number; 
+	growth = HashByPercent(growth, noise+11); 
+	return growth; 
+}
+
+int GetClassPowGrowth(struct Unit* unit) { 
+	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pClassData->growthPow; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pClassData->number; 
+	growth = HashByPercent(growth, noise+21); 
+	return growth; 
+}
+
+int GetClassSklGrowth(struct Unit* unit) { 
+	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pClassData->growthSkl; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pClassData->number; 
+	growth = HashByPercent(growth, noise+31); 
+	return growth; 
+}
+
+int GetClassSpdGrowth(struct Unit* unit) { 
+	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pClassData->growthSpd; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pClassData->number; 
+	growth = HashByPercent(growth, noise+41); 
+	return growth; 
+}
+
+int GetClassDefGrowth(struct Unit* unit) { 
+	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pClassData->growthDef; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pClassData->number; 
+	growth = HashByPercent(growth, noise+51); 
+	return growth; 
+}
+
+int GetClassResGrowth(struct Unit* unit) { 
+	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pClassData->growthRes; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pClassData->number; 
+	growth = HashByPercent(growth, noise+61); 
+	return growth; 
+}
+
+int GetClassLckGrowth(struct Unit* unit) { 
+	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pClassData->growthLck; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pClassData->number; 
+	growth = HashByPercent(growth, noise+71); 
+	return growth; 
+}
+
+
+int GetUnitHPGrowth(struct Unit* unit) { 
+	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pCharacterData->growthHP; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pCharacterData->number; 
+	growth = HashByPercent(growth, noise+11); 
+	return growth; 
+}
+
+int GetUnitPowGrowth(struct Unit* unit) { 
+	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pCharacterData->growthPow; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pCharacterData->number; 
+	growth = HashByPercent(growth, noise+21); 
+	return growth; 
+}
+
+int GetUnitSklGrowth(struct Unit* unit) { 
+	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pCharacterData->growthSkl; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pCharacterData->number; 
+	growth = HashByPercent(growth, noise+31); 
+	return growth; 
+}
+
+int GetUnitSpdGrowth(struct Unit* unit) { 
+	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pCharacterData->growthSpd; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pCharacterData->number; 
+	growth = HashByPercent(growth, noise+41); 
+	return growth; 
+}
+
+int GetUnitDefGrowth(struct Unit* unit) { 
+	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pCharacterData->growthDef; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pCharacterData->number; 
+	growth = HashByPercent(growth, noise+51); 
+	return growth; 
+}
+
+int GetUnitResGrowth(struct Unit* unit) { 
+	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pCharacterData->growthRes; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pCharacterData->number; 
+	growth = HashByPercent(growth, noise+61); 
+	return growth; 
+}
+
+int GetUnitLckGrowth(struct Unit* unit) { 
+	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += unit->pCharacterData->growthLck; 
+	if (!RandFlags.growth) { return growth; } 
+	int noise = unit->pCharacterData->number; 
+	growth = HashByPercent(growth, noise+71); 
+	return growth; 
+}
+
+
+extern int GetAutoleveledStatIncrease(int growth, int levelCount); // 8029604
+void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
+    if (levelCount) {
+        unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit),  levelCount);
+        unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit), levelCount);
+        unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit), levelCount);
+        unit->spd   += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit), levelCount);
+        unit->def   += GetAutoleveledStatIncrease(GetClassDefGrowth(unit), levelCount);
+        unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit), levelCount);
+        unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit), levelCount);
+    }
+}
 
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
     unit->level = uDef->level;
 	unit->xPos = uDef->xPosition;
 	unit->yPos = uDef->yPosition; 
-	
+	int noise = uDef->xMove + uDef->yMove; 
     if (uDef->classIndex) { 
-        unit->pClassData = GetClassData(RandClass(uDef->classIndex, uDef->xPosition, unit));
+        unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise, unit));
 	}
     else {
-        unit->pClassData = GetClassData(RandClass(unit->pCharacterData->defaultClass, uDef->xPosition, unit));
+        unit->pClassData = GetClassData(RandClass(unit->pCharacterData->defaultClass, noise, unit));
 	}
 
 	int wexp = 0; 
+	noise += unit->pClassData->number; 
     for (int i = 0; i < 8; ++i) {
-        wexp = HashWexp(unit->pClassData->baseRanks[i], unit->pClassData->number, i);
+        wexp = HashWexp(unit->pClassData->baseRanks[i], noise+i);
 		unit->ranks[i] = wexp; 
 		
 		if (i == 7) { // dark 
@@ -401,7 +591,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	
 	
 	for (int i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
-	UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], i, list)); }
+	UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise+i, list)); }
 
     unit->ai1 = uDef->ai[0];
 
@@ -410,29 +600,15 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->ai3And4 &= 0xFFF8;
     unit->ai3And4 |= uDef->ai[2];
     unit->ai3And4 |= (uDef->ai[3] << 8);
-}
-
-void UnitLoadItemsFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
-    int i;
-
-    UnitClearInventory(unit);
-	u8 list[40]; 
-	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
-	BuildAvailableWeaponList(list, unit); 
-    for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i)
-        UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], i, list));
-}
-
-void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* character) {
-    //int i;
-
-    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, 0);
+	
+	const struct CharacterData* character = unit->pCharacterData; 
+    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise+11);
 	if (unit->maxHP < 10) { unit->maxHP += 10; } 
-    unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, 1);
-    unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, 2);
-    unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, 3);
-    unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, 4);
-    unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, 5);
+    unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise+21);
+    unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, noise+31);
+    unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise+41);
+    unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, noise+51);
+    unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise+61);
     unit->lck   = RandStat(unit, character->baseLck, 6);
 
     unit->conBonus = 0;
@@ -441,144 +617,41 @@ void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* c
 
     if (UNIT_FACTION(unit) == FACTION_BLUE && (unit->level != 20))
         unit->exp = 0;
-    else
+    else { 
         unit->exp = UNIT_EXP_DISABLED;
+		int bonusLevels = RandFlags.bonus; 
+		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
+	}
+	
+}
+
+void UnitLoadItemsFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
+    int i;
+
+    UnitClearInventory(unit);
+	int noise = uDef->xMove + uDef->yMove; 
+	u8 list[40]; 
+	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
+	BuildAvailableWeaponList(list, unit); 
+    for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i)
+        UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise+i, list));
 }
 
 
-int GetClassHPGrowth(struct Unit* unit) { 
-	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pClassData->growthHP; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
+void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* character) {
+    return; 
+	//int i;
+	//int noise = uDef->xMove + uDef->yMove; 
+
 }
 
-int GetClassPowGrowth(struct Unit* unit) { 
-	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pClassData->growthPow; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetClassSklGrowth(struct Unit* unit) { 
-	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pClassData->growthSkl; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetClassSpdGrowth(struct Unit* unit) { 
-	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pClassData->growthSpd; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetClassDefGrowth(struct Unit* unit) { 
-	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pClassData->growthDef; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetClassResGrowth(struct Unit* unit) { 
-	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pClassData->growthRes; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetClassLckGrowth(struct Unit* unit) { 
-	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pClassData->growthLck; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-
-int GetUnitHPGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pCharacterData->growthHP; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetUnitPowGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pCharacterData->growthPow; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetUnitSklGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pCharacterData->growthSkl; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetUnitSpdGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pCharacterData->growthSpd; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetUnitDefGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pCharacterData->growthDef; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetUnitResGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pCharacterData->growthRes; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
-
-int GetUnitLckGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
-	growth += unit->pCharacterData->growthLck; 
-	if (!RandFlags.growth) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+1); 
-	return growth; 
-}
 
 
 
 int GetUnitMaxHP(struct Unit* unit) { return 60; } 
 
 int GetUnitMaxPow(struct Unit* unit) { 
-	int cap = ((unit)->pClassData->maxPow);
+	int cap = ((unit)->pClassData->maxPow); return cap;
 	if (!RandFlags.caps) { return cap; } 
 	int noise = unit->pClassData->number; 
 	cap = HashByPercent(cap, noise+1); 
@@ -587,7 +660,7 @@ int GetUnitMaxPow(struct Unit* unit) {
 } 
 
 int GetUnitMaxSkl(struct Unit* unit) { 
-	int cap = ((unit)->pClassData->maxSkl);
+	int cap = ((unit)->pClassData->maxSkl); return cap;
 	if (!RandFlags.caps) { return cap; } 
 	int noise = unit->pClassData->number; 
 	cap = HashByPercent(cap, noise+11); 
@@ -596,7 +669,7 @@ int GetUnitMaxSkl(struct Unit* unit) {
 } 
 
 int GetUnitMaxSpd(struct Unit* unit) { 
-	int cap = ((unit)->pClassData->maxSpd);
+	int cap = ((unit)->pClassData->maxSpd); return cap;
 	if (!RandFlags.caps) { return cap; } 
 	int noise = unit->pClassData->number; 
 	cap = HashByPercent(cap, noise+21); 
@@ -605,7 +678,7 @@ int GetUnitMaxSpd(struct Unit* unit) {
 } 
 
 int GetUnitMaxDef(struct Unit* unit) { 
-	int cap = ((unit)->pClassData->maxDef);
+	int cap = ((unit)->pClassData->maxDef); return cap;
 	if (!RandFlags.caps) { return cap; } 
 	int noise = unit->pClassData->number; 
 	cap = HashByPercent(cap, noise+31); 
@@ -614,7 +687,7 @@ int GetUnitMaxDef(struct Unit* unit) {
 } 
 
 int GetUnitMaxRes(struct Unit* unit) { 
-	int cap = ((unit)->pClassData->maxRes);
+	int cap = ((unit)->pClassData->maxRes); return cap;
 	if (!RandFlags.caps) { return cap; } 
 	int noise = unit->pClassData->number; 
 	cap = HashByPercent(cap, noise+41); 
@@ -629,9 +702,7 @@ int GetUnitMaxRes(struct Unit* unit) {
 int GetUnitMaxLck(struct Unit* unit) { return 30; } 
 void UnitCheckStatCaps(struct Unit* unit);
 void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu);
-
-
-extern int GetAutoleveledStatIncrease(int growth, int levelCount); // 8029604
+extern s8 Roll1RN(int threshold); //8000E60
 int NewGetStatIncrease(int growth, int noise) {
     int result = 0;
 
@@ -641,26 +712,13 @@ int NewGetStatIncrease(int growth, int noise) {
     }
 
 	// this makes it constant by seed instead of by rolling RN 
-	if (HashByte_Global(growth, 100, noise) > (100 - growth))
+	if (HashByte_Global(growth, 100, noise) >= (100 - growth))
     //if (Roll1RN(growth))
         result++;
 
     return result;
 }
 
-void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
-    if (levelCount) {
-		levelCount += RandFlags.bonus; 
-		
-        unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit),  levelCount);
-        unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit), levelCount);
-        unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit), levelCount);
-        unit->spd   += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit), levelCount);
-        unit->def   += GetAutoleveledStatIncrease(GetClassDefGrowth(unit), levelCount);
-        unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit), levelCount);
-        unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit), levelCount);
-    }
-}
 
 
 void UnitLevelUp(struct Unit* unit) {
@@ -1025,8 +1083,7 @@ void SetTextFontGlyphs(int a); //8005410
 void ResetTextFont(void); //8005438
 
 extern void DisplayUiHand(int x, int y); //8049F58
-#define true 1 
-#define false 0
+
 
 struct StatScreenSt
 {

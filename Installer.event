@@ -23,12 +23,15 @@ ORG $B93950
 ORG $CA7A44
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeEvent // CALL 
 
-ORG $CAE040
+ORG $C9A9AB; BYTE 1 // Start ch as dark 
+ORG $CAE038
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN EliwoodModeEvent  
+BYTE 0x89 0 0 0 // allow skipping 
 
 ORG $CAE610
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent 
-
+ORG $CAE920
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeUnlockDoor
 
 //SHORT 0x2 0x3C // stal 
 POP 
@@ -55,9 +58,17 @@ BYTE 0x87 0 0 0 // No skipping
 WORD 0x3E; POIN StartConfigMenu // asmc 
 //BYTE 0x8E 0 16 0 // fadi 
 BYTE 0x89 0 0 0 // allow skipping 
+
+//BYTE 0x8E 0 16 0 // fadi 
+//BYTE 0xD5 0 2 0 // FADUCG 
+//BYTE 0x93 0 0 0 // showmap 
+//BYTE 0x02 0 20 0 // STAL 32 
+//BYTE 0x3E 0 0 0; BYTE 0xE5 0xCF 7 8 // Map display command (slow) 
+
+BYTE 0x3E 00 00 00 ; BYTE 0x5D 0xA9 0x07 0x08 // map display fast 
 BYTE 0x32 0 0 0 // LOAD 
 WORD 0x8CC7DDC // unit group 
-BYTE 0x3B 0 0 0 // ENUN 
+//BYTE 0x3B 0 0 0 // ENUN 
 BYTE 0xA 0 0 0; WORD 0 // ENDA 
 
 HectorModeEvent: 
@@ -73,6 +84,10 @@ BYTE 0x92 0 0 0
 BYTE 0xD3 0 0x33 0 
 BYTE 0xA 0 0 0; WORD 0 // ENDA 
 
+HectorModeUnlockDoor:
+BYTE 0x34 0 0 0; BYTE 0x3 0 0x1 0; WORD 0x8CC810C // Hard mode exclusive Load Units
+BYTE 0x5F 00 05 00 // Tile change 5: Open door
+BYTE 0xA 0 0 0; WORD 0 // ENDA 
 
 ALIGN 4 
 CasualModeFlag:
@@ -98,6 +113,9 @@ ORG $9E9FC // Select any mode on new game
 // by Doesnt 
 BYTE $1F $20 $70 $47 
 
+
+ORG $53242 
+SHORT $2000 // always use generic palette (by Vesly) 
 
 // in 8019E5C BuildBestMovementScript 
 // Fix REDA / MOVE from crashing on impassible terrain 
@@ -136,10 +154,7 @@ BYTE  $00 $20 $70 $47;
 ORG $079104
 BYTE  $00 $20 $70 $47;
 
-
-
 POP 
-
 
 
 

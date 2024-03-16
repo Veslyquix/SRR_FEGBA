@@ -66,7 +66,8 @@ SET_FUNC ResetText, 0x80053B1
 SET_FUNC SetTextFontGlyphs, 0x8005411
 SET_FUNC ResetTextFont, 0x8005439
 SET_FUNC DisplayUiHand, 0x8049F59
-
+SET_FUNC NewPopup_ItemGot, 0x800EF55
+SET_FUNC Roll1RN, 0x8000E61
 
 SET_DATA gBG0TilemapBuffer, 0x2022C60
 SET_DATA gBG1TilemapBuffer, 0x2023460
@@ -75,7 +76,7 @@ SET_DATA gBG3TilemapBuffer, 0x2024460
 SET_DATA sKeyStatusBuffer, 0x2024C78
 SET_DATA gStatScreen, 0x200310C @ for text handles 
 SET_DATA gLCDControlBuffer, 0x3002870
-
+SET_DATA ProcScr_GotItem, 0x8B91DC4
 
 SET_DATA RandFlags, 0x202BC3C @ GameOptions + 0x44 (unk, 4 bytes) 
 
