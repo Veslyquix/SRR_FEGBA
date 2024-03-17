@@ -1722,7 +1722,7 @@ void DrawBarsOrGrowths(void) { // in 807FDF0
         UNIT_CON_BASE(gStatScreen.unit),
         UNIT_CON(gStatScreen.unit),
         UNIT_CON_MAX(gStatScreen.unit));
-	PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "Hp");
+	PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
 	
 	} 
 	
