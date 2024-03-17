@@ -45,6 +45,9 @@ SET_FUNC GetUnitLuck, 0x8018BB9
 SET_FUNC DrawStatWithBar, 0x807FD29
 SET_FUNC PutNumberOrBlank, 0x80061E5
 SET_FUNC PutNumberBonus, 0x8006241
+SET_FUNC PutSpecialChar, 0x800615D
+SET_FUNC PutNumberSmall, 0x8006235
+SET_FUNC StartStatScreenHelp, 0x80814F4
 
 SET_FUNC UnitLoadItemsFromDefinition, 0x80178F5
 SET_FUNC UnitAddItem, 0x8017655 
@@ -68,6 +71,7 @@ SET_FUNC LoadObjUIGfx, 0x8015591
 SET_FUNC Proc_Start, 0x8004495 
 SET_FUNC Proc_StartBlocking, 0x80044F9
 SET_FUNC Proc_Break, 0x80046A1
+SET_FUNC Proc_Goto, 0x8004721
 SET_FUNC m4aSongNumStart, 0x80BE595
 SET_FUNC PutDrawText, 0x8005AD5
 SET_FUNC ClearText, 0x80054E1
@@ -88,6 +92,7 @@ SET_DATA gStatScreen, 0x200310C @ for text handles
 SET_DATA gUiTmScratchA, 0x200323C @ might be wrong 
 SET_DATA gLCDControlBuffer, 0x3002870
 SET_DATA ProcScr_GotItem, 0x8B91DC4
+SET_DATA StatScreen_Display, 0x808119D
 
 SET_DATA RandFlags, 0x202BC3C @ GameOptions + 0x44 (unk, 4 bytes) 
 

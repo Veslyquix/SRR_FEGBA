@@ -23,6 +23,8 @@ struct RandomizerSettings {
 	u16 class : 1; 
 	u16 itemStats : 1; 
 	u16 foundItems : 1; // final bit of the u16 ram used 
+	u16 disp : 1;
+
 }; 
 extern struct RandomizerSettings RandFlags; 
 
@@ -422,8 +424,10 @@ int GetClassHPGrowth(struct Unit* unit) {
 	growth += unit->pClassData->growthHP; 
 	if (!RandFlags.growth) { return growth; } 
 	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+11); 
-	return growth; 
+	int result = HashByPercent(growth, noise+11); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetClassPowGrowth(struct Unit* unit) { 
@@ -431,8 +435,10 @@ int GetClassPowGrowth(struct Unit* unit) {
 	growth += unit->pClassData->growthPow; 
 	if (!RandFlags.growth) { return growth; } 
 	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+21); 
-	return growth; 
+	int result = HashByPercent(growth, noise+21); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetClassSklGrowth(struct Unit* unit) { 
@@ -440,8 +446,10 @@ int GetClassSklGrowth(struct Unit* unit) {
 	growth += unit->pClassData->growthSkl; 
 	if (!RandFlags.growth) { return growth; } 
 	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+31); 
-	return growth; 
+	int result = HashByPercent(growth, noise+31); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetClassSpdGrowth(struct Unit* unit) { 
@@ -449,8 +457,10 @@ int GetClassSpdGrowth(struct Unit* unit) {
 	growth += unit->pClassData->growthSpd; 
 	if (!RandFlags.growth) { return growth; } 
 	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+41); 
-	return growth; 
+	int result = HashByPercent(growth, noise+41); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetClassDefGrowth(struct Unit* unit) { 
@@ -458,8 +468,10 @@ int GetClassDefGrowth(struct Unit* unit) {
 	growth += unit->pClassData->growthDef; 
 	if (!RandFlags.growth) { return growth; } 
 	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+51); 
-	return growth; 
+	int result = HashByPercent(growth, noise+51); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetClassResGrowth(struct Unit* unit) { 
@@ -467,8 +479,10 @@ int GetClassResGrowth(struct Unit* unit) {
 	growth += unit->pClassData->growthRes; 
 	if (!RandFlags.growth) { return growth; } 
 	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+61); 
-	return growth; 
+	int result = HashByPercent(growth, noise+61); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetClassLckGrowth(struct Unit* unit) { 
@@ -476,8 +490,10 @@ int GetClassLckGrowth(struct Unit* unit) {
 	growth += unit->pClassData->growthLck; 
 	if (!RandFlags.growth) { return growth; } 
 	int noise = unit->pClassData->number; 
-	growth = HashByPercent(growth, noise+71); 
-	return growth; 
+	int result = HashByPercent(growth, noise+71); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 
@@ -487,8 +503,10 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	growth += unit->pCharacterData->growthHP; 
 	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+11); 
-	return growth; 
+	int result = HashByPercent(growth, noise+11); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 
@@ -499,8 +517,10 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	growth += unit->pCharacterData->growthPow; 
 	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+21); 
-	return growth; 
+	int result = HashByPercent(growth, noise+21); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
@@ -509,8 +529,10 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	growth += unit->pCharacterData->growthSkl; 
 	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+31); 
-	return growth; 
+	int result = HashByPercent(growth, noise+31); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
@@ -519,8 +541,10 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	growth += unit->pCharacterData->growthSpd; 
 	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+41); 
-	return growth; 
+	int result = HashByPercent(growth, noise+41); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
@@ -529,8 +553,10 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	growth += unit->pCharacterData->growthDef; 
 	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+51); 
-	return growth; 
+	int result = HashByPercent(growth, noise+51); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
@@ -539,8 +565,10 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	growth += unit->pCharacterData->growthRes; 
 	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+61); 
-	return growth; 
+	int result = HashByPercent(growth, noise+61); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
@@ -549,8 +577,10 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	growth += unit->pCharacterData->growthLck; 
 	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
-	growth = HashByPercent(growth, noise+71); 
-	return growth; 
+	int result = HashByPercent(growth, noise+71); 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
 }
 
 
@@ -663,7 +693,7 @@ void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* c
 int GetUnitMaxHP(struct Unit* unit) { return 60; } 
 
 int GetUnitMaxPow(struct Unit* unit) { 
-	int cap = ((unit)->pClassData->maxPow); return cap;
+	int cap = ((unit)->pClassData->maxPow); //return cap;
 	if (!RandFlags.caps) { return cap; } 
 	int noise = unit->pClassData->number; 
 	cap = HashByPercent(cap, noise+1); 
@@ -672,7 +702,7 @@ int GetUnitMaxPow(struct Unit* unit) {
 } 
 
 int GetUnitMaxSkl(struct Unit* unit) { 
-	int cap = ((unit)->pClassData->maxSkl); return cap;
+	int cap = ((unit)->pClassData->maxSkl); //return cap;
 	if (!RandFlags.caps) { return cap; } 
 	int noise = unit->pClassData->number; 
 	cap = HashByPercent(cap, noise+11); 
@@ -681,7 +711,7 @@ int GetUnitMaxSkl(struct Unit* unit) {
 } 
 
 int GetUnitMaxSpd(struct Unit* unit) { 
-	int cap = ((unit)->pClassData->maxSpd); return cap;
+	int cap = ((unit)->pClassData->maxSpd); //return cap;
 	if (!RandFlags.caps) { return cap; } 
 	int noise = unit->pClassData->number; 
 	cap = HashByPercent(cap, noise+21); 
@@ -690,7 +720,7 @@ int GetUnitMaxSpd(struct Unit* unit) {
 } 
 
 int GetUnitMaxDef(struct Unit* unit) { 
-	int cap = ((unit)->pClassData->maxDef); return cap;
+	int cap = ((unit)->pClassData->maxDef); //return cap;
 	if (!RandFlags.caps) { return cap; } 
 	int noise = unit->pClassData->number; 
 	cap = HashByPercent(cap, noise+31); 
@@ -699,7 +729,7 @@ int GetUnitMaxDef(struct Unit* unit) {
 } 
 
 int GetUnitMaxRes(struct Unit* unit) { 
-	int cap = ((unit)->pClassData->maxRes); return cap;
+	int cap = ((unit)->pClassData->maxRes); //return cap;
 	if (!RandFlags.caps) { return cap; } 
 	int noise = unit->pClassData->number; 
 	cap = HashByPercent(cap, noise+41); 
@@ -1552,18 +1582,62 @@ void StartConfigMenu(ProcPtr parent) {
 extern void DrawStatWithBar(int num, int x, int y, int base, int total, int max); // 807FD28
 
 extern void PutNumberOrBlank(u16 *a, int b, int c); // 80061E4
-extern void PutNumberBonus(int a, u16 *b); // 8006240
+//extern void PutNumberBonus(int a, u16 *b); // 8006240
+extern void PutSpecialChar(u16 * tm, int color, int id); //800615C
+extern void PutNumberSmall(u16* a, int b, int c); // 8006234
+
+void PutNumberBonus(int number, u16 *tm)
+{
+    if (number == 0) { 
+	//PutSpecialChar(tm, blue, 0x2a); // % 
+	return; } 
+	
+	if (number > 0) { 
+    PutSpecialChar(tm, green, 0x15); // + 
+    PutNumberSmall(tm + ((number >= 10) ? 2 : 1), green, number);
+	} 
+	else { 
+	number = ~number; 
+	//void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
+    PutDrawText(0, tm, gold, 2, 1, "-"); 
+	//PutSpecialChar(tm, gold, 0x2d); // -
+    PutNumberSmall(tm + ((number >= 10) ? 2 : 1), gold, number);
+	} 
+}
+
 extern u16 gUiTmScratchA[0x280];
+
+extern void StatScreen_Display(struct Proc* proc); // 808119C
+extern void StartStatScreenHelp(int page_id, ProcPtr proc); // 80814F4
+// in StatScreen_OnIdle in 808127C
+void StatScreenSelectLoop(ProcPtr proc) { 
+	if (sKeyStatusBuffer.newKeys & R_BUTTON)
+		{
+			Proc_Goto(proc, 0); // TODO: label name
+			StartStatScreenHelp(gStatScreen.page, proc);
+		}
+	if (sKeyStatusBuffer.newKeys & SELECT_BUTTON)
+		{
+			Proc_Goto(proc, 0); // TODO: label name
+			if (!RandFlags.disp) { RandFlags.disp = 1; } 
+			else { RandFlags.disp = 0; } 
+			StatScreen_Display(proc); 
+		} // [202bc3d]!!
+
+} 
+
+
 void DrawGrowthWithDifference(int x, int y, int base, int modified)
 {
     int diff = modified - base;
-    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y), blue, base);
-    PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 1, y));
+    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
+	
+    PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 2, y));
 }
 
 void DrawBarsOrGrowths(void) { // in 807FDF0
     // displaying str/mag stat value
-	int barsOrGrowths = false; 
+	int barsOrGrowths = RandFlags.disp; 
 	
 	if (barsOrGrowths) { 
     DrawStatWithBar(0, 5, 1,
@@ -1620,41 +1694,35 @@ void DrawBarsOrGrowths(void) { // in 807FDF0
         UNIT_CON_BASE(gStatScreen.unit),
         UNIT_CON(gStatScreen.unit),
         UNIT_CON_MAX(gStatScreen.unit));
+	PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "Mov");
 	} 
 	else { 
-    DrawGrowthWithDifference(5, 1,
+    DrawGrowthWithDifference(4, 1,
         GetUnitPowGrowth(gStatScreen.unit, false),
         GetUnitPowGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(5, 3,
+    DrawGrowthWithDifference(4, 3,
         GetUnitSklGrowth(gStatScreen.unit, false),
         GetUnitSklGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(5, 5,
+    DrawGrowthWithDifference(4, 5,
         GetUnitSpdGrowth(gStatScreen.unit, false),
         GetUnitSpdGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(5, 7,
+    DrawGrowthWithDifference(4, 7,
         GetUnitLckGrowth(gStatScreen.unit, false),
         GetUnitLckGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(5, 9,
+    DrawGrowthWithDifference(4, 9,
         GetUnitDefGrowth(gStatScreen.unit, false),
         GetUnitDefGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(5, 11,
+    DrawGrowthWithDifference(4, 11,
         GetUnitResGrowth(gStatScreen.unit, false),
         GetUnitResGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(13, 1,
+    DrawGrowthWithDifference(12, 1,
         GetUnitHPGrowth(gStatScreen.unit, false),
         GetUnitHPGrowth(gStatScreen.unit, true));
     DrawStatWithBar(7, 13, 3,
         UNIT_CON_BASE(gStatScreen.unit),
         UNIT_CON(gStatScreen.unit),
         UNIT_CON_MAX(gStatScreen.unit));
-	
-	
-	
-	
-	
-	
-	
-	
+	PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "Hp");
 	
 	} 
 	
