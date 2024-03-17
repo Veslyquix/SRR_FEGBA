@@ -401,4 +401,10 @@ enum
     CA_TRIANGLEATTACK_ANY = CA_TRIANGLEATTACK_ARMORS | CA_TRIANGLEATTACK_PEGASI,
 };
 
-
+int GetUnitMaxHp(struct Unit* unit); // 8018AB0
+int GetUnitPower(struct Unit* unit); // 8018AD0
+int GetUnitSkill(struct Unit* unit); // 8018AF0
+int GetUnitSpeed(struct Unit* unit); // 8018B30
+int GetUnitDefense(struct Unit* unit); // 8018B70
+int GetUnitResistance(struct Unit* unit); // 8018B90
+int GetUnitLuck(struct Unit* unit); // 8018BB8

@@ -35,6 +35,16 @@ SET_FUNC GetUnit, 0x8018D0D
 SET_FUNC CheckBattleUnitLevelUp, 0x8029661
 SET_FUNC UnitLevelUp, 0x802A995
 SET_FUNC UnitAutolevelCore, 0x8017AC1
+SET_FUNC GetUnitMaxHp, 0x8018AB1
+SET_FUNC GetUnitPower, 0x8018AD1
+SET_FUNC GetUnitSkill, 0x8018AF1
+SET_FUNC GetUnitSpeed, 0x8018B31
+SET_FUNC GetUnitDefense, 0x8018B71
+SET_FUNC GetUnitResistance, 0x8018B91
+SET_FUNC GetUnitLuck, 0x8018BB9
+SET_FUNC DrawStatWithBar, 0x807FD29
+SET_FUNC PutNumberOrBlank, 0x80061E5
+SET_FUNC PutNumberBonus, 0x8006241
 
 SET_FUNC UnitLoadItemsFromDefinition, 0x80178F5
 SET_FUNC UnitAddItem, 0x8017655 
@@ -75,6 +85,7 @@ SET_DATA gBG2TilemapBuffer, 0x2023C60
 SET_DATA gBG3TilemapBuffer, 0x2024460
 SET_DATA sKeyStatusBuffer, 0x2024C78
 SET_DATA gStatScreen, 0x200310C @ for text handles 
+SET_DATA gUiTmScratchA, 0x200323C @ might be wrong 
 SET_DATA gLCDControlBuffer, 0x3002870
 SET_DATA ProcScr_GotItem, 0x8B91DC4
 
@@ -92,8 +103,6 @@ SET_DATA gCh, 0x202BC06
 @
 
 @SET_DATA classTablePoin, 0x8017AB8 
-
-
 
 
 

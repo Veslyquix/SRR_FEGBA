@@ -413,6 +413,9 @@ s16 HashWexp(int number, int noise) {
 	return number; 
 } 
 
+int GetGrowthModifiers(struct Unit* unit) { 
+	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
+} 
 
 int GetClassHPGrowth(struct Unit* unit) { 
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
@@ -478,64 +481,73 @@ int GetClassLckGrowth(struct Unit* unit) {
 }
 
 
-int GetUnitHPGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
+	int growth = 0;
+	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthHP; 
-	if (!RandFlags.growth) { return growth; } 
+	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
 	growth = HashByPercent(growth, noise+11); 
 	return growth; 
 }
 
-int GetUnitPowGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+
+
+int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
+	int growth = 0;
+	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthPow; 
-	if (!RandFlags.growth) { return growth; } 
+	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
 	growth = HashByPercent(growth, noise+21); 
 	return growth; 
 }
 
-int GetUnitSklGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
+	int growth = 0;
+	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthSkl; 
-	if (!RandFlags.growth) { return growth; } 
+	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
 	growth = HashByPercent(growth, noise+31); 
 	return growth; 
 }
 
-int GetUnitSpdGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
+	int growth = 0;
+	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthSpd; 
-	if (!RandFlags.growth) { return growth; } 
+	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
 	growth = HashByPercent(growth, noise+41); 
 	return growth; 
 }
 
-int GetUnitDefGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
+	int growth = 0;
+	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthDef; 
-	if (!RandFlags.growth) { return growth; } 
+	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
 	growth = HashByPercent(growth, noise+51); 
 	return growth; 
 }
 
-int GetUnitResGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
+	int growth = 0;
+	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthRes; 
-	if (!RandFlags.growth) { return growth; } 
+	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
 	growth = HashByPercent(growth, noise+61); 
 	return growth; 
 }
 
-int GetUnitLckGrowth(struct Unit* unit) { 
-	int growth = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
+	int growth = 0;
+	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthLck; 
-	if (!RandFlags.growth) { return growth; } 
+	if ((!RandFlags.growth) || (!modifiersBool)) { return growth; } 
 	int noise = unit->pCharacterData->number; 
 	growth = HashByPercent(growth, noise+71); 
 	return growth; 
@@ -735,13 +747,13 @@ void UnitLevelUp(struct Unit* unit) {
 
         
         totalGain = 0;
-		int hpGrowth = GetUnitHPGrowth(unit);
-		int powGrowth = GetUnitPowGrowth(unit);
-		int sklGrowth = GetUnitSklGrowth(unit);
-		int spdGrowth = GetUnitSpdGrowth(unit);
-		int defGrowth = GetUnitDefGrowth(unit);
-		int resGrowth = GetUnitResGrowth(unit);
-		int lckGrowth = GetUnitLckGrowth(unit);
+		int hpGrowth = GetUnitHPGrowth(unit, true);
+		int powGrowth = GetUnitPowGrowth(unit, true);
+		int sklGrowth = GetUnitSklGrowth(unit, true);
+		int spdGrowth = GetUnitSpdGrowth(unit, true);
+		int defGrowth = GetUnitDefGrowth(unit, true);
+		int resGrowth = GetUnitResGrowth(unit, true);
+		int lckGrowth = GetUnitLckGrowth(unit, true);
 
         hpGain  = NewGetStatIncrease(hpGrowth, noise+0);
         totalGain += hpGain;
@@ -852,13 +864,13 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
         }
 
         statGainTotal = 0;
-		int hpGrowth = GetUnitHPGrowth(&bu->unit);
-		int powGrowth = GetUnitPowGrowth(&bu->unit);
-		int sklGrowth = GetUnitSklGrowth(&bu->unit);
-		int spdGrowth = GetUnitSpdGrowth(&bu->unit);
-		int defGrowth = GetUnitDefGrowth(&bu->unit);
-		int resGrowth = GetUnitResGrowth(&bu->unit);
-		int lckGrowth = GetUnitLckGrowth(&bu->unit);
+		int hpGrowth = GetUnitHPGrowth(&bu->unit, true);
+		int powGrowth = GetUnitPowGrowth(&bu->unit, true);
+		int sklGrowth = GetUnitSklGrowth(&bu->unit, true);
+		int spdGrowth = GetUnitSpdGrowth(&bu->unit, true);
+		int defGrowth = GetUnitDefGrowth(&bu->unit, true);
+		int resGrowth = GetUnitResGrowth(&bu->unit, true);
+		int lckGrowth = GetUnitLckGrowth(&bu->unit, true);
 
 		noise = HashByte_Global(0, max, level); 
         bu->changeHP  = NewGetStatIncrease(hpGrowth, noise); 
@@ -1534,5 +1546,124 @@ void StartConfigMenu(ProcPtr parent) {
 		BG_EnableSyncByMask(BG0_SYNC_BIT|BG1_SYNC_BIT);
 	} 
 } 
+
+
+// STAT SCREEN STUFF 
+extern void DrawStatWithBar(int num, int x, int y, int base, int total, int max); // 807FD28
+
+extern void PutNumberOrBlank(u16 *a, int b, int c); // 80061E4
+extern void PutNumberBonus(int a, u16 *b); // 8006240
+extern u16 gUiTmScratchA[0x280];
+void DrawGrowthWithDifference(int x, int y, int base, int modified)
+{
+    int diff = modified - base;
+    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y), blue, base);
+    PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 1, y));
+}
+
+void DrawBarsOrGrowths(void) { // in 807FDF0
+    // displaying str/mag stat value
+	int barsOrGrowths = false; 
+	
+	if (barsOrGrowths) { 
+    DrawStatWithBar(0, 5, 1,
+        gStatScreen.unit->pow,
+        GetUnitPower(gStatScreen.unit),
+        GetUnitMaxPow(gStatScreen.unit));
+
+    // displaying skl stat value
+    DrawStatWithBar(1, 5, 3,
+        gStatScreen.unit->state & US_RESCUING
+            ? gStatScreen.unit->skl/2
+            : gStatScreen.unit->skl,
+        GetUnitSkill(gStatScreen.unit),
+        gStatScreen.unit->state & US_RESCUING
+            ? GetUnitMaxSkl(gStatScreen.unit)/2
+            : GetUnitMaxSkl(gStatScreen.unit));
+
+    // displaying spd stat value
+    DrawStatWithBar(2, 5, 5,
+        gStatScreen.unit->state & US_RESCUING
+            ? gStatScreen.unit->spd/2
+            : gStatScreen.unit->spd,
+        GetUnitSpeed(gStatScreen.unit),
+        gStatScreen.unit->state & US_RESCUING
+            ? GetUnitMaxSpd(gStatScreen.unit)/2
+            : GetUnitMaxSpd(gStatScreen.unit));
+
+    // displaying lck stat value
+    DrawStatWithBar(3, 5, 7,
+        gStatScreen.unit->lck,
+        GetUnitLuck(gStatScreen.unit),
+        GetUnitMaxLck(gStatScreen.unit));
+
+    // displaying def stat value
+    DrawStatWithBar(4, 5, 9,
+        gStatScreen.unit->def,
+        GetUnitDefense(gStatScreen.unit),
+        GetUnitMaxDef(gStatScreen.unit));
+
+    // displaying res stat value
+    DrawStatWithBar(5, 5, 11,
+        gStatScreen.unit->res,
+        GetUnitResistance(gStatScreen.unit),
+        GetUnitMaxRes(gStatScreen.unit));
+
+    // displaying mov stat value
+    DrawStatWithBar(6, 13, 1,
+        UNIT_MOV_BASE(gStatScreen.unit),
+        UNIT_MOV(gStatScreen.unit),
+        UNIT_MOV_MAX(gStatScreen.unit));
+
+    // displaying con stat value
+    DrawStatWithBar(7, 13, 3,
+        UNIT_CON_BASE(gStatScreen.unit),
+        UNIT_CON(gStatScreen.unit),
+        UNIT_CON_MAX(gStatScreen.unit));
+	} 
+	else { 
+    DrawGrowthWithDifference(5, 1,
+        GetUnitPowGrowth(gStatScreen.unit, false),
+        GetUnitPowGrowth(gStatScreen.unit, true));
+    DrawGrowthWithDifference(5, 3,
+        GetUnitSklGrowth(gStatScreen.unit, false),
+        GetUnitSklGrowth(gStatScreen.unit, true));
+    DrawGrowthWithDifference(5, 5,
+        GetUnitSpdGrowth(gStatScreen.unit, false),
+        GetUnitSpdGrowth(gStatScreen.unit, true));
+    DrawGrowthWithDifference(5, 7,
+        GetUnitLckGrowth(gStatScreen.unit, false),
+        GetUnitLckGrowth(gStatScreen.unit, true));
+    DrawGrowthWithDifference(5, 9,
+        GetUnitDefGrowth(gStatScreen.unit, false),
+        GetUnitDefGrowth(gStatScreen.unit, true));
+    DrawGrowthWithDifference(5, 11,
+        GetUnitResGrowth(gStatScreen.unit, false),
+        GetUnitResGrowth(gStatScreen.unit, true));
+    DrawGrowthWithDifference(13, 1,
+        GetUnitHPGrowth(gStatScreen.unit, false),
+        GetUnitHPGrowth(gStatScreen.unit, true));
+    DrawStatWithBar(7, 13, 3,
+        UNIT_CON_BASE(gStatScreen.unit),
+        UNIT_CON(gStatScreen.unit),
+        UNIT_CON_MAX(gStatScreen.unit));
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	} 
+	
+	
+	
+} 
+
+
+
+
 
 

@@ -125,6 +125,16 @@ ORG $9E9FC // Select any mode on new game
 BYTE $1F $20 $70 $47 
 
 
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+#endif 
+ORG $7FE78 
+FILL($7FFDB - $7FE78) 0x46C0 // nop out the vanilla draw bar stuff 
+ORG $7FFD0 // our new version 
+callHackNew(DrawBarsOrGrowths) 
+
+
+
 ORG $53242 
 SHORT $2000 // always use generic palette (by Vesly) 
 
