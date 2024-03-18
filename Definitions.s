@@ -82,6 +82,10 @@ SET_FUNC ResetTextFont, 0x8005439
 SET_FUNC DisplayUiHand, 0x8049F59
 SET_FUNC NewPopup_ItemGot, 0x800EF55
 SET_FUNC Roll1RN, 0x8000E61
+SET_FUNC StartShopScreen, 0x80B0455 
+SET_FUNC EndPlayerPhaseSideWindows, 0x8085C7D
+SET_FUNC UpdateShopItemCounts, 0x80B0521
+
 
 SET_DATA gBG0TilemapBuffer, 0x2022C60
 SET_DATA gBG1TilemapBuffer, 0x2023460
@@ -93,8 +97,11 @@ SET_DATA gUiTmScratchA, 0x200323C @ might be wrong
 SET_DATA gLCDControlBuffer, 0x3002870
 SET_DATA ProcScr_GotItem, 0x8B91DC4
 SET_DATA StatScreen_Display, 0x808119D
+SET_DATA gActiveUnit, 0x3004690
+SET_DATA gProcScr_Shop, 0x8CE6FC0
 
-SET_DATA RandFlags, 0x202BC3C @ GameOptions + 0x44 (unk, 4 bytes) 
+SET_DATA RandBitflags, 0x202BC16 @ GameOptions + 0x1E (unk, 2 bytes) 
+SET_DATA RandValues, 0x202BC3C @ GameOptions + 0x44 (unk, 4 bytes) 
 
 SET_DATA gPlaySt, 0x202BBF8
 SET_DATA gCh, 0x202BC06

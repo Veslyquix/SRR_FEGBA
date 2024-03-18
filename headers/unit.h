@@ -408,3 +408,6 @@ int GetUnitSpeed(struct Unit* unit); // 8018B30
 int GetUnitDefense(struct Unit* unit); // 8018B70
 int GetUnitResistance(struct Unit* unit); // 8018B90
 int GetUnitLuck(struct Unit* unit); // 8018BB8
+
+extern struct Unit * gActiveUnit; // 3004690
+
