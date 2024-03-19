@@ -1335,7 +1335,9 @@ typedef struct {
     /* 00 */ PROC_HEADER;
 	/* 2c */ s8 id; // menu id 
 	u8 redraw; 
-	s8 Option[8];
+	s8 Option[9];
+	s8 digit; 
+	int seed; 
 } ConfigMenuProc;
 
 void ConfigMenuLoop(ConfigMenuProc* proc); 
@@ -1354,24 +1356,6 @@ const struct ProcCmd ConfigMenuProcCmd[] =
     PROC_END,
 };
 
-#define MENU_X 18
-#define MENU_Y 16
-typedef const struct {
-  u32 x;
-  u32 y;
-} LocationTable;
-
-static const LocationTable SRR_CursorLocationTable[] = {
-  {MENU_X, MENU_Y + (16*0)},
-  {MENU_X, MENU_Y + (16*1)},
-  {MENU_X, MENU_Y + (16*2)},
-  {MENU_X, MENU_Y + (16*3)},
-  {MENU_X, MENU_Y + (16*4)},
-  {MENU_X, MENU_Y + (16*5)},
-  {MENU_X, MENU_Y + (16*6)}, //,
-  {MENU_X, MENU_Y + (16*7)} //,
-  // {10, 0x88} //leave room for a description?
-};
 struct DispCnt {
     /* bit  0 */ u16 mode : 3;
     /* bit  3 */ u16 cgbMode : 1; // reserved, do not use
@@ -1448,6 +1432,8 @@ struct LCDControlBuffer {
     ///* 68 */ s8 colorAddition;
 };
 extern struct LCDControlBuffer gLCDControlBuffer;
+
+
 
 #define OPT0NUM 21
 const char Option0[OPT0NUM][5] = { // 2nd number is max number of characters for the text (+1) 
@@ -1537,7 +1523,28 @@ const char Option7[OPT7NUM][10] = { // Enemies
 "Casual",
 }; 
 
-const u8 OptionAmounts[8] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM }; 
+const u8 OptionAmounts[9] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, 0 }; 
+
+#define MENU_X 18
+#define MENU_Y 8
+typedef const struct {
+  u32 x;
+  u32 y;
+} LocationTable;
+
+extern void PutNumber(u16*, int, int); // 80061D8
+static const LocationTable SRR_CursorLocationTable[] = {
+  {MENU_X, MENU_Y + (16*0)},
+  {MENU_X, MENU_Y + (16*1)},
+  {MENU_X, MENU_Y + (16*2)},
+  {MENU_X, MENU_Y + (16*3)},
+  {MENU_X, MENU_Y + (16*4)},
+  {MENU_X, MENU_Y + (16*5)},
+  {MENU_X, MENU_Y + (16*6)}, //,
+  {MENU_X, MENU_Y + (16*7)}, //,
+  {MENU_X, MENU_Y + (16*8)} //,
+  // {10, 0x88} //leave room for a description?
+};
 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 
@@ -1550,7 +1557,7 @@ void DrawConfigMenu(ConfigMenuProc* proc) {
 	//GetStringFromIndex(unit->pClassData->nameTextId)
 	struct Text* th = gStatScreen.text; // max 34 
 	int i = 0; 	
-	ClearText(&th[8+proc->id]); 
+	ClearText(&th[9+proc->id]); 
 
 /* What Circles did: 
 % variation (0 - 100%) 
@@ -1566,28 +1573,32 @@ Playable Monsters: Yes, No
 Min Growth: 0
 Max Growth: 100 
 */ 
-	i = 8; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option0[proc->Option[0]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option1[proc->Option[1]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option2[proc->Option[2]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option3[proc->Option[3]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 12, Option4[proc->Option[4]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option5[proc->Option[5]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option6[proc->Option[6]]); i++;  
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 2+((i-8)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
+	i = 9; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option0[proc->Option[0]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option1[proc->Option[1]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option2[proc->Option[2]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option3[proc->Option[3]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, Option4[proc->Option[4]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option5[proc->Option[5]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option6[proc->Option[6]]); i++;  
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
+	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 19, 1+((i-9)*2)), white, proc->seed); i++;  
 
 	BG_EnableSyncByMask(BG0_SYNC_BIT); 
 	
 } 
 
 
-
+void DisplayVertHand(int x, int y); 
 void DisplayHand(int x, int y, int type) { 
 	// type is 0 (horizontal) or 1 (vertical) if I make it 
-	DisplayUiHand(x, y); 
+	if (type) { 
+		DisplayVertHand(x, y); 
+	} 
+	else { DisplayUiHand(x, y); } 
 } 
 
-#define SRR_MAXDISP 7 
+#define SRR_MAXDISP 8
 #define A_BUTTON        0x0001
 #define B_BUTTON        0x0002
 #define SELECT_BUTTON   0x0004
@@ -1599,13 +1610,75 @@ void DisplayHand(int x, int y, int type) {
 #define R_BUTTON        0x0100
 #define L_BUTTON        0x0200
 
+#define START_X 21
+#define Y_HAND 16
+#define NUMBER_X 20
+LocationTable CursorLocationTable[] = {
+  {(NUMBER_X*8) - (0 * 8) - 4, Y_HAND*8},
+  {(NUMBER_X*8) - (1 * 8) - 4, Y_HAND*8},
+  {(NUMBER_X*8) - (2 * 8) - 4, Y_HAND*8},
+  {(NUMBER_X*8) - (3 * 8) - 4, Y_HAND*8},
+  {(NUMBER_X*8) - (4 * 8) - 4, Y_HAND*8},
+  {(NUMBER_X*8) - (5 * 8) - 4, Y_HAND*8},
+  {(NUMBER_X*8) - (6 * 8) - 4, Y_HAND*8}, 
+  {(NUMBER_X*8) - (7 * 8) - 4, Y_HAND*8}, 
+  {(NUMBER_X*8) - (8 * 8) - 4, Y_HAND*8}, 
+};
+
+const u32 DigitDecimalTable[] = { 
+0, 1, 10, 100, 1000, 10000, 100000, 1000000
+}; 
+static int GetMaxDigits(int number) { 
+
+	int result = 1; 
+	while (number > DigitDecimalTable[result]) { result++; } 
+	//result++; // table is 0 indexed, but we count digits from 1 
+	if (result > 6) { result = 6; } 
+	return result; 
+
+} 
+
+/*
+const u16 sSprite_VertHand[] = {
+    1,
+    0x0002, 0x4000, 0x0006
+};
+const u8 sHandVOffsetLookup[] = {
+    0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3,
+    4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1,
+};
+extern int sPrevHandClockFrame; 
+extern struct Vec2 sPrevHandScreenPosition; 
+extern int sPrevHandClockFrame; 
+*/
+void DisplayVertHand(int x, int y)
+{
+	DisplayUiHand(x, y); 
+} 
+
+/*
+    if ((GetGameClock() - 1) == sPrevHandClockFrame)
+    {
+        x = (x + sPrevHandScreenPosition.x) >> 1;
+        y = (y + sPrevHandScreenPosition.y) >> 1;
+    }
+
+    sPrevHandScreenPosition.x = x;
+    sPrevHandScreenPosition.y = y;
+    sPrevHandClockFrame = GetGameClock();
+
+    y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))] - 14);
+    PutSprite(2, x, y, sSprite_VertHand, 0);
+}
+*/
+
 extern void m4aSongNumStart(u16 n); 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
 
 	u16 keys = sKeyStatusBuffer.newKeys; 
 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
-	//int id = proc->id;
-	
+	int id = proc->id;
+
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
 		RandValues.variance = proc->Option[0];
 		RandValues.bonus = proc->Option[6];
@@ -1627,35 +1700,81 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		m4aSongNumStart(0x2D9); // idk which to use 
 	};
 	
+	// Handle seed 
+	if (id == SRR_MAXDISP) { 
+		//if (proc->digit == 9) { 
+		
+		int max = 999999; 
+		int min = 0; 
+		int max_digits = GetMaxDigits(max); 
+	
+		if (keys & DPAD_RIGHT) {
+		  if (proc->digit > 0) { proc->digit--; }
+		  else { proc->digit = max_digits; } 
+		}
+		if (keys & DPAD_LEFT) {
+		  if (proc->digit < (max_digits)) { proc->digit++; }
+		  else { proc->digit = 0; } 
+		}
+		
+		if (proc->digit) { 
+			if (keys & DPAD_UP) {
+				if (proc->seed == max) { proc->seed = min; } 
+				else { 
+					proc->seed += DigitDecimalTable[proc->digit]; 
+					if (proc->seed > max) { proc->seed = max; } 
+				} 
+				proc->redraw = true;
+			}
+			if (keys & DPAD_DOWN) {
+				
+				if (proc->seed == min) { proc->seed = max; } 
+				else { 
+					proc->seed -= DigitDecimalTable[proc->digit]; 
+					if (proc->seed < min) { proc->seed = min; } 
+				} 
+				
+				proc->redraw = true;
+			}
+		
+			DisplayHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y, 0); 	
+			if (proc->redraw) { 
+				proc->redraw = false; 
+				DrawConfigMenu(proc); 
+			} 
+			return;
+		}		
+	} 
+	//
+	
     if (keys & DPAD_DOWN) {
-		if (proc->id < SRR_MAXDISP) { proc->id++; } 
+		if (id < SRR_MAXDISP) { proc->id++; } 
 		else { proc->id = 0; } 
 		//proc->redraw = true; 
 	}
 	
     if (keys & DPAD_UP) {
-		if (proc->id <= 0) { proc->id = SRR_MAXDISP; } 
+		if (id <= 0) { proc->id = SRR_MAXDISP; } 
 		else { proc->id--;  } 
 		//proc->redraw = true; 
 	}
 	
     if (keys & DPAD_RIGHT) {
-		if (proc->Option[proc->id] < (OptionAmounts[proc->id]-1)) { proc->Option[proc->id]++; } 
-		else { proc->Option[proc->id] = 0;  } 
+		if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; } 
+		else { proc->Option[id] = 0;  } 
 		proc->redraw = true; 
 	}
     if (keys & DPAD_LEFT) {
-		if (proc->Option[proc->id] > 0) { proc->Option[proc->id]--; } 
-		else { proc->Option[proc->id] = OptionAmounts[proc->id] - 1;  } 
+		if (proc->Option[id] > 0) { proc->Option[id]--; } 
+		else { proc->Option[id] = OptionAmounts[id] - 1;  } 
 		proc->redraw = true; 
 	}
-	
-	DisplayHand(SRR_CursorLocationTable[proc->id].x, SRR_CursorLocationTable[proc->id].y, 0); 	
+	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	if (proc->redraw) { 
 		proc->redraw = false; 
 		DrawConfigMenu(proc); 
-	
 	} 
+
 } 
 
 
@@ -1674,6 +1793,9 @@ void StartConfigMenu(ProcPtr parent) {
 		proc->Option[6] = 0; 
 		proc->Option[7] = 0; 
 		proc->redraw = 0; 
+		proc->seed = 123456; 
+		
+		proc->digit = 0; 
 		
 		ResetText();
 		ResetTextFont(); 
@@ -1690,6 +1812,7 @@ void StartConfigMenu(ProcPtr parent) {
 		InitText(&th[i], 5); i++; 
 		InitText(&th[i], 13); i++; 
 		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 5); i++; 
 		
 		InitText(&th[i], 5); i++; 
 		InitText(&th[i], 5); i++; 
@@ -1701,14 +1824,15 @@ void StartConfigMenu(ProcPtr parent) {
 		InitText(&th[i], 5); i++; 
 		
 		i = 0; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Variance"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 7, "Base Stats"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Growths"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 6, "Stat Caps"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Class"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Items"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 13, "Enemy Diff. Bonus"); i++;  // make enemies have more bonus levels? 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 2+(i*2)), gold, 0, 5, "Mode"); i++;  // Classic/Casual 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Variance"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 7, "Base Stats"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Growths"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 6, "Stat Caps"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Class"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Items"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 13, "Enemy Diff. Bonus"); i++;  // make enemies have more bonus levels? 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Mode"); i++;  // Classic/Casual 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Seed"); i++;  // Classic/Casual 
 
 		//BG_SetPosition(BG_3, 0, 0); 
 		
