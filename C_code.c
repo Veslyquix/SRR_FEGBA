@@ -37,6 +37,66 @@ struct RandomizerValues {
 extern struct RandomizerSettings RandBitflags; 
 extern struct RandomizerValues RandValues; 
 
+int NextSeededRN(u16* currentRN) {
+    // This generates a pseudorandom string of 16 bits
+    // In other words, a pseudorandom integer that can range from 0 to 65535
+
+    u16 rn = (currentRN[1] << 11) + (currentRN[0] >> 5);
+
+    // Shift state[2] one bit
+    currentRN[2] *= 2;
+
+    // "carry" the top bit of state[1] to state[2]
+    if (currentRN[1] & 0x8000)
+        currentRN[2]++;
+
+    rn ^= currentRN[2];
+
+    // Shifting the whole state 16 bits
+    currentRN[2] = currentRN[1];
+    currentRN[1] = currentRN[0];
+    currentRN[0] = rn;
+
+    return rn;
+}
+
+void InitSeededRN(int seed, u16* currentRN) {
+    // This table is a collection of 8 possible initial rn state
+    // 3 entries will be picked based of which "seed" was given
+
+    u16 initTable[8] = {
+        0xA36E,
+        0x924E,
+        0xB784,
+        0x4F67,
+        0x8092,
+        0x592D,
+        0x8E70,
+        0xA794
+    };
+
+    int mod = Mod(seed, 7);
+
+    currentRN[0] = initTable[(mod++ & 7)];
+    currentRN[1] = initTable[(mod++ & 7)];
+    currentRN[2] = initTable[(mod & 7)];
+
+    if (Mod(seed, 23) > 0)
+        for (mod = Mod(seed,  23); mod != 0; mod--)
+            NextSeededRN(currentRN);
+}
+
+u16 GetNthRN(int n, int seed) { 
+	u16 currentRN[3] = { 0, 0, 0 }; 
+	InitSeededRN(seed, currentRN); 
+	int result = 0; 
+	for (int i = 0; i < n; i++) { 
+		result = NextSeededRN(currentRN); 
+	}
+
+	return result; 
+} 
+
 u16 HashByte_Global(int number, int max, u8 noise[]) {
 	if (max==0) return 0;
 	u32 hash = 5381;
@@ -47,10 +107,16 @@ u16 HashByte_Global(int number, int max, u8 noise[]) {
 		hash = ((hash << 5) + hash) ^ TacticianName[i];
 	};
 	int i = 0; 
-	for (i = 0; i < 9; i++) { 
-		if (!noise[i]) { break; } 
-		hash = ((hash << 5) + hash) ^ noise[i];
-	} 
+	int seed = noise[0] | noise[1] << 8 | noise[2] << 16 | noise[3] << 24; 
+	
+	//u16 currentRN[3] = { 0, 0, 0 }; 
+	hash = GetNthRN((noise[2] * 7) + 1, seed+hash); 
+	//InitSeededRN(hash + seed, currentRN);
+	//hash = NextSeededRN(currentRN); 
+	//for (i = 0; i < 9; i++) { 
+		//if (!noise[i]) { break; } 
+		//hash = ((hash << 5) + hash) ^ noise[i];
+	//} 
 	
 	return Mod((hash & 0x2FFFFFFF), max);
 };
@@ -548,6 +614,7 @@ int GetClassLckGrowth(struct Unit* unit, int modifiersBool) {
 
 
 int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
+	return 50;
 	int growth = 0;
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthHP; 
@@ -565,6 +632,7 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 
 
 int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
+	return 50;
 	int growth = 0;
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthPow; 
@@ -580,6 +648,7 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 }
 
 int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
+	return 50;
 	int growth = 0;
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthSkl; 
@@ -595,6 +664,7 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 }
 
 int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
+	return 50;
 	int growth = 0;
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthSpd; 
@@ -610,6 +680,7 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 }
 
 int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
+	return 50;
 	int growth = 0;
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthDef; 
@@ -625,6 +696,7 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 }
 
 int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
+	return 50;
 	int growth = 0;
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthRes; 
@@ -640,6 +712,7 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 }
 
 int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
+	return 50; 
 	int growth = 0;
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthLck; 
@@ -865,33 +938,24 @@ int NewGetStatIncrease(int growth, u8 noise[]) {
     }
 	
 	
-	u16 saveSeed[3]; saveSeed[0] = 0; saveSeed[1] = 0; saveSeed[2] = 0; 
+	u16 saveSeed[3] = {0, 0, 0};  
 	LoadRNState(saveSeed); 
 	
-	//u16 tmpSeed[3]; tmpSeed[0] = noise[3]<<8 | noise[2]; 
-	//u16 tmpSeed[3]; tmpSeed[0] = noise[0]<<8; 
-	//tmpSeed[1] = noise[2]<<8 | noise[1]; tmpSeed[2] = HashByte_Global(growth, 0xFFFF, noise);
+	InitRN(HashByte_Global(growth, 0xFFFF, noise)<<16 | noise[3]<<8 | ((noise[2]*7) + noise[2])); 
 	
-	u16 tmpSeed[3]; tmpSeed[0] = noise[2]<<8 | noise[2]; 
-	tmpSeed[1] = noise[2]<<8 | noise[2]; tmpSeed[2] = noise[2];
-	
-	//tmpSeed[1] = 0; tmpSeed[2] = 0;
-	//StoreRNState(tmpSeed); 
-	InitRN(HashByte_Global(growth, 0xFFFF, noise)<<16 | noise[3]<<8 | noise[2]); 
-	
-	int saveRandState = gLCGRNValue;
-	int tmpRandState = HashByte_Global(growth, 0xFFFF, noise)<<16 | noise[3]<<8 | noise[2]; 
-	SetLCGRNValue(tmpRandState); //! FE8U = (0x08000C4C+1)
+	//int saveRandState = gLCGRNValue;
+	//int tmpRandState = HashByte_Global(growth, 0xFFFF, noise)<<16 | noise[3]<<8 | noise[2]; 
+	//SetLCGRNValue(tmpRandState); //! FE8U = (0x08000C4C+1)
 	// this makes it constant by seed instead of by rolling RN 
 	//if (HashByte_Global(growth, 100, noise) >= (100 - growth))
 	asm("mov r11, r11"); 
 	
-	//if (HashByte_Global(growth, 100, noise) >= (100 - growth)) {
-    if (Roll1RN(growth)) { // 50 
+	if (HashByte_Global(growth, 100, noise) >= (100 - growth)) {
+    //if (Roll1RN(growth)) { // 50 
 	result++; } 
 	
 	StoreRNState(saveSeed); 
-	SetLCGRNValue(saveRandState); 
+	//SetLCGRNValue(saveRandState); 
 
     return result;
 }
