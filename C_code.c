@@ -51,7 +51,22 @@ u16 HashByte_Global(int number, int max, u8 noise[]) {
 		if (!noise[i]) { break; } 
 		hash = ((hash << 5) + hash) ^ noise[i];
 	} 
-	return Mod((hash & 0x2FFFFFFF), max);
+	
+	// based on NextRN
+	//int result = (noise[1] << 11) + (noise[0] >> 5); 
+	int result = (((noise[1] << 8 | noise[0]) << 11) + (noise[3] << 8 | noise[2]) + ((noise[3] << 8 | noise[2]) >> 5)); 
+    // Shift state[2] one bit
+    noise[4] *= 2;
+
+    // "carry" the top bit of state[1] to state[2]
+    if (noise[3] & 0x80)
+        noise[4]++;
+
+    result ^= noise[4];
+	
+	result += hash; 
+	
+	return Mod((result & 0x2FFFFFFF), max);
 };
 
 u16 HashByte_Ch(int number, int max, u8 noise[]){
@@ -862,18 +877,28 @@ int NewGetStatIncrease(int growth, u8 noise[]) {
         growth -= 100;
     }
 	
-	//int saveRandState = gLCGRNValue;
-	//
-	//
-	//int tmpRandState = HashByte_Global(growth, 0xFFFF, noise)<<16 | noise[3]<<8 | noise[2]; 
-	//SetLCGRNValue(tmpRandState); //! FE8U = (0x08000C4C+1)
-	//// this makes it constant by seed instead of by rolling RN 
-	////if (HashByte_Global(growth, 100, noise) >= (100 - growth))
-	//asm("mov r11, r11"); 
-    if (Roll1RN(growth)) { // 50 
+	u16 saveSeed[3]; saveSeed[0] = 0; saveSeed[1] = 0; saveSeed[2] = 0; 
+	LoadRNState(saveSeed); 
+	
+	//u16 tmpSeed[3]; tmpSeed[0] = noise[3]<<8 | noise[2]; 
+	u16 tmpSeed[3]; tmpSeed[0] = noise[2]<<8; 
+	tmpSeed[1] = noise[1]<<8 | noise[0]; tmpSeed[2] = HashByte_Global(growth, 0xFFFF, noise);
+	//tmpSeed[1] = 0; tmpSeed[2] = 0;
+	StoreRNState(tmpSeed); 
+	
+	
+	int saveRandState = gLCGRNValue;
+	int tmpRandState = HashByte_Global(growth, 0xFFFF, noise)<<16 | noise[3]<<8 | noise[2]; 
+	SetLCGRNValue(tmpRandState); //! FE8U = (0x08000C4C+1)
+	// this makes it constant by seed instead of by rolling RN 
+	//if (HashByte_Global(growth, 100, noise) >= (100 - growth))
+	asm("mov r11, r11"); 
+	if (HashByte_Global(growth, 100, noise) >= (100 - growth)) {
+    //if (Roll1RN(growth)) { // 50 
 	result++; } 
 	
-	//SetLCGRNValue(saveRandState); 
+	StoreRNState(saveSeed); 
+	SetLCGRNValue(saveRandState); 
 
     return result;
 }
@@ -894,8 +919,8 @@ void UnitLevelUp(struct Unit* unit) {
 		noise[3] = 1; 
 		noise[4] = 0; 
 
-        if (unit->level == 20)
-            unit->exp = UNIT_EXP_DISABLED;
+        if (unit->level == 20) { 
+		unit->exp = UNIT_EXP_DISABLED; } 
 
         
         totalGain = 0;
