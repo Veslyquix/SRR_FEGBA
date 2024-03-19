@@ -131,6 +131,7 @@ BYTE $1F $20 $70 $47
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
 
+
 ORG $4049F0 // Don't draw "mov" 
 BYTE $94 $31 $00 $02 $0E $35 $00 $02 $03 $00 $00 $00 $24 $27 $CC $08
 ORG $404a40; WORD 0 0 0 0
@@ -143,6 +144,7 @@ callHackNew(DrawBarsOrGrowths)
 
 ORG $813E0
 FILL($81400 - $813E0)
+
 ORG $813E2
 SHORT $1C28
 callHackNew(StatScreenSelectLoop)

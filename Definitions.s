@@ -47,7 +47,7 @@ SET_FUNC PutNumberOrBlank, 0x80061E5
 SET_FUNC PutNumberBonus, 0x8006241
 SET_FUNC PutSpecialChar, 0x800615D
 SET_FUNC PutNumberSmall, 0x8006235
-SET_FUNC StartStatScreenHelp, 0x80814F4
+SET_FUNC StartStatScreenHelp, 0x80814F5
 
 SET_FUNC UnitLoadItemsFromDefinition, 0x80178F5
 SET_FUNC UnitAddItem, 0x8017655 
@@ -82,6 +82,12 @@ SET_FUNC ResetTextFont, 0x8005439
 SET_FUNC DisplayUiHand, 0x8049F59
 SET_FUNC NewPopup_ItemGot, 0x800EF55
 SET_FUNC Roll1RN, 0x8000E61
+SET_FUNC SetLCGRNValue, 0x8000EC1
+SET_DATA gLCGRNValue, 0x3000008 
+
+SET_FUNC StoreRNState, 0x8000D75
+SET_FUNC LoadRNState, 0x8000DD1
+
 SET_FUNC StartShopScreen, 0x80B0455 
 SET_FUNC EndPlayerPhaseSideWindows, 0x8085C7D
 SET_FUNC UpdateShopItemCounts, 0x80B0521

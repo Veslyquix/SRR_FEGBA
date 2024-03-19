@@ -37,39 +37,41 @@ struct RandomizerValues {
 extern struct RandomizerSettings RandBitflags; 
 extern struct RandomizerValues RandValues; 
 
-
-u8 HashByte_Ch(int number, int max, int noise){
+u16 HashByte_Global(int number, int max, u8 noise[]) {
 	if (max==0) return 0;
 	u32 hash = 5381;
 	hash = ((hash << 5) + hash) ^ number;
-	hash = ((hash << 5) + hash) + noise; 
-	hash = ((hash << 5) + hash) ^ gCh;
 	//hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
 	for (int i = 0; i < 9; ++i){
 	if (TacticianName[i]==0) break;
 		hash = ((hash << 5) + hash) ^ TacticianName[i];
 	};
+	int i = 0; 
+	for (i = 0; i < 9; i++) { 
+		if (!noise[i]) { break; } 
+		hash = ((hash << 5) + hash) ^ noise[i];
+	} 
 	return Mod((hash & 0x2FFFFFFF), max);
 };
 
-u8 HashByte_Global(int number, int max, int noise) {
-	if (max==0) return 0;
-	u32 hash = 5381;
-	hash = ((hash << 5) + hash) ^ number;
-	hash = ((hash << 5) + hash) ^ noise; 
-	//hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
-	for (int i = 0; i < 9; ++i){
-	if (TacticianName[i]==0) break;
-		hash = ((hash << 5) + hash) ^ TacticianName[i];
-	};
-	return Mod((hash & 0x2FFFFFFF), max);
+u16 HashByte_Ch(int number, int max, u8 noise[]){
+	int i = 0; 
+	for (i = 0; i < 9; i++) { 
+		if (!noise[i]) { break; } 
+	} 
+	noise[i+1] = gCh; 
+	noise[i+2] = 0; 
+	return HashByte_Global(number, max, noise);
 };
 
-
-s16 HashByPercent_Ch(int number, int noise){ // Copied Circles 
+s16 HashPercent(int number, u8 noise[], int global){
 	if (number < 0) number = 0;
 	int variation = (RandValues.variance)*5;
-	int percentage = HashByte_Ch(number, variation*2, noise); //rn up to 150 e.g. 125
+	int percentage = 0; 
+	if (global) { 
+		percentage = HashByte_Global(number, variation*2, noise); //rn up to 150 e.g. 125
+	} 
+	else { percentage = HashByte_Ch(number, variation*2, noise); }  //rn up to 150 e.g. 125
 	percentage += (100-variation); // 125 + 25 = 150
 	int ret = percentage * number / 100; //1.5 * 120 (we want to negate this)
 	if (ret > 127) ret = (200 - percentage) * number / 100;
@@ -77,61 +79,71 @@ s16 HashByPercent_Ch(int number, int noise){ // Copied Circles
 	return ret;
 };
 
-s16 HashByPercent(int number, int noise){
-	if (number < 0) number = 0;
-	int variation = (RandValues.variance)*5;
-	int percentage = HashByte_Global(number, variation*2, noise); //rn up to 150 e.g. 125
-	percentage += (100-variation); // 125 + 25 = 150
-	int ret = percentage * number / 100; //1.5 * 120 (we want to negate this)
-	if (ret > 127) ret = (200 - percentage) * number / 100;
-	if (ret < 0) ret = 0;
-	return ret;
+s16 HashByPercent_Ch(int number, u8 noise[]){ // Copied Circles 
+	return HashPercent(number, noise, false);
+};
+
+s16 HashByPercent(int number, u8 noise[]){
+	return HashPercent(number, noise, true);
 };
 
 
-s16 HashMight(int number, int noise) { 
+s16 HashMight(int number, u8 noise[]) { 
 	if (!RandBitflags.itemStats) { return number; } 
 	return HashByPercent(number, noise)+2; 
 } 
-s16 HashHit(int number, int noise) { 
+s16 HashHit(int number, u8 noise[]) { 
 	if (!RandBitflags.itemStats) { return number; } 
 	number = HashByPercent(number, noise);
-	if (number < 50) number += number + (noise & 0x1F); 
+	if (number < 50) number += number + (noise[0] & 0x1F) + 30; 
 	return number; 
 } 
-s16 HashCrit(int number, int noise) { 
+s16 HashCrit(int number, u8 noise[]) { 
 	if (!RandBitflags.itemStats) { return number; } 
 	return HashByPercent(number, noise); 
 } 
-s16 HashWeight(int number, int noise) { 
+s16 HashWeight(int number, u8 noise[]) { 
 	if (!RandBitflags.itemStats) { return number; } 
 	return HashByPercent(number, noise); 
 } 
 // Random: 
 // Class, Growths, Base stats, Caps, Item Stats, Chest items 
 extern struct ItemData* GetItemData(int item);
+
 int GetItemMight(int item) { 
 	item &= 0xFF; 
+	u8 noise[3]; 
+	noise[0] = item; 
+	noise[1] = 0; 
 	int might = GetItemData(item&0xFF)->might;
-	return HashMight(might, item); 
+	return HashMight(might, noise); 
 } 
 
 int GetItemHit(int item) { 
 	item &= 0xFF; 
+	u8 noise[3]; 
+	noise[0] = item; 
+	noise[1] = 0; 
 	int hit = GetItemData(item&0xFF)->hit;
-	return HashHit(hit, item); 
+	return HashHit(hit, noise); 
 } 
 
 int GetItemCrit(int item) { 
 	item &= 0xFF; 
+	u8 noise[3]; 
+	noise[0] = item; 
+	noise[1] = 0; 
 	int crit = GetItemData(item&0xFF)->crit;
-	return HashCrit(crit, item); 
+	return HashCrit(crit, noise); 
 } 
 
 int GetItemWeight(int item) { 
 	item &= 0xFF; 
+	u8 noise[3]; 
+	noise[0] = item; 
+	noise[1] = 0; 
 	int weight = GetItemData(item&0xFF)->weight;
-	return HashWeight(weight, item); 
+	return HashWeight(weight, noise); 
 } 
 
 //extern bool UnitAddItem(struct Unit* unit, int item);
@@ -180,7 +192,7 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	return list; 
 } 
 
-int RandClass(int id, int noise, struct Unit* unit) { 
+int RandClass(int id, u8 noise[], struct Unit* unit) { 
 	if (!RandBitflags.class) { return id; } 
 	
 	u8 list[MaxClasses]; 
@@ -324,7 +336,7 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 } 
 
 
-int RandNewItem(int item, int noise, int costReq) { 
+int RandNewItem(int item, u8 noise[], int costReq) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
 
@@ -343,7 +355,7 @@ int RandNewItem(int item, int noise, int costReq) {
 } 
 
 
-int RandNewWeapon(struct Unit* unit, int item, int noise, u8 list[]) { 
+int RandNewWeapon(struct Unit* unit, int item, u8 noise[], u8 list[]) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
 	if (!RandBitflags.class) { return MakeNewItem(item); } 
@@ -396,7 +408,11 @@ void NewPopup_ItemGot(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2
          ? Proc_Start(ProcScr_GotItem, parent)
          : Proc_StartBlocking(ProcScr_GotItem, parent);
 
-	if (RandBitflags.foundItems) { item = RandNewItem(item, unit->xPos + unit->yPos, false); } 
+	u8 noise[5]; 
+	noise[0] = unit->xPos; 
+	noise[1] = unit->yPos; 
+	noise[2] = 0; 
+	if (RandBitflags.foundItems) { item = RandNewItem(item, noise, false); } 
 
     proc->item = item;
     proc->unit = unit;
@@ -407,17 +423,19 @@ void NewPopup_ItemGot(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2
 
 
 
-s16 HashStat(int number, int noise) { 
-	return HashByPercent_Ch(number, noise); 
+s16 HashStat(int number, u8 noise[]) { 
+	number = HashByPercent_Ch(number, noise);
+	if (number < 0) { asm("mov r11, r11"); } 
+	return number; 
 } 
 	
-int RandStat(struct Unit* unit, int stat, int noise) { 
+int RandStat(struct Unit* unit, int stat, u8 noise[]) { 
 	if (!RandBitflags.base) { return stat; } 
-	return HashStat(stat, unit->pClassData->number+noise); 
+	return HashStat(stat, noise); 
 } 
 
 
-s16 HashWexp(int number, int noise) { 
+s16 HashWexp(int number, u8 noise[]) { 
 	if (!number) { return number; } 
 	if (!RandBitflags.class) { return number; } 
 	number = HashByPercent(number, noise)+1; 
@@ -429,78 +447,99 @@ int GetGrowthModifiers(struct Unit* unit) {
 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 } 
 
-int GetClassHPGrowth(struct Unit* unit) { 
+int GetClassHPGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthHP; 
-	if (!RandBitflags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	int result = HashByPercent(growth, noise+11); 
+	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	u8 noise[4]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 11; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise);  
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
 }
 
-int GetClassPowGrowth(struct Unit* unit) { 
+int GetClassPowGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthPow; 
-	if (!RandBitflags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	int result = HashByPercent(growth, noise+21); 
+	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	u8 noise[4]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 21; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
 }
 
-int GetClassSklGrowth(struct Unit* unit) { 
+int GetClassSklGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthSkl; 
-	if (!RandBitflags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	int result = HashByPercent(growth, noise+31); 
+	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	u8 noise[4]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 31; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
 }
 
-int GetClassSpdGrowth(struct Unit* unit) { 
+int GetClassSpdGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthSpd; 
-	if (!RandBitflags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	int result = HashByPercent(growth, noise+41); 
+	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	u8 noise[4]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 41; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
 }
 
-int GetClassDefGrowth(struct Unit* unit) { 
+int GetClassDefGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthDef; 
-	if (!RandBitflags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	int result = HashByPercent(growth, noise+51); 
+	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	u8 noise[4]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 51; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
 }
 
-int GetClassResGrowth(struct Unit* unit) { 
+int GetClassResGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthRes; 
-	if (!RandBitflags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	int result = HashByPercent(growth, noise+61); 
+	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	u8 noise[4]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 61; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
 }
 
-int GetClassLckGrowth(struct Unit* unit) { 
+int GetClassLckGrowth(struct Unit* unit, int modifiersBool) { 
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthLck; 
-	if (!RandBitflags.growth) { return growth; } 
-	int noise = unit->pClassData->number; 
-	int result = HashByPercent(growth, noise+71); 
+	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	u8 noise[4]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 71; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
@@ -512,8 +551,11 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthHP; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	int result = HashByPercent(growth, noise+11); 
+	u8 noise[4]; 
+	noise[0] = unit->pCharacterData->number; 
+	noise[1] = 11; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
@@ -526,8 +568,11 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthPow; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	int result = HashByPercent(growth, noise+21); 
+	u8 noise[4]; 
+	noise[0] = unit->pCharacterData->number; 
+	noise[1] = 21; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
@@ -538,8 +583,11 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthSkl; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	int result = HashByPercent(growth, noise+31); 
+	u8 noise[4]; 
+	noise[0] = unit->pCharacterData->number; 
+	noise[1] = 31; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
@@ -550,8 +598,11 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthSpd; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	int result = HashByPercent(growth, noise+41); 
+	u8 noise[4]; 
+	noise[0] = unit->pCharacterData->number; 
+	noise[1] = 41; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
@@ -562,8 +613,11 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthDef; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	int result = HashByPercent(growth, noise+51); 
+	u8 noise[4]; 
+	noise[0] = unit->pCharacterData->number; 
+	noise[1] = 51; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
@@ -574,8 +628,11 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthRes; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	int result = HashByPercent(growth, noise+61); 
+	u8 noise[4]; 
+	noise[0] = unit->pCharacterData->number; 
+	noise[1] = 61; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
@@ -586,8 +643,11 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthLck; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
-	int noise = unit->pCharacterData->number; 
-	int result = HashByPercent(growth, noise+71); 
+	u8 noise[4]; 
+	noise[0] = unit->pCharacterData->number; 
+	noise[1] = 71; 
+	noise[2] = 0; 
+	int result = HashByPercent(growth, noise); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result; 
@@ -597,22 +657,31 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 extern int GetAutoleveledStatIncrease(int growth, int levelCount); // 8029604
 void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
     if (levelCount) {
-        unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit),  levelCount);
-        unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit), levelCount);
-        unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit), levelCount);
-        unit->spd   += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit), levelCount);
-        unit->def   += GetAutoleveledStatIncrease(GetClassDefGrowth(unit), levelCount);
-        unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit), levelCount);
-        unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit), levelCount);
+        unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit , true),  levelCount);
+        unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit, true), levelCount);
+        unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit, true), levelCount);
+        unit->spd   += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit, true), levelCount);
+        unit->def   += GetAutoleveledStatIncrease(GetClassDefGrowth(unit, true), levelCount);
+        unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit, true), levelCount);
+        unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
     }
 }
 
+void UnitCheckStatCaps(struct Unit* unit);
+void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu);
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
     unit->level = uDef->level;
 	unit->xPos = uDef->xPosition;
 	unit->yPos = uDef->yPosition; 
-	int noise = uDef->xMove + uDef->yMove; 
+	u8 noise[6]; // 1 extra so gCh is used 
+	noise[0] = uDef->xMove; 
+	noise[1] = uDef->yMove; 
+	noise[2] = 0; 
+	noise[3] = 0; 
+	noise[4] = 0; 
+	noise[5] = 0; 
+
     if (uDef->classIndex) { 
         unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise, unit));
 	}
@@ -621,9 +690,10 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	}
 
 	int wexp = 0; 
-	noise += unit->pClassData->number; 
+	noise[2] = unit->pClassData->number; 
     for (int i = 0; i < 8; ++i) {
-        wexp = HashWexp(unit->pClassData->baseRanks[i], noise+i);
+		noise[3] = i+1; // if noise[3] is 0, it will terminate and ignore gCh, so we add 1 
+        wexp = HashWexp(unit->pClassData->baseRanks[i], noise);
 		unit->ranks[i] = wexp; 
 		
 		if (i == 7) { // dark 
@@ -654,14 +724,15 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->ai3And4 |= (uDef->ai[3] << 8);
 	
 	const struct CharacterData* character = unit->pCharacterData; 
-    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise+11);
+	noise[3] = 15;
+    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise);
 	if (unit->maxHP < 10) { unit->maxHP += 10; } 
-    unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise+21);
-    unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, noise+31);
-    unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise+41);
-    unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, noise+51);
-    unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise+61);
-    unit->lck   = RandStat(unit, character->baseLck, 6);
+	noise[3] = 25; unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise);
+    noise[3] = 35; unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, noise);
+    noise[3] = 45; unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise);
+    noise[3] = 55; unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, noise);
+    noise[3] = 65; unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise);
+    noise[3] = 75; unit->lck   = RandStat(unit, character->baseLck, noise);
 
     unit->conBonus = 0;
 
@@ -674,26 +745,31 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		int bonusLevels = RandValues.bonus; 
 		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
 	}
-	
+	UnitCheckStatCaps(unit);
 }
 
 void UnitLoadItemsFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     int i;
 
     UnitClearInventory(unit);
-	int noise = uDef->xMove + uDef->yMove; 
+	u8 noise[5]; 
+	noise[0] = uDef->xMove; 
+	noise[1] = uDef->yMove; 
+	noise[3] = 0; 
 	u8 list[40]; 
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	BuildAvailableWeaponList(list, unit); 
-    for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i)
-        UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise+i, list));
+    for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
+		noise[2] = i+1; 
+        UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise, list));
+	}
 }
 
 
 void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* character) {
     return; 
 	//int i;
-	//int noise = uDef->xMove + uDef->yMove; 
+	//u8 noise[] = uDef->xMove + uDef->yMove; 
 
 }
 
@@ -705,8 +781,11 @@ int GetUnitMaxHP(struct Unit* unit) { return 60; }
 int GetUnitMaxPow(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxPow); //return cap;
 	if (!RandBitflags.caps) { return cap; } 
-	int noise = unit->pClassData->number; 
-	cap = HashByPercent(cap, noise+1); 
+	u8 noise[3]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 17; 
+	noise[2] = 0; 
+	cap = HashByPercent(cap, noise); 
 	if (cap > 31) { cap = 31; } 
 	return cap;  
 } 
@@ -714,8 +793,11 @@ int GetUnitMaxPow(struct Unit* unit) {
 int GetUnitMaxSkl(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxSkl); //return cap;
 	if (!RandBitflags.caps) { return cap; } 
-	int noise = unit->pClassData->number; 
-	cap = HashByPercent(cap, noise+11); 
+	u8 noise[3]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 27; 
+	noise[2] = 0; 
+	cap = HashByPercent(cap, noise); 
 	if (cap > 31) { cap = 31; } 
 	return cap;  
 } 
@@ -723,8 +805,11 @@ int GetUnitMaxSkl(struct Unit* unit) {
 int GetUnitMaxSpd(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxSpd); //return cap;
 	if (!RandBitflags.caps) { return cap; } 
-	int noise = unit->pClassData->number; 
-	cap = HashByPercent(cap, noise+21); 
+	u8 noise[3]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 37; 
+	noise[2] = 0; 
+	cap = HashByPercent(cap, noise); 
 	if (cap > 31) { cap = 31; } 
 	return cap;  
 } 
@@ -732,8 +817,11 @@ int GetUnitMaxSpd(struct Unit* unit) {
 int GetUnitMaxDef(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxDef); //return cap;
 	if (!RandBitflags.caps) { return cap; } 
-	int noise = unit->pClassData->number; 
-	cap = HashByPercent(cap, noise+31); 
+	u8 noise[3]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 47; 
+	noise[2] = 0; 
+	cap = HashByPercent(cap, noise); 
 	if (cap > 31) { cap = 31; } 
 	return cap;  
 } 
@@ -741,8 +829,11 @@ int GetUnitMaxDef(struct Unit* unit) {
 int GetUnitMaxRes(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxRes); //return cap;
 	if (!RandBitflags.caps) { return cap; } 
-	int noise = unit->pClassData->number; 
-	cap = HashByPercent(cap, noise+41); 
+	u8 noise[3]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 57; 
+	noise[2] = 0; 
+	cap = HashByPercent(cap, noise); 
 	if (cap > 31) { cap = 31; } 
 	return cap;  
 } 
@@ -752,25 +843,40 @@ int GetUnitMaxRes(struct Unit* unit) {
 
 
 int GetUnitMaxLck(struct Unit* unit) { return 30; } 
-void UnitCheckStatCaps(struct Unit* unit);
-void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu);
+
 extern s8 Roll1RN(int threshold); //8000E60
-int NewGetStatIncrease(int growth, int noise) {
+void StoreRNState(u16* seeds); // 8000D74
+void LoadRNState(const u16* seeds); // 8000DD0
+
+void SetLCGRNValue(int seed); // 0x8000EC0
+extern int gLCGRNValue; // 0x3000008 
+
+// 883d 19 102
+// 883d 19 103
+
+int NewGetStatIncrease(int growth, u8 noise[]) {
     int result = 0;
 
     while (growth > 100) {
         result++;
         growth -= 100;
     }
-
-	// this makes it constant by seed instead of by rolling RN 
-	//if (HashByte_Global(growth, 100, noise) >= (100 - growth))
-    if (Roll1RN(growth))
-        result++;
+	
+	//int saveRandState = gLCGRNValue;
+	//
+	//
+	//int tmpRandState = HashByte_Global(growth, 0xFFFF, noise)<<16 | noise[3]<<8 | noise[2]; 
+	//SetLCGRNValue(tmpRandState); //! FE8U = (0x08000C4C+1)
+	//// this makes it constant by seed instead of by rolling RN 
+	////if (HashByte_Global(growth, 100, noise) >= (100 - growth))
+	//asm("mov r11, r11"); 
+    if (Roll1RN(growth)) { // 50 
+	result++; } 
+	
+	//SetLCGRNValue(saveRandState); 
 
     return result;
 }
-
 
 
 void UnitLevelUp(struct Unit* unit) {
@@ -780,7 +886,13 @@ void UnitLevelUp(struct Unit* unit) {
 
         unit->exp = 0;
         unit->level++;
-		int noise = unit->pCharacterData->number + (unit->level*14) + (((unit->pClassData->attributes & CA_PROMOTED) != 0)*20); 
+
+		u8 noise[5]; 
+		noise[0] = unit->pCharacterData->number;
+		noise[1] = ((unit->pClassData->attributes & CA_PROMOTED) != 0)*2;
+		noise[2] = unit->level; 
+		noise[3] = 1; 
+		noise[4] = 0; 
 
         if (unit->level == 20)
             unit->exp = UNIT_EXP_DISABLED;
@@ -795,60 +907,74 @@ void UnitLevelUp(struct Unit* unit) {
 		int resGrowth = GetUnitResGrowth(unit, true);
 		int lckGrowth = GetUnitLckGrowth(unit, true);
 
-        hpGain  = NewGetStatIncrease(hpGrowth, noise+0);
+		noise[3] = 1;
+        hpGain  = NewGetStatIncrease(hpGrowth, noise);
         totalGain += hpGain;
 
-        powGain = NewGetStatIncrease(powGrowth, noise+1);
+		noise[3] = 2;
+        powGain = NewGetStatIncrease(powGrowth, noise);
         totalGain += powGain;
 
-        sklGain = NewGetStatIncrease(sklGrowth, noise+2);
+		noise[3] = 3;
+        sklGain = NewGetStatIncrease(sklGrowth, noise);
         totalGain += sklGain;
 
-        spdGain = NewGetStatIncrease(spdGrowth, noise+3);
+		noise[3] = 4;
+        spdGain = NewGetStatIncrease(spdGrowth, noise);
         totalGain += spdGain;
 
-        defGain = NewGetStatIncrease(defGrowth, noise+4);
+		noise[3] = 5;
+        defGain = NewGetStatIncrease(defGrowth, noise);
         totalGain += defGain;
 
-        resGain = NewGetStatIncrease(resGrowth, noise+5);
+		noise[3] = 6;
+        resGain = NewGetStatIncrease(resGrowth, noise);
         totalGain += resGain;
 
-        lckGain = NewGetStatIncrease(lckGrowth, noise+6);
+		noise[3] = 7;
+        lckGain = NewGetStatIncrease(lckGrowth, noise);
         totalGain += lckGain;
 
         if (totalGain == 0) {
             for (totalGain = 0; totalGain < 2; ++totalGain) {
-                hpGain = NewGetStatIncrease(hpGrowth, noise+7);
+				noise[3] = 8;
+                hpGain = NewGetStatIncrease(hpGrowth, noise);
 
                 if (hpGain)
                     break;
 
-                powGain = NewGetStatIncrease(powGrowth, noise+8);
+				noise[3] = 9;
+                powGain = NewGetStatIncrease(powGrowth, noise);
 
                 if (powGain)
                     break;
 
-                sklGain = NewGetStatIncrease(sklGrowth, noise+9);
+				noise[3] = 10;
+                sklGain = NewGetStatIncrease(sklGrowth, noise);
 
                 if (sklGain)
                     break;
 
-                spdGain = NewGetStatIncrease(spdGrowth, noise+10);
+				noise[3] = 11;
+                spdGain = NewGetStatIncrease(spdGrowth, noise);
 
                 if (spdGain)
                     break;
 
-                defGain = NewGetStatIncrease(defGrowth, noise+11);
+				noise[3] = 12;
+                defGain = NewGetStatIncrease(defGrowth, noise);
 
                 if (defGain)
                     break;
 
-                resGain = NewGetStatIncrease(resGrowth, noise+12);
+				noise[3] = 13;
+                resGain = NewGetStatIncrease(resGrowth, noise);
 
                 if (resGain)
                     break;
 
-                lckGain = NewGetStatIncrease(lckGrowth, noise+13);
+				noise[3] = 14;
+                lckGain = NewGetStatIncrease(lckGrowth, noise);
 
                 if (lckGain)
                     break;
@@ -891,9 +1017,12 @@ extern s8 CanBattleUnitGainLevels(struct BattleUnit* bu); // 8029634
 void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
         int statGainTotal;
-		int max = (bu->unit.pCharacterData->number*10) + (((bu->unit.pClassData->attributes & CA_PROMOTED) != 0)*2);
-		int level = bu->unit.level;
-		int noise; 
+		u8 noise[5]; 
+		noise[0] = bu->unit.pCharacterData->number;
+		noise[1] = ((bu->unit.pClassData->attributes & CA_PROMOTED) != 0)*2;
+		noise[2] = bu->unit.level; 
+		noise[3] = 1; 
+		noise[4] = 0; 
 
 		bu->unit.exp -= 100;
         bu->unit.level++;
@@ -912,73 +1041,73 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int resGrowth = GetUnitResGrowth(&bu->unit, true);
 		int lckGrowth = GetUnitLckGrowth(&bu->unit, true);
 
-		noise = HashByte_Global(0, max, level); 
+		noise[3] = 1;
         bu->changeHP  = NewGetStatIncrease(hpGrowth, noise); 
         statGainTotal += bu->changeHP;
 
-		noise = HashByte_Global(1, max, level); 
+		noise[3] = 2;
         bu->changePow = NewGetStatIncrease(powGrowth, noise); 
         statGainTotal += bu->changePow;
 
-		noise = HashByte_Global(2, max, level); 
+		noise[3] = 3;
         bu->changeSkl = NewGetStatIncrease(sklGrowth, noise); 
         statGainTotal += bu->changeSkl;
 
-		noise = HashByte_Global(3, max, level); 
+		noise[3] = 4;
         bu->changeSpd = NewGetStatIncrease(spdGrowth, noise); 
         statGainTotal += bu->changeSpd;
 
-		noise = HashByte_Global(4, max, level); 
+		noise[3] = 5;
         bu->changeDef = NewGetStatIncrease(defGrowth, noise); 
         statGainTotal += bu->changeDef;
 
-		noise = HashByte_Global(5, max, level); 
+		noise[3] = 6;
         bu->changeRes = NewGetStatIncrease(resGrowth, noise); 
         statGainTotal += bu->changeRes;
 
-		noise = HashByte_Global(6, max, level); 
+		noise[3] = 7;
         bu->changeLck = NewGetStatIncrease(lckGrowth, noise); 
         statGainTotal += bu->changeLck;
 
         if (statGainTotal == 0) {
             for (statGainTotal = 0; statGainTotal < 2; ++statGainTotal) {
-				noise = HashByte_Global(7, max, level); 
+				noise[3] = 8;
                 bu->changeHP = NewGetStatIncrease(hpGrowth, noise); 
 
                 if (bu->changeHP)
                     break;
 
-				noise = HashByte_Global(8, max, level); 
+				noise[3] = 9;
                 bu->changePow = NewGetStatIncrease(powGrowth, noise); 
 
                 if (bu->changePow)
                     break;
 
-				noise = HashByte_Global(9, max, level); 
+				noise[3] = 10;
                 bu->changeSkl = NewGetStatIncrease(sklGrowth, noise); 
 
                 if (bu->changeSkl)
                     break;
 
-				noise = HashByte_Global(10, max, level); 
+				noise[3] = 11;
                 bu->changeSpd = NewGetStatIncrease(spdGrowth, noise); 
 
                 if (bu->changeSpd)
                     break;
 
-				noise = HashByte_Global(11, max, level); 
+				noise[3] = 12;
                 bu->changeDef = NewGetStatIncrease(defGrowth, noise); 
 
                 if (bu->changeDef)
                     break;
 
-				noise = HashByte_Global(12, max, level); 
+				noise[3] = 13;
                 bu->changeRes = NewGetStatIncrease(resGrowth, noise); 
 
                 if (bu->changeRes)
                     break;
 
-				noise = HashByte_Global(13, max, level); 
+				noise[3] = 14;
                 bu->changeLck = NewGetStatIncrease(lckGrowth, noise); 
 
                 if (bu->changeLck)
@@ -1455,7 +1584,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflags.itemStats = !proc->Option[5]; 
 		RandBitflags.foundItems = !proc->Option[5]; 
 		RandBitflags.shopItems = !proc->Option[5]; 
-		RandBitflags.disp = 0; 
+		RandBitflags.disp = 1; 
 		
 		if (proc->Option[7]) { SetFlag(CasualModeFlag); } 
 		
@@ -1504,7 +1633,7 @@ void StartConfigMenu(ProcPtr parent) {
 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
 	if (proc) { 
 		proc->id = 0; 
-		proc->Option[0] = OptionAmounts[0]-1); // start on 100% 
+		proc->Option[0] = OptionAmounts[0]-1; // start on 100% 
 		proc->Option[1] = 0; 
 		proc->Option[2] = 0; 
 		proc->Option[3] = 0; 
@@ -1609,7 +1738,7 @@ void PutNumberBonus(int number, u16 *tm)
     PutNumberSmall(tm + ((number >= 10) ? 2 : 1), green, number);
 	} 
 	else { 
-	number = ~number; 
+	number = ~number + 1; // neg 
 	//void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
     PutDrawText(0, tm, gold, 2, 1, "-"); 
 	//PutSpecialChar(tm, gold, 0x2d); // -
@@ -1709,33 +1838,64 @@ void DrawBarsOrGrowths(void) { // in 807FDF0
 	PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "Mov");
 	} 
 	else { 
-    DrawGrowthWithDifference(4, 1,
-        GetUnitPowGrowth(gStatScreen.unit, false),
-        GetUnitPowGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(4, 3,
-        GetUnitSklGrowth(gStatScreen.unit, false),
-        GetUnitSklGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(4, 5,
-        GetUnitSpdGrowth(gStatScreen.unit, false),
-        GetUnitSpdGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(4, 7,
-        GetUnitLckGrowth(gStatScreen.unit, false),
-        GetUnitLckGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(4, 9,
-        GetUnitDefGrowth(gStatScreen.unit, false),
-        GetUnitDefGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(4, 11,
-        GetUnitResGrowth(gStatScreen.unit, false),
-        GetUnitResGrowth(gStatScreen.unit, true));
-    DrawGrowthWithDifference(12, 1,
-        GetUnitHPGrowth(gStatScreen.unit, false),
-        GetUnitHPGrowth(gStatScreen.unit, true));
-    DrawStatWithBar(7, 13, 3,
-        UNIT_CON_BASE(gStatScreen.unit),
-        UNIT_CON(gStatScreen.unit),
-        UNIT_CON_MAX(gStatScreen.unit));
-	PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
 	
+		if ((UNIT_FACTION(gStatScreen.unit) == FACTION_BLUE) || (UNIT_CATTRIBUTES(gStatScreen.unit) & CA_BOSS)) { 
+		DrawGrowthWithDifference(4, 1,
+			GetUnitPowGrowth(gStatScreen.unit, false),
+			GetUnitPowGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 3,
+			GetUnitSklGrowth(gStatScreen.unit, false),
+			GetUnitSklGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 5,
+			GetUnitSpdGrowth(gStatScreen.unit, false),
+			GetUnitSpdGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 7,
+			GetUnitLckGrowth(gStatScreen.unit, false),
+			GetUnitLckGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 9,
+			GetUnitDefGrowth(gStatScreen.unit, false),
+			GetUnitDefGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 11,
+			GetUnitResGrowth(gStatScreen.unit, false),
+			GetUnitResGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(12, 1,
+			GetUnitHPGrowth(gStatScreen.unit, false),
+			GetUnitHPGrowth(gStatScreen.unit, true));
+		DrawStatWithBar(7, 13, 3,
+			UNIT_CON_BASE(gStatScreen.unit),
+			UNIT_CON(gStatScreen.unit),
+			UNIT_CON_MAX(gStatScreen.unit));
+		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
+		}
+		else { 
+		DrawGrowthWithDifference(4, 1,
+			GetClassPowGrowth(gStatScreen.unit, false),
+			GetClassPowGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 3,
+			GetClassSklGrowth(gStatScreen.unit, false),
+			GetClassSklGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 5,
+			GetClassSpdGrowth(gStatScreen.unit, false),
+			GetClassSpdGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 7,
+			GetClassLckGrowth(gStatScreen.unit, false),
+			GetClassLckGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 9,
+			GetClassDefGrowth(gStatScreen.unit, false),
+			GetClassDefGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 11,
+			GetClassResGrowth(gStatScreen.unit, false),
+			GetClassResGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(12, 1,
+			GetClassHPGrowth(gStatScreen.unit, false),
+			GetClassHPGrowth(gStatScreen.unit, true));
+		DrawStatWithBar(7, 13, 3,
+			UNIT_CON_BASE(gStatScreen.unit),
+			UNIT_CON(gStatScreen.unit),
+			UNIT_CON_MAX(gStatScreen.unit));
+		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
+		
+		} 
 	} 
 	
 	
@@ -1806,13 +1966,20 @@ void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr par
     }
 
 	if (RandBitflags.shopItems) { 
+		u8 noise[5]; 
+	noise[0] = gActiveUnit->xPos; 
+	noise[1] = gActiveUnit->yPos; 
+	noise[2] = 0; 
+	noise[3] = 0; 
+	noise[4] = 0; 
 		int term = false; 
 		for (i = 0; i < 20; i++) {
 			u16 itemId = *shopItems++;
 			//asm("mov r11, r11"); 
 			if ((!itemId) && (i < 5)) { term = true; itemId = i; } // randomized shop will have at least 5 items 
 			if ((i>=5) && (term)) { itemId = 0; } 
-			itemId = RandNewItem(itemId, gActiveUnit->xPos + gActiveUnit->yPos + i, true);
+			noise[2] = i; 
+			itemId = RandNewItem(itemId, noise, true);
 			proc->shopItems[i] = itemId; 
 		}
 
