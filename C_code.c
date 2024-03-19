@@ -52,21 +52,7 @@ u16 HashByte_Global(int number, int max, u8 noise[]) {
 		hash = ((hash << 5) + hash) ^ noise[i];
 	} 
 	
-	// based on NextRN
-	//int result = (noise[1] << 11) + (noise[0] >> 5); 
-	int result = (((noise[1] << 8 | noise[0]) << 11) + (noise[3] << 8 | noise[2]) + ((noise[3] << 8 | noise[2]) >> 5)); 
-    // Shift state[2] one bit
-    noise[4] *= 2;
-
-    // "carry" the top bit of state[1] to state[2]
-    if (noise[3] & 0x80)
-        noise[4]++;
-
-    result ^= noise[4];
-	
-	result += hash; 
-	
-	return Mod((result & 0x2FFFFFFF), max);
+	return Mod((hash & 0x2FFFFFFF), max);
 };
 
 u16 HashByte_Ch(int number, int max, u8 noise[]){
@@ -865,6 +851,7 @@ void LoadRNState(const u16* seeds); // 8000DD0
 
 void SetLCGRNValue(int seed); // 0x8000EC0
 extern int gLCGRNValue; // 0x3000008 
+extern void InitRN(int seed); // 8000CA8
 
 // 883d 19 102
 // 883d 19 103
@@ -877,15 +864,20 @@ int NewGetStatIncrease(int growth, u8 noise[]) {
         growth -= 100;
     }
 	
+	
 	u16 saveSeed[3]; saveSeed[0] = 0; saveSeed[1] = 0; saveSeed[2] = 0; 
 	LoadRNState(saveSeed); 
 	
 	//u16 tmpSeed[3]; tmpSeed[0] = noise[3]<<8 | noise[2]; 
-	u16 tmpSeed[3]; tmpSeed[0] = noise[2]<<8; 
-	tmpSeed[1] = noise[1]<<8 | noise[0]; tmpSeed[2] = HashByte_Global(growth, 0xFFFF, noise);
-	//tmpSeed[1] = 0; tmpSeed[2] = 0;
-	StoreRNState(tmpSeed); 
+	//u16 tmpSeed[3]; tmpSeed[0] = noise[0]<<8; 
+	//tmpSeed[1] = noise[2]<<8 | noise[1]; tmpSeed[2] = HashByte_Global(growth, 0xFFFF, noise);
 	
+	u16 tmpSeed[3]; tmpSeed[0] = noise[2]<<8 | noise[2]; 
+	tmpSeed[1] = noise[2]<<8 | noise[2]; tmpSeed[2] = noise[2];
+	
+	//tmpSeed[1] = 0; tmpSeed[2] = 0;
+	//StoreRNState(tmpSeed); 
+	InitRN(HashByte_Global(growth, 0xFFFF, noise)<<16 | noise[3]<<8 | noise[2]); 
 	
 	int saveRandState = gLCGRNValue;
 	int tmpRandState = HashByte_Global(growth, 0xFFFF, noise)<<16 | noise[3]<<8 | noise[2]; 
@@ -893,8 +885,9 @@ int NewGetStatIncrease(int growth, u8 noise[]) {
 	// this makes it constant by seed instead of by rolling RN 
 	//if (HashByte_Global(growth, 100, noise) >= (100 - growth))
 	asm("mov r11, r11"); 
-	if (HashByte_Global(growth, 100, noise) >= (100 - growth)) {
-    //if (Roll1RN(growth)) { // 50 
+	
+	//if (HashByte_Global(growth, 100, noise) >= (100 - growth)) {
+    if (Roll1RN(growth)) { // 50 
 	result++; } 
 	
 	StoreRNState(saveSeed); 
