@@ -1591,6 +1591,7 @@ Max Growth: 100
 
 void DisplayVertHand(int x, int y); 
 void DisplayHand(int x, int y, int type) { 
+	asm("mov r11, r11"); 
 	// type is 0 (horizontal) or 1 (vertical) if I make it 
 	if (type) { 
 		DisplayVertHand(x, y); 
@@ -1611,7 +1612,7 @@ void DisplayHand(int x, int y, int type) {
 #define L_BUTTON        0x0200
 
 #define START_X 21
-#define Y_HAND 16
+#define Y_HAND 15
 #define NUMBER_X 20
 LocationTable CursorLocationTable[] = {
   {(NUMBER_X*8) - (0 * 8) - 4, Y_HAND*8},
@@ -1638,39 +1639,47 @@ static int GetMaxDigits(int number) {
 
 } 
 
-/*
+
 const u16 sSprite_VertHand[] = {
     1,
     0x0002, 0x4000, 0x0006
 };
+//const u8 sHandVOffsetLookup[] = {
+//    0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3,
+//    4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1,
+//};
+
 const u8 sHandVOffsetLookup[] = {
-    0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3,
-    4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
+    2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0,
 };
-extern int sPrevHandClockFrame; 
-extern struct Vec2 sPrevHandScreenPosition; 
-extern int sPrevHandClockFrame; 
-*/
-void DisplayVertHand(int x, int y)
-{
-	DisplayUiHand(x, y); 
-} 
+//extern int sPrevHandClockFrame; 
+//extern struct Vec2 sPrevHandScreenPosition; 
+extern unsigned GetGameClock(void); // 8000F14
+extern void PutSprite(int layer, int x, int y, const u16* object, int oam2); // 80069F4
+#define ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
+void DisplayVertHand(int x, int y) {
+	int time = GetGameClock(); 
+	int prevFrame = Mod(time, ARRAY_COUNT(sHandVOffsetLookup)); 
+	//if (prevFrame < 0) { prevFrame = ARRAY_COUNT(sHandVOffsetLookup)-1; } 
+	
 
-/*
-    if ((GetGameClock() - 1) == sPrevHandClockFrame)
-    {
-        x = (x + sPrevHandScreenPosition.x) >> 1;
-        y = (y + sPrevHandScreenPosition.y) >> 1;
-    }
+    //if ((GetGameClock() - 1) == sPrevHandClockFrame)
+    //{
+    //    x = (x + sPrevHandScreenPosition.x) >> 1;
+    //    y = (y + sPrevHandScreenPosition.y) >> 1;
+    //}
+	//
+    //sPrevHandScreenPosition.x = x;
+    //sPrevHandScreenPosition.y = y;
+    //sPrevHandClockFrame = GetGameClock();
+	//x = (x + sHandVOffsetLookup[prevFrame]); 
+	y = (y + sHandVOffsetLookup[prevFrame]); 
 
-    sPrevHandScreenPosition.x = x;
-    sPrevHandScreenPosition.y = y;
-    sPrevHandClockFrame = GetGameClock();
-
-    y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))] - 14);
+    y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))]-6);
     PutSprite(2, x, y, sSprite_VertHand, 0);
 }
-*/
+
 
 extern void m4aSongNumStart(u16 n); 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
@@ -1737,7 +1746,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 				proc->redraw = true;
 			}
 		
-			DisplayHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y, 0); 	
+			DisplayHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y, true); 	
 			if (proc->redraw) { 
 				proc->redraw = false; 
 				DrawConfigMenu(proc); 
@@ -1777,7 +1786,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 
 } 
 
-
+extern void SetFontGlyphSet(int a); //8005410
 void StartConfigMenu(ProcPtr parent) { 
 	ConfigMenuProc* proc; 
 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
@@ -1799,6 +1808,7 @@ void StartConfigMenu(ProcPtr parent) {
 		
 		ResetText();
 		ResetTextFont(); 
+		SetFontGlyphSet(0);
 		BG_Fill(gBG0TilemapBuffer, 0); 
 		BG_Fill(gBG1TilemapBuffer, 0); 
 		
