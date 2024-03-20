@@ -19,8 +19,8 @@ extern int CasualModeFlag;
 
 struct RandomizerSettings { 
 	u16 base : 1; 
-	u16 growth : 1; 
-	u16 caps : 1; 
+	u16 growth : 2; // vanilla, randomized, 0%, 100% 
+	u16 caps : 2; // vanilla, randomized, 30 
 	u16 class : 1; 
 	u16 itemStats : 1; 
 	u16 foundItems : 1; 
@@ -100,20 +100,31 @@ u16 GetNthRN(int n, int seed) {
 	return result; 
 } 
 
+extern unsigned GetGameClock(void); // 8000F14
+int GetInitialSeed(void) { 
+	int result = 0; 
+	result = TacticianName[1] | (TacticianName[2]<<8) | (TacticianName[3]<<16);
+	 
+	result = GetNthRN(GetGameClock(), result)|(TacticianName[0]<<17); 
+	if (result > 999999) { result &= 0xEFFFF; } 
+	return result; 
+} 
+
 u16 HashByte_Global(int number, int max, u8 noise[], int offset) {
 	if (max==0) return 0;
 	offset = Mod(offset, 256); 
 	u32 hash = 5381;
 	hash = ((hash << 5) + hash) ^ number;
 	//hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
-	for (int i = 0; i < 9; ++i){
-	if (TacticianName[i]==0) break;
-		hash = ((hash << 5) + hash) ^ TacticianName[i];
+	u8 seed[3] = { (RandValues.seed & 0xFF), (RandValues.seed&0xFF00)>>8, (RandValues.seed&0xFF0000)>>16 }; 
+	for (int i = 0; i < 3; ++i){
+	if (seed[i]==0) break;
+		hash = ((hash << 5) + hash) ^ seed[i];
 	};
-	int seed = noise[0] | noise[1] << 8 | noise[2] << 16 | noise[3] << 24; 
+	int noisy = noise[0] | noise[1] << 8 | noise[2] << 16 | noise[3] << 24; 
 	
 	//u16 currentRN[3] = { 0, 0, 0 }; 
-	hash = GetNthRN(offset + 1, seed+hash); 
+	hash = GetNthRN(offset + 1, noisy+hash); 
 	//InitSeededRN(hash + seed, currentRN);
 	//hash = NextSeededRN(currentRN); 
 	//for (i = 0; i < 9; i++) { 
@@ -308,14 +319,15 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	badAttr = 0x3C1C00; // must be not an unusable locked weapon 
 	badAttr |= 0x80; // no uncounterable / siege weapons? 
 	attr = unit->pCharacterData->attributes | unit->pClassData->attributes; 
-	
-	if (attr & CA_LOCK_1) { badAttr &= ~(0x800); } // "wep lock 1" 
-	if (attr & CA_LOCK_2) { badAttr &= ~(0x1000); } // myrm 
-	if (attr & CA_LOCK_3) { badAttr &= ~(0x400); } // manakete 
-	if (attr & CA_LOCK_4) { badAttr &= ~(0x40000); } // eliwood 
-	if (attr & CA_LOCK_5) { badAttr &= ~(0x80000); } // hector 
-	if (attr & CA_LOCK_6) { badAttr &= ~(0x100000); } // lyn 
-	if (attr & CA_LOCK_7) { badAttr &= ~(0x200000); } // athos 
+	if (UNIT_FACTION(unit) == FACTION_BLUE) { // only player units can start with wep locked weps 
+		if (attr & CA_LOCK_1) { badAttr &= ~(0x800); } // "wep lock 1" 
+		if (attr & CA_LOCK_2) { badAttr &= ~(0x1000); } // myrm 
+		if (attr & CA_LOCK_3) { badAttr &= ~(0x400); } // manakete 
+		if (attr & CA_LOCK_4) { badAttr &= ~(0x40000); } // eliwood 
+		if (attr & CA_LOCK_5) { badAttr &= ~(0x80000); } // hector 
+		if (attr & CA_LOCK_6) { badAttr &= ~(0x100000); } // lyn 
+		if (attr & CA_LOCK_7) { badAttr &= ~(0x200000); } // athos 
+	} 
 	u8 ranks[8]; 
 	ranks[0] = unit->ranks[0]; 
 	ranks[1] = unit->ranks[1]; 
@@ -616,6 +628,9 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthHP; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
+	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
 	u8 noise[4]; 
 	noise[0] = unit->pCharacterData->number; 
 	noise[1] = 0; 
@@ -635,6 +650,9 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthPow; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
+	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
 	u8 noise[4]; 
 	noise[0] = unit->pCharacterData->number; 
 	noise[1] = 0; 
@@ -652,6 +670,9 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthSkl; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
+	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
 	u8 noise[4]; 
 	noise[0] = unit->pCharacterData->number; 
 	noise[1] = 0; 
@@ -669,6 +690,9 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthSpd; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
+	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
 	u8 noise[4]; 
 	noise[0] = unit->pCharacterData->number; 
 	noise[1] = 0; 
@@ -686,6 +710,9 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthDef; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
+	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
 	u8 noise[4]; 
 	noise[0] = unit->pCharacterData->number; 
 	noise[1] = 0; 
@@ -703,6 +730,9 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthRes; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
+	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
 	u8 noise[4]; 
 	noise[0] = unit->pCharacterData->number; 
 	noise[1] = 0; 
@@ -720,6 +750,9 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	if (modifiersBool) { growth += GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthLck; 
 	if ((!RandBitflags.growth) || (!modifiersBool)) { return growth; } 
+	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
+	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
 	u8 noise[4]; 
 	noise[0] = unit->pCharacterData->number; 
 	noise[1] = 0; 
@@ -729,7 +762,8 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	return result; 
 }
 
-
+void UnitCheckStatCaps(struct Unit* unit);
+void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu);
 extern int GetAutoleveledStatIncrease(int growth, int levelCount); // 8029604
 void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
     if (levelCount) {
@@ -741,10 +775,10 @@ void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
         unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit, true), levelCount);
         unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
     }
+	UnitCheckStatCaps(unit); 
 }
 
-void UnitCheckStatCaps(struct Unit* unit);
-void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu);
+
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
     unit->level = uDef->level;
@@ -855,63 +889,74 @@ int GetUnitMaxHP(struct Unit* unit) { return 60; }
 int GetUnitMaxPow(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxPow); //return cap;
 	if (!RandBitflags.caps) { return cap; } 
+	if (RandBitflags.caps == 2) { return 30; } 
 	u8 noise[3]; 
 	noise[0] = unit->pClassData->number; 
 	noise[1] = 0; 
 	cap = HashByPercent(cap, noise, 17); 
-	if (cap > 31) { cap = 31; } 
+	if (cap > 30) { cap = 30; } 
 	return cap;  
 } 
 
 int GetUnitMaxSkl(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxSkl); //return cap;
 	if (!RandBitflags.caps) { return cap; } 
+	if (RandBitflags.caps == 2) { return 30; } 
 	u8 noise[3]; 
 	noise[0] = unit->pClassData->number; 
 	noise[1] = 0; 
 	cap = HashByPercent(cap, noise, 27); 
-	if (cap > 31) { cap = 31; } 
-	return cap;  
+	if (cap > 30) { cap = 30; } 
+	return cap;   
 } 
 
 int GetUnitMaxSpd(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxSpd); //return cap;
 	if (!RandBitflags.caps) { return cap; } 
+	if (RandBitflags.caps == 2) { return 30; } 
 	u8 noise[3]; 
 	noise[0] = unit->pClassData->number; 
 	noise[1] = 0; 
 	cap = HashByPercent(cap, noise, 37); 
-	if (cap > 31) { cap = 31; } 
-	return cap;  
+	if (cap > 30) { cap = 30; } 
+	return cap;   
 } 
 
 int GetUnitMaxDef(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxDef); //return cap;
 	if (!RandBitflags.caps) { return cap; } 
+	if (RandBitflags.caps == 2) { return 30; } 
 	u8 noise[3]; 
 	noise[0] = unit->pClassData->number; 
 	noise[1] = 0; 
 	cap = HashByPercent(cap, noise, 47); 
-	if (cap > 31) { cap = 31; } 
+	if (cap > 30) { cap = 30; } 
 	return cap;  
 } 
 
 int GetUnitMaxRes(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxRes); //return cap;
 	if (!RandBitflags.caps) { return cap; } 
+	if (RandBitflags.caps == 2) { return 30; } 
 	u8 noise[3]; 
 	noise[0] = unit->pClassData->number; 
 	noise[1] = 0; 
 	cap = HashByPercent(cap, noise, 57); 
-	if (cap > 31) { cap = 31; } 
+	if (cap > 30) { cap = 30; } 
 	return cap;  
 } 
 
-
-
-
-
-int GetUnitMaxLck(struct Unit* unit) { return 30; } 
+int GetUnitMaxLck(struct Unit* unit) { 
+	int cap = 30;
+	if (!RandBitflags.caps) { return cap; } 
+	if (RandBitflags.caps == 2) { return 30; } 
+	u8 noise[3]; 
+	noise[0] = unit->pClassData->number; 
+	noise[1] = 0; 
+	cap = HashByPercent(cap, noise, 67); 
+	if (cap > 30) { cap = 30; } 
+	return cap;  
+} 
 
 extern s8 Roll1RN(int threshold); //8000E60
 void StoreRNState(u16* seeds); // 8000D74
@@ -1305,12 +1350,16 @@ extern void BG_SetPosition(u16 bg, u16 x, u16 y); // 0x8001D8C
 extern void LoadUiFrameGraphics(void); // 804A210
 extern void LoadObjUIGfx(void); // 8015590
 
-void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
-void ClearText(struct Text* text); // 80054E0
-void InitText(struct Text* text, int width); // 8005474
-void ResetText(void); //80053B0
-void SetTextFontGlyphs(int a); //8005410
-void ResetTextFont(void); //8005438
+extern void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
+extern void ClearText(struct Text* text); // 80054E0
+extern void InitText(struct Text* text, int width); // 8005474
+extern void ResetText(void); //80053B0
+extern void SetTextFontGlyphs(int a); //8005410
+extern void SetTextFont(int a); // 8005450
+extern void ResetTextFont(void); //8005438
+extern int sPrevHandClockFrame; 
+extern struct Vec2 sPrevHandScreenPosition; 
+
 
 extern void DisplayUiHand(int x, int y); //8049F58
 
@@ -1462,34 +1511,39 @@ const char Option0[OPT0NUM][5] = { // 2nd number is max number of characters for
 
 #define OPT1NUM 2
 const char Option1[OPT1NUM][8] = { // Base Stats 
-"Random",
 "Vanilla",
+"Random",
 }; 
 
-#define OPT2NUM 2
+#define OPT2NUM 4
 const char Option2[OPT2NUM][8] = { // Growths
-"Random",
 "Vanilla",
+"Random",
+"0%", 
+"100%",
 }; 
 
-#define OPT3NUM 2
-const char Option3[OPT3NUM][8] = { // Stat Caps 
-"Random",
+#define OPT3NUM 3
+const char Option3[OPT3NUM][10] = { // Stat Caps 
 "Vanilla",
+"Random",
+"Always 30", 
 }; 
 
 #define OPT4NUM 2
 const char Option4[OPT4NUM][20] = { // Class
-"Random",
 //"Random for players",
 //"Random for enemies",
 "Vanilla",
+"Random",
 }; 
 
-#define OPT5NUM 2
-const char Option5[OPT5NUM][10] = { // Items
-"Random",
+#define OPT5NUM 4
+const char Option5[OPT5NUM][18] = { // Items
 "Vanilla",
+"Random",
+"Found items only",
+"Item stats only",
 }; 
 
 #define OPT6NUM 21
@@ -1546,6 +1600,9 @@ static const LocationTable SRR_CursorLocationTable[] = {
   // {10, 0x88} //leave room for a description?
 };
 
+extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); // 80C57BC
+#define Y_HAND 17
+#define NUMBER_X 20
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 
 	
@@ -1577,11 +1634,13 @@ Max Growth: 100
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option0[proc->Option[0]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option1[proc->Option[1]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option2[proc->Option[2]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option3[proc->Option[3]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 6, Option3[proc->Option[3]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, Option4[proc->Option[4]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option5[proc->Option[5]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, Option5[proc->Option[5]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option6[proc->Option[6]]); i++;  
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
+	
+	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0);
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 19, 1+((i-9)*2)), white, proc->seed); i++;  
 
 	BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -1589,12 +1648,12 @@ Max Growth: 100
 } 
 
 
-void DisplayVertHand(int x, int y); 
+void DisplayVertUiHand(int x, int y); 
 void DisplayHand(int x, int y, int type) { 
-	asm("mov r11, r11"); 
+	//asm("mov r11, r11"); 
 	// type is 0 (horizontal) or 1 (vertical) if I make it 
 	if (type) { 
-		DisplayVertHand(x, y); 
+		DisplayVertUiHand(x, y); 
 	} 
 	else { DisplayUiHand(x, y); } 
 } 
@@ -1611,9 +1670,7 @@ void DisplayHand(int x, int y, int type) {
 #define R_BUTTON        0x0100
 #define L_BUTTON        0x0200
 
-#define START_X 21
-#define Y_HAND 15
-#define NUMBER_X 20
+
 LocationTable CursorLocationTable[] = {
   {(NUMBER_X*8) - (0 * 8) - 4, Y_HAND*8},
   {(NUMBER_X*8) - (1 * 8) - 4, Y_HAND*8},
@@ -1644,39 +1701,32 @@ const u16 sSprite_VertHand[] = {
     1,
     0x0002, 0x4000, 0x0006
 };
-//const u8 sHandVOffsetLookup[] = {
-//    0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3,
-//    4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1,
-//};
-
 const u8 sHandVOffsetLookup[] = {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
-    2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3,
+    4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1,
 };
+
+
 //extern int sPrevHandClockFrame; 
 //extern struct Vec2 sPrevHandScreenPosition; 
-extern unsigned GetGameClock(void); // 8000F14
+
 extern void PutSprite(int layer, int x, int y, const u16* object, int oam2); // 80069F4
 #define ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
-void DisplayVertHand(int x, int y) {
-	int time = GetGameClock(); 
-	int prevFrame = Mod(time, ARRAY_COUNT(sHandVOffsetLookup)); 
-	//if (prevFrame < 0) { prevFrame = ARRAY_COUNT(sHandVOffsetLookup)-1; } 
-	
+struct Vec2 { short x, y; };
+struct Vec2u { u16 x, y; };
+void DisplayVertUiHand(int x, int y)
+{
+    if ((GetGameClock() - 1) == sPrevHandClockFrame)
+    {
+        x = (x + sPrevHandScreenPosition.x) >> 1;
+        y = (y + sPrevHandScreenPosition.y) >> 1;
+    }
 
-    //if ((GetGameClock() - 1) == sPrevHandClockFrame)
-    //{
-    //    x = (x + sPrevHandScreenPosition.x) >> 1;
-    //    y = (y + sPrevHandScreenPosition.y) >> 1;
-    //}
-	//
-    //sPrevHandScreenPosition.x = x;
-    //sPrevHandScreenPosition.y = y;
-    //sPrevHandClockFrame = GetGameClock();
-	//x = (x + sHandVOffsetLookup[prevFrame]); 
-	y = (y + sHandVOffsetLookup[prevFrame]); 
+    sPrevHandScreenPosition.x = x;
+    sPrevHandScreenPosition.y = y;
+    sPrevHandClockFrame = GetGameClock();
 
-    y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))]-6);
+    y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))] - 14);
     PutSprite(2, x, y, sSprite_VertHand, 0);
 }
 
@@ -1690,14 +1740,15 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
 		RandValues.variance = proc->Option[0];
+		RandValues.seed = proc->seed; 
 		RandValues.bonus = proc->Option[6];
-		RandBitflags.base = !proc->Option[1]; 
-		RandBitflags.growth = !proc->Option[2]; 
-		RandBitflags.caps = !proc->Option[3]; 
-		RandBitflags.class = !proc->Option[4]; 
-		RandBitflags.itemStats = !proc->Option[5]; 
-		RandBitflags.foundItems = !proc->Option[5]; 
-		RandBitflags.shopItems = !proc->Option[5]; 
+		RandBitflags.base = proc->Option[1]; 
+		RandBitflags.growth = proc->Option[2]; 
+		RandBitflags.caps = proc->Option[3]; 
+		RandBitflags.class = proc->Option[4]; 
+		RandBitflags.itemStats = ((proc->Option[5] == 1) || (proc->Option[5] == 3)); 
+		RandBitflags.foundItems = ((proc->Option[5] == 1) || (proc->Option[5] == 2)); 
+		RandBitflags.shopItems = ((proc->Option[5] == 1) || (proc->Option[5] == 2)); 
 		RandBitflags.disp = 1; 
 		
 		if (proc->Option[7]) { SetFlag(CasualModeFlag); } 
@@ -1786,7 +1837,9 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 
 } 
 
+extern void ChapterStatus_SetupFont(int zero); // 8086E60
 extern void SetFontGlyphSet(int a); //8005410
+extern void InitSystemTextFont(void); // 8005A40
 void StartConfigMenu(ProcPtr parent) { 
 	ConfigMenuProc* proc; 
 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
@@ -1794,21 +1847,29 @@ void StartConfigMenu(ProcPtr parent) {
 	if (proc) { 
 		proc->id = 0; 
 		proc->Option[0] = OptionAmounts[0]-1; // start on 100% 
-		proc->Option[1] = 0; 
-		proc->Option[2] = 0; 
-		proc->Option[3] = 0; 
-		proc->Option[4] = 0; 
-		proc->Option[5] = 0; 
+		proc->Option[1] = 1; 
+		proc->Option[2] = 1; 
+		proc->Option[3] = 1; 
+		proc->Option[4] = 1; 
+		proc->Option[5] = 1; 
 		proc->Option[6] = 0; 
 		proc->Option[7] = 0; 
 		proc->redraw = 0; 
-		proc->seed = 123456; 
+		proc->seed = GetInitialSeed(); 
 		
 		proc->digit = 0; 
+		//SetTextFontGlyphs(0);
+		//SetTextFont(0);
+		//ResetTextFont();
 		
-		ResetText();
-		ResetTextFont(); 
-		SetFontGlyphSet(0);
+		
+		ResetTextFont();
+		SetTextFontGlyphs(0);
+		SetTextFont(0);
+		InitSystemTextFont();
+
+		
+		
 		BG_Fill(gBG0TilemapBuffer, 0); 
 		BG_Fill(gBG1TilemapBuffer, 0); 
 		
@@ -1827,11 +1888,14 @@ void StartConfigMenu(ProcPtr parent) {
 		InitText(&th[i], 5); i++; 
 		InitText(&th[i], 5); i++; 
 		InitText(&th[i], 5); i++; 
-		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 6); i++; 
+		InitText(&th[i], 12); i++; 
 		InitText(&th[i], 12); i++; 
 		InitText(&th[i], 5); i++; 
 		InitText(&th[i], 5); i++; 
-		InitText(&th[i], 5); i++; 
+		
+		//LoadUiFrameGraphics(); 
+		LoadObjUIGfx(); 
 		
 		i = 0; 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Variance"); i++; 
@@ -1861,8 +1925,7 @@ void StartConfigMenu(ProcPtr parent) {
 		gLCDControlBuffer.dispcnt.bg3_on = 0;// don't display bg3
 		gLCDControlBuffer.dispcnt.obj_on = 1;
 		
-		LoadUiFrameGraphics(); 
-		LoadObjUIGfx(); 
+		
 		//proc->offset = 0; 
 		//proc->redraw = false; 
 		//proc->cannotCatch = false; 

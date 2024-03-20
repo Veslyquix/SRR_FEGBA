@@ -77,8 +77,12 @@ SET_FUNC PutDrawText, 0x8005AD5
 SET_FUNC ClearText, 0x80054E1
 SET_FUNC InitText, 0x8005475
 SET_FUNC ResetText, 0x80053B1
-SET_FUNC SetTextFontGlyphs, 0x8005411
+SET_FUNC SetTextFontGlyphs, 0x8005411 
 SET_FUNC ResetTextFont, 0x8005439
+SET_FUNC ChapterStatus_SetupFont, 0x8086E61
+SET_FUNC InitSystemTextFont, 0x8005A41
+SET_FUNC TileMap_FillRect, 0x80C57BD
+
 SET_FUNC DisplayUiHand, 0x8049F59
 SET_FUNC NewPopup_ItemGot, 0x800EF55
 SET_FUNC Roll1RN, 0x8000E61
@@ -88,8 +92,9 @@ SET_FUNC PutNumber, 0x80061D9
 SET_FUNC GetGameClock, 0x8000F15
 SET_FUNC PutSprite, 0x80069F5
 SET_FUNC SetFontGlyphSet, 0x8005411
+SET_FUNC SetTextFont, 0x8005451
 
-SET_DATA gLCGRNValue, 0x3000008 
+
 
 SET_FUNC StoreRNState, 0x8000D75
 SET_FUNC LoadRNState, 0x8000DD1
@@ -111,6 +116,9 @@ SET_DATA ProcScr_GotItem, 0x8B91DC4
 SET_DATA StatScreen_Display, 0x808119D
 SET_DATA gActiveUnit, 0x3004690
 SET_DATA gProcScr_Shop, 0x8CE6FC0
+SET_DATA gLCGRNValue, 0x3000008 
+SET_DATA sPrevHandClockFrame, 0x203DCF0
+SET_DATA sPrevHandScreenPosition, 0x203DCEC
 
 SET_DATA RandBitflags, 0x202BC16 @ GameOptions + 0x1E (unk, 2 bytes) 
 SET_DATA RandValues, 0x202BC3C @ GameOptions + 0x44 (unk, 4 bytes) 
