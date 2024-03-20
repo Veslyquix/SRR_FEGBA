@@ -104,8 +104,8 @@ extern unsigned GetGameClock(void); // 8000F14
 int GetInitialSeed(void) { 
 	int result = 0; 
 	result = TacticianName[1] | (TacticianName[2]<<8) | (TacticianName[3]<<16);
-	 
-	result = GetNthRN(GetGameClock(), result)|(TacticianName[0]<<17); 
+	int clock = GetGameClock(); 
+	result = (GetNthRN(clock, result)<<4) | GetNthRN(clock, result); 
 	if (result > 999999) { result &= 0xEFFFF; } 
 	return result; 
 } 
@@ -1735,7 +1735,7 @@ extern void m4aSongNumStart(u16 n);
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
 
 	u16 keys = sKeyStatusBuffer.newKeys; 
-	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
+	
 	int id = proc->id;
 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
@@ -1759,6 +1759,8 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		//gLCDControlBuffer.dispcnt.bg0_on = 0; // don't display bg3 
 		m4aSongNumStart(0x2D9); // idk which to use 
 	};
+	
+	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
 	
 	// Handle seed 
 	if (id == SRR_MAXDISP) { 
