@@ -38,6 +38,17 @@ BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeUnlockDoor
 ORG $CABF64
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeUnlockDoor
 
+ORG $CC5B75
+BYTE 4 // Batta y coord 
+ORG $CC5B77
+BYTE 4
+
+ORG $CC5D5F // Ch 2 throne avoid 
+BYTE 3 
+ORG $CC5D7F
+BYTE 4 
+ORG $CA91CE 
+BYTE 2 
 
 POP 
 

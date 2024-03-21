@@ -767,9 +767,9 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	unit->xPos = uDef->xPosition;
 	unit->yPos = uDef->yPosition; 
 	u8 noise[6] = {0, 0, 0, 0, 0, 0};  // 1 extra so gCh is used 
-	noise[0] = uDef->xMove; 
-	noise[1] = uDef->yMove; 
-	noise[2] = 0; 
+	noise[0] = unit->pCharacterData->number;
+	noise[1] = uDef->xMove; 
+	noise[2] = uDef->yMove;  
 	noise[3] = 0; 
 	noise[4] = 0; 
 	noise[5] = 0; 
@@ -782,7 +782,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	}
 
 	int wexp = 0; 
-	noise[2] = unit->pClassData->number; 
+	noise[0] = unit->pClassData->number; 
     for (int i = 0; i < 8; ++i) { 
         wexp = HashWexp(unit->pClassData->baseRanks[i], noise, i);
 		unit->ranks[i] = wexp; 
@@ -963,7 +963,7 @@ int NewGetStatIncrease(int growth, u8 noise[], int level, int offset) {
     return result;
 }
 
-
+#define MinimumStatUps 2
 void UnitLevelUp(struct Unit* unit) {
     if (unit->level != 20) {
         int hpGain, powGain, sklGain, spdGain, defGain, resGain, lckGain;
@@ -989,86 +989,127 @@ void UnitLevelUp(struct Unit* unit) {
 		int resGrowth = GetUnitResGrowth(unit, true);
 		int lckGrowth = GetUnitLckGrowth(unit, true);
 
+		int maxHP = GetUnitMaxHP(unit); 
+		int maxPow = GetUnitMaxPow(unit); 
+		int maxSkl = GetUnitMaxSkl(unit); 
+		int maxSpd = GetUnitMaxSpd(unit); 
+		int maxDef = GetUnitMaxDef(unit); 
+		int maxRes = GetUnitMaxRes(unit); 
+		int maxLck = GetUnitMaxLck(unit); 
+
         hpGain  = NewGetStatIncrease(hpGrowth, noise, level, 1); 
-        totalGain += hpGain;
+		if (hpGain && (unit->maxHP + hpGain) <= maxHP)
+        totalGain += hpGain; else hpGain = 0; 
 
         powGain = NewGetStatIncrease(powGrowth, noise, level, 2); 
-        totalGain += powGain;
+		if (powGain && ((unit->pow + powGain) <= maxPow))
+        totalGain += powGain; else powGain = 0; 
 
         sklGain = NewGetStatIncrease(sklGrowth, noise, level, 3); 
-        totalGain += sklGain;
+		if (sklGain && ((unit->skl + sklGain) <= maxSkl))
+        totalGain += sklGain; else sklGain = 0; 
 
         spdGain = NewGetStatIncrease(spdGrowth, noise, level, 4); 
-        totalGain += spdGain;
+		if (spdGain && ((unit->spd + spdGain) <= maxSpd))
+        totalGain += spdGain; else spdGain = 0; 
 
         defGain = NewGetStatIncrease(defGrowth, noise, level, 5); 
-        totalGain += defGain;
+		if (defGain && ((unit->def + defGain) <= maxDef))
+        totalGain += defGain; else defGain = 0; 
 
         resGain = NewGetStatIncrease(resGrowth, noise, level, 6); 
-        totalGain += resGain;
+		if (resGain && ((unit->res + resGain) <= maxRes))
+        totalGain += resGain; else resGain = 0; 
 
         lckGain = NewGetStatIncrease(lckGrowth, noise, level, 7); 
-        totalGain += lckGain;
+		if (lckGain && ((unit->lck + lckGain) <= maxLck))
+        totalGain += lckGain; else lckGain = 0; 
 
-        if (totalGain == 0) {
-            for (totalGain = 0; totalGain < 2; ++totalGain) {
-                hpGain = NewGetStatIncrease(hpGrowth, noise, level, 8); 
 
-                if (hpGain)
-                    break;
 
-                powGain = NewGetStatIncrease(powGrowth, noise, level, 9); 
+        if (totalGain < MinimumStatUps) {
+			for (int i = 0; i < 4; i++) { 
+				totalGain = 0; 
+				hpGain = 0; 
+				powGain = 0; 
+				sklGain = 0; 
+				spdGain = 0; 
+				defGain = 0; 
+				resGain = 0; 
+				lckGain = 0; 
+				
+                hpGain = NewGetStatIncrease(hpGrowth, noise, level, 8 + (i * 13)); 
 
-                if (powGain)
-                    break;
+                if (hpGain && ((unit->maxHP + hpGain) <= maxHP))
+				{	totalGain++; 
+					if (totalGain >= MinimumStatUps) { 
+					break;	} } 
 
-                sklGain = NewGetStatIncrease(sklGrowth, noise, level, 10); 
+                powGain = NewGetStatIncrease(powGrowth, noise, level, 9 + (i * 13)); 
 
-                if (sklGain)
-                    break;
+                if (powGain && ((unit->pow + powGain) <= maxPow))
+				{	totalGain++; 
+					if (totalGain >= MinimumStatUps) { 
+					break;	} } 
 
-                spdGain = NewGetStatIncrease(spdGrowth, noise, level, 11); 
+                sklGain = NewGetStatIncrease(sklGrowth, noise, level, 10 + (i * 13)); 
 
-                if (spdGain)
-                    break;
+                if (sklGain && ((unit->skl + sklGain) <= maxSkl))
+				{	totalGain++; 
+					if (totalGain >= MinimumStatUps) { 
+					break;	} } 
 
-                defGain = NewGetStatIncrease(defGrowth, noise, level, 12); 
+                spdGain = NewGetStatIncrease(spdGrowth, noise, level, 11 + (i * 13)); 
 
-                if (defGain)
-                    break;
+                if (spdGain && ((unit->spd + spdGain) <= maxSpd))
+				{	totalGain++; 
+					if (totalGain >= MinimumStatUps) { 
+					break;	} } 
 
-                resGain = NewGetStatIncrease(resGrowth, noise, level, 13); 
+                defGain = NewGetStatIncrease(defGrowth, noise, level, 12 + (i * 13)); 
 
-                if (resGain)
-                    break;
+                if (defGain && ((unit->def + defGain) <= maxDef))
+				{	totalGain++; 
+					if (totalGain >= MinimumStatUps) { 
+					break;	} } 
 
-                lckGain = NewGetStatIncrease(lckGrowth, noise, level, 14); 
+                resGain = NewGetStatIncrease(resGrowth, noise, level, 13 + (i * 13)); 
 
-                if (lckGain)
-                    break;
+                if (resGain && ((unit->res + resGain) <= maxRes))
+				{	totalGain++; 
+					if (totalGain >= MinimumStatUps) { 
+					break;	} } 
+
+                lckGain = NewGetStatIncrease(lckGrowth, noise, level, 14 + (i * 13)); 
+
+                if (lckGain && ((unit->lck + lckGain) <= maxLck))
+				{	totalGain++; 
+					if (totalGain >= MinimumStatUps) { 
+					break;	} } 
             }
         }
 
-        if ((unit->maxHP + hpGain) > GetUnitMaxHP(unit))
-            hpGain = GetUnitMaxHP(unit) - unit->maxHP;
+// same as check unit caps? 
+        if ((unit->maxHP + hpGain) > maxHP)
+            hpGain = maxHP - unit->maxHP;
 
-        if ((unit->pow + powGain) > GetUnitMaxPow(unit))
-            powGain = GetUnitMaxPow(unit) - unit->pow;
+        if ((unit->pow + powGain) > maxPow)
+            powGain = maxPow - unit->pow;
 
-        if ((unit->skl + sklGain) > GetUnitMaxSkl(unit))
-            sklGain = GetUnitMaxSkl(unit) - unit->skl;
+        if ((unit->skl + sklGain) > maxSkl)
+            sklGain = maxSkl - unit->skl;
 
-        if ((unit->spd + spdGain) > GetUnitMaxSpd(unit))
-            spdGain = GetUnitMaxSpd(unit) - unit->spd;
+        if ((unit->spd + spdGain) > maxSpd)
+            spdGain = maxSpd - unit->spd;
 
-        if ((unit->def + defGain) > GetUnitMaxDef(unit))
-            defGain = GetUnitMaxDef(unit) - unit->def;
+        if ((unit->def + defGain) > maxDef)
+            defGain = maxDef - unit->def;
 
-        if ((unit->res + resGain) > GetUnitMaxRes(unit))
-            resGain = GetUnitMaxRes(unit) - unit->res;
+        if ((unit->res + resGain) > maxRes)
+            resGain = maxRes - unit->res;
 
-        if ((unit->lck + lckGain) > GetUnitMaxLck(unit))
-            lckGain = GetUnitMaxLck(unit) - unit->lck;
+        if ((unit->lck + lckGain) > maxLck)
+            lckGain = maxLck - unit->lck;
 
         unit->maxHP += hpGain;
         unit->pow += powGain;
@@ -1098,72 +1139,115 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
         }
 
         statGainTotal = 0;
-		int hpGrowth = GetUnitHPGrowth(&bu->unit, true);
-		int powGrowth = GetUnitPowGrowth(&bu->unit, true);
-		int sklGrowth = GetUnitSklGrowth(&bu->unit, true);
-		int spdGrowth = GetUnitSpdGrowth(&bu->unit, true);
-		int defGrowth = GetUnitDefGrowth(&bu->unit, true);
-		int resGrowth = GetUnitResGrowth(&bu->unit, true);
-		int lckGrowth = GetUnitLckGrowth(&bu->unit, true);
+		struct Unit* unit = GetUnit(bu->unit.index); 
+		int hpGrowth = GetUnitHPGrowth(unit, true);
+		int powGrowth = GetUnitPowGrowth(unit, true);
+		int sklGrowth = GetUnitSklGrowth(unit, true);
+		int spdGrowth = GetUnitSpdGrowth(unit, true);
+		int defGrowth = GetUnitDefGrowth(unit, true);
+		int resGrowth = GetUnitResGrowth(unit, true);
+		int lckGrowth = GetUnitLckGrowth(unit, true);
+
+		
+		int maxHP = GetUnitMaxHP(unit); 
+		int maxPow = GetUnitMaxPow(unit); 
+		int maxSkl = GetUnitMaxSkl(unit); 
+		int maxSpd = GetUnitMaxSpd(unit); 
+		int maxDef = GetUnitMaxDef(unit); 
+		int maxRes = GetUnitMaxRes(unit); 
+		int maxLck = GetUnitMaxLck(unit); 
+		
 
         bu->changeHP  = NewGetStatIncrease(hpGrowth, noise, level, 1); 
-        statGainTotal += bu->changeHP;
+		if (bu->changeHP && ((unit->maxHP + bu->changeHP) <= maxHP))
+        statGainTotal += bu->changeHP; else bu->changeHP = 0; 
 
         bu->changePow = NewGetStatIncrease(powGrowth, noise, level, 2); 
-        statGainTotal += bu->changePow;
+		if (bu->changePow && ((unit->pow + bu->changePow) <= maxPow))
+        statGainTotal += bu->changePow; else bu->changePow = 0; 
 
         bu->changeSkl = NewGetStatIncrease(sklGrowth, noise, level, 3); 
-        statGainTotal += bu->changeSkl;
+		if (bu->changeSkl && ((unit->skl + bu->changeSkl) <= maxSkl))
+        statGainTotal += bu->changeSkl; else bu->changeSkl = 0; 
 
         bu->changeSpd = NewGetStatIncrease(spdGrowth, noise, level, 4); 
-        statGainTotal += bu->changeSpd;
+		if (bu->changeSpd && ((unit->spd + bu->changeSpd) <= maxSpd))
+        statGainTotal += bu->changeSpd; else bu->changeSpd = 0; 
 
         bu->changeDef = NewGetStatIncrease(defGrowth, noise, level, 5); 
-        statGainTotal += bu->changeDef;
+		if (bu->changeDef && ((unit->def + bu->changeDef) <= maxDef))
+        statGainTotal += bu->changeDef; else bu->changeDef = 0; 
 
         bu->changeRes = NewGetStatIncrease(resGrowth, noise, level, 6); 
-        statGainTotal += bu->changeRes;
+		if (bu->changeRes && ((unit->res + bu->changeRes) <= maxRes))
+        statGainTotal += bu->changeRes; else bu->changeRes = 0; 
 
         bu->changeLck = NewGetStatIncrease(lckGrowth, noise, level, 7); 
-        statGainTotal += bu->changeLck;
+		if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
+        statGainTotal += bu->changeLck; else bu->changeLck = 0; 
 
-        if (statGainTotal == 0) {
-            for (statGainTotal = 0; statGainTotal < 2; ++statGainTotal) {
-                bu->changeHP = NewGetStatIncrease(hpGrowth, noise, level, 8); 
 
-                if (bu->changeHP)
-                    break;
+        if (statGainTotal < MinimumStatUps) {
+			for (int i = 0; i < 4; i++) { 
+				statGainTotal = 0; 
+				bu->changeHP = 0; 
+				bu->changePow = 0; 
+				bu->changeSkl = 0; 
+				bu->changeSpd = 0; 
+				bu->changeDef = 0; 
+				bu->changeRes = 0; 
+				bu->changeLck = 0; 
+			
+			
+				bu->changeHP = NewGetStatIncrease(hpGrowth, noise, level, 8 + (i * 13)); 
 
-                bu->changePow = NewGetStatIncrease(powGrowth, noise, level, 9); 
+				if (bu->changeHP && ((unit->maxHP + bu->changeHP) <= maxHP))
+				{	statGainTotal++; 
+					if (statGainTotal >= MinimumStatUps) { 
+					break;	} } 
 
-                if (bu->changePow)
-                    break;
+				bu->changePow = NewGetStatIncrease(powGrowth, noise, level, 9 + (i * 13)); 
 
-                bu->changeSkl = NewGetStatIncrease(sklGrowth, noise, level, 10); 
+				if (bu->changePow && ((unit->pow + bu->changePow) <= maxPow))
+				{	statGainTotal++; 
+					if (statGainTotal >= MinimumStatUps) { 
+					break;	} } 
 
-                if (bu->changeSkl)
-                    break;
+				bu->changeSkl = NewGetStatIncrease(sklGrowth, noise, level, 10 + (i * 13)); 
 
-                bu->changeSpd = NewGetStatIncrease(spdGrowth, noise, level, 11); 
+				if (bu->changeSkl && ((unit->skl + bu->changeSkl) <= maxSkl))
+				{	statGainTotal++; 
+					if (statGainTotal >= MinimumStatUps) { 
+					break;	} } 
 
-                if (bu->changeSpd)
-                    break;
+				bu->changeSpd = NewGetStatIncrease(spdGrowth, noise, level, 11 + (i * 13)); 
 
-                bu->changeDef = NewGetStatIncrease(defGrowth, noise, level, 12); 
+				if (bu->changeSpd && ((unit->spd + bu->changeSpd) <= maxSpd))
+				{	statGainTotal++; 
+					if (statGainTotal >= MinimumStatUps) { 
+					break;	} } 
 
-                if (bu->changeDef)
-                    break;
+				bu->changeDef = NewGetStatIncrease(defGrowth, noise, level, 12 + (i * 13)); 
 
-                bu->changeRes = NewGetStatIncrease(resGrowth, noise, level, 13); 
+				if (bu->changeDef && ((unit->def + bu->changeDef) <= maxDef))
+				{	statGainTotal++; 
+					if (statGainTotal >= MinimumStatUps) { 
+					break;	} } 
 
-                if (bu->changeRes)
-                    break;
+				bu->changeRes = NewGetStatIncrease(resGrowth, noise, level, 13 + (i * 13)); 
 
-                bu->changeLck = NewGetStatIncrease(lckGrowth, noise, level, 14); 
+				if (bu->changeRes && ((unit->res + bu->changeRes) <= maxRes))
+				{	statGainTotal++; 
+					if (statGainTotal >= MinimumStatUps) { 
+					break;	} } 
 
-                if (bu->changeLck)
-                    break;
-            }
+				bu->changeLck = NewGetStatIncrease(lckGrowth, noise, level, 14 + (i * 13)); 
+
+				if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
+				{	statGainTotal++; 
+					if (statGainTotal >= MinimumStatUps) { 
+					break;	} } 
+			}
         }
 
         CheckBattleUnitStatCaps(GetUnit(bu->unit.index), bu);
