@@ -98,7 +98,7 @@ struct ClassData
     /* 2C */ u8 baseRanks[8];
 
     /* 34 */ u32 pBattleAnimDef;
-    /* 38 */ u32 pMovCostTable[3]; // standard, rain, snow
+    /* 38 */ s8* pMovCostTable[3]; // standard, rain, snow
 
     /* 44 */ const s8 * pTerrainAvoidLookup;
     /* 48 */ const s8 * pTerrainDefenseLookup;

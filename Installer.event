@@ -38,12 +38,18 @@ BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeUnlockDoor
 ORG $CABF64
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeUnlockDoor
 
-ORG $CC5B75
-BYTE 4 // Batta y coord 
-ORG $CC5B77
-BYTE 4
+ORG $CAD41C
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN UnlockDoor7x
+ORG $CB6388
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN UnlockDoor22x
 
-ORG $CC5D5F // Ch 2 throne avoid 
+
+ORG $CC5B75
+BYTE 3 // Batta y coord 
+ORG $CC5B77
+BYTE 3
+
+ORG $CC5D5F // Ch 2 boss not on throne 
 BYTE 3 
 ORG $CC5D7F
 BYTE 4 
@@ -111,7 +117,21 @@ BYTE 0x5F 00 1 00 // Tile change 0: Open door
 BYTE 0x5F 00 5 00 // Tile change 0xB: Open door
 BYTE 0xA 0 0 0; WORD 0 // ENDA 
 
+UnlockDoor7x:
+BYTE $84 0 0 0; BYTE 8 0 0 0; BYTE 0 0 0 0 // LOMA ch id 8 
+BYTE 0x5F 00 1 00 // Tile change 0: Open door
+BYTE 0xA 0 0 0; WORD 0 // ENDA 
 
+UnlockDoor22x:
+BYTE $0F $00 $00 $00 $53 $0C $00 $00 $60 $0C $00 $00 // vanilla 
+BYTE 0x5F 00 4 00 // Tile change 0: Open door
+BYTE 0x5F 00 5 00 // Tile change 0: Open door
+BYTE 0x5F 00 6 00 // Tile change 0: Open door
+BYTE 0xA 0 0 0; WORD 0 // ENDA 
+
+ // Pale flower ch 25 hhm softlock possible 
+
+// [8BE38C9..8BE3909]?
 
 ALIGN 4 
 CasualModeFlag:

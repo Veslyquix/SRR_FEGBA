@@ -102,7 +102,7 @@ SET_FUNC LoadRNState, 0x8000DD1
 SET_FUNC StartShopScreen, 0x80B0455 
 SET_FUNC EndPlayerPhaseSideWindows, 0x8085C7D
 SET_FUNC UpdateShopItemCounts, 0x80B0521
-
+SET_FUNC GetUnitMovementCost, 0x80187d5
 
 SET_DATA gBG0TilemapBuffer, 0x2022C60
 SET_DATA gBG1TilemapBuffer, 0x2023460
@@ -119,6 +119,9 @@ SET_DATA gProcScr_Shop, 0x8CE6FC0
 SET_DATA gLCGRNValue, 0x3000008 
 SET_DATA sPrevHandClockFrame, 0x203DCF0
 SET_DATA sPrevHandScreenPosition, 0x203DCEC
+SET_DATA Unk_TerrainTable_08BEC398, 0x8BEC398
+SET_DATA gBmMapTerrain, 0x202E3E0
+SET_DATA weatherId, 0x202BC0D
 
 SET_DATA RandBitflags, 0x202BC16 @ GameOptions + 0x1E (unk, 2 bytes) 
 SET_DATA RandValues, 0x202BC3C @ GameOptions + 0x44 (unk, 4 bytes) 

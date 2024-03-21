@@ -121,7 +121,7 @@ u16 HashByte_Global(int number, int max, u8 noise[], int offset) {
 	if (seed[i]==0) break;
 		hash = ((hash << 5) + hash) ^ seed[i];
 	};
-	int noisy = noise[0] | noise[1] << 8 | noise[2] << 16 | noise[3] << 24; 
+	int noisy = noise[0] | (noise[1] << 8) | (noise[2] << 16) | (noise[3] << 24); 
 	
 	//u16 currentRN[3] = { 0, 0, 0 }; 
 	hash = GetNthRN(offset + 1, noisy+hash); 
@@ -439,16 +439,16 @@ int RandNewWeapon(struct Unit* unit, int item, u8 noise[], int offset, u8 list[]
 	if (!RandBitflags.class) { return MakeNewItem(item); } 
 	//int wexpMask = GetValidWexpMask(unit); 
 	int c; 
-	// player units that start with a vuln/elixir keep it 
-	if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6B) { return MakeNewItem(0x6B); } }
-	if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6C) { return MakeNewItem(0x6C); } }
-	// if dancer/bard, give random ring instead of a weapon 
-	if ((unit->pCharacterData->attributes | unit->pClassData->attributes)& (CA_DANCE|CA_PLAY)) { 
-		return MakeNewItem(HashByte_Ch(item, 4, noise, offset)+0x7C); // 
-	} 
+
 	
 	
 	if (!((GetItemData(item)->attributes) & 5)) { // not a wep/staff 
+		if (unit->pClassData->number == 0x3C) { // Thief 
+			return MakeNewItem(0x6A); // Non weapons become lockpick for thieves  
+		} 
+		// player units that start with a vuln/elixir keep it 
+		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6B) { return MakeNewItem(0x6B); } }
+		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6C) { return MakeNewItem(0x6C); } }
 		u8 list2[MaxItems]; 
 		list2[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 		BuildSimilarPriceItemList(list2, item, true, false); 
@@ -459,7 +459,10 @@ int RandNewWeapon(struct Unit* unit, int item, u8 noise[], int offset, u8 list[]
 		} 
 		return MakeNewItem(item); 
 	} 
-
+	// if dancer/bard, give random ring instead of a weapon 
+	if ((unit->pCharacterData->attributes | unit->pClassData->attributes)& (CA_DANCE|CA_PLAY)) { 
+		return MakeNewItem(HashByte_Ch(item, 4, noise, offset)+0x7C); // 
+	} 
 	//asm("mov r11, r11"); 
 	if (list[0]) { 
 		c = HashByte_Ch(item, list[0]+1, noise, offset); 
@@ -2281,6 +2284,211 @@ void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr par
 
     return;
 }
+
+enum {
+    // Terrain identifiers
+
+    // I'm going by the in-game names + some old FE7 nmm for this
+    // TODO: figure out in better details
+
+    TERRAIN_TILE_00    = 0x00,
+    TERRAIN_PLAINS     = 0x01,
+    TERRAIN_ROAD       = 0x02,
+    TERRAIN_VILLAGE_03 = 0x03,
+    TERRAIN_VILLAGE_04 = 0x04,
+    TERRIAN_HOUSE      = 0x05,
+    TERRAIN_ARMORY     = 0x06,
+    TERRAIN_VENDOR     = 0x07,
+    TERRAIN_ARENA_08   = 0x08,
+    TERRAIN_C_ROOM_09  = 0x09,
+    TERRAIN_FORT       = 0x0A,
+    TERRAIN_GATE_0B    = 0x0B,
+    TERRAIN_FOREST     = 0x0C,
+    TERRAIN_THICKET    = 0x0D,
+    TERRAIN_SAND       = 0x0E,
+    TERRAIN_DESERT     = 0x0F,
+    TERRAIN_RIVER      = 0x10,
+    TERRAIN_MOUNTAIN   = 0x11,
+    TERRAIN_PEAK       = 0x12,
+    TERRAIN_BRIDGE_13  = 0x13,
+    TERRAIN_BRIDGE_14  = 0x14,
+    TERRAIN_SEA        = 0x15,
+    TERRAIN_LAKE       = 0x16,
+    TERRAIN_FLOOR_17   = 0x17,
+    TERRAIN_FLOOR_18   = 0x18,
+    TERRAIN_FENCE_19   = 0x19,
+    TERRAIN_WALL_1A    = 0x1A,
+    TERRAIN_WALL_1B    = 0x1B,
+    TERRAIN_RUBBLE     = 0x1C,
+    TERRAIN_PILLAR     = 0x1D,
+    TERRAIN_DOOR       = 0x1E,
+    TERRAIN_THRONE     = 0x1F,
+    TERRAIN_CHEST_20   = 0x20,
+    TERRAIN_CHEST_21   = 0x21,
+    TERRAIN_ROOF       = 0x22,
+    TERRAIN_GATE_23    = 0x23,
+    TERRAIN_CHURCH     = 0x24,
+    TERRAIN_RUINS_25   = 0x25,
+    TERRAIN_CLIFF      = 0x26,
+    TERRAIN_BALLISTA_REGULAR = 0x27,
+    TERRAIN_BALLISTA_LONG    = 0x28,
+    TERRAIN_BALLISTA_KILLER  = 0x29,
+    TERRAIN_SHIP_FLAT  = 0x2A,
+    TERRAIN_SHIP_WRECK = 0x2B,
+    TERRAIN_TILE_2C    = 0x2C,
+    TERRAIN_STAIRS     = 0x2D,
+    TERRAIN_TILE_2E    = 0x2E,
+    TERRAIN_GLACIER    = 0x2F,
+    TERRAIN_ARENA_30   = 0x30,
+    TERRAIN_VALLEY     = 0x31,
+    TERRAIN_FENCE_32   = 0x32,
+    TERRAIN_SNAG       = 0x33,
+    TERRAIN_BRIDGE_34  = 0x34,
+    TERRAIN_SKY        = 0x35,
+    TERRAIN_DEEPS      = 0x36,
+    TERRAIN_RUINS_37   = 0x37,
+    TERRAIN_INN        = 0x38,
+    TERRAIN_BARREL     = 0x39,
+    TERRAIN_BONE       = 0x3A,
+    TERRAIN_DARK       = 0x3B,
+    TERRAIN_WATER      = 0x3C,
+    TERRAIN_GUNNELS    = 0x3D,
+    TERRAIN_DECK       = 0x3E,
+    TERRAIN_BRACE      = 0x3F,
+    TERRAIN_MAST       = 0x40,
+
+    TERRAIN_COUNT      = 0x41,
+};
+
+const s8 TerrainTable_MovCost_Stuck[] = {
+    [TERRAIN_TILE_00] = -1,
+    [TERRAIN_PLAINS] = 1,
+    [TERRAIN_ROAD] = 1,
+    [TERRAIN_VILLAGE_03] = 1,
+    [TERRAIN_VILLAGE_04] = -1,
+    [TERRIAN_HOUSE] = 1,
+    [TERRAIN_ARMORY] = 1,
+    [TERRAIN_VENDOR] = 1,
+    [TERRAIN_ARENA_08] = 1,
+    [TERRAIN_C_ROOM_09] = 1,
+    [TERRAIN_FORT] = 2,
+    [TERRAIN_GATE_0B] = 1,
+    [TERRAIN_FOREST] = 2,
+    [TERRAIN_THICKET] = 4,
+    [TERRAIN_SAND] = 1,
+    [TERRAIN_DESERT] = 2,
+    [TERRAIN_RIVER] = 4,
+    [TERRAIN_MOUNTAIN] = 4,
+    [TERRAIN_PEAK] = 4,
+    [TERRAIN_BRIDGE_13] = 1,
+    [TERRAIN_BRIDGE_14] = 4,
+    [TERRAIN_SEA] = 4,
+    [TERRAIN_LAKE] = 4,
+    [TERRAIN_FLOOR_17] = 1,
+    [TERRAIN_FLOOR_18] = 1,
+    [TERRAIN_FENCE_19] = 4,
+    [TERRAIN_WALL_1A] = -1,
+    [TERRAIN_WALL_1B] = -1,
+    [TERRAIN_RUBBLE] = 1,
+    [TERRAIN_PILLAR] = 2,
+    [TERRAIN_DOOR] = -1,
+    [TERRAIN_THRONE] = 1,
+    [TERRAIN_CHEST_20] = 1,
+    [TERRAIN_CHEST_21] = 1,
+    [TERRAIN_ROOF] = -1,
+    [TERRAIN_GATE_23] = 1,
+    [TERRAIN_CHURCH] = 1,
+    [TERRAIN_RUINS_25] = 2,
+    [TERRAIN_CLIFF] = 4,
+    [TERRAIN_BALLISTA_REGULAR] = 2,
+    [TERRAIN_BALLISTA_LONG] = 2,
+    [TERRAIN_BALLISTA_KILLER] = 2,
+    [TERRAIN_SHIP_FLAT] = 1,
+    [TERRAIN_SHIP_WRECK] = 1,
+    [TERRAIN_TILE_2C] = -1,
+    [TERRAIN_STAIRS] = 1,
+    [TERRAIN_TILE_2E] = 4,
+    [TERRAIN_GLACIER] = 1,
+    [TERRAIN_ARENA_30] = 1,
+    [TERRAIN_VALLEY] = -1,
+    [TERRAIN_FENCE_32] = 4,
+    [TERRAIN_SNAG] = -1,
+    [TERRAIN_BRIDGE_34] = 1,
+    [TERRAIN_SKY] = 4,
+    [TERRAIN_DEEPS] = 4,
+    [TERRAIN_RUINS_37] = 4,
+    [TERRAIN_INN] = 4,
+    [TERRAIN_BARREL] = 4,
+    [TERRAIN_BONE] = 4,
+    [TERRAIN_DARK] = 4,
+    [TERRAIN_WATER] = 4,
+    [TERRAIN_GUNNELS] = 4,
+    [TERRAIN_DECK] = 1,
+    [TERRAIN_BRACE] = -1,
+    [TERRAIN_MAST] = -1,
+};
+
+extern const s8 Unk_TerrainTable_08BEC398[]; // 8BEC398
+extern u8 weatherId; // 0x202BBF8+0x15 
+
+const s8* GetUnitDefaultMovementCost(struct Unit* unit) { 
+    if (unit->state & US_IN_BALLISTA)
+        return Unk_TerrainTable_08BEC398;
+	
+    switch (weatherId) {
+
+    case 4:
+		return unit->pClassData->pMovCostTable[1]; 
+	case 2:
+    case 1:
+		return unit->pClassData->pMovCostTable[2]; 
+        
+    default:
+    } 
+	return unit->pClassData->pMovCostTable[0];
+}
+
+extern u8** gBmMapTerrain; // 202E3E0
+const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
+    if (unit->state & US_IN_BALLISTA) {
+	return Unk_TerrainTable_08BEC398; }
+	
+	
+	if ((gCh == 0xA) || (gCh == 0x11)) { 
+		if (UNIT_FACTION(unit) != FACTION_BLUE) { 
+			return TerrainTable_MovCost_Stuck;
+		}
+	}
+	
+	
+	int terrainType = gBmMapTerrain[unit->yPos][unit->xPos]; 
+	int stuck = false; 
+	
+	if (!(unit->state & US_RESCUED)) { 
+		if (terrainType != TERRAIN_VILLAGE_04) { 
+			int cost = GetUnitDefaultMovementCost(unit)[terrainType];
+			stuck = ((cost < 0) || (cost > unit->pClassData->baseMov)) ? TRUE : FALSE;
+		} 
+	} 
+
+	//if (UNIT_FACTION != FACTION_BLUE) { 
+	if (stuck) { return TerrainTable_MovCost_Stuck; } 
+	
+	//} 
+    switch (weatherId) {
+
+    case 4:
+		return unit->pClassData->pMovCostTable[1]; 
+	case 2:
+    case 1:
+		return unit->pClassData->pMovCostTable[2]; 
+        
+    default:
+    } 
+	return unit->pClassData->pMovCostTable[0];
+}
+
+
 
 
 
