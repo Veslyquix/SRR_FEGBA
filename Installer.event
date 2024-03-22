@@ -56,6 +56,23 @@ BYTE 4
 ORG $CA91CE 
 BYTE 2 
 
+// swap athos / archsage bases 
+//Class Editor  (ClassForm) @42 Archsage2024-03-22 11:10:21 AM
+ORG $BE1704
+BYTE  $CE $04 $4F $02 $42 $20 $38 $00 $C9 $00 $38 $14 $07 $04 $05 $05 $08 $09 $06 $3C $1E $1E $19 $14 $1E $14 $03 $2D $2D $1E $19 $0A $23 $0F $00 $00 $00 $00 $00 $00 $00 $01 $00 $80 $00 $00 $00 $00 $FB $FB $FB $FB $F0 $94 $C9 $08 $90 $3A $BE $08 $E1 $3E $BE $08 $F1 $42 $BE $08 $F9 $44 $BE $08 $3A $45 $BE $08 $7B $45 $BE $08 $00 $00 $00 $00;
+//Character Editor  (UnitFE7Form) @27 Athos2024-03-22 11:10:27 AM
+ORG $BDD604
+BYTE  $01 $05 $D5 $01 $27 $42 $1B $00 $00 $07 $26 $14 $14 $17 $14 $0F $0F $14 $19 $00 $00 $00 $00 $00 $FB $FB $FB $FB $00 $00 $00 $00 $00 $00 $00 $65 $65 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $04 $00 $00 $00;
+
+// swap nergal / dark druid bases 
+//Class Editor  (ClassForm) @45 Dark Druid2024-03-22 11:45:15 AM
+ORG $BE1800
+BYTE  $B2 $04 $49 $02 $45 $24 $3B $01 $CB $00 $1E $14 $08 $04 $05 $08 $0A $0A $06 $50 $1E $19 $19 $1E $1E $19 $03 $2D $37 $1E $19 $0A $23 $14 $00 $00 $00 $00 $00 $00 $00 $01 $00 $00 $00 $00 $00 $00 $FB $FB $FB $FB $10 $95 $C9 $08 $90 $3A $BE $08 $E1 $3E $BE $08 $F1 $42 $BE $08 $F9 $44 $BE $08 $3A $45 $BE $08 $7B $45 $BE $08 $00 $00 $00 $00;
+//Character Editor  (UnitFE7Form) @44 Nergal2024-03-22 11:45:25 AM
+ORG $BDDBE8
+BYTE  $17 $05 $F0 $01 $44 $45 $61 $00 $00 $00 $00 $14 $37 $16 $0E $0A $14 $14 $14 $00 $00 $00 $00 $00 $FB $FB $FB $FB $55 $32 $0A $0A $0A $0F $1E $28 $00 $00 $00 $00 $00 $80 $00 $00 $00 $00 $00 $00 $04 $00 $00 $00;
+
+
 POP 
 
 ALIGN 4 
@@ -147,6 +164,9 @@ BYTE $10 $B4 $14 $1C $00 $F0 $13 $F8 $00 $28 $01 $D1 $05 $23 $00 $E0 $09 $23 $E0
 
 
 PUSH 
+ORG $4F40 
+SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
+
 
 ORG $17E9E // by Circles 
 byte 0x00 0x00
@@ -278,6 +298,7 @@ BYTE $10 $00 $0C $00 $28 $00 $00 $60 $01 $F0 $00 $02 $3F $F0 $FF $00 $3F $33 $EF
 
 
 #include "BattleStatsAnimsOff/Installer.event" 
+#include "RNGRandomizer/Installer.event" 
 
 
 ALIGN 32 

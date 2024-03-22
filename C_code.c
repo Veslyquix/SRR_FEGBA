@@ -145,7 +145,7 @@ u16 HashByte_Ch(int number, int max, u8 noise[], int offset){
 	return HashByte_Global(number, max, noise, offset);
 };
 
-s16 HashPercent(int number, u8 noise[], int offset, int global){
+s16 HashPercent(int number, u8 noise[], int offset, int global, int earlygamePromo){
 	if (number < 0) number = 0;
 	int variation = (RandValues.variance)*5;
 	int percentage = 0; 
@@ -154,18 +154,19 @@ s16 HashPercent(int number, u8 noise[], int offset, int global){
 	} 
 	else { percentage = HashByte_Ch(number, variation*2, noise, offset); }  //rn up to 150 e.g. 125
 	percentage += (100-variation); // 125 + 25 = 150
-	int ret = percentage * number / 100; //1.5 * 120 (we want to negate this)
+	if (earlygamePromo) { if (percentage > 125) { percentage = percentage / 2; } }
+	int ret = (percentage * number) / 100; //1.5 * 120 (we want to negate this)
 	if (ret > 127) ret = (200 - percentage) * number / 100;
 	if (ret < 0) ret = 0;
 	return ret;
 };
 
-s16 HashByPercent_Ch(int number, u8 noise[], int offset){ // Copied Circles 
-	return HashPercent(number, noise, offset, false);
+s16 HashByPercent_Ch(int number, u8 noise[], int offset, int earlygamePromo){ 
+	return HashPercent(number, noise, offset, false, earlygamePromo);
 };
 
 s16 HashByPercent(int number, u8 noise[], int offset){
-	return HashPercent(number, noise, offset, true);
+	return HashPercent(number, noise, offset, true, false);
 };
 
 
@@ -512,14 +513,14 @@ void NewPopup_ItemGot(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2
 
 
 
-s16 HashStat(int number, u8 noise[], int offset) { 
-	number = HashByPercent_Ch(number, noise, offset);
+s16 HashStat(int number, u8 noise[], int offset, int promoted) { 
+	number = HashByPercent_Ch(number, noise, offset, promoted);
 	return number; 
 } 
 	
-int RandStat(struct Unit* unit, int stat, u8 noise[], int offset) { 
+int RandStat(struct Unit* unit, int stat, u8 noise[], int offset, int promoted) { 
 	if (!RandBitflags.base) { return stat; } 
-	return HashStat(stat, noise, offset); 
+	return HashStat(stat, noise, offset, promoted); 
 } 
 
 
@@ -826,14 +827,17 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->ai3And4 |= (uDef->ai[3] << 8);
 	
 	const struct CharacterData* character = unit->pCharacterData; 
-    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15);
+	int promoted = UNIT_CATTRIBUTES(unit) & CA_PROMOTED; 
+	if (gCh > 0xF) { promoted = false; } 
+	
+    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, promoted);
 	if (unit->maxHP < 10) { unit->maxHP += 10; } 
-	unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise, 25);
-    unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, noise, 35);
-    unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise, 45);
-    unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, noise, 55);
-    unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise, 65);
-    unit->lck   = RandStat(unit, character->baseLck, noise, 75);                            
+	unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise, 25, promoted);
+    unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, noise, 35, promoted);
+    unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise, 45, promoted);
+    unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, noise, 55, promoted);
+    unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise, 65, promoted);
+    unit->lck   = RandStat(unit, character->baseLck, noise, 75, promoted);                           
 
     unit->conBonus = 0;
 
@@ -2047,11 +2051,27 @@ void PutNumberBonus(int number, u16 *tm)
 }
 
 extern u16 gUiTmScratchA[0x280];
-
+extern void PrintDebugStringToBG(u16 *dest, const char *str); // 8004F70
+extern void SetupDebugFontForBG(int bg, int tileDataOffset); // 8004EF8
 extern void StatScreen_Display(struct Proc* proc); // 808119C
 extern void StartStatScreenHelp(int page_id, ProcPtr proc); // 80814F4
+
+
+void PrintDebugNumberToBG(int bg, int x, int y, int n) { 
+	while (n != 0) {
+        u16 c = '0' + Mod(n, 10);
+
+        n /= 10;
+        PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(x, y), (char *)&c);
+        x--; 
+    }
+} 
+
+
+
 // in StatScreen_OnIdle in 808127C
 void StatScreenSelectLoop(ProcPtr proc) { 
+	
 	if (sKeyStatusBuffer.newKeys & R_BUTTON)
 		{
 			Proc_Goto(proc, 0); // TODO: label name
@@ -2066,6 +2086,7 @@ void StatScreenSelectLoop(ProcPtr proc) {
 		} // [202bc3d]!!
 
 } 
+
 
 
 void DrawGrowthWithDifference(int x, int y, int base, int modified)
@@ -2197,7 +2218,12 @@ void DrawBarsOrGrowths(void) { // in 807FDF0
 		
 		} 
 	} 
-	
+	//PutDrawText(gStatScreen.text + 21,   gUiTmScratchA + TILEMAP_INDEX(1, 0x12),  white, 0, 12, "SRR v1.01   Seed:");
+	SetupDebugFontForBG(0, 0x3000);
+	PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
+	//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x12), white, RandValues.seed);
+	PrintDebugNumberToBG(0, 11, 0x13, RandValues.seed); 
+	//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 13, 0x12), white, 123456);
 	
 	
 } 
