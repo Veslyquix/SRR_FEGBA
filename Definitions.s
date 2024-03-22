@@ -31,6 +31,8 @@ SET_FUNC UnitLoadStatsFromCharacter, 0x8017931
 SET_FUNC UnitInitFromDefinition, 0x8017869
 SET_FUNC GetAutoleveledStatIncrease, 0x8029605
 SET_FUNC CanBattleUnitGainLevels, 0x8029635
+SET_FUNC CheckBattleUnitStatCaps, 0x8029971
+SET_FUNC UnitCheckStatCaps, 0x8017C65
 SET_FUNC GetUnit, 0x8018D0D
 SET_FUNC CheckBattleUnitLevelUp, 0x8029661
 SET_FUNC UnitLevelUp, 0x802A995
