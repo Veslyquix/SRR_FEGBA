@@ -315,7 +315,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	badAttr = 0x3C1C00; // must be not an unusable locked weapon 
 	badAttr |= 0x80; // no uncounterable / siege weapons? 
 	attr = unit->pCharacterData->attributes | unit->pClassData->attributes; 
-	if (UNIT_FACTION(unit) == FACTION_BLUE) { // only player units can start with wep locked weps 
+	if ((UNIT_FACTION(unit) == FACTION_BLUE) || (UNIT_CATTRIBUTES(unit) & CA_BOSS)) { // only player units / bosses can start with wep locked weps 
 		if (attr & CA_LOCK_1) { badAttr &= ~(0x800); } // "wep lock 1" 
 		if (attr & CA_LOCK_2) { badAttr &= ~(0x1000); } // myrm 
 		if (attr & CA_LOCK_3) { badAttr &= ~(0x400); } // manakete 
@@ -378,7 +378,9 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 	
 	int originalPrice = GetItemData(item)->costPerUse; 
 	originalPrice += 200 + (((originalPrice * RandValues.variance) / 100) * 5);
-	originalPrice = originalPrice * GetItemData(item)->maxUses; 
+	int uses = GetItemData(item)->maxUses;
+	if (!uses) { uses = 1; } 
+	originalPrice = originalPrice * uses; 
 	// up to 500% price + 200 
 	list[0] = 0; // count 
 	for (int i = 1; i <= MaxItems; i++) { 
@@ -400,10 +402,12 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 			continue; 
 		} 
 		
-		if ((table->costPerUse*table->maxUses) > originalPrice) { 
+		uses = table->maxUses; 
+		if ((costReq) && (!uses)) { continue; } 
+		if (!uses) { uses = 1; } 
+		if ((table->costPerUse*uses) > originalPrice) { 
 			continue; 
 		} 
-		if ((costReq) && (!table->costPerUse)) { continue; } 
 		list[0]++; 
 		list[list[0]] = i; 
 		
@@ -446,6 +450,10 @@ int RandNewWeapon(struct Unit* unit, int item, u8 noise[], int offset, u8 list[]
 		if (unit->pClassData->number == 0x3C) { // Thief 
 			return MakeNewItem(0x6A); // Non weapons become lockpick for thieves  
 		} 
+		if (item == 0x68) { return MakeNewItem(0x68); } // chest key 
+		if (item == 0x69) { return MakeNewItem(0x69); } // door key 
+		if (item == 0x78) { return MakeNewItem(0x78); } // chest key 
+		
 		// player units that start with a vuln/elixir keep it 
 		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6B) { return MakeNewItem(0x6B); } }
 		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6C) { return MakeNewItem(0x6C); } }
