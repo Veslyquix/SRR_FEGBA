@@ -118,7 +118,6 @@ u16 HashByte_Global(int number, int max, u8 noise[], int offset) {
 	//hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
 	u8 seed[3] = { (RandValues.seed & 0xFF), (RandValues.seed&0xFF00)>>8, (RandValues.seed&0xFF0000)>>16 }; 
 	for (int i = 0; i < 3; ++i){
-	if (seed[i]==0) break;
 		hash = ((hash << 5) + hash) ^ seed[i];
 	};
 	int noisy = noise[0] | (noise[1] << 8) | (noise[2] << 16) | (noise[3] << 24); 
