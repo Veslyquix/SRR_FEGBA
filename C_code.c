@@ -153,7 +153,8 @@ s16 HashPercent(int number, u8 noise[], int offset, int global, int earlygamePro
 	} 
 	else { percentage = HashByte_Ch(number, variation*2, noise, offset); }  //rn up to 150 e.g. 125
 	percentage += (100-variation); // 125 + 25 = 150
-	if (earlygamePromo) { if (percentage > 125) { percentage = percentage / 2; } }
+	if (earlygamePromo == 1) { if (percentage > 125) { percentage = percentage / 2; } }
+	if (earlygamePromo == 2) { if (percentage > 150) { percentage = percentage / 2; } }
 	int ret = (percentage * number) / 100; //1.5 * 120 (we want to negate this)
 	if (ret > 127) ret = (200 - percentage) * number / 100;
 	if (ret < 0) ret = 0;
@@ -403,9 +404,10 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 		} 
 		
 		uses = table->maxUses; 
-		if ((costReq) && (!uses)) { continue; } 
+		int cost = table->costPerUse; 
+		if ((costReq) && (!cost)) { continue; } 
 		if (!uses) { uses = 1; } 
-		if ((table->costPerUse*uses) > originalPrice) { 
+		if ((cost*uses) > originalPrice) { 
 			continue; 
 		} 
 		list[0]++; 
@@ -826,17 +828,21 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->ai3And4 |= (uDef->ai[3] << 8);
 	
 	const struct CharacterData* character = unit->pCharacterData; 
-	int promoted = UNIT_CATTRIBUTES(unit) & CA_PROMOTED; 
-	if (gCh > 0xF) { promoted = false; } 
+	int max150percent = 0; 
+	if (UNIT_FACTION(unit) != FACTION_BLUE) { max150percent = 2; } 
+	if (UNIT_CATTRIBUTES(unit) & CA_PROMOTED) { max150percent = 1; } 
 	
-    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, promoted);
+	if (gCh > 0xD) { if (max150percent == 2) { max150percent = 0; } } // Lyn mode + first ch of eliwood/hector mode: nerf enemies a little 
+	if (gCh > 0xE) { if (max150percent == 1) { max150percent = 0; } } // Lyn mode + first 2 chs of eliwood/hector mode: nerf promoted units a little 
+	
+    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, max150percent);
 	if (unit->maxHP < 10) { unit->maxHP += 10; } 
-	unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise, 25, promoted);
-    unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, noise, 35, promoted);
-    unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise, 45, promoted);
-    unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, noise, 55, promoted);
-    unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise, 65, promoted);
-    unit->lck   = RandStat(unit, character->baseLck, noise, 75, promoted);                           
+	unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise, 25, max150percent);
+    unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, noise, 35, max150percent);
+    unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise, 45, max150percent);
+    unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, noise, 55, max150percent);
+    unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise, 65, max150percent);
+    unit->lck   = RandStat(unit, character->baseLck, noise, 75, max150percent);                           
 
     unit->conBonus = 0;
 
