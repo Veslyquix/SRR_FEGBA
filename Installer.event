@@ -170,17 +170,6 @@ BYTE $10 $B4 $14 $1C $00 $F0 $13 $F8 $00 $28 $01 $D1 $05 $23 $00 $E0 $09 $23 $E0
 
 PUSH 
 
-
-// 92220
-
-// 922FC as nop = can always sell 
-ORG $922FC; SHORT $46C0 
-
-// 9230E as nop: can use sell/shop if no items 
-ORG $9230E; SHORT $46C0 
-// goes to label B in CC4448
-
-
 ORG $4F40 
 SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
 
@@ -297,8 +286,35 @@ BYTE 0x2d 0xfc 0x30 0x1c 0x16 0xf0 0xa4 0xf9 0x2d 0xe0 0x0 0x0 0xf8 0x57 0xb8 0x
 ORG 0x1c8ab
 BYTE 0xe0
 
+
+// 92220
+// Shop in fe7 by Vesly 
+// 922FC as nop = can always sell 
+//ORG $922FC; SHORT $46C0 
+
+// 9230E as nop: can use sell/shop if no items 
+ORG $9230E; SHORT $46C0 
+// goes to label B in CC4448
+
 ORG $B7CF2A; BYTE $7E $1A $64 $12 // rename "Sell" into "Shop" 
-ORG $91FBE; SHORT $2400 // make "Shop" white 
+//ORG $91FBE; SHORT $2400 // make "Shop" white 
+
+// Enable Trnsfr always 
+//ORG $9177C; SHORT $2100 // make "Trnsfr" white 
+
+// enable give all 
+//ORG $92344; SHORT $46C0 // skip first branch 
+//ORG $92358; SHORT $E008 // always branch 
+//ORG $92378; SHORT $46C0 // skip 3rd branch 
+// enable trnsfr 
+//ORG $92330; SHORT $46C0 
+// 91354 - [20252cc+0x2B]!!
+ORG $8EF16
+#define SupplyUnitID 0x28 // Merlinus //0x3 Lyn  
+SHORT $6800 $7900 $46c0 $46c0 $46c0 $46c0 $46c0; BYTE SupplyUnitID $28; SHORT $D003 
+// search for unit id instead of "supply" 0x200 bitflag 
+
+
 // Anti-Huffman by Hextator & ported by 7743
 ORG 0x4364; BYTE $00 $B5 $C2 $0F $00 $2A $02 $D0 $0E $F0 $86 $FC $03 $E0 $02 $4A $12 $68 $BB $F0 $6D $FC $00 $BD $40 $39 $00 $03
 ORG 0x12C6C; BYTE $02 $49 $28 $1C $00 $F0 $14 $F8 $35 $60 $0C $E0 $B4 $A5 $02 $02 $80 $23 $1B $06 $C0 $1A $02 $78 $0A $70 $01 $31 $01 $30 $00 $2A $F9 $D1 $70 $47

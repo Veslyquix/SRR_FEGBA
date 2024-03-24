@@ -421,18 +421,20 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 } 
 
 
-int RandNewItem(int item, u8 noise[], int offset, int costReq) { 
+int RandNewItem(int item, u8 noise[], int offset, int costReq, int varyByCh) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
-
-
-	
 	u8 list[MaxItems]; 
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	int c; 
 	BuildSimilarPriceItemList(list, item, false, costReq); 
 	if (list[0]) { 
-		c = HashByte_Ch(item, list[0]+1, noise, offset); 
+		if (varyByCh) { 
+			c = HashByte_Ch(item, list[0]+1, noise, offset); 
+		} 
+		else { 
+			c = HashByte_Global(item, list[0]+1, noise, offset); 
+		} 
 		if (!c) { c = 1; } // never 0  
 		item = list[c]; 
 	} 
@@ -504,7 +506,7 @@ void NewPopup_ItemGot(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2
 	noise[0] = unit->xPos; 
 	noise[1] = unit->yPos; 
 	noise[2] = 0; 
-	if (RandBitflags.foundItems) { item = RandNewItem(item, noise, 0, false); } 
+	if (RandBitflags.foundItems) { item = RandNewItem(item, noise, 0, false, true); } 
 
     proc->item = item;
     proc->unit = unit;
@@ -2261,15 +2263,44 @@ void DrawBarsOrGrowths(void) { // in 807FDF0
 
 
 u16 const gDefaultShopInventory[] = {
+	0x62, // vuln 
+    1,
+    0x14,
+    0x1F,
+    0x2c,
+    0x37,
+	0x3e,
+	0x44,
+    0x4a,	
+    0,
+    0,
+};
+
+u16 const gBigDefaultShopInventory[] = {
     1,
     0x14,
     0x1F,
     0x2c,
     0x37,
     0x4a,
+	2,
+	3,
+	4,
+	5,
+	6,
+	7,
+	8,
+	9,
+	10,
+	11,
+	12,
+	13,
+	14,
+	15,
     0,
     0,
 };
+
 struct BmShopProc {
     /* 00 */ PROC_HEADER;
 
@@ -2321,8 +2352,16 @@ void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr par
     }
 
 	if (RandBitflags.shopItems) { 
+	
+	    //if (inventory == 0) {
+			//if (shopType == 10) { 
+				//shopItems = gBigDefaultShopInventory;
+			//} 
+		//}
 		u8 noise[5] = {0, 0, 0, 0, 0}; 
+		int varyByCh = false; 
 		if (shopType != 10) { 
+		varyByCh = true; 
 		noise[0] = unit->xPos; 
 		noise[1] = unit->yPos; 
 		} 
@@ -2333,7 +2372,8 @@ void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr par
 			//asm("mov r11, r11"); 
 			if ((!itemId) && (i < 5)) { term = true; itemId = i; } // randomized shop will have at least 5 items 
 			if ((i>=5) && (term)) { itemId = 0; } 
-			itemId = RandNewItem(itemId, noise, i, true);
+			
+			itemId = RandNewItem(itemId, noise, i, true, varyByCh);
 			proc->shopItems[i] = itemId; 
 		}
 
