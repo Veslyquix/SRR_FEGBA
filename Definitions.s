@@ -108,6 +108,21 @@ SET_FUNC EndPlayerPhaseSideWindows, 0x8085C7D
 SET_FUNC UpdateShopItemCounts, 0x80B0521
 SET_FUNC GetUnitMovementCost, 0x80187d5
 
+SET_FUNC GetUnitItemCount, 0x80176DD
+SET_FUNC GetItemIndex, 0x80171B5
+SET_FUNC GetUnitItemSlot, 0x8016D0D
+SET_FUNC GetItemAttributes, 0x801727D 
+SET_FUNC CanUnitUseChestKeyItem, 0x8027355
+SET_FUNC CanUnitUseDoorKeyItem, 0x8027391
+SET_FUNC CanUnitOpenBridge, 0x80273A5
+SET_FUNC AiGetChestUnlockItemSlot, 0x8036A8D
+SET_FUNC GetUnitKeyItemSlotForTerrain, 0x8018525
+SET_FUNC CanUnitUseLockpickItem, 0x80273B9
+SET_FUNC IsItemDisplayUsable, 0x8016AB1
+SET_FUNC CanUnitUseStaff, 0x80163D5
+SET_FUNC CanUnitUseWeapon, 0x80161A5
+SET_FUNC GetItemUseEffect, 0x801743D
+
 SET_DATA gBG0TilemapBuffer, 0x2022C60
 SET_DATA gBG1TilemapBuffer, 0x2023460
 SET_DATA gBG2TilemapBuffer, 0x2023C60

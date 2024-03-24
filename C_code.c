@@ -273,7 +273,7 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 int RandClass(int id, u8 noise[], struct Unit* unit) { 
 	if (!RandBitflags.class) { return id; } 
 	int allegiance = (unit->index)>>6;
-	if (allegiance && (id == 0x3C)) { return id; } 
+	//if (allegiance && (id == 0x3C)) { return id; } 
 	u8 list[MaxClasses]; 
 	list[0] = 99; 
 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
@@ -458,7 +458,9 @@ int RandNewWeapon(struct Unit* unit, int item, u8 noise[], int offset, u8 list[]
 		if (item == 0x68) { return MakeNewItem(0x68); } // chest key 
 		if (item == 0x69) { return MakeNewItem(0x69); } // door key 
 		if (item == 0x78) { return MakeNewItem(0x78); } // chest key 
-		
+		if (UNIT_FACTION(unit) != FACTION_BLUE) { 
+			if (item == 0x6a) { return MakeNewItem(0x6a); } // lockpick  
+		} 
 		// player units that start with a vuln/elixir keep it 
 		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6B) { return MakeNewItem(0x6B); } }
 		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6C) { return MakeNewItem(0x6C); } }
@@ -2540,11 +2542,79 @@ const s8 TerrainTable_MovCost_Stuck[] = {
     [TERRAIN_MAST] = -1,
 };
 
+const s8 TerrainTable_MovCost_StuckRainy[] = {
+    [TERRAIN_TILE_00] = -1,
+    [TERRAIN_PLAINS] = 2,
+    [TERRAIN_ROAD] = 2,
+    [TERRAIN_VILLAGE_03] = 2,
+    [TERRAIN_VILLAGE_04] = -1,
+    [TERRIAN_HOUSE] = 2,
+    [TERRAIN_ARMORY] = 2,
+    [TERRAIN_VENDOR] = 2,
+    [TERRAIN_ARENA_08] = 2,
+    [TERRAIN_C_ROOM_09] = 2,
+    [TERRAIN_FORT] = 2,
+    [TERRAIN_GATE_0B] = 2,
+    [TERRAIN_FOREST] = 3,
+    [TERRAIN_THICKET] = 4,
+    [TERRAIN_SAND] = 2,
+    [TERRAIN_DESERT] = 2,
+    [TERRAIN_RIVER] = 4,
+    [TERRAIN_MOUNTAIN] = 4,
+    [TERRAIN_PEAK] = 4,
+    [TERRAIN_BRIDGE_13] = 2,
+    [TERRAIN_BRIDGE_14] = 4,
+    [TERRAIN_SEA] = 4,
+    [TERRAIN_LAKE] = 4,
+    [TERRAIN_FLOOR_17] = 2,
+    [TERRAIN_FLOOR_18] = 2,
+    [TERRAIN_FENCE_19] = 4,
+    [TERRAIN_WALL_1A] = -1,
+    [TERRAIN_WALL_1B] = -1,
+    [TERRAIN_RUBBLE] = 2,
+    [TERRAIN_PILLAR] = 2,
+    [TERRAIN_DOOR] = -1,
+    [TERRAIN_THRONE] = 2,
+    [TERRAIN_CHEST_20] = 2,
+    [TERRAIN_CHEST_21] = 2,
+    [TERRAIN_ROOF] = -1,
+    [TERRAIN_GATE_23] = 2,
+    [TERRAIN_CHURCH] = 2,
+    [TERRAIN_RUINS_25] = 2,
+    [TERRAIN_CLIFF] = 4,
+    [TERRAIN_BALLISTA_REGULAR] = 2,
+    [TERRAIN_BALLISTA_LONG] = 2,
+    [TERRAIN_BALLISTA_KILLER] = 2,
+    [TERRAIN_SHIP_FLAT] = 2,
+    [TERRAIN_SHIP_WRECK] = 2,
+    [TERRAIN_TILE_2C] = -1,
+    [TERRAIN_STAIRS] = 2,
+    [TERRAIN_TILE_2E] = 4,
+    [TERRAIN_GLACIER] = 1,
+    [TERRAIN_ARENA_30] = 2,
+    [TERRAIN_VALLEY] = -1,
+    [TERRAIN_FENCE_32] = 4,
+    [TERRAIN_SNAG] = -1,
+    [TERRAIN_BRIDGE_34] = 2,
+    [TERRAIN_SKY] = 4,
+    [TERRAIN_DEEPS] = 4,
+    [TERRAIN_RUINS_37] = 4,
+    [TERRAIN_INN] = 4,
+    [TERRAIN_BARREL] = 4,
+    [TERRAIN_BONE] = 4,
+    [TERRAIN_DARK] = 4,
+    [TERRAIN_WATER] = 4,
+    [TERRAIN_GUNNELS] = 4,
+    [TERRAIN_DECK] = 2,
+    [TERRAIN_BRACE] = -1,
+    [TERRAIN_MAST] = -1,
+};
+
 extern const s8 Unk_TerrainTable_08BEC398[]; // 8BEC398
 extern u8 weatherId; // 0x202BBF8+0x15 
 
 const s8* GetUnitDefaultMovementCost(struct Unit* unit) { 
-    if (unit->state & US_IN_BALLISTA)
+    if (unit->state & US_IN_BALLISTA) 
         return Unk_TerrainTable_08BEC398;
 	
     switch (weatherId) {
@@ -2568,6 +2638,14 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 	
 	if ((gCh == 0xA) || (gCh == 0x11)) { 
 		if (UNIT_FACTION(unit) != FACTION_BLUE) { 
+			switch (weatherId) { 
+			case 1:
+			case 2:
+			case 4:
+			return TerrainTable_MovCost_StuckRainy; 
+			default: 
+			}
+		
 			return TerrainTable_MovCost_Stuck;
 		}
 	}
@@ -2584,7 +2662,16 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 	} 
 
 	//if (UNIT_FACTION != FACTION_BLUE) { 
-	if (stuck) { return TerrainTable_MovCost_Stuck; } 
+	if (stuck) { 			
+		switch (weatherId) { 
+			case 1:
+			case 2:
+			case 4:
+			return TerrainTable_MovCost_StuckRainy; 
+			default: 
+			}		
+		return TerrainTable_MovCost_Stuck; 
+	} 
 	
 	//} 
     switch (weatherId) {
@@ -2600,7 +2687,137 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 	return unit->pClassData->pMovCostTable[0];
 }
 
+extern int GetUnitItemCount(struct Unit* unit); // 80176DC
+extern int GetItemIndex(int item); // 80171B4
+extern int GetUnitItemSlot(struct Unit* unit, int itemIndex); // 8016D0C
+extern int GetItemAttributes(int item); // 801727C 
+extern s8 CanUnitUseChestKeyItem(struct Unit * unit); // 8027354
+extern s8 CanUnitUseDoorKeyItem(struct Unit * unit); // 8027390
+extern s8 CanUnitOpenBridge(struct Unit * unit); // 80273A4
+extern s8 CanUnitUseStaff(struct Unit* unit, int item); // 80163D4
+extern s8 CanUnitUseWeapon (struct Unit* unit, int item); // 80161A4
+extern int GetItemUseEffect(int item); // 801743C
 
+ s8 IsItemDanceRing(int item) {
+    switch (GetItemIndex(item)) {
 
+    case 0x7C:
+    case 0x7D:
+    case 0x7E:
+    case 0x7F:
+        return TRUE;
+
+    default:
+        return FALSE;
+
+    } 
+}
+ 
+s8 AiGetChestUnlockItemSlot(u8* out) { // 8036A8C
+    int i;
+
+    *out = 0;
+
+    if (GetUnitItemCount(gActiveUnit) == 5) {
+        gActiveUnit->aiFlags |= 1<<3; // AI_UNIT_FLAG_3
+        return 0;
+    }
+
+    for (i = 0; i < 5; i++) {
+        u16 item = gActiveUnit->items[i];
+
+        if (item == 0) {
+            return 0;
+        }
+
+        *out = i;
+
+        if (GetItemIndex(item) == 0x68) {
+            return 1;
+        }
+        if (GetItemIndex(item) == 0x78) {
+            return 1;
+        }
+
+        if (GetItemIndex(item) == 0x6A) { //ITEM_LOCKPICK) { // 3bb40 
+			// any enemy class can use lockpicks 
+            if ((UNIT_CATTRIBUTES(gActiveUnit) & CA_STEAL) || (UNIT_FACTION(gActiveUnit) != FACTION_BLUE)) {
+                return 1;
+            }
+        }
+    }
+
+    return 0;
+}
+
+int GetUnitKeyItemSlotForTerrain(struct Unit* unit, int terrain) { // 8018524
+    int slot, item = 0;
+
+    if ((UNIT_CATTRIBUTES(unit) & CA_THIEF) || (UNIT_FACTION(unit) != FACTION_BLUE)) {
+        int slot = GetUnitItemSlot(unit, 0x6A);
+
+        if (slot >= 0)
+            return slot;
+    }
+
+    switch (terrain) {
+
+    case 0x21: //TERRAIN_CHEST_21:
+        slot = GetUnitItemSlot(unit, 0x68);
+
+        if (slot < 0)
+            slot = GetUnitItemSlot(unit, 0x78);
+
+        return slot;
+
+    case 0x1E: //TERRAIN_DOOR:
+        item = 0x69; //ITEM_DOORKEY;
+        break;
+
+    } // switch (terrain)
+
+    return GetUnitItemSlot(unit, item);
+}
+
+s8 CanUnitUseLockpickItem(struct Unit* unit) // 80273B8
+{
+	int faction = UNIT_FACTION(unit); 
+	if (faction == FACTION_BLUE) { 
+		if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
+			return FALSE;
+		} 
+	}
+
+    if (!CanUnitUseChestKeyItem(unit) && !CanUnitUseDoorKeyItem(unit) && !CanUnitOpenBridge(unit))
+        return FALSE;
+
+    return TRUE;
+}
+s8 IsItemDisplayUsable(struct Unit* unit, int item) { // 8016AB0
+    if (GetItemAttributes(item) & 1 ) // wep 
+        return CanUnitUseWeapon(unit, item);
+
+    if (GetItemAttributes(item) & 4) // staff 
+        return CanUnitUseStaff(unit, item);
+
+    if (GetItemUseEffect(item)) {
+        if (unit->statusIndex == UNIT_STATUS_SLEEP)
+            return FALSE;
+
+        if (unit->statusIndex == UNIT_STATUS_BERSERK)
+            return FALSE;
+
+        if ((UNIT_FACTION(unit) == FACTION_BLUE) && GetItemIndex(item) == 0x6A) {// lockpick 
+			if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
+            return FALSE;
+			}
+		}
+
+        if (!(UNIT_CATTRIBUTES(unit) & CA_REFRESHER) && IsItemDanceRing(item))
+            return FALSE;
+    }
+
+    return TRUE;
+}
 
 
