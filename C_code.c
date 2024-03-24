@@ -102,10 +102,12 @@ u16 GetNthRN(int n, int seed) {
 
 extern unsigned GetGameClock(void); // 8000F14
 int GetInitialSeed(void) { 
-	int result = 0; 
-	result = TacticianName[1] | (TacticianName[2]<<8) | (TacticianName[3]<<16);
-	int clock = GetGameClock(); 
-	result = (GetNthRN(clock, result)<<4) | GetNthRN(clock, result); 
+	int result = RandValues.seed;
+	if (!result) { 
+		result = TacticianName[1] | (TacticianName[2]<<8) | (TacticianName[3]<<16);
+		int clock = GetGameClock(); 
+		result = (GetNthRN(clock, result)<<4) | GetNthRN(clock, result); 
+	}
 	if (result > 999999) { result &= 0xEFFFF; } 
 	return result; 
 } 
