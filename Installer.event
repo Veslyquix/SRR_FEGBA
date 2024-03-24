@@ -37,8 +37,10 @@ BYTE 0x89 0 0 0 // allow skipping
 
 ORG $CAE610
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent 
-ORG $CAE920
-BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeUnlockDoor
+//ORG $CAE920
+//BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeUnlockDoor
+ORG $CC8056; BYTE 0x69 0x6b // matthew gets door key and vuln 
+ORG $CC8046; BYTE 0x6b // hector gets vuln 
 
 ORG $CABF64
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeUnlockDoor
