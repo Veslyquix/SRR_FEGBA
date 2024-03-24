@@ -84,6 +84,7 @@ SET_FUNC ResetTextFont, 0x8005439
 SET_FUNC ChapterStatus_SetupFont, 0x8086E61
 SET_FUNC InitSystemTextFont, 0x8005A41
 SET_FUNC TileMap_FillRect, 0x80C57BD
+SET_FUNC StartBlockingPrepShop, 0x8098F71
 
 SET_FUNC DisplayUiHand, 0x8049F59
 SET_FUNC NewPopup_ItemGot, 0x800EF55
