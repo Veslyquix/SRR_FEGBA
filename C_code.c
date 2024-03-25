@@ -656,6 +656,7 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
+	if (unit->pClassData->growthHP > growth) { growth = unit->pClassData->growthHP; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number;  
 	int result = HashByPercent(growth, noise, 11); 
@@ -678,6 +679,7 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
+	if (unit->pClassData->growthPow > growth) { growth = unit->pClassData->growthPow; } 
 	u8 noise[4] = {0, 0, 0, 0};  
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 21); 
@@ -698,6 +700,7 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
+	if (unit->pClassData->growthSkl > growth) { growth = unit->pClassData->growthSkl; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 31); 
@@ -718,6 +721,7 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
+	if (unit->pClassData->growthSpd > growth) { growth = unit->pClassData->growthSpd; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number;  
 	int result = HashByPercent(growth, noise, 41); 
@@ -738,6 +742,7 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
+	if (unit->pClassData->growthDef > growth) { growth = unit->pClassData->growthDef; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 51); 
@@ -758,6 +763,7 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
+	if (unit->pClassData->growthRes > growth) { growth = unit->pClassData->growthRes; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 61); 
@@ -778,6 +784,7 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags.growth == 3)) { return 100; } // 100% growths 
+	if (unit->pClassData->growthLck > growth) { growth = unit->pClassData->growthLck; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 71); 

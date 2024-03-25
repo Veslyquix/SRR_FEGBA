@@ -213,7 +213,18 @@ FAST_A_TERRAINOFF:0x02DFCA=0xd2 0x22
 FAST_CURSOL_A_TERRAINOFF:0x02DFCA=0xc2 0x22
 */
 
-
+// Merlinus can use supply on maps 
+// by Gryz / Vesly 
+ORG $22D60; SHORT $2800 $D023 // if no Merlinus unit found, exit 
+SHORT $1C03 $6818 $2800 $D01F 
+ORG $22D94; SHORT $DD08 
+// Merlinus no autopromote 
+//ORG $8F082; BYTE level 
+ORG $21E3E; BYTE 0xC0 0x46 0xC0 0x46 // Merlinus can trade 
+ORG $23D08; BYTE 0xC0 0x46 0xC0 0x46 // Units can trade Merlinus 
+ORG $CC905C; BYTE 1 // Merlinus starts with an iron sword 
+ORG $CC907C; BYTE 1 // Merlinus starts with an iron sword 
+ORG $CCB748; BYTE 1 // Merlinus starts with an iron sword 
 
 ORG $4049F0 // Don't draw "mov" 
 BYTE $94 $31 $00 $02 $0E $35 $00 $02 $03 $00 $00 $00 $24 $27 $CC $08
