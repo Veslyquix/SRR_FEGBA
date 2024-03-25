@@ -39,8 +39,16 @@ ORG $CAE610
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent 
 //ORG $CAE920
 //BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeUnlockDoor
-ORG $CC8056; BYTE 0x69 0x6b // matthew gets door key and vuln 
-ORG $CC8046; BYTE 0x6b // hector gets vuln 
+ORG $CC8156; BYTE 0x69 0x6b // matthew gets door key and vuln 
+ORG $CC8136; BYTE 0x6b // hector gets vuln 
+ORG $CC8089; BYTE 3 // hector ch 11 enemies have ai2 of "do not move" 
+ORG $CC8099; BYTE 3
+ORG $CC80A9; BYTE 3
+ORG $CC80B9; BYTE 3
+ORG $CC80C9; BYTE 3
+ORG $CC80D9; BYTE 3
+ORG $CC80E9; BYTE 3
+
 
 ORG $CABF64
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeUnlockDoor
