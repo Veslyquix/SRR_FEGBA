@@ -12,13 +12,16 @@
 	.set    \name, \value
 .endm
 
-SET_DATA TacticianName, 0x202BC18
-SET_FUNC __aeabi_idiv, 0x80BFA15 
-SET_FUNC Div, 0x80BFA15
-SET_FUNC Mod, 0x80BFA19
 
-SET_FUNC SetFlag, 0x80798E5 
+.equ FE6, 0
+.equ FE7, 1
 
+.if FE6 == 1
+SET_FUNC __aeabi_idiv, 0x809DCE1 
+SET_FUNC Div, 0x809DCE1
+SET_FUNC Mod, 0x809DCE5
+SET_FUNC SetFlag, 0x806BA49
+ 
 SET_FUNC GetItemMight, 0x80172E1
 SET_FUNC GetItemHit, 0x80172F9
 SET_FUNC GetItemWeight, 0x8017311
@@ -50,6 +53,49 @@ SET_FUNC PutNumberBonus, 0x8006241
 SET_FUNC PutSpecialChar, 0x800615D
 SET_FUNC PutNumberSmall, 0x8006235
 SET_FUNC StartStatScreenHelp, 0x80814F5
+
+SET_DATA TacticianName, 0x202BC18
+.endif
+
+
+.if FE7 == 1 
+SET_DATA TacticianName, 0x202BC18
+SET_FUNC __aeabi_idiv, 0x80BFA15 
+SET_FUNC Div, 0x80BFA15
+SET_FUNC Mod, 0x80BFA19
+SET_FUNC SetFlag, 0x80798E5 
+SET_FUNC GetItemMight, 0x80172E1
+SET_FUNC GetItemHit, 0x80172F9
+SET_FUNC GetItemWeight, 0x8017311
+SET_FUNC GetItemCrit, 0x8017329
+SET_FUNC GetItemData, 0x80174AD 
+SET_FUNC GetItemAttributes, 0x801727D
+SET_FUNC GetCharacterData, 0x8018D39
+SET_FUNC GetClassData, 0x8018D21
+SET_FUNC UnitLoadStatsFromCharacter, 0x8017931
+SET_FUNC UnitInitFromDefinition, 0x8017869
+SET_FUNC GetAutoleveledStatIncrease, 0x8029605
+SET_FUNC CanBattleUnitGainLevels, 0x8029635
+SET_FUNC CheckBattleUnitStatCaps, 0x8029971
+SET_FUNC UnitCheckStatCaps, 0x8017C65
+SET_FUNC GetUnit, 0x8018D0D
+SET_FUNC CheckBattleUnitLevelUp, 0x8029661
+SET_FUNC UnitLevelUp, 0x802A995
+SET_FUNC UnitAutolevelCore, 0x8017AC1
+SET_FUNC GetUnitMaxHp, 0x8018AB1
+SET_FUNC GetUnitPower, 0x8018AD1
+SET_FUNC GetUnitSkill, 0x8018AF1
+SET_FUNC GetUnitSpeed, 0x8018B31
+SET_FUNC GetUnitDefense, 0x8018B71
+SET_FUNC GetUnitResistance, 0x8018B91
+SET_FUNC GetUnitLuck, 0x8018BB9
+SET_FUNC DrawStatWithBar, 0x807FD29
+SET_FUNC PutNumberOrBlank, 0x80061E5
+SET_FUNC PutNumberBonus, 0x8006241
+SET_FUNC PutSpecialChar, 0x800615D
+SET_FUNC PutNumberSmall, 0x8006235
+SET_FUNC StartStatScreenHelp, 0x80814F5
+.endif 
 
 SET_FUNC UnitLoadItemsFromDefinition, 0x80178F5
 SET_FUNC UnitAddItem, 0x8017655 
