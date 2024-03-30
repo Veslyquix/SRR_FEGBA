@@ -72,7 +72,7 @@ SET_FUNC StartFastFadeFromBlack, 0x80146EC
 SET_FUNC StartFastFadeToBlack, 0x80146C8
 SET_FUNC WaitForFade, 0x80149B0
 SET_FUNC BG_Fill, 0x8001550
-SET_FUNC BG_EnableSyncByMask, 0x80013F8 
+SET_FUNC BG_EnableSyncByMask, 0x80013F8 @ ? check
 SET_FUNC BG_SetPosition, 0x80019DC
 
 
@@ -192,7 +192,7 @@ SET_FUNC StartFastFadeFromBlack, 0x8013FD5
 SET_FUNC StartFastFadeToBlack, 0x8013FB1
 SET_FUNC WaitForFade, 0x8014299
 SET_FUNC BG_Fill, 0x8001811
-SET_FUNC BG_EnableSyncByMask, 0x80014DD
+SET_FUNC BG_EnableSyncByMask, 0x8000ffd
 SET_FUNC BG_SetPosition, 0x8001D8D
 SET_FUNC LoadUiFrameGraphics, 0x804A211
 SET_FUNC LoadObjUIGfx, 0x8015591
