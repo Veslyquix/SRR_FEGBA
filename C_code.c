@@ -809,6 +809,20 @@ void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
 	UnitCheckStatCaps(unit); 
 }
 
+#ifdef FE6
+s8 CanBattleUnitGainLevels(struct BattleUnit* bu) {
+    if (gBmSt.gameStateBits & 0x40)
+        return TRUE;
+
+    if (bu->unit.exp == UNIT_EXP_DISABLED)
+        return FALSE;
+
+    if (UNIT_FACTION(&bu->unit) != FACTION_BLUE)
+        return FALSE;
+
+    return TRUE;
+}
+#endif 
 
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
@@ -894,6 +908,14 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	UnitCheckStatCaps(unit);
 }
 
+#ifdef FE6 
+void UnitClearInventory(struct Unit* unit) {
+    int i;
+
+    for (i = 0; i < 5; ++i)
+        unit->items[i] = 0;
+}
+#endif 
 void UnitLoadItemsFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     int i;
 
@@ -2109,7 +2131,7 @@ void PrintDebugNumberToBG(int bg, int x, int y, int n) {
 } 
 
 
-
+// fe6: 80700a4 
 // in StatScreen_OnIdle in 808127C
 void StatScreenSelectLoop(ProcPtr proc) { 
 	
@@ -2138,7 +2160,8 @@ void DrawGrowthWithDifference(int x, int y, int base, int modified)
     PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 2, y));
 }
 
-void DrawBarsOrGrowths(void) { // in 807FDF0
+// 
+void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6 
     // displaying str/mag stat value
 	int barsOrGrowths = RandBitflags.disp; 
 	
@@ -2623,8 +2646,10 @@ extern const s8 Unk_TerrainTable_08BEC398[]; // 8BEC398
 extern u8 weatherId; // 0x202BBF8+0x15 
 
 const s8* GetUnitDefaultMovementCost(struct Unit* unit) { 
-    if (unit->state & US_IN_BALLISTA) 
-        return Unk_TerrainTable_08BEC398;
+#ifndef FE6 
+    if (unit->state & US_IN_BALLISTA) {
+		return Unk_TerrainTable_08BEC398; } 
+#endif 
 	
     switch (weatherId) {
 
