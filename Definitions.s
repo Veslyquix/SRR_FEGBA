@@ -23,25 +23,25 @@ SET_FUNC Mod, 0x809DCE5
 SET_FUNC SetFlag, 0x806BA49
  
 SET_FUNC GetItemMight, 080171e9
-SET_FUNC GetItemHit, 
-SET_FUNC GetItemWeight, 
-SET_FUNC GetItemCrit, 
-SET_FUNC GetItemData, 
+SET_FUNC GetItemHit, 80171fd
+SET_FUNC GetItemWeight, 8017211
+SET_FUNC GetItemCrit, 8017225
+SET_FUNC GetItemData, 8017359
 SET_FUNC GetItemAttributes, 0x8017191
 SET_FUNC GetItemIndex, 0x8017129
-SET_FUNC GetItemUseEffect, 
+SET_FUNC GetItemUseEffect, 0x801730d
 
 SET_FUNC GetCharacterData, 0x801863C
 SET_FUNC GetClassData, 0x8018620
 SET_FUNC UnitLoadStatsFromCharacter, 0x80176E4
 SET_FUNC UnitInitFromDefinition, 0x8017654
 SET_FUNC GetAutoleveledStatIncrease, 0x80250D4
-SET_FUNC CanBattleUnitGainLevels, 
+SET_FUNC CanBattleUnitGainLevels, @ inline ? 
 SET_FUNC CheckBattleUnitStatCaps, 0x80253CC
 SET_FUNC UnitCheckStatCaps, 0x80179EC
 SET_FUNC GetUnit, 0x801860C
 SET_FUNC CheckBattleUnitLevelUp, 0x8025104
-SET_FUNC UnitLevelUp, 
+SET_FUNC UnitLevelUp, @ unused 
 SET_FUNC UnitAutolevelCore, 0x8017854
 SET_FUNC GetUnitMaxHp, 0x80183C8
 SET_FUNC GetUnitPower, 0x80183E8
@@ -51,8 +51,8 @@ SET_FUNC GetUnitDefense, 0x8018488
 SET_FUNC GetUnitResistance, 0x80184A8
 SET_FUNC GetUnitLuck, 0x80184D0
 SET_FUNC DrawStatWithBar, 0x806EC6C
-SET_FUNC PutNumberOrBlank, 
-SET_FUNC PutNumberBonus, 
+SET_FUNC PutNumberOrBlank, 0x8006f50
+SET_FUNC PutNumberBonus, 0x8007000
 SET_FUNC PutSpecialChar, 0x8006E74
 SET_FUNC PutNumberSmall, 0x8006FE0
 SET_FUNC StartStatScreenHelp, 0x807030C
