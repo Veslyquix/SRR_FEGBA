@@ -35,11 +35,17 @@
 //8CE4930
 PUSH 
 #ifdef _FE6_ 
-ORG $68A09C
+ORG $8874C; SHORT $46C0 // hard selectable from new game by 7743 
+
+// Antihuffman 
+ORG 0x384c;  BYTE $03 $B5 $02 $B0 $C2 $0F $00 $2A $01 $D0 $05 $4A $97 $46 $03 $4A $12 $68 $9A $F0 $5B $FB $01 $BC $00 $47 $00 $00 $80 $37 $00 $03 $60 $C4 $2D $08
+ORG $2dc460; BYTE $80 $23 $1B $06 $C0 $1A $02 $78 $0A $70 $01 $31 $01 $30 $00 $2A $F9 $D1 $01 $4A $97 $46 $00 $00 $62 $38 $00 $08
+
+ORG $68C30C //68A09C
 PROC_CALL_ROUTINE_2(FE6_StartDifficultySelection)
 #endif 
 #ifdef _FE7_ 
-ORG $CE49D8
+ORG $CE45EC // in CE45E4 //B9395C //CE49D8
 PROC_CALL_ROUTINE_2(FE7_StartDifficultySelection)
 #endif 
 #ifdef _FE8 
@@ -48,6 +54,14 @@ PROC_CALL_ROUTINE_2(FE8_StartDifficultySelection)
 #endif 
 
 POP 
+
+ALIGN 4 
+CasualModeFlag:
+WORD 0xA0 
+MaxItems:
+WORD 0x9E 
+MaxClasses:
+WORD 0x63 
 
 #ifdef _FE7_ 
 PUSH 
@@ -211,13 +225,7 @@ BYTE 0xA 0 0 0; WORD 0 // ENDA
 
 // [8BE38C9..8BE3909]?
 
-ALIGN 4 
-CasualModeFlag:
-WORD 0xA0 
-MaxItems:
-WORD 0x9E 
-MaxClasses:
-WORD 0x63 
+
 
 ALIGN 4
 CasualMode:

@@ -114,6 +114,7 @@ SET_FUNC m4aSongNumStart, 0x809C861
 SET_FUNC PutDrawText, 0x8006409
 SET_FUNC ClearText, 0x80058ed
 SET_FUNC InitText, 0x800579d
+SET_FUNC InitTextFont, 0x800566d
 SET_FUNC ResetText, 0x800563d
 SET_FUNC SetTextFontGlyphs, 0x8005705 
 SET_FUNC ResetTextFont, 0x800573d

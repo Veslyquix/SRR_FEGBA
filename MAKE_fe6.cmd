@@ -37,7 +37,7 @@ echo:
 echo Assembling
 
 cd "%base_dir%EventAssembler"
-ColorzCore A fe6 "-output:%target_rom%" "-input:%main_event%" --nocash-sym
+ColorzCore A FE6 "-output:%target_rom%" "-input:%main_event%" --nocash-sym
 
 
   echo:

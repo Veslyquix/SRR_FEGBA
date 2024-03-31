@@ -1627,9 +1627,9 @@ extern struct ProcCmd SaveMenuProc;
 void CallSetupBackgrounds(ConfigMenuProc* proc) { 
 	SetupBackgrounds(0);
 	ProcPtr parent = Proc_Find(&SaveMenuProc); 
-	SaveMenu_Init(parent); //SaveMenu_Init
+	//SaveMenu_Init(parent); //SaveMenu_Init
 	//ProcSaveMenu_InitScreen(parent); //0x80a8cd4+1); //ProcSaveMenu_InitScreen
-	SaveMenu_LoadExtraMenuGraphics(parent); //0x80a8f04+1); //SaveMenu_LoadExtraMenuGraphics
+	//SaveMenu_LoadExtraMenuGraphics(parent); //0x80a8f04+1); //SaveMenu_LoadExtraMenuGraphics
 	gLCDControlBuffer.dispcnt.forcedBlank = 0;
 	gLCDControlBuffer.dispcnt.mode = 0;
 	gLCDControlBuffer.dispcnt.win0_on = 0;
@@ -1640,7 +1640,7 @@ void CallSetupBackgrounds(ConfigMenuProc* proc) {
 	gLCDControlBuffer.dispcnt.bg2_on = 0;// don't display bg2
 	gLCDControlBuffer.dispcnt.bg3_on = 0;// don't display bg3
 	gLCDControlBuffer.dispcnt.obj_on = 1;
-	RegisterFillTile(NULL, (void *)(0x6000000 + 0x400 * 32), 32*100);
+	//RegisterFillTile(NULL, (void *)(0x6000000 + 0x400 * 32), 32*100);
 } 
 
 void ConfigMenuLoop(ConfigMenuProc* proc); 
@@ -1652,13 +1652,13 @@ const struct ProcCmd ConfigMenuProcCmd[] =
 	PROC_REPEAT(WaitForFade), 
     PROC_YIELD,
 	PROC_REPEAT(ConfigMenuLoop), 
-	//PROC_CALL(StartFastFadeToBlack), 
-	//PROC_REPEAT(WaitForFade), 
+	PROC_CALL(StartFastFadeToBlack), 
+	PROC_REPEAT(WaitForFade), 
     PROC_CALL(UnlockGame),
     PROC_CALL(BMapDispResume),
-	PROC_CALL(CallSetupBackgrounds), 
-	PROC_CALL(StartFastFadeFromBlack), 
-	PROC_REPEAT(WaitForFade), 
+	//PROC_CALL(CallSetupBackgrounds), 
+	//PROC_CALL(StartFastFadeFromBlack), 
+	//PROC_REPEAT(WaitForFade), 
     PROC_YIELD,
     PROC_END,
 };
@@ -1813,6 +1813,7 @@ Playable Monsters: Yes, No
 Min Growth: 0
 Max Growth: 100 
 */ 
+	 
 	i = 9; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option0[proc->Option[0]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option1[proc->Option[1]]); i++; 
@@ -1821,7 +1822,10 @@ Max Growth: 100
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, Option4[proc->Option[4]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, Option5[proc->Option[5]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option6[proc->Option[6]]); i++;  
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
+	
+	asm("mov r11, r11");
+	// comment due to fe6 crash atm 
+	//PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
 	
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0);
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 19, 1+((i-9)*2)), white, proc->seed); i++;  
@@ -2022,7 +2026,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 
 } 
 
-
+extern void InitTextFont(struct Font * font, void * draw_dest, int chr, int palid); 
 extern void ChapterStatus_SetupFont(int zero); // 8086E60
 extern void SetFontGlyphSet(int a); //8005410
 extern void InitSystemTextFont(void); // 8005A40
@@ -2055,10 +2059,12 @@ void StartConfigMenu(ProcPtr parent) {
 		SetTextFontGlyphs(0);
 		SetTextFont(0);
 		InitSystemTextFont();
+		InitTextFont(NULL, (u8 *) 0x6000000 + 0x20*0x200, 0x200, 0);
+		//InitTextFont(0x3007D10, (u8 *) 0x6000000 + 0x20*0x200, 0x200, 0);
 
 		
 
-		
+		// [2000444+0xC]!!
 		struct Text* th = gStatScreen.text; // max 34 
 		int i = 0; 
 		InitText(&th[i], 5); i++; 
@@ -2694,7 +2700,7 @@ extern const s8 Unk_TerrainTable_08BEC398[]; // 8BEC398
 extern u8 weatherId; // 0x202BBF8+0x15 
 
 const s8* GetUnitDefaultMovementCost(struct Unit* unit) { 
-#ifndef FE6 
+#ifdef FE7 
     if (unit->state & US_IN_BALLISTA) {
 		return Unk_TerrainTable_08BEC398; } 
 #endif 
@@ -2714,8 +2720,10 @@ const s8* GetUnitDefaultMovementCost(struct Unit* unit) {
 
 extern u8** gBmMapTerrain; // 202E3E0
 const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
+#ifdef FE7 
     if (unit->state & US_IN_BALLISTA) {
-	return Unk_TerrainTable_08BEC398; }
+		return Unk_TerrainTable_08BEC398; } 
+#endif 
 	
 	
 	if ((gCh == 0xA) || (gCh == 0x11)) { 

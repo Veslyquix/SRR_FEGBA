@@ -38,9 +38,18 @@ bx r0
 FE6_StartDifficultySelection: 
 push {r4, lr} 
 mov r4, r0 
-blh 0x8089254 @ replaced function 
+blh 0x80930D5 
+
+ldr r3, =0x202AA48 
+mov r0, #0xE 
+ldsb r0, [r3, r0] 
+cmp r0, #1 
+bne ExitFe6
+
+@blh 0x8089254 @ replaced function 
 mov r0, r4 
 bl StartConfigMenu
+ExitFe6: 
 mov r0, #0 
 pop {r4} 
 pop {r1} 
@@ -53,12 +62,16 @@ bx r1
 FE7_StartDifficultySelection: 
 push {r4, lr} 
 mov r4, r0 
-blh 0x80a8624 @ replaced function 
+blh 0x80A68A5
 
-ldr r0, =0x8CE4A40 
-blh Proc_EndEach 
-ldr r0, =0x8CE48F0 
-blh Proc_EndEach 
+@blh 0x801F72D @ replaced function 
+
+@blh 0x80a8624 @ replaced function 
+
+@ldr r0, =0x8CE4A40 
+@blh Proc_EndEach 
+@ldr r0, =0x8CE48F0 
+@blh Proc_EndEach 
 
 
 mov r0, r4 
