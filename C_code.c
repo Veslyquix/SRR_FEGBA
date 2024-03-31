@@ -1,5 +1,20 @@
+
+
+#ifdef FE8 
 #include "include/prelude.h"
 #include "include/types.h"
+#endif 
+
+#ifdef FE7 
+#include "include/prelude.h"
+#include "include/types.h"
+#endif 
+
+#ifdef FE6
+#include "include/prelude.h"
+#include "include/types.h"
+#endif 
+
 
 #include "headers/gbafe.h" 
 #define PUREFUNC __attribute__((pure))
@@ -811,8 +826,8 @@ void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
 
 #ifdef FE6
 s8 CanBattleUnitGainLevels(struct BattleUnit* bu) {
-    if (gBmSt.gameStateBits & 0x40)
-        return TRUE;
+    //if (gBmSt.gameStateBits & 0x40)
+       // return TRUE;
 
     if (bu->unit.exp == UNIT_EXP_DISABLED)
         return FALSE;

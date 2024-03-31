@@ -11,13 +11,7 @@
 	.type   \name, object
 	.set    \name, \value
 .endm
-.equ true, 1 
-.equ false, 0 
 
-@.equ FE6, true
-.equ FE6, false
-.equ FE7, true
-@.equ FE7, false
 
 .if FE6 == true
 SET_FUNC __aeabi_idiv, 0x809DCE1 
