@@ -13,17 +13,28 @@
 .endm
 
 .if FE6 == true 
+SET_DATA SaveMenuProc, 0x0 @ fe6
 SET_DATA DifficultySelectionProc, 0x868A09C @ fe6
 SET_FUNC SaveMenuStartBlockingProc, 0x8089551 @ fe6 
+SET_FUNC SetupBackgrounds, 0x80026BD
 .endif 
 .if FE7 == true 
+SET_DATA SaveMenuProc, 0x8CE3C54 @ fe7 
 SET_DATA DifficultySelectionProc, 0x8CE4930 @ fe7 
 SET_FUNC SaveMenuStartBlockingProc, 0x80A8665 @ fe7 
+SET_FUNC SetupBackgrounds, 0x8002A6D
+SET_FUNC SaveMenu_Init, 0x80A3631
+SET_FUNC ProcSaveMenu_InitScreen, 0x80A36AD 
+SET_FUNC SaveMenu_LoadExtraMenuGraphics, 0x80A38D9
+SET_FUNC RegisterFillTile, 0x80030FD   @ 0x8001841 
 .endif 
 .if FE8 == true 
+SET_DATA SaveMenuProc, 0x8A200B8 @ fe8 
 SET_DATA DifficultySelectionProc, 0x8A20A10 @ fe8 
 SET_FUNC SaveMenuStartBlockingProc, 0x80AC3E1 @ fe8  
+SET_FUNC SetupBackgrounds, 0x8001B59
 .endif 
+
 
 .if FE6 == true
 SET_FUNC __aeabi_idiv, 0x809DCE1 
@@ -94,8 +105,10 @@ SET_FUNC LoadObjUIGfx, 0x8015B45
 
 SET_FUNC Proc_Start, 0x8003ca9
 SET_FUNC Proc_StartBlocking, 0x8003cf5
+SET_FUNC Proc_Find, 0x8003e7d 
 SET_FUNC Proc_Break, 0x8003e61
 SET_FUNC Proc_Goto, 0x8003f6d
+SET_FUNC Proc_EndEach, 0x8004249
 
 SET_FUNC m4aSongNumStart, 0x809C861
 SET_FUNC PutDrawText, 0x8006409
@@ -224,8 +237,10 @@ SET_FUNC LoadObjUIGfx, 0x8015591
 
 SET_FUNC Proc_Start, 0x8004495 
 SET_FUNC Proc_StartBlocking, 0x80044F9
+SET_FUNC Proc_Find, 0x80046A9 
 SET_FUNC Proc_Break, 0x80046A1
 SET_FUNC Proc_Goto, 0x8004721
+SET_FUNC Proc_EndEach, 0x800486D 
 SET_FUNC m4aSongNumStart, 0x80BE595
 SET_FUNC PutDrawText, 0x8005AD5
 SET_FUNC ClearText, 0x80054E1

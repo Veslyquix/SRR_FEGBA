@@ -1540,22 +1540,6 @@ typedef struct {
 	int seed; 
 } ConfigMenuProc;
 
-void ConfigMenuLoop(ConfigMenuProc* proc); 
-const struct ProcCmd ConfigMenuProcCmd[] =
-{
-    PROC_CALL(LockGame),
-    PROC_CALL(BMapDispSuspend),
-	PROC_CALL(StartFastFadeFromBlack), 
-	PROC_REPEAT(WaitForFade), 
-    PROC_YIELD,
-	PROC_REPEAT(ConfigMenuLoop), 
-	PROC_CALL(StartFastFadeToBlack), 
-	PROC_REPEAT(WaitForFade), 
-    PROC_CALL(UnlockGame),
-    PROC_CALL(BMapDispResume),
-    PROC_END,
-};
-
 struct DispCnt {
     /* bit  0 */ u16 mode : 3;
     /* bit  3 */ u16 cgbMode : 1; // reserved, do not use
@@ -1632,6 +1616,54 @@ struct LCDControlBuffer {
     ///* 68 */ s8 colorAddition;
 };
 extern struct LCDControlBuffer gLCDControlBuffer;
+
+extern void SetupBackgrounds(u16 *bgConfig); 
+extern void SaveMenu_Init(ProcPtr proc); 
+extern void ProcSaveMenu_InitScreen(ProcPtr proc); 
+extern void SaveMenu_LoadExtraMenuGraphics(ProcPtr proc); 
+
+extern void RegisterFillTile(const void *src, void *dst, int size);
+extern struct ProcCmd SaveMenuProc; 
+void CallSetupBackgrounds(ConfigMenuProc* proc) { 
+	SetupBackgrounds(0);
+	ProcPtr parent = Proc_Find(&SaveMenuProc); 
+	SaveMenu_Init(parent); //SaveMenu_Init
+	//ProcSaveMenu_InitScreen(parent); //0x80a8cd4+1); //ProcSaveMenu_InitScreen
+	SaveMenu_LoadExtraMenuGraphics(parent); //0x80a8f04+1); //SaveMenu_LoadExtraMenuGraphics
+	gLCDControlBuffer.dispcnt.forcedBlank = 0;
+	gLCDControlBuffer.dispcnt.mode = 0;
+	gLCDControlBuffer.dispcnt.win0_on = 0;
+	gLCDControlBuffer.dispcnt.win1_on = 0;
+	gLCDControlBuffer.dispcnt.objWin_on = 0;
+	gLCDControlBuffer.dispcnt.bg0_on = 1;
+	gLCDControlBuffer.dispcnt.bg1_on = 1;
+	gLCDControlBuffer.dispcnt.bg2_on = 0;// don't display bg2
+	gLCDControlBuffer.dispcnt.bg3_on = 0;// don't display bg3
+	gLCDControlBuffer.dispcnt.obj_on = 1;
+	RegisterFillTile(NULL, (void *)(0x6000000 + 0x400 * 32), 32*100);
+} 
+
+void ConfigMenuLoop(ConfigMenuProc* proc); 
+const struct ProcCmd ConfigMenuProcCmd[] =
+{
+    PROC_CALL(LockGame),
+    PROC_CALL(BMapDispSuspend),
+	PROC_CALL(StartFastFadeFromBlack), 
+	PROC_REPEAT(WaitForFade), 
+    PROC_YIELD,
+	PROC_REPEAT(ConfigMenuLoop), 
+	//PROC_CALL(StartFastFadeToBlack), 
+	//PROC_REPEAT(WaitForFade), 
+    PROC_CALL(UnlockGame),
+    PROC_CALL(BMapDispResume),
+	PROC_CALL(CallSetupBackgrounds), 
+	PROC_CALL(StartFastFadeFromBlack), 
+	PROC_REPEAT(WaitForFade), 
+    PROC_YIELD,
+    PROC_END,
+};
+
+
 
 
 
@@ -1990,6 +2022,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 
 } 
 
+
 extern void ChapterStatus_SetupFont(int zero); // 8086E60
 extern void SetFontGlyphSet(int a); //8005410
 extern void InitSystemTextFont(void); // 8005A40
@@ -2014,7 +2047,9 @@ void StartConfigMenu(ProcPtr parent) {
 		//SetTextFontGlyphs(0);
 		//SetTextFont(0);
 		//ResetTextFont();
-		
+		SetupBackgrounds(0); 
+		BG_Fill(gBG0TilemapBuffer, 0); 
+		BG_Fill(gBG1TilemapBuffer, 0); 
 		
 		ResetTextFont();
 		SetTextFontGlyphs(0);
@@ -2022,9 +2057,7 @@ void StartConfigMenu(ProcPtr parent) {
 		InitSystemTextFont();
 
 		
-		
-		BG_Fill(gBG0TilemapBuffer, 0); 
-		BG_Fill(gBG1TilemapBuffer, 0); 
+
 		
 		struct Text* th = gStatScreen.text; // max 34 
 		int i = 0; 

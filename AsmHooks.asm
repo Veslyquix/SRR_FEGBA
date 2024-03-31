@@ -18,20 +18,20 @@ bx r0
 .ltorg 
 
 
-.global SaveMenuStartBlockingProc
-.type SaveMenuStartBlockingProc, %function 
-SaveMenuStartBlockingProc: 
-push {lr} 
-mov r1, r0 
-ldr r0, =DifficultySelectionProc
-
-blh Proc_StartBlocking
-add r0,  #0x42 
-mov r1, #0 
-strb r1, [r0] 
-pop {r0} 
-bx r0 
-.ltorg 
+@.global SaveMenuStartBlockingProc
+@.type SaveMenuStartBlockingProc, %function 
+@SaveMenuStartBlockingProc: 
+@push {lr} 
+@mov r1, r0 
+@ldr r0, =DifficultySelectionProc
+@
+@blh Proc_StartBlocking
+@add r0,  #0x42 
+@mov r1, #0 
+@strb r1, [r0] 
+@pop {r0} 
+@bx r0 
+@.ltorg 
 
 .global FE6_StartDifficultySelection
 .type FE6_StartDifficultySelection, %function 
@@ -53,7 +53,14 @@ bx r1
 FE7_StartDifficultySelection: 
 push {r4, lr} 
 mov r4, r0 
-blh 0x80A95B4 @ replaced function 
+blh 0x80a8624 @ replaced function 
+
+ldr r0, =0x8CE4A40 
+blh Proc_EndEach 
+ldr r0, =0x8CE48F0 
+blh Proc_EndEach 
+
+
 mov r0, r4 
 bl StartConfigMenu
 mov r0, #0 
