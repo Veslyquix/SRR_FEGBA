@@ -12,6 +12,18 @@
 	.set    \name, \value
 .endm
 
+.if FE6 == true 
+SET_DATA DifficultySelectionProc, 0x868A09C @ fe6
+SET_FUNC SaveMenuStartBlockingProc, 0x8089551 @ fe6 
+.endif 
+.if FE7 == true 
+SET_DATA DifficultySelectionProc, 0x8CE4930 @ fe7 
+SET_FUNC SaveMenuStartBlockingProc, 0x80A8665 @ fe7 
+.endif 
+.if FE8 == true 
+SET_DATA DifficultySelectionProc, 0x8A20A10 @ fe8 
+SET_FUNC SaveMenuStartBlockingProc, 0x80AC3E1 @ fe8  
+.endif 
 
 .if FE6 == true
 SET_FUNC __aeabi_idiv, 0x809DCE1 

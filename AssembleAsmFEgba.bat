@@ -50,6 +50,6 @@ if exist "FE8_defs.s" (
 ) 
 
 
-echo y | del "%~n1.elf"
+@rem echo y | del "%~n1.elf"
 
 pause

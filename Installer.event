@@ -1,12 +1,23 @@
 
 
 #ifndef FreeSpace 
-#define FreeSpace 0x1000000
-ORG FreeSpace 
+	#ifdef _FE6_
+		#define FreeSpace 0x800000
+	#endif
+	#ifdef _FE7_
+		#define FreeSpace 0x1000000
+	#endif
+	#ifdef _FE8_
+		#define FreeSpace 0x1000000
+	#endif 
+	ORG FreeSpace 
+#endif 
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
 
-
 #include "Extensions/Hack Installation.txt" 
+#include "Extensions/ProcDefinitions.txt" 
 
 #ifdef _FE6_ 
 	#include "Patches/FE6.lyn.event" 
@@ -19,20 +30,27 @@ ORG FreeSpace
 #endif 
 
 
-
-
-ALIGN 4 
-NewSomeProc: // doesn't work atm 
-WORD 2; POIN StartConfigMenu|1
-WORD 0xE 0 // sleep 
-WORD 2 0x801F2E1 
-WORD 3 0x801F2F1 
-
-WORD 0 0 
-
+// in A200B8 fe8 / CE3C54 fe7 / 
+//a20164
+//8CE4930
 PUSH 
-ORG $B93950 
-//POIN NewSomeProc
+#ifdef _FE6_ 
+ORG $68A09C
+PROC_CALL_ROUTINE_2(FE6_StartDifficultySelection)
+#endif 
+#ifdef _FE7_ 
+ORG $CE4930
+PROC_CALL_ROUTINE_2(FE7_StartDifficultySelection)
+#endif 
+#ifdef _FE8 
+ORG $A20A18
+PROC_CALL_ROUTINE_2(FE8_StartDifficultySelection)
+#endif 
+
+POP 
+
+#ifdef _FE7_ 
+PUSH 
 ORG $CA7A44
 BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeEvent // CALL 
 
@@ -225,9 +243,7 @@ ORG $9E9FC // Select any mode on new game
 // by Doesnt 
 BYTE $1F $20 $70 $47 
 
-#ifndef callHackNew 
-	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
-#endif 
+
 ORG $2FA48 
 callHackNew(DroppableItemHook)
 
@@ -413,6 +429,7 @@ BYTE $10 $00 $0C $00 $28 $00 $00 $60 $01 $F0 $00 $02 $3F $F0 $FF $00 $3F $33 $EF
 #include "Patches/BattleStatsAnimsOff/Installer.event" 
 #include "Patches/RNGRandomizer/Installer.event" 
 
+#endif // _FE7_ 
 
 ALIGN 32 
 WORD 0 0 0 0 0 0 0 0 
