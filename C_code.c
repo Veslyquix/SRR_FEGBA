@@ -2034,11 +2034,6 @@ extern void ChapterStatus_SetupFont(int zero); // 8086E60
 extern void SetFontGlyphSet(int a); //8005410
 extern void InitSystemTextFont(void); // 8005A40
 
-char const * const SystemLabel_EquipRange[2] =
-{
-    [0] = JTEXT("射程"),
-    [1] = TEXT("rng", "Rng"),
-};
  
  extern void RegisterBlankTile(int a); 
 void StartConfigMenu(ProcPtr parent) { 
@@ -2108,7 +2103,21 @@ void StartConfigMenu(ProcPtr parent) {
 		i = 0; 
 		
 		#ifdef FE6 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, SystemLabel_EquipRange[0]); i++; 
+		//char const * const SystemLabel_EquipRange[2] =
+		//{
+		//	[0] = JTEXT("射程"),
+		//	[1] = TEXT("rng", "rng"),
+		//};
+		//
+		//const char Opti[3] = { // Items
+		//0xA0, 
+		//0x82,
+		////0x82A0,
+		//0,
+		//}; 
+		int test = 0xA082; 
+		
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, &test); i++; 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
