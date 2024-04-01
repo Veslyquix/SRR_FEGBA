@@ -38,7 +38,7 @@ bx r0
 FE6_StartDifficultySelection: 
 push {r4, lr} 
 mov r4, r0 
-blh 0x80930D5 
+blh 0x80890D0 @0x80930D5 
 
 ldr r3, =0x202AA48 
 mov r0, #0xE 

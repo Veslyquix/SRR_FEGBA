@@ -6,7 +6,7 @@
 
 @rem defining buildfile config
 
-set "source_rom=%~dp0fe6.gba"
+set "source_rom=%~dp0fe6_translation.gba"
 
 set "main_event=%~dp0Installer.event"
 
@@ -44,7 +44,7 @@ ColorzCore A FE6 "-output:%target_rom%" "-input:%main_event%" --nocash-sym
   echo Generating patch
 
   cd "%base_dir%"
-  "%ups%" diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
+  "%ups%" diff -b "fe6.gba" -m "%target_rom%" -o "%target_ups%"
 
 
 echo:

@@ -2,7 +2,7 @@
 
 #ifndef FreeSpace 
 	#ifdef _FE6_
-		#define FreeSpace 0x800000
+		#define FreeSpace 0x830000
 	#endif
 	#ifdef _FE7_
 		#define FreeSpace 0x1000000
@@ -41,7 +41,7 @@ ORG $8874C; SHORT $46C0 // hard selectable from new game by 7743
 ORG 0x384c;  BYTE $03 $B5 $02 $B0 $C2 $0F $00 $2A $01 $D0 $05 $4A $97 $46 $03 $4A $12 $68 $9A $F0 $5B $FB $01 $BC $00 $47 $00 $00 $80 $37 $00 $03 $60 $C4 $2D $08
 ORG $2dc460; BYTE $80 $23 $1B $06 $C0 $1A $02 $78 $0A $70 $01 $31 $01 $30 $00 $2A $F9 $D1 $01 $4A $97 $46 $00 $00 $62 $38 $00 $08
 
-ORG $68C30C //68A09C
+ORG $68A08C//$68C30C //68A09C
 PROC_CALL_ROUTINE_2(FE6_StartDifficultySelection)
 #endif 
 #ifdef _FE7_ 

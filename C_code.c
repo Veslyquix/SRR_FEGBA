@@ -1626,7 +1626,7 @@ extern void RegisterFillTile(const void *src, void *dst, int size);
 extern struct ProcCmd SaveMenuProc; 
 void CallSetupBackgrounds(ConfigMenuProc* proc) { 
 	SetupBackgrounds(0);
-	ProcPtr parent = Proc_Find(&SaveMenuProc); 
+	//ProcPtr parent = Proc_Find(&SaveMenuProc); 
 	//SaveMenu_Init(parent); //SaveMenu_Init
 	//ProcSaveMenu_InitScreen(parent); //0x80a8cd4+1); //ProcSaveMenu_InitScreen
 	//SaveMenu_LoadExtraMenuGraphics(parent); //0x80a8f04+1); //SaveMenu_LoadExtraMenuGraphics
@@ -1787,7 +1787,9 @@ extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); /
 #define Y_HAND 17
 #define NUMBER_X 20
 void DrawConfigMenu(ConfigMenuProc* proc) { 
-
+	#ifdef FE6 
+	return; 
+	#endif 
 	
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
 	//asm("mov r11, r11"); 
@@ -1825,7 +1827,7 @@ Max Growth: 100
 	
 	asm("mov r11, r11");
 	// comment due to fe6 crash atm 
-	//PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
 	
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0);
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 19, 1+((i-9)*2)), white, proc->seed); i++;  
@@ -2026,10 +2028,19 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 
 } 
 
-extern void InitTextFont(struct Font * font, void * draw_dest, int chr, int palid); 
+extern void InitStatScreenText(void); // fe6 806eaf0 T InitStatScreenText
+extern void InitTextFont(void * font, void * draw_dest, int chr, int palid); 
 extern void ChapterStatus_SetupFont(int zero); // 8086E60
 extern void SetFontGlyphSet(int a); //8005410
 extern void InitSystemTextFont(void); // 8005A40
+
+char const * const SystemLabel_EquipRange[2] =
+{
+    [0] = JTEXT("射程"),
+    [1] = TEXT("rng", "Rng"),
+};
+ 
+ extern void RegisterBlankTile(int a); 
 void StartConfigMenu(ProcPtr parent) { 
 	ConfigMenuProc* proc; 
 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
@@ -2051,6 +2062,7 @@ void StartConfigMenu(ProcPtr parent) {
 		//SetTextFontGlyphs(0);
 		//SetTextFont(0);
 		//ResetTextFont();
+		RegisterBlankTile(0); // so bg fill works I guess 
 		SetupBackgrounds(0); 
 		BG_Fill(gBG0TilemapBuffer, 0); 
 		BG_Fill(gBG1TilemapBuffer, 0); 
@@ -2059,11 +2071,15 @@ void StartConfigMenu(ProcPtr parent) {
 		SetTextFontGlyphs(0);
 		SetTextFont(0);
 		InitSystemTextFont();
-		InitTextFont(NULL, (u8 *) 0x6000000 + 0x20*0x200, 0x200, 0);
-		//InitTextFont(0x3007D10, (u8 *) 0x6000000 + 0x20*0x200, 0x200, 0);
-
 		
-
+		ResetText(); // need this 
+		//InitTextFont(NULL, (u8 *) 0x6000000 + 0x20*0x200, 0x200, 0);
+		//InitTextFont(0x3007D10, (u8 *) 0x6000000 + 0x20*0x200, 0x200, 0);
+		
+		//return; 
+		#ifdef FE6 
+		InitStatScreenText();
+		#endif 
 		// [2000444+0xC]!!
 		struct Text* th = gStatScreen.text; // max 34 
 		int i = 0; 
@@ -2088,8 +2104,21 @@ void StartConfigMenu(ProcPtr parent) {
 		
 		//LoadUiFrameGraphics(); 
 		LoadObjUIGfx(); 
-		
+		//return; 
 		i = 0; 
+		
+		#ifdef FE6 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, SystemLabel_EquipRange[0]); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
+		return; 
+		#endif 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Variance"); i++; 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 7, "Base Stats"); i++; 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Growths"); i++; 

@@ -17,6 +17,7 @@ SET_DATA SaveMenuProc, 0x0 @ fe6
 SET_DATA DifficultySelectionProc, 0x868A09C @ fe6
 SET_FUNC SaveMenuStartBlockingProc, 0x8089551 @ fe6 
 SET_FUNC SetupBackgrounds, 0x80026BD
+SET_FUNC RegisterBlankTile, 0x8001581
 .endif 
 .if FE7 == true 
 SET_DATA SaveMenuProc, 0x8CE3C54 @ fe7 
@@ -26,6 +27,7 @@ SET_FUNC SetupBackgrounds, 0x8002A6D
 SET_FUNC SaveMenu_Init, 0x80A3631
 SET_FUNC ProcSaveMenu_InitScreen, 0x80A36AD 
 SET_FUNC SaveMenu_LoadExtraMenuGraphics, 0x80A38D9
+SET_FUNC RegisterBlankTile, 0x8001841 
 SET_FUNC RegisterFillTile, 0x80030FD   @ 0x8001841 
 .endif 
 .if FE8 == true 
@@ -103,8 +105,8 @@ SET_FUNC BG_SetPosition, 0x80019Dd
 SET_FUNC LoadUiFrameGraphics, 0x80417D5
 SET_FUNC LoadObjUIGfx, 0x8015B45
 
-SET_FUNC Proc_Start, 0x8003ca9
-SET_FUNC Proc_StartBlocking, 0x8003cf5
+SET_FUNC Proc_Start, 0x8003a05
+SET_FUNC Proc_StartBlocking, 0x8003ad9
 SET_FUNC Proc_Find, 0x8003e7d 
 SET_FUNC Proc_Break, 0x8003e61
 SET_FUNC Proc_Goto, 0x8003f6d
@@ -119,6 +121,9 @@ SET_FUNC ResetText, 0x800563d
 SET_FUNC SetTextFontGlyphs, 0x8005705 
 SET_FUNC ResetTextFont, 0x800573d
 SET_FUNC InitSystemTextFont, 0x8006345 
+SET_FUNC PutNumber, 0x8006F31
+SET_FUNC SetFontGlyphSet, 0x8005705
+SET_FUNC SetTextFont, 0x8005769
 SET_FUNC TileMap_FillRect, 0x809FAA1
 
 SET_FUNC DisplayUiHand, 0x80415Cd
@@ -126,11 +131,8 @@ SET_FUNC NewPopup_ItemGot, 0x800d6e5 @ maybe
 SET_FUNC Roll1RN, 0x8000E39
 SET_FUNC SetLCGRNValue, 0x8000E99
 SET_FUNC InitRN, 0x8000C89
-SET_FUNC PutNumber, 0x8006F31
 SET_FUNC GetGameClock, 0x8000EEd
 SET_FUNC PutSprite, 0x8007d3d
-SET_FUNC SetFontGlyphSet, 0x8005705
-SET_FUNC SetTextFont, 0x8005769
 SET_FUNC PrintDebugStringToBG, 0x8004f19
 SET_FUNC SetupDebugFontForBG, 0x8004e59 @ hook this 
 
@@ -150,6 +152,7 @@ SET_FUNC IsItemDisplayUsable, 0x8016BD9
 SET_FUNC CanUnitUseStaff, 0x8016645
 SET_FUNC CanUnitUseWeapon, 0x8016539
 SET_FUNC StatScreen_Display, 0x806ffdd
+SET_FUNC InitStatScreenText, 0x806eaf1 
 
 SET_DATA gBG0TilemapBuffer, 0x2021B08
 SET_DATA gBG1TilemapBuffer, 0x2022308
