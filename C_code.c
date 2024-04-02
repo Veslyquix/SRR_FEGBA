@@ -2599,6 +2599,7 @@ enum {
     TERRAIN_ARENA_30   = 0x30,
     TERRAIN_VALLEY     = 0x31,
     TERRAIN_FENCE_32   = 0x32,
+	// fe6 ends here 
     TERRAIN_SNAG       = 0x33,
     TERRAIN_BRIDGE_34  = 0x34,
     TERRAIN_SKY        = 0x35,
@@ -2782,8 +2783,15 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 		return Unk_TerrainTable_08BEC398; } 
 #endif 
 	
-	
+	#ifdef FE6 
+	if ((gCh == 0xFE)) { 
+	#endif 
+	#ifdef FE7 
 	if ((gCh == 0xA) || (gCh == 0x11)) { 
+	#endif 
+	#ifdef FE8 
+	if ((gCh == 0x18)) { // Taizel has an island reinforcements might get stuck on 
+	#endif 
 		if (UNIT_FACTION(unit) != FACTION_BLUE) { 
 			switch (weatherId) { 
 			case 1:
@@ -2846,12 +2854,20 @@ extern s8 CanUnitUseWeapon (struct Unit* unit, int item); // 80161A4
 extern int GetItemUseEffect(int item); // 801743C
 
  s8 IsItemDanceRing(int item) {
+	#ifdef FE6 
+	return false; 
+	#endif 
     switch (GetItemIndex(item)) {
 
+	#ifdef FE7 
     case 0x7C:
+	#endif 
     case 0x7D:
     case 0x7E:
     case 0x7F:
+	#ifdef FE8 
+	case 0x80: 
+	#endif 
         return TRUE;
 
     default:
@@ -2879,14 +2895,14 @@ s8 AiGetChestUnlockItemSlot(u8* out) { // 8036A8C
 
         *out = i;
 
-        if (GetItemIndex(item) == 0x68) {
+        if (GetItemIndex(item) == CHEST_KEY_A) {
             return 1;
         }
-        if (GetItemIndex(item) == 0x78) {
+        if (GetItemIndex(item) == CHEST_KEY_B) {
             return 1;
         }
 
-        if (GetItemIndex(item) == 0x6A) { //ITEM_LOCKPICK) { // 3bb40 
+        if (GetItemIndex(item) == LOCKPICK) { //ITEM_LOCKPICK) { // 3bb40 
 			// any enemy class can use lockpicks 
             if ((UNIT_CATTRIBUTES(gActiveUnit) & CA_STEAL) || (UNIT_FACTION(gActiveUnit) != FACTION_BLUE)) {
                 return 1;
@@ -2901,7 +2917,7 @@ int GetUnitKeyItemSlotForTerrain(struct Unit* unit, int terrain) { // 8018524
     int slot, item = 0;
 
     if ((UNIT_CATTRIBUTES(unit) & CA_THIEF) || (UNIT_FACTION(unit) != FACTION_BLUE)) {
-        int slot = GetUnitItemSlot(unit, 0x6A);
+        int slot = GetUnitItemSlot(unit, LOCKPICK);
 
         if (slot >= 0)
             return slot;
@@ -2910,15 +2926,15 @@ int GetUnitKeyItemSlotForTerrain(struct Unit* unit, int terrain) { // 8018524
     switch (terrain) {
 
     case 0x21: //TERRAIN_CHEST_21:
-        slot = GetUnitItemSlot(unit, 0x68);
+        slot = GetUnitItemSlot(unit, CHEST_KEY_A);
 
         if (slot < 0)
-            slot = GetUnitItemSlot(unit, 0x78);
+            slot = GetUnitItemSlot(unit, CHEST_KEY_B);
 
         return slot;
 
     case 0x1E: //TERRAIN_DOOR:
-        item = 0x69; //ITEM_DOORKEY;
+        item = DOOR_KEY; //ITEM_DOORKEY;
         break;
 
     } // switch (terrain)
@@ -2954,7 +2970,7 @@ s8 IsItemDisplayUsable(struct Unit* unit, int item) { // 8016AB0
         if (unit->statusIndex == UNIT_STATUS_BERSERK)
             return FALSE;
 
-        if ((UNIT_FACTION(unit) == FACTION_BLUE) && GetItemIndex(item) == 0x6A) {// lockpick 
+        if ((UNIT_FACTION(unit) == FACTION_BLUE) && GetItemIndex(item) == LOCKPICK) {// lockpick 
 			if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
             return FALSE;
 			}
