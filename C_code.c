@@ -249,9 +249,8 @@ extern int MaxClasses;
 extern u8 InvalidClassesList[]; 
 
 inline int IsClassInvalid(int i) { 
-	while (InvalidClassesList[0]) { 
-		if (InvalidClassesList[0] == i) { return true; } 
-		InvalidClassesList[0]++; 
+	for (int c = 0; c < 255; c++) { 
+		if (InvalidClassesList[c] == i) { return true; } 
 	} 
 	return false; 
 } 
@@ -307,6 +306,7 @@ int RandClass(int id, u8 noise[], struct Unit* unit) {
 	BuildAvailableClassList(list, promotedBitflag, allegiance); 
 	id = HashByte_Ch(id, list[0]+1, noise, 0);
 	if (!id) { id = 1; } // never 0  
+	if (!list[id]) { return 1; } // never 0 
 	return list[id]; 
 } 
 
@@ -1806,9 +1806,6 @@ extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); /
 #define Y_HAND 17
 #define NUMBER_X 20
 void DrawConfigMenu(ConfigMenuProc* proc) { 
-	#ifdef FE6 
-	return; 
-	#endif 
 	
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
 	//asm("mov r11, r11"); 
@@ -1834,8 +1831,43 @@ Playable Monsters: Yes, No
 Min Growth: 0
 Max Growth: 100 
 */ 
-	 
+
 	i = 9; 
+	
+	
+	#ifdef FE6 
+	int startId = 0xB6E + i; 
+	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 16-6, 1+((i-9)*2)), 9, 2, 0);
+	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 16, 1+((i-9)*2)), white, (proc->Option[0] * 5)); i++; 
+	//PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option0[proc->Option[0]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB77 + proc->Option[1])); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB77 + proc->Option[2])); i++; 
+	
+	if (proc->Option[3] == 2) { 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 6, GetStringFromIndex(0xB7B)); i++; 
+	} 
+	else { 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 6, GetStringFromIndex(0xB77 + proc->Option[3])); i++; 
+	} 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, GetStringFromIndex(0xB77 + proc->Option[4])); i++; 
+	
+	if (proc->Option[5] > 1) { 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, GetStringFromIndex(0xB7A + proc->Option[5])); i++; 
+	} 
+	else { 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, GetStringFromIndex(0xB77 + proc->Option[5])); i++; 
+	} 
+	if (!proc->Option[6]) { 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB77)); i++;  
+	} 
+	else { 
+	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 19-6, 1+((i-9)*2)), 9, 2, 0);
+	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 1+((i-9)*2)), white, proc->Option[6]); i++;  
+	} 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB7E + proc->Option[7])); i++;  
+	
+	#endif 
+	#ifndef FE6 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option0[proc->Option[0]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option1[proc->Option[1]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option2[proc->Option[2]]); i++; 
@@ -1843,13 +1875,11 @@ Max Growth: 100
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, Option4[proc->Option[4]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, Option5[proc->Option[5]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option6[proc->Option[6]]); i++;  
-	
-	asm("mov r11, r11");
-	// comment due to fe6 crash atm 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
+	#endif 
 	
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0);
-	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 19, 1+((i-9)*2)), white, proc->seed); i++;  
+	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-1, 1+((i-9)*2)), white, proc->seed); i++;  
 
 	BG_EnableSyncByMask(BG0_SYNC_BIT); 
 	
@@ -2092,7 +2122,7 @@ void StartConfigMenu(ProcPtr parent) {
 		
 		//return; 
 		#ifdef FE6 
-		InitStatScreenText();
+		//InitStatScreenText();
 		#endif 
 		// [2000444+0xC]!!
 		struct Text* th = gStatScreen.text; // max 34 
@@ -2134,19 +2164,24 @@ void StartConfigMenu(ProcPtr parent) {
 		////0x82A0,
 		//0,
 		//}; 
-		int test = 0xA082; 
-		
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, &test); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
-		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "asdf"); i++; 
-		return; 
+		//int test = 0xA082; 
+		//u8 someText[] = { 0x5D, 0x8F, 0x9C, 0x2D, 0xC8, 0x7C, 0x2F, 0, 0, 0 }; 
+		//extern u8 someText; 
+		//extern struct Font* gActiveFont; 
+		//gActiveFont->lang = 1; 
+		int startId = 0xB6E; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, GetStringFromIndex(startId + i)); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 7, GetStringFromIndex(startId + i)); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, GetStringFromIndex(startId + i)); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 6, GetStringFromIndex(startId + i)); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, GetStringFromIndex(startId + i)); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, GetStringFromIndex(startId + i)); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 13, GetStringFromIndex(startId + i)); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, GetStringFromIndex(startId + i)); i++; 
+		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, GetStringFromIndex(startId + i)); i++; 
 		#endif 
+		
+		#ifndef FE6 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Variance"); i++; 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 7, "Base Stats"); i++; 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Growths"); i++; 
@@ -2156,7 +2191,7 @@ void StartConfigMenu(ProcPtr parent) {
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 13, "Enemy Diff. Bonus"); i++;  // make enemies have more bonus levels? 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Mode"); i++;  // Classic/Casual 
 		PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Seed"); i++;  // Classic/Casual 
-
+		#endif 
 		//BG_SetPosition(BG_3, 0, 0); 
 		
 		//*(u16 *)&gLCDControlBuffer.bg0cnt = 0;
@@ -2408,43 +2443,19 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 
 
 u16 const gDefaultShopInventory[] = {
-	0x62, // vuln 
-    1,
-    0x14,
-    0x1F,
-    0x2c,
-    0x37,
-	0x3e,
-	0x44,
-    0x4a,	
+	VULNERARY, 
+	IRON_SWORD, 
+	IRON_LANCE, 
+	IRON_AXE, 
+	IRON_BOW, 
+	FIRE, 
+	LIGHT, 
+	FLUX, 
+	HEAL, 
     0,
     0,
 };
 
-u16 const gBigDefaultShopInventory[] = {
-    1,
-    0x14,
-    0x1F,
-    0x2c,
-    0x37,
-    0x4a,
-	2,
-	3,
-	4,
-	5,
-	6,
-	7,
-	8,
-	9,
-	10,
-	11,
-	12,
-	13,
-	14,
-	15,
-    0,
-    0,
-};
 
 struct BmShopProc {
     /* 00 */ PROC_HEADER;
@@ -2498,11 +2509,6 @@ void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr par
 
 	if (RandBitflags.shopItems) { 
 	
-	    //if (inventory == 0) {
-			//if (shopType == 10) { 
-				//shopItems = gBigDefaultShopInventory;
-			//} 
-		//}
 		u8 noise[5] = {0, 0, 0, 0, 0}; 
 		int varyByCh = false; 
 		if (shopType != 10) { 

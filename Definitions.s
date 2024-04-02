@@ -18,6 +18,8 @@ SET_DATA DifficultySelectionProc, 0x868A09C @ fe6
 SET_FUNC SaveMenuStartBlockingProc, 0x8089551 @ fe6 
 SET_FUNC SetupBackgrounds, 0x80026BD
 SET_FUNC RegisterBlankTile, 0x8001581
+SET_FUNC GetStringFromIndex, 0x8013ad1
+SET_DATA gActiveFont, 0x2027BCC
 .endif 
 .if FE7 == true 
 SET_DATA SaveMenuProc, 0x8CE3C54 @ fe7 
@@ -94,7 +96,7 @@ SET_FUNC StartFastFadeFromBlack, 0x80146Ed
 SET_FUNC StartFastFadeToBlack, 0x80146C9
 SET_FUNC WaitForFade, 0x80149B1
 SET_FUNC BG_Fill, 0x8001551
-SET_FUNC BG_EnableSyncByMask, 0x8000ff1 
+SET_FUNC BG_EnableSyncByMask, 0x8000fd5 
 SET_FUNC BG_SetPosition, 0x80019Dd
 
 

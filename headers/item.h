@@ -83,6 +83,14 @@ int GetItemAttributes(int item);
 #define MONEYBAG_DESC 0x61e
 #define CLASS_THIEF_A 0x34 
 #define CLASS_THIEF_B 0x35 
+#define IRON_SWORD 1 
+#define IRON_LANCE 0x10  
+#define IRON_AXE 0x1B  
+#define IRON_BOW 0x27  
+#define FIRE 0x33  
+#define LIGHT 0x3B 
+#define FLUX 0x3F
+#define HEAL 0x43
 #define CHEST_KEY_A 0x64 
 #define CHEST_KEY_B 0x64 
 #define DOOR_KEY 0x65 
@@ -94,6 +102,14 @@ int GetItemAttributes(int item);
 #define MONEYBAG_DESC 0x2FF
 #define CLASS_THIEF_A 0x3C 
 #define CLASS_THIEF_B 0x3D 
+#define IRON_SWORD 1 
+#define IRON_LANCE 0x14  
+#define IRON_AXE 0x1F  
+#define IRON_BOW 0x2C  
+#define FIRE 0x37  
+#define LIGHT 0x3E
+#define FLUX 0x44
+#define HEAL 0x4A
 #define CHEST_KEY_A 0x68 
 #define CHEST_KEY_B 0x78 
 #define DOOR_KEY 0x69
@@ -105,6 +121,14 @@ int GetItemAttributes(int item);
 #define MONEYBAG_DESC 0x4A1 
 #define CLASS_THIEF_A 0xD 
 #define CLASS_THIEF_B 0x33 // rogue 
+#define IRON_SWORD 1 
+#define IRON_LANCE 0x14  
+#define IRON_AXE 0x1F  
+#define IRON_BOW 0x2D  
+#define FIRE 0x38  
+#define LIGHT 0x3F
+#define FLUX 0x45
+#define HEAL 0x4B
 #define CHEST_KEY_A 0x69 
 #define CHEST_KEY_B 0x79 
 #define DOOR_KEY 0x6A
@@ -114,8 +138,23 @@ int GetItemAttributes(int item);
 #endif
 
 
+extern char *GetStringFromIndex(int index);
 
-
-
+struct Font {
+    /*0x00*/ u8 *vramDest;
+             // pointer to table of glyph structs
+             // In ASCII fonts, there is just one byte per character, so the glyph
+             // for a given character is obtained by indexing this array.
+             // In Shift-JIS fonts, each character is 2 bytes. Each element in
+             // this array is a linked list. byte2 - 0x40 is the index of the head
+             // of the list, and the list is traversed until a matching byte1 is found.
+    /*0x04*/ struct Glyph **glyphs;
+    /*0x08*/ void (*drawGlyph)(void *, struct Glyph *);
+    /*0x0C*/ void *(*get_draw_dest)(void *);
+    /*0x10*/ u16 tileref;
+    /*0x12*/ u16 chr_counter;
+    /*0x14*/ u16 palid;
+    /*0x16*/ u8 lang;
+};
 
 
