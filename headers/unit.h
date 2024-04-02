@@ -88,11 +88,12 @@ struct ClassData
 
     /* 22 */ u8 promotionHp;
     /* 23 */ u8 promotionPow;
+	#ifndef FE6
     /* 24 */ u8 promotionSkl;
     /* 25 */ u8 promotionSpd;
     /* 26 */ u8 promotionDef;
     /* 27 */ u8 promotionRes;
-
+	#endif 
     /* 28 */ u32 attributes;
 
     /* 2C */ u8 baseRanks[8];
@@ -120,7 +121,12 @@ struct Unit
 
     /* 0B */ s8 index;
 
+	#ifndef FE6
     /* 0C */ u32 state;
+	#endif 
+	#ifdef FE6 
+	u16 state; 
+	#endif 
 
     /* 10 */ s8 xPos;
     /* 11 */ s8 yPos;
@@ -303,7 +309,12 @@ struct BattleUnit {
 
     /* 48 */ u16 weapon;
     /* 4A */ u16 weaponBefore;
+	#ifndef FE6 
     /* 4C */ u32 weaponAttributes;
+	#endif 
+	#ifdef FE6 
+    /* 4C */ u16 weaponAttributes;
+	#endif 
     /* 50 */ u8 weaponType;
     /* 51 */ u8 weaponSlotIndex;
 
@@ -327,8 +338,9 @@ struct BattleUnit {
     /* 66 */ short battleCritRate;
     /* 68 */ short battleDodgeRate;
     /* 6A */ short battleEffectiveCritRate;
+	#ifndef FE6 
     /* 6C */ short battleSilencerRate;
-
+	#endif 
     /* 6E */ s8 expGain;
     /* 6F */ s8 statusOut;
     /* 70 */ s8 levelPrevious;
@@ -381,7 +393,13 @@ enum
     CA_LOCK_1 = (1 << 16),
     CA_LOCK_2 = (1 << 17),
     CA_LOCK_3 = (1 << 18), // Dragons or Monster depending of game
-    CA_MAXLEVEL10 = (1 << 19),
+    
+	#ifndef FE6 
+	CA_MAXLEVEL10 = (1 << 19),
+	#endif 
+	#ifdef FE6 
+	CA_LOCK_4 = (1<<19), 
+	#endif 
     CA_UNSELECTABLE = (1 << 20),
     CA_TRIANGLEATTACK_PEGASI = (1 << 21),
     CA_TRIANGLEATTACK_ARMORS = (1 << 22),
@@ -390,7 +408,9 @@ enum
     CA_ASSASSIN = (1 << 25),
     CA_MAGICSEAL = (1 << 26),
     CA_SUMMON = (1 << 27),
+	#ifndef FE6 
     CA_LOCK_4 = (1 << 28),
+	#endif 
     CA_LOCK_5 = (1 << 29),
     CA_LOCK_6 = (1 << 30),
     CA_LOCK_7 = (1 << 31),

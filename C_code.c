@@ -246,20 +246,29 @@ int GetItemWeight(int item) {
 
 extern int MaxItems; 
 extern int MaxClasses; 
+extern u8 InvalidClassesList[]; 
+
+inline int IsClassInvalid(int i) { 
+	while (InvalidClassesList[0]) { 
+		if (InvalidClassesList[0] == i) { return true; } 
+		InvalidClassesList[0]++; 
+	} 
+	return false; 
+} 
+
 u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	
 	
 	list[0] = 0; // count 
 	int attrExceptions = CA_DANCE|CA_PLAY; 
-	int attr; 
+	int attr;
 	// issues: 0x4D, 0x52, 0x53 prince has A rank swords ? (does he have anim?) 
 	// 0x56 fallen warrior has axes 
 	// no playable manaketes in fe7, but otherwise units without wexp but 
 	// have monster lock could be possibility 
 	for (int i = 1; i <= MaxClasses; i++) { 
-	// 4, 5, 6 are duplicate promoted lords 
-		if ((i == 0x4) || (i == 0x5) || (i == 0x6) || (i == 0xB) || (i == 0xF) || (i == 0x11) || (i == 0x15) || (i == 0x17) || (i == 0x19) || (i == 0x1B) || (i == 0x1F) || (i == 0x25) || (i == 0x29) || (i == 0x2B) || (i == 0x2f) || (i == 0x31) || (i == 0x35) || (i == 0x37) || (i == 0x3D) || (i == 0x4D) || (i == 0x52) || (i == 0x53) || (i == 0x56)) { 
-			continue; } 
+
+		if (IsClassInvalid(i)) { continue; } 
 		const struct ClassData* table = GetClassData(i); 
 		attr = table->attributes; 
 		if (!promotedBitflag) { if (attr & CA_PROMOTED) { continue; } } 
@@ -331,17 +340,24 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	// iterate through all items 
 	struct ItemData* table; 
 	int rank, type, attr, badAttr;
-	badAttr = 0x3C1C00; // must be not an unusable locked weapon 
-	badAttr |= 0x80; // no uncounterable / siege weapons? 
+	
+	#ifdef FE6 
+	badAttr = IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_UNCOUNTERABLE; // must be not an unusable locked weapon 
+	#endif 
+	#ifndef FE6 
+	badAttr = IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_LOCK_5|IA_LOCK_6|IA_LOCK_7|IA_UNCOUNTERABLE; 
+	#endif 
 	attr = unit->pCharacterData->attributes | unit->pClassData->attributes; 
 	if ((UNIT_FACTION(unit) == FACTION_BLUE) || (UNIT_CATTRIBUTES(unit) & CA_BOSS)) { // only player units / bosses can start with wep locked weps 
-		if (attr & CA_LOCK_1) { badAttr &= ~(0x800); } // "wep lock 1" 
-		if (attr & CA_LOCK_2) { badAttr &= ~(0x1000); } // myrm 
-		if (attr & CA_LOCK_3) { badAttr &= ~(0x400); } // manakete 
-		if (attr & CA_LOCK_4) { badAttr &= ~(0x40000); } // eliwood 
-		if (attr & CA_LOCK_5) { badAttr &= ~(0x80000); } // hector 
-		if (attr & CA_LOCK_6) { badAttr &= ~(0x100000); } // lyn 
-		if (attr & CA_LOCK_7) { badAttr &= ~(0x200000); } // athos 
+		if (attr & CA_LOCK_1) { badAttr &= ~IA_LOCK_1; } // "wep lock 1" 
+		if (attr & CA_LOCK_2) { badAttr &= ~IA_LOCK_2; } // myrm 
+		if (attr & CA_LOCK_3) { badAttr &= ~IA_LOCK_3; } // manakete 
+		if (attr & CA_LOCK_4) { badAttr &= ~IA_LOCK_4; } // eliwood 
+		#ifndef FE6 
+		if (attr & CA_LOCK_5) { badAttr &= ~IA_LOCK_5; } // hector 
+		if (attr & CA_LOCK_6) { badAttr &= ~IA_LOCK_6; } // lyn 
+		if (attr & CA_LOCK_7) { badAttr &= ~IA_LOCK_7; } // athos 
+		#endif 
 	} 
 	u8 ranks[8]; 
 	ranks[0] = unit->ranks[0]; 
@@ -360,7 +376,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 		table = GetItemData(i);  
 		attr = table->attributes; 
 		
-		if ((attr & badAttr) || (!(attr & 5))) { // must be equippable or a staff 
+		if ((attr & badAttr) || (!(attr & (IA_WEAPON|IA_STAFF)))) { // must be equippable or a staff 
 			continue; 
 		} 
 		
@@ -368,7 +384,12 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 		rank = table->weaponRank;
 		// weapons that have no lock and no wexp/rank req instead are considered S rank 
 		// eg. Ereshkigal
-		if ((!rank) && (!(attr & 0x3C1C00))) { 
+		#ifndef FE6 
+		if ((!rank) && (!(attr & (IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_LOCK_5|IA_LOCK_6|IA_LOCK_7)))) { 
+		#endif 
+		#ifdef FE6 
+		if ((!rank) && (!(attr & (IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4)))) { 
+		#endif 
 			rank = 251; 
 		} 
 		if (rank > ranks[type]) { 
@@ -392,8 +413,8 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 	
 	int effectID; 
 	struct ItemData* table; 
-	int badAttr = 0x400; // manakete lock 
-	if (noWeapons) { badAttr |= 5; } 
+	int badAttr = IA_LOCK_3; // manakete lock 
+	if (noWeapons) { badAttr |= IA_WEAPON|IA_STAFF; } 
 	
 	int originalPrice = GetItemData(item)->costPerUse; 
 	originalPrice += 200 + (((originalPrice * RandValues.variance) / 100) * 5);
@@ -410,14 +431,14 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 		
 		// some dummy vulnerary items 
 		effectID = table->useEffectId; 
-		if ((effectID == 0x33) || (effectID == 0x34) || (effectID == 0x35)) { 
+		if ((effectID == 0x33) || (effectID == 0x34) || (effectID == 0x35)) { // fe7 / fe8 (fe6 doesn't go this high) 
 			continue; 
 		} 
 		if (table->weaponType == 0xC) { // no rings for now 
 			continue; // (dance / play are also rings...) 
 		} 
-		
-		if (table->descTextId == 0x2FF) { // bags of gold description 
+		 
+		if (table->descTextId == MONEYBAG_DESC) { // bags of gold description text id 
 			continue; 
 		} 
 		
@@ -465,22 +486,20 @@ int RandNewWeapon(struct Unit* unit, int item, u8 noise[], int offset, u8 list[]
 	if (!RandBitflags.class) { return MakeNewItem(item); } 
 	//int wexpMask = GetValidWexpMask(unit); 
 	int c; 
-
 	
-	
-	if (!((GetItemData(item)->attributes) & 5)) { // not a wep/staff 
-		if (unit->pClassData->number == 0x3C) { // Thief 
-			return MakeNewItem(0x6A); // Non weapons become lockpick for thieves  
+	if (!((GetItemData(item)->attributes) & (IA_REQUIRES_WEXP))) { // not a wep/staff 
+		if ((unit->pClassData->number == CLASS_THIEF_A) || (unit->pClassData->number == CLASS_THIEF_B)) { // Thief 
+			return MakeNewItem(LOCKPICK); // Non weapons become lockpick for thieves  
 		} 
-		if (item == 0x68) { return MakeNewItem(0x68); } // chest key 
-		if (item == 0x69) { return MakeNewItem(0x69); } // door key 
-		if (item == 0x78) { return MakeNewItem(0x78); } // chest key 
+		if (item == CHEST_KEY_A) { return MakeNewItem(CHEST_KEY_A); } 
+		if (item == CHEST_KEY_B) { return MakeNewItem(CHEST_KEY_B); } 
+		if (item == DOOR_KEY) { return MakeNewItem(DOOR_KEY); }  
 		if (UNIT_FACTION(unit) != FACTION_BLUE) { 
-			if (item == 0x6a) { return MakeNewItem(0x6a); } // lockpick  
+			if (item == LOCKPICK) { return MakeNewItem(LOCKPICK); } // lockpick  
 		} 
 		// player units that start with a vuln/elixir keep it 
-		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6B) { return MakeNewItem(0x6B); } }
-		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == 0x6C) { return MakeNewItem(0x6C); } }
+		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == VULNERARY) { return MakeNewItem(VULNERARY); } }
+		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == ELIXIR) { return MakeNewItem(ELIXIR); } }
 		u8 list2[MaxItems]; 
 		list2[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 		BuildSimilarPriceItemList(list2, item, true, false); 
