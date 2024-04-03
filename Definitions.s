@@ -19,7 +19,10 @@ SET_FUNC SaveMenuStartBlockingProc, 0x8089551 @ fe6
 SET_FUNC SetupBackgrounds, 0x80026BD
 SET_FUNC RegisterBlankTile, 0x8001581
 SET_FUNC GetStringFromIndex, 0x8013ad1
+SET_FUNC GetTextDrawDest, 0x8006009
 SET_DATA gActiveFont, 0x2027BCC
+SET_DATA gDefaultFont, 0x2027BB4
+SET_DATA sSpecialCharStList, 0x2027BD0
 .endif 
 .if FE7 == true 
 SET_DATA SaveMenuProc, 0x8CE3C54 @ fe7 

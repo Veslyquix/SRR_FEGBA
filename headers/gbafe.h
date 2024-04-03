@@ -5,10 +5,11 @@ typedef int16_t    s16;
 #define JTEXT(orig) (orig)
 #define TEXT(orig, english) (orig)
 
-
+#include "gba.h"
+#include "proc.h" 
 #include "unit.h" 
 #include "item.h" 
-#include "proc.h" 
+
 
 
 
