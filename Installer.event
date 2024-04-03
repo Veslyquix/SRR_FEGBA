@@ -60,7 +60,7 @@ POP
 #ifdef _FE6_ 
 ALIGN 4 
 CasualModeFlag:
-WORD 0xA0 
+WORD 0x8C 
 MaxItems:
 WORD 0x7F
 MaxClasses:
@@ -159,15 +159,15 @@ BYTE 0 // Terminator
 
 PUSH 
 ORG $CA7A44
-BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeEvent // CALL 
+//BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeEvent // CALL 
 
-ORG $C9A9AB; BYTE 1 // Start ch as dark 
+//ORG $C9A9AB; BYTE 1 // Start ch as dark 
 ORG $CAE038
-BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN EliwoodModeEvent  
-BYTE 0x89 0 0 0 // allow skipping 
+//BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN EliwoodModeEvent  
+//BYTE 0x89 0 0 0 // allow skipping 
 
 ORG $CAE610
-BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent 
+//BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent 
 //ORG $CAE920
 //BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeUnlockDoor
 ORG $CC8156; BYTE 0x69 0x6b // matthew gets door key and vuln 
@@ -201,6 +201,20 @@ ORG $CC5D7F
 BYTE 4 
 ORG $CA91CE 
 BYTE 2 
+
+//Unit Placer  (EventUnitFE7Form) @Pent(Sage)  Lv:62024-04-03 10:32:41 AM
+ORG $CD22FC
+BYTE  $15 $22 $00 $32 $10 $05 $10 $05 $39 $38 $6C $00 $00 $03 $0E $00;
+//Unit Placer  (EventUnitFE7Form) @Pent(Sage)  Lv:62024-04-03 10:32:58 AM
+ORG $CD231C
+BYTE  $15 $22 $00 $32 $10 $05 $10 $05 $39 $38 $6C $00 $00 $03 $00 $00;
+//Unit Placer  (EventUnitFE7Form) @Hawkeye(Berserker)  Lv:42024-04-03 10:33:54 AM
+ORG $CD233C
+BYTE  $22 $3B $00 $22 $12 $09 $11 $09 $24 $00 $00 $00 $00 $21 $02 $00;
+//Unit Placer  (EventUnitFE7Form) @Hawkeye(Berserker)  Lv:42024-04-03 10:34:23 AM
+ORG $CD235C
+BYTE  $22 $3B $00 $22 $12 $09 $11 $09 $24 $00 $00 $00 $00 $22 $02 $00;
+
 
 // swap athos / archsage bases 
 //Class Editor  (ClassForm) @42 Archsage2024-03-22 11:10:21 AM
@@ -324,17 +338,51 @@ ALIGN 4
 CasualMode:
 BYTE $10 $B4 $14 $1C $00 $F0 $13 $F8 $00 $28 $01 $D1 $05 $23 $00 $E0 $09 $23 $E0 $68 $05 $21 $C9 $43 $08 $40 $19 $1C $08 $43 $E0 $60 $20 $1C $06 $4B $00 $F0 $02 $F8 $10 $BC $05 $4B $18 $47 $00 $B5 $A0 $20 $04 $4B $FF $F7 $FA $FF $00 $BD $00 $00 $45 $68 $02 $08 $B3 $7E $01 $08 $F9 $98 $07 $08
 
+#endif // fe7 
+
+#ifdef _FE6_ 
+ALIGN 4 
+CasualMode: 
+BYTE $10 $B4 $0C $1C $00 $F0 $13 $F8 $00 $28 $01 $D1 $05 $23 $00 $E0 $09 $23 $E0 $68 $05 $21 $C9 $43 $08 $40 $19 $1C $08 $43 $E0 $60 $20 $1C $06 $4B $00 $F0 $02 $F8 $10 $BC $05 $4B $18 $47 $00 $B5 $8C $20 $04 $4B $FF $F7 $FA $FF $00 $BD $00 $00 $61 $2C $02 $08 $FF $7B $01 $08 $5D $BA $06 $08
+#endif 
 
 PUSH 
 
+#ifdef _FE7_ 
 // Nils min level for 19xx by Satel 
 ORG $7D252 
 BYTE 0 
 
 ORG $4F40 
 SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
+#endif // FE7 
 
 
+
+#ifdef _FE6_ 
+
+ORG $4EC4 
+SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
+
+ORG $17BEC
+  jumpToHack(CasualMode)
+  
+ORG $28f72 // in 28ef0
+SHORT $22c0 $4311 // default game/text speed fast 
+  
+// in 8019600 BuildBestMovementScript 
+// Fix REDA / MOVE from crashing on impassible terrain 
+// by 7743 - ported to fe6 by Vesly 
+//ORG 0x01A77E; // fe8 version 
+ORG 0x19738 // fe6 
+// looks like code is the same except it uses r6 instead of r5 for something (so we do byte 0x2E instead of 0x2D below) 
+// branch is also 3 lines later, so 0xDA2C 
+BYTE 0xFF 0x2E 0x2C 0xDA 0x02 0x99 0x08 0x70 0x04 0x9B 0x02 0x93
+SHORT $4667 $46c0 $46c0 // I think this is right but I'm not 100% convinced, oh well 
+POP 
+#endif 
+
+#ifdef _FE7_
 ORG $17E9E // by Circles 
 byte 0x00 0x00
 jumpToHack(CasualMode)
@@ -345,8 +393,8 @@ ORG $9E9FC // Select any mode on new game
 BYTE $1F $20 $70 $47 
 
 
-ORG $2FA48 
-callHackNew(DroppableItemHook)
+ORG $2FA48 // fe7 
+callHackNew(DroppableItemHook) // enemies in fe6 do not drop items, so unnecessary there 
 
 ORG $2DFCA // Default game speed option to fast by 7743 ported by Vesly  
 BYTE $d0 $22
