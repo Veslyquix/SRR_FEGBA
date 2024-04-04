@@ -23,6 +23,7 @@ SET_FUNC GetTextDrawDest, 0x8006009
 SET_DATA gActiveFont, 0x2027BCC
 SET_DATA gDefaultFont, 0x2027BB4
 SET_DATA sSpecialCharStList, 0x2027BD0
+SET_DATA gBmSt, 0x202AA08
 .endif 
 .if FE7 == true 
 SET_DATA SaveMenuProc, 0x8CE3C54 @ fe7 
@@ -132,7 +133,7 @@ SET_FUNC SetTextFont, 0x8005769
 SET_FUNC TileMap_FillRect, 0x809FAA1
 
 SET_FUNC DisplayUiHand, 0x80415Cd
-SET_FUNC NewPopup_ItemGot, 0x800d6e5 @ maybe 
+SET_FUNC NewPopup_ItemGot, 0x80121F5   
 SET_FUNC Roll1RN, 0x8000E39
 SET_FUNC SetLCGRNValue, 0x8000E99
 SET_FUNC InitRN, 0x8000C89
@@ -167,8 +168,11 @@ SET_DATA sKeyStatusBuffer, 0x2023B20
 SET_DATA gStatScreen, 0x2003108 @ for text handles 
 SET_DATA gUiTmScratchA, 0x2003238 @ might be wrong 
 SET_DATA gActiveUnit, 0x30044B0
-SET_DATA RandBitflags, 0x202AA66 @ GameOptions + 0x1E (unk, 2 bytes) 
-SET_DATA RandValues, 0x202AA8C @ GameOptions + 0x44 (unk, 4 bytes) 
+@ 202AA08 gBmSt https://github.com/StanHash/fe6/blob/5430c7ea15313a5754ddb466916b1d2946e72c4a/include/bm.h#L90C8-L90C12
+@ 801E2C0	801FFE0	801FB78	0	0	ChapterIntro_InitMapDisplay
+SET_DATA RandBitflagsA, 0x202AA63 @ PlaySt + 0x1B (unk, 1 bytes) @ saved on suspend 
+SET_DATA RandBitflagsB, 0x202AA67 @ PlaySt + 0x1F (unk, 1 bytes) @ saved on suspend 
+SET_DATA RandValues, 0x203D974 @ Bandit unitID + 0x45 BWL data
 SET_DATA weatherId, 0x202AA5D
 SET_DATA gPlaySt, 0x202AA48
 SET_DATA gCh, 0x202AA56
@@ -315,7 +319,8 @@ SET_DATA Unk_TerrainTable_08BEC398, 0x8BEC398
 SET_DATA gBmMapTerrain, 0x202E3E0
 SET_DATA weatherId, 0x202BC0D
 
-SET_DATA RandBitflags, 0x202BC16 @ GameOptions + 0x1E (unk, 2 bytes) 
+SET_DATA RandBitflagsA, 0x202BC16 @ GameOptions + 0x1E (unk, 2 bytes) 
+SET_DATA RandBitflagsB, 0x202BC17 @ GameOptions + 0x1E (unk, 2 bytes) 
 SET_DATA RandValues, 0x202BC3C @ GameOptions + 0x44 (unk, 4 bytes) 
 
 SET_DATA gPlaySt, 0x202BBF8

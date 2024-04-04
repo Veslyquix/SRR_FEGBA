@@ -38,13 +38,31 @@ bx r0
 FE6_StartDifficultySelection: 
 push {r4, lr} 
 mov r4, r0 
+
+mov r0, r4 
+
 blh 0x80890D0 @0x80930D5 
+
+@ copied some stuff from 80890d0 
+@ proc+0x2e != 1 && proc+0x2e != 0x40: resume chapter I guess 
+	@ 29128 is called if resuming in label 6 of gamectrl 5C4A34
+@ 890d0 -> 13954 sets the proc+0x29 field as the label to goto [2023cc4+0x29]!!
+mov r0, r4 
+add r0, #0x2e 
+ldrb r0, [r0]
+cmp r0, #1 
+beq ExitFe6 
+cmp r0, #0x40 
+beq ExitFe6  
+@mov r11, r11 
+
 
 ldr r3, =0x202AA48 
 mov r0, #0xE 
 ldsb r0, [r3, r0] 
 cmp r0, #1 
 bne ExitFe6
+
 
 @blh 0x8089254 @ replaced function 
 mov r0, r4 
