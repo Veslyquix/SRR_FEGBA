@@ -2093,7 +2093,12 @@ void PutNumberBonus(int number, u16 *tm)
 	else { 
 	number = ~number + 1; // neg 
 	//void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
+	#ifndef FE6 
     PutDrawText(0, tm, gold, 2, 1, "-"); 
+	#endif 
+	#ifdef FE6 
+    PutDrawText(0, tm, gold, 2, 1, GetStringFromIndex(0xB82)); 
+	#endif 
 	//PutSpecialChar(tm, gold, 0x2d); // -
     PutNumberSmall(tm + ((number >= 10) ? 2 : 1), gold, number);
 	} 
@@ -2206,7 +2211,12 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
         UNIT_CON_BASE(gStatScreen.unit),
         UNIT_CON(gStatScreen.unit),
         UNIT_CON_MAX(gStatScreen.unit));
+	#ifndef FE6 
 	PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "Mov");
+	#endif 
+	#ifdef FE6 
+	PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, GetStringFromIndex(0xB80));
+	#endif 
 	} 
 	else { 
 	
@@ -2236,7 +2246,12 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 			UNIT_CON_BASE(gStatScreen.unit),
 			UNIT_CON(gStatScreen.unit),
 			UNIT_CON_MAX(gStatScreen.unit));
+		#ifndef FE6 
 		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
+		#endif 
+		#ifdef FE6 
+		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, GetStringFromIndex(0xB81));
+		#endif 
 		}
 		else { 
 		DrawGrowthWithDifference(4, 1,
@@ -2264,8 +2279,12 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 			UNIT_CON_BASE(gStatScreen.unit),
 			UNIT_CON(gStatScreen.unit),
 			UNIT_CON_MAX(gStatScreen.unit));
+		#ifndef FE6 
 		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
-		
+		#endif 
+		#ifdef FE6
+		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, GetStringFromIndex(0xB81));
+		#endif 
 		} 
 	} 
 	//PutDrawText(gStatScreen.text + 21,   gUiTmScratchA + TILEMAP_INDEX(1, 0x12),  white, 0, 12, "SRR v1.01   Seed:");

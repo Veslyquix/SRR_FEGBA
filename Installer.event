@@ -109,7 +109,13 @@ ClassicText:
 BYTE 0x2C 0x16 0x59 0x6B 0x33 0xBD 0x00 0x00 0x00 0x00 0x00 0x00
 CasualText:
 BYTE 0x2C 0xCA 0xE2 0x52 0x7A 0x01 0x00 0x00 0x00 0x00 0x00 0x00
-
+MovText:
+BYTE $64 $94 $DD $0B $00 $00 $00 $00 
+HpText:
+BYTE $C6 $9A $EB $05 $00 $00 $00 $00 
+MinusText: 
+BYTE $FD $7B $71 $91 $5E $00 $00 $00 $00 // _ 
+//BYTE $D6 $E9 $05 $00 $00 $00 $00 $00 // - 
 
 #define TextTable 0xF635C
 #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
@@ -133,6 +139,9 @@ setTextWithHuffman(0xB7C, FounditemsonlyText)
 setTextWithHuffman(0xB7D, ItemstatsonlyText)
 setTextWithHuffman(0xB7E, ClassicText)
 setTextWithHuffman(0xB7F, CasualText)
+setTextWithHuffman(0xB80, MovText)
+setTextWithHuffman(0xB81, HpText)
+setTextWithHuffman(0xB82, MinusText)
 
 ALIGN 4 
 
@@ -369,6 +378,9 @@ ORG $17BEC
   
 ORG $28f72 // in 28ef0
 SHORT $22c0 $4311 // default game/text speed fast 
+
+ORG $4a4b0
+SHORT $2000 // always use generic palette (by Vesly) 
   
 // in 8019600 BuildBestMovementScript 
 // Fix REDA / MOVE from crashing on impassible terrain 
@@ -379,6 +391,32 @@ ORG 0x19738 // fe6
 // branch is also 3 lines later, so 0xDA2C 
 BYTE 0xFF 0x2E 0x2C 0xDA 0x02 0x99 0x08 0x70 0x04 0x9B 0x02 0x93
 SHORT $4667 $46c0 $46c0 // I think this is right but I'm not 100% convinced, oh well 
+
+//in 83193ec T gStatScreenPersonalInfoLabelsInfo
+ORG $31943c // Don't draw "mov" 
+BYTE $90 $31 $00 $02 $0A $35 $00 $02 $03 $00 $00 $00 $58 $7E $67 $08
+ORG $31948c; WORD 0 0 0 0
+// data at 31943c for drawing mov is usually "68 31 00 02 8A 32 00 02 03 00 00 00 18 7E 67 08" 
+
+
+// in 806ED34 
+ORG $6EDB2 
+FILL($6eeF0 - $6EDB2) // nop out the vanilla draw bar stuff 
+
+ORG $6eec4 // our new version 
+callHackNew(DrawBarsOrGrowths) 
+SHORT $46c0 
+
+// in 80700A4
+ORG $70200
+FILL($70220 - $70200)
+
+ORG $70200
+SHORT $1C28
+SHORT $46c0 
+callHackNew(StatScreenSelectLoop)
+
+
 POP 
 #endif 
 
@@ -422,7 +460,6 @@ ORG $CCB748; BYTE 1 // Merlinus starts with an iron sword
 ORG $4049F0 // Don't draw "mov" 
 BYTE $94 $31 $00 $02 $0E $35 $00 $02 $03 $00 $00 $00 $24 $27 $CC $08
 ORG $404a40; WORD 0 0 0 0
-
 
 ORG $7FE78 
 FILL($7FFDC - $7FE78) // nop out the vanilla draw bar stuff 
