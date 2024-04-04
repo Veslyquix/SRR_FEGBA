@@ -1,0 +1,12 @@
+
+// by 7743
+PUSH 
+ORG $19388
+jumpToHack(NullMoveDisplay)
+POP 
+
+ALIGN 4
+NullMoveDisplay: 
+#incbin "NullMoveDisplay.dmp"
+
+
