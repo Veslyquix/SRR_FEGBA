@@ -528,7 +528,16 @@ int RandNewWeapon(struct Unit* unit, int item, u8 noise[], int offset, u8 list[]
 	} 
 	// if dancer/bard, give random ring instead of a weapon 
 	if ((unit->pCharacterData->attributes | unit->pClassData->attributes)& (CA_DANCE|CA_PLAY)) { 
-		return MakeNewItem(HashByte_Ch(item, 4, noise, offset)+0x7C); // 
+		#ifdef FE6 
+		return MakeNewItem(HashByte_Ch(item, 14, noise, offset)+0x56); // random stat booster or promo item 
+		#endif 
+		#ifdef FE7 
+		return MakeNewItem(HashByte_Ch(item, 4, noise, offset)+0x7C); // rand ring 
+		#endif 
+		#ifdef FE8
+		return MakeNewItem(HashByte_Ch(item, 4, noise, offset)+0x7D); // 
+		#endif 
+		
 	} 
 	//asm("mov r11, r11"); 
 	if (list[0]) { 
@@ -895,9 +904,23 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	}
 
 	int wexp = 0; 
+	int tmp = 0; 
+	int personalWexp = 0; 
 	noise[0] = unit->pClassData->number; 
+	tmp = 0; 
+	if (RandBitflagsA.class) { 
+		for (int c = 0; c < 8; ++c) { 
+			tmp = unit->pCharacterData->baseRanks[c]; 
+			if (tmp > personalWexp) { personalWexp = tmp; } 
+		}
+	} 
     for (int i = 0; i < 8; ++i) { 
-        wexp = HashWexp(unit->pClassData->baseRanks[i], noise, i);
+		wexp = unit->pClassData->baseRanks[i]; 
+		if (wexp) { 
+			if (personalWexp > wexp) { wexp = personalWexp; } 
+		}
+		
+        wexp = HashWexp(wexp, noise, i);
 		unit->ranks[i] = wexp; 
 		
 		if (i == 7) { // dark 
@@ -2237,6 +2260,12 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 	else { 
 	
 		if ((UNIT_FACTION(gStatScreen.unit) == FACTION_BLUE) || (UNIT_CATTRIBUTES(gStatScreen.unit) & CA_BOSS)) { 
+		#ifndef FE6 
+		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
+		#endif 
+		#ifdef FE6 
+		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, GetStringFromIndex(0xB81));
+		#endif 
 		DrawGrowthWithDifference(4, 1,
 			GetUnitPowGrowth(gStatScreen.unit, false),
 			GetUnitPowGrowth(gStatScreen.unit, true));
@@ -2262,14 +2291,14 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 			UNIT_CON_BASE(gStatScreen.unit),
 			UNIT_CON(gStatScreen.unit),
 			UNIT_CON_MAX(gStatScreen.unit));
+		}
+		else { 
 		#ifndef FE6 
 		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
 		#endif 
-		#ifdef FE6 
+		#ifdef FE6
 		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, GetStringFromIndex(0xB81));
 		#endif 
-		}
-		else { 
 		DrawGrowthWithDifference(4, 1,
 			GetClassPowGrowth(gStatScreen.unit, false),
 			GetClassPowGrowth(gStatScreen.unit, true));
@@ -2295,16 +2324,16 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 			UNIT_CON_BASE(gStatScreen.unit),
 			UNIT_CON(gStatScreen.unit),
 			UNIT_CON_MAX(gStatScreen.unit));
-		#ifndef FE6 
-		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
-		#endif 
-		#ifdef FE6
-		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, GetStringFromIndex(0xB81));
-		#endif 
+
 		} 
 	} 
 	//PutDrawText(gStatScreen.text + 21,   gUiTmScratchA + TILEMAP_INDEX(1, 0x12),  white, 0, 12, "SRR v1.01   Seed:");
+	#ifdef FE6 
+	SetupDebugFontForBG(0, 0x5400);
+	#endif 
+	#ifdef FE7 
 	SetupDebugFontForBG(0, 0x3000);
+	#endif 
 	PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
 	//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x12), white, RandValues.seed);
 	PrintDebugNumberToBG(0, 11, 0x13, RandValues.seed); 
