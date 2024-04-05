@@ -594,6 +594,40 @@ void NewPopup_ItemGot_NoRand(struct Unit *unit, u16 item, ProcPtr parent) // pro
         unit->state |= US_DROP_ITEM;
 }
 
+#ifdef FE6
+extern void SetPopupNumber(int); // fe6 d704 
+extern int GetPartyGoldAmount(void); // fe6 20a58
+extern void SetPartyGoldAmount(int); // fe6 20a64
+extern ProcPtr NewPopup_Simple(struct ProcCmd*, int, int, ProcPtr); //fe6 d720 
+extern struct ProcCmd PopupScr_GotGold[]; //8356140
+extern struct ProcCmd PopupScr_GoldWasStole[]; // 8356188
+#endif 
+#ifdef FE6 
+void NewPopup_GoldGot(int value, ProcPtr parent) // fe6 120D0 
+#endif 
+#ifdef FE8
+void NewPopup_GoldGot(ProcPtr parent, struct Unit *unit, int value) // fe8 and fe6 order the registers differently 
+#endif 
+#ifdef FE6 
+{
+	struct Unit *unit = gActiveUnit; // fe6 always does active unit here 
+	u8 noise[5] = {0, 0, 0, 0, 0}; 
+	noise[0] = unit->xPos; 
+	noise[1] = unit->yPos; 
+	
+	
+	if (RandBitflagsA.foundItems) { value = HashByPercent_Ch(value, noise, 13, false); if (!value) { value = 1; } } 
+    SetPopupNumber(value); 
+
+    if (FACTION_BLUE == UNIT_FACTION(unit)) {
+        value += GetPartyGoldAmount(); 
+        SetPartyGoldAmount(value); 
+        NewPopup_Simple(PopupScr_GotGold, 0x60, 0x0, parent); // 0D720 //5C3FE4 fe6 
+    } else // in 120D0 fe6 - 
+        NewPopup_Simple(PopupScr_GoldWasStole, 0x60, 0x0, parent);
+}
+#endif 
+
 
 s16 HashStat(int number, u8 noise[], int offset, int promoted) { 
 	number = HashByPercent_Ch(number, noise, offset, promoted);

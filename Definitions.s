@@ -24,6 +24,15 @@ SET_DATA gActiveFont, 0x2027BCC
 SET_DATA gDefaultFont, 0x2027BB4
 SET_DATA sSpecialCharStList, 0x2027BD0
 SET_DATA gBmSt, 0x202AA08
+
+SET_FUNC SetPopupNumber, 0x800d705 
+SET_FUNC GetPartyGoldAmount, 0x8020a59
+SET_FUNC SetPartyGoldAmount, 0x8020a65
+SET_FUNC NewPopup_Simple, 0x800d721 
+SET_DATA PopupScr_GotGold, 0x8356140
+SET_DATA PopupScr_GoldWasStole, 0x8356188
+SET_FUNC NewPopup_GoldGot, 0x80120D1 
+
 .endif 
 .if FE7 == true 
 SET_DATA SaveMenuProc, 0x8CE3C54 @ fe7 

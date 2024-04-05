@@ -380,7 +380,26 @@ SHORT $46C0 $46C0 // don't erase bg when setting up debug font
 ORG $6076D0
 BYTE  $EC $07 $B9 $04 $01 $01 $02 $00 $00 $01 $01 $01 $00 $02 $02 $03 $00 $00 $07 $00 $00 $00 $00 $00 $00 $00 $00 $00 $50 $28 $32 $28 $19 $1E $3C $01 $01 $00 $00 $1F $00 $20 $01 $00 $98 $20 $66 $08;
 
+// remove double hard mode bonus for first 5 chapters: 
+ORG $66B78C // normally calls 0x806BAF1 
+BYTE 06 00 00 00 00 00 00 00 // ENDA 
+ORG $66BBC0
+BYTE 06 00 00 00 00 00 00 00 // ENDA 
+ORG $66BF68
+BYTE 06 00 00 00 00 00 00 00 // ENDA 
+ORG $66C3F0
+BYTE 06 00 00 00 00 00 00 00 // ENDA 
+ORG $66C8B0
+BYTE 06 00 00 00 00 00 00 00 // ENDA 
 
+// merlinus show anim 
+ORG $49ACE
+BYTE $ff
+ORG $49AD8
+BYTE $FF 
+ORG $679E64 
+BYTE $1 // STARTING ITEMS 
+BYTE $68
 
 
 ORG $4EC4 
