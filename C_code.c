@@ -135,9 +135,8 @@ extern unsigned GetGameClock(void); // 8000F14
 int GetInitialSeed(void) { 
 	int result = RandValues.seed;
 	if (!result) { 
-		result = TacticianName[1] | (TacticianName[2]<<8) | (TacticianName[3]<<16);
-		int clock = GetGameClock(); 
-		result = (GetNthRN(clock, result)<<4) | GetNthRN(clock, result); 
+		int clock = GetGameClock()>>2; 
+		result = (GetNthRN(clock, (clock&0xF))<<4) | GetNthRN(clock, (clock&0xF0)); 
 	}
 	if (result > 999999) { result &= 0xEFFFF; } 
 	return result; 
@@ -408,6 +407,8 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 		#endif 
 			rank = 251; 
 		} 
+		if ((type <= 7) && (!rank)) { rank = 1; } // PRFs require at least 1 wexp in that type 
+		// otherwise units can get PRFs that they don't have animations for 
 		if (rank > ranks[type]) { 
 			continue; 
 		} 
@@ -594,21 +595,22 @@ void NewPopup_ItemGot_NoRand(struct Unit *unit, u16 item, ProcPtr parent) // pro
         unit->state |= US_DROP_ITEM;
 }
 
-#ifdef FE6
+
 extern void SetPopupNumber(int); // fe6 d704 
 extern int GetPartyGoldAmount(void); // fe6 20a58
 extern void SetPartyGoldAmount(int); // fe6 20a64
 extern ProcPtr NewPopup_Simple(struct ProcCmd*, int, int, ProcPtr); //fe6 d720 
 extern struct ProcCmd PopupScr_GotGold[]; //8356140
 extern struct ProcCmd PopupScr_GoldWasStole[]; // 8356188
-#endif 
 #ifdef FE6 
 void NewPopup_GoldGot(int value, ProcPtr parent) // fe6 120D0 
 #endif 
-#ifdef FE8
-void NewPopup_GoldGot(ProcPtr parent, struct Unit *unit, int value) // fe8 and fe6 order the registers differently 
+#ifdef FE7 
+void NewPopup_GoldGot(int value, ProcPtr parent) // fe6 120D0 
 #endif 
-#ifdef FE6 
+#ifdef FE8
+void NewPopup_GoldGot(ProcPtr parent, struct Unit *unit, int value) // fe8 and fe6/fe7 have slightly different parameters / order 
+#endif 
 {
 	struct Unit *unit = gActiveUnit; // fe6 always does active unit here 
 	u8 noise[5] = {0, 0, 0, 0, 0}; 
@@ -626,7 +628,7 @@ void NewPopup_GoldGot(ProcPtr parent, struct Unit *unit, int value) // fe8 and f
     } else // in 120D0 fe6 - 
         NewPopup_Simple(PopupScr_GoldWasStole, 0x60, 0x0, parent);
 }
-#endif 
+
 
 
 s16 HashStat(int number, u8 noise[], int offset, int promoted) { 
@@ -760,11 +762,11 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number;  
 	int result = HashByPercent(growth, noise, 11); 
+	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 19); } // if really low, try to add some points 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result + add; 
 }
-
 
 
 int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
@@ -783,6 +785,7 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	u8 noise[4] = {0, 0, 0, 0};  
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 21); 
+	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 29); } 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result + add; 
@@ -804,6 +807,7 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 31); 
+	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 39); } 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result + add; 
@@ -825,6 +829,7 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number;  
 	int result = HashByPercent(growth, noise, 41); 
+	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 49); } 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result + add; 
@@ -846,6 +851,7 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 51); 
+	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 59); } 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result + add; 
@@ -867,6 +873,7 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 61); 
+	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 69); } 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result + add; 
@@ -888,6 +895,7 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 71); 
+	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 79); } 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	return result + add; 
@@ -923,7 +931,8 @@ s8 CanBattleUnitGainLevels(struct BattleUnit* bu) {
     return TRUE;
 }
 #endif 
-
+const s8 MovModifiers[] = { 0, 0, 0, 0, 0, 1, 1, 2, 0 } ; 
+const s8 ConModifiers[] = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0 } ; 
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
     unit->level = uDef->level;
@@ -1000,7 +1009,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	if (gCh > 0xE) { if (max150percent == 1) { max150percent = 0; } } // Lyn mode + first 2 chs of eliwood/hector mode: nerf promoted units a little 
 	
     unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, max150percent);
-	if (unit->maxHP < 10) { unit->maxHP += 10; } 
+	if (unit->maxHP < 15) { unit->maxHP += 15; } 
 	unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise, 25, max150percent);
     unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, noise, 35, max150percent);
     unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise, 45, max150percent);
@@ -1008,7 +1017,13 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise, 65, max150percent);
     unit->lck   = RandStat(unit, character->baseLck, noise, 75, max150percent);                           
 
-    unit->conBonus = 0;
+	unit->conBonus = 0; unit->movBonus = 0; 
+	if (UNIT_FACTION(unit) == FACTION_BLUE) { 
+		unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
+		if (unit->pClassData->baseMov < 7) { 
+			unit->movBonus = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
+		} 
+	} 
 
 
 
@@ -1066,9 +1081,10 @@ int GetUnitMaxPow(struct Unit* unit) {
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number;  
-	cap = HashByPercent(cap, noise, 17); 
-	if (cap > 30) { cap = 30; } 
-	return cap;  
+	int result = HashByPercent(cap, noise, 17); 
+	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 13); }  
+	if (result > 30) { result = 30; } 
+	return result;  
 } 
 
 int GetUnitMaxSkl(struct Unit* unit) { 
@@ -1077,9 +1093,10 @@ int GetUnitMaxSkl(struct Unit* unit) {
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
-	cap = HashByPercent(cap, noise, 27); 
-	if (cap > 30) { cap = 30; } 
-	return cap;   
+	int result = HashByPercent(cap, noise, 27); 
+	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 23); } 
+	if (result > 30) { result = 30; } 
+	return result;   
 } 
 
 int GetUnitMaxSpd(struct Unit* unit) { 
@@ -1088,9 +1105,10 @@ int GetUnitMaxSpd(struct Unit* unit) {
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
-	cap = HashByPercent(cap, noise, 37); 
-	if (cap > 30) { cap = 30; } 
-	return cap;   
+	int result = HashByPercent(cap, noise, 37); 
+	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 33); } 
+	if (result > 30) { result = 30; } 
+	return result;  
 } 
 
 int GetUnitMaxDef(struct Unit* unit) { 
@@ -1099,9 +1117,10 @@ int GetUnitMaxDef(struct Unit* unit) {
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0};  
 	noise[0] = unit->pClassData->number; 
-	cap = HashByPercent(cap, noise, 47); 
-	if (cap > 30) { cap = 30; } 
-	return cap;  
+	int result = HashByPercent(cap, noise, 47); 
+	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 43); } 
+	if (result > 30) { result = 30; } 
+	return result;  
 } 
 
 int GetUnitMaxRes(struct Unit* unit) { 
@@ -1110,9 +1129,10 @@ int GetUnitMaxRes(struct Unit* unit) {
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
-	cap = HashByPercent(cap, noise, 57); 
-	if (cap > 30) { cap = 30; } 
-	return cap;  
+	int result = HashByPercent(cap, noise, 57); 
+	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 53); } 
+	if (result > 30) { result = 30; } 
+	return result;  
 } 
 
 int GetUnitMaxLck(struct Unit* unit) { 
@@ -1121,9 +1141,10 @@ int GetUnitMaxLck(struct Unit* unit) {
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
-	cap = HashByPercent(cap, noise, 67); 
-	if (cap > 30) { cap = 30; } 
-	return cap;  
+	int result = HashByPercent(cap, noise, 67); 
+	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 63); } 
+	if (result > 30) { result = 30; } 
+	return result;  
 } 
 
 extern s8 Roll1RN(int threshold); //8000E60
@@ -1861,7 +1882,7 @@ extern void m4aSongNumStart(u16 n);
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
 
 	u16 keys = sKeyStatusBuffer.newKeys; 
-	
+	if (!proc->freezeSeed) { proc->seed = GetInitialSeed(); proc->redraw = true; } 
 	int id = proc->id;
 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
@@ -1891,7 +1912,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	// Handle seed 
 	if (id == SRR_MAXDISP) { 
 		//if (proc->digit == 9) { 
-		
+		proc->freezeSeed = true; 
 		int max = 999999; 
 		int min = 0; 
 		int max_digits = GetMaxDigits(max); 
@@ -2017,6 +2038,8 @@ void StartConfigMenu(ProcPtr parent) {
 		proc->Option[6] = 0; 
 		proc->Option[7] = 0; 
 		proc->redraw = 0; 
+		proc->freezeSeed = false; 
+		if (RandValues.seed) { proc->freezeSeed = true; } 
 		proc->seed = GetInitialSeed(); 
 		
 		proc->digit = 0; 

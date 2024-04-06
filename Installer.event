@@ -47,7 +47,7 @@ PROC_CALL_ROUTINE_2(FE6_StartDifficultySelection)
 #endif 
 #ifdef _FE7_ 
 ORG $CE45EC // in CE45E4 //B9395C //CE49D8
-PROC_CALL_ROUTINE_2(FE7_StartDifficultySelection)
+//PROC_CALL_ROUTINE_2(FE7_StartDifficultySelection)
 #endif 
 #ifdef _FE8 
 ORG $A20A18
@@ -169,15 +169,15 @@ BYTE 0 // Terminator
 
 PUSH 
 ORG $CA7A44
-//BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeEvent // CALL 
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeEvent // CALL 
 
-//ORG $C9A9AB; BYTE 1 // Start ch as dark 
+ORG $C9A9AB; BYTE 1 // Start ch as dark 
 ORG $CAE038
-//BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN EliwoodModeEvent  
-//BYTE 0x89 0 0 0 // allow skipping 
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN EliwoodModeEvent  
+BYTE 0x89 0 0 0 // allow skipping 
 
 ORG $CAE610
-//BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent 
+BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent 
 //ORG $CAE920
 //BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeUnlockDoor
 ORG $CC8156; BYTE 0x69 0x6b // matthew gets door key and vuln 
@@ -488,6 +488,8 @@ ORG $9E9FC // Select any mode on new game
 // by Doesnt 
 BYTE $1F $20 $70 $47 
 
+//ORG $A06E2 
+//SHORT $46c0 $46c0 // don't reset game time on new game 
 
 ORG $2FA48 // fe7 
 callHackNew(DroppableItemHook) // enemies in fe6 do not drop items, so unnecessary there 

@@ -44,6 +44,14 @@ SET_FUNC ProcSaveMenu_InitScreen, 0x80A36AD
 SET_FUNC SaveMenu_LoadExtraMenuGraphics, 0x80A38D9
 SET_FUNC RegisterBlankTile, 0x8001841 
 SET_FUNC RegisterFillTile, 0x80030FD   @ 0x8001841 
+
+SET_FUNC SetPopupNumber, 0x800AD35 
+SET_FUNC GetPartyGoldAmount, 0x8023905
+SET_FUNC SetPartyGoldAmount, 0x8023911
+SET_FUNC NewPopup_Simple, 0x800AD41 
+SET_DATA PopupScr_GotGold, 0x8B91BE4
+SET_DATA PopupScr_GoldWasStole, 0x8B91C2C
+SET_FUNC NewPopup_GoldGot, 0x800EE4D 
 .endif 
 .if FE8 == true 
 SET_DATA SaveMenuProc, 0x8A200B8 @ fe8 

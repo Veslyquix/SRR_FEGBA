@@ -274,6 +274,7 @@ typedef struct {
 	s8 Option[9];
 	s8 digit; 
 	int seed; 
+	u8 freezeSeed; 
 } ConfigMenuProc;
 
 struct DispCnt {
