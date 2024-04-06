@@ -401,6 +401,12 @@ ORG $679E64
 BYTE $1 // STARTING ITEMS 
 BYTE $68
 
+ORG $6D0F0 // from 6D0E4
+SHORT $2100 // No equipped item during Roy's forced promotion 
+
+ORG $1F524 
+jumpToHack(FE6_SeizeCantoFix) 
+
 
 ORG $4EC4 
 SHORT $46C0 $46C0 // don't erase bg when setting up debug font 

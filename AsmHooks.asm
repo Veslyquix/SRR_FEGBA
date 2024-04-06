@@ -33,6 +33,22 @@ bx r0
 @bx r0 
 @.ltorg 
 
+.global FE6_SeizeCantoFix
+.type FE6_SeizeCantoFix, %function 
+FE6_SeizeCantoFix: @ 1F524
+ldr r1, =0x203956C 
+mov r0, #0xF 
+strb r0, [r1, #0x11] @ seize 
+ldr r3, =gActiveUnit 
+ldr r3, [r3] 
+ldrh r0, [r3, #0xC] 
+mov r1, #0x40 
+orr r0, r1 
+strh r0, [r3, #0xC] @ set canto'd bit 
+
+mov r0, #0x17 
+bx lr 
+
 .global FE6_StartDifficultySelection
 .type FE6_StartDifficultySelection, %function 
 FE6_StartDifficultySelection: 

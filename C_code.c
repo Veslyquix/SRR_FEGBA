@@ -636,7 +636,14 @@ s16 HashStat(int number, u8 noise[], int offset, int promoted) {
 	
 int RandStat(struct Unit* unit, int stat, u8 noise[], int offset, int promoted) { 
 	if (!RandBitflagsA.base) { return stat; } 
-	return HashStat(stat, noise, offset, promoted); 
+	int result = HashStat(stat, noise, offset, promoted); 
+	if (UNIT_FACTION(unit) == FACTION_BLUE) { // if below average player, reroll once 
+		if (result < stat) { 
+			stat = HashStat(result, noise, offset+13, promoted); 
+			if (stat > result) { result = stat; } 
+		}
+	}
+	return result; 
 } 
 
 
