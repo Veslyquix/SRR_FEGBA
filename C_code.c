@@ -121,6 +121,7 @@ void InitSeededRN(int seed, u16* currentRN) {
 }
 
 u16 GetNthRN(int n, int seed) { 
+	n &= 0x3F; 
 	u16 currentRN[3] = { 0, 0, 0 }; 
 	InitSeededRN(seed, currentRN); 
 	int result = 0; 
@@ -220,6 +221,20 @@ s16 HashWeight(int number, u8 noise[]) {
 	if (!RandBitflagsA.itemStats) { return number; } 
 	return HashByPercent(number, noise, 0); 
 } 
+
+inline int IsUnitAlliedOrPlayable(struct Unit* unit) { 
+	int result = false; 
+	int uid = unit->pCharacterData->number; 
+	if (UNIT_FACTION(unit) != FACTION_RED) { return true; } 
+	#ifdef FE6 
+	if (uid < 0x45) { result = true; } 
+	#endif 
+	#ifdef FE7
+	if (uid < 0x3b) { result = true; } 
+	#endif 
+	return result; 
+} 
+
 // Random: 
 // Class, Growths, Base stats, Caps, Item Stats, Chest items 
 extern struct ItemData* GetItemData(int item);
@@ -363,7 +378,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	badAttr = IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_LOCK_5|IA_LOCK_6|IA_LOCK_7|IA_UNCOUNTERABLE; 
 	#endif 
 	attr = unit->pCharacterData->attributes | unit->pClassData->attributes; 
-	if ((UNIT_FACTION(unit) == FACTION_BLUE) || (UNIT_CATTRIBUTES(unit) & CA_BOSS)) { // only player units / bosses can start with wep locked weps 
+	if ((IsUnitAlliedOrPlayable(unit)) || (UNIT_CATTRIBUTES(unit) & CA_BOSS)) { // only player units / bosses can start with wep locked weps 
 		if (attr & CA_LOCK_1) { badAttr &= ~IA_LOCK_1; } // "wep lock 1" 
 		if (attr & CA_LOCK_2) { badAttr &= ~IA_LOCK_2; } // myrm 
 		if (attr & CA_LOCK_3) { badAttr &= ~IA_LOCK_3; } // manakete 
@@ -515,8 +530,8 @@ int RandNewWeapon(struct Unit* unit, int item, u8 noise[], int offset, u8 list[]
 			if (item == LOCKPICK) { return MakeNewItem(LOCKPICK); } // lockpick  
 		} 
 		// player units that start with a vuln/elixir keep it 
-		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == VULNERARY) { return MakeNewItem(VULNERARY); } }
-		if (UNIT_FACTION(unit) == FACTION_BLUE) { if (item == ELIXIR) { return MakeNewItem(ELIXIR); } }
+		if (IsUnitAlliedOrPlayable(unit)) { if (item == VULNERARY) { return MakeNewItem(VULNERARY); } }
+		if (IsUnitAlliedOrPlayable(unit)) { if (item == ELIXIR) { return MakeNewItem(ELIXIR); } }
 		u8 list2[MaxItems]; 
 		list2[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 		BuildSimilarPriceItemList(list2, item, true, false); 
@@ -639,7 +654,7 @@ s16 HashStat(int number, u8 noise[], int offset, int promoted) {
 int RandStat(struct Unit* unit, int stat, u8 noise[], int offset, int promoted) { 
 	if (!RandBitflagsA.base) { return stat; } 
 	int result = HashStat(stat, noise, offset, promoted); 
-	if (UNIT_FACTION(unit) == FACTION_BLUE) { // if below average player, reroll once 
+	if (IsUnitAlliedOrPlayable(unit)) { // if below average player, reroll once 
 		if (result < stat) { 
 			stat = HashStat(result, noise, offset+13, promoted); 
 			if (stat > result) { result = stat; } 
@@ -1009,7 +1024,10 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	if (gCh > 0xE) { if (max150percent == 1) { max150percent = 0; } } // Lyn mode + first 2 chs of eliwood/hector mode: nerf promoted units a little 
 	
     unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, max150percent);
-	if (unit->maxHP < 15) { unit->maxHP += 15; } 
+	if (IsUnitAlliedOrPlayable(unit)) { 
+		if (unit->maxHP < 15) { unit->maxHP += 15; } 
+	}
+	else { if (unit->maxHP < 5) { unit->maxHP += 5; } }
 	unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise, 25, max150percent);
     unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, noise, 35, max150percent);
     unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise, 45, max150percent);
@@ -1018,7 +1036,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->lck   = RandStat(unit, character->baseLck, noise, 75, max150percent);                           
 
 	unit->conBonus = 0; unit->movBonus = 0; 
-	if (UNIT_FACTION(unit) == FACTION_BLUE) { 
+	if (IsUnitAlliedOrPlayable(unit)) { 
 		unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
 		if (unit->pClassData->baseMov < 7) { 
 			unit->movBonus = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
