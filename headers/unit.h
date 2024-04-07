@@ -142,9 +142,14 @@ struct Unit
 
     /* 1A */ s8 conBonus;
     /* 1B */ u8 rescue;
+#ifdef FE6
+s8 movBonusA; // used 
+s8 movBonusB; // displayed on stat screen
+#endif 
+#ifndef FE6
     /* 1C */ u8 ballistaIndex;
     /* 1D */ s8 movBonus;
-
+#endif
     /* 1E */ u16 items[UNIT_ITEM_COUNT];
     /* 28 */ u8 ranks[8];
 
