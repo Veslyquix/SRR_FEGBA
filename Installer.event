@@ -476,6 +476,10 @@ SHORT $46C0
 ORG $8a5ce 
 BYTE $20 4 $e0 8 
 
+// AiGetConsumableAttemptId
+ORG $34a9A; SHORT $46C0 // any ai can use lockpick from 8034a60
+
+
 POP 
 #endif 
 
