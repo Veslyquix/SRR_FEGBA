@@ -1035,11 +1035,22 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise, 65, max150percent);
     unit->lck   = RandStat(unit, character->baseLck, noise, 75, max150percent);                           
 
+	#ifdef FE6 
+	unit->conBonus = 0; unit->movBonusA = 0; unit->movBonusB = 0;  
+	#endif 
+	#ifndef FE6 
 	unit->conBonus = 0; unit->movBonus = 0; 
+	#endif 
 	if (IsUnitAlliedOrPlayable(unit)) { 
 		unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
 		if (unit->pClassData->baseMov < 7) { 
+			#ifdef FE6 
+			unit->movBonusA = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
+			unit->movBonusB = unit->movBonusA; 
+			#endif 
+			#ifndef FE6 
 			unit->movBonus = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
+			#endif 
 		} 
 	} 
 
@@ -1520,8 +1531,17 @@ void UnitCheckStatCaps(struct Unit* unit) {
     if (unit->conBonus > (UNIT_CON_MAX(unit) - UNIT_CON_BASE(unit)))
         unit->conBonus = (UNIT_CON_MAX(unit) - UNIT_CON_BASE(unit));
 
+	#ifndef FE6 
     if (unit->movBonus > (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit)))
         unit->movBonus = (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit));
+	#endif 
+	#ifdef FE6 
+    if (unit->movBonusA > (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit)))
+        unit->movBonusA = (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit));
+    if (unit->movBonusB > (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit)))
+        unit->movBonusB = (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit));
+	#endif 
+	
 }
 
 

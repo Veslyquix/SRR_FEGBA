@@ -302,8 +302,12 @@ enum
 #define UNIT_MOV_BASE(aUnit) ((aUnit)->pClassData->baseMov)
 
 #define UNIT_CON(aUnit) (UNIT_CON_BASE(aUnit) + (aUnit)->conBonus)
+#ifdef FE6 
+#define UNIT_MOV(aUnit) ((aUnit)->movBonusA + UNIT_MOV_BASE(aUnit))
+#endif 
+#ifndef FE6 
 #define UNIT_MOV(aUnit) ((aUnit)->movBonus + UNIT_MOV_BASE(aUnit))
-
+#endif 
 const struct ClassData* GetClassData(int classId);
 const struct CharacterData* GetCharacterData(int charId);
 
