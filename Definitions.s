@@ -197,13 +197,9 @@ SET_DATA gBmMapTerrain, 0x202D208
 SET_DATA gProcScr_Shop, 0x8690F00
 SET_DATA sPrevHandClockFrame, 0x203C9D8
 SET_DATA sPrevHandScreenPosition, 0x203C9D4
-@SET_DATA gLCGRNValue, 0x3000008 
 SET_DATA gLCDControlBuffer, 0x30026B0
 SET_DATA ProcScr_GotItem, 0x85C4934 @ maybe 
-
-@SET_FUNC StartBlockingPrepShop, @ fe7 0x8098F71 
-
-@SET_DATA TacticianName, 
+SET_FUNC StartBlockingPrepShop, 0x8095df1
 .endif
 
 

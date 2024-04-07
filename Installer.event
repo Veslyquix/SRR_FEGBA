@@ -479,6 +479,10 @@ BYTE $20 4 $e0 8
 // AiGetConsumableAttemptId
 ORG $34a9A; SHORT $46C0 // any ai can use lockpick from 8034a60
 
+// fe6 hard mode store w/ translation 
+// 807ad6c calls 807a84c calls 807a59c calls 807a268 at 7a4f0 calls 79424 which sets shop existing or not 
+ORG $7943a 
+BYTE $20 // never hard mode for prep ? 
 
 POP 
 #endif 
