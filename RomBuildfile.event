@@ -62,10 +62,6 @@ POP
 ALIGN 4 
 CasualModeFlag:
 WORD 0x8C 
-MaxItems:
-WORD 0x7F
-MaxClasses:
-WORD 0x43 
 
 ALIGN 4 
 InvalidClassesList: 	// 4, 5, 6 are duplicate promoted lords 
@@ -155,10 +151,6 @@ ALIGN 4
 ALIGN 4 
 CasualModeFlag:
 WORD 0xA0 
-MaxItems:
-WORD 0x9E 
-MaxClasses:
-WORD 0x63 
 
 
 ALIGN 4 

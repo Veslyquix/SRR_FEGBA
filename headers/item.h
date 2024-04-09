@@ -138,7 +138,15 @@ int GetItemAttributes(int item);
 #define VULNERARY 0x6C
 #define ELIXIR 0x6D
 #endif
-
+struct Text {
+    u16 chr_position;
+    u8 x;
+    u8 colorId;
+    u8 tile_width;
+    s8 db_enabled;
+    u8 db_id;
+    u8 is_printing;
+};
 struct Font {
     /*0x00*/ u8 *vramDest;
              // pointer to table of glyph structs
@@ -149,7 +157,7 @@ struct Font {
              // of the list, and the list is traversed until a matching byte1 is found.
     /*0x04*/ struct Glyph **glyphs;
     /*0x08*/ void (*drawGlyph)(void *, struct Glyph *);
-    /*0x0C*/ void *(*get_draw_dest)(void *);
+    /*0x0C*/ void *(*get_draw_dest)(struct Text *);
     /*0x10*/ u16 tileref;
     /*0x12*/ u16 chr_counter;
     /*0x14*/ u16 palid;
@@ -205,15 +213,7 @@ enum {
 #define gold 3
 #define green 4
 #define black 5
-struct Text {
-    u16 chr_position;
-    u8 x;
-    u8 colorId;
-    u8 tile_width;
-    s8 db_enabled;
-    u8 db_id;
-    u8 is_printing;
-};
+
 // current unit 3004690
 struct KeyStatusBuffer {
     /* 00 */ u8 repeatDelay;     // initial delay before generating auto-repeat presses

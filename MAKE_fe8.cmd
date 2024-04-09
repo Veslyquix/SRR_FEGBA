@@ -8,7 +8,7 @@
 
 set "source_rom=%~dp0fe8.gba"
 
-set "main_event=%~dp0Installer.event"
+set "main_event=%~dp0RomBuildfile.event"
 
 set "target_rom=%~dp0fe8srr.gba"
 set "target_ups=%~dp0fe8srr.ups"

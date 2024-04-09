@@ -76,18 +76,17 @@ int GetMaxItems(void) {
 	if (MaxItems) { return MaxItems; } 
 	const struct ItemData* table = GetItemData(1); 
 	for (int i = 1; i < 255; i++) { 
-		if (table->number != i) { break; } 
+		if (table->number != i) { table--; break; } 
 		table++; 
 	} 
 	MaxItems = table->number; 
 	return table->number; 
 } 
 int GetMaxClasses(void) { 
-	//asm("mov r11, r11"); 
 	if (MaxClasses) { return MaxClasses; } 
 	const struct ClassData* table = GetClassData(1); 
 	for (int i = 1; i < 255; i++) { 
-		if (table->number != i) { break; } 
+		if (table->number != i) { table--; break; } 
 		table++; 
 	} 
 	MaxClasses = table->number; 
@@ -1804,7 +1803,7 @@ Max Growth: 100
 	
 	
 	#ifdef FE6 
-	int startId = 0xB6E + i; 
+	//int startId = 0xB6E + i; 
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 16-6, 1+((i-9)*2)), 9, 2, 0);
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 16, 1+((i-9)*2)), white, (proc->Option[0] * 5)); i++; 
 	//PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option0[proc->Option[0]]); i++; 
@@ -2233,7 +2232,7 @@ void StartConfigMenu(ProcPtr parent) {
 	} 
 } 
 
-
+ 
 // STAT SCREEN STUFF 
 extern void DrawStatWithBar(int num, int x, int y, int base, int total, int max); // 807FD28
 
