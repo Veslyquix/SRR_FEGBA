@@ -1,10 +1,31 @@
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+#endif 
 
+#include "Extensions/Hack Installation.txt" 
+#include "Extensions/ProcDefinitions.txt" 
 
 #include "Patches/FE8.lyn.event" 
 #include "Patches/FE8_AsmHooks.lyn.event" 
 
 
+ALIGN 4 
+CasualModeFlag:
+WORD 0xB0 
 
+
+ALIGN 4 
+InvalidClassesList: 	
+//BYTE 1
+BYTE 0 // Terminator 
+
+ALIGN 4 
+MaxItems_Link:
+WORD 0 // If 0, it'll read through your item editor and count 
+// until it finds an item with an ID that does not match (eg. says 0) 
+MaxClasses_Link:
+WORD 0 // If 0, it'll read through your class editor and count
+// until it finds a class with an ID that does not match (eg. says 0) 
 
 
 

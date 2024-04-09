@@ -71,8 +71,16 @@ extern struct RandomizerSettingsA RandBitflagsA;
 extern struct RandomizerSettingsB RandBitflagsB; 
 extern struct RandomizerValues RandValues; 
 extern u8 MaxItems; 
+extern int MaxItems_Link; 
 extern u8 MaxClasses; 
+extern int MaxClasses_Link; 
+
+u32 GetSeed(void) { 
+	return RandValues.seed; 
+} 
+
 int GetMaxItems(void) {  
+	if (MaxItems_Link) { return MaxItems_Link; } 
 	if (MaxItems) { return MaxItems; } 
 	const struct ItemData* table = GetItemData(1); 
 	for (int i = 1; i < 255; i++) { 
@@ -83,6 +91,7 @@ int GetMaxItems(void) {
 	return table->number; 
 } 
 int GetMaxClasses(void) { 
+	if (MaxClasses_Link) { return MaxClasses_Link; } 
 	if (MaxClasses) { return MaxClasses; } 
 	const struct ClassData* table = GetClassData(1); 
 	for (int i = 1; i < 255; i++) { 
@@ -1061,18 +1070,20 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	#ifndef FE6 
 	unit->conBonus = 0; unit->movBonus = 0; 
 	#endif 
-	if (IsUnitAlliedOrPlayable(unit)) { 
-		unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
-		if (unit->pClassData->baseMov < 7) { 
-			#ifdef FE6 
-			unit->movBonusA = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
-			unit->movBonusB = unit->movBonusA; 
-			#endif 
-			#ifndef FE6 
-			unit->movBonus = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
-			#endif 
+	if (RandBitflagsA.class) {
+		if (IsUnitAlliedOrPlayable(unit)) { 
+			unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
+			if (unit->pClassData->baseMov < 7) { 
+				#ifdef FE6 
+				unit->movBonusA = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
+				unit->movBonusB = unit->movBonusA; 
+				#endif 
+				#ifndef FE6 
+				unit->movBonus = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
+				#endif 
+			} 
 		} 
-	} 
+	}
 
 
 

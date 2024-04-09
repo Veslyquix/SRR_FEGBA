@@ -11,12 +11,6 @@
 	#endif 
 	ORG FreeSpace 
 #endif 
-#ifndef callHackNew 
-	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
-#endif 
-
-#include "Extensions/Hack Installation.txt" 
-#include "Extensions/ProcDefinitions.txt" 
 
 #ifdef _FE6_ 
 	#include ".FE6_Installer.event" 
@@ -36,16 +30,16 @@
 
 #ifdef _FE7_ 
 PUSH 
-ORG $CA7A44
-BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeEvent // CALL 
-
-ORG $C9A9AB; BYTE 1 // Start ch as dark 
-ORG $CAE038
-BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN EliwoodModeEvent  
-BYTE 0x89 0 0 0 // allow skipping 
-
-ORG $CAE610
-BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent 
+//ORG $CA7A44
+//BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeEvent // CALL 
+//
+//ORG $C9A9AB; BYTE 1 // Start ch as dark 
+//ORG $CAE038
+//BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN EliwoodModeEvent  
+//BYTE 0x89 0 0 0 // allow skipping 
+//
+//ORG $CAE610
+//BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeEvent 
 //ORG $CAE920
 //BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN HectorModeUnlockDoor
 ORG $CC8156; BYTE 0x69 0x6b // matthew gets door key and vuln 
@@ -213,10 +207,6 @@ BYTE 0xA 0 0 0; WORD 0 // ENDA
 
 
 
-ALIGN 4
-CasualMode:
-BYTE $10 $B4 $14 $1C $00 $F0 $13 $F8 $00 $28 $01 $D1 $05 $23 $00 $E0 $09 $23 $E0 $68 $05 $21 $C9 $43 $08 $40 $19 $1C $08 $43 $E0 $60 $20 $1C $06 $4B $00 $F0 $02 $F8 $10 $BC $05 $4B $18 $47 $00 $B5 $A0 $20 $04 $4B $FF $F7 $FA $FF $00 $BD $00 $00 $45 $68 $02 $08 $B3 $7E $01 $08 $F9 $98 $07 $08
-
 #endif // fe7 
 
 
@@ -226,9 +216,6 @@ PUSH
 // Nils min level for 19xx by Satel 
 ORG $7D252 
 BYTE 0 
-
-ORG $4F40 
-SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
 #endif // FE7 
 
 
