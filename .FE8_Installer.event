@@ -3,7 +3,9 @@
 #endif 
 
 #include "Extensions/Hack Installation.txt" 
-#include "Extensions/ProcDefinitions.txt" 
+#ifndef PROC_CALL_ROUTINE_2
+#define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
+#endif 
 
 #include "Patches/FE8.lyn.event" 
 #include "Patches/FE8_AsmHooks.lyn.event" 
@@ -12,7 +14,8 @@
 ALIGN 4 
 CasualModeFlag:
 WORD 0xB0 
-
+MinClassBase:
+WORD 0 // If true, stats won't go lower than class bases 
 
 ALIGN 4 
 InvalidClassesList: 	

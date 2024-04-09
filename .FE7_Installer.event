@@ -3,16 +3,23 @@
 #endif 
 
 #include "Extensions/Hack Installation.txt" 
-#include "Extensions/ProcDefinitions.txt" 
+#ifndef PROC_CALL_ROUTINE_2
+#define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
+#endif 
 
 #include "Patches/FE7.lyn.event" 
 #include "Patches/FE7_AsmHooks.lyn.event" 
 
+//#define TLP // to use this installer on TLP 
+
 ALIGN 4 
 CasualModeFlag:
 WORD 0xA0 
-
-//#define TLP // to use this installer on TLP 
+MinClassBase:
+#ifdef TLP 
+WORD 1 
+#endif 
+WORD 0 // If true, stats won't go lower than class bases 
 
 ALIGN 4 
 InvalidClassesList: 	// 4, 5, 6 are duplicate promoted lords 

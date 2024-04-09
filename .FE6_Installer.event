@@ -3,7 +3,9 @@
 #endif 
 
 #include "Extensions/Hack Installation.txt" 
-#include "Extensions/ProcDefinitions.txt" 
+#ifndef PROC_CALL_ROUTINE_2
+#define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
+#endif 
 
 #include "Patches/FE6.lyn.event" 
 #include "Patches/FE6_AsmHooks.lyn.event" 
@@ -26,6 +28,8 @@ WORD 0 // If 0, it'll read through your class editor and count
 ALIGN 4 
 CasualModeFlag:
 WORD 0x8C 
+MinClassBase:
+WORD 0 // If true, stats won't go lower than class bases 
 
 ALIGN 4 
 InvalidClassesList: 	// 4, 5, 6 are duplicate promoted lords 

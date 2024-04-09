@@ -696,7 +696,8 @@ s16 HashStat(int number, u8 noise[], int offset, int promoted) {
 	number = HashByPercent_Ch(number, noise, offset, promoted);
 	return number; 
 } 
-	
+
+extern int MinClassBase; 
 int RandStat(struct Unit* unit, int stat, u8 noise[], int offset, int promoted) { 
 	if (!RandBitflagsA.base) { return stat; } 
 	int result = HashStat(stat, noise, offset, promoted); 
@@ -1085,7 +1086,22 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise, 45, max150percent);
     unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, noise, 55, max150percent);
     unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise, 65, max150percent);
-    unit->lck   = RandStat(unit, character->baseLck, noise, 75, max150percent);                           
+    unit->lck   = RandStat(unit, character->baseLck, noise, 75, max150percent);    
+
+	if (MinClassBase) { 
+		int minStat = unit->pCharacterData->basePow + unit->pClassData->basePow; if (minStat < 0) { minStat = 0; } 
+		if (unit->pow < minStat) { unit->pow = minStat; } 
+		minStat = unit->pCharacterData->baseSkl + unit->pClassData->baseSkl; if (minStat < 0) { minStat = 0; } 
+		if (unit->skl < minStat) { unit->skl = minStat; } 
+		minStat = unit->pCharacterData->baseSpd + unit->pClassData->baseSpd; if (minStat < 0) { minStat = 0; } 
+		if (unit->spd < minStat) { unit->spd = minStat; } 
+		minStat = unit->pCharacterData->baseDef + unit->pClassData->baseDef; if (minStat < 0) { minStat = 0; } 
+		if (unit->def < minStat) { unit->def = minStat; } 
+		minStat = unit->pCharacterData->baseRes + unit->pClassData->baseRes; if (minStat < 0) { minStat = 0; } 
+		if (unit->res < minStat) { unit->res = minStat; } 
+		minStat = unit->pCharacterData->baseLck; if (minStat < 0) { minStat = 0; } 
+		if (unit->lck < minStat) { unit->lck = minStat; } 
+	}
 
 	#ifdef FE6 
 	unit->conBonus = 0; unit->movBonusA = 0; unit->movBonusB = 0;  
