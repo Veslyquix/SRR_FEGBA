@@ -12,20 +12,28 @@ ALIGN 4
 CasualModeFlag:
 WORD 0xA0 
 
+//#define TLP // to use this installer on TLP 
 
 ALIGN 4 
 InvalidClassesList: 	// 4, 5, 6 are duplicate promoted lords 
+#ifdef TLP 
+BYTE 0x4D 0x52 0x53 0x56 0 
+#endif 
 BYTE 0x4 0x5 0x6 0xB 0xF 0x11 0x15 0x17 0x19 0x1B 0x1F 0x25 0x29 0x2B 0x2f 0x31 0x35 0x37 0x3D 0x4D 0x52 0x53 0x56
 BYTE 0 // Terminator 
 
 
 ALIGN 4 
 MaxItems_Link: 
-WORD 0xDC // TLP 
+#ifdef TLP 
+WORD 0xDC 
+#endif 
 WORD 0 // If 0, it'll read through your item editor and count 
 // until it finds an item with an ID that does not match (eg. says 0) 
 MaxClasses_Link:
-WORD 0x5A // tlp 
+#ifdef TLP 
+WORD 0x5A 
+#endif 
 WORD 0 // If 0, it'll read through your class editor and count
 // until it finds a class with an ID that does not match (eg. says 0) 
 
@@ -40,10 +48,11 @@ ORG $17E9E // by Circles
 byte 0x00 0x00
 jumpToHack(CasualMode)
 
-
+#ifndef TLP 
 ORG $9E9FC // Select any mode on new game 
 // by Doesnt 
 BYTE $1F $20 $70 $47 
+#endif 
 
 //ORG $A06E2 
 //SHORT $46c0 $46c0 // don't reset game time on new game 

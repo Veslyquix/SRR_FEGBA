@@ -8,8 +8,12 @@
 #include "Patches/FE6.lyn.event" 
 #include "Patches/FE6_AsmHooks.lyn.event" 
 
-#define TextTable 0x833530
+//#define PROJECT_EMBER // to use this installer on project ember 
 
+#define TextTable 0x833530 
+#ifdef PROJECT_EMBER 
+#define TextTable 0x180A394
+#endif 
 
 ALIGN 4 
 MaxItems_Link:

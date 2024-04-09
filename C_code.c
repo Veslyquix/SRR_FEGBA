@@ -1056,7 +1056,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	if (IsUnitAlliedOrPlayable(unit)) { 
 		if (unit->maxHP < 15) { unit->maxHP += 15; } 
 	}
-	else { if (unit->maxHP < 5) { unit->maxHP += 5; } }
+	else { if (unit->maxHP < 10) { unit->maxHP += 10; } }
 	unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise, 25, max150percent);
     unit->skl   = RandStat(unit, character->baseSkl + unit->pClassData->baseSkl, noise, 35, max150percent);
     unit->spd   = RandStat(unit, character->baseSpd + unit->pClassData->baseSpd, noise, 45, max150percent);
