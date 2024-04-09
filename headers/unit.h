@@ -179,6 +179,7 @@ s8 movBonusB; // displayed on stat screen
     /* 47 */ u8 _u47;
 };
 
+#ifndef FE8 
 struct UnitDefinition // same as fe6 
 {
     /* 00 */ u8  charIndex;
@@ -199,6 +200,34 @@ struct UnitDefinition // same as fe6
 
     /* 0C */ u8 ai[4];
 };
+#endif 
+#ifdef FE8 
+struct UnitDefinition
+{
+    /* 00 */ u8  charIndex;
+    /* 01 */ u8  classIndex;
+    /* 02 */ u8  leaderCharIndex;
+
+    /* 03 */ u8  autolevel  : 1;
+    /* 03 */ u8  allegiance : 2;
+    /* 03 */ u8  level      : 5;
+
+    /* 04 */ u16 xPosition  : 6; /* 04:0 to 04:5 */
+    /* 04 */ u16 yPosition  : 6; /* 04:6 to 05:3 */
+    /* 05 */ u16 genMonster : 1; /* 05:4 */
+    /* 05 */ u16 itemDrop   : 1; /* 05:5 */
+    /* 05 */ u16 sumFlag    : 1; /* 05:6 */
+    /* 05 */ u16 unk_05_7   : 1; /* 05:7 */
+    /* 05 */ u16 extraData  : 8;
+    /* 07 */ u16 redaCount  : 8;
+
+    /* 08 */ const void * redas;
+
+    /* 0C */ u8 items[UNIT_DEFINITION_ITEM_COUNT];
+
+    /* 10 */ u8 ai[4];
+} BITPACKED;
+#endif 
 
 enum
 {

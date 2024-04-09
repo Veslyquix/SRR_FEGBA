@@ -7,7 +7,7 @@
 .equ FE7, false
 .equ FE8, true 
 
-.include "fe8.s"
+@.include "fe8.s"
 .include "Definitions.s" 
 
 

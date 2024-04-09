@@ -264,6 +264,9 @@ inline int IsUnitAlliedOrPlayable(struct Unit* unit) {
 	#ifdef FE7
 	if (uid < 0x3b) { result = true; } 
 	#endif 
+	#ifdef FE8
+	if (uid < 0x2d) { result = true; } 
+	#endif 
 	return result; 
 } 
 
@@ -502,6 +505,11 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 		if (table->descTextId == MONEYBAG_DESC) { // bags of gold description text id 
 			continue; 
 		} 
+		#ifdef FE8 
+		if (table->descTextId == 0x4AB) { // dummy item description text id 
+			continue; 
+		} 
+		#endif 
 		
 		uses = table->maxUses; 
 		int cost = table->costPerUse; 
@@ -602,7 +610,13 @@ struct GotItemPopupProc {
 #define PROC_TREE_7     ((ProcPtr) 7)
 #define PROC_IS_ROOT(aProc) ((uintptr_t)aProc <= (u32)PROC_TREE_7)
 extern struct ProcCmd ProcScr_GotItem[]; //8B91DC4
+
+#ifdef FE8 
+void NewPopup_ItemGot(ProcPtr parent, struct Unit *unit, u16 item) 
+#endif 
+#ifndef FE8 
 void NewPopup_ItemGot(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2 instead of r0 like fe8 
+#endif 
 {
     struct GotItemPopupProc *proc;
 
@@ -656,7 +670,9 @@ void NewPopup_GoldGot(int value, ProcPtr parent) // fe6 120D0
 void NewPopup_GoldGot(ProcPtr parent, struct Unit *unit, int value) // fe8 and fe6/fe7 have slightly different parameters / order 
 #endif 
 {
-	struct Unit *unit = gActiveUnit; // fe6 always does active unit here 
+	#ifndef FE8 
+	struct Unit *unit = gActiveUnit; // fe6 always does active unit here
+	#endif 
 	u8 noise[5] = {0, 0, 0, 0, 0}; 
 	noise[0] = unit->xPos; 
 	noise[1] = unit->yPos; 
@@ -984,8 +1000,14 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	unit->yPos = uDef->yPosition; 
 	u8 noise[6] = {0, 0, 0, 0, 0, 0};  // 1 extra so gCh is used 
 	noise[0] = unit->pCharacterData->number;
+	#ifndef FE8 
 	noise[1] = uDef->xMove; 
 	noise[2] = uDef->yMove;  
+	#endif 
+	#ifdef FE8 
+	noise[1] = uDef->xPosition; 
+	noise[2] = uDef->yPosition;  
+	#endif 
 	noise[3] = 0; 
 	noise[4] = 0; 
 	noise[5] = 0; 
@@ -1110,9 +1132,15 @@ void UnitLoadItemsFromDefinition(struct Unit* unit, const struct UnitDefinition*
 
     UnitClearInventory(unit);
 	u8 noise[5] = {0, 0, 0, 0, 0}; 
-	noise[0] = uDef->xMove; 
-	noise[1] = uDef->yMove; 
-	noise[2] = 0; 
+	noise[0] = unit->pCharacterData->number;
+	#ifndef FE8 
+	noise[1] = uDef->xMove; 
+	noise[2] = uDef->yMove;  
+	#endif 
+	#ifdef FE8 
+	noise[1] = uDef->xPosition; 
+	noise[2] = uDef->yPosition;  
+	#endif 
 	noise[3] = 0; 
 	u8 list[40]; 
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
@@ -2293,7 +2321,7 @@ void PrintDebugNumberToBG(int bg, int x, int y, int n) {
     }
 } 
 
-
+void DrawBarsOrGrowths(void); 
 // fe6: 80700a4 
 // in StatScreen_OnIdle in 808127C
 void StatScreenSelectLoop(ProcPtr proc) { 
@@ -2309,6 +2337,7 @@ void StatScreenSelectLoop(ProcPtr proc) {
 			if (!RandBitflagsB.disp) { RandBitflagsB.disp = 1; } 
 			else { RandBitflagsB.disp = 0; } 
 			StatScreen_Display(proc); 
+			DrawBarsOrGrowths(); 
 		} // [202bc3d]!!
 
 } 
@@ -2427,6 +2456,8 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 		}
 		else { 
 		#ifndef FE6 
+		//TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x15, 3), 9, 2, 0);
+		//ClearBg0Bg1(); 
 		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
 		#endif 
 		#ifdef FE6
@@ -2461,11 +2492,15 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 		} 
 	} 
 	//PutDrawText(gStatScreen.text + 21,   gUiTmScratchA + TILEMAP_INDEX(1, 0x12),  white, 0, 12, "SRR v1.01   Seed:");
+	extern int VramDest_DebugFont; 
 	#ifdef FE6 
 	SetupDebugFontForBG(0, 0x5400);
 	#endif 
 	#ifdef FE7 
 	SetupDebugFontForBG(0, 0x3000);
+	#endif 
+	#ifdef FE8 
+	SetupDebugFontForBG(0, VramDest_DebugFont);
 	#endif 
 	PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
 	//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x12), white, RandValues.seed);
@@ -2921,7 +2956,8 @@ extern int GetItemUseEffect(int item); // 801743C
 
     } 
 }
- 
+
+//#ifndef FE8 
 s8 AiGetChestUnlockItemSlot(u8* out) { // 8036A8C
     int i;
 
@@ -3002,6 +3038,7 @@ s8 CanUnitUseLockpickItem(struct Unit* unit) // 80273B8
 
     return TRUE;
 }
+//#endif 
 s8 IsItemDisplayUsable(struct Unit* unit, int item) { // 8016AB0
     if (GetItemAttributes(item) & 1 ) // wep 
         return CanUnitUseWeapon(unit, item);

@@ -282,6 +282,156 @@ POP
 
 #endif // _FE7_ 
 
+#ifdef _FE8_ 
+
+
+// Disable tutorial by 7743 
+PUSH
+ORG 0x0E120
+BYTE 0x00 0x00
+
+
+//Skip very begining world map
+ORG $A39768
+EVBIT_MODIFY 0x1
+SKIPWN
+ENDA
+
+// Skip health & safety, logo etc. by 7743 
+ORG 0x0C6714
+BYTE 0xC0 0x46
+
+ORG 0x0CBDF6 
+BYTE 0xC0 0x46
+
+
+ORG 0xC6714 
+BYTE 0xC0 0x46 
+
+ORG 0x0CC20C
+BYTE 0x00 0x00	
+
+ORG 0x0CBDE2
+BYTE 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+
+
+ 
+// Skip difficulty selection by 7743 
+
+ORG 0xAC3E0
+//BYTE 0x00 0x22 0x00 0x23 0x2A 0x21 0x42 0x54 0x3D 0x21 0x43 0x54 0x70 0x47 // Easy
+BYTE 0x01 0x22 0x00 0x23 0x2A 0x21 0x42 0x54 0x3D 0x21 0x43 0x54 0x70 0x47 // Normal 
+//BYTE 0x02 0x22 0x00 0x23 0x2A 0x21 0x42 0x54 0x3D 0x21 0x43 0x54 0x70 0x47 // Hard
+
+
+
+//Set Default Options
+ORG $30d8a  //animations type 2
+SHORT $3306
+ORG $30da6  //Game/text speed Fast, Autocursor off
+SHORT $22d0
+
+//Fix Stone's map animation crashing no$ due to a bad decompression
+ORG $7E2B4
+BYTE 0x8
+
+//Make the Add trap data routine have a check to prevent writing past the limit
+ORG $2E2B8
+SHORT 0xB470 0x4C07 0x4D07 0x3408 0x42AC 0xD806 0x78A6 0x2E00 0xD1F9 0x7020 0x7061 0x70A2 0x70E3 0x1C20 0xBC70 0x4770 0xA60C 0x0203 0xA814 0x0203
+
+// make BWL not ignore units with no affinity 
+ORG $A4D12 
+SHORT $46c0 
+
+//Hold A to speed up movement (credit Gryz)
+ORG $794ee
+SHORT 0
+
+
+//Unlock Sound Room songs
+  ORG $aede0
+  BYTE $FF
+
+//CG Fade glitch
+  ORG $EBCA
+  BYTE 8
+  ORG $EDE0
+  SHORT $1c0a
+
+//Enemy Control Glitch Fix (Credits to Brendor, Eebit)
+  ORG 0x377A2
+  SHORT 0x46C0 0x46C0
+
+//Mode Coefficient EXP fix (credit Vennobennu)
+  ORG 0x2C474
+  WORD 0
+
+//Skip Intro and Class Roll (otherwise pre-battle anims will crash this)
+  ORG $c63ad
+  BYTE $e0
+
+// Fix proc names not being cleared (Stan)
+ORG $002C9E
+  SHORT $6129 $2026 $5429 $3002 $5429
+
+// Fix CAM1/CAMERA2 going out of bounds (Stan)
+ORG $015D52
+  BYTE 14
+ORG $015D66
+  BYTE 9
+
+// Don't draw portrait on item select menu if unit is generic (hypergammaspaces)
+ORG $22BE8
+  SHORT $6808 $88C0 $2800
+  
+/*
+// AI heatmap caching/optimization (7743) - reduces AI lag by ~66%
+ORG $3E320
+BYTE $F0 $B5 $5F $46 $56 $46 $4D $46 $44 $46 $F0 $B4 $33 $4C $A2 $46 $33 $48 $00 $68 $83 $46 $54 $46 $20 $68 $00 $28 $52 $D0 $C2 $68 $30 $4B $1A $42 $4E $D1 $58 $46 $C0 $7A $E1 $7A $E6 $F7 $1E $FD $00 $28 $47 $D1 $00 $20 $81 $46 $1E $21 $65 $18 $0A $21 $6E $18 $07 $1C $80 $46 $29 $88 $00 $29 $10 $D0 $88 $46 $20 $1C $D8 $F7 $01 $F9 $01 $28 $06 $D1 $40 $46 $D9 $F7 $30 $F9 $B8 $42 $01 $DB $07 $1C $C1 $46 $B5 $42 $01 $DA $02 $35 $EB $E7 $48 $46 $00 $28 $28 $D0 $58 $46 $21 $1C $4A $46 $FC $F7 $7A $FC $01 $28 $21 $D1 $20 $1C $49 $46 $FD $F7 $D8 $F8 $20 $1C $DA $F7 $01 $FF $3F $18 $7F $10 $15 $48 $04 $68 $15 $48 $05 $68 $15 $4B $18 $88 $80 $46 $5E $88 $00 $2E $0E $D0 $01 $3E $43 $46 $00 $2B $F9 $D0 $01 $3B $B2 $00 $A0 $58 $C0 $5C $00 $28 $F7 $D0 $A8 $58 $C1 $5C $C9 $19 $C1 $54 $F2 $E7 $48 $20 $82 $44 $0A $48 $82 $45 $A3 $DB $FF $BC $80 $46 $89 $46 $92 $46 $9B $46 $01 $BC $00 $47 $4C $BE $02 $02 $50 $4E $00 $03 $0D $10 $00 $00 $E4 $E4 $02 $02 $F0 $E4 $02 $02 $D4 $E4 $02 $02 $B4 $E3 $02 $02
+*/
+
+//Add a check for r0=0 in the decompression routine so that no$gba doesn't crash when trying to decompress something it shouldn't (Tequila)
+ORG $12F52
+  SHORT $2800 $D014 $22FA $0612 $1852 $4B0A $2501 $429A $D800 $2500 $4A09 $7803 $24F0 $4023 $08DB $195B $009B $18D2 $6812 $46C0 $46C0
+
+#include "Extensions/Hack Installation.txt"
+//Anti-Huffman Patch, by Hextator and Nintenlord
+{
+ORG 0x2BA4 //Pointer Tester
+BYTE 0x00 0xB5 0xC2 0x0F 0x02 0xD0 
+BL(uncompHelper) /*0x07 0xF0 0x63 0xFB*/
+SHORT 0xE001
+BL(compressedHelper) /*0x07 0xF0 0x58 0xFB*/
+SHORT 0xBD00
+
+
+
+ORG 0xA24A
+BYTE 0x05 0xD0 0x04 0x49 0x28 0x1C 0x00 0xF0 0x16 0xF8 0x35 0x60 0x00 0xE0 0x01 0x48 0x70 0xBC 0x00 0xBD 0x00 0x00 
+WORD 0x0202A6AC
+
+compressedHelper:
+SHORT 0xB500 0x4A02 0x6812
+BL(0xD18C8) //In-game unencoding routine, I assume
+SHORT 0xBD00 
+WORD 0x03004150
+
+uncompHelper:
+jumpToHack(AntiHuffmanFreeSpace) //FEditor uses r2 instead of r3, but it shouldn't matter.
+
+ORG $A244 
+SHORT $46c0 $46c0 $46c0 $46c0 // Vesly added 
+ORG $A254 
+SHORT $46C0 
+
+ORG 0x464470
+AntiHuffmanFreeSpace: //Can be relocated as necessary.
+BYTE 0x80 0x23 0x1B 0x06 0xC0 0x1A 0x02 0x78 0x0A 0x70 0x01 0x31 0x01 0x30 0x00 0x2A 0xF9 0xD1 0x70 0x47
+}
+
+#endif // _FE8_ 
+
+
 ALIGN 32 
 WORD 0 0 0 0 0 0 0 0 
 

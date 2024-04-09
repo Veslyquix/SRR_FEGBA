@@ -27,11 +27,46 @@ MaxClasses_Link:
 WORD 0 // If 0, it'll read through your class editor and count
 // until it finds a class with an ID that does not match (eg. says 0) 
 
+VramDest_DebugFont: 
+WORD 0x2400 
 
 
 PUSH 
-ORG $A20A18
+ORG $A20390
 PROC_CALL_ROUTINE_2(FE8_StartDifficultySelection)
+
+
+
+
+ORG $2059b4 // Don't draw "mov" 
+BYTE $84 $3C $00 $02 $FE $3F $00 $02 $03 $00 $00 $00 $A8 $11 $A0 $08
+ORG $205a04; WORD 0 0 0 0
+
+ORG $871Ea // in 8087184 T DisplayPage0
+FILL($8731E - $871Ea) // nop out the vanilla draw bar stuff 
+ORG $871F0 // our new version 
+callHackNew(DrawBarsOrGrowths) 
+
+ORG $88888 // in 808873c T StatScreen_OnIdle
+FILL($888A8 - $88888)
+ORG $88888
+SHORT $1C28 $1C28
+callHackNew(StatScreenSelectLoop)
+
+ORG $5739E 
+SHORT $2100 // always use generic palette (by Vesly) 
+
+// in BuildBestMovementScript 
+// Fix REDA / MOVE from crashing on impassible terrain 
+ORG 0x01A77E; // fe8 version 
+BYTE 0xFF 0x2D 0x29 0xDA 0x02 0x99 0x08 0x70 0x04 0x9B 0x02 0x93
+
+ORG $409D0 // WARNING: this might cause ai to steal from you? 
+SHORT $46c0 // allow use of lockpick for any ai? 
+
+ORG $37D4
+SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
+
 POP 
 
 

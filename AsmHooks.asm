@@ -128,9 +128,15 @@ bx r1
 FE8_StartDifficultySelection: 
 push {r4, lr} 
 mov r4, r0 
-blh 0x80AD5B4 @ SaveMenu_Something_LCD_Registers 
+blh 0x80AA031
+
+bl GetSeed 
+cmp r0, #0 
+bne ExitFe8 
+
 mov r0, r4 
 bl StartConfigMenu
+ExitFe8: 
 mov r0, #0 
 pop {r4}  
 pop {r1} 

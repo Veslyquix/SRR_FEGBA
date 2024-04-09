@@ -1,4 +1,8 @@
-@.include "fe8.s" 
+
+
+.if FE8 == true 
+.include "fe8.s" 
+.endif 
 
 .macro SET_FUNC name, value
 	.global \name
@@ -58,6 +62,27 @@ SET_DATA SaveMenuProc, 0x8A200B8 @ fe8
 SET_DATA DifficultySelectionProc, 0x8A20A10 @ fe8 
 SET_FUNC SaveMenuStartBlockingProc, 0x80AC3E1 @ fe8  
 SET_FUNC SetupBackgrounds, 0x8001B59
+
+dat 0x085921C8, ProcScr_Popup
+dat 0x08592228, ProcScr_PopupUpdateIcon
+dat 0x08592230, PopupSrc_GotItem
+dat 0x08592288, PopupSrc_ItemWasPilfered
+dat 0x085922D0, ProcScr_GotItem
+dat 0x08592300, PopupScr_GotGold
+dat 0x08592348, PopupScr_GoldWasStole
+SET_FUNC UnitLoadStatsFromCharacter, 0x8017e35 
+SET_FUNC __aeabi_idiv,    __divsi3
+SET_FUNC __aeabi_idivmod, __modsi3
+SET_FUNC Div, __divsi3
+SET_FUNC Mod, __modsi3
+SET_DATA RandBitflagsA, 0x203EC28 @ PlaySt + 0x1B (unk, 1 bytes) @ saved on suspend 
+SET_DATA RandBitflagsB, 0x203EC29 @ PlaySt + 0x1F (unk, 1 bytes) @ saved on suspend 
+SET_DATA RandValues, 0x203EC24 @ enemy unitID + 0x3a BWL data
+SET_DATA MaxItems, 0x203EC2A @ BWL + 0x3a
+SET_DATA MaxClasses, 0x203EC2B
+SET_DATA weatherId, 0x202BD05
+SET_DATA gPlaySt, 0x202BCF0
+SET_DATA gCh, 0x202BCFE
 .endif 
 
 
