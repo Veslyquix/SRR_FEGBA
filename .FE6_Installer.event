@@ -1,0 +1,182 @@
+#include "Patches/FE6.lyn.event" 
+#include "Patches/FE6_AsmHooks.lyn.event" 
+
+#define TextTable 0x833530
+
+ALIGN 4 
+CasualModeFlag:
+WORD 0x8C 
+
+ALIGN 4 
+InvalidClassesList: 	// 4, 5, 6 are duplicate promoted lords 
+BYTE 3 5 7 9 0xD 0xF 0x11 0x13 0x15 0x1B 0x1D 0x1F 0x21 0x23 0x27 0x29 0x2D 0x2F 0x35 
+BYTE 0 // Terminator 
+
+
+ALIGN 4 
+VarianceText: 
+BYTE 0x5D 0x8F 0x9C 0x2D 0xC8 0x7C 0x2F 00 0 0 
+BaseStatsText: 
+BYTE 0x3D 0x64 0x7D 0x9A 0xB9 0xF8 0xEA 0x05 0x00 0x00
+GrowthsText: 
+BYTE 0x5D 0x1C 0xB5 0x7D 0xAC 0x5E 0x00 0x00
+StatCapsText: 
+BYTE 0xCD 0x5C 0x3C 0x2C 0x4A 0x67 0xF5 0x02 0x00 0x00
+ClassText: 
+BYTE 0x2C 0x16 0x59 0xAB 0x17 0x00 0x00 0x00
+ItemsText: 
+BYTE 0x6D 0xFF 0x7A 0xF5 0x02 0x00 0x00
+EnemyDiffBonusText: 
+BYTE 0xA4 0xF0 0x6B 0x10 0x6B 0x9B 0x20 0x6E 0x7A 0x28 0xF2 0xD5 0x0B 0x00 0x00 0x00
+ModeText: 
+BYTE 0x64 0x14 0x7E 0x2F 0x00 0x00 0x00 0x00
+SeedText: 
+BYTE 0xCD 0xFE 0x61 0x2F 0x00 0x00 00 00 00 00 
+
+VanillaText:
+BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 0x00 0x00 0x00 0x00 0x00 0x00 
+RandomText:
+BYTE 0xFD 0x09 0x42 0xAD 0x7B 0x01 0x00 0x00 0x00 0x00 0x00 0x00 
+ZeroPercentText: 
+BYTE 0xC6 0xA1 0x7F 0x2F 0x98 0xEB 0x05 0x00 0x00 0x00 0x00 0x00 0x00 
+OneHundredPercentText:
+BYTE 0x2C 0xA8 0x71 0x30 0x0E 0xFD 0x7B 0xC1 0x5C 0x2F 0x00 0x00 0x00 0x00 0x00 0x00 
+Always30Text: 
+BYTE 0x24 0xC5 0x16 0xB0 0x62 0x3D 0x33 0x0E 0xBD 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+FounditemsonlyText:
+BYTE 0xA4 0x29 0x47 0x98 0xED 0x5F 0xAF 0x28 0x16 0xD0 0x0B 0x00 0x00 0x00 0x00 0x00
+ItemstatsonlyText:
+BYTE 0x6D 0xFF 0x3A 0xCB 0xC5 0x57 0x14 0x0B 0xE8 0x05 0x00 0x00
+ClassicText:
+BYTE 0x2C 0x16 0x59 0x6B 0x33 0xBD 0x00 0x00 0x00 0x00 0x00 0x00
+CasualText:
+BYTE 0x2C 0xCA 0xE2 0x52 0x7A 0x01 0x00 0x00 0x00 0x00 0x00 0x00
+MovText:
+BYTE $64 $94 $DD $0B $00 $00 $00 $00 
+HpText:
+BYTE $C6 $9A $EB $05 $00 $00 $00 $00 
+MinusText: 
+BYTE $FD $7B $71 $91 $5E $00 $00 $00 $00 // _ 
+//BYTE $D6 $E9 $05 $00 $00 $00 $00 $00 // - 
+
+
+#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
+#define setTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
+ALIGN 4 
+setTextWithHuffman(0xB6E, VarianceText)
+setTextWithHuffman(0xB6F, BaseStatsText)
+setTextWithHuffman(0xB70, GrowthsText)
+setTextWithHuffman(0xB71, StatCapsText)
+setTextWithHuffman(0xB72, ClassText)
+setTextWithHuffman(0xB73, ItemsText)
+setTextWithHuffman(0xB74, EnemyDiffBonusText)
+setTextWithHuffman(0xB75, ModeText)
+setTextWithHuffman(0xB76, SeedText)
+setTextWithHuffman(0xB77, VanillaText)
+setTextWithHuffman(0xB78, RandomText)
+setTextWithHuffman(0xB79, ZeroPercentText)
+setTextWithHuffman(0xB7A, OneHundredPercentText)
+setTextWithHuffman(0xB7B, Always30Text)
+setTextWithHuffman(0xB7C, FounditemsonlyText)
+setTextWithHuffman(0xB7D, ItemstatsonlyText)
+setTextWithHuffman(0xB7E, ClassicText)
+setTextWithHuffman(0xB7F, CasualText)
+setTextWithHuffman(0xB80, MovText)
+setTextWithHuffman(0xB81, HpText)
+setTextWithHuffman(0xB82, MinusText)
+
+
+PUSH 
+
+// roy can seize? 
+//Character Editor  (UnitFE6Form) @01 Roy2024-04-04 8:24:40 PM
+ORG $6076D0
+BYTE  $EC $07 $B9 $04 $01 $01 $02 $00 $00 $01 $01 $01 $00 $02 $02 $03 $00 $00 $07 $00 $00 $00 $00 $00 $00 $00 $00 $00 $50 $28 $32 $28 $19 $1E $3C $01 $01 $00 $00 $1F $00 $20 $01 $00 $98 $20 $66 $08;
+
+ORG $6D0F0 // from 6D0E4
+SHORT $2100 // No equipped item during Roy's forced promotion 
+
+ORG $1F524 
+jumpToHack(FE6_SeizeCantoFix) 
+
+
+ORG $4EC4 
+SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
+
+ORG $17BEC
+  jumpToHack(CasualMode)
+  
+ORG $28f72 // in 28ef0
+SHORT $22c0 $4311 // default game/text speed fast 
+
+ORG $4a4b0
+SHORT $2000 // always use generic palette (by Vesly) 
+
+// in 8019600 BuildBestMovementScript 
+// Fix REDA / MOVE from crashing on impassible terrain 
+// by 7743 - ported to fe6 by Vesly 
+//ORG 0x01A77E; // fe8 version 
+ORG 0x19738 // fe6 
+// looks like code is the same except it uses r6 instead of r5 for something (so we do byte 0x2E instead of 0x2D below) 
+// branch is also 3 lines later, so 0xDA2C 
+BYTE 0xFF 0x2E 0x2C 0xDA 0x02 0x99 0x08 0x70 0x04 0x9B 0x02 0x93
+SHORT $4667 $46c0 $46c0 // I think this is right but I'm not 100% convinced, oh well 
+
+//in 83193ec T gStatScreenPersonalInfoLabelsInfo
+ORG $31943c // Don't draw "mov" 
+BYTE $90 $31 $00 $02 $0A $35 $00 $02 $03 $00 $00 $00 $58 $7E $67 $08
+ORG $31948c; WORD 0 0 0 0
+// data at 31943c for drawing mov is usually "68 31 00 02 8A 32 00 02 03 00 00 00 18 7E 67 08" 
+
+
+// in 806ED34 
+ORG $6EDB2 
+FILL($6eeF0 - $6EDB2) // nop out the vanilla draw bar stuff 
+
+ORG $6eec4 // our new version 
+callHackNew(DrawBarsOrGrowths) 
+SHORT $46c0 
+
+// in 80700A4
+ORG $70200
+FILL($70220 - $70200)
+
+ORG $70200
+SHORT $1C28
+SHORT $46c0 
+callHackNew(StatScreenSelectLoop)
+
+// merlinus show anim 
+ORG $49ACE
+BYTE $ff
+ORG $49AD8
+BYTE $FF 
+
+ORG $8874C; SHORT $46C0 // hard selectable from new game by 7743 
+
+
+// AiGetConsumableAttemptId
+ORG $34a9A; SHORT $46C0 // any ai can use lockpick from 8034a60
+
+// fe6 hard mode store w/ translation 
+// 807ad6c calls 807a84c calls 807a59c calls 807a268 at 7a4f0 calls 79424 which sets shop existing or not 
+ORG $7943a 
+BYTE $20 // never hard mode for prep ? 
+
+
+// Antihuffman 
+ORG 0x384c;  BYTE $03 $B5 $02 $B0 $C2 $0F $00 $2A $01 $D0 $05 $4A $97 $46 $03 $4A $12 $68 $9A $F0 $5B $FB $01 $BC $00 $47 $00 $00 $80 $37 $00 $03 $60 $C4 $2D $08
+ORG $2dc460; BYTE $80 $23 $1B $06 $C0 $1A $02 $78 $0A $70 $01 $31 $01 $30 $00 $2A $F9 $D1 $01 $4A $97 $46 $00 $00 $62 $38 $00 $08
+
+// in A200B8 fe8 / CE3C54 fe7 / 
+//a20164
+//8CE4930
+ORG $68A08C//$68C30C //68A09C
+PROC_CALL_ROUTINE_2(FE6_StartDifficultySelection)
+POP 
+
+ALIGN 4 
+CasualMode: 
+BYTE $10 $B4 $0C $1C $00 $F0 $13 $F8 $00 $28 $01 $D1 $05 $23 $00 $E0 $09 $23 $E0 $68 $05 $21 $C9 $43 $08 $40 $19 $1C $08 $43 $E0 $60 $20 $1C $06 $4B $00 $F0 $02 $F8 $10 $BC $05 $4B $18 $47 $00 $B5 $8C $20 $04 $4B $FF $F7 $FA $FF $00 $BD $00 $00 $61 $2C $02 $08 $FF $7B $01 $08 $5D $BA $06 $08
+
+

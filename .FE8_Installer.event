@@ -1,0 +1,18 @@
+
+
+#include "Patches/FE8.lyn.event" 
+#include "Patches/FE8_AsmHooks.lyn.event" 
+
+
+
+
+
+
+PUSH 
+ORG $A20A18
+PROC_CALL_ROUTINE_2(FE8_StartDifficultySelection)
+POP 
+
+
+
+
