@@ -70,6 +70,30 @@ struct RandomizerValues {
 extern struct RandomizerSettingsA RandBitflagsA; 
 extern struct RandomizerSettingsB RandBitflagsB; 
 extern struct RandomizerValues RandValues; 
+extern u8 MaxItems; 
+extern u8 MaxClasses; 
+int GetMaxItems(void) {  
+	if (MaxItems) { return MaxItems; } 
+	const struct ItemData* table = GetItemData(1); 
+	for (int i = 1; i < 255; i++) { 
+		if (table->number != i) { break; } 
+		table++; 
+	} 
+	MaxItems = table->number; 
+	return table->number; 
+} 
+int GetMaxClasses(void) { 
+	//asm("mov r11, r11"); 
+	if (MaxClasses) { return MaxClasses; } 
+	const struct ClassData* table = GetClassData(1); 
+	for (int i = 1; i < 255; i++) { 
+		if (table->number != i) { break; } 
+		table++; 
+	} 
+	MaxClasses = table->number; 
+	return table->number; 
+} 
+
 
 int NextSeededRN(u16* currentRN) {
     // This generates a pseudorandom string of 16 bits
@@ -237,7 +261,7 @@ inline int IsUnitAlliedOrPlayable(struct Unit* unit) {
 
 // Random: 
 // Class, Growths, Base stats, Caps, Item Stats, Chest items 
-extern struct ItemData* GetItemData(int item);
+
 
 int GetItemMight(int item) { 
 	item &= 0xFF; 
@@ -273,9 +297,6 @@ int GetItemWeight(int item) {
 
 //extern bool UnitAddItem(struct Unit* unit, int item);
 
-
-extern int MaxItems; 
-extern int MaxClasses; 
 extern u8 InvalidClassesList[]; 
 
 inline int IsClassInvalid(int i) { 
@@ -295,7 +316,7 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	// 0x56 fallen warrior has axes 
 	// no playable manaketes in fe7, but otherwise units without wexp but 
 	// have monster lock could be possibility 
-	for (int i = 1; i <= MaxClasses; i++) { 
+	for (int i = 1; i <= GetMaxClasses(); i++) { 
 
 		if (IsClassInvalid(i)) { continue; } 
 		const struct ClassData* table = GetClassData(i); 
@@ -329,7 +350,7 @@ int RandClass(int id, u8 noise[], struct Unit* unit) {
 	if (!RandBitflagsA.class) { return id; } 
 	int allegiance = (unit->index)>>6;
 	//if (allegiance && (id == 0x3C)) { return id; } 
-	u8 list[MaxClasses]; 
+	u8 list[255]; 
 	list[0] = 99; 
 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
 	 
@@ -402,7 +423,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	list[0] = 0; // count  
 	
 	
-	for (int i = 1; i <= MaxItems; i++) { 
+	for (int i = 1; i <= GetMaxItems(); i++) { 
 		table = GetItemData(i);  
 		attr = table->attributes; 
 		
@@ -455,7 +476,7 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 	originalPrice = originalPrice * uses; 
 	// up to 500% price + 200 
 	list[0] = 0; // count 
-	for (int i = 1; i <= MaxItems; i++) { 
+	for (int i = 1; i <= GetMaxItems(); i++) { 
 		table = GetItemData(i);  		
 		if (table->attributes & badAttr) { // must not be equippable/staff 
 			continue; 
@@ -494,7 +515,7 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 int RandNewItem(int item, u8 noise[], int offset, int costReq, int varyByCh) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
-	u8 list[MaxItems]; 
+	u8 list[255]; 
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	int c; 
 	BuildSimilarPriceItemList(list, item, false, costReq); 
@@ -532,7 +553,7 @@ int RandNewWeapon(struct Unit* unit, int item, u8 noise[], int offset, u8 list[]
 		// player units that start with a vuln/elixir keep it 
 		if (IsUnitAlliedOrPlayable(unit)) { if (item == VULNERARY) { return MakeNewItem(VULNERARY); } }
 		if (IsUnitAlliedOrPlayable(unit)) { if (item == ELIXIR) { return MakeNewItem(ELIXIR); } }
-		u8 list2[MaxItems]; 
+		u8 list2[255]; 
 		list2[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 		BuildSimilarPriceItemList(list2, item, true, false); 
 		if (list2[0]) { 
@@ -999,7 +1020,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		} 
     }
 
-	u8 list[MaxItems]; 
+	u8 list[255]; 
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	BuildAvailableWeaponList(list, unit); 
 	
@@ -2777,11 +2798,13 @@ const s8* GetUnitDefaultMovementCost(struct Unit* unit) {
 	
     switch (weatherId) {
 
+#ifndef FE6 
     case 4:
 		return unit->pClassData->pMovCostTable[1]; 
 	case 2:
     case 1:
 		return unit->pClassData->pMovCostTable[2]; 
+#endif 
         
     default:
     } 
@@ -2843,12 +2866,13 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 	//} 
     switch (weatherId) {
 
+#ifndef FE6 
     case 4:
 		return unit->pClassData->pMovCostTable[1]; 
 	case 2:
     case 1:
 		return unit->pClassData->pMovCostTable[2]; 
-        
+#endif 
     default:
     } 
 	return unit->pClassData->pMovCostTable[0];

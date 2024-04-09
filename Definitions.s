@@ -190,6 +190,8 @@ SET_DATA gActiveUnit, 0x30044B0
 SET_DATA RandBitflagsA, 0x202AA63 @ PlaySt + 0x1B (unk, 1 bytes) @ saved on suspend 
 SET_DATA RandBitflagsB, 0x202AA67 @ PlaySt + 0x1F (unk, 1 bytes) @ saved on suspend 
 SET_DATA RandValues, 0x203D974 @ Bandit unitID + 0x45 BWL data
+SET_DATA MaxItems, 0x203D978 @ BWL + 0x45 
+SET_DATA MaxClasses, 0x203D979
 SET_DATA weatherId, 0x202AA5D
 SET_DATA gPlaySt, 0x202AA48
 SET_DATA gCh, 0x202AA56
@@ -335,6 +337,8 @@ SET_DATA weatherId, 0x202BC0D
 SET_DATA RandBitflagsA, 0x202BC16 @ GameOptions + 0x1E (unk, 2 bytes) 
 SET_DATA RandBitflagsB, 0x202BC17 @ GameOptions + 0x1E (unk, 2 bytes) 
 SET_DATA RandValues, 0x202BC3C @ GameOptions + 0x44 (unk, 4 bytes) 
+SET_DATA MaxItems, 0x203eb34 @ BWL + 0x3a Bramimond +4
+SET_DATA MaxClasses, 0x203eb35
 
 SET_DATA gPlaySt, 0x202BBF8
 SET_DATA gCh, 0x202BC06

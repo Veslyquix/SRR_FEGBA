@@ -27,7 +27,9 @@ struct ItemData
     /* 1D */ u8  iconId;
     /* 1E */ u8  useEffectId;
     /* 1F */ u8  weaponEffectId;
+	#ifndef FE6 
     /* 20 */ u8  weaponExp;
+	#endif 
 };
 
 enum {
@@ -71,7 +73,7 @@ enum {
     //IA_LOCK_ANY = (IA_LOCK_0 | IA_LOCK_1 | IA_LOCK_2 | IA_LOCK_3 | IA_LOCK_4 | IA_LOCK_5 | IA_LOCK_6 | IA_LOCK_7 | IA_UNUSABLE)
 };
 
-
+extern struct ItemData* GetItemData(int item);
 s8 UnitAddItem(struct Unit* unit, int item);
 void UnitClearInventory(struct Unit* unit);
 int MakeNewItem(int item);
