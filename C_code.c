@@ -505,6 +505,7 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 		if (table->descTextId == MONEYBAG_DESC) { // bags of gold description text id 
 			continue; 
 		} 
+		if (!table->nameTextId) { continue; }
 		#ifdef FE8 
 		if (table->descTextId == 0x4AB) { // dummy item description text id 
 			continue; 
@@ -2352,7 +2353,7 @@ void DrawGrowthWithDifference(int x, int y, int base, int modified)
     PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 2, y));
 }
 
-// 
+extern int VramDest_DebugFont; 
 void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6 
     // displaying str/mag stat value
 	int barsOrGrowths = RandBitflagsB.disp; 
@@ -2492,7 +2493,7 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 		} 
 	} 
 	//PutDrawText(gStatScreen.text + 21,   gUiTmScratchA + TILEMAP_INDEX(1, 0x12),  white, 0, 12, "SRR v1.01   Seed:");
-	extern int VramDest_DebugFont; 
+
 	#ifdef FE6 
 	SetupDebugFontForBG(0, 0x5400);
 	#endif 
