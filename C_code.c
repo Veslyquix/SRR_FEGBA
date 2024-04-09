@@ -1,21 +1,21 @@
 
 
 #ifdef FE8 
-#include "include/prelude.h"
-#include "include/types.h"
+#include "headers/prelude.h"
+#include "headers/types.h"
 #endif 
 
 #ifdef FE7 
-#include "include/prelude.h"
-#include "include/types.h"
+#include "headers/prelude.h"
+#include "headers/types.h"
 #endif 
 
 #ifdef FE6
-#include "include/prelude.h"
-#include "include/types.h"
+#include "headers/prelude.h"
+#include "headers/types.h"
 #endif 
 
-
+ 
 #include "headers/gbafe.h" 
 #define PUREFUNC __attribute__((pure))
 #define ARMFUNC __attribute__((target("arm")))
@@ -66,7 +66,7 @@ struct RandomizerValues {
 
 
 
-
+ 
 extern struct RandomizerSettingsA RandBitflagsA; 
 extern struct RandomizerSettingsB RandBitflagsB; 
 extern struct RandomizerValues RandValues; 
