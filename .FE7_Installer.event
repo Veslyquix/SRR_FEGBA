@@ -69,6 +69,15 @@ NeverChangeIntoClass(0x53)
 NeverChangeIntoClass(0x56)
 
 
+ALIGN 4 
+ShopText:
+String("Shop"); BYTE 0 
+
+#define TextTable 0xB808AC // same in TLP 
+#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
+setText(0x1260, ShopText) 
+
+
 
 ALIGN 4 
 MaxItems_Link: 
@@ -105,7 +114,7 @@ BYTE $1F $20 $70 $47
 //SHORT $46c0 $46c0 // don't reset game time on new game 
 
 ORG $2FA48 // fe7 
-callHackNew(DroppableItemHook) // enemies in fe6 do not drop items, so unnecessary there 
+callHackNew(DroppableItemHook_FE7) // enemies in fe6 do not drop items, so unnecessary there 
 
 ORG $2DFCA // Default game speed option to fast by 7743 ported by Vesly  
 BYTE $d0 $22

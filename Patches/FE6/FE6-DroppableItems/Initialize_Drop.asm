@@ -71,9 +71,10 @@ add		r0,#0x1C
 ldrh	r1,[r7,r0]
 mov		r0,r5
 mov		r2,r8
-ldr		r3,=0x80121F4		@handles the 'item given' routine, I think
-mov		r14,r3
-.short	0xF800
+@ldr		r3,=0x80121F4		@handles the 'item given' routine, I think
+@mov		r14,r3
+@.short	0xF800
+bl NewPopup_ItemGot_NoRand
 mov		r0,#0
 b		GoBack
 RetOne:

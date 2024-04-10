@@ -17,6 +17,7 @@
 .endm
 
 .if FE6 == true 
+SET_FUNC memset, 0x0809F9F1
 SET_DATA SaveMenuProc, 0x0 @ fe6
 SET_DATA DifficultySelectionProc, 0x868A09C @ fe6
 SET_FUNC SaveMenuStartBlockingProc, 0x8089551 @ fe6 
@@ -39,6 +40,7 @@ SET_FUNC NewPopup_GoldGot, 0x80120D1
 
 .endif 
 .if FE7 == true 
+SET_FUNC memset, 0x080BFFF9
 SET_DATA SaveMenuProc, 0x8CE3C54 @ fe7 
 SET_DATA DifficultySelectionProc, 0x8CE4930 @ fe7 
 SET_FUNC SaveMenuStartBlockingProc, 0x80A8665 @ fe7 
@@ -62,6 +64,10 @@ SET_DATA SaveMenuProc, 0x8A200B8 @ fe8
 SET_DATA DifficultySelectionProc, 0x8A20A10 @ fe8 
 SET_FUNC SaveMenuStartBlockingProc, 0x80AC3E1 @ fe8  
 SET_FUNC SetupBackgrounds, 0x8001B59
+
+SET_FUNC StartBlockingPrepVendor, 0x80B41E1
+SET_FUNC StartBlockingPrepArmory, 0x80B4201
+SET_FUNC StartBlockingPrepSecret, 0x80B4211
 
 dat 0x085921C8, ProcScr_Popup
 dat 0x08592228, ProcScr_PopupUpdateIcon

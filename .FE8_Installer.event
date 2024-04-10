@@ -55,20 +55,22 @@ NeverChangeFromItem(0x6C) // Vulnerary
 NeverChangeIntoItem(0xB5) // Stone 
 NeverChangeClass(0x66) // Demon King 
 
-NeverChangeChar(1)
-NeverChangeChar(0x68)
+NeverChangeIntoClass(0x10) // Some mercenary thing 
+
+//NeverChangeChar(1)
+//NeverChangeChar(0x68)
 
 
 
 VramDest_DebugFont: 
-//WORD 0x3400
-WORD 0x4800
+WORD 0x4800 // in glowy 
 
 PUSH 
 ORG $A20390
 PROC_CALL_ROUTINE_2(FE8_StartDifficultySelection)
 
-
+ORG $115CC 
+jumpToHack(DroppableItemHook_FE8) 
 
 
 ORG $2059b4 // Don't draw "mov" 

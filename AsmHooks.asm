@@ -4,9 +4,9 @@
   mov lr, \reg
   .short 0xf800
 .endm
-.global DroppableItemHook
-.type DroppableItemHook, %function 
-DroppableItemHook: 
+.global DroppableItemHook_FE7
+.type DroppableItemHook_FE7, %function 
+DroppableItemHook_FE7: 
 lsr r1, #0x10 
 ldr r2, [sp] 
 mov r0, r2 
@@ -17,6 +17,17 @@ pop {r0}
 bx r0 
 .ltorg 
 
+.global DroppableItemHook_FE8
+.type DroppableItemHook_FE8, %function 
+DroppableItemHook_FE8: 
+mov r0, r4 
+mov r1, r5 
+push {lr} 
+bl NewPopup_ItemGot_NoRand
+pop {r0} 
+ldr r3, =0x80115d5 
+bx r3
+.ltorg 
 
 .global MaybeUseGenericPalette_FE6
 .type MaybeUseGenericPalette_FE6, %function 

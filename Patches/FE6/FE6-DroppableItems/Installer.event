@@ -64,7 +64,7 @@
 	
 	ALIGN 4
 	Initialize_Drop:
-	#incbin "Initialize_Drop.dmp"
+	#include "Initialize_Drop.lyn.event"
 	POIN Can_Drop_Item
 	
 	ALIGN 4
