@@ -18,20 +18,73 @@ bx r0
 .ltorg 
 
 
-@.global SaveMenuStartBlockingProc
-@.type SaveMenuStartBlockingProc, %function 
-@SaveMenuStartBlockingProc: 
-@push {lr} 
-@mov r1, r0 
-@ldr r0, =DifficultySelectionProc
-@
-@blh Proc_StartBlocking
-@add r0,  #0x42 
-@mov r1, #0 
-@strb r1, [r0] 
-@pop {r0} 
-@bx r0 
-@.ltorg 
+.global MaybeUseGenericPalette_FE6
+.type MaybeUseGenericPalette_FE6, %function 
+MaybeUseGenericPalette_FE6: 
+push {lr} 
+add r2, #0x23 
+add r2, r0 
+ldrb r0, [r2] 
+
+push {r0} 
+bl AreClassesRandomized
+mov r1, r0 
+pop {r0} 
+cmp r1, #0 
+beq VanillaClassPaletteMethod_FE6 
+mov r0, #0 @ always 0 if classes are randomized 
+VanillaClassPaletteMethod_FE6: 
+sub r0, #1 
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global MaybeUseGenericPalette_FE7
+.type MaybeUseGenericPalette_FE7, %function 
+MaybeUseGenericPalette_FE7: 
+push {lr} 
+mov r1, #1 
+and r0, r1 
+add r2, #0x23 
+add r2, r0 
+ldrb r0, [r2] 
+
+push {r0, r3} 
+bl AreClassesRandomized
+mov r1, r0 
+pop {r0, r3} 
+cmp r1, #0 
+beq VanillaClassPaletteMethod_FE7 
+mov r0, #0 @ always 0 if classes are randomized 
+VanillaClassPaletteMethod_FE7: 
+strh r0, [r3] 
+sub r0, #1 
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global MaybeUseGenericPalette_FE8
+.type MaybeUseGenericPalette_FE8, %function 
+MaybeUseGenericPalette_FE8: 
+push {lr} 
+add r1, r2 
+ldrb r1, [r1] 
+
+push {r0, r1} 
+bl AreClassesRandomized
+mov r2, r0 
+pop {r0, r1} 
+cmp r2, #0 
+beq VanillaClassPaletteMethod_FE8 
+mov r1, #0 @ always 0 if classes are randomized 
+VanillaClassPaletteMethod_FE8: 
+
+sub r1, #1 
+strh r1, [r0, #2] 
+pop {r3} 
+ldr r3, =0x80573A5 
+bx r3 
+.ltorg 
 
 .global FE6_SeizeCantoFix
 .type FE6_SeizeCantoFix, %function 

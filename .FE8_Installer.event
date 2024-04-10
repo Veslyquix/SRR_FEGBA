@@ -16,11 +16,8 @@ CasualModeFlag:
 WORD 0xB0 
 MinClassBase:
 WORD 0 // If true, stats won't go lower than class bases 
-
-ALIGN 4 
-InvalidClassesList: 	
-//BYTE 1
-BYTE 0 // Terminator 
+WepLockExInstalled:
+WORD 1 // Make this true if you use a Weapon Lock Expansion hack 
 
 ALIGN 4 
 MaxItems_Link:
@@ -30,9 +27,42 @@ MaxClasses_Link:
 WORD 0 // If 0, it'll read through your class editor and count
 // until it finds a class with an ID that does not match (eg. says 0) 
 
-VramDest_DebugFont: 
-WORD 0x2400 
 
+#define NeverChangeFromItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1; POP" 
+#define NeverChangeIntoItem(id) "PUSH; ORG ItemExceptions + (id * 2) + 1; BYTE 1; POP" 
+#define NeverChangeItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
+
+#define NeverChangeFromClass(id) "PUSH; ORG ClassExceptions + (id * 2); BYTE 1; POP" 
+#define NeverChangeIntoClass(id) "PUSH; ORG ClassExceptions + (id * 2) + 1; BYTE 1; POP" 
+#define NeverChangeClass(id) "PUSH; ORG ClassExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
+
+#define NeverChangeChar(id) "PUSH; ORG CharExceptions + (id * 2); BYTE 1 1; POP" 
+
+
+ALIGN 4 
+ItemExceptions:
+FILL(256*2)
+ALIGN 4 
+ClassExceptions:
+FILL(256*2)
+ALIGN 4 
+CharExceptions: // 
+FILL(256*2) 
+
+
+ 
+NeverChangeFromItem(0x6C) // Vulnerary 
+NeverChangeIntoItem(0xB5) // Stone 
+NeverChangeClass(0x66) // Demon King 
+
+NeverChangeChar(1)
+NeverChangeChar(0x68)
+
+
+
+VramDest_DebugFont: 
+//WORD 0x3400
+WORD 0x4800
 
 PUSH 
 ORG $A20390
@@ -56,8 +86,10 @@ ORG $88888
 SHORT $1C28 $1C28
 callHackNew(StatScreenSelectLoop)
 
-ORG $5739E 
-SHORT $2100 // always use generic palette (by Vesly) 
+ORG $5739C 
+jumpToHack(MaybeUseGenericPalette_FE8)
+//ORG $5739E 
+//SHORT $2100 // always use generic palette (by Vesly) 
 
 // in BuildBestMovementScript 
 // Fix REDA / MOVE from crashing on impassible terrain 

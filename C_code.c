@@ -63,9 +63,6 @@ struct RandomizerValues {
 	u32 variance : 5; // up to 5*31 / 100% 
 	u32 bonus : 5; // up to +31 / +20 levels 
 }; 
-
-
-
  
 extern struct RandomizerSettingsA RandBitflagsA; 
 extern struct RandomizerSettingsB RandBitflagsB; 
@@ -75,8 +72,34 @@ extern int MaxItems_Link;
 extern u8 MaxClasses; 
 extern int MaxClasses_Link; 
 
+struct ExceptionsStruct { 
+	u8 NeverChangeFrom; 
+	u8 NeverChangeInto; 
+}; 
+extern struct ExceptionsStruct ItemExceptions[]; 
+extern struct ExceptionsStruct ClassExceptions[]; 
+extern struct ExceptionsStruct CharExceptions[]; 
+
+
+inline int IsClassInvalid(int i) { 
+	return ClassExceptions[i].NeverChangeInto;
+} 
+int ShouldRandomizeGrowth(struct Unit* unit) { 
+	if (!RandBitflagsA.growth) { return false; } 
+	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
+}
+int ShouldRandomizeStatCaps(struct Unit* unit) { 
+	if (!RandBitflagsA.caps) { return false; } 
+	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
+}
+
+
 u32 GetSeed(void) { 
 	return RandValues.seed; 
+} 
+int AreClassesRandomized(struct Unit* unit) { 
+	if (!RandBitflagsA.class) { return false; } 
+	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 } 
 
 int GetMaxItems(void) {  
@@ -237,6 +260,7 @@ s16 HashByPercent(int number, u8 noise[], int offset){
 
 s16 HashMight(int number, u8 noise[]) { 
 	if (!RandBitflagsA.itemStats) { return number; } 
+	if (number == 255) { return number; } // eclipse 
 	return HashByPercent(number, noise, 0)+2; 
 } 
 s16 HashHit(int number, u8 noise[]) { 
@@ -247,6 +271,7 @@ s16 HashHit(int number, u8 noise[]) {
 } 
 s16 HashCrit(int number, u8 noise[]) { 
 	if (!RandBitflagsA.itemStats) { return number; } 
+	if (number == 255) { return number; } // weps that cannot crit  
 	return HashByPercent(number, noise, 0); 
 } 
 s16 HashWeight(int number, u8 noise[]) { 
@@ -308,14 +333,6 @@ int GetItemWeight(int item) {
 
 //extern bool UnitAddItem(struct Unit* unit, int item);
 
-extern u8 InvalidClassesList[]; 
-
-inline int IsClassInvalid(int i) { 
-	for (int c = 0; c < 255; c++) { 
-		if (InvalidClassesList[c] == i) { return true; } 
-	} 
-	return false; 
-} 
 
 u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	
@@ -358,7 +375,8 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 } 
 
 int RandClass(int id, u8 noise[], struct Unit* unit) { 
-	if (!RandBitflagsA.class) { return id; } 
+	if (!AreClassesRandomized(unit)) { return id; } 
+	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	int allegiance = (unit->index)>>6;
 	//if (allegiance && (id == 0x3C)) { return id; } 
 	u8 list[255]; 
@@ -396,6 +414,8 @@ int GetUsedWexpMask(struct Unit* unit) {
 	return result; 
 } 
 
+extern int WepLockExInstalled; 
+
 u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) { 
 	int wexpMask = GetUsedWexpMask(unit); // only goes up to dark wexp 
 	
@@ -430,15 +450,22 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	ranks[5] = unit->ranks[5]; 
 	ranks[6] = unit->ranks[6]; 
 	ranks[7] = unit->ranks[7]; 
+	int doWeHaveNonStaff = ranks[0] | ranks[1] | ranks[2] | ranks[3] | ranks[5] | ranks[6] | ranks[7];
+	if (doWeHaveNonStaff) { ranks[4] = 0; doWeHaveNonStaff = 0; } // do not include staves at first 
+	else { doWeHaveNonStaff = IA_STAFF; asm("mov r11, r11"); } 
 	
 	list[0] = 0; // count  
 	
+	#ifdef FE8 
+	//if (WepLockExInstalled) { badAttr = IA_UNCOUNTERABLE; } 
+	#endif 
 	
 	for (int i = 1; i <= GetMaxItems(); i++) { 
+		if (ItemExceptions[i].NeverChangeInto) { continue; } 
 		table = GetItemData(i);  
 		attr = table->attributes; 
 		
-		if ((attr & badAttr) || (!(attr & (IA_WEAPON|IA_STAFF)))) { // must be equippable or a staff 
+		if ((attr & badAttr) || (!(attr & (IA_WEAPON|doWeHaveNonStaff)))) { // must be equippable (or a staff if we have no other weapons) 
 			continue; 
 		} 
 		
@@ -467,11 +494,73 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 				continue; 
 			} 
 		} 
+		#ifdef FE8 
+		if (WepLockExInstalled) { 
+			if (attr & IA_STAFF) { if (!CanUnitUseStaff(unit, i)) { continue; } } 
+			else if (!CanUnitUseWeapon(unit, i)) { continue; } 
+		} 
+		#endif 
 		list[0]++; 
 		list[list[0]] = i; 
 	}
 	return list; 
 } 
+
+u8* AppendAvailableStaffList(u8 list[], struct Unit* unit) { 
+	int wexpMask = GetUsedWexpMask(unit); // only goes up to dark wexp 
+	// iterate through all items 
+	struct ItemData* table; 
+	int rank, type, attr;
+	
+
+	u8 ranks[8]; 
+	ranks[0] = unit->ranks[0]; 
+	ranks[1] = unit->ranks[1]; 
+	ranks[2] = unit->ranks[2]; 
+	ranks[3] = unit->ranks[3]; 
+	ranks[4] = unit->ranks[4]; 
+	ranks[5] = unit->ranks[5]; 
+	ranks[6] = unit->ranks[6]; 
+	ranks[7] = unit->ranks[7]; 
+	int doWeHaveNonStaff = ranks[0] | ranks[1] | ranks[2] | ranks[3] | ranks[5] | ranks[6] | ranks[7];
+	if (!doWeHaveNonStaff) { return list; } // only append staves if we had other weapon ranks before 
+	if (!ranks[4]) { return list; } // we cannot use staves 
+	for (int i = 1; i <= GetMaxItems(); i++) { 
+		if (ItemExceptions[i].NeverChangeInto) { continue; } 
+		table = GetItemData(i);  
+		attr = table->attributes; 
+		
+		if (!(attr & IA_STAFF)) { // must be staff
+			continue; 
+		} 
+		
+		
+		rank = table->weaponRank;
+
+		if (!rank) { rank = 1; } // PRFs require at least 1 wexp in that type 
+		// otherwise units can get PRFs that they don't have animations for 
+		if (rank > ranks[4]) { // staves 
+			continue; 
+		} 
+		
+		
+		type = 1<<(4); // now bitmask only 
+		if (rank) { 
+			if (!(type & wexpMask)) { 
+				continue; 
+			} 
+		} 
+		#ifdef FE8 
+		if (WepLockExInstalled) { 
+			if (!CanUnitUseStaff(unit, i)) { continue; } 
+		} 
+		#endif 
+		list[0]++; 
+		list[list[0]] = i; 
+	}
+	return list; 
+} 
+
 
 u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) { 
 	
@@ -488,6 +577,7 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 	// up to 500% price + 200 
 	list[0] = 0; // count 
 	for (int i = 1; i <= GetMaxItems(); i++) { 
+		if (ItemExceptions[i].NeverChangeInto) { continue; } 
 		table = GetItemData(i);  		
 		if (table->attributes & badAttr) { // must not be equippable/staff 
 			continue; 
@@ -532,6 +622,7 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 int RandNewItem(int item, u8 noise[], int offset, int costReq, int varyByCh) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
+	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
 	u8 list[255]; 
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	int c; 
@@ -553,7 +644,8 @@ int RandNewItem(int item, u8 noise[], int offset, int costReq, int varyByCh) {
 int RandNewWeapon(struct Unit* unit, int item, u8 noise[], int offset, u8 list[]) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
-	if (!RandBitflagsA.class) { return MakeNewItem(item); } 
+	if (!AreClassesRandomized(unit)) { return MakeNewItem(item); } 
+	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
 	//int wexpMask = GetValidWexpMask(unit); 
 	int c; 
 	
@@ -700,6 +792,7 @@ s16 HashStat(int number, u8 noise[], int offset, int promoted) {
 extern int MinClassBase; 
 int RandStat(struct Unit* unit, int stat, u8 noise[], int offset, int promoted) { 
 	if (!RandBitflagsA.base) { return stat; } 
+	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	int result = HashStat(stat, noise, offset, promoted); 
 	if (IsUnitAlliedOrPlayable(unit)) { // if below average player, reroll once 
 		if (result < stat) { 
@@ -726,7 +819,7 @@ int GetGrowthModifiers(struct Unit* unit) {
 int GetClassHPGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthHP; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(growth, noise, 11);  
@@ -738,7 +831,7 @@ int GetClassHPGrowth(struct Unit* unit, int modifiersBool) {
 int GetClassPowGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthPow; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number;  
 	int result = HashByPercent(growth, noise, 21); 
@@ -750,7 +843,7 @@ int GetClassPowGrowth(struct Unit* unit, int modifiersBool) {
 int GetClassSklGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthSkl; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(growth, noise, 31);  
@@ -762,7 +855,7 @@ int GetClassSklGrowth(struct Unit* unit, int modifiersBool) {
 int GetClassSpdGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthSpd; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(growth, noise, 41); 
@@ -774,7 +867,7 @@ int GetClassSpdGrowth(struct Unit* unit, int modifiersBool) {
 int GetClassDefGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthDef; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(growth, noise, 51); 
@@ -786,7 +879,7 @@ int GetClassDefGrowth(struct Unit* unit, int modifiersBool) {
 int GetClassResGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthRes; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(growth, noise, 61); 
@@ -798,7 +891,7 @@ int GetClassResGrowth(struct Unit* unit, int modifiersBool) {
 int GetClassLckGrowth(struct Unit* unit, int modifiersBool) { 
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
 	growth += unit->pClassData->growthLck; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(growth, noise, 71); 
@@ -816,7 +909,7 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthHP; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth + add; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflagsA.growth == 3)) { return 100; } // 100% growths 
@@ -839,7 +932,7 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthPow; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth + add; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflagsA.growth == 3)) { return 100; } // 100% growths 
@@ -861,7 +954,7 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthSkl; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth + add; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflagsA.growth == 3)) { return 100; } // 100% growths 
@@ -883,7 +976,7 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthSpd; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth + add; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflagsA.growth == 3)) { return 100; } // 100% growths 
@@ -905,7 +998,7 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthDef; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth + add; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflagsA.growth == 3)) { return 100; } // 100% growths 
@@ -927,7 +1020,7 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthRes; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth + add; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflagsA.growth == 3)) { return 100; } // 100% growths 
@@ -949,7 +1042,7 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	growth += unit->pCharacterData->growthLck; 
-	if ((!RandBitflagsA.growth) || (!modifiersBool)) { return growth + add; } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflagsA.growth == 3)) { return 100; } // 100% growths 
@@ -995,19 +1088,20 @@ s8 CanBattleUnitGainLevels(struct BattleUnit* bu) {
 #endif 
 const s8 MovModifiers[] = { 0, 0, 0, 0, 0, 1, 1, 2, 0 } ; 
 const s8 ConModifiers[] = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0 } ; 
+
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
     unit->level = uDef->level;
 	unit->xPos = uDef->xPosition;
 	unit->yPos = uDef->yPosition; 
 	u8 noise[6] = {0, 0, 0, 0, 0, 0};  // 1 extra so gCh is used 
-	noise[0] = unit->pCharacterData->number;
+	noise[1] = unit->pCharacterData->number;
 	#ifndef FE8 
-	noise[1] = uDef->xMove; 
+	noise[0] = uDef->xMove<<5; 
 	noise[2] = uDef->yMove;  
 	#endif 
 	#ifdef FE8 
-	noise[1] = uDef->xPosition; 
+	noise[0] = uDef->xPosition<<5; 
 	noise[2] = uDef->yPosition;  
 	#endif 
 	noise[3] = 0; 
@@ -1026,7 +1120,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	int personalWexp = 0; 
 	noise[0] = unit->pClassData->number; 
 	tmp = 0; 
-	if (RandBitflagsA.class) { 
+	if (AreClassesRandomized(unit)) { 
 		for (int c = 0; c < 8; ++c) { 
 			tmp = unit->pCharacterData->baseRanks[c]; 
 			if (tmp > personalWexp) { personalWexp = tmp; } 
@@ -1046,7 +1140,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 			// flux is D rank, not E... 
 		}
 		
-		if (!RandBitflagsA.class) { 
+		if (!AreClassesRandomized(unit)) { 
 			if (unit->pCharacterData->baseRanks[i]) { // original
 				unit->ranks[i] = unit->pCharacterData->baseRanks[i]; } 
 		} 
@@ -1058,6 +1152,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	
 	
 	for (int i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
+	if (i == 1) { AppendAvailableStaffList(list, unit); } // first item will always be a weapon if possible 
 	UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise, i, list)); }
 
     unit->ai1 = uDef->ai[0];
@@ -1109,7 +1204,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	#ifndef FE6 
 	unit->conBonus = 0; unit->movBonus = 0; 
 	#endif 
-	if (RandBitflagsA.class) {
+	if (AreClassesRandomized(unit)) {
 		if (IsUnitAlliedOrPlayable(unit)) { 
 			unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
 			if (unit->pClassData->baseMov < 7) { 
@@ -1163,6 +1258,7 @@ void UnitLoadItemsFromDefinition(struct Unit* unit, const struct UnitDefinition*
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	BuildAvailableWeaponList(list, unit); 
     for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
+		if (i == 1) { AppendAvailableStaffList(list, unit); } // first item will always be a weapon if possible 
         UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise, i, list));
 	}
 }
@@ -1182,7 +1278,7 @@ int GetUnitMaxHP(struct Unit* unit) { return 60; }
 
 int GetUnitMaxPow(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxPow); //return cap;
-	if (!RandBitflagsA.caps) { return cap; } 
+	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number;  
@@ -1194,7 +1290,7 @@ int GetUnitMaxPow(struct Unit* unit) {
 
 int GetUnitMaxSkl(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxSkl); //return cap;
-	if (!RandBitflagsA.caps) { return cap; } 
+	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
@@ -1206,7 +1302,7 @@ int GetUnitMaxSkl(struct Unit* unit) {
 
 int GetUnitMaxSpd(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxSpd); //return cap;
-	if (!RandBitflagsA.caps) { return cap; } 
+	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
@@ -1218,7 +1314,7 @@ int GetUnitMaxSpd(struct Unit* unit) {
 
 int GetUnitMaxDef(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxDef); //return cap;
-	if (!RandBitflagsA.caps) { return cap; } 
+	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0};  
 	noise[0] = unit->pClassData->number; 
@@ -1230,7 +1326,7 @@ int GetUnitMaxDef(struct Unit* unit) {
 
 int GetUnitMaxRes(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxRes); //return cap;
-	if (!RandBitflagsA.caps) { return cap; } 
+	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
@@ -1242,7 +1338,7 @@ int GetUnitMaxRes(struct Unit* unit) {
 
 int GetUnitMaxLck(struct Unit* unit) { 
 	int cap = 30;
-	if (!RandBitflagsA.caps) { return cap; } 
+	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	if (RandBitflagsA.caps == 2) { return 30; } 
 	u8 noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
@@ -2940,16 +3036,7 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 	return unit->pClassData->pMovCostTable[0];
 }
 
-extern int GetUnitItemCount(struct Unit* unit); // 80176DC
-extern int GetItemIndex(int item); // 80171B4
-extern int GetUnitItemSlot(struct Unit* unit, int itemIndex); // 8016D0C
-extern int GetItemAttributes(int item); // 801727C 
-extern s8 CanUnitUseChestKeyItem(struct Unit * unit); // 8027354
-extern s8 CanUnitUseDoorKeyItem(struct Unit * unit); // 8027390
-extern s8 CanUnitOpenBridge(struct Unit * unit); // 80273A4
-extern s8 CanUnitUseStaff(struct Unit* unit, int item); // 80163D4
-extern s8 CanUnitUseWeapon (struct Unit* unit, int item); // 80161A4
-extern int GetItemUseEffect(int item); // 801743C
+
 
  s8 IsItemDanceRing(int item) {
 	#ifdef FE6 

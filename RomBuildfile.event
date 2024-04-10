@@ -285,8 +285,12 @@ POP
 #ifdef _FE8_ 
 
 
-// Disable tutorial by 7743 
 PUSH
+ORG $8B3C35 
+BYTE 1 2 3 // Eirika items 
+
+
+// Disable tutorial by 7743 
 ORG 0x0E120
 BYTE 0x00 0x00
 

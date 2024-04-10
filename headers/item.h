@@ -80,6 +80,16 @@ int MakeNewItem(int item);
 s8 CanUnitUseWeapon(struct Unit* unit, int item);
 
 int GetItemAttributes(int item);
+extern int GetUnitItemCount(struct Unit* unit); // 80176DC
+extern int GetItemIndex(int item); // 80171B4
+extern int GetUnitItemSlot(struct Unit* unit, int itemIndex); // 8016D0C
+extern int GetItemAttributes(int item); // 801727C 
+extern s8 CanUnitUseChestKeyItem(struct Unit * unit); // 8027354
+extern s8 CanUnitUseDoorKeyItem(struct Unit * unit); // 8027390
+extern s8 CanUnitOpenBridge(struct Unit * unit); // 80273A4
+extern s8 CanUnitUseStaff(struct Unit* unit, int item); // 80163D4
+extern s8 CanUnitUseWeapon (struct Unit* unit, int item); // 80161A4
+extern int GetItemUseEffect(int item); // 801743C
 
 #ifdef FE6
 #define MONEYBAG_DESC 0x61e

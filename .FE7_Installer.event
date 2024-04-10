@@ -21,13 +21,53 @@ WORD 1
 #endif 
 WORD 0 // If true, stats won't go lower than class bases 
 
+#define NeverChangeFromItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1; POP" 
+#define NeverChangeIntoItem(id) "PUSH; ORG ItemExceptions + (id * 2) + 1; BYTE 1; POP" 
+#define NeverChangeItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
+
+#define NeverChangeFromClass(id) "PUSH; ORG ClassExceptions + (id * 2); BYTE 1; POP" 
+#define NeverChangeIntoClass(id) "PUSH; ORG ClassExceptions + (id * 2) + 1; BYTE 1; POP" 
+#define NeverChangeClass(id) "PUSH; ORG ClassExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
+
+#define NeverChangeChar(id) "PUSH; ORG CharExceptions + (id * 2); BYTE 1 1; POP"
+
+
 ALIGN 4 
-InvalidClassesList: 	// 4, 5, 6 are duplicate promoted lords 
-#ifdef TLP 
-BYTE 0x4D 0x52 0x53 0x56 0 
+ItemExceptions:
+FILL(256*2)
+ALIGN 4 
+ClassExceptions:
+FILL(256*2)
+ALIGN 4 
+CharExceptions:
+FILL(256*2) 
+
+#ifndef TLP 
+NeverChangeIntoClass(4) // 4, 5, 6 are duplicate promoted lords 
+NeverChangeIntoClass(5)
+NeverChangeIntoClass(6)
+NeverChangeIntoClass(0xB)
+NeverChangeIntoClass(0xF)
+NeverChangeIntoClass(0x11)
+NeverChangeIntoClass(0x15)
+NeverChangeIntoClass(0x17)
+NeverChangeIntoClass(0x19)
+NeverChangeIntoClass(0x1B)
+NeverChangeIntoClass(0x1F)
+NeverChangeIntoClass(0x25)
+NeverChangeIntoClass(0x29)
+NeverChangeIntoClass(0x2B)
+NeverChangeIntoClass(0x2F)
+NeverChangeIntoClass(0x31)
+NeverChangeIntoClass(0x35)
+NeverChangeIntoClass(0x37)
+NeverChangeIntoClass(0x3D)
 #endif 
-BYTE 0x4 0x5 0x6 0xB 0xF 0x11 0x15 0x17 0x19 0x1B 0x1F 0x25 0x29 0x2B 0x2f 0x31 0x35 0x37 0x3D 0x4D 0x52 0x53 0x56
-BYTE 0 // Terminator 
+NeverChangeIntoClass(0x4D)
+NeverChangeIntoClass(0x52)
+NeverChangeIntoClass(0x53)
+NeverChangeIntoClass(0x56)
+
 
 
 ALIGN 4 
@@ -104,9 +144,11 @@ ORG $813E2
 SHORT $1C28
 callHackNew(StatScreenSelectLoop)
 
-
-ORG $53242 
-SHORT $2000 // always use generic palette (by Vesly) 
+#define jumpToHack_r1(offset) "BYTE 0x00 0x49 0x08 0x47; POIN (offset|0x1)"
+ORG $5323C 
+jumpToHack_r1(MaybeUseGenericPalette_FE7)
+//ORG $53242 
+//SHORT $2000 // always use generic palette (by Vesly) 
 
 // in 8019E5C BuildBestMovementScript 
 // Fix REDA / MOVE from crashing on impassible terrain 

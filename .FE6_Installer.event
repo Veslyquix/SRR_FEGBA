@@ -31,11 +31,46 @@ WORD 0x8C
 MinClassBase:
 WORD 0 // If true, stats won't go lower than class bases 
 
-ALIGN 4 
-InvalidClassesList: 	// 4, 5, 6 are duplicate promoted lords 
-BYTE 3 5 7 9 0xD 0xF 0x11 0x13 0x15 0x1B 0x1D 0x1F 0x21 0x23 0x27 0x29 0x2D 0x2F 0x35 
-BYTE 0 // Terminator 
+#define NeverChangeFromItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1; POP" 
+#define NeverChangeIntoItem(id) "PUSH; ORG ItemExceptions + (id * 2) + 1; BYTE 1; POP" 
+#define NeverChangeItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
 
+#define NeverChangeFromClass(id) "PUSH; ORG ClassExceptions + (id * 2); BYTE 1; POP" 
+#define NeverChangeIntoClass(id) "PUSH; ORG ClassExceptions + (id * 2) + 1; BYTE 1; POP" 
+#define NeverChangeClass(id) "PUSH; ORG ClassExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
+
+#define NeverChangeChar(id) "PUSH; ORG CharExceptions + (id * 2); BYTE 1 1; POP" 
+
+
+ALIGN 4 
+ItemExceptions:
+FILL(256*2)
+ALIGN 4 
+ClassExceptions:
+FILL(256*2)
+ALIGN 4 
+CharExceptions:
+FILL(256*2) 
+
+NeverChangeIntoClass(3)
+NeverChangeIntoClass(5)
+NeverChangeIntoClass(7)
+NeverChangeIntoClass(9)
+NeverChangeIntoClass(0xD)
+NeverChangeIntoClass(0xF)
+NeverChangeIntoClass(0x11)
+NeverChangeIntoClass(0x13)
+NeverChangeIntoClass(0x15)
+NeverChangeIntoClass(0x1B)
+NeverChangeIntoClass(0x1D)
+NeverChangeIntoClass(0x1F)
+NeverChangeIntoClass(0x21)
+NeverChangeIntoClass(0x23)
+NeverChangeIntoClass(0x27)
+NeverChangeIntoClass(0x29)
+NeverChangeIntoClass(0x2D)
+NeverChangeIntoClass(0x2F)
+NeverChangeIntoClass(0x35)
 
 ALIGN 4 
 VarianceText: 
@@ -133,8 +168,10 @@ ORG $17BEC
 ORG $28f72 // in 28ef0
 SHORT $22c0 $4311 // default game/text speed fast 
 
-ORG $4a4b0
-SHORT $2000 // always use generic palette (by Vesly) 
+ORG $4a4A8 
+jumpToHack(MaybeUseGenericPalette_FE6)
+//ORG $4a4b0
+//SHORT $2000 // always use generic palette (by Vesly) 
 
 // in 8019600 BuildBestMovementScript 
 // Fix REDA / MOVE from crashing on impassible terrain 
