@@ -54,6 +54,7 @@ WORD 0 // If 0, it'll read through your class editor and count
 #define SS_LCK "WORD 14; POIN GetUnitUnadjustedLck GetUnitLuck GetUnitMaxLck GetUnitLckGrowth" 
 #define SS_DEF "WORD 15; POIN GetUnitUnadjustedDef GetUnitDefense GetUnitMaxDef GetUnitDefGrowth" 
 #define SS_RES "WORD 16; POIN GetUnitUnadjustedRes GetUnitResistance GetUnitMaxRes GetUnitResGrowth" 
+#define SS_MAG "WORD 17; POIN GetUnitUnadjustedPow GetUnitPower GetUnitMaxPow GetUnitPowGrowth" 
 #define SS_BLANK "WORD 0 0 0 0 0" 
 #define SS_MOV "WORD 1; POIN GetUnitUnadjustedMov GetUnitMov GetUnitMaxMov GetUnitHPGrowth" // yes, hp 
 #define SS_CON "WORD 2; POIN GetUnitUnadjustedCon GetUnitCon GetUnitMaxCon 0" 
@@ -62,32 +63,24 @@ WORD 0 // If 0, it'll read through your class editor and count
 #define SS_AFN  "WORD 5; POIN 0 0 0 0" 
 #define SS_COND "WORD 6; POIN  0 0 0 0" 
 
+#define SS_TALK "WORD 7; POIN  0 0 0 0" 
+#define SS_SKILLS "WORD 8; POIN  0 0 0 0" 
+#define SS_SKILLICONS1 "WORD 9; POIN  0 0 0 0" 
+#define SS_SKILLICONS2 "WORD 10; POIN  0 0 0 0" 
+
+//#define SKILLSYS_INSTALLED // not functional yet 
 ALIGN 4 
 SkillSysInstalled:
+#ifdef SKILLSYS_INSTALLED
+WORD 1 
+#endif 
 WORD 0 
 
 ALIGN 4 
 gStatScreenFunction: 
 SS_Page0_Layout: 
-SS_DEF
-SS_BLANK // must have 16 entries 
-SS_RES
-SS_SPD
-SS_TRV
-SS_BLANK 
-SS_COND
-SS_MOV
-SS_STR
-SS_AFN
-SS_BLANK 
-SS_AID
-SS_BLANK
-SS_SKL
-// Right side below  
-// Left side 
-SS_CON
-SS_LCK
 
+#ifndef SKILLSYS_INSTALLED 
 // Left side 
 SS_STR
 SS_SKL
@@ -106,6 +99,7 @@ SS_AFN
 SS_COND
 SS_BLANK 
 SS_BLANK // must have 16 entries 
+#endif 
 
 /*
 ALIGN 4 
@@ -128,6 +122,7 @@ SS_TALK
 SS_SKILLS
 SS_SKILLICONS1
 SS_SKILLICONS2
+*/
 
 ALIGN 4 
 SS_Page0_Layout_Skills: 
@@ -148,11 +143,14 @@ SS_TALK
 SS_SKILLS
 SS_SKILLICONS1
 SS_SKILLICONS2
-*/
+
 
 ALIGN 4 
 SS_EnableBWL:
-WORD 1
+#ifdef SKILLSYS_INSTALLED
+WORD 0
+#endif 
+WORD 1 
 
 
 

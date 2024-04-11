@@ -2793,8 +2793,8 @@ struct SS_StatID {
 }; 
 extern struct SS_StatID gStatScreenFunction[]; 
 extern int SkillSysInstalled; 
+extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
 int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) { 
-	id = NextRN_N(16); 
 	if (gStatScreenFunction[id].specialCase) { 
 		switch (gStatScreenFunction[id].specialCase) { 
 			case 1: {
@@ -2851,11 +2851,33 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				return 0; break;
 			}
 			case 9: { // skills row 1 ? 
-				//PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skills");
+				int skillID = 1; 
+				if (skillID) { 
+				if (SkillSysInstalled) { skillID |= 0x100; }
+				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4, y), skillID, 0x4000); }
+				skillID = 2; 
+				if (skillID) { 
+				if (SkillSysInstalled) { skillID |= 0x100; }
+				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-2, y), skillID, 0x4000); }
+				skillID = 3; 
+				if (skillID) { 
+				if (SkillSysInstalled) { skillID |= 0x100; }
+				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x, y), skillID, 0x4000); }
 				return 0; break;
 			}
 			case 10: { // skills row 2 
-				//PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skills");
+				int skillID = 4; 
+				if (skillID) { 
+				if (SkillSysInstalled) { skillID |= 0x100; }
+				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4, y), skillID, 0x4000); } 
+				skillID = 5; 
+				if (skillID) { 
+				if (SkillSysInstalled) { skillID |= 0x100; }
+				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-2, y), skillID, 0x4000); }
+				skillID = 6; 
+				if (skillID) { 
+				if (SkillSysInstalled) { skillID |= 0x100; }
+				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x, y), skillID, 0x4000); }
 				return 0; break;
 			}
 			case 11: { 
@@ -2925,6 +2947,93 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 	return 0; 
 } 
 
+
+enum
+{
+    STATSCREEN_PAGE_0,
+    STATSCREEN_PAGE_1,
+    STATSCREEN_PAGE_2,
+
+    STATSCREEN_PAGE_MAX,
+};
+#define OAM2_LAYER(al)     (((al) & 0x3) << 10)
+#define OAM0_SHAPE_8x8     0x0000
+#define OAM1_SIZE_8x8      0x0000
+extern u16 const gObject_8x8[]; 
+extern void UpdateStatArrowSprites(int, int, u8); 
+
+struct Vec2 GetIconCoordFromStatScreenLayout(int id) { 
+	struct Vec2 result; 
+	result.x = -1; 
+	result.y = -1; 
+	for (int i = 0; i<16; i++) { 
+		if (gStatScreenFunction[i].specialCase == id) { 
+			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
+		}
+	} 
+	return result; 
+} 
+struct Vec2 GetTrvCoordFromStatScreenLayout() { 
+	return GetIconCoordFromStatScreenLayout(4); 
+} 
+struct Vec2 GetSklCoordFromStatScreenLayout() { 
+	return GetIconCoordFromStatScreenLayout(12); 
+} 
+struct Vec2 GetSpdCoordFromStatScreenLayout() { 
+	return GetIconCoordFromStatScreenLayout(13); 
+} 
+
+void PageNumCtrl_DisplayBlinkIcons(void)
+{
+    s8 displayIcon = (GetGameClock() % 32) < 20;
+
+    u16 palidLut[3] = { 0xC, 0xE, 0xD }; // TODO: palid constants
+
+    if (!gStatScreen.inTransition)
+    {
+        if ((gStatScreen.page == STATSCREEN_PAGE_0) && (gStatScreen.unit->state & US_RESCUING))
+        {
+			struct Vec2 coord = GetSklCoordFromStatScreenLayout(); 
+			if (coord.x != (-1)) { 
+				coord.x = (coord.x+2) * 8; 
+				coord.y = coord.y * 8; 
+				UpdateStatArrowSprites(coord.x, coord.y, 1);
+			}
+			coord = GetSpdCoordFromStatScreenLayout(); 
+			if (coord.x != (-1)) { 
+				coord.x = (coord.x+2) * 8; 
+				coord.y = coord.y * 8; 
+				UpdateStatArrowSprites(coord.x, coord.y, 1);
+			}
+
+            if (displayIcon)
+            {
+				coord = GetTrvCoordFromStatScreenLayout(); 
+				if (coord.x != (-1)) { 
+					coord.x = (coord.x+2) * 8; 
+					coord.y = (coord.y * 8) + 6; 
+					PutSprite(4,
+						coord.x, coord.y, gObject_8x8,
+						TILEREF(3, 0xF & palidLut[gStatScreen.unit->rescue >> 6]) + OAM2_LAYER(2));
+				}
+            }
+        }
+
+        if (gStatScreen.unit->state & US_RESCUED)
+        {
+            if (displayIcon)
+            {
+				struct Vec2 coord = GetTrvCoordFromStatScreenLayout(); 
+				coord.x = coord.x * 8 + 2; 
+                PutSprite(4,
+                    10, 86, gObject_8x8,
+                    TILEREF(3, 0xF & palidLut[gStatScreen.unit->rescue>>6]) + OAM2_LAYER(2));
+            }
+        }
+    }
+}
+
+
 void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6 
     // displaying str/mag stat value
 	int disp = RandBitflagsB.disp; 
@@ -2968,119 +3077,14 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
     //        ? GetUnitMaxSpd(gStatScreen.unit)/2
     //        : GetUnitMaxSpd(gStatScreen.unit));
 
-    //// displaying lck stat value
-    //DrawStatWithBar(3, 5, 7,
-    //    gStatScreen.unit->lck,
-    //    GetUnitLuck(gStatScreen.unit),
-    //    GetUnitMaxLck(gStatScreen.unit));
-	//
-    //// displaying def stat value
-    //DrawStatWithBar(4, 5, 9,
-    //    gStatScreen.unit->def,
-    //    GetUnitDefense(gStatScreen.unit),
-    //    GetUnitMaxDef(gStatScreen.unit));
-	//
-    //// displaying res stat value
-    //DrawStatWithBar(5, 5, 11,
-    //    gStatScreen.unit->res,
-    //    GetUnitResistance(gStatScreen.unit),
-    //    GetUnitMaxRes(gStatScreen.unit));
-	//
-    //// displaying mov stat value
-    //DrawStatWithBar(6, 13, 1,
-    //    UNIT_MOV_BASE(gStatScreen.unit),
-    //    UNIT_MOV(gStatScreen.unit),
-    //    UNIT_MOV_MAX(gStatScreen.unit));
-	//
-    //// displaying con stat value
-    //DrawStatWithBar(7, 13, 3,
-    //    UNIT_CON_BASE(gStatScreen.unit),
-    //    UNIT_CON(gStatScreen.unit),
-    //    UNIT_CON_MAX(gStatScreen.unit));
-
-	/*
-	else { 
-	
-		if ((UNIT_FACTION(gStatScreen.unit) == FACTION_BLUE) || (UNIT_CATTRIBUTES(gStatScreen.unit) & CA_BOSS)) { 
-		
-
-		DrawGrowthWithDifference(4, 1,
-			GetUnitPowGrowth(gStatScreen.unit, false),
-			GetUnitPowGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(4, 3,
-			GetUnitSklGrowth(gStatScreen.unit, false),
-			GetUnitSklGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(4, 5,
-			GetUnitSpdGrowth(gStatScreen.unit, false),
-			GetUnitSpdGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(4, 7,
-			GetUnitLckGrowth(gStatScreen.unit, false),
-			GetUnitLckGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(4, 9,
-			GetUnitDefGrowth(gStatScreen.unit, false),
-			GetUnitDefGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(4, 11,
-			GetUnitResGrowth(gStatScreen.unit, false),
-			GetUnitResGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(12, 1,
-			GetUnitHPGrowth(gStatScreen.unit, false),
-			GetUnitHPGrowth(gStatScreen.unit, true));
-		DrawStatWithBar(7, 13, 3,
-			UNIT_CON_BASE(gStatScreen.unit),
-			UNIT_CON(gStatScreen.unit),
-			UNIT_CON_MAX(gStatScreen.unit));
-		}
-		else { 
-		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
-
-		DrawGrowthWithDifference(4, 1,
-			GetClassPowGrowth(gStatScreen.unit, false),
-			GetClassPowGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(4, 3,
-			GetClassSklGrowth(gStatScreen.unit, false),
-			GetClassSklGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(4, 5,
-			GetClassSpdGrowth(gStatScreen.unit, false),
-			GetClassSpdGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(4, 7,
-			GetClassLckGrowth(gStatScreen.unit, false),
-			GetClassLckGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(4, 9,
-			GetClassDefGrowth(gStatScreen.unit, false),
-			GetClassDefGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(4, 11,
-			GetClassResGrowth(gStatScreen.unit, false),
-			GetClassResGrowth(gStatScreen.unit, true));
-		DrawGrowthWithDifference(12, 1,
-			GetClassHPGrowth(gStatScreen.unit, false),
-			GetClassHPGrowth(gStatScreen.unit, true));
-		DrawStatWithBar(7, 13, 3,
-			UNIT_CON_BASE(gStatScreen.unit),
-			UNIT_CON(gStatScreen.unit),
-			UNIT_CON_MAX(gStatScreen.unit));
-
-		} 
-	} 
-	*/
 
 	SetupDebugFontForBG(0, VramDest_DebugFont);
 	PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
-	//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x12), white, RandValues.seed);
 	PrintDebugNumberToBG(0, 11, 0x13, RandValues.seed); 
-	//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 13, 0x12), white, 123456);
 
-/*
-    // displaying con stat value
-    DrawStatWithBar(7, 13, 3,
-        UNIT_CON_BASE(gStatScreen.unit),
-        UNIT_CON(gStatScreen.unit),
-        UNIT_CON_MAX(gStatScreen.unit));
-
- 
-		*/
 }
 
-
+extern int SS_EnableBWL; 
 void DisplayPage0(void) 
 { 
 DisplayTexts(sPage0TextInfo);
@@ -3107,8 +3111,9 @@ DisplayTexts(sPage0TextInfo);
 
     DrawBarsOrGrowths(); 
 
-
-    DisplayBwl();
+	if (SS_EnableBWL) { 
+		DisplayBwl();
+	} 
 }
 #endif 
 
