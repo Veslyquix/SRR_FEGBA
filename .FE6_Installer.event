@@ -28,6 +28,8 @@ WORD 0 // If 0, it'll read through your class editor and count
 ALIGN 4 
 CasualModeFlag:
 WORD 0x8C 
+RandomizePrepShop:
+WORD 1 // If true, randomize prep shop if player randomizes found items 
 MinClassBase:
 WORD 0 // If true, stats won't go lower than class bases 
 

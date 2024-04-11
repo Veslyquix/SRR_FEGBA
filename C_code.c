@@ -2446,7 +2446,7 @@ void StatScreenSelectLoop(ProcPtr proc) {
 			if (!RandBitflagsB.disp) { RandBitflagsB.disp = 1; } 
 			else { RandBitflagsB.disp = 0; } 
 			StatScreen_Display(proc); 
-			DrawBarsOrGrowths(); 
+			//DrawBarsOrGrowths(); 
 		} // [202bc3d]!!
 
 } 
@@ -2619,6 +2619,176 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 	
 } 
 
+#ifdef FE8 
+extern bool UnitHasMagicRank(struct Unit* unit);
+extern int GetUnitAid(struct Unit* unit);
+extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
+extern int GetUnitAidIconId(u32 attributes);
+extern char* GetUnitRescueName(struct Unit* unit);
+extern char* GetUnitStatusName(struct Unit* unit);
+extern void DisplayBwl(void);
+extern void Text_InsertDrawString(struct Text * text, int x, int colorId, const char * str);
+extern int GetUnitAffinityIcon(struct Unit* unit);
+enum
+{
+    // BG palette allocation
+    STATSCREEN_BGPAL_HALO = 1,
+    STATSCREEN_BGPAL_2 = 2,
+    STATSCREEN_BGPAL_3 = 3,
+    STATSCREEN_BGPAL_ITEMICONS = 4,
+    STATSCREEN_BGPAL_EXTICONS = 5,
+    STATSCREEN_BGPAL_6 = 6,
+    STATSCREEN_BGPAL_7 = 7,
+    STATSCREEN_BGPAL_FACE = 11,
+    STATSCREEN_BGPAL_BACKGROUND = 12, // 4 palettes
+
+    // OBJ palette allocation
+    STATSCREEN_OBJPAL_4 = 4,
+};
+enum
+{
+    // Enumerate stat screen texts
+
+    STATSCREEN_TEXT_CHARANAME, // 0
+    STATSCREEN_TEXT_CLASSNAME, // 1
+
+    STATSCREEN_TEXT_UNUSUED, // 2 (was Exp?)
+
+    STATSCREEN_TEXT_POWLABEL, // 3
+    STATSCREEN_TEXT_SKLLABEL, // 4
+    STATSCREEN_TEXT_SPDLABEL, // 5
+    STATSCREEN_TEXT_LCKLABEL, // 6
+    STATSCREEN_TEXT_DEFLABEL, // 7
+    STATSCREEN_TEXT_RESLABEL, // 8
+    STATSCREEN_TEXT_MOVLABEL, // 9
+    STATSCREEN_TEXT_CONLABEL, // 10
+    STATSCREEN_TEXT_AIDLABEL, // 11
+    STATSCREEN_TEXT_RESCUENAME, // 12
+    STATSCREEN_TEXT_AFFINLABEL, // 13
+    STATSCREEN_TEXT_STATUS, // 14
+}; 
+struct SSTextDispInfo
+{
+    /* 00 */ struct Text* text;
+    /* 04 */ u16* tilemap;
+    /* 08 */ u8 color;
+    /* 09 */ u8 xoff;
+    /* 0C */ const unsigned* mid;
+};
+extern const struct SSTextDispInfo sPage0TextInfo[];
+extern void DisplayTexts(const struct SSTextDispInfo* unk);
+
+void DisplayPage0(void) 
+{ 
+DisplayTexts(sPage0TextInfo);
+
+    // Displaying str/mag label
+    if (UnitHasMagicRank(gStatScreen.unit))
+    {
+        // mag
+        PutDrawText(
+            &gStatScreen.text[STATSCREEN_TEXT_POWLABEL],
+            gUiTmScratchA + TILEMAP_INDEX(1, 1),
+            gold, 0, 0,
+            GetStringFromIndex(0x4FF)); // Mag
+    }
+    else
+    {
+        // str
+        PutDrawText(
+            &gStatScreen.text[STATSCREEN_TEXT_POWLABEL],
+            gUiTmScratchA + TILEMAP_INDEX(1, 1),
+            gold, 0, 0,
+            GetStringFromIndex(0x4FE)); // Str
+    }
+
+    DrawBarsOrGrowths(); 
+
+    // displaying con stat value
+    DrawStatWithBar(7, 13, 3,
+        UNIT_CON_BASE(gStatScreen.unit),
+        UNIT_CON(gStatScreen.unit),
+        UNIT_CON_MAX(gStatScreen.unit));
+
+    // displaying unit aid
+    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(13, 5), blue,
+        GetUnitAid(gStatScreen.unit));
+
+    // displaying unit aid icon
+    DrawIcon(gUiTmScratchA + TILEMAP_INDEX(14, 5),
+        GetUnitAidIconId(UNIT_CATTRIBUTES(gStatScreen.unit)),
+        TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
+
+    // displaying unit rescue name
+    Text_InsertDrawString(
+        &gStatScreen.text[STATSCREEN_TEXT_RESCUENAME],
+        24, blue,
+        GetUnitRescueName(gStatScreen.unit));
+
+    // displaying unit status name and turns
+
+    if (gStatScreen.unit->statusIndex != UNIT_STATUS_RECOVER)
+    {
+        // display name
+
+        if (gStatScreen.unit->statusIndex == UNIT_STATUS_NONE)
+        {
+            Text_InsertDrawString(
+                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
+                24, blue,
+                GetUnitStatusName(gStatScreen.unit));
+        }
+        else
+        {
+            Text_InsertDrawString(
+                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
+                22, blue,
+                GetUnitStatusName(gStatScreen.unit));
+        }
+
+        // display turns
+
+        if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
+        {
+            PutNumberSmall(
+                gUiTmScratchA + TILEMAP_INDEX(16, 11),
+                0, gStatScreen.unit->statusDuration);
+        }
+    }
+    else
+    {
+        // I do not understand what this is for
+
+        struct Unit tmp = *gStatScreen.unit;
+
+        tmp.statusIndex = 0;
+
+        if (gStatScreen.unit->statusIndex == UNIT_STATUS_NONE)
+        {
+            Text_InsertDrawString(
+                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
+                24, blue,
+                GetUnitStatusName(&tmp));
+        }
+        else
+        {
+            Text_InsertDrawString(
+                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
+                22, blue,
+                GetUnitStatusName(&tmp));
+        }
+    }
+
+    // display affininity icon
+
+    DrawIcon(
+        gUiTmScratchA + TILEMAP_INDEX(12, 9),
+        GetUnitAffinityIcon(gStatScreen.unit),
+        TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
+
+    DisplayBwl();
+}
+#endif 
 
 
 
@@ -2665,6 +2835,7 @@ extern void EndPlayerPhaseSideWindows(void); // 8085C7C
 extern void UpdateShopItemCounts(ProcPtr proc); // 80B0520
 extern struct ProcCmd gProcScr_Shop[]; // 8CE6FC0
 
+extern int RandomizePrepShop; 
 // 	80B0454
 void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr parent) {
     struct BmShopProc* proc;
@@ -2680,7 +2851,7 @@ void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr par
     }
 
     proc->shopType = shopType;
-    if (shopType > 3) { proc->shopType -= 10; } 
+    if (shopType > 9) { proc->shopType -= 10; } 
 	proc->unit = unit;
 
     shopItems = gDefaultShopInventory;
@@ -2688,11 +2859,11 @@ void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr par
         shopItems = inventory;
     }
 
-	if (RandBitflagsB.shopItems) { 
+	if ((RandBitflagsB.shopItems) && ((shopType < 10) || (RandomizePrepShop))) { 
 	
 		int noise[4] = {0, 0, 0, 0}; 
 		int varyByCh = false; // prep armoury only 
-		if ((shopType < 4) || (!unit)) { 
+		if ((shopType < 10) || (!unit)) { 
 		varyByCh = true; 
 		noise[0] = gCh; 
 		noise[1] = proc->shopType; 

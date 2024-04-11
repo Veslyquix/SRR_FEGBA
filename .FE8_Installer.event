@@ -14,6 +14,8 @@
 ALIGN 4 
 CasualModeFlag:
 WORD 0xB0 
+RandomizePrepShop:
+WORD 0 // If true, randomize prep shop if player randomizes found items 
 MinClassBase:
 WORD 0 // If true, stats won't go lower than class bases 
 WepLockExInstalled:
