@@ -40,6 +40,122 @@ WORD 0 // If 0, it'll read through your class editor and count
 
 #define NeverChangeChar(id) "PUSH; ORG CharExceptions + (id * 2); BYTE 1 1; POP" 
 
+//#define GetUnitMaxHp 0x08019191
+#define GetUnitPower 0x080191B1
+#define GetUnitSkill 0x080191D1
+#define GetUnitSpeed 0x08019211
+#define GetUnitDefense 0x08019251
+#define GetUnitResistance 0x08019271
+#define GetUnitLuck 0x08019299
+
+#define SS_STR "WORD 11; POIN GetUnitUnadjustedPow GetUnitPower GetUnitMaxPow GetUnitPowGrowth" 
+#define SS_SKL "WORD 12; POIN GetUnitUnadjustedSkl GetUnitSkill GetUnitMaxSkl GetUnitSklGrowth" 
+#define SS_SPD "WORD 13; POIN GetUnitUnadjustedSpd GetUnitSpeed GetUnitMaxSpd GetUnitSpdGrowth" 
+#define SS_LCK "WORD 14; POIN GetUnitUnadjustedLck GetUnitLuck GetUnitMaxLck GetUnitLckGrowth" 
+#define SS_DEF "WORD 15; POIN GetUnitUnadjustedDef GetUnitDefense GetUnitMaxDef GetUnitDefGrowth" 
+#define SS_RES "WORD 16; POIN GetUnitUnadjustedRes GetUnitResistance GetUnitMaxRes GetUnitResGrowth" 
+#define SS_BLANK "WORD 0 0 0 0 0" 
+#define SS_MOV "WORD 1; POIN GetUnitUnadjustedMov GetUnitMov GetUnitMaxMov GetUnitHPGrowth" // yes, hp 
+#define SS_CON "WORD 2; POIN GetUnitUnadjustedCon GetUnitCon GetUnitMaxCon 0" 
+#define SS_AID  "WORD 3; POIN 0 0 0 0" 
+#define SS_TRV  "WORD 4; POIN  0 0 0 0" 
+#define SS_AFN  "WORD 5; POIN 0 0 0 0" 
+#define SS_COND "WORD 6; POIN  0 0 0 0" 
+
+ALIGN 4 
+SkillSysInstalled:
+WORD 0 
+
+ALIGN 4 
+gStatScreenFunction: 
+SS_Page0_Layout: 
+SS_DEF
+SS_BLANK // must have 16 entries 
+SS_RES
+SS_SPD
+SS_TRV
+SS_BLANK 
+SS_COND
+SS_MOV
+SS_STR
+SS_AFN
+SS_BLANK 
+SS_AID
+SS_BLANK
+SS_SKL
+// Right side below  
+// Left side 
+SS_CON
+SS_LCK
+
+// Left side 
+SS_STR
+SS_SKL
+SS_SPD
+SS_LCK
+SS_DEF
+SS_RES
+SS_BLANK
+SS_BLANK 
+// Right side below  
+SS_MOV
+SS_CON
+SS_AID
+SS_TRV
+SS_AFN
+SS_COND
+SS_BLANK 
+SS_BLANK // must have 16 entries 
+
+/*
+ALIGN 4 
+SS_Page0_Layout_Skills: 
+// Left side 
+SS_STR
+SS_SKL
+SS_SPD
+SS_LCK
+SS_DEF
+SS_RES
+SS_MOV
+SS_CON
+// Right side
+SS_AID
+SS_TRV
+SS_AFN
+SS_COND
+SS_TALK
+SS_SKILLS
+SS_SKILLICONS1
+SS_SKILLICONS2
+
+ALIGN 4 
+SS_Page0_Layout_Skills: 
+SS_STR
+SS_MAG
+SS_SKL
+SS_SPD
+SS_LCK
+SS_DEF
+SS_RES
+SS_MOV
+// Right side 
+SS_CON
+SS_AID
+SS_COND // SS_TRV alternates with? 
+SS_AFN
+SS_TALK
+SS_SKILLS
+SS_SKILLICONS1
+SS_SKILLICONS2
+*/
+
+ALIGN 4 
+SS_EnableBWL:
+WORD 1
+
+
+
 
 ALIGN 4 
 ItemExceptions:
@@ -74,6 +190,8 @@ PROC_CALL_ROUTINE_2(FE8_StartDifficultySelection)
 ORG $115CC 
 jumpToHack(DroppableItemHook_FE8) 
 
+ORG $205964 // don't draw stat labels 
+FILL(0x10 * 10) 
 
 ORG $2059b4 // Don't draw "mov" 
 BYTE $84 $3C $00 $02 $FE $3F $00 $02 $03 $00 $00 $00 $A8 $11 $A0 $08

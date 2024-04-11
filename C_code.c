@@ -2451,8 +2451,6 @@ void StatScreenSelectLoop(ProcPtr proc) {
 
 } 
 
-
-
 void DrawGrowthWithDifference(int x, int y, int base, int modified)
 {
     int diff = modified - base;
@@ -2462,9 +2460,12 @@ void DrawGrowthWithDifference(int x, int y, int base, int modified)
 }
 
 extern int VramDest_DebugFont; 
+
+#ifndef FE8 
 void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6 
     // displaying str/mag stat value
 	int barsOrGrowths = RandBitflagsB.disp; 
+	struct Unit* unit = gStatScreen.unit; 
 	
 	if (barsOrGrowths) { 
     DrawStatWithBar(0, 5, 1,
@@ -2619,7 +2620,59 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 	
 } 
 
+#endif 
+
 #ifdef FE8 
+
+enum
+{
+    // Enumerate stat screen texts
+
+    STATSCREEN_TEXT_CHARANAME, // 0
+    STATSCREEN_TEXT_CLASSNAME, // 1
+
+    STATSCREEN_TEXT_UNUSUED, // 2 (was Exp?)
+
+    STATSCREEN_TEXT_POWLABEL, // 3
+    STATSCREEN_TEXT_SKLLABEL, // 4
+    STATSCREEN_TEXT_SPDLABEL, // 5
+    STATSCREEN_TEXT_LCKLABEL, // 6
+    STATSCREEN_TEXT_DEFLABEL, // 7
+    STATSCREEN_TEXT_RESLABEL, // 8
+    STATSCREEN_TEXT_MOVLABEL, // 9
+    STATSCREEN_TEXT_CONLABEL, // 10
+    STATSCREEN_TEXT_AIDLABEL, // 11
+    STATSCREEN_TEXT_RESCUENAME, // 12
+    STATSCREEN_TEXT_AFFINLABEL, // 13
+    STATSCREEN_TEXT_STATUS, // 14
+
+    STATSCREEN_TEXT_ITEM0, // 15
+    STATSCREEN_TEXT_ITEM1, // 16
+    STATSCREEN_TEXT_ITEM2, // 17
+    STATSCREEN_TEXT_ITEM3, // 18
+    STATSCREEN_TEXT_ITEM4, // 19
+
+    STATSCREEN_TEXT_BSRANGE, // 20
+    STATSCREEN_TEXT_BSATKLABEL, // 21
+    STATSCREEN_TEXT_BSHITLABEL, // 22
+    STATSCREEN_TEXT_BSCRTLABEL, // 23
+    STATSCREEN_TEXT_BSAVOLABEL, // 24
+
+    STATSCREEN_TEXT_WEXP0, // 25
+    STATSCREEN_TEXT_WEXP1, // 26
+    STATSCREEN_TEXT_WEXP2, // 27
+    STATSCREEN_TEXT_WEXP3, // 28
+
+    STATSCREEN_TEXT_SUPPORT0, // 29
+    STATSCREEN_TEXT_SUPPORT1, // 30
+    STATSCREEN_TEXT_SUPPORT2, // 31
+    STATSCREEN_TEXT_SUPPORT3, // 32
+    STATSCREEN_TEXT_SUPPORT4, // 33
+
+    STATSCREEN_TEXT_BWL, // 34
+
+    STATSCREEN_TEXT_MAX
+};
 extern bool UnitHasMagicRank(struct Unit* unit);
 extern int GetUnitAid(struct Unit* unit);
 extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
@@ -2645,28 +2698,7 @@ enum
     // OBJ palette allocation
     STATSCREEN_OBJPAL_4 = 4,
 };
-enum
-{
-    // Enumerate stat screen texts
 
-    STATSCREEN_TEXT_CHARANAME, // 0
-    STATSCREEN_TEXT_CLASSNAME, // 1
-
-    STATSCREEN_TEXT_UNUSUED, // 2 (was Exp?)
-
-    STATSCREEN_TEXT_POWLABEL, // 3
-    STATSCREEN_TEXT_SKLLABEL, // 4
-    STATSCREEN_TEXT_SPDLABEL, // 5
-    STATSCREEN_TEXT_LCKLABEL, // 6
-    STATSCREEN_TEXT_DEFLABEL, // 7
-    STATSCREEN_TEXT_RESLABEL, // 8
-    STATSCREEN_TEXT_MOVLABEL, // 9
-    STATSCREEN_TEXT_CONLABEL, // 10
-    STATSCREEN_TEXT_AIDLABEL, // 11
-    STATSCREEN_TEXT_RESCUENAME, // 12
-    STATSCREEN_TEXT_AFFINLABEL, // 13
-    STATSCREEN_TEXT_STATUS, // 14
-}; 
 struct SSTextDispInfo
 {
     /* 00 */ struct Text* text;
@@ -2677,6 +2709,377 @@ struct SSTextDispInfo
 };
 extern const struct SSTextDispInfo sPage0TextInfo[];
 extern void DisplayTexts(const struct SSTextDispInfo* unk);
+
+void DrawStatus(int x, int y) { 
+    // displaying unit status name and turns
+
+    if (gStatScreen.unit->statusIndex != UNIT_STATUS_RECOVER)
+    {
+        // display name
+
+        if (gStatScreen.unit->statusIndex == UNIT_STATUS_NONE)
+        {
+            Text_InsertDrawString(
+                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
+                24, blue,
+                GetUnitStatusName(gStatScreen.unit));
+        }
+        else
+        {
+            Text_InsertDrawString(
+                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
+                22, blue,
+                GetUnitStatusName(gStatScreen.unit));
+        }
+
+        // display turns
+
+        if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
+        {
+            PutNumberSmall(
+                gUiTmScratchA + TILEMAP_INDEX(x, y),
+                0, gStatScreen.unit->statusDuration);
+        }
+    }
+    else
+    {
+        // I do not understand what this is for
+
+        struct Unit tmp = *gStatScreen.unit;
+
+        tmp.statusIndex = 0;
+
+        if (gStatScreen.unit->statusIndex == UNIT_STATUS_NONE)
+        {
+            Text_InsertDrawString(
+                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
+                24, blue,
+                GetUnitStatusName(&tmp));
+        }
+        else
+        {
+            Text_InsertDrawString(
+                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
+                22, blue,
+                GetUnitStatusName(&tmp));
+        }
+    }
+}
+
+int GetUnitUnadjustedPow(struct Unit* unit) { return unit->pow; } 
+int GetUnitUnadjustedSkl(struct Unit* unit) { return unit->skl; } 
+int GetUnitUnadjustedSpd(struct Unit* unit) { return unit->spd; } 
+int GetUnitUnadjustedLck(struct Unit* unit) { return unit->lck; } 
+int GetUnitUnadjustedDef(struct Unit* unit) { return unit->def; } 
+int GetUnitUnadjustedRes(struct Unit* unit) { return unit->res; } 
+int GetUnitUnadjustedMag(struct Unit* unit) { return unit->_u3A; } 
+
+
+int GetUnitUnadjustedMov(struct Unit* unit) { return UNIT_MOV_BASE(unit); } 
+int GetUnitMov(struct Unit* unit) { return UNIT_MOV(unit); } 
+int GetUnitMaxMov(struct Unit* unit) { return UNIT_MOV_MAX(unit); } 
+int GetUnitUnadjustedCon(struct Unit* unit) { return UNIT_CON_BASE(unit); } 
+int GetUnitCon(struct Unit* unit) { return UNIT_CON(unit); } 
+int GetUnitMaxCon(struct Unit* unit) { return UNIT_CON_MAX(unit); } 
+
+typedef int (*getter)(struct Unit* unit);
+typedef int (*getter2)(struct Unit* unit, int);
+struct SS_StatID { 
+	int specialCase; 
+	getter GetUnitUnadjustedStat; 
+	getter GetUnitStat; 
+	getter GetUnitMaxStat; 
+	getter2 GetUnitGrowth; 
+}; 
+extern struct SS_StatID gStatScreenFunction[]; 
+extern int SkillSysInstalled; 
+int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) { 
+	id = NextRN_N(16); 
+	if (gStatScreenFunction[id].specialCase) { 
+		switch (gStatScreenFunction[id].specialCase) { 
+			case 1: {
+				if (disp == 1) { // 9, 1?
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mov");
+				DrawStatWithBar(barID, x, y, gStatScreenFunction[id].GetUnitUnadjustedStat(unit),
+					gStatScreenFunction[id].GetUnitStat(unit), gStatScreenFunction[id].GetUnitMaxStat(unit));  
+				} 
+				if (disp == 0) { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "HP"); 
+				DrawGrowthWithDifference(x-1, y, gStatScreenFunction[id].GetUnitGrowth(gStatScreen.unit, false),
+					gStatScreenFunction[id].GetUnitGrowth(gStatScreen.unit, true));
+				} 
+				return 1; break; 
+			}
+			case 2: {
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_CONLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Con");
+				DrawStatWithBar(barID, x, y, gStatScreenFunction[id].GetUnitUnadjustedStat(unit),
+					gStatScreenFunction[id].GetUnitStat(unit), gStatScreenFunction[id].GetUnitMaxStat(unit));  
+				return 1; break;
+			}
+			case 3: {
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AIDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Aid");
+				PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y), blue,
+					GetUnitAid(unit));
+				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x+1, y),
+					GetUnitAidIconId(UNIT_CATTRIBUTES(gStatScreen.unit)),
+					TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
+				return 0; break;
+			}
+			case 4: {
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Trv");
+				Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_RESCUENAME], 24, blue, GetUnitRescueName(unit));
+				return 0; break;
+			}
+			case 5: {
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AFFINLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Affin");
+				DrawIcon(
+					gUiTmScratchA + TILEMAP_INDEX(x-1, y),
+					GetUnitAffinityIcon(gStatScreen.unit),
+					TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
+				return 0; break;
+			}
+			case 6: {
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_STATUS,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Cond");
+				DrawStatus(x+1, y); 
+				return 0; break;
+			}
+			case 7: {
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
+				return 0; break;
+			}
+			case 8: {
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_BWL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skills");
+				return 0; break;
+			}
+			case 9: { // skills row 1 ? 
+				//PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skills");
+				return 0; break;
+			}
+			case 10: { // skills row 2 
+				//PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skills");
+				return 0; break;
+			}
+			case 11: { 
+				if (!SkillSysInstalled) { 
+					if (UnitHasMagicRank(gStatScreen.unit))
+					{
+						// mag
+						PutDrawText(
+							&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],
+							gUiTmScratchA + TILEMAP_INDEX(x-4, y),
+							gold, 0, 0,
+							GetStringFromIndex(0x4FF)); // Mag
+					}
+					else
+					{
+						// str
+						PutDrawText(
+							&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],
+							gUiTmScratchA + TILEMAP_INDEX(x-4, y),
+							gold, 0, 0,
+							GetStringFromIndex(0x4FE)); // Str
+					}
+				} 
+				else { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FE)); } 
+				break;
+			}
+			case 12: { 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
+				break;
+			}
+			case 13: { 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SPDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4ED));
+				break;
+			}
+			case 14: { 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
+				break;
+			}
+			case 15: { 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_DEFLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EF));
+				break;
+			}
+			case 16: { 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4F0));
+				break;
+			}
+			case 17: { 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
+				break;
+			}
+
+			default:
+		}
+
+	} 
+	if (gStatScreenFunction[id].GetUnitUnadjustedStat) { // could be null, in which case we draw nothing 
+		if (disp == 1) {
+			DrawStatWithBar(barID, x, y, gStatScreenFunction[id].GetUnitUnadjustedStat(unit),
+			gStatScreenFunction[id].GetUnitStat(unit), gStatScreenFunction[id].GetUnitMaxStat(unit));  
+		}
+		if (disp == 0) {
+			DrawGrowthWithDifference(x-1, y, gStatScreenFunction[id].GetUnitGrowth(gStatScreen.unit, false),
+				gStatScreenFunction[id].GetUnitGrowth(gStatScreen.unit, true));
+		}
+		return 1;
+	} 
+	return 0; 
+} 
+
+void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6 
+    // displaying str/mag stat value
+	int disp = RandBitflagsB.disp; 
+	struct Unit* unit = gStatScreen.unit; 
+	int barCount = 0; 
+	barCount += DrawStatByID(barCount, 5, 1, disp, unit, 0); 
+	barCount += DrawStatByID(barCount, 5, 3, disp, unit, 1); 
+	barCount += DrawStatByID(barCount, 5, 5, disp, unit, 2); 
+	barCount += DrawStatByID(barCount, 5, 7, disp, unit, 3); 
+	barCount += DrawStatByID(barCount, 5, 9, disp, unit, 4); 
+	barCount += DrawStatByID(barCount, 5, 11, disp, unit, 5); 
+	barCount += DrawStatByID(barCount, 5, 13, disp, unit, 6); 
+	barCount += DrawStatByID(barCount, 5, 15, disp, unit, 7); 
+	barCount += DrawStatByID(barCount, 13, 1, disp, unit, 8); 
+	barCount += DrawStatByID(barCount, 13, 3, disp, unit, 9); 
+	barCount += DrawStatByID(barCount, 13, 5, disp, unit, 10); 
+	barCount += DrawStatByID(barCount, 13, 7, disp, unit, 11); 
+	barCount += DrawStatByID(barCount, 13, 9, disp, unit, 12); 
+	barCount += DrawStatByID(barCount, 13, 11, disp, unit, 13); 
+	barCount += DrawStatByID(barCount, 13, 13, disp, unit, 14); 
+	barCount += DrawStatByID(barCount, 13, 15, disp, unit, 15); 
+	
+
+    // displaying skl stat value
+    //DrawStatWithBar(1, 5, 3,
+    //    gStatScreen.unit->state & US_RESCUING
+    //        ? gStatScreen.unit->skl/2
+    //        : gStatScreen.unit->skl,
+    //    GetUnitSkill(gStatScreen.unit),
+    //    gStatScreen.unit->state & US_RESCUING
+    //        ? GetUnitMaxSkl(gStatScreen.unit)/2
+    //        : GetUnitMaxSkl(gStatScreen.unit));
+	//
+    //// displaying spd stat value
+    //DrawStatWithBar(2, 5, 5,
+    //    gStatScreen.unit->state & US_RESCUING
+    //        ? gStatScreen.unit->spd/2
+    //        : gStatScreen.unit->spd,
+    //    GetUnitSpeed(gStatScreen.unit),
+    //    gStatScreen.unit->state & US_RESCUING
+    //        ? GetUnitMaxSpd(gStatScreen.unit)/2
+    //        : GetUnitMaxSpd(gStatScreen.unit));
+
+    //// displaying lck stat value
+    //DrawStatWithBar(3, 5, 7,
+    //    gStatScreen.unit->lck,
+    //    GetUnitLuck(gStatScreen.unit),
+    //    GetUnitMaxLck(gStatScreen.unit));
+	//
+    //// displaying def stat value
+    //DrawStatWithBar(4, 5, 9,
+    //    gStatScreen.unit->def,
+    //    GetUnitDefense(gStatScreen.unit),
+    //    GetUnitMaxDef(gStatScreen.unit));
+	//
+    //// displaying res stat value
+    //DrawStatWithBar(5, 5, 11,
+    //    gStatScreen.unit->res,
+    //    GetUnitResistance(gStatScreen.unit),
+    //    GetUnitMaxRes(gStatScreen.unit));
+	//
+    //// displaying mov stat value
+    //DrawStatWithBar(6, 13, 1,
+    //    UNIT_MOV_BASE(gStatScreen.unit),
+    //    UNIT_MOV(gStatScreen.unit),
+    //    UNIT_MOV_MAX(gStatScreen.unit));
+	//
+    //// displaying con stat value
+    //DrawStatWithBar(7, 13, 3,
+    //    UNIT_CON_BASE(gStatScreen.unit),
+    //    UNIT_CON(gStatScreen.unit),
+    //    UNIT_CON_MAX(gStatScreen.unit));
+
+	/*
+	else { 
+	
+		if ((UNIT_FACTION(gStatScreen.unit) == FACTION_BLUE) || (UNIT_CATTRIBUTES(gStatScreen.unit) & CA_BOSS)) { 
+		
+
+		DrawGrowthWithDifference(4, 1,
+			GetUnitPowGrowth(gStatScreen.unit, false),
+			GetUnitPowGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 3,
+			GetUnitSklGrowth(gStatScreen.unit, false),
+			GetUnitSklGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 5,
+			GetUnitSpdGrowth(gStatScreen.unit, false),
+			GetUnitSpdGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 7,
+			GetUnitLckGrowth(gStatScreen.unit, false),
+			GetUnitLckGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 9,
+			GetUnitDefGrowth(gStatScreen.unit, false),
+			GetUnitDefGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 11,
+			GetUnitResGrowth(gStatScreen.unit, false),
+			GetUnitResGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(12, 1,
+			GetUnitHPGrowth(gStatScreen.unit, false),
+			GetUnitHPGrowth(gStatScreen.unit, true));
+		DrawStatWithBar(7, 13, 3,
+			UNIT_CON_BASE(gStatScreen.unit),
+			UNIT_CON(gStatScreen.unit),
+			UNIT_CON_MAX(gStatScreen.unit));
+		}
+		else { 
+		PutDrawText(gStatScreen.text + 9,   gUiTmScratchA + TILEMAP_INDEX(9, 1),  gold, 0, 0, "HP");
+
+		DrawGrowthWithDifference(4, 1,
+			GetClassPowGrowth(gStatScreen.unit, false),
+			GetClassPowGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 3,
+			GetClassSklGrowth(gStatScreen.unit, false),
+			GetClassSklGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 5,
+			GetClassSpdGrowth(gStatScreen.unit, false),
+			GetClassSpdGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 7,
+			GetClassLckGrowth(gStatScreen.unit, false),
+			GetClassLckGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 9,
+			GetClassDefGrowth(gStatScreen.unit, false),
+			GetClassDefGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(4, 11,
+			GetClassResGrowth(gStatScreen.unit, false),
+			GetClassResGrowth(gStatScreen.unit, true));
+		DrawGrowthWithDifference(12, 1,
+			GetClassHPGrowth(gStatScreen.unit, false),
+			GetClassHPGrowth(gStatScreen.unit, true));
+		DrawStatWithBar(7, 13, 3,
+			UNIT_CON_BASE(gStatScreen.unit),
+			UNIT_CON(gStatScreen.unit),
+			UNIT_CON_MAX(gStatScreen.unit));
+
+		} 
+	} 
+	*/
+
+	SetupDebugFontForBG(0, VramDest_DebugFont);
+	PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
+	//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x12), white, RandValues.seed);
+	PrintDebugNumberToBG(0, 11, 0x13, RandValues.seed); 
+	//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 13, 0x12), white, 123456);
+
+/*
+    // displaying con stat value
+    DrawStatWithBar(7, 13, 3,
+        UNIT_CON_BASE(gStatScreen.unit),
+        UNIT_CON(gStatScreen.unit),
+        UNIT_CON_MAX(gStatScreen.unit));
+
+ 
+		*/
+}
+
 
 void DisplayPage0(void) 
 { 
@@ -2704,87 +3107,6 @@ DisplayTexts(sPage0TextInfo);
 
     DrawBarsOrGrowths(); 
 
-    // displaying con stat value
-    DrawStatWithBar(7, 13, 3,
-        UNIT_CON_BASE(gStatScreen.unit),
-        UNIT_CON(gStatScreen.unit),
-        UNIT_CON_MAX(gStatScreen.unit));
-
-    // displaying unit aid
-    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(13, 5), blue,
-        GetUnitAid(gStatScreen.unit));
-
-    // displaying unit aid icon
-    DrawIcon(gUiTmScratchA + TILEMAP_INDEX(14, 5),
-        GetUnitAidIconId(UNIT_CATTRIBUTES(gStatScreen.unit)),
-        TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
-
-    // displaying unit rescue name
-    Text_InsertDrawString(
-        &gStatScreen.text[STATSCREEN_TEXT_RESCUENAME],
-        24, blue,
-        GetUnitRescueName(gStatScreen.unit));
-
-    // displaying unit status name and turns
-
-    if (gStatScreen.unit->statusIndex != UNIT_STATUS_RECOVER)
-    {
-        // display name
-
-        if (gStatScreen.unit->statusIndex == UNIT_STATUS_NONE)
-        {
-            Text_InsertDrawString(
-                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
-                24, blue,
-                GetUnitStatusName(gStatScreen.unit));
-        }
-        else
-        {
-            Text_InsertDrawString(
-                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
-                22, blue,
-                GetUnitStatusName(gStatScreen.unit));
-        }
-
-        // display turns
-
-        if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
-        {
-            PutNumberSmall(
-                gUiTmScratchA + TILEMAP_INDEX(16, 11),
-                0, gStatScreen.unit->statusDuration);
-        }
-    }
-    else
-    {
-        // I do not understand what this is for
-
-        struct Unit tmp = *gStatScreen.unit;
-
-        tmp.statusIndex = 0;
-
-        if (gStatScreen.unit->statusIndex == UNIT_STATUS_NONE)
-        {
-            Text_InsertDrawString(
-                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
-                24, blue,
-                GetUnitStatusName(&tmp));
-        }
-        else
-        {
-            Text_InsertDrawString(
-                &gStatScreen.text[STATSCREEN_TEXT_STATUS],
-                22, blue,
-                GetUnitStatusName(&tmp));
-        }
-    }
-
-    // display affininity icon
-
-    DrawIcon(
-        gUiTmScratchA + TILEMAP_INDEX(12, 9),
-        GetUnitAffinityIcon(gStatScreen.unit),
-        TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
 
     DisplayBwl();
 }
