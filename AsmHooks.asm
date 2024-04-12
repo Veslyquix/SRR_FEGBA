@@ -17,6 +17,19 @@ pop {r0}
 bx r0 
 .ltorg 
 
+.global gSkill_Getter 
+.type gSkill_Getter, %function 
+gSkill_Getter: 
+push {lr} 
+ldr r1, =Skill_Getter 
+cmp r1, #0 
+beq DoNothing 
+blh Skill_Getter 
+DoNothing: 
+pop {r3} 
+bx r3 
+.ltorg 
+
 .global DroppableItemHook_FE8
 .type DroppableItemHook_FE8, %function 
 DroppableItemHook_FE8: 

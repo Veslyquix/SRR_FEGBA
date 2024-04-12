@@ -81,6 +81,12 @@ WORD 1
 #endif 
 WORD 0 
 
+#ifndef SKILLSYS_INSTALLED 
+Skill_Getter:
+WORD 0 
+#endif 
+
+
 ALIGN 4 
 gStatScreenFunction: 
 SS_Page0_Layout: 
@@ -189,6 +195,9 @@ WORD 0x4800 // in glowy
 PUSH 
 ORG $A20390
 PROC_CALL_ROUTINE_2(FE8_StartDifficultySelection)
+
+ORG $205B24 
+POIN DisplayPage0|1
 
 ORG $115CC 
 jumpToHack(DroppableItemHook_FE8) 

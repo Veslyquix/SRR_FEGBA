@@ -208,7 +208,8 @@ u16 HashByte_Global(int number, int max, int noise[], int offset) {
 	offset += noise[1]*5; 
 	offset += noise[2]*7; 
 	offset += noise[3]*11; 
-	offset = Mod(offset, 256); 
+	//offset = Mod(offset, 256); 
+	offset &= 0xFF; 
 	u32 hash = 5381;
 	hash = ((hash << 5) + hash) ^ number;
 	//hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
@@ -2830,6 +2831,8 @@ struct SS_StatID {
 	getter GetUnitMaxStat; 
 	getter2 GetUnitGrowth; 
 }; 
+
+extern u8* gSkill_Getter(struct Unit* unit); 
 extern struct SS_StatID gStatScreenFunction[]; 
 extern int SkillSysInstalled; 
 extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
@@ -2855,12 +2858,13 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				return 1; break;
 			}
 			case 3: {
+				int icon = GetUnitAidIconId(UNIT_CATTRIBUTES(gStatScreen.unit)); 
+				if (SkillSysInstalled) { icon |= 0x300; } 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AIDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Aid");
 				PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y), blue,
 					GetUnitAid(unit));
 				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x+1, y),
-					GetUnitAidIconId(UNIT_CATTRIBUTES(gStatScreen.unit)),
-					TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
+					icon, TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
 				return 0; break;
 			}
 			case 4: {
@@ -2870,10 +2874,11 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 			}
 			case 5: {
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AFFINLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Affin");
+				int icon = GetUnitAffinityIcon(gStatScreen.unit); 
+				if (SkillSysInstalled) { icon |= 0x200; } 
 				DrawIcon(
 					gUiTmScratchA + TILEMAP_INDEX(x-1, y),
-					GetUnitAffinityIcon(gStatScreen.unit),
-					TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
+					icon, TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
 				return 0; break;
 			}
 			case 6: {
@@ -2890,33 +2895,32 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				return 0; break;
 			}
 			case 9: { // skills row 1 ? 
-				int skillID = 1; 
-				if (skillID) { 
-				if (SkillSysInstalled) { skillID |= 0x100; }
-				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4, y), skillID, 0x4000); }
-				skillID = 2; 
-				if (skillID) { 
-				if (SkillSysInstalled) { skillID |= 0x100; }
-				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-2, y), skillID, 0x4000); }
-				skillID = 3; 
-				if (skillID) { 
-				if (SkillSysInstalled) { skillID |= 0x100; }
-				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x, y), skillID, 0x4000); }
+				u16 skillID[3] = {0, 0, 0}; 
+				skillID[0] = gSkill_Getter(unit)[0]; 
+				skillID[1] = gSkill_Getter(unit)[1]; 
+				skillID[2] = gSkill_Getter(unit)[2]; 
+				
+				for (int i = 0; i<3; ++i) { 
+				if (!skillID[i]) { return 0; break; } 
+					if (SkillSysInstalled) { skillID[i] |= 0x100; }
+					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*2), y), skillID[i], 0x4000); }
 				return 0; break;
 			}
 			case 10: { // skills row 2 
-				int skillID = 4; 
-				if (skillID) { 
-				if (SkillSysInstalled) { skillID |= 0x100; }
-				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4, y), skillID, 0x4000); } 
-				skillID = 5; 
-				if (skillID) { 
-				if (SkillSysInstalled) { skillID |= 0x100; }
-				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-2, y), skillID, 0x4000); }
-				skillID = 6; 
-				if (skillID) { 
-				if (SkillSysInstalled) { skillID |= 0x100; }
-				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x, y), skillID, 0x4000); }
+				u16 skillID[6] = {0, 0, 0, 0, 0, 0}; 
+				
+				skillID[0] = gSkill_Getter(unit)[0]; 
+				skillID[1] = gSkill_Getter(unit)[1]; 
+				skillID[2] = gSkill_Getter(unit)[2]; 
+				skillID[3] = gSkill_Getter(unit)[3]; 
+				skillID[4] = gSkill_Getter(unit)[4]; 
+				skillID[5] = gSkill_Getter(unit)[5]; 
+				
+				for (int i = 0; i<6; ++i) { 
+				if (!skillID[i]) { return 0; break; } 
+					if (i < 3) { continue; } 
+					if (SkillSysInstalled) { skillID[i] |= 0x100; }
+					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + ((i-3)*2), y), skillID[i], 0x4000); }
 				return 0; break;
 			}
 			case 11: { 
@@ -2940,7 +2944,7 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 							GetStringFromIndex(0x4FE)); // Str
 					}
 				} 
-				else { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FE)); } 
+				else { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_POWLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FE)); } 
 				break;
 			}
 			case 12: { 
@@ -3126,28 +3130,15 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 extern int SS_EnableBWL; 
 void DisplayPage0(void) 
 { 
-DisplayTexts(sPage0TextInfo);
+//ResetTextFont();
+//SetTextFontGlyphs(0);
+//SetTextFont(0);
+//InitSystemTextFont();
+//ResetText(); 
+//TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0xD, 0x3), 17, 17, 0);
 
-    // Displaying str/mag label
-    if (UnitHasMagicRank(gStatScreen.unit))
-    {
-        // mag
-        PutDrawText(
-            &gStatScreen.text[STATSCREEN_TEXT_POWLABEL],
-            gUiTmScratchA + TILEMAP_INDEX(1, 1),
-            gold, 0, 0,
-            GetStringFromIndex(0x4FF)); // Mag
-    }
-    else
-    {
-        // str
-        PutDrawText(
-            &gStatScreen.text[STATSCREEN_TEXT_POWLABEL],
-            gUiTmScratchA + TILEMAP_INDEX(1, 1),
-            gold, 0, 0,
-            GetStringFromIndex(0x4FE)); // Str
-    }
-
+//TileMap_FillRect(gBG0TilemapBuffer, int width, int height, int fillValue)
+	DisplayTexts(sPage0TextInfo);
     DrawBarsOrGrowths(); 
 
 	if (SS_EnableBWL) { 
@@ -3585,7 +3576,7 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 
 
 
- s8 IsItemDanceRing(int item) {
+ s8 IsItemADanceRing(int item) {
 	#ifdef FE6 
 	return false; 
 	#endif 
@@ -3710,11 +3701,12 @@ s8 IsItemDisplayUsable(struct Unit* unit, int item) { // 8016AB0
 			}
 		}
 
-        if (!(UNIT_CATTRIBUTES(unit) & CA_REFRESHER) && IsItemDanceRing(item))
+        if (!(UNIT_CATTRIBUTES(unit) & CA_REFRESHER) && IsItemADanceRing(item))
             return FALSE;
     }
 
     return TRUE;
 }
-
+ 
+ 
 

@@ -1,4 +1,31 @@
 #define SKILLSYS_INSTALLED // not functional yet 
 #include ".FE8_Installer.event" 
 
+PUSH 
+ORG 0xB606C8 // add 1  
+//Skill_Getter: 
+POP 
+
+// Skillsys conflicts - mostly strmag / leveling, loading, & stat screen related 
+//ORG $4bf0 
+//POIN PutNumberBonus // conflict 
+//ORG $17d3c
+//POIN UnitInitFromDefinition // 17D7C conflict 
+//ORG $17fc4
+//POIN UnitAutolevelCore // 1802C conflict 
+//ORG $181c8
+//POIN UnitCheckStatCaps // 18280 conflict 
+//ORG $2ba28
+//POIN CheckBattleUnitLevelUp // conflict 
+//ORG $2bf24
+//POIN CheckBattleUnitStatCaps // 2C008 conflict
+//ORG $3b994
+//POIN AiGetChestUnlockItemSlot // 3b9d0 conflict
+//ORG $87184
+//POIN DisplayPage0 // conflict 
+//ORG $88384
+//POIN PageNumCtrl_DisplayBlinkIcons // conflict
+//ORG $17e34
+//POIN UnitLoadStatsFromCharacter // 17e5c conflict
+
 
