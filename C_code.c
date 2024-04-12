@@ -38,9 +38,8 @@ struct RandomizerSettingsA {
 	u8 base : 1; 
 	u8 growth : 2; // vanilla, randomized, 0%, 100% 
 	u8 caps : 2; // vanilla, randomized, 30 
-	u8 class : 1; 
+	u8 class : 2; // vanilla, randomized, players only, enemies only 
 	u8 itemStats : 1; 
-	u8 foundItems : 1; 
 }; 
 
 #ifdef FE6 
@@ -48,6 +47,7 @@ struct RandomizerSettingsB {
 	u8 debugControlGreen : 3; // or 2? unsure 
 	u8 shopItems : 1; 
 	u8 disp : 1;
+	u8 foundItems : 1; 
 }; 
 #endif 
 
@@ -55,6 +55,7 @@ struct RandomizerSettingsB {
 struct RandomizerSettingsB { 
 	u8 shopItems : 1; 
 	u8 disp : 1;
+	u8 foundItems : 1; 
 }; 
 #endif 
 
@@ -92,15 +93,18 @@ int ShouldRandomizeStatCaps(struct Unit* unit) {
 	if (!RandBitflagsA.caps) { return false; } 
 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 }
-
+int ShouldRandomizeClass(struct Unit* unit) { 
+	int config = RandBitflagsA.class; 
+	if (!config) { return false; } 
+	if ((config == 3) && (UNIT_FACTION(unit) != FACTION_RED)) {  return false; } 
+	if ((config == 2) && (UNIT_FACTION(unit) == FACTION_RED)) {  return false; } 
+	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
+} 
 
 u32 GetSeed(void) { 
 	return RandValues.seed; 
 } 
-int AreClassesRandomized(struct Unit* unit) { 
-	if (!RandBitflagsA.class) { return false; } 
-	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-} 
+
 
 int GetMaxItems(void) {  
 	if (MaxItems_Link) { return MaxItems_Link; } 
@@ -200,7 +204,10 @@ int GetInitialSeed(void) {
 
 u16 HashByte_Global(int number, int max, int noise[], int offset) {
 	if (max==0) return 0;
-	offset += noise[0]; 
+	offset += noise[0]*3; 
+	offset += noise[1]*5; 
+	offset += noise[2]*7; 
+	offset += noise[3]*11; 
 	offset = Mod(offset, 256); 
 	u32 hash = 5381;
 	hash = ((hash << 5) + hash) ^ number;
@@ -370,7 +377,7 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 } 
 
 int RandClass(int id, int noise[], struct Unit* unit) { 
-	if (!AreClassesRandomized(unit)) { return id; } 
+	if (!ShouldRandomizeClass(unit)) { return id; } 
 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	int allegiance = (unit->index)>>6;
 	//if (allegiance && (id == 0x3C)) { return id; } 
@@ -591,6 +598,9 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 			continue; 
 		} 
 		if (!table->nameTextId) { continue; }
+		#ifdef FE6 
+		if (table->nameTextId == 0x790) { continue; } // bridge key 
+		#endif 
 		#ifdef FE8 
 		if (table->descTextId == 0x4AB) { // dummy item description text id 
 			continue; 
@@ -613,6 +623,22 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 	return list; 
 } 
 
+extern int RareItemTableSize; 
+extern u8 RareItemTable[]; 
+int RandRareItem(int item, int noise[], int offset, int costReq, int varyByCh) { 
+	if (!item) { return item; } 
+	item &= 0xFF; 
+	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
+	int c; 
+	if (varyByCh) { 
+		c = HashByte_Ch(item, RareItemTableSize, noise, offset); 
+	} 
+	else { 
+		c = HashByte_Global(item, RareItemTableSize, noise, offset); 
+	} 
+	item = RareItemTable[c]; 
+	return MakeNewItem(item); 
+} 
 
 int RandNewItem(int item, int noise[], int offset, int costReq, int varyByCh) { 
 	if (!item) { return item; } 
@@ -639,7 +665,7 @@ int RandNewItem(int item, int noise[], int offset, int costReq, int varyByCh) {
 int RandNewWeapon(struct Unit* unit, int item, int noise[], int offset, u8 list[]) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
-	if (!AreClassesRandomized(unit)) { return MakeNewItem(item); } 
+	if (!ShouldRandomizeClass(unit)) { return MakeNewItem(item); } 
 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
 	//int wexpMask = GetValidWexpMask(unit); 
 	int c; 
@@ -716,7 +742,7 @@ void NewPopup_ItemGot(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2
 	noise[0] = unit->xPos; 
 	noise[1] = unit->yPos; 
 	noise[2] = 0; 
-	if (RandBitflagsA.foundItems) { item = RandNewItem(item, noise, 0, false, true); } 
+	if (RandBitflagsB.foundItems) { item = RandNewItem(item, noise, 0, false, true); } 
 
     proc->item = item;
     proc->unit = unit;
@@ -771,7 +797,7 @@ void NewPopup_GoldGot(ProcPtr parent, struct Unit *unit, int value) // fe8 and f
 	noise[1] = unit->yPos; 
 	
 	
-	if (RandBitflagsA.foundItems) { value = HashByPercent_Ch(value, noise, 13, false); if (!value) { value = 1; } } 
+	if (RandBitflagsB.foundItems) { value = HashByPercent_Ch(value, noise, 13, false); if (!value) { value = 1; } } 
     SetPopupNumber(value); 
 
     if (FACTION_BLUE == UNIT_FACTION(unit)) {
@@ -1117,7 +1143,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	int personalWexp = 0; 
 	noise[0] = unit->pClassData->number; 
 	tmp = 0; 
-	if (AreClassesRandomized(unit)) { 
+	if (ShouldRandomizeClass(unit)) { 
 		for (int c = 0; c < 8; ++c) { 
 			tmp = unit->pCharacterData->baseRanks[c]; 
 			if (tmp > personalWexp) { personalWexp = tmp; } 
@@ -1137,7 +1163,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 			// flux is D rank, not E... 
 		}
 		
-		if (!AreClassesRandomized(unit)) { 
+		if (!ShouldRandomizeClass(unit)) { 
 			if (unit->pCharacterData->baseRanks[i]) { // original
 				unit->ranks[i] = unit->pCharacterData->baseRanks[i]; } 
 		} 
@@ -1201,7 +1227,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	#ifndef FE6 
 	unit->conBonus = 0; unit->movBonus = 0; 
 	#endif 
-	if (AreClassesRandomized(unit)) {
+	if (ShouldRandomizeClass(unit)) {
 		if (IsUnitAlliedOrPlayable(unit)) { 
 			unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
 			if (unit->pClassData->baseMov < 7) { 
@@ -1847,12 +1873,14 @@ const char Option3[OPT3NUM][10] = { // Stat Caps
 "Always 30", 
 }; 
 
-#define OPT4NUM 2
+#define OPT4NUM 4
 const char Option4[OPT4NUM][20] = { // Class
 //"Random for players",
 //"Random for enemies",
 "Vanilla",
 "Random",
+"Players",
+"Enemies",
 }; 
 
 #define OPT5NUM 4
@@ -1964,7 +1992,12 @@ Max Growth: 100
 	else { 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 6, GetStringFromIndex(0xB77 + proc->Option[3])); i++; 
 	} 
+	if (proc->Option[4] < 2) { 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, GetStringFromIndex(0xB77 + proc->Option[4])); i++; 
+	} 
+	else { 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, GetStringFromIndex(0xB81 + proc->Option[4])); i++; 
+	} 
 	
 	if (proc->Option[5] > 1) { 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, GetStringFromIndex(0xB7A + proc->Option[5])); i++; 
@@ -2100,7 +2133,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflagsA.caps = proc->Option[3]; 
 		RandBitflagsA.class = proc->Option[4]; 
 		RandBitflagsA.itemStats = ((proc->Option[5] == 1) || (proc->Option[5] == 3)); 
-		RandBitflagsA.foundItems = ((proc->Option[5] == 1) || (proc->Option[5] == 2)); 
+		RandBitflagsB.foundItems = ((proc->Option[5] == 1) || (proc->Option[5] == 2)); 
 		RandBitflagsB.shopItems = ((proc->Option[5] == 1) || (proc->Option[5] == 2)); 
 		RandBitflagsB.disp = 1; 
 		
@@ -2465,7 +2498,6 @@ extern int VramDest_DebugFont;
 void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6 
     // displaying str/mag stat value
 	int barsOrGrowths = RandBitflagsB.disp; 
-	struct Unit* unit = gStatScreen.unit; 
 	
 	if (barsOrGrowths) { 
     DrawStatWithBar(0, 5, 1,
@@ -3197,13 +3229,16 @@ void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr par
 		} 
 		
 		int term = false; 
+		int rareItemSlot = HashByte_Ch(10, 5, noise, 3); // one of the first 5 items will be a rare item 
 		for (i = 0; i < 20; i++) {
 			u16 itemId = *shopItems++;
 			//asm("mov r11, r11"); 
 			if ((!itemId) && (i < 5)) { term = true; itemId = i; } // randomized shop will have at least 5 items 
 			if ((i>=5) && (term)) { itemId = 0; } 
 			
-			itemId = RandNewItem(itemId, noise, i, true, varyByCh);
+			if ((i == rareItemSlot) && (RareItemTableSize)) { itemId = RandRareItem(itemId, noise, i, true, varyByCh); } 
+			else { itemId = RandNewItem(itemId, noise, i, true, varyByCh); } 
+			
 			proc->shopItems[i] = itemId; 
 		}
 

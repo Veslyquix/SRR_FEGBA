@@ -23,6 +23,13 @@ WORD 1
 #endif 
 WORD 0 // If true, stats won't go lower than class bases 
 
+
+// Each shop will have one of these items at random
+RareItemTableSize:
+WORD 17 
+RareItemTable: // stat boosters / promo items 
+BYTE 0x5a 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x64 0x65 0x66 0x67 0x96 0x87 0x67 
+
 #define NeverChangeFromItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1; POP" 
 #define NeverChangeIntoItem(id) "PUSH; ORG ItemExceptions + (id * 2) + 1; BYTE 1; POP" 
 #define NeverChangeItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
@@ -156,7 +163,7 @@ SHORT $1C28
 callHackNew(StatScreenSelectLoop)
 
 #define jumpToHack_r1(offset) "BYTE 0x00 0x49 0x08 0x47; POIN (offset|0x1)"
-ORG $5323C 
+ORG $53230 
 jumpToHack_r1(MaybeUseGenericPalette_FE7)
 //ORG $53242 
 //SHORT $2000 // always use generic palette (by Vesly) 

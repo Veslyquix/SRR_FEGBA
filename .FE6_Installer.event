@@ -33,6 +33,13 @@ WORD 1 // If true, randomize prep shop if player randomizes found items
 MinClassBase:
 WORD 0 // If true, stats won't go lower than class bases 
 
+// Each shop will have one of these items at random
+RareItemTableSize:
+WORD 17 
+RareItemTable: // stat boosters / promo items 
+BYTE 0x56 0x57 0x58 0x59 0x5a 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x5f 0x60 0x63 
+
+
 #define NeverChangeFromItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1; POP" 
 #define NeverChangeIntoItem(id) "PUSH; ORG ItemExceptions + (id * 2) + 1; BYTE 1; POP" 
 #define NeverChangeItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
@@ -73,6 +80,17 @@ NeverChangeIntoClass(0x29)
 NeverChangeIntoClass(0x2D)
 NeverChangeIntoClass(0x2F)
 NeverChangeIntoClass(0x35)
+
+//NeverChangeFromItem(0x9) // Durandal 
+NeverChangeFromItem(0xF) // Binding blade 
+//NeverChangeFromItem(0x17) // Maltet
+//NeverChangeFromItem(0x21) // Armads
+//NeverChangeFromItem(0x2F) // Mulagir
+//NeverChangeFromItem(0x3a) // Forblaze
+//NeverChangeFromItem(0x3E) // Aureola
+//NeverChangeFromItem(0x42) // Apocalypse 
+//NeverChangeFromItem(0x71) // Eckesachs  
+//NeverChangeFromItem(0x77) // Saint's staff 
 
 ALIGN 4 
 VarianceText: 
@@ -119,7 +137,12 @@ BYTE $C6 $9A $EB $05 $00 $00 $00 $00
 MinusText: 
 BYTE $FD $7B $71 $91 $5E $00 $00 $00 $00 // _ 
 //BYTE $D6 $E9 $05 $00 $00 $00 $00 $00 // - 
-
+PlayersText:
+BYTE $CD $15 $01 $7F $56 $2F $00 $00 $00 $00 $00 $00
+// "Players only" CD 15 01 7F 56 14 0B E8 05 00 00 00 00 00 00 00
+EnemiesText:
+BYTE $A4 $F0 $EB $FD $AB $17 $00 $00 $00 $00 $00 $00
+// "Enemies only" A4 F0 EB FD 2B 8A 05 F4 02 00 00 00 00 00 00 00
 
 #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
 #define setTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
@@ -145,6 +168,8 @@ setTextWithHuffman(0xB7F, CasualText)
 setTextWithHuffman(0xB80, MovText)
 setTextWithHuffman(0xB81, HpText)
 setTextWithHuffman(0xB82, MinusText)
+setTextWithHuffman(0xB83, PlayersText)
+setTextWithHuffman(0xB84, EnemiesText)
 
 
 PUSH 
@@ -170,7 +195,7 @@ ORG $17BEC
 ORG $28f72 // in 28ef0
 SHORT $22c0 $4311 // default game/text speed fast 
 
-ORG $4a4A8 
+ORG $4a4A0 
 jumpToHack(MaybeUseGenericPalette_FE6)
 //ORG $4a4b0
 //SHORT $2000 // always use generic palette (by Vesly) 

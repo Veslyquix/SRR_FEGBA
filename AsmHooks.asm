@@ -32,13 +32,19 @@ bx r3
 .global MaybeUseGenericPalette_FE6
 .type MaybeUseGenericPalette_FE6, %function 
 MaybeUseGenericPalette_FE6: 
-push {lr} 
+push {r4, lr} 
+mov r4, r0 @ unit 
+ldr r0, [r2, #0x28] 
+ldr r1, [r1, #0x24] 
+orr r0, r1 
+lsr r0, #8 
 add r2, #0x23 
 add r2, r0 
 ldrb r0, [r2] 
 
 push {r0} 
-bl AreClassesRandomized
+mov r0, r4 @ unit 
+bl ShouldRandomizeClass
 mov r1, r0 
 pop {r0} 
 cmp r1, #0 
@@ -46,6 +52,7 @@ beq VanillaClassPaletteMethod_FE6
 mov r0, #0 @ always 0 if classes are randomized 
 VanillaClassPaletteMethod_FE6: 
 sub r0, #1 
+pop {r4} 
 pop {r3} 
 bx r3 
 .ltorg 
@@ -53,7 +60,14 @@ bx r3
 .global MaybeUseGenericPalette_FE7
 .type MaybeUseGenericPalette_FE7, %function 
 MaybeUseGenericPalette_FE7: 
-push {lr} 
+push {r4, lr} 
+mov r4, r0
+ldr r1, [r0, #4]  
+ldr r0, [r2, #0x28] 
+ldr r1, [r1, #0x28] 
+orr r0, r1 
+lsr r0, #8 
+
 mov r1, #1 
 and r0, r1 
 add r2, #0x23 
@@ -61,7 +75,8 @@ add r2, r0
 ldrb r0, [r2] 
 
 push {r0, r3} 
-bl AreClassesRandomized
+mov r0, r4 @ unit 
+bl ShouldRandomizeClass
 mov r1, r0 
 pop {r0, r3} 
 cmp r1, #0 
@@ -70,6 +85,7 @@ mov r0, #0 @ always 0 if classes are randomized
 VanillaClassPaletteMethod_FE7: 
 strh r0, [r3] 
 sub r0, #1 
+pop {r4} 
 pop {r3} 
 bx r3 
 .ltorg 
@@ -77,25 +93,54 @@ bx r3
 .global MaybeUseGenericPalette_FE8
 .type MaybeUseGenericPalette_FE8, %function 
 MaybeUseGenericPalette_FE8: 
-push {lr} 
-add r1, r2 
-ldrb r1, [r1] 
+push {r4-r5, lr} 
 
-push {r0, r1} 
-bl AreClassesRandomized
-mov r2, r0 
-pop {r0, r1} 
-cmp r2, #0 
-beq VanillaClassPaletteMethod_FE8 
-mov r1, #0 @ always 0 if classes are randomized 
-VanillaClassPaletteMethod_FE8: 
+ldr r5, =0x203E110 @ added 
+ldr r1, =0x8057A14
+ldr r4, [r1] @ 203E1DC
+cmp r0, #1 
+beq GenericPaletteFalse
+ldr r0, =0x8057A10
+ldr r0, [r0] @ 202BCF0
+add r0, #0x40 
+ldrb r0, [r0] 
+lsl r0, #0x1f 
+cmp r0, #0 
+beq GenericPaletteFalse
+GenericPaletteTrue: 
+mov r0, #1 
+strh r0, [r4] 
+strh r0, [r4, #2] 
+b ExitGenericPalette_FE8 
 
+GenericPaletteFalse: 
+mov r0, r9 @ dfdr 
+bl ShouldRandomizeClass 
+strh r0, [r4] 
+cmp r0, #0 
+beq DontOverwriteDfdr 
+mov r1, #0 
 sub r1, #1 
-strh r1, [r0, #2] 
+strh r1, [r5] 
+DontOverwriteDfdr: 
+
+
+mov r0, r10 @ atkr 
+bl ShouldRandomizeClass 
+strh r0, [r4, #2] 
+cmp r0, #0 
+beq DontOverwriteAtkr 
+mov r1, #0 
+sub r1, #1 
+strh r1, [r5, #2] 
+DontOverwriteAtkr: 
+
+ExitGenericPalette_FE8: 
+pop {r4-r5} 
 pop {r3} 
-ldr r3, =0x80573A5 
 bx r3 
 .ltorg 
+
 
 .global FE6_SeizeCantoFix
 .type FE6_SeizeCantoFix, %function 
