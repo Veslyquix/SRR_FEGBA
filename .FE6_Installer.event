@@ -81,16 +81,16 @@ NeverChangeIntoClass(0x2D)
 NeverChangeIntoClass(0x2F)
 NeverChangeIntoClass(0x35)
 
-//NeverChangeFromItem(0x9) // Durandal 
+NeverChangeFromItem(0x9) // Durandal 
 NeverChangeFromItem(0xF) // Binding blade 
-//NeverChangeFromItem(0x17) // Maltet
-//NeverChangeFromItem(0x21) // Armads
-//NeverChangeFromItem(0x2F) // Mulagir
-//NeverChangeFromItem(0x3a) // Forblaze
-//NeverChangeFromItem(0x3E) // Aureola
-//NeverChangeFromItem(0x42) // Apocalypse 
+NeverChangeFromItem(0x17) // Maltet // in ch 21 Yoder comes with this or Mulagir but can't wield them anyway 
+NeverChangeFromItem(0x21) // Armads
+NeverChangeFromItem(0x2F) // Mulagir
+NeverChangeFromItem(0x3a) // Forblaze
+NeverChangeFromItem(0x3E) // Aureola
+NeverChangeFromItem(0x42) // Apocalypse 
 //NeverChangeFromItem(0x71) // Eckesachs  
-//NeverChangeFromItem(0x77) // Saint's staff 
+NeverChangeFromItem(0x77) // Saint's staff 
 
 ALIGN 4 
 VarianceText: 

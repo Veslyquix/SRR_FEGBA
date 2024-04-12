@@ -570,12 +570,16 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 	struct ItemData* table; 
 	int badAttr = IA_LOCK_3; // manakete lock 
 	if (noWeapons) { badAttr |= IA_WEAPON|IA_STAFF; } 
-	
+	// no price weps: poison, legendary, ballista, dragonstone, monster weps 
 	int originalPrice = GetItemData(item)->costPerUse; 
+	int minPrice = originalPrice; 
 	originalPrice += 200 + (((originalPrice * RandValues.variance) / 100) * 5);
 	int uses = GetItemData(item)->maxUses;
 	if (!uses) { uses = 1; } 
 	originalPrice = originalPrice * uses; 
+	minPrice = minPrice * uses; 
+	if (minPrice < 2000) { minPrice = 0; } 
+	else { minPrice = minPrice / 4; if (minPrice > 4000) { minPrice = 4000; } } 
 	// up to 500% price + 200 
 	list[0] = 0; // count 
 	for (int i = 1; i <= GetMaxItems(); i++) { 
@@ -612,6 +616,9 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 		if ((costReq) && (!cost)) { continue; } 
 		if (!uses) { uses = 1; } 
 		if ((cost*uses) > originalPrice) { 
+			continue; 
+		} 
+		if ((cost*uses) < minPrice) { 
 			continue; 
 		} 
 		list[0]++; 
