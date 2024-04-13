@@ -1122,7 +1122,7 @@ s8 CanBattleUnitGainLevels(struct BattleUnit* bu) {
 #endif 
 const s8 MovModifiers[] = { 0, 0, 0, 0, 0, 1, 1, 2, 0 } ; 
 const s8 ConModifiers[] = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0 } ; 
-
+extern int RandomizeMovConBonus; 
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
     unit->level = uDef->level;
@@ -1235,20 +1235,22 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	#ifndef FE6 
 	unit->conBonus = 0; unit->movBonus = 0; 
 	#endif 
-	if (ShouldRandomizeClass(unit)) {
-		if (IsUnitAlliedOrPlayable(unit)) { 
-			unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
-			if (unit->pClassData->baseMov < 7) { 
-				#ifdef FE6 
-				unit->movBonusA = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
-				unit->movBonusB = unit->movBonusA; 
-				#endif 
-				#ifndef FE6 
-				unit->movBonus = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
-				#endif 
+	if (RandomizeMovConBonus) { 
+		if (ShouldRandomizeClass(unit)) {
+			if (IsUnitAlliedOrPlayable(unit)) { 
+				unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
+				if (unit->pClassData->baseMov < 7) { 
+					#ifdef FE6 
+					unit->movBonusA = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
+					unit->movBonusB = unit->movBonusA; 
+					#endif 
+					#ifndef FE6 
+					unit->movBonus = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
+					#endif 
+				} 
 			} 
-		} 
-	}
+		}
+	} 
 
 
 
@@ -2895,32 +2897,29 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				return 0; break;
 			}
 			case 9: { // skills row 1 ? 
-				u16 skillID[3] = {0, 0, 0}; 
-				skillID[0] = gSkill_Getter(unit)[0]; 
-				skillID[1] = gSkill_Getter(unit)[1]; 
-				skillID[2] = gSkill_Getter(unit)[2]; 
-				
+				u8* skillID = gSkill_Getter(unit); 
 				for (int i = 0; i<3; ++i) { 
-				if (!skillID[i]) { return 0; break; } 
-					if (SkillSysInstalled) { skillID[i] |= 0x100; }
-					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*2), y), skillID[i], 0x4000); }
+				if (!(*skillID)) { return 0; break; } 
+					if (SkillSysInstalled) { 
+					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*3), y), *skillID|0x100, 0x4000); }
+					else { 
+					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*3), y), skillID[i], 0x4000); }
+				skillID++; 
+				}
 				return 0; break;
 			}
 			case 10: { // skills row 2 
-				u16 skillID[6] = {0, 0, 0, 0, 0, 0}; 
-				
-				skillID[0] = gSkill_Getter(unit)[0]; 
-				skillID[1] = gSkill_Getter(unit)[1]; 
-				skillID[2] = gSkill_Getter(unit)[2]; 
-				skillID[3] = gSkill_Getter(unit)[3]; 
-				skillID[4] = gSkill_Getter(unit)[4]; 
-				skillID[5] = gSkill_Getter(unit)[5]; 
-				
+				u8* skillID = gSkill_Getter(unit); 
 				for (int i = 0; i<6; ++i) { 
-				if (!skillID[i]) { return 0; break; } 
-					if (i < 3) { continue; } 
-					if (SkillSysInstalled) { skillID[i] |= 0x100; }
-					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + ((i-3)*2), y), skillID[i], 0x4000); }
+					if (!(*skillID)) { return 0; break; } 
+					if (i > 2) { 
+						if (SkillSysInstalled) { 
+						DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + ((i-3)*3), y), *skillID|0x100, 0x4000); }
+						else { 
+						DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + ((i-3)*3), y), skillID[i], 0x4000); }
+					} 
+					skillID++; 
+				}
 				return 0; break;
 			}
 			case 11: { 
@@ -3600,6 +3599,24 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 }
 
 //#ifndef FE8 
+extern int OnlyThievesCanUseLockpicks; 
+s8 CanUnitUseLockpickItem(struct Unit* unit) // 80273B8
+{
+	int faction = UNIT_FACTION(unit); 
+	if (faction == FACTION_BLUE) { 
+		if (OnlyThievesCanUseLockpicks) { 
+			if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
+				return FALSE;
+			} 
+		} 
+	}
+
+    if (!CanUnitUseChestKeyItem(unit) && !CanUnitUseDoorKeyItem(unit) && !CanUnitOpenBridge(unit))
+        return FALSE;
+
+    return TRUE;
+}
+
 s8 AiGetChestUnlockItemSlot(u8* out) { // 8036A8C
     int i;
 
@@ -3628,7 +3645,7 @@ s8 AiGetChestUnlockItemSlot(u8* out) { // 8036A8C
 
         if (GetItemIndex(item) == LOCKPICK) { //ITEM_LOCKPICK) { // 3bb40 
 			// any enemy class can use lockpicks 
-            if ((UNIT_CATTRIBUTES(gActiveUnit) & CA_STEAL) || (UNIT_FACTION(gActiveUnit) != FACTION_BLUE)) {
+            if (CanUnitUseLockpickItem(gActiveUnit)) {
                 return 1;
             }
         }
@@ -3640,7 +3657,7 @@ s8 AiGetChestUnlockItemSlot(u8* out) { // 8036A8C
 int GetUnitKeyItemSlotForTerrain(struct Unit* unit, int terrain) { // 8018524
     int slot, item = 0;
 
-    if ((UNIT_CATTRIBUTES(unit) & CA_THIEF) || (UNIT_FACTION(unit) != FACTION_BLUE)) {
+    if (CanUnitUseLockpickItem(unit)) {
         int slot = GetUnitItemSlot(unit, LOCKPICK);
 
         if (slot >= 0)
@@ -3665,21 +3682,6 @@ int GetUnitKeyItemSlotForTerrain(struct Unit* unit, int terrain) { // 8018524
 
     return GetUnitItemSlot(unit, item);
 }
-
-s8 CanUnitUseLockpickItem(struct Unit* unit) // 80273B8
-{
-	int faction = UNIT_FACTION(unit); 
-	if (faction == FACTION_BLUE) { 
-		if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
-			return FALSE;
-		} 
-	}
-
-    if (!CanUnitUseChestKeyItem(unit) && !CanUnitUseDoorKeyItem(unit) && !CanUnitOpenBridge(unit))
-        return FALSE;
-
-    return TRUE;
-}
 //#endif 
 s8 IsItemDisplayUsable(struct Unit* unit, int item) { // 8016AB0
     if (GetItemAttributes(item) & 1 ) // wep 
@@ -3695,8 +3697,9 @@ s8 IsItemDisplayUsable(struct Unit* unit, int item) { // 8016AB0
         if (unit->statusIndex == UNIT_STATUS_BERSERK)
             return FALSE;
 
-        if ((UNIT_FACTION(unit) == FACTION_BLUE) && GetItemIndex(item) == LOCKPICK) {// lockpick 
-			if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
+        if (GetItemIndex(item) == LOCKPICK) {// lockpick 
+			
+			if (!(CanUnitUseLockpickItem(unit))) { 
             return FALSE;
 			}
 		}

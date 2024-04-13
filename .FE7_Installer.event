@@ -22,7 +22,10 @@ MinClassBase:
 WORD 1 
 #endif 
 WORD 0 // If true, stats won't go lower than class bases 
-
+RandomizeMovConBonus:
+WORD 1 
+OnlyThievesCanUseLockpicks:
+WORD 1 
 
 // Each shop will have one of these items at random
 RareItemTableSize:
