@@ -22,6 +22,10 @@ RandomizeMovConBonus:
 WORD 1 
 OnlyThievesCanUseLockpicks: // only applies to players. Enemies/NPCs can always use lockpicks 
 WORD 1 
+ClassBasedGrowths: // if true, only use class growths 
+WORD 0
+CombinedGrowths: // if true, use char+class growths 
+WORD 0
 WepLockExInstalled:
 WORD 1 // Make this true if you use a Weapon Lock Expansion hack 
 

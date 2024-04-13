@@ -934,7 +934,8 @@ int GetClassLckGrowth(struct Unit* unit, int modifiersBool) {
 	return result; 
 }
 
-
+extern int ClassBasedGrowths; 
+extern int CombinedGrowths; 
 int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 #ifdef ALWAYS50
 	return 50; 
@@ -942,7 +943,9 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	growth += unit->pCharacterData->growthHP; 
+	growth = unit->pCharacterData->growthHP; 
+	if (ClassBasedGrowths) { growth = unit->pClassData->growthHP; } 
+	if (CombinedGrowths) { growth += unit->pClassData->growthHP; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
@@ -965,7 +968,9 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	growth += unit->pCharacterData->growthPow; 
+	growth = unit->pCharacterData->growthPow; 
+	if (ClassBasedGrowths) { growth = unit->pClassData->growthPow; } 
+	if (CombinedGrowths) { growth += unit->pClassData->growthPow; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
@@ -987,7 +992,9 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	growth += unit->pCharacterData->growthSkl; 
+	growth = unit->pCharacterData->growthSkl; 
+	if (ClassBasedGrowths) { growth = unit->pClassData->growthSkl; } 
+	if (CombinedGrowths) { growth += unit->pClassData->growthSkl; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
@@ -1009,7 +1016,9 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	growth += unit->pCharacterData->growthSpd; 
+	growth = unit->pCharacterData->growthSpd; 
+	if (ClassBasedGrowths) { growth = unit->pClassData->growthSpd; } 
+	if (CombinedGrowths) { growth += unit->pClassData->growthSpd; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
@@ -1031,7 +1040,9 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	growth += unit->pCharacterData->growthDef; 
+	growth = unit->pCharacterData->growthDef; 
+	if (ClassBasedGrowths) { growth = unit->pClassData->growthDef; } 
+	if (CombinedGrowths) { growth += unit->pClassData->growthDef; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
@@ -1053,7 +1064,9 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	growth += unit->pCharacterData->growthRes; 
+	growth = unit->pCharacterData->growthRes; 
+	if (ClassBasedGrowths) { growth = unit->pClassData->growthRes; } 
+	if (CombinedGrowths) { growth += unit->pClassData->growthRes; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
@@ -1075,7 +1088,9 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	growth += unit->pCharacterData->growthLck; 
+	growth = unit->pCharacterData->growthLck; 
+	if (ClassBasedGrowths) { growth = unit->pClassData->growthLck; } 
+	if (CombinedGrowths) { growth += unit->pClassData->growthLck; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
