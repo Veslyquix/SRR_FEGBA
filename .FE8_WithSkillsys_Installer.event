@@ -1,9 +1,12 @@
 #define SKILLSYS_INSTALLED // not functional yet 
+#define STRMAG_INSTALLED // not functional yet 
 #include ".FE8_Installer.event" 
 
 PUSH 
-ORG 0xB606C8 // add 1  
-//Skill_Getter: 
+ORG $B2A740 
+MagCharTable:
+ORG $B2A940 
+MagClassTable: 
 POP 
 
 // Skillsys conflicts - mostly strmag / leveling, loading, & stat screen related 

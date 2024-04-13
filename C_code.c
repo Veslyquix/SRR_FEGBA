@@ -33,7 +33,6 @@ extern int CasualModeFlag;
 
 //#define ALWAYS50 // make growths 50 
 
-
 struct RandomizerSettingsA { 
 	u8 base : 1; 
 	u8 growth : 2; // vanilla, randomized, 0%, 100% 
@@ -80,7 +79,8 @@ struct ExceptionsStruct {
 extern struct ExceptionsStruct ItemExceptions[]; 
 extern struct ExceptionsStruct ClassExceptions[]; 
 extern struct ExceptionsStruct CharExceptions[]; 
-
+extern int SkillSysInstalled; 
+extern int StrMagInstalled;
 
 inline int IsClassInvalid(int i) { 
 	return ClassExceptions[i].NeverChangeInto;
@@ -99,6 +99,9 @@ int ShouldRandomizeClass(struct Unit* unit) {
 	if ((config == 3) && (UNIT_FACTION(unit) != FACTION_RED)) {  return false; } 
 	if ((config == 2) && (UNIT_FACTION(unit) == FACTION_RED)) {  return false; } 
 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
+} 
+int IsAnythingRandomized(void) { 
+	return RandBitflagsA.base | RandBitflagsA.growth | RandBitflagsA.caps | RandBitflagsA.itemStats | RandBitflagsA.class | RandBitflagsB.shopItems | RandBitflagsB.foundItems; 
 } 
 
 u32 GetSeed(void) { 
@@ -849,6 +852,92 @@ s16 HashWexp(int number, int noise[], int offset) {
 int GetGrowthModifiers(struct Unit* unit) { 
 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 } 
+extern int ClassBasedGrowths; 
+extern int CombinedGrowths; 
+#ifdef FE8 
+struct magClassTable { 
+u8 base; 
+u8 growth; 
+u8 cap; 
+u8 promo; 
+}; 
+struct magCharTable { 
+u8 base; 
+u8 growth; 
+}; 
+extern struct magClassTable MagClassTable[]; 
+extern struct magCharTable MagCharTable[]; 
+
+int GetClassMagGrowth(struct Unit* unit, int modifiersBool) {
+	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
+	growth += MagClassTable[unit->pClassData->number].growth; 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
+	int noise[4] = {0, 0, 0, 0}; 
+	noise[0] = unit->pClassData->number; 
+	int result = HashByPercent(growth, noise, 81);  
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result; 
+}
+int GetUnitMagGrowth(struct Unit* unit, int modifiersBool) {
+#ifdef ALWAYS50
+	return 50; 
+#endif 
+	int growth = 0;
+	int add = 0; 
+	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
+	growth = MagCharTable[unit->pClassData->number].growth;  
+	if (ClassBasedGrowths) { growth = MagClassTable[unit->pClassData->number].growth;  } 
+	if (CombinedGrowths) { growth += MagClassTable[unit->pClassData->number].growth;  } 
+	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth + add; } 
+	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflagsA.growth == 2)) { return 0; } // 0% growths 
+	if (player && (RandBitflagsA.growth == 3)) { return 100; } // 100% growths 
+	if (MagClassTable[unit->pClassData->number].growth > growth) { growth = MagClassTable[unit->pClassData->number].growth;  } 
+	int noise[4] = {0, 0, 0, 0};  
+	noise[0] = unit->pCharacterData->number; 
+	int result = HashByPercent(growth, noise, 81); 
+	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 89); } 
+	if ((result-growth) > 99) { result = growth+99; } 
+	if ((growth-result) > 99) { result = growth-99; } 
+	return result + add; 
+}
+
+int GetUnitMaxMag(struct Unit* unit) { 
+	int cap = 0;
+	if (StrMagInstalled) { cap = MagClassTable[unit->pClassData->number].cap; } 
+	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
+	if (RandBitflagsA.caps == 2) { return 30; } 
+	int noise[4] = {0, 0, 0, 0}; 
+	noise[0] = unit->pClassData->number; 
+	int result = HashByPercent(cap, noise, 77); 
+	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 73); } 
+	if (result > cap) { result = cap; } 
+	return result;  
+} 
+
+int GetUnitBaseMag(struct Unit* unit) { 
+	return MagClassTable[unit->pClassData->number].base + MagCharTable[unit->pClassData->number].base; 
+} 
+
+#endif 
+#ifndef FE8 
+int GetClassMagGrowth(struct Unit* unit, int modifiersBool) {
+	return 0; 
+}
+int GetUnitMagGrowth(struct Unit* unit, int modifiersBool) {
+	return 0; 
+}
+
+int GetUnitMaxMag(struct Unit* unit) { 
+	return 0;  
+} 
+
+int GetUnitBaseMag(struct Unit* unit) { 
+	return 0; 
+} 
+#endif 
+
 
 int GetClassHPGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
@@ -934,8 +1023,7 @@ int GetClassLckGrowth(struct Unit* unit, int modifiersBool) {
 	return result; 
 }
 
-extern int ClassBasedGrowths; 
-extern int CombinedGrowths; 
+
 int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 #ifdef ALWAYS50
 	return 50; 
@@ -1117,6 +1205,7 @@ void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
         unit->def   += GetAutoleveledStatIncrease(GetClassDefGrowth(unit, true), levelCount);
         unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit, true), levelCount);
         unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
+		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
     }
 	UnitCheckStatCaps(unit); 
 }
@@ -1228,6 +1317,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->def   = RandStat(unit, character->baseDef + unit->pClassData->baseDef, noise, 55, max150percent);
     unit->res   = RandStat(unit, character->baseRes + unit->pClassData->baseRes, noise, 65, max150percent);
     unit->lck   = RandStat(unit, character->baseLck, noise, 75, max150percent);    
+	if (StrMagInstalled) { unit->_u3A = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent); } 
 
 	if (MinClassBase) { 
 		int minStat = unit->pCharacterData->basePow + unit->pClassData->basePow; if (minStat < 0) { minStat = 0; } 
@@ -1242,6 +1332,8 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		if (unit->res < minStat) { unit->res = minStat; } 
 		minStat = unit->pCharacterData->baseLck; if (minStat < 0) { minStat = 0; } 
 		if (unit->lck < minStat) { unit->lck = minStat; } 
+		if (StrMagInstalled) { minStat = GetUnitBaseMag(unit); if (minStat < 0) { minStat = 0; } 
+			if (unit->_u3A < minStat) { unit->_u3A = minStat; } } 
 	}
 
 	#ifdef FE6 
@@ -1608,6 +1700,7 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int defGrowth = GetUnitDefGrowth(unit, true);
 		int resGrowth = GetUnitResGrowth(unit, true);
 		int lckGrowth = GetUnitLckGrowth(unit, true);
+		int magGrowth = GetUnitMagGrowth(unit, true); 
 
 		
 		int maxHP = GetUnitMaxHP(unit); 
@@ -1617,6 +1710,7 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int maxDef = GetUnitMaxDef(unit); 
 		int maxRes = GetUnitMaxRes(unit); 
 		int maxLck = GetUnitMaxLck(unit); 
+		int maxMag = GetUnitMaxMag(unit); 
 		
 
         bu->changeHP  = NewGetStatIncrease(hpGrowth, noise, level, 1); 
@@ -1646,6 +1740,8 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
         bu->changeLck = NewGetStatIncrease(lckGrowth, noise, level, 7); 
 		if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
         statGainTotal += bu->changeLck; else bu->changeLck = 0; 
+	
+		if (StrMagInstalled) { bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 8); } 
 
 
         if (statGainTotal < MinimumStatUps) {
@@ -1658,6 +1754,7 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 				bu->changeDef = 0; 
 				bu->changeRes = 0; 
 				bu->changeLck = 0; 
+				if (StrMagInstalled) { bu->changeCon = 0; } 
 			
 			
 				bu->changeHP = NewGetStatIncrease(hpGrowth, noise, level, 8 + (i * 13)); 
@@ -1708,6 +1805,16 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 				{	statGainTotal++; 
 					if (statGainTotal >= MinimumStatUps) { 
 					break;	} } 
+					
+					
+				if (StrMagInstalled) { 
+					bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 15 + (i * 13)); 
+
+					if (bu->changeCon && ((unit->_u3A + bu->changeCon) <= maxMag))
+					{	statGainTotal++; 
+						if (statGainTotal >= MinimumStatUps) { 
+						break;	} } 
+				} 
 			}
         }
 
@@ -1746,6 +1853,13 @@ void UnitCheckStatCaps(struct Unit* unit) {
 	max = GetUnitMaxLck(unit);
     if (unit->lck > max) { 
 	unit->lck = max; } 
+	
+	if (StrMagInstalled) { 
+	max = GetUnitMaxMag(unit); 
+	if (unit->_u3A > max) { 
+	unit->_u3A = max; } 
+	} 
+	
 
     if (unit->conBonus > (UNIT_CON_MAX(unit) - UNIT_CON_BASE(unit)))
         unit->conBonus = (UNIT_CON_MAX(unit) - UNIT_CON_BASE(unit));
@@ -1791,6 +1905,11 @@ void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu) {
 	max = GetUnitMaxLck(unit);
     if ((unit->lck + bu->changeLck) > max) { 
 	bu->changeLck = max - unit->lck; } 
+	
+	if (StrMagInstalled) { max = GetUnitMaxMag(unit);
+		if ((unit->_u3A + bu->changeCon) > max) { 
+		bu->changeCon = max - unit->_u3A; } 
+	} 
 }
 
 
@@ -2659,20 +2778,21 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 		} 
 	} 
 	//PutDrawText(gStatScreen.text + 21,   gUiTmScratchA + TILEMAP_INDEX(1, 0x12),  white, 0, 12, "SRR v1.01   Seed:");
-
-	#ifdef FE6 
-	SetupDebugFontForBG(0, 0x5400);
-	#endif 
-	#ifdef FE7 
-	SetupDebugFontForBG(0, 0x3000);
-	#endif 
-	#ifdef FE8 
-	SetupDebugFontForBG(0, VramDest_DebugFont);
-	#endif 
-	PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
-	//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x12), white, RandValues.seed);
-	PrintDebugNumberToBG(0, 11, 0x13, RandValues.seed); 
-	//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 13, 0x12), white, 123456);
+	if (IsAnythingRandomized()) { 
+		#ifdef FE6 
+		SetupDebugFontForBG(0, 0x5400);
+		#endif 
+		#ifdef FE7 
+		SetupDebugFontForBG(0, 0x3000);
+		#endif 
+		#ifdef FE8 
+		SetupDebugFontForBG(0, VramDest_DebugFont);
+		#endif 
+		PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
+		//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x12), white, RandValues.seed);
+		PrintDebugNumberToBG(0, 11, 0x13, RandValues.seed); 
+		//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 13, 0x12), white, 123456);
+	} 
 	
 	
 } 
@@ -2823,6 +2943,7 @@ void DrawStatus(int x, int y) {
     }
 }
 
+int GetUnitMagic(struct Unit* unit) { return unit->_u3A; } 
 int GetUnitUnadjustedPow(struct Unit* unit) { return unit->pow; } 
 int GetUnitUnadjustedSkl(struct Unit* unit) { return unit->skl; } 
 int GetUnitUnadjustedSpd(struct Unit* unit) { return unit->spd; } 
@@ -2851,7 +2972,6 @@ struct SS_StatID {
 
 extern u8* gSkill_Getter(struct Unit* unit); 
 extern struct SS_StatID gStatScreenFunction[]; 
-extern int SkillSysInstalled; 
 extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
 int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) { 
 	if (gStatScreenFunction[id].specialCase) { 
