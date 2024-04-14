@@ -3254,14 +3254,13 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 	barCount += DrawStatByID(barCount, 5, 15, disp, unit, 7); 
 	barCount += DrawStatByID(barCount, 13, 1, disp, unit, 8); 
 	barCount += DrawStatByID(barCount, 13, 3, disp, unit, 9); 
-	//#ifndef FE7 
+	//
 	barCount += DrawStatByID(barCount, 13, 5, disp, unit, 10); 
 	barCount += DrawStatByID(barCount, 13, 7, disp, unit, 11); 
 	barCount += DrawStatByID(barCount, 13, 9, disp, unit, 12); 
 	barCount += DrawStatByID(barCount, 13, 11, disp, unit, 13); 
 	barCount += DrawStatByID(barCount, 13, 13, disp, unit, 14); 
 	barCount += DrawStatByID(barCount, 13, 15, disp, unit, 15); 
-	//#endif 
 	
 
     // displaying skl stat value

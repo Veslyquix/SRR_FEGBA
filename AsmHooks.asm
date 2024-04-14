@@ -22,6 +22,7 @@ bx r0
 gSkill_Getter: 
 push {lr} 
 ldr r1, =Skill_Getter 
+ldr r1, [r1] 
 cmp r1, #0 
 beq DoNothing 
 blh Skill_Getter 
