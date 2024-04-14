@@ -1,7 +1,8 @@
 #ifndef callHackNew 
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
-
+#define SKILLSYS_INSTALLED 
+#define STRMAG_INSTALLED 
 #include "Extensions/Hack Installation.txt" 
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
@@ -31,8 +32,6 @@ WORD 0
 CombinedGrowths:
 WORD 0
 Skill_Getter:
-WORD 0 
-StrMagInstalled:
 WORD 0 
 
 // Each shop will have one of these items at random
@@ -312,5 +311,138 @@ BYTE $10 $00 $0C $00 $28 $00 $00 $60 $01 $F0 $00 $02 $3F $F0 $FF $00 $3F $33 $EF
 ALIGN 4
 CasualMode:
 BYTE $10 $B4 $14 $1C $00 $F0 $13 $F8 $00 $28 $01 $D1 $05 $23 $00 $E0 $09 $23 $E0 $68 $05 $21 $C9 $43 $08 $40 $19 $1C $08 $43 $E0 $60 $20 $1C $06 $4B $00 $F0 $02 $F8 $10 $BC $05 $4B $18 $47 $00 $B5 $A0 $20 $04 $4B $FF $F7 $FA $FF $00 $BD $00 $00 $45 $68 $02 $08 $B3 $7E $01 $08 $F9 $98 $07 $08
+
+
+
+//#define GetUnitMaxHp 0x08019191
+#define GetUnitPower 0x08018AD1
+#define GetUnitSkill 0x08018AF1
+#define GetUnitSpeed 0x08018B31
+#define GetUnitDefense 0x08018B71
+#define GetUnitResistance 0x08018B91
+#define GetUnitLuck 0x08018BB9
+
+#define SS_STR "WORD 11; POIN GetUnitUnadjustedPow GetUnitPower GetUnitMaxPow GetUnitPowGrowth" 
+#define SS_SKL "WORD 12; POIN GetUnitUnadjustedSkl GetUnitSkill GetUnitMaxSkl GetUnitSklGrowth" 
+#define SS_SPD "WORD 13; POIN GetUnitUnadjustedSpd GetUnitSpeed GetUnitMaxSpd GetUnitSpdGrowth" 
+#define SS_LCK "WORD 14; POIN GetUnitUnadjustedLck GetUnitLuck GetUnitMaxLck GetUnitLckGrowth" 
+#define SS_DEF "WORD 15; POIN GetUnitUnadjustedDef GetUnitDefense GetUnitMaxDef GetUnitDefGrowth" 
+#define SS_RES "WORD 16; POIN GetUnitUnadjustedRes GetUnitResistance GetUnitMaxRes GetUnitResGrowth" 
+#define SS_MAG "WORD 17; POIN GetUnitUnadjustedMag GetUnitMagic GetUnitMaxMag GetUnitMagGrowth" 
+#define SS_BLANK "WORD 0 0 0 0 0" 
+#define SS_MOV "WORD 1; POIN GetUnitUnadjustedMov GetUnitMov GetUnitMaxMov GetUnitHPGrowth" // yes, hp 
+#define SS_CON "WORD 2; POIN GetUnitUnadjustedCon GetUnitCon GetUnitMaxCon 0" 
+#define SS_AID  "WORD 3; POIN 0 0 0 0" 
+#define SS_TRV  "WORD 4; POIN  0 0 0 0" 
+#define SS_AFN  "WORD 5; POIN 0 0 0 0" 
+#define SS_COND "WORD 6; POIN  0 0 0 0" 
+
+#define SS_TALK "WORD 7; POIN  0 0 0 0" 
+#define SS_SKILLS "WORD 8; POIN  0 0 0 0" 
+#define SS_SKILLICONS1 "WORD 9; POIN  0 0 0 0" 
+#define SS_SKILLICONS2 "WORD 10; POIN  0 0 0 0" 
+
+
+ALIGN 4 
+SkillSysInstalled:
+#ifdef SKILLSYS_INSTALLED
+WORD 1 
+#endif 
+WORD 0 
+StrMagInstalled:
+#ifdef STRMAG_INSTALLED
+WORD 1 
+#endif 
+WORD 0 
+
+#ifndef SKILLSYS_INSTALLED 
+Skill_Getter:
+WORD 0 
+#endif 
+#ifndef STRMAG_INSTALLED 
+MagClassTable:
+MagCharTable:
+WORD 0 
+#endif 
+
+
+ALIGN 4 
+gStatScreenFunction: 
+SS_Page0_Layout: 
+
+#ifndef SKILLSYS_INSTALLED 
+// Left side 
+SS_STR
+SS_SKL
+SS_SPD
+SS_LCK
+SS_DEF
+SS_RES
+SS_BLANK
+SS_BLANK 
+// Right side below  
+SS_MOV
+SS_CON
+SS_AID
+SS_TRV
+SS_AFN
+SS_COND
+SS_BLANK 
+SS_BLANK // must have 16 entries 
+#endif 
+
+/*
+ALIGN 4 
+SS_Page0_Layout_Skills: 
+// Left side 
+SS_STR
+SS_SKL
+SS_SPD
+SS_LCK
+SS_DEF
+SS_RES
+SS_MOV
+SS_CON
+// Right side
+SS_AID
+SS_TRV
+SS_AFN
+SS_COND
+SS_TALK
+SS_SKILLS
+SS_SKILLICONS1
+SS_SKILLICONS2
+*/
+
+ALIGN 4 
+SS_Page0_Layout_Skills: 
+SS_STR
+SS_MAG
+SS_SKL
+SS_SPD
+SS_LCK
+SS_DEF
+SS_RES
+SS_MOV
+// Right side 
+SS_CON
+SS_AID
+SS_COND // SS_TRV alternates with? 
+SS_AFN
+SS_TALK
+SS_SKILLS
+SS_SKILLICONS1
+SS_SKILLICONS2
+
+
+ALIGN 4 
+SS_EnableBWL:
+#ifdef SKILLSYS_INSTALLED
+WORD 0
+#endif 
+WORD 1 
+
+VramDest_DebugFont: 
+WORD 0x4800 // in glowy or 0x3000 ? 
 
 

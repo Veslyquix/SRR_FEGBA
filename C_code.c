@@ -2638,7 +2638,7 @@ void DrawGrowthWithDifference(int x, int y, int base, int modified)
 
 extern int VramDest_DebugFont; 
 
-#ifndef FE8 
+#ifdef FE6 
 void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6 
     // displaying str/mag stat value
 	int barsOrGrowths = RandBitflagsB.disp; 
@@ -2799,7 +2799,7 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 
 #endif 
 
-#ifdef FE8 
+#ifndef FE6 
 
 enum
 {
@@ -2972,7 +2972,7 @@ struct SS_StatID {
 
 extern u8* gSkill_Getter(struct Unit* unit); 
 extern struct SS_StatID gStatScreenFunction[]; 
-extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
+
 int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) { 
 	if (gStatScreenFunction[id].specialCase) { 
 		switch (gStatScreenFunction[id].specialCase) { 
@@ -3062,47 +3062,75 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 					if (UnitHasMagicRank(gStatScreen.unit))
 					{
 						// mag
-						PutDrawText(
-							&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],
-							gUiTmScratchA + TILEMAP_INDEX(x-4, y),
-							gold, 0, 0,
-							GetStringFromIndex(0x4FF)); // Mag
+						#ifdef FE8 
+						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
+						#else 
+						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,"Mag"); // Mag
+						#endif 
 					}
 					else
 					{
 						// str
-						PutDrawText(
-							&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],
-							gUiTmScratchA + TILEMAP_INDEX(x-4, y),
-							gold, 0, 0,
-							GetStringFromIndex(0x4FE)); // Str
+						#ifdef FE8 
+						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL], gUiTmScratchA + TILEMAP_INDEX(x-4, y), gold, 0, 0, GetStringFromIndex(0x4FE)); // Str
+						#else 
+						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL], gUiTmScratchA + TILEMAP_INDEX(x-4, y), gold, 0, 0, "Str"); // Str
+						#endif 
 					}
 				} 
+				#ifdef FE8 
 				else { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_POWLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FE)); } 
+				#else 
+				else { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_POWLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Str"); } 
+				#endif 
 				break;
 			}
 			case 12: { 
+				#ifdef FE8 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
+				#else 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skl");
+				#endif 
 				break;
 			}
 			case 13: { 
+				#ifdef FE8 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SPDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4ED));
+				#else 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SPDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Spd");
+				#endif 
 				break;
 			}
 			case 14: { 
+				#ifdef FE8 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
+				#else 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Luck");
+				#endif 
 				break;
 			}
 			case 15: { 
+				#ifdef FE8 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_DEFLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EF));
+				#else 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_DEFLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Def");
+				#endif 
 				break;
 			}
 			case 16: { 
+				#ifdef FE8
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4F0));
+				#else 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Res");
+				#endif 
 				break;
 			}
 			case 17: { 
+				#ifdef FE8 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
+				#else 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mag");
+				#endif 
 				break;
 			}
 
@@ -3226,12 +3254,14 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 	barCount += DrawStatByID(barCount, 5, 15, disp, unit, 7); 
 	barCount += DrawStatByID(barCount, 13, 1, disp, unit, 8); 
 	barCount += DrawStatByID(barCount, 13, 3, disp, unit, 9); 
+	//#ifndef FE7 
 	barCount += DrawStatByID(barCount, 13, 5, disp, unit, 10); 
 	barCount += DrawStatByID(barCount, 13, 7, disp, unit, 11); 
 	barCount += DrawStatByID(barCount, 13, 9, disp, unit, 12); 
 	barCount += DrawStatByID(barCount, 13, 11, disp, unit, 13); 
 	barCount += DrawStatByID(barCount, 13, 13, disp, unit, 14); 
 	barCount += DrawStatByID(barCount, 13, 15, disp, unit, 15); 
+	//#endif 
 	
 
     // displaying skl stat value
