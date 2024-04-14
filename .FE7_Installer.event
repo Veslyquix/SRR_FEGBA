@@ -271,6 +271,11 @@ ORG $3BB9C; SHORT $46C0 // any ai can use lockpick from 803BB40
 ORG $4F40 
 SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
 
+ORG $404B60 // in 80804C8
+POIN DisplayPage0|1
+// normally it is: POIN 0x807FDf1 0x80800B5 0x8080425 0x0807fdf1 
+// as page 1, 2, 3, ?? 
+
 POP 
 
 
@@ -443,6 +448,20 @@ WORD 0
 WORD 1 
 
 VramDest_DebugFont: 
-WORD 0x4800 // in glowy or 0x3000 ? 
+WORD 0x3000 // in glowy or 0x3000 ? // 0x4800 
 
+ALIGN 4 
+//PUSH 
+//ORG $3FCA4C 
+//Tsa_StatScreenPage0: 
+//POP 
+Tsa_StatScreenPage0: 
+// normally at 83FCA4C
+// drag the aFE7_Page0_TSA.tmx onto atmx2tsa.bat 
+// drag the aFE7_Page0_TSA.dmp onto CompressToFile.exe in EA/Tools 
+#incbin "aFE7_Page0_TSA_comp.dmp" 
+ALIGN 4 
+WORD 0 
+// vanilla tsa 
+//BYTE $10 $D4 $02 $00 $0F $12 $12 $00 $00 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $FE $F0 $01 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $50 $01 $07 $34 $00 $08 $F0 $01 $A0 $01 $09 $00 $25 $04 $00 $6F $05 $F0 $01 $A0 $01 $06 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $FF $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $FF $F0 $25 $F0 $01 $F0 $25 $F0 $17 $F0 $25 $F0 $25 $F0 $25 $F0 $25 $F1 $F0 $01 $F0 $25 $F0 $01 $40 $25 $01 $00 $02 $F0 $01 $A0 $A0 $01 $03 $00 $25 $00 $00 $10 $D4 $02 $00 $0C $12 $12 $00 $00 $F0 $01 $F0 $01 $07 $00 $68 $08 $F0 $01 $A0 $01 $09 $00 $25 $04 $00 $05 $DF $F0 $01 $A0 $01 $06 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $17 $F0 $25 $F0 $25 $F0 $25 $F0 $25 $F0 $01 $FF $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $E3 $F0 $25 $F0 $01 $C0 $25 $01 $00 $02 $F0 $01 $A0 $01 $40 $03 $00 $25 $10 $D4 $02 $00 $0F $12 $12 $00 $00 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $06 $00 $00 $07 $00 $08 $F0 $01 $A0 $01 $09 $8D $00 $25 $04 $00 $05 $F0 $01 $A0 $01 $06 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $17 $F0 $25 $E3 $F0 $25 $F0 $25 $20 $25 $74 $00 $75 $F0 $01 $60 $01 $3F $74 $04 $F0 $4B $F0 $01 $F0 $71 $F0 $01 $F0 $25 $F0 $01 $E3 $F0 $25 $F0 $01 $90 $25 $01 $00 $02 $F0 $01 $A0 $01 $40 $03 $00 $25 $00 $00 $00 $00
 

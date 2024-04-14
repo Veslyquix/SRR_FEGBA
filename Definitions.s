@@ -365,13 +365,19 @@ SET_FUNC GetUnitAffinityIcon, 0x8026B25
 SET_DATA sPage0TextInfo, 0x84049A0
 SET_DATA gObject_8x8, 0x8B905B0
 
+SET_FUNC Decompress, 0x8013169 
+SET_DATA gBuf, 0x2020140
+SET_DATA gUiTmScratchB, 0x200373C 
+@SET_DATA Tsa_StatScreenPage0, 0x83FCA4C 
+SET_FUNC TmApplyTsa, 0x80C57B5 
+
 SET_DATA gBG0TilemapBuffer, 0x2022C60
 SET_DATA gBG1TilemapBuffer, 0x2023460
 SET_DATA gBG2TilemapBuffer, 0x2023C60
 SET_DATA gBG3TilemapBuffer, 0x2024460
 SET_DATA sKeyStatusBuffer, 0x2024C78
 SET_DATA gStatScreen, 0x200310C @ for text handles 
-SET_DATA gUiTmScratchA, 0x200323C @ might be wrong 
+SET_DATA gUiTmScratchA, 0x200323C 
 SET_DATA gLCDControlBuffer, 0x3002870
 SET_DATA ProcScr_GotItem, 0x8B91DC4
 SET_DATA gActiveUnit, 0x3004690

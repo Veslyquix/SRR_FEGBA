@@ -3024,7 +3024,12 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				return 0; break;
 			}
 			case 7: {
+				#ifdef FE8 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
+				#else 
+				ClearText(gStatScreen.text + STATSCREEN_TEXT_ITEM0); // clear wep1 text here 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM0,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
+				#endif 
 				return 0; break;
 			}
 			case 8: {
@@ -3254,7 +3259,6 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 	barCount += DrawStatByID(barCount, 5, 15, disp, unit, 7); 
 	barCount += DrawStatByID(barCount, 13, 1, disp, unit, 8); 
 	barCount += DrawStatByID(barCount, 13, 3, disp, unit, 9); 
-	//
 	barCount += DrawStatByID(barCount, 13, 5, disp, unit, 10); 
 	barCount += DrawStatByID(barCount, 13, 7, disp, unit, 11); 
 	barCount += DrawStatByID(barCount, 13, 9, disp, unit, 12); 
@@ -3291,8 +3295,16 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 }
 
 extern int SS_EnableBWL; 
+#ifdef FE7 
+void Decompress(void const * src, void * dst); // 0x8013168 
+extern u8 gBuf[0x2100]; // 0x2020140 gGenericBuffer 
+extern u16 gUiTmScratchB[]; // 0x200373C 
+extern const u8 Tsa_StatScreenPage0[]; // 0x83FCA4C 
+void TmApplyTsa(u16 * tm, u8 const * tsa, u16 tileref); // 0x80C57B5 
+#endif 
 void DisplayPage0(void) 
 { 
+
 //ResetTextFont();
 //SetTextFontGlyphs(0);
 //SetTextFont(0);
@@ -3303,6 +3315,12 @@ void DisplayPage0(void)
 //TileMap_FillRect(gBG0TilemapBuffer, int width, int height, int fillValue)
 	DisplayTexts(sPage0TextInfo);
     DrawBarsOrGrowths(); 
+	
+	#ifdef FE7 
+	Decompress(Tsa_StatScreenPage0, gBuf);
+    TmApplyTsa(gUiTmScratchB, gBuf, TILEREF(0, 0)); // tmx2tsa or menutiles.png seems to have the palette as the 2nd bank so we just put the pal id as 0 here 
+    //TmApplyTsa(gUiTmScratchB, gBuf, TILEREF(0, 1)); // vanilla 
+	#endif 
 
 	if (SS_EnableBWL) { 
 		DisplayBwl();
