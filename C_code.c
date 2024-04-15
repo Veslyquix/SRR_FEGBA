@@ -81,6 +81,7 @@ extern struct ExceptionsStruct ClassExceptions[];
 extern struct ExceptionsStruct CharExceptions[]; 
 extern int SkillSysInstalled; 
 extern int StrMagInstalled;
+extern int DefaultConfigToVanilla;
 
 inline int IsClassInvalid(int i) { 
 	return ClassExceptions[i].NeverChangeInto;
@@ -2438,12 +2439,23 @@ void StartConfigMenu(ProcPtr parent) {
 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
 	if (proc) { 
 		proc->id = 0; 
+		if (DefaultConfigToVanilla) {
+		proc->Option[0] = 0; // start on 100% 
+		proc->Option[1] = 0; 
+		proc->Option[2] = 0; 
+		proc->Option[3] = 0; 
+		proc->Option[4] = 0; 
+		proc->Option[5] = 0; 
+		}
+		else {
 		proc->Option[0] = OptionAmounts[0]-1; // start on 100% 
 		proc->Option[1] = 1; 
 		proc->Option[2] = 1; 
 		proc->Option[3] = 1; 
 		proc->Option[4] = 1; 
 		proc->Option[5] = 1; 
+		}
+		
 		proc->Option[6] = 0; 
 		proc->Option[7] = 0; 
 		proc->redraw = 0; 
@@ -3000,6 +3012,7 @@ struct SS_StatID {
 
 extern u8* CallSkill_Getter(struct Unit* unit); 
 extern struct SS_StatID gStatScreenFunction[]; 
+extern int _GetTalkee(int); 
 
 int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) { 
 	if (gStatScreenFunction[id].specialCase) { 
@@ -3050,13 +3063,20 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_STATUS,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Cond");
 				DrawStatus(x+1, y); 
 				return 0; break;
-			}
+			}	
 			case 7: {
 				#ifdef FE8 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
 				#else 
 				ClearText(gStatScreen.text + STATSCREEN_TEXT_ITEM0); // clear wep1 text here 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM0,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
+				#endif 
+				#ifdef FE8 
+				int talk_uid = _GetTalkee(unit->pCharacterData->number); // not for fe6/fe7 atm
+				if (talk_uid) { 
+					talk_uid = GetCharacterData(talk_uid)->nameTextId;
+					Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_RESCUENAME], 24, blue, GetStringFromIndex(talk_uid));
+				} 
 				#endif 
 				return 0; break;
 			}
@@ -3314,11 +3334,11 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
     //    gStatScreen.unit->state & US_RESCUING
     //        ? GetUnitMaxSpd(gStatScreen.unit)/2
     //        : GetUnitMaxSpd(gStatScreen.unit));
-
-
-	SetupDebugFontForBG(0, VramDest_DebugFont);
-	PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
-	PrintDebugNumberToBG(0, 11, 0x13, RandValues.seed); 
+	if (IsAnythingRandomized()) { 
+		SetupDebugFontForBG(0, VramDest_DebugFont);
+		PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
+		PrintDebugNumberToBG(0, 11, 0x13, RandValues.seed); 
+	}
 
 }
 

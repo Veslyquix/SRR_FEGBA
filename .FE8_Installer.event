@@ -10,18 +10,6 @@
 #include "Patches/FE8.lyn.event" 
 #include "Patches/FE8_AsmHooks.lyn.event" 
 
-
-/* 
-  ALIGN 4
-  Growth_Getter_Table:
-    POIN Get_Hp_Growth Get_Str_Growth Get_Skl_Growth Get_Spd_Growth Get_Luk_Growth Get_Def_Growth Get_Res_Growth
-  
- //USE_STRMAG_SPLIT
-    ALIGN 4
-	Growth_Getter_Table:
-	POIN Get_Hp_Growth Get_Str_Growth Get_Mag_Growth Get_Skl_Growth Get_Spd_Growth Get_Luk_Growth Get_Def_Growth Get_Res_Growth
-*/ 
-
 ALIGN 4 
 CasualModeFlag:
 WORD 0xB0 
@@ -39,6 +27,10 @@ CombinedGrowths: // if true, use char+class growths
 WORD 0
 WepLockExInstalled:
 WORD 1 // Make this true if you use a Weapon Lock Expansion hack 
+AlwaysRemoveGlowy: // stat screen 
+WORD 0 
+DefaultConfigToVanilla:
+WORD 1
 
 ALIGN 4 
 MaxItems_Link:
@@ -249,6 +241,9 @@ SHORT $46c0 // allow use of lockpick for any ai?
 
 ORG $37D4
 SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
+
+ORG $88588 
+callHackNew(ConditionallyRemoveGlowy)
 
 POP 
 
