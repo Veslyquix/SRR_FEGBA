@@ -2,13 +2,13 @@
 #define STRMAG_INSTALLED 
 #include ".FE8_Installer.event" 
 
-//#ifdef FEBUILDER_EXTRA_ORG
-//PUSH 
-//ORG $B2A740 
-//MagCharTable:
-//ORG $B2A940 
-//MagClassTable: 
-//POP 
+
+PUSH 
+ORG $B2A740 
+MagCharTable:
+ORG $B2A940 
+MagClassTable: 
+POP 
 
 PUSH 
 ORG $B7E9C0
