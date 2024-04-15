@@ -210,7 +210,12 @@ mov r4, r0
 
 blh 0x80A4A25 @ replaced function 
 
-
+ldr r0, [r4, #0x14] @ parent proc 
+mov r1, #0x29 
+add r1, r0 
+ldrb r1, [r1] 
+cmp r1, #5 
+beq ExitFe7
 @ldr r3, =gCh
 @ldrb r0, [r3] 
 @cmp r0, #0 
@@ -239,6 +244,13 @@ FE8_StartDifficultySelection:
 push {r4, lr} 
 mov r4, r0 
 blh 0x80AA031
+
+ldr r0, [r4, #0x14] @ parent proc 
+mov r1, #0x29 
+add r1, r0 
+ldrb r1, [r1] 
+cmp r1, #5 
+beq ExitFe8 
 
 bl GetSeed 
 cmp r0, #0 
