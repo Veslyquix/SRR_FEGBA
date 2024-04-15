@@ -30,7 +30,7 @@ WORD 1 // Make this true if you use a Weapon Lock Expansion hack
 AlwaysRemoveGlowy: // stat screen 
 WORD 0 
 DefaultConfigToVanilla:
-WORD 1
+WORD 0
 
 ALIGN 4 
 MaxItems_Link:
@@ -55,6 +55,28 @@ BYTE 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x64 0x65 0x66 0x67 0x68 0x88 
 #define NeverChangeClass(id) "PUSH; ORG ClassExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
 
 #define NeverChangeChar(id) "PUSH; ORG CharExceptions + (id * 2); BYTE 1 1; POP" 
+
+ALIGN 4 
+ItemExceptions:
+FILL(256*2)
+ALIGN 4 
+ClassExceptions:
+FILL(256*2)
+ALIGN 4 
+CharExceptions: // 
+FILL(256*2) 
+
+
+ 
+NeverChangeFromItem(0x6C) // Vulnerary 
+NeverChangeIntoItem(0xB5) // Stone 
+NeverChangeClass(0x66) // Demon King 
+
+NeverChangeIntoClass(0x10) // Some mercenary thing 
+
+//NeverChangeChar(1)
+//NeverChangeChar(0x68)
+
 
 //#define GetUnitMaxHp 0x08019191
 #define GetUnitPower 0x080191B1
@@ -161,32 +183,6 @@ SS_EnableBWL:
 WORD 0
 #endif 
 WORD 1 
-
-
-
-
-ALIGN 4 
-ItemExceptions:
-FILL(256*2)
-ALIGN 4 
-ClassExceptions:
-FILL(256*2)
-ALIGN 4 
-CharExceptions: // 
-FILL(256*2) 
-
-
- 
-NeverChangeFromItem(0x6C) // Vulnerary 
-NeverChangeIntoItem(0xB5) // Stone 
-NeverChangeClass(0x66) // Demon King 
-
-NeverChangeIntoClass(0x10) // Some mercenary thing 
-
-//NeverChangeChar(1)
-//NeverChangeChar(0x68)
-
-
 
 VramDest_DebugFont: 
 WORD 0x4800 // in glowy 
