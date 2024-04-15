@@ -29,7 +29,7 @@ SET_DATA gActiveFont, 0x2027BCC
 SET_DATA gDefaultFont, 0x2027BB4
 SET_DATA sSpecialCharStList, 0x2027BD0
 SET_DATA gBmSt, 0x202AA08
-
+SET_FUNC GetUnitAid, 0x80180FD
 SET_FUNC SetPopupNumber, 0x800d705 
 SET_FUNC GetPartyGoldAmount, 0x8020a59
 SET_FUNC SetPartyGoldAmount, 0x8020a65
@@ -50,7 +50,7 @@ SET_FUNC ProcSaveMenu_InitScreen, 0x80A36AD
 SET_FUNC SaveMenu_LoadExtraMenuGraphics, 0x80A38D9
 SET_FUNC RegisterBlankTile, 0x8001841 
 SET_FUNC RegisterFillTile, 0x80030FD   @ 0x8001841 
-
+SET_FUNC GetUnitAid, 0x8018451 
 SET_FUNC SetPopupNumber, 0x800AD35 
 SET_FUNC GetPartyGoldAmount, 0x8023905
 SET_FUNC SetPartyGoldAmount, 0x8023911

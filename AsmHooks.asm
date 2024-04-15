@@ -17,19 +17,6 @@ pop {r0}
 bx r0 
 .ltorg 
 
-.global gSkill_Getter 
-.type gSkill_Getter, %function 
-gSkill_Getter: 
-push {lr} 
-ldr r1, =Skill_Getter 
-ldr r1, [r1] 
-cmp r1, #0 
-beq DoNothing 
-blh Skill_Getter 
-DoNothing: 
-pop {r3} 
-bx r3 
-.ltorg 
 
 .global DroppableItemHook_FE8
 .type DroppableItemHook_FE8, %function 
@@ -269,6 +256,234 @@ bx r1
 
 
 
+.global CallSkill_Getter 
+.type CallSkill_Getter, %function 
+CallSkill_Getter: 
+push {lr} 
+ldr r1, =Skill_Getter 
+ldr r1, [r1] 
+cmp r1, #0 
+beq DoNothing 
+blh Skill_Getter 
+b Exit_Skill_Getter 
+DoNothing:
+ldr r0, =0x30004B8 @ memory slot 0 always has 0 in it 
+Exit_Skill_Getter:
+pop {r3} 
+bx r3 
+.ltorg 
 
+.global CallprConGetter 
+.type CallprConGetter, %function 
+CallprConGetter: 
+push {lr} 
+ldr r3, =prConGetter 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_prConGetter 
+blh prConGetter 
+b Exit_prConGetter 
+Replace_prConGetter:
+bl GetUnitCon
+Exit_prConGetter:
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global CallprAidGetter 
+.type CallprAidGetter, %function 
+CallprAidGetter: 
+push {lr} 
+ldr r3, =prAidGetter 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_prAidGetter 
+blh prAidGetter 
+b Exit_prAidGetter 
+Replace_prAidGetter:
+blh GetUnitAid
+Exit_prAidGetter:
+pop {r3} 
+bx r3 
+.ltorg 
+
+
+.global CallprMovGetter 
+.type CallprMovGetter, %function 
+CallprMovGetter: 
+push {lr} 
+ldr r3, =prMovGetter 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_prMovGetter 
+blh prMovGetter 
+b Exit_prMovGetter 
+Replace_prMovGetter:
+bl GetUnitMov
+Exit_prMovGetter:
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global CallprMagGetter 
+.type CallprMagGetter, %function 
+CallprMagGetter: 
+push {lr} 
+ldr r3, =prMagGetter 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_prMagGetter 
+blh prMagGetter 
+b Exit_prMagGetter 
+Replace_prMagGetter:
+bl GetUnitMag
+Exit_prMagGetter:
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global CallGet_Hp_Growth 
+.type CallGet_Hp_Growth, %function 
+CallGet_Hp_Growth: 
+push {lr} 
+ldr r3, =Get_Hp_Growth 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_Get_Hp_Growth 
+blh Get_Hp_Growth 
+b Exit_Get_Hp_Growth 
+Replace_Get_Hp_Growth:
+mov r0, #0
+sub r0, #1 
+Exit_Get_Hp_Growth:
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global CallGet_Str_Growth 
+.type CallGet_Str_Growth, %function 
+CallGet_Str_Growth: 
+push {lr} 
+ldr r3, =Get_Str_Growth 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_Get_Str_Growth 
+blh Get_Str_Growth 
+b Exit_Get_Str_Growth 
+Replace_Get_Str_Growth:
+mov r0, #0
+sub r0, #1 
+Exit_Get_Str_Growth:
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global CallGet_Mag_Growth 
+.type CallGet_Mag_Growth, %function 
+CallGet_Mag_Growth: 
+push {lr} 
+ldr r3, =Get_Mag_Growth 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_Get_Mag_Growth 
+blh Get_Mag_Growth 
+b Exit_Get_Mag_Growth 
+Replace_Get_Mag_Growth:
+mov r0, #0
+sub r0, #1 
+Exit_Get_Mag_Growth:
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global CallGet_Skl_Growth 
+.type CallGet_Skl_Growth, %function 
+CallGet_Skl_Growth: 
+push {lr} 
+ldr r3, =Get_Skl_Growth 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_Get_Skl_Growth 
+blh Get_Skl_Growth 
+b Exit_Get_Skl_Growth 
+Replace_Get_Skl_Growth:
+mov r0, #0
+sub r0, #1 
+Exit_Get_Skl_Growth:
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global CallGet_Spd_Growth 
+.type CallGet_Spd_Growth, %function 
+CallGet_Spd_Growth: 
+push {lr} 
+ldr r3, =Get_Spd_Growth 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_Get_Spd_Growth 
+blh Get_Spd_Growth 
+b Exit_Get_Spd_Growth 
+Replace_Get_Spd_Growth:
+mov r0, #0
+sub r0, #1 
+Exit_Get_Spd_Growth:
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global CallGet_Luk_Growth 
+.type CallGet_Luk_Growth, %function 
+CallGet_Luk_Growth: 
+push {lr} 
+ldr r3, =Get_Luk_Growth 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_Get_Luk_Growth 
+blh Get_Luk_Growth 
+b Exit_Get_Luk_Growth 
+Replace_Get_Luk_Growth:
+mov r0, #0
+sub r0, #1 
+Exit_Get_Luk_Growth:
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global CallGet_Def_Growth 
+.type CallGet_Def_Growth, %function 
+CallGet_Def_Growth: 
+push {lr} 
+ldr r3, =Get_Def_Growth 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_Get_Def_Growth 
+blh Get_Def_Growth 
+b Exit_Get_Def_Growth 
+Replace_Get_Def_Growth:
+mov r0, #0
+sub r0, #1 
+Exit_Get_Def_Growth:
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global CallGet_Res_Growth 
+.type CallGet_Res_Growth, %function 
+CallGet_Res_Growth: 
+push {lr} 
+ldr r3, =Get_Res_Growth 
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_Get_Res_Growth 
+blh Get_Res_Growth 
+b Exit_Get_Res_Growth 
+Replace_Get_Res_Growth:
+mov r0, #0
+sub r0, #1 
+Exit_Get_Res_Growth:
+pop {r3} 
+bx r3 
+.ltorg 
 
 

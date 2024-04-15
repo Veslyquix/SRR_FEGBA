@@ -1,8 +1,8 @@
 #ifndef callHackNew 
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
-#define SKILLSYS_INSTALLED 
-#define STRMAG_INSTALLED 
+//#define SKILLSYS_INSTALLED 
+//#define STRMAG_INSTALLED 
 #include "Extensions/Hack Installation.txt" 
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
@@ -31,8 +31,6 @@ ClassBasedGrowths:
 WORD 0
 CombinedGrowths:
 WORD 0
-Skill_Getter:
-WORD 0 
 
 // Each shop will have one of these items at random
 RareItemTableSize:
@@ -349,29 +347,6 @@ BYTE $10 $B4 $14 $1C $00 $F0 $13 $F8 $00 $28 $01 $D1 $05 $23 $00 $E0 $09 $23 $E0
 
 
 ALIGN 4 
-SkillSysInstalled:
-#ifdef SKILLSYS_INSTALLED
-WORD 1 
-#endif 
-WORD 0 
-StrMagInstalled:
-#ifdef STRMAG_INSTALLED
-WORD 1 
-#endif 
-WORD 0 
-
-#ifndef SKILLSYS_INSTALLED 
-Skill_Getter:
-WORD 0 
-#endif 
-#ifndef STRMAG_INSTALLED 
-MagClassTable:
-MagCharTable:
-WORD 0 
-#endif 
-
-
-ALIGN 4 
 gStatScreenFunction: 
 SS_Page0_Layout: 
 
@@ -396,7 +371,7 @@ SS_BLANK
 SS_BLANK // must have 16 entries 
 #endif 
 
-/*
+#ifndef STRMAG_INSTALLED 
 ALIGN 4 
 SS_Page0_Layout_Skills: 
 // Left side 
@@ -417,8 +392,9 @@ SS_TALK
 SS_SKILLS
 SS_SKILLICONS1
 SS_SKILLICONS2
-*/
+#endif 
 
+#ifdef STRMAG_INSTALLED 
 ALIGN 4 
 SS_Page0_Layout_Skills: 
 SS_STR
@@ -438,7 +414,7 @@ SS_TALK
 SS_SKILLS
 SS_SKILLICONS1
 SS_SKILLICONS2
-
+#endif 
 
 ALIGN 4 
 SS_EnableBWL:
@@ -459,9 +435,48 @@ Tsa_StatScreenPage0:
 // normally at 83FCA4C
 // drag the aFE7_Page0_TSA.tmx onto atmx2tsa.bat 
 // drag the aFE7_Page0_TSA.dmp onto CompressToFile.exe in EA/Tools 
+#ifndef SKILLSYS_INSTALLED 
+// vanilla tsa 
+BYTE $10 $D4 $02 $00 $0F $12 $12 $00 $00 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $FE $F0 $01 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $50 $01 $07 $34 $00 $08 $F0 $01 $A0 $01 $09 $00 $25 $04 $00 $6F $05 $F0 $01 $A0 $01 $06 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $FF $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $FF $F0 $25 $F0 $01 $F0 $25 $F0 $17 $F0 $25 $F0 $25 $F0 $25 $F0 $25 $F1 $F0 $01 $F0 $25 $F0 $01 $40 $25 $01 $00 $02 $F0 $01 $A0 $A0 $01 $03 $00 $25 $00 $00 $10 $D4 $02 $00 $0C $12 $12 $00 $00 $F0 $01 $F0 $01 $07 $00 $68 $08 $F0 $01 $A0 $01 $09 $00 $25 $04 $00 $05 $DF $F0 $01 $A0 $01 $06 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $17 $F0 $25 $F0 $25 $F0 $25 $F0 $25 $F0 $01 $FF $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $E3 $F0 $25 $F0 $01 $C0 $25 $01 $00 $02 $F0 $01 $A0 $01 $40 $03 $00 $25 $10 $D4 $02 $00 $0F $12 $12 $00 $00 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $06 $00 $00 $07 $00 $08 $F0 $01 $A0 $01 $09 $8D $00 $25 $04 $00 $05 $F0 $01 $A0 $01 $06 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $17 $F0 $25 $E3 $F0 $25 $F0 $25 $20 $25 $74 $00 $75 $F0 $01 $60 $01 $3F $74 $04 $F0 $4B $F0 $01 $F0 $71 $F0 $01 $F0 $25 $F0 $01 $E3 $F0 $25 $F0 $01 $90 $25 $01 $00 $02 $F0 $01 $A0 $01 $40 $03 $00 $25 $00 $00 $00 $00
+#else 
 #incbin "aFE7_Page0_TSA_comp.dmp" 
 ALIGN 4 
 WORD 0 
-// vanilla tsa 
-//BYTE $10 $D4 $02 $00 $0F $12 $12 $00 $00 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $FE $F0 $01 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $50 $01 $07 $34 $00 $08 $F0 $01 $A0 $01 $09 $00 $25 $04 $00 $6F $05 $F0 $01 $A0 $01 $06 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $FF $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $FF $F0 $25 $F0 $01 $F0 $25 $F0 $17 $F0 $25 $F0 $25 $F0 $25 $F0 $25 $F1 $F0 $01 $F0 $25 $F0 $01 $40 $25 $01 $00 $02 $F0 $01 $A0 $A0 $01 $03 $00 $25 $00 $00 $10 $D4 $02 $00 $0C $12 $12 $00 $00 $F0 $01 $F0 $01 $07 $00 $68 $08 $F0 $01 $A0 $01 $09 $00 $25 $04 $00 $05 $DF $F0 $01 $A0 $01 $06 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $17 $F0 $25 $F0 $25 $F0 $25 $F0 $25 $F0 $01 $FF $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $E3 $F0 $25 $F0 $01 $C0 $25 $01 $00 $02 $F0 $01 $A0 $01 $40 $03 $00 $25 $10 $D4 $02 $00 $0F $12 $12 $00 $00 $F0 $01 $F0 $01 $F0 $01 $F0 $01 $06 $00 $00 $07 $00 $08 $F0 $01 $A0 $01 $09 $8D $00 $25 $04 $00 $05 $F0 $01 $A0 $01 $06 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $FF $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $01 $F0 $25 $F0 $17 $F0 $25 $E3 $F0 $25 $F0 $25 $20 $25 $74 $00 $75 $F0 $01 $60 $01 $3F $74 $04 $F0 $4B $F0 $01 $F0 $71 $F0 $01 $F0 $25 $F0 $01 $E3 $F0 $25 $F0 $01 $90 $25 $01 $00 $02 $F0 $01 $A0 $01 $40 $03 $00 $25 $00 $00 $00 $00
+#endif 
+
+ALIGN 4 
+SkillSysInstalled:
+#ifdef SKILLSYS_INSTALLED
+WORD 1 
+#endif 
+WORD 0 
+StrMagInstalled:
+#ifdef STRMAG_INSTALLED
+WORD 1 
+#endif 
+WORD 0 
+
+#ifndef SKILLSYS_INSTALLED 
+ALIGN 4 
+prConGetter: 
+prAidGetter: 
+prMovGetter: 
+Growth_Getter_Table:
+Skill_Getter:
+Get_Hp_Growth: 
+Get_Str_Growth: 
+Get_Skl_Growth: 
+Get_Spd_Growth: 
+Get_Luk_Growth: 
+Get_Def_Growth: 
+Get_Res_Growth:
+WORD 0 
+#endif 
+#ifndef STRMAG_INSTALLED 
+MagClassTable:
+MagCharTable:
+prMagGetter: 
+Get_Mag_Growth:
+WORD 0 
+#endif 
 

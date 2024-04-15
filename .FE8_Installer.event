@@ -11,6 +11,17 @@
 #include "Patches/FE8_AsmHooks.lyn.event" 
 
 
+/* 
+  ALIGN 4
+  Growth_Getter_Table:
+    POIN Get_Hp_Growth Get_Str_Growth Get_Skl_Growth Get_Spd_Growth Get_Luk_Growth Get_Def_Growth Get_Res_Growth
+  
+ //USE_STRMAG_SPLIT
+    ALIGN 4
+	Growth_Getter_Table:
+	POIN Get_Hp_Growth Get_Str_Growth Get_Mag_Growth Get_Skl_Growth Get_Spd_Growth Get_Luk_Growth Get_Def_Growth Get_Res_Growth
+*/ 
+
 ALIGN 4 
 CasualModeFlag:
 WORD 0xB0 
@@ -67,10 +78,10 @@ BYTE 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x64 0x65 0x66 0x67 0x68 0x88 
 #define SS_LCK "WORD 14; POIN GetUnitUnadjustedLck GetUnitLuck GetUnitMaxLck GetUnitLckGrowth" 
 #define SS_DEF "WORD 15; POIN GetUnitUnadjustedDef GetUnitDefense GetUnitMaxDef GetUnitDefGrowth" 
 #define SS_RES "WORD 16; POIN GetUnitUnadjustedRes GetUnitResistance GetUnitMaxRes GetUnitResGrowth" 
-#define SS_MAG "WORD 17; POIN GetUnitUnadjustedMag GetUnitMagic GetUnitMaxMag GetUnitMagGrowth" 
+#define SS_MAG "WORD 17; POIN GetUnitUnadjustedMag CallprMagGetter GetUnitMaxMag GetUnitMagGrowth" 
 #define SS_BLANK "WORD 0 0 0 0 0" 
-#define SS_MOV "WORD 1; POIN GetUnitUnadjustedMov GetUnitMov GetUnitMaxMov GetUnitHPGrowth" // yes, hp 
-#define SS_CON "WORD 2; POIN GetUnitUnadjustedCon GetUnitCon GetUnitMaxCon 0" 
+#define SS_MOV "WORD 1; POIN GetUnitUnadjustedMov CallprMovGetter GetUnitMaxMov GetUnitHPGrowth" // yes, hp 
+#define SS_CON "WORD 2; POIN GetUnitUnadjustedCon CallprConGetter GetUnitMaxCon 0" 
 #define SS_AID  "WORD 3; POIN 0 0 0 0" 
 #define SS_TRV  "WORD 4; POIN  0 0 0 0" 
 #define SS_AFN  "WORD 5; POIN 0 0 0 0" 
@@ -80,29 +91,6 @@ BYTE 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x64 0x65 0x66 0x67 0x68 0x88 
 #define SS_SKILLS "WORD 8; POIN  0 0 0 0" 
 #define SS_SKILLICONS1 "WORD 9; POIN  0 0 0 0" 
 #define SS_SKILLICONS2 "WORD 10; POIN  0 0 0 0" 
-
-
-ALIGN 4 
-SkillSysInstalled:
-#ifdef SKILLSYS_INSTALLED
-WORD 1 
-#endif 
-WORD 0 
-StrMagInstalled:
-#ifdef STRMAG_INSTALLED
-WORD 1 
-#endif 
-WORD 0 
-
-#ifndef SKILLSYS_INSTALLED 
-Skill_Getter:
-WORD 0 
-#endif 
-#ifndef STRMAG_INSTALLED 
-MagClassTable:
-MagCharTable:
-WORD 0 
-#endif 
 
 
 ALIGN 4 
@@ -130,7 +118,7 @@ SS_BLANK
 SS_BLANK // must have 16 entries 
 #endif 
 
-/*
+#ifndef STRMAG_INSTALLED 
 ALIGN 4 
 SS_Page0_Layout_Skills: 
 // Left side 
@@ -151,8 +139,9 @@ SS_TALK
 SS_SKILLS
 SS_SKILLICONS1
 SS_SKILLICONS2
-*/
+#endif
 
+#ifdef STRMAG_INSTALLED
 ALIGN 4 
 SS_Page0_Layout_Skills: 
 SS_STR
@@ -172,7 +161,7 @@ SS_TALK
 SS_SKILLS
 SS_SKILLICONS1
 SS_SKILLICONS2
-
+#endif 
 
 ALIGN 4 
 SS_EnableBWL:
@@ -264,5 +253,40 @@ SHORT $46C0 $46C0 // don't erase bg when setting up debug font
 POP 
 
 
+ALIGN 4 
+SkillSysInstalled:
+#ifdef SKILLSYS_INSTALLED
+WORD 1 
+#endif 
+WORD 0 
+StrMagInstalled:
+#ifdef STRMAG_INSTALLED
+WORD 1 
+#endif 
+WORD 0 
+
+#ifndef SKILLSYS_INSTALLED 
+ALIGN 4 
+prConGetter: 
+prAidGetter: 
+prMovGetter: 
+Growth_Getter_Table:
+Skill_Getter:
+Get_Hp_Growth: 
+Get_Str_Growth: 
+Get_Skl_Growth: 
+Get_Spd_Growth: 
+Get_Luk_Growth: 
+Get_Def_Growth: 
+Get_Res_Growth:
+WORD 0 
+#endif 
+#ifndef STRMAG_INSTALLED 
+MagClassTable:
+MagCharTable:
+prMagGetter: 
+Get_Mag_Growth:
+WORD 0 
+#endif 
 
 
