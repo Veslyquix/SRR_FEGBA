@@ -483,3 +483,9 @@ AlwaysRemoveGlowy: // stat screen fe8
 WORD 0 
 DefaultConfigToVanilla:
 WORD 0
+SeizeMapWithIslandsList:
+BYTE 0x11 
+//BYTE 0xA
+BYTE 0xFF // Terminator 
+
+

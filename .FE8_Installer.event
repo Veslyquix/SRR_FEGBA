@@ -31,6 +31,9 @@ AlwaysRemoveGlowy: // stat screen
 WORD 0 
 DefaultConfigToVanilla:
 WORD 0
+SeizeMapWithIslandsList:
+BYTE 0x19 // Landing at Taizel 
+BYTE 0xFF // Terminator 
 
 ALIGN 4 
 MaxItems_Link:

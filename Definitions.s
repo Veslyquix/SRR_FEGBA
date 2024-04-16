@@ -37,6 +37,7 @@ SET_FUNC NewPopup_Simple, 0x800d721
 SET_DATA PopupScr_GotGold, 0x8356140
 SET_DATA PopupScr_GoldWasStole, 0x8356188
 SET_FUNC NewPopup_GoldGot, 0x80120D1 
+SET_FUNC NextRN_N, 0x8000E09
 
 .endif 
 .if FE7 == true 
@@ -61,6 +62,7 @@ SET_FUNC NewPopup_GoldGot, 0x800EE4D
 SET_FUNC DisplayLeftPanel, 0x807FA8D 
 SET_FUNC ResetIconGraphics_, 0x8004CE9
 SET_FUNC InitTexts, 0x807FA39
+SET_FUNC NextRN_N, 0x8000E31
 
 .endif 
 .if FE8 == true 

@@ -13,7 +13,7 @@
 #ifdef FE6
 #include "headers/prelude.h"
 #include "headers/types.h"
-#endif 
+#endif  
 
  
 #include "headers/gbafe.h" 
@@ -61,7 +61,7 @@ struct RandomizerSettingsB {
 struct RandomizerValues { 
 	u32 seed : 20; // max value of 999999 /  
 	u32 variance : 5; // up to 5*31 / 100% 
-	u32 bonus : 5; // up to +31 / +20 levels 
+	u32 bonus : 5; // +20 / -10 levels 
 }; 
  
 extern struct RandomizerSettingsA RandBitflagsA; 
@@ -1223,8 +1223,73 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 void UnitCheckStatCaps(struct Unit* unit);
 void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu);
 extern int GetAutoleveledStatIncrease(int growth, int levelCount); // 8029604
+
+extern s8 Roll1RN(int threshold); //8000E60
+extern int NextRN_N(int max); 
+
+
+void UnitCheckStatMins(struct Unit* unit) { 
+	if (MinClassBase) { 
+		int minStat = unit->pCharacterData->basePow + unit->pClassData->basePow; if (minStat < 0) { minStat = 0; } 
+		if (unit->pow < minStat) { unit->pow = minStat; } 
+		minStat = unit->pCharacterData->baseSkl + unit->pClassData->baseSkl; if (minStat < 0) { minStat = 0; } 
+		if (unit->skl < minStat) { unit->skl = minStat; } 
+		minStat = unit->pCharacterData->baseSpd + unit->pClassData->baseSpd; if (minStat < 0) { minStat = 0; } 
+		if (unit->spd < minStat) { unit->spd = minStat; } 
+		minStat = unit->pCharacterData->baseDef + unit->pClassData->baseDef; if (minStat < 0) { minStat = 0; } 
+		if (unit->def < minStat) { unit->def = minStat; } 
+		minStat = unit->pCharacterData->baseRes + unit->pClassData->baseRes; if (minStat < 0) { minStat = 0; } 
+		if (unit->res < minStat) { unit->res = minStat; } 
+		minStat = unit->pCharacterData->baseLck; if (minStat < 0) { minStat = 0; } 
+		if (unit->lck < minStat) { unit->lck = minStat; } 
+		if (StrMagInstalled) { minStat = GetUnitBaseMag(unit); if (minStat < 0) { minStat = 0; } 
+			if (unit->_u3A < minStat) { unit->_u3A = minStat; } } 
+	}
+	else { 
+		if (unit->pow < 0) { unit->pow = 0; } 
+		if (unit->skl < 0) { unit->skl = 0; } 
+		if (unit->spd < 0) { unit->spd = 0; } 
+		if (unit->def < 0) { unit->def = 0; } 
+		if (unit->res < 0) { unit->res = 0; } 
+		if (unit->lck < 0) { unit->lck = 0; } 
+		if (StrMagInstalled) {  
+		if ((unit->_u3A < 0) || (unit->_u3A > 127)) { unit->_u3A = 0; } } // _u3A is unsigned 
+	} 
+} 
+
+//int NewGetStatDecrease(int growth, int noise[], int level, int offset, int useRn) {
+int NewGetStatDecrease(int growth) {
+    int result = 0;
+
+    while (growth > 100) {
+        result--;
+        growth -= 100;
+    }
+	//offset += (level*15) + level; 
+	
+	//if (useRN) { 
+	if (Roll1RN(growth)) { // 50 
+	result--; } 
+	//}
+	//else if (HashByte_Global(growth, 100, noise, offset) >= (100 - growth)) {
+    //if (Roll1RN(growth)) { // 50 
+	//result--; } 
+	
+
+    return result;
+}
+
+
+int GetAutoleveledStatDecrease(int growth, int levelCount, int stat) {
+	int posLevel = ABS(levelCount);
+	int result = stat + NewGetStatDecrease((growth * posLevel) + (NextRN_N((growth * posLevel) / 4) - (growth * posLevel) / 8)); 
+	if (result < 0) { result = 0; } 
+    return result;
+}
+
+
 void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
-    if (levelCount) {
+    if (levelCount > 0) {
         unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit , true),  levelCount);
         unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit, true), levelCount);
         unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit, true), levelCount);
@@ -1234,6 +1299,18 @@ void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
         unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
     }
+    if (levelCount < 0) {
+        unit->maxHP = GetAutoleveledStatDecrease(GetClassHPGrowth(unit , true),  levelCount, unit->maxHP);
+		if (unit->maxHP < 10) { unit->maxHP = 10; } 
+        unit->pow   = GetAutoleveledStatDecrease(GetClassPowGrowth(unit, true), levelCount, unit->pow);
+        unit->skl   = GetAutoleveledStatDecrease(GetClassSklGrowth(unit, true), levelCount, unit->skl);
+        unit->spd   = GetAutoleveledStatDecrease(GetClassSpdGrowth(unit, true), levelCount, unit->spd);
+        unit->def   = GetAutoleveledStatDecrease(GetClassDefGrowth(unit, true), levelCount, unit->def);
+        unit->res   = GetAutoleveledStatDecrease(GetClassResGrowth(unit, true), levelCount, unit->res);
+        unit->lck   = GetAutoleveledStatDecrease(GetClassLckGrowth(unit, true), levelCount, unit->lck);
+		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u3A); } 
+    }
+	UnitCheckStatMins(unit); 
 	UnitCheckStatCaps(unit); 
 }
 
@@ -1254,6 +1331,8 @@ s8 CanBattleUnitGainLevels(struct BattleUnit* bu) {
 const s8 MovModifiers[] = { 0, 0, 0, 0, 0, 1, 1, 2, 0 } ; 
 const s8 ConModifiers[] = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0 } ; 
 extern int RandomizeMovConBonus; 
+
+
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
     unit->level = uDef->level;
@@ -1346,23 +1425,6 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->lck   = RandStat(unit, character->baseLck, noise, 75, max150percent);    
 	if (StrMagInstalled) { unit->_u3A = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent); } 
 
-	if (MinClassBase) { 
-		int minStat = unit->pCharacterData->basePow + unit->pClassData->basePow; if (minStat < 0) { minStat = 0; } 
-		if (unit->pow < minStat) { unit->pow = minStat; } 
-		minStat = unit->pCharacterData->baseSkl + unit->pClassData->baseSkl; if (minStat < 0) { minStat = 0; } 
-		if (unit->skl < minStat) { unit->skl = minStat; } 
-		minStat = unit->pCharacterData->baseSpd + unit->pClassData->baseSpd; if (minStat < 0) { minStat = 0; } 
-		if (unit->spd < minStat) { unit->spd = minStat; } 
-		minStat = unit->pCharacterData->baseDef + unit->pClassData->baseDef; if (minStat < 0) { minStat = 0; } 
-		if (unit->def < minStat) { unit->def = minStat; } 
-		minStat = unit->pCharacterData->baseRes + unit->pClassData->baseRes; if (minStat < 0) { minStat = 0; } 
-		if (unit->res < minStat) { unit->res = minStat; } 
-		minStat = unit->pCharacterData->baseLck; if (minStat < 0) { minStat = 0; } 
-		if (unit->lck < minStat) { unit->lck = minStat; } 
-		if (StrMagInstalled) { minStat = GetUnitBaseMag(unit); if (minStat < 0) { minStat = 0; } 
-			if (unit->_u3A < minStat) { unit->_u3A = minStat; } } 
-	}
-
 	#ifdef FE6 
 	unit->conBonus = 0; unit->movBonusA = 0; unit->movBonusB = 0;  
 	#endif 
@@ -1393,8 +1455,10 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     else { 
         unit->exp = UNIT_EXP_DISABLED;
 		int bonusLevels = RandValues.bonus; 
+		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
 		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
 	}
+	UnitCheckStatMins(unit); 
 	UnitCheckStatCaps(unit);
 }
 
@@ -1514,7 +1578,7 @@ int GetUnitMaxLck(struct Unit* unit) {
 	return result;  
 } 
 
-extern s8 Roll1RN(int threshold); //8000E60
+
 void StoreRNState(u16* seeds); // 8000D74
 void LoadRNState(const u16* seeds); // 8000DD0
 
@@ -1525,7 +1589,7 @@ extern void InitRN(int seed); // 8000CA8
 // 883d 19 102
 // 883d 19 103
 
-int NewGetStatIncrease(int growth, int noise[], int level, int offset) {
+int NewGetStatIncrease(int growth, int noise[], int level, int offset, int useRN) {
     int result = 0;
 
     while (growth > 100) {
@@ -1534,8 +1598,9 @@ int NewGetStatIncrease(int growth, int noise[], int level, int offset) {
     }
 	offset += (level*15) + level; 
 	
-	
-	if (HashByte_Global(growth, 100, noise, offset) >= (100 - growth)) {
+	if (useRN) { if (Roll1RN(growth)) { // 50 
+	result++; } }
+	else if (HashByte_Global(growth, 100, noise, offset) >= (100 - growth)) {
     //if (Roll1RN(growth)) { // 50 
 	result++; } 
 	
@@ -1555,6 +1620,7 @@ void UnitLevelUp(struct Unit* unit) {
 		int noise[4] = {0, 0, 0, 0}; 
 		noise[0] = unit->pCharacterData->number;
 		int level = unit->level + (((unit->pClassData->attributes & CA_PROMOTED) != 0)*20); 
+		int useRN = !(IsAnythingRandomized());
 
         if (unit->level == 20) { 
 		unit->exp = UNIT_EXP_DISABLED; } 
@@ -1577,31 +1643,31 @@ void UnitLevelUp(struct Unit* unit) {
 		int maxRes = GetUnitMaxRes(unit); 
 		int maxLck = GetUnitMaxLck(unit); 
 
-        hpGain  = NewGetStatIncrease(hpGrowth, noise, level, 1); 
+        hpGain  = NewGetStatIncrease(hpGrowth, noise, level, 1, useRN); 
 		if (hpGain && (unit->maxHP + hpGain) <= maxHP)
         totalGain += hpGain; else hpGain = 0; 
 
-        powGain = NewGetStatIncrease(powGrowth, noise, level, 2); 
+        powGain = NewGetStatIncrease(powGrowth, noise, level, 2, useRN); 
 		if (powGain && ((unit->pow + powGain) <= maxPow))
         totalGain += powGain; else powGain = 0; 
 
-        sklGain = NewGetStatIncrease(sklGrowth, noise, level, 3); 
+        sklGain = NewGetStatIncrease(sklGrowth, noise, level, 3, useRN); 
 		if (sklGain && ((unit->skl + sklGain) <= maxSkl))
         totalGain += sklGain; else sklGain = 0; 
 
-        spdGain = NewGetStatIncrease(spdGrowth, noise, level, 4); 
+        spdGain = NewGetStatIncrease(spdGrowth, noise, level, 4, useRN); 
 		if (spdGain && ((unit->spd + spdGain) <= maxSpd))
         totalGain += spdGain; else spdGain = 0; 
 
-        defGain = NewGetStatIncrease(defGrowth, noise, level, 5); 
+        defGain = NewGetStatIncrease(defGrowth, noise, level, 5, useRN); 
 		if (defGain && ((unit->def + defGain) <= maxDef))
         totalGain += defGain; else defGain = 0; 
 
-        resGain = NewGetStatIncrease(resGrowth, noise, level, 6); 
+        resGain = NewGetStatIncrease(resGrowth, noise, level, 6, useRN); 
 		if (resGain && ((unit->res + resGain) <= maxRes))
         totalGain += resGain; else resGain = 0; 
 
-        lckGain = NewGetStatIncrease(lckGrowth, noise, level, 7); 
+        lckGain = NewGetStatIncrease(lckGrowth, noise, level, 7, useRN); 
 		if (lckGain && ((unit->lck + lckGain) <= maxLck))
         totalGain += lckGain; else lckGain = 0; 
 
@@ -1618,49 +1684,49 @@ void UnitLevelUp(struct Unit* unit) {
 				resGain = 0; 
 				lckGain = 0; 
 				
-                hpGain = NewGetStatIncrease(hpGrowth, noise, level, 8 + (i * 13)); 
+                hpGain = NewGetStatIncrease(hpGrowth, noise, level, 8 + (i * 13), useRN); 
 
                 if (hpGain && ((unit->maxHP + hpGain) <= maxHP))
 				{	totalGain++; 
 					if (totalGain >= MinimumStatUps) { 
 					break;	} } 
 
-                powGain = NewGetStatIncrease(powGrowth, noise, level, 9 + (i * 13)); 
+                powGain = NewGetStatIncrease(powGrowth, noise, level, 9 + (i * 13), useRN); 
 
                 if (powGain && ((unit->pow + powGain) <= maxPow))
 				{	totalGain++; 
 					if (totalGain >= MinimumStatUps) { 
 					break;	} } 
 
-                sklGain = NewGetStatIncrease(sklGrowth, noise, level, 10 + (i * 13)); 
+                sklGain = NewGetStatIncrease(sklGrowth, noise, level, 10 + (i * 13), useRN); 
 
                 if (sklGain && ((unit->skl + sklGain) <= maxSkl))
 				{	totalGain++; 
 					if (totalGain >= MinimumStatUps) { 
 					break;	} } 
 
-                spdGain = NewGetStatIncrease(spdGrowth, noise, level, 11 + (i * 13)); 
+                spdGain = NewGetStatIncrease(spdGrowth, noise, level, 11 + (i * 13), useRN); 
 
                 if (spdGain && ((unit->spd + spdGain) <= maxSpd))
 				{	totalGain++; 
 					if (totalGain >= MinimumStatUps) { 
 					break;	} } 
 
-                defGain = NewGetStatIncrease(defGrowth, noise, level, 12 + (i * 13)); 
+                defGain = NewGetStatIncrease(defGrowth, noise, level, 12 + (i * 13), useRN); 
 
                 if (defGain && ((unit->def + defGain) <= maxDef))
 				{	totalGain++; 
 					if (totalGain >= MinimumStatUps) { 
 					break;	} } 
 
-                resGain = NewGetStatIncrease(resGrowth, noise, level, 13 + (i * 13)); 
+                resGain = NewGetStatIncrease(resGrowth, noise, level, 13 + (i * 13), useRN); 
 
                 if (resGain && ((unit->res + resGain) <= maxRes))
 				{	totalGain++; 
 					if (totalGain >= MinimumStatUps) { 
 					break;	} } 
 
-                lckGain = NewGetStatIncrease(lckGrowth, noise, level, 14 + (i * 13)); 
+                lckGain = NewGetStatIncrease(lckGrowth, noise, level, 14 + (i * 13), useRN); 
 
                 if (lckGain && ((unit->lck + lckGain) <= maxLck))
 				{	totalGain++; 
@@ -1709,7 +1775,7 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int noise[4] = {0, 0, 0, 0}; 
 		noise[0] = bu->unit.pCharacterData->number;
 		int level = bu->unit.level + (((bu->unit.pClassData->attributes & CA_PROMOTED) != 0)*20);
-
+		int useRN = !(IsAnythingRandomized());
 		bu->unit.exp -= 100;
         bu->unit.level++;
 
@@ -1740,35 +1806,35 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int maxMag = GetUnitMaxMag(unit); 
 		
 
-        bu->changeHP  = NewGetStatIncrease(hpGrowth, noise, level, 1); 
+        bu->changeHP  = NewGetStatIncrease(hpGrowth, noise, level, 1, useRN); 
 		if (bu->changeHP && ((unit->maxHP + bu->changeHP) <= maxHP))
         statGainTotal += bu->changeHP; else bu->changeHP = 0; 
 
-        bu->changePow = NewGetStatIncrease(powGrowth, noise, level, 2); 
+        bu->changePow = NewGetStatIncrease(powGrowth, noise, level, 2, useRN); 
 		if (bu->changePow && ((unit->pow + bu->changePow) <= maxPow))
         statGainTotal += bu->changePow; else bu->changePow = 0; 
 
-        bu->changeSkl = NewGetStatIncrease(sklGrowth, noise, level, 3); 
+        bu->changeSkl = NewGetStatIncrease(sklGrowth, noise, level, 3, useRN); 
 		if (bu->changeSkl && ((unit->skl + bu->changeSkl) <= maxSkl))
         statGainTotal += bu->changeSkl; else bu->changeSkl = 0; 
 
-        bu->changeSpd = NewGetStatIncrease(spdGrowth, noise, level, 4); 
+        bu->changeSpd = NewGetStatIncrease(spdGrowth, noise, level, 4, useRN); 
 		if (bu->changeSpd && ((unit->spd + bu->changeSpd) <= maxSpd))
         statGainTotal += bu->changeSpd; else bu->changeSpd = 0; 
 
-        bu->changeDef = NewGetStatIncrease(defGrowth, noise, level, 5); 
+        bu->changeDef = NewGetStatIncrease(defGrowth, noise, level, 5, useRN); 
 		if (bu->changeDef && ((unit->def + bu->changeDef) <= maxDef))
         statGainTotal += bu->changeDef; else bu->changeDef = 0; 
 
-        bu->changeRes = NewGetStatIncrease(resGrowth, noise, level, 6); 
+        bu->changeRes = NewGetStatIncrease(resGrowth, noise, level, 6, useRN); 
 		if (bu->changeRes && ((unit->res + bu->changeRes) <= maxRes))
         statGainTotal += bu->changeRes; else bu->changeRes = 0; 
 
-        bu->changeLck = NewGetStatIncrease(lckGrowth, noise, level, 7); 
+        bu->changeLck = NewGetStatIncrease(lckGrowth, noise, level, 7, useRN); 
 		if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
         statGainTotal += bu->changeLck; else bu->changeLck = 0; 
 	
-		if (StrMagInstalled) { bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 8); } 
+		if (StrMagInstalled) { bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 8, useRN); } 
 
 
         if (statGainTotal < MinimumStatUps) {
@@ -1784,49 +1850,49 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 				if (StrMagInstalled) { bu->changeCon = 0; } 
 			
 			
-				bu->changeHP = NewGetStatIncrease(hpGrowth, noise, level, 8 + (i * 13)); 
+				bu->changeHP = NewGetStatIncrease(hpGrowth, noise, level, 8 + (i * 13), useRN); 
 
 				if (bu->changeHP && ((unit->maxHP + bu->changeHP) <= maxHP))
 				{	statGainTotal++; 
 					if (statGainTotal >= MinimumStatUps) { 
 					break;	} } 
 
-				bu->changePow = NewGetStatIncrease(powGrowth, noise, level, 9 + (i * 13)); 
+				bu->changePow = NewGetStatIncrease(powGrowth, noise, level, 9 + (i * 13), useRN); 
 
 				if (bu->changePow && ((unit->pow + bu->changePow) <= maxPow))
 				{	statGainTotal++; 
 					if (statGainTotal >= MinimumStatUps) { 
 					break;	} } 
 
-				bu->changeSkl = NewGetStatIncrease(sklGrowth, noise, level, 10 + (i * 13)); 
+				bu->changeSkl = NewGetStatIncrease(sklGrowth, noise, level, 10 + (i * 13), useRN); 
 
 				if (bu->changeSkl && ((unit->skl + bu->changeSkl) <= maxSkl))
 				{	statGainTotal++; 
 					if (statGainTotal >= MinimumStatUps) { 
 					break;	} } 
 
-				bu->changeSpd = NewGetStatIncrease(spdGrowth, noise, level, 11 + (i * 13)); 
+				bu->changeSpd = NewGetStatIncrease(spdGrowth, noise, level, 11 + (i * 13), useRN); 
 
 				if (bu->changeSpd && ((unit->spd + bu->changeSpd) <= maxSpd))
 				{	statGainTotal++; 
 					if (statGainTotal >= MinimumStatUps) { 
 					break;	} } 
 
-				bu->changeDef = NewGetStatIncrease(defGrowth, noise, level, 12 + (i * 13)); 
+				bu->changeDef = NewGetStatIncrease(defGrowth, noise, level, 12 + (i * 13), useRN); 
 
 				if (bu->changeDef && ((unit->def + bu->changeDef) <= maxDef))
 				{	statGainTotal++; 
 					if (statGainTotal >= MinimumStatUps) { 
 					break;	} } 
 
-				bu->changeRes = NewGetStatIncrease(resGrowth, noise, level, 13 + (i * 13)); 
+				bu->changeRes = NewGetStatIncrease(resGrowth, noise, level, 13 + (i * 13), useRN); 
 
 				if (bu->changeRes && ((unit->res + bu->changeRes) <= maxRes))
 				{	statGainTotal++; 
 					if (statGainTotal >= MinimumStatUps) { 
 					break;	} } 
 
-				bu->changeLck = NewGetStatIncrease(lckGrowth, noise, level, 14 + (i * 13)); 
+				bu->changeLck = NewGetStatIncrease(lckGrowth, noise, level, 14 + (i * 13), useRN); 
 
 				if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
 				{	statGainTotal++; 
@@ -1835,7 +1901,7 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 					
 					
 				if (StrMagInstalled) { 
-					bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 15 + (i * 13)); 
+					bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 15 + (i * 13), useRN); 
 
 					if (bu->changeCon && ((unit->_u3A + bu->changeCon) <= maxMag))
 					{	statGainTotal++; 
@@ -2062,7 +2128,7 @@ const char Option5[OPT5NUM][18] = { // Items
 "Item stats only",
 }; 
 
-#define OPT6NUM 21
+#define OPT6NUM 31
 const char Option6[OPT6NUM][10] = { // Enemies 
 "Vanilla",
 "+1",
@@ -2085,6 +2151,16 @@ const char Option6[OPT6NUM][10] = { // Enemies
 "+18",
 "+19",
 "+20",
+"-10",
+"-9",
+"-8",
+"-7",
+"-6",
+"-5",
+"-4",
+"-3",
+"-2",
+"-1"
 }; 
 
 #define OPT7NUM 2
@@ -2152,7 +2228,9 @@ Max Growth: 100
 	#ifdef FE6 
 	//int startId = 0xB6E + i; 
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 16-6, 1+((i-9)*2)), 9, 2, 0);
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 17, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB87));
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 16, 1+((i-9)*2)), white, (proc->Option[0] * 5)); i++; 
+	
 	//PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option0[proc->Option[0]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB77 + proc->Option[1])); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB77 + proc->Option[2])); i++; 
@@ -2180,8 +2258,16 @@ Max Growth: 100
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB77)); i++;  
 	} 
 	else { 
-	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 19-6, 1+((i-9)*2)), 9, 2, 0);
-	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 1+((i-9)*2)), white, proc->Option[6]); i++;  
+		TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 19-6, 1+((i-9)*2)), 9, 2, 0);
+		int xOffset = 0; 
+		if (proc->Option[6] > 20) { 
+			if (10 - (proc->Option[6]-21) < 10) { xOffset = 1; } 
+			PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14 + xOffset, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB86));
+			PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 16, 1+((i-9)*2)), white, 10 - (proc->Option[6]-21)); i++; }
+		else {
+			if (proc->Option[6] < 10) { xOffset = 1; } 
+			PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14 + xOffset, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB85));
+			PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, 16, 1+((i-9)*2)), white, proc->Option[6]); i++;  }
 	} 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, GetStringFromIndex(0xB7E + proc->Option[7])); i++;  
 	
@@ -3745,6 +3831,7 @@ const s8* GetUnitDefaultMovementCost(struct Unit* unit) {
 	return unit->pClassData->pMovCostTable[0];
 }
 
+extern u8 SeizeMapWithIslandsList[]; 
 extern u8** gBmMapTerrain; // 202E3E0
 const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 #ifdef FE7 
@@ -3752,27 +3839,23 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 		return Unk_TerrainTable_08BEC398; } 
 #endif 
 	
-	#ifdef FE6 
-	if ((gCh == 0xFE)) { 
-	#endif 
-	#ifdef FE7 
-	if ((gCh == 0xA) || (gCh == 0x11)) { // maybe 0xA 
-	#endif 
-	#ifdef FE8 
-	if ((gCh == 0x18)) { // Taizel has an island reinforcements might get stuck on 
-	#endif 
-		if (UNIT_FACTION(unit) != FACTION_BLUE) { 
-			switch (weatherId) { 
-			case 1:
-			case 2:
-			case 4:
-			return TerrainTable_MovCost_StuckRainy; 
-			default: 
+	
+	for (int i = 0; i < 255; i++) { 
+		if (SeizeMapWithIslandsList[i] == 0xFF) { break; } 
+		if (SeizeMapWithIslandsList[i] == gCh) { 
+			if (UNIT_FACTION(unit) != FACTION_BLUE) { 
+				switch (weatherId) { 
+				case 1:
+				case 2:
+				case 4:
+				return TerrainTable_MovCost_StuckRainy; 
+				default: 
+				}
+				return TerrainTable_MovCost_Stuck;
 			}
-		
-			return TerrainTable_MovCost_Stuck;
-		}
-	}
+		} 
+	} 
+	
 	
 	
 	int terrainType = gBmMapTerrain[unit->yPos][unit->xPos]; 

@@ -12,9 +12,11 @@
 
 //#define PROJECT_EMBER // to use this installer on project ember 
 
-#define TextTable 0x833530 
-#ifdef PROJECT_EMBER 
-#define TextTable 0x180A394
+#ifndef TextTable 
+	#define TextTable 0x833530 
+	#ifdef PROJECT_EMBER 
+		#define TextTable 0x180A394
+	#endif 
 #endif 
 
 ALIGN 4 
@@ -151,6 +153,12 @@ BYTE $CD $15 $01 $7F $56 $2F $00 $00 $00 $00 $00 $00
 EnemiesText:
 BYTE $A4 $F0 $EB $FD $AB $17 $00 $00 $00 $00 $00 $00
 // "Enemies only" A4 F0 EB FD 2B 8A 05 F4 02 00 00 00 00 00 00 00
+PlusText:
+BYTE $5D $D3 $BD $00 $00 $00 $00 $00 $00 $00 $00 $00
+DashText:
+BYTE $D6 $E9 $05 $00 $00 $00 $00 $00 $00 $00 $00 $00
+PercentText:
+BYTE $FD $7B $C1 $5C $2F $00 $00 $00 $00 $00 $00 $00
 
 #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
 #define setTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
@@ -178,7 +186,9 @@ setTextWithHuffman(0xB81, HpText)
 setTextWithHuffman(0xB82, MinusText)
 setTextWithHuffman(0xB83, PlayersText)
 setTextWithHuffman(0xB84, EnemiesText)
-
+setTextWithHuffman(0xB85, PlusText)
+setTextWithHuffman(0xB86, DashText)
+setTextWithHuffman(0xB87, PercentText)
 
 PUSH 
 
@@ -314,3 +324,6 @@ AlwaysRemoveGlowy: // stat screen fe8
 WORD 0 
 DefaultConfigToVanilla:
 WORD 0
+SeizeMapWithIslandsList:
+//BYTE 0 
+BYTE 0xFF // Terminator 
