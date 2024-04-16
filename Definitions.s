@@ -58,6 +58,10 @@ SET_FUNC NewPopup_Simple, 0x800AD41
 SET_DATA PopupScr_GotGold, 0x8B91BE4
 SET_DATA PopupScr_GoldWasStole, 0x8B91C2C
 SET_FUNC NewPopup_GoldGot, 0x800EE4D 
+SET_FUNC DisplayLeftPanel, 0x807FA8D 
+SET_FUNC ResetIconGraphics_, 0x8004CE9
+SET_FUNC InitTexts, 0x807FA39
+
 .endif 
 .if FE8 == true 
 SET_DATA SaveMenuProc, 0x8A200B8 @ fe8 

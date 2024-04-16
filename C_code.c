@@ -503,8 +503,8 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 		} 
 		#ifdef FE8 
 		if (WepLockExInstalled) { 
-			if (attr & IA_STAFF) { if (!CanUnitUseStaff(unit, i)) { continue; } } 
-			else if (!CanUnitUseWeapon(unit, i)) { continue; } 
+			if (attr & IA_STAFF) { if (!CanUnitUseStaff(unit, i|0x100)) { continue; } } 
+			else if (!CanUnitUseWeapon(unit, i|0x100)) { continue; } 
 		} 
 		#endif 
 		list[0]++; 
@@ -3343,6 +3343,9 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 }
 
 extern int SS_EnableBWL; 
+extern void DisplayLeftPanel(void); 
+extern void ResetIconGraphics_(void); // 8004CE8 fe7 
+extern void InitTexts(void); // 807FA38 fe7 
 #ifdef FE7 
 void Decompress(void const * src, void * dst); // 0x8013168 
 extern u8 gBuf[0x2100]; // 0x2020140 gGenericBuffer 
@@ -3357,10 +3360,15 @@ void DisplayPage0(void)
 //SetTextFontGlyphs(0);
 //SetTextFont(0);
 //InitSystemTextFont();
-//ResetText(); 
-//TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0xD, 0x3), 17, 17, 0);
+	ResetText(); 
+	ResetIconGraphics_();
+	InitTexts();
+	DisplayLeftPanel();
+	//TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0xD, 0x3), 17, 17, 0);
+	//BG_EnableSyncByMask(BG0_SYNC_BIT);
 
 //TileMap_FillRect(gBG0TilemapBuffer, int width, int height, int fillValue)
+
 	DisplayTexts(sPage0TextInfo);
     DrawBarsOrGrowths(); 
 	
