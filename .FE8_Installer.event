@@ -10,6 +10,11 @@
 #include "Patches/FE8.lyn.event" 
 #include "Patches/FE8_AsmHooks.lyn.event" 
 
+#ifdef SKILLSYS_INSTALLED
+MESSAGE Open FE8_Installer and read / config things please 
+//asdf // add two slashes to comment out this line 
+#endif 
+
 ALIGN 4 
 CasualModeFlag:
 WORD 0xB0 
@@ -79,6 +84,11 @@ NeverChangeIntoClass(0x10) // Some mercenary thing
 
 //NeverChangeChar(1)
 //NeverChangeChar(0x68)
+
+#ifdef SKILLSYS_INSTALLED
+MESSAGE Read/edit until this line unless you want to change your stat screen first page layout below 
+//qwer // add two slashes to comment out this line 
+#endif 
 
 
 //#define GetUnitMaxHp 0x08019191
@@ -282,5 +292,11 @@ prMagGetter:
 Get_Mag_Growth:
 WORD 0 
 #endif 
+#ifndef IconOrrValue 
+#define IconOrrValue 0x100
+#endif  
+ALIGN 4
+IconOrr:
+WORD IconOrrValue
 
 

@@ -87,8 +87,8 @@ SET_FUNC __aeabi_idiv,    __divsi3
 SET_FUNC __aeabi_idivmod, __modsi3
 SET_FUNC Div, __divsi3
 SET_FUNC Mod, __modsi3
-SET_DATA RandBitflagsA, 0x203EC28 @ PlaySt + 0x1B (unk, 1 bytes) @ saved on suspend 
-SET_DATA RandBitflagsB, 0x203EC29 @ PlaySt + 0x1F (unk, 1 bytes) @ saved on suspend 
+SET_DATA RandBitflagsA, 0x203EC28 @ enemy unitID + 0x3a BWL data
+SET_DATA RandBitflagsB, 0x203EC29 @ 
 SET_DATA RandValues, 0x203EC24 @ enemy unitID + 0x3a BWL data
 SET_DATA MaxItems, 0x203EC2A @ BWL + 0x3a
 SET_DATA MaxClasses, 0x203EC2B

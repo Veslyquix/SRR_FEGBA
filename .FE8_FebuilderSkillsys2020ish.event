@@ -1,42 +1,24 @@
 #define SKILLSYS_INSTALLED 
-#define STRMAG_INSTALLED 
+#define IconOrrValue 0x0 // if using a skillsys version past may 2020, make this 0x100 
+//#define STRMAG_INSTALLED 
 #include ".FE8_Installer.event" 
-
-#ifndef MagCharTable
-PUSH 
-ORG $B2A740 
-MagCharTable:
-ORG $B2A940 
-MagClassTable: 
-POP 
-#endif 
-
-PUSH 
-ORG $B7E9C0
-prConGetter:
-ORG $B7E9A4 
-prAidGetter:
-ORG $B7EA00 // or B7E9DC prStatScreenMovGetter@Skill_SkillSystems_20220703
-prMovGetter:
-ORG $B7EADC
-prMagGetter:
-ORG $B80414
-Get_Hp_Growth:
-ORG $B80434
-Get_Str_Growth:
-ORG $B80454
-Get_Mag_Growth:
-ORG $B8048C
-Get_Skl_Growth:
-ORG $B804AC
-Get_Spd_Growth:
-ORG $B80514
-Get_Luk_Growth:
-ORG $B804CC
-Get_Def_Growth:
-ORG $B804F0
+PROTECT $B66Ad0 $b66b80
+PROTECT $B6635c $b66b80
+// B66af8 - B66AfC
+prConGetter: 
+prAidGetter: 
+prMovGetter: 
+Get_Hp_Growth: 
+Get_Str_Growth: 
+Get_Skl_Growth: 
+Get_Spd_Growth: 
+Get_Luk_Growth: 
+Get_Def_Growth: 
 Get_Res_Growth:
-POP 
+prMagGetter: 
+Get_Mag_Growth:
+WORD 0 
+
 
 //#endif 
 

@@ -3099,7 +3099,7 @@ struct SS_StatID {
 extern u8* CallSkill_Getter(struct Unit* unit); 
 extern struct SS_StatID gStatScreenFunction[]; 
 extern int _GetTalkee(int); 
-
+extern int IconOrr; 
 int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) { 
 	if (gStatScreenFunction[id].specialCase) { 
 		switch (gStatScreenFunction[id].specialCase) { 
@@ -3123,7 +3123,7 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 			}
 			case 3: {
 				int icon = GetUnitAidIconId(UNIT_CATTRIBUTES(gStatScreen.unit)); 
-				if (SkillSysInstalled) { icon |= 0x300; } 
+				if (SkillSysInstalled) { icon |= IconOrr*3; } 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AIDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Aid");
 				PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y), blue,
 					CallprAidGetter(unit));
@@ -3139,7 +3139,7 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 			case 5: {
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AFFINLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Affin");
 				int icon = GetUnitAffinityIcon(gStatScreen.unit); 
-				if (SkillSysInstalled) { icon |= 0x200; } 
+				if (SkillSysInstalled) { icon |= IconOrr*2; } 
 				DrawIcon(
 					gUiTmScratchA + TILEMAP_INDEX(x-1, y),
 					icon, TILEREF(0, STATSCREEN_BGPAL_EXTICONS));
@@ -3151,17 +3151,13 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				return 0; break;
 			}	
 			case 7: {
-				#ifdef FE8 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
-				#else 
 				ClearText(gStatScreen.text + STATSCREEN_TEXT_ITEM0); // clear wep1 text here 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM0,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
-				#endif 
 				#ifdef FE8 
 				int talk_uid = _GetTalkee(unit->pCharacterData->number); // not for fe6/fe7 atm
 				if (talk_uid) { 
 					talk_uid = GetCharacterData(talk_uid)->nameTextId;
-					Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_RESCUENAME], 24, blue, GetStringFromIndex(talk_uid));
+					Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_ITEM0], 24, blue, GetStringFromIndex(talk_uid));
 				} 
 				#endif 
 				return 0; break;

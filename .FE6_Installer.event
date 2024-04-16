@@ -327,3 +327,10 @@ WORD 0
 SeizeMapWithIslandsList:
 //BYTE 0 
 BYTE 0xFF // Terminator 
+#ifndef IconOrrValue 
+#define IconOrrValue 0x100
+#endif  
+ALIGN 4
+IconOrr:
+WORD IconOrrValue
+
