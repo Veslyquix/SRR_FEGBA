@@ -2112,20 +2112,20 @@ const char Option3[OPT3NUM][10] = { // Stat Caps
 
 #define OPT4NUM 4
 const char Option4[OPT4NUM][20] = { // Class
-//"Random for players",
-//"Random for enemies",
 "Vanilla",
 "Random",
-"Players",
-"Enemies",
+"Random for players",
+"Random for enemies",
+//"Players",
+//"Enemies",
 }; 
 
 #define OPT5NUM 4
-const char Option5[OPT5NUM][18] = { // Items
+const char Option5[OPT5NUM][25] = { // Items
 "Vanilla",
 "Random",
-"Found items only",
-"Item stats only",
+"Random found items only",
+"Random item stats only",
 }; 
 
 #define OPT6NUM 31
@@ -2278,7 +2278,7 @@ Max Growth: 100
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option2[proc->Option[2]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 6, Option3[proc->Option[3]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, Option4[proc->Option[4]]); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, Option5[proc->Option[5]]); i++; 
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 14, Option5[proc->Option[5]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option6[proc->Option[6]]); i++;  
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
 	#endif 
@@ -2608,7 +2608,7 @@ void StartConfigMenu(ProcPtr parent) {
 		InitText(&th[i], 5); i++; 
 		InitText(&th[i], 6); i++; 
 		InitText(&th[i], 12); i++; 
-		InitText(&th[i], 12); i++; 
+		InitText(&th[i], 14); i++; 
 		InitText(&th[i], 5); i++; 
 		InitText(&th[i], 5); i++; 
 		
