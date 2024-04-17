@@ -95,6 +95,7 @@ SET_DATA MaxClasses, 0x203EC2B
 SET_DATA weatherId, 0x202BD05
 SET_DATA gPlaySt, 0x202BCF0
 SET_DATA gCh, 0x202BCFE
+SET_DATA Ballista_TerrainTable, 0x880BC18
 .endif 
 
 
@@ -391,7 +392,7 @@ SET_DATA gProcScr_Shop, 0x8CE6FC0
 SET_DATA gLCGRNValue, 0x3000008 
 SET_DATA sPrevHandClockFrame, 0x203DCF0
 SET_DATA sPrevHandScreenPosition, 0x203DCEC
-SET_DATA Unk_TerrainTable_08BEC398, 0x8BEC398
+SET_DATA Ballista_TerrainTable, 0x8BEC398 
 SET_DATA gBmMapTerrain, 0x202E3E0
 SET_DATA weatherId, 0x202BC0D
 
