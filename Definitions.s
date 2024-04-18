@@ -38,6 +38,10 @@ SET_DATA PopupScr_GotGold, 0x8356140
 SET_DATA PopupScr_GoldWasStole, 0x8356188
 SET_FUNC NewPopup_GoldGot, 0x80120D1 
 SET_FUNC NextRN_N, 0x8000E09
+SET_FUNC GenerateExtendedMovementMap, 0x8019425
+SET_DATA TerrainTable_MovCost_BerserkerNormal, 0x860C714
+SET_DATA TerrainTable_MovCost_BerserkerRain, 0x860C714
+SET_DATA gBmMapMovement, 0x202D20C
 
 .endif 
 .if FE7 == true 
@@ -63,6 +67,10 @@ SET_FUNC DisplayLeftPanel, 0x807FA8D
 SET_FUNC ResetIconGraphics_, 0x8004CE9
 SET_FUNC InitTexts, 0x807FA39
 SET_FUNC NextRN_N, 0x8000E31
+SET_FUNC GenerateExtendedMovementMap, 0x8019C81
+SET_DATA TerrainTable_MovCost_BerserkerNormal, 0x8BE398C
+SET_DATA TerrainTable_MovCost_BerserkerRain, 0x8BE3DDD
+SET_DATA gBmMapMovement, 0x202E3E4
 
 .endif 
 .if FE8 == true 

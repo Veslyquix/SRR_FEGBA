@@ -3870,177 +3870,82 @@ const s8* GetUnitDefaultMovementCost(struct Unit* unit) {
 	return unit->pClassData->pMovCostTable[0];
 }
 
-extern u8 SeizeMapWithIslandsList[]; 
 extern u8** gBmMapTerrain; // 202E3E0
 
-int IsUnitBlockedFromAbove(struct Unit* unit) { 
-
-
-	return false; 
-} 
-
-int IsUnitTrapped(struct Unit* unit, int river, int mntn, int peak, int sea, int water, int lake) { 
-	int x, y; 
+extern const s8 TerrainTable_MovCost_BerserkerNormal[];  // 8BE398C, 860C714
+extern const s8 TerrainTable_MovCost_BerserkerRain[]; // 8BE3DDD
+extern u8 ** gBmMapMovement;
+extern void BmMapFill(u8** map, int value);
+extern void GenerateExtendedMovementMap(int x, int y, const s8 mct[]);
+int IsUnitTrapped(struct Unit* unit) { 
+	if (UNIT_FACTION(unit) == FACTION_BLUE) { return false; } 
+	int flierCost = GetUnitDefaultMovementCost(unit)[TERRAIN_CLIFF]; 
+	if ((flierCost >= 0) && (flierCost < unit->pClassData->baseMov)) { return false; } 
+	//BmMapFill(gBmMapMovement, 0xFF);
+	GenerateExtendedMovementMap(unit->xPos, unit->yPos, GetUnitDefaultMovementCost(unit));
+	struct Unit* target; 
+	for (int i = 1; i<0x40; i++) { 
+		target = GetUnit(i); 
+		if (!UNIT_IS_VALID(target)) { continue; } 
+		if (target->state & (US_DEAD|US_NOT_DEPLOYED|US_BIT16)) { continue; } 
+		if (gBmMapMovement[target->yPos][target->xPos] > 120) { continue; } 
+		//asm("mov r11, r11"); 
+		return false; 
 	
+	} 
 
-
-	return false; 
+	return true;  
 } 
-#ifdef FE8 
-struct ChapterMap {
-    u8  obj1Id;
-    u8  obj2Id;
-    u8  paletteId;
-    u8  tileConfigId;
-    u8  mainLayerId;
-    u8  objAnimId;
-    u8  paletteAnimId;
-    u8  changeLayerId;
+enum {
+	notStuck, 
+	waterPeakMov, 
+	flierMov,
 };
-struct ROMChapterData {
-    /* 00 */ const char* internalName;
-
-    /* 04 */ struct ChapterMap map;
-
-    /* 0C */ u8  initialFogLevel;
-    /* 0D */ u8  hasPrepScreen; // left over from FE7
-
-    /* 0E */ u8 chapTitleId;
-    /* 0F */ u8 chapTitleIdInHectorStory; // left over from FE7
-
-    /* 10 */ u8 initialPosX;
-    /* 11 */ u8 initialPosY;
-    /* 12 */ u8 initialWeather;
-    /* 13 */ u8 battleTileSet;
-
-    // This may need a type change.
-    /* 14 */ u16 easyModeLevelMalus      : 4;
-    /* 14 */ u16 difficultModeLevelBonus : 4;
-    /* 14 */ u16 normalModeLevelMalus    : 4;
-
-    /* 16 */ u16 mapBgmIds[11];
-
-    /* 2C */ u8 mapCrackedWallHeath;
-
-    /* 2D */ u8 turnsForTacticsRankAInEliwoodStory[2]; // left over from FE7
-    /* 2F */ u8 turnsForTacticsRankAInHectorStory[2]; // left over from FE7
-    /* 31 */ u8 turnsForTacticsRankBInEliwoodStory[2]; // left over from FE7
-    /* 33 */ u8 turnsForTacticsRankBInHectorStory[2]; // left over from FE7
-    /* 35 */ u8 turnsForTacticsRankCInEliwoodStory[2]; // left over from FE7
-    /* 37 */ u8 turnsForTacticsRankCInHectorStory[2]; // left over from FE7
-    /* 39 */ u8 turnsForTacticsRankDInEliwoodStory[2]; // left over from FE7
-    /* 3B */ u8 turnsForTacticsRankDInHectorStory[2]; // left over from FE7
-
-    /* 3D */ u8 unk3D; // padding?
-
-    /* 3E */ u16 gainedExpForExpRankAInEliwoodStory[2]; // left over from FE7
-    /* 42 */ u16 gainedExpForExpRankAInHectorStory[2]; // left over from FE7
-    /* 46 */ u16 gainedExpForExpRankBInEliwoodStory[2]; // left over from FE7
-    /* 4A */ u16 gainedExpForExpRankBInHectorStory[2]; // left over from FE7
-    /* 4E */ u16 gainedExpForExpRankCInEliwoodStory[2]; // left over from FE7
-    /* 52 */ u16 gainedExpForExpRankCInHectorStory[2]; // left over from FE7
-    /* 56 */ u16 gainedExpForExpRankDInEliwoodStory[2]; // left over from FE7
-    /* 5A */ u16 gainedExpForExpRankDInHectorStory[2]; // left over from FE7
-
-    /* 5E */ u16 unk5E; // padding?
-
-    /* 60 */ u32 goldForFundsRankInEliwoodStory[2]; // left over from FE7
-    /* 68 */ u32 goldForFundsRankInHectorStory[2]; // left over from FE7
-
-    /* 70 */ u16 chapTitleTextId;
-    /* 72 */ u16 chapTitleTextIdInHectorStory; // left over from FE7
-
-    /* 74 */ u8 mapEventDataId;
-    /* 75 */ u8 gmapEventId;
-
-    /* 76 */ u16 divinationTextIdBeginning; // left over from FE7
-    /* 78 */ u16 divinationTextIdInEliwoodStory; // left over from FE7
-    /* 7A */ u16 divinationTextIdInHectorStory; // left over from FE7
-    /* 7C */ u16 divinationTextIdEnding; // left over from FE7
-    /* 7E */ u8 divinationPortrait; // left over from FE7
-    /* 7F */ u8 divinationFee; // left over from FE7
-
-    /* 80 */ u8 prepScreenNumber;
-    /* 81 */ u8 prepScreenNumberInHectorStory; // left over from FE7
-    /* 82 */ u8 merchantPosX;
-    /* 83 */ u8 merchantPosXInHectorStory; // left over from FE7
-    /* 84 */ u8 merchantPosY;
-    /* 85 */ u8 merchantPosYInHectorStory; // left over from FE7
-
-    /* 86 */ s8 victorySongEnemyThreshold;
-    /* 87 */ u8 fadeToBlack;
-
-    /* 88 */ u16 statusObjectiveTextId;
-    /* 8A */ u16 goalWindowTextId;
-    /* 8C */ u8 goalWindowDataType;
-    /* 8D */ u8 goalWindowEndTurnNumber;
-    /* 8E */ u8 protectCharacterIndex;
-
-    /* 8F */ u8 destPosX;
-    /* 90 */ u8 destPosY;
-
-    /* 91 */ u8 unk91; // ?
-    /* 92 */ u8 unk92; // ?
-    /* 93 */ u8 unk93; // ?
-};
-const struct ROMChapterData* GetROMChapterStruct(unsigned chIndex); 
-#endif 
 int IsUnitStuck(struct Unit* unit) { 
 	int terrainType = gBmMapTerrain[unit->yPos][unit->xPos]; 
 	if (!(unit->state & US_RESCUED)) { 
 		if (terrainType != TERRAIN_VILLAGE_04) { 
 			int tcost = GetUnitDefaultMovementCost(unit)[terrainType];
-			return ((tcost < 0) || (tcost > unit->pClassData->baseMov)) ? TRUE : FALSE;
+			if ((tcost < 0) || (tcost > unit->pClassData->baseMov)) { return flierMov; } 
 		} 
 	} 
 	
-	#ifdef FE8 
-	if (GetROMChapterStruct(gCh)->goalWindowDataType == 1) { // if rout 
-	#endif 
-	
-		//const s8* cost = GetUnitDefaultMovementCost(unit); 
-		//// iterate through all tiles 
-		//// if not within n tiles, continue 
-		//int river = cost[TERRAIN_RIVER]; 
-		//int mntn = cost[TERRAIN_MOUNTAIN]; 
-		//int peak = cost[TERRAIN_PEAK]; 
-		//int sea = cost[TERRAIN_SEA]; 
-		//int lake = cost[TERRAIN_LAKE]; 
-		//int water = cost[TERRAIN_WATER]; 
-	
-		//if (IsUnitTrapped(unit, river, mntn, peak, sea, lake, water)) { return true; } 
-		for (int i = 0; i < 255; i++) { 
-			if (SeizeMapWithIslandsList[i] == 0xFF) { break; } 
-			if (SeizeMapWithIslandsList[i] == gCh) { 
-				if (UNIT_FACTION(unit) != FACTION_BLUE) { 
-					return true;
-				}
-			} 
-		} 
-	#ifdef FE8 
-	} 
-	#endif 
-	return false; 
-} 
+	if (IsUnitTrapped(unit)) { return waterPeakMov; } 
 
+	return notStuck; 
+} 
+// no fe6
 const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
+//asm("mov r11, r11");
 #ifndef FE6 
     if (unit->state & US_IN_BALLISTA) {
 		return Ballista_TerrainTable; } // fe8 is 80BC18
 #endif 
-	
-
-	//if (UNIT_FACTION != FACTION_BLUE) { 
-	if (IsUnitStuck(unit)) { 			
-		switch (weatherId) { 
-			case 1:
-			case 2:
-			case 4:
-			return TerrainTable_MovCost_StuckRainy; 
-			default: 
-			}		
-		return TerrainTable_MovCost_Stuck; 
-	} 
+	//asm("mov r11, r11");
+	if (ShouldRandomizeClass(unit)) { 
+		//if (UNIT_FACTION != FACTION_BLUE) { 
+		int stuck = IsUnitStuck(unit);
+		if (stuck == flierMov) { 			
+			switch (weatherId) { 
+				case 1:
+				case 2:
+				case 4:
+				return TerrainTable_MovCost_StuckRainy; 
+				default: 
+				}		
+			return TerrainTable_MovCost_Stuck; 
+		} 
+		if (stuck == waterPeakMov) { 			
+			switch (weatherId) { 
+				case 1:
+				case 2:
+				case 4:
+				return TerrainTable_MovCost_BerserkerRain; //880B90C
+				default: 
+				}		
+			return TerrainTable_MovCost_BerserkerNormal; 
+		} 
+	}
 	
 	//} 
     switch (weatherId) {
@@ -4056,6 +3961,7 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
     } 
 	return unit->pClassData->pMovCostTable[0];
 }
+
 
 
 

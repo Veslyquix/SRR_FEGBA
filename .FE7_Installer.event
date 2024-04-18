@@ -486,10 +486,6 @@ DefaultConfigToVanilla:
 WORD 0
 MaxWeaponHitrate:
 WORD 250 // make this 125 if you like 
-SeizeMapWithIslandsList:
-BYTE 0x11 
-//BYTE 0xA
-BYTE 0xFF // Terminator 
 #ifndef IconOrrValue 
 #define IconOrrValue 0x100
 #endif  
