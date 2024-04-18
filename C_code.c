@@ -270,10 +270,12 @@ s16 HashMight(int number, int noise[]) {
 	if (number == 255) { return number; } // eclipse 
 	return HashByPercent(number, noise, 0)+2; 
 } 
+extern int MaxWeaponHitrate; 
 s16 HashHit(int number, int noise[]) { 
 	if (!RandBitflagsA.itemStats) { return number; } 
 	number = HashByPercent(number, noise, 0);
 	if (number < 50) number += number + (noise[0] & 0x1F) + 30; 
+	if (number > MaxWeaponHitrate) { number = MaxWeaponHitrate; } 
 	return number; 
 } 
 s16 HashCrit(int number, int noise[]) { 

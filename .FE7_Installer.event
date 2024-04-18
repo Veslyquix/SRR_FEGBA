@@ -484,6 +484,8 @@ AlwaysRemoveGlowy: // stat screen fe8
 WORD 0 
 DefaultConfigToVanilla:
 WORD 0
+MaxWeaponHitrate:
+WORD 250 // make this 125 if you like 
 SeizeMapWithIslandsList:
 BYTE 0x11 
 //BYTE 0xA
