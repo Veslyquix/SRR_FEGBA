@@ -282,6 +282,7 @@ Get_Spd_Growth:
 Get_Luk_Growth: 
 Get_Def_Growth: 
 Get_Res_Growth:
+prMaxHPGetter:
 WORD 0 
 #endif 
 #ifndef STRMAG_INSTALLED 
@@ -295,8 +296,7 @@ WORD 0
 #define IconOrrValue 0x100
 #endif  
 
-prMaxHPGetter:
-WORD 0 
+
 ALIGN 4
 IconOrr:
 WORD IconOrrValue

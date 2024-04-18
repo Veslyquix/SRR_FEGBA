@@ -5,21 +5,28 @@
 PROTECT $B66Ad0 $b66b80
 PROTECT $B6635c $b66b80
 // B66af8 - B66AfC
-prConGetter: 
-prAidGetter: 
-prMovGetter: 
-Get_Hp_Growth: 
-Get_Str_Growth: 
-Get_Skl_Growth: 
-Get_Spd_Growth: 
-Get_Luk_Growth: 
-Get_Def_Growth: 
-Get_Res_Growth:
-prMagGetter: 
-Get_Mag_Growth:
-WORD 0 
+//prConGetter: 
+//prAidGetter: 
+//prMovGetter: 
+//Get_Hp_Growth: 
+//Get_Str_Growth: 
+//Get_Skl_Growth: 
+//Get_Spd_Growth: 
+//Get_Luk_Growth: 
+//Get_Def_Growth: 
+//Get_Res_Growth:
+//prMagGetter: 
+//Get_Mag_Growth:
+//WORD 0 
 
-
+/* only for specific version of skillsys  
+PUSH 
+ORG $some address
+prMaxHPGetter:
+POP
+*/
+prMaxHPGetter:
+WORD 0 // this works 
 //#endif 
 
 // Skillsys conflicts - mostly strmag / leveling, loading, & stat screen related 
