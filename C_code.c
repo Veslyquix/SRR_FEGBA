@@ -3217,7 +3217,7 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*3), y), skillID[i], 0x4000); }
 				skillID++; 
 				}
-				return 0; break;
+				return 0; break; 
 			}
 			case 10: { // skills row 2 
 				u8* skillID = CallSkill_Getter(unit); 

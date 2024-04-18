@@ -1,29 +1,29 @@
 #define SKILLSYS_INSTALLED 
 #define IconOrrValue 0x0 // if using a skillsys version past may 2020, make this 0x100 
-//#define STRMAG_INSTALLED 
+#define STRMAG_INSTALLED 
 #include ".FE8_Installer.event" 
-// B66af8 - B66AfC
-//prConGetter: 
-//prAidGetter: 
-//prMovGetter: 
-//Get_Hp_Growth: 
-//Get_Str_Growth: 
-//Get_Skl_Growth: 
-//Get_Spd_Growth: 
-//Get_Luk_Growth: 
-//Get_Def_Growth: 
-//Get_Res_Growth:
-//prMagGetter: 
-//Get_Mag_Growth:
-//WORD 0 
-
+// skill icons don't appear in SGW when installed *shrugs* 
 /* only for specific version of skillsys  
 PUSH 
 ORG $some address
 prMaxHPGetter:
 POP
 */
+prConGetter: 
+prAidGetter: 
+prMovGetter: 
+Growth_Getter_Table:
+Skill_Getter:
+Get_Hp_Growth: 
+Get_Str_Growth: 
+Get_Skl_Growth: 
+Get_Spd_Growth: 
+Get_Luk_Growth: 
+Get_Def_Growth: 
+Get_Res_Growth:
 prMaxHPGetter:
+prMagGetter: 
+Get_Mag_Growth:
 WORD 0 // this works 
 //#endif 
 
