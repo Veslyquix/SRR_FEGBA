@@ -498,6 +498,24 @@ pop {r3}
 bx r3 
 .ltorg 
 
+.global CallGetMaxHP
+.type CallGetMaxHP, %function 
+CallGetMaxHP: 
+push {lr} 
+ldr r3, =prMaxHPGetter
+ldr r3, [r3] 
+cmp r3, #0 
+beq Replace_GetMaxHP
+blh prMaxHPGetter
+b Exit_GetMaxHP 
+Replace_GetMaxHP:
+bl GetUnitMaxHP
+Exit_GetMaxHP:
+pop {r3} 
+bx r3 
+.ltorg 
+
+
 .global ConditionallyRemoveGlowy @ 88588 
 .type ConditionallyRemoveGlowy, %function 
 ConditionallyRemoveGlowy: 

@@ -568,6 +568,27 @@ u8* AppendAvailableStaffList(u8 list[], struct Unit* unit) {
 	return list; 
 } 
 
+u8* BuildRingItemList(u8 list[], struct Unit* unit) { 
+	struct ItemData* table; 
+	list[0] = 0; 
+
+	for (int i = 1; i <= GetMaxItems(); i++) { 
+		if (ItemExceptions[i].NeverChangeInto) { continue; } 
+		table = GetItemData(i);  
+		
+		if (!table->useEffectId) { // must have effect
+			continue; 
+		} 
+		
+		if (table->weaponType != 0xC) { // must be ring 
+			continue; 
+		} 
+		list[0]++; 
+		list[list[0]] = i; 
+	}
+	return list; 
+} 
+
 
 u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) { 
 	
@@ -710,11 +731,20 @@ int RandNewWeapon(struct Unit* unit, int item, int noise[], int offset, u8 list[
 		#ifdef FE6 
 		return MakeNewItem(HashByte_Ch(item, 14, noise, offset)+0x56); // random stat booster or promo item 
 		#endif 
-		#ifdef FE7 
-		return MakeNewItem(HashByte_Ch(item, 4, noise, offset)+0x7C); // rand ring 
-		#endif 
-		#ifdef FE8
-		return MakeNewItem(HashByte_Ch(item, 4, noise, offset)+0x7D); // 
+		//#ifdef FE7 
+		//return MakeNewItem(HashByte_Ch(item, 4, noise, offset)+0x7C); // rand ring 
+		//#endif 
+		#ifndef FE6
+		//return MakeNewItem(HashByte_Ch(item, 4, noise, offset)+0x7D); // 
+		u8 list2[255]; 
+		list2[0] = 99; // so compiler doesn't assume uninitialized or whatever 
+		BuildRingItemList(list2, unit);
+		if (list2[0]) { 
+			c = HashByte_Ch(item, list2[0]+1, noise, offset); 
+			if (!c) { c = 1; } // never 0  
+			item = list2[c]; 
+		} 
+		return MakeNewItem(item); 
 		#endif 
 		
 	} 
@@ -1503,8 +1533,14 @@ void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* c
 
 
 
-
-int GetUnitMaxHP(struct Unit* unit) { return 60; } 
+extern int PlayerMaxHP; 
+extern int EnemyBossMaxHP; 
+extern int EnemyMaxHP; 
+int GetUnitMaxHP(struct Unit* unit) { 
+	if (UNIT_CATTRIBUTES(unit) & CA_BOSS) { if (unit->pCharacterData->number > 0x3F) { return EnemyBossMaxHP; } } 
+	else { if (UNIT_FACTION(unit) != FACTION_RED) { return PlayerMaxHP; } } 
+	return EnemyMaxHP; 
+} 
 
 int GetUnitMaxPow(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxPow); //return cap;
@@ -1608,6 +1644,7 @@ int NewGetStatIncrease(int growth, int noise[], int level, int offset, int useRN
     return result;
 }
 
+extern int CallGetMaxHP(struct Unit* unit); 
 #define MinimumStatUps 2
 void UnitLevelUp(struct Unit* unit) {
     if (unit->level != 20) {
@@ -1635,7 +1672,7 @@ void UnitLevelUp(struct Unit* unit) {
 		int resGrowth = GetUnitResGrowth(unit, true);
 		int lckGrowth = GetUnitLckGrowth(unit, true);
 
-		int maxHP = GetUnitMaxHP(unit); 
+		int maxHP = CallGetMaxHP(unit); 
 		int maxPow = GetUnitMaxPow(unit); 
 		int maxSkl = GetUnitMaxSkl(unit); 
 		int maxSpd = GetUnitMaxSpd(unit); 
@@ -1795,8 +1832,9 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 		int lckGrowth = GetUnitLckGrowth(unit, true);
 		int magGrowth = GetUnitMagGrowth(unit, true); 
 
-		
-		int maxHP = GetUnitMaxHP(unit); 
+		//[203efbb..203efbc]? //17c66
+		// [202cfbc+0x12]!!
+		int maxHP = CallGetMaxHP(unit); 
 		int maxPow = GetUnitMaxPow(unit); 
 		int maxSkl = GetUnitMaxSkl(unit); 
 		int maxSpd = GetUnitMaxSpd(unit); 
@@ -1911,7 +1949,7 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 			}
         }
 
-        CheckBattleUnitStatCaps(GetUnit(bu->unit.index), bu);
+        CheckBattleUnitStatCaps(unit, bu);
     }
 }
 
@@ -1920,8 +1958,8 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 #define UNIT_CON_MAX(aUnit) ((aUnit)->pClassData->maxCon)
 #define UNIT_MOV_MAX(aUnit) (15)
 void UnitCheckStatCaps(struct Unit* unit) {
-    if (unit->maxHP > UNIT_MHP_MAX(unit)) { 
-	unit->maxHP = UNIT_MHP_MAX(unit); } 
+    if (unit->maxHP > CallGetMaxHP(unit)) { 
+	unit->maxHP = CallGetMaxHP(unit); } 
 
 	int max = GetUnitMaxPow(unit);
     if (unit->pow > max ) { 
@@ -1971,9 +2009,10 @@ void UnitCheckStatCaps(struct Unit* unit) {
 }
 
 
+
 void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu) {
-    if ((unit->maxHP + bu->changeHP) > UNIT_MHP_MAX(unit)) { 
-	bu->changeHP = UNIT_MHP_MAX(unit) - unit->maxHP; } 
+    if ((unit->maxHP + bu->changeHP) > CallGetMaxHP(unit)) { 
+	bu->changeHP = CallGetMaxHP(unit) - unit->maxHP; } 
 
 	int max = GetUnitMaxPow(unit);
     if ((unit->pow + bu->changePow) > max ) { 
