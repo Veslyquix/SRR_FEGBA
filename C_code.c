@@ -4195,5 +4195,19 @@ s8 IsItemDisplayUsable(struct Unit* unit, int item) { // 8016AB0
     return TRUE;
 }
  
- 
+#ifdef FE8 
+extern int GetUnitBestWRankType(struct Unit*);
+s8 ArenaIsUnitAllowed(struct Unit* unit) {
+    if (unit->statusIndex == UNIT_STATUS_SILENCED) {
+        return 0;
+    }
+
+    if (GetUnitBestWRankType(unit) < 0) {
+        return 0;
+    }
+	if (UNIT_CATTRIBUTES(unit) & CA_LOCK_3) { return 0; } // no monsters 
+
+    return 1;
+}
+#endif 
 
