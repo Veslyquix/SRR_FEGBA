@@ -225,7 +225,8 @@ BYTE 0
 //Event Editor (Adv)  (EventScriptForm) =:66B7F8 2024-04-04 2:28:10 PM
 //ORG $66B7F8
 //BYTE  $27 $00 $00 $00 $01 $00 $00 $00 $23 $00 $00 $00 $28 $00 $00 $00 $88 $13 $00 $00 $06 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
-
+ORG $682320 
+BYTE 8 3 7 3 // Thea in ch 1A to not spawn on mountains 
 
 // remove double hard mode bonus for first 5 chapters: 
 ORG $66B78C // normally calls 0x806BAF1 

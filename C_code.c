@@ -1409,7 +1409,13 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		unit->ranks[i] = wexp; 
 		
 		if (i == 7) { // dark 
+			#ifdef FE6 
+			if ((unit->ranks[i]) && (unit->ranks[i] < 51)) { unit->ranks[i] = 51; } 
+			#endif 
+			#ifndef FE6 
 			if ((unit->ranks[i]) && (unit->ranks[i] < 31)) { unit->ranks[i] = 31; } 
+			#endif 
+			
 			// flux is D rank, not E... 
 		}
 		
