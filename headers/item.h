@@ -287,6 +287,7 @@ typedef struct {
 	s8 digit; 
 	int seed; 
 	u8 freezeSeed; 
+	u8 calledFromChapter; 
 } ConfigMenuProc;
 
 struct DispCnt {

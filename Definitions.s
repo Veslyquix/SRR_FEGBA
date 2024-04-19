@@ -47,10 +47,14 @@ SET_DATA gTurn, 0x202AA58
 SET_DATA gSfx, 0x202AA65
 SET_FUNC StartBgm, 0x8003211
 SET_FUNC GetCurrentBgmSong, 0x8002F69
-@SET_FUNC Sound_FadeOutBGM, fe7 0x80035EC // ? 
+SET_FUNC GetCurrentMapMusicIndex, 0x801637D
+SET_FUNC Sound_FadeOutBGM, 0x8003065
 SET_FUNC PhaseIntroInitText, 0x801D03D
 SET_FUNC StartBgmExt, 0x800322D
 SET_FUNC StartMapSongBgm, 0x80163E5
+SET_FUNC EndAllMenus, 0x8041A39
+SET_FUNC RenderBmMap, 0x8018D91
+SET_FUNC RefreshBMapGraphics, 0x80292dd
 .endif 
 .if FE7 == true 
 SET_FUNC memset, 0x080BFFF9
@@ -82,13 +86,16 @@ SET_DATA gBmMapMovement, 0x202E3E4
 SET_DATA gPhase, 0x202BC07
 SET_DATA gTurn, 0x202BC08
 SET_DATA gSfx, 0x202BC39
-SET_FUNC GetCurrentMapMusicIndex, 0x8015E9D
+SET_FUNC GetCurrentMapMusicIndex, 0x8015E9D 
 SET_FUNC StartBgm, 0x8003891
 SET_FUNC GetCurrentBgmSong, 0x80034DD 
 SET_FUNC Sound_FadeOutBGM, 0x80035ED
 SET_FUNC StartBgmExt, 0x80038AD
 SET_FUNC PhaseIntroInitText, 0x801E5C9
 SET_FUNC StartMapSongBgm, 0x8015F85
+SET_FUNC EndAllMenus, 0x804A491
+SET_FUNC RenderBmMap, 0x8019505 
+SET_FUNC RefreshBMapGraphics, 0x802E369
 .endif 
 .if FE8 == true 
 SET_DATA SaveMenuProc, 0x8A200B8 @ fe8 
@@ -112,11 +119,6 @@ SET_FUNC __aeabi_idiv,    __divsi3
 SET_FUNC __aeabi_idivmod, __modsi3
 SET_FUNC Div, __divsi3
 SET_FUNC Mod, __modsi3
-SET_DATA RandBitflagsA, 0x203EC28 @ enemy unitID + 0x3a BWL data
-SET_DATA RandBitflagsB, 0x203EC29 @ 
-SET_DATA RandValues, 0x203EC24 @ enemy unitID + 0x3a BWL data
-SET_DATA MaxItems, 0x203EC2A @ BWL + 0x3a
-SET_DATA MaxClasses, 0x203EC2B
 SET_DATA weatherId, 0x202BD05
 SET_DATA gPlaySt, 0x202BCF0
 SET_DATA gCh, 0x202BCFE
@@ -253,11 +255,6 @@ SET_DATA gUiTmScratchA, 0x2003238 @ might be wrong
 SET_DATA gActiveUnit, 0x30044B0
 @ 202AA08 gBmSt https://github.com/StanHash/fe6/blob/5430c7ea15313a5754ddb466916b1d2946e72c4a/include/bm.h#L90C8-L90C12
 @ 801E2C0	801FFE0	801FB78	0	0	ChapterIntro_InitMapDisplay
-SET_DATA RandBitflagsA, 0x202AA63 @ PlaySt + 0x1B (unk, 1 bytes) @ saved on suspend 
-SET_DATA RandBitflagsB, 0x202AA67 @ PlaySt + 0x1F (unk, 1 bytes) @ saved on suspend 
-SET_DATA RandValues, 0x203D974 @ Bandit unitID + 0x45 BWL data
-SET_DATA MaxItems, 0x203D978 @ BWL + 0x45 
-SET_DATA MaxClasses, 0x203D979
 SET_DATA weatherId, 0x202AA5D
 SET_DATA gPlaySt, 0x202AA48
 SET_DATA gCh, 0x202AA56
@@ -423,13 +420,6 @@ SET_DATA sPrevHandScreenPosition, 0x203DCEC
 SET_DATA Ballista_TerrainTable, 0x8BEC398 
 SET_DATA gBmMapTerrain, 0x202E3E0
 SET_DATA weatherId, 0x202BC0D
-
-SET_DATA RandBitflagsA, 0x202BC16 @ GameOptions + 0x1E (unk, 2 bytes) 
-SET_DATA RandBitflagsB, 0x202BC17 @ GameOptions + 0x1E (unk, 2 bytes) 
-SET_DATA RandValues, 0x202BC3C @ GameOptions + 0x44 (unk, 4 bytes) 
-SET_DATA MaxItems, 0x203eb34 @ BWL + 0x3a Bramimond +4
-SET_DATA MaxClasses, 0x203eb35
-
 SET_DATA gPlaySt, 0x202BBF8
 SET_DATA gCh, 0x202BC06
 

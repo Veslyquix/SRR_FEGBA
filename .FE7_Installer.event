@@ -12,8 +12,24 @@
 #include "Patches/FE7_AsmHooks.lyn.event" 
 
 //#define TLP // to use this installer on TLP 
+
+//#define JankyPalettes // Uncomment if you want to always use char palettes, even with classes randomized 
+
 //#define NeverRandomizeMusic // comment this out if you want music randomized 
 // it only knows of vanilla song IDs though 
+
+#ifndef TextTable 
+	#define TextTable 0xB808AC 
+#endif 
+#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
+ConfigText:
+String("Config") ; BYTE 0 
+ConfigDescText:
+String("Reconfigure the randomizer.") ; BYTE 0 
+
+setText(0x119f, ConfigText)
+setText(0x11a0, ConfigDescText)
+
 
 ALIGN 4 
 CasualModeFlag:
@@ -91,9 +107,6 @@ NeverChangeIntoClass(0x56)
 ALIGN 4 
 ShopText:
 String("Shop"); BYTE 0 
-
-#define TextTable 0xB808AC // same in TLP 
-#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
 setText(0x1260, ShopText) 
 
 
@@ -173,10 +186,12 @@ SHORT $1C28
 callHackNew(StatScreenSelectLoop)
 
 #define jumpToHack_r1(offset) "BYTE 0x00 0x49 0x08 0x47; POIN (offset|0x1)"
+#ifndef JankyPalettes
 ORG $53230 
 jumpToHack_r1(MaybeUseGenericPalette_FE7)
 //ORG $53242 
 //SHORT $2000 // always use generic palette (by Vesly) 
+#endif 
 
 // in 8019E5C BuildBestMovementScript 
 // Fix REDA / MOVE from crashing on impassible terrain 
@@ -276,7 +291,18 @@ POIN DisplayPage0|1
 // normally it is: POIN 0x807FDf1 0x80800B5 0x8080425 0x0807fdf1 
 // as page 1, 2, 3, ?? 
 
+ORG $B95AFC
+POIN NewChMenu
 POP 
+
+ALIGN 4 
+NewChMenu:
+BYTE $C4 $3F $1C $08 $E2 $10 $70 $03 $00 $6A $00 $00 $F9 $A8 $04 $08 $00 $00 $00 $00 $95 $15 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $A8 $3E $1C $08 $E3 $10 $71 $03 $00 $6B $00 $00 $F9 $A8 $04 $08 $00 $00 $00 $00 $C5 $15 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $BC $3F $1C $08 $E4 $10 $72 $03 $00 $6C $00 $00 $F9 $A8 $04 $08 $00 $00 $00 $00 $B1 $15 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $B4 $3F $1C $08 $E5 $10 $73 $03 $00 $6D $00 $00 $45 $15 $02 $08 $00 $00 $00 $00 $5D $15 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+
+
+BYTE $AC $3F $1C $08 ; SHORT $119f $11a0; BYTE $00 $71 $00 $00 $F9 $A8 $04 $08 $00 $00 $00 $00; POIN MenuStartConfigMenu; BYTE $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+// End 
+BYTE $AC $3F $1C $08 $E9 $10 $74 $03 $00 $71 $00 $00 $F9 $A8 $04 $08 $00 $00 $00 $00 $81 $15 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $FF $FF $FF $FF
 
 
 ALIGN 4 
@@ -510,3 +536,14 @@ WORD 2
 #else 
 WORD 4
 #endif   
+ALIGN 4 
+RandValues:
+WORD 0x202BC3C // GameOptions + 0x44 (unk, 4 bytes) 
+RandBitflagsA:
+WORD 0x202BC16 // GameOptions + 0x1E (unk, 2 bytes) 
+RandBitflagsB:
+WORD 0x202BC17 // GameOptions + 0x1E (unk, 2 bytes) 
+MaxItems:
+WORD 0x203eb34 // BWL + 0x3a Bramimond +4
+MaxClasses:
+WORD 0x203eb35

@@ -15,10 +15,17 @@ MESSAGE Open FE8_Installer and read / config things please
 //asdf // add two slashes to comment out this line 
 #endif 
 
-#define NeverRandomizeMusic // comment this out if you want music randomized 
-// it only knows of vanilla song IDs though 
+//#define JankyPalettes // Uncomment if you want to always use char palettes, even with classes randomized 
+#ifndef VeslyBuildfile
+	#define NeverRandomizeMusic // comment this out if you want music randomized 
+	// it only knows of vanilla song IDs though 
+#endif 
 
-ALIGN 4 
+#ifndef RandomizerRam 
+#define RandomizerRam 0x203EC24 // 8 bytes of 0x3A unit BWL data 
+//#define RandomizerRam 0x30017AC // alternative: 8 bytes of Valni records 
+#endif 
+
 CasualModeFlag:
 WORD 0xB0 
 RandomizePrepShop:
@@ -233,16 +240,13 @@ SHORT $1C28 $1C28
 callHackNew(StatScreenSelectLoop)
 
 
+#ifndef JankyPalettes
 ORG $579C4
 callHackNew(MaybeUseGenericPalette_FE8)
 SHORT $46c0 $46c0 $46c0 $46c0 $46c0 
-//[203e1dc..203e1df]!!
-ORG $57380 
-//callHackNew(MaybeUseGenericPalette_FE8)
-ORG $57398 
-//callHackNew(MaybeUseGenericPalette_FE8_2)
 //ORG $5739E 
 //SHORT $2100 // always use generic palette (by Vesly) 
+#endif 
 
 // in BuildBestMovementScript 
 // Fix REDA / MOVE from crashing on impassible terrain 
@@ -322,3 +326,17 @@ WORD 2
 #else 
 WORD 4
 #endif   
+
+
+ALIGN 4 
+RandValues:
+WORD RandomizerRam
+RandBitflagsA:
+WORD RandomizerRam+4
+RandBitflagsB:
+WORD RandomizerRam+5
+MaxItems:
+WORD RandomizerRam+6
+MaxClasses:
+WORD RandomizerRam+7
+

@@ -2,6 +2,14 @@
 #define IconOrrValue 0x0 // if using a skillsys version past may 2020, make this 0x100 
 #define STRMAG_INSTALLED 
 #include ".FE8_Installer.event" 
+
+#define RandomizerRam 0x30017AC // alternative: 8 bytes of Valni records 
+
+PUSH 
+ORG $1EFB87C 
+Skill_Getter:
+POP 
+
 // skill icons don't appear in SGW when installed *shrugs* 
 /* only for specific version of skillsys  
 PUSH 
@@ -13,7 +21,7 @@ prConGetter:
 prAidGetter: 
 prMovGetter: 
 Growth_Getter_Table:
-Skill_Getter:
+//Skill_Getter:
 Get_Hp_Growth: 
 Get_Str_Growth: 
 Get_Skl_Growth: 

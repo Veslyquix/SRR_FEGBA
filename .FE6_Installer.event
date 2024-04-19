@@ -19,7 +19,9 @@
 	#endif 
 #endif 
 
-#define NeverRandomizeMusic // comment this out if you want music randomized 
+//#define JankyPalettes // Uncomment if you want to always use char palettes, even with classes randomized 
+
+//#define NeverRandomizeMusic // comment this out if you want music randomized 
 // it only knows of vanilla song IDs though 
 ALIGN 4 
 MaxItems_Link:
@@ -162,6 +164,14 @@ DashText:
 BYTE $D6 $E9 $05 $00 $00 $00 $00 $00 $00 $00 $00 $00
 PercentText:
 BYTE $FD $7B $C1 $5C $2F $00 $00 $00 $00 $00 $00 $00
+ClassicRandMusicText:
+BYTE $2C $16 $59 $6B $33 $21 $7D $9E $FE $04 $A1 $D6 $E9 $D1 $05 $99 $5E $00 $00 $00 $00 $00 $00 $00
+CasualRandMusicText:
+BYTE $2C $CA $E2 $52 $42 $FA $3C $FD $09 $42 $AD $D3 $A3 $0B $32 $BD $00 $00 $00 $00 $00 $00 $00 $00
+RandomizerText: // "Config"
+BYTE $82 $A4 $82 $E9 $82 $E8 $82 $DD $82 $E0 $82 $DE $00 $00
+RandomizerDescText:
+BYTE $FD $3D $A3 $48 $EC $8A $9F $8F $8F $CF $11 $84 $5A $EF $FE $FB $73 $7B $01 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
 
 #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
 #define setTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
@@ -192,6 +202,9 @@ setTextWithHuffman(0xB84, EnemiesText)
 setTextWithHuffman(0xB85, PlusText)
 setTextWithHuffman(0xB86, DashText)
 setTextWithHuffman(0xB87, PercentText)
+setTextWithHuffman(0xB88, ClassicRandMusicText)
+setTextWithHuffman(0xB89, CasualRandMusicText)
+setTextWithHuffman(0xB8A, RandomizerDescText)
 
 PUSH 
 
@@ -216,10 +229,12 @@ ORG $17BEC
 ORG $28f72 // in 28ef0
 SHORT $22c0 $4311 // default game/text speed fast 
 
+#ifndef JankyPalettes
 ORG $4a4A0 
 jumpToHack(MaybeUseGenericPalette_FE6)
 //ORG $4a4b0
 //SHORT $2000 // always use generic palette (by Vesly) 
+#endif 
 
 // in 8019600 BuildBestMovementScript 
 // Fix REDA / MOVE from crashing on impassible terrain 
@@ -282,7 +297,22 @@ ORG $2dc460; BYTE $80 $23 $1B $06 $C0 $1A $02 $78 $0A $70 $01 $31 $01 $30 $00 $2
 //8CE4930
 ORG $68A08C//$68C30C //68A09C
 PROC_CALL_ROUTINE_2(FE6_StartDifficultySelection)
+
+ORG $5C7650 
+POIN NewChMenu
+
+
 POP 
+
+ALIGN 4 
+NewChMenu: 
+BYTE  $DC $74 $81 $08 $00 $00 $54 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $A5 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $20 $7A $81 $08 $00 $00 $55 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $D5 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $2E $7A $81 $08 $00 $00 $56 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $C1 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $CC $7A $81 $08 $00 $00 $57 $06 $00 $00 $00 $00 $55 $EA $01 $08 $00 $00 $00 $00 $6D $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 
+// Config Menu 
+POIN RandomizerText; BYTE $00 $00; SHORT 0xb8a; BYTE $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00; POIN MenuStartConfigMenu; BYTE $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
+// End 
+BYTE $08 $75 $81 $08 $00 $00 $58 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $91 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
+FILL(36) 
+
 
 ALIGN 4 
 CasualMode: 
@@ -352,4 +382,16 @@ WORD 2
 #else 
 WORD 4
 #endif   
+ALIGN 4 
+RandValues:
+WORD 0x203D974 // Bandit unitID + 0x45 BWL data
+RandBitflagsA:
+WORD 0x202AA63 // PlaySt + 0x1B (unk, 1 bytes) @ saved on suspend 
+RandBitflagsB:
+WORD 0x202AA67 // PlaySt + 0x1F (unk, 1 bytes) @ saved on suspend 
+MaxItems:
+WORD 0x203D978
+MaxClasses:
+WORD 0x203D979
+
 
