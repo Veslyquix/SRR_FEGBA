@@ -19,6 +19,8 @@
 	#endif 
 #endif 
 
+#define NeverRandomizeMusic // comment this out if you want music randomized 
+// it only knows of vanilla song IDs though 
 ALIGN 4 
 MaxItems_Link:
 WORD 0 // If 0, it'll read through your item editor and count 
@@ -342,3 +344,12 @@ EnemyBossMaxHP:
 WORD 80
 EnemyMaxHP:
 WORD 60  
+
+ALIGN 4 
+Opt7Number:
+#ifdef NeverRandomizeMusic
+WORD 2 
+#else 
+WORD 4
+#endif   
+

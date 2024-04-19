@@ -23,6 +23,8 @@ int Div(int a, int b) PUREFUNC;
 int Mod(int a, int b) PUREFUNC;
 int DivArm(int b, int a) PUREFUNC;
 extern u8 gCh; 
+extern u16 gTurn; 
+extern u8 gPhase; 
 extern u8 gResumed; 
 static char* const TacticianName = (char* const) (0x202BC18); //8 bytes long
 extern void SetFlag(int flag); // 80798E4
@@ -47,6 +49,7 @@ struct RandomizerSettingsB {
 	u8 shopItems : 1; 
 	u8 disp : 1;
 	u8 foundItems : 1; 
+	u8 randMusic : 1; 
 }; 
 #endif 
 
@@ -55,6 +58,7 @@ struct RandomizerSettingsB {
 	u8 shopItems : 1; 
 	u8 disp : 1;
 	u8 foundItems : 1; 
+	u8 randMusic : 1; 
 }; 
 #endif 
 
@@ -82,6 +86,83 @@ extern struct ExceptionsStruct CharExceptions[];
 extern int SkillSysInstalled; 
 extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
+
+u16 HashByte_Ch(int number, int max, int noise[], int offset); 
+extern int Opt7Number; 
+int ShouldRandomizeBGM(void) { 
+	if (Opt7Number != 4) { return false; } 
+	if (!RandBitflagsB.randMusic) { return false; } 
+	return true; 
+} 
+
+#ifdef FE6 
+u8 static const MapMusicList[] = {4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,36,37,38,49,50,55,69,84}; 
+#endif 
+
+#ifdef FE7 
+u8 static const MapMusicList[] = {4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,36,37,38,49,50,55,69,84}; 
+#endif 
+#ifdef FE8 
+u8 static const MapMusicList[] = {4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,36,37,38,49,50,55,69,84}; 
+#endif 
+extern int GetCurrentMapMusicIndex(void); 
+int GetBGMTrack(){ // fe7/fe8 only? 
+	if (!ShouldRandomizeBGM()) { return GetCurrentMapMusicIndex(); } 
+	int noise[4] = {1, 2, 0, 0}; 
+	int number = gPhase; 
+	//if (gActiveUnit) { 
+	//	noise[0] = gActiveUnit->xPos; 
+	//	noise[1] = gActiveUnit->yPos; 
+	//} 
+	return MapMusicList[HashByte_Ch(number, sizeof(MapMusicList), noise, gTurn)]; 
+};
+
+void m4aSongNumStart(u16);
+extern void StartBgm(int songId, struct Proc* proc); 
+extern int GetCurrentBgmSong(void);
+extern void Sound_FadeOutBGM(int speed);
+extern void StartBgmExt(int songId, int speed, struct Proc* proc);
+void StartMapSongBgm(void) { // 8015F84, 80163E4
+    StartBgm(GetBGMTrack(), 0); //8003890, 8003210
+    return;
+}
+struct PhaseIntroSubProc {
+    PROC_HEADER;
+    /* 29 */ u8 _pad_29[0x4C - 0x29];
+    /* 4C */ s16 timer;
+    /* 4E */ s16 stat_index;
+};
+extern u8 gSfx; 
+#define PlaySoundEffect(id) \
+    if (!(gSfx & 0x2)) \
+        m4aSongNumStart((id)) // 80BE594, 809C860
+void PhaseIntroInitText(struct PhaseIntroSubProc *proc)
+{
+    if (GetCurrentBgmSong() != GetBGMTrack()) // 80034DC, 8002F68
+        Sound_FadeOutBGM(4); // 80035EC, 
+
+	#ifdef FE8 
+    PlaySoundEffect(0x73); // 803DD98, 8036D08
+	#endif 
+	#ifdef FE7 
+    PlaySoundEffect(0x393); // 803DD98, 8036D08
+	#endif 
+	#ifdef FE6
+    PlaySoundEffect(0x73); // 73 as well apparently 
+	#endif 
+	
+    proc->timer = 15;
+}
+//! FE8U = 0x080328B0
+void sub_80328B0(void) {
+    int bgmIdx = GetBGMTrack();
+
+    if (GetCurrentBgmSong() != bgmIdx) {
+        StartBgmExt(bgmIdx, 6, NULL); //80038AC, 800322C
+    }
+
+    return;
+}
 
 inline int IsClassInvalid(int i) { 
 	return ClassExceptions[i].NeverChangeInto;
@@ -2210,12 +2291,23 @@ const char Option6[OPT6NUM][10] = { // Enemies
 "-1"
 }; 
 
-#define OPT7NUM 2
-const char Option7[OPT7NUM][10] = { // Enemies 
+
+#ifndef FE6 
+#define OPT7NUM 4
+const char Option7[OPT7NUM][22] = { 
+"Classic",
+"Casual",
+"Classic & Random BGM",
+"Casual & Random BGM",
+}; 
+#endif 
+#ifdef FE6 
+#define OPT7NUM 4
+const char Option7[OPT7NUM][10] = { 
 "Classic",
 "Casual",
 }; 
-
+#endif 
 const u8 OptionAmounts[9] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, 0 }; 
 
 #define MENU_X 18
@@ -2327,7 +2419,7 @@ Max Growth: 100
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 12, Option4[proc->Option[4]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 14, Option5[proc->Option[5]]); i++; 
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option6[proc->Option[6]]); i++;  
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 5, Option7[proc->Option[7]]); i++;  
+	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i-9)*2)), white, 0, 14, Option7[proc->Option[7]]); i++;  
 	#endif 
 	
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0);
@@ -2441,7 +2533,8 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflagsB.shopItems = ((proc->Option[5] == 1) || (proc->Option[5] == 2)); 
 		RandBitflagsB.disp = 1; 
 		
-		if (proc->Option[7]) { SetFlag(CasualModeFlag); } 
+		if ((proc->Option[7] == 1) || (proc->Option[7] == 3)) { SetFlag(CasualModeFlag); } 
+		if (proc->Option[7] > 1) { RandBitflagsB.randMusic = 1; } 
 		
 		Proc_Break((ProcPtr)proc);
 		//BG_SetPosition(BG_3, 0, 0); 
@@ -2512,14 +2605,31 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	}
 	
     else if (keys & DPAD_RIGHT) {
-		if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; } 
-		else { proc->Option[id] = 0;  } 
-		proc->redraw = true; 
+		if (id == 7) { 
+			if (proc->Option[id] < (Opt7Number - 1)) { proc->Option[id]++; } 
+			else { proc->Option[id] = 0;  } 
+			proc->redraw = true; 
+		}
+		
+		
+		else { 
+			if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; } 
+			else { proc->Option[id] = 0;  } 
+			proc->redraw = true; 
+		} 
 	}
     else if (keys & DPAD_LEFT) {
-		if (proc->Option[id] > 0) { proc->Option[id]--; } 
-		else { proc->Option[id] = OptionAmounts[id] - 1;  } 
-		proc->redraw = true; 
+		if (id == 7) { 
+			if (proc->Option[id] > 0) { proc->Option[id]--; } 
+			else { proc->Option[id] = Opt7Number - 1;  } 
+			proc->redraw = true; 
+		} 
+		
+		else { 
+			if (proc->Option[id] > 0) { proc->Option[id]--; } 
+			else { proc->Option[id] = OptionAmounts[id] - 1;  } 
+			proc->redraw = true; 
+		} 
 	}
 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	if (proc->redraw) { 
@@ -2657,7 +2767,7 @@ void StartConfigMenu(ProcPtr parent) {
 		InitText(&th[i], 12); i++; 
 		InitText(&th[i], 14); i++; 
 		InitText(&th[i], 5); i++; 
-		InitText(&th[i], 5); i++; 
+		InitText(&th[i], 14); i++; 
 		
 		//LoadUiFrameGraphics(); 
 		LoadObjUIGfx(); 

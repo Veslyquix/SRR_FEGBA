@@ -15,6 +15,9 @@ MESSAGE Open FE8_Installer and read / config things please
 //asdf // add two slashes to comment out this line 
 #endif 
 
+#define NeverRandomizeMusic // comment this out if you want music randomized 
+// it only knows of vanilla song IDs though 
+
 ALIGN 4 
 CasualModeFlag:
 WORD 0xB0 
@@ -203,6 +206,8 @@ PUSH
 ORG $A20390
 PROC_CALL_ROUTINE_2(FE8_StartDifficultySelection)
 
+
+
 ORG $205B24 
 POIN DisplayPage0|1
 
@@ -309,3 +314,11 @@ WORD 80
 EnemyMaxHP:
 WORD 60  
 
+
+ALIGN 4 
+Opt7Number:
+#ifdef NeverRandomizeMusic
+WORD 2 
+#else 
+WORD 4
+#endif   

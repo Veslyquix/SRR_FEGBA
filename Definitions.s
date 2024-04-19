@@ -42,7 +42,15 @@ SET_FUNC GenerateExtendedMovementMap, 0x8019425
 SET_DATA TerrainTable_MovCost_BerserkerNormal, 0x860C714
 SET_DATA TerrainTable_MovCost_BerserkerRain, 0x860C714
 SET_DATA gBmMapMovement, 0x202D20C
-
+SET_DATA gPhase, 0x202AA57
+SET_DATA gTurn, 0x202AA58
+SET_DATA gSfx, 0x202AA65
+SET_FUNC StartBgm, 0x8003211
+SET_FUNC GetCurrentBgmSong, 0x8002F69
+@SET_FUNC Sound_FadeOutBGM, fe7 0x80035EC // ? 
+SET_FUNC PhaseIntroInitText, 0x801D03D
+SET_FUNC StartBgmExt, 0x800322D
+SET_FUNC StartMapSongBgm, 0x80163E5
 .endif 
 .if FE7 == true 
 SET_FUNC memset, 0x080BFFF9
@@ -71,7 +79,16 @@ SET_FUNC GenerateExtendedMovementMap, 0x8019C81
 SET_DATA TerrainTable_MovCost_BerserkerNormal, 0x8BE398C
 SET_DATA TerrainTable_MovCost_BerserkerRain, 0x8BE3DDD
 SET_DATA gBmMapMovement, 0x202E3E4
-
+SET_DATA gPhase, 0x202BC07
+SET_DATA gTurn, 0x202BC08
+SET_DATA gSfx, 0x202BC39
+SET_FUNC GetCurrentMapMusicIndex, 0x8015E9D
+SET_FUNC StartBgm, 0x8003891
+SET_FUNC GetCurrentBgmSong, 0x80034DD 
+SET_FUNC Sound_FadeOutBGM, 0x80035ED
+SET_FUNC StartBgmExt, 0x80038AD
+SET_FUNC PhaseIntroInitText, 0x801E5C9
+SET_FUNC StartMapSongBgm, 0x8015F85
 .endif 
 .if FE8 == true 
 SET_DATA SaveMenuProc, 0x8A200B8 @ fe8 
@@ -104,6 +121,9 @@ SET_DATA weatherId, 0x202BD05
 SET_DATA gPlaySt, 0x202BCF0
 SET_DATA gCh, 0x202BCFE
 SET_DATA Ballista_TerrainTable, 0x880BC18
+SET_DATA gPhase, 0x202BCFF
+SET_DATA gTurn, 0x202BD00
+SET_DATA gSfx, 0x202BD31
 .endif 
 
 

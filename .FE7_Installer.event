@@ -12,6 +12,8 @@
 #include "Patches/FE7_AsmHooks.lyn.event" 
 
 //#define TLP // to use this installer on TLP 
+//#define NeverRandomizeMusic // comment this out if you want music randomized 
+// it only knows of vanilla song IDs though 
 
 ALIGN 4 
 CasualModeFlag:
@@ -500,3 +502,11 @@ EnemyBossMaxHP:
 WORD 80
 EnemyMaxHP:
 WORD 60  
+
+ALIGN 4 
+Opt7Number:
+#ifdef NeverRandomizeMusic
+WORD 2 
+#else 
+WORD 4
+#endif   
