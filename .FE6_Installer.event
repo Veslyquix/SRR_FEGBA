@@ -219,6 +219,9 @@ SHORT $2100 // No equipped item during Roy's forced promotion
 ORG $1F524 
 jumpToHack(FE6_SeizeCantoFix) 
 
+ORG $67E84 
+jumpToHack(FE6_RandBattleMusicHook)
+
 
 ORG $4EC4 
 SHORT $46C0 $46C0 // don't erase bg when setting up debug font 

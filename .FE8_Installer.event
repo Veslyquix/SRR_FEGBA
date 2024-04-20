@@ -213,6 +213,10 @@ PUSH
 ORG $A20390
 PROC_CALL_ROUTINE_2(FE8_StartDifficultySelection)
 
+ORG $726E2 
+//SHORT $46C0 
+//jumpToHack(FE8_RandBattleMusicHook)
+
 
 
 ORG $205B24 

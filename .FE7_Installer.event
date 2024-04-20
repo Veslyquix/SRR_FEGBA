@@ -130,7 +130,8 @@ PUSH
 ORG $CE3F0C //ORG $CE45EC // in CE45E4 //B9395C //CE49D8
 PROC_CALL_ROUTINE_2(FE7_StartDifficultySelection)
 
-
+ORG $67E84 
+jumpToHack(FE7_RandBattleMusicHook)
 
 ORG $17E9E // by Circles 
 byte 0x00 0x00

@@ -95,11 +95,13 @@ int ShouldRandomizeBGM(void) {
 } 
 
 #ifdef FE6 // Thanks Scub 
-u8 static const MapMusicList[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 30, 31, 32, 33, 35, 36, 37, 46, 59, 63};
+u8 static const MapMusicList[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+u8 static const OtherMusicList[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 30, 31, 32, 33, 35, 36, 37, 46, 59, 63};
 #endif 
 
 #ifdef FE7 // Thanks Scub 
-u8 static const MapMusicList[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 37, 38, 39, 48, 50, 51, 61, 62, 63, 79, 87, 88, 112, 113}; 
+u8 static const MapMusicList[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 35, 48, 50, 53, 55, 56, 57, 58, 60, 74, 78, 94, 100, 101, 102, 103, 952};
+u8 static const OtherMusicList[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 37, 38, 39, 48, 50, 51, 61, 62, 63, 79, 87, 88, 112, 113}; 
 #endif 
 #ifdef FE8 // Thanks Circles
 u8 static const MapMusicList[] = {4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,36,37,38,49,50,55,69,84}; 
@@ -114,6 +116,23 @@ int GetBGMTrack(){ // fe7/fe8 only?
 	//	noise[1] = gActiveUnit->yPos; 
 	//} 
 	return MapMusicList[HashByte_Ch(number, sizeof(MapMusicList), noise, gTurn)]; 
+};
+// 80726ac T EkrPlayMainBGM 726da 
+int RandomizeBattleMusic(int id){ //passes result to RandomizeBattleMusicWrapper which puts it in r6
+	if (!ShouldRandomizeBGM()) { 
+		return id; 
+		//if (isDefending) { 
+		//	#ifdef FE8 
+		//	return id //0x1A; 
+		//	#endif 
+		//} 
+		//else { 
+		//	#ifdef FE8 
+		//	return id //0x19; 
+		//	#endif 
+		//}
+	}
+	return SoundRoomTable[NextRN_N(0x44)].songID;
 };
 
 void m4aSongNumStart(u16);

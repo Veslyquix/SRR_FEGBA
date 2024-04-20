@@ -30,6 +30,70 @@ ldr r3, =0x80115d5
 bx r3
 .ltorg 
 
+.global FE6_RandBattleMusicHook
+.type FE6_RandBattleMusicHook, %function 
+FE6_RandBattleMusicHook: 
+push {lr} 
+mov r0, r5
+bl RandomizeBattleMusic
+mov r5, r0 
+blh 0x804C500
+cmp r0, #1 
+beq ExitFE6RandBattleMusic_A
+pop {r3} 
+ldr r3, =0x805C55D
+bx r3 
+.ltorg 
+ExitFE6RandBattleMusic_A: 
+pop {r3} 
+ldr r3, =0x805C565
+bx r3 
+.ltorg 
+
+.global FE7_RandBattleMusicHook
+.type FE7_RandBattleMusicHook, %function 
+FE7_RandBattleMusicHook: 
+push {lr} 
+mov r0, r8
+bl RandomizeBattleMusic
+mov r8, r0 
+blh 0x80554F0
+cmp r0, #1 
+bne ExitFE7RandBattleMusic_A
+blh 0x8003F6C
+pop {r3} 
+ldr r3, =0x8067EB5
+bx r3 
+.ltorg 
+ExitFE7RandBattleMusic_A: 
+pop {r3} 
+ldr r3, =0x8067EAD
+bx r3 
+.ltorg 
+
+
+.global FE8_RandBattleMusicHook
+.type FE8_RandBattleMusicHook, %function 
+FE8_RandBattleMusicHook: 
+push {lr} 
+mov r0, r6 
+bl RandomizeBattleMusic
+mov r6, r0 
+blh 0x805b028 
+cmp r0, #1 
+bne ExitFE8RandBattleMusic_A
+blh 0x80028D0 
+pop {r3} 
+ldr r3, =0x8072711 
+bx r3 
+.ltorg 
+ExitFE8RandBattleMusic_A: 
+pop {r3} 
+ldr r3, =0x8072709 
+bx r3 
+.ltorg 
+
+
 .global MaybeUseGenericPalette_FE6
 .type MaybeUseGenericPalette_FE6, %function 
 MaybeUseGenericPalette_FE6: 
