@@ -100,7 +100,7 @@ u8 static const OtherMusicList[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
 #endif 
 
 #ifdef FE7 // Thanks Scub 
-u8 static const MapMusicList[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 35, 48, 50, 53, 55, 56, 57, 58, 60, 74, 78, 94, 100, 101, 102, 103, 952};
+u8 static const MapMusicList[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 35, 48, 50, 53, 55, 56, 57, 58, 60, 74, 78, 94, 100, 101, 102, 103};
 u8 static const OtherMusicList[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 37, 38, 39, 48, 50, 51, 61, 62, 63, 79, 87, 88, 112, 113}; 
 #endif 
 #ifdef FE8 // Thanks Circles
@@ -117,22 +117,46 @@ int GetBGMTrack(){ // fe7/fe8 only?
 	//} 
 	return MapMusicList[HashByte_Ch(number, sizeof(MapMusicList), noise, gTurn)]; 
 };
-// 80726ac T EkrPlayMainBGM 726da 
-int RandomizeBattleMusic(int id){ //passes result to RandomizeBattleMusicWrapper which puts it in r6
+// 80726ac T EkrPlayMainBGM 
+#ifdef FE6 
+typedef struct SoundRoomData {
+  int songID;
+  int songName;
+  int songDesc;
+} SoundRoomData;
+#endif 
+
+#ifndef FE6 
+typedef struct SoundRoomData {
+  int songID;
+  int songLength;
+  int displayCondition;
+  int songName;
+} SoundRoomData;
+#endif 
+#ifdef FE6 
+#define SoundRoomTable ((struct SoundRoomData*) 0x88331E8)
+#endif 
+#ifdef FE7 
+#define SoundRoomTable ((struct SoundRoomData*) 0x8CE4D28)
+#endif 
+#ifdef FE8 
+#define SoundRoomTable ((struct SoundRoomData*) 0x8A20E74)
+#endif 
+extern int NextRN_N(int max); 
+int RandomizeBattleMusic(int id){ 
 	if (!ShouldRandomizeBGM()) { 
 		return id; 
-		//if (isDefending) { 
-		//	#ifdef FE8 
-		//	return id //0x1A; 
-		//	#endif 
-		//} 
-		//else { 
-		//	#ifdef FE8 
-		//	return id //0x19; 
-		//	#endif 
-		//}
 	}
+	#ifdef FE6 
+	return SoundRoomTable[NextRN_N(0x52)].songID; // before game over at 0x53 I guess 
+	#endif 
+	#ifdef FE7 // 0x47 idk 
+	return SoundRoomTable[NextRN_N(0x47)].songID; // 0x87 everything up to arena battle
+	#endif 
+	#ifdef FE8
 	return SoundRoomTable[NextRN_N(0x44)].songID;
+	#endif 
 };
 
 void m4aSongNumStart(u16);
@@ -1356,7 +1380,7 @@ void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu);
 extern int GetAutoleveledStatIncrease(int growth, int levelCount); // 8029604
 
 extern s8 Roll1RN(int threshold); //8000E60
-extern int NextRN_N(int max); 
+
 
 
 void UnitCheckStatMins(struct Unit* unit) { 
