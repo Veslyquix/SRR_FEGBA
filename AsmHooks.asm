@@ -353,6 +353,10 @@ bx r3
 .type CallprConGetter, %function 
 CallprConGetter: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_prConGetter 
 ldr r3, =prConGetter 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -370,6 +374,10 @@ bx r3
 .type CallprAidGetter, %function 
 CallprAidGetter: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_prAidGetter 
 ldr r3, =prAidGetter 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -388,6 +396,10 @@ bx r3
 .type CallprMovGetter, %function 
 CallprMovGetter: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_prMovGetter 
 ldr r3, =prMovGetter 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -405,6 +417,10 @@ bx r3
 .type CallprMagGetter, %function 
 CallprMagGetter: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_prMagGetter 
 ldr r3, =prMagGetter 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -422,6 +438,10 @@ bx r3
 .type CallGet_Hp_Growth, %function 
 CallGet_Hp_Growth: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_Get_Hp_Growth 
 ldr r3, =Get_Hp_Growth 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -440,6 +460,10 @@ bx r3
 .type CallGet_Str_Growth, %function 
 CallGet_Str_Growth: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_Get_Str_Growth 
 ldr r3, =Get_Str_Growth 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -458,6 +482,10 @@ bx r3
 .type CallGet_Mag_Growth, %function 
 CallGet_Mag_Growth: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_Get_Mag_Growth 
 ldr r3, =Get_Mag_Growth 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -476,6 +504,10 @@ bx r3
 .type CallGet_Skl_Growth, %function 
 CallGet_Skl_Growth: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_Get_Skl_Growth 
 ldr r3, =Get_Skl_Growth 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -494,6 +526,10 @@ bx r3
 .type CallGet_Spd_Growth, %function 
 CallGet_Spd_Growth: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_Get_Spd_Growth 
 ldr r3, =Get_Spd_Growth 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -512,6 +548,10 @@ bx r3
 .type CallGet_Luk_Growth, %function 
 CallGet_Luk_Growth: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_Get_Luk_Growth 
 ldr r3, =Get_Luk_Growth 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -530,6 +570,10 @@ bx r3
 .type CallGet_Def_Growth, %function 
 CallGet_Def_Growth: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_Get_Def_Growth 
 ldr r3, =Get_Def_Growth 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -548,6 +592,10 @@ bx r3
 .type CallGet_Res_Growth, %function 
 CallGet_Res_Growth: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_Get_Res_Growth 
 ldr r3, =Get_Res_Growth 
 ldr r3, [r3] 
 cmp r3, #0 
@@ -566,6 +614,10 @@ bx r3
 .type CallGetMaxHP, %function 
 CallGetMaxHP: 
 push {lr} 
+ldr r3, =UseAutoGetters
+ldr r3, [r3] 
+cmp r3, #1 
+bne Replace_GetMaxHP 
 ldr r3, =prMaxHPGetter
 ldr r3, [r3] 
 cmp r3, #0 

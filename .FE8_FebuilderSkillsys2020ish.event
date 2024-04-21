@@ -1,21 +1,25 @@
-#define SKILLSYS_INSTALLED 
-#define IconOrrValue 0x0 // if using a skillsys version past may 2020, make this 0x100 
-//#define STRMAG_INSTALLED 
-#include ".FE8_Installer.event" 
+
+#define DoNotUseAutoGetters // Try uncommenting this if stat screen is crashing 
+
 // B66af8 - B66AfC
-//prConGetter: 
-//prAidGetter: 
-//prMovGetter: 
-//Get_Hp_Growth: 
-//Get_Str_Growth: 
-//Get_Skl_Growth: 
-//Get_Spd_Growth: 
-//Get_Luk_Growth: 
-//Get_Def_Growth: 
-//Get_Res_Growth:
-//prMagGetter: 
-//Get_Mag_Growth:
-//WORD 0 
+prConGetter: 
+prAidGetter: 
+prMovGetter: 
+Get_Hp_Growth: 
+Get_Str_Growth: 
+Get_Skl_Growth: 
+Get_Spd_Growth: 
+Get_Luk_Growth: 
+Get_Def_Growth: 
+Get_Res_Growth:
+prMagGetter: 
+Get_Mag_Growth:
+WORD 0 
+
+#define SKILLSYS_INSTALLED 
+#define STRMAG_INSTALLED 
+#define IconOrrValue 0x0 // if using a skillsys version past may 2020, make this 0x100 
+#include ".FE8_Installer.event" 
 
 /* only for specific version of skillsys  
 PUSH 

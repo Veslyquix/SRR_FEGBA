@@ -172,6 +172,11 @@ RandomizerText: // "Config"
 BYTE $82 $A4 $82 $E9 $82 $E8 $82 $DD $82 $E0 $82 $DE $00 $00
 RandomizerDescText:
 BYTE $FD $3D $A3 $48 $EC $8A $9F $8F $8F $CF $11 $84 $5A $EF $FE $FB $73 $7B $01 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+FixedGrowthsText:
+BYTE $A4 $6D $EB $3F $4C $75 $D4 $F6 $B1 $7A $01 $00 $00 $00 $00 $00
+FixedAndRandomText:
+BYTE $A4 $6D $EB $3F $0C $E9 $F3 $1C $41 $A8 $75 $2F $00 $00 $00 $00 $00 $00 $00 $00
+
 
 #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
 #define setTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
@@ -205,6 +210,8 @@ setTextWithHuffman(0xB87, PercentText)
 setTextWithHuffman(0xB88, ClassicRandMusicText)
 setTextWithHuffman(0xB89, CasualRandMusicText)
 setTextWithHuffman(0xB8A, RandomizerDescText)
+setTextWithHuffman(0xB8B, FixedGrowthsText)
+setTextWithHuffman(0xB8C, FixedAndRandomText)
 
 PUSH 
 
@@ -377,6 +384,13 @@ EnemyBossMaxHP:
 WORD 80
 EnemyMaxHP:
 WORD 60  
+ALIGN 4 
+UseAutoGetters:
+#ifdef DoNotUseAutoGetters 
+WORD 0 
+#else 
+WORD 1 
+#endif 
 
 ALIGN 4 
 Opt7Number:

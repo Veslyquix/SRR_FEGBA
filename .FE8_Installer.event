@@ -310,7 +310,13 @@ WORD 0
 #define IconOrrValue 0x100
 #endif  
 
-
+ALIGN 4 
+UseAutoGetters:
+#ifdef DoNotUseAutoGetters 
+WORD 0 
+#else 
+WORD 1 
+#endif 
 ALIGN 4
 IconOrr:
 WORD IconOrrValue

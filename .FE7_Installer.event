@@ -529,6 +529,13 @@ EnemyBossMaxHP:
 WORD 80
 EnemyMaxHP:
 WORD 60  
+ALIGN 4 
+UseAutoGetters:
+#ifdef DoNotUseAutoGetters 
+WORD 0 
+#else 
+WORD 1 
+#endif 
 
 ALIGN 4 
 Opt7Number:
