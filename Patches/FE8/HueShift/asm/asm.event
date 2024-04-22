@@ -1,0 +1,37 @@
+#include "discoProc/Proc.event"
+
+PUSH
+
+  // Execute Proc tree six after all the others,
+  // but before VBlankIntrWait.
+  ORG 0x1533C
+  callHack_r2(DIS_executeTree6)
+  ORG 0x4FEC8
+  callHack_r2(DIS_executeTree6)
+
+  // Always enable Link Arena,
+  // which is now Disco.
+  ORG 0xAB90E
+  SHORT 0x46C0 0x46C0 0x46C0 0x46C0 0x46C0
+
+  // Here's where the palette normally gets flushed.
+  ORG 0x11CC
+  callHack_r0(DIS_disco)
+  SHORT 0x46C0
+
+  // Start/End hue incrementing proc
+  ORG 0xA9CDC
+  callHack_r0(DIS_startDisco)
+  SHORT 0x46C0
+
+POP
+
+ALIGN 4
+DIS_disco:
+#include "disco.lyn.event"
+ALIGN 4
+DIS_startDisco:
+#include "startDisco.lyn.event"
+ALIGN 4
+DIS_executeTree6:
+#include "executeTree6.lyn.event"

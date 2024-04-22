@@ -1,0 +1,14 @@
+ALIGN 4
+DIS_discoProc:
+PROC_SET_DESTRUCTOR(DIS_discoFlag|1)
+PROC_CALL_ROUTINE(DIS_discoFlag|1)
+PROC_CALL_ROUTINE(DIS_incrHue|1)
+PROC_LOOP_ROUTINE(DIS_incrHue|1)
+PROC_END
+
+ALIGN 4
+DIS_discoFlag:
+#include "discoFlag.lyn.event"
+ALIGN 4
+DIS_incrHue:
+#include "incrHue.lyn.event"

@@ -321,9 +321,9 @@ u16 GetNthRN(int n, int seed) {
 } 
 
 extern unsigned GetGameClock(void); // 8000F14
-int GetInitialSeed(void) { 
+int GetInitialSeed(int rate) { 
 	int result = RandValues->seed;
-	int clock = GetGameClock()>>2; 
+	int clock = GetGameClock()>>rate; 
 	if (!result) { 
 		result = (GetNthRN(clock, (clock&0xF))<<4) | GetNthRN(clock, (clock&0xF0)); 
 	}
@@ -2613,7 +2613,7 @@ extern void m4aSongNumStart(u16 n);
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
 
 	u16 keys = sKeyStatusBuffer.newKeys; 
-	if (!proc->freezeSeed) { proc->seed = GetInitialSeed(); proc->redraw = true; } 
+	if (!proc->freezeSeed) { proc->seed = GetInitialSeed(2); proc->redraw = true; } 
 	int id = proc->id;
 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
@@ -2647,6 +2647,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	if (id == SRR_MAXDISP) { 
 		//if (proc->digit == 9) { 
 		proc->freezeSeed = true; 
+		proc->seed = GetInitialSeed(0); 
 		int max = 999999; 
 		int min = 0; 
 		int max_digits = GetMaxDigits(max); 
@@ -2939,7 +2940,7 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 		proc->redraw = 0; 
 		proc->freezeSeed = false; 
 		if (RandValues->seed) { proc->freezeSeed = true; } 
-		proc->seed = GetInitialSeed(); 
+		proc->seed = GetInitialSeed(2); 
 		
 		proc->digit = 0; 
 
@@ -3726,6 +3727,11 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
     //        ? GetUnitMaxSpd(gStatScreen.unit)/2
     //        : GetUnitMaxSpd(gStatScreen.unit));
 	if (IsAnythingRandomized()) { 
+		#ifdef FE8 
+		// make a black box behind Seed 
+		//TileMap_FillRect(TILEMAP_LOCATED(gBG3TilemapBuffer, 0, 0x13), 11, 0, 0); 
+		//BG_EnableSyncByMask(BG3_SYNC_BIT);
+		#endif 
 		SetupDebugFontForBG(0, VramDest_DebugFont);
 		PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
 		PrintDebugNumberToBG(0, 11, 0x13, RandValues->seed); 

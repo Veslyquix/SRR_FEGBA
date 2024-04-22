@@ -1,0 +1,28 @@
+// Boogie-woogie.
+#ifndef _FE8_
+    ERROR "You're not assembling to an FE8 ROM!"
+#endif
+
+#include "Extensions/Hack Installation.txt"
+#include "EAstdlib.event"
+
+#ifndef FreeSpace
+	#define FreeSpace 0x18B7E00
+	ORG FreeSpace
+#endif
+
+// Definitions & variables.
+#define DIS_Params 0x3000006      // We reserve these two bytes.
+#define DIS_Palette 0x203AAA4     // We reserve 0x100 bytes here.
+
+// Includes.
+#include "Defs/ProcDefinitions.event"
+
+//{
+#include "asm/asm.event"
+#include "Graphics/Graphics.event"
+
+ALIGN 4
+DIS_matrixTable:
+#incbin "matrixTable.bin"
+//}

@@ -1,0 +1,18 @@
+// Replace "Link Arena" text with "???"
+
+PUSH
+
+  ORG 0xA8F34
+  POIN DIS_menuGraphics
+  ORG 0xA9A60
+  POIN DIS_menuGraphics
+  ORG 0xAA010
+  POIN DIS_menuGraphics
+  ORG 0xAA450
+  POIN DIS_menuGraphics
+
+POP
+
+ALIGN 4
+DIS_menuGraphics:
+#incbin "menuGraphics.dmp"
