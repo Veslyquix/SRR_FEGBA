@@ -209,6 +209,13 @@ void sub_80328B0(void) {
     return;
 }
 
+int ShouldRandomizeColours(void) { 
+	return CheckFlag(0x8); 
+	return true; 
+
+
+} 
+
 inline int IsClassInvalid(int i) { 
 	return ClassExceptions[i].NeverChangeInto;
 } 
@@ -389,6 +396,14 @@ s16 HashByPercent_Ch(int number, int noise[], int offset, int earlygamePromo){
 s16 HashByPercent(int number, int noise[], int offset){
 	return HashPercent(number, noise, offset, true, false);
 };
+
+int GetRNByActiveUnit(void) { 
+	int noise[4] = { 0, 0, 0, 0 };
+	if (!gActiveUnit) { return 0; } 
+	
+	
+	return HashByte_Ch(gActiveUnit->pClassData->number, 256, noise, gActiveUnit->pCharacterData->number);
+}
 
 
 s16 HashMight(int number, int noise[]) { 

@@ -2,6 +2,8 @@
 @ Applies hue shift to palette.
 @   +0x29b  hue counter [0, 255].
 .thumb
+.equ gPaletteSyncFlag, 0x300000E
+.equ gPaletteBuffer, 0x20228A8
 
 push  {r4-r7, r14}
 mov   r4, r8
@@ -11,13 +13,19 @@ mov   r7, r11
 push  {r4-r7}
 sub   sp, #0x4
 
-
+mov r4, r0 
+bl ShouldRandomizeColours 
+cmp r0, #0 
+beq SkipRN 
+bl GetRNByActiveUnit
+SkipRN: 
+mov r2, r0 
 @ Increment hue shift counter.
 shiftHue:
 mov   r1, #0x29
-ldrb  r2, [r0, r1]
-add   r3, r2, #0x1
-strb  r3, [r0, r1]
+@ldrb r2, [r4, r1] 
+add r2, #1 
+strb  r2, [r4, r1]
 
 @ Enable palette update.
 ldr   r0, =gPaletteSyncFlag

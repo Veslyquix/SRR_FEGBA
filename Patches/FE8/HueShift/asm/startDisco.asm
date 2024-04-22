@@ -1,16 +1,12 @@
 @ Hooked at 0xA9CDC.
 @ Instead of Link Arena, start/stop disco.
 .thumb
-
+.equ BreakProcLoop, 0x8002E95
+.equ ProcFind, 0x8002E9D
+.equ ProcStart, 0x8002C7D
 push  {r4, r14}
 
-ldr   r0, =DIS_Params
-lsl   r0, #0x5
-lsr   r0, #0x5
-ldrb  r1, [r0]
-mov   r2, #0x0
-cmp   r1, r2
-bne   stopDisco
+
 
   @ Start disco.
   ldr   r0, =DIS_discoProc
