@@ -209,13 +209,87 @@ void sub_80328B0(void) {
     return;
 }
 
+extern void RandColours(int, int); 
 int ShouldRandomizeColours(void) { 
-	return CheckFlag(0x8); 
-	return true; 
-
-
+	int result = CheckFlag(0x8); 
+	if (CheckFlag(0x9)) { 
+	int noise[4] = {0, 1, 2, 3}; 
+	
+	RandColours(0xB, HashByte_Ch(1, 15, noise, gActiveUnit->pCharacterData->number)+1); 
+	RandColours(0xB, HashByte_Ch(2, 15, noise, gActiveUnit->pCharacterData->number)+1); 
+	RandColours(0xB, HashByte_Ch(3, 15, noise, gActiveUnit->pCharacterData->number)+1); 
+	RandColours(0xB, HashByte_Ch(4, 15, noise, gActiveUnit->pCharacterData->number)+1); 
+	RandColours(0xB, HashByte_Ch(5, 15, noise, gActiveUnit->pCharacterData->number)+1); 
+	
+	} 
+	return result; 
 } 
+/*
+#ifdef FE8 
 
+extern u8 sModifiedBGs;  // BGs that need copying
+extern s8 sModifiedPalette;
+extern u16 gPaletteBuffer[];
+#define PLTT      0x5000000
+#define PLTT_SIZE 0x400
+extern void * gBGVramTilemapPointers[4];
+void CpuFastSet(const void *src, void *dest, u32 control);
+#define CPU_FILL(value, dest, size, bit)                                          \
+{                                                                                 \
+    vu##bit tmp = (vu##bit)(value);                                               \
+    CpuSet((void *)&tmp,                                                          \
+           dest,                                                                  \
+           CPU_SET_##bit##BIT | CPU_SET_SRC_FIXED | ((size)/(bit/8) & 0x1FFFFF)); \
+}
+
+#define CpuFill16(value, dest, size) CPU_FILL(value, dest, size, 16)
+#define CpuFill32(value, dest, size) CPU_FILL(value, dest, size, 32)
+
+#define CPU_COPY(src, dest, size, bit) CpuSet(src, dest, CPU_SET_##bit##BIT | ((size)/(bit/8) & 0x1FFFFF))
+
+#define CpuCopy16(src, dest, size) CPU_COPY(src, dest, size, 16)
+#define CpuCopy32(src, dest, size) CPU_COPY(src, dest, size, 32)
+
+#define CpuFastFill(value, dest, size)                               \
+{                                                                    \
+    vu32 tmp = (vu32)(value);                                        \
+    CpuFastSet((void *)&tmp,                                         \
+               dest,                                                 \
+               CPU_FAST_SET_SRC_FIXED | ((size)/(32/8) & 0x1FFFFF)); \
+}
+
+#define CpuFastFill16(value, dest, size) CpuFastFill(((value) << 16) | (value), (dest), (size))
+
+#define CpuFastCopy(src, dest, size) CpuFastSet(src, dest, ((size)/(32/8) & 0x1FFFFF))
+
+
+void FlushBackgrounds(void)
+{
+    if (sModifiedBGs & (1 << 0))
+        CpuFastCopy(gBG0TilemapBuffer, gBGVramTilemapPointers[0], 0x800);
+    if (sModifiedBGs & (1 << 1))
+        CpuFastCopy(gBG1TilemapBuffer, gBGVramTilemapPointers[1], 0x800);
+    if (sModifiedBGs & (1 << 2))
+        CpuFastCopy(gBG2TilemapBuffer, gBGVramTilemapPointers[2], 0x800);
+    if (sModifiedBGs & (1 << 3))
+        CpuFastCopy(gBG3TilemapBuffer, gBGVramTilemapPointers[3], 0x800);
+    sModifiedBGs = 0;
+
+    if (sModifiedPalette == 1)
+    {
+        sModifiedPalette = 0;
+        //if (gLCDControlBuffer.colorAddition == 0)
+            CpuFastCopy(gPaletteBuffer, (void *)PLTT, 0x400);
+        //else if (gLCDControlBuffer.colorAddition > 0)
+        //    ApplyColorAddition_ClampMax(gLCDControlBuffer.colorAddition);
+        //else
+        //    ApplyColorAddition_ClampMin(gLCDControlBuffer.colorAddition);
+		
+		RandColours();
+    }
+}
+#endif 
+*/
 inline int IsClassInvalid(int i) { 
 	return ClassExceptions[i].NeverChangeInto;
 } 
@@ -399,10 +473,10 @@ s16 HashByPercent(int number, int noise[], int offset){
 
 int GetRNByActiveUnit(void) { 
 	int noise[4] = { 0, 0, 0, 0 };
-	if (!gActiveUnit) { return 0; } 
+	if (!gActiveUnit) { return 1; } 
 	
 	
-	return HashByte_Ch(gActiveUnit->pClassData->number, 256, noise, gActiveUnit->pCharacterData->number);
+	return HashByte_Ch(gActiveUnit->pClassData->number, 254, noise, gActiveUnit->pCharacterData->number)+1;
 }
 
 
