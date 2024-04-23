@@ -659,7 +659,7 @@ bx r0
 .type RandColoursHook, %function
 RandColoursHook: 
 push {lr} 
-bl ShouldRandomizeColours 
+bl MaybeRandomizeColours 
 mov r1, r0
 ldr   r0, =gPaletteBuffer
 cmp   r1, #0
@@ -677,6 +677,16 @@ swi   #0xC        @ CPUFastSet.
 pop {r0} 
 bx r0
 
+.global CopyColoursToBuffer
+.type CopyColoursToBuffer, %function
+CopyColoursToBuffer: 
+@ copy to 2nd buffer 
+ldr   r0, =gPaletteBuffer
+ldr   r1, =0x203AAA4
+mov r2, #0x4 
+lsl r2, #8
+swi 0xC
+bx lr 
 
 @ Increments hue counter.
 @ Applies hue shift to palette.
@@ -695,10 +705,8 @@ mov   r7, r11
 push  {r4-r7}
 sub   sp, #0x4
 
-mov r4, r0 @ palette bank 
-mov r4, #32 
-mul r4, r0 @ address offset 
-lsl r1, #1 
+lsl r4, r0, #5 @ * 32 for palette bank address offset 
+lsl r1, #1 @ specific index col to start at 
 add r4, r1 
 ldr   r0, =gPaletteBuffer
 add r0, r4 
@@ -710,22 +718,13 @@ add r0, r4
 mov   r9, r0
 @mov   r0, #0x4
 @lsl   r0, #0x8
-add r0, #2 
+lsl r2, #1 @ number of colours 
+add r0, r2 
 mov r10, r0 
 
-
-
-
-
-
-@ copy to 2nd buffer 
-ldr   r0, =gPaletteBuffer
-ldr   r1, =0x203AAA4
-mov r2, #0x4 
-lsl r2, #8
-swi 0xC
-
-bl GetRNByActiveUnit
+@ r3 as portrait id 
+mov r0, r3 
+bl GetRNByID
 mov r2, r0 
 
 @ Enable palette update.

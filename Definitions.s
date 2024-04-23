@@ -98,6 +98,9 @@ SET_FUNC RenderBmMap, 0x8019505
 SET_FUNC RefreshBMapGraphics, 0x802E369
 .endif 
 .if FE8 == true 
+SET_DATA gCursorX, 0x202BCB0+0x14 
+SET_DATA gCursorY, 0x202BCB0+0x16
+SET_DATA BattleAttackPhaseBool, 0x203E100
 SET_DATA SaveMenuProc, 0x8A200B8 @ fe8 
 SET_DATA DifficultySelectionProc, 0x8A20A10 @ fe8 
 SET_FUNC SaveMenuStartBlockingProc, 0x80AC3E1 @ fe8  

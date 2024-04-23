@@ -209,19 +209,100 @@ void sub_80328B0(void) {
     return;
 }
 
-extern void RandColours(int, int); 
-int ShouldRandomizeColours(void) { 
-	int result = CheckFlag(0x8); 
-	if (CheckFlag(0x9)) { 
-	int noise[4] = {0, 1, 2, 3}; 
+extern void RandColours(int bank, int index, int amount, u8 portraitId); 
+extern void CopyColoursToBuffer(void); 
+struct FaceVramEntry
+{
+    /* 00 */ u32 tileOffset;
+    /* 04 */ u16 paletteId;
+};
+extern struct FaceVramEntry sFaceConfig[4];
+struct FaceBlinkProc;
+struct FaceData;
+struct FaceProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ const struct FaceData* pFaceInfo;
+    /* 30 */ u32 displayBits;
+    /* 34 */ s16 xPos;
+    /* 36 */ s16 yPos;
+
+    /* 38 */ void* sprite;
+
+    /* 3C */ u16 oam2;
+    /* 3E */ u16 faceId;
+    /* 40 */ u8 faceSlot;
+    /* 41 */ u8 spriteLayer;
+
+    /* 44 */ ProcPtr unk_44;
+    /* 48 */ struct FaceBlinkProc* pBlinkProc;
+};
+extern struct FaceProc* gFaces[];
+#define FACE_DISP_BIT_13 (1 << 13)
+extern int GetUnitPortraitId(struct Unit* unit); 
+extern struct ProcCmd gProcScr_StatScreen[]; // 8a009d8
+extern struct ProcCmd gProc_ekrBattleDeamon[];
+extern u16 gCursorX; // 202BCB0+0x14 
+extern u16 gCursorY; // 202BCB0+0x16
+extern u8 BattleAttackPhaseBool; // 203E100
+extern u8** gBmMapUnit; 
+extern struct ProcCmd const gProcScr_UnitDisplay_MinimugBox[];
+int GetAdjustedPortraitId(struct Unit* unit) { 
+	int portraitID = GetUnitPortraitId(unit);
+	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
+	portraitID &= 0xFF; 
+	if (!portraitID) { portraitID = 1; } 
+	return portraitID; 
+} 
+int MaybeRandomizeColours(void) { 
+	int result = false; 
+	struct Unit* unit = NULL; 
+	CopyColoursToBuffer();
+	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait 
+		unit = gStatScreen.unit; 
+		if (unit) { 
+			RandColours(11, 0, 16, GetAdjustedPortraitId(unit)); 
+			result = true;
+		}
+	}
+	// faces 
+	for (int i = 0; i < 4; ++i) {
+		if (gFaces[i] == NULL) {
+			continue;
+		}
+		RandColours(sFaceConfig[i].paletteId+16, 0, 16, gFaces[i]->faceId); 
+		result = true;
+	}
+	if (result) { return result; } 
+	if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
+		if (!BattleAttackPhaseBool) { 
+			RandColours(9+16, 0, 16, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+			RandColours(7+16, 0, 16, GetAdjustedPortraitId(&gBattleActor.unit)); 
+		}
+		else { 
+			RandColours(9+16, 0, 16, GetAdjustedPortraitId(&gBattleActor.unit)); 
+			RandColours(7+16, 0, 16, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+		}
+
+		result = true;
+	}
 	
-	RandColours(0xB, HashByte_Ch(1, 15, noise, gActiveUnit->pCharacterData->number)+1); 
-	RandColours(0xB, HashByte_Ch(2, 15, noise, gActiveUnit->pCharacterData->number)+1); 
-	RandColours(0xB, HashByte_Ch(3, 15, noise, gActiveUnit->pCharacterData->number)+1); 
-	RandColours(0xB, HashByte_Ch(4, 15, noise, gActiveUnit->pCharacterData->number)+1); 
-	RandColours(0xB, HashByte_Ch(5, 15, noise, gActiveUnit->pCharacterData->number)+1); 
+	if (Proc_Find(gProcScr_UnitDisplay_MinimugBox)) { 
+		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
+		if (unit) { 
+			RandColours(4, 0, 16, GetAdjustedPortraitId(unit)); 
+			result = true;
+		} 
+	}
 	
-	} 
+	// bg 4 mmb 
+	//RandColours(0xB, HashByte_Ch(1, 15, noise, gActiveUnit->pCharacterData->number)+1, 16); 
+	//RandColours(0xB, HashByte_Ch(2, 15, noise, gActiveUnit->pCharacterData->number)+1); 
+	//RandColours(0xB, HashByte_Ch(3, 15, noise, gActiveUnit->pCharacterData->number)+1); 
+	//RandColours(0xB, HashByte_Ch(4, 15, noise, gActiveUnit->pCharacterData->number)+1); 
+	//RandColours(0xB, HashByte_Ch(5, 15, noise, gActiveUnit->pCharacterData->number)+1); 
+	
+	//} 
 	return result; 
 } 
 /*
@@ -471,12 +552,9 @@ s16 HashByPercent(int number, int noise[], int offset){
 	return HashPercent(number, noise, offset, true, false);
 };
 
-int GetRNByActiveUnit(void) { 
+int GetRNByID(int id) { 
 	int noise[4] = { 0, 0, 0, 0 };
-	if (!gActiveUnit) { return 1; } 
-	
-	
-	return HashByte_Ch(gActiveUnit->pClassData->number, 254, noise, gActiveUnit->pCharacterData->number)+1;
+	return HashByte_Global(5, 254, noise, id)+1;
 }
 
 

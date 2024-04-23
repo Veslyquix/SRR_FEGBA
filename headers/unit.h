@@ -406,7 +406,8 @@ struct BattleUnit {
     /* 7E */ s8 hasItemEffectTarget;
     /* 7F */ /* pad */
 };
-
+struct BattleUnit gBattleActor; 
+struct BattleUnit gBattleTarget; 
 
 // USED FOR LOCKS ONLY 
 // this is the fe8u one, so different than fe7 in some places (but similar) 
@@ -472,4 +473,5 @@ int GetUnitResistance(struct Unit* unit); // 8018B90
 int GetUnitLuck(struct Unit* unit); // 8018BB8
 
 extern struct Unit * gActiveUnit; // 3004690
+extern struct Unit * GetUnit(int); // 3004690
 
