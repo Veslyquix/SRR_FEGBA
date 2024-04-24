@@ -261,7 +261,7 @@ int MaybeRandomizeColours(void) {
 	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait 
 		unit = gStatScreen.unit; 
 		if (unit) { 
-			RandColours(11, 0, 16, GetAdjustedPortraitId(unit)); 
+			RandColours(11, 6, 10, GetAdjustedPortraitId(unit)); 
 			result = true;
 		}
 	}
@@ -270,18 +270,21 @@ int MaybeRandomizeColours(void) {
 		if (gFaces[i] == NULL) {
 			continue;
 		}
-		RandColours(sFaceConfig[i].paletteId+16, 0, 16, gFaces[i]->faceId); 
+		RandColours(sFaceConfig[i].paletteId+16, 6, 10, gFaces[i]->faceId); 
 		result = true;
 	}
-	if (result) { return result; } 
 	if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
 		if (!BattleAttackPhaseBool) { 
-			RandColours(9+16, 0, 16, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-			RandColours(7+16, 0, 16, GetAdjustedPortraitId(&gBattleActor.unit)); 
+			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
+			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
 		}
 		else { 
-			RandColours(9+16, 0, 16, GetAdjustedPortraitId(&gBattleActor.unit)); 
-			RandColours(7+16, 0, 16, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
+			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
+			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
 		}
 
 		result = true;
@@ -290,7 +293,7 @@ int MaybeRandomizeColours(void) {
 	if (Proc_Find(gProcScr_UnitDisplay_MinimugBox)) { 
 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
 		if (unit) { 
-			RandColours(4, 0, 16, GetAdjustedPortraitId(unit)); 
+			RandColours(4, 6, 10, GetAdjustedPortraitId(unit)); 
 			result = true;
 		} 
 	}
@@ -554,7 +557,10 @@ s16 HashByPercent(int number, int noise[], int offset){
 
 int GetRNByID(int id) { 
 	int noise[4] = { 0, 0, 0, 0 };
-	return HashByte_Global(5, 254, noise, id)+1;
+	int result = HashByte_Global(5, 254, noise, id)+1;
+	if (result < 40) { result += 40; } 
+	if (result > 210) { result -= 40; } 
+	return result; 
 }
 
 
