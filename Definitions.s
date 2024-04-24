@@ -17,6 +17,21 @@
 .endm
 
 .if FE6 == true 
+SET_DATA gPaletteSyncFlag, 0x300000C
+SET_DATA gPaletteBuffer, 0x2021708
+SET_DATA gCursorX, 0x202AA1C
+SET_DATA gCursorY, 0x202AA1E
+SET_DATA BattleAttackerSideBool, 0x203CCFE
+SET_DATA gBmMapUnit, 0x202D204
+SET_DATA gProcScr_StatScreen, 0x8677680
+SET_DATA gProc_ekrBattleDeamon, 0x85CB508
+SET_DATA gProcScr_UnitDisplay_MinimugBox, 0x86781D4
+SET_DATA sFaceConfig, 0x20293E4
+SET_DATA gFaces, 0x3004000
+SET_DATA gBattleActor, 0x2039214  
+SET_DATA gBattleTarget, 0x2039290
+SET_FUNC GetUnit, 0x801860D
+SET_FUNC GetUnitPortraitId, 0x80184F1
 SET_FUNC memset, 0x0809F9F1
 SET_DATA SaveMenuProc, 0x0 @ fe6
 SET_DATA DifficultySelectionProc, 0x868A09C @ fe6
@@ -57,6 +72,21 @@ SET_FUNC RenderBmMap, 0x8018D91
 SET_FUNC RefreshBMapGraphics, 0x80292dd
 .endif 
 .if FE7 == true 
+SET_DATA gPaletteSyncFlag, 0x300000D 
+SET_DATA gPaletteBuffer, 0x2022860
+SET_DATA gCursorX, 0x202BBCC
+SET_DATA gCursorY, 0x202BBCE
+SET_DATA BattleAttackerSideBool, 0x203E014
+SET_DATA gBmMapUnit, 0x202E3DC
+SET_DATA gProcScr_StatScreen, 0x8CC1F6C
+SET_DATA gProc_ekrBattleDeamon, 0x8B9A99C
+SET_DATA gProcScr_UnitDisplay_MinimugBox, 0x8CC2C60
+SET_DATA sFaceConfig, 0x202A58C
+SET_DATA gFaces, 0x30041C0
+SET_DATA gBattleActor, 0x203A3F0  
+SET_DATA gBattleTarget, 0x203A470
+SET_FUNC GetUnitPortraitId, 0x8018BD9
+SET_FUNC GetUnit, 0x8018D0D
 SET_FUNC memset, 0x080BFFF9
 SET_DATA SaveMenuProc, 0x8CE3C54 @ fe7 
 SET_DATA DifficultySelectionProc, 0x8CE4930 @ fe7 
@@ -98,9 +128,11 @@ SET_FUNC RenderBmMap, 0x8019505
 SET_FUNC RefreshBMapGraphics, 0x802E369
 .endif 
 .if FE8 == true 
+SET_DATA gPaletteSyncFlag, 0x300000E 
+SET_DATA gPaletteBuffer, 0x20228A8
 SET_DATA gCursorX, 0x202BCB0+0x14 
 SET_DATA gCursorY, 0x202BCB0+0x16
-SET_DATA BattleAttackPhaseBool, 0x203E100
+SET_DATA BattleAttackerSideBool, 0x203E108
 SET_DATA SaveMenuProc, 0x8A200B8 @ fe8 
 SET_DATA DifficultySelectionProc, 0x8A20A10 @ fe8 
 SET_FUNC SaveMenuStartBlockingProc, 0x80AC3E1 @ fe8  

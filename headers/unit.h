@@ -1,7 +1,11 @@
 enum { UNIT_LEVEL_MAX = 20 };
 enum { UNIT_ITEM_COUNT = 5 };
 enum { UNIT_DEFINITION_ITEM_COUNT = 4 };
+#ifndef FE6 
 enum { UNIT_SUPPORT_MAX_COUNT = 7 };
+#else 
+enum { UNIT_SUPPORT_MAX_COUNT = 10 };
+#endif 
 enum { UNIT_EXP_DISABLED = 0xFF };
 struct CharacterData
 {

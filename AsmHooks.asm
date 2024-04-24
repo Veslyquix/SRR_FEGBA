@@ -654,26 +654,30 @@ pop {r0}
 bx r0 
 .ltorg 
 
-@ Hooked at 0x11CC
+@ Hooked at 0x11CC in 800114C FlushBackgrounds
 .global RandColoursHook
 .type RandColoursHook, %function
 RandColoursHook: 
 push {lr} 
-bl MaybeRandomizeColours 
-mov r1, r0
 ldr   r0, =gPaletteBuffer
-cmp   r1, #0
-beq   noDisco
-@bl RandColours 
-  ldr   r0, =0x203AAA4
-  lsl   r0, #0x5
-  lsr   r0, #0x5
-noDisco:
 mov   r1, #0xA0
-lsl   r1, #0x13
+lsl   r1, #0x13 @ 0x5000000
 mov   r2, #0x80
 lsl   r2, #0x1
 swi   #0xC        @ CPUFastSet.
+bl MaybeRandomizeColours 
+cmp   r0, #0
+beq   noDisco
+mov r1, r0 @ 0x5000000 or 0x5000200
+ldr r0, =RandomColoursBuffer
+ldr r0, [r0] 
+
+@mov   r1, #0xA0
+@lsl   r1, #0x13 @ 0x5000000
+mov   r2, #0x80
+@lsl   r2, #0x1
+swi   #0xC        @ CPUFastSet.
+noDisco:
 pop {r0} 
 bx r0
 
@@ -681,10 +685,12 @@ bx r0
 .type CopyColoursToBuffer, %function
 CopyColoursToBuffer: 
 @ copy to 2nd buffer 
-ldr   r0, =gPaletteBuffer
-ldr   r1, =0x203AAA4
-mov r2, #0x4 
-lsl r2, #8
+ldr r1, =gPaletteBuffer
+add r0, r1
+ldr r1, =RandomColoursBuffer
+ldr r1, [r1] 
+mov   r2, #0x80
+@lsl   r2, #0x1
 swi 0xC
 bx lr 
 
@@ -692,8 +698,6 @@ bx lr
 @ Applies hue shift to palette.
 @   +0x29b  hue counter [0, 255].
 .thumb
-.equ gPaletteSyncFlag, 0x300000E
-.equ gPaletteBuffer, 0x20228A8
 .global RandColours
 .type RandColours, %function
 RandColours: 
@@ -704,20 +708,21 @@ mov   r6, r10
 mov   r7, r11
 push  {r4-r7}
 sub   sp, #0x4
-
 lsl r4, r0, #5 @ * 32 for palette bank address offset 
 lsl r1, #1 @ specific index col to start at 
 add r4, r1 
-ldr   r0, =gPaletteBuffer
+ldr r5, =gPaletteBuffer 
+add r5, r4 
+mov r8, r5 
+
+mov r4, #0xF 
+and r0, r4 @ smaller buffer - only sized for 16 colour banks (bg or obj) 
+lsl r4, r0, #5 @ * 32 for palette bank address offset 
+add r4, r1 
+ldr   r0, =RandomColoursBuffer
+ldr r0, [r0] 
 add r0, r4 
-mov   r8, r0
-ldr   r0, =0x203AAA4
-add r0, r4 
-@lsl   r0, #0x5
-@lsr   r0, #0x5
 mov   r9, r0
-@mov   r0, #0x4
-@lsl   r0, #0x8
 lsl r2, #1 @ number of colours 
 add r0, r2 
 mov r10, r0 

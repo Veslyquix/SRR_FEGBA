@@ -210,7 +210,7 @@ void sub_80328B0(void) {
 }
 
 extern void RandColours(int bank, int index, int amount, u8 portraitId); 
-extern void CopyColoursToBuffer(void); 
+extern void CopyColoursToBuffer(int offset); 
 struct FaceVramEntry
 {
     /* 00 */ u32 tileOffset;
@@ -237,16 +237,20 @@ struct FaceProc {
     /* 44 */ ProcPtr unk_44;
     /* 48 */ struct FaceBlinkProc* pBlinkProc;
 };
-extern struct FaceProc* gFaces[];
+extern struct FaceProc* gFaces[]; // fe7 30041C0 fe6 3004000
 #define FACE_DISP_BIT_13 (1 << 13)
-extern int GetUnitPortraitId(struct Unit* unit); 
-extern struct ProcCmd gProcScr_StatScreen[]; // 8a009d8
-extern struct ProcCmd gProc_ekrBattleDeamon[];
-extern u16 gCursorX; // 202BCB0+0x14 
+// fe6 actor 02039214 
+// fe6 target 02039290
+extern int GetUnitPortraitId(struct Unit* unit); // fe7 8018BD8 80184F0
+extern struct ProcCmd gProcScr_StatScreen[]; // fe7 8CC1F6C fe6 8677680
+extern struct ProcCmd gProc_ekrBattleDeamon[]; // fe7 8B9A99C fe6 85CB508
+extern struct ProcCmd const gProcScr_UnitDisplay_MinimugBox[]; // fe7 8CC2C60 fe6 86781D4
+extern u16 gCursorX; // 202BCB0+0x14 // bcf0 as chdata 
 extern u16 gCursorY; // 202BCB0+0x16
-extern u8 BattleAttackPhaseBool; // 203E100
-extern u8** gBmMapUnit; 
-extern struct ProcCmd const gProcScr_UnitDisplay_MinimugBox[];
+// fe6 202AA1C, 202AA1E 
+// fe7 0202BBCC, 202BBCE 
+extern u8 BattleAttackerSideBool; // fe8 203E108 fe7 203E014 203CCFE
+extern u8** gBmMapUnit;  
 int GetAdjustedPortraitId(struct Unit* unit) { 
 	int portraitID = GetUnitPortraitId(unit);
 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
@@ -254,27 +258,49 @@ int GetAdjustedPortraitId(struct Unit* unit) {
 	if (!portraitID) { portraitID = 1; } 
 	return portraitID; 
 } 
+
+extern int NeverRandomizeColours; 
+int ShouldRandomizeColours(void) { 
+	if (NeverRandomizeColours) { return false; } 
+	// if (!RandBitflagsB->colours) { return false; } 
+	return true; 
+
+} 
 int MaybeRandomizeColours(void) { 
+	if (!ShouldRandomizeColours()) { return false; } 
 	int result = false; 
 	struct Unit* unit = NULL; 
-	CopyColoursToBuffer();
+	CopyColoursToBuffer(0);
 	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait 
 		unit = gStatScreen.unit; 
 		if (unit) { 
-			RandColours(11, 6, 10, GetAdjustedPortraitId(unit)); 
-			result = true;
+			#ifndef FE8 
+			RandColours(13, 6, 9, GetAdjustedPortraitId(unit)); 
+			#else 
+			RandColours(11, 6, 9, GetAdjustedPortraitId(unit)); 
+			#endif 
+			result = 0x5000000;
 		}
 	}
+	if (Proc_Find(gProcScr_UnitDisplay_MinimugBox)) { 
+		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
+		if (unit) { 
+			RandColours(4, 6, 9, GetAdjustedPortraitId(unit)); 
+			result = 0x5000000;
+		} 
+	}
+	if (result) { return result; } 
+	CopyColoursToBuffer(0x200);
 	// faces 
 	for (int i = 0; i < 4; ++i) {
 		if (gFaces[i] == NULL) {
 			continue;
 		}
-		RandColours(sFaceConfig[i].paletteId+16, 6, 10, gFaces[i]->faceId); 
-		result = true;
+		RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceId); 
+		result = 0x5000200;
 	}
 	if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
-		if (!BattleAttackPhaseBool) { 
+		if (!BattleAttackerSideBool) { 
 			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
 			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
 			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
@@ -287,93 +313,11 @@ int MaybeRandomizeColours(void) {
 			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
 		}
 
-		result = true;
+		result = 0x5000200;
 	}
-	
-	if (Proc_Find(gProcScr_UnitDisplay_MinimugBox)) { 
-		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
-		if (unit) { 
-			RandColours(4, 6, 10, GetAdjustedPortraitId(unit)); 
-			result = true;
-		} 
-	}
-	
-	// bg 4 mmb 
-	//RandColours(0xB, HashByte_Ch(1, 15, noise, gActiveUnit->pCharacterData->number)+1, 16); 
-	//RandColours(0xB, HashByte_Ch(2, 15, noise, gActiveUnit->pCharacterData->number)+1); 
-	//RandColours(0xB, HashByte_Ch(3, 15, noise, gActiveUnit->pCharacterData->number)+1); 
-	//RandColours(0xB, HashByte_Ch(4, 15, noise, gActiveUnit->pCharacterData->number)+1); 
-	//RandColours(0xB, HashByte_Ch(5, 15, noise, gActiveUnit->pCharacterData->number)+1); 
-	
-	//} 
 	return result; 
 } 
-/*
-#ifdef FE8 
 
-extern u8 sModifiedBGs;  // BGs that need copying
-extern s8 sModifiedPalette;
-extern u16 gPaletteBuffer[];
-#define PLTT      0x5000000
-#define PLTT_SIZE 0x400
-extern void * gBGVramTilemapPointers[4];
-void CpuFastSet(const void *src, void *dest, u32 control);
-#define CPU_FILL(value, dest, size, bit)                                          \
-{                                                                                 \
-    vu##bit tmp = (vu##bit)(value);                                               \
-    CpuSet((void *)&tmp,                                                          \
-           dest,                                                                  \
-           CPU_SET_##bit##BIT | CPU_SET_SRC_FIXED | ((size)/(bit/8) & 0x1FFFFF)); \
-}
-
-#define CpuFill16(value, dest, size) CPU_FILL(value, dest, size, 16)
-#define CpuFill32(value, dest, size) CPU_FILL(value, dest, size, 32)
-
-#define CPU_COPY(src, dest, size, bit) CpuSet(src, dest, CPU_SET_##bit##BIT | ((size)/(bit/8) & 0x1FFFFF))
-
-#define CpuCopy16(src, dest, size) CPU_COPY(src, dest, size, 16)
-#define CpuCopy32(src, dest, size) CPU_COPY(src, dest, size, 32)
-
-#define CpuFastFill(value, dest, size)                               \
-{                                                                    \
-    vu32 tmp = (vu32)(value);                                        \
-    CpuFastSet((void *)&tmp,                                         \
-               dest,                                                 \
-               CPU_FAST_SET_SRC_FIXED | ((size)/(32/8) & 0x1FFFFF)); \
-}
-
-#define CpuFastFill16(value, dest, size) CpuFastFill(((value) << 16) | (value), (dest), (size))
-
-#define CpuFastCopy(src, dest, size) CpuFastSet(src, dest, ((size)/(32/8) & 0x1FFFFF))
-
-
-void FlushBackgrounds(void)
-{
-    if (sModifiedBGs & (1 << 0))
-        CpuFastCopy(gBG0TilemapBuffer, gBGVramTilemapPointers[0], 0x800);
-    if (sModifiedBGs & (1 << 1))
-        CpuFastCopy(gBG1TilemapBuffer, gBGVramTilemapPointers[1], 0x800);
-    if (sModifiedBGs & (1 << 2))
-        CpuFastCopy(gBG2TilemapBuffer, gBGVramTilemapPointers[2], 0x800);
-    if (sModifiedBGs & (1 << 3))
-        CpuFastCopy(gBG3TilemapBuffer, gBGVramTilemapPointers[3], 0x800);
-    sModifiedBGs = 0;
-
-    if (sModifiedPalette == 1)
-    {
-        sModifiedPalette = 0;
-        //if (gLCDControlBuffer.colorAddition == 0)
-            CpuFastCopy(gPaletteBuffer, (void *)PLTT, 0x400);
-        //else if (gLCDControlBuffer.colorAddition > 0)
-        //    ApplyColorAddition_ClampMax(gLCDControlBuffer.colorAddition);
-        //else
-        //    ApplyColorAddition_ClampMin(gLCDControlBuffer.colorAddition);
-		
-		RandColours();
-    }
-}
-#endif 
-*/
 inline int IsClassInvalid(int i) { 
 	return ClassExceptions[i].NeverChangeInto;
 } 
