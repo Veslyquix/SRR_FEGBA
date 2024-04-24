@@ -2787,8 +2787,8 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	// Handle seed 
 	if (id == SRR_MAXDISP) { 
 		//if (proc->digit == 9) { 
+		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = true; }
 		proc->freezeSeed = true; 
-		proc->seed = GetInitialSeed(0); 
 		int max = 999999; 
 		int min = 0; 
 		int max_digits = GetMaxDigits(max); 
