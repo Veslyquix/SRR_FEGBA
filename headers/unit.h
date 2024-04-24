@@ -1,7 +1,11 @@
 enum { UNIT_LEVEL_MAX = 20 };
 enum { UNIT_ITEM_COUNT = 5 };
 enum { UNIT_DEFINITION_ITEM_COUNT = 4 };
+#ifndef FE6 
 enum { UNIT_SUPPORT_MAX_COUNT = 7 };
+#else 
+enum { UNIT_SUPPORT_MAX_COUNT = 10 };
+#endif 
 enum { UNIT_EXP_DISABLED = 0xFF };
 struct CharacterData
 {
@@ -164,9 +168,13 @@ s8 movBonusB; // displayed on stat screen
     /* 31 */ u8 barrierDuration : 4;
 
     /* 32 */ u8 supports[UNIT_SUPPORT_MAX_COUNT];
+	#ifndef FE6
     /* 39 */ s8 supportBits;
+	#endif
     /* 3A */ u8 _u3A;
     /* 3B */ u8 _u3B;
+	
+	
 
     /* 3C */ struct SMSHandle* pMapSpriteHandle;
 
@@ -175,8 +183,8 @@ s8 movBonusB; // displayed on stat screen
     /* 43 */ u8 ai1data;
     /* 44 */ u8 ai2;
     /* 45 */ u8 ai2data;
-    /* 46 */ u8 _u46;
-    /* 47 */ u8 _u47;
+    /* 46 */ u8 _u46; 
+    /* 47 */ u8 _u47; 
 };
 
 #ifndef FE8 
@@ -405,8 +413,10 @@ struct BattleUnit {
 
     /* 7E */ s8 hasItemEffectTarget;
     /* 7F */ /* pad */
+	u8 padding;
 };
-
+struct BattleUnit gBattleActor; 
+struct BattleUnit gBattleTarget; 
 
 // USED FOR LOCKS ONLY 
 // this is the fe8u one, so different than fe7 in some places (but similar) 
@@ -472,4 +482,5 @@ int GetUnitResistance(struct Unit* unit); // 8018B90
 int GetUnitLuck(struct Unit* unit); // 8018BB8
 
 extern struct Unit * gActiveUnit; // 3004690
+extern struct Unit * GetUnit(int); // 3004690
 

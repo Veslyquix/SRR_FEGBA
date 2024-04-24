@@ -267,8 +267,18 @@ SHORT $46C0 $46C0 // don't erase bg when setting up debug font
 ORG $88588 
 callHackNew(ConditionallyRemoveGlowy)
 
+ORG 0x11CC
+callHackNew(RandColoursHook)
+SHORT 0x46C0
+
 POP 
 
+ALIGN 4
+DIS_matrixTable:
+#incbin "matrixTable.bin"
+ALIGN 4 
+NeverRandomizeColours:
+WORD 1
 
 ALIGN 4 
 SkillSysInstalled:

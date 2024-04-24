@@ -209,11 +209,137 @@ void sub_80328B0(void) {
     return;
 }
 
+extern void RandColours(int bank, int index, int amount, u8 portraitId); 
+struct FaceVramEntry
+{
+    /* 00 */ u32 tileOffset;
+    /* 04 */ u16 paletteId;
+};
+extern struct FaceVramEntry sFaceConfig[4];
+struct FaceBlinkProc;
+struct FaceData;
+struct FaceProc {
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ const struct FaceData* pFaceInfo;
+    /* 30 */ u32 displayBits;
+    /* 34 */ s16 xPos;
+    /* 36 */ s16 yPos;
+
+    /* 38 */ void* sprite;
+
+    /* 3C */ u16 oam2;
+    /* 3E */ u16 faceId;
+    /* 40 */ u8 faceSlot;
+    /* 41 */ u8 spriteLayer;
+
+    /* 44 */ ProcPtr unk_44;
+    /* 48 */ struct FaceBlinkProc* pBlinkProc;
+};
+extern struct FaceProc* gFaces[]; // fe7 30041C0 fe6 3004000
+#define FACE_DISP_BIT_13 (1 << 13)
+// fe6 actor 02039214 
+// fe6 target 02039290
+extern int GetUnitPortraitId(struct Unit* unit); // fe7 8018BD8 80184F0
+extern struct ProcCmd gProcScr_StatScreen[]; // fe7 8CC1F6C fe6 8677680
+extern struct ProcCmd gProc_ekrBattleDeamon[]; // fe7 8B9A99C fe6 85CB508
+extern struct ProcCmd const gProcScr_UnitDisplay_MinimugBox[]; // fe7 8CC2C60 fe6 86781D4
+extern u16 gCursorX; // 202BCB0+0x14 // bcf0 as chdata 
+extern u16 gCursorY; // 202BCB0+0x16
+// fe6 202AA1C, 202AA1E 
+// fe7 0202BBCC, 202BBCE 
+extern u8 BattleAttackerSideBool; // fe8 203E108 fe7 203E014 203CCFE
+extern u8** gBmMapUnit;  
+int GetAdjustedPortraitId(struct Unit* unit) { 
+	int portraitID = GetUnitPortraitId(unit);
+	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
+	portraitID &= 0xFF; 
+	if (!portraitID) { portraitID = 1; } 
+	return portraitID; 
+} 
+ 
+extern int NeverRandomizeColours; 
 int ShouldRandomizeColours(void) { 
-	return CheckFlag(0x8); 
+	if (NeverRandomizeColours) { return false; } 
+	// if (!RandBitflagsB->colours) { return false; } 
 	return true; 
+ 
+}  
+extern struct Unit gBattleActorUnit; 
+extern struct Unit gBattleTargetUnit; 
+int MaybeRandomizeColours(void) { 
+	if (!ShouldRandomizeColours()) { return false; } 
+	int result = false; //sizeof(struct BattleUnit);  
+	//struct BattleUnit bunit; 
+	//result += bunit.hasItemEffectTarget; 
+	struct Unit* unit = NULL; 
+	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait 
+		unit = gStatScreen.unit; 
+		if (unit) { 
+			#ifndef FE8 
+			RandColours(13, 6, 9, GetAdjustedPortraitId(unit)); 
+			#else 
+			RandColours(11, 6, 9, GetAdjustedPortraitId(unit)); 
+			#endif 
+			result = true;
+		}
+	}
+	if (Proc_Find(gProcScr_UnitDisplay_MinimugBox)) { 
+		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
+		if (unit) { 
+			RandColours(4, 6, 9, GetAdjustedPortraitId(unit)); 
+			result = true;
+		} 
+	}
+	//return result; 
+	if (result) { return result; } 
+	// faces 
+	for (int i = 0; i < 4; ++i) {
+		if (gFaces[i] == NULL) {
+			continue;
+		}
+		#ifdef FE6 
+		RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceSlot); 
+		#else 
+		RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceId); 
+		#endif 
+		result = true;
+	}   
+	if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
+		#ifdef FE6 
+		if (!BattleAttackerSideBool) { 
+			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
+			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
+		}
+		else { 
+			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
+			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
+			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+		}
+		
+		#else 
+	
+	
+		if (!BattleAttackerSideBool) { 
+			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
+			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
+		}
+		else { 
+			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
+			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
+			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+		}
+		#endif 
 
-
+		result = true;
+	}
+	return result; 
 } 
 
 inline int IsClassInvalid(int i) { 
@@ -397,12 +523,12 @@ s16 HashByPercent(int number, int noise[], int offset){
 	return HashPercent(number, noise, offset, true, false);
 };
 
-int GetRNByActiveUnit(void) { 
+int GetRNByID(int id) { 
 	int noise[4] = { 0, 0, 0, 0 };
-	if (!gActiveUnit) { return 0; } 
-	
-	
-	return HashByte_Ch(gActiveUnit->pClassData->number, 256, noise, gActiveUnit->pCharacterData->number);
+	int result = HashByte_Global(5, 254, noise, id)+1;
+	if (result < 40) { result += 40; } 
+	if (result > 210) { result -= 40; } 
+	return result; 
 }
 
 
@@ -2661,8 +2787,8 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	// Handle seed 
 	if (id == SRR_MAXDISP) { 
 		//if (proc->digit == 9) { 
+		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = true; }
 		proc->freezeSeed = true; 
-		proc->seed = GetInitialSeed(0); 
 		int max = 999999; 
 		int min = 0; 
 		int max_digits = GetMaxDigits(max); 
