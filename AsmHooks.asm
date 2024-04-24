@@ -666,33 +666,8 @@ mov   r2, #0x80
 lsl   r2, #0x1
 swi   #0xC        @ CPUFastSet.
 bl MaybeRandomizeColours 
-cmp   r0, #0
-beq   noDisco
-mov r1, r0 @ 0x5000000 or 0x5000200
-ldr r0, =RandomColoursBuffer
-ldr r0, [r0] 
-
-@mov   r1, #0xA0
-@lsl   r1, #0x13 @ 0x5000000
-mov   r2, #0x80
-@lsl   r2, #0x1
-swi   #0xC        @ CPUFastSet.
-noDisco:
 pop {r0} 
 bx r0
-
-.global CopyColoursToBuffer
-.type CopyColoursToBuffer, %function
-CopyColoursToBuffer: 
-@ copy to 2nd buffer 
-ldr r1, =gPaletteBuffer
-add r0, r1
-ldr r1, =RandomColoursBuffer
-ldr r1, [r1] 
-mov   r2, #0x80
-@lsl   r2, #0x1
-swi 0xC
-bx lr 
 
 @ Increments hue counter.
 @ Applies hue shift to palette.
@@ -715,12 +690,7 @@ ldr r5, =gPaletteBuffer
 add r5, r4 
 mov r8, r5 
 
-mov r4, #0xF 
-and r0, r4 @ smaller buffer - only sized for 16 colour banks (bg or obj) 
-lsl r4, r0, #5 @ * 32 for palette bank address offset 
-add r4, r1 
-ldr   r0, =RandomColoursBuffer
-ldr r0, [r0] 
+ldr   r0, =0x5000000 @RandomColoursBuffer
 add r0, r4 
 mov   r9, r0
 lsl r2, #1 @ number of colours 

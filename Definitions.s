@@ -28,8 +28,13 @@ SET_DATA gProc_ekrBattleDeamon, 0x85CB508
 SET_DATA gProcScr_UnitDisplay_MinimugBox, 0x86781D4
 SET_DATA sFaceConfig, 0x20293E4
 SET_DATA gFaces, 0x3004000
+SET_DATA gBattleActorUnit, 0x2039214  
 SET_DATA gBattleActor, 0x2039214  
+SET_DATA gBattleTargetUnit, 0x2039290
 SET_DATA gBattleTarget, 0x2039290
+
+
+
 SET_FUNC GetUnit, 0x801860D
 SET_FUNC GetUnitPortraitId, 0x80184F1
 SET_FUNC memset, 0x0809F9F1

@@ -210,7 +210,6 @@ void sub_80328B0(void) {
 }
 
 extern void RandColours(int bank, int index, int amount, u8 portraitId); 
-extern void CopyColoursToBuffer(int offset); 
 struct FaceVramEntry
 {
     /* 00 */ u32 tileOffset;
@@ -258,19 +257,22 @@ int GetAdjustedPortraitId(struct Unit* unit) {
 	if (!portraitID) { portraitID = 1; } 
 	return portraitID; 
 } 
-
+ 
 extern int NeverRandomizeColours; 
 int ShouldRandomizeColours(void) { 
 	if (NeverRandomizeColours) { return false; } 
 	// if (!RandBitflagsB->colours) { return false; } 
 	return true; 
-
-} 
+ 
+}  
+extern struct Unit gBattleActorUnit; 
+extern struct Unit gBattleTargetUnit; 
 int MaybeRandomizeColours(void) { 
 	if (!ShouldRandomizeColours()) { return false; } 
-	int result = false; 
+	int result = false; //sizeof(struct BattleUnit);  
+	//struct BattleUnit bunit; 
+	//result += bunit.hasItemEffectTarget; 
 	struct Unit* unit = NULL; 
-	CopyColoursToBuffer(0);
 	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait 
 		unit = gStatScreen.unit; 
 		if (unit) { 
@@ -279,27 +281,48 @@ int MaybeRandomizeColours(void) {
 			#else 
 			RandColours(11, 6, 9, GetAdjustedPortraitId(unit)); 
 			#endif 
-			result = 0x5000000;
+			result = true;
 		}
 	}
 	if (Proc_Find(gProcScr_UnitDisplay_MinimugBox)) { 
 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
 		if (unit) { 
 			RandColours(4, 6, 9, GetAdjustedPortraitId(unit)); 
-			result = 0x5000000;
+			result = true;
 		} 
 	}
+	//return result; 
 	if (result) { return result; } 
-	CopyColoursToBuffer(0x200);
 	// faces 
 	for (int i = 0; i < 4; ++i) {
 		if (gFaces[i] == NULL) {
 			continue;
 		}
+		#ifdef FE6 
+		RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceSlot); 
+		#else 
 		RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceId); 
-		result = 0x5000200;
-	}
+		#endif 
+		result = true;
+	}   
 	if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
+		#ifdef FE6 
+		if (!BattleAttackerSideBool) { 
+			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
+			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
+		}
+		else { 
+			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
+			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
+			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+		}
+		
+		#else 
+	
+	
 		if (!BattleAttackerSideBool) { 
 			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
 			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
@@ -312,8 +335,9 @@ int MaybeRandomizeColours(void) {
 			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
 			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
 		}
+		#endif 
 
-		result = 0x5000200;
+		result = true;
 	}
 	return result; 
 } 

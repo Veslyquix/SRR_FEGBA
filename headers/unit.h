@@ -168,9 +168,13 @@ s8 movBonusB; // displayed on stat screen
     /* 31 */ u8 barrierDuration : 4;
 
     /* 32 */ u8 supports[UNIT_SUPPORT_MAX_COUNT];
+	#ifndef FE6
     /* 39 */ s8 supportBits;
+	#endif
     /* 3A */ u8 _u3A;
     /* 3B */ u8 _u3B;
+	
+	
 
     /* 3C */ struct SMSHandle* pMapSpriteHandle;
 
@@ -179,8 +183,8 @@ s8 movBonusB; // displayed on stat screen
     /* 43 */ u8 ai1data;
     /* 44 */ u8 ai2;
     /* 45 */ u8 ai2data;
-    /* 46 */ u8 _u46;
-    /* 47 */ u8 _u47;
+    /* 46 */ u8 _u46; 
+    /* 47 */ u8 _u47; 
 };
 
 #ifndef FE8 
@@ -409,6 +413,7 @@ struct BattleUnit {
 
     /* 7E */ s8 hasItemEffectTarget;
     /* 7F */ /* pad */
+	u8 padding;
 };
 struct BattleUnit gBattleActor; 
 struct BattleUnit gBattleTarget; 
