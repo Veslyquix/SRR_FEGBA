@@ -281,13 +281,14 @@ extern struct StatScreenSt gStatScreen; //0x200310C
 
 typedef struct {
     /* 00 */ PROC_HEADER;
-	/* 2c */ s8 id; // menu id 
+	/* 2c */ int seed; 
+	s8 id; // menu id 
+	u8 offset; 
 	u8 redraw; 
-	s8 Option[9];
 	s8 digit; 
-	int seed; 
 	u8 freezeSeed; 
 	u8 calledFromChapter; 
+	s8 Option[20];
 } ConfigMenuProc;
 
 struct DispCnt {
