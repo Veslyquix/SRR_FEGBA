@@ -278,7 +278,11 @@ DIS_matrixTable:
 #incbin "matrixTable.bin"
 ALIGN 4 
 NeverRandomizeColours:
+#ifdef VeslyBuildfile
+WORD 0 
+#else 
 WORD 1
+#endif 
 
 ALIGN 4 
 SkillSysInstalled:
