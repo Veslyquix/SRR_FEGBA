@@ -237,6 +237,42 @@ struct FaceProc {
     /* 44 */ ProcPtr unk_44;
     /* 48 */ struct FaceBlinkProc* pBlinkProc;
 };
+struct PlayerInterfaceProc {
+    PROC_HEADER;
+
+#ifndef FE6
+    struct Text unk_2c[2];
+#else
+	struct Text unk_2c[1];
+#endif 
+
+    s8 unk_3c;
+    s8 unk_3d;
+    s8 unk_3e;
+    s8 unk_3f;
+
+    s16* unk_40;
+    s16 unk_44;
+    s16 unk_46;
+    s16 unk_48;
+    u8 unk_4a;
+    u8 unk_4b;
+    u8 xCursorPrev;
+    u8 yCursorPrev;
+    u8 xCursor;
+    u8 yCursor;
+    s8 unk_50;
+    u8 unk_51;
+    u8 unk_52;
+    u8 unk_53;
+#ifndef FE6 // one of these unk past yCursor is not present in fe6 
+    u8 unk_54;
+#endif
+    s8 unk_55; 
+    s8 isRetracting;
+    s8 quadrant;
+    int unk_58;
+};
 extern struct FaceProc* gFaces[]; // fe7 30041C0 fe6 3004000
 #define FACE_DISP_BIT_13 (1 << 13)
 // fe6 actor 02039214 
@@ -244,7 +280,7 @@ extern struct FaceProc* gFaces[]; // fe7 30041C0 fe6 3004000
 extern int GetUnitPortraitId(struct Unit* unit); // fe7 8018BD8 80184F0
 extern struct ProcCmd gProcScr_StatScreen[]; // fe7 8CC1F6C fe6 8677680
 extern struct ProcCmd gProc_ekrBattleDeamon[]; // fe7 8B9A99C fe6 85CB508
-extern struct ProcCmd const gProcScr_UnitDisplay_MinimugBox[]; // fe7 8CC2C60 fe6 86781D4
+extern struct PlayerInterfaceProc const gProcScr_UnitDisplay_MinimugBox[]; // fe7 8CC2C60 fe6 86781D4
 extern u16 gCursorX; // 202BCB0+0x14 // bcf0 as chdata 
 extern u16 gCursorY; // 202BCB0+0x16
 // fe6 202AA1C, 202AA1E 
@@ -285,12 +321,24 @@ int MaybeRandomizeColours(void) {
 			result = true;
 		}
 	}
-	if (Proc_Find(gProcScr_UnitDisplay_MinimugBox)) { 
+	struct PlayerInterfaceProc* proc = Proc_Find((struct ProcCmd*)gProcScr_UnitDisplay_MinimugBox);
+	if (proc) { 
 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
+		// for the frame we're moving off of the unit, use prev position for palette 
+		//if (proc->unk_55) { unit = GetUnit(gBmMapUnit[proc->yCursor][proc->xCursor]); } 
+		//
+		#ifdef FE7 
+		if (!unit) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
+		#endif 
+		#ifdef FE8 
+		if (proc->unk_55) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
+		if (proc->isRetracting) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
+		#endif 
 		if (unit) { 
 			RandColours(4, 6, 9, GetAdjustedPortraitId(unit)); 
 			result = true;
 		} 
+		
 	}
 	//return result; 
 	if (result) { return result; } 
