@@ -240,7 +240,11 @@ struct FaceProc {
 struct PlayerInterfaceProc {
     PROC_HEADER;
 
+#ifndef FE6
     struct Text unk_2c[2];
+#else
+	struct Text unk_2c[1];
+#endif 
 
     s8 unk_3c;
     s8 unk_3d;
@@ -261,8 +265,10 @@ struct PlayerInterfaceProc {
     u8 unk_51;
     u8 unk_52;
     u8 unk_53;
+#ifndef FE6 // one of these unk past yCursor is not present in fe6 
     u8 unk_54;
-    s8 unk_55;
+#endif
+    s8 unk_55; 
     s8 isRetracting;
     s8 quadrant;
     int unk_58;
@@ -320,7 +326,14 @@ int MaybeRandomizeColours(void) {
 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
 		// for the frame we're moving off of the unit, use prev position for palette 
 		//if (proc->unk_55) { unit = GetUnit(gBmMapUnit[proc->yCursor][proc->xCursor]); } 
+		//
+		#ifdef FE7 
+		if (!unit) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
+		#endif 
+		#ifdef FE8 
+		if (proc->unk_55) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
 		if (proc->isRetracting) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
+		#endif 
 		if (unit) { 
 			RandColours(4, 6, 9, GetAdjustedPortraitId(unit)); 
 			result = true;
