@@ -152,13 +152,14 @@ int RandomizeBattleMusic(int id){
 		return id; 
 	}
 	#ifdef FE6 
-	return SoundRoomTable[NextRN_N(0x52)].songID; // before game over at 0x53 I guess 
+	// #68 is max 
+	return SoundRoomTable[NextRN_N(52)].songID; // before game over at 53 I guess 
 	#endif 
-	#ifdef FE7 // 0x47 idk 
-	return SoundRoomTable[NextRN_N(0x47)].songID; // 0x87 everything up to arena battle
+	#ifdef FE7 // #99 is max 
+	return SoundRoomTable[NextRN_N(90)].songID; // before game over at 91 
 	#endif 
-	#ifdef FE8
-	return SoundRoomTable[NextRN_N(0x44)].songID;
+	#ifdef FE8 // #68 is max 
+	return SoundRoomTable[NextRN_N(63)].songID; // before game over at 64
 	#endif 
 };
 
