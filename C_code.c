@@ -2499,25 +2499,30 @@ const char Option1[OPT1NUM][8] = { // Base Stats
 "Random",
 }; 
 
-#define OPT2NUM 6
+#define OPT2NUM 4
 const char Option2[OPT2NUM][15] = { // Growths
 "Vanilla",
 "Random",
 "0%", 
 "100%",
-"Fixed growths",
-"Fixed & random",
 }; 
 
 #define OPT3NUM 3
-const char Option3[OPT3NUM][10] = { // Stat Caps 
+const char Option3[OPT3NUM][15] = { // Levelups 
+"Vanilla",
+"Based on seed", // Seeded if randomizer is on, vanilla otherwise  
+"Fixed", 
+};
+
+#define OPT4NUM 3
+const char Option4[OPT4NUM][10] = { // Stat Caps 
 "Vanilla",
 "Random",
 "Always 30", 
 }; 
 
-#define OPT4NUM 4
-const char Option4[OPT4NUM][20] = { // Class
+#define OPT5NUM 4
+const char Option5[OPT5NUM][20] = { // Class
 "Vanilla",
 "Random",
 "Random for players",
@@ -2526,8 +2531,8 @@ const char Option4[OPT4NUM][20] = { // Class
 //"Enemies",
 }; 
 
-#define OPT5NUM 4
-const char Option5[OPT5NUM][25] = { // Items
+#define OPT6NUM 4
+const char Option6[OPT6NUM][25] = { // Items
 "Vanilla",
 "Random",
 "Random found items only",
@@ -2535,28 +2540,34 @@ const char Option5[OPT5NUM][25] = { // Items
 }; 
 
 
-#define OPT6NUM 2
-const char Option6[OPT6NUM][10] = { 
+#define OPT7NUM 2
+const char Option7[OPT7NUM][10] = { 
 "Classic",
 "Casual",
 }; 
 
-#define OPT7NUM 2
-const char Option7[OPT7NUM][22] = { 
+#define OPT8NUM 2
+const char Option8[OPT8NUM][22] = { 
 "Vanilla BGM",
 "Random BGM",
 }; 
 
-#define OPT8NUM 4
-const char Option8[OPT8NUM][22] = { 
+#define OPT9NUM 4
+const char Option9[OPT9NUM][22] = { 
 "Vanilla Colours",
 "Random",
 "Janky",
 "Portraits only",
 }; 
 
-#define OPT9NUM 31
-const char Option9[OPT9NUM][20] = { // players 
+#define OPT10NUM 2
+const char Option10[OPT10NUM][10] = { // Item durability 
+"Vanilla",
+"Infinite",
+}; 
+
+#define OPT11NUM 31
+const char Option11[OPT11NUM][20] = { // players 
 "Vanilla",
 "+1 hidden level",
 "+2 hidden levels",
@@ -2587,11 +2598,11 @@ const char Option9[OPT9NUM][20] = { // players
 "-4 hidden levels",
 "-3 hidden levels",
 "-2 hidden levels",
-"-1 hidden level"
+"-1 hidden level",
 }; 
 
-#define OPT10NUM 31
-const char Option10[OPT10NUM][20] = { // Enemies 
+#define OPT12NUM 31
+const char Option12[OPT12NUM][20] = { // Enemies 
 "Vanilla",
 "+1 hidden level",
 "+2 hidden levels",
@@ -2622,12 +2633,12 @@ const char Option10[OPT10NUM][20] = { // Enemies
 "-4 hidden levels",
 "-3 hidden levels",
 "-2 hidden levels",
-"-1 hidden level"
+"-1 hidden level",
 }; 
 
 
 
-const u8 OptionAmounts[12] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, 0 }; 
+const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, 0 }; 
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -2654,11 +2665,11 @@ extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); /
 #define Y_HAND 17
 #define NUMBER_X 20
 const int SRR_MAXDISP = 7;
-const int SRR_TotalOptions = 11;
-const u8 tWidths[] = { 3, 5, 6, 5, 6, 3, 3, 3, 5, 6, 10, 10};   
-const u8 RtWidths[] = { 4, 5, 9, 6, 11, 14, 12, 12, 5, 5, 5 } ; 
+const int SRR_TotalOptions = 13;
+const u8 tWidths[] = { 3, 5, 6, 5, 6, 6, 3, 3, 3, 5, 6, 10, 10, 10};   
+const u8 RtWidths[] = { 0, 4, 5, 9, 8, 6, 11, 14, 12, 7, 8, 6, 12, 12 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
-	return;
+	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
 	//asm("mov r11, r11"); 
 	//ResetText(); 
@@ -2668,8 +2679,9 @@ void DrawConfigMenu(ConfigMenuProc* proc) {
 	//GetStringFromIndex(unit->pClassData->nameTextId)
 	struct Text* th = gStatScreen.text; // max 34 
 	int i = 0; 	
-	ClearText(&th[sizeof(tWidths)+proc->id]); 
-	int offset = proc->offset; 
+	int offset = proc->offset;
+	int hOff = sizeof(tWidths); // handle offset 
+	ClearText(&th[hOff + offset+proc->id]); 
 /* What Circles did: 
 % variation (0 - 100%) 
 Don't change: Thieves, Generics, Both, None 
@@ -2746,29 +2758,33 @@ Max Growth: 100
 
 	#ifndef FE6 
 	switch (offset) { 
-	case 0: //TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0); // seed first 
+	case 0: TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0); // seed first 
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-1, 3+((i)*2)), white, proc->seed); i++;  
-	case 1: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option0[proc->Option[0]]); i++; 
+	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option0[proc->Option[0]]); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 2: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option1[proc->Option[1]]); i++; 
+	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option1[proc->Option[1]]); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 3: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option2[proc->Option[2]]); i++; 
+	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option2[proc->Option[2]]); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 4: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option3[proc->Option[3]]); i++; 
+	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option3[proc->Option[3]]); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 5: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option4[proc->Option[4]]); i++; 
+	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option4[proc->Option[4]]); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 6: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option5[proc->Option[5]]); i++; 
+	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option5[proc->Option[5]]); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 7: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option6[proc->Option[6]]); i++; 
+	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option6[proc->Option[6]]); i++; 
 	if (i > SRR_MAXDISP) { break; } 	
-	case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option7[proc->Option[7]]); i++;  
+	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option7[proc->Option[7]]); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option8[proc->Option[8]]); i++;  
+	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option8[proc->Option[8]]); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option9[proc->Option[9]]); i++;  
+	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option9[proc->Option[9]]); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option10[proc->Option[10]]); i++;  
+	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option10[proc->Option[10]]); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option11[proc->Option[11]]); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], Option12[proc->Option[12]]); i++;  
 	if (i > SRR_MAXDISP) { break; } 
 	default: 
 	} 
@@ -2868,11 +2884,11 @@ enum {
 RedrawNone, RedrawSome, RedrawAll }; 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
 	if (proc->offset) {
-        DisplayUiVArrow(MENU_X+8, MENU_Y+8, 0x3240, 1); // up arrow 
+        DisplayUiVArrow(MENU_X+16, MENU_Y+8, 0x3240, 1); // up arrow 
     }
 	// should display down arrow? 
-	if ((SRR_TotalOptions > 7) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
-		DisplayUiVArrow(MENU_X+8, MENU_Y+(16*9), 0x3240, 0);
+	if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
+		DisplayUiVArrow(MENU_X+16, MENU_Y+(16*9), 0x3240, 0);
 	}
 
 
@@ -2977,13 +2993,13 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		id--; id += offset; 
 		if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; } 
 		else { proc->Option[id] = 0;  } 
-		proc->redraw = RedrawSome; 
+		proc->redraw = RedrawSome; id++; id -= offset; 
 	}
     else if (keys & DPAD_LEFT) {
 		id--; id += offset; 
 		if (proc->Option[id] > 0) { proc->Option[id]--; } 
 		else { proc->Option[id] = OptionAmounts[id] - 1;  } 
-		proc->redraw = RedrawSome; 
+		proc->redraw = RedrawSome; id++; id -= offset; 
 	}
 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	if (proc->redraw == RedrawSome) { 
@@ -3038,53 +3054,60 @@ void RedrawAllText(ConfigMenuProc* proc) {
 	for (int i = 0; i < 34; ++i) { 
 		ClearText(&th[i]);
 	}	
+	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0, 0), 0x1d, 0x13, 0); // all 
 	int i = 0;
 	int offset = proc->offset;
 	#ifdef FE6 
 	int startId = 0xB6E; 
-	//PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Variance"); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
-	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
+	//PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Variance"); i++; 
+	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
+	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
+	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
+	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
+	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
+	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
+	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
+	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
+	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
 	#endif 
 
 	#ifndef FE6 
 	i = 0; 
 	switch (offset) { 
-		case 0: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Seed"); i++;  // Classic/Casual 
+		case 0: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Seed"); i++;  // Classic/Casual 
 		if (i > SRR_MAXDISP) { break; } 
-		case 1: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Variance"); i++; 
+		case 1: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Variance"); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 2: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Base Stats"); i++; 
+		case 2: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Base Stats"); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 3: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Growths"); i++; 
+		case 3: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Growths"); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 4: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Stat Caps"); i++; 
+		case 4: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Levelups"); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 5: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Class"); i++; 
+		case 5: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Stat Caps"); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 6: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Items"); i++;  
+		case 6: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Class"); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 7: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Mode"); i++;  // Classic/Casual 
+		case 7: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Items"); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 8: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Music"); i++; 
+		case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Mode"); i++;  // Classic/Casual 
 		if (i > SRR_MAXDISP) { break; } 
-		case 9: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Colours"); i++;  
+		case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Music"); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 10: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Player Diff. Bonus"); i++;  // make players have bonus levels
+		case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Colours"); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 11: PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Enemy Diff. Bonus"); i++;  // make enemies have more bonus levels?
+		case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Item Durability"); i++;  
+		if (i > SRR_MAXDISP) { break; } 
+		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Player Bonus"); i++;  // make players have bonus levels
+		if (i > SRR_MAXDISP) { break; } 
+		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Enemy Diff. Bonus"); i++;  // make enemies have more bonus levels?
 		if (i > SRR_MAXDISP) { break; } 
 		default: 
 	}
 	DrawConfigMenu(proc);
 	
+	PutDrawText(&th[sizeof(tWidths) + sizeof(RtWidths)], TILEMAP_LOCATED(gBG0TilemapBuffer, 7, 1), green, 0, 6, "Randomizer"); 
+	BG_EnableSyncByMask(BG0_SYNC_BIT);
 	#endif 
 }
 
@@ -3134,34 +3157,14 @@ void InitDraw(ConfigMenuProc* proc) {
 	//return; 
 	// [2000444+0xC]!!
 	struct Text* th = gStatScreen.text; // max 34 
-	int i = 0; 
-	
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	InitText(&th[i], tWidths[i]); i++; 
-	
-	i = 0; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	InitText(&th[i+sizeof(tWidths)], RtWidths[i]); i++; 
-	//InitText(&th[i], 8); i++; 
+	for (int i = 0; i < sizeof(tWidths); ++i) { 
+	InitText(&th[i], tWidths[i]);
+	}
+	int hOff = sizeof(tWidths); // handle offset 
+	for (int i = 0; i < sizeof(RtWidths); ++i) { 
+	InitText(&th[i+hOff], RtWidths[i]);
+	}
+	InitText(&th[sizeof(tWidths) + sizeof(RtWidths)], 6); // "Randomizer" title  
 	
 	//LoadUiFrameGraphics(); 
 	LoadObjUIGfx(); 
@@ -3206,39 +3209,37 @@ void InitDraw(ConfigMenuProc* proc) {
 	BG_EnableSyncByMask(BG0_SYNC_BIT|BG1_SYNC_BIT);
 }
  
-
+extern void StartGreenText(ProcPtr parent);
 ConfigMenuProc* StartConfigMenu(ProcPtr parent) { 
 	ConfigMenuProc* proc; 
 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
 	if (proc) { 
-		proc->id = 1; 
-		proc->calledFromChapter = false; 
-		if (DefaultConfigToVanilla) {
-		proc->Option[0] = 0; // start on 100% 
-		proc->Option[1] = 0; 
-		proc->Option[2] = 0; 
-		proc->Option[3] = 0; 
-		proc->Option[4] = 0; 
-		proc->Option[5] = 0; 
-		}
-		else {
+		for (int i = 0; i < 20; i++) { 
+		proc->Option[i] = 0; } 
+		
+		
+		if (!DefaultConfigToVanilla) {
 		proc->Option[0] = OptionAmounts[0]-1; // start on 100% 
 		proc->Option[1] = 1; 
 		proc->Option[2] = 1; 
 		proc->Option[3] = 1; 
 		proc->Option[4] = 1; 
 		proc->Option[5] = 1; 
+		proc->Option[6] = 1; 
+		//proc->Option[7] = 0; // Classic 
+		proc->Option[8] = 1; // Random BGM 
+		proc->Option[9] = 1; // Random Colours 
 		}
+		proc->id = 1; 
+		proc->calledFromChapter = false; 
 		proc->offset = 0; 
-		proc->Option[6] = 0; 
-		proc->Option[7] = 0; 
 		proc->redraw = 0; 
 		proc->freezeSeed = false; 
 		if (RandValues->seed) { proc->freezeSeed = true; } 
 		proc->seed = GetInitialSeed(2); 
 		proc->digit = 0; 
-
+		StartGreenText(proc); 
 	} 
 	return proc; 
 } 
