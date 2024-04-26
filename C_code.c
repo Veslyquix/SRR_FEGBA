@@ -2754,7 +2754,6 @@ Max Growth: 100
 */ 
 
 	i = 0; 
-	offset = 0; 
 	switch (offset) { 
 	case 0: TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0); // seed first 
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-1, 3+((i)*2)), white, proc->seed); i++; 
@@ -3089,7 +3088,7 @@ void RedrawAllText(ConfigMenuProc* proc) {
 		default: 
 	}
 	DrawConfigMenu(proc);
-	PutDrawText(&th[sizeof(tWidths) + sizeof(RtWidths)], TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 1), green, 0, 6, PutStringInBuffer((const char*)&RandomizerText)); 
+	PutDrawText(&th[sizeof(tWidths) + sizeof(RtWidths)], TILEMAP_LOCATED(gBG0TilemapBuffer, 9, 0), green, 0, 6, PutStringInBuffer((const char*)&RandomizerText)); 
 	
 	BG_EnableSyncByMask(BG0_SYNC_BIT);
 	

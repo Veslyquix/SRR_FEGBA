@@ -248,6 +248,7 @@ ALIGN 16; BYTE $6D $24 $36 $6E $FF $5E
 
 ALIGN 21
 Option11:
+Option12:
 FILL(32*21)
 ORG Option11
 ALIGN 21; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
@@ -282,25 +283,7 @@ ALIGN 21; BYTE $D6 $B1 $9E $65 $6C $08 $1F $53 $9E $FD $65 $F5 $02
 ALIGN 21; BYTE $D6 $31 $4E $64 $6C $08 $1F $53 $9E $FD $65 $F5 $02
 ALIGN 21; BYTE $D6 $61 $41 $33 $36 $84 $8F $29 $CF $FE $D2 $0B
 
-ALIGN 16
-VanillaText:
-BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 0x00 0x00 0x00 0x00 0x00 0x00 
-RandomText:
-BYTE 0xFD 0x09 0x42 0xAD 0x7B 0x01 0x00 0x00 0x00 0x00 0x00 0x00 
-ZeroPercentText: 
-BYTE 0xC6 0xA1 0x7F 0x2F 0x98 0xEB 0x05 0x00 0x00 0x00 0x00 0x00 0x00 
-OneHundredPercentText:
-BYTE 0x2C 0xA8 0x71 0x30 0x0E 0xFD 0x7B 0xC1 0x5C 0x2F 0x00 0x00 0x00 0x00 0x00 0x00 
-Always30Text: 
-BYTE 0x24 0xC5 0x16 0xB0 0x62 0x3D 0x33 0x0E 0xBD 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
-FounditemsonlyText:
-BYTE 0xA4 0x29 0x47 0x98 0xED 0x5F 0xAF 0x28 0x16 0xD0 0x0B 0x00 0x00 0x00 0x00 0x00
-ItemstatsonlyText:
-BYTE 0x6D 0xFF 0x3A 0xCB 0xC5 0x57 0x14 0x0B 0xE8 0x05 0x00 0x00
-ClassicText:
-BYTE 0x2C 0x16 0x59 0x6B 0x33 0xBD 0x00 0x00 0x00 0x00 0x00 0x00
-CasualText:
-BYTE 0x2C 0xCA 0xE2 0x52 0x7A 0x01 0x00 0x00 0x00 0x00 0x00 0x00
+ALIGN 32
 MovText:
 BYTE $64 $94 $DD $0B $00 $00 $00 $00 
 HpText:
@@ -308,30 +291,16 @@ BYTE $C6 $9A $EB $05 $00 $00 $00 $00
 MinusText: 
 BYTE $FD $7B $71 $91 $5E $00 $00 $00 $00 // _ 
 //BYTE $D6 $E9 $05 $00 $00 $00 $00 $00 // - 
-PlayersText:
-BYTE $CD $15 $01 $7F $56 $2F $00 $00 $00 $00 $00 $00
-// "Players only" CD 15 01 7F 56 14 0B E8 05 00 00 00 00 00 00 00
-EnemiesText:
-BYTE $A4 $F0 $EB $FD $AB $17 $00 $00 $00 $00 $00 $00
-// "Enemies only" A4 F0 EB FD 2B 8A 05 F4 02 00 00 00 00 00 00 00
 PlusText:
 BYTE $5D $D3 $BD $00 $00 $00 $00 $00 $00 $00 $00 $00
 DashText:
 BYTE $D6 $E9 $05 $00 $00 $00 $00 $00 $00 $00 $00 $00
 PercentText:
 BYTE $FD $7B $C1 $5C $2F $00 $00 $00 $00 $00 $00 $00
-ClassicRandMusicText:
-BYTE $2C $16 $59 $6B $33 $21 $7D $9E $FE $04 $A1 $D6 $E9 $D1 $05 $99 $5E $00 $00 $00 $00 $00 $00 $00
-CasualRandMusicText:
-BYTE $2C $CA $E2 $52 $42 $FA $3C $FD $09 $42 $AD $D3 $A3 $0B $32 $BD $00 $00 $00 $00 $00 $00 $00 $00
 ConfigText: 
 BYTE $82 $A4 $82 $E9 $82 $E8 $82 $DD $82 $E0 $82 $DE $00 $00
 RandomizerDescText:
 BYTE $FD $3D $A3 $48 $EC $8A $9F $8F $8F $CF $11 $84 $5A $EF $FE $FB $73 $7B $01 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
-FixedGrowthsText:
-BYTE $A4 $6D $EB $3F $4C $75 $D4 $F6 $B1 $7A $01 $00 $00 $00 $00 $00
-FixedAndRandomText:
-BYTE $A4 $6D $EB $3F $0C $E9 $F3 $1C $41 $A8 $75 $2F $00 $00 $00 $00 $00 $00 $00 $00
 
 
 #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
