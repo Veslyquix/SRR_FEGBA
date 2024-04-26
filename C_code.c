@@ -51,6 +51,7 @@ struct RandomizerSettings {
 	u32 itemStats : 2; // vanilla, random 
 	u32 itemDur : 2; // vanilla, infinite 
 	u32 playerBonus : 5; // +20 / -10 levels for players 
+	u32 lang : 1; // japanese / english (fe6 only) 
 }; // 28 / 32 bits used 
 
 
@@ -2671,6 +2672,7 @@ void DrawConfigMenu(ConfigMenuProc* proc) {
 	int offset = proc->offset;
 	int hOff = sizeof(tWidths); // handle offset 
 	ClearText(&th[hOff + offset+proc->id]); 
+	return; 
 /* What Circles did: 
 % variation (0 - 100%) 
 Don't change: Thieves, Generics, Both, None 
@@ -2689,7 +2691,7 @@ Max Growth: 100
 	i = 0; 
 
 	
-	#ifdef FE6 
+	#ifdef FE62
 	//int startId = 0xB6E + i; 
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 16-6, 1+((i)*2)), 9, 2, 0);
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 17, 1+((i)*2)), white, 0, RtWidths[i+offset], GetStringFromIndex(0xB87));
@@ -2745,7 +2747,7 @@ Max Growth: 100
 	PutDrawText(&th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 1+((i)*2)), white, 0, RtWidths[i+offset], GetStringFromIndex(0xB88 + (proc->Option[7]-2))); i++;  }
 	#endif 
 
-	#ifndef FE6 
+	#ifndef FE62 
 	switch (offset) { 
 	case 0: TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0); // seed first 
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-1, 3+((i)*2)), white, proc->seed); i++;  
@@ -2873,11 +2875,11 @@ enum {
 RedrawNone, RedrawSome, RedrawAll }; 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
 	if (proc->offset) {
-        DisplayUiVArrow(MENU_X+16, MENU_Y+8, 0x3240, 1); // up arrow 
+        DisplayUiVArrow(MENU_X+(8*8), MENU_Y+8, 0x3240, 1); // up arrow 
     }
 	// should display down arrow? 
 	if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
-		DisplayUiVArrow(MENU_X+16, MENU_Y+(16*9), 0x3240, 0);
+		DisplayUiVArrow(MENU_X+(8*8), MENU_Y+(16*9), 0x3240, 0);
 	}
 
 
@@ -2888,6 +2890,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	int offset = proc->offset;
 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
+		RandBitflags->lang = 0; // japanese 
 		RandValues->variance = proc->Option[0];
 		RandValues->seed = proc->seed; 
 		RandValues->bonus = proc->Option[6];
@@ -3010,6 +3013,11 @@ extern void InitSystemTextFont(void); // 8005A40
 
 
 #ifdef FE6 
+
+int GetLang(void)
+{
+    return RandBitflags->lang;
+}
 void InitTextFontEn(struct Font * font, void * vramDest, int chr, int palid)
 {
     if (font == NULL)
@@ -3020,14 +3028,15 @@ void InitTextFontEn(struct Font * font, void * vramDest, int chr, int palid)
     font->palid = palid;
     font->tileref = TILEREF(chr, palid);
     font->chr_counter = 0;
-    font->lang = 1; // english 
+    font->lang = GetLang(); // english 
 
     SetTextFont(font);
     InitSystemTextFont();
 }
-
+extern struct Font* gActiveFont; 
 void ResetTextEn(void)
 {
+	gActiveFont->lang = GetLang(); 
     InitTextFontEn(&gDefaultFont,
         (u8 *)(VRAM + BGCHR_TEXT_DEFAULT * CHR_SIZE),
         BGCHR_TEXT_DEFAULT, BGPAL_TEXT_DEFAULT);
@@ -3036,8 +3045,46 @@ void ResetTextEn(void)
 }
 #endif 
 
+#ifdef FE6 
+extern void Text_SetCursor(struct Text * text, int x); // 80059e0 T Text_SetCursor
+extern void Text_SetColor(struct Text * text, int color); // 8005a38
+extern void Text_DrawStringAscii(struct Text * text, char const * str); // 80064b4
+extern void PutText(struct Text * text, u16 * tm); // 8005ab4
+void PutDrawText2(struct Text * text, u16 * tm, int color, int x, int tile_width, char const * str)
+{
+    struct Text tmpText;
 
- extern void RegisterBlankTile(int a); 
+    if (text == NULL)
+    {
+        text = &tmpText;
+        InitText(text, tile_width);
+    }
+
+    Text_SetCursor(text, x);
+    Text_SetColor(text, color);
+    Text_DrawStringAscii(text, str);
+
+    PutText(text, tm);
+}
+void DecodeStringRam(char const * src, char * dst, int huffman); //800384c 
+extern char sMsgString[0x1000];
+char * PutStringInBuffer(char * str, int encoding)
+{
+	
+	// anti-huffman version? 
+	//for (int i = 0; i < 0x1000; ++i) { 
+    //    sMsgString[i] = str[i];
+	//	if (!str[i]) break; 
+	//}
+	
+	DecodeStringRam(str, sMsgString, encoding); // if int huffman is negative, don't use huffman encoding  
+
+    return sMsgString;
+}
+#endif 
+
+extern void RegisterBlankTile(int a); 
+extern const char VarianceText;
 void RedrawAllText(ConfigMenuProc* proc) { 
 	struct Text* th = gStatScreen.text; // max 34 
 	for (int i = 0; i < 34; ++i) { 
@@ -3046,7 +3093,25 @@ void RedrawAllText(ConfigMenuProc* proc) {
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0, 0), 0x1d, 0x13, 0); // all 
 	int i = 0;
 	int offset = proc->offset;
-	#ifdef FE6 
+	
+	//PutDrawText(&th[0], TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 1), green, 0, 6, someText); 
+	//PutDrawText(&th[1], TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 3), green, 0, 6, &someText); 
+	//ResetTextEn();
+	//PutDrawText(&th[2], TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 5), green, 0, 6, someText); 
+	//PutDrawText(&th[3], TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 7), green, 0, 6, &someText); 
+	
+	//PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Variance"); i++; 
+	//asm("mov r11, r11"); 
+	PutDrawText(&th[0], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3), gold, 0, tWidths[0], PutStringInBuffer(&VarianceText, 0));  
+	//PutDrawText(&th[1], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 5), gold, 0, tWidths[1], PutStringInBuffer("variance", (-1)));  
+
+	//PutDrawText(&th[1], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 5), gold, 0, tWidths[0], GetStringFromIndex(0xb6e));  
+	
+	//PutDrawText(&th[sizeof(tWidths) + sizeof(RtWidths)], TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 7), green, 0, 6, &someText); 
+	BG_EnableSyncByMask(BG0_SYNC_BIT);
+	return; 
+	
+	#ifdef FE62
 	int startId = 0xB6E; 
 	//PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Variance"); i++; 
 	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
@@ -3060,7 +3125,7 @@ void RedrawAllText(ConfigMenuProc* proc) {
 	PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+(i*2)), gold, 0, tWidths[i], GetStringFromIndex(startId + i)); i++; 
 	#endif 
 
-	#ifndef FE6 
+	#ifndef FE62 
 	i = 0; 
 	switch (offset) { 
 		case 0: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], "Seed"); i++;  // Classic/Casual 
@@ -3095,7 +3160,7 @@ void RedrawAllText(ConfigMenuProc* proc) {
 	}
 	DrawConfigMenu(proc);
 	
-	PutDrawText(&th[sizeof(tWidths) + sizeof(RtWidths)], TILEMAP_LOCATED(gBG0TilemapBuffer, 7, 1), green, 0, 6, "Randomizer"); 
+	PutDrawText(&th[sizeof(tWidths) + sizeof(RtWidths)], TILEMAP_LOCATED(gBG0TilemapBuffer, 1, 1), green, 0, 6, "Randomizer"); 
 	BG_EnableSyncByMask(BG0_SYNC_BIT);
 	#endif 
 }
@@ -3119,8 +3184,9 @@ void InitDraw(ConfigMenuProc* proc) {
 	
 	ResetText(); // need this 
 	#ifdef FE6 
+	#define FE6_ASCII_TEST
 	#ifdef FE6_ASCII_TEST 
-	ResetTextEn();
+	//ResetTextEn();
 	//char const * const SystemLabel_EquipRange[2] =
 	//{
 	//	[0] = JTEXT("射程"),
@@ -3136,8 +3202,7 @@ void InitDraw(ConfigMenuProc* proc) {
 	//int test = 0xA082; 
 	//u8 someText[] = { 0x5D, 0x8F, 0x9C, 0x2D, 0xC8, 0x7C, 0x2F, 0, 0, 0 }; 
 	//extern u8 someText; 
-	extern struct Font* gActiveFont; 
-	gActiveFont->lang = 1; 
+
 	#endif  
 	#endif 
 	//InitTextFont(NULL, (u8 *) 0x6000000 + 0x20*0x200, 0x200, 0);
@@ -3206,7 +3271,7 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 	if (proc) { 
 		for (int i = 0; i < 20; i++) { 
 		proc->Option[i] = 0; } 
-		
+		RandBitflags->lang = 0; 
 		
 		if (!DefaultConfigToVanilla) {
 		proc->Option[0] = OptionAmounts[0]-1; // start on 100% 

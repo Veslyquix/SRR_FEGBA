@@ -168,7 +168,7 @@ ClassicRandMusicText:
 BYTE $2C $16 $59 $6B $33 $21 $7D $9E $FE $04 $A1 $D6 $E9 $D1 $05 $99 $5E $00 $00 $00 $00 $00 $00 $00
 CasualRandMusicText:
 BYTE $2C $CA $E2 $52 $42 $FA $3C $FD $09 $42 $AD $D3 $A3 $0B $32 $BD $00 $00 $00 $00 $00 $00 $00 $00
-RandomizerText: // "Config"
+ConfigText: 
 BYTE $82 $A4 $82 $E9 $82 $E8 $82 $DD $82 $E0 $82 $DE $00 $00
 RandomizerDescText:
 BYTE $FD $3D $A3 $48 $EC $8A $9F $8F $8F $CF $11 $84 $5A $EF $FE $FB $73 $7B $01 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
@@ -176,7 +176,8 @@ FixedGrowthsText:
 BYTE $A4 $6D $EB $3F $4C $75 $D4 $F6 $B1 $7A $01 $00 $00 $00 $00 $00
 FixedAndRandomText:
 BYTE $A4 $6D $EB $3F $0C $E9 $F3 $1C $41 $A8 $75 $2F $00 $00 $00 $00 $00 $00 $00 $00
-
+RandomizerText: 
+BYTE $82 $A4 $82 $E9 $82 $E8 $82 $DD $82 $E0 $82 $DE $00 $00
 
 #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
 #define setTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
@@ -328,7 +329,7 @@ ALIGN 4
 NewChMenu: 
 BYTE  $DC $74 $81 $08 $00 $00 $54 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $A5 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $20 $7A $81 $08 $00 $00 $55 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $D5 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $2E $7A $81 $08 $00 $00 $56 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $C1 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $CC $7A $81 $08 $00 $00 $57 $06 $00 $00 $00 $00 $55 $EA $01 $08 $00 $00 $00 $00 $6D $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 
 // Config Menu 
-POIN RandomizerText; BYTE $00 $00; SHORT 0xb8a; BYTE $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00; POIN MenuStartConfigMenu; BYTE $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
+POIN ConfigText; BYTE $00 $00; SHORT 0xb8a; BYTE $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00; POIN MenuStartConfigMenu; BYTE $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
 // End 
 BYTE $08 $75 $81 $08 $00 $00 $58 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $91 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
 FILL(36) 
@@ -412,7 +413,7 @@ WORD 4
 ALIGN 4 
 RandValues:
 WORD 0x203D974 // Bandit unitID + 0x45 BWL data
-RandBitflagsA:
+RandBitflags:
 WORD 0x203D978 
 MaxItems:
 WORD 0x203D97C

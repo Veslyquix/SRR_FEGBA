@@ -32,9 +32,9 @@ SET_DATA gBattleActorUnit, 0x2039214
 SET_DATA gBattleActor, 0x2039214  
 SET_DATA gBattleTargetUnit, 0x2039290
 SET_DATA gBattleTarget, 0x2039290
-
-
-
+SET_FUNC StartGreenText, 0x8006C9D
+SET_FUNC UnpackUiVArrowGfx, 0x809777D
+SET_FUNC DisplayUiVArrow, 0x80977C1
 SET_FUNC GetUnit, 0x801860D
 SET_FUNC GetUnitPortraitId, 0x80184F1
 SET_FUNC memset, 0x0809F9F1
@@ -75,6 +75,14 @@ SET_FUNC StartMapSongBgm, 0x80163E5
 SET_FUNC EndAllMenus, 0x8041A39
 SET_FUNC RenderBmMap, 0x8018D91
 SET_FUNC RefreshBMapGraphics, 0x80292dd
+SET_FUNC Text_SetCursor, 0x80059e1 
+SET_FUNC Text_SetColor, 0x8005a39
+SET_FUNC Text_DrawStringAscii, 0x80064b5
+SET_FUNC PutText, 0x8005ab5
+SET_FUNC GetLang, 0x800562d
+SET_DATA sMsgString, 0x2029404 
+SET_FUNC DecodeStringRam, 0x800384d
+
 .endif 
 .if FE7 == true 
 SET_DATA gPaletteSyncFlag, 0x300000D 
@@ -91,6 +99,9 @@ SET_DATA gFaces, 0x30041C0
 SET_DATA gBattleActor, 0x203A3F0  
 SET_DATA gBattleTarget, 0x203A470
 SET_FUNC GetUnitPortraitId, 0x8018BD9
+SET_FUNC UnpackUiVArrowGfx, 0x80B1F6D
+SET_FUNC DisplayUiVArrow, 0x80B1FB1 
+SET_FUNC StartGreenText, 0x8005FF5
 SET_FUNC GetUnit, 0x8018D0D
 SET_FUNC memset, 0x080BFFF9
 SET_DATA SaveMenuProc, 0x8CE3C54 @ fe7 
