@@ -245,7 +245,11 @@ extern void BG_SetPosition(u16 bg, u16 x, u16 y); // 0x8001D8C
 extern void LoadUiFrameGraphics(void); // 804A210
 extern void LoadObjUIGfx(void); // 8015590
 
+#ifdef FE6 
 extern void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, char* string); // 8005AD4
+#else 
+extern void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
+#endif 
 extern void ClearText(struct Text* text); // 80054E0
 extern void InitText(struct Text* text, int width); // 8005474
 extern void ResetText(void); //80053B0
