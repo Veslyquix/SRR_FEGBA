@@ -413,12 +413,10 @@ ALIGN 4
 RandValues:
 WORD 0x203D974 // Bandit unitID + 0x45 BWL data
 RandBitflagsA:
-WORD 0x202AA63 // PlaySt + 0x1B (unk, 1 bytes) @ saved on suspend 
-RandBitflagsB:
-WORD 0x202AA67 // PlaySt + 0x1F (unk, 1 bytes) @ saved on suspend 
+WORD 0x203D978 
 MaxItems:
-WORD 0x203D978
+WORD 0x203D97C
 MaxClasses:
-WORD 0x203D979
+WORD 0x203D97D
 
 

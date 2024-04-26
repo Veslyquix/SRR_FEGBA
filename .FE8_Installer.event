@@ -356,12 +356,10 @@ WORD 4
 ALIGN 4 
 RandValues:
 WORD RandomizerRam
-RandBitflagsA:
+RandBitflags:
 WORD RandomizerRam+4
-RandBitflagsB:
-WORD RandomizerRam+5
 MaxItems:
-WORD RandomizerRam+6
+WORD RandomizerRam+8
 MaxClasses:
-WORD RandomizerRam+7
+WORD RandomizerRam+9
 
