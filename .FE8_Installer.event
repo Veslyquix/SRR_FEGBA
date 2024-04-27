@@ -345,13 +345,12 @@ WORD 60
 
 
 ALIGN 4 
-Opt7Number:
+NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
-WORD 2 
+WORD 0
 #else 
-WORD 4
+WORD 1
 #endif   
-
 
 ALIGN 4 
 RandValues:

@@ -17,6 +17,8 @@
 .endm
 
 .if FE6 == true 
+@SET_FUNC GetItemAttributes, fe7 0x801727c unk fe6 
+SET_FUNC GetItemAfterUse, 0x8016929 
 SET_DATA gPaletteSyncFlag, 0x300000C
 SET_DATA gPaletteBuffer, 0x2021708
 SET_DATA gCursorX, 0x202AA1C
@@ -85,6 +87,8 @@ SET_FUNC DecodeStringRam, 0x800384d
 
 .endif 
 .if FE7 == true 
+SET_FUNC GetItemAttributes, 0x801727D
+SET_FUNC GetItemAfterUse, 0x8016731
 SET_DATA gPaletteSyncFlag, 0x300000D 
 SET_DATA gPaletteBuffer, 0x2022860
 SET_DATA gCursorX, 0x202BBCC

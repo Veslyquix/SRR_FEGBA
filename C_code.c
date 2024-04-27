@@ -78,13 +78,54 @@ extern int SkillSysInstalled;
 extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
 
+
+
+int ShouldDoJankyPalettes(void) { 
+	return RandBitflags->colours == 2; 
+} 
+
+
 u16 HashByte_Ch(int number, int max, int noise[], int offset); 
-extern int Opt7Number; 
+extern int NeverRandomizeBGM; 
 int ShouldRandomizeBGM(void) { 
-	if (Opt7Number != 4) { return false; } 
+	if (NeverRandomizeBGM) { return false; } 
 	if (!RandBitflags->randMusic) { return false; } 
 	return true; 
 } 
+
+
+u16 GetItemAfterUse(int item) { // 16AEC 8016730 8016928 
+    if ((GetItemAttributes(item) & IA_UNBREAKABLE) || (RandBitflags->itemDur))
+        return item; // unbreakable items don't lose uses!
+
+    item -= (1 << 8); // lose one use
+
+    if (item < (1 << 8))
+        return 0; // return no item if uses < 0
+
+    return item; // return used item
+}
+
+int GetItemAttributes(int item) { // 801727C
+	u32 attr = GetItemData(item & 0xFF)->attributes;
+	if (RandBitflags->itemDur) { attr |= IA_UNBREAKABLE; } 
+	return attr; 
+}
+
+int GetItemUses(int item) {
+	if ((GetItemAttributes(item) & IA_UNBREAKABLE) || RandBitflags->itemDur)
+        return 0xFF;
+    else
+        return (item&0xFF00)>>8;
+}
+
+int GetItemMaxUses(int item) {
+	if ((GetItemAttributes(item) & IA_UNBREAKABLE) || RandBitflags->itemDur)
+        return 0xFF;
+    else
+        return GetItemData(item & 0xFF)->maxUses;
+}
+
 
 #ifdef FE6 // Thanks Scub 
 u8 static const MapMusicList[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
@@ -287,7 +328,7 @@ int GetAdjustedPortraitId(struct Unit* unit) {
 extern int NeverRandomizeColours; 
 int ShouldRandomizeColours(void) { 
 	if (NeverRandomizeColours) { return false; } 
-	// if (!RandBitflags->colours) { return false; } 
+	if (!RandBitflags->colours) { return false; } 
 	return true; 
  
 }  
@@ -343,39 +384,43 @@ int MaybeRandomizeColours(void) {
 		#endif 
 		result = true;
 	}   
-	if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
-		#ifdef FE6 
-		if (!BattleAttackerSideBool) { 
-			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
-			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
-			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
-			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
-		}
-		else { 
-			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
-			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
-			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
-			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
-		}
+	
+	//if (RandBitflags->colours == 1) { // if 3, it's portraits only. 2 is janky 
+	if (RandBitflags->colours != 3) { // if 3, it's portraits only. 2 is janky 
+		if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
+			#ifdef FE6 
+			if (!BattleAttackerSideBool) { 
+				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+				RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
+				RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
+			}
+			else { 
+				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
+				RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
+				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+				RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+			}
+			
+			#else 
 		
-		#else 
-	
-	
-		if (!BattleAttackerSideBool) { 
-			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
-			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
-		}
-		else { 
-			RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
-			RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
-			RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-			RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-		}
-		#endif 
+		
+			if (!BattleAttackerSideBool) { 
+				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+				RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
+				RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
+			}
+			else { 
+				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
+				RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
+				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+				RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+			}
+			#endif 
 
-		result = true;
+			result = true;
+		}
 	}
 	return result; 
 } 
@@ -1797,10 +1842,20 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
         unit->exp = 0;
     else { 
         unit->exp = UNIT_EXP_DISABLED;
+	}
+	
+	if (UNIT_FACTION(unit) != FACTION_RED) { 
+		int bonusLevels = RandBitflags->playerBonus; 
+		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
+		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 	
+	} 
+	else { 
 		int bonusLevels = RandValues->bonus; 
 		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
 		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
 	}
+	
+	
 	UnitCheckStatMins(unit); 
 	UnitCheckStatCaps(unit);
 }
@@ -2895,28 +2950,36 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	int offset = proc->offset;
 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
-		RandValues->variance = proc->Option[0];
+
 		RandValues->seed = proc->seed; 
-		RandValues->bonus = proc->Option[6];
-		RandBitflags->base = proc->Option[1]; 
-		RandBitflags->growth = proc->Option[2]; 
-		RandBitflags->caps = proc->Option[3]; 
-		RandBitflags->class = proc->Option[4]; 
-		RandBitflags->itemStats = ((proc->Option[5] == 1) || (proc->Option[5] == 3)); 
-		RandBitflags->foundItems = ((proc->Option[5] == 1) || (proc->Option[5] == 2)); 
-		RandBitflags->shopItems = ((proc->Option[5] == 1) || (proc->Option[5] == 2)); 
-		RandBitflags->disp = 1; 
+		RandValues->variance = proc->Option[0];
 		
-		if ((proc->Option[7] == 1) || (proc->Option[7] == 3)) { SetFlag(CasualModeFlag); } 
+		RandBitflags->base = proc->Option[1]; 
+		RandBitflags->growth = proc->Option[2];
+		RandBitflags->levelups = proc->Option[3]; 
+		RandBitflags->caps = proc->Option[4]; 
+		RandBitflags->class = proc->Option[5]; 
+		RandBitflags->itemStats = ((proc->Option[6] == 1) || (proc->Option[6] == 3)); 
+		RandBitflags->foundItems = ((proc->Option[6] == 1) || (proc->Option[6] == 2)); 
+		RandBitflags->shopItems = ((proc->Option[6] == 1) || (proc->Option[6] == 2)); 
+		if (proc->Option[7] == 1){ SetFlag(CasualModeFlag); } 
 		else { UnsetFlag(CasualModeFlag); } 
-		if (proc->Option[7] > 1) { RandBitflags->randMusic = 1; } 
-		else { RandBitflags->randMusic = 0; } 
+		
+		RandBitflags->randMusic = proc->Option[8]; 
+		RandBitflags->colours = proc->Option[9]; 
+		RandBitflags->itemDur = proc->Option[10]; 
+		RandBitflags->playerBonus = proc->Option[11]; 
+		RandValues->bonus = proc->Option[12];
+		
+
+		RandBitflags->disp = 1; 
 		
 		Proc_Break((ProcPtr)proc);
 		//BG_SetPosition(BG_3, 0, 0); 
 		//gLCDControlBuffer.dispcnt.bg3_on = 1; // don't display bg3 
 		//gLCDControlBuffer.dispcnt.bg0_on = 0; // don't display bg3 
-		m4aSongNumStart(0x2D9); // idk which to use 
+		
+		//m4aSongNumStart(0x2D9); // idk which to use 
 	};
 	
 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
@@ -3251,19 +3314,21 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	
 	// pull up your previously saved options 
 	proc->Option[0] = RandValues->variance; 
-	proc->Option[6] = RandValues->bonus; 
 	proc->Option[1] = RandBitflags->base; 
 	proc->Option[2] = RandBitflags->growth; 
-	proc->Option[3] = RandBitflags->caps; 
-	proc->Option[4] = RandBitflags->class; 
-	if (RandBitflags->itemStats && RandBitflags->foundItems) { proc->Option[5] = 1; } 
-	else if (RandBitflags->itemStats) { proc->Option[5] = 3; } 
-	else if (RandBitflags->foundItems) { proc->Option[5] = 2; } 
-	else { proc->Option[5] = 0; } 
+	proc->Option[3] = RandBitflags->levelups; 
+	proc->Option[4] = RandBitflags->caps; 
+	proc->Option[5] = RandBitflags->class; 
+	if (RandBitflags->itemStats && RandBitflags->foundItems) { proc->Option[6] = 1; } 
+	else if (RandBitflags->itemStats) { proc->Option[6] = 3; } 
+	else if (RandBitflags->foundItems) { proc->Option[6] = 2; } 
+	else { proc->Option[6] = 0; } 
 	proc->Option[7] = CheckFlag(CasualModeFlag);
-	proc->Option[7] += (RandBitflags->randMusic * 2); 
-	
-	
+	proc->Option[8] = RandBitflags->randMusic;		
+	proc->Option[9] = RandBitflags->colours;		
+	proc->Option[10] = RandBitflags->itemDur;		
+	proc->Option[11] = RandBitflags->playerBonus;	
+	proc->Option[12] = RandValues->bonus;		
 	
 	gLCDControlBuffer.dispcnt.bg0_on = 0;
 	return ME_DISABLE | ME_PLAY_BEEP; // | ME_CLEAR_GFX;

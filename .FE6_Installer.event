@@ -307,6 +307,10 @@ BYTE $FD $3D $A3 $48 $EC $8A $9F $8F $8F $CF $11 $84 $5A $EF $FE $FB $73 $7B $01
 #define setTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
 ALIGN 4 
 //setTextWithHuffman(0xB6E, VarianceText) // no longer necessary 
+setTextWithHuffman(0xB80, MovText)
+setTextWithHuffman(0xB81, HpText)
+setTextWithHuffman(0xB82, MinusText)
+
 
 PUSH 
 
@@ -498,12 +502,12 @@ WORD 1
 #endif 
 
 ALIGN 4 
-Opt7Number:
+NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
-WORD 2 
+WORD 0
 #else 
-WORD 4
-#endif   
+WORD 1
+#endif     
 ALIGN 4 
 RandValues:
 WORD 0x203D974 // Bandit unitID + 0x45 BWL data
