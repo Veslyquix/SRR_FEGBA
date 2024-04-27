@@ -552,10 +552,10 @@ WORD 1
 ALIGN 4 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
-WORD 0
-#else 
 WORD 1
-#endif   
+#else 
+WORD 0
+#endif  
 ALIGN 4 
 RandValues:
 WORD 0x203eb30 // BWL + 0x3a Bramimond +0

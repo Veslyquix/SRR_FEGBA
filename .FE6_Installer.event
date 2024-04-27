@@ -504,9 +504,9 @@ WORD 1
 ALIGN 4 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
-WORD 0
-#else 
 WORD 1
+#else 
+WORD 0
 #endif     
 ALIGN 4 
 RandValues:

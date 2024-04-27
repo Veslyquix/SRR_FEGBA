@@ -2002,7 +2002,7 @@ int NewGetStatIncrease(int growth, int noise[], int level, int offset, int useRN
     }
 
 	// fixed growths 
-	if ((RandBitflags->growth == 4) || (RandBitflags->growth == 5)) { 
+	if ((RandBitflags->levelups == 2)) { 
 		if (level < 1) { level = 1; } 
 		// +growth so the first levelup isn't always blank in fixed growths 
 		if (((growth * (level)) / 100) < (((growth * level+1) + growth) / 100)) { 
@@ -2013,7 +2013,7 @@ int NewGetStatIncrease(int growth, int noise[], int level, int offset, int useRN
 
 	offset += (level*15) + level; 
 	
-	if (useRN) { if (Roll1RN(growth)) { // 50 
+	if (!(RandBitflags->levelups)) { if (Roll1RN(growth)) { // 50 
 	result++; } }
 	else if (HashByte_Global(growth, 100, noise, offset) >= (100 - growth)) {
     //if (Roll1RN(growth)) { // 50 
