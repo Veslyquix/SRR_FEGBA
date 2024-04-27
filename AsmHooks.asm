@@ -184,6 +184,9 @@ bl ShouldRandomizeClass
 strh r0, [r4] 
 cmp r0, #0 
 beq DontOverwriteDfdr 
+bl ShouldDoJankyPalettes
+cmp r0, #0 
+bne DontOverwriteDfdr 
 mov r1, #0 
 sub r1, #1 
 strh r1, [r5] 
@@ -195,6 +198,12 @@ bl ShouldRandomizeClass
 strh r0, [r4, #2] 
 cmp r0, #0 
 beq DontOverwriteAtkr 
+push {r0} 
+bl ShouldDoJankyPalettes
+mov r2, r0 @ just in case r0 matters 
+pop {r0}
+cmp r2, #0 
+bne DontOverwriteAtkr
 mov r1, #0 
 sub r1, #1 
 strh r1, [r5, #2] 

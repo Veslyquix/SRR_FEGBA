@@ -108,43 +108,182 @@ NeverChangeFromItem(0x77) // Saint's staff
 NeverChangeIntoItem(0x4F) // useless staff "Makes closed areas visible." 
 
 ALIGN 4 
+SeedText: 
+BYTE 0xCD 0xFE 0x61 0x2F 0x00 0x00 00 00 00 00 
 VarianceText: 
 BYTE 0x5D 0x8F 0x9C 0x2D 0xC8 0x7C 0x2F 00 0 0 
 BaseStatsText: 
 BYTE 0x3D 0x64 0x7D 0x9A 0xB9 0xF8 0xEA 0x05 0x00 0x00
 GrowthsText: 
 BYTE 0x5D 0x1C 0xB5 0x7D 0xAC 0x5E 0x00 0x00
+LevelupsText:
+BYTE $64 $9F $FD $85 $77 $56 $2F $00 $00 $00 $00 $00
 StatCapsText: 
 BYTE 0xCD 0x5C 0x3C 0x2C 0x4A 0x67 0xF5 0x02 0x00 0x00
 ClassText: 
 BYTE 0x2C 0x16 0x59 0xAB 0x17 0x00 0x00 0x00
 ItemsText: 
 BYTE 0x6D 0xFF 0x7A 0xF5 0x02 0x00 0x00
-EnemyDiffBonusText: 
-BYTE 0xA4 0xF0 0x6B 0x10 0x6B 0x9B 0x20 0x6E 0x7A 0x28 0xF2 0xD5 0x0B 0x00 0x00 0x00
 ModeText: 
 BYTE 0x64 0x14 0x7E 0x2F 0x00 0x00 0x00 0x00
-SeedText: 
-BYTE 0xCD 0xFE 0x61 0x2F 0x00 0x00 00 00 00 00 
+MusicText:
+BYTE $64 $F8 $DA $4C $2F $00 $00 $00 $00 $00 $00 $00
+ColoursText:
+BYTE $2C $6A $51 $7E $56 $2F $00 $00 $00 $00 $00 $00
+ItemDurabilityText:
+BYTE $6D $FF $3A $D6 $F8 $91 $D6 $2E $DB $41 $2F $00 $00 $00 $00 $00
+PlayerBonusText:
+BYTE $CD $15 $01 $7F $D2 $43 $91 $AF $5E $00 $00 $00 $00 $00 $00 $00
+EnemyDiffBonusText: 
+BYTE 0xA4 0xF0 0x6B 0x10 0x6B 0x9B 0x20 0x6E 0x7A 0x28 0xF2 0xD5 0x0B 0x00 0x00 0x00
+RandomizerText: 
+BYTE $FD $09 $42 $AD $77 $FF $FD $E9 $05 $00 $00 $00 $00
 
-VanillaText:
-BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 0x00 0x00 0x00 0x00 0x00 0x00 
-RandomText:
-BYTE 0xFD 0x09 0x42 0xAD 0x7B 0x01 0x00 0x00 0x00 0x00 0x00 0x00 
-ZeroPercentText: 
-BYTE 0xC6 0xA1 0x7F 0x2F 0x98 0xEB 0x05 0x00 0x00 0x00 0x00 0x00 0x00 
-OneHundredPercentText:
-BYTE 0x2C 0xA8 0x71 0x30 0x0E 0xFD 0x7B 0xC1 0x5C 0x2F 0x00 0x00 0x00 0x00 0x00 0x00 
-Always30Text: 
-BYTE 0x24 0xC5 0x16 0xB0 0x62 0x3D 0x33 0x0E 0xBD 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
-FounditemsonlyText:
-BYTE 0xA4 0x29 0x47 0x98 0xED 0x5F 0xAF 0x28 0x16 0xD0 0x0B 0x00 0x00 0x00 0x00 0x00
-ItemstatsonlyText:
-BYTE 0x6D 0xFF 0x3A 0xCB 0xC5 0x57 0x14 0x0B 0xE8 0x05 0x00 0x00
-ClassicText:
-BYTE 0x2C 0x16 0x59 0x6B 0x33 0xBD 0x00 0x00 0x00 0x00 0x00 0x00
-CasualText:
-BYTE 0x2C 0xCA 0xE2 0x52 0x7A 0x01 0x00 0x00 0x00 0x00 0x00 0x00
+
+ALIGN 16 
+Option0:
+FILL(16 * 21) 
+ORG Option0 
+ALIGN 16; BYTE $C6 $A1 $7F $2F $98 $EB $05 // 0% 
+ALIGN 16; BYTE $2C $83 $FE $BD $60 $AE $17 // 5%
+ALIGN 16; BYTE $2C $A8 $71 $E8 $DF $0B $E6 $7A $01 // 10%
+ALIGN 16; BYTE $2C $28 $CB $A0 $7F $2F $98 $EB $05 // etc. 
+ALIGN 16; BYTE $C6 $09 $E3 $D0 $BF $17 $CC $F5 $02 
+ALIGN 16; BYTE $C6 $09 $96 $41 $FF $5E $30 $D7 $0B
+ALIGN 16; BYTE $D6 $33 $E3 $D0 $BF $17 $CC $F5 $02
+ALIGN 16; BYTE $D6 $33 $96 $41 $FF $5E $30 $D7 $0B
+ALIGN 16; BYTE $D6 $3B $C6 $A1 $7F $2F $98 $EB $05
+ALIGN 16; BYTE $D6 $3B $2C $83 $FE $BD $60 $AE $17
+ALIGN 16; BYTE $2C $03 $E3 $D0 $BF $17 $CC $F5 $02
+ALIGN 16; BYTE $2C $03 $96 $41 $FF $5E $30 $D7 $0B
+ALIGN 16; BYTE $FD $7B $8C $43 $FF $5E $30 $D7 $0B
+ALIGN 16; BYTE $FD $7B $58 $06 $FD $7B $C1 $5C $2F
+ALIGN 16; BYTE $5D $B3 $C6 $A1 $7F $2F $98 $EB $05
+ALIGN 16; BYTE $5D $B3 $2C $83 $FE $BD $60 $AE $17
+ALIGN 16; BYTE $A4 $F7 $C6 $A1 $7F $2F $98 $EB $05
+ALIGN 16; BYTE $A4 $F7 $2C $83 $FE $BD $60 $AE $17
+ALIGN 16; BYTE $FD $CB $C6 $A1 $7F $2F $98 $EB $05
+ALIGN 16; BYTE $FD $CB $2C $83 $FE $BD $60 $AE $17
+ALIGN 16; BYTE $2C $A8 $71 $30 $0E $FD $7B $C1 $5C $2F
+
+ALIGN 16
+Option1:
+FILL(16*2)
+ORG Option1
+ALIGN 16; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
+ALIGN 16; BYTE 0xFD 0x09 0x42 0xAD 0x7B 0x01 
+
+ALIGN 16
+Option2:
+FILL(16*4)
+ORG Option2
+ALIGN 16; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
+ALIGN 16; BYTE 0xFD 0x09 0x42 0xAD 0x7B 0x01 
+ALIGN 16; BYTE $C6 $A1 $7F $2F $98 $EB $05 // 0% 
+ALIGN 16; BYTE $2C $A8 $71 $30 $0E $FD $7B $C1 $5C $2F 
+
+ALIGN 16
+Option3:
+FILL(16*3)
+ORG Option3
+ALIGN 16; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
+ALIGN 16; BYTE $3D $64 $3D $8C $62 $D6 $3F $EC $05
+ALIGN 16; BYTE $A4 $6D $EB $3F $EC $05
+
+ALIGN 16
+Option4:
+FILL(16*3)
+ORG Option4
+ALIGN 16; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
+ALIGN 16; BYTE 0xFD 0x09 0x42 0xAD 0x7B 0x01 
+ALIGN 16; BYTE 0x24 0xC5 0x16 0xB0 0x62 0x3D 0x33 0x0E 0xBD
+
+ALIGN 16
+Option5:
+FILL(16*4)
+ORG Option5
+ALIGN 16; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
+ALIGN 16; BYTE 0xFD 0x09 0x42 0xAD 0x7B 0x01 
+ALIGN 16; BYTE $FD $09 $42 $AD $43 $E8 $49 $A7 $08 $F8 $B3 $7A $01
+ALIGN 16; BYTE $FD $09 $42 $AD $43 $E8 $C9 $E3 $D7 $FB $57 $2F
+
+ALIGN 16
+Option6:
+FILL(16*4)
+ORG Option6
+ALIGN 16; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
+ALIGN 16; BYTE 0xFD 0x09 0x42 0xAD 0x7B 0x01 
+ALIGN 16; BYTE 0xA4 0x29 0x47 0x98 0xED 0x5F 0xAF 0x28 0x16 0xD0 0x0B
+ALIGN 16; BYTE 0x6D 0xFF 0x3A 0xCB 0xC5 0x57 0x14 0x0B 0xE8 0x05
+
+ALIGN 16
+Option7:
+FILL(16*2)
+ORG Option7
+ALIGN 16; BYTE 0x2C 0x16 0x59 0x6B 0x33 0xBD
+ALIGN 16; BYTE 0x2C 0xCA 0xE2 0x52 0x7A 0x01
+
+ALIGN 16
+Option8:
+FILL(16*2)
+ORG Option8
+ALIGN 16; BYTE $5D $8F $E0 $2E $45 $D2 $A3 $0B $32 $BD
+ALIGN 16; BYTE $FD $09 $42 $AD $D3 $A3 $0B $32 $BD
+
+ALIGN 16
+Option9:
+FILL(16*4)
+ORG Option9
+ALIGN 16; BYTE $5D $8F $E0 $2E $45 $C2 $A2 $16 $E5 $67 $F5 $02
+ALIGN 16; BYTE $FD $09 $42 $AD $7B $01
+ALIGN 16; BYTE $D6 $43 $D0 $00 $7A $01
+ALIGN 16; BYTE $CD $E9 $F1 $23 $DB $57 $14 $0B $E8 $05
+
+ALIGN 16
+Option10:
+FILL(16*2)
+ORG Option10
+ALIGN 16; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
+ALIGN 16; BYTE $6D $24 $36 $6E $FF $5E
+
+ALIGN 21
+Option11:
+Option12:
+FILL(32*21)
+ORG Option11
+ALIGN 21; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
+ALIGN 21; BYTE $5D $D3 $2C $68 $C6 $86 $F0 $31 $E5 $D9 $5F $7A $01
+ALIGN 21; BYTE $5D $D3 $C6 $89 $8C $0D $E1 $63 $CA $B3 $BF $AC $5E
+ALIGN 21; BYTE $5D $D3 $D6 $B3 $8C $0D $E1 $63 $CA $B3 $BF $AC $5E
+ALIGN 21; BYTE $5D $D3 $D6 $3B $19 $1B $C2 $C7 $94 $67 $7F $59 $BD
+ALIGN 21; BYTE $5D $D3 $2C $83 $8C $0D $E1 $63 $CA $B3 $BF $AC $5E
+ALIGN 21; BYTE $5D $D3 $FD $7B $32 $36 $84 $8F $29 $CF $FE $B2 $7A $01
+ALIGN 21; BYTE $5D $D3 $5D $B3 $19 $1B $C2 $C7 $94 $67 $7F $59 $BD
+ALIGN 21; BYTE $5D $D3 $A4 $F7 $19 $1B $C2 $C7 $94 $67 $7F $59 $BD
+ALIGN 21; BYTE $5D $D3 $FD $CB $19 $1B $C2 $C7 $94 $67 $7F $59 $BD
+ALIGN 21; BYTE $5D $D3 $2C $A8 $71 $C8 $D8 $10 $3E $A6 $3C $FB $CB $EA $05
+ALIGN 21; BYTE $5D $D3 $2C $28 $0B $9A $B1 $21 $7C $4C $79 $F6 $97 $D5 $0B
+ALIGN 21; BYTE $5D $D3 $2C $A8 $71 $22 $63 $43 $F8 $98 $F2 $EC $2F $AB $17
+ALIGN 21; BYTE $5D $D3 $2C $A8 $F5 $2C $63 $43 $F8 $98 $F2 $EC $2F $AB $17
+ALIGN 21; BYTE $5D $D3 $2C $A8 $F5 $4E $C6 $86 $F0 $31 $E5 $D9 $5F $56 $2F
+ALIGN 21; BYTE $5D $D3 $2C $28 $CB $20 $63 $43 $F8 $98 $F2 $EC $2F $AB $17
+ALIGN 21; BYTE $5D $D3 $2C $68 $FF $9E $8C $0D $E1 $63 $CA $B3 $BF $AC $5E
+ALIGN 21; BYTE $5D $D3 $2C $68 $D7 $6C $C6 $86 $F0 $31 $E5 $D9 $5F $56 $2F
+ALIGN 21; BYTE $5D $D3 $2C $28 $E9 $7D $C6 $86 $F0 $31 $E5 $D9 $5F $56 $2F
+ALIGN 21; BYTE $5D $D3 $2C $68 $FF $72 $C6 $86 $F0 $31 $E5 $D9 $5F $56 $2F
+ALIGN 21; BYTE $5D $D3 $C6 $09 $E3 $90 $B1 $21 $7C $4C $79 $F6 $97 $D5 $0B
+ALIGN 21; BYTE $D6 $61 $41 $8D $43 $C6 $86 $F0 $31 $E5 $D9 $5F $56 $2F
+ALIGN 21; BYTE $D6 $E9 $5F $CE $D8 $10 $3E $A6 $3C $FB $CB $EA $05
+ALIGN 21; BYTE $D6 $21 $BD $CF $D8 $10 $3E $A6 $3C $FB $CB $EA $05
+ALIGN 21; BYTE $D6 $E9 $9A $CD $D8 $10 $3E $A6 $3C $FB $CB $EA $05
+ALIGN 21; BYTE $E9 $DF $93 $B1 $21 $7C $4C $79 $F6 $97 $D5 $0B 
+ALIGN 21; BYTE $D6 $61 $19 $64 $6C $08 $1F $53 $9E $FD $65 $F5 $02
+ALIGN 21; BYTE $D6 $B1 $DE $C9 $D8 $10 $3E $A6 $3C $FB $CB $EA $05
+ALIGN 21; BYTE $D6 $B1 $9E $65 $6C $08 $1F $53 $9E $FD $65 $F5 $02
+ALIGN 21; BYTE $D6 $31 $4E $64 $6C $08 $1F $53 $9E $FD $65 $F5 $02
+ALIGN 21; BYTE $D6 $61 $41 $33 $36 $84 $8F $29 $CF $FE $D2 $0B
+
+ALIGN 32
 MovText:
 BYTE $64 $94 $DD $0B $00 $00 $00 $00 
 HpText:
@@ -152,66 +291,26 @@ BYTE $C6 $9A $EB $05 $00 $00 $00 $00
 MinusText: 
 BYTE $FD $7B $71 $91 $5E $00 $00 $00 $00 // _ 
 //BYTE $D6 $E9 $05 $00 $00 $00 $00 $00 // - 
-PlayersText:
-BYTE $CD $15 $01 $7F $56 $2F $00 $00 $00 $00 $00 $00
-// "Players only" CD 15 01 7F 56 14 0B E8 05 00 00 00 00 00 00 00
-EnemiesText:
-BYTE $A4 $F0 $EB $FD $AB $17 $00 $00 $00 $00 $00 $00
-// "Enemies only" A4 F0 EB FD 2B 8A 05 F4 02 00 00 00 00 00 00 00
 PlusText:
 BYTE $5D $D3 $BD $00 $00 $00 $00 $00 $00 $00 $00 $00
 DashText:
 BYTE $D6 $E9 $05 $00 $00 $00 $00 $00 $00 $00 $00 $00
 PercentText:
 BYTE $FD $7B $C1 $5C $2F $00 $00 $00 $00 $00 $00 $00
-ClassicRandMusicText:
-BYTE $2C $16 $59 $6B $33 $21 $7D $9E $FE $04 $A1 $D6 $E9 $D1 $05 $99 $5E $00 $00 $00 $00 $00 $00 $00
-CasualRandMusicText:
-BYTE $2C $CA $E2 $52 $42 $FA $3C $FD $09 $42 $AD $D3 $A3 $0B $32 $BD $00 $00 $00 $00 $00 $00 $00 $00
-RandomizerText: // "Config"
+ConfigText: 
 BYTE $82 $A4 $82 $E9 $82 $E8 $82 $DD $82 $E0 $82 $DE $00 $00
 RandomizerDescText:
 BYTE $FD $3D $A3 $48 $EC $8A $9F $8F $8F $CF $11 $84 $5A $EF $FE $FB $73 $7B $01 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
-FixedGrowthsText:
-BYTE $A4 $6D $EB $3F $4C $75 $D4 $F6 $B1 $7A $01 $00 $00 $00 $00 $00
-FixedAndRandomText:
-BYTE $A4 $6D $EB $3F $0C $E9 $F3 $1C $41 $A8 $75 $2F $00 $00 $00 $00 $00 $00 $00 $00
 
 
 #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
 #define setTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
 ALIGN 4 
-setTextWithHuffman(0xB6E, VarianceText)
-setTextWithHuffman(0xB6F, BaseStatsText)
-setTextWithHuffman(0xB70, GrowthsText)
-setTextWithHuffman(0xB71, StatCapsText)
-setTextWithHuffman(0xB72, ClassText)
-setTextWithHuffman(0xB73, ItemsText)
-setTextWithHuffman(0xB74, EnemyDiffBonusText)
-setTextWithHuffman(0xB75, ModeText)
-setTextWithHuffman(0xB76, SeedText)
-setTextWithHuffman(0xB77, VanillaText)
-setTextWithHuffman(0xB78, RandomText)
-setTextWithHuffman(0xB79, ZeroPercentText)
-setTextWithHuffman(0xB7A, OneHundredPercentText)
-setTextWithHuffman(0xB7B, Always30Text)
-setTextWithHuffman(0xB7C, FounditemsonlyText)
-setTextWithHuffman(0xB7D, ItemstatsonlyText)
-setTextWithHuffman(0xB7E, ClassicText)
-setTextWithHuffman(0xB7F, CasualText)
+//setTextWithHuffman(0xB6E, VarianceText) // no longer necessary 
 setTextWithHuffman(0xB80, MovText)
 setTextWithHuffman(0xB81, HpText)
 setTextWithHuffman(0xB82, MinusText)
-setTextWithHuffman(0xB83, PlayersText)
-setTextWithHuffman(0xB84, EnemiesText)
-setTextWithHuffman(0xB85, PlusText)
-setTextWithHuffman(0xB86, DashText)
-setTextWithHuffman(0xB87, PercentText)
-setTextWithHuffman(0xB88, ClassicRandMusicText)
-setTextWithHuffman(0xB89, CasualRandMusicText)
-setTextWithHuffman(0xB8A, RandomizerDescText)
-setTextWithHuffman(0xB8B, FixedGrowthsText)
-setTextWithHuffman(0xB8C, FixedAndRandomText)
+
 
 PUSH 
 
@@ -328,7 +427,7 @@ ALIGN 4
 NewChMenu: 
 BYTE  $DC $74 $81 $08 $00 $00 $54 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $A5 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $20 $7A $81 $08 $00 $00 $55 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $D5 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $2E $7A $81 $08 $00 $00 $56 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $C1 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $CC $7A $81 $08 $00 $00 $57 $06 $00 $00 $00 $00 $55 $EA $01 $08 $00 $00 $00 $00 $6D $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 
 // Config Menu 
-POIN RandomizerText; BYTE $00 $00; SHORT 0xb8a; BYTE $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00; POIN MenuStartConfigMenu; BYTE $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
+POIN ConfigText; BYTE $00 $00; SHORT 0xb8a; BYTE $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00; POIN MenuStartConfigMenu; BYTE $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
 // End 
 BYTE $08 $75 $81 $08 $00 $00 $58 $06 $00 $00 $00 $00 $6D $1E $04 $08 $00 $00 $00 $00 $91 $EA $01 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
 FILL(36) 
@@ -403,22 +502,20 @@ WORD 1
 #endif 
 
 ALIGN 4 
-Opt7Number:
+NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
-WORD 2 
+WORD 1
 #else 
-WORD 4
-#endif   
+WORD 0
+#endif     
 ALIGN 4 
 RandValues:
 WORD 0x203D974 // Bandit unitID + 0x45 BWL data
-RandBitflagsA:
-WORD 0x202AA63 // PlaySt + 0x1B (unk, 1 bytes) @ saved on suspend 
-RandBitflagsB:
-WORD 0x202AA67 // PlaySt + 0x1F (unk, 1 bytes) @ saved on suspend 
+RandBitflags:
+WORD 0x203D978 
 MaxItems:
-WORD 0x203D978
+WORD 0x203D97C
 MaxClasses:
-WORD 0x203D979
+WORD 0x203D97D
 
 

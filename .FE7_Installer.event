@@ -550,20 +550,18 @@ WORD 1
 #endif 
 
 ALIGN 4 
-Opt7Number:
+NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
-WORD 2 
+WORD 1
 #else 
-WORD 4
-#endif   
+WORD 0
+#endif  
 ALIGN 4 
 RandValues:
-WORD 0x202BC3C // GameOptions + 0x44 (unk, 4 bytes) 
-RandBitflagsA:
-WORD 0x202BC16 // GameOptions + 0x1E (unk, 2 bytes) 
-RandBitflagsB:
-WORD 0x202BC17 // GameOptions + 0x1E (unk, 2 bytes) 
-MaxItems:
+WORD 0x203eb30 // BWL + 0x3a Bramimond +0
+RandBitflags:
 WORD 0x203eb34 // BWL + 0x3a Bramimond +4
+MaxItems:
+WORD 0x203eb38 // BWL + 0x3a Bramimond +8
 MaxClasses:
-WORD 0x203eb35
+WORD 0x203eb39
