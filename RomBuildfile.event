@@ -132,6 +132,19 @@ WORD 0x8C97ED2
 POP 
 
 ALIGN 4 
+WindSwordDesc:
+String("Suffused with wind magic."); BYTE 0 
+// Original is two lines and doesn't fit: A magic sword capable of striking at a distance.
+ALIGN 4 
+DragonAxeDesc:
+String("Effective against wyverns."); BYTE 0 
+// Original is two lines and doesn't fit: An axe designed to strike down wyverns.
+
+setText(0x300, DragonAxeDesc) 
+setText(0x301, WindSwordDesc) 
+
+
+ALIGN 4 
 LynModeEvent: 
 //BYTE 0xC 0 0 0 // Don't start from black 
 BYTE 0x87 0 0 0 // No skipping 
