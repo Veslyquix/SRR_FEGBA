@@ -332,6 +332,7 @@ int ShouldRandomizeColours(void) {
 	return true; 
  
 }  
+extern u16 gPaletteBuffer[];
 extern struct Unit gBattleActorUnit; 
 extern struct Unit gBattleTargetUnit; 
 int MaybeRandomizeColours(void) { 
@@ -354,9 +355,7 @@ int MaybeRandomizeColours(void) {
 	struct PlayerInterfaceProc* proc = Proc_Find((struct ProcCmd*)gProcScr_UnitDisplay_MinimugBox);
 	if (proc) { 
 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
-		// for the frame we're moving off of the unit, use prev position for palette 
-		//if (proc->unk_55) { unit = GetUnit(gBmMapUnit[proc->yCursor][proc->xCursor]); } 
-		//
+		//unit = GetUnit(gBmMapUnit[proc->yCursor][proc->xCursor]); 
 		#ifdef FE7 
 		if (!unit) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
 		#endif 
@@ -364,6 +363,7 @@ int MaybeRandomizeColours(void) {
 		if (proc->unk_55) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
 		if (proc->isRetracting) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
 		#endif 
+		if (gActiveUnit->state & US_HIDDEN) { unit = gActiveUnit; } // for frame we select unit 
 		if (unit) { 
 			RandColours(4, 6, 9, GetAdjustedPortraitId(unit)); 
 			result = true;
@@ -385,37 +385,43 @@ int MaybeRandomizeColours(void) {
 		result = true;
 	}   
 	
-	//if (RandBitflags->colours == 1) { // if 3, it's portraits only. 2 is janky 
-	if (RandBitflags->colours != 3) { // if 3, it's portraits only. 2 is janky 
+	if (RandBitflags->colours == 1) { // if 3, it's portraits only. 2 is janky 
+	//if (RandBitflags->colours != 3) { // if 3, it's portraits only. 2 is janky 
 		if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
+			int offsetA = 0; 
+			int offsetB = 0; 
+			int palA = gPaletteBuffer[((7+16) * 16) + 1]; // times 16 because gPaletteBuffer uses SHORT 
+			int palB = gPaletteBuffer[((9+16) * 16) + 1]; // (byte would be (9+16)*32 )
+			if ((palA >= 0x7BBE) || (palA == 0)) { offsetA = 4; } // 2nd col is white or black, don't alter the first few  
+			if ((palB >= 0x7BBE) || (palB == 0)) { offsetB = 4; } // so animation skin colours look better 
 			#ifdef FE6 
 			if (!BattleAttackerSideBool) { 
+				RandColours(9+16, offsetB, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
 				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
-				RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+				RandColours(7+16, offsetA, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
 				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
-				RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
 			}
 			else { 
+				RandColours(9+16, offsetB, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
 				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
-				RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
+				RandColours(7+16, offsetA, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
 				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
-				RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
 			}
 			
 			#else 
 		
 		
 			if (!BattleAttackerSideBool) { 
+				RandColours(9+16, offsetB, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
 				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-				RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
+				RandColours(7+16, offsetA, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
 				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
-				RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
 			}
 			else { 
+				RandColours(9+16, offsetB, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
 				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
-				RandColours(9+16, 0, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
+				RandColours(7+16, offsetA, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
 				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-				RandColours(7+16, 0, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
 			}
 			#endif 
 

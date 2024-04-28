@@ -97,7 +97,7 @@ bx r3
 .global MaybeUseGenericPalette_FE6
 .type MaybeUseGenericPalette_FE6, %function 
 MaybeUseGenericPalette_FE6: 
-push {r4, lr} 
+push {r4-r5, lr} 
 mov r4, r0 @ unit 
 ldr r0, [r2, #0x28] 
 ldr r1, [r1, #0x24] 
@@ -105,19 +105,20 @@ orr r0, r1
 lsr r0, #8 
 add r2, #0x23 
 add r2, r0 
-ldrb r0, [r2] 
+ldrb r5, [r2] 
 
-push {r0} 
 mov r0, r4 @ unit 
 bl ShouldRandomizeClass
-mov r1, r0 
-pop {r0} 
-cmp r1, #0 
+cmp r0, #0 
 beq VanillaClassPaletteMethod_FE6 
-mov r0, #0 @ always 0 if classes are randomized 
+bl ShouldDoJankyPalettes
+cmp r0, #0 
+bne VanillaClassPaletteMethod_FE6
+mov r5, #0 @ always 0 if classes are randomized 
 VanillaClassPaletteMethod_FE6: 
+mov r0, r5 
 sub r0, #1 
-pop {r4} 
+pop {r4-r5} 
 pop {r3} 
 bx r3 
 .ltorg 
@@ -125,7 +126,7 @@ bx r3
 .global MaybeUseGenericPalette_FE7
 .type MaybeUseGenericPalette_FE7, %function 
 MaybeUseGenericPalette_FE7: 
-push {r4, lr} 
+push {r4-r5, lr} 
 mov r4, r0
 ldr r1, [r0, #4]  
 ldr r0, [r2, #0x28] 
@@ -137,20 +138,21 @@ mov r1, #1
 and r0, r1 
 add r2, #0x23 
 add r2, r0 
-ldrb r0, [r2] 
+ldrb r5, [r2] 
 
-push {r0, r3} 
 mov r0, r4 @ unit 
 bl ShouldRandomizeClass
-mov r1, r0 
-pop {r0, r3} 
-cmp r1, #0 
+cmp r0, #0 
 beq VanillaClassPaletteMethod_FE7 
-mov r0, #0 @ always 0 if classes are randomized 
+bl ShouldDoJankyPalettes
+cmp r0, #0 
+bne VanillaClassPaletteMethod_FE7
+mov r5, #0 @ always 0 if classes are randomized 
 VanillaClassPaletteMethod_FE7: 
-strh r0, [r3] 
+strh r5, [r3] 
+mov r0, r5 
 sub r0, #1 
-pop {r4} 
+pop {r4-r5} 
 pop {r3} 
 bx r3 
 .ltorg 
