@@ -132,8 +132,8 @@ WORD 0x8C97ED2
 POP 
 
 ALIGN 4 
-WindSwordDesc:
-String("Suffused with wind magic."); BYTE 0 
+WindSwordDesc: // New desc taken from FE8 
+String("Capable of indirect attacks."); BYTE 0 //Suffused with wind magic."); BYTE 0 
 // Original is two lines and doesn't fit: A magic sword capable of striking at a distance.
 ALIGN 4 
 DragonAxeDesc:
