@@ -276,6 +276,11 @@ ORG $8EF16
 SHORT $6800 $7900 $46c0 $46c0 $46c0 $46c0 $46c0; BYTE SupplyUnitID $28; SHORT $D003 
 // search for unit id instead of "supply" 0x200 bitflag 
 
+// in $2E818 
+ORG $2E838 // when inv full and sending an item 
+SHORT $46C0 $46C0 $46c0 $46c0 $46c0 $46c0 
+SHORT $7918; BYTE SupplyUnitID $28; 
+// search for unit id instead of "supply" 0x200 bitflag 
 
 // Anti-Huffman by Hextator & ported by 7743
 ORG 0x4364; BYTE $00 $B5 $C2 $0F $00 $2A $02 $D0 $0E $F0 $86 $FC $03 $E0 $02 $4A $12 $68 $BB $F0 $6D $FC $00 $BD $40 $39 $00 $03
