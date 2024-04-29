@@ -422,6 +422,8 @@ DIS_matrixTable:
 ALIGN 4 
 NeverRandomizeColours:
 WORD 0
+PortraitColoursPastThisAreNotSkin:
+WORD 5 // vanilla portraits use the first few colours for skin 
 
 ALIGN 4 
 NewChMenu: 

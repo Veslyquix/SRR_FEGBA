@@ -282,6 +282,12 @@ NeverRandomizeColours:
 WORD 0 
 #else 
 WORD 1
+#endif
+PortraitColoursPastThisAreNotSkin:
+#ifdef VeslyBuildfile
+WORD 5 // vanilla portraits use the first few colours for skin  
+#else 
+WORD 0 
 #endif 
 
 ALIGN 4 

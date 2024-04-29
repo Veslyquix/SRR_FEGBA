@@ -326,6 +326,7 @@ int GetAdjustedPortraitId(struct Unit* unit) {
 } 
  
 extern int NeverRandomizeColours; 
+extern int PortraitColoursPastThisAreNotSkin; 
 int ShouldRandomizeColours(void) { 
 	if (NeverRandomizeColours) { return false; } 
 	if (!RandBitflags->colours) { return false; } 
@@ -335,6 +336,31 @@ int ShouldRandomizeColours(void) {
 extern u16 gPaletteBuffer[];
 extern struct Unit gBattleActorUnit; 
 extern struct Unit gBattleTargetUnit; 
+void AdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, int NeverRandomizeBeforeThisColour) { 
+	//asm("mov r11, r11"); 
+	int r, g, b, col; 
+	u16* buffer = &gPaletteBuffer[(bank * 16)];
+	for (int i = 0; i < 16; i++) { 
+		if (i < NeverRandomizeBeforeThisColour) { i = NeverRandomizeBeforeThisColour; } 
+		col = buffer[i]; 
+		r = col & (0x1F); 
+		g = (col & (0x1F << 5)) >> 5; 
+		b = (col & (0x1F << 10)) >> 10; 
+		if (i < AlwaysRandomizePastThisColour) { 
+			if (r > 17) { // r > g > b 
+				if ((r+g) > 36) { 
+					if ((r >= g) && (g >= b)) { // yellowish/brownish (skin colours) 
+						if (((r - g) < 14) && ((g - b) < 25)) { // no extreme differences 
+						continue; } 
+					}
+				} 
+			}
+		} 
+		RandColours(bank, i, 1, id);
+	} 
+} 
+
+
 int MaybeRandomizeColours(void) { 
 	if (!ShouldRandomizeColours()) { return false; } 
 	int result = false; //sizeof(struct BattleUnit);  
@@ -345,9 +371,11 @@ int MaybeRandomizeColours(void) {
 		unit = gStatScreen.unit; 
 		if (unit) { 
 			#ifndef FE8 
-			RandColours(13, 6, 9, GetAdjustedPortraitId(unit)); 
+			AdjustNonSkinColours(13, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0); 
+			//RandColours(13, 6, 9, GetAdjustedPortraitId(unit)); 
 			#else 
-			RandColours(11, 6, 9, GetAdjustedPortraitId(unit)); 
+			AdjustNonSkinColours(11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0); 
+			//RandColours(11, 6, 9, GetAdjustedPortraitId(unit)); 
 			#endif 
 			result = true;
 		}
@@ -365,7 +393,8 @@ int MaybeRandomizeColours(void) {
 		#endif 
 		if (gActiveUnit->state & US_HIDDEN) { unit = gActiveUnit; } // for frame we select unit 
 		if (unit) { 
-			RandColours(4, 6, 9, GetAdjustedPortraitId(unit)); 
+			AdjustNonSkinColours(4, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0); 
+			//RandColours(4, 6, 9, GetAdjustedPortraitId(unit)); 
 			result = true;
 		} 
 		
@@ -378,52 +407,35 @@ int MaybeRandomizeColours(void) {
 			continue;
 		}
 		#ifdef FE6 
-		RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceSlot); 
+		AdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceSlot, PortraitColoursPastThisAreNotSkin, 0); 
+		//RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceSlot); 
 		#else 
-		RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceId); 
+		AdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0); 
+		//RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceId); 
 		#endif 
 		result = true;
 	}   
 	
+
+	
 	if (RandBitflags->colours == 1) { // if 3, it's portraits only. 2 is janky 
 	//if (RandBitflags->colours != 3) { // if 3, it's portraits only. 2 is janky 
 		if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
-			int offsetA = 0; 
-			int offsetB = 0; 
-			int palA = gPaletteBuffer[((7+16) * 16) + 1]; // times 16 because gPaletteBuffer uses SHORT 
-			int palB = gPaletteBuffer[((9+16) * 16) + 1]; // (byte would be (9+16)*32 )
-			if ((palA >= 0x7BBE) || (palA == 0)) { offsetA = 4; } // 2nd col is white or black, don't alter the first few  
-			if ((palB >= 0x7BBE) || (palB == 0)) { offsetB = 4; } // so animation skin colours look better 
-			#ifdef FE6 
-			if (!BattleAttackerSideBool) { 
-				RandColours(9+16, offsetB, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
-				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
-				RandColours(7+16, offsetA, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
-				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
+			unit = &gBattleActorUnit; 
+			if (BattleAttackerSideBool) { // swap units 
+				unit = &gBattleTargetUnit; 
 			}
-			else { 
-				RandColours(9+16, offsetB, 6, GetAdjustedPortraitId(&gBattleActorUnit)); 
-				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActorUnit)); 
-				RandColours(7+16, offsetA, 6, GetAdjustedPortraitId(&gBattleTargetUnit)); 
-				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTargetUnit)); 
+			int offset = 0; 
+			if (gPaletteBuffer[((7+16) * 16) + 1]  >= 0x7BBE) { offset = 5; } 
+			// if col index 1 is white, skip first few colours in battle anim 
+			AdjustNonSkinColours(7+16, GetAdjustedPortraitId(unit), 99, offset); 
+			unit = &gBattleTargetUnit; 
+			if (BattleAttackerSideBool) { // swap units 
+				unit = &gBattleActorUnit; 
 			}
-			
-			#else 
-		
-		
-			if (!BattleAttackerSideBool) { 
-				RandColours(9+16, offsetB, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-				RandColours(7+16, offsetA, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
-				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
-			}
-			else { 
-				RandColours(9+16, offsetB, 6, GetAdjustedPortraitId(&gBattleActor.unit)); 
-				RandColours(9+16, 6, 10, GetAdjustedPortraitId(&gBattleActor.unit)); 
-				RandColours(7+16, offsetA, 6, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-				RandColours(7+16, 6, 10, GetAdjustedPortraitId(&gBattleTarget.unit)); 
-			}
-			#endif 
+			offset = 0; 
+			if (gPaletteBuffer[((9+16) * 16) + 1]  >= 0x7BBE) { offset = 5; } 
+			AdjustNonSkinColours(9+16, GetAdjustedPortraitId(unit), 99, offset); 
 
 			result = true;
 		}
@@ -577,7 +589,7 @@ u16 HashByte_Global(int number, int max, int noise[], int offset) {
 	hash = GetNthRN(offset + 1, hash); 
 	
 	return Mod((hash & 0x2FFFFFFF), max);
-};
+}; 
 
 u16 HashByte_Ch(int number, int max, int noise[], int offset){
 	int i = 0; 
@@ -2778,7 +2790,7 @@ const char * PutStringInBuffer(const char * str) { return str; }
 #endif 
 
 extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); // 80C57BC
-#define Y_HAND 17
+#define Y_HAND 3
 #define NUMBER_X 20
 const int SRR_MAXDISP = 7;
 const int SRR_TotalOptions = 13;
@@ -2876,15 +2888,15 @@ void DisplayHand(int x, int y, int type) {
 
 
 LocationTable CursorLocationTable[] = {
-  {(NUMBER_X*8) - (0 * 8) - 4, Y_HAND},
-  {(NUMBER_X*8) - (1 * 8) - 4, Y_HAND},
-  {(NUMBER_X*8) - (2 * 8) - 4, Y_HAND},
-  {(NUMBER_X*8) - (3 * 8) - 4, Y_HAND},
-  {(NUMBER_X*8) - (4 * 8) - 4, Y_HAND},
-  {(NUMBER_X*8) - (5 * 8) - 4, Y_HAND},
-  {(NUMBER_X*8) - (6 * 8) - 4, Y_HAND}, 
-  {(NUMBER_X*8) - (7 * 8) - 4, Y_HAND}, 
-  {(NUMBER_X*8) - (8 * 8) - 4, Y_HAND}, 
+  {(NUMBER_X*8) - (0 * 8) - 4, (Y_HAND*8)-8},
+  {(NUMBER_X*8) - (1 * 8) - 4, (Y_HAND*8)-8},
+  {(NUMBER_X*8) - (2 * 8) - 4, (Y_HAND*8)-8},
+  {(NUMBER_X*8) - (3 * 8) - 4, (Y_HAND*8)-8},
+  {(NUMBER_X*8) - (4 * 8) - 4, (Y_HAND*8)-8},
+  {(NUMBER_X*8) - (5 * 8) - 4, (Y_HAND*8)-8},
+  {(NUMBER_X*8) - (6 * 8) - 4, (Y_HAND*8)-8}, 
+  {(NUMBER_X*8) - (7 * 8) - 4, (Y_HAND*8)-8}, 
+  {(NUMBER_X*8) - (8 * 8) - 4, (Y_HAND*8)-8}, 
 };
 
 const u32 DigitDecimalTable[] = { 

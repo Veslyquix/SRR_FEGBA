@@ -101,7 +101,9 @@ SET_DATA gProcScr_UnitDisplay_MinimugBox, 0x8CC2C60
 SET_DATA sFaceConfig, 0x202A58C
 SET_DATA gFaces, 0x30041C0
 SET_DATA gBattleActor, 0x203A3F0  
+SET_DATA gBattleActorUnit, 0x203A3F0  
 SET_DATA gBattleTarget, 0x203A470
+SET_DATA gBattleTargetUnit, 0x203A470
 SET_FUNC GetUnitPortraitId, 0x8018BD9
 SET_FUNC UnpackUiVArrowGfx, 0x80B1F6D
 SET_FUNC DisplayUiVArrow, 0x80B1FB1 
@@ -148,6 +150,9 @@ SET_FUNC RenderBmMap, 0x8019505
 SET_FUNC RefreshBMapGraphics, 0x802E369
 .endif 
 .if FE8 == true 
+SET_DATA gBattleActorUnit, 0x0203A4EC
+SET_DATA gBattleTargetUnit, 0x0203A56C
+
 SET_DATA gPaletteSyncFlag, 0x300000E 
 SET_DATA gPaletteBuffer, 0x20228A8
 SET_DATA gCursorX, 0x202BCB0+0x14 
