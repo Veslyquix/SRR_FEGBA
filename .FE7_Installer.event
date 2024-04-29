@@ -304,6 +304,20 @@ ORG 0x179C
 callHackNew(RandColoursHook)
 SHORT 0x46C0
 
+#ifdef _FE6_
+ORG $2EF4C 
+callHackNew(MakeStolenItemDroppable_FE6)
+#endif 
+#ifdef _FE7_
+ORG $35378
+callHackNew(MakeStolenItemDroppable_FE7)
+#endif 
+#ifdef _FE8_
+ORG $3A15C
+callHackNew(MakeStolenItemDroppable_FE8)
+SHORT 0x46C0
+#endif 
+
 POP 
 
 ALIGN 4

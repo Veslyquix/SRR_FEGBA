@@ -414,6 +414,9 @@ ORG 0x1514
 callHackNew(RandColoursHook)
 SHORT 0x46C0
 
+ORG $2EF4C 
+callHackNew(MakeStolenItemDroppable_FE6)
+
 POP 
 
 ALIGN 4
