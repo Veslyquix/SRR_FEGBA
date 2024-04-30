@@ -808,7 +808,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	// iterate through all items 
 	struct ItemData* table; 
 	int rank, type, attr, badAttr;
-	
+	int allowStatBoosts = false; 
 	#ifdef FE6 
 	badAttr = IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_UNCOUNTERABLE; // must be not an unusable locked weapon 
 	#endif 
@@ -816,7 +816,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	badAttr = IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_LOCK_5|IA_LOCK_6|IA_LOCK_7|IA_UNCOUNTERABLE; 
 	#endif 
 	attr = unit->pCharacterData->attributes | unit->pClassData->attributes; 
-	if ((IsUnitAlliedOrPlayable(unit)) || (UNIT_CATTRIBUTES(unit) & CA_BOSS)) { // only player units / bosses can start with wep locked weps 
+	if ((IsUnitAlliedOrPlayable(unit)) || (attr & CA_BOSS)) { // only player units / bosses can start with wep locked weps 
 		if (attr & CA_LOCK_1) { badAttr &= ~IA_LOCK_1; } // "wep lock 1" 
 		if (attr & CA_LOCK_2) { badAttr &= ~IA_LOCK_2; } // myrm 
 		if (attr & CA_LOCK_3) { badAttr &= ~IA_LOCK_3; } // manakete 
@@ -826,6 +826,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 		if (attr & CA_LOCK_6) { badAttr &= ~IA_LOCK_6; } // lyn 
 		if (attr & CA_LOCK_7) { badAttr &= ~IA_LOCK_7; } // athos 
 		#endif 
+		allowStatBoosts = true; 
 	} 
 	if (IncludeMonstersWithoutWEXP && (attr & CA_LOCK_3)) { badAttr &= ~IA_LOCK_3; } // manakete 
 	
@@ -884,6 +885,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 				continue; 
 			} 
 		} 
+		if ((!allowStatBoosts) && (table->pStatBonuses)) { continue; } 
 		#ifdef FE8 
 		if (WepLockExInstalled) { 
 			if (attr & IA_STAFF) { if (!CanUnitUseStaff(unit, i|0x100)) { continue; } } 
