@@ -417,6 +417,9 @@ SHORT 0x46C0
 ORG $2EF4C 
 callHackNew(MakeStolenItemDroppable_FE6)
 
+ORG $22EAC
+BYTE 30 // Support range 
+
 POP 
 
 ALIGN 4

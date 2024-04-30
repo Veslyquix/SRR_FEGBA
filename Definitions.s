@@ -19,6 +19,8 @@
 .if FE6 == true 
 @SET_FUNC GetItemAttributes, fe7 0x801727c unk fe6 
 SET_FUNC GetItemAfterUse, 0x8016929 
+SET_FUNC FadeExists, 0x80145d1
+SET_DATA ProcScr_PrepUnitScreen, 0x8678E38
 SET_DATA gPaletteSyncFlag, 0x300000C
 SET_DATA gPaletteBuffer, 0x2021708
 SET_DATA gCursorX, 0x202AA1C
@@ -84,11 +86,16 @@ SET_FUNC PutText, 0x8005ab5
 SET_FUNC GetLang, 0x800562d
 SET_DATA sMsgString, 0x2029404 
 SET_FUNC DecodeStringRam, 0x800384d
+SET_DATA gPrepUnitList, 0x200e6d4
 
 .endif 
 .if FE7 == true 
 SET_FUNC GetItemAttributes, 0x801727D
 SET_FUNC GetItemAfterUse, 0x8016731
+SET_FUNC FadeExists, 0x8013EB9
+SET_FUNC GetUnitFromPrepList, 0x808DD19
+SET_DATA ProcScr_PrepUnitScreen, 0x8CC4854
+SET_DATA ProcScr_PrepItemScreen, 0x8CC4448
 SET_DATA gPaletteSyncFlag, 0x300000D 
 SET_DATA gPaletteBuffer, 0x2022860
 SET_DATA gCursorX, 0x202BBCC

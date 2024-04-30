@@ -337,8 +337,8 @@ extern u16 gPaletteBuffer[];
 extern struct Unit gBattleActorUnit; 
 extern struct Unit gBattleTargetUnit; 
 int GetRNByID(int id);
-void AdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, int NeverRandomizeBeforeThisColour) { 
-	//asm("mov r11, r11"); 
+extern bool FadeExists(void); //80145d0  8013EB8
+void AdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, int NeverRandomizeBeforeThisColour, int fading) { 
 	id = GetRNByID(id); 
 	int r, g, b, col; 
 	u16* buffer = &gPaletteBuffer[(bank * 16)];
@@ -349,11 +349,12 @@ void AdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, i
 		g = (col & (0x1F << 5)) >> 5; 
 		b = (col & (0x1F << 10)) >> 10; 
 		if (i < AlwaysRandomizePastThisColour) { 
-			if (r > 17) { // r > g > b 
-				if ((r+g) > 36) { 
-					if ((r >= g) && (g >= b)) { // yellowish/brownish (skin colours) 
-						if (((r - g) < 14) && ((g - b) < 25)) { // no extreme differences 
-						continue; } 
+			if ((r >= g) && (g >= b)) { // yellowish/brownish (skin colours) 
+				if (((r - g) < 14) && ((g - b) < 25)) { // no extreme differences 
+					if (fading) { continue; } 
+					else if (r > 17) { // r > g > b 
+						if ((r+g) > 36) { 
+							continue; } 
 					}
 				} 
 			}
@@ -363,22 +364,63 @@ void AdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, i
 	//asm("mov r11, r11");
 } 
 
+extern struct ProcCmd const ProcScr_PrepUnitScreen[]; // 0x8A18E8C bgp 2 8CC4854 fe6 8678E38
+extern struct ProcCmd const ProcScr_PrepItemScreen[]; // 0x8A189A4  bgp 3 8CC4448
+extern struct ProcCmd const gProcScr_SupportScreen[]; // 0x8A1975C  bgp 2
+struct PrepItemScreenProc {
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 unk_29;
+    /* 2A */ u8 hoverUnitIdx;
+    /* 2B */ u8 selectedUnitIdx;
+    /* 2c */ u8 id;
+	u8 pad1; 
+	u8 pad2; 
+	u8 pad3; 
+	u8 fe6ID; // 0x30 
+	u8 fe6_supportID; // 0x31
+}; 
+struct SupportScreenProc {
+    /* 00 */ PROC_HEADER;
 
+    /* 2C */ int unk_2c;
+    /* 30 */ int unk_30;
+    /* 34 */ int unk_34;
+    /* 38 */ int curIndex;
+    /* 3C */ int unk_3c;
+    /* 40 */ s8 unk_40; // possibly direction (up or down)
+    /* 41 */ u8 unk_41; // possibly number of positions to move up or down
+    /* 42 */ s8 fromPrepScreen; // true if from prep screen; false if from title screen
+    /* 43 */ s8 helpTextActive;
+};
+#ifndef FE6 
+struct Unit* GetUnitFromPrepList(int index); // fe7 808DD18
+#else 
+struct PrepUnitList {
+struct Unit *units[0x40];
+int max_num;        /* A counter maybe related to the amount of units in team */
+int latest_pid;     /* Last unit char-id when you leave the prep-unit-screen */
+};
+extern struct PrepUnitList gPrepUnitList; 
+struct Unit *GetUnitFromPrepList(int index)
+{
+    return gPrepUnitList.units[index]; // 200CC38
+}	
+#endif 
 int MaybeRandomizeColours(void) { 
 	if (!ShouldRandomizeColours()) { return false; } 
 	int result = false; //sizeof(struct BattleUnit);  
+	int fading = FadeExists(); 
 	//struct BattleUnit bunit; 
 	//result += bunit.hasItemEffectTarget; 
 	struct Unit* unit = NULL; 
+	int id = 0; 
 	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait 
 		unit = gStatScreen.unit; 
 		if (unit) { 
 			#ifndef FE8 
-			AdjustNonSkinColours(13, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0); 
-			//RandColours(13, 6, 9, GetAdjustedPortraitId(unit)); 
+			AdjustNonSkinColours(13, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			#else 
-			AdjustNonSkinColours(11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0); 
-			//RandColours(11, 6, 9, GetAdjustedPortraitId(unit)); 
+			AdjustNonSkinColours(11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			#endif 
 			result = true;
 		}
@@ -386,39 +428,82 @@ int MaybeRandomizeColours(void) {
 	struct PlayerInterfaceProc* proc = Proc_Find((struct ProcCmd*)gProcScr_UnitDisplay_MinimugBox);
 	if (proc) { 
 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
-		//unit = GetUnit(gBmMapUnit[proc->yCursor][proc->xCursor]); 
 		#ifdef FE7 
 		if (!unit) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
 		#endif 
 		#ifdef FE8 
-		if (proc->unk_55) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
+		//if (proc->unk_55) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
 		if (proc->isRetracting) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
 		#endif 
 		if (gActiveUnit->state & US_HIDDEN) { unit = gActiveUnit; } // for frame we select unit 
 		if (unit) { 
-			AdjustNonSkinColours(4, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0); 
-			//RandColours(4, 6, 9, GetAdjustedPortraitId(unit)); 
+			AdjustNonSkinColours(4, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			result = true;
 		} 
 		
 	}
-	//return result; 
-	if (result) { return result; } 
+	//if (result) { return result; } 
+	
 	// faces 
 	for (int i = 0; i < 4; ++i) {
 		if (gFaces[i] == NULL) {
 			continue;
 		}
 		#ifdef FE6 
-		AdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceSlot, PortraitColoursPastThisAreNotSkin, 0); 
-		//RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceSlot); 
+		AdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceSlot, PortraitColoursPastThisAreNotSkin, 0, fading); 
 		#else 
-		AdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0); 
-		//RandColours(sFaceConfig[i].paletteId+16, 6, 9, gFaces[i]->faceId); 
+		AdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading); 
 		#endif 
 		result = true;
-	}   
+	}  
 	
+	
+	struct PrepItemScreenProc* proc_2 = Proc_Find((struct ProcCmd*)ProcScr_PrepUnitScreen);
+	if (proc_2) { 
+		int palID = 2; 
+		#ifdef FE6 
+		id = proc_2->fe6_supportID; 
+		if (id == 0xFF) { id = proc_2->fe6ID; } 
+		//else if ((int)proc_2->proc_scrCur == 0x8678E98) { palID = 3; } 
+		#else 
+		id = proc_2->id; 
+		#endif 
+		unit = GetUnitFromPrepList(id); 
+		if (unit) { 
+			AdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			result = true;
+		} 
+	}
+	#ifndef FE6 
+	struct PrepItemScreenProc* proc_3 = Proc_Find((struct ProcCmd*)ProcScr_PrepItemScreen);
+	if (proc_3) { 
+		#ifndef FE8 
+		id = proc_3->hoverUnitIdx; 
+		if (id == 0xFF) { id = proc_3->unk_29; } 
+		#endif 
+		
+		#ifdef FE8 
+		id = proc_3->selectedUnitIdx; 
+		if (id == 0xFF) { id = proc_3->hoverUnitIdx; } 
+		#endif 
+		unit = GetUnitFromPrepList(id); 
+		if (unit) { 
+			AdjustNonSkinColours(3, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			result = true;
+		} 
+	}
+	#endif 
+	#ifdef FE8 
+	struct SupportScreenProc* proc_4 = Proc_Find((struct ProcCmd*)gProcScr_SupportScreen);
+	if (proc_4) { 
+		unit = GetUnitFromPrepList(proc_4->curIndex); 
+		if (unit) { 
+			AdjustNonSkinColours(2, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			result = true;
+		} 
+	}
+	#endif 
+
 
 	
 	if (RandBitflags->colours == 1) { // if 3, it's portraits only. 2 is janky 
@@ -431,14 +516,14 @@ int MaybeRandomizeColours(void) {
 			int offset = 0; 
 			if (gPaletteBuffer[((7+16) * 16) + 1]  >= 0x7BBE) { offset = 5; } 
 			// if col index 1 is white, skip first few colours in battle anim 
-			AdjustNonSkinColours(7+16, GetAdjustedPortraitId(unit), 99, offset); 
+			AdjustNonSkinColours(7+16, GetAdjustedPortraitId(unit), 99, offset, fading); 
 			unit = &gBattleTargetUnit; 
 			if (BattleAttackerSideBool) { // swap units 
 				unit = &gBattleActorUnit; 
 			}
 			offset = 0; 
 			if (gPaletteBuffer[((9+16) * 16) + 1]  >= 0x7BBE) { offset = 5; } 
-			AdjustNonSkinColours(9+16, GetAdjustedPortraitId(unit), 99, offset); 
+			AdjustNonSkinColours(9+16, GetAdjustedPortraitId(unit), 99, offset, fading); 
 
 			result = true;
 		}
