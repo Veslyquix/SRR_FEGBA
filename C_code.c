@@ -336,8 +336,10 @@ int ShouldRandomizeColours(void) {
 extern u16 gPaletteBuffer[];
 extern struct Unit gBattleActorUnit; 
 extern struct Unit gBattleTargetUnit; 
+int GetRNByID(int id);
 void AdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, int NeverRandomizeBeforeThisColour) { 
 	//asm("mov r11, r11"); 
+	id = GetRNByID(id); 
 	int r, g, b, col; 
 	u16* buffer = &gPaletteBuffer[(bank * 16)];
 	for (int i = 0; i < 16; i++) { 
@@ -358,6 +360,7 @@ void AdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, i
 		} 
 		RandColours(bank, i, 1, id);
 	} 
+	//asm("mov r11, r11");
 } 
 
 

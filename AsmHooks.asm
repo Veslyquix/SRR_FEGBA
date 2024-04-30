@@ -768,10 +768,8 @@ lsl r2, #1 @ number of colours
 add r0, r2 
 mov r10, r0 
 
-@ r3 as portrait id 
-mov r0, r3 
-bl GetRNByID
-mov r2, r0 
+@ r3 as portrait id randomized into a number between 40 and 210 
+mov r2, r3 
 
 @ Enable palette update.
 ldr   r0, =gPaletteSyncFlag
