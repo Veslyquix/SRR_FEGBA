@@ -87,7 +87,10 @@ SET_FUNC GetLang, 0x800562d
 SET_DATA sMsgString, 0x2029404 
 SET_FUNC DecodeStringRam, 0x800384d
 SET_DATA gPrepUnitList, 0x200e6d4
-
+SET_DATA ProcScr_PalFade, 0x85C4D7C
+SET_DATA ProcScr_FadeCore, 0x85C4E14
+SET_DATA ProcScr_BmFadeIN, 0x8679008 
+SET_DATA ProcScr_BmFadeOUT, 0x8679028 
 .endif 
 .if FE7 == true 
 SET_FUNC GetItemAttributes, 0x801727D
@@ -155,6 +158,10 @@ SET_FUNC StartMapSongBgm, 0x8015F85
 SET_FUNC EndAllMenus, 0x804A491
 SET_FUNC RenderBmMap, 0x8019505 
 SET_FUNC RefreshBMapGraphics, 0x802E369
+SET_DATA ProcScr_PalFade, 0x8B92914
+SET_DATA ProcScr_FadeCore, 0x8B929AC
+SET_DATA ProcScr_BmFadeIN, 0x8CE4C50 
+SET_DATA ProcScr_BmFadeOUT, 0x8CE4C80 
 .endif 
 .if FE8 == true 
 SET_DATA gBattleActorUnit, 0x0203A4EC

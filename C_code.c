@@ -378,6 +378,12 @@ struct PrepItemScreenProc {
 	u8 pad3; 
 	u8 fe6ID; // 0x30 
 	u8 fe6_supportID; // 0x31
+	int pad4; // 0x34 
+	int pad5; // 0x38 
+	int pad6; // 0x3c 
+	int pad7; // 0x40 
+	int pad8; // 0x44 
+	struct Unit* unit; // 0x48 
 }; 
 struct SupportScreenProc {
     /* 00 */ PROC_HEADER;
@@ -406,15 +412,34 @@ struct Unit *GetUnitFromPrepList(int index)
     return gPrepUnitList.units[index]; // 200CC38
 }	
 #endif 
+extern struct ProcCmd const ProcScr_PalFade[]; // 85C4D7C 8B92914
+extern struct ProcCmd const ProcScr_FadeCore[]; // 85C4E14 8B929AC
+extern struct ProcCmd const ProcScr_BmFadeIN[]; // 8679008 CE4C50 8a20da4
+extern struct ProcCmd const ProcScr_BmFadeOUT[]; // 8679028 CE4C80 8A20DCC
+
+int AnyFadeExists(void) { 
+	if (FadeExists()) return true; 
+	if (Proc_Find(ProcScr_FadeCore)) return true; 
+	if (Proc_Find(ProcScr_PalFade)) return true; 
+	if (Proc_Find(ProcScr_BmFadeIN)) return true; 
+	if (Proc_Find(ProcScr_BmFadeOUT)) return true; 
+
+	return false; 
+}
+
 int MaybeRandomizeColours(void) { 
 	if (!ShouldRandomizeColours()) { return false; } 
 	int result = false; //sizeof(struct BattleUnit);  
-	int fading = FadeExists(); 
+	int fading = AnyFadeExists();
+	
+
+	
 	//struct BattleUnit bunit; 
 	//result += bunit.hasItemEffectTarget; 
 	struct Unit* unit = NULL; 
 	int id = 0; 
-	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait 
+	int palID = 0; 
+	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait  
 		unit = gStatScreen.unit; 
 		if (unit) { 
 			#ifndef FE8 
@@ -422,7 +447,7 @@ int MaybeRandomizeColours(void) {
 			#else 
 			AdjustNonSkinColours(11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			#endif 
-			result = true;
+			return true; // so we don't alter prep palettes during stat screen 
 		}
 	}
 	struct PlayerInterfaceProc* proc = Proc_Find((struct ProcCmd*)gProcScr_UnitDisplay_MinimugBox);
@@ -442,7 +467,7 @@ int MaybeRandomizeColours(void) {
 		} 
 		
 	}
-	//if (result) { return result; } 
+	//
 	
 	// faces 
 	for (int i = 0; i < 4; ++i) {
@@ -457,18 +482,23 @@ int MaybeRandomizeColours(void) {
 		result = true;
 	}  
 	
-	
 	struct PrepItemScreenProc* proc_2 = Proc_Find((struct ProcCmd*)ProcScr_PrepUnitScreen);
 	if (proc_2) { 
-		int palID = 2; 
+		palID = 2; 
 		#ifdef FE6 
-		id = proc_2->fe6_supportID; 
-		if (id == 0xFF) { id = proc_2->fe6ID; } 
+		id = proc_2->fe6ID;
+		//if (id == 0xFF) { id = proc_2->fe6ID; } 
+		
+		if (*TILEMAP_LOCATED(gBG1TilemapBuffer, 1, 0) == 0x1001) { palID = 3; id = proc_2->fe6_supportID; } 
 		//else if ((int)proc_2->proc_scrCur == 0x8678E98) { palID = 3; } 
 		#else 
 		id = proc_2->id; 
 		#endif 
 		unit = GetUnitFromPrepList(id); 
+		#ifdef FE6 
+		if (palID == 3) { unit = proc_2->unit; } 
+		#endif 
+		
 		if (unit) { 
 			AdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			result = true;
@@ -477,6 +507,12 @@ int MaybeRandomizeColours(void) {
 	#ifndef FE6 
 	struct PrepItemScreenProc* proc_3 = Proc_Find((struct ProcCmd*)ProcScr_PrepItemScreen);
 	if (proc_3) { 
+		#ifdef FE8 
+		palID = 3;
+		#endif 
+		#ifdef FE7 
+		palID = 2; 
+		#endif 
 		#ifndef FE8 
 		id = proc_3->hoverUnitIdx; 
 		if (id == 0xFF) { id = proc_3->unk_29; } 
@@ -488,7 +524,7 @@ int MaybeRandomizeColours(void) {
 		#endif 
 		unit = GetUnitFromPrepList(id); 
 		if (unit) { 
-			AdjustNonSkinColours(3, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			AdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			result = true;
 		} 
 	}
