@@ -328,6 +328,8 @@ NeverRandomizeColours:
 WORD 0
 PortraitColoursPastThisAreNotSkin:
 WORD 5 // vanilla portraits use the first few colours for skin 
+IncludeMonstersWithoutWEXP:
+WORD 0 
 
 ALIGN 4 
 NewChMenu:

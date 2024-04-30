@@ -713,7 +713,7 @@ int GetItemWeight(int item) {
 
 //extern bool UnitAddItem(struct Unit* unit, int item);
 
-
+extern int IncludeMonstersWithoutWEXP; 
 u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	
 	
@@ -744,7 +744,13 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 		wexp |= table->baseRanks[5]; 
 		wexp |= table->baseRanks[6]; 
 		wexp |= table->baseRanks[7]; 
-		if (!wexp) { 
+		
+		if (IncludeMonstersWithoutWEXP) { 
+			if ((!wexp) && (!(attr & CA_LOCK_3))) { // Dragons or Monster depending of game
+				continue; 
+			}
+		} 
+		else if (!wexp) { 
 			continue; 
 		} 
 		// if class has any base wexp, it's good 
@@ -821,6 +827,8 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 		if (attr & CA_LOCK_7) { badAttr &= ~IA_LOCK_7; } // athos 
 		#endif 
 	} 
+	if (IncludeMonstersWithoutWEXP && (attr & CA_LOCK_3)) { badAttr &= ~IA_LOCK_3; } // manakete 
+	
 	u8 ranks[8]; 
 	ranks[0] = unit->ranks[0]; 
 	ranks[1] = unit->ranks[1]; 
@@ -831,14 +839,14 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	ranks[6] = unit->ranks[6]; 
 	ranks[7] = unit->ranks[7]; 
 	int doWeHaveNonStaff = ranks[0] | ranks[1] | ranks[2] | ranks[3] | ranks[5] | ranks[6] | ranks[7];
+	if (IncludeMonstersWithoutWEXP && (attr & CA_LOCK_3)) { 
+		doWeHaveNonStaff = 1; 
+	} 
+	
 	if (doWeHaveNonStaff) { ranks[4] = 0; doWeHaveNonStaff = 0; } // do not include staves at first 
 	else { doWeHaveNonStaff = IA_STAFF; } 
 	
 	list[0] = 0; // count  
-	
-	#ifdef FE8 
-	//if (WepLockExInstalled) { badAttr = IA_UNCOUNTERABLE; } 
-	#endif 
 	
 	for (int i = 1; i <= GetMaxItems(); i++) { 
 		if (ItemExceptions[i].NeverChangeInto) { continue; } 
@@ -863,8 +871,10 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 		} 
 		if ((type <= 7) && (!rank)) { rank = 1; } // PRFs require at least 1 wexp in that type 
 		// otherwise units can get PRFs that they don't have animations for 
-		if (rank > ranks[type]) { 
-			continue; 
+		if (type <= 7) { 
+			if (rank > ranks[type]) { 
+				continue; 
+			} 
 		} 
 		
 		
