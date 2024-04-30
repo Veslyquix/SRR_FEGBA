@@ -34,8 +34,6 @@ extern int CasualModeFlag;
 #define true 1 
 #define false 0
 
-//#define ALWAYS50 // make growths 50 
-
 struct RandomizerSettings { 
 	u32 base : 2; // vanilla, random 
 	u32 growth : 2; // vanilla, randomized, 0%, 100%
@@ -51,6 +49,7 @@ struct RandomizerSettings {
 	u32 itemStats : 2; // vanilla, random 
 	u32 itemDur : 2; // vanilla, infinite 
 	u32 playerBonus : 5; // +20 / -10 levels for players 
+	u32 grow50 : 1; // always 50% 
 }; // 28 / 32 bits used 
 
 
@@ -571,7 +570,7 @@ inline int IsClassInvalid(int i) {
 	return ClassExceptions[i].NeverChangeInto;
 } 
 int ShouldRandomizeGrowth(struct Unit* unit) { 
-	if ((!RandBitflags->growth) || (RandBitflags->growth == 4)) { return false; } 
+	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 }
 int ShouldRandomizeStatCaps(struct Unit* unit) { 
@@ -1439,6 +1438,7 @@ int GetUnitMagGrowth(struct Unit* unit, int modifiersBool) {
 	if (growth != (-1)) { add = growth - baseGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (MagClassTable[unit->pClassData->number].growth > growth) { growth = MagClassTable[unit->pClassData->number].growth;  } 
@@ -1587,6 +1587,7 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	if (growth != (-1)) { add = growth - baseGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthHP > growth) { growth = unit->pClassData->growthHP; } 
@@ -1612,6 +1613,7 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	if (growth != (-1)) { add = growth - baseGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthPow > growth) { growth = unit->pClassData->growthPow; } 
@@ -1638,6 +1640,7 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	if (growth != (-1)) { add = growth - baseGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthSkl > growth) { growth = unit->pClassData->growthSkl; } 
@@ -1664,6 +1667,7 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	if (growth != (-1)) { add = growth - baseGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthSpd > growth) { growth = unit->pClassData->growthSpd; } 
@@ -1690,6 +1694,7 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	if (growth != (-1)) { add = growth - baseGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthDef > growth) { growth = unit->pClassData->growthDef; } 
@@ -1716,6 +1721,7 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	if (growth != (-1)) { add = growth - baseGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthRes > growth) { growth = unit->pClassData->growthRes; } 
@@ -1741,7 +1747,8 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	int growth = CallGet_Luk_Growth(unit); 
 	if (growth != (-1)) { add = growth - baseGrowth; } 
 	growth = baseGrowth;
-	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
+	int player = (UNIT_FACTION(unit) == FACTION_BLUE);
+	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 	
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthLck > growth) { growth = unit->pClassData->growthLck; } 
@@ -2701,7 +2708,7 @@ const char Option1[OPT1NUM][8] = { // Base Stats
 "Random",
 }; 
 #endif
-#define OPT2NUM 4
+#define OPT2NUM 5
 #ifdef FE6 
 extern const char Option2[OPT2NUM][16]; // do align 16 before each? 
 #else 
@@ -2710,6 +2717,7 @@ const char Option2[OPT2NUM][15] = { // Growths
 "Random",
 "0%", 
 "100%",
+"50%",
 }; 
 #endif
 #define OPT3NUM 3
@@ -3110,6 +3118,8 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		
 		RandBitflags->base = proc->Option[1]; 
 		RandBitflags->growth = proc->Option[2];
+		if (proc->Option[2] > 3) { RandBitflags->grow50 = true; } 
+		else { RandBitflags->grow50 = false; }
 		RandBitflags->levelups = proc->Option[3]; 
 		RandBitflags->caps = proc->Option[4]; 
 		RandBitflags->class = proc->Option[5]; 
@@ -3469,7 +3479,7 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	// pull up your previously saved options 
 	proc->Option[0] = RandValues->variance; 
 	proc->Option[1] = RandBitflags->base; 
-	proc->Option[2] = RandBitflags->growth; 
+	proc->Option[2] = RandBitflags->growth + (RandBitflags->grow50*4); 
 	proc->Option[3] = RandBitflags->levelups; 
 	proc->Option[4] = RandBitflags->caps; 
 	proc->Option[5] = RandBitflags->class; 
