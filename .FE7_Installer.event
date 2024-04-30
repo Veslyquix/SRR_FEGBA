@@ -321,6 +321,11 @@ SHORT 0x46C0
 ORG $26A88
 BYTE 30 // Support range 
 
+#ifdef VeslyBuildfile 
+ORG $CBD270 // athos coord in CBCD80 event 
+BYTE 8 
+#endif 
+
 POP 
 
 ALIGN 4
