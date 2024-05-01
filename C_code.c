@@ -425,6 +425,13 @@ int AnyFadeExists(void) {
 
 	return false; 
 }
+void PortraitAdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, int NeverRandomizeBeforeThisColour, int fading) { 
+	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
+	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
+	}
+	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
+}
+	
 
 int MaybeRandomizeColours(void) { 
 	if (!ShouldRandomizeColours()) { return false; } 
@@ -442,9 +449,9 @@ int MaybeRandomizeColours(void) {
 		unit = gStatScreen.unit; 
 		if (unit) { 
 			#ifndef FE8 
-			AdjustNonSkinColours(13, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			PortraitAdjustNonSkinColours(13, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			#else 
-			AdjustNonSkinColours(11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			PortraitAdjustNonSkinColours(11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			#endif 
 			return true; // so we don't alter prep palettes during stat screen 
 		}
@@ -461,7 +468,7 @@ int MaybeRandomizeColours(void) {
 		#endif 
 		if (gActiveUnit->state & US_HIDDEN) { unit = gActiveUnit; } // for frame we select unit 
 		if (unit) { 
-			AdjustNonSkinColours(4, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			PortraitAdjustNonSkinColours(4, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			result = true;
 		} 
 		
@@ -474,9 +481,9 @@ int MaybeRandomizeColours(void) {
 			continue;
 		}
 		#ifdef FE6 
-		AdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceSlot, PortraitColoursPastThisAreNotSkin, 0, fading); 
+		PortraitAdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceSlot, PortraitColoursPastThisAreNotSkin, 0, fading); 
 		#else 
-		AdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading); 
+		PortraitAdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading); 
 		#endif 
 		result = true;
 	}  
@@ -499,7 +506,7 @@ int MaybeRandomizeColours(void) {
 		#endif 
 		
 		if (unit) { 
-			AdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			PortraitAdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			result = true;
 		} 
 	}
@@ -523,7 +530,7 @@ int MaybeRandomizeColours(void) {
 		#endif 
 		unit = GetUnitFromPrepList(id); 
 		if (unit) { 
-			AdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			PortraitAdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			result = true;
 		} 
 	}
@@ -533,14 +540,14 @@ int MaybeRandomizeColours(void) {
 	if (proc_4) { 
 		unit = GetUnitFromPrepList(proc_4->curIndex); 
 		if (unit) { 
-			AdjustNonSkinColours(2, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			PortraitAdjustNonSkinColours(2, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
 			result = true;
 		} 
 	}
 	#endif 
 
 
-	
+	// battle animations 
 	if (RandBitflags->colours == 1) { // if 3, it's portraits only. 2 is janky 
 	//if (RandBitflags->colours != 3) { // if 3, it's portraits only. 2 is janky 
 		if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
