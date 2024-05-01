@@ -5,6 +5,44 @@
   .short 0xf800
 .endm
 
+.global DisplayStealOrDropIcon_FE6
+.type DisplayStealOrDropIcon_FE6, %function 
+DisplayStealOrDropIcon_FE6: 
+push {lr} @ 2257C
+mov r0, r4 @ unit 
+bl MaybeDisplayStealOrDropIcon 
+cmp r0, #0 
+beq ExitIconFE6 
+mov r0, #0x10 
+ldrh r7, [r4, #0xC] @ state 
+and r0, r7 
+ExitIconFE6:
+cmp r0, #0 
+pop {r3} 
+ldr r3, =0x8022585 
+bx r3 
+.ltorg 
+
+.global DisplayStealOrDropIcon_FE7
+.type DisplayStealOrDropIcon_FE7, %function 
+DisplayStealOrDropIcon_FE7: 
+push {lr} @ 25E04
+mov r0, r4 @ unit 
+bl MaybeDisplayStealOrDropIcon 
+cmp r0, #0 
+beq ExitIconFE7
+mov r1, #0x10 
+ldr r0, [r4, #0xC] @ state 
+and r0, r1 
+ExitIconFE7:
+cmp r0, #0
+pop {r3} 
+ldr r3, =0x8025e0d
+bx r3 
+.ltorg 
+
+
+
 .global MakeStolenItemDroppable_FE6
 .type MakeStolenItemDroppable_FE6, %function 
 MakeStolenItemDroppable_FE6:

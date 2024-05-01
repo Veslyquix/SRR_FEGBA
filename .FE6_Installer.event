@@ -421,6 +421,11 @@ callHackNew(MakeStolenItemDroppable_FE6)
 ORG $22EAC
 BYTE 30 // Support range 
 
+// PutUnitSpriteIconsOam fe6/7/8 8022378 8025B54 80275E8
+ORG $2257C // ORG $25E04 FE7 // jumpToHack
+jumpToHack(DisplayStealOrDropIcon_FE6)
+
+
 POP 
 
 ALIGN 4

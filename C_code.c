@@ -238,7 +238,62 @@ void sub_80328B0(void) {
 
     return;
 }
+extern unsigned GetGameClock(void); // 8000F14
+extern u16 const gObject_8x8[]; // 85c39A0 8B905B0 
+#ifndef FE8 
+extern void CallARM_PushToSecondaryOAM(int xMask, int yMask, const u16 *c, int d); // 8003870 / 8004388
+extern u16 gCameraX; 
+extern u16 gCameraY; 
+#define OAM0_Y(ay)         ((ay) & 0x00FF)
+#define OAM1_X(ax)         ((ax) & 0x01FF)
+int UnitHasDroppableItem(struct Unit* unit) { 
+	if (UNIT_FACTION(unit) != FACTION_RED) { return false; } 
+	return (unit->state & US_DROP_ITEM); 
+} 
+extern int IsItemStealable(int item); // 8016D34 8016D38
+int UnitHasStealableItem(struct Unit* unit) { 
+	if (UNIT_FACTION(unit) != FACTION_RED) { return false; } 
+	for (int i = 0; i < 5; ++i) { 
+		if (IsItemStealable(unit->items[i])) { return true; } 
+	} 
+	return false; 
+} 
+int MaybeDisplayStealOrDropIcon(struct Unit* unit) { 
+	if (!UNIT_IS_VALID(unit)) { return false; } 
+	
+	int x = unit->xPos; 
+	int y = unit->yPos; 
+    x = x * 16 - gCameraX;
+    y = y * 16 - gCameraY;
+	int displayIcon = (Mod(GetGameClock(), 32)) < 20 ? 1 : 0;
+	if (displayIcon) { 
+		if (x < -16 || x > 240) {
+			return false;
+		}
 
+		if (y < -16 || y > 160) {
+			return false;
+		}
+		if (UnitHasDroppableItem(unit)) { 
+		CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 1), OAM0_Y(0x100+y + 7), gObject_8x8, 0x869); // 0x869 priority 2 tile 0x69 
+		} 
+		else if (UnitHasStealableItem(unit)) { 
+		CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 1), OAM0_Y(0x100+y + 7), gObject_8x8, 0x865); 
+		} 
+		#ifdef FE6
+		// add boss icon to fe6 	
+		if (UNIT_CATTRIBUTES(unit) & CA_BOSS) { 
+			CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 9), OAM0_Y(0x100+y + 7), gObject_8x8, 0x810); // drop 0x69 
+		} 
+		#endif 
+		return true; 
+	}
+	return false; 
+} 
+#endif 
+#ifdef FE8 
+int MaybeDisplayStealOrDropIcon(void) { return 0; } 
+#endif 
 extern void RandColours(int bank, int index, int amount, u8 portraitId); 
 struct FaceVramEntry
 {
@@ -684,7 +739,7 @@ u16 GetNthRN(int n, int seed) {
 	return result; 
 } 
 
-extern unsigned GetGameClock(void); // 8000F14
+
 int GetInitialSeed(int rate) { 
 	int result = RandValues->seed;
 	int clock = GetGameClock()>>rate; 
@@ -4122,7 +4177,6 @@ enum
 #define OAM2_LAYER(al)     (((al) & 0x3) << 10)
 #define OAM0_SHAPE_8x8     0x0000
 #define OAM1_SIZE_8x8      0x0000
-extern u16 const gObject_8x8[]; 
 extern void UpdateStatArrowSprites(int, int, u8); 
 
 struct Vec2 GetIconCoordFromStatScreenLayout(int id) { 
