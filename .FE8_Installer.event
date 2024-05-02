@@ -25,7 +25,9 @@ MESSAGE Open FE8_Installer and read / config things please
 #define RandomizerRam 0x203EC24 // 8 bytes of 0x3A unit BWL data 
 //#define RandomizerRam 0x30017AC // alternative: 8 bytes of Valni records 
 #endif 
-
+ALIGN 4
+BonusItemChance: 
+WORD 10
 CasualModeFlag:
 WORD 0xB0 
 RandomizePrepShop:

@@ -50,7 +50,8 @@ struct RandomizerSettings {
 	u32 itemDur : 2; // vanilla, infinite 
 	u32 playerBonus : 5; // +20 / -10 levels for players 
 	u32 grow50 : 1; // always 50% 
-}; // 28 / 32 bits used 
+	u32 fog : 2; // vanilla, always off, always on 
+}; // 31 / 32 bits used 
 
 
 struct RandomizerValues { 
@@ -476,15 +477,19 @@ int AnyFadeExists(void) {
 
 	return false; 
 }
-void PortraitAdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, int NeverRandomizeBeforeThisColour, int fading) { 
+void PortraitAdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, int NeverRandomizeBeforeThisColour, int fading, int classCard) { 
 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	}
+	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
 }
 	
-
+extern u8 gVision; 
 int MaybeRandomizeColours(void) { 
+	if (RandBitflags->fog == 1) { gVision = 0; } 
+	if (RandBitflags->fog == 2) { gVision = 3; } 
+	
 	if (!ShouldRandomizeColours()) { return false; } 
 	int result = false; //sizeof(struct BattleUnit);  
 	int fading = AnyFadeExists();
@@ -494,15 +499,17 @@ int MaybeRandomizeColours(void) {
 	//struct BattleUnit bunit; 
 	//result += bunit.hasItemEffectTarget; 
 	struct Unit* unit = NULL; 
+	int classCard = true; 
 	int id = 0; 
 	int palID = 0; 
 	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait  
 		unit = gStatScreen.unit; 
 		if (unit) { 
+			if (unit->pCharacterData->portraitId) { classCard = false; } 
 			#ifndef FE8 
-			PortraitAdjustNonSkinColours(13, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			PortraitAdjustNonSkinColours(13, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
 			#else 
-			PortraitAdjustNonSkinColours(11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			PortraitAdjustNonSkinColours(11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
 			#endif 
 			return true; // so we don't alter prep palettes during stat screen 
 		}
@@ -519,7 +526,8 @@ int MaybeRandomizeColours(void) {
 		#endif 
 		if (gActiveUnit->state & US_HIDDEN) { unit = gActiveUnit; } // for frame we select unit 
 		if (unit) { 
-			PortraitAdjustNonSkinColours(4, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			if (unit->pCharacterData->portraitId) { classCard = false; } 
+			PortraitAdjustNonSkinColours(4, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
 			result = true;
 		} 
 		
@@ -532,9 +540,20 @@ int MaybeRandomizeColours(void) {
 			continue;
 		}
 		#ifdef FE6 
-		PortraitAdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceSlot, PortraitColoursPastThisAreNotSkin, 0, fading); 
+		if ((gFaces[i]->faceSlot < 0x99) || (gFaces[i]->faceSlot > 0xB8)) { classCard = false; } 
+		#endif 
+		#ifdef FE7 
+		if ((gFaces[i]->faceId < 0xBE) || (gFaces[i]->faceId > 0xDE)) { classCard = false; } 
+		#endif 
+		#ifdef FE8 
+		if (gFaces[i]->faceId < 0x72) { classCard = false; } 
+		#endif 
+		
+		
+		#ifdef FE6 
+		PortraitAdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceSlot, PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
 		#else 
-		PortraitAdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading); 
+		PortraitAdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
 		#endif 
 		result = true;
 	}  
@@ -557,7 +576,8 @@ int MaybeRandomizeColours(void) {
 		#endif 
 		
 		if (unit) { 
-			PortraitAdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			if (unit->pCharacterData->portraitId) { classCard = false; } 
+			PortraitAdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
 			result = true;
 		} 
 	}
@@ -581,7 +601,8 @@ int MaybeRandomizeColours(void) {
 		#endif 
 		unit = GetUnitFromPrepList(id); 
 		if (unit) { 
-			PortraitAdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			if (unit->pCharacterData->portraitId) { classCard = false; } 
+			PortraitAdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
 			result = true;
 		} 
 	}
@@ -591,7 +612,8 @@ int MaybeRandomizeColours(void) {
 	if (proc_4) { 
 		unit = GetUnitFromPrepList(proc_4->curIndex); 
 		if (unit) { 
-			PortraitAdjustNonSkinColours(2, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading); 
+			if (unit->pCharacterData->portraitId) { classCard = false; } 
+			PortraitAdjustNonSkinColours(2, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
 			result = true;
 		} 
 	}
@@ -1049,6 +1071,12 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 			rank = 251; 
 		} 
 		if ((type <= 7) && (!rank)) { rank = 1; } // PRFs require at least 1 wexp in that type 
+		
+		#ifdef FE6 
+		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 101; } // devil weapons are considered C rank
+		#else 
+		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 71; } // devil weapons are considered C rank
+		#endif 
 		// otherwise units can get PRFs that they don't have animations for 
 		if (type <= 7) { 
 			if (rank > ranks[type]) { 
@@ -1236,14 +1264,14 @@ int RandRareItem(int item, int noise[], int offset, int costReq, int varyByCh) {
 	return MakeNewItem(item); 
 } 
 
-int RandNewItem(int item, int noise[], int offset, int costReq, int varyByCh) { 
+int RandNewItem(int item, int noise[], int offset, int costReq, int varyByCh, int noWeapons) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
 	u8 list[255]; 
 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	int c; 
-	BuildSimilarPriceItemList(list, item, false, costReq); 
+	BuildSimilarPriceItemList(list, item, noWeapons, costReq); 
 	if (list[0]) { 
 		if (varyByCh) { 
 			c = HashByte_Ch(item, list[0]+1, noise, offset); 
@@ -1347,7 +1375,7 @@ void NewPopup_ItemGot(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2
 	noise[0] = unit->xPos; 
 	noise[1] = unit->yPos; 
 	noise[2] = 0; 
-	if (RandBitflags->foundItems) { item = RandNewItem(item, noise, 0, false, true); } 
+	if (RandBitflags->foundItems) { item = RandNewItem(item, noise, 0, false, true, false); } 
 
     proc->item = item;
     proc->unit = unit;
@@ -1933,7 +1961,7 @@ const s8 MovModifiers[] = { 0, 0, 0, 0, 0, 1, 1, 2, 0 } ;
 const s8 ConModifiers[] = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0 } ; 
 extern int RandomizeMovConBonus; 
 
-
+extern int BonusItemChance; 
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
     unit->level = uDef->level;
@@ -2039,7 +2067,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	unit->conBonus = 0; unit->movBonus = 0; 
 	#endif 
 	if (RandomizeMovConBonus) { 
-		if (ShouldRandomizeClass(unit)) {
+		if (RandBitflags->base) {
 			if (IsUnitAlliedOrPlayable(unit)) { 
 				unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
 				if (unit->pClassData->baseMov < 7) { 
@@ -2074,6 +2102,26 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
 	}
 	
+	int UnitHasBonusItem = false;
+	int noWeapons = true; 
+	
+	if (RandBitflags->foundItems) { 
+		if (HashByte_Ch(1, 100, noise, 8) < BonusItemChance) { UnitHasBonusItem = true; 
+			if (HashByte_Ch(2, 100, noise, 7) < 50) { 
+				noWeapons = false; if (UNIT_FACTION(unit) == FACTION_RED) { unit->state |= US_DROP_ITEM; } 
+			} 
+		}
+	} 
+	
+	int c = 2; 
+	if (UNIT_FACTION(unit) == FACTION_BLUE) { c = 3; } 
+	if (UnitHasBonusItem) {  
+		for (int i = 0; i < c; ++i) { 
+		if (unit->items[i]) { continue; } 
+		UnitAddItem(unit, RandNewItem(4, noise, i, false, true, noWeapons)); break; 
+		//RandNewItem(int item, int noise[], int offset, int costReq, int varyByCh, int noWeapons)
+		}
+	} 
 	
 	UnitCheckStatMins(unit); 
 	UnitCheckStatCaps(unit);
@@ -2938,8 +2986,28 @@ const char Option12[OPT12NUM][20] = { // Enemies
 }; 
 #endif
 
+#define OPT13NUM 3
+#ifdef FE6 
+extern const char Option13[OPT13NUM][16]; // do align 16 before each? 
+#else 
+const char Option13[OPT13NUM][11] = { // Item durability 
+"Vanilla",
+"Always off",
+"Always on",
+}; 
+#endif 
+#define OPT14NUM 2
+#ifdef FE6 
+extern const char Option14[OPT14NUM][16]; // do align 16 before each? 
+#else 
+const char Option14[OPT14NUM][14] = { // Item durability 
+"Vanilla",
+"Press A",
+}; 
+#endif 
 
-const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, 0 }; 
+
+const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, 0 }; 
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -2995,9 +3063,9 @@ extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); /
 #define Y_HAND 3
 #define NUMBER_X 20
 const int SRR_MAXDISP = 7;
-const int SRR_TotalOptions = 13;
-const u8 tWidths[] = { 3, 5, 6, 5, 6, 6, 3, 3, 3, 5, 6, 10, 10, 10};   
-const u8 RtWidths[] = { 0, 4, 5, 9, 8, 6, 11, 14, 12, 7, 8, 6, 12, 12 } ; 
+const int SRR_TotalOptions = 15;
+const u8 tWidths[] = { 3, 5, 6, 5, 6, 6, 3, 3, 3, 5, 6, 10, 10, 10, 4, 8};   
+const u8 RtWidths[] = { 0, 4, 5, 9, 8, 6, 11, 14, 12, 7, 8, 6, 12, 12, 6, 6 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -3057,6 +3125,10 @@ Max Growth: 100
 	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]])); i++;  
 	if (i > SRR_MAXDISP) { break; } 
 	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]])); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]])); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]])); i++;  
 	if (i > SRR_MAXDISP) { break; } 
 	default: 
 	} 
@@ -3151,6 +3223,9 @@ extern void m4aSongNumStart(u16 n);
 
 extern void DisplayUiVArrow(int, int, u16, int);
 extern void UnpackUiVArrowGfx(int, int);
+extern void CallEndEvent(void); // (806b5b0) 8079A38 8083280
+extern void CallEndEvent_FE6(void); 
+extern void UpdateMapViewWithFog(int level); //801C6C4 801DB58
 enum { 
 RedrawNone, RedrawSome, RedrawAll }; 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
@@ -3193,6 +3268,31 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflags->playerBonus = proc->Option[11]; 
 		RandValues->bonus = proc->Option[12];
 		
+		
+		if (RandBitflags->fog != proc->Option[13]) { 
+			if ((proc->Option[13] == 1) && proc->calledFromChapter) { 
+				UpdateMapViewWithFog(0); 
+			} 
+			if ((proc->Option[13] == 2) && proc->calledFromChapter) { 
+				UpdateMapViewWithFog(3); 
+			} 
+			if ((proc->Option[13] == 0) && proc->calledFromChapter) { 
+				UpdateMapViewWithFog(-1); 
+			} 
+		} 
+		RandBitflags->fog = proc->Option[13]; 
+		
+		if (proc->Option[14] && ((id + offset) >= (SRR_TotalOptions))) { 
+			if (proc->calledFromChapter) { 
+			// clear MU, refresh fog, update gfx, sms update 
+			// 6CCB8 8019ABC 8019504 8025724
+			#ifdef FE6 
+			CallEndEvent_FE6();
+			#else 
+			CallEndEvent();
+			#endif 
+			} 
+		} // win chapter 
 
 		RandBitflags->disp = 1; 
 		
@@ -3310,6 +3410,8 @@ extern const char ColoursText;
 extern const char ItemDurabilityText;
 extern const char PlayerBonusText;
 extern const char EnemyDiffBonusText;
+extern const char FogText;
+extern const char SkipChapterText;
 extern const char RandomizerText;
 #else 
 const char SeedText[] = { "Seed" };
@@ -3326,6 +3428,8 @@ const char ColoursText[] = { "Colours" };
 const char ItemDurabilityText[] = { "Item Durability" };
 const char PlayerBonusText[] = { "Player Bonus" };
 const char EnemyDiffBonusText[] = { "Enemy Diff. Bonus" };
+const char FogText[] = { "Fog" };
+const char SkipChapterText[] = { "Skip chapter" };
 const char RandomizerText[] = { "Randomizer" };
 #endif 
 
@@ -3369,6 +3473,10 @@ void RedrawAllText(ConfigMenuProc* proc) {
 		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText)); i++;  // make players have bonus levels
 		if (i > SRR_MAXDISP) { break; } 
 		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText)); i++;  // make enemies have more bonus levels?
+		if (i > SRR_MAXDISP) { break; } 
+		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText)); i++;  
+		if (i > SRR_MAXDISP) { break; } 
+		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
 		default: 
 	}
@@ -3551,6 +3659,7 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	proc->Option[10] = RandBitflags->itemDur;		
 	proc->Option[11] = RandBitflags->playerBonus;	
 	proc->Option[12] = RandValues->bonus;		
+	proc->Option[13] = RandBitflags->fog;
 	
 	gLCDControlBuffer.dispcnt.bg0_on = 0;
 	return ME_DISABLE | ME_PLAY_BEEP; // | ME_CLEAR_GFX;
@@ -4434,7 +4543,7 @@ void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr par
 			if ((i>=5) && (term)) { itemId = 0; } 
 			
 			if ((i == rareItemSlot) && (RareItemTableSize)) { itemId = RandRareItem(itemId, noise, i, true, varyByCh); } 
-			else { itemId = RandNewItem(itemId, noise, i, true, varyByCh); } 
+			else { itemId = RandNewItem(itemId, noise, i, true, varyByCh, false); } 
 			
 			proc->shopItems[i] = itemId; 
 		}

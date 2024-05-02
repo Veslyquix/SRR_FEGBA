@@ -30,8 +30,9 @@ String("Reconfigure the randomizer.") ; BYTE 0
 setText(0x119f, ConfigText)
 setText(0x11a0, ConfigDescText)
 
-
-ALIGN 4 
+ALIGN 4
+BonusItemChance: 
+WORD 10
 CasualModeFlag:
 WORD 0xA0 
 RandomizePrepShop:

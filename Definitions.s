@@ -17,6 +17,8 @@
 .endm
 
 .if FE6 == true 
+SET_FUNC UpdateMapViewWithFog, 0x801C6C5
+SET_DATA gVision, 0x202AA48+0x0D
 @SET_FUNC GetItemAttributes, fe7 0x801727c unk fe6 
 SET_FUNC GetItemAfterUse, 0x8016929 
 SET_FUNC FadeExists, 0x80145d1
@@ -98,6 +100,8 @@ SET_DATA ProcScr_BmFadeIN, 0x8679008
 SET_DATA ProcScr_BmFadeOUT, 0x8679028 
 .endif 
 .if FE7 == true 
+SET_FUNC UpdateMapViewWithFog, 0x801DB59
+SET_DATA gVision, 0x202BBF8+0x0D
 SET_FUNC GetItemAttributes, 0x801727D
 SET_FUNC GetItemAfterUse, 0x8016731
 SET_FUNC FadeExists, 0x8013EB9
@@ -114,7 +118,7 @@ SET_DATA gCameraY, 0x202BBC6
 SET_DATA gObject_8x8, 0x8B905B0 
 SET_FUNC IsItemStealable, 0x8016D39
 SET_FUNC CallARM_PushToSecondaryOAM, 0x8004389
-
+SET_FUNC CallEndEvent, 0x8079A39 
 SET_DATA BattleAttackerSideBool, 0x203E014
 SET_DATA gBmMapUnit, 0x202E3DC
 SET_DATA gProcScr_StatScreen, 0x8CC1F6C
@@ -176,6 +180,7 @@ SET_DATA ProcScr_BmFadeIN, 0x8CE4C50
 SET_DATA ProcScr_BmFadeOUT, 0x8CE4C80 
 .endif 
 .if FE8 == true 
+SET_DATA gVision, 0x202BCF0+0x0D
 SET_DATA gBattleActorUnit, 0x0203A4EC
 SET_DATA gBattleTargetUnit, 0x0203A56C
 

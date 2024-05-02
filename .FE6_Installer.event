@@ -30,8 +30,9 @@ WORD 0 // If 0, it'll read through your item editor and count
 MaxClasses_Link:
 WORD 0 // If 0, it'll read through your class editor and count
 // until it finds a class with an ID that does not match (eg. says 0) 
-
-ALIGN 4 
+ALIGN 4
+BonusItemChance: 
+WORD 10
 CasualModeFlag:
 WORD 0x8C 
 RandomizePrepShop:
@@ -138,7 +139,10 @@ EnemyDiffBonusText:
 BYTE 0xA4 0xF0 0x6B 0x10 0x6B 0x9B 0x20 0x6E 0x7A 0x28 0xF2 0xD5 0x0B 0x00 0x00 0x00
 RandomizerText: 
 BYTE $FD $09 $42 $AD $77 $FF $FD $E9 $05 $00 $00 $00 $00
-
+FogText:
+BYTE $A4 $69 $D5 $0B $00 $00 $00 $00// "Fog"
+SkipChapterText:
+BYTE $CD $0C $BB $13 $66 $48 $C7 $FF $F4 $02 $00 $00 $00 $00
 
 ALIGN 16 
 Option0:
@@ -283,6 +287,23 @@ ALIGN 21; BYTE $D6 $B1 $DE $C9 $D8 $10 $3E $A6 $3C $FB $CB $EA $05
 ALIGN 21; BYTE $D6 $B1 $9E $65 $6C $08 $1F $53 $9E $FD $65 $F5 $02
 ALIGN 21; BYTE $D6 $31 $4E $64 $6C $08 $1F $53 $9E $FD $65 $F5 $02
 ALIGN 21; BYTE $D6 $61 $41 $33 $36 $84 $8F $29 $CF $FE $D2 $0B
+BYTE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+ALIGN 16
+Option13:
+FILL(16*3)
+ORG Option13
+ALIGN 16; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
+ALIGN 16; BYTE $24 $C5 $16 $B0 $A2 $04 $D1 $0B //"Always off"
+ALIGN 16; BYTE $24 $C5 $16 $B0 $A2 $D8 $0B //"Always on"
+
+ALIGN 16
+Option14:
+FILL(16*2)
+ORG Option14
+ALIGN 16; BYTE 0x5D 0x8F 0xE0 0x2E 0x45 0x7A 0x01 
+ALIGN 16; BYTE $CD $9D $5F $2B $24 $BD // "Press A"
+
 
 ALIGN 32
 MovText:

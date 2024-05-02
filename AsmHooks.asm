@@ -5,6 +5,21 @@
   .short 0xf800
 .endm
 
+.global CallEndEvent_FE6
+.type CallEndEvent_FE6, %function 
+CallEndEvent_FE6:
+push {lr} 
+mov r0, #0xE 
+ldr r3, =0x0202AA48 
+ldsb r0, [r3, r0] 
+blh 0x802BBA0 
+ldr r0, [r0, #0x18] 
+blh 0x800D978
+pop {r3} 
+bx r3 
+.ltorg 
+
+
 .global DisplayStealOrDropIcon_FE6
 .type DisplayStealOrDropIcon_FE6, %function 
 DisplayStealOrDropIcon_FE6: 
