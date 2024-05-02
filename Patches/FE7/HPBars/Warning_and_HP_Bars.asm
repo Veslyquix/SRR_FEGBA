@@ -1,6 +1,6 @@
 @Don't have more than 1 of these equal to 1 at a time. Issues will arise.
-.equ FE6, 1
-.equ FE7, 0	@untested
+.equ FE6, 0
+.equ FE7, 1	@untested
 .equ FE8, 0	@untested
 
 .thumb
@@ -74,13 +74,14 @@
 
 push	{r4-r7}
 add		sp,#-0x10
+
 @First, check if all this stuff is even enabled
 ldr		r0,=OptionByte2
 ldrb	r0,[r0]
 mov		r1,#0x20
 tst		r0,r1
-@beq		HpBars					@if bit isn't set, hp bars are on (at the very least)
-@b		GoBack
+beq		HpBars					@if bit isn't set, hp bars are on (at the very least)
+b		GoBack
 
 HpBars:
 mov		r0,#0

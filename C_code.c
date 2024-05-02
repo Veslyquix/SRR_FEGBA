@@ -240,7 +240,7 @@ void sub_80328B0(void) {
 }
 extern unsigned GetGameClock(void); // 8000F14
 extern u16 const gObject_8x8[]; // 85c39A0 8B905B0 
-#ifndef FE8 
+
 extern void CallARM_PushToSecondaryOAM(int xMask, int yMask, const u16 *c, int d); // 8003870 / 8004388
 extern u16 gCameraX; 
 extern u16 gCameraY; 
@@ -283,17 +283,13 @@ int MaybeDisplayStealOrDropIcon(struct Unit* unit) {
 		#ifdef FE6
 		// add boss icon to fe6 	
 		if (UNIT_CATTRIBUTES(unit) & CA_BOSS) { 
-			CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 9), OAM0_Y(0x100+y + 7), gObject_8x8, 0x810); // drop 0x69 
+			CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 9), OAM0_Y(0x100+y + 7), gObject_8x8, 0x850); // drop 0x69 
 		} 
 		#endif 
 		return true; 
 	}
 	return false; 
 } 
-#endif 
-#ifdef FE8 
-int MaybeDisplayStealOrDropIcon(void) { return 0; } 
-#endif 
 extern void RandColours(int bank, int index, int amount, u8 portraitId); 
 struct FaceVramEntry
 {

@@ -41,6 +41,23 @@ ldr r3, =0x8025e0d
 bx r3 
 .ltorg 
 
+.global DisplayStealOrDropIcon_FE8
+.type DisplayStealOrDropIcon_FE8, %function 
+DisplayStealOrDropIcon_FE8: 
+push {lr} @ 278AC
+mov r0, r4 @ unit 
+bl MaybeDisplayStealOrDropIcon 
+cmp r0, #0 
+beq ExitIconFE8
+mov r1, #0x10 
+ldr r0, [r4, #0xC] @ state 
+and r0, r1 
+ExitIconFE8:
+cmp r0, #0
+pop {r3} 
+ldr r3, =0x80278B5
+bx r3 
+.ltorg 
 
 
 .global MakeStolenItemDroppable_FE6

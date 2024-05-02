@@ -277,11 +277,6 @@ ORG $3A15C
 callHackNew(MakeStolenItemDroppable_FE8)
 SHORT 0x46C0
 
-#ifdef VeslyBuildfile
-ORG $28620
-BYTE 30 // Support range 
-#endif 
-
 POP 
 
 ALIGN 4

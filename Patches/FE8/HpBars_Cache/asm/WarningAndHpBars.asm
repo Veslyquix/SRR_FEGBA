@@ -1,7 +1,7 @@
 @Don't have more than 1 of these equal to 1 at a time. Issues will arise.
-.equ FE6, 1
-.equ FE7, 0	@untested
-.equ FE8, 0	@untested
+.equ FE6, 0
+.equ FE7, 0
+.equ FE8, 1	@untested
 
 .thumb
 .org 0
@@ -52,7 +52,7 @@
 .endif
 
 .if FE8 == 1
-	.equ WarningCache, 			0x0203ACC0	@free space in ram. Change this if necessary.
+	.equ WarningCache, 			0x0203AE00	@free space in ram. Change this if necessary.
 	.equ OptionByte2, 			0x0202BD31
 	.equ CameraStuff, 			0x0202BCB0
 	.equ WRAMDisplay, 			0x08002BB8
@@ -74,13 +74,14 @@
 
 push	{r4-r7}
 add		sp,#-0x10
+
 @First, check if all this stuff is even enabled
 ldr		r0,=OptionByte2
 ldrb	r0,[r0]
 mov		r1,#0x20
 tst		r0,r1
-@beq		HpBars					@if bit isn't set, hp bars are on (at the very least)
-@b		GoBack
+beq		HpBars					@if bit isn't set, hp bars are on (at the very least)
+b		GoBack
 
 HpBars:
 mov		r0,#0
@@ -238,6 +239,7 @@ mov		r14,r1
 cmp		r0,#4 @ devil 
 beq		IsCritty
 
+
 NextItem:
 add		r5,#2
 cmp		r5,#inventory_slot1+8
@@ -276,7 +278,7 @@ b		GoBack					@opting to do the displaying on the second pass
 DisplayOtherIcons:
 ldr		r5,=WarningCache
 add		r5,#2
-ldrb	r0,[r4,#0xB]
+ldrb	r0,[r4,#0xB] @unit id
 ldrb	r5,[r5,r0]
 cmp		r5,#0
 beq		GoBack					@nothing to display

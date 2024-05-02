@@ -325,6 +325,17 @@ PUSH
 ORG $59D21C
 POIN NewChMenu
 
+
+#ifdef VeslyBuildfile
+ORG $28620
+BYTE 30 // Support range 
+
+// PutUnitSpriteIconsOam fe6/7/8 8022378 8025B54 80275E8
+ORG $278AC
+jumpToHack(DisplayStealOrDropIcon_FE8)
+#endif 
+
+
 ORG $8B3C35 
 BYTE 1 2 3 // Eirika items 
 

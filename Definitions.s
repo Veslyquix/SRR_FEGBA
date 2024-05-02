@@ -183,6 +183,9 @@ SET_DATA gPaletteSyncFlag, 0x300000E
 SET_DATA gPaletteBuffer, 0x20228A8
 SET_DATA gCursorX, 0x202BCB0+0x14 
 SET_DATA gCursorY, 0x202BCB0+0x16
+SET_DATA gCameraX, 0x202BCB0+0xC
+SET_DATA gCameraY, 0x202BCB0+0xE
+
 SET_DATA BattleAttackerSideBool, 0x203E108
 SET_DATA SaveMenuProc, 0x8A200B8 @ fe8 
 SET_DATA DifficultySelectionProc, 0x8A20A10 @ fe8 
