@@ -20,6 +20,22 @@ bx r3
 .ltorg 
 
 
+@.global HookStartFace_FE8 
+@.type HookStartFace_FE8, %function 
+@HookStartFace_FE8:
+@push {lr} 
+@mov r4, r0 
+@str r4, [r5] 
+@mov r0, r8 
+@mov r0, #0x32 
+@mov r8, r0 
+@blh 0x8005514 
+@mov r5, r0 
+@pop {r3} 
+@bx r3 
+@.ltorg 
+
+
 .global DisplayStealOrDropIcon_FE6
 .type DisplayStealOrDropIcon_FE6, %function 
 DisplayStealOrDropIcon_FE6: 

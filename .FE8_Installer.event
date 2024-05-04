@@ -279,6 +279,11 @@ ORG $3A15C
 callHackNew(MakeStolenItemDroppable_FE8)
 SHORT 0x46C0
 
+#ifdef VeslyBuildfile
+//ORG $566C 
+//callHackNew(HookStartFace_FE8)
+#endif 
+
 POP 
 
 ALIGN 4
