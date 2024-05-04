@@ -180,6 +180,7 @@ SET_DATA ProcScr_BmFadeIN, 0x8CE4C50
 SET_DATA ProcScr_BmFadeOUT, 0x8CE4C80 
 .endif 
 .if FE8 == true 
+SET_FUNC CallARM_DecompText_2, 0x800a265 
 SET_DATA gVision, 0x202BCF0+0x0D
 SET_DATA gBattleActorUnit, 0x0203A4EC
 SET_DATA gBattleTargetUnit, 0x0203A56C

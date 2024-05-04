@@ -319,6 +319,20 @@ BYTE 8
 ORG $25E04
 jumpToHack(DisplayStealOrDropIcon_FE7)
 
+ORG $8e74 // in 7854 // fe7 8008E34 fe6 800a4f4
+callHackNew(HookLoadFace_FE8) // fe8 and fe7 identical here 
+
+// world map? 
+ORG $b4dc4 
+callHackNew(HookWMStartFace_FE7)
+// b4d4c 
+
+ORG $18BD8 
+jumpToHack(GetUnitPortraitId_FE7) 
+// 80192F4	GetUnitChibiId // fe7 8018BF4 fe6 8018500
+ORG $18BF4 
+jumpToHack(GetUnitMiniPortraitId_FE7)
+
 POP 
 
 ALIGN 4

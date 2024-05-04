@@ -79,6 +79,9 @@ extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
 
 
+int GetRandomizedPortrait(int portraitID) { 
+	return 0x32; 
+} 
 
 int ShouldDoJankyPalettes(void) { 
 	return RandBitflags->colours == 2; 
@@ -3057,6 +3060,81 @@ char * PutStringInBuffer(const char * str)
 }
 #else 
 const char * PutStringInBuffer(const char * str) { return str; }
+#endif 
+#ifdef FE8 
+extern char sMsgString[0x1000];
+extern void CallARM_DecompText_2(const char *a, char *b); // a264 // added by antihuffman 
+int GetStringLength(char* str) { 
+	int i = 0; 
+	for (i < 255; ++i) { 
+		if (!str[i]) break; 
+	} 
+	return i; 
+
+} 
+int GetEndOfBuffer(char* buffer) { 
+	for (int i = 0; i < 0x1000; ++i) { 
+		if (!buffer[i]) { return i; } 
+	} 
+	return 0; 
+
+} 
+void ShiftDataInBuffer(char *buffer, int offset) { 
+	int endOfBuffer = GetEndOfBuffer(buffer); 
+
+
+} 
+
+void ReplaceIfMatching(char *buffer, char* find, char* replace) { 
+	int len1 = GetStringLength(find); 
+	int result = false; 
+	
+	for (int i = 0; i < 255; ++i) { 
+		if (i > len) { 
+		result = true; 
+		break; } 
+		
+		if (buffer[i] != find[i]) break; 
+		
+	} 
+	
+	if (result) { 
+		int len2 = GetStringLength(replace); 
+		ShiftDataInBuffer(buffer, len2-len1); 
+		
+		for (int i = 0; i < 255; ++i) { 
+			if (i > len) { 
+			break; } 
+			
+			buffer[i] = replace[i]; 
+			
+		} 
+	} 
+	
+	
+
+}  
+
+void CallARM_DecompText(const char *a, char *b) // 2ba4 
+{
+	if ((int)a & 0x80000000) { // anti huffman 
+		for (int i = 0; i < 0x1000; ++i) { 
+			sMsgString[i] = a[i];
+			if (!a[i]) { sMsgString[i] = 0; break; }  
+		}
+	} 
+	else { 
+		CallARM_DecompText_2(a, b);
+	} 
+	char* findString = "Eirika"; 
+	char* replaceString = "Seth"; 
+	// max length? 
+	for (int i = 0; i < 0x1000; ++i) { 
+	ReplaceIfMatching(&sMsgString[i], findString, replaceString);
+	if (!a[i]) { sMsgString[i] = 0; break; } 
+	}
+	
+}
 #endif 
 
 extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); // 80C57BC

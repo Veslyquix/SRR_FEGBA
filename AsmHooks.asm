@@ -19,21 +19,190 @@ pop {r3}
 bx r3 
 .ltorg 
 
+.global HookLoadFace_FE6
+.type HookLoadFace_FE6, %function 
+HookLoadFace_FE6:
+push {r4, lr} 
+lsl r4, r1, #8 
+ldr r0, [r7, #8] 
+bl GetRandomizedPortrait
+add r4, r0 
+str r4, [r7, #8] 
+mov r0, r4 
+pop {r4} 
+pop {r3} 
+bx r3 
+.ltorg 
 
-@.global HookStartFace_FE8 
-@.type HookStartFace_FE8, %function 
-@HookStartFace_FE8:
-@push {lr} 
-@mov r4, r0 
-@str r4, [r5] 
-@mov r0, r8 
-@mov r0, #0x32 
-@mov r8, r0 
-@blh 0x8005514 
-@mov r5, r0 
-@pop {r3} 
-@bx r3 
-@.ltorg 
+.global HookLoadFace_FE8
+.type HookLoadFace_FE8, %function 
+HookLoadFace_FE8:
+push {lr} 
+ldr r0, [r4] 
+ldr r0, [r0] 
+ldrb r4, [r0, #1] 
+lsl r4, #8 
+ldrb r0, [r0] 
+bl GetRandomizedPortrait
+add r4, r0 
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global HookWMStartFace_FE6
+.type HookWMStartFace_FE6, %function 
+HookWMStartFace_FE6:
+push {r4, lr} 
+mov r4, r0 @ proc 
+mov r0, r1 
+bl GetRandomizedPortrait
+mov r2, r0 
+mov r0, r4 
+pop {r4} 
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global HookWMStartFace_FE7
+.type HookWMStartFace_FE7, %function 
+HookWMStartFace_FE7:
+str r1, [sp] @ probably unnecessary, but vanilla code does this before bl to 7bcc as 5th param 
+push {r4, lr} 
+sub sp, #4 
+str r1, [sp] 
+mov r0, r9 @ portrait id 
+mov r4, r2 
+bl GetRandomizedPortrait
+mov r1, r0
+mov r2, r4 
+mov r0, r7 
+mov r3, #0x28 @ idk 
+blh 0x8007bcc, r4
+add sp, #4 
+pop {r4} 
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global HookWMStartFace_FE8
+.type HookWMStartFace_FE8, %function 
+HookWMStartFace_FE8:
+push {lr} 
+lsl r2, #0x10 
+lsr r4, r2, #0x10 
+mov r0, r1 @ face ID 
+bl GetRandomizedPortrait
+mov r6, r0 
+ldr r0, =0x8A3D700 
+blh 0x8002e9c
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global HookGetUnitPortraitId_FE8
+.type HookGetUnitPortraitId_FE8, %function 
+HookGetUnitPortraitId_FE8:
+push {r4, lr} 
+mov r4, r0 
+ldr r0, [r1] 
+ldrh r0, [r0, #6] 
+cmp r0, #0 
+beq ExitGeneric_Fe8 
+bl GetRandomizedPortrait
+mov r2, r0 
+mov r1, r4 
+pop {r4} 
+pop {r3} 
+ldr r3, =0x80192C5 
+bx r3 
+
+ExitGeneric_Fe8:
+mov r1, r4 
+ldr r1, [r1, #4] 
+pop {r4} 
+pop {r3} 
+ldr r3, =0x80192E5
+bx r3 
+.ltorg 
+
+.global GetUnitPortraitId_FE7
+.type GetUnitPortraitId_FE7, %function 
+GetUnitPortraitId_FE7:
+push {r4, lr} 
+mov r4, r0 
+ldr r1, [r4] 
+ldrh r0, [r1, #6] 
+cmp r0, #0 
+beq GetClassPortraitId_FE7 
+bl GetRandomizedPortrait 
+b ExitPortrait_FE7
+
+GetClassPortraitId_FE7: 
+ldr r1, [r4, #4] 
+ldrh r0, [r1, #8] 
+ExitPortrait_FE7:
+pop {r4} 
+pop {r3} 
+bx r3 
+.ltorg 
+
+
+
+
+
+.global GetUnitMiniPortraitId_FE7
+.type GetUnitMiniPortraitId_FE7, %function 
+GetUnitMiniPortraitId_FE7:
+push {r4, lr} 
+mov r4, r0 
+ldr r1, [r4] 
+ldrb r0, [r1, #8] 
+cmp r0, #0 
+bne UseGenericMiniPortrait_FE7 
+mov r0, r4 
+bl GetUnitPortraitId_FE7 
+b ExitMiniPortrait_FE7 
+
+UseGenericMiniPortrait_FE7: 
+mov r0, #0xFE 
+lsl r0, #7 
+ldrb r1, [r1, #8] 
+orr r0, r1 
+ExitMiniPortrait_FE7:
+pop {r4} 
+pop {r3} 
+bx r3 
+.ltorg 
+
+
+
+.global HookGetUnitMiniPortraitId_FE8
+.type HookGetUnitMiniPortraitId_FE8, %function 
+HookGetUnitMiniPortraitId_FE8:
+push {r4, lr} 
+mov r4, r2  @ unit 
+ldrh r1, [r1, #6] 
+cmp r1, #0 
+beq ExitGenericMini_Fe8 
+mov r0, r1  
+bl GetRandomizedPortrait
+mov r1, r0 
+ldr r0, =0x202BCF0 @ gChData 
+mov r2, r4 @ unit 
+pop {r4} 
+pop {r3} 
+ldr r3, =0x8019311 
+bx r3 
+
+ExitGenericMini_Fe8:
+mov r2, r4 
+ldr r2, [r2, #4] 
+pop {r4} 
+pop {r3} 
+ldr r3, =0x8019331
+bx r3 
+.ltorg 
+
 
 
 .global DisplayStealOrDropIcon_FE6

@@ -280,8 +280,23 @@ callHackNew(MakeStolenItemDroppable_FE8)
 SHORT 0x46C0
 
 #ifdef VeslyBuildfile
-//ORG $566C 
-//callHackNew(HookStartFace_FE8)
+ORG $7894 // in 7854 // fe7 8008E34 fe6 800a4f4
+callHackNew(HookLoadFace_FE8)
+
+ORG $B86D8 
+callHackNew(HookWMStartFace_FE8) 
+
+ORG $192BC 
+jumpToHack(HookGetUnitPortraitId_FE8) 
+ORG $192DE 
+SHORT $1c10 // mov r0, r2 
+
+// 80192F4	GetUnitChibiId // fe7 8018BF4 fe6 8018500
+ORG $19308 
+jumpToHack(HookGetUnitMiniPortraitId_FE8)
+ORG $1932A
+SHORT $46c0 
+
 #endif 
 
 POP 

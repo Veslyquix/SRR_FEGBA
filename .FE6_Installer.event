@@ -446,6 +446,18 @@ BYTE 30 // Support range
 ORG $2257C // ORG $25E04 FE7 // jumpToHack
 jumpToHack(DisplayStealOrDropIcon_FE6)
 
+ORG $a564 // in 7854 // fe7 8008E34 fe6 800a4f4
+callHackNew(HookLoadFace_FE6)
+
+// 8010f5c EvtCmd_WmPutFace
+ORG $1102C
+callHackNew(HookWMStartFace_FE6)
+
+ORG $184F0
+jumpToHack(GetUnitPortraitId_FE7)  // same code 
+// 80192F4	GetUnitChibiId // fe7 8018BF4 fe6 8018500
+ORG $18500 
+jumpToHack(GetUnitMiniPortraitId_FE7) // same code 
 
 POP 
 
