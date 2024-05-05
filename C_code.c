@@ -3040,33 +3040,34 @@ extern void ChapterStatus_SetupFont(int zero); // 8086E60
 extern void SetFontGlyphSet(int a); //8005410
 extern void InitSystemTextFont(void); // 8005A40
 extern void RegisterBlankTile(int a); 
+
+struct ReplaceTextStruct { 
+// conditions 
+	u16 flag; 
+	u8 chapterID; 
+	u8 pad; 
+	const char* find; 
+	const char* replace; 
+};  
+extern struct ReplaceTextStruct ReplaceTextList[]; 
+extern char sMsgString[0x1000]; // fe7 202A5B4 
+extern void SetMsgTerminator(char * str); 
+extern void Arm_DecompText(const char *, char*, u32 addr); 
+extern void (*gARM_DecompText)(const char *, char *); // fe8 3004150 fe7 3003940 fe6 3003780
+extern void CallARM_DecompText(const char *a, char *b);
 #define UseHuffmanEncoding 0
 #ifdef FE6 
-void DecodeStringRam(char const * src, char * dst, int huffman); //800384c 
-extern char sMsgString[0x1000];
 char * PutStringInBuffer(const char * str, int huffman)
 {
-	
-	// anti-huffman version?
 	if (!huffman) { 
-		for (int i = 0; i < 0x1000; ++i) { 
-			sMsgString[i] = str[i];
-			if (!str[i]) break; 
-		}
-	}
-	
-	else { 
-		DecodeStringRam(str, sMsgString, 0); // if int huffman is negative, don't use huffman encoding  
-	}
-
+		str = (const char*) ((int)str | 0x80000000); 
+	} 
+	CallARM_DecompText(str, sMsgString); // if int huffman is negative, don't use huffman encoding  
     return sMsgString;
 }
 #else 
 const char * PutStringInBuffer(const char * str, int huffman) { return str; }
 #endif 
-#ifdef FE8 
-extern char sMsgString[0x1000];
-extern void CallARM_DecompText_2(const char *a, char *b); // a264 // added by antihuffman 
 int GetStringLength(const char* str) { 
 	int i = 0; 
 	for (i = 0; i < 255; ++i) { 
@@ -3119,41 +3120,49 @@ void ReplaceIfMatching(char *buffer, const char* find, const char* replace, int 
 
 }  
 
-struct ReplaceTextStruct { 
-	u16 flag; 
-	u8 chapterID; 
-	u8 pad; 
-	const char* find; 
-	const char* replace; 
-	// conditions 
-
-}; 
-extern struct ReplaceTextStruct ReplaceTextList[]; 
-extern void SetMsgTerminator(char * str); 
-void CallARM_DecompText(const char *a, char *b) // 2ba4 
+ 
+void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 800384C 
 {
+	// maybe fill with 0 beforehand for fe6? 
 	if ((int)a & 0x80000000) { // anti huffman 
+		a = (const char*) ((int)a & 0x7FFFFFFF); 
 		for (int i = 0; i < 0x1000; ++i) { 
 			sMsgString[i] = a[i];
-			if (!a[i]) { break; }  
+			if (!a[i]) { 
+			#ifndef FE8 
+			sMsgString[i] = 0; 
+			sMsgString[i+1] = 0; 
+			#endif 
+			break; }  
 		}
 	} 
 	else { 
-		CallARM_DecompText_2(a, b);
+		#ifdef FE8 
+		Arm_DecompText(a, b, 0x3004150);
+		#endif 
+		#ifdef FE7 
+		Arm_DecompText(a, b, 0x3003940); 
+		#endif 
+		#ifdef FE6
+		Arm_DecompText(a, b, 0x3003780);
+		#endif 
 	} 
+	#ifdef FE8 
 	SetMsgTerminator(sMsgString); 
+	#endif 
 	for (int c = 0; c < 255; ++c) { 
 		if (!ReplaceTextList[c].find) { break; } 
 		if (ReplaceTextList[c].flag) { if (CheckFlag(ReplaceTextList[c].flag)) { continue; }} 
-		if (ReplaceTextList[c].flag) { if (CheckFlag(ReplaceTextList[c].flag)) { continue; }} 
+		if (ReplaceTextList[c].chapterID != 0xFF) { if (gCh != ReplaceTextList[c].chapterID) { continue; }} 
 		for (int i = 0; i < 0x1000; ++i) { 
 			ReplaceIfMatching(&sMsgString[i], ReplaceTextList[c].find, ReplaceTextList[c].replace, i);
 			if (!sMsgString[i]) { break; } 
 		}
 	} 
 	
+	
 }
-#endif 
+
 
 extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); // 80C57BC
 #define Y_HAND 3

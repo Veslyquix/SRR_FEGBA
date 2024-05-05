@@ -110,6 +110,27 @@ NeverChangeFromItem(0x42) // Apocalypse
 NeverChangeFromItem(0x77) // Saint's staff 
 NeverChangeIntoItem(0x4F) // useless staff "Makes closed areas visible." 
 
+
+TextA:
+STRING "Roy" "FE6TR" ; BYTE 0
+TextB: ; STRING "Some name" "FE6TR"; BYTE 0 
+TextC:
+STRING "Marcus" "FE6TR"; BYTE 0 
+TextD: ; STRING "another name" "FE6TR"; BYTE 0 
+TextE:
+STRING "I " "FE6TR"; BYTE 0 
+TextF: ; STRING "arbitrary text " "FE6TR"; BYTE 0 
+
+
+
+ALIGN 4 
+ReplaceTextList:
+// required flag, required chapter, pad, text to find, replacement text 
+SHORT 0; BYTE 0xFF 0; POIN TextA TextB 
+SHORT 0; BYTE 0xff 0; POIN TextC TextD 
+SHORT 0; BYTE 0xff 0; POIN TextE TextF 
+WORD 0 0 0// terminator 
+
 ALIGN 4 
 SeedText: 
 STRING "Seed" "FE6TR" ; BYTE 0
@@ -422,7 +443,7 @@ BYTE $20 // never hard mode for prep ?
 
 
 // Antihuffman 
-ORG 0x384c;  BYTE $03 $B5 $02 $B0 $C2 $0F $00 $2A $01 $D0 $05 $4A $97 $46 $03 $4A $12 $68 $9A $F0 $5B $FB $01 $BC $00 $47 $00 $00 $80 $37 $00 $03 $60 $C4 $2D $08
+//ORG 0x384c;  BYTE $03 $B5 $02 $B0 $C2 $0F $00 $2A $01 $D0 $05 $4A $97 $46 $03 $4A $12 $68 $9A $F0 $5B $FB $01 $BC $00 $47 $00 $00 $80 $37 $00 $03 $60 $C4 $2D $08
 ORG $2dc460; BYTE $80 $23 $1B $06 $C0 $1A $02 $78 $0A $70 $01 $31 $01 $30 $00 $2A $F9 $D1 $01 $4A $97 $46 $00 $00 $62 $38 $00 $08
 
 // in A200B8 fe8 / CE3C54 fe7 / 

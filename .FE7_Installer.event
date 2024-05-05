@@ -272,7 +272,7 @@ SHORT $7918; BYTE SupplyUnitID $28;
 // search for unit id instead of "supply" 0x200 bitflag 
 
 // Anti-Huffman by Hextator & ported by 7743
-ORG 0x4364; BYTE $00 $B5 $C2 $0F $00 $2A $02 $D0 $0E $F0 $86 $FC $03 $E0 $02 $4A $12 $68 $BB $F0 $6D $FC $00 $BD $40 $39 $00 $03
+//ORG 0x4364; BYTE $00 $B5 $C2 $0F $00 $2A $02 $D0 $0E $F0 $86 $FC $03 $E0 $02 $4A $12 $68 $BB $F0 $6D $FC $00 $BD $40 $39 $00 $03
 ORG 0x12C6C; BYTE $02 $49 $28 $1C $00 $F0 $14 $F8 $35 $60 $0C $E0 $B4 $A5 $02 $02 $80 $23 $1B $06 $C0 $1A $02 $78 $0A $70 $01 $31 $01 $30 $00 $2A $F9 $D1 $70 $47
 
 // fe6: 8034BF0 // doesn't seem to check unit bitflags? can any enemy unit in fe6 use a lockpick already?
@@ -334,6 +334,26 @@ ORG $18BF4
 jumpToHack(GetUnitMiniPortraitId_FE7)
 
 POP 
+
+TextA:
+String("Eliwood"); BYTE 0 
+TextB: ; String("Some name"); BYTE 0 
+TextC:
+String("Marcus"); BYTE 0 
+TextD: ; String("another name"); BYTE 0 
+TextE:
+String("I "); BYTE 0 
+TextF: ; String("arbitrary text "); BYTE 0 
+
+
+
+ALIGN 4 
+ReplaceTextList:
+// required flag, required chapter, pad, text to find, replacement text 
+SHORT 0; BYTE 0xFF 0; POIN TextA TextB 
+SHORT 0; BYTE 0xff 0; POIN TextC TextD 
+SHORT 0; BYTE 0xff 0; POIN TextE TextF 
+WORD 0 0 0// terminator 
 
 ALIGN 4
 DIS_matrixTable:

@@ -5,6 +5,18 @@
   .short 0xf800
 .endm
 
+.global Arm_DecompText
+.type Arm_DecompText, %function 
+Arm_DecompText:
+push {lr} 
+ldr r2, [r2] 
+bl CallViaR2 
+pop {r0} 
+bx r0 
+CallViaR2:
+bx r2 
+.ltorg 
+
 .global CallEndEvent_FE6
 .type CallEndEvent_FE6, %function 
 CallEndEvent_FE6:
