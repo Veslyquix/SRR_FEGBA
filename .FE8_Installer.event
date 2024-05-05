@@ -301,6 +301,23 @@ SHORT $46c0
 
 POP 
 
+TextA:
+String("Eirika"); BYTE 0 
+TextB: ; String("Some name"); BYTE 0 
+TextC:
+String("Seth"); BYTE 0 
+TextD: ; String("another name"); BYTE 0 
+TextE:
+String("I "); BYTE 0 
+TextF: ; String("arbitrary text "); BYTE 0 
+
+
+
+ALIGN 4 
+ReplaceTextList:
+POIN TextA TextB TextC TextD TextE TextF 
+WORD 0 0 // terminator 
+
 ALIGN 4
 DIS_matrixTable:
 #incbin "matrixTable.bin"

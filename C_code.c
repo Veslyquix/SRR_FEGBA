@@ -3064,9 +3064,9 @@ const char * PutStringInBuffer(const char * str) { return str; }
 #ifdef FE8 
 extern char sMsgString[0x1000];
 extern void CallARM_DecompText_2(const char *a, char *b); // a264 // added by antihuffman 
-int GetStringLength(char* str) { 
+int GetStringLength(const char* str) { 
 	int i = 0; 
-	for (i < 255; ++i) { 
+	for (i = 0; i < 255; ++i) { 
 		if (!str[i]) break; 
 	} 
 	return i; 
@@ -3079,60 +3079,70 @@ int GetEndOfBuffer(char* buffer) {
 	return 0; 
 
 } 
-void ShiftDataInBuffer(char *buffer, int offset) { 
+void ShiftDataInBuffer(char *buffer, int amount, int offset) { 
 	int endOfBuffer = GetEndOfBuffer(buffer); 
-
+	if (!amount) { return; } 
+	int i; 
+	if (amount < 0) { 
+		amount = ABS(amount); 
+		for (i = offset; i < endOfBuffer; ++i) { 
+			//asm("mov r11, r11"); 
+			buffer[i] = buffer[i + amount]; 
+		} 
+	} 
+	else { 
+		for (i = endOfBuffer; i >= offset; --i) { 
+			buffer[i+amount] = buffer[i]; 
+		} 
+	
+	} 
 
 } 
 
-void ReplaceIfMatching(char *buffer, char* find, char* replace) { 
+void ReplaceIfMatching(char *buffer, const char* find, const char* replace, int c) { 
 	int len1 = GetStringLength(find); 
-	int result = false; 
-	
-	for (int i = 0; i < 255; ++i) { 
-		if (i > len) { 
-		result = true; 
-		break; } 
-		
-		if (buffer[i] != find[i]) break; 
-		
+	int i; 
+	for (i = 0; i < len1; ++i) { 
+		if (buffer[i] != find[i]) { return; }
 	} 
 	
-	if (result) { 
-		int len2 = GetStringLength(replace); 
-		ShiftDataInBuffer(buffer, len2-len1); 
-		
-		for (int i = 0; i < 255; ++i) { 
-			if (i > len) { 
-			break; } 
-			
-			buffer[i] = replace[i]; 
-			
-		} 
-	} 
+	int len2 = GetStringLength(replace); 
+	ShiftDataInBuffer(sMsgString, len2-len1, c); 
 	
+	for (i = 0; i < len2; ++i) { 
+		buffer[i] = replace[i]; 
+	} 
 	
 
 }  
 
+struct ReplaceTextStruct { 
+	const char* find; 
+	const char* replace; 
+	// conditions 
+
+}; 
+extern struct ReplaceTextStruct ReplaceTextList[]; 
+extern void SetMsgTerminator(char * str); 
 void CallARM_DecompText(const char *a, char *b) // 2ba4 
 {
 	if ((int)a & 0x80000000) { // anti huffman 
 		for (int i = 0; i < 0x1000; ++i) { 
 			sMsgString[i] = a[i];
-			if (!a[i]) { sMsgString[i] = 0; break; }  
+			if (!a[i]) { break; }  
 		}
 	} 
 	else { 
 		CallARM_DecompText_2(a, b);
 	} 
-	char* findString = "Eirika"; 
-	char* replaceString = "Seth"; 
-	// max length? 
-	for (int i = 0; i < 0x1000; ++i) { 
-	ReplaceIfMatching(&sMsgString[i], findString, replaceString);
-	if (!a[i]) { sMsgString[i] = 0; break; } 
-	}
+	SetMsgTerminator(sMsgString); 
+	for (int c = 0; c < 255; ++c) { 
+		if (!ReplaceTextList[c].find) { break; } 
+		for (int i = 0; i < 0x1000; ++i) { 
+			ReplaceIfMatching(&sMsgString[i], ReplaceTextList[c].find, ReplaceTextList[c].replace, i);
+			if (!sMsgString[i]) { break; } 
+		}
+	} 
 	
 }
 #endif 
