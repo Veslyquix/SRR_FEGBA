@@ -315,8 +315,11 @@ TextF: ; String("arbitrary text "); BYTE 0
 
 ALIGN 4 
 ReplaceTextList:
-POIN TextA TextB TextC TextD TextE TextF 
-WORD 0 0 // terminator 
+// required flag, required chapter, pad, text to find, replacement text 
+SHORT 0; BYTE 0xFF 0; POIN TextA TextB 
+SHORT 0; BYTE 0xff 0; POIN TextC TextD 
+SHORT 0; BYTE 0xff 0; POIN TextE TextF 
+WORD 0 0 0// terminator 
 
 ALIGN 4
 DIS_matrixTable:

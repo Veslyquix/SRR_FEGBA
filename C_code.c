@@ -2810,7 +2810,7 @@ const char Option0[OPT0NUM][5] = { // 2nd number is max number of characters for
 
 #define OPT1NUM 2
 #ifdef FE6 
-extern const char Option1[OPT1NUM][16]; // do align 16 before each? 
+extern const char Option1[OPT1NUM][32]; // do align 16 before each? 
 #else 
 const char Option1[OPT1NUM][8] = { // Base Stats 
 "Vanilla",
@@ -2819,7 +2819,7 @@ const char Option1[OPT1NUM][8] = { // Base Stats
 #endif
 #define OPT2NUM 5
 #ifdef FE6 
-extern const char Option2[OPT2NUM][16]; // do align 16 before each? 
+extern const char Option2[OPT2NUM][32]; // do align 16 before each? 
 #else 
 const char Option2[OPT2NUM][15] = { // Growths
 "Vanilla",
@@ -2831,7 +2831,7 @@ const char Option2[OPT2NUM][15] = { // Growths
 #endif
 #define OPT3NUM 3
 #ifdef FE6 
-extern const char Option3[OPT3NUM][16]; // do align 16 before each? 
+extern const char Option3[OPT3NUM][32]; // do align 16 before each? 
 #else 
 const char Option3[OPT3NUM][15] = { // Levelups 
 "Vanilla",
@@ -2841,7 +2841,7 @@ const char Option3[OPT3NUM][15] = { // Levelups
 #endif
 #define OPT4NUM 3
 #ifdef FE6 
-extern const char Option4[OPT4NUM][16]; // do align 16 before each? 
+extern const char Option4[OPT4NUM][32]; // do align 16 before each? 
 #else 
 const char Option4[OPT4NUM][10] = { // Stat Caps 
 "Vanilla",
@@ -2851,7 +2851,7 @@ const char Option4[OPT4NUM][10] = { // Stat Caps
 #endif
 #define OPT5NUM 4
 #ifdef FE6 
-extern const char Option5[OPT5NUM][16]; // do align 16 before each? 
+extern const char Option5[OPT5NUM][64]; // do align 16 before each? 
 #else 
 const char Option5[OPT5NUM][20] = { // Class
 "Vanilla",
@@ -2864,7 +2864,7 @@ const char Option5[OPT5NUM][20] = { // Class
 #endif
 #define OPT6NUM 4
 #ifdef FE6 
-extern const char Option6[OPT6NUM][16]; // do align 16 before each? 
+extern const char Option6[OPT6NUM][64]; // do align 16 before each? 
 #else 
 const char Option6[OPT6NUM][25] = { // Items
 "Vanilla",
@@ -2876,7 +2876,7 @@ const char Option6[OPT6NUM][25] = { // Items
 
 #define OPT7NUM 2
 #ifdef FE6 
-extern const char Option7[OPT7NUM][16]; // do align 16 before each? 
+extern const char Option7[OPT7NUM][32]; // do align 16 before each? 
 #else 
 const char Option7[OPT7NUM][10] = { 
 "Classic",
@@ -2885,7 +2885,7 @@ const char Option7[OPT7NUM][10] = {
 #endif
 #define OPT8NUM 2
 #ifdef FE6 
-extern const char Option8[OPT8NUM][16]; // do align 16 before each? 
+extern const char Option8[OPT8NUM][32]; // do align 16 before each? 
 #else 
 const char Option8[OPT8NUM][22] = { 
 "Vanilla BGM",
@@ -2894,7 +2894,7 @@ const char Option8[OPT8NUM][22] = {
 #endif
 #define OPT9NUM 4
 #ifdef FE6 
-extern const char Option9[OPT9NUM][16]; // do align 16 before each? 
+extern const char Option9[OPT9NUM][32]; // do align 16 before each? 
 #else 
 const char Option9[OPT9NUM][22] = { 
 "Vanilla Colours",
@@ -2905,7 +2905,7 @@ const char Option9[OPT9NUM][22] = {
 #endif
 #define OPT10NUM 2
 #ifdef FE6 
-extern const char Option10[OPT10NUM][16]; // do align 16 before each? 
+extern const char Option10[OPT10NUM][32]; // do align 16 before each? 
 #else 
 const char Option10[OPT10NUM][10] = { // Item durability 
 "Vanilla",
@@ -2914,7 +2914,7 @@ const char Option10[OPT10NUM][10] = { // Item durability
 #endif
 #define OPT11NUM 31
 #ifdef FE6 
-extern const char Option11[OPT11NUM][21]; // do align 16 before each? 
+extern const char Option11[OPT11NUM][42]; // do align 16 before each? 
 #else 
 const char Option11[OPT11NUM][20] = { // players 
 "Vanilla",
@@ -2952,7 +2952,7 @@ const char Option11[OPT11NUM][20] = { // players
 #endif
 #define OPT12NUM 31
 #ifdef FE6 
-extern const char Option12[OPT12NUM][21]; // do align 16 before each? 
+extern const char Option12[OPT12NUM][42]; // do align 16 before each? 
 #else 
 const char Option12[OPT12NUM][20] = { // Enemies 
 "Vanilla",
@@ -2991,7 +2991,7 @@ const char Option12[OPT12NUM][20] = { // Enemies
 
 #define OPT13NUM 3
 #ifdef FE6 
-extern const char Option13[OPT13NUM][16]; // do align 16 before each? 
+extern const char Option13[OPT13NUM][32]; // do align 16 before each? 
 #else 
 const char Option13[OPT13NUM][11] = { // Item durability 
 "Vanilla",
@@ -3001,7 +3001,7 @@ const char Option13[OPT13NUM][11] = { // Item durability
 #endif 
 #define OPT14NUM 2
 #ifdef FE6 
-extern const char Option14[OPT14NUM][16]; // do align 16 before each? 
+extern const char Option14[OPT14NUM][32]; // do align 16 before each? 
 #else 
 const char Option14[OPT14NUM][14] = { // Item durability 
 "Vanilla",
@@ -3040,26 +3040,29 @@ extern void ChapterStatus_SetupFont(int zero); // 8086E60
 extern void SetFontGlyphSet(int a); //8005410
 extern void InitSystemTextFont(void); // 8005A40
 extern void RegisterBlankTile(int a); 
-
+#define UseHuffmanEncoding 0
 #ifdef FE6 
 void DecodeStringRam(char const * src, char * dst, int huffman); //800384c 
 extern char sMsgString[0x1000];
-char * PutStringInBuffer(const char * str)
+char * PutStringInBuffer(const char * str, int huffman)
 {
 	
-	// anti-huffman version? 
-	//for (int i = 0; i < 0x1000; ++i) { 
-    //    sMsgString[i] = str[i];
-	//	if (!str[i]) break; 
-	//}
+	// anti-huffman version?
+	if (!huffman) { 
+		for (int i = 0; i < 0x1000; ++i) { 
+			sMsgString[i] = str[i];
+			if (!str[i]) break; 
+		}
+	}
 	
-	
-	DecodeStringRam(str, sMsgString, 0); // if int huffman is negative, don't use huffman encoding  
+	else { 
+		DecodeStringRam(str, sMsgString, 0); // if int huffman is negative, don't use huffman encoding  
+	}
 
     return sMsgString;
 }
 #else 
-const char * PutStringInBuffer(const char * str) { return str; }
+const char * PutStringInBuffer(const char * str, int huffman) { return str; }
 #endif 
 #ifdef FE8 
 extern char sMsgString[0x1000];
@@ -3117,6 +3120,9 @@ void ReplaceIfMatching(char *buffer, const char* find, const char* replace, int 
 }  
 
 struct ReplaceTextStruct { 
+	u16 flag; 
+	u8 chapterID; 
+	u8 pad; 
 	const char* find; 
 	const char* replace; 
 	// conditions 
@@ -3138,6 +3144,8 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4
 	SetMsgTerminator(sMsgString); 
 	for (int c = 0; c < 255; ++c) { 
 		if (!ReplaceTextList[c].find) { break; } 
+		if (ReplaceTextList[c].flag) { if (CheckFlag(ReplaceTextList[c].flag)) { continue; }} 
+		if (ReplaceTextList[c].flag) { if (CheckFlag(ReplaceTextList[c].flag)) { continue; }} 
 		for (int i = 0; i < 0x1000; ++i) { 
 			ReplaceIfMatching(&sMsgString[i], ReplaceTextList[c].find, ReplaceTextList[c].replace, i);
 			if (!sMsgString[i]) { break; } 
@@ -3188,35 +3196,35 @@ Max Growth: 100
 	switch (offset) { 
 	case 0: TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0); // seed first 
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-1, 3+((i)*2)), white, proc->seed); i++; 
-	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]])); i++;  
+	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]])); i++; 
+	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]])); i++; 
+	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]])); i++; 
+	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]])); i++; 
+	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]])); i++; 
+	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]])); i++; 
+	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 	
-	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]])); i++;  
+	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]])); i++;  
+	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]])); i++;  
+	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]])); i++;  
+	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]])); i++;  
+	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]])); i++;  
+	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]])); i++;  
+	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]])); i++;  
+	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
 	default: 
 	} 
@@ -3534,42 +3542,43 @@ void RedrawAllText(ConfigMenuProc* proc) {
 	//PutDrawText(&th[0], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3), gold, 0, tWidths[0], PutStringInBuffer(&VarianceText, 0));  
 	i = 0; 
 	switch (offset) { 
-		case 0: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SeedText)); i++;  // Classic/Casual 
+		case 0: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SeedText, false)); i++;  // Classic/Casual 
 		if (i > SRR_MAXDISP) { break; } 
-		case 1: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&VarianceText)); i++; 
+		case 1: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&VarianceText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 2: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&BaseStatsText)); i++; 
+		case 2: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&BaseStatsText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 3: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&GrowthsText)); i++; 
+		case 3: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&GrowthsText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 4: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&LevelupsText)); i++; 
+		case 4: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&LevelupsText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 5: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&StatCapsText)); i++; 
+		case 5: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&StatCapsText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 6: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ClassText)); i++; 
+		case 6: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ClassText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 7: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemsText)); i++;  
+		case 7: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemsText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ModeText)); i++;  // Classic/Casual 
+		case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ModeText, false)); i++;  // Classic/Casual 
 		if (i > SRR_MAXDISP) { break; } 
-		case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&MusicText)); i++; 
+		case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&MusicText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ColoursText)); i++;  
+		case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ColoursText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemDurabilityText)); i++;  
+		case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemDurabilityText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText)); i++;  // make players have bonus levels
+		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText, false)); i++;  // make players have bonus levels
 		if (i > SRR_MAXDISP) { break; } 
-		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText)); i++;  // make enemies have more bonus levels?
+		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels?
 		if (i > SRR_MAXDISP) { break; } 
-		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText)); i++;  
+		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText)); i++;  
+		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
 		default: 
 	}
+	
 	DrawConfigMenu(proc);
-	PutDrawText(&th[sizeof(tWidths) + sizeof(RtWidths)], TILEMAP_LOCATED(gBG0TilemapBuffer, 9, 0), green, 0, 6, PutStringInBuffer((const char*)&RandomizerText)); 
+	PutDrawText(&th[sizeof(tWidths) + sizeof(RtWidths)], TILEMAP_LOCATED(gBG0TilemapBuffer, 9, 0), green, 0, 6, PutStringInBuffer((const char*)&RandomizerText, false)); 
 	
 	BG_EnableSyncByMask(BG0_SYNC_BIT);
 	
