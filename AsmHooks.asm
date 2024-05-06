@@ -5,6 +5,38 @@
   .short 0xf800
 .endm
 
+.global RoyPromoHook
+.type RoyPromoHook, %function 
+RoyPromoHook: 
+push {r4-r5, lr} 
+mov r0, #1 @ Roy 
+blh 0x8017ABC @ GetUnitByCharId 
+mov r4, r0 
+
+mov r5, #0xF @ binding blade default 
+ldr r0, [r4, #4] @ class 
+ldrb r0, [r0, #5] @ promotion class 
+cmp r0, #0 
+beq ExitRoyPromoHook 
+mov r1, #0x26 
+ldrb r0, [r4, r1] @ sword exp 
+cmp r0, #0 
+bne StartPromoNow 
+mov r5, #0 @ no item equipped 
+StartPromoNow: 
+blh 0x8073324 @ prepare graphics 
+mov r0, r4 @ unit 
+mov r1, r5 @ equipped item 
+blh 0x8027Db4 @ promotion 
+
+ExitRoyPromoHook: 
+pop {r4-r5} 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+
 .global Arm_DecompText
 .type Arm_DecompText, %function 
 Arm_DecompText:

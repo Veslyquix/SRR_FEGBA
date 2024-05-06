@@ -126,9 +126,9 @@ TextF: ; STRING "arbitrary text " "FE6TR"; BYTE 0
 ALIGN 4 
 ReplaceTextList:
 // required flag, required chapter, pad, text to find, replacement text 
-SHORT 0; BYTE 0xFF 0; POIN TextA TextB 
-SHORT 0; BYTE 0xff 0; POIN TextC TextD 
-SHORT 0; BYTE 0xff 0; POIN TextE TextF 
+//SHORT 0; BYTE 0xFF 0; POIN TextA TextB 
+//SHORT 0; BYTE 0xff 0; POIN TextC TextD 
+//SHORT 0; BYTE 0xff 0; POIN TextE TextF 
 WORD 0 0 0// terminator 
 
 ALIGN 4 
@@ -364,8 +364,12 @@ PUSH
 ORG $6076D0
 BYTE  $EC $07 $B9 $04 $01 $01 $02 $00 $00 $01 $01 $01 $00 $02 $02 $03 $00 $00 $07 $00 $00 $00 $00 $00 $00 $00 $00 $00 $50 $28 $32 $28 $19 $1E $3C $01 $01 $00 $00 $1F $00 $20 $01 $00 $98 $20 $66 $08;
 
-ORG $6D0F0 // from 6D0E4
-SHORT $2100 // No equipped item during Roy's forced promotion 
+ORG $6D0E6 // from 6D0E4
+SHORT $46C0 
+callHackNew(RoyPromoHook)
+SHORT $46C0 
+//ORG $6D0F0 
+//SHORT $2100 // No equipped item during Roy's forced promotion 
 
 ORG $1F524 
 jumpToHack(FE6_SeizeCantoFix) 

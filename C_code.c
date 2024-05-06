@@ -80,7 +80,7 @@ extern int DefaultConfigToVanilla;
 
 
 int GetRandomizedPortrait(int portraitID) { 
-	return 0x32; 
+	return portraitID; 
 } 
 
 int ShouldDoJankyPalettes(void) { 
