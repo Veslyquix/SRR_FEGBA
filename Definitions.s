@@ -188,6 +188,7 @@ SET_FUNC CallARM_DecompText, 0x8004365
 
 .endif 
 .if FE8 == true 
+SET_DATA ggMsgStringTable, 0x800a2a0 
 SET_DATA u32MsgString, 0x0202A6AC
 SET_FUNC gARM_DecompText, 0x3004150 
 SET_FUNC CallARM_DecompText, 0x8002ba5 

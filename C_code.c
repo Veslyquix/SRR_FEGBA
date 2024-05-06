@@ -58,6 +58,7 @@ struct RandomizerValues {
 	u32 seed : 20; // max value of 999999 /  
 	u32 variance : 5; // up to 5*31 / 100% 
 	u32 bonus : 5; // +20 / -10 levels for enemies 
+	u32 recruitment : 2; // vanilla, random, boss, reverse ? 
 }; 
  
 extern struct RandomizerSettings* RandBitflags; 
@@ -78,9 +79,31 @@ extern int SkillSysInstalled;
 extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
 
+int ShouldRandomizeRecruitment(void) { 
+	return RandValues->recruitment; 
+}
+u16 HashByte_Global(int number, int max, int noise[], int offset); 
+
+const struct CharacterData* GetRandomUnit(int portraitID) {
+	int noise[4] = {0, 0, 0, 0}; 
+	return GetCharacterData(HashByte_Global(3, 0x22, noise, portraitID)+1);  
+} 
+
+int GetNameTextIdOfRandomizedPortrait(int portraitID) { 
+	if (ShouldRandomizeRecruitment()) { portraitID = GetRandomUnit(portraitID)->number; } 
+	const struct CharacterData* table = GetCharacterData(0); 
+	for (int i = 1; i < 0x46; i++) { 
+		table = GetCharacterData(i); 
+		if (table->portraitId == portraitID) { return table->nameTextId; } 
+	
+	} 
+	return 0; 
+} 
 
 int GetRandomizedPortrait(int portraitID) { 
-	return portraitID; 
+	//return portraitID;
+	if (!ShouldRandomizeRecruitment()) { return portraitID; } 
+	return GetRandomUnit(portraitID)->number; 
 } 
 
 int ShouldDoJankyPalettes(void) { 
@@ -762,6 +785,7 @@ u16 GetNthRN(int n, int seed) {
 
 
 int GetInitialSeed(int rate) { 
+	RandValues->recruitment = 1;
 	int result = RandValues->seed;
 	int clock = GetGameClock()>>rate; 
 	if (!result) { 
@@ -3042,14 +3066,68 @@ extern void InitSystemTextFont(void); // 8005A40
 extern void RegisterBlankTile(int a); 
 
 struct ReplaceTextStruct { 
-// conditions 
-	u16 flag; 
-	u8 chapterID; 
-	u8 pad; 
 	const char* find; 
 	const char* replace; 
 };  
-extern struct ReplaceTextStruct ReplaceTextList[]; 
+int CountBWLUnits(void) { 
+	const struct CharacterData* table = GetCharacterData(0); 
+	int c = 0; 
+	for (int i = 1; i <= 0x45; ++i) { 
+		table++; 
+		if (table->portraitId) { c++; } 
+	} 
+	return c; 
+} 
+
+int DecompText(const char *a, char *b);
+extern const u8** *const ggMsgStringTable; // a2a0 is POIN TextTable
+char * GetStringFromIndexInBufferWithoutReplacing(int index, char *buffer)
+{
+    int size = DecompText(ggMsgStringTable[index], buffer);
+	buffer[size] = 0; 
+	if (size > 100) { asm("mov r11, r11"); } 
+	if (size < 0) { asm("mov r11, r11"); } 
+    //SetMsgTerminator(buffer);
+    return buffer;
+}
+
+#define ListSize 0x22
+#define TempTextBufferSize 12  
+extern char * GetStringFromIndexInBuffer(int index, char *buffer); 
+
+void InitReplaceTextList(struct ReplaceTextStruct list[], char buffer[][TempTextBufferSize], char buffer2[][TempTextBufferSize]) { 
+	//int size = CountBWLUnits(); 
+	int noise[4] = {0, 0, 0, 0}; 
+	const struct CharacterData* table = GetCharacterData(0); 
+
+	for (int i = 0; i < ListSize; ++i) { 
+		//table++; 
+		table = GetCharacterData(i+1); // 1 indexed 
+		
+		//asm("mov r11, r11"); 
+		//if (i == 0) { 
+		//list[i].find = "Seth"; 
+		//list[i].replace = "one"; 
+		//} 
+		//else if (i == 1) { 
+		//list[i].find = "O'Neill"; 
+		//list[i].replace = "two"; 
+		//} 
+		//else { 
+		//list[i].find = "Eirika"; 
+		//list[i].replace = "testing"; 
+		//} 
+		list[i].find = GetStringFromIndexInBufferWithoutReplacing(table->nameTextId, &buffer[i][0]); 
+		//list[i].replace = "testing"; 
+		//list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetCharacterData(11)->nameTextId, &buffer2[i][0]); 
+		list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetNameTextIdOfRandomizedPortrait(table->portraitId), &buffer2[i][0]); 
+		//list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetCharacterData(HashByte_Global(i, 0x45, noise, i)+1)->nameTextId, &buffer2[i][0]); 
+	
+	} 
+	list[ListSize-1].find = NULL; 
+	list[ListSize-1].replace = NULL; 
+} 
+//extern struct ReplaceTextStruct ReplaceTextList[]; 
 extern char sMsgString[0x1000]; // fe7 202A5B4 
 extern u32 u32MsgString[0x400]; 
 extern void SetMsgTerminator(char * str); 
@@ -3107,14 +3185,14 @@ void ShiftDataInBuffer(char *buffer, int amount, int offset, int usedBufferLengt
 
 } 
 
-int ReplaceIfMatching(int usedBufferLength[], const char* find, const char* replace, int c) { 
+int ReplaceIfMatching(int usedBufferLength[], const char* find, const char* replace, int c, char *b) { 
 	int i; 
-	char* buffer = &sMsgString[c]; 
+	char* buffer = &b[c]; 
 	
 	// could string be in the next 4 bytes? 
 	if (!(c & 3)) { //4 aligned, as the buffers all start 4 aligned 
 		u32 search = find[0]; 
-		u32 data = u32MsgString[c>>2]; 
+		u32 data = b[c] | (b[c+1]<<8) | (b[c+2]<<16) | (b[c+3]<<24);
 		if (((data&0xFF) != search) && (((data&0xFF00)>>8) != search) && (((data&0xFF0000)>>16) != search) && (((data)>>24) != search)  ) { 
 		return c+4; 
 		} 
@@ -3127,7 +3205,7 @@ int ReplaceIfMatching(int usedBufferLength[], const char* find, const char* repl
 	} 
 	
 	int len2 = GetStringLength(replace); 
-	ShiftDataInBuffer(sMsgString, len2-i, c, usedBufferLength); 
+	ShiftDataInBuffer(b, len2-i, c, usedBufferLength); 
 	
 	for (i = 0; i < len2; ++i) { 
 		buffer[i] = replace[i]; 
@@ -3136,47 +3214,56 @@ int ReplaceIfMatching(int usedBufferLength[], const char* find, const char* repl
 
 }  
 
- 
-void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 800384C 
-{
-	//asm("mov r11, r11"); 
-	int length[1] = {0}; 
+int DecompText(const char *a, char *b) { 
+	int length = 0; 
 	if ((int)a & 0x80000000) { // anti huffman 
 		a = (const char*) ((int)a & 0x7FFFFFFF); 
 		for (int i = 0; i < 0x1000; ++i) { 
-			sMsgString[i] = a[i];
+			b[i] = a[i];
 			if (!a[i]) { 
-			length[0] = i; 
+			length = i; 
 			break; }  
 		} 
 	} 
 	else { 
 		#ifdef FE8 
-		length[0] = Arm_DecompText(a, b, 0x3004150);
+		length = Arm_DecompText(a, b, 0x3004150);
 		#endif 
 		#ifdef FE7 
-		length[0] = Arm_DecompText(a, b, 0x3003940); 
+		length = Arm_DecompText(a, b, 0x3003940); 
 		#endif 
 		#ifdef FE6
-		length[0] = Arm_DecompText(a, b, 0x3003780);
+		length = Arm_DecompText(a, b, 0x3003780);
 		#endif 
 	} 
 	#ifdef FE8 
-	//SetMsgTerminator(sMsgString); 
+	//SetMsgTerminator(b); 
 	#endif 
-	if (length[0] < 0xFFF) {
-		sMsgString[length[0]] = 0; 
-		sMsgString[length[0]+1] = 0; 
+	if (length < 0xFFF) {
+		b[length] = 0; 
+		b[length+1] = 0; 
 	} 
+	return length; 
+
+
+} 
+ 
+void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 800384C 
+{
+	//asm("mov r11, r11"); 
+	int length[1] = {0}; 
+	length[0] = DecompText(a, b); 
+
+	struct ReplaceTextStruct ReplaceTextList[ListSize]; // 0x46 for terminator 
+	char textBuffer[ListSize][TempTextBufferSize]; 
+	char textBuffer2[ListSize][TempTextBufferSize]; 
+	InitReplaceTextList(ReplaceTextList, textBuffer, textBuffer2); 
 	
-	
-	for (int c = 0; c < 255; ++c) { 
+	for (int c = 0; c < ListSize; ++c) { 
 		if (!ReplaceTextList[c].find) { break; } 
-		if (ReplaceTextList[c].flag) { if (!CheckFlag(ReplaceTextList[c].flag)) { continue; }} 
-		if (ReplaceTextList[c].chapterID != 0xFF) { if (gCh != ReplaceTextList[c].chapterID) { continue; }} 
-		for (int i = 0; i < 0x1000; ++i) { 
-			i = ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i);
-			if (!sMsgString[i]) { break; } 
+		for (int i = 0; i < 0x500; ++i) { 
+			i = ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b);
+			if (!b[i]) { break; } 
 		}
 	} 
 	

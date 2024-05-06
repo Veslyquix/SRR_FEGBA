@@ -41,10 +41,11 @@ bx r0
 .type Arm_DecompText, %function 
 Arm_DecompText:
 push {lr} 
+push {r1} 
 ldr r2, [r2] 
 bl CallViaR2 
 mov r0, r1 @ huffman decoding happens to have the text buffer offset in r1 afterwards 
-ldr r1, =sMsgString
+pop {r1} 
 sub r0, r1 @ bytes used 
 pop {r1} 
 bx r1 
