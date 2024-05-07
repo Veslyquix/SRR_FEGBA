@@ -79,6 +79,23 @@ extern int SkillSysInstalled;
 extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
 
+#define ListSize 0x22
+#define TempTextBufferSize 16  
+typedef struct {
+    /* 00 */ PROC_HEADER;
+	u8 count; 
+	u8 id[ListSize];
+} RecruitmentProc;
+void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed); 
+void LoopRandomRecruitmentProc(RecruitmentProc* proc) { return; } 
+const struct ProcCmd RecruitmentProcCmd[] =
+{
+    PROC_YIELD,
+	//PROC_CALL(InitRandomRecruitmentProc), 
+	PROC_REPEAT(LoopRandomRecruitmentProc), 
+    PROC_END,
+};
+
 int ShouldRandomizeRecruitment(void) { 
 	return RandValues->recruitment; 
 }
@@ -90,26 +107,33 @@ u32 HashByte_Simple(u32 rn, int max) {
 	return Mod((rn >> 3), max);
 }; 
 
-inline const struct CharacterData* GetRandomUnit(int portraitID, u32* rn, int seed) {
-	//int noise[4] = {0, 0, 0, 0}; 
-	asm("mov r11, r11"); 
-	rn[0] = 0; 
-	rn[0] = GetNthRN_Simple(portraitID, seed, rn[0]); 
-	return GetCharacterData(HashByte_Simple(rn[0], 0x22)+1);  
+int GetUnitIdOfPortrait(int portraitID) { 
+	const struct CharacterData* table = GetCharacterData(1); 
+	for (int i = 1; i < 0x46; i++) { 
+		if (table->portraitId == portraitID) { return table->number; } 
+		table++; 
+	} 
+	return 0;
+} 
+inline const struct CharacterData* GetRandomUnit(int portraitID, RecruitmentProc* proc) {
+	return GetCharacterData(proc->id[GetUnitIdOfPortrait(portraitID)-1]);  
 } 
 
-
-
-int GetRandomizedPortrait(int portraitID, u32* rn, int seed) { 
+int GetRandomizedPortrait(int portraitID, int seed) { 
 	if (!ShouldRandomizeRecruitment()) { return portraitID; } 
+	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
+	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
 	if (!seed) { seed = RandValues->seed; } 
-	portraitID = GetRandomUnit(portraitID, rn, seed)->portraitId; 
-	asm("mov r11, r11"); 
+	if (!proc->count) { InitRandomRecruitmentProc(proc, seed); asm("mov r11, r11"); } 
+	
+	
+	portraitID = GetRandomUnit(portraitID, proc)->portraitId; 
+	
 	return portraitID; 
 } 
 
-int GetNameTextIdOfRandomizedPortrait(int portraitID, u32* rn, int seed) { 
-	portraitID = GetRandomizedPortrait(portraitID, rn, seed); 
+int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed) { 
+	portraitID = GetRandomizedPortrait(portraitID, seed); 
 	const struct CharacterData* table = GetCharacterData(1); 
 	for (int i = 1; i < 0x46; i++) { 
 		if (table->portraitId == portraitID) { return table->nameTextId; } 
@@ -119,7 +143,44 @@ int GetNameTextIdOfRandomizedPortrait(int portraitID, u32* rn, int seed) {
 	return table->nameTextId;
 } 
 
+void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed) { 
+	
+	u8 unit[ListSize]; 
+	const struct CharacterData* table = GetCharacterData(1); 
+	int c = 0; 
+	
+	table--; 
+	for (int i = 0; i <= ListSize; ++i) { // all available units 
+		table++; 
+		proc->id[i] = 0xFF; 
+		if (table->attributes & CA_BOSS) { continue; } 
+		if (!table->portraitId) { continue; } 
+		unit[c] = i+1; 
+		c++; 
+	} 
+	proc->count = c; 
+	
+	int num; 
+	u32 rn = 0; 
+	table = GetCharacterData(ListSize);  
+	for (int i = ListSize; i >= 0 ; --i) { // reordered at random 
+		//table--; 
+		table = GetCharacterData(i);  
+		if (table->attributes & CA_BOSS) { continue; } 
+		if (!table->portraitId) { continue; } 
+		// so we only use valid units 
+		
+		c--; 
+		//if (c < 0) { asm("mov r11, r11"); } 
+		rn = GetNthRN_Simple(i-1, seed, rn); 
+		num = HashByte_Simple(rn, c); 
+		
+		proc->id[i-1] = unit[num]; 
+		unit[num] = unit[c]; // move last entry to one we just used 
+	} 
+	
 
+} 
 
 int ShouldDoJankyPalettes(void) { 
 	return RandBitflags->colours == 2; 
@@ -3168,20 +3229,19 @@ char * GetStringFromIndexInBufferWithoutReplacing(int index, char *buffer)
     return buffer;
 }
 
-#define ListSize 0x22
-#define TempTextBufferSize 16  
+
 extern char * GetStringFromIndexInBuffer(int index, char *buffer); 
 
 void InitReplaceTextList(struct ReplaceTextStruct list[], char buffer[][TempTextBufferSize], char buffer2[][TempTextBufferSize]) { 
 	//int size = CountBWLUnits(); 
 	//int noise[4] = {0, 0, 0, 0}; 
 	const struct CharacterData* table = GetCharacterData(1); 
-	u32 rn[1] = {0}; 
+	//u32 rn[1] = {0}; 
 	int seed = RandValues->seed; 
 
 	for (int i = 0; i < ListSize; ++i) { 
 		list[i].find = GetStringFromIndexInBufferWithoutReplacing(table->nameTextId, &buffer[i][0]); 
-		list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetNameTextIdOfRandomizedPortrait(table->portraitId, rn, seed), &buffer2[i][0]); 
+		list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetNameTextIdOfRandomizedPortrait(table->portraitId, seed), &buffer2[i][0]); 
 		table++; 
 	} 
 	list[ListSize].find = NULL; 
