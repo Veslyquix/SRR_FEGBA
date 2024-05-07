@@ -89,22 +89,28 @@ const struct CharacterData* GetRandomUnit(int portraitID) {
 	return GetCharacterData(HashByte_Global(3, 0x22, noise, portraitID)+1);  
 } 
 
-int GetNameTextIdOfRandomizedPortrait(int portraitID) { 
-	if (ShouldRandomizeRecruitment()) { portraitID = GetRandomUnit(portraitID)->number; } 
-	const struct CharacterData* table = GetCharacterData(0); 
-	for (int i = 1; i < 0x46; i++) { 
-		table = GetCharacterData(i); 
-		if (table->portraitId == portraitID) { return table->nameTextId; } 
-	
-	} 
-	return 0; 
-} 
-
 int GetRandomizedPortrait(int portraitID) { 
 	//return portraitID;
 	if (!ShouldRandomizeRecruitment()) { return portraitID; } 
-	return GetRandomUnit(portraitID)->number; 
+	int result = GetRandomUnit(portraitID)->portraitId; 
+	
+	if (result == 0xF) { asm("mov r11, r11"); } 
+	return result; 
 } 
+
+int GetNameTextIdOfRandomizedPortrait(int portraitID) { 
+	portraitID = GetRandomizedPortrait(portraitID); 
+	const struct CharacterData* table = GetCharacterData(1); 
+	for (int i = 1; i < 0x46; i++) { 
+		if (table->portraitId == portraitID) { return table->nameTextId; } 
+		table++; 
+	
+	} 
+	asm("mov r11, r11");
+	return 0; 
+} 
+
+
 
 int ShouldDoJankyPalettes(void) { 
 	return RandBitflags->colours == 2; 
@@ -3070,11 +3076,11 @@ struct ReplaceTextStruct {
 	const char* replace; 
 };  
 int CountBWLUnits(void) { 
-	const struct CharacterData* table = GetCharacterData(0); 
+	const struct CharacterData* table = GetCharacterData(1); 
 	int c = 0; 
 	for (int i = 1; i <= 0x45; ++i) { 
-		table++; 
 		if (table->portraitId) { c++; } 
+		table++;
 	} 
 	return c; 
 } 
@@ -3083,7 +3089,7 @@ int DecompText(const char *a, char *b);
 extern const u8** *const ggMsgStringTable; // a2a0 is POIN TextTable
 char * GetStringFromIndexInBufferWithoutReplacing(int index, char *buffer)
 {
-    int size = DecompText(ggMsgStringTable[index], buffer);
+    int size = DecompText((void*)ggMsgStringTable[index], buffer);
 	buffer[size] = 0; 
 	if (size > 100) { asm("mov r11, r11"); } 
 	if (size < 0) { asm("mov r11, r11"); } 
@@ -3092,37 +3098,18 @@ char * GetStringFromIndexInBufferWithoutReplacing(int index, char *buffer)
 }
 
 #define ListSize 0x22
-#define TempTextBufferSize 12  
+#define TempTextBufferSize 16  
 extern char * GetStringFromIndexInBuffer(int index, char *buffer); 
 
 void InitReplaceTextList(struct ReplaceTextStruct list[], char buffer[][TempTextBufferSize], char buffer2[][TempTextBufferSize]) { 
 	//int size = CountBWLUnits(); 
 	int noise[4] = {0, 0, 0, 0}; 
-	const struct CharacterData* table = GetCharacterData(0); 
+	const struct CharacterData* table = GetCharacterData(1); 
 
 	for (int i = 0; i < ListSize; ++i) { 
-		//table++; 
-		table = GetCharacterData(i+1); // 1 indexed 
-		
-		//asm("mov r11, r11"); 
-		//if (i == 0) { 
-		//list[i].find = "Seth"; 
-		//list[i].replace = "one"; 
-		//} 
-		//else if (i == 1) { 
-		//list[i].find = "O'Neill"; 
-		//list[i].replace = "two"; 
-		//} 
-		//else { 
-		//list[i].find = "Eirika"; 
-		//list[i].replace = "testing"; 
-		//} 
 		list[i].find = GetStringFromIndexInBufferWithoutReplacing(table->nameTextId, &buffer[i][0]); 
-		//list[i].replace = "testing"; 
-		//list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetCharacterData(11)->nameTextId, &buffer2[i][0]); 
 		list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetNameTextIdOfRandomizedPortrait(table->portraitId), &buffer2[i][0]); 
-		//list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetCharacterData(HashByte_Global(i, 0x45, noise, i)+1)->nameTextId, &buffer2[i][0]); 
-	
+		table++; 
 	} 
 	list[ListSize-1].find = NULL; 
 	list[ListSize-1].replace = NULL; 
@@ -3190,18 +3177,18 @@ int ReplaceIfMatching(int usedBufferLength[], const char* find, const char* repl
 	char* buffer = &b[c]; 
 	
 	// could string be in the next 4 bytes? 
-	if (!(c & 3)) { //4 aligned, as the buffers all start 4 aligned 
-		u32 search = find[0]; 
-		u32 data = b[c] | (b[c+1]<<8) | (b[c+2]<<16) | (b[c+3]<<24);
-		if (((data&0xFF) != search) && (((data&0xFF00)>>8) != search) && (((data&0xFF0000)>>16) != search) && (((data)>>24) != search)  ) { 
-		return c+4; 
-		} 
-	} 
+	//if (!(c & 3)) { //4 aligned, as the buffers all start 4 aligned 
+	//	u32 search = find[0]; 
+	//	u32 data = b[c] | (b[c+1]<<8) | (b[c+2]<<16) | (b[c+3]<<24);
+	//	if (((data&0xFF) != search) && (((data&0xFF00)>>8) != search) && (((data&0xFF0000)>>16) != search) && (((data)>>24) != search)  ) { 
+	//	return c+4; 
+	//	} 
+	//} 
 	
 
 	for (i = 0; i < 255; ++i) { 
 		if (!find[i]) { break; } 
-		if (buffer[i] != find[i]) { return c; }
+		if (buffer[i] != find[i]) { return false; }
 	} 
 	
 	int len2 = GetStringLength(replace); 
@@ -3210,7 +3197,7 @@ int ReplaceIfMatching(int usedBufferLength[], const char* find, const char* repl
 	for (i = 0; i < len2; ++i) { 
 		buffer[i] = replace[i]; 
 	} 
-	return c; 
+	return true; 
 
 }  
 
@@ -3259,10 +3246,11 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 	char textBuffer2[ListSize][TempTextBufferSize]; 
 	InitReplaceTextList(ReplaceTextList, textBuffer, textBuffer2); 
 	
-	for (int c = 0; c < ListSize; ++c) { 
-		if (!ReplaceTextList[c].find) { break; } 
-		for (int i = 0; i < 0x500; ++i) { 
-			i = ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b);
+
+	for (int i = 0; i < 0x555; ++i) { 
+		for (int c = 0; c < ListSize; ++c) { 
+			if (!ReplaceTextList[c].find) { break; } 
+			if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b)) { i++; c = 0; };
 			if (!b[i]) { break; } 
 		}
 	} 
