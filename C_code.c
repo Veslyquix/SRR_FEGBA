@@ -84,30 +84,39 @@ int ShouldRandomizeRecruitment(void) {
 }
 u16 HashByte_Global(int number, int max, int noise[], int offset); 
 
-const struct CharacterData* GetRandomUnit(int portraitID) {
-	int noise[4] = {0, 0, 0, 0}; 
-	return GetCharacterData(HashByte_Global(3, 0x22, noise, portraitID)+1);  
+u32 GetNthRN_Simple(int n, int seed, u32 currentRN);
+u32 HashByte_Simple(u32 rn, int max) {
+	if (max==0) return 0;
+	return Mod((rn >> 3), max);
+}; 
+
+inline const struct CharacterData* GetRandomUnit(int portraitID, u32* rn, int seed) {
+	//int noise[4] = {0, 0, 0, 0}; 
+	asm("mov r11, r11"); 
+	rn[0] = 0; 
+	rn[0] = GetNthRN_Simple(portraitID, seed, rn[0]); 
+	return GetCharacterData(HashByte_Simple(rn[0], 0x22)+1);  
 } 
 
-int GetRandomizedPortrait(int portraitID) { 
-	//return portraitID;
+
+
+int GetRandomizedPortrait(int portraitID, u32* rn, int seed) { 
 	if (!ShouldRandomizeRecruitment()) { return portraitID; } 
-	int result = GetRandomUnit(portraitID)->portraitId; 
-	
-	if (result == 0xF) { asm("mov r11, r11"); } 
-	return result; 
+	if (!seed) { seed = RandValues->seed; } 
+	portraitID = GetRandomUnit(portraitID, rn, seed)->portraitId; 
+	asm("mov r11, r11"); 
+	return portraitID; 
 } 
 
-int GetNameTextIdOfRandomizedPortrait(int portraitID) { 
-	portraitID = GetRandomizedPortrait(portraitID); 
+int GetNameTextIdOfRandomizedPortrait(int portraitID, u32* rn, int seed) { 
+	portraitID = GetRandomizedPortrait(portraitID, rn, seed); 
 	const struct CharacterData* table = GetCharacterData(1); 
 	for (int i = 1; i < 0x46; i++) { 
 		if (table->portraitId == portraitID) { return table->nameTextId; } 
 		table++; 
 	
 	} 
-	asm("mov r11, r11");
-	return 0; 
+	return table->nameTextId;
 } 
 
 
@@ -729,6 +738,67 @@ int GetMaxClasses(void) {
 } 
 
 
+
+int NextSeededRN_Simple(u32 rn) {
+    // This generates a pseudorandom string of 32 bits
+	u32 rn0 = rn & 0xFFFF; 
+	u32 rn1 = rn >> 16; 
+    rn = (rn1 << 11) + (rn0 >> 5) + (rn0 << 16);
+
+    // Shift state[2] one bit
+    rn0 *= 2;
+
+	
+    // "carry" the top bit of state[1] to state[0]
+    if (rn1 & 0x8000)
+        rn0++;
+
+
+    rn ^= rn0;
+    return rn;
+}
+
+
+u32 InitSeededRN_Simple(int seed, u32 currentRN) {
+    // This table is a collection of 8 possible initial rn state
+    // 3 entries will be picked based of which "seed" was given
+
+    u16 initTable[8] = {
+        0xA36E,
+        0x924E,
+        0xB784,
+        0x4F67,
+        0x8092,
+        0x592D,
+        0x8E70,
+        0xA794
+    };
+
+    int mod = Mod(seed, 7);
+
+    currentRN = initTable[(mod++ & 7)];
+    currentRN |= initTable[(mod++ & 7)] << 16;
+
+    if (Mod(seed, 5) > 0) { 
+        for (mod = Mod(seed,  5); mod != 0; mod--) { 
+            currentRN = NextSeededRN_Simple(currentRN);
+		}
+	}
+		
+	return currentRN;
+}
+
+u32 GetNthRN_Simple(int n, int seed, u32 currentRN) { 
+	n &= 0xF; 
+	if (!currentRN) { 
+		currentRN = InitSeededRN_Simple(seed, currentRN); 
+	} 
+	for (int i = 0; i < n; i++) { 
+		currentRN = NextSeededRN_Simple(currentRN); 
+	}
+	return currentRN; 
+} 
+
 int NextSeededRN(u16* currentRN) {
     // This generates a pseudorandom string of 16 bits
     // In other words, a pseudorandom integer that can range from 0 to 65535
@@ -751,6 +821,7 @@ int NextSeededRN(u16* currentRN) {
 
     return rn;
 }
+
 
 void InitSeededRN(int seed, u16* currentRN) {
     // This table is a collection of 8 possible initial rn state
@@ -3103,16 +3174,18 @@ extern char * GetStringFromIndexInBuffer(int index, char *buffer);
 
 void InitReplaceTextList(struct ReplaceTextStruct list[], char buffer[][TempTextBufferSize], char buffer2[][TempTextBufferSize]) { 
 	//int size = CountBWLUnits(); 
-	int noise[4] = {0, 0, 0, 0}; 
+	//int noise[4] = {0, 0, 0, 0}; 
 	const struct CharacterData* table = GetCharacterData(1); 
+	u32 rn[1] = {0}; 
+	int seed = RandValues->seed; 
 
 	for (int i = 0; i < ListSize; ++i) { 
 		list[i].find = GetStringFromIndexInBufferWithoutReplacing(table->nameTextId, &buffer[i][0]); 
-		list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetNameTextIdOfRandomizedPortrait(table->portraitId), &buffer2[i][0]); 
+		list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetNameTextIdOfRandomizedPortrait(table->portraitId, rn, seed), &buffer2[i][0]); 
 		table++; 
 	} 
-	list[ListSize-1].find = NULL; 
-	list[ListSize-1].replace = NULL; 
+	list[ListSize].find = NULL; 
+	//list[ListSize].replace = NULL; 
 } 
 //extern struct ReplaceTextStruct ReplaceTextList[]; 
 extern char sMsgString[0x1000]; // fe7 202A5B4 
@@ -3234,16 +3307,17 @@ int DecompText(const char *a, char *b) {
 
 
 } 
- 
+
+
 void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 800384C 
 {
 	//asm("mov r11, r11"); 
 	int length[1] = {0}; 
 	length[0] = DecompText(a, b); 
 
-	struct ReplaceTextStruct ReplaceTextList[ListSize]; // 0x46 for terminator 
-	char textBuffer[ListSize][TempTextBufferSize]; 
-	char textBuffer2[ListSize][TempTextBufferSize]; 
+	struct ReplaceTextStruct ReplaceTextList[ListSize+1]; // 0x46 for terminator 
+	char textBuffer[ListSize+1][TempTextBufferSize]; 
+	char textBuffer2[ListSize+1][TempTextBufferSize]; 
 	InitReplaceTextList(ReplaceTextList, textBuffer, textBuffer2); 
 	
 

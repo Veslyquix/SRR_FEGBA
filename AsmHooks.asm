@@ -156,6 +156,8 @@ ldr r0, [r1]
 ldrh r0, [r0, #6] 
 cmp r0, #0 
 beq ExitGeneric_Fe8 
+mov r1, #0 
+mov r2, #0 
 bl GetRandomizedPortrait
 mov r2, r0 
 mov r1, r4 
@@ -233,6 +235,8 @@ ldrh r1, [r1, #6]
 cmp r1, #0 
 beq ExitGenericMini_Fe8 
 mov r0, r1  
+mov r1, #0 
+mov r2, #0 
 bl GetRandomizedPortrait
 mov r1, r0 
 ldr r0, =0x202BCF0 @ gChData 
