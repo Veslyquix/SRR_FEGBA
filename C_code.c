@@ -3481,8 +3481,9 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 	 
 
 	for (int i = 0; i < 0x555; ++i) { 
-		if (!b[i]) { break; } 
+		if (!b[i]) { return; } 
 		for (int c = 0; c < ListSize; ++c) { 
+			if (!b[i]) { return; } 
 			if (!ReplaceTextList[c].find) { break; } 
 			if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b)) { i++; c = 0; };
 			
