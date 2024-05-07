@@ -355,6 +355,53 @@ ReplaceTextList:
 //SHORT 0; BYTE 0xff 0; POIN TextE TextF 
 WORD 0 0 0// terminator 
 
+ALIGN 16
+NameStrings: 
+ALIGN 16 ; String("Eliwood"); BYTE 0 
+ALIGN 16 ; String("Hector"); BYTE 0 
+ALIGN 16 ; String("Lyn"); BYTE 0 
+ALIGN 16 ; String("Raven"); BYTE 0 
+ALIGN 16 ; String("Geitz"); BYTE 0 
+ALIGN 16 ; String("Guy"); BYTE 0 
+ALIGN 16 ; String("Karel"); BYTE 0 
+ALIGN 16 ; String("Dorcas"); BYTE 0 
+ALIGN 16 ; String("Bartre"); BYTE 0 
+ALIGN 16 ; String("Citizen"); BYTE 0 
+ALIGN 16 ; String("Oswin"); BYTE 0 
+ALIGN 16 ; String("Fargus"); BYTE 0 
+ALIGN 16 ; String("Wil"); BYTE 0 
+ALIGN 16 ; String("Rebecca"); BYTE 0 
+ALIGN 16 ; String("Louise"); BYTE 0 
+ALIGN 16 ; String("Lucius"); BYTE 0 
+ALIGN 16 ; String("Serra"); BYTE 0 
+ALIGN 16 ; String("Renault"); BYTE 0 
+ALIGN 16 ; String("Erk"); BYTE 0 
+ALIGN 16 ; String("Nino"); BYTE 0 
+ALIGN 16 ; String("Pent"); BYTE 0 
+ALIGN 16 ; String("Canas"); BYTE 0 
+ALIGN 16 ; String("Kent"); BYTE 0 
+ALIGN 16 ; String("Sain"); BYTE 0 
+ALIGN 16 ; String("Lowen"); BYTE 0 
+ALIGN 16 ; String("Marcus"); BYTE 0 
+ALIGN 16 ; String("Priscilla"); BYTE 0 
+ALIGN 16 ; String("Rath"); BYTE 0 
+ALIGN 16 ; String("Florina"); BYTE 0 
+ALIGN 16 ; String("Fiora"); BYTE 0 
+ALIGN 16 ; String("Farina"); BYTE 0 
+ALIGN 16 ; String("Heath"); BYTE 0 
+ALIGN 16 ; String("Vaida"); BYTE 0 
+ALIGN 16 ; String("Hawkeye"); BYTE 0 
+ALIGN 16 ; String("Matthew"); BYTE 0 
+ALIGN 16 ; String("Jaffar"); BYTE 0 
+ALIGN 16 ; String("Ninian"); BYTE 0 
+ALIGN 16 ; String("Nils"); BYTE 0 
+ALIGN 16 ; String("Athos"); BYTE 0 
+ALIGN 16 ; String("Merlinus"); BYTE 0 // then Nils again ?? 
+// 0x28 
+
+ALIGN 16
+WORD 0 0 0 0 
+
 ALIGN 4
 DIS_matrixTable:
 #incbin "matrixTable.bin"

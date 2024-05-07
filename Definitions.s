@@ -100,8 +100,11 @@ SET_DATA ProcScr_PalFade, 0x85C4D7C
 SET_DATA ProcScr_FadeCore, 0x85C4E14
 SET_DATA ProcScr_BmFadeIN, 0x8679008 
 SET_DATA ProcScr_BmFadeOUT, 0x8679028 
+SET_FUNC HbPopulate_SSCharacter, 0x80704DD
+SET_DATA ggMsgStringTable, 0x8013b10
 .endif 
 .if FE7 == true 
+SET_DATA ggMsgStringTable, 0x8012cb8
 SET_FUNC UpdateMapViewWithFog, 0x801DB59
 SET_DATA gVision, 0x202BBF8+0x0D
 SET_FUNC GetItemAttributes, 0x801727D
@@ -185,6 +188,7 @@ SET_DATA u32MsgString, 0x202A5B4
 
 SET_FUNC gARM_DecompText, 0x3003940 
 SET_FUNC CallARM_DecompText, 0x8004365 
+SET_FUNC HbPopulate_SSCharacter, 0x80816FD 
 
 .endif 
 .if FE8 == true 

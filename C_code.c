@@ -79,7 +79,21 @@ extern int SkillSysInstalled;
 extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
 
+#define STRINGS_IN_ROM // faster if defined, but gotta write all the names in the installer 
+
+#ifdef FE8 
 #define ListSize 0x22
+#define PlayerPortraitSize 0x2C
+#endif 
+#ifdef FE7 
+#define ListSize 0x21 //0x28
+#define PlayerPortraitSize 0x4a
+#endif 
+#ifdef FE6 
+#define ListSize 0x22
+#define PlayerPortraitSize 0x26
+#endif 
+
 #define TempTextBufferSize 16  
 typedef struct {
     /* 00 */ PROC_HEADER;
@@ -99,6 +113,15 @@ const struct ProcCmd RecruitmentProcCmd[] =
 int ShouldRandomizeRecruitment(void) { 
 	return RandValues->recruitment; 
 }
+int ShouldRandomizeRecruitmentForUnitID(int id) { 
+	if (id > ListSize) { return false; } 
+	return RandValues->recruitment; 
+}
+
+int ShouldRandomizeRecruitmentForPortraitID(int id) { 
+	if (id > PlayerPortraitSize) { return false; } // players only atm 
+	return RandValues->recruitment; 
+}
 u16 HashByte_Global(int number, int max, int noise[], int offset); 
 
 u32 GetNthRN_Simple(int n, int seed, u32 currentRN);
@@ -115,16 +138,19 @@ int GetUnitIdOfPortrait(int portraitID) {
 	} 
 	return 0;
 } 
+inline int GetRandomUnitID(int ID, RecruitmentProc* proc) {
+	return proc->id[ID-1];  
+} 
 inline const struct CharacterData* GetRandomUnit(int portraitID, RecruitmentProc* proc) {
 	return GetCharacterData(proc->id[GetUnitIdOfPortrait(portraitID)-1]);  
 } 
 
 int GetRandomizedPortrait(int portraitID, int seed) { 
-	if (!ShouldRandomizeRecruitment()) { return portraitID; } 
+	if (!ShouldRandomizeRecruitmentForPortraitID(portraitID)) { return portraitID; } 
 	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
 	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
 	if (!seed) { seed = RandValues->seed; } 
-	if (!proc->count) { InitRandomRecruitmentProc(proc, seed); asm("mov r11, r11"); } 
+	if (!proc->count) { InitRandomRecruitmentProc(proc, seed); } 
 	
 	
 	portraitID = GetRandomUnit(portraitID, proc)->portraitId; 
@@ -181,6 +207,49 @@ void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed) {
 	
 
 } 
+
+
+void HbPopulate_SSCharacter(struct HelpBoxProc* proc) // fe7 0x80816FC fe6 0x80704DC 
+{
+	if (ShouldRandomizeRecruitmentForUnitID(gStatScreen.unit->pCharacterData->number)) { 
+		RecruitmentProc* proc2 = Proc_Find(RecruitmentProcCmd); 
+		int midDesc = GetCharacterData(GetRandomUnitID(gStatScreen.unit->pCharacterData->number, proc2))->descTextId;
+
+		if (midDesc) {
+		proc->mid = midDesc; }
+		else {
+		#ifdef FE8 // +0x4C 
+		proc->mid = 0x6BE; } // TODO: mid constants
+		#endif 
+		#ifdef FE7 // +0x4C 
+		proc->mid = 0x396; } // TODO: mid constants
+		#endif 
+		#ifdef FE6 // +0x4C 
+		proc->mid = 0x66d; } // TODO: mid constants
+		#endif 
+		return; 
+	} 
+	
+	
+    int midDesc = gStatScreen.unit->pCharacterData->descTextId;
+
+		if (midDesc) {
+		proc->mid = midDesc; }
+		else {
+		#ifdef FE8 // +0x4C 
+		proc->mid = 0x6BE; } // TODO: mid constants
+		#endif 
+		#ifdef FE7 // +0x4C 
+		proc->mid = 0x396; } // TODO: mid constants
+		#endif 
+		#ifdef FE6 // +0x4C 
+		proc->mid = 0x66d; } // TODO: mid constants
+		#endif 
+		return; 
+}
+
+
+
 
 int ShouldDoJankyPalettes(void) { 
 	return RandBitflags->colours == 2; 
@@ -3232,6 +3301,33 @@ char * GetStringFromIndexInBufferWithoutReplacing(int index, char *buffer)
 
 extern char * GetStringFromIndexInBuffer(int index, char *buffer); 
 
+extern const char NameStrings[ListSize][16]; // do align 16 before each? 
+void InitReplaceTextListRom(struct ReplaceTextStruct list[]) { 
+	//asm("mov r11, r11");
+	if (!ShouldRandomizeRecruitment()) { return; } 
+	int seed = RandValues->seed; 
+	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
+	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
+	if (!seed) { seed = RandValues->seed; } 
+	if (!proc->count) { InitRandomRecruitmentProc(proc, seed);  } 
+	
+	//const struct CharacterData* table = GetCharacterData(1); 
+	int uid; 
+
+	
+
+	for (int i = 0; i < ListSize; ++i) { 
+		uid = GetRandomUnitID(i+1, proc);  
+		list[i].find = NameStrings[i]; 
+		list[i].replace = NameStrings[uid-1]; 
+		//table++; 
+	} 
+	list[ListSize].find = NULL; 
+	//asm("mov r11, r11");
+	//list[ListSize].replace = NULL; 
+} 
+
+// would need to be buffered: it's too slow 
 void InitReplaceTextList(struct ReplaceTextStruct list[], char buffer[][TempTextBufferSize], char buffer2[][TempTextBufferSize]) { 
 	//int size = CountBWLUnits(); 
 	//int noise[4] = {0, 0, 0, 0}; 
@@ -3338,7 +3434,7 @@ int DecompText(const char *a, char *b) {
 	int length = 0; 
 	if ((int)a & 0x80000000) { // anti huffman 
 		a = (const char*) ((int)a & 0x7FFFFFFF); 
-		for (int i = 0; i < 0x1000; ++i) { 
+		for (int i = 0; i < 0x555; ++i) { 
 			b[i] = a[i];
 			if (!a[i]) { 
 			length = i; 
@@ -3368,27 +3464,31 @@ int DecompText(const char *a, char *b) {
 
 } 
 
-
 void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 800384C 
 {
 	//asm("mov r11, r11"); 
 	int length[1] = {0}; 
 	length[0] = DecompText(a, b); 
-
+	
 	struct ReplaceTextStruct ReplaceTextList[ListSize+1]; // 0x46 for terminator 
+	#ifdef STRINGS_IN_ROM 
+	InitReplaceTextListRom(ReplaceTextList); 
+	#else 
 	char textBuffer[ListSize+1][TempTextBufferSize]; 
 	char textBuffer2[ListSize+1][TempTextBufferSize]; 
 	InitReplaceTextList(ReplaceTextList, textBuffer, textBuffer2); 
-	
+	#endif 
+	 
 
 	for (int i = 0; i < 0x555; ++i) { 
+		if (!b[i]) { break; } 
 		for (int c = 0; c < ListSize; ++c) { 
 			if (!ReplaceTextList[c].find) { break; } 
 			if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b)) { i++; c = 0; };
-			if (!b[i]) { break; } 
+			
 		}
 	} 
-	
+ 
 	//asm("mov r11, r11"); 
 }
 
