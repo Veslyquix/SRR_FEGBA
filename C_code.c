@@ -51,7 +51,8 @@ struct RandomizerSettings {
 	u32 playerBonus : 5; // +20 / -10 levels for players 
 	u32 grow50 : 1; // always 50% 
 	u32 fog : 2; // vanilla, always off, always on 
-}; // 31 / 32 bits used 
+	u32 reverseRecruitment : 1; 
+}; // 32 / 32 bits used 
 
 
 struct RandomizerValues { 
@@ -87,7 +88,7 @@ extern int DefaultConfigToVanilla;
 #define PlayerPortraitSize 0x2C
 #endif 
 #ifdef FE7 
-#define ListSize 0x21 //0x28
+#define ListSize 0x28 
 #define PlayerPortraitSize 0x4a
 #endif 
 #ifdef FE6 
@@ -133,18 +134,25 @@ u32 HashByte_Simple(u32 rn, int max) {
 
 int GetUnitIdOfPortrait(int portraitID) { 
 	const struct CharacterData* table = GetCharacterData(1); 
-	for (int i = 1; i < 0x46; i++) { 
+	for (int i = 1; i < 0xFF; i++) { 
 		if (table->portraitId == portraitID) { return table->number; } 
 		table++; 
 	} 
 	return 0;
 } 
-inline int GetRandomUnitID(int ID, RecruitmentProc* proc) {
-	return proc->id[ID-1];  
+inline const struct CharacterData* GetReorderedUnitByPortrait(int portraitID, RecruitmentProc* proc) {
+	int unitID = GetUnitIdOfPortrait(portraitID);
+	if (unitID > ListSize) { return GetCharacterData(unitID); } 
+	return GetCharacterData(proc->id[unitID-1]);  
 } 
-inline const struct CharacterData* GetRandomUnit(int portraitID, RecruitmentProc* proc) {
-	return GetCharacterData(proc->id[GetUnitIdOfPortrait(portraitID)-1]);  
+const struct CharacterData* GetReorderedUnitByPortraitNoProc(int portraitID) {
+	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
+	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
+	if (!proc->count) { InitRandomRecruitmentProc(proc, RandValues->seed); } 
+	return GetReorderedUnitByPortrait(portraitID, proc);  
 } 
+
+
 
 int GetRandomizedPortrait(int portraitID, int seed) { 
 	if (!ShouldRandomizeRecruitmentForPortraitID(portraitID)) { return portraitID; } 
@@ -154,20 +162,32 @@ int GetRandomizedPortrait(int portraitID, int seed) {
 	if (!proc->count) { InitRandomRecruitmentProc(proc, seed); } 
 	
 	
-	portraitID = GetRandomUnit(portraitID, proc)->portraitId; 
+	int result = GetReorderedUnitByPortrait(portraitID, proc)->portraitId; 
 	
-	return portraitID; 
+	if (!result) { return portraitID; } 
+	// if no unitID with this portrait, show a random one (before class cards) 
+	#ifdef FE8 
+	if (!result) { return HashByte_Simple(GetNthRN_Simple(portraitID, seed, 0), 0x71)+2; } 
+	#endif 
+	#ifdef FE7 
+	if (!result) { return HashByte_Simple(GetNthRN_Simple(portraitID, seed, 0), 0xBD)+2; } 
+	#endif 
+	#ifdef FE6 
+	if (!result) { return HashByte_Simple(GetNthRN_Simple(portraitID, seed, 0), 0x98)+2; } 
+	#endif 
+	//
+	return result; 
 } 
 
 int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed) { 
 	portraitID = GetRandomizedPortrait(portraitID, seed); 
 	const struct CharacterData* table = GetCharacterData(1); 
-	for (int i = 1; i < 0x46; i++) { 
+	for (int i = 1; i <= 0xFF; i++) { 
 		if (table->portraitId == portraitID) { return table->nameTextId; } 
 		table++; 
 	
 	} 
-	return table->nameTextId;
+	return 1; // "Yes"
 } 
 
 void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed) { 
@@ -214,7 +234,7 @@ void HbPopulate_SSCharacter(struct HelpBoxProc* proc) // fe7 0x80816FC fe6 0x807
 {
 	if (ShouldRandomizeRecruitmentForUnitID(gStatScreen.unit->pCharacterData->number)) { 
 		RecruitmentProc* proc2 = Proc_Find(RecruitmentProcCmd); 
-		int midDesc = GetCharacterData(GetRandomUnitID(gStatScreen.unit->pCharacterData->number, proc2))->descTextId;
+		int midDesc = GetReorderedUnitByPortrait(gStatScreen.unit->pCharacterData->portraitId, proc2)->descTextId;
 
 		if (midDesc) {
 		proc->mid = midDesc; }
@@ -836,8 +856,15 @@ int ShouldRandomizeClass(struct Unit* unit) {
 	if ((config == 2) && (UNIT_FACTION(unit) == FACTION_RED)) {  return false; } 
 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 } 
+int IsClassOrRecruitmentRandomized(struct Unit* unit) { 
+	int result = ShouldRandomizeClass(unit); 
+	result |= ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number); 
+	return result; 
+} 
+
+
 int IsAnythingRandomized(void) { 
-	return RandBitflags->base | ((RandBitflags->growth != 4) && (RandBitflags->growth)) | RandBitflags->caps | RandBitflags->itemStats | RandBitflags->class | RandBitflags->shopItems | RandBitflags->foundItems; 
+	return RandBitflags->base | RandValues->recruitment | ((RandBitflags->growth != 4) && (RandBitflags->growth)) | RandBitflags->caps | RandBitflags->itemStats | RandBitflags->class | RandBitflags->shopItems | RandBitflags->foundItems; 
 } 
 
 u32 GetSeed(void) { 
@@ -1524,7 +1551,7 @@ int RandNewItem(int item, int noise[], int offset, int costReq, int varyByCh, in
 int RandNewWeapon(struct Unit* unit, int item, int noise[], int offset, u8 list[]) { 
 	if (!item) { return item; } 
 	item &= 0xFF; 
-	if (!ShouldRandomizeClass(unit)) { return MakeNewItem(item); } 
+	if (!IsClassOrRecruitmentRandomized(unit)) { return MakeNewItem(item); } 
 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
 	//int wexpMask = GetValidWexpMask(unit); 
 	int c; 
@@ -2195,7 +2222,11 @@ s8 CanBattleUnitGainLevels(struct BattleUnit* bu) {
 const s8 MovModifiers[] = { 0, 0, 0, 0, 0, 1, 1, 2, 0 } ; 
 const s8 ConModifiers[] = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0 } ; 
 extern int RandomizeMovConBonus; 
-
+int GetAdjustedLevel(const struct CharacterData* table, const struct ClassData* classTable) { 
+	int promoted = ((table->attributes | classTable->attributes) & CA_PROMOTED) != 0;
+	int level = table->baseLevel + (promoted * 10); 
+	return level; 
+} 
 extern int BonusItemChance; 
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
@@ -2212,12 +2243,20 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	noise[1] = uDef->xPosition; 
 	noise[2] = uDef->yPosition;  
 	#endif 
+	int RandomizeRecruitment = ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number); 
+	const struct CharacterData* character = unit->pCharacterData; 
+	const struct ClassData* originalClass;
+	
+	if (uDef->classIndex) { originalClass = GetClassData(uDef->classIndex); } 
+	else { originalClass = GetClassData(unit->pCharacterData->defaultClass); } 
+	
+	if (RandomizeRecruitment) { character = GetReorderedUnitByPortraitNoProc(unit->pCharacterData->portraitId); } 
 
-    if (uDef->classIndex) { 
-        unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise, unit));
+    if ((!uDef->classIndex) || RandomizeRecruitment) {
+        unit->pClassData = GetClassData(RandClass(character->defaultClass, noise, unit));
 	}
-    else {
-        unit->pClassData = GetClassData(RandClass(unit->pCharacterData->defaultClass, noise, unit));
+    else { 
+        unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise, unit));
 	}
 
 	int wexp = 0; 
@@ -2227,7 +2266,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	tmp = 0; 
 	if (ShouldRandomizeClass(unit)) { 
 		for (int c = 0; c < 8; ++c) { 
-			tmp = unit->pCharacterData->baseRanks[c]; 
+			tmp = character->baseRanks[c]; 
 			if (tmp > personalWexp) { personalWexp = tmp; } 
 		}
 	} 
@@ -2252,8 +2291,8 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		}
 		
 		if (!ShouldRandomizeClass(unit)) { 
-			if (unit->pCharacterData->baseRanks[i]) { // original
-				unit->ranks[i] = unit->pCharacterData->baseRanks[i]; } 
+			if (character->baseRanks[i]) { // original
+				unit->ranks[i] = character->baseRanks[i]; } 
 		} 
     }
 
@@ -2273,8 +2312,6 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->ai3And4 &= 0xFFF8;
     unit->ai3And4 |= uDef->ai[2];
     unit->ai3And4 |= (uDef->ai[3] << 8);
-	
-	const struct CharacterData* character = unit->pCharacterData; 
 	int max150percent = 0; 
 	if (UNIT_FACTION(unit) != FACTION_BLUE) { max150percent = 2; } 
 	if (UNIT_CATTRIBUTES(unit) & CA_PROMOTED) { max150percent = 1; } 
@@ -2336,6 +2373,11 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
 		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
 	}
+	
+	if (RandomizeRecruitment) { 
+		int bonusLevels = GetAdjustedLevel(unit->pCharacterData, originalClass) - GetAdjustedLevel(character, unit->pClassData); 
+		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
+	} 
 	
 	int UnitHasBonusItem = false;
 	int noWeapons = true; 
@@ -3303,6 +3345,11 @@ char * GetStringFromIndexInBufferWithoutReplacing(int index, char *buffer)
 extern char * GetStringFromIndexInBuffer(int index, char *buffer); 
 
 extern const char NameStrings[ListSize][16]; // do align 16 before each? 
+
+/*
+inline int GetRandomUnitID(int ID, RecruitmentProc* proc) {
+	return proc->id[ID-1];  
+} 
 void InitReplaceTextListRom(struct ReplaceTextStruct list[]) { 
 	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
 	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
@@ -3320,19 +3367,19 @@ void InitReplaceTextListRom(struct ReplaceTextStruct list[]) {
 	//asm("mov r11, r11");
 	//list[ListSize].replace = NULL; 
 } 
+*/
 
 void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) { 
 	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
 	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
 	if (!proc->count) { InitRandomRecruitmentProc(proc, RandValues->seed);  } 
-	int uid; 
 	const struct CharacterData* table = GetCharacterData(1); 
 	//u32 rn[1] = {0}; 
 
 	for (int i = 0; i < ListSize; ++i) { 
 	// remove the 0x8------- from anti-huffman uncompressed text pointer 
 		list[i].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
-		list[i].replace = (void*)((int)ggMsgStringTable[GetRandomUnit(table->portraitId, proc)->nameTextId] & 0x7FFFFFFF); 
+		list[i].replace = (void*)((int)ggMsgStringTable[GetReorderedUnitByPortrait(table->portraitId, proc)->nameTextId] & 0x7FFFFFFF); 
 		table++; 
 	} 
 	list[ListSize].find = NULL; 
@@ -3478,7 +3525,7 @@ int DecompText(const char *a, char *b) {
 
 void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 800384C 
 {
-	asm("mov r11, r11"); 
+	//asm("mov r11, r11"); 
 	int length[1] = {0}; 
 	length[0] = DecompText(a, b); 
 	if (!ShouldRandomizeRecruitment()) { return; }
@@ -3500,9 +3547,9 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 	
 
 	for (int i = 0; i < 0x555; ++i) { 
-		if (!b[i]) { asm("mov r11, r11"); return; } 
+		if (!b[i]) { return; } 
 		for (int c = 0; c < ListSize; ++c) { 
-			if (!b[i]) { asm("mov r11, r11"); return; } 
+			if (!b[i]) { return; } 
 			if (!ReplaceTextList[c].find) { break; } 
 			if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b)) { break; };
 			
@@ -3735,6 +3782,11 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 			} 
 		} 
 		RandBitflags->fog = proc->Option[13]; 
+		
+		RecruitmentProc* recruitmentProc = Proc_Find(RecruitmentProcCmd); 
+		if (!recruitmentProc) { recruitmentProc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); } 
+		recruitmentProc->count = 0;
+		if (!recruitmentProc->count) { InitRandomRecruitmentProc(recruitmentProc, RandValues->seed); } 
 		
 		if (proc->Option[14] && ((id + offset) >= (SRR_TotalOptions))) { 
 			if (proc->calledFromChapter) { 
