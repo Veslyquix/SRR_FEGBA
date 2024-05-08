@@ -3303,8 +3303,7 @@ extern char * GetStringFromIndexInBuffer(int index, char *buffer);
 
 extern const char NameStrings[ListSize][16]; // do align 16 before each? 
 void InitReplaceTextListRom(struct ReplaceTextStruct list[]) { 
-	//asm("mov r11, r11");
-	if (!ShouldRandomizeRecruitment()) { return; } 
+	//asm("mov r11, r11"); 
 	int seed = RandValues->seed; 
 	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
 	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
@@ -3317,7 +3316,8 @@ void InitReplaceTextListRom(struct ReplaceTextStruct list[]) {
 	
 
 	for (int i = 0; i < ListSize; ++i) { 
-		uid = GetRandomUnitID(i+1, proc);  
+		uid = GetRandomUnitID(i+1, proc); 
+		asm("mov r11, r11");
 		list[i].find = NameStrings[i]; 
 		list[i].replace = NameStrings[uid-1]; 
 		//table++; 
@@ -3469,8 +3469,8 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 	//asm("mov r11, r11"); 
 	int length[1] = {0}; 
 	length[0] = DecompText(a, b); 
-	
-	struct ReplaceTextStruct ReplaceTextList[ListSize+1]; // 0x46 for terminator 
+	if (!ShouldRandomizeRecruitment()) { return; }
+	struct ReplaceTextStruct ReplaceTextList[ListSize+1]; // +1 for terminator 
 	#ifdef STRINGS_IN_ROM 
 	InitReplaceTextListRom(ReplaceTextList); 
 	#else 
@@ -3485,7 +3485,7 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 		for (int c = 0; c < ListSize; ++c) { 
 			if (!b[i]) { return; } 
 			if (!ReplaceTextList[c].find) { break; } 
-			if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b)) { i++; c = 0; };
+			if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b)) { break; };
 			
 		}
 	} 
