@@ -110,26 +110,12 @@ NeverChangeFromItem(0x42) // Apocalypse
 NeverChangeFromItem(0x77) // Saint's staff 
 NeverChangeIntoItem(0x4F) // useless staff "Makes closed areas visible." 
 
+#ifdef VeslyBuildfile
+	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+#else 
+	#define SetName(id) "ALIGN 32"
+#endif 
 
-TextA:
-STRING "Roy" "FE6TR" ; BYTE 0
-TextB: ; STRING "Some name" "FE6TR"; BYTE 0 
-TextC:
-STRING "Marcus" "FE6TR"; BYTE 0 
-TextD: ; STRING "another name" "FE6TR"; BYTE 0 
-TextE:
-STRING "I " "FE6TR"; BYTE 0 
-TextF: ; STRING "arbitrary text " "FE6TR"; BYTE 0 
-
-
-
-ALIGN 4 
-ReplaceTextList:
-// required flag, required chapter, pad, text to find, replacement text 
-//SHORT 0; BYTE 0xFF 0; POIN TextA TextB 
-//SHORT 0; BYTE 0xff 0; POIN TextC TextD 
-//SHORT 0; BYTE 0xff 0; POIN TextE TextF 
-WORD 0 0 0// terminator 
 
 ALIGN 4 
 SeedText: 
@@ -486,6 +472,14 @@ jumpToHack(GetUnitPortraitId_FE7)  // same code
 ORG $18500 
 jumpToHack(GetUnitMiniPortraitId_FE7) // same code 
 
+
+ORG $5d9ac
+callHackNew(GetBattleLevelUpPortraitId_FE6)
+
+// at 74B98 from 74a28 - fe6 8067E84
+ORG $67ff0 
+callHackNew(GetMapLevelUpPortraitId_FE6)
+
 POP 
 
 ALIGN 4
@@ -594,4 +588,240 @@ WORD 0x203D97C
 MaxClasses:
 WORD 0x203D97D
 
+
+ALIGN 32
+NameStrings: 
+FILL(32*256)
+ORG NameStrings
+ALIGN 32 ; SetName(0x07EC); STRING "Roy" "FE6TR" ;
+ALIGN 32 ; SetName(0x07ED); STRING "Clarine" "FE6TR" ;
+ALIGN 32 ; SetName(0x07EE); STRING "Fae" "FE6TR" ;
+ALIGN 32 ; SetName(0x07EF); STRING "Sin" "FE6TR" ;
+ALIGN 32 ; SetName(0x07F0); STRING "Sue" "FE6TR" ;
+ALIGN 32 ; SetName(0x07F1); STRING "Dayan" "FE6TR" ;
+ALIGN 32 ; SetName(0x07F2); STRING "Dayan" "FE6TR" ;
+ALIGN 32 ; SetName(0x07F3); STRING "Barthe" "FE6TR" ;
+ALIGN 32 ; SetName(0x07F4); STRING "Bors" "FE6TR" ;
+ALIGN 32 ; SetName(0x07F5); STRING "Gwendolyn" "FE6TR" ;
+ALIGN 32 ; SetName(0x07F6); STRING "Douglas" "FE6TR" ;
+ALIGN 32 ; SetName(0x07F7); STRING "Douglas" "FE6TR" ;
+ALIGN 32 ; SetName(0x07F8); STRING "Wolt" "FE6TR" ;
+ALIGN 32 ; SetName(0x07F9); STRING "Dorothy " "FE6TR" ;
+ALIGN 32 ; SetName(0x07FA); STRING "Klein" "FE6TR" ;
+ALIGN 32 ; SetName(0x07FB); STRING "Saul" "FE6TR" ;
+ALIGN 32 ; SetName(0x07FC); STRING "Elen" "FE6TR" ;
+ALIGN 32 ; SetName(0x07FD); STRING "Yoder" "FE6TR" ;
+ALIGN 32 ; SetName(0x07FE); STRING "Yoder" "FE6TR" ;
+ALIGN 32 ; SetName(0x07FF); STRING "Chad" "FE6TR" ;
+ALIGN 32 ; SetName(0x0800); STRING "Karel" "FE6TR" ;
+ALIGN 32 ; SetName(0x0801); STRING "Fir" "FE6TR" ;
+ALIGN 32 ; SetName(0x0802); STRING "Rutger" "FE6TR" ;
+ALIGN 32 ; SetName(0x0803); STRING "Dieck" "FE6TR" ;
+ALIGN 32 ; SetName(0x0804); STRING "Ogier" "FE6TR" ;
+ALIGN 32 ; SetName(0x0805); STRING "Garrett" "FE6TR" ;
+ALIGN 32 ; SetName(0x0806); STRING "Alen" "FE6TR" ;
+ALIGN 32 ; SetName(0x0807); STRING "Lance" "FE6TR" ;
+ALIGN 32 ; SetName(0x0808); STRING "Perceval" "FE6TR" ;
+ALIGN 32 ; SetName(0x0809); STRING "Igrene" "FE6TR" ;
+ALIGN 32 ; SetName(0x080A); STRING "Marcus" "FE6TR" ;
+ALIGN 32 ; SetName(0x080B); STRING "Astolfo" "FE6TR" ;
+ALIGN 32 ; SetName(0x080C); STRING "Ward" "FE6TR" ;
+ALIGN 32 ; SetName(0x080D); STRING "Lot" "FE6TR" ;
+ALIGN 32 ; SetName(0x080E); STRING "Bartre" "FE6TR" ;
+ALIGN 32 ; SetName(0x080F); STRING "Bartre" "FE6TR" ;
+ALIGN 32 ; SetName(0x0810); STRING "Lugh" "FE6TR" ;
+ALIGN 32 ; SetName(0x0811); STRING "Lilina" "FE6TR" ;
+ALIGN 32 ; SetName(0x0812); STRING "Hugh" "FE6TR" ;
+ALIGN 32 ; SetName(0x0813); STRING "Niime" "FE6TR" ;
+ALIGN 32 ; SetName(0x0814); STRING "Niime" "FE6TR" ;
+ALIGN 32 ; SetName(0x0815); STRING "Raigh" "FE6TR" ;
+ALIGN 32 ; SetName(0x0816); STRING "Larum" "FE6TR" ;
+ALIGN 32 ; SetName(0x0817); STRING "Juno" "FE6TR" ;
+ALIGN 32 ; SetName(0x0818); STRING "Juno" "FE6TR" ;
+ALIGN 32 ; SetName(0x0819); STRING "Thea" "FE6TR" ;
+ALIGN 32 ; SetName(0x081A); STRING "Thea" "FE6TR" ;
+ALIGN 32 ; SetName(0x081B); STRING "Thea" "FE6TR" ;
+ALIGN 32 ; SetName(0x081C); STRING "Shanna" "FE6TR" ;
+ALIGN 32 ; SetName(0x081D); STRING "Zeiss" "FE6TR" ;
+ALIGN 32 ; SetName(0x081E); STRING "Galle" "FE6TR" ;
+ALIGN 32 ; SetName(0x081F); STRING "Elffin" "FE6TR" ;
+ALIGN 32 ; SetName(0x0820); STRING "Cath" "FE6TR" ;
+ALIGN 32 ; SetName(0x0821); STRING "Sophia" "FE6TR" ;
+ALIGN 32 ; SetName(0x0822); STRING "Melady" "FE6TR" ;
+ALIGN 32 ; SetName(0x0823); STRING "Gonzalez" "FE6TR" ;
+ALIGN 32 ; SetName(0x0824); STRING "Gonzalez" "FE6TR" ;
+ALIGN 32 ; SetName(0x0825); STRING "Noah" "FE6TR" ;
+ALIGN 32 ; SetName(0x0826); STRING "Trec" "FE6TR" ;
+ALIGN 32 ; SetName(0x0827); STRING "Zelot" "FE6TR" ;
+ALIGN 32 ; SetName(0x0828); STRING "Echidna" "FE6TR" ;
+ALIGN 32 ; SetName(0x0829); STRING "Echidna" "FE6TR" ;
+ALIGN 32 ; SetName(0x082A); STRING "Cecilia" "FE6TR" ;
+ALIGN 32 ; SetName(0x082B); STRING "Geese" "FE6TR" ;
+ALIGN 32 ; SetName(0x082C); STRING "Geese" "FE6TR" ;
+ALIGN 32 ; SetName(0x082D); STRING "Merlinus" "FE6TR" ;
+ALIGN 32 ; SetName(0x082E); STRING "Eliwood" "FE6TR" ;
+ALIGN 32 ; SetName(0x082F); STRING "Guinivere" "FE6TR" ;
+ALIGN 32 ; SetName(0x0830); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0830); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0830); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0830); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0830); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0831); STRING "Damas" "FE6TR" ;
+ALIGN 32 ; SetName(0x0832); STRING "Ruud" "FE6TR" ;
+ALIGN 32 ; SetName(0x0833); STRING "Slater" "FE6TR" ;
+ALIGN 32 ; SetName(0x0834); STRING "Erik" "FE6TR" ;
+ALIGN 32 ; SetName(0x0835); STRING "Dory" "FE6TR" ;
+ALIGN 32 ; SetName(0x0836); STRING "Wagner" "FE6TR" ;
+ALIGN 32 ; SetName(0x0837); STRING "Debias" "FE6TR" ;
+ALIGN 32 ; SetName(0x0838); STRING "Legance" "FE6TR" ;
+ALIGN 32 ; SetName(0x0839); STRING "Scott" "FE6TR" ;
+ALIGN 32 ; SetName(0x083A); STRING "Nord" "FE6TR" ;
+ALIGN 32 ; SetName(0x083B); STRING "William" "FE6TR" ;
+ALIGN 32 ; SetName(0x083C); STRING "Flaer" "FE6TR" ;
+ALIGN 32 ; SetName(0x083D); STRING "Orlo" "FE6TR" ;
+ALIGN 32 ; SetName(0x083E); STRING "Roberts" "FE6TR" ;
+ALIGN 32 ; SetName(0x083F); STRING "Ein" "FE6TR" ;
+ALIGN 32 ; SetName(0x0840); STRING "Narcian" "FE6TR" ;
+ALIGN 32 ; SetName(0x0841); STRING "Randy" "FE6TR" ;
+ALIGN 32 ; SetName(0x0842); STRING "Rose" "FE6TR" ;
+ALIGN 32 ; SetName(0x0843); STRING "Maggie" "FE6TR" ;
+ALIGN 32 ; SetName(0x0844); STRING "Raith" "FE6TR" ;
+ALIGN 32 ; SetName(0x0845); STRING "Arcardo" "FE6TR" ;
+ALIGN 32 ; SetName(0x0846); STRING "Martel" "FE6TR" ;
+ALIGN 32 ; SetName(0x0847); STRING "Sigune" "FE6TR" ;
+ALIGN 32 ; SetName(0x0848); STRING "Roartz" "FE6TR" ;
+ALIGN 32 ; SetName(0x0849); STRING "Murdock" "FE6TR" ;
+ALIGN 32 ; SetName(0x084A); STRING "Brunnya" "FE6TR" ;
+ALIGN 32 ; SetName(0x084B); STRING "Zephiel" "FE6TR" ;
+ALIGN 32 ; SetName(0x084C); STRING "Idunn" "FE6TR" ;
+ALIGN 32 ; SetName(0x084D); STRING "Idunn" "FE6TR" ;
+ALIGN 32 ; SetName(0x084E); STRING "Jahn" "FE6TR" ;
+ALIGN 32 ; SetName(0x084F); STRING "Zinque" "FE6TR" ;
+ALIGN 32 ; SetName(0x0850); STRING "Monke" "FE6TR" ;
+ALIGN 32 ; SetName(0x0851); STRING "Kel" "FE6TR" ;
+ALIGN 32 ; SetName(0x0852); STRING "Brigand" "FE6TR" ;
+ALIGN 32 ; SetName(0x0853); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0854); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0855); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0856); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0857); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0858); STRING "Laus" "FE6TR" ;
+ALIGN 32 ; SetName(0x0859); STRING "Pirate" "FE6TR" ;
+ALIGN 32 ; SetName(0x085A); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x085B); STRING "Thria" "FE6TR" ;
+ALIGN 32 ; SetName(0x085C); STRING "Rebel" "FE6TR" ;
+ALIGN 32 ; SetName(0x085D); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x085E); STRING "Rebel" "FE6TR" ;
+ALIGN 32 ; SetName(0x085F); STRING "Officials" "FE6TR" ;
+ALIGN 32 ; SetName(0x0860); STRING "Thief" "FE6TR" ;
+ALIGN 32 ; SetName(0x0861); STRING "West Isles" "FE6TR" ;
+ALIGN 32 ; SetName(0x0862); STRING "Pirate" "FE6TR" ;
+ALIGN 32 ; SetName(0x0863); STRING "Armagh" "FE6TR" ;
+ALIGN 32 ; SetName(0x0864); STRING "Robber" "FE6TR" ;
+ALIGN 32 ; SetName(0x0865); STRING "Resistance" "FE6TR" ;
+ALIGN 32 ; SetName(0x0866); STRING "Etruria" "FE6TR" ;
+ALIGN 32 ; SetName(0x0867); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0868); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0869); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x086A); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x086B); STRING "Etruria" "FE6TR" ;
+ALIGN 32 ; SetName(0x086C); STRING "West Isles" "FE6TR" ;
+ALIGN 32 ; SetName(0x086D); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x086E); STRING "Etruria" "FE6TR" ;
+ALIGN 32 ; SetName(0x086F); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0870); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0871); STRING "Etruria" "FE6TR" ;
+ALIGN 32 ; SetName(0x0872); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0873); STRING "Ilia" "FE6TR" ;
+ALIGN 32 ; SetName(0x0874); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0875); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0876); STRING "Etruria" "FE6TR" ;
+ALIGN 32 ; SetName(0x0877); STRING "Thief" "FE6TR" ;
+ALIGN 32 ; SetName(0x0878); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0879); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x087A); STRING "Pirate" "FE6TR" ;
+ALIGN 32 ; SetName(0x087A); STRING "Pirate" "FE6TR" ;
+ALIGN 32 ; SetName(0x087B); STRING "Ilia" "FE6TR" ;
+ALIGN 32 ; SetName(0x087C); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x087D); STRING "Ilia" "FE6TR" ;
+ALIGN 32 ; SetName(0x087E); STRING "Brigand" "FE6TR" ;
+ALIGN 32 ; SetName(0x087F); STRING "Ilia" "FE6TR" ;
+ALIGN 32 ; SetName(0x0880); STRING "Ilia" "FE6TR" ;
+ALIGN 32 ; SetName(0x0881); STRING "Soldier" "FE6TR" ;
+ALIGN 32 ; SetName(0x0882); STRING "Ilia" "FE6TR" ;
+ALIGN 32 ; SetName(0x0883); STRING "Citizen" "FE6TR" ;
+ALIGN 32 ; SetName(0x0884); STRING "Thief" "FE6TR" ;
+ALIGN 32 ; SetName(0x0885); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0886); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0887); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0888); STRING "Thief" "FE6TR" ;
+ALIGN 32 ; SetName(0x0889); STRING "Soldier" "FE6TR" ;
+ALIGN 32 ; SetName(0x088A); STRING "Citizen" "FE6TR" ;
+ALIGN 32 ; SetName(0x088B); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x088C); STRING "Etruria" "FE6TR" ;
+ALIGN 32 ; SetName(0x088D); STRING "Sacae" "FE6TR" ;
+ALIGN 32 ; SetName(0x088E); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x088F); STRING "Djute" "FE6TR" ;
+ALIGN 32 ; SetName(0x0890); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0891); STRING "Sacae" "FE6TR" ;
+ALIGN 32 ; SetName(0x0892); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0893); STRING "Etruria" "FE6TR" ;
+ALIGN 32 ; SetName(0x0894); STRING "Sacae" "FE6TR" ;
+ALIGN 32 ; SetName(0x0895); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0896); STRING "Manakete" "FE6TR" ;
+ALIGN 32 ; SetName(0x0897); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0898); STRING "Dragon" "FE6TR" ;
+ALIGN 32 ; SetName(0x0899); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0899); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x089A); STRING "Henning" "FE6TR" ;
+ALIGN 32 ; SetName(0x089B); STRING "Scollan" "FE6TR" ;
+ALIGN 32 ; SetName(0x08A6); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x089C); STRING "Guerrero" "FE6TR" ;
+ALIGN 32 ; SetName(0x089D); STRING "Oates" "FE6TR" ;
+ALIGN 32 ; SetName(0x089E); STRING "Tick" "FE6TR" ;
+ALIGN 32 ; SetName(0x08A7); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x08A8); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x08A9); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x089F); STRING "Thoril" "FE6TR" ;
+ALIGN 32 ; SetName(0x08A0); STRING "Brakul" "FE6TR" ;
+ALIGN 32 ; SetName(0x08A1); STRING "Kudoka" "FE6TR" ;
+ALIGN 32 ; SetName(0x08A2); STRING "Marral" "FE6TR" ;
+ALIGN 32 ; SetName(0x08A3); STRING "Kabul" "FE6TR" ;
+ALIGN 32 ; SetName(0x08A4); STRING "Chan" "FE6TR" ;
+ALIGN 32 ; SetName(0x08A5); STRING "Peres" "FE6TR" ;
+ALIGN 32 ; SetName(0x08AA); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x08AB); STRING "Windham" "FE6TR" ;
+ALIGN 32 ; SetName(0x0893); STRING "Etruria" "FE6TR" ;
+ALIGN 32 ; SetName(0x08AE); STRING "Morgan" "FE6TR" ;
+ALIGN 32 ; SetName(0x085C); STRING "Rebel" "FE6TR" ;
+ALIGN 32 ; SetName(0x0885); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0885); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x0885); STRING "Bern" "FE6TR" ;
+ALIGN 32 ; SetName(0x088A); STRING "Citizen" "FE6TR" ;
+ALIGN 32 ; SetName(0x0883); STRING "Citizen" "FE6TR" ;
+ALIGN 32 ; SetName(0x08AF); STRING "Hector" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B0); STRING "Bors" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B1); STRING "Soldier" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B2); STRING "Soldier" "FE6TR" ;
+ALIGN 32 ; SetName(0x07A8); STRING "Soldiers" "FE6TR" ;
+ALIGN 32 ; SetName(0x0889); STRING "Soldier" "FE6TR" ;
+ALIGN 32 ; SetName(0x07A8); STRING "Soldiers" "FE6TR" ;
+ALIGN 32 ; SetName(0x07A8); STRING "Soldiers" "FE6TR" ;
+ALIGN 32 ; SetName(0x07A8); STRING "Soldiers" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B3); STRING "Archer" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B4); STRING "Peg Kn" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B5); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B5); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B5); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B5); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B5); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x08B5); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x0830); STRING "Bandit" "FE6TR" ;
+ALIGN 32 ; SetName(0x08AC); STRING "Enemy" "FE6TR" ;
+ALIGN 32 ; SetName(0x08AD); STRING "Broken Wall" "FE6TR" ;
+
+
+
+ALIGN 32
+WORD 0 0 0 0 0 0 0 0
 

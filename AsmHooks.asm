@@ -73,6 +73,7 @@ HookLoadFace_FE6:
 push {r4, lr} 
 lsl r4, r1, #8 
 ldr r0, [r7, #8] 
+mov r1, #0 
 bl GetRandomizedPortrait
 add r4, r0 
 str r4, [r7, #8] 
@@ -91,6 +92,7 @@ ldr r0, [r0]
 ldrb r4, [r0, #1] 
 lsl r4, #8 
 ldrb r0, [r0] 
+mov r1, #0 
 bl GetRandomizedPortrait
 add r4, r0 
 pop {r3} 
@@ -103,6 +105,7 @@ HookWMStartFace_FE6:
 push {r4, lr} 
 mov r4, r0 @ proc 
 mov r0, r1 
+mov r1, #0 
 bl GetRandomizedPortrait
 mov r2, r0 
 mov r0, r4 
@@ -120,6 +123,7 @@ sub sp, #4
 str r1, [sp] 
 mov r0, r9 @ portrait id 
 mov r4, r2 
+mov r1, #0 
 bl GetRandomizedPortrait
 mov r1, r0
 mov r2, r4 
@@ -139,6 +143,7 @@ push {lr}
 lsl r2, #0x10 
 lsr r4, r2, #0x10 
 mov r0, r1 @ face ID 
+mov r1, #0 
 bl GetRandomizedPortrait
 mov r6, r0 
 ldr r0, =0x8A3D700 
@@ -157,7 +162,6 @@ ldrh r0, [r0, #6]
 cmp r0, #0 
 beq ExitGeneric_Fe8 
 mov r1, #0 
-mov r2, #0 
 bl GetRandomizedPortrait
 mov r2, r0 
 mov r1, r4 
@@ -184,6 +188,7 @@ ldr r1, [r4]
 ldrh r0, [r1, #6] 
 cmp r0, #0 
 beq GetClassPortraitId_FE7 
+mov r1, #0 
 bl GetRandomizedPortrait 
 b ExitPortrait_FE7
 
@@ -236,7 +241,6 @@ cmp r1, #0
 beq ExitGenericMini_Fe8 
 mov r0, r1  
 mov r1, #0 
-mov r2, #0 
 bl GetRandomizedPortrait
 mov r1, r0 
 ldr r0, =0x202BCF0 @ gChData 
@@ -255,6 +259,119 @@ ldr r3, =0x8019331
 bx r3 
 .ltorg 
 
+.global GetMapLevelUpPortraitId_FE6
+.type GetMapLevelUpPortraitId_FE6, %function 
+GetMapLevelUpPortraitId_FE6:
+push {lr} 
+lsl r1, r2, #2 
+add r0, r1 
+ldr r0, [r0] 
+ldr r0, [r0] 
+ldrh r0, [r0, #6] @ portrait ID 
+mov r1, #0 
+bl GetRandomizedPortrait
+mov r1, r0 
+mov r0, #0x42
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global GetBattleLevelUpPortraitId_FE6
+.type GetBattleLevelUpPortraitId_FE6, %function 
+GetBattleLevelUpPortraitId_FE6:
+push {lr} 
+ldr r0, [r1]
+ldrh r0, [r0, #6] @ portrait 
+mov r1, #0 
+bl GetRandomizedPortrait
+mov r4, r0 
+ldr r0, =0x860618c
+blh 0x8008030
+mov r0, #0x42
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global GetBattleLevelUpPortraitId_FE7
+.type GetBattleLevelUpPortraitId_FE7, %function 
+GetBattleLevelUpPortraitId_FE7:
+push {lr} 
+ldrh r0, [r0, #6] @ portrait 
+mov r1, #0 
+bl GetRandomizedPortrait
+mov r4, r0 
+ldr r0, =0x8BDb59C 
+blh 0x8006b50 
+pop {r3} 
+ldr r3, =0x8069381 
+bx r3 
+.ltorg 
+
+.global GetMapLevelUpPortraitId_FE7
+.type GetMapLevelUpPortraitId_FE7, %function 
+GetMapLevelUpPortraitId_FE7:
+push {lr} 
+ldr r1, [r0] 
+ldr r0, [r1] 
+ldrh r0, [r0, #6] @ portrait ID 
+mov r1, #0 
+bl GetRandomizedPortrait
+mov r1, r0 
+ldr r0, [r7] 
+mov r3, #0x32 
+ldsh r2, [r0, r3] 
+pop {r3} 
+bx r3 
+.ltorg 
+
+
+.global GetTraineePromoPortraitId_FE8
+.type GetTraineePromoPortraitId_FE8, %function 
+GetTraineePromoPortraitId_FE8:
+push {lr} 
+ldr r0, [r0] 
+ldrh r0, [r0, #6] @ portrait ID 
+mov r1, #0 
+bl GetRandomizedPortrait
+mov r1, #0x2e 
+add r1, r4 
+strb r0, [r1] 
+pop {r3} 
+ldr r3, =0x80Cd6dd
+bx r3 
+.ltorg 
+
+.global GetBattleLevelUpPortraitId_FE8
+.type GetBattleLevelUpPortraitId_FE8, %function 
+GetBattleLevelUpPortraitId_FE8:
+push {lr} 
+ldrh r0, [r0, #6] @ portrait 
+mov r1, #0 
+bl GetRandomizedPortrait
+mov r4, r0 
+ldr r0, =0x87592cc
+blh 0x8005544
+pop {r3} 
+ldr r3, =0x8073dc5
+bx r3 
+.ltorg 
+
+.global GetMapLevelUpPortraitId_FE8
+.type GetMapLevelUpPortraitId_FE8, %function 
+GetMapLevelUpPortraitId_FE8:
+push {lr} 
+lsl r0, #2 
+add r0, r2 
+ldr r0, [r0] 
+ldr r0, [r0] 
+ldrh r0, [r0, #6] @ portrait ID 
+mov r1, #0 
+bl GetRandomizedPortrait
+mov r1, r0 
+mov r2, #0x32 
+pop {r3} 
+bx r3 
+.ltorg 
 
 
 .global DisplayStealOrDropIcon_FE6

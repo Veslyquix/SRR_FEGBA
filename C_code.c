@@ -92,8 +92,8 @@ extern int DefaultConfigToVanilla;
 #define PlayerPortraitSize 0x4a
 #endif 
 #ifdef FE6 
-#define ListSize 0x22
-#define PlayerPortraitSize 0x26
+#define ListSize 0x3f // 0x44 but max is 0x3f atm? 
+#define PlayerPortraitSize 0x35
 #endif 
 
 #define TempTextBufferSize 16  

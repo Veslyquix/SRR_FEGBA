@@ -297,6 +297,15 @@ jumpToHack(HookGetUnitMiniPortraitId_FE8)
 ORG $1932A
 SHORT $46c0 
 
+ORG $CD6C8 
+jumpToHack(GetTraineePromoPortraitId_FE8)
+
+ORG $73DBC
+jumpToHack(GetBattleLevelUpPortraitId_FE8)
+
+ORG $7F25C 
+callHackNew(GetMapLevelUpPortraitId_FE8)
+
 #endif 
 
 POP 

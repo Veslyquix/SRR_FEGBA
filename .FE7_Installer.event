@@ -333,6 +333,14 @@ jumpToHack(GetUnitPortraitId_FE7)
 ORG $18BF4 
 jumpToHack(GetUnitMiniPortraitId_FE7)
 
+// in 69370 from 692a4
+ORG $69378
+jumpToHack(GetBattleLevelUpPortraitId_FE7)
+
+// at 74B98 from 74a28 - fe6 8067E84
+ORG $74B94 
+callHackNew(GetMapLevelUpPortraitId_FE7)
+
 POP 
 
 TextA:
@@ -354,8 +362,11 @@ ReplaceTextList:
 //SHORT 0; BYTE 0xff 0; POIN TextC TextD 
 //SHORT 0; BYTE 0xff 0; POIN TextE TextF 
 WORD 0 0 0// terminator 
-
-#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+#ifdef VeslyBuildfile
+	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+#else 
+	#define SetName(id) "ALIGN 16"
+#endif 
 ALIGN 16
 NameStrings: 
 FILL(16*256)
@@ -399,26 +410,25 @@ ALIGN 16 ; SetName(0x4fe); String("Jaffar"); BYTE 0
 ALIGN 16 ; SetName(0x4ff); String("Ninian"); BYTE 0 
 ALIGN 16 ; SetName(0x500); String("Nils"); BYTE 0 
 ALIGN 16 ; SetName(0x501); String("Athos"); BYTE 0 
-ALIGN 16 ; SetName(0x502); String("Merlinus"); BYTE 0 // then Nils again ?? 
+ALIGN 16 ; SetName(0x502); String("Merlinus"); BYTE 0 
 ALIGN 16 ; SetName(0x500); String("Nils"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x504); String("Uther"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x4FB); String("Vaida"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x4DE); String("Lyn"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x4E7); String("Wil"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x4F1); String("Kent"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x4F2); String("Sain"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x4F7); String("Florina"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x4F6); String("Rath"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x506); String("Dart"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x508); String("Isadora"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x503); String("Eleanora"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x50A); String("Legault"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x50C); String("Karla"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x50B); String("Harken"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x50D); String("Leila"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x50E); String("Bramimond"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x50F); String("Kishuna"); BYTE 0 // then Nils again ?? 
-// 0x28 
+ALIGN 16 ; SetName(0x504); String("Uther"); BYTE 0 
+ALIGN 16 ; SetName(0x4FB); String("Vaida"); BYTE 0 
+ALIGN 16 ; SetName(0x4DE); String("Lyn"); BYTE 0 
+ALIGN 16 ; SetName(0x4E7); String("Wil"); BYTE 0 
+ALIGN 16 ; SetName(0x4F1); String("Kent"); BYTE 0 
+ALIGN 16 ; SetName(0x4F2); String("Sain"); BYTE 0 
+ALIGN 16 ; SetName(0x4F7); String("Florina"); BYTE 0 
+ALIGN 16 ; SetName(0x4F6); String("Rath"); BYTE 0 
+ALIGN 16 ; SetName(0x506); String("Dart"); BYTE 0 
+ALIGN 16 ; SetName(0x508); String("Isadora"); BYTE 0 
+ALIGN 16 ; SetName(0x503); String("Eleanora"); BYTE 0 
+ALIGN 16 ; SetName(0x50A); String("Legault"); BYTE 0 
+ALIGN 16 ; SetName(0x50C); String("Karla"); BYTE 0 
+ALIGN 16 ; SetName(0x50B); String("Harken"); BYTE 0 
+ALIGN 16 ; SetName(0x50D); String("Leila"); BYTE 0 
+ALIGN 16 ; SetName(0x50E); String("Bramimond"); BYTE 0 
+ALIGN 16 ; SetName(0x50F); String("Kishuna"); BYTE 0 
 
 ALIGN 16
 WORD 0 0 0 0 
