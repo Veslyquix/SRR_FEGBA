@@ -79,7 +79,8 @@ extern int SkillSysInstalled;
 extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
 
-#define STRINGS_IN_ROM // faster if defined, but gotta write all the names in the installer 
+#define SET_TEXT_USED
+//#define STRINGS_IN_ROM // faster if defined, but gotta write all the names in the installer 
 
 #ifdef FE8 
 #define ListSize 0x22
@@ -3303,27 +3304,37 @@ extern char * GetStringFromIndexInBuffer(int index, char *buffer);
 
 extern const char NameStrings[ListSize][16]; // do align 16 before each? 
 void InitReplaceTextListRom(struct ReplaceTextStruct list[]) { 
-	//asm("mov r11, r11"); 
-	int seed = RandValues->seed; 
 	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
 	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
-	if (!seed) { seed = RandValues->seed; } 
-	if (!proc->count) { InitRandomRecruitmentProc(proc, seed);  } 
+	if (!proc->count) { InitRandomRecruitmentProc(proc, RandValues->seed);  } 
 	
 	//const struct CharacterData* table = GetCharacterData(1); 
 	int uid; 
-
-	
-
 	for (int i = 0; i < ListSize; ++i) { 
 		uid = GetRandomUnitID(i+1, proc); 
-		asm("mov r11, r11");
 		list[i].find = NameStrings[i]; 
 		list[i].replace = NameStrings[uid-1]; 
 		//table++; 
 	} 
 	list[ListSize].find = NULL; 
 	//asm("mov r11, r11");
+	//list[ListSize].replace = NULL; 
+} 
+
+void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) { 
+	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
+	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
+	if (!proc->count) { InitRandomRecruitmentProc(proc, RandValues->seed);  } 
+	int uid; 
+	const struct CharacterData* table = GetCharacterData(1); 
+	//u32 rn[1] = {0}; 
+
+	for (int i = 0; i < ListSize; ++i) { 
+		list[i].find = (void*)ggMsgStringTable[table->nameTextId]; 
+		list[i].replace = (void*)ggMsgStringTable[GetRandomUnit(table->portraitId, proc)->nameTextId]; 
+		table++; 
+	} 
+	list[ListSize].find = NULL; 
 	//list[ListSize].replace = NULL; 
 } 
 
@@ -3466,31 +3477,38 @@ int DecompText(const char *a, char *b) {
 
 void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 800384C 
 {
-	//asm("mov r11, r11"); 
+	asm("mov r11, r11"); 
 	int length[1] = {0}; 
 	length[0] = DecompText(a, b); 
 	if (!ShouldRandomizeRecruitment()) { return; }
 	struct ReplaceTextStruct ReplaceTextList[ListSize+1]; // +1 for terminator 
+	#ifdef SET_TEXT_USED
+	InitReplaceTextListAntiHuffman(ReplaceTextList); 
+	#endif 
+	
 	#ifdef STRINGS_IN_ROM 
 	InitReplaceTextListRom(ReplaceTextList); 
-	#else 
-	char textBuffer[ListSize+1][TempTextBufferSize]; 
-	char textBuffer2[ListSize+1][TempTextBufferSize]; 
-	InitReplaceTextList(ReplaceTextList, textBuffer, textBuffer2); 
 	#endif 
-	 
+	#ifndef SET_TEXT_USED 
+		#ifndef STRINGS_IN_ROM 
+		char textBuffer[ListSize+1][TempTextBufferSize]; 
+		char textBuffer2[ListSize+1][TempTextBufferSize]; 
+		InitReplaceTextList(ReplaceTextList, textBuffer, textBuffer2); 
+		#endif 
+	#endif 
+	
 
 	for (int i = 0; i < 0x555; ++i) { 
-		if (!b[i]) { return; } 
+		if (!b[i]) { asm("mov r11, r11"); return; } 
 		for (int c = 0; c < ListSize; ++c) { 
-			if (!b[i]) { return; } 
+			if (!b[i]) { asm("mov r11, r11"); return; } 
 			if (!ReplaceTextList[c].find) { break; } 
 			if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b)) { break; };
 			
 		}
 	} 
  
-	//asm("mov r11, r11"); 
+	
 }
 
 

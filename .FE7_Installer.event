@@ -21,7 +21,7 @@
 #ifndef TextTable 
 	#define TextTable 0xB808AC 
 #endif 
-#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
+#define setText(textID, offset) "PUSH; ORG (TextTable+(4*textID)); POIN (offset|0x80000000); POP"
 ConfigText:
 String("Config") ; BYTE 0 
 ConfigDescText:
@@ -355,48 +355,51 @@ ReplaceTextList:
 //SHORT 0; BYTE 0xff 0; POIN TextE TextF 
 WORD 0 0 0// terminator 
 
+#define SetName(id) "{ addr: ; setText(id, addr) ; }"
 ALIGN 16
 NameStrings: 
-ALIGN 16 ; String("Eliwood"); BYTE 0 
-ALIGN 16 ; String("Hector"); BYTE 0 
-ALIGN 16 ; String("Lyn"); BYTE 0 
-ALIGN 16 ; String("Raven"); BYTE 0 
-ALIGN 16 ; String("Geitz"); BYTE 0 
-ALIGN 16 ; String("Guy"); BYTE 0 
-ALIGN 16 ; String("Karel"); BYTE 0 
-ALIGN 16 ; String("Dorcas"); BYTE 0 
-ALIGN 16 ; String("Bartre"); BYTE 0 
-ALIGN 16 ; String("Citizen"); BYTE 0 
-ALIGN 16 ; String("Oswin"); BYTE 0 
-ALIGN 16 ; String("Fargus"); BYTE 0 
-ALIGN 16 ; String("Wil"); BYTE 0 
-ALIGN 16 ; String("Rebecca"); BYTE 0 
-ALIGN 16 ; String("Louise"); BYTE 0 
-ALIGN 16 ; String("Lucius"); BYTE 0 
-ALIGN 16 ; String("Serra"); BYTE 0 
-ALIGN 16 ; String("Renault"); BYTE 0 
-ALIGN 16 ; String("Erk"); BYTE 0 
-ALIGN 16 ; String("Nino"); BYTE 0 
-ALIGN 16 ; String("Pent"); BYTE 0 
-ALIGN 16 ; String("Canas"); BYTE 0 
-ALIGN 16 ; String("Kent"); BYTE 0 
-ALIGN 16 ; String("Sain"); BYTE 0 
-ALIGN 16 ; String("Lowen"); BYTE 0 
-ALIGN 16 ; String("Marcus"); BYTE 0 
-ALIGN 16 ; String("Priscilla"); BYTE 0 
-ALIGN 16 ; String("Rath"); BYTE 0 
-ALIGN 16 ; String("Florina"); BYTE 0 
-ALIGN 16 ; String("Fiora"); BYTE 0 
-ALIGN 16 ; String("Farina"); BYTE 0 
-ALIGN 16 ; String("Heath"); BYTE 0 
-ALIGN 16 ; String("Vaida"); BYTE 0 
-ALIGN 16 ; String("Hawkeye"); BYTE 0 
-ALIGN 16 ; String("Matthew"); BYTE 0 
-ALIGN 16 ; String("Jaffar"); BYTE 0 
-ALIGN 16 ; String("Ninian"); BYTE 0 
-ALIGN 16 ; String("Nils"); BYTE 0 
-ALIGN 16 ; String("Athos"); BYTE 0 
-ALIGN 16 ; String("Merlinus"); BYTE 0 // then Nils again ?? 
+FILL(16*256)
+ORG NameStrings
+ALIGN 16 ; SetName(0x4dc); String("Eliwood"); BYTE 0 
+ALIGN 16 ; SetName(0x4dd); String("Hector"); BYTE 0 
+ALIGN 16 ; SetName(0x4de); String("Lyn"); BYTE 0 
+ALIGN 16 ; SetName(0x4df); String("Raven"); BYTE 0 
+ALIGN 16 ; SetName(0x4e0); String("Geitz"); BYTE 0 
+ALIGN 16 ; SetName(0x4e1); String("Guy"); BYTE 0 
+ALIGN 16 ; SetName(0x4e2); String("Karel"); BYTE 0 
+ALIGN 16 ; SetName(0x4e3); String("Dorcas"); BYTE 0 
+ALIGN 16 ; SetName(0x4e4); String("Bartre"); BYTE 0 
+ALIGN 16 ; SetName(0x54b); String("Citizen"); BYTE 0 
+ALIGN 16 ; SetName(0x4e5); String("Oswin"); BYTE 0 
+ALIGN 16 ; SetName(0x4e6); String("Fargus"); BYTE 0 
+ALIGN 16 ; SetName(0x4e7); String("Wil"); BYTE 0 
+ALIGN 16 ; SetName(0x4e8); String("Rebecca"); BYTE 0 
+ALIGN 16 ; SetName(0x4e9); String("Louise"); BYTE 0 
+ALIGN 16 ; SetName(0x4ea); String("Lucius"); BYTE 0 
+ALIGN 16 ; SetName(0x4eb); String("Serra"); BYTE 0 
+ALIGN 16 ; SetName(0x4ec); String("Renault"); BYTE 0 
+ALIGN 16 ; SetName(0x4ed); String("Erk"); BYTE 0 
+ALIGN 16 ; SetName(0x4ee); String("Nino"); BYTE 0 
+ALIGN 16 ; SetName(0x4ef); String("Pent"); BYTE 0 
+ALIGN 16 ; SetName(0x4f0); String("Canas"); BYTE 0 
+ALIGN 16 ; SetName(0x4f1); String("Kent"); BYTE 0 
+ALIGN 16 ; SetName(0x4f2); String("Sain"); BYTE 0 
+ALIGN 16 ; SetName(0x4f3); String("Lowen"); BYTE 0 
+ALIGN 16 ; SetName(0x4f4); String("Marcus"); BYTE 0 
+ALIGN 16 ; SetName(0x4f5); String("Priscilla"); BYTE 0 
+ALIGN 16 ; SetName(0x4f6); String("Rath"); BYTE 0 
+ALIGN 16 ; SetName(0x4f7); String("Florina"); BYTE 0 
+ALIGN 16 ; SetName(0x4f8); String("Fiora"); BYTE 0 
+ALIGN 16 ; SetName(0x4f9); String("Farina"); BYTE 0 
+ALIGN 16 ; SetName(0x4fa); String("Heath"); BYTE 0 
+ALIGN 16 ; SetName(0x4fb); String("Vaida"); BYTE 0 
+ALIGN 16 ; SetName(0x4fc); String("Hawkeye"); BYTE 0 
+ALIGN 16 ; SetName(0x4fd); String("Matthew"); BYTE 0 
+ALIGN 16 ; SetName(0x4fe); String("Jaffar"); BYTE 0 
+ALIGN 16 ; SetName(0x4ff); String("Ninian"); BYTE 0 
+ALIGN 16 ; SetName(0x500); String("Nils"); BYTE 0 
+ALIGN 16 ; SetName(0x501); String("Athos"); BYTE 0 
+ALIGN 16 ; SetName(0x502); String("Merlinus"); BYTE 0 // then Nils again ?? 
 // 0x28 
 
 ALIGN 16
