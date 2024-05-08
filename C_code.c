@@ -3330,8 +3330,9 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) {
 	//u32 rn[1] = {0}; 
 
 	for (int i = 0; i < ListSize; ++i) { 
-		list[i].find = (void*)ggMsgStringTable[table->nameTextId]; 
-		list[i].replace = (void*)ggMsgStringTable[GetRandomUnit(table->portraitId, proc)->nameTextId]; 
+	// remove the 0x8------- from anti-huffman uncompressed text pointer 
+		list[i].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
+		list[i].replace = (void*)((int)ggMsgStringTable[GetRandomUnit(table->portraitId, proc)->nameTextId] & 0x7FFFFFFF); 
 		table++; 
 	} 
 	list[ListSize].find = NULL; 
