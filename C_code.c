@@ -100,14 +100,35 @@ extern int DefaultConfigToVanilla;
 typedef struct {
     /* 00 */ PROC_HEADER;
 	u8 count; 
-	u8 id[ListSize];
+	u8 id[0x40];
 } RecruitmentProc;
-void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed); 
+void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed, int id); 
 void LoopRandomRecruitmentProc(RecruitmentProc* proc) { return; } 
-const struct ProcCmd RecruitmentProcCmd[] =
+const struct ProcCmd RecruitmentProcCmd1[] =
 {
+	PROC_NAME("ReorderedRecruitment_One"), 
     PROC_YIELD,
-	//PROC_CALL(InitRandomRecruitmentProc), 
+	PROC_REPEAT(LoopRandomRecruitmentProc), 
+    PROC_END,
+};
+const struct ProcCmd RecruitmentProcCmd2[] =
+{
+	PROC_NAME("ReorderedRecruitment_Two"), 
+    PROC_YIELD,
+	PROC_REPEAT(LoopRandomRecruitmentProc), 
+    PROC_END,
+};
+const struct ProcCmd RecruitmentProcCmd3[] =
+{
+	PROC_NAME("ReorderedRecruitment_Three"), 
+    PROC_YIELD,
+	PROC_REPEAT(LoopRandomRecruitmentProc), 
+    PROC_END,
+};
+const struct ProcCmd RecruitmentProcCmd4[] =
+{
+	PROC_NAME("ReorderedRecruitment_Four"), 
+    PROC_YIELD,
 	PROC_REPEAT(LoopRandomRecruitmentProc), 
     PROC_END,
 };
@@ -116,12 +137,12 @@ int ShouldRandomizeRecruitment(void) {
 	return RandValues->recruitment; 
 }
 int ShouldRandomizeRecruitmentForUnitID(int id) { 
-	if (id > ListSize) { return false; } 
+	//if (id > ListSize) { return false; } 
 	return RandValues->recruitment; 
 }
 
 int ShouldRandomizeRecruitmentForPortraitID(int id) { 
-	if (id > PlayerPortraitSize) { return false; } // players only atm 
+	//if (id > PlayerPortraitSize) { return false; } // players only atm 
 	return RandValues->recruitment; 
 }
 u16 HashByte_Global(int number, int max, int noise[], int offset); 
@@ -140,29 +161,55 @@ int GetUnitIdOfPortrait(int portraitID) {
 	} 
 	return 0;
 } 
-inline const struct CharacterData* GetReorderedUnitByPortrait(int portraitID, RecruitmentProc* proc) {
-	int unitID = GetUnitIdOfPortrait(portraitID);
-	if (unitID > ListSize) { return GetCharacterData(unitID); } 
-	return GetCharacterData(proc->id[unitID-1]);  
-} 
-const struct CharacterData* GetReorderedUnitByPortraitNoProc(int portraitID) {
-	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
-	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
-	if (!proc->count) { InitRandomRecruitmentProc(proc, RandValues->seed); } 
-	return GetReorderedUnitByPortrait(portraitID, proc);  
-} 
 
 
+const struct CharacterData* GetReorderedUnitByPortrait(int portraitID) { 
+	RecruitmentProc* proc; 
+	int id = GetUnitIdOfPortrait(portraitID);
+	if (!ShouldRandomizeRecruitmentForUnitID(id)) { return GetCharacterData(id); } 
+	
+	int procID = id >> 6; // 0, 1, 2, or 3 
+	id &= 0x3F; 
+	
+	switch (procID) { 
+		case 0: { 	
+			proc = Proc_Find(RecruitmentProcCmd1); 
+			if (!proc) { proc = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3); proc->count = 0;} 
+			break; 
+		}
+		case 1: { 	
+			proc = Proc_Find(RecruitmentProcCmd2); 
+			if (!proc) { proc = Proc_Start(RecruitmentProcCmd2, PROC_TREE_3); proc->count = 0;} 
+			break; 
+		}
+		case 2: { 	
+			proc = Proc_Find(RecruitmentProcCmd3); 
+			if (!proc) { proc = Proc_Start(RecruitmentProcCmd3, PROC_TREE_3); proc->count = 0;} 
+			break; 
+		}
+		case 3: { 	
+			proc = Proc_Find(RecruitmentProcCmd4); 
+			if (!proc) { proc = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3); proc->count = 0;} 
+			break; 
+		}
+		default:
+	}
+	if (!proc->count) { InitRandomRecruitmentProc(proc, RandValues->seed, procID); } 
+	
+	
+	return GetCharacterData(proc->id[id-1]);
+}
+
+inline int GetReorderedUnitID(struct Unit* unit) { 
+	return GetReorderedUnitByPortrait(unit->pCharacterData->portraitId)->number; 
+} 
+inline const struct CharacterData* GetReorderedUnit(struct Unit* unit) { 
+	return GetReorderedUnitByPortrait(unit->pCharacterData->portraitId); 
+} 
 
 int GetRandomizedPortrait(int portraitID, int seed) { 
 	if (!ShouldRandomizeRecruitmentForPortraitID(portraitID)) { return portraitID; } 
-	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
-	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
-	if (!seed) { seed = RandValues->seed; } 
-	if (!proc->count) { InitRandomRecruitmentProc(proc, seed); } 
-	
-	
-	int result = GetReorderedUnitByPortrait(portraitID, proc)->portraitId; 
+	int result = GetReorderedUnitByPortrait(portraitID)->portraitId; 
 	
 	if (!result) { return portraitID; } 
 	// if no unitID with this portrait, show a random one (before class cards) 
@@ -190,17 +237,25 @@ int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed) {
 	return 1; // "Yes"
 } 
 
-void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed) { 
-	
-	u8 unit[ListSize]; 
+void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed, int id) { 
+	u8 unit[0x40]; 
+	id = id<<6; // 0, 0x40, 0x80, or 0xC0 
 	const struct CharacterData* table = GetCharacterData(1); 
+	if (id) { table = GetCharacterData(id); } 
 	int c = 0; 
 	
 	table--; 
-	for (int i = 0; i <= ListSize; ++i) { // all available units 
+	for (int i = 0; i <= 0x40; ++i) { // all available units 
 		table++; 
+		#ifdef FE6 
+		if (table->number > 0xE2) { break; } 
+		#endif 
+		#ifdef FE7
+		if (table->number > 0xFD) { break; } 
+		#endif 
 		proc->id[i] = 0xFF; 
-		if (table->attributes & CA_BOSS) { continue; } 
+		if ((!id) && (table->attributes & CA_BOSS)) { continue; } 
+		if ((id) && (!(table->attributes & CA_BOSS))) { continue; } 
 		if (!table->portraitId) { continue; } 
 		unit[c] = i+1; 
 		c++; 
@@ -209,11 +264,18 @@ void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed) {
 	
 	int num; 
 	u32 rn = 0; 
-	table = GetCharacterData(ListSize);  
-	for (int i = ListSize; i >= 0 ; --i) { // reordered at random 
+	table = GetCharacterData(id+0x3F);  
+	for (int i = id+0x3F; i > 0 ; --i) { // reordered at random 
 		//table--; 
 		table = GetCharacterData(i);  
-		if (table->attributes & CA_BOSS) { continue; } 
+		#ifdef FE6 
+		if (table->number > 0xE2) { continue; } 
+		#endif 
+		#ifdef FE7
+		if (table->number > 0xFD) { continue; } 
+		#endif 
+		if ((!id) && (table->attributes & CA_BOSS)) { continue; } 
+		if ((id) && (!(table->attributes & CA_BOSS))) { continue; } 
 		if (!table->portraitId) { continue; } 
 		// so we only use valid units 
 		
@@ -233,8 +295,7 @@ void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed) {
 void HbPopulate_SSCharacter(struct HelpBoxProc* proc) // fe7 0x80816FC fe6 0x80704DC 
 {
 	if (ShouldRandomizeRecruitmentForUnitID(gStatScreen.unit->pCharacterData->number)) { 
-		RecruitmentProc* proc2 = Proc_Find(RecruitmentProcCmd); 
-		int midDesc = GetReorderedUnitByPortrait(gStatScreen.unit->pCharacterData->portraitId, proc2)->descTextId;
+		int midDesc = GetReorderedUnit(gStatScreen.unit)->descTextId;
 
 		if (midDesc) {
 		proc->mid = midDesc; }
@@ -1777,7 +1838,7 @@ int GetUnitMagGrowth(struct Unit* unit, int modifiersBool) {
 	int baseGrowth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	baseGrowth = MagCharTable[unit->pCharacterData->number].growth;  
+	baseGrowth = MagCharTable[GetReorderedUnitID(unit)].growth;  
 	if (ClassBasedGrowths) { baseGrowth = MagClassTable[unit->pClassData->number].growth;  } 
 	if (CombinedGrowths) { baseGrowth += MagClassTable[unit->pClassData->number].growth;  } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
@@ -1926,7 +1987,7 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	int baseGrowth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	baseGrowth = unit->pCharacterData->growthHP; 
+	baseGrowth = GetReorderedUnit(unit)->growthHP; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthHP; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthHP; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
@@ -1953,7 +2014,7 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	int baseGrowth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	baseGrowth = unit->pCharacterData->growthPow; 
+	baseGrowth = GetReorderedUnit(unit)->growthPow; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthPow; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthPow; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
@@ -1980,7 +2041,7 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	int baseGrowth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	baseGrowth = unit->pCharacterData->growthSkl; 
+	baseGrowth = GetReorderedUnit(unit)->growthSkl; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSkl; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSkl; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
@@ -2007,7 +2068,7 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	int baseGrowth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	baseGrowth = unit->pCharacterData->growthSpd; 
+	baseGrowth = GetReorderedUnit(unit)->growthSpd; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSpd; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSpd; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
@@ -2034,7 +2095,7 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	int baseGrowth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	baseGrowth = unit->pCharacterData->growthDef; 
+	baseGrowth = GetReorderedUnit(unit)->growthDef; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthDef; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthDef; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
@@ -2061,7 +2122,7 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	int baseGrowth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	baseGrowth = unit->pCharacterData->growthRes; 
+	baseGrowth = GetReorderedUnit(unit)->growthRes; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthRes; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthRes; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
@@ -2088,7 +2149,7 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	int baseGrowth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
-	baseGrowth = unit->pCharacterData->growthLck; 
+	baseGrowth = GetReorderedUnit(unit)->growthLck; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthLck; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthLck; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
@@ -2121,17 +2182,17 @@ extern s8 Roll1RN(int threshold); //8000E60
 
 void UnitCheckStatMins(struct Unit* unit) { 
 	if (MinClassBase) { 
-		int minStat = unit->pCharacterData->basePow + unit->pClassData->basePow; if (minStat < 0) { minStat = 0; } 
+		int minStat = GetReorderedUnit(unit)->basePow + unit->pClassData->basePow; if (minStat < 0) { minStat = 0; } 
 		if (unit->pow < minStat) { unit->pow = minStat; } 
-		minStat = unit->pCharacterData->baseSkl + unit->pClassData->baseSkl; if (minStat < 0) { minStat = 0; } 
+		minStat = GetReorderedUnit(unit)->baseSkl + unit->pClassData->baseSkl; if (minStat < 0) { minStat = 0; } 
 		if (unit->skl < minStat) { unit->skl = minStat; } 
-		minStat = unit->pCharacterData->baseSpd + unit->pClassData->baseSpd; if (minStat < 0) { minStat = 0; } 
+		minStat = GetReorderedUnit(unit)->baseSpd + unit->pClassData->baseSpd; if (minStat < 0) { minStat = 0; } 
 		if (unit->spd < minStat) { unit->spd = minStat; } 
-		minStat = unit->pCharacterData->baseDef + unit->pClassData->baseDef; if (minStat < 0) { minStat = 0; } 
+		minStat = GetReorderedUnit(unit)->baseDef + unit->pClassData->baseDef; if (minStat < 0) { minStat = 0; } 
 		if (unit->def < minStat) { unit->def = minStat; } 
-		minStat = unit->pCharacterData->baseRes + unit->pClassData->baseRes; if (minStat < 0) { minStat = 0; } 
+		minStat = GetReorderedUnit(unit)->baseRes + unit->pClassData->baseRes; if (minStat < 0) { minStat = 0; } 
 		if (unit->res < minStat) { unit->res = minStat; } 
-		minStat = unit->pCharacterData->baseLck; if (minStat < 0) { minStat = 0; } 
+		minStat = GetReorderedUnit(unit)->baseLck; if (minStat < 0) { minStat = 0; } 
 		if (unit->lck < minStat) { unit->lck = minStat; } 
 		if (StrMagInstalled) { minStat = GetUnitBaseMag(unit); if (minStat < 0) { minStat = 0; } 
 			if (unit->_u3A < minStat) { unit->_u3A = minStat; } } 
@@ -2250,7 +2311,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	if (uDef->classIndex) { originalClass = GetClassData(uDef->classIndex); } 
 	else { originalClass = GetClassData(unit->pCharacterData->defaultClass); } 
 	
-	if (RandomizeRecruitment) { character = GetReorderedUnitByPortraitNoProc(unit->pCharacterData->portraitId); } 
+	if (RandomizeRecruitment) { character = GetReorderedUnitByPortrait(unit->pCharacterData->portraitId); } 
 
     if ((!uDef->classIndex) || RandomizeRecruitment) {
         unit->pClassData = GetClassData(RandClass(character->defaultClass, noise, unit));
@@ -3370,16 +3431,13 @@ void InitReplaceTextListRom(struct ReplaceTextStruct list[]) {
 */
 
 void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) { 
-	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
-	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
-	if (!proc->count) { InitRandomRecruitmentProc(proc, RandValues->seed);  } 
 	const struct CharacterData* table = GetCharacterData(1); 
 	//u32 rn[1] = {0}; 
 
 	for (int i = 0; i < ListSize; ++i) { 
 	// remove the 0x8------- from anti-huffman uncompressed text pointer 
 		list[i].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
-		list[i].replace = (void*)((int)ggMsgStringTable[GetReorderedUnitByPortrait(table->portraitId, proc)->nameTextId] & 0x7FFFFFFF); 
+		list[i].replace = (void*)((int)ggMsgStringTable[GetReorderedUnitByPortrait(table->portraitId)->nameTextId] & 0x7FFFFFFF); 
 		table++; 
 	} 
 	list[ListSize].find = NULL; 
@@ -3783,10 +3841,14 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		} 
 		RandBitflags->fog = proc->Option[13]; 
 		
-		RecruitmentProc* recruitmentProc = Proc_Find(RecruitmentProcCmd); 
-		if (!recruitmentProc) { recruitmentProc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); } 
-		recruitmentProc->count = 0;
-		if (!recruitmentProc->count) { InitRandomRecruitmentProc(recruitmentProc, RandValues->seed); } 
+		RecruitmentProc* recruitmentProc = Proc_Find(RecruitmentProcCmd1); 
+		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
+		recruitmentProc = Proc_Find(RecruitmentProcCmd2); 
+		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
+		recruitmentProc = Proc_Find(RecruitmentProcCmd3); 
+		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
+		recruitmentProc = Proc_Find(RecruitmentProcCmd4); 
+		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 		
 		if (proc->Option[14] && ((id + offset) >= (SRR_TotalOptions))) { 
 			if (proc->calledFromChapter) { 
