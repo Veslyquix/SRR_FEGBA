@@ -83,18 +83,6 @@ extern int DefaultConfigToVanilla;
 #define SET_TEXT_USED
 //#define STRINGS_IN_ROM // faster if defined, but gotta write all the names in the installer 
 
-#ifdef FE8 
-#define ListSize 0x22
-#define PlayerPortraitSize 0x2C
-#endif 
-#ifdef FE7 
-#define ListSize 0x28 
-#define PlayerPortraitSize 0x4a
-#endif 
-#ifdef FE6 
-#define ListSize 0x3f // 0x44 but max is 0x3f atm? 
-#define PlayerPortraitSize 0x35
-#endif 
 
 #define TempTextBufferSize 16  
 typedef struct {
@@ -102,7 +90,7 @@ typedef struct {
 	u8 count; 
 	u8 id[0x40];
 } RecruitmentProc;
-void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed, int id); 
+RecruitmentProc* InitRandomRecruitmentProc(int procID); 
 void LoopRandomRecruitmentProc(RecruitmentProc* proc) { return; } 
 const struct ProcCmd RecruitmentProcCmd1[] =
 {
@@ -138,10 +126,12 @@ int ShouldRandomizeRecruitment(void) {
 }
 int ShouldRandomizeRecruitmentForUnitID(int id) { 
 	//if (id > ListSize) { return false; } 
+	if (!GetCharacterData(id)->portraitId) { return false; } 
 	return RandValues->recruitment; 
 }
 
 int ShouldRandomizeRecruitmentForPortraitID(int id) { 
+	if (!id) { return false; } 
 	//if (id > PlayerPortraitSize) { return false; } // players only atm 
 	return RandValues->recruitment; 
 }
@@ -153,9 +143,32 @@ u32 HashByte_Simple(u32 rn, int max) {
 	return Mod((rn >> 3), max);
 }; 
 
+#ifdef FE6 
+#define MAX_CHAR_ID 0xE2 
+#endif 
+#ifdef FE7
+#define MAX_CHAR_ID 0xFD 
+#endif 
+#ifdef FE8 
+#define MAX_CHAR_ID 0xFF 
+#endif 
+
+
+#ifdef FE8 
+#define ListSize 0x22
+#define PlayerPortraitSize 0x2C
+#endif 
+#ifdef FE7 
+#define ListSize MAX_CHAR_ID //0x28 
+#define PlayerPortraitSize 0x4a
+#endif 
+#ifdef FE6 
+#define ListSize 0x3f // 0x44 but max is 0x3f atm? 
+#define PlayerPortraitSize 0x35
+#endif 
 int GetUnitIdOfPortrait(int portraitID) { 
 	const struct CharacterData* table = GetCharacterData(1); 
-	for (int i = 1; i < 0xFF; i++) { 
+	for (int i = 1; i <= MAX_CHAR_ID; i++) { 
 		if (table->portraitId == portraitID) { return table->number; } 
 		table++; 
 	} 
@@ -164,7 +177,7 @@ int GetUnitIdOfPortrait(int portraitID) {
 
 
 const struct CharacterData* GetReorderedUnitByPortrait(int portraitID) { 
-	RecruitmentProc* proc; 
+	RecruitmentProc* proc = NULL; 
 	int id = GetUnitIdOfPortrait(portraitID);
 	if (!ShouldRandomizeRecruitmentForUnitID(id)) { return GetCharacterData(id); } 
 	
@@ -174,30 +187,29 @@ const struct CharacterData* GetReorderedUnitByPortrait(int portraitID) {
 	switch (procID) { 
 		case 0: { 	
 			proc = Proc_Find(RecruitmentProcCmd1); 
-			if (!proc) { proc = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3); proc->count = 0;} 
 			break; 
 		}
 		case 1: { 	
 			proc = Proc_Find(RecruitmentProcCmd2); 
-			if (!proc) { proc = Proc_Start(RecruitmentProcCmd2, PROC_TREE_3); proc->count = 0;} 
 			break; 
 		}
 		case 2: { 	
 			proc = Proc_Find(RecruitmentProcCmd3); 
-			if (!proc) { proc = Proc_Start(RecruitmentProcCmd3, PROC_TREE_3); proc->count = 0;} 
 			break; 
 		}
 		case 3: { 	
 			proc = Proc_Find(RecruitmentProcCmd4); 
-			if (!proc) { proc = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3); proc->count = 0;} 
 			break; 
 		}
 		default:
 	}
-	if (!proc->count) { InitRandomRecruitmentProc(proc, RandValues->seed, procID); } 
 	
+	if (!proc) { proc = InitRandomRecruitmentProc(procID); } 
 	
-	return GetCharacterData(proc->id[id-1]);
+	int unitID = proc->id[id-1];
+	if (unitID == 0xFF) { unitID = 1; } 
+	
+	return GetCharacterData(unitID);
 }
 
 inline int GetReorderedUnitID(struct Unit* unit) { 
@@ -207,7 +219,7 @@ inline const struct CharacterData* GetReorderedUnit(struct Unit* unit) {
 	return GetReorderedUnitByPortrait(unit->pCharacterData->portraitId); 
 } 
 
-int GetRandomizedPortrait(int portraitID, int seed) { 
+int GetRandomizedPortrait(int portraitID, int seed) {  
 	if (!ShouldRandomizeRecruitmentForPortraitID(portraitID)) { return portraitID; } 
 	int result = GetReorderedUnitByPortrait(portraitID)->portraitId; 
 	
@@ -237,56 +249,118 @@ int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed) {
 	return 1; // "Yes"
 } 
 
-void InitRandomRecruitmentProc(RecruitmentProc* proc, int seed, int id) { 
-	u8 unit[0x40]; 
-	id = id<<6; // 0, 0x40, 0x80, or 0xC0 
+int CanCharacterBecomeBoss(const struct CharacterData* table) { 
+	//if (table->number > 0x40 
+	if (table->attributes & CA_BOSS) { return true; } // bosses stay as bosses for now 
+	return false; 
+}
+int MustCharacterBecomeBoss(const struct CharacterData* table) { 
+	if (table->attributes & CA_BOSS) { return true; } // bosses stay as bosses for now 
+	return false; 
+
+}
+
+int CanRandomizeUnitInto(const struct CharacterData* table, int boss) { 
+	int result = false; 
+	if (table->number > MAX_CHAR_ID) { return result; } 
+	if (!table->portraitId) { return result; } 
+	 
+	result = true; 
+	if (boss && (!CanCharacterBecomeBoss(table))) { result = false; } 
+	if (boss && (!MustCharacterBecomeBoss(table))) { result = false; } 
+	//if (!boss && (MustCharacterBecomeBoss(table))) { result = false; } 
+	//asm("mov r11, r11"); 
+	return result; 
+}  
+
+int CanRandomizeFromCharacter(const struct CharacterData* table, int boss) { 
+	int result = false; 
+	if (table->number > MAX_CHAR_ID) { return result; } 
+	if (!table->portraitId) { return result; } 
+	result = true; 
+	if (boss && (!CanCharacterBecomeBoss(table))) { result = false; } 
+	if (boss && (!MustCharacterBecomeBoss(table))) { result = false; } 
+	//if (!boss && (MustCharacterBecomeBoss(table))) { result = false; } 
+	//asm("mov r11, r11"); 
+	return result; 
+} 
+
+RecruitmentProc* InitRandomRecruitmentProc(int procID) { 
+	u8 unit[0x80]; 
+	u8 bosses[0x80]; 
 	const struct CharacterData* table = GetCharacterData(1); 
-	if (id) { table = GetCharacterData(id); } 
 	int c = 0; 
+	int b = 0; // bosses count 
+	int seed = RandValues->seed; 
 	
+	RecruitmentProc* proc1 = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3); 
+	RecruitmentProc* proc2 = Proc_Start(RecruitmentProcCmd2, PROC_TREE_3); 
+	RecruitmentProc* proc3 = Proc_Start(RecruitmentProcCmd3, PROC_TREE_3); 
+	RecruitmentProc* proc4 = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3); 
+	RecruitmentProc* proc = proc1;  
+	int boss; 
 	table--; 
-	for (int i = 0; i <= 0x40; ++i) { // all available units 
+	for (int i = 0; i <= MAX_CHAR_ID; ++i) { // all available units 
 		table++; 
-		#ifdef FE6 
-		if (table->number > 0xE2) { break; } 
-		#endif 
-		#ifdef FE7
-		if (table->number > 0xFD) { break; } 
-		#endif 
-		proc->id[i] = 0xFF; 
-		if ((!id) && (table->attributes & CA_BOSS)) { continue; } 
-		if ((id) && (!(table->attributes & CA_BOSS))) { continue; } 
-		if (!table->portraitId) { continue; } 
-		unit[c] = i+1; 
-		c++; 
+		if (i == 0x40) { proc = proc2; } 
+		if (i == 0x80) { proc = proc3; } 
+		if (i == 0xC0) { proc = proc4; } 
+		proc->id[i&0x3F] = 0xFF; 
+		boss = table->attributes & CA_BOSS;
+		if (!CanRandomizeUnitInto(table, boss)) { continue; } 
+		if (boss) { 
+			bosses[b] = i+1; 
+			b++; 
+		}
+		else { 
+			unit[c] = i+1; 
+			c++; 
+		} 
 	} 
-	proc->count = c; 
+	//proc->count = c; 
+	proc = proc4; 
 	
 	int num; 
 	u32 rn = 0; 
-	table = GetCharacterData(id+0x3F);  
-	for (int i = id+0x3F; i > 0 ; --i) { // reordered at random 
+	//table = GetCharacterData(MAX_CHAR_ID);  
+	for (int i = MAX_CHAR_ID; i > 0 ; --i) { // reordered at random 
 		//table--; 
+		if (i <= 0xBF) { proc = proc3; } 
+		if (i <= 0x7F) { proc = proc2; } 
+		if (i <= 0x3F) { proc = proc1; } 
 		table = GetCharacterData(i);  
-		#ifdef FE6 
-		if (table->number > 0xE2) { continue; } 
-		#endif 
-		#ifdef FE7
-		if (table->number > 0xFD) { continue; } 
-		#endif 
-		if ((!id) && (table->attributes & CA_BOSS)) { continue; } 
-		if ((id) && (!(table->attributes & CA_BOSS))) { continue; } 
-		if (!table->portraitId) { continue; } 
+		boss = table->attributes & CA_BOSS;
+		if (!CanRandomizeFromCharacter(table, boss)) { continue; } 
 		// so we only use valid units 
 		
-		c--; 
-		//if (c < 0) { asm("mov r11, r11"); } 
 		rn = GetNthRN_Simple(i-1, seed, rn); 
-		num = HashByte_Simple(rn, c); 
 		
-		proc->id[i-1] = unit[num]; 
-		unit[num] = unit[c]; // move last entry to one we just used 
+		proc->id[(i&0x3F)-1] = i; 
+		
+		if (boss) { 
+			b--; 
+			num = HashByte_Simple(rn, b); 
+			proc->id[(i&0x3F)-1] = bosses[num]; 
+			bosses[num] = bosses[b]; // move last entry to one we just used 
+		} 
+		else { 
+			c--; 
+			num = HashByte_Simple(rn, c); 
+			if (c < 0) { asm("mov r11 ,r11"); } 
+			proc->id[(i&0x3F)-1] = unit[num]; 
+			unit[num] = unit[c]; // move last entry to one we just used 
+		} 
+		
 	} 
+	
+	switch (procID) { 
+		case 0: { return proc1; break; } 
+		case 1: { return proc1; break; } 
+		case 2: { return proc1; break; } 
+		case 3: { return proc1; break; } 
+		default: 
+	}
+	return NULL; 
 	
 
 } 
@@ -3414,7 +3488,7 @@ inline int GetRandomUnitID(int ID, RecruitmentProc* proc) {
 void InitReplaceTextListRom(struct ReplaceTextStruct list[]) { 
 	RecruitmentProc* proc = Proc_Find(RecruitmentProcCmd); 
 	if (!proc) { proc = Proc_Start(RecruitmentProcCmd, PROC_TREE_3); proc->count = 0;} 
-	if (!proc->count) { InitRandomRecruitmentProc(proc, RandValues->seed);  } 
+	if (!proc->count) { InitRandomRecruitmentProc(0);  } 
 	
 	//const struct CharacterData* table = GetCharacterData(1); 
 	int uid; 
@@ -3432,15 +3506,23 @@ void InitReplaceTextListRom(struct ReplaceTextStruct list[]) {
 
 void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) { 
 	const struct CharacterData* table = GetCharacterData(1); 
+	const struct CharacterData* table2 = GetCharacterData(1); 
 	//u32 rn[1] = {0}; 
-
+	int c = 0; 
+	table--; 
 	for (int i = 0; i < ListSize; ++i) { 
 	// remove the 0x8------- from anti-huffman uncompressed text pointer 
-		list[i].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
-		list[i].replace = (void*)((int)ggMsgStringTable[GetReorderedUnitByPortrait(table->portraitId)->nameTextId] & 0x7FFFFFFF); 
 		table++; 
+		table2 = GetReorderedUnitByPortrait(table->portraitId); 
+		if (table->nameTextId == table2->nameTextId) { 
+			continue; 
+		} 
+		list[c].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
+		list[c].replace = (void*)((int)ggMsgStringTable[table2->nameTextId] & 0x7FFFFFFF); 
+		c++; 
 	} 
-	list[ListSize].find = NULL; 
+	//c++; 
+	list[c].find = NULL; 
 	//list[ListSize].replace = NULL; 
 } 
 

@@ -367,68 +367,264 @@ WORD 0 0 0// terminator
 #else 
 	#define SetName(id) "ALIGN 16"
 #endif 
+
 ALIGN 16
 NameStrings: 
 FILL(16*256)
 ORG NameStrings
-ALIGN 16 ; SetName(0x4dc); String("Eliwood"); BYTE 0 
-ALIGN 16 ; SetName(0x4dd); String("Hector"); BYTE 0 
-ALIGN 16 ; SetName(0x4de); String("Lyn"); BYTE 0 
-ALIGN 16 ; SetName(0x4df); String("Raven"); BYTE 0 
-ALIGN 16 ; SetName(0x4e0); String("Geitz"); BYTE 0 
-ALIGN 16 ; SetName(0x4e1); String("Guy"); BYTE 0 
-ALIGN 16 ; SetName(0x4e2); String("Karel"); BYTE 0 
-ALIGN 16 ; SetName(0x4e3); String("Dorcas"); BYTE 0 
-ALIGN 16 ; SetName(0x4e4); String("Bartre"); BYTE 0 
-ALIGN 16 ; SetName(0x54b); String("Citizen"); BYTE 0 
-ALIGN 16 ; SetName(0x4e5); String("Oswin"); BYTE 0 
-ALIGN 16 ; SetName(0x4e6); String("Fargus"); BYTE 0 
-ALIGN 16 ; SetName(0x4e7); String("Wil"); BYTE 0 
-ALIGN 16 ; SetName(0x4e8); String("Rebecca"); BYTE 0 
-ALIGN 16 ; SetName(0x4e9); String("Louise"); BYTE 0 
-ALIGN 16 ; SetName(0x4ea); String("Lucius"); BYTE 0 
-ALIGN 16 ; SetName(0x4eb); String("Serra"); BYTE 0 
-ALIGN 16 ; SetName(0x4ec); String("Renault"); BYTE 0 
-ALIGN 16 ; SetName(0x4ed); String("Erk"); BYTE 0 
-ALIGN 16 ; SetName(0x4ee); String("Nino"); BYTE 0 
-ALIGN 16 ; SetName(0x4ef); String("Pent"); BYTE 0 
-ALIGN 16 ; SetName(0x4f0); String("Canas"); BYTE 0 
-ALIGN 16 ; SetName(0x4f1); String("Kent"); BYTE 0 
-ALIGN 16 ; SetName(0x4f2); String("Sain"); BYTE 0 
-ALIGN 16 ; SetName(0x4f3); String("Lowen"); BYTE 0 
-ALIGN 16 ; SetName(0x4f4); String("Marcus"); BYTE 0 
-ALIGN 16 ; SetName(0x4f5); String("Priscilla"); BYTE 0 
-ALIGN 16 ; SetName(0x4f6); String("Rath"); BYTE 0 
-ALIGN 16 ; SetName(0x4f7); String("Florina"); BYTE 0 
-ALIGN 16 ; SetName(0x4f8); String("Fiora"); BYTE 0 
-ALIGN 16 ; SetName(0x4f9); String("Farina"); BYTE 0 
-ALIGN 16 ; SetName(0x4fa); String("Heath"); BYTE 0 
-ALIGN 16 ; SetName(0x4fb); String("Vaida"); BYTE 0 
-ALIGN 16 ; SetName(0x4fc); String("Hawkeye"); BYTE 0 
-ALIGN 16 ; SetName(0x4fd); String("Matthew"); BYTE 0 
-ALIGN 16 ; SetName(0x4fe); String("Jaffar"); BYTE 0 
-ALIGN 16 ; SetName(0x4ff); String("Ninian"); BYTE 0 
-ALIGN 16 ; SetName(0x500); String("Nils"); BYTE 0 
-ALIGN 16 ; SetName(0x501); String("Athos"); BYTE 0 
-ALIGN 16 ; SetName(0x502); String("Merlinus"); BYTE 0 
-ALIGN 16 ; SetName(0x500); String("Nils"); BYTE 0 // then Nils again ?? 
-ALIGN 16 ; SetName(0x504); String("Uther"); BYTE 0 
-ALIGN 16 ; SetName(0x4FB); String("Vaida"); BYTE 0 
-ALIGN 16 ; SetName(0x4DE); String("Lyn"); BYTE 0 
-ALIGN 16 ; SetName(0x4E7); String("Wil"); BYTE 0 
-ALIGN 16 ; SetName(0x4F1); String("Kent"); BYTE 0 
-ALIGN 16 ; SetName(0x4F2); String("Sain"); BYTE 0 
-ALIGN 16 ; SetName(0x4F7); String("Florina"); BYTE 0 
-ALIGN 16 ; SetName(0x4F6); String("Rath"); BYTE 0 
-ALIGN 16 ; SetName(0x506); String("Dart"); BYTE 0 
-ALIGN 16 ; SetName(0x508); String("Isadora"); BYTE 0 
-ALIGN 16 ; SetName(0x503); String("Eleanora"); BYTE 0 
-ALIGN 16 ; SetName(0x50A); String("Legault"); BYTE 0 
-ALIGN 16 ; SetName(0x50C); String("Karla"); BYTE 0 
-ALIGN 16 ; SetName(0x50B); String("Harken"); BYTE 0 
-ALIGN 16 ; SetName(0x50D); String("Leila"); BYTE 0 
-ALIGN 16 ; SetName(0x50E); String("Bramimond"); BYTE 0 
-ALIGN 16 ; SetName(0x50F); String("Kishuna"); BYTE 0 
+ALIGN 16 ; SetName(0x04DC); String("Eliwood")
+ALIGN 16 ; SetName(0x04DD); String("Hector")
+ALIGN 16 ; SetName(0x04DE); String("Lyn")
+ALIGN 16 ; SetName(0x04DF); String("Raven")
+ALIGN 16 ; SetName(0x04E0); String("Geitz")
+ALIGN 16 ; SetName(0x04E1); String("Guy")
+ALIGN 16 ; SetName(0x04E2); String("Karel")
+ALIGN 16 ; SetName(0x04E3); String("Dorcas")
+ALIGN 16 ; SetName(0x04E4); String("Bartre")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x04E5); String("Oswin")
+ALIGN 16 ; SetName(0x04E6); String("Fargus")
+ALIGN 16 ; SetName(0x04E7); String("Wil")
+ALIGN 16 ; SetName(0x04E8); String("Rebecca")
+ALIGN 16 ; SetName(0x04E9); String("Louise")
+ALIGN 16 ; SetName(0x04EA); String("Lucius")
+ALIGN 16 ; SetName(0x04EB); String("Serra")
+ALIGN 16 ; SetName(0x04EC); String("Renault")
+ALIGN 16 ; SetName(0x04ED); String("Erk")
+ALIGN 16 ; SetName(0x04EE); String("Nino")
+ALIGN 16 ; SetName(0x04EF); String("Pent")
+ALIGN 16 ; SetName(0x04F0); String("Canas")
+ALIGN 16 ; SetName(0x04F1); String("Kent")
+ALIGN 16 ; SetName(0x04F2); String("Sain")
+ALIGN 16 ; SetName(0x04F3); String("Lowen")
+ALIGN 16 ; SetName(0x04F4); String("Marcus")
+ALIGN 16 ; SetName(0x04F5); String("Priscilla")
+ALIGN 16 ; SetName(0x04F6); String("Rath")
+ALIGN 16 ; SetName(0x04F7); String("Florina")
+ALIGN 16 ; SetName(0x04F8); String("Fiora")
+ALIGN 16 ; SetName(0x04F9); String("Farina")
+ALIGN 16 ; SetName(0x04FA); String("Heath")
+ALIGN 16 ; SetName(0x04FB); String("Vaida")
+ALIGN 16 ; SetName(0x04FC); String("Hawkeye")
+ALIGN 16 ; SetName(0x04FD); String("Matthew")
+ALIGN 16 ; SetName(0x04FE); String("Jaffar")
+ALIGN 16 ; SetName(0x04FF); String("Ninian")
+ALIGN 16 ; SetName(0x0500); String("Nils")
+ALIGN 16 ; SetName(0x0501); String("Athos")
+ALIGN 16 ; SetName(0x0502); String("Merlinus")
+ALIGN 16 ; SetName(0x0500); String("Nils")
+ALIGN 16 ; SetName(0x0504); String("Uther")
+ALIGN 16 ; SetName(0x04FB); String("Vaida")
+ALIGN 16 ; SetName(0x0507); String("Wallace")
+ALIGN 16 ; SetName(0x04DE); String("Lyn")
+ALIGN 16 ; SetName(0x04E7); String("Wil")
+ALIGN 16 ; SetName(0x04F1); String("Kent")
+ALIGN 16 ; SetName(0x04F2); String("Sain")
+ALIGN 16 ; SetName(0x04F7); String("Florina")
+ALIGN 16 ; SetName(0x04F6); String("Rath")
+ALIGN 16 ; SetName(0x0506); String("Dart")
+ALIGN 16 ; SetName(0x0508); String("Isadora")
+ALIGN 16 ; SetName(0x0503); String("Eleanora")
+ALIGN 16 ; SetName(0x050A); String("Legault")
+ALIGN 16 ; SetName(0x050C); String("Karla")
+ALIGN 16 ; SetName(0x050B); String("Harken")
+ALIGN 16 ; SetName(0x050D); String("Leila")
+ALIGN 16 ; SetName(0x050E); String("Bramimond")
+ALIGN 16 ; SetName(0x050F); String("Kishuna")
+ALIGN 16 ; SetName(0x0511); String("Groznyi")
+ALIGN 16 ; SetName(0x0510); String("Wire")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x0512); String("Zagan")
+ALIGN 16 ; SetName(0x0513); String("Boies")
+ALIGN 16 ; SetName(0x0514); String("Puzon")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x0516); String("Santals")
+ALIGN 16 ; SetName(0x0517); String("Nergal")
+ALIGN 16 ; SetName(0x0518); String("Erik")
+ALIGN 16 ; SetName(0x0519); String("Sealen")
+ALIGN 16 ; SetName(0x051A); String("Bauker")
+ALIGN 16 ; SetName(0x051B); String("Bernard")
+ALIGN 16 ; SetName(0x051C); String("Damian")
+ALIGN 16 ; SetName(0x051D); String("Zoldam")
+ALIGN 16 ; SetName(0x051E); String("Uhai")
+ALIGN 16 ; SetName(0x051F); String("Aion")
+ALIGN 16 ; SetName(0x0520); String("Darin")
+ALIGN 16 ; SetName(0x0521); String("Cameron")
+ALIGN 16 ; SetName(0x0522); String("Oleg")
+ALIGN 16 ; SetName(0x0515); String("Eubans")
+ALIGN 16 ; SetName(0x0523); String("Ursula")
+ALIGN 16 ; SetName(0x0549); String("Black Fang")
+ALIGN 16 ; SetName(0x0525); String("Paul")
+ALIGN 16 ; SetName(0x0526); String("Jasmine")
+ALIGN 16 ; SetName(0x0549); String("Black Fang")
+ALIGN 16 ; SetName(0x052D); String("Jerme")
+ALIGN 16 ; SetName(0x052B); String("Pascal")
+ALIGN 16 ; SetName(0x052C); String("Kenneth")
+ALIGN 16 ; SetName(0x052D); String("Jerme")
+ALIGN 16 ; SetName(0x052E); String("Maxime")
+ALIGN 16 ; SetName(0x052F); String("Sonia")
+ALIGN 16 ; SetName(0x0530); String("Teodor")
+ALIGN 16 ; SetName(0x0539); String("Georg")
+ALIGN 16 ; SetName(0x0531); String("Kaim")
+ALIGN 16 ; SetName(0x0556); String("Merc")
+ALIGN 16 ; SetName(0x052A); String("Denning")
+ALIGN 16 ; SetName(0x0555); String("Bern")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0535); String("Lloyd")
+ALIGN 16 ; SetName(0x0536); String("Linus")
+ALIGN 16 ; SetName(0x0535); String("Lloyd")
+ALIGN 16 ; SetName(0x0536); String("Linus")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x0552); String("Laus")
+ALIGN 16 ; SetName(0x0552); String("Laus")
+ALIGN 16 ; SetName(0x0550); String("Pirate")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0554); String("Ostia")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0558); String("Guardian")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0552); String("Laus")
+ALIGN 16 ; SetName(0x0552); String("Laus")
+ALIGN 16 ; SetName(0x053A); String("Zephiel")
+ALIGN 16 ; SetName(0x053B); String("Elbert")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0527); String("Brendan")
+ALIGN 16 ; SetName(0x0537); String("Limstella")
+ALIGN 16 ; SetName(0x0538); String("Dragon")
+ALIGN 16 ; SetName(0x053C); String("Batta")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x053D); String("Zugu")
+ALIGN 16 ; SetName(0x0551); String("Bandit")
+ALIGN 16 ; SetName(0x0551); String("Bandit")
+ALIGN 16 ; SetName(0x0551); String("Bandit")
+ALIGN 16 ; SetName(0x053E); String("Glass")
+ALIGN 16 ; SetName(0x053F); String("Migal")
+ALIGN 16 ; SetName(0x0551); String("Bandit")
+ALIGN 16 ; SetName(0x0551); String("Bandit")
+ALIGN 16 ; SetName(0x0551); String("Bandit")
+ALIGN 16 ; SetName(0x0551); String("Bandit")
+ALIGN 16 ; SetName(0x0551); String("Bandit")
+ALIGN 16 ; SetName(0x0540); String("Carjiga")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x0541); String("Bug")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x0543); String("Natalie")
+ALIGN 16 ; SetName(0x0542); String("Bool")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x0544); String("Heintz")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0545); String("Beyard")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0546); String("Yogi")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0547); String("Eagler")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0548); String("Lundgren")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x0553); String("Caelin")
+ALIGN 16 ; SetName(0x054A); String("Tactician")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x0556); String("Merc")
+ALIGN 16 ; SetName(0x0550); String("Pirate")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x054B); String("Citizen")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x0554); String("Ostia")
+ALIGN 16 ; SetName(0x055A); String("Rath's unit")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x0551); String("Bandit")
+ALIGN 16 ; SetName(0x0555); String("Bern")
+ALIGN 16 ; SetName(0x0558); String("Guardian")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0552); String("Laus")
+ALIGN 16 ; SetName(0x054F); String("Bandit")
+ALIGN 16 ; SetName(0x0551); String("Bandit")
+ALIGN 16 ; SetName(0x0555); String("Bern")
+ALIGN 16 ; SetName(0x0558); String("Guardian")
+ALIGN 16 ; SetName(0x0559); String("Morph")
+ALIGN 16 ; SetName(0x0558); String("Guardian")
+ALIGN 16 ; SetName(0x0557); String("Black Fang")
+ALIGN 16 ; SetName(0x0535); String("Lloyd")
+ALIGN 16 ; SetName(0x0536); String("Linus")
+ALIGN 16 ; SetName(0x0527); String("Brendan")
+ALIGN 16 ; SetName(0x051E); String("Uhai")
+ALIGN 16 ; SetName(0x0523); String("Ursula")
+ALIGN 16 ; SetName(0x052C); String("Kenneth")
+ALIGN 16 ; SetName(0x0520); String("Darin")
+ALIGN 16 ; SetName(0x054C); String("Enemy")
+ALIGN 16 ; SetName(0x054D); String("Wall")
+ALIGN 16 ; SetName(0x054E); String("Snag")
 
 ALIGN 16
 WORD 0 0 0 0 
