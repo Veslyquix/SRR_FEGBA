@@ -155,7 +155,7 @@ u32 HashByte_Simple(u32 rn, int max) {
 
 
 #ifdef FE8 
-#define ListSize 0x22
+#define ListSize MAX_CHAR_ID //0x22
 #define PlayerPortraitSize 0x2C
 #endif 
 #ifdef FE7 
@@ -163,7 +163,7 @@ u32 HashByte_Simple(u32 rn, int max) {
 #define PlayerPortraitSize 0x4a
 #endif 
 #ifdef FE6 
-#define ListSize 0x3f // 0x44 but max is 0x3f atm? 
+#define ListSize MAX_CHAR_ID //0x3f // 0x44 but max is 0x3f atm? 
 #define PlayerPortraitSize 0x35
 #endif 
 int GetUnitIdOfPortrait(int portraitID) { 
@@ -176,9 +176,11 @@ int GetUnitIdOfPortrait(int portraitID) {
 } 
 
 
-const struct CharacterData* GetReorderedUnitByPortrait(int portraitID) { 
+
+const struct CharacterData* GetReorderedCharacter(const struct CharacterData* table) { 
+	if (!table->portraitId) { return table; } 
 	RecruitmentProc* proc = NULL; 
-	int id = GetUnitIdOfPortrait(portraitID);
+	int id = table->number; 
 	if (!ShouldRandomizeRecruitmentForUnitID(id)) { return GetCharacterData(id); } 
 	
 	int procID = id >> 6; // 0, 1, 2, or 3 
@@ -212,16 +214,18 @@ const struct CharacterData* GetReorderedUnitByPortrait(int portraitID) {
 	return GetCharacterData(unitID);
 }
 
-inline int GetReorderedUnitID(struct Unit* unit) { 
-	return GetReorderedUnitByPortrait(unit->pCharacterData->portraitId)->number; 
-} 
 inline const struct CharacterData* GetReorderedUnit(struct Unit* unit) { 
-	return GetReorderedUnitByPortrait(unit->pCharacterData->portraitId); 
+	return GetReorderedCharacter(unit->pCharacterData); 
 } 
+inline int GetReorderedUnitID(struct Unit* unit) { 
+	return GetReorderedCharacter(unit->pCharacterData)->number; 
+} 
+
+
 
 int GetRandomizedPortrait(int portraitID, int seed) {  
 	if (!ShouldRandomizeRecruitmentForPortraitID(portraitID)) { return portraitID; } 
-	int result = GetReorderedUnitByPortrait(portraitID)->portraitId; 
+	int result = GetReorderedCharacter(GetCharacterData(GetUnitIdOfPortrait(portraitID)))->portraitId; 
 	
 	if (!result) { return portraitID; } 
 	// if no unitID with this portrait, show a random one (before class cards) 
@@ -2385,7 +2389,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	if (uDef->classIndex) { originalClass = GetClassData(uDef->classIndex); } 
 	else { originalClass = GetClassData(unit->pCharacterData->defaultClass); } 
 	
-	if (RandomizeRecruitment) { character = GetReorderedUnitByPortrait(unit->pCharacterData->portraitId); } 
+	if (RandomizeRecruitment) { character = GetReorderedUnit(unit); } 
 
     if ((!uDef->classIndex) || RandomizeRecruitment) {
         unit->pClassData = GetClassData(RandClass(character->defaultClass, noise, unit));
@@ -3513,7 +3517,7 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) {
 	for (int i = 0; i < ListSize; ++i) { 
 	// remove the 0x8------- from anti-huffman uncompressed text pointer 
 		table++; 
-		table2 = GetReorderedUnitByPortrait(table->portraitId); 
+		table2 = GetReorderedCharacter(table); 
 		if (table->nameTextId == table2->nameTextId) { 
 			continue; 
 		} 
