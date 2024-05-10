@@ -272,8 +272,8 @@ int CanCharacterBecomeBoss(const struct CharacterData* table) {
 	#else 
 	boss = table->attributes & (CA_BOSS);
 	#endif 
-	
-	if (boss) { return true; } // bosses stay as bosses for now 
+	if ((!boss) && (RecruitValues->recruitment == 4)) { return true; } // players become bosses and vice versa 
+	if (boss || (RecruitValues->recruitment == 5)) { return true; } 
 	return false; 
 }
 int MustCharacterBecomeBoss(const struct CharacterData* table) { 
@@ -283,7 +283,9 @@ int MustCharacterBecomeBoss(const struct CharacterData* table) {
 	#else 
 	boss = table->attributes & (CA_BOSS);
 	#endif 
-	if (boss) { return true; } // bosses stay as bosses for now 
+	if ((RecruitValues->recruitment == 5)) { return false; } 
+	if ((!boss) && (RecruitValues->recruitment == 4)) { return true; } // players become bosses and vice versa 
+	if (boss) { return true; } 
 	return false; 
 
 }
