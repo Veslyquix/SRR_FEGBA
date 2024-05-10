@@ -61,9 +61,15 @@ struct RandomizerValues {
 	u32 bonus : 5; // +20 / -10 levels for enemies 
 	u32 recruitment : 2; // vanilla, random, boss, reverse ? 
 }; 
- 
+/*
+struct RecruitmentValues { 
+	u8 recruitment; 
+}; 
+extern struct RecruitmentValues* RecruitValues; 
+*/ 
 extern struct RandomizerSettings* RandBitflags; 
 extern struct RandomizerValues* RandValues; 
+
 extern u8* MaxItems; 
 extern int MaxItems_Link; 
 extern u8* MaxClasses; 
@@ -737,8 +743,8 @@ extern int NeverRandomizeColours;
 extern int PortraitColoursPastThisAreNotSkin; 
 int ShouldRandomizeColours(void) { 
 	if (NeverRandomizeColours) { return false; } 
-	if (!RandBitflags->colours) { return false; } 
-	return true; 
+	if (RandBitflags->colours) { return true; } 
+	return false; 
  
 }  
 extern u16 gPaletteBuffer[];

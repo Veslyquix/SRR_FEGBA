@@ -592,7 +592,7 @@ add r2, r0
 ldrb r5, [r2] 
 
 mov r0, r4 @ unit 
-bl ShouldRandomizeClass
+bl IsClassOrRecruitmentRandomized
 cmp r0, #0 
 beq VanillaClassPaletteMethod_FE6 
 bl ShouldDoJankyPalettes
@@ -625,7 +625,7 @@ add r2, r0
 ldrb r5, [r2] 
 
 mov r0, r4 @ unit 
-bl ShouldRandomizeClass
+bl IsClassOrRecruitmentRandomized
 cmp r0, #0 
 beq VanillaClassPaletteMethod_FE7 
 bl ShouldDoJankyPalettes
@@ -666,7 +666,7 @@ b ExitGenericPalette_FE8
 
 GenericPaletteFalse: 
 mov r0, r9 @ dfdr 
-bl ShouldRandomizeClass 
+bl IsClassOrRecruitmentRandomized 
 strh r0, [r4] 
 cmp r0, #0 
 beq DontOverwriteDfdr 
@@ -680,7 +680,7 @@ DontOverwriteDfdr:
 
 
 mov r0, r10 @ atkr 
-bl ShouldRandomizeClass 
+bl IsClassOrRecruitmentRandomized 
 strh r0, [r4, #2] 
 cmp r0, #0 
 beq DontOverwriteAtkr 
