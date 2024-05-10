@@ -214,18 +214,23 @@ const struct CharacterData* GetReorderedCharacter(const struct CharacterData* ta
 	return GetCharacterData(unitID);
 }
 
-inline const struct CharacterData* GetReorderedUnit(struct Unit* unit) { 
+const struct CharacterData* GetReorderedUnit(struct Unit* unit) { 
 	return GetReorderedCharacter(unit->pCharacterData); 
 } 
-inline int GetReorderedUnitID(struct Unit* unit) { 
+int GetReorderedUnitID(struct Unit* unit) { 
 	return GetReorderedCharacter(unit->pCharacterData)->number; 
 } 
-
+int GetReorderedCharacterPortraitByPortrait(int portraitID) { 
+	int result = GetUnitIdOfPortrait(portraitID); 
+	if (!result) { return portraitID; }
+	return GetReorderedCharacter(GetCharacterData(result))->portraitId; 
+} 
 
 
 int GetRandomizedPortrait(int portraitID, int seed) {  
+	if (portraitID < 0) { return portraitID; } 
 	if (!ShouldRandomizeRecruitmentForPortraitID(portraitID)) { return portraitID; } 
-	int result = GetReorderedCharacter(GetCharacterData(GetUnitIdOfPortrait(portraitID)))->portraitId; 
+	int result = GetReorderedCharacterPortraitByPortrait(portraitID); 
 	
 	if (!result) { return portraitID; } 
 	// if no unitID with this portrait, show a random one (before class cards) 
@@ -254,12 +259,25 @@ int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed) {
 } 
 
 int CanCharacterBecomeBoss(const struct CharacterData* table) { 
-	//if (table->number > 0x40 
-	if (table->attributes & CA_BOSS) { return true; } // bosses stay as bosses for now 
+	//if (table->number > 0x40
+	int boss; 
+	#ifdef FE7 
+	boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
+	#else 
+	boss = table->attributes & (CA_BOSS);
+	#endif 
+	
+	if (boss) { return true; } // bosses stay as bosses for now 
 	return false; 
 }
 int MustCharacterBecomeBoss(const struct CharacterData* table) { 
-	if (table->attributes & CA_BOSS) { return true; } // bosses stay as bosses for now 
+	int boss; 
+	#ifdef FE7 
+	boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
+	#else 
+	boss = table->attributes & (CA_BOSS);
+	#endif 
+	if (boss) { return true; } // bosses stay as bosses for now 
 	return false; 
 
 }
@@ -310,7 +328,11 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		if (i == 0x80) { proc = proc3; } 
 		if (i == 0xC0) { proc = proc4; } 
 		proc->id[i&0x3F] = 0xFF; 
-		boss = table->attributes & CA_BOSS;
+		#ifdef FE7 
+		boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
+		#else 
+		boss = table->attributes & (CA_BOSS);
+		#endif 
 		if (!CanRandomizeUnitInto(table, boss)) { continue; } 
 		if (boss) { 
 			bosses[b] = i+1; 
@@ -333,7 +355,11 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		if (i <= 0x7F) { proc = proc2; } 
 		if (i <= 0x3F) { proc = proc1; } 
 		table = GetCharacterData(i);  
-		boss = table->attributes & CA_BOSS;
+		#ifdef FE7 
+		boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
+		#else 
+		boss = table->attributes & (CA_BOSS);
+		#endif 
 		if (!CanRandomizeFromCharacter(table, boss)) { continue; } 
 		// so we only use valid units 
 		
@@ -2331,7 +2357,12 @@ void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
     }
     if (levelCount < 0) {
         unit->maxHP = GetAutoleveledStatDecrease(GetClassHPGrowth(unit , true),  levelCount, unit->maxHP);
-		if (unit->maxHP < 10) { unit->maxHP = 10; } 
+		if (IsUnitAlliedOrPlayable(unit)) { 
+			if (unit->maxHP < 15) { unit->maxHP = 15; } 
+		}
+		else { 
+			if (unit->maxHP < 10) { unit->maxHP = 10; } 
+		} 
         unit->pow   = GetAutoleveledStatDecrease(GetClassPowGrowth(unit, true), levelCount, unit->pow);
         unit->skl   = GetAutoleveledStatDecrease(GetClassSklGrowth(unit, true), levelCount, unit->skl);
         unit->spd   = GetAutoleveledStatDecrease(GetClassSpdGrowth(unit, true), levelCount, unit->spd);
