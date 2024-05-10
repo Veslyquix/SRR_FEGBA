@@ -61,12 +61,12 @@ struct RandomizerValues {
 	u32 bonus : 5; // +20 / -10 levels for enemies 
 	u32 recruitment : 2; // vanilla, random, boss, reverse ? 
 }; 
-/*
+
 struct RecruitmentValues { 
 	u8 recruitment; 
 }; 
 extern struct RecruitmentValues* RecruitValues; 
-*/ 
+
 extern struct RandomizerSettings* RandBitflags; 
 extern struct RandomizerValues* RandValues; 
 
@@ -128,18 +128,18 @@ const struct ProcCmd RecruitmentProcCmd4[] =
 };
 
 int ShouldRandomizeRecruitment(void) { 
-	return RandValues->recruitment; 
+	return RecruitValues->recruitment; 
 }
 int ShouldRandomizeRecruitmentForUnitID(int id) { 
 	//if (id > ListSize) { return false; } 
 	if (!GetCharacterData(id)->portraitId) { return false; } 
-	return RandValues->recruitment; 
+	return ShouldRandomizeRecruitment(); 
 }
 
 int ShouldRandomizeRecruitmentForPortraitID(int id) { 
 	if (!id) { return false; } 
 	//if (id > PlayerPortraitSize) { return false; } // players only atm 
-	return RandValues->recruitment; 
+	return ShouldRandomizeRecruitment(); 
 }
 u16 HashByte_Global(int number, int max, int noise[], int offset); 
 
@@ -391,9 +391,9 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 	
 	switch (procID) { 
 		case 0: { return proc1; break; } 
-		case 1: { return proc1; break; } 
-		case 2: { return proc1; break; } 
-		case 3: { return proc1; break; } 
+		case 1: { return proc2; break; } 
+		case 2: { return proc3; break; } 
+		case 3: { return proc4; break; } 
 		default: 
 	}
 	return NULL; 
@@ -1035,7 +1035,7 @@ int IsClassOrRecruitmentRandomized(struct Unit* unit) {
 
 
 int IsAnythingRandomized(void) { 
-	return RandBitflags->base | RandValues->recruitment | ((RandBitflags->growth != 4) && (RandBitflags->growth)) | RandBitflags->caps | RandBitflags->itemStats | RandBitflags->class | RandBitflags->shopItems | RandBitflags->foundItems; 
+	return RandBitflags->base | RecruitValues->recruitment | ((RandBitflags->growth != 4) && (RandBitflags->growth)) | RandBitflags->caps | RandBitflags->itemStats | RandBitflags->class | RandBitflags->shopItems | RandBitflags->foundItems; 
 } 
 
 u32 GetSeed(void) { 
@@ -1191,7 +1191,6 @@ u16 GetNthRN(int n, int seed) {
 
 
 int GetInitialSeed(int rate) { 
-	RandValues->recruitment = 1;
 	int result = RandValues->seed;
 	int clock = GetGameClock()>>rate; 
 	if (!result) { 
@@ -3258,20 +3257,34 @@ const char Option0[OPT0NUM][5] = { // 2nd number is max number of characters for
 }; 
 #endif 
 
-#define OPT1NUM 2
+#define OPT1NUM 6
 #ifdef FE6 
-extern const char Option1[OPT1NUM][32]; // do align 16 before each? 
+extern const char Option1[OPT1NUM][64]; // do align 16 before each? 
 #else 
-const char Option1[OPT1NUM][8] = { // Base Stats 
+const char Option1[OPT1NUM][32] = { // Characters
+"Vanilla",
+"Players reordered",
+"Bosses reordered",
+"Players & Bosses reordered",
+"Players and Bosses swap",
+"Random",
+}; 
+#endif 
+
+#define OPT2NUM 2
+#ifdef FE6 
+extern const char Option2[OPT2NUM][32]; // do align 16 before each? 
+#else 
+const char Option2[OPT2NUM][8] = { // Base Stats 
 "Vanilla",
 "Random",
 }; 
 #endif
-#define OPT2NUM 5
+#define OPT3NUM 5
 #ifdef FE6 
-extern const char Option2[OPT2NUM][32]; // do align 16 before each? 
+extern const char Option3[OPT3NUM][32]; // do align 16 before each? 
 #else 
-const char Option2[OPT2NUM][15] = { // Growths
+const char Option3[OPT3NUM][15] = { // Growths
 "Vanilla",
 "Random",
 "0%", 
@@ -3279,31 +3292,31 @@ const char Option2[OPT2NUM][15] = { // Growths
 "50%",
 }; 
 #endif
-#define OPT3NUM 3
+#define OPT4NUM 3
 #ifdef FE6 
-extern const char Option3[OPT3NUM][32]; // do align 16 before each? 
+extern const char Option4[OPT4NUM][32]; // do align 16 before each? 
 #else 
-const char Option3[OPT3NUM][15] = { // Levelups 
+const char Option4[OPT4NUM][15] = { // Levelups 
 "Vanilla",
 "Based on seed", // Seeded if randomizer is on, vanilla otherwise  
 "Fixed", 
 };
 #endif
-#define OPT4NUM 3
+#define OPT5NUM 3
 #ifdef FE6 
-extern const char Option4[OPT4NUM][32]; // do align 16 before each? 
+extern const char Option5[OPT5NUM][32]; // do align 16 before each? 
 #else 
-const char Option4[OPT4NUM][10] = { // Stat Caps 
+const char Option5[OPT5NUM][10] = { // Stat Caps 
 "Vanilla",
 "Random",
 "Always 30", 
 }; 
 #endif
-#define OPT5NUM 4
+#define OPT6NUM 4
 #ifdef FE6 
-extern const char Option5[OPT5NUM][64]; // do align 16 before each? 
+extern const char Option6[OPT6NUM][64]; // do align 16 before each? 
 #else 
-const char Option5[OPT5NUM][20] = { // Class
+const char Option6[OPT6NUM][20] = { // Class
 "Vanilla",
 "Random",
 "Random for players",
@@ -3312,11 +3325,11 @@ const char Option5[OPT5NUM][20] = { // Class
 //"Enemies",
 }; 
 #endif
-#define OPT6NUM 4
+#define OPT7NUM 4
 #ifdef FE6 
-extern const char Option6[OPT6NUM][64]; // do align 16 before each? 
+extern const char Option7[OPT7NUM][64]; // do align 16 before each? 
 #else 
-const char Option6[OPT6NUM][25] = { // Items
+const char Option7[OPT7NUM][25] = { // Items
 "Vanilla",
 "Random",
 "Random found items only",
@@ -3324,87 +3337,87 @@ const char Option6[OPT6NUM][25] = { // Items
 }; 
 #endif
 
-#define OPT7NUM 2
-#ifdef FE6 
-extern const char Option7[OPT7NUM][32]; // do align 16 before each? 
-#else 
-const char Option7[OPT7NUM][10] = { 
-"Classic",
-"Casual",
-}; 
-#endif
 #define OPT8NUM 2
 #ifdef FE6 
 extern const char Option8[OPT8NUM][32]; // do align 16 before each? 
 #else 
-const char Option8[OPT8NUM][22] = { 
-"Vanilla BGM",
-"Random BGM",
+const char Option8[OPT8NUM][10] = { 
+"Classic",
+"Casual",
 }; 
 #endif
-#define OPT9NUM 4
+#define OPT9NUM 2
 #ifdef FE6 
 extern const char Option9[OPT9NUM][32]; // do align 16 before each? 
 #else 
 const char Option9[OPT9NUM][22] = { 
+"Vanilla BGM",
+"Random BGM",
+}; 
+#endif
+#define OPT10NUM 4
+#ifdef FE6 
+extern const char Option10[OPT10NUM][32]; // do align 16 before each? 
+#else 
+const char Option10[OPT10NUM][22] = { 
 "Vanilla Colours",
 "Random",
 "Janky",
 "Portraits only",
 }; 
 #endif
-#define OPT10NUM 2
+#define OPT11NUM 2
 #ifdef FE6 
-extern const char Option10[OPT10NUM][32]; // do align 16 before each? 
+extern const char Option11[OPT11NUM][32]; // do align 16 before each? 
 #else 
-const char Option10[OPT10NUM][10] = { // Item durability 
+const char Option11[OPT11NUM][10] = { // Item durability 
 "Vanilla",
 "Infinite",
-}; 
-#endif
-#define OPT11NUM 31
-#ifdef FE6 
-extern const char Option11[OPT11NUM][42]; // do align 16 before each? 
-#else 
-const char Option11[OPT11NUM][20] = { // players 
-"Vanilla",
-"+1 hidden level",
-"+2 hidden levels",
-"+3 hidden levels",
-"+4 hidden levels",
-"+5 hidden levels",
-"+6 hidden levels",
-"+7 hidden levels",
-"+8 hidden levels",
-"+9 hidden levels",
-"+10 hidden levels",
-"+11 hidden levels",
-"+12 hidden levels",
-"+13 hidden levels",
-"+14 hidden levels",
-"+15 hidden levels",
-"+16 hidden levels",
-"+17 hidden levels",
-"+18 hidden levels",
-"+19 hidden levels",
-"+20 hidden levels",
-"-10 hidden levels",
-"-9 hidden levels",
-"-8 hidden levels",
-"-7 hidden levels",
-"-6 hidden levels",
-"-5 hidden levels",
-"-4 hidden levels",
-"-3 hidden levels",
-"-2 hidden levels",
-"-1 hidden level",
 }; 
 #endif
 #define OPT12NUM 31
 #ifdef FE6 
 extern const char Option12[OPT12NUM][42]; // do align 16 before each? 
 #else 
-const char Option12[OPT12NUM][20] = { // Enemies 
+const char Option12[OPT12NUM][20] = { // players 
+"Vanilla",
+"+1 hidden level",
+"+2 hidden levels",
+"+3 hidden levels",
+"+4 hidden levels",
+"+5 hidden levels",
+"+6 hidden levels",
+"+7 hidden levels",
+"+8 hidden levels",
+"+9 hidden levels",
+"+10 hidden levels",
+"+11 hidden levels",
+"+12 hidden levels",
+"+13 hidden levels",
+"+14 hidden levels",
+"+15 hidden levels",
+"+16 hidden levels",
+"+17 hidden levels",
+"+18 hidden levels",
+"+19 hidden levels",
+"+20 hidden levels",
+"-10 hidden levels",
+"-9 hidden levels",
+"-8 hidden levels",
+"-7 hidden levels",
+"-6 hidden levels",
+"-5 hidden levels",
+"-4 hidden levels",
+"-3 hidden levels",
+"-2 hidden levels",
+"-1 hidden level",
+}; 
+#endif
+#define OPT13NUM 31
+#ifdef FE6 
+extern const char Option13[OPT13NUM][42]; // do align 16 before each? 
+#else 
+const char Option13[OPT13NUM][20] = { // Enemies 
 "Vanilla",
 "+1 hidden level",
 "+2 hidden levels",
@@ -3439,28 +3452,28 @@ const char Option12[OPT12NUM][20] = { // Enemies
 }; 
 #endif
 
-#define OPT13NUM 3
+#define OPT14NUM 3
 #ifdef FE6 
-extern const char Option13[OPT13NUM][32]; // do align 16 before each? 
+extern const char Option14[OPT14NUM][32]; // do align 16 before each? 
 #else 
-const char Option13[OPT13NUM][11] = { // Item durability 
+const char Option14[OPT14NUM][11] = { // Item durability 
 "Vanilla",
 "Always off",
 "Always on",
 }; 
 #endif 
-#define OPT14NUM 2
+#define OPT15NUM 2
 #ifdef FE6 
-extern const char Option14[OPT14NUM][32]; // do align 16 before each? 
+extern const char Option15[OPT15NUM][32]; // do align 16 before each? 
 #else 
-const char Option14[OPT14NUM][14] = { // Item durability 
+const char Option15[OPT15NUM][14] = { // Item durability 
 "Vanilla",
 "Press A",
 }; 
 #endif 
 
 
-const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, 0 }; 
+const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, 0 }; 
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -3745,9 +3758,9 @@ extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); /
 #define Y_HAND 3
 #define NUMBER_X 20
 const int SRR_MAXDISP = 7;
-const int SRR_TotalOptions = 15;
-const u8 tWidths[] = { 3, 5, 6, 5, 6, 6, 3, 3, 3, 5, 6, 10, 10, 10, 4, 8};   
-const u8 RtWidths[] = { 0, 4, 5, 9, 8, 6, 11, 14, 12, 7, 8, 6, 12, 12, 6, 6 } ; 
+const int SRR_TotalOptions = 16;
+const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 5, 6, 10, 10, 10, 4, 8};   
+const u8 RtWidths[] = { 0, 4, 16, 5, 9, 8, 6, 11, 14, 12, 7, 8, 6, 12, 12, 6, 6 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -3811,6 +3824,8 @@ Max Growth: 100
 	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
 	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
 	default: 
 	} 
@@ -3930,39 +3945,39 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 
 		RandValues->seed = proc->seed; 
 		RandValues->variance = proc->Option[0];
-		
-		RandBitflags->base = proc->Option[1]; 
-		RandBitflags->growth = proc->Option[2];
-		if (proc->Option[2] > 3) { RandBitflags->grow50 = true; } 
+		RecruitValues->recruitment = proc->Option[1]; 
+		RandBitflags->base = proc->Option[2]; 
+		RandBitflags->growth = proc->Option[3];
+		if (proc->Option[3] > 3) { RandBitflags->grow50 = true; } 
 		else { RandBitflags->grow50 = false; }
-		RandBitflags->levelups = proc->Option[3]; 
-		RandBitflags->caps = proc->Option[4]; 
-		RandBitflags->class = proc->Option[5]; 
-		RandBitflags->itemStats = ((proc->Option[6] == 1) || (proc->Option[6] == 3)); 
-		RandBitflags->foundItems = ((proc->Option[6] == 1) || (proc->Option[6] == 2)); 
-		RandBitflags->shopItems = ((proc->Option[6] == 1) || (proc->Option[6] == 2)); 
-		if (proc->Option[7] == 1){ SetFlag(CasualModeFlag); } 
+		RandBitflags->levelups = proc->Option[4]; 
+		RandBitflags->caps = proc->Option[5]; 
+		RandBitflags->class = proc->Option[6]; 
+		RandBitflags->itemStats = ((proc->Option[7] == 1) || (proc->Option[7] == 3)); 
+		RandBitflags->foundItems = ((proc->Option[7] == 1) || (proc->Option[7] == 2)); 
+		RandBitflags->shopItems = ((proc->Option[7] == 1) || (proc->Option[7] == 2)); 
+		if (proc->Option[8] == 1){ SetFlag(CasualModeFlag); } 
 		else { UnsetFlag(CasualModeFlag); } 
 		
-		RandBitflags->randMusic = proc->Option[8]; 
-		RandBitflags->colours = proc->Option[9]; 
-		RandBitflags->itemDur = proc->Option[10]; 
-		RandBitflags->playerBonus = proc->Option[11]; 
-		RandValues->bonus = proc->Option[12];
+		RandBitflags->randMusic = proc->Option[9]; 
+		RandBitflags->colours = proc->Option[10]; 
+		RandBitflags->itemDur = proc->Option[11]; 
+		RandBitflags->playerBonus = proc->Option[12]; 
+		RandValues->bonus = proc->Option[13];
 		
 		
-		if (RandBitflags->fog != proc->Option[13]) { 
-			if ((proc->Option[13] == 1) && proc->calledFromChapter) { 
+		if (RandBitflags->fog != proc->Option[14]) { 
+			if ((proc->Option[14] == 1) && proc->calledFromChapter) { 
 				UpdateMapViewWithFog(0); 
 			} 
-			if ((proc->Option[13] == 2) && proc->calledFromChapter) { 
+			if ((proc->Option[14] == 2) && proc->calledFromChapter) { 
 				UpdateMapViewWithFog(3); 
 			} 
-			if ((proc->Option[13] == 0) && proc->calledFromChapter) { 
+			if ((proc->Option[14] == 0) && proc->calledFromChapter) { 
 				UpdateMapViewWithFog(-1); 
 			} 
 		} 
-		RandBitflags->fog = proc->Option[13]; 
+		RandBitflags->fog = proc->Option[14]; 
 		
 		RecruitmentProc* recruitmentProc = Proc_Find(RecruitmentProcCmd1); 
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
@@ -3973,7 +3988,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		recruitmentProc = Proc_Find(RecruitmentProcCmd4); 
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 		
-		if (proc->Option[14] && ((id + offset) >= (SRR_TotalOptions))) { 
+		if (proc->Option[15] && ((id + offset) >= (SRR_TotalOptions))) { 
 			if (proc->calledFromChapter) { 
 			// clear MU, refresh fog, update gfx, sms update 
 			// 6CCB8 8019ABC 8019504 8025724
@@ -4089,6 +4104,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 #ifdef FE6
 extern const char SeedText;
 extern const char VarianceText;
+extern const char CharactersText;
 extern const char BaseStatsText;
 extern const char GrowthsText;
 extern const char LevelupsText;
@@ -4107,6 +4123,7 @@ extern const char RandomizerText;
 #else 
 const char SeedText[] = { "Seed" };
 const char VarianceText[] = { "Variance" };
+const char CharactersText[] = { "Characters" };
 const char BaseStatsText[] = { "Base Stats" };
 const char GrowthsText[] = { "Growths" };
 const char LevelupsText[] = { "Levelups" };
@@ -4141,33 +4158,35 @@ void RedrawAllText(ConfigMenuProc* proc) {
 		if (i > SRR_MAXDISP) { break; } 
 		case 1: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&VarianceText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 2: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&BaseStatsText, false)); i++; 
+		case 2: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&CharactersText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 3: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&GrowthsText, false)); i++; 
+		case 3: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&BaseStatsText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 4: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&LevelupsText, false)); i++; 
+		case 4: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&GrowthsText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 5: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&StatCapsText, false)); i++; 
+		case 5: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&LevelupsText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 6: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ClassText, false)); i++; 
+		case 6: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&StatCapsText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 7: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemsText, false)); i++;  
+		case 7: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ClassText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ModeText, false)); i++;  // Classic/Casual 
+		case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemsText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&MusicText, false)); i++; 
+		case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ModeText, false)); i++;  // Classic/Casual 
 		if (i > SRR_MAXDISP) { break; } 
-		case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ColoursText, false)); i++;  
+		case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&MusicText, false)); i++; 
 		if (i > SRR_MAXDISP) { break; } 
-		case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemDurabilityText, false)); i++;  
+		case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ColoursText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText, false)); i++;  // make players have bonus levels
+		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemDurabilityText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels?
+		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText, false)); i++;  // make players have bonus levels
 		if (i > SRR_MAXDISP) { break; } 
-		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
+		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels?
 		if (i > SRR_MAXDISP) { break; } 
-		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
+		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
+		if (i > SRR_MAXDISP) { break; } 
+		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
 		default: 
 	}
@@ -4294,9 +4313,10 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 		proc->Option[4] = 1; 
 		proc->Option[5] = 1; 
 		proc->Option[6] = 1; 
-		//proc->Option[7] = 0; // Classic 
-		proc->Option[8] = 1; // Random BGM 
-		proc->Option[9] = 1; // Random Colours 
+		proc->Option[7] = 1; 
+		//proc->Option[8] = 0; // Classic 
+		proc->Option[9] = 1; // Random BGM 
+		proc->Option[10] = 1; // Random Colours 
 		}
 		proc->id = 1; 
 		proc->calledFromChapter = false; 
@@ -4336,22 +4356,23 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	
 	// pull up your previously saved options 
 	proc->Option[0] = RandValues->variance; 
-	proc->Option[1] = RandBitflags->base; 
-	proc->Option[2] = RandBitflags->growth + (RandBitflags->grow50*4); 
-	proc->Option[3] = RandBitflags->levelups; 
-	proc->Option[4] = RandBitflags->caps; 
-	proc->Option[5] = RandBitflags->class; 
-	if (RandBitflags->itemStats && RandBitflags->foundItems) { proc->Option[6] = 1; } 
-	else if (RandBitflags->itemStats) { proc->Option[6] = 3; } 
-	else if (RandBitflags->foundItems) { proc->Option[6] = 2; } 
-	else { proc->Option[6] = 0; } 
-	proc->Option[7] = CheckFlag(CasualModeFlag);
-	proc->Option[8] = RandBitflags->randMusic;		
-	proc->Option[9] = RandBitflags->colours;		
-	proc->Option[10] = RandBitflags->itemDur;		
-	proc->Option[11] = RandBitflags->playerBonus;	
-	proc->Option[12] = RandValues->bonus;		
-	proc->Option[13] = RandBitflags->fog;
+	proc->Option[1] = RecruitValues->recruitment; 
+	proc->Option[2] = RandBitflags->base; 
+	proc->Option[3] = RandBitflags->growth + (RandBitflags->grow50*4); 
+	proc->Option[4] = RandBitflags->levelups; 
+	proc->Option[5] = RandBitflags->caps; 
+	proc->Option[6] = RandBitflags->class; 
+	if (RandBitflags->itemStats && RandBitflags->foundItems) { proc->Option[7] = 1; } 
+	else if (RandBitflags->itemStats) { proc->Option[7] = 3; } 
+	else if (RandBitflags->foundItems) { proc->Option[7] = 2; } 
+	else { proc->Option[7] = 0; } 
+	proc->Option[8] = CheckFlag(CasualModeFlag);
+	proc->Option[9] = RandBitflags->randMusic;		
+	proc->Option[10] = RandBitflags->colours;		
+	proc->Option[11] = RandBitflags->itemDur;		
+	proc->Option[12] = RandBitflags->playerBonus;	
+	proc->Option[13] = RandValues->bonus;		
+	proc->Option[14] = RandBitflags->fog;
 	
 	gLCDControlBuffer.dispcnt.bg0_on = 0;
 	return ME_DISABLE | ME_PLAY_BEEP; // | ME_CLEAR_GFX;
