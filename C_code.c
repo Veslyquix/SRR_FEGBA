@@ -291,25 +291,27 @@ int MustCharacterBecomeBoss(const struct CharacterData* table) {
 
 }
 
-const struct CharacterData* GetAdjustedCharacter(const struct CharacterData* table) { 
+int GetAdjustedCharacterID(const struct CharacterData* table) { 
 	int portraitID = table->portraitId; 
 	const struct CharacterData* table2 = GetCharacterData(1); 
 	for (int i = 0; i<MAX_CHAR_ID; ++i) {  
-		if ((portraitID == table2->portraitId) && (table2->pSupportData)) { return table2; } 
+		if ((portraitID == table2->portraitId) && (table2->pSupportData)) { return table2->number; } 
 		table2++;
 	} 
-	return table; 
+	return table->number; 
 } 
 
 
 // lyn mode units have no support pointers, so perhaps use that? 
-int GetUnitListToUse(const struct CharacterData* table, int boss) { 
+int GetUnitListToUse(const struct CharacterData* table, int boss, int excludeNoSupports) { 
 	int result = 0; 
 	if (table->number > MAX_CHAR_ID) { return result; } 
 	if (!table->portraitId) { return result; } 
 	// look for duplicate units 
 	#ifndef FE8 
-	if (!table->pSupportData) { table = GetAdjustedCharacter(table); } 
+	if (excludeNoSupports) { 
+		if (!table->pSupportData) { if (table->number != GetAdjustedCharacterID(table)) { return 0; } } 
+	}
 	#endif 
 	result = 1; 
 	//if (boss && (CanCharacterBecomeBoss(table))) { result = 1; } 
@@ -330,14 +332,18 @@ int GetUnitListToUse(const struct CharacterData* table, int boss) {
 			#endif 
 		}
 	} 
-	
-
-	if (RecruitValues->recruitment == 4) { if (result == 1) { return 2; } else { return 1; } }  
 	if (RecruitValues->recruitment == 5) { result = 1; } 
 	//if (!boss && (MustCharacterBecomeBoss(table))) { result = false; } 
 	//asm("mov r11, r11"); 
 	return result; 
 }  
+
+
+int CallGetUnitListToUse(const struct CharacterData* table, int boss, int excludeNoSupports) { 
+	int result = GetUnitListToUse(table, boss, excludeNoSupports); 
+	if (RecruitValues->recruitment == 4) { if (result == 1) { return 2; } else if (result == 2) { return 1; } }  
+	return result; 
+} 
 
 RecruitmentProc* InitRandomRecruitmentProc(int procID) { 
 	u8 unit[0x80]; 
@@ -365,7 +371,7 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		#else 
 		boss = table->attributes & (CA_BOSS);
 		#endif 
-		switch (GetUnitListToUse(table, boss)) { 
+		switch (GetUnitListToUse(table, boss, true)) { 
 			case 0: { continue; break; } 
 			case 1: { 
 				unit[c] = i+1; 
@@ -398,7 +404,7 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		boss = table->attributes & (CA_BOSS);
 		#endif 
 		
-		switch (GetUnitListToUse(table, boss)) { 
+		switch (CallGetUnitListToUse(table, boss, true)) { 
 			case 0: { continue; break; } 
 			case 1: { 
 			rn = GetNthRN_Simple(i-1, seed, rn);  
@@ -419,6 +425,33 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 			} 
 			default: 
 		}
+		
+	} 
+	
+	
+	for (int i = MAX_CHAR_ID; i > 0 ; --i) { 
+		//table--; 
+		if (i <= 0xBF) { proc = proc3; } 
+		if (i <= 0x7F) { proc = proc2; } 
+		if (i <= 0x3F) { proc = proc1; } 
+		table = GetCharacterData(i);  
+		#ifdef FE7 
+		boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
+		#else 
+		boss = table->attributes & (CA_BOSS);
+		#endif 
+		if (GetUnitListToUse(table, boss, false)) { 
+			num = GetAdjustedCharacterID(table);
+			if (num != (i+1)) { 
+				switch (num >> 6) { 
+					case 0: { proc->id[(i&0x3F)-1] =  proc1->id[(num&0x3F)-1]; break; } 
+					case 1: { proc->id[(i&0x3F)-1] =  proc1->id[(num&0x3F)-1]; break; } 
+					case 2: { proc->id[(i&0x3F)-1] =  proc1->id[(num&0x3F)-1]; break; } 
+					case 3: { proc->id[(i&0x3F)-1] =  proc1->id[(num&0x3F)-1]; break; } 
+					default: 
+				} 
+			}  
+		}		
 		
 	} 
 	
