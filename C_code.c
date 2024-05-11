@@ -51,7 +51,7 @@ struct RandomizerSettings {
 	u32 playerBonus : 5; // +20 / -10 levels for players 
 	u32 grow50 : 1; // always 50% 
 	u32 fog : 2; // vanilla, always off, always on 
-	u32 reverseRecruitment : 1; 
+	u32 DoNameReplace : 1; 
 }; // 32 / 32 bits used 
 
 
@@ -429,6 +429,7 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 	} 
 	
 	
+	#ifndef FE8 
 	for (int i = MAX_CHAR_ID; i > 0 ; --i) { 
 		//table--; 
 		if (i <= 0xBF) { proc = proc3; } 
@@ -454,6 +455,7 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		}		
 		
 	} 
+	#endif 
 	
 	switch (procID) { 
 		case 0: { return proc1; break; } 
@@ -3789,6 +3791,7 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 	int length[1] = {0}; 
 	length[0] = DecompText(a, b); 
 	if (!ShouldRandomizeRecruitment()) { return; }
+	if (!RandBitflags->DoNameReplace) { return; } 
 	struct ReplaceTextStruct ReplaceTextList[ListSize+1]; // +1 for terminator 
 	#ifdef SET_TEXT_USED
 	InitReplaceTextListAntiHuffman(ReplaceTextList); 
@@ -4012,6 +4015,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandValues->seed = proc->seed; 
 		RandValues->variance = proc->Option[0];
 		RecruitValues->recruitment = proc->Option[1]; 
+		if (RecruitValues->recruitment) { RandBitflags->DoNameReplace = true; } 
 		RandBitflags->base = proc->Option[2]; 
 		RandBitflags->growth = proc->Option[3];
 		if (proc->Option[3] > 3) { RandBitflags->grow50 = true; } 
@@ -4067,8 +4071,15 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		} // win chapter 
 
 		RandBitflags->disp = 1; 
+		ResetTextFont();
+		SetTextFontGlyphs(0);
+		SetTextFont(0);
+		InitSystemTextFont();
+		ResetText(); 
+		
 		
 		Proc_Break((ProcPtr)proc);
+		return; 
 		//BG_SetPosition(BG_3, 0, 0); 
 		//gLCDControlBuffer.dispcnt.bg3_on = 1; // don't display bg3 
 		//gLCDControlBuffer.dispcnt.bg0_on = 0; // don't display bg3 
@@ -4364,6 +4375,7 @@ void InitDraw(ConfigMenuProc* proc) {
  
 extern void StartGreenText(ProcPtr parent);
 ConfigMenuProc* StartConfigMenu(ProcPtr parent) { 
+	RandBitflags->DoNameReplace = false; 
 	ConfigMenuProc* proc; 
 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 

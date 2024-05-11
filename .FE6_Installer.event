@@ -122,6 +122,8 @@ SeedText:
 STRING "Seed" "FE6TR" ; BYTE 0
 VarianceText: 
 STRING "Variance" "FE6TR" ; BYTE 0
+CharactersText: 
+STRING "Characters" "FE6TR" ; BYTE 0 0 
 BaseStatsText: 
 STRING "Base Stats" "FE6TR" ; BYTE 0
 GrowthsText: 
@@ -180,17 +182,29 @@ ALIGN 16; STRING "95%" "FE6TR" ; BYTE 0
 ALIGN 16; STRING "100%" "FE6TR" ; BYTE 0 
 
 
-ALIGN 32
+ALIGN 64
 Option1:
-FILL(32*2)
+FILL(64*5)
 ORG Option1
+ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Players reordered" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Bosses reordered" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Players & Bosses reordered" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Players and Bosses swap" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Random" "FE6TR" ; BYTE 0
+
+
+ALIGN 64
+Option2:
+FILL(32*2)
+ORG Option2
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Random" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option2:
+Option3:
 FILL(32*5)
-ORG Option2
+ORG Option3
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Random" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "0%" "FE6TR" ; BYTE 0
@@ -198,29 +212,20 @@ ALIGN 32; STRING "100%" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "50%" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option3:
-FILL(32*3)
-ORG Option3
-ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
-ALIGN 32; STRING "Based on seed" "FE6TR" ; BYTE 0
-ALIGN 32; STRING "Fixed" "FE6TR" ; BYTE 0
-ALIGN 32
 Option4:
 FILL(32*3)
 ORG Option4
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "Based on seed" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "Fixed" "FE6TR" ; BYTE 0
+ALIGN 32
+Option5:
+FILL(32*3)
+ORG Option5
+ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Random" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Always 30" "FE6TR" ; BYTE 0
 
-
-ALIGN 64
-Option5:
-FILL(64*4)
-ORG Option5
-ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0
-ALIGN 64; STRING "Random" "FE6TR" ; BYTE 0
-ALIGN 64; STRING "Random for players" "FE6TR" ; BYTE 0
-ALIGN 64; STRING "Random for enemies" "FE6TR" ; BYTE 0
 
 ALIGN 64
 Option6:
@@ -228,44 +233,53 @@ FILL(64*4)
 ORG Option6
 ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Random" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Random for players" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Random for enemies" "FE6TR" ; BYTE 0
+
+ALIGN 64
+Option7:
+FILL(64*4)
+ORG Option7
+ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Random" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Found items only" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Item stats only" "FE6TR" ; BYTE 0
 
 ALIGN 64
-Option7:
+Option8:
 FILL(32*2)
-ORG Option7
+ORG Option8
 ALIGN 32; STRING "Classic" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Casual" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option8:
+Option9:
 FILL(32*2)
-ORG Option8
+ORG Option9
 ALIGN 32; STRING "Vanilla BGM" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Random BGM" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option9:
+Option10:
 FILL(32*4)
-ORG Option9
+ORG Option10
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Random" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Janky" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Portraits only" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option10:
+Option11:
 FILL(32*2)
-ORG Option10
+ORG Option11
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Infinite" "FE6TR" ; BYTE 0
 
 ALIGN 42
-Option11:
 Option12:
+Option13:
 FILL(32*42)
-ORG Option11
+ORG Option12
 ALIGN 42; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 42; STRING "+1 hidden level" "FE6TR" ; BYTE 0
 ALIGN 42; STRING "+2 hidden levels" "FE6TR" ; BYTE 0
@@ -300,17 +314,17 @@ ALIGN 42; STRING "-1 hidden level" "FE6TR" ; BYTE 0
 BYTE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
 ALIGN 32
-Option13:
+Option14:
 FILL(32*3)
-ORG Option13
+ORG Option14
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Always off" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Always on" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option14:
+Option15:
 FILL(32*2)
-ORG Option14
+ORG Option15
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Press A" "FE6TR" ; BYTE 0
 
