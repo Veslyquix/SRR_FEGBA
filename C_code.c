@@ -190,7 +190,6 @@ const struct CharacterData* GetReorderedCharacter(const struct CharacterData* ta
 	if (!ShouldRandomizeRecruitmentForUnitID(id)) { return GetCharacterData(id); } 
 	
 	int procID = id >> 6; // 0, 1, 2, or 3 
-	id &= 0x3F; 
 	
 	switch (procID) { 
 		case 0: { 	
@@ -214,8 +213,8 @@ const struct CharacterData* GetReorderedCharacter(const struct CharacterData* ta
 	
 	if (!proc) { proc = InitRandomRecruitmentProc(procID); } 
 	
-	int unitID = proc->id[id-1];
-	if (unitID == 0xFF) { unitID = 1; } 
+	int unitID = proc->id[(id&0x3F)-1];
+	if (!unitID) { unitID = id; } 
 	
 	return GetCharacterData(unitID);
 }
@@ -272,8 +271,9 @@ int CanCharacterBecomeBoss(const struct CharacterData* table) {
 	#else 
 	boss = table->attributes & (CA_BOSS);
 	#endif 
+	if ((RecruitValues->recruitment == 5)) { return false; } 
 	if ((!boss) && (RecruitValues->recruitment == 4)) { return true; } // players become bosses and vice versa 
-	if (boss || (RecruitValues->recruitment == 5)) { return true; } 
+	if (boss) { return true; } 
 	return false; 
 }
 int MustCharacterBecomeBoss(const struct CharacterData* table) { 
@@ -290,14 +290,15 @@ int MustCharacterBecomeBoss(const struct CharacterData* table) {
 
 }
 
-int CanRandomizeUnitInto(const struct CharacterData* table, int boss) { 
-	int result = false; 
+int GetUnitListToUse(const struct CharacterData* table, int boss) { 
+	int result = 0; 
 	if (table->number > MAX_CHAR_ID) { return result; } 
 	if (!table->portraitId) { return result; } 
 	 
-	result = true; 
-	if (boss && (!CanCharacterBecomeBoss(table))) { result = false; } 
-	if (boss && (!MustCharacterBecomeBoss(table))) { result = false; } 
+	result = 1; 
+	//if (boss && (CanCharacterBecomeBoss(table))) { result = 1; } 
+	if (boss && (MustCharacterBecomeBoss(table))) { result = 2; } 
+	if (result == 2) { result = 0; if (RecruitValues->recruitment == 1) { result = 0; } } 
 	//if (!boss && (MustCharacterBecomeBoss(table))) { result = false; } 
 	//asm("mov r11, r11"); 
 	return result; 
@@ -335,21 +336,26 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		if (i == 0x40) { proc = proc2; } 
 		if (i == 0x80) { proc = proc3; } 
 		if (i == 0xC0) { proc = proc4; } 
-		proc->id[i&0x3F] = 0xFF; 
+		proc->id[i&0x3F] = 0x0; 
 		#ifdef FE7 
 		boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
 		#else 
 		boss = table->attributes & (CA_BOSS);
 		#endif 
-		if (!CanRandomizeUnitInto(table, boss)) { continue; } 
-		if (boss) { 
-			bosses[b] = i+1; 
-			b++; 
+		switch (GetUnitListToUse(table, boss)) { 
+			case 0: { continue; break; } 
+			case 1: { 
+				unit[c] = i+1; 
+				c++; 
+				break; 
+			}
+			case 2: { 
+				bosses[b] = i+1; 
+				b++; 
+				break;
+			} 
+			default: 
 		}
-		else { 
-			unit[c] = i+1; 
-			c++; 
-		} 
 	} 
 	//proc->count = c; 
 	proc = proc4; 
@@ -368,26 +374,28 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		#else 
 		boss = table->attributes & (CA_BOSS);
 		#endif 
-		if (!CanRandomizeFromCharacter(table, boss)) { continue; } 
-		// so we only use valid units 
 		
-		rn = GetNthRN_Simple(i-1, seed, rn); 
-		
-		proc->id[(i&0x3F)-1] = i; 
-		
-		if (boss) { 
-			b--; 
-			num = HashByte_Simple(rn, b); 
-			proc->id[(i&0x3F)-1] = bosses[num]; 
-			bosses[num] = bosses[b]; // move last entry to one we just used 
-		} 
-		else { 
+		switch (GetUnitListToUse(table, boss)) { 
+			case 0: { continue; break; } 
+			case 1: { 
+			rn = GetNthRN_Simple(i-1, seed, rn);  
 			c--; 
 			num = HashByte_Simple(rn, c); 
-			if (c < 0) { asm("mov r11 ,r11"); } 
+			//if (c < 0) { asm("mov r11 ,r11"); } 
 			proc->id[(i&0x3F)-1] = unit[num]; 
 			unit[num] = unit[c]; // move last entry to one we just used 
-		} 
+				break; 
+			}
+			case 2: {
+				rn = GetNthRN_Simple(i-1, seed, rn);  				
+				b--; 
+				num = HashByte_Simple(rn, b); 
+				proc->id[(i&0x3F)-1] = bosses[num]; 
+				bosses[num] = bosses[b]; // move last entry to one we just used 
+				break;
+			} 
+			default: 
+		}
 		
 	} 
 	
