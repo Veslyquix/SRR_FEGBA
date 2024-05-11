@@ -3791,7 +3791,7 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 	int length[1] = {0}; 
 	length[0] = DecompText(a, b); 
 	if (!ShouldRandomizeRecruitment()) { return; }
-	if (!RandBitflags->DoNameReplace) { return; } 
+	//if (!RandBitflags->DoNameReplace) { return; } 
 	struct ReplaceTextStruct ReplaceTextList[ListSize+1]; // +1 for terminator 
 	#ifdef SET_TEXT_USED
 	InitReplaceTextListAntiHuffman(ReplaceTextList); 
@@ -4071,6 +4071,8 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		} // win chapter 
 
 		RandBitflags->disp = 1; 
+		
+		// fe6 shows wrong char name sometimes fsr but this didn't fix 
 		ResetTextFont();
 		SetTextFontGlyphs(0);
 		SetTextFont(0);
