@@ -284,37 +284,60 @@ int MustCharacterBecomeBoss(const struct CharacterData* table) {
 	boss = table->attributes & (CA_BOSS);
 	#endif 
 	if ((RecruitValues->recruitment == 5)) { return false; } 
-	if ((!boss) && (RecruitValues->recruitment == 4)) { return true; } // players become bosses and vice versa 
+	//if ((!boss) && (RecruitValues->recruitment == 4)) { return true; } // players become bosses and vice versa 
+	//if ((boss) && (RecruitValues->recruitment == 4)) { return false; } // players become bosses and vice versa 
 	if (boss) { return true; } 
 	return false; 
 
 }
 
+const struct CharacterData* GetAdjustedCharacter(const struct CharacterData* table) { 
+	int portraitID = table->portraitId; 
+	const struct CharacterData* table2 = GetCharacterData(1); 
+	for (int i = 0; i<MAX_CHAR_ID; ++i) {  
+		if ((portraitID == table2->portraitId) && (table2->pSupportData)) { return table2; } 
+		table2++;
+	} 
+	return table; 
+} 
+
+
+// lyn mode units have no support pointers, so perhaps use that? 
 int GetUnitListToUse(const struct CharacterData* table, int boss) { 
 	int result = 0; 
 	if (table->number > MAX_CHAR_ID) { return result; } 
 	if (!table->portraitId) { return result; } 
-	 
+	// look for duplicate units 
+	#ifndef FE8 
+	if (!table->pSupportData) { table = GetAdjustedCharacter(table); } 
+	#endif 
 	result = 1; 
 	//if (boss && (CanCharacterBecomeBoss(table))) { result = 1; } 
 	if (boss && (MustCharacterBecomeBoss(table))) { result = 2; } 
-	if (result == 2) { result = 0; if (RecruitValues->recruitment == 1) { result = 0; } } 
+	if (result == 1) { if (RecruitValues->recruitment == 2) { result = 0; } } 
+	if (result == 2) { if (RecruitValues->recruitment == 1) { result = 0; } } 
+	if (RecruitValues->recruitment < 4) { 
+		if (result == 1) { 
+			#ifdef FE6
+			if (table->number > 0x44) { return 0; } 
+			#endif 
+			
+			#ifdef FE7 
+			if (table->number > 0x3A) { return 0; } 
+			#endif 
+			#ifdef FE8 
+			if (table->number > 0x2c) { return 0; } 
+			#endif 
+		}
+	} 
+	
+
+	if (RecruitValues->recruitment == 4) { if (result == 1) { return 2; } else { return 1; } }  
+	if (RecruitValues->recruitment == 5) { result = 1; } 
 	//if (!boss && (MustCharacterBecomeBoss(table))) { result = false; } 
 	//asm("mov r11, r11"); 
 	return result; 
 }  
-
-int CanRandomizeFromCharacter(const struct CharacterData* table, int boss) { 
-	int result = false; 
-	if (table->number > MAX_CHAR_ID) { return result; } 
-	if (!table->portraitId) { return result; } 
-	result = true; 
-	if (boss && (!CanCharacterBecomeBoss(table))) { result = false; } 
-	if (boss && (!MustCharacterBecomeBoss(table))) { result = false; } 
-	//if (!boss && (MustCharacterBecomeBoss(table))) { result = false; } 
-	//asm("mov r11, r11"); 
-	return result; 
-} 
 
 RecruitmentProc* InitRandomRecruitmentProc(int procID) { 
 	u8 unit[0x80]; 
