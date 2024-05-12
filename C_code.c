@@ -51,7 +51,7 @@ struct RandomizerSettings {
 	u32 playerBonus : 5; // +20 / -10 levels for players 
 	u32 grow50 : 1; // always 50% 
 	u32 fog : 2; // vanilla, always off, always on 
-	u32 DoNameReplace : 1; 
+	u32 pauseNameReplace : 1; 
 }; // 32 / 32 bits used 
 
 
@@ -3791,7 +3791,7 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 	int length[1] = {0}; 
 	length[0] = DecompText(a, b); 
 	if (!ShouldRandomizeRecruitment()) { return; }
-	//if (!RandBitflags->DoNameReplace) { return; } 
+	if (RandBitflags->pauseNameReplace) { return; } 
 	struct ReplaceTextStruct ReplaceTextList[ListSize+1]; // +1 for terminator 
 	#ifdef SET_TEXT_USED
 	InitReplaceTextListAntiHuffman(ReplaceTextList); 
@@ -3828,8 +3828,8 @@ extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); /
 #define NUMBER_X 20
 const int SRR_MAXDISP = 7;
 const int SRR_TotalOptions = 16;
-const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 5, 6, 10, 10, 10, 4, 8};   
-const u8 RtWidths[] = { 0, 4, 16, 5, 9, 8, 6, 11, 14, 12, 7, 8, 6, 12, 12, 6, 6 } ; 
+const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7};   
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 9, 4, 7, 8, 4, 10, 10, 6, 5 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -4015,7 +4015,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandValues->seed = proc->seed; 
 		RandValues->variance = proc->Option[0];
 		RecruitValues->recruitment = proc->Option[1]; 
-		if (RecruitValues->recruitment) { RandBitflags->DoNameReplace = true; } 
+		RandBitflags->pauseNameReplace = false; 
 		RandBitflags->base = proc->Option[2]; 
 		RandBitflags->growth = proc->Option[3];
 		if (proc->Option[3] > 3) { RandBitflags->grow50 = true; } 
@@ -4072,13 +4072,11 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 
 		RandBitflags->disp = 1; 
 		
-		// fe6 shows wrong char name sometimes fsr but this didn't fix 
-		ResetTextFont();
-		SetTextFontGlyphs(0);
-		SetTextFont(0);
-		InitSystemTextFont();
-		ResetText(); 
-		
+		// fe6 temporarily shows wrong char name sometimes without this 
+		struct Text* th = gStatScreen.text; // max 34 
+		for (int i = 0; i < 35; ++i) { 
+			ClearText(&th[i]);
+		}	
 		
 		Proc_Break((ProcPtr)proc);
 		return; 
@@ -4377,7 +4375,7 @@ void InitDraw(ConfigMenuProc* proc) {
  
 extern void StartGreenText(ProcPtr parent);
 ConfigMenuProc* StartConfigMenu(ProcPtr parent) { 
-	RandBitflags->DoNameReplace = false; 
+	RandBitflags->pauseNameReplace = true; 
 	ConfigMenuProc* proc; 
 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
