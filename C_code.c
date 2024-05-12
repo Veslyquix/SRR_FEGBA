@@ -4873,7 +4873,35 @@ struct SS_StatID {
 
 extern u8* CallSkill_Getter(struct Unit* unit); 
 extern struct SS_StatID gStatScreenFunction[]; 
-extern int _GetTalkee(int); 
+
+struct ChapterEventGroup
+{
+    /* 00 */ const void * turnBasedEvents;
+    /* 04 */ const void * characterBasedEvents; // must be 32-Aligned?
+}; 
+const struct ChapterEventGroup* GetChapterEventDataPointer(unsigned chIndex); 
+
+struct EvCheck03 {
+    u16 eventType;
+    u16 flag;
+	u32 eventPointer;
+    u8 pidA;
+    u8 pidB;
+    u16 fillerA;
+	#ifndef FE6 
+    u16 unkC;
+    u16 unkE;
+	#endif 
+};
+int _GetTalkee(int unitID) { 
+	struct EventInfo info;
+	info.listScript = GetChapterEventDataPointer(gCh)->characterBasedEvents;
+
+
+
+} 
+
+//extern int _GetTalkee(int); 
 extern int IconOrr; 
 int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) { 
 	if (gStatScreenFunction[id].specialCase) { 
