@@ -341,6 +341,11 @@ jumpToHack(GetBattleLevelUpPortraitId_FE7)
 ORG $74B94 
 callHackNew(GetMapLevelUpPortraitId_FE7)
 
+ORG $528B6
+SHORT $B408 // push r3 
+callHackNew(UniqueAnimationHook_FE7)
+SHORT $BC08 // pop r3 
+
 POP 
 
 TextA:

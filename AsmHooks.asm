@@ -5,6 +5,31 @@
   .short 0xf800
 .endm
 
+.global UniqueAnimationHook_FE7
+.type UniqueAnimationHook_FE7, %function 
+UniqueAnimationHook_FE7: 
+push {lr} 
+orr r0, r1 
+lsr r0, #8 
+mov r1, #1 
+and r0, r1 
+add r2, #0x25 
+add r2, r0 
+ldrb r0, [r2] 
+push {r0} 
+mov r0, r5 
+bl IsClassOrRecruitmentRandomized
+mov r1, r0 
+pop {r0} 
+cmp r1, #0 
+beq DoUniqueAnim_FE7 
+mov r0, #0 
+DoUniqueAnim_FE7: 
+cmp r0, #0 
+pop {r3} 
+bx r3 
+.ltorg 
+
 .global RoyPromoHook
 .type RoyPromoHook, %function 
 RoyPromoHook: 
