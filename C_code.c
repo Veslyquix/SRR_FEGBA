@@ -266,11 +266,7 @@ int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed) {
 int CanCharacterBecomeBoss(const struct CharacterData* table) { 
 	//if (table->number > 0x40
 	int boss; 
-	#ifdef FE7 
-	boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
-	#else 
 	boss = table->attributes & (CA_BOSS);
-	#endif 
 	if ((RecruitValues->recruitment == 5)) { return false; } 
 	if ((!boss) && (RecruitValues->recruitment == 4)) { return true; } // players become bosses and vice versa 
 	if (boss) { return true; } 
@@ -278,11 +274,7 @@ int CanCharacterBecomeBoss(const struct CharacterData* table) {
 }
 int MustCharacterBecomeBoss(const struct CharacterData* table) { 
 	int boss; 
-	#ifdef FE7 
-	boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
-	#else 
 	boss = table->attributes & (CA_BOSS);
-	#endif 
 	if ((RecruitValues->recruitment == 5)) { return false; } 
 	//if ((!boss) && (RecruitValues->recruitment == 4)) { return true; } // players become bosses and vice versa 
 	//if ((boss) && (RecruitValues->recruitment == 4)) { return false; } // players become bosses and vice versa 
@@ -293,11 +285,24 @@ int MustCharacterBecomeBoss(const struct CharacterData* table) {
 
 int GetAdjustedCharacterID(const struct CharacterData* table) { 
 	int portraitID = table->portraitId; 
+	if (!portraitID) { return table->number; } 
 	const struct CharacterData* table2 = GetCharacterData(1); 
-	for (int i = 0; i<MAX_CHAR_ID; ++i) {  
+	for (int i = 0; i<MAX_CHAR_ID; ++i) { // replace duplicate unit IDs (eg. Lyn without supports and Lyn with supports becomes the same char) 
 		if ((portraitID == table2->portraitId) && (table2->pSupportData)) { return table2->number; } 
 		table2++;
 	} 
+	#ifdef FE7 
+	if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS))) { // Replace morphs 
+		int nameTextId = table->nameTextId; 
+		table2 = GetCharacterData(1); 
+		for (int i = 0; i<MAX_CHAR_ID; ++i) {  
+			if ((nameTextId == table2->nameTextId)) { return table2->number; } 
+			//if ((nameTextId == table2->nameTextId) && (!(table2->attributes & CA_MAXLEVEL10))) { return table2->number; } 
+			table2++;
+		} 
+	} 
+	#endif 
+	
 	return table->number; 
 } 
 
@@ -367,10 +372,9 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		if (i == 0xC0) { proc = proc4; } 
 		proc->id[i&0x3F] = 0x0; 
 		#ifdef FE7 
-		boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
-		#else 
-		boss = table->attributes & (CA_BOSS);
+		if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS))) { continue; } // Morphs 
 		#endif 
+		boss = table->attributes & (CA_BOSS);
 		switch (GetUnitListToUse(table, boss, true)) { 
 			case 0: { continue; break; } 
 			case 1: { 
@@ -399,10 +403,10 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		if (i <= 0x3F) { proc = proc1; } 
 		table = GetCharacterData(i);  
 		#ifdef FE7 
-		boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
-		#else 
-		boss = table->attributes & (CA_BOSS);
+		if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS))) { continue; } // Morphs 
 		#endif 
+		boss = table->attributes & (CA_BOSS);
+		
 		
 		switch (CallGetUnitListToUse(table, boss, true)) { 
 			case 0: { continue; break; } 
@@ -430,29 +434,26 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 	
 	
 	#ifndef FE8 
+	proc = proc4; 
 	for (int i = MAX_CHAR_ID; i > 0 ; --i) { 
 		//table--; 
 		if (i <= 0xBF) { proc = proc3; } 
 		if (i <= 0x7F) { proc = proc2; } 
 		if (i <= 0x3F) { proc = proc1; } 
 		table = GetCharacterData(i);  
-		#ifdef FE7 
-		boss = table->attributes & (CA_BOSS | CA_MAXLEVEL10); // Morphs 
-		#else 
 		boss = table->attributes & (CA_BOSS);
-		#endif 
-		if (GetUnitListToUse(table, boss, false)) { 
+		//if (GetUnitListToUse(table, boss, false)) { 
 			num = GetAdjustedCharacterID(table);
 			if (num != (i+1)) { 
 				switch (num >> 6) { 
 					case 0: { proc->id[(i&0x3F)-1] =  proc1->id[(num&0x3F)-1]; break; } 
-					case 1: { proc->id[(i&0x3F)-1] =  proc1->id[(num&0x3F)-1]; break; } 
-					case 2: { proc->id[(i&0x3F)-1] =  proc1->id[(num&0x3F)-1]; break; } 
-					case 3: { proc->id[(i&0x3F)-1] =  proc1->id[(num&0x3F)-1]; break; } 
+					case 1: { proc->id[(i&0x3F)-1] =  proc2->id[(num&0x3F)-1]; break; } 
+					case 2: { proc->id[(i&0x3F)-1] =  proc3->id[(num&0x3F)-1]; break; } 
+					case 3: { proc->id[(i&0x3F)-1] =  proc4->id[(num&0x3F)-1]; break; } 
 					default: 
 				} 
 			}  
-		}		
+		//}		
 		
 	} 
 	#endif 
