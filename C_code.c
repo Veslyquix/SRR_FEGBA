@@ -2500,7 +2500,7 @@ extern int RandomizeMovConBonus;
 int GetAdjustedLevel(const struct CharacterData* table, const struct ClassData* classTable) { 
 	int promoted = ((table->attributes | classTable->attributes) & CA_PROMOTED);
 	int level = table->baseLevel; 
-	if (promoted) { level += 15; } 
+	if (promoted) { level += 10; } 
 	return level; 
 } 
 extern int BonusItemChance; 
