@@ -5794,8 +5794,7 @@ const s8* GetUnitMovementCost(struct Unit* unit) { // 80187d4
 
 //#ifndef FE8 
 extern int OnlyThievesCanUseLockpicks; 
-s8 CanUnitUseLockpickItem(struct Unit* unit) // 80273B8
-{
+int CanUnitTypicallyUseLockpickItem(struct Unit* unit) { 
 	int faction = UNIT_FACTION(unit); 
 	if (faction == FACTION_BLUE) { 
 		if (OnlyThievesCanUseLockpicks) { 
@@ -5804,6 +5803,13 @@ s8 CanUnitUseLockpickItem(struct Unit* unit) // 80273B8
 			} 
 		} 
 	}
+	return true; 
+} 
+
+
+s8 CanUnitUseLockpickItem(struct Unit* unit) // 80273B8
+{
+	if (!CanUnitTypicallyUseLockpickItem(unit)) { return false; } 
 
     if (!CanUnitUseChestKeyItem(unit) && !CanUnitUseDoorKeyItem(unit) && !CanUnitOpenBridge(unit))
         return FALSE;
@@ -5892,8 +5898,7 @@ s8 IsItemDisplayUsable(struct Unit* unit, int item) { // 8016AB0
             return FALSE;
 
         if (GetItemIndex(item) == LOCKPICK) {// lockpick 
-			
-			if (!(CanUnitUseLockpickItem(unit))) { 
+			if (!(CanUnitTypicallyUseLockpickItem(unit))) { 
             return FALSE;
 			}
 		}
