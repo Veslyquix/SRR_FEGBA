@@ -574,7 +574,7 @@ u8 static const MapMusicList[] = {4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,2
 extern int GetCurrentMapMusicIndex(void); 
 int GetBGMTrack(){ // fe7/fe8 only? 
 	if (!ShouldRandomizeBGM()) { return GetCurrentMapMusicIndex(); } 
-	int noise[4] = {1, 2, 0, 0}; 
+	int noise[4] = {1, 2, gCh, 0}; 
 	int number = gPhase; 
 	//if (gActiveUnit) { 
 	//	noise[0] = gActiveUnit->xPos; 
@@ -4036,6 +4036,56 @@ void DisplayVertUiHand(int x, int y)
 }
 extern void m4aSongNumStart(u16 n); 
 
+extern struct Unit* LoadUnit(const struct UnitDefinition* uDef); // 17788 17598
+extern void ClearUnit(struct Unit* unit); // 17508 17394
+void InitUnitDef(struct UnitDefinition* uDef, struct Unit* unit) { 
+
+    uDef->charIndex = unit->pCharacterData->number;
+    uDef->classIndex = unit->pCharacterData->defaultClass;
+    uDef->leaderCharIndex = unit->supports[UNIT_SUPPORT_MAX_COUNT-1];
+    uDef->autolevel = true; 
+	uDef->allegiance = UNIT_FACTION(unit)>>6; 
+    uDef->level = unit->pCharacterData->baseLevel; 
+    uDef->xPosition = unit->xPos; 
+    uDef->yPosition = unit->yPos; 
+#ifndef FE8 
+	uDef->xMove = unit->xPos; 
+	uDef->yMove = unit->yPos; 
+#endif 
+
+#ifdef FE8 
+	uDef->genMonster = false; 
+	uDef->itemDrop = (unit->state & US_DROP_ITEM) != 0; 
+	uDef->sumFlag = 0; 
+	uDef->unk_05_7 = 0; 
+	uDef->extraData = 0; 
+	uDef->redaCount = 0; 
+	uDef->redas = NULL; 
+#endif 
+	uDef->items[0] = unit->items[0]; 
+	uDef->items[1] = unit->items[1]; 
+	uDef->items[2] = unit->items[2]; 
+	uDef->items[3] = unit->items[3]; 
+	uDef->ai[0] = unit->ai1;
+	uDef->ai[1] = unit->ai2;
+	uDef->ai[2] = unit->ai3And4 & 0xFF;
+	uDef->ai[3] = (unit->ai3And4>>8);
+} 
+
+void ReloadAllUnits(void) { 
+	struct UnitDefinition uDef; 
+	struct Unit* unit; 
+	for (int i = 1; i<0xC0; ++i) { 
+		unit = GetUnit(i); 
+		if (!UNIT_IS_VALID(unit)) { continue; } 
+		InitUnitDef(&uDef, unit); 
+		ClearUnit(unit); 
+		LoadUnit(&uDef); // lance moves in turn 1 playerr phase event 
+	} 
+} 
+
+
+
 extern void DisplayUiVArrow(int, int, u16, int);
 extern void UnpackUiVArrowGfx(int, int);
 extern void CallEndEvent(void); // (806b5b0) 8079A38 8083280
@@ -4061,6 +4111,19 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
 
+		// see if anything changed 
+		int reloadUnits = false; 
+		if (RandValues->seed != proc->seed) { reloadUnits = true; } 
+		if (RandValues->variance != proc->Option[0]) { reloadUnits = true; } 
+		if (RecruitValues->recruitment != proc->Option[1]) { reloadUnits = true; } 
+		if (RandBitflags->base != proc->Option[2]) { reloadUnits = true; } 
+		if (RandBitflags->growth != proc->Option[3]) { reloadUnits = true; } 
+		if (RandBitflags->levelups != proc->Option[4]) { reloadUnits = true; } 
+		if (RandBitflags->caps != proc->Option[5]) { reloadUnits = true; } 
+		if (RandBitflags->class != proc->Option[6]) { reloadUnits = true; } 
+		if (RandBitflags->playerBonus != proc->Option[12]) { reloadUnits = true; } 
+		if (RandValues->bonus != proc->Option[13]) { reloadUnits = true; } 
+		
 		RandValues->seed = proc->seed; 
 		RandValues->variance = proc->Option[0];
 		RecruitValues->recruitment = proc->Option[1]; 
@@ -4118,12 +4181,18 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 			#endif 
 			} 
 		} // win chapter 
+		
+		if (proc->calledFromChapter && reloadUnits) { 
+			ReloadAllUnits(); 
+		
+		
+		} 
 
 		RandBitflags->disp = 1; 
 		
 		// fe6 temporarily shows wrong char name sometimes without this 
 		struct Text* th = gStatScreen.text; // max 34 
-		for (int i = 0; i < 35; ++i) { 
+		for (int i = 0; i < 36; ++i) { 
 			ClearText(&th[i]);
 		}	
 		
