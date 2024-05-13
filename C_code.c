@@ -2449,6 +2449,37 @@ void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
 	UnitCheckStatCaps(unit); 
 }
 
+void UnitAutolevelCore_Char(struct Unit* unit, u8 classId, int levelCount) {
+    if (levelCount > 0) {
+        unit->maxHP += GetAutoleveledStatIncrease(GetUnitHPGrowth(unit , true),  levelCount);
+        unit->pow   += GetAutoleveledStatIncrease(GetUnitPowGrowth(unit, true), levelCount);
+        unit->skl   += GetAutoleveledStatIncrease(GetUnitSklGrowth(unit, true), levelCount);
+        unit->spd   += GetAutoleveledStatIncrease(GetUnitSpdGrowth(unit, true), levelCount);
+        unit->def   += GetAutoleveledStatIncrease(GetUnitDefGrowth(unit, true), levelCount);
+        unit->res   += GetAutoleveledStatIncrease(GetUnitResGrowth(unit, true), levelCount);
+        unit->lck   += GetAutoleveledStatIncrease(GetUnitLckGrowth(unit, true), levelCount);
+		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetUnitMagGrowth(unit, true), levelCount); } 
+    }
+    if (levelCount < 0) {
+        unit->maxHP = GetAutoleveledStatDecrease(GetUnitHPGrowth(unit , true),  levelCount, unit->maxHP);
+		if (IsUnitAlliedOrPlayable(unit)) { 
+			if (unit->maxHP < 15) { unit->maxHP = 15; } 
+		}
+		else { 
+			if (unit->maxHP < 10) { unit->maxHP = 10; } 
+		} 
+        unit->pow   = GetAutoleveledStatDecrease(GetUnitPowGrowth(unit, true), levelCount, unit->pow);
+        unit->skl   = GetAutoleveledStatDecrease(GetUnitSklGrowth(unit, true), levelCount, unit->skl);
+        unit->spd   = GetAutoleveledStatDecrease(GetUnitSpdGrowth(unit, true), levelCount, unit->spd);
+        unit->def   = GetAutoleveledStatDecrease(GetUnitDefGrowth(unit, true), levelCount, unit->def);
+        unit->res   = GetAutoleveledStatDecrease(GetUnitResGrowth(unit, true), levelCount, unit->res);
+        unit->lck   = GetAutoleveledStatDecrease(GetUnitLckGrowth(unit, true), levelCount, unit->lck);
+		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetUnitMagGrowth(unit, true), levelCount, unit->_u3A); } 
+    }
+	UnitCheckStatMins(unit); 
+	UnitCheckStatCaps(unit); 
+}
+
 #ifdef FE6
 s8 CanBattleUnitGainLevels(struct BattleUnit* bu) {
     //if (gBmSt.gameStateBits & 0x40)
@@ -2467,8 +2498,9 @@ const s8 MovModifiers[] = { 0, 0, 0, 0, 0, 1, 1, 2, 0 } ;
 const s8 ConModifiers[] = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0 } ; 
 extern int RandomizeMovConBonus; 
 int GetAdjustedLevel(const struct CharacterData* table, const struct ClassData* classTable) { 
-	int promoted = ((table->attributes | classTable->attributes) & CA_PROMOTED) != 0;
-	int level = table->baseLevel + (promoted * 10); 
+	int promoted = ((table->attributes | classTable->attributes) & CA_PROMOTED);
+	int level = table->baseLevel; 
+	if (promoted) { level += 15; } 
 	return level; 
 } 
 extern int BonusItemChance; 
@@ -2490,11 +2522,12 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	int RandomizeRecruitment = ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number); 
 	const struct CharacterData* character = unit->pCharacterData; 
 	const struct ClassData* originalClass;
+	const struct ClassData* randCharOriginalClass;
 	
 	if (uDef->classIndex) { originalClass = GetClassData(uDef->classIndex); } 
 	else { originalClass = GetClassData(unit->pCharacterData->defaultClass); } 
 	
-	if (RandomizeRecruitment) { character = GetReorderedUnit(unit); } 
+	if (RandomizeRecruitment) { character = GetReorderedUnit(unit); randCharOriginalClass = GetClassData(character->defaultClass); } 
 
     if ((!uDef->classIndex) || RandomizeRecruitment) {
         unit->pClassData = GetClassData(RandClass(character->defaultClass, noise, unit));
@@ -2502,6 +2535,19 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     else { 
         unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise, unit));
 	}
+	
+	// make them the same level of promotion half the time when possible 
+	if (RandomizeRecruitment) { 
+		if (!(originalClass->attributes & CA_PROMOTED) && (unit->pClassData->attributes & CA_PROMOTED)) { 
+			if (HashByte_Ch(noise[0], 2, noise, 3)) { // 50%, as HashByte never returns the max number 
+				int prepromoteClassId = unit->pClassData->promotion; 
+				if (prepromoteClassId) { 
+					unit->pClassData = originalClass; // so RandClass will treat us as promoted or not based on that 
+					unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise, unit));
+				} 
+			}
+		}
+	}		
 
 	int wexp = 0; 
 	int tmp = 0; 
@@ -2620,7 +2666,9 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	
 	if (RandomizeRecruitment) { 
 		int bonusLevels = GetAdjustedLevel(unit->pCharacterData, originalClass) - GetAdjustedLevel(character, unit->pClassData); 
-		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
+		bonusLevels += GetAdjustedLevel(character, originalClass) - GetAdjustedLevel(character, randCharOriginalClass); 
+		if (bonusLevels) { UnitAutolevelCore_Char(unit, unit->pClassData->number, bonusLevels); } 
+		//if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
 	} 
 	
 	int UnitHasBonusItem = false;
