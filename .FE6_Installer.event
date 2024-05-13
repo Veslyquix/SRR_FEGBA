@@ -329,6 +329,11 @@ ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Press A" "FE6TR" ; BYTE 0
 
 ALIGN 32
+TalkText: 
+STRING "Talk" "FE6TR" ; BYTE 0
+TrvText: 
+STRING "Trv" "FE6TR" ; BYTE 0
+
 MovText:
 BYTE $64 $94 $DD $0B $00 $00 $00 $00 
 HpText:

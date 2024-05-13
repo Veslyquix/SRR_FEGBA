@@ -1312,9 +1312,9 @@ bx    r0
 
 
 
-.global _GetTalkee 
-.type _GetTalkee, %function 
-_GetTalkee:
+@.global _GetTalkee 
+@.type _GetTalkee, %function 
+@_GetTalkee:
 @r0=char number
 push	{r4,r5,r14}
 mov		r4,r0

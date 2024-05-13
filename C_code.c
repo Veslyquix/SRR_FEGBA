@@ -4541,10 +4541,119 @@ int GetUnitCon(struct Unit* unit) { return UNIT_CON(unit); }
 int GetUnitMov(struct Unit* unit) { return UNIT_MOV(unit); } 
 int GetUnitMag(struct Unit* unit) { return unit->_u3A; } 
 
+
+enum
+{
+    // Enumerate stat screen texts
+
+    STATSCREEN_TEXT_CHARANAME, // 0
+    STATSCREEN_TEXT_CLASSNAME, // 1
+
+    STATSCREEN_TEXT_UNUSUED, // 2 (was Exp?)
+
+    STATSCREEN_TEXT_POWLABEL, // 3
+    STATSCREEN_TEXT_SKLLABEL, // 4
+    STATSCREEN_TEXT_SPDLABEL, // 5
+    STATSCREEN_TEXT_LCKLABEL, // 6
+    STATSCREEN_TEXT_DEFLABEL, // 7
+    STATSCREEN_TEXT_RESLABEL, // 8
+    STATSCREEN_TEXT_MOVLABEL, // 9
+    STATSCREEN_TEXT_CONLABEL, // 10
+    STATSCREEN_TEXT_AIDLABEL, // 11
+    STATSCREEN_TEXT_RESCUENAME, // 12
+    STATSCREEN_TEXT_AFFINLABEL, // 13
+    STATSCREEN_TEXT_STATUS, // 14
+
+    STATSCREEN_TEXT_ITEM0, // 15
+    STATSCREEN_TEXT_ITEM1, // 16
+    STATSCREEN_TEXT_ITEM2, // 17
+    STATSCREEN_TEXT_ITEM3, // 18
+    STATSCREEN_TEXT_ITEM4, // 19
+
+    STATSCREEN_TEXT_BSRANGE, // 20
+    STATSCREEN_TEXT_BSATKLABEL, // 21
+    STATSCREEN_TEXT_BSHITLABEL, // 22
+    STATSCREEN_TEXT_BSCRTLABEL, // 23
+    STATSCREEN_TEXT_BSAVOLABEL, // 24
+
+    STATSCREEN_TEXT_WEXP0, // 25
+    STATSCREEN_TEXT_WEXP1, // 26
+    STATSCREEN_TEXT_WEXP2, // 27
+    STATSCREEN_TEXT_WEXP3, // 28
+
+    STATSCREEN_TEXT_SUPPORT0, // 29
+    STATSCREEN_TEXT_SUPPORT1, // 30
+    STATSCREEN_TEXT_SUPPORT2, // 31
+    STATSCREEN_TEXT_SUPPORT3, // 32
+    STATSCREEN_TEXT_SUPPORT4, // 33
+
+    STATSCREEN_TEXT_BWL, // 34
+
+    STATSCREEN_TEXT_MAX
+};
+extern void Text_InsertDrawString(struct Text * text, int x, int colorId, const char * str);
+extern char* GetUnitRescueName(struct Unit* unit); 
+struct ChapterEventGroup
+{
+    /* 00 */ const void * turnBasedEvents;
+    /* 04 */ const void * characterBasedEvents; // must be 32-Aligned?
+}; 
+const struct ChapterEventGroup* GetChapterEventDataPointer(unsigned chIndex); //80315BC fe6 802BBA0
+extern struct Unit * GetUnitFromCharId(s16 pid); //fe7 8017D34 fe6 8017ABC
+struct TalkEventCond {
+    u16 eventType;
+    u16 flag;
+	u32 eventPointer;
+    u8 pidA;
+    u8 pidB;
+    u16 fillerA;
+	#ifndef FE6 
+    u16 unkC;
+    u16 unkE;
+	#endif 
+};
+
+int _GetTalkee(int unitID) { 
+	const struct TalkEventCond* talkCond = GetChapterEventDataPointer(gCh)->characterBasedEvents;
+	int flag, pid; 
+	struct Unit* unit; 
+	for (int i = 0; i < 255; ++i) { 
+		if (!talkCond[i].eventType) { break; } 
+		if (talkCond[i].pidA != unitID) { continue; } 
+		flag = talkCond[i].flag; 
+		if (flag) { if (CheckFlag(flag)) { continue; } } 
+		pid = talkCond[i].pidB; 
+		if (pid) { 
+			//unit = GetUnitStructFromEventParameter(pid); 
+			unit = GetUnitFromCharId(pid); 
+			if (!UNIT_IS_VALID(unit)) { continue; } 
+			if (unit->state & (US_DEAD|US_NOT_DEPLOYED|US_BIT16)) { continue; } 
+			return pid;
+		} 
+	} 
+	return 0; 
+} 
 #ifdef FE6 
+extern char TalkText; 
+extern char TrvText; 
 void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6 
     // displaying str/mag stat value
 	int barsOrGrowths = RandBitflags->disp; 
+	
+	
+	int talk_uid = _GetTalkee(gStatScreen.unit->pCharacterData->number); 
+	int x = 13; int y = 7; 
+	ClearText(gStatScreen.text + STATSCREEN_TEXT_ITEM0); // clear text here 
+	if (talk_uid) { 
+	PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM0,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, &TalkText);
+	talk_uid = GetCharacterData(talk_uid)->nameTextId;
+	Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_ITEM0], 24, blue, GetStringFromIndex(talk_uid));
+	} 
+
+	else { 
+	PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, &TrvText);
+	Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_RESCUENAME], 24, blue, GetUnitRescueName(gStatScreen.unit));
+	} 
 	
 	if (barsOrGrowths) { 
     DrawStatWithBar(0, 5, 1,
@@ -4702,66 +4811,17 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 
 #endif 
 
+
 #ifndef FE6 
 
-enum
-{
-    // Enumerate stat screen texts
-
-    STATSCREEN_TEXT_CHARANAME, // 0
-    STATSCREEN_TEXT_CLASSNAME, // 1
-
-    STATSCREEN_TEXT_UNUSUED, // 2 (was Exp?)
-
-    STATSCREEN_TEXT_POWLABEL, // 3
-    STATSCREEN_TEXT_SKLLABEL, // 4
-    STATSCREEN_TEXT_SPDLABEL, // 5
-    STATSCREEN_TEXT_LCKLABEL, // 6
-    STATSCREEN_TEXT_DEFLABEL, // 7
-    STATSCREEN_TEXT_RESLABEL, // 8
-    STATSCREEN_TEXT_MOVLABEL, // 9
-    STATSCREEN_TEXT_CONLABEL, // 10
-    STATSCREEN_TEXT_AIDLABEL, // 11
-    STATSCREEN_TEXT_RESCUENAME, // 12
-    STATSCREEN_TEXT_AFFINLABEL, // 13
-    STATSCREEN_TEXT_STATUS, // 14
-
-    STATSCREEN_TEXT_ITEM0, // 15
-    STATSCREEN_TEXT_ITEM1, // 16
-    STATSCREEN_TEXT_ITEM2, // 17
-    STATSCREEN_TEXT_ITEM3, // 18
-    STATSCREEN_TEXT_ITEM4, // 19
-
-    STATSCREEN_TEXT_BSRANGE, // 20
-    STATSCREEN_TEXT_BSATKLABEL, // 21
-    STATSCREEN_TEXT_BSHITLABEL, // 22
-    STATSCREEN_TEXT_BSCRTLABEL, // 23
-    STATSCREEN_TEXT_BSAVOLABEL, // 24
-
-    STATSCREEN_TEXT_WEXP0, // 25
-    STATSCREEN_TEXT_WEXP1, // 26
-    STATSCREEN_TEXT_WEXP2, // 27
-    STATSCREEN_TEXT_WEXP3, // 28
-
-    STATSCREEN_TEXT_SUPPORT0, // 29
-    STATSCREEN_TEXT_SUPPORT1, // 30
-    STATSCREEN_TEXT_SUPPORT2, // 31
-    STATSCREEN_TEXT_SUPPORT3, // 32
-    STATSCREEN_TEXT_SUPPORT4, // 33
-
-    STATSCREEN_TEXT_BWL, // 34
-
-    STATSCREEN_TEXT_MAX
-};
 extern bool UnitHasMagicRank(struct Unit* unit);
 extern int GetUnitAid(struct Unit* unit);
 extern int CallprAidGetter(struct Unit* unit); 
 extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
 extern int GetUnitAidIconId(u32 attributes);
-extern char* GetUnitRescueName(struct Unit* unit);
 extern char* GetUnitStatusName(struct Unit* unit);
 extern void DisplayBwl(void);
-extern void Text_InsertDrawString(struct Text * text, int x, int colorId, const char * str);
+
 extern int GetUnitAffinityIcon(struct Unit* unit);
 enum
 {
@@ -4874,34 +4934,6 @@ struct SS_StatID {
 extern u8* CallSkill_Getter(struct Unit* unit); 
 extern struct SS_StatID gStatScreenFunction[]; 
 
-struct ChapterEventGroup
-{
-    /* 00 */ const void * turnBasedEvents;
-    /* 04 */ const void * characterBasedEvents; // must be 32-Aligned?
-}; 
-const struct ChapterEventGroup* GetChapterEventDataPointer(unsigned chIndex); 
-
-struct EvCheck03 {
-    u16 eventType;
-    u16 flag;
-	u32 eventPointer;
-    u8 pidA;
-    u8 pidB;
-    u16 fillerA;
-	#ifndef FE6 
-    u16 unkC;
-    u16 unkE;
-	#endif 
-};
-int _GetTalkee(int unitID) { 
-	struct EventInfo info;
-	info.listScript = GetChapterEventDataPointer(gCh)->characterBasedEvents;
-
-
-
-} 
-
-//extern int _GetTalkee(int); 
 extern int IconOrr; 
 int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) { 
 	if (gStatScreenFunction[id].specialCase) { 
@@ -4955,14 +4987,19 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 			}	
 			case 7: {
 				ClearText(gStatScreen.text + STATSCREEN_TEXT_ITEM0); // clear wep1 text here 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM0,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
-				#ifdef FE8 
-				int talk_uid = _GetTalkee(unit->pCharacterData->number); // not for fe6/fe7 atm
+				//#ifdef FE8 
+				int talk_uid = _GetTalkee(unit->pCharacterData->number); 
 				if (talk_uid) { 
+					PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM0,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
 					talk_uid = GetCharacterData(talk_uid)->nameTextId;
 					Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_ITEM0], 24, blue, GetStringFromIndex(talk_uid));
 				} 
-				#endif 
+				
+				else { 
+					PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Trv");
+					Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_RESCUENAME], 24, blue, GetUnitRescueName(unit));
+				} 
+				//#endif 
 				return 0; break;
 			}
 			case 8: {

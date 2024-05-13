@@ -102,8 +102,14 @@ SET_DATA ProcScr_BmFadeIN, 0x8679008
 SET_DATA ProcScr_BmFadeOUT, 0x8679028 
 SET_FUNC HbPopulate_SSCharacter, 0x80704DD
 SET_DATA ggMsgStringTable, 0x8013b10
+SET_FUNC GetChapterEventDataPointer, 0x802BBA1
+SET_FUNC GetUnitFromCharId, 0x8017ABD
+SET_FUNC GetUnitRescueName, 0x80185C9
+SET_FUNC Text_InsertDrawString, 0x8006455
 .endif 
 .if FE7 == true 
+SET_FUNC GetChapterEventDataPointer, 0x80315BD
+SET_FUNC GetUnitFromCharId, 0x8017D35
 SET_DATA ggMsgStringTable, 0x8012cb8
 SET_FUNC UpdateMapViewWithFog, 0x801DB59
 SET_DATA gVision, 0x202BBF8+0x0D
@@ -504,10 +510,10 @@ SET_FUNC PageNumCtrl_DisplayBlinkIcons, 0x8080F55
 SET_FUNC GetUnitAid, 0x8018451
 SET_FUNC DrawIcon, 0x8004e29
 SET_FUNC GetUnitAidIconId, 0x8018579
-SET_FUNC GetUnitRescueName, 0x8018CC1
+SET_FUNC GetUnitRescueName, 0x8018CC1 
 SET_FUNC GetUnitStatusName, 0x8018CF1
 SET_FUNC DisplayBwl, 0x807FBF1
-SET_FUNC Text_InsertDrawString, 0x8005B19
+SET_FUNC Text_InsertDrawString, 0x8005B19 
 SET_FUNC GetUnitAffinityIcon, 0x8026B25 
 SET_DATA sPage0TextInfo, 0x84049A0
 SET_DATA gObject_8x8, 0x8B905B0
