@@ -1310,91 +1310,59 @@ pop   {r4-r7}
 pop   {r0}
 bx    r0
 
-
-
-@.global _GetTalkee 
-@.type _GetTalkee, %function 
-@_GetTalkee:
-@r0=char number
-push	{r4,r5,r14}
-mov		r4,r0
-ldr		r0,GetChapterEvents
-mov		r14,r0
-ldr		r0,ChapterData
-ldrb	r0,[r0,#0xE]			@chapter number
-.short	0xF800
-ldr		r5,[r0,#0x4]			@Talk events
-TalkEventsLoop:
-ldrb	r0,[r5,#0x2]			@that talk event's id
-cmp		r0,#0x0
-beq		GoBack
-ldrb	r1,[r5,#0x8]			@char id that instigates the talk
-cmp		r1,r4
-bne		GetNextTalk
-ldr		r1,CheckEventID			@make sure the talk hasn't occurred yet
-mov		r14,r1
-.short	0xF800
-cmp		r0,#0x0
-bne		GetNextTalk
-ldrb	r0,[r5,#0x9]			@char id of person being talked to
-bl		CheckIfOnField
-cmp		r0,#0x0
-beq		GetNextTalk
-ldrb	r0,[r5,#0x9]
-b		GoBack
-GetNextTalk:
-add		r5,#0x10
-b		TalkEventsLoop
-GoBack:
-pop		{r4-r5}
-pop		{r1}
-bx		r1
-
-.align
-ChapterData:
-.long 0x0202BCF0
-GetChapterEvents:
-.long 0x080346B0
-CheckEventID:
-.long 0x08083DA8
-
-CheckIfOnField:
-push	{r4-r5,r14}
-mov		r5,r0
-mov		r4,#0x1
-LoopThroughAll:
-ldr		r0,GetCharData
-mov		r14,r0
-mov		r0,r4
-.short	0xF800
-cmp		r0,#0x0
-beq		GetNextPerson
-ldr		r2,[r0]
-cmp		r2,#0x0
-beq		GetNextPerson
-ldr		r0,[r0,#0xC]
-ldr		r1,BadTurnWord
-tst		r0,r1
-bne		GetNextPerson
-ldrb	r2,[r2,#0x4]
-cmp		r2,r5
-bne		GetNextPerson
-mov		r0,#0x1
-b		FoundChar
-GetNextPerson:
-add		r4,#0x1
-cmp		r4,#0xBF
-ble		LoopThroughAll
-mov		r0,#0x0
-FoundChar:
-pop		{r4-r5}
-pop		{r1}
-bx		r1
-
-.align
-GetCharData:
-.long 0x08019430
-BadTurnWord:
-.long 0x0001000C
 .ltorg 
+.global NewClearBWLFunction_FE7 
+.type NewClearBWLFunction_FE7, %function 
+NewClearBWLFunction_FE7:
+push {r4-r7, lr} 
 
+@ added - save BWL+some person as randomizer data 
+ldr r7, =RandValues
+ldr r7, [r7] @ probably 0x203eb30 
+ldr r4, [r7] @ values 
+ldr r5, [r7, #4] 
+ldr r6, [r7, #8] 
+ldr r7, [r7, #12] 
+@ added 
+
+sub sp, #4 
+mov r0, sp 
+mov r3, #0 
+strh r3, [r0] 
+ldr r1, =0x203E7A0
+ldr r2, =0x1000230 
+blh 0x80BFA10 @ CpuSet 
+
+@ added - restore randomizer values 
+ldr r3, =RandValues 
+ldr r3, [r3] 
+str r4, [r3, #0] 
+str r5, [r3, #4] 
+str r6, [r3, #8] 
+str r7, [r3, #12] 
+@ added 
+
+ldr r4, =0x202BBF8
+ldr r0, [r4, #0x38] 
+ldr r1, =0xF00000FF
+and r0, r1 
+str r0, [r4, #0x38] 
+mov r0, #0xF 
+ldrh r1, [r4, #0x36] 
+and r0, r1 
+strh r0, [r4, #0x36] 
+mov r0, r4 
+add r0, #0x38 
+mov r1, #0 
+strb r1, [r0] 
+ldr r0, [r4, #0x34] 
+ldr r1, =0xFFF00000
+and r0, r1 
+str r0, [r4, #0x34] 
+blh 0x8017120 
+str r0, [r4, #0x30] 
+add sp, #4 
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 

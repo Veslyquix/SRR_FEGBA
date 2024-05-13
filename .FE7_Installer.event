@@ -346,6 +346,10 @@ SHORT $B408 // push r3
 callHackNew(UniqueAnimationHook_FE7)
 SHORT $BC08 // pop r3 
 
+ 
+ORG $9fA50 
+jumpToHack(NewClearBWLFunction_FE7)
+
 POP 
 
 TextA:
@@ -863,6 +867,7 @@ WORD 1
 #else 
 WORD 0
 #endif  
+// NOTE: AsmHooks NewClearBWLFunction_FE7 assumes this data is all in a row 
 ALIGN 4 
 RandValues:
 WORD 0x203eb30 // BWL + 0x3a Bramimond +0
