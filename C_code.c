@@ -3878,7 +3878,7 @@ extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); /
 const int SRR_MAXDISP = 7;
 const int SRR_TotalOptions = 16;
 const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7};   
-const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 9, 4, 7, 8, 4, 10, 10, 6, 5 } ; 
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 13, 4, 7, 8, 4, 10, 10, 6, 5 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
