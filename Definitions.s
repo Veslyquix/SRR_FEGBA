@@ -108,8 +108,12 @@ SET_FUNC GetUnitRescueName, 0x80185C9
 SET_FUNC Text_InsertDrawString, 0x8006455
 SET_FUNC LoadUnit, 0x8017599
 SET_FUNC ClearUnit, 0x8017395
+SET_FUNC ArenaIsUnitAllowed, 0x8029FE1
+SET_FUNC GetUnitBestWRankType, 0x8029965
 .endif 
 .if FE7 == true 
+SET_FUNC GetUnitBestWRankType, 0x802EAED
+SET_FUNC ArenaIsUnitAllowed, 0x802F159
 SET_FUNC LoadUnit, 0x8017789 
 SET_FUNC ClearUnit, 0x8017509 
 SET_FUNC GetChapterEventDataPointer, 0x80315BD

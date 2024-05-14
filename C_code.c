@@ -1571,7 +1571,8 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 		#endif 
 			rank = 251; 
 		} 
-		if ((type <= 7) && (!rank)) { rank = 1; } // PRFs require at least 1 wexp in that type 
+		if (type <= 7) { if (!rank) { rank = 1; } } // PRFs require at least 1 wexp in that type 
+		else if (rank) { rank = 0; } // rings / monster weapons etc. should never require WEXP 
 		
 		#ifdef FE6 
 		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 101; } // devil weapons are considered C rank
@@ -6027,19 +6028,19 @@ s8 IsItemDisplayUsable(struct Unit* unit, int item) { // 8016AB0
     return TRUE;
 }
  
-#ifdef FE8 
+
 extern int GetUnitBestWRankType(struct Unit*);
 s8 ArenaIsUnitAllowed(struct Unit* unit) {
     if (unit->statusIndex == UNIT_STATUS_SILENCED) {
         return 0;
     }
 
-    if (GetUnitBestWRankType(unit) < 0) {
+    if (GetUnitBestWRankType(unit) < 0) { // fe6 8029964
         return 0;
     }
 	if (UNIT_CATTRIBUTES(unit) & CA_LOCK_3) { return 0; } // no monsters 
 
     return 1;
 }
-#endif 
+
 
