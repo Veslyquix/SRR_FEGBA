@@ -144,6 +144,59 @@ WORD 0x8C97ED2
 
 POP 
 
+
+/*
+PUSH 
+// trying to test distribution of random classes 
+// eliwood ch1 
+ORG $CAE050
+POIN MyUnits
+ORG $CA199C
+POIN MyUnits
+ORG $CA19A0
+POIN MyUnits
+ORG $CA19A4
+POIN MyUnits
+ORG $CA19A8
+POIN MyUnits
+
+// eliwood ch2 (gotta change load2 into load as well) 
+ORG $CAEA6C 
+POIN MyUnits
+ORG $CAED54
+POIN MyUnits
+ORG $CA1BAC 
+POIN MyUnits
+ORG $CA1BB0 
+POIN MyUnits
+ORG $CA1BB8 
+POIN MyUnits
+
+
+
+POP 
+
+MyUnits:
+BYTE  $01 $01 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $02 $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $03 $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $04 $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $05 $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $06 $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $07 $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $0B $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $0C $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $0E $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $0F $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $10 $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $11 $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $12 $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $13 $00 $00 $08 $0C $0B $0C $0A $09 $6B $00 $00 $00 $00 $00 $00;
+BYTE  $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00;
+*/
+
+
+
 ALIGN 4 
 WindSwordDesc: // New desc taken from FE8 
 String("Capable of indirect attacks."); BYTE 0 //Suffused with wind magic."); BYTE 0 

@@ -1271,6 +1271,22 @@ int GetInitialSeed(int rate) {
 } 
 
 u16 HashByte_Global(int number, int max, int noise[], int offset) {
+	//asm("mov r11, r11"); 
+	offset += noise[0] + noise[1] + noise[2] + noise[3]; 
+	offset &= 0xFF; 
+	int currentRN = 0; 
+	currentRN = GetNthRN_Simple(offset, RandValues->seed, currentRN); 
+	for (int c = 0; c < 4; ++c) { 
+		for (int i = 0; i < (noise[c] & 0xF); ++i) { 
+			currentRN = NextSeededRN_Simple(currentRN); 
+		} 
+	} 
+	u32 hash = ((currentRN << 5) + currentRN) ^ number; 
+	//asm("mov r11, r11"); 
+	return Mod((hash & 0x2FFFFFFF), max);
+}
+
+u16 HashByte_GlobalOld(int number, int max, int noise[], int offset) {
 	if (max==0) return 0;
 	offset += noise[0]*3; 
 	offset += noise[1]*5; 
@@ -2512,19 +2528,24 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	unit->yPos = uDef->yPosition; 
 	int noise[4] = {0, 0, 0, 0};  // 1 extra so gCh is used 
 	noise[0] = unit->pCharacterData->number;
-	#ifndef FE8 
-	noise[1] = uDef->xMove; 
-	noise[2] = uDef->yMove;  
-	#endif 
-	#ifdef FE8 
-	noise[1] = uDef->xPosition; 
-	noise[2] = uDef->yPosition;  
-	#endif 
+	noise[1] = unit->index; 
+	noise[2] = 54321; // becomes class id 
+	noise[3] = 12345; // don't use gCh anymore 
+	
+	
+	//#ifndef FE8 
+	//noise[1] = uDef->xMove; 
+	//noise[2] = uDef->yMove;  
+	//#endif 
+	//#ifdef FE8 
+	//noise[1] = uDef->xPosition; 
+	//noise[2] = uDef->yPosition;  
+	//#endif 
 	int RandomizeRecruitment = ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number); 
 	const struct CharacterData* character = unit->pCharacterData; 
 	const struct ClassData* originalClass;
 	const struct ClassData* randCharOriginalClass;
-	
+ 
 	if (uDef->classIndex) { originalClass = GetClassData(uDef->classIndex); } 
 	else { originalClass = GetClassData(unit->pCharacterData->defaultClass); } 
 	
@@ -2543,8 +2564,16 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 			if (HashByte_Ch(noise[0], 2, noise, 3)) { // 50%, as HashByte never returns the max number 
 				int prepromoteClassId = unit->pClassData->promotion; 
 				if (prepromoteClassId) { 
+					#ifdef FE6 
+					if (prepromoteClassId != 0x44) { // some classes (eg. Manakete, King) "promote" from ballista 
+					#endif 
+					
 					unit->pClassData = originalClass; // so RandClass will treat us as promoted or not based on that 
 					unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise, unit));
+					
+					#ifdef FE6 
+					} 
+					#endif 
 				} 
 			}
 		}
@@ -2553,7 +2582,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	int wexp = 0; 
 	int tmp = 0; 
 	int personalWexp = 0; 
-	noise[0] = unit->pClassData->number; 
+	noise[2] = unit->pClassData->number; 
 	tmp = 0; 
 	if (ShouldRandomizeClass(unit)) { 
 		for (int c = 0; c < 8; ++c) { 
