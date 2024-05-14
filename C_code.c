@@ -3363,6 +3363,7 @@ const struct ProcCmd ConfigMenuProcCmd[] =
 	PROC_REPEAT(ConfigMenuLoop), 
 	PROC_CALL(StartFastFadeToBlack), 
 	PROC_REPEAT(WaitForFade), 
+	PROC_CALL(ReloadAllUnits), 
 	PROC_CALL(RestoreBackgrounds), 
     PROC_CALL(UnlockGame),
     PROC_CALL(BMapDispResume),
@@ -4102,7 +4103,10 @@ void InitUnitDef(struct UnitDefinition* uDef, struct Unit* unit) {
 	uDef->ai[3] = (unit->ai3And4>>8);
 } 
 
-void ReloadAllUnits(void) { 
+void ReloadAllUnits(ConfigMenuProc* proc) { 
+	if (!((proc->calledFromChapter) && (proc->reloadUnits))) { 
+		return; 
+	}
 	struct UnitDefinition uDef; 
 	struct Unit* unit; 
 	for (int i = 1; i<0xC0; ++i) { 
@@ -4211,12 +4215,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 			#endif 
 			} 
 		} // win chapter 
-		
-		if (proc->calledFromChapter && reloadUnits) { 
-			ReloadAllUnits(); 
-		
-		
-		} 
+	
 
 		RandBitflags->disp = 1; 
 		
@@ -4225,6 +4224,8 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		for (int i = 0; i < 36; ++i) { 
 			ClearText(&th[i]);
 		}	
+		
+		if (reloadUnits) { proc->reloadUnits = true; } 
 		
 		Proc_Break((ProcPtr)proc);
 		return; 
@@ -4530,7 +4531,7 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 	if (proc) { 
 		for (int i = 0; i < 20; i++) { 
 		proc->Option[i] = 0; } 
-		
+		proc->reloadUnits = false; 
 		if (!DefaultConfigToVanilla) {
 		proc->Option[0] = OptionAmounts[0]-1; // start on 100% 
 		proc->Option[1] = 1; 

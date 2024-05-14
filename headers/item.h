@@ -292,9 +292,10 @@ typedef struct {
 	s8 digit; 
 	u8 freezeSeed; 
 	u8 calledFromChapter; 
+	u8 reloadUnits; 
 	s8 Option[20];
 } ConfigMenuProc;
-
+void ReloadAllUnits(ConfigMenuProc*); 
 struct DispCnt {
     /* bit  0 */ u16 mode : 3;
     /* bit  3 */ u16 cgbMode : 1; // reserved, do not use
