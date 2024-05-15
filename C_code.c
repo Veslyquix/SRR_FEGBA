@@ -1197,6 +1197,17 @@ u32 GetNthRN_Simple(int n, int seed, u32 currentRN) {
 	return currentRN; 
 } 
 
+u32 GetNthRN_Simple2(int n, int seed, u32 currentRN) { 
+	n &= 0xFF; 
+	if (!currentRN) { 
+		currentRN = InitSeededRN_Simple(seed, currentRN); 
+	} 
+	for (int i = 0; i < n; i++) { 
+		currentRN = NextSeededRN_Simple(currentRN); 
+	}
+	return currentRN; 
+} 
+
 int NextSeededRN(u16* currentRN) {
     // This generates a pseudorandom string of 16 bits
     // In other words, a pseudorandom integer that can range from 0 to 65535
@@ -1272,18 +1283,23 @@ int GetInitialSeed(int rate) {
 
 u16 HashByte_Global(int number, int max, int noise[], int offset) {
 	//asm("mov r11, r11"); 
-	offset += noise[0] + noise[1] + noise[2] + noise[3]; 
-	offset &= 0xFF; 
+	offset += noise[0] + noise[1] + noise[2] + noise[3] + number; 
+	//offset &= 0xFF; // GetNthRN_Simple2 does this anyway 
 	int currentRN = 0; 
-	currentRN = GetNthRN_Simple(offset, RandValues->seed, currentRN); 
+	currentRN = GetNthRN_Simple2(offset, RandValues->seed, currentRN); 
+	currentRN = (RandValues->seed&0xFF) + (currentRN << 6) + (currentRN << 16) - currentRN;
+	currentRN = ((RandValues->seed&0xFF00) >> 8) + (currentRN << 6) + (currentRN << 16) - currentRN;
+	//currentRN = ((RandValues->seed&0xFF0000) >> 16) + (currentRN << 6) + (currentRN << 16) - currentRN;
+	currentRN = ((currentRN << 5) + currentRN) ^ RandValues->seed; 
+	currentRN = ((currentRN << 5) + currentRN) ^ number; 
 	for (int c = 0; c < 4; ++c) { 
 		for (int i = 0; i < (noise[c] & 0xF); ++i) { 
 			currentRN = NextSeededRN_Simple(currentRN); 
 		} 
 	} 
-	u32 hash = ((currentRN << 5) + currentRN) ^ number; 
+
 	//asm("mov r11, r11"); 
-	return Mod((hash & 0x2FFFFFFF), max);
+	return Mod((currentRN & 0x2FFFFFFF), max);
 }
 
 u16 HashByte_GlobalOld(int number, int max, int noise[], int offset) {
@@ -2523,26 +2539,39 @@ int GetAdjustedLevel(const struct CharacterData* table, const struct ClassData* 
 extern int BonusItemChance; 
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
+	const struct CharacterData* character = unit->pCharacterData; 
     unit->level = uDef->level;
 	unit->xPos = uDef->xPosition;
 	unit->yPos = uDef->yPosition; 
 	int noise[4] = {0, 0, 0, 0};  // 1 extra so gCh is used 
-	noise[0] = unit->pCharacterData->number;
-	noise[1] = unit->index; 
-	noise[2] = 54321; // becomes class id 
-	noise[3] = 12345; // don't use gCh anymore 
+	noise[0] = character->number + character->baseLevel + character->baseHP + character->basePow + character->baseSkl + character->baseSpd + character->baseDef + character->baseRes + character->baseLck;
+	
+
 	
 	
-	//#ifndef FE8 
-	//noise[1] = uDef->xMove; 
-	//noise[2] = uDef->yMove;  
-	//#endif 
-	//#ifdef FE8 
-	//noise[1] = uDef->xPosition; 
-	//noise[2] = uDef->yPosition;  
-	//#endif 
+	if (UNIT_FACTION(unit) != FACTION_BLUE) { 
+		if (!(UNIT_CATTRIBUTES(unit) & CA_BOSS)) { 
+		#ifndef FE8 
+		noise[1] = uDef->xMove; 
+		noise[2] = uDef->yMove;  
+		#endif 
+		#ifdef FE8 
+		noise[1] = uDef->xPosition; 
+		noise[2] = uDef->yPosition;  
+		#endif 
+		noise[3] = 0; // so gCh is used 
+		} 
+	} 
+	else { 
+	noise[1] = unit->index + character->portraitId + character->growthHP + character->growthPow + character->growthSkl + character->growthSpd + character->growthDef + character->growthRes + character->growthLck; 
+	noise[2] = 5; // becomes class id 
+	noise[3] = character->affinity; // players don't use gCh anymore 
+	}
+	
+	
+	
+
 	int RandomizeRecruitment = ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number); 
-	const struct CharacterData* character = unit->pCharacterData; 
 	const struct ClassData* originalClass;
 	const struct ClassData* randCharOriginalClass;
  
