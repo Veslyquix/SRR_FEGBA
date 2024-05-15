@@ -112,6 +112,7 @@ SET_FUNC ArenaIsUnitAllowed, 0x8029FE1
 SET_FUNC GetUnitBestWRankType, 0x8029965
 .endif 
 .if FE7 == true 
+SET_DATA gMode, 0x202BBF8+0x1B
 SET_FUNC GetUnitBestWRankType, 0x802EAED
 SET_FUNC ArenaIsUnitAllowed, 0x802F159
 SET_FUNC LoadUnit, 0x8017789 

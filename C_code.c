@@ -4760,7 +4760,7 @@ struct TalkEventCond {
     u16 unkE;
 	#endif 
 };
-
+extern u8 gMode; 
 int _GetTalkee(int unitID) { 
 	const struct TalkEventCond* talkCond = GetChapterEventDataPointer(gCh)->characterBasedEvents;
 	int flag, pid; 
@@ -4771,6 +4771,11 @@ int _GetTalkee(int unitID) {
 		flag = talkCond[i].flag; 
 		if (flag) { if (CheckFlag(flag)) { continue; } } 
 		pid = talkCond[i].pidB; 
+		#ifdef FE7 
+		if (talkCond[i].unkC) { 
+			if (gMode != talkCond[i].unkC) { continue; } // any / Eliwood / Hector mode 
+		} 
+		#endif 
 		if (pid) { 
 			//unit = GetUnitStructFromEventParameter(pid); 
 			unit = GetUnitFromCharId(pid); 
