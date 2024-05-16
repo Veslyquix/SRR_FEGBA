@@ -4994,7 +4994,16 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 		#ifdef FE8 
 		SetupDebugFontForBG(0, VramDest_DebugFont);
 		#endif 
-		PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
+		
+		switch (RecruitValues->recruitment) { 
+			case 0: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "0Seed"); break; } 	
+			case 1: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "1Seed"); break; } 	
+			case 2: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "2Seed"); break; } 	
+			case 3: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "3Seed"); break; } 	
+			case 4: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "4Seed"); break; } 	
+			case 5: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "5Seed"); break; } 	
+		default: 
+		} 
 		//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x12), white, RandValues->seed);
 		PrintDebugNumberToBG(0, 11, 0x13, RandValues->seed); 
 		//PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 13, 0x12), white, 123456);
@@ -5457,7 +5466,15 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 		//BG_EnableSyncByMask(BG3_SYNC_BIT);
 		#endif 
 		SetupDebugFontForBG(0, VramDest_DebugFont);
-		PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed:");
+		switch (RecruitValues->recruitment) { 
+			case 0: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "VSeed"); break; } 	
+			case 1: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "PSeed"); break; } 	
+			case 2: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "BSeed"); break; } 	
+			case 3: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "ASeed"); break; } 	
+			case 4: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "SSeed"); break; } 	
+			case 5: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "RSeed"); break; } 	
+		default: 
+		} 
 		PrintDebugNumberToBG(0, 11, 0x13, RandValues->seed); 
 	}
 

@@ -343,7 +343,7 @@ POP
 #endif 
 
 #ifdef _FE7_
-
+ORG $BE375E; SHORT 20000 // ocean seal costs 20k instead of 50k 
 ORG $CC905C; BYTE 1 // Merlinus starts with an iron sword 
 ORG $CC907C; BYTE 1 // Merlinus starts with an iron sword 
 ORG $CCB748; BYTE 1 // Merlinus starts with an iron sword 
