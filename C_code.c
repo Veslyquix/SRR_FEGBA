@@ -5500,12 +5500,12 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 		#endif 
 		SetupDebugFontForBG(0, VramDest_DebugFont);
 		switch (RecruitValues->recruitment) { 
-			case 0: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "VSeed"); break; } 	
-			case 1: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "PSeed"); break; } 	
-			case 2: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "BSeed"); break; } 	
-			case 3: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "ASeed"); break; } 	
-			case 4: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "SSeed"); break; } 	
-			case 5: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "RSeed"); break; } 	
+			case 0: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "0Seed"); break; } 	
+			case 1: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "1Seed"); break; } 	
+			case 2: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "2Seed"); break; } 	
+			case 3: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "3Seed"); break; } 	
+			case 4: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "4Seed"); break; } 	
+			case 5: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "5Seed"); break; } 	
 		default: 
 		} 
 		PrintDebugNumberToBG(0, 11, 0x13, RandValues->seed); 
