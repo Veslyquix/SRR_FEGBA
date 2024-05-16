@@ -1094,11 +1094,13 @@ int ShouldRandomizeStatCaps(struct Unit* unit) {
 	if (!RandBitflags->caps) { return false; } 
 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 }
+extern const struct ProcCmd gProcScr_ArenaUiMain[]; // fe6 86911AC fe7 8CE729C fe8 8A394DC
 int ShouldRandomizeClass(struct Unit* unit) { 
 	int config = RandBitflags->class; 
 	if (!config) { return false; } 
 	if ((config == 3) && (UNIT_FACTION(unit) != FACTION_RED)) {  return false; } 
 	if ((config == 2) && (UNIT_FACTION(unit) == FACTION_RED)) {  return false; } 
+	//if (Proc_Find(gProcScr_ArenaUiMain)) { return false; } 
 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 } 
 int IsClassOrRecruitmentRandomized(struct Unit* unit) { 
@@ -6102,7 +6104,7 @@ s8 IsItemDisplayUsable(struct Unit* unit, int item) { // 8016AB0
     return TRUE;
 }
  
-
+ 
 extern int GetUnitBestWRankType(struct Unit*);
 s8 ArenaIsUnitAllowed(struct Unit* unit) {
     if (unit->statusIndex == UNIT_STATUS_SILENCED) {

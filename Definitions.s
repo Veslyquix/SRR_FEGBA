@@ -110,10 +110,12 @@ SET_FUNC LoadUnit, 0x8017599
 SET_FUNC ClearUnit, 0x8017395
 SET_FUNC ArenaIsUnitAllowed, 0x8029FE1
 SET_FUNC GetUnitBestWRankType, 0x8029965
+SET_DATA gProcScr_ArenaUiMain, 0x86911AC
 .endif 
 .if FE7 == true 
+SET_DATA gProcScr_ArenaUiMain, 0x8CE729C
 SET_DATA gMode, 0x202BBF8+0x1B
-SET_FUNC GetUnitBestWRankType, 0x802EAED
+SET_FUNC GetUnitBestWRankType, 0x802EAC1
 SET_FUNC ArenaIsUnitAllowed, 0x802F159
 SET_FUNC LoadUnit, 0x8017789 
 SET_FUNC ClearUnit, 0x8017509 

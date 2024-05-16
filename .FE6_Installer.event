@@ -114,6 +114,8 @@ NeverChangeIntoItem(0x53) // glitchy animation & unbreakable dragonstone with hi
 NeverChangeIntoItem(0x55) // crashes animations 
 NeverChangeIntoItem(0x70) // crashes animations 
 
+NeverChangeChar(0xE1) // arena enemy randomized breaks things 
+
 #ifdef VeslyBuildfile
 	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
 #else 
