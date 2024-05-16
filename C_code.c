@@ -1281,19 +1281,6 @@ int GetInitialSeed(int rate) {
 	return result; 
 } 
 
-
-u16 HashByte_Class(int n, int max, u8 noise[], int offset) {
-	//asm("mov r11, r11"); 
-	int c; 
-	while (c = *noise++) { 
-	n = c + (n << 6) + (n << 16) - n;
-	} 
-	n = (RandValues->seed&0xFF) + (n << 6) + (n << 16) - n;
-	n = ((RandValues->seed&0xFF00) >> 8) + (n << 6) + (n << 16) - n;	
-	n = ((offset&0xFF)) + (n << 6) + (n << 16) - n;	
-	return Mod((n & 0x2FFFFFFF), max);
-}
-
 u16 HashByte_Global(int number, int max, int noise[], int offset) {
 	//asm("mov r11, r11"); 
 	offset += noise[0] + noise[1] + noise[2] + noise[3] + number; 
@@ -1506,7 +1493,7 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	return list; 
 } 
 
-int RandClass(int id, u8 noise[], struct Unit* unit) { 
+int RandClass(int id, int noise[], struct Unit* unit) { 
 	if (!ShouldRandomizeClass(unit)) { return id; } 
 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	int allegiance = (unit->index)>>6;
@@ -1516,7 +1503,7 @@ int RandClass(int id, u8 noise[], struct Unit* unit) {
 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
 	 
 	BuildAvailableClassList(list, promotedBitflag, allegiance); 
-	id = HashByte_Class(id, list[0]+1, noise, 0);
+	id = HashByte_Ch(id, list[0]+1, noise, 0);
 	if (!id) { id = 1; } // never 0  
 	if (!list[id]) { return 1; } // never 0 
 	return list[id]; 
@@ -2556,51 +2543,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
     unit->level = uDef->level;
 	unit->xPos = uDef->xPosition;
 	unit->yPos = uDef->yPosition; 
-	
-	u8 noise2[48]; 
-	
 	int noise[4] = {0, 0, 0, 0};  // 1 extra so gCh is used 
-	int c = 0;
-	noise2[c] = character->number; c++; 
-	noise2[c] = character->baseLevel; c++; 
-	noise2[c] = character->baseHP; c++; 
-	noise2[c] = character->basePow; c++; 
-	noise2[c] = character->baseSkl; c++; 
-	noise2[c] = character->baseSpd; c++; 
-	noise2[c] = character->baseDef; c++; 
-	noise2[c] = character->baseRes; c++; 
-	noise2[c] = character->baseLck; c++; 
-	noise2[c] = character->growthHP; c++; 
-	noise2[c] = character->growthPow; c++; 
-	noise2[c] = character->growthSkl; c++; 
-	noise2[c] = character->growthSpd; c++; 
-	noise2[c] = character->growthDef; c++; 
-	noise2[c] = character->growthRes; c++; 
-	noise2[c] = character->growthLck; c++; 
-	noise2[c] = character->portraitId; c++; 
-	noise2[c] = character->affinity; c++; 
-	noise2[c] = unit->index; c++;
-	if (UNIT_FACTION(unit) != FACTION_BLUE) { 
-		if (!(UNIT_CATTRIBUTES(unit) & CA_BOSS)) { 
-		#ifndef FE8 
-		noise2[c] = uDef->xMove; c++;
-		noise2[c] = uDef->yMove; c++;
-		#endif 
-		#ifdef FE8 
-		noise2[c] = uDef->xPosition; 
-		noise2[c] = uDef->yPosition;  
-		#endif 
-		//noise[] = 0; // so gCh is used 
-		} 
-	} 
-	noise2[c] = 0; 
-	noise2[c+1] = 0; 
-	for (int i = c; i >= 0; --i) { 
-	    if (!noise2[i]) { noise2[i]++; }
-		//noise2[i] += 1; 
-	} 
-
-	
 	noise[0] = character->number + character->baseLevel + character->baseHP + character->basePow + character->baseSkl + character->baseSpd + character->baseDef + character->baseRes + character->baseLck;
 	
 
@@ -2638,10 +2581,10 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	if (RandomizeRecruitment) { character = GetReorderedUnit(unit); randCharOriginalClass = GetClassData(character->defaultClass); } 
 
     if ((!uDef->classIndex) || RandomizeRecruitment) {
-        unit->pClassData = GetClassData(RandClass(character->defaultClass, noise2, unit));
+        unit->pClassData = GetClassData(RandClass(character->defaultClass, noise, unit));
 	}
     else { 
-        unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise2, unit));
+        unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise, unit));
 	}
 	
 	// make them the same level of promotion half the time when possible 
@@ -2655,7 +2598,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 					#endif 
 					
 					unit->pClassData = originalClass; // so RandClass will treat us as promoted or not based on that 
-					unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise2, unit));
+					unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise, unit));
 					
 					#ifdef FE6 
 					} 
@@ -2798,7 +2741,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		}
 	} 
 	
-	c = 2; 
+	int c = 2; 
 	if (UNIT_FACTION(unit) == FACTION_BLUE) { c = 3; } 
 	if (UnitHasBonusItem) {  
 		for (int i = 0; i < c; ++i) { 
