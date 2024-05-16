@@ -636,6 +636,7 @@ ALIGN 16 ; SetName(0x0520); String("Darin")
 ALIGN 16 ; SetName(0x054C); String("Enemy")
 ALIGN 16 ; SetName(0x054D); String("Wall")
 ALIGN 16 ; SetName(0x054E); String("Snag")
+ORG NameStrings + (16*256) 
 
 ALIGN 16
 WORD 0 0 0 0 

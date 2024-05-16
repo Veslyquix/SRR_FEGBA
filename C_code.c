@@ -257,6 +257,7 @@ int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed) {
 	const struct CharacterData* table = GetCharacterData(1); 
 	for (int i = 1; i <= 0xFF; i++) { 
 		if (table->portraitId == portraitID) { return table->nameTextId; } 
+		asm("mov r11, r11"); 
 		table++; 
 	
 	} 
@@ -392,7 +393,8 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 	} 
 	//proc->count = c; 
 	proc = proc4; 
-	
+	int c_max = c; 
+	int b_max = b; 
 	int num; 
 	u32 rn = 0; 
 	//table = GetCharacterData(MAX_CHAR_ID);  
@@ -407,24 +409,27 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		#endif 
 		boss = table->attributes & (CA_BOSS);
 		
-		
 		switch (CallGetUnitListToUse(table, boss, true)) { 
 			case 0: { continue; break; } 
 			case 1: { 
 			rn = GetNthRN_Simple(i-1, seed, rn);  
 			c--; 
+			if (c < 0) { c = c_max-1; } 
 			num = HashByte_Simple(rn, c); 
-			//if (c < 0) { asm("mov r11 ,r11"); } 
 			proc->id[(i&0x3F)-1] = unit[num]; 
 			unit[num] = unit[c]; // move last entry to one we just used 
+			unit[c] = proc->id[(i&0x3F)-1];
 				break; 
 			}
 			case 2: {
 				rn = GetNthRN_Simple(i-1, seed, rn);  				
 				b--; 
+				if (b < 0) { b = b_max-1; } 
+				//if (b < 0) { proc->id[(i&0x3F)-1] = 0xFD; continue; } 
 				num = HashByte_Simple(rn, b); 
 				proc->id[(i&0x3F)-1] = bosses[num]; 
 				bosses[num] = bosses[b]; // move last entry to one we just used 
+				bosses[b] = proc->id[(i&0x3F)-1];
 				break;
 			} 
 			default: 
@@ -433,7 +438,7 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 	} 
 	
 	
-	#ifndef FE8 
+	//#ifndef FE8 
 	proc = proc4; 
 	for (int i = MAX_CHAR_ID; i > 0 ; --i) { 
 		//table--; 
@@ -456,7 +461,7 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		//}		
 		
 	} 
-	#endif 
+	//#endif 
 	
 	switch (procID) { 
 		case 0: { return proc1; break; } 

@@ -310,64 +310,279 @@ callHackNew(GetMapLevelUpPortraitId_FE8)
 
 POP 
 
-TextA:
-String("Eirika"); BYTE 0 
-TextB: ; String("Some name"); BYTE 0 
-TextC:
-String("Seth"); BYTE 0 
-TextD: ; String("another name"); BYTE 0 
-TextE:
-String("I "); BYTE 0 
-TextF: ; String("arbitrary text "); BYTE 0 
 
+#ifndef TextTable 
+	#define TextTable 0x15D48C 
+#endif 
+#define setText(textID, offset) "PUSH; ORG (TextTable+(4*textID)); POIN (offset|0x80000000); POP"
 
-
-ALIGN 4 
-ReplaceTextList:
-// required flag, required chapter, pad, text to find, replacement text 
-//SHORT 0; BYTE 0xFF 0; POIN TextA TextB 
-//SHORT 0; BYTE 0xff 0; POIN TextC TextD 
-//SHORT 0; BYTE 0xff 0; POIN TextE TextF 
-WORD 0 0 0// terminator 
+#ifdef VeslyBuildfile
+	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+#else 
+	#define SetName(id) "ALIGN 16"
+#endif 
 
 ALIGN 16
 NameStrings: 
-ALIGN 16 ; String("Eirika"); BYTE 0 
-ALIGN 16 ; String("Seth"); BYTE 0 
-ALIGN 16 ; String("Gilliam"); BYTE 0 
-ALIGN 16 ; String("Franz"); BYTE 0 
-ALIGN 16 ; String("Moulder"); BYTE 0 
-ALIGN 16 ; String("Vanessa"); BYTE 0 
-ALIGN 16 ; String("Ross"); BYTE 0 
-ALIGN 16 ; String("Neimi"); BYTE 0 
-ALIGN 16 ; String("Colm"); BYTE 0 
-ALIGN 16 ; String("Garcia"); BYTE 0 
-ALIGN 16 ; String("Innes"); BYTE 0 
-ALIGN 16 ; String("Lute"); BYTE 0 
-ALIGN 16 ; String("Natasha"); BYTE 0 
-ALIGN 16 ; String("Cormag"); BYTE 0 
-ALIGN 16 ; String("Ephraim"); BYTE 0 
-ALIGN 16 ; String("Forde"); BYTE 0 
-ALIGN 16 ; String("Kyle"); BYTE 0 
-ALIGN 16 ; String("Amelia"); BYTE 0 
-ALIGN 16 ; String("Artur"); BYTE 0 
-ALIGN 16 ; String("Gerik"); BYTE 0 
-ALIGN 16 ; String("Tethys"); BYTE 0 
-ALIGN 16 ; String("Marisa"); BYTE 0 
-ALIGN 16 ; String("Saleh"); BYTE 0 
-ALIGN 16 ; String("Ewan"); BYTE 0 
-ALIGN 16 ; String("L'Arachel"); BYTE 0 
-ALIGN 16 ; String("Dozla"); BYTE 0 
-ALIGN 16 ; String("Enemy"); BYTE 0 
-ALIGN 16 ; String("Rennac"); BYTE 0 
-ALIGN 16 ; String("Duessel"); BYTE 0 
-ALIGN 16 ; String("Myrrh"); BYTE 0 
-ALIGN 16 ; String("Knoll"); BYTE 0 
-ALIGN 16 ; String("Joshua"); BYTE 0 
-ALIGN 16 ; String("Syrene"); BYTE 0 
-ALIGN 16 ; String("Tana"); BYTE 0 
-ALIGN 16 ; String("Lyon"); BYTE 0 
-ALIGN 16
+FILL 16*256 
+ORG NameStrings 
+ALIGN 16 ; SetName(0x0212); String("Eirika"); 
+ALIGN 16 ; SetName(0x0213); String("Seth"); 
+ALIGN 16 ; SetName(0x0214); String("Gilliam"); 
+ALIGN 16 ; SetName(0x0215); String("Franz"); 
+ALIGN 16 ; SetName(0x0216); String("Moulder"); 
+ALIGN 16 ; SetName(0x0217); String("Vanessa"); 
+ALIGN 16 ; SetName(0x0218); String("Ross"); 
+ALIGN 16 ; SetName(0x0219); String("Neimi"); 
+ALIGN 16 ; SetName(0x021A); String("Colm"); 
+ALIGN 16 ; SetName(0x021B); String("Garcia"); 
+ALIGN 16 ; SetName(0x021C); String("Innes"); 
+ALIGN 16 ; SetName(0x021D); String("Lute"); 
+ALIGN 16 ; SetName(0x021E); String("Natasha"); 
+ALIGN 16 ; SetName(0x021F); String("Cormag"); 
+ALIGN 16 ; SetName(0x0220); String("Ephraim"); 
+ALIGN 16 ; SetName(0x0221); String("Forde"); 
+ALIGN 16 ; SetName(0x0222); String("Kyle"); 
+ALIGN 16 ; SetName(0x0223); String("Amelia"); 
+ALIGN 16 ; SetName(0x0224); String("Artur"); 
+ALIGN 16 ; SetName(0x0225); String("Gerik"); 
+ALIGN 16 ; SetName(0x0226); String("Tethys"); 
+ALIGN 16 ; SetName(0x0227); String("Marisa"); 
+ALIGN 16 ; SetName(0x0228); String("Saleh"); 
+ALIGN 16 ; SetName(0x0229); String("Ewan"); 
+ALIGN 16 ; SetName(0x022A); String("L'Arachel"); 
+ALIGN 16 ; SetName(0x022B); String("Dozla"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x022D); String("Rennac"); 
+ALIGN 16 ; SetName(0x022E); String("Duessel"); 
+ALIGN 16 ; SetName(0x022F); String("Myrrh"); 
+ALIGN 16 ; SetName(0x0230); String("Knoll"); 
+ALIGN 16 ; SetName(0x0231); String("Joshua"); 
+ALIGN 16 ; SetName(0x0232); String("Syrene"); 
+ALIGN 16 ; SetName(0x0233); String("Tana"); 
+ALIGN 16 ; SetName(0x0234); String("Lyon"); 
+ALIGN 16 ; SetName(0x0236); String("Orson"); 
+ALIGN 16 ; SetName(0x024A); String("Glen"); 
+ALIGN 16 ; SetName(0x0238); String("Selena"); 
+ALIGN 16 ; SetName(0x0237); String("Valter"); 
+ALIGN 16 ; SetName(0x0246); String("Riev"); 
+ALIGN 16 ; SetName(0x0244); String("Caellach"); 
+ALIGN 16 ; SetName(0x025B); String("Fado"); 
+ALIGN 16 ; SetName(0x0260); String("Ismaire"); 
+ALIGN 16 ; SetName(0x025C); String("Hayden"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x02F1); String("Phantom"); 
+ALIGN 16 ; SetName(0x026D); String("Summon"); 
+ALIGN 16 ; SetName(0x026C); String("Summonern"); 
+ALIGN 16 ; SetName(0x02F1); String("Phantom"); 
+ALIGN 16 ; SetName(0x02F1); String("Phantom"); 
+ALIGN 16 ; SetName(0x0234); String("Lyon"); 
+ALIGN 16 ; SetName(0x0235); String("Morva"); 
+ALIGN 16 ; SetName(0x0236); String("Orson"); 
+ALIGN 16 ; SetName(0x0237); String("Valter"); 
+ALIGN 16 ; SetName(0x0238); String("Selena"); 
+ALIGN 16 ; SetName(0x0237); String("Valter"); 
+ALIGN 16 ; SetName(0x0239); String("Breguet"); 
+ALIGN 16 ; SetName(0x023A); String("Bone"); 
+ALIGN 16 ; SetName(0x023B); String("Bazba"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x023C); String("Saar"); 
+ALIGN 16 ; SetName(0x023D); String("Novala"); 
+ALIGN 16 ; SetName(0x023E); String("Murray"); 
+ALIGN 16 ; SetName(0x023F); String("Tirado"); 
+ALIGN 16 ; SetName(0x0240); String("Binks"); 
+ALIGN 16 ; SetName(0x0241); String("Pablo"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0242); String("Aias"); 
+ALIGN 16 ; SetName(0x0243); String("Carlyle"); 
+ALIGN 16 ; SetName(0x0244); String("Caellach"); 
+ALIGN 16 ; SetName(0x0241); String("Pablo"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0246); String("Riev"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0247); String("Gheb"); 
+ALIGN 16 ; SetName(0x0248); String("Beran"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0250); String("Hunter"); 
+ALIGN 16 ; SetName(0x024F); String("Bandit"); 
+ALIGN 16 ; SetName(0x024F); String("Bandit"); 
+ALIGN 16 ; SetName(0x024F); String("Bandit"); 
+ALIGN 16 ; SetName(0x0249); String("O'Neill"); 
+ALIGN 16 ; SetName(0x024A); String("Glen"); 
+ALIGN 16 ; SetName(0x024B); String("Zonta"); 
+ALIGN 16 ; SetName(0x024C); String("Vigarde"); 
+ALIGN 16 ; SetName(0x0234); String("Lyon"); 
+ALIGN 16 ; SetName(0x0236); String("Orson"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024D); String("Soldier"); 
+ALIGN 16 ; SetName(0x024E); String("Remnant"); 
+ALIGN 16 ; SetName(0x0254); String("Cutthroat"); 
+ALIGN 16 ; SetName(0x024E); String("Remnant"); 
+ALIGN 16 ; SetName(0x024E); String("Remnant"); 
+ALIGN 16 ; SetName(0x024E); String("Remnant"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0253); String("Mercenary"); 
+ALIGN 16 ; SetName(0x0251); String("Sellsword"); 
+ALIGN 16 ; SetName(0x0252); String("Remnant"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0256); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x0255); String("Monster"); 
+ALIGN 16 ; SetName(0x025A); String("Fomortiis"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0262); String("Frelian"); 
+ALIGN 16 ; SetName(0x0262); String("Frelian"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x025B); String("Fado"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x025C); String("Hayden"); 
+ALIGN 16 ; SetName(0x025E); String("Mansel"); 
+ALIGN 16 ; SetName(0x025D); String("Klimt"); 
+ALIGN 16 ; SetName(0x025F); String("Dara"); 
+ALIGN 16 ; SetName(0x0260); String("Ismaire"); 
+ALIGN 16 ; SetName(0x0261); String("Messenger"); 
+ALIGN 16 ; SetName(0x0263); String("Rausten"); 
+ALIGN 16 ; SetName(0x0263); String("Rausten"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0266); String("River Folk"); 
+ALIGN 16 ; SetName(0x0266); String("River Folk"); 
+ALIGN 16 ; SetName(0x0266); String("River Folk"); 
+ALIGN 16 ; SetName(0x0266); String("River Folk"); 
+ALIGN 16 ; SetName(0x0266); String("River Folk"); 
+ALIGN 16 ; SetName(0x0265); String("Renais Cit."); 
+ALIGN 16 ; SetName(0x0265); String("Renais Cit."); 
+ALIGN 16 ; SetName(0x0265); String("Renais Cit."); 
+ALIGN 16 ; SetName(0x0264); String("Citizen"); 
+ALIGN 16 ; SetName(0x0267); String("Enemy"); 
+ALIGN 16 ; SetName(0x0268); String("Wall"); 
+ALIGN 16 ; SetName(0x0269); String("Snag"); 
+ORG NameStrings + (16*256) 
+
 
 
 ALIGN 4

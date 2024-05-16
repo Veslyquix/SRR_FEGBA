@@ -368,7 +368,7 @@ POP
 #ifndef TextTable 
 	#define TextTable 0x15D48C
 #endif 
-#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
+//#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
 ConfigText:
 String(" Config") ; BYTE 0 
 ConfigDescText:

@@ -849,7 +849,7 @@ ALIGN 32 ; SetName(0x08B5); STRING "Bandit" "FE6TR" ;
 ALIGN 32 ; SetName(0x0830); STRING "Bandit" "FE6TR" ;
 ALIGN 32 ; SetName(0x08AC); STRING "Enemy" "FE6TR" ;
 ALIGN 32 ; SetName(0x08AD); STRING "Broken Wall" "FE6TR" ;
-
+ORG NameStrings + (32*256) 
 
 
 ALIGN 32
