@@ -5,6 +5,101 @@
   .short 0xf800
 .endm
 
+.global TitleScreen_FE6
+.type TitleScreen_FE6, %function 
+TitleScreen_FE6:
+push {r4, lr} 
+mov r4, r0 
+mov r0, #0
+bl DrawVersionNumber
+mov r2, r4 
+mov r3, #0x64 
+add r3, r2 
+pop {r4} 
+@ no pop lr 
+ldr r0, =0x809B555 
+bx r0 
+.ltorg 
+
+.global SaveScreen_FE6
+.type SaveScreen_FE6, %function 
+SaveScreen_FE6:
+push {lr} 
+mov r0, #1
+bl DrawVersionNumber
+mov r1, r4 
+add r1, #0x2d 
+mov r0, #1 
+strb r0, [r1] 
+pop {r3}
+ldr r3, =0x80881D5
+bx r3
+.ltorg 
+
+
+.global TitleScreen_FE7
+.type TitleScreen_FE7, %function 
+TitleScreen_FE7:
+push {lr} 
+mov r5, r0 
+mov r0, #0
+bl DrawVersionNumber
+mov r4, r5 
+add r4, #0x66 
+ldrh r1, [r4] 
+lsl r0, r1, #0x10 
+asr r0, #0x11 
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global SaveScreen_FE7
+.type SaveScreen_FE7, %function 
+SaveScreen_FE7:
+push {lr} 
+mov r0, #1
+bl DrawVersionNumber
+mov r1, r5 
+add r1, #0x2e
+mov r0, #2
+strb r0, [r1] 
+pop {r3}
+ldr r3, =0x80a3a05
+bx r3
+.ltorg 
+
+.global TitleScreen_FE8
+.type TitleScreen_FE8, %function 
+TitleScreen_FE8:
+push {lr} 
+mov r5, r0 
+mov r0, #0
+bl DrawVersionNumber
+ldr r4, =0x8AA6774 
+mov r0, #0x80 
+lsl r0, #6 
+pop {r3} 
+ldr r3, =0x80C544D 
+bx r3 
+.ltorg 
+
+.global SaveScreen_FE8
+.type SaveScreen_FE8, %function 
+SaveScreen_FE8:
+push {lr} 
+mov r0, #1
+bl DrawVersionNumber
+mov r1, r5 
+add r1, #0x2e
+mov r0, #2
+strb r0, [r1] 
+pop {r3}
+ldr r3, =0x80a9031
+bx r3
+.ltorg 
+
+
+
 .global UniqueAnimationHook_FE7
 .type UniqueAnimationHook_FE7, %function 
 UniqueAnimationHook_FE7: 

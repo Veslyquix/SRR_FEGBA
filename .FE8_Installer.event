@@ -216,6 +216,16 @@ VramDest_DebugFont:
 WORD 0x4800 // in glowy 
 
 PUSH 
+
+#ifdef VeslyBuildfile
+ORG $c5444
+jumpToHack(TitleScreen_FE8) 
+
+ORG $a9028
+jumpToHack(SaveScreen_FE8) 
+#endif 
+
+
 ORG $A20390
 PROC_CALL_ROUTINE_2(FE8_StartDifficultySelection)
 

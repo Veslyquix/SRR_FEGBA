@@ -5014,6 +5014,39 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 
 #endif 
 
+extern void SetupDebugFontForOBJ(int a, int objPalNum); // fe6 8005470 fe7 8005280
+extern void PrintDebugStringAsOBJ(int a, int b, const char *str); // fe6 8005550 fe7 800530C
+void DrawVersionNumber(int addr) { 
+	#ifdef FE8 
+	SetupDebugFontForOBJ(0x5000, 5); 
+	#else 
+	SetupDebugFontForOBJ(0x5000, 15);
+	#endif 
+	
+	
+	int y = 8 * 0x12; 
+	#ifdef FE7 
+	if (!addr) { 
+	y += 7; 
+	} 
+	#endif 
+	#ifdef FE8 
+	if (!addr) { 
+	y -= 5; 
+	} 
+	#endif 
+	if (addr) { PrintDebugStringAsOBJ(0, y+7, "SRR V1.4.0            by Vesly"); y = 5; } 
+	else { PrintDebugStringAsOBJ(0, 0, "SRR V1.4.0            by Vesly"); } 
+	int x = 20; 
+	PrintDebugStringAsOBJ(x+0, y, "discord.com/invite/XEZ");
+	PrintDebugStringAsOBJ(x+177, y+1, ")");
+	PrintDebugStringAsOBJ(x+173, y-5, ".");
+	PrintDebugStringAsOBJ(x+180, y, "TJQ");
+	
+	//SetupDebugFontForBG(0, VramDest_DebugFont);
+	//PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0), "V1.4.0");
+
+} 
 
 #ifndef FE6 
 

@@ -111,8 +111,12 @@ SET_FUNC ClearUnit, 0x8017395
 SET_FUNC ArenaIsUnitAllowed, 0x8029FE1
 SET_FUNC GetUnitBestWRankType, 0x8029965
 SET_DATA gProcScr_ArenaUiMain, 0x86911AC
+SET_FUNC SetupDebugFontForOBJ, 0x8005471
+SET_FUNC PrintDebugStringAsOBJ, 0x8005551
 .endif 
 .if FE7 == true 
+SET_FUNC SetupDebugFontForOBJ, 0x8005281
+SET_FUNC PrintDebugStringAsOBJ, 0x800530d
 SET_DATA gProcScr_ArenaUiMain, 0x8CE729C
 SET_DATA gMode, 0x202BBF8+0x1B
 SET_FUNC GetUnitBestWRankType, 0x802EAC1

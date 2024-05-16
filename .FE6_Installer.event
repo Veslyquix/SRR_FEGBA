@@ -367,8 +367,17 @@ setTextWithHuffman(0xB80, MovText)
 setTextWithHuffman(0xB81, HpText)
 setTextWithHuffman(0xB82, MinusText)
 
+ALIGN 4 
+VramDest_DebugFont: 
+WORD 0xd800 // in glowy or 0x3000 ? // 0x4800 
 
 PUSH 
+
+ORG $9B54C
+jumpToHack(TitleScreen_FE6) 
+
+ORG $881CC
+jumpToHack(SaveScreen_FE6) 
 
 // roy can seize? 
 //Character Editor  (UnitFE6Form) @01 Roy2024-04-04 8:24:40 PM
