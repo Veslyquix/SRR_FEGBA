@@ -3865,11 +3865,16 @@ int ReplaceIfMatching(int usedBufferLength[], const char* find, const char* repl
 
 }  
 
+#ifdef FE8 
+#define TextBufferSize 0x555 
+#else 
+#define TextBufferSize 0x1000
+#endif 
 int DecompText(const char *a, char *b) { 
 	int length = 0; 
 	if ((int)a & 0x80000000) { // anti huffman 
 		a = (const char*) ((int)a & 0x7FFFFFFF); 
-		for (int i = 0; i < 0x555; ++i) { 
+		for (int i = 0; i < TextBufferSize; ++i) { 
 			b[i] = a[i];
 			if (!a[i]) { 
 			length = i; 
@@ -3923,7 +3928,7 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 	#endif 
 	
 
-	for (int i = 0; i < 0x555; ++i) { 
+	for (int i = 0; i < TextBufferSize; ++i) { 
 		if (!b[i]) { return; } 
 		for (int c = 0; c < ListSize; ++c) { 
 			if (!b[i]) { return; } 
