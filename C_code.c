@@ -90,7 +90,7 @@ extern int DefaultConfigToVanilla;
 //#define STRINGS_IN_ROM // faster if defined, but gotta write all the names in the installer 
 
 
-#define TempTextBufferSize 16  
+#define TempTextBufferSize 14  
 typedef struct {
     /* 00 */ PROC_HEADER;
 	u8 count; 
@@ -131,7 +131,6 @@ int ShouldRandomizeRecruitment(void) {
 	return RecruitValues->recruitment; 
 }
 int ShouldRandomizeRecruitmentForUnitID(int id) { 
-	//if (id > ListSize) { return false; } 
 	if (!GetCharacterData(id)->portraitId) { return false; } 
 	return ShouldRandomizeRecruitment(); 
 }
@@ -161,7 +160,7 @@ u32 HashByte_Simple(u32 rn, int max) {
 
 
 #ifdef FE8 
-#define ListSize MAX_CHAR_ID //0x22
+#define ListSize 120 //0x22
 #define PlayerPortraitSize 0x2C
 #endif 
 #ifdef FE7 
@@ -352,8 +351,8 @@ int CallGetUnitListToUse(const struct CharacterData* table, int boss, int exclud
 } 
 
 RecruitmentProc* InitRandomRecruitmentProc(int procID) { 
-	u8 unit[0x80]; 
-	u8 bosses[0x80]; 
+	u8 unit[80]; 
+	u8 bosses[80]; 
 	const struct CharacterData* table = GetCharacterData(1); 
 	int c = 0; 
 	int b = 0; // bosses count 
@@ -436,9 +435,9 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		}
 		
 	} 
+	//asm("mov r11, r11"); 
 	
-	
-	//#ifndef FE8 
+	//#ifndef FE8 // breaks with skillsys atm 
 	proc = proc4; 
 	for (int i = MAX_CHAR_ID; i > 0 ; --i) { 
 		//table--; 
@@ -462,7 +461,6 @@ RecruitmentProc* InitRandomRecruitmentProc(int procID) {
 		
 	} 
 	//#endif 
-	
 	switch (procID) { 
 		case 0: { return proc1; break; } 
 		case 1: { return proc2; break; } 
@@ -1513,12 +1511,29 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	return list; 
 } 
 
-int RandClass(int id, u8 noise[], struct Unit* unit) { 
+
+int RandClass(int id, int noise[], struct Unit* unit) { 
 	if (!ShouldRandomizeClass(unit)) { return id; } 
 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	int allegiance = (unit->index)>>6;
 	//if (allegiance && (id == 0x3C)) { return id; } 
-	u8 list[255]; 
+	u8 list[127]; 
+	list[0] = 99; 
+	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
+	 
+	BuildAvailableClassList(list, promotedBitflag, allegiance); 
+	id = HashByte_Ch(id, list[0]+1, noise, 0);
+	if (!id) { id = 1; } // never 0  
+	if (!list[id]) { return 1; } // never 0 
+	return list[id]; 
+} 
+
+int RandClass2(int id, u8 noise[], struct Unit* unit) { 
+	if (!ShouldRandomizeClass(unit)) { return id; } 
+	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
+	int allegiance = (unit->index)>>6;
+	//if (allegiance && (id == 0x3C)) { return id; } 
+	u8 list[127]; 
 	list[0] = 99; 
 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
 	 
@@ -2564,10 +2579,15 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	unit->xPos = uDef->xPosition;
 	unit->yPos = uDef->yPosition; 
 	
-	u8 noise2[48]; 
+	
 	
 	int noise[4] = {0, 0, 0, 0};  // 1 extra so gCh is used 
 	int c = 0;
+	
+	#define UseRandClass2
+	
+	#ifdef UseRandClass2
+	u8 noise2[24]; 
 	noise2[c] = character->number; c++; 
 	noise2[c] = character->baseLevel; c++; 
 	noise2[c] = character->baseHP; c++; 
@@ -2609,8 +2629,14 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 
 	
 	noise[0] = character->number + character->baseLevel + character->baseHP + character->basePow + character->baseSkl + character->baseSpd + character->baseDef + character->baseRes + character->baseLck;
-	
+	noise[1] = unit->index + character->portraitId + character->growthHP + character->growthPow + character->growthSkl + character->growthSpd + character->growthDef + character->growthRes + character->growthLck; 
 
+
+	#else 
+	noise[0] = character->number + character->baseLevel + character->baseHP; 
+	noise[1] = unit->index + character->portraitId; 
+	
+	#endif 
 	
 	
 	if (UNIT_FACTION(unit) != FACTION_BLUE) { 
@@ -2627,10 +2653,12 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		} 
 	} 
 	else { 
-	noise[1] = unit->index + character->portraitId + character->growthHP + character->growthPow + character->growthSkl + character->growthSpd + character->growthDef + character->growthRes + character->growthLck; 
+
 	noise[2] = 5; // becomes class id 
 	noise[3] = character->affinity; // players don't use gCh anymore 
 	}
+
+	
 	
 	
 	
@@ -2645,16 +2673,24 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	if (RandomizeRecruitment) { character = GetReorderedUnit(unit); randCharOriginalClass = GetClassData(character->defaultClass); } 
 
     if ((!uDef->classIndex) || RandomizeRecruitment) {
-        unit->pClassData = GetClassData(RandClass(character->defaultClass, noise2, unit));
+		#ifdef UseRandClass2 
+        unit->pClassData = GetClassData(RandClass2(character->defaultClass, noise2, unit));
+		#else 
+        unit->pClassData = GetClassData(RandClass(character->defaultClass, noise, unit));
+		#endif 
 	}
     else { 
-        unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise2, unit));
+		#ifdef UseRandClass2 
+        unit->pClassData = GetClassData(RandClass2(uDef->classIndex, noise2, unit));
+		#else 
+        unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise, unit));
+		#endif 
 	}
 	
 	// make them the same level of promotion half the time when possible 
 	if (RandomizeRecruitment) { 
 		if (!(originalClass->attributes & CA_PROMOTED) && (unit->pClassData->attributes & CA_PROMOTED)) { 
-			if (HashByte_Ch(noise[0], 2, noise, 3)) { // 50%, as HashByte never returns the max number 
+			if (!(HashByte_Ch(noise[0], 5, noise, 3))) { // 20%, as HashByte never returns the max number 
 				int prepromoteClassId = unit->pClassData->promotion; 
 				if (prepromoteClassId) { 
 					#ifdef FE6 
@@ -2662,7 +2698,11 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 					#endif 
 					
 					unit->pClassData = originalClass; // so RandClass will treat us as promoted or not based on that 
-					unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise2, unit));
+					#ifdef UseRandClass2 
+					unit->pClassData = GetClassData(RandClass2(prepromoteClassId, noise2, unit));
+					#else 
+					unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise, unit));
+					#endif 
 					
 					#ifdef FE6 
 					} 
@@ -3787,7 +3827,7 @@ void InitReplaceTextListRom(struct ReplaceTextStruct list[]) {
 	
 	//const struct CharacterData* table = GetCharacterData(1); 
 	int uid; 
-	for (int i = 0; i < ListSize; ++i) { 
+	for (int i = 0; i < MAX_CHAR_ID; ++i) { 
 		uid = GetRandomUnitID(i+1, proc); 
 		list[i].find = NameStrings[i]; 
 		list[i].replace = NameStrings[uid-1]; 
@@ -3805,13 +3845,14 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) {
 	//u32 rn[1] = {0}; 
 	int c = 0; 
 	table--; 
-	for (int i = 0; i < ListSize; ++i) { 
+	for (int i = 0; i < MAX_CHAR_ID; ++i) { 
 	// remove the 0x8------- from anti-huffman uncompressed text pointer 
 		table++; 
 		table2 = GetReorderedCharacter(table); 
 		if (table->nameTextId == table2->nameTextId) { 
 			continue; 
 		} 
+		if (c >= ListSize) { break; } 
 		list[c].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
 		list[c].replace = (void*)((int)ggMsgStringTable[table2->nameTextId] & 0x7FFFFFFF); 
 		c++; 
@@ -3829,7 +3870,8 @@ void InitReplaceTextList(struct ReplaceTextStruct list[], char buffer[][TempText
 	//u32 rn[1] = {0}; 
 	int seed = RandValues->seed; 
 
-	for (int i = 0; i < ListSize; ++i) { 
+	for (int i = 0; i < MAX_CHAR_ID; ++i) { 
+		if (i >= ListSize) { break; } 
 		list[i].find = GetStringFromIndexInBufferWithoutReplacing(table->nameTextId, &buffer[i][0]); 
 		list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetNameTextIdOfRandomizedPortrait(table->portraitId, seed), &buffer2[i][0]); 
 		table++; 
