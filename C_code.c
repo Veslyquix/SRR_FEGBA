@@ -148,6 +148,13 @@ u32 HashByte_Simple(u32 rn, int max) {
 	return Mod((rn >> 3), max);
 }; 
 
+int RandomizeSkill(int id, struct Unit* unit) { 
+	if (!id) { return 0; } 
+	const struct CharacterData* table = unit->pCharacterData; 	
+	int noise[4] = { table->number, unit->pClassData->number, id, table->portraitId }; 
+	return HashByte_Global(id, 254, noise, 12)+1; // never 0 
+} 
+
 #ifdef FE6 
 #define MAX_CHAR_ID 0xE2 
 #endif 
@@ -686,45 +693,49 @@ int UnitHasDroppableItem(struct Unit* unit) {
 	if (UNIT_FACTION(unit) != FACTION_RED) { return false; } 
 	return (unit->state & US_DROP_ITEM); 
 } 
+inline s8 IsItemStealableSimple(int item) {
+    return (GetItemData(item)->weaponType == 9);
+}
 extern int IsItemStealable(int item); // 8016D34 8016D38
 int UnitHasStealableItem(struct Unit* unit) { 
 	if (UNIT_FACTION(unit) != FACTION_RED) { return false; } 
 	for (int i = 0; i < 5; ++i) { 
+		#ifdef FE8 
+		if (IsItemStealableSimple(unit->items[i])) { return true; } 
+		#else 
 		if (IsItemStealable(unit->items[i])) { return true; } 
+		#endif 
 	} 
 	return false; 
 } 
 int MaybeDisplayStealOrDropIcon(struct Unit* unit) { 
+	if ((GetGameClock() & 0x1F) >= 20) { return false; } 
 	if (!UNIT_IS_VALID(unit)) { return false; } 
-	
+
 	int x = unit->xPos; 
 	int y = unit->yPos; 
-    x = x * 16 - gCameraX;
-    y = y * 16 - gCameraY;
-	int displayIcon = (Mod(GetGameClock(), 32)) < 20 ? 1 : 0;
-	if (displayIcon) { 
-		if (x < -16 || x > 240) {
-			return false;
-		}
-
-		if (y < -16 || y > 160) {
-			return false;
-		}
-		if (UnitHasDroppableItem(unit)) { 
-		CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 1), OAM0_Y(0x100+y + 7), gObject_8x8, 0x869); // 0x869 priority 2 tile 0x69 
-		} 
-		else if (UnitHasStealableItem(unit)) { 
-		CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 1), OAM0_Y(0x100+y + 7), gObject_8x8, 0x865); 
-		} 
-		#ifdef FE6
-		// add boss icon to fe6 	
-		if (UNIT_CATTRIBUTES(unit) & CA_BOSS) { 
-			CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 9), OAM0_Y(0x100+y + 7), gObject_8x8, 0x850); // drop 0x69 
-		} 
-		#endif 
-		return true; 
+	x = x * 16 - gCameraX;
+	y = y * 16 - gCameraY;
+	if (x < -16 || x > 240) {
+		return false;
 	}
-	return false; 
+
+	if (y < -16 || y > 160) {
+		return false;
+	}
+	if (UnitHasDroppableItem(unit)) { 
+	CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 1), OAM0_Y(0x100+y + 7), gObject_8x8, 0x869); // 0x869 priority 2 tile 0x69 
+	} 
+	else if (UnitHasStealableItem(unit)) { 
+	CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 1), OAM0_Y(0x100+y + 7), gObject_8x8, 0x865); 
+	} 
+	#ifdef FE6
+	// add boss icon to fe6 	
+	if (UNIT_CATTRIBUTES(unit) & CA_BOSS) { 
+		CallARM_PushToSecondaryOAM(OAM1_X(0x200+x + 9), OAM0_Y(0x100+y + 7), gObject_8x8, 0x850); // drop 0x69 
+	} 
+	#endif 
+	return true; 
 } 
 extern void RandColours(int bank, int index, int amount, u8 portraitId); 
 struct FaceVramEntry
@@ -2517,8 +2528,10 @@ void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
 	UnitCheckStatCaps(unit); 
 }
 
+#define CharAutolevelBonusGrowth 10
 void UnitAutolevelCore_Char(struct Unit* unit, u8 classId, int levelCount) {
     if (levelCount > 0) {
+		#ifdef USECHARGROWTHS
         unit->maxHP += GetAutoleveledStatIncrease(GetUnitHPGrowth(unit , true),  levelCount);
         unit->pow   += GetAutoleveledStatIncrease(GetUnitPowGrowth(unit, true), levelCount);
         unit->skl   += GetAutoleveledStatIncrease(GetUnitSklGrowth(unit, true), levelCount);
@@ -2527,15 +2540,30 @@ void UnitAutolevelCore_Char(struct Unit* unit, u8 classId, int levelCount) {
         unit->res   += GetAutoleveledStatIncrease(GetUnitResGrowth(unit, true), levelCount);
         unit->lck   += GetAutoleveledStatIncrease(GetUnitLckGrowth(unit, true), levelCount);
 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetUnitMagGrowth(unit, true), levelCount); } 
+		#else 
+        unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit , true),  levelCount);
+        unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit, true), levelCount);
+        unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit, true), levelCount);
+        unit->spd   += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit, true), levelCount);
+        unit->def   += GetAutoleveledStatIncrease(GetClassDefGrowth(unit, true), levelCount);
+        unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit, true), levelCount);
+        unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
+		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
+		#endif 
     }
     if (levelCount < 0) {
+		#ifdef USECHARGROWTHS
         unit->maxHP = GetAutoleveledStatDecrease(GetUnitHPGrowth(unit , true),  levelCount, unit->maxHP);
+		#else 
+		unit->maxHP = GetAutoleveledStatDecrease(GetClassHPGrowth(unit , true),  levelCount, unit->maxHP);
+		#endif 
 		if (IsUnitAlliedOrPlayable(unit)) { 
 			if (unit->maxHP < 15) { unit->maxHP = 15; } 
 		}
 		else { 
 			if (unit->maxHP < 10) { unit->maxHP = 10; } 
 		} 
+		#ifdef USECHARGROWTHS
         unit->pow   = GetAutoleveledStatDecrease(GetUnitPowGrowth(unit, true), levelCount, unit->pow);
         unit->skl   = GetAutoleveledStatDecrease(GetUnitSklGrowth(unit, true), levelCount, unit->skl);
         unit->spd   = GetAutoleveledStatDecrease(GetUnitSpdGrowth(unit, true), levelCount, unit->spd);
@@ -2543,6 +2571,15 @@ void UnitAutolevelCore_Char(struct Unit* unit, u8 classId, int levelCount) {
         unit->res   = GetAutoleveledStatDecrease(GetUnitResGrowth(unit, true), levelCount, unit->res);
         unit->lck   = GetAutoleveledStatDecrease(GetUnitLckGrowth(unit, true), levelCount, unit->lck);
 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetUnitMagGrowth(unit, true), levelCount, unit->_u3A); } 
+		#else 
+        unit->pow   = GetAutoleveledStatDecrease(GetClassPowGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->pow);
+        unit->skl   = GetAutoleveledStatDecrease(GetClassSklGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->skl);
+        unit->spd   = GetAutoleveledStatDecrease(GetClassSpdGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->spd);
+        unit->def   = GetAutoleveledStatDecrease(GetClassDefGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->def);
+        unit->res   = GetAutoleveledStatDecrease(GetClassResGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->res);
+        unit->lck   = GetAutoleveledStatDecrease(GetClassLckGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->lck);
+		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->_u3A); } 
+		#endif 
     }
 	UnitCheckStatMins(unit); 
 	UnitCheckStatCaps(unit); 

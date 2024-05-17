@@ -395,6 +395,12 @@ PUSH
 ORG $59D21C
 POIN NewChMenu
 
+ORG $24D8D
+AreUnitsAllied:
+ORG $24DA5
+IsSameAllegiance:
+ORG $A4CFD
+GetPidStats:
 
 #ifdef VeslyBuildfile
 ORG $28620
