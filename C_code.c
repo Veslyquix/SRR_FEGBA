@@ -1214,7 +1214,7 @@ u32 GetNthRN_Simple(int n, int seed, u32 currentRN) {
 } 
 
 u32 GetNthRN_Simple2(int n, int seed, u32 currentRN) { 
-	n &= 0xFF; 
+	n = (n ^ (n >> 4)) & 0xF; 
 	if (!currentRN) { 
 		currentRN = InitSeededRN_Simple(seed, currentRN); 
 	} 

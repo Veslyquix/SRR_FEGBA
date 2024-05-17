@@ -5,6 +5,13 @@
   .short 0xf800
 .endm
 
+.global CallBreak
+.type CallBreak, %function 
+CallBreak:
+mov r11, r11 
+bx lr 
+.ltorg 
+
 .global TitleScreen_FE6
 .type TitleScreen_FE6, %function 
 TitleScreen_FE6:
