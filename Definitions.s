@@ -246,7 +246,7 @@ dat 0x085922D0, ProcScr_GotItem
 dat 0x08592300, PopupScr_GotGold
 dat 0x08592348, PopupScr_GoldWasStole
 SET_FUNC UnitLoadStatsFromCharacter, 0x8017e35 
-@SET_FUNC __aeabi_idiv,    __divsi3
+SET_FUNC __aeabi_idiv,    __divsi3
 @SET_FUNC __aeabi_idivmod, __modsi3
 @SET_FUNC Div, __divsi3
 @SET_FUNC Mod, __modsi3
@@ -262,7 +262,7 @@ SET_FUNC UnsetFlag, 0x8083d95
 
 
 .if FE6 == true
-@SET_FUNC __aeabi_idiv, 0x809DCE1 
+SET_FUNC __aeabi_idiv, 0x809DCE1 
 @SET_FUNC Div, 0x809DCE1
 @SET_FUNC Mod, 0x809DCE5
 SET_FUNC SetFlag, 0x806BA49
@@ -404,7 +404,7 @@ SET_FUNC StartBlockingPrepShop, 0x8095df1
 
 .if FE7 == true 
 SET_DATA TacticianName, 0x202BC18
-@SET_FUNC __aeabi_idiv, 0x80BFA15 
+SET_FUNC __aeabi_idiv, 0x80BFA15 
 @SET_FUNC Div, 0x80BFA15
 @SET_FUNC Mod, 0x80BFA19
 SET_FUNC SetFlag, 0x80798E5 

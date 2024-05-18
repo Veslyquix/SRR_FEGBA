@@ -20,6 +20,7 @@
 #define PUREFUNC __attribute__((pure))
 #define ARMFUNC __attribute__((target("arm")))
 int Div(int a, int b) PUREFUNC;
+int Div1(int a, int b) PUREFUNC;
 int Mod(int a, int b) PUREFUNC;
 int DivArm(int b, int a) PUREFUNC;
 extern u8 gCh; 
@@ -1373,10 +1374,10 @@ s16 HashPercent(int number, int noise[], int offset, int global, int earlygamePr
 	} 
 	else { percentage = HashByte_Ch(number, variation*2, noise, offset); }  //rn up to 150 e.g. 125
 	percentage += (100-variation); // 125 + 25 = 150
-	if (earlygamePromo == 1) { if (percentage > 125) { percentage = percentage / 2; } }
-	if (earlygamePromo == 2) { if (percentage > 150) { percentage = percentage / 2; } }
-	int ret = (percentage * number) / 100; //1.5 * 120 (we want to negate this)
-	if (ret > 127) ret = (200 - percentage) * number / 100;
+	if (earlygamePromo == 1) { if (percentage > 125) { percentage = percentage >> 1; } }
+	if (earlygamePromo == 2) { if (percentage > 150) { percentage = percentage >> 1; } }
+	int ret = Div1((percentage * number), 100); //1.5 * 120 (we want to negate this)
+	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	if (ret < 0) ret = 0;
 	return ret;
 };
@@ -1770,13 +1771,13 @@ u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) {
 	// no price weps: poison, legendary, ballista, dragonstone, monster weps 
 	int originalPrice = GetItemData(item)->costPerUse; 
 	int minPrice = originalPrice; 
-	originalPrice += 200 + (((originalPrice * RandValues->variance) / 100) * 5);
+	originalPrice += 200 + (Div1((originalPrice * RandValues->variance), 100) * 5);
 	int uses = GetItemData(item)->maxUses;
 	if (!uses) { uses = 1; } 
 	originalPrice = originalPrice * uses; 
 	minPrice = minPrice * uses; 
 	if (minPrice < 2000) { minPrice = 0; } 
-	else { minPrice = minPrice / 4; if (minPrice > 4000) { minPrice = 4000; } } 
+	else { minPrice = minPrice >> 2; if (minPrice > 4000) { minPrice = 4000; } } 
 	// up to 500% price + 200 
 	list[0] = 0; // count 
 	for (int i = 1; i <= GetMaxItems(); i++) { 
@@ -2127,7 +2128,7 @@ int GetUnitMaxMag(struct Unit* unit) {
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 77); 
-	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 73); } 
+	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap >> 1), noise, 73); } 
 	if (result > cap) { result = cap; } 
 	return result;  
 } 
@@ -2491,7 +2492,7 @@ int NewGetStatDecrease(int growth) {
 
 int GetAutoleveledStatDecrease(int growth, int levelCount, int stat) {
 	int posLevel = ABS(levelCount);
-	int result = stat + NewGetStatDecrease((growth * posLevel) + (NextRN_N((growth * posLevel) / 4) - (growth * posLevel) / 8)); 
+	int result = stat + NewGetStatDecrease((((growth * posLevel) + (NextRN_N(growth * posLevel) >> 2)) - (growth * posLevel)) >> 3); 
 	if (result < 0) { result = 0; } 
     return result;
 }
@@ -2726,8 +2727,8 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	
 	// make them the same level of promotion half the time when possible 
 	if (RandomizeRecruitment) { 
-		if (!(originalClass->attributes & CA_PROMOTED) && (unit->pClassData->attributes & CA_PROMOTED)) { 
-			if (!(HashByte_Ch(noise[0], 5, noise, 3))) { // 20%, as HashByte never returns the max number 
+		if ((!(originalClass->attributes & CA_PROMOTED)) && (unit->pClassData->attributes & CA_PROMOTED)) { 
+			if ((HashByte_Ch(noise[0], 5, noise, 3))) { // 20%, as HashByte never returns the max number 
 				int prepromoteClassId = unit->pClassData->promotion; 
 				if (prepromoteClassId) { 
 					#ifdef FE6 
@@ -2953,7 +2954,7 @@ int GetUnitMaxPow(struct Unit* unit) {
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number;  
 	int result = HashByPercent(cap, noise, 17); 
-	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 13); }  
+	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 13); }  
 	if (result > 30) { result = 30; } 
 	return result;  
 } 
@@ -2965,7 +2966,7 @@ int GetUnitMaxSkl(struct Unit* unit) {
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 27); 
-	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 23); } 
+	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 23); } 
 	if (result > 30) { result = 30; } 
 	return result;   
 } 
@@ -2977,7 +2978,7 @@ int GetUnitMaxSpd(struct Unit* unit) {
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 37); 
-	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 33); } 
+	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 33); } 
 	if (result > 30) { result = 30; } 
 	return result;  
 } 
@@ -2989,7 +2990,7 @@ int GetUnitMaxDef(struct Unit* unit) {
 	int noise[4] = {0, 0, 0, 0};  
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 47); 
-	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 43); } 
+	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 43); } 
 	if (result > 30) { result = 30; } 
 	return result;  
 } 
@@ -3001,7 +3002,7 @@ int GetUnitMaxRes(struct Unit* unit) {
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 57); 
-	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 53); } 
+	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 53); } 
 	if (result > 30) { result = 30; } 
 	return result;  
 } 
@@ -3013,7 +3014,7 @@ int GetUnitMaxLck(struct Unit* unit) {
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 67); 
-	if (result < (cap / 2)) { result += HashByte_Global(cap, (cap/2), noise, 63); } 
+	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 63); } 
 	if (result > 30) { result = 30; } 
 	return result;  
 } 
@@ -3041,7 +3042,7 @@ int NewGetStatIncrease(int growth, int noise[], int level, int offset, int useRN
 	if ((RandBitflags->levelups == 2)) { 
 		if (level < 1) { level = 1; } 
 		// +growth so the first levelup isn't always blank in fixed growths 
-		if (((growth * (level)) / 100) < (((growth * level+1) + growth) / 100)) { 
+		if (Div1((growth * (level)), 100) < Div1(((growth * level+1) + growth), 100)) { 
 			result++; 
 		} 
 		return result; 
