@@ -83,6 +83,7 @@ struct ExceptionsStruct {
 extern struct ExceptionsStruct ItemExceptions[]; 
 extern struct ExceptionsStruct ClassExceptions[]; 
 extern struct ExceptionsStruct CharExceptions[]; 
+extern struct ExceptionsStruct SkillExceptions[]; 
 extern int SkillSysInstalled; 
 extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
@@ -149,11 +150,17 @@ u32 HashByte_Simple(u32 rn, int max) {
 	return Mod((rn >> 3), max);
 }; 
 
+
+
+
 int RandomizeSkill(int id, struct Unit* unit) { 
 	if (!id) { return 0; } 
+	if (SkillExceptions[id].NeverChangeFrom == id) { return id; } 
 	const struct CharacterData* table = unit->pCharacterData; 	
 	int noise[4] = { table->number, unit->pClassData->number, id, table->portraitId }; 
-	return HashByte_Global(id, 254, noise, 12)+1; // never 0 
+	id = HashByte_Global(id, 254, noise, 12)+1; // never 0 
+	if (SkillExceptions[id].NeverChangeInto == id) { return 0; } 
+	return id; 
 } 
 
 #ifdef FE6 

@@ -112,7 +112,9 @@ ShopText:
 String("Shop"); BYTE 0 
 setText(0x1260, ShopText) 
 
-
+ALIGN 4 
+SkillExceptions:
+FILL 256*2
 
 ALIGN 4 
 MaxItems_Link: 

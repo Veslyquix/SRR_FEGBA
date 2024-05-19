@@ -324,6 +324,17 @@ callHackNew(GetMapLevelUpPortraitId_FE8)
 
 POP 
 
+ALIGN 4 
+SkillExceptions:
+FILL 256*2
+#define NeverRandSkill(id) "PUSH; ORG SkillExceptions + (id*2); BYTE id id; POP" 
+#ifdef SKILLSYS_INSTALLED 
+NeverRandSkill(DanceID)
+NeverRandSkill(SummonID)
+NeverRandSkill(CunningID)
+NeverRandSkill(SlayerID)
+#endif 
+
 
 #ifndef TextTable 
 	#define TextTable 0x15D48C 
