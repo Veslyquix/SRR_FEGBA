@@ -332,7 +332,7 @@ POP
 ALIGN 4 
 SkillExceptions:
 FILL 256*2
-#define NeverRandSkill(id) "PUSH; ORG SkillExceptions + (id*2); BYTE id id; POP" 
+#define NeverRandSkill(id) "PUSH; ORG SkillExceptions + (id*2); BYTE 1 1; POP" 
 #ifdef SKILLSYS_INSTALLED 
 NeverRandSkill(DanceID)
 NeverRandSkill(SummonID)
@@ -340,6 +340,23 @@ NeverRandSkill(CunningID)
 NeverRandSkill(SlayerID)
 #endif 
 
+ALIGN 4 
+VanillaSkill:
+FILL 256 
+#define VanillaSkill(id) "PUSH; ORG VanillaSkill + id; BYTE 1; POP" 
+VanillaSkill(SupplyID)
+VanillaSkill(CantoID)
+VanillaSkill(GreatShieldID)
+VanillaSkill(CunningID)
+VanillaSkill(CritUpID)
+VanillaSkill(SureShotID)
+VanillaSkill(SlayerID)
+VanillaSkill(SummonID)
+VanillaSkill(DanceID)
+VanillaSkill(StealID)
+VanillaSkill(LethalityID)
+VanillaSkill(LunaID)
+VanillaSkill(LockTouchID)
 
 #ifndef TextTable 
 	#define TextTable 0x15D48C 
@@ -693,6 +710,16 @@ EnemyMaxHP:
 WORD 60  
 NumberOfSkills:
 WORD 0xE3
+DisplayRandomSkillsOption:
+#ifdef VeslyBuildfile 
+	#ifdef SKILLSYS_INSTALLED 
+		WORD 1 // This requires editing SkillTester.c 
+	#else 
+		WORD 0
+	#endif  
+#else 
+	WORD 0 
+#endif 
 
 ALIGN 4 
 NeverRandomizeBGM:

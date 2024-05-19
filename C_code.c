@@ -60,7 +60,7 @@ struct RandomizerValues {
 	u32 seed : 20; // max value of 999999 /  
 	u32 variance : 5; // up to 5*31 / 100% 
 	u32 bonus : 5; // +20 / -10 levels for enemies 
-	u32 recruitment : 2; // vanilla, random, boss, reverse ? 
+	u32 skills : 2; // vanilla, random, boss, reverse ? 
 }; 
 
 struct RecruitmentValues { 
@@ -151,11 +151,13 @@ u32 HashByte_Simple(u32 rn, int max) {
 }; 
 
 
-
+extern u8 VanillaSkill[]; 
 extern int NumberOfSkills; 
 int RandomizeSkill(int id, struct Unit* unit) { 
 	if (!id) { return 0; } 
 	if (SkillExceptions[id].NeverChangeFrom == id) { return id; } 
+	if (!RandValues->skills) { if (!VanillaSkill[id]) { return 0; } else { return id; } } 
+	if (RandValues->skills == 2) { return id; } 
 	const struct CharacterData* table = unit->pCharacterData; 	
 	int noise[4] = { table->number, unit->pClassData->number, id, table->portraitId }; 
 	id = HashByte_Global(id, NumberOfSkills-1, noise, 12)+1; // never 0 
@@ -3797,9 +3799,15 @@ const char Option15[OPT15NUM][14] = { // Item durability
 "Press A",
 }; 
 #endif 
+#define OPT16NUM 3 
+const char Option16[OPT16NUM][10] = { // Item durability 
+"Vanilla",
+"Random",
+"Fixed",
+}; 
 
 
-const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, 0 }; 
+const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, 0 }; 
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -4091,10 +4099,11 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); // 80C57BC
 #define Y_HAND 3
 #define NUMBER_X 20
+extern int DisplayRandomSkillsOption; 
 const int SRR_MAXDISP = 7;
-const int SRR_TotalOptions = 16;
-const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7};   
-const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 13, 4, 7, 8, 4, 10, 10, 6, 5 } ; 
+const int SRR_TotalOptions = 17;
+const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7, 4};   
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 13, 4, 7, 8, 4, 10, 10, 6, 5, 5 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -4161,6 +4170,10 @@ Max Growth: 100
 	if (i > SRR_MAXDISP) { break; } 
 	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
+	case 17: { if (DisplayRandomSkillsOption) { 
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
+		if (i > SRR_MAXDISP) { break; } 
+	} } 
 	default: 
 	} 
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); return;
@@ -4342,6 +4355,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		if (RandBitflags->class != proc->Option[6]) { reloadUnits = true; } 
 		if (RandBitflags->playerBonus != proc->Option[12]) { reloadUnits = true; } 
 		if (RandValues->bonus != proc->Option[13]) { reloadUnits = true; } 
+		if (RandValues->skills != proc->Option[16]) { reloadUnits = true; } 
 		
 		RandValues->seed = proc->seed; 
 		RandValues->variance = proc->Option[0];
@@ -4365,7 +4379,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflags->itemDur = proc->Option[11]; 
 		RandBitflags->playerBonus = proc->Option[12]; 
 		RandValues->bonus = proc->Option[13];
-		
+		RandValues->skills = proc->Option[16]; 
 		
 		if (RandBitflags->fog != proc->Option[14]) { 
 			if ((proc->Option[14] == 1) && proc->calledFromChapter) { 
@@ -4549,6 +4563,7 @@ const char PlayerBonusText[] = { "Player Bonus" };
 const char EnemyDiffBonusText[] = { "Enemy Diff. Bonus" };
 const char FogText[] = { "Fog" };
 const char SkipChapterText[] = { "Skip chapter" };
+const char SkillsText[] = { "Skills" };
 const char RandomizerText[] = { "Randomizer" };
 #endif 
 
@@ -4599,6 +4614,10 @@ void RedrawAllText(ConfigMenuProc* proc) {
 		if (i > SRR_MAXDISP) { break; } 
 		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
+		case 17: { if (DisplayRandomSkillsOption) { 
+			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
+			if (i > SRR_MAXDISP) { break; } 
+		} } 
 		default: 
 	}
 	
@@ -4785,6 +4804,7 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	proc->Option[12] = RandBitflags->playerBonus;	
 	proc->Option[13] = RandValues->bonus;		
 	proc->Option[14] = RandBitflags->fog;
+	proc->Option[16] = RandValues->skills;
 	
 	gLCDControlBuffer.dispcnt.bg0_on = 0;
 	return ME_DISABLE | ME_PLAY_BEEP; // | ME_CLEAR_GFX;

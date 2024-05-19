@@ -118,6 +118,11 @@ FILL 256*2
 
 NumberOfSkills:
 WORD 0xE3
+DisplayRandomSkillsOption:
+WORD 0
+ALIGN 4 
+VanillaSkill:
+FILL 256 
 
 ALIGN 4 
 MaxItems_Link: 
