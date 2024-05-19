@@ -24,7 +24,7 @@ MESSAGE Open FE8_Installer and read / config things please
 #endif 
 
 #ifndef RandomizerRam 
-#define RandomizerRam 0x203EC24 // 8 bytes of 0x3A unit BWL data 
+#define RandomizerRam 0x203EA34 // 10 bytes of unit id 0x1B (Enemy) BWL data //0x203EC24 // 8 bytes of 0x3A unit BWL data 
 //#define RandomizerRam 0x30017AC // alternative: 8 bytes of Valni records 
 #endif 
 ALIGN 4
@@ -57,6 +57,9 @@ WORD 0
 
 ALIGN 4 
 MaxItems_Link:
+#ifdef VeslyBuildfile 
+WORD 0xBC 
+#endif 
 WORD 0 // If 0, it'll read through your item editor and count 
 // until it finds an item with an ID that does not match (eg. says 0) 
 MaxClasses_Link:
@@ -95,10 +98,12 @@ NeverChangeFromItem(0x6C) // Vulnerary
 NeverChangeIntoItem(0xB5) // Stone 
 NeverChangeClass(0x66) // Demon King 
 
+NeverChangeIntoClass(0xE) // Some manakete
 NeverChangeIntoClass(0x10) // Some mercenary thing 
+//NeverChangeIntoClass(0x51) // Phantom
 
 NeverChangeChar(0xFD) // arena enemy randomized breaks things 
-
+NeverChangeChar(0xBE) // Demon king 
 //NeverChangeChar(1)
 //NeverChangeChar(0x68)
 
@@ -686,7 +691,8 @@ EnemyBossMaxHP:
 WORD 80
 EnemyMaxHP:
 WORD 60  
-
+NumberOfSkills:
+WORD 0xE3
 
 ALIGN 4 
 NeverRandomizeBGM:

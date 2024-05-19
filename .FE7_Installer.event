@@ -116,6 +116,9 @@ ALIGN 4
 SkillExceptions:
 FILL 256*2
 
+NumberOfSkills:
+WORD 0xE3
+
 ALIGN 4 
 MaxItems_Link: 
 #ifdef TLP 

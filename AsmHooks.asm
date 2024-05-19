@@ -1267,16 +1267,7 @@ bx r3
 .type CallGetMaxHP, %function 
 CallGetMaxHP: 
 push {lr} 
-ldr r3, =UseAutoGetters
-ldr r3, [r3] 
-cmp r3, #1 
-bne Replace_GetMaxHP 
-ldr r3, =prMaxHPGetter
-ldr r3, [r3] 
-cmp r3, #0 
-beq Replace_GetMaxHP
-blh prMaxHPGetter
-b Exit_GetMaxHP 
+@ prMaxHPGetter is for unit's current max hp, not hp cap 
 Replace_GetMaxHP:
 bl GetUnitMaxHP
 Exit_GetMaxHP:

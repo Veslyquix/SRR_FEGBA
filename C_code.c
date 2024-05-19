@@ -152,13 +152,13 @@ u32 HashByte_Simple(u32 rn, int max) {
 
 
 
-
+extern int NumberOfSkills; 
 int RandomizeSkill(int id, struct Unit* unit) { 
 	if (!id) { return 0; } 
 	if (SkillExceptions[id].NeverChangeFrom == id) { return id; } 
 	const struct CharacterData* table = unit->pCharacterData; 	
 	int noise[4] = { table->number, unit->pClassData->number, id, table->portraitId }; 
-	id = HashByte_Global(id, 254, noise, 12)+1; // never 0 
+	id = HashByte_Global(id, NumberOfSkills-1, noise, 12)+1; // never 0 
 	if (SkillExceptions[id].NeverChangeInto == id) { return 0; } 
 	return id; 
 } 
@@ -702,7 +702,7 @@ int UnitHasDroppableItem(struct Unit* unit) {
 	return (unit->state & US_DROP_ITEM); 
 } 
 inline s8 IsItemStealableSimple(int item) {
-    return (GetItemData(item)->weaponType == 9);
+    return (GetItemData(item&0xFF)->weaponType == 9);
 }
 extern int IsItemStealable(int item); // 8016D34 8016D38
 int UnitHasStealableItem(struct Unit* unit) { 
@@ -5179,8 +5179,8 @@ void DrawVersionNumber(int addr) {
 	y -= 5; 
 	} 
 	#endif 
-	if (addr) { PrintDebugStringAsOBJ(0, y+7, "SRR V1.4.1            by Vesly"); y = 5; } 
-	else { PrintDebugStringAsOBJ(0, 0, "SRR V1.4.1            by Vesly"); } 
+	if (addr) { PrintDebugStringAsOBJ(0, y+7, " SRR V1.4.1          by Vesly"); y = 5; } 
+	else { PrintDebugStringAsOBJ(0, 0, " SRR V1.4.1          by Vesly"); } 
 	int x = 20; 
 	PrintDebugStringAsOBJ(x+0, y, "discord.com/invite/XEZ");
 	PrintDebugStringAsOBJ(x+177, y+1, ")");
