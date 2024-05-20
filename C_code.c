@@ -4941,6 +4941,7 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	proc->Option[13] = RandValues->bonus;		
 	proc->Option[14] = RandBitflags->fog;
 	proc->Option[16] = RandValues->skills;
+	proc->skill = AlwaysSkill[0];
 	
 	gLCDControlBuffer.dispcnt.bg0_on = 0;
 	return ME_DISABLE | ME_PLAY_BEEP; // | ME_CLEAR_GFX;
