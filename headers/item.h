@@ -293,6 +293,8 @@ typedef struct {
 	u8 freezeSeed; 
 	u8 calledFromChapter; 
 	u8 reloadUnits; 
+	u8 skill; 
+	u8 choosingSkill; 
 	s8 Option[20];
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc*); 

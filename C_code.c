@@ -60,7 +60,7 @@ struct RandomizerValues {
 	u32 seed : 20; // max value of 999999 /  
 	u32 variance : 5; // up to 5*31 / 100% 
 	u32 bonus : 5; // +20 / -10 levels for enemies 
-	u32 skills : 2; // vanilla, random, boss, reverse ? 
+	u32 skills : 2; // vanilla, random, fixed, rand + x skill 
 }; 
 
 struct RecruitmentValues { 
@@ -153,6 +153,7 @@ u32 HashByte_Simple(u32 rn, int max) {
 
 extern u8 VanillaSkill[]; 
 extern int NumberOfSkills; 
+extern u8* AlwaysSkill; 
 int RandomizeSkill(int id, struct Unit* unit) { 
 	if (!id) { return 0; } 
 	if (SkillExceptions[id].NeverChangeFrom == id) { return id; } 
@@ -163,6 +164,34 @@ int RandomizeSkill(int id, struct Unit* unit) {
 	id = HashByte_Global(id, NumberOfSkills-1, noise, 12)+1; // never 0 
 	if (SkillExceptions[id].NeverChangeInto == id) { return 0; } 
 	return id; 
+} 
+
+int GetAlwaysSkill(struct Unit* unit) { 
+	if (UNIT_FACTION(unit) == FACTION_RED) { return 0; } 
+	if (RandValues->skills != 3) { return 0; } 
+	return *AlwaysSkill; 
+} 
+
+extern u8 AlwaysSkillTable[]; 
+int GetNextAlwaysSkill(int id) { 
+	id++; 
+	for (int i = id; i < NumberOfSkills; ++i) { 
+		if (AlwaysSkillTable[i]) { return i; } 
+	} 
+	for (int i = 0; i < NumberOfSkills; ++i) { 
+		if (AlwaysSkillTable[i]) { return i; } 
+	} 
+	return 0; 
+} 
+int GetPreviousAlwaysSkill(int id) { 
+	id--; 
+	for (int i = id; i > 0; --i) { 
+		if (AlwaysSkillTable[i]) { return i; } 
+	} 
+	for (int i = NumberOfSkills; i > 0; --i) { 
+		if (AlwaysSkillTable[i]) { return i; } 
+	} 
+	return 0; 
 } 
 
 #ifdef FE6 
@@ -3799,11 +3828,12 @@ const char Option15[OPT15NUM][14] = { // Item durability
 "Press A",
 }; 
 #endif 
-#define OPT16NUM 3 
+#define OPT16NUM 4 
 const char Option16[OPT16NUM][10] = { // Item durability 
 "Vanilla",
 "Random",
 "Fixed",
+"Random &",
 }; 
 
 
@@ -4096,14 +4126,68 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 }
 
 
+
+#ifdef FE8 
+#define SKILL_ICON(aSkillId) ((1 << 8) + (aSkillId))
+extern const u16 SkillDescTable[];
+int IsSkill(int skillId)
+{
+    if (skillId == 0)
+        return FALSE;
+
+    if (skillId == 255)
+        return FALSE;
+
+    return !!SkillDescTable[skillId];
+}
+char* GetSkillName(int skillId)
+{
+    char* desc = GetStringFromIndex(SkillDescTable[skillId]);
+
+    for (char* it = desc; *it; ++it)
+    {
+        if (*it == ':')
+        {
+            *it = 0;
+            break;
+        }
+    }
+
+    return desc;
+}
+
+char* GetCombinedString(const char* a, char* b, char* c) { 
+	int i = 0; 
+	for (i = 0; i < 0x1000; ++i) { 
+		if (!a[i]) { break; } 
+		c[i] = a[i]; 
+	}
+	c[i] = *" "; 
+	i++; 
+
+	for (int d = 0; d<0x1000; ++d) { 
+		c[i+d] = b[d]; 
+		if (!b[d]) { break; } 
+	}
+	return c; 
+} 
+
+
+
+
+
+
+#endif 
+
 extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); // 80C57BC
 #define Y_HAND 3
 #define NUMBER_X 20
+extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
 extern int DisplayRandomSkillsOption; 
 const int SRR_MAXDISP = 7;
 const int SRR_TotalOptions = 17;
 const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7, 4};   
-const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 13, 4, 7, 8, 4, 10, 10, 6, 5, 5 } ; 
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 13, 4, 7, 8, 4, 10, 10, 6, 5, 17 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -4170,10 +4254,21 @@ Max Growth: 100
 	if (i > SRR_MAXDISP) { break; } 
 	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
+	#ifdef FE8 
 	case 17: { if (DisplayRandomSkillsOption) { 
-		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
+		if ((proc->Option[16] != 3) || (!IsSkill(proc->skill))) {
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++; 
+		} 
+		else { 
+		char string[30]; 
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option16[proc->Option[16]], GetSkillName(proc->skill), string)); i++; 
+			//DrawIcon(
+				//gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
+				//SKILL_ICON(proc->skill), TILEREF(0, 4));
+		}
 		if (i > SRR_MAXDISP) { break; } 
 	} } 
+	#endif 
 	default: 
 	} 
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); return;
@@ -4317,7 +4412,7 @@ void ReloadAllUnits(ConfigMenuProc* proc) {
 } 
 
 
-
+extern int NumberOfSkills; 
 extern void DisplayUiVArrow(int, int, u16, int);
 extern void UnpackUiVArrowGfx(int, int);
 extern void CallEndEvent(void); // (806b5b0) 8079A38 8083280
@@ -4380,6 +4475,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflags->playerBonus = proc->Option[12]; 
 		RandValues->bonus = proc->Option[13];
 		RandValues->skills = proc->Option[16]; 
+		AlwaysSkill[0] = proc->skill; 
 		
 		if (RandBitflags->fog != proc->Option[14]) { 
 			if ((proc->Option[14] == 1) && proc->calledFromChapter) { 
@@ -4403,7 +4499,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		recruitmentProc = Proc_Find(RecruitmentProcCmd4); 
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 		
-		if (proc->Option[15] && ((id + offset) >= (SRR_TotalOptions))) { 
+		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions-1))) { 
 			if (proc->calledFromChapter) { 
 			// clear MU, refresh fog, update gfx, sms update 
 			// 6CCB8 8019ABC 8019504 8025724
@@ -4485,7 +4581,39 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	} 
 	//
 	
-	
+	if (((id+offset) == SRR_TotalOptions) && (proc->Option[16] == 3) && (proc->choosingSkill)) { 
+
+		if (keys & DPAD_UP) {
+			proc->skill = GetNextAlwaysSkill(proc->skill); 
+			proc->redraw = RedrawSome;
+		}
+		else if (keys & DPAD_DOWN) {
+			proc->skill = GetPreviousAlwaysSkill(proc->skill); 
+			proc->redraw = RedrawSome;
+		}
+		else if (keys & DPAD_RIGHT) {
+			proc->choosingSkill = false; 
+			//id--; id += offset; 
+			//if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; } 
+			//else { proc->Option[id] = 0;  } 
+			//proc->redraw = RedrawSome; id++; id -= offset; 
+		}
+		else if (keys & DPAD_LEFT) {
+			proc->choosingSkill = false; 
+			//id--; id += offset; 
+			//if (proc->Option[id] > 0) { proc->Option[id]--; } 
+			//else { proc->Option[id] = OptionAmounts[id] - 1;  } 
+			//proc->redraw = RedrawSome; id++; id -= offset; 
+		}
+		if (proc->choosingSkill) { 
+		DisplayHand(CursorLocationTable[proc->digit].x+12, CursorLocationTable[proc->digit].y + (offset * 8) + 32, true); 
+		} 		
+		if (proc->redraw == RedrawSome) { 
+			proc->redraw = RedrawNone; 
+			DrawConfigMenu(proc); 
+		} 
+		return;		
+	} 
 	
     if (keys & DPAD_DOWN) {
 		if (id < SRR_MAXDISP) { proc->id++; } 
@@ -4515,6 +4643,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	}
 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	if (proc->redraw == RedrawSome) { 
+		if (((id+offset) == SRR_TotalOptions) && (proc->Option[16] == 3)) { proc->choosingSkill = true; } 
 		proc->redraw = RedrawNone; 
 		DrawConfigMenu(proc); 
 	} 
@@ -4753,6 +4882,8 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 		proc->calledFromChapter = false; 
 		proc->offset = 0; 
 		proc->redraw = 0; 
+		proc->skill = GetNextAlwaysSkill(0); 
+		proc->choosingSkill = 0; 
 		proc->freezeSeed = false; 
 		if (RandValues->seed) { proc->freezeSeed = true; } 
 		proc->seed = GetInitialSeed(2); 
@@ -5217,7 +5348,6 @@ void DrawVersionNumber(int addr) {
 extern bool UnitHasMagicRank(struct Unit* unit);
 extern int GetUnitAid(struct Unit* unit);
 extern int CallprAidGetter(struct Unit* unit); 
-extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
 extern int GetUnitAidIconId(u32 attributes);
 extern char* GetUnitStatusName(struct Unit* unit);
 extern void DisplayBwl(void);

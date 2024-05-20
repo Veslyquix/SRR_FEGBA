@@ -24,7 +24,7 @@ MESSAGE Open FE8_Installer and read / config things please
 #endif 
 
 #ifndef RandomizerRam 
-#define RandomizerRam 0x203EA34 // 10 bytes of unit id 0x1B (Enemy) BWL data //0x203EC24 // 8 bytes of 0x3A unit BWL data 
+#define RandomizerRam 0x203EA34 // 12 bytes of unit id 0x1B (Enemy) BWL data //0x203EC24 // 8 bytes of 0x3A unit BWL data 
 //#define RandomizerRam 0x30017AC // alternative: 8 bytes of Valni records 
 #endif 
 ALIGN 4
@@ -357,6 +357,40 @@ VanillaSkill(StealID)
 VanillaSkill(LethalityID)
 VanillaSkill(LunaID)
 VanillaSkill(LockTouchID)
+
+ALIGN 4 
+AlwaysSkillTable:
+FILL 256 
+#ifdef SKILLSYS_INSTALLED 
+#define AlwaysSkill(id) "PUSH; ORG AlwaysSkillTable + id; BYTE 1; POP" 
+AlwaysSkill(CantoPlusID)
+AlwaysSkill(CaptureID)
+AlwaysSkill(LifeAndDeathID)
+AlwaysSkill(SoulSapID)
+AlwaysSkill(RecklessFighterID)
+AlwaysSkill(MultiscaleID)
+AlwaysSkill(ShadePlusID)
+AlwaysSkill(RallyChaosID)
+AlwaysSkill(EternalVanityID)
+AlwaysSkill(SpectrumInitID)
+AlwaysSkill(AcrobatID)
+AlwaysSkill(PassID)
+AlwaysSkill(DespoilID)
+AlwaysSkill(PickupID)
+AlwaysSkill(FuryID)
+AlwaysSkill(FailGaleID)
+AlwaysSkill(GaleforceID)
+AlwaysSkill(GrislyWoundID)
+AlwaysSkill(NoGuardID)
+AlwaysSkill(SteadyBrawlerID)
+AlwaysSkill(DazzleID)
+AlwaysSkill(PridefulWarriorID)
+AlwaysSkill(WaryFighterID)
+AlwaysSkill(StealPlusID)
+AlwaysSkill(RightfulGodID)
+AlwaysSkill(VantagePlusID)
+AlwaysSkill(NiceThighsID)
+#endif 
 
 #ifndef TextTable 
 	#define TextTable 0x15D48C 
@@ -740,6 +774,8 @@ MaxClasses:
 WORD RandomizerRam+9
 RecruitValues:
 WORD RandomizerRam+10
+AlwaysSkill:
+WORD RandomizerRam+11
 #else 
 MESSAGE IMPROVED_SOUND_MIXER is not compatible with the self randomizing rom. Please comment it out in config.event to install. 
 #endif 
