@@ -93,6 +93,9 @@ CharExceptions: //
 FILL(256*2) 
 
 
+NeverChangeItem(0xA6) // Nightmare 
+NeverChangeItem(0xA5) // Dance  
+NeverChangeItem(0xA6) // Nightmare 
  
 NeverChangeFromItem(0x6C) // Vulnerary 
 NeverChangeIntoItem(0xB5) // Stone 
@@ -390,6 +393,12 @@ AlwaysSkill(StealPlusID)
 AlwaysSkill(RightfulGodID)
 AlwaysSkill(VantagePlusID)
 AlwaysSkill(NiceThighsID)
+AlwaysSkill(NonconformingID)
+AlwaysSkill(ReciprocalAidID)
+AlwaysSkill(BlackMagicID)
+AlwaysSkill(BlossomID)
+AlwaysSkill(DarkBargainID)
+//AlwaysSkill(DevilsWhimID) // if skill defined, maybe 
 #endif 
 
 #ifndef TextTable 
@@ -665,6 +674,8 @@ ALIGN 16 ; SetName(0x0268); String("Wall");
 ALIGN 16 ; SetName(0x0269); String("Snag"); 
 ORG NameStrings + (16*256) 
 
+//ALIGN 16 ; SetName(0x0253); String("Mercenary"); 
+// todo: replace dummy names 
 
 
 ALIGN 4

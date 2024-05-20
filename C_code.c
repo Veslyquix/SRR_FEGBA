@@ -167,7 +167,7 @@ int RandomizeSkill(int id, struct Unit* unit) {
 } 
 
 int GetAlwaysSkill(struct Unit* unit) { 
-	if (UNIT_FACTION(unit) == FACTION_RED) { return 0; } 
+	//if (UNIT_FACTION(unit) == FACTION_RED) { return 0; } 
 	if (RandValues->skills != 3) { return 0; } 
 	return *AlwaysSkill; 
 } 
@@ -1661,6 +1661,11 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	if (IncludeMonstersWithoutWEXP && (attr & CA_LOCK_3)) { 
 		doWeHaveNonStaff = 1; 
 	} 
+	// never give monster weapons to units that have wexp 
+	//else if (doWeHaveNonStaff && (attr & CA_LOCK_3)){ 
+	else if (doWeHaveNonStaff){ 
+		badAttr |= IA_LOCK_3;
+	}
 	
 	if (doWeHaveNonStaff) { ranks[4] = 0; doWeHaveNonStaff = 0; } // do not include staves at first 
 	else { doWeHaveNonStaff = IA_STAFF; } 
