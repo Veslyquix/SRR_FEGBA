@@ -13,8 +13,10 @@
 #include "Patches/FE8_AsmHooks.lyn.event" 
 
 #ifdef SKILLSYS_INSTALLED
+#ifndef VeslyBuildfile
 MESSAGE Open FE8_Installer and read / config things please 
 //asdf // add two slashes to comment out this line 
+#endif 
 #endif 
 
 //#define JankyPalettes // Uncomment if you want to always use char palettes, even with classes randomized 
@@ -95,7 +97,7 @@ FILL(256*2)
 
 NeverChangeItem(0xA6) // Nightmare 
 NeverChangeItem(0xA5) // Dance  
-NeverChangeItem(0xA6) // Nightmare 
+NeverChangeItem(0xB6) // Alacalibur has no sfx 
  
 NeverChangeFromItem(0x6C) // Vulnerary 
 NeverChangeIntoItem(0xB5) // Stone 
@@ -111,8 +113,10 @@ NeverChangeChar(0xBE) // Demon king
 //NeverChangeChar(0x68)
 
 #ifdef SKILLSYS_INSTALLED
+#ifndef VeslyBuildfile
 MESSAGE Read/edit until this line unless you want to change your stat screen first page layout below 
 //qwer // add two slashes to comment out this line 
+#endif 
 #endif 
 
 
@@ -754,6 +758,7 @@ WORD 16
 #endif  
 #else 
 WORD 16 
+#endif 
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:

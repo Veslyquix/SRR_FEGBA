@@ -1565,7 +1565,7 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	return list; 
 } 
 
-
+// now replaced with randclass2 
 int RandClass(int id, int noise[], struct Unit* unit) { 
 	if (!ShouldRandomizeClass(unit)) { return id; } 
 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
@@ -1582,7 +1582,7 @@ int RandClass(int id, int noise[], struct Unit* unit) {
 	return list[id]; 
 } 
 
-int RandClass2(int id, u8 noise[], struct Unit* unit) { 
+int RandClass2(int id, u8 noise[], struct Unit* unit) {  
 	if (!ShouldRandomizeClass(unit)) { return id; } 
 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	int allegiance = (unit->index)>>6;
