@@ -48,7 +48,7 @@ struct RandomizerSettings {
 	u32 randMusic : 2;  // vanilla, random
 	u32 colours : 3; // vanilla, random, janky, portraits only 
 	u32 itemStats : 2; // vanilla, random 
-	u32 itemDur : 2; // vanilla, infinite 
+	u32 itemDur : 2; // vanilla, infinite weps, infinite 
 	u32 playerBonus : 5; // +20 / -10 levels for players 
 	u32 grow50 : 1; // always 50% 
 	u32 fog : 2; // vanilla, always off, always on 
@@ -576,9 +576,12 @@ int ShouldRandomizeBGM(void) {
 
 
 u16 GetItemAfterUse(int item) { // 16AEC 8016730 8016928 
-    if ((GetItemAttributes(item) & IA_UNBREAKABLE) || (RandBitflags->itemDur))
-        return item; // unbreakable items don't lose uses!
+	int attr = GetItemAttributes(item);
+    if ((attr & IA_UNBREAKABLE) || (RandBitflags->itemDur == 2)) { 
+	return item; } // unbreakable items don't lose uses!
 
+	if ((RandBitflags->itemDur == 1) && ((attr & (IA_WEAPON|IA_STAFF)) || (GetItemData(item&0xFF)->weaponType == 0xC))) { return item; } 
+	
     item -= (1 << 8); // lose one use
 
     if (item < (1 << 8))
@@ -589,7 +592,8 @@ u16 GetItemAfterUse(int item) { // 16AEC 8016730 8016928
 
 int GetItemAttributes(int item) { // 801727C
 	u32 attr = GetItemData(item & 0xFF)->attributes;
-	if (RandBitflags->itemDur) { attr |= IA_UNBREAKABLE; } 
+	if ((RandBitflags->itemDur == 1) && ((attr & (IA_WEAPON|IA_STAFF)) || (GetItemData(item&0xFF)->weaponType == 0xC))) { attr |= IA_UNBREAKABLE; } 
+	if (RandBitflags->itemDur == 2) { attr |= IA_UNBREAKABLE; } 
 	return attr; 
 }
 
@@ -3728,13 +3732,14 @@ const char Option10[OPT10NUM][22] = {
 "Portraits only",
 }; 
 #endif
-#define OPT11NUM 2
+#define OPT11NUM 3
 #ifdef FE6 
-extern const char Option11[OPT11NUM][32]; // do align 16 before each? 
+extern const char Option11[OPT11NUM][48]; // do align 16 before each? 
 #else 
-const char Option11[OPT11NUM][10] = { // Item durability 
+const char Option11[OPT11NUM][20] = { // Item durability 
 "Vanilla",
-"Infinite",
+"Infinite weapons",
+"Infinite items",
 }; 
 #endif
 #define OPT12NUM 31
@@ -4190,9 +4195,9 @@ extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); /
 extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
 extern int DisplayRandomSkillsOption; 
 const int SRR_MAXDISP = 7;
-const int SRR_TotalOptions = 17;
+extern const int SRR_TotalOptions;
 const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7, 4};   
-const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 13, 4, 7, 8, 4, 10, 10, 6, 5, 17 } ; 
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 13, 4, 7, 8, 9, 10, 10, 6, 5, 17 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -4748,10 +4753,12 @@ void RedrawAllText(ConfigMenuProc* proc) {
 		if (i > SRR_MAXDISP) { break; } 
 		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
+		#ifdef FE8 
 		case 17: { if (DisplayRandomSkillsOption) { 
 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
 			if (i > SRR_MAXDISP) { break; } 
 		} } 
+		#endif 
 		default: 
 	}
 	

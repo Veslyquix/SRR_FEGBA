@@ -745,6 +745,15 @@ WORD 1
 ALIGN 4
 IconOrr:
 WORD IconOrrValue
+SRR_TotalOptions:
+#ifdef VeslyBuildfile 
+#ifdef SKILLSYS_INSTALLED 
+WORD 17
+#else 
+WORD 16
+#endif  
+#else 
+WORD 16 
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:

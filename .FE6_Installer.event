@@ -274,12 +274,13 @@ ALIGN 32; STRING "Random" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Janky" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Portraits only" "FE6TR" ; BYTE 0
 
-ALIGN 32
+ALIGN 48
 Option11:
-FILL(32*2)
+FILL(48*3)
 ORG Option11
-ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
-ALIGN 32; STRING "Infinite" "FE6TR" ; BYTE 0
+ALIGN 48; STRING "Vanilla" "FE6TR" ; BYTE 0
+ALIGN 48; STRING "Infinite weapons" "FE6TR" ; BYTE 0
+ALIGN 48; STRING "Infinite items" "FE6TR" ; BYTE 0
 
 ALIGN 42
 Option12:
@@ -544,6 +545,9 @@ WORD 0
 ALIGN 4 
 VanillaSkill:
 FILL 256 
+ALIGN 4 
+AlwaysSkillTable:
+FILL 256 
 
 ALIGN 4 
 NewChMenu: 
@@ -607,6 +611,8 @@ WORD 250 // make this 125 if you like
 ALIGN 4
 IconOrr:
 WORD IconOrrValue
+SRR_TotalOptions:
+WORD 16
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:
