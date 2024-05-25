@@ -1,0 +1,71 @@
+
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+#endif 
+#include "TimedHits.lyn.event" 
+#include "C_Code.lyn.event" 
+#define BATTLE_ANIMATION_NUMBERS
+#include "AnimNumbers/AnimNumbers.event"
+
+PUSH 
+ORG 0x599f4
+callHackNew(CallStartTimedHitsProc)
+
+ORG $59674
+jumpToHack(InitCurrentAnimForTimedHitsProc)
+
+POP 
+
+ALIGN 4 
+UsingSkillSys:
+WORD 1 
+BonusDamagePercent:
+WORD 150
+ReducedDamagePercent:
+WORD 50 
+MinFramesToDisplayGfx: // Minimum - will last as long as hp is depleting 
+WORD 25
+LenienceFrames: // on either side, so within 10 frames before or after 
+WORD 10 
+AlwaysWork: 
+WORD 0
+NumberOfRandomButtons:
+WORD 2
+AlwaysA:
+WORD 0 // true if 1, false if 0  
+ForceAnimsOn:
+WORD 1 
+
+ALIGN 4 
+Press_Image:
+#incbin "images/Press.dmp" 
+ALIGN 4 
+gPal_Press_A_Image:
+#incbin "images/Press_A_pal.dmp" 
+ALIGN 4 
+BattleStar:
+#incbin "images/BattleStar.dmp" 
+ALIGN 4 
+gPal_BattleStar:
+#incbin "images/BattleStar_pal.dmp" 
+ALIGN 4 
+A_Button:
+#incbin "images/A_Button.dmp"
+ALIGN 4 
+B_Button:
+#incbin "images/B_Button.dmp"
+ALIGN 4 
+Left_Button:
+#incbin "images/Left_Button.dmp"
+ALIGN 4 
+Right_Button:
+#incbin "images/Right_Button.dmp"
+ALIGN 4 
+Up_Button:
+#incbin "images/Up_Button.dmp"
+ALIGN 4 
+Down_Button:
+#incbin "images/Down_Button.dmp"
+
+
+
