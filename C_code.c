@@ -1,4 +1,6 @@
 
+//#define FORCE_SPECIFIC_SEED
+#define VersionNumber " SRR V1.4.2"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -302,7 +304,7 @@ int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed) {
 	const struct CharacterData* table = GetCharacterData(1); 
 	for (int i = 1; i <= 0xFF; i++) { 
 		if (table->portraitId == portraitID) { return table->nameTextId; } 
-		asm("mov r11, r11"); 
+		//asm("mov r11, r11"); 
 		table++; 
 	
 	} 
@@ -1246,17 +1248,6 @@ u32 InitSeededRN_Simple(int seed, u32 currentRN) {
 }
 
 u32 GetNthRN_Simple(int n, int seed, u32 currentRN) { 
-	n &= 0xF; 
-	if (!currentRN) { 
-		currentRN = InitSeededRN_Simple(seed, currentRN); 
-	} 
-	for (int i = 0; i < n; i++) { 
-		currentRN = NextSeededRN_Simple(currentRN); 
-	}
-	return currentRN; 
-} 
-
-u32 GetNthRN_Simple2(int n, int seed, u32 currentRN) { 
 	n = (n ^ (n >> 4)) & 0xF; 
 	if (!currentRN) { 
 		currentRN = InitSeededRN_Simple(seed, currentRN); 
@@ -1356,9 +1347,9 @@ u16 HashByte_Class(int n, int max, u8 noise[], int offset) {
 u16 HashByte_Global(int number, int max, int noise[], int offset) {
 	//asm("mov r11, r11"); 
 	offset += noise[0] + noise[1] + noise[2] + noise[3] + number; 
-	//offset &= 0xFF; // GetNthRN_Simple2 does this anyway 
+	//offset &= 0xFF; // GetNthRN_Simple does this anyway 
 	int currentRN = 0; 
-	currentRN = GetNthRN_Simple2(offset, RandValues->seed, currentRN); 
+	currentRN = GetNthRN_Simple(offset, RandValues->seed, currentRN); 
 	currentRN = (RandValues->seed&0xFF) + (currentRN << 6) + (currentRN << 16) - currentRN;
 	currentRN = ((RandValues->seed&0xFF00) >> 8) + (currentRN << 6) + (currentRN << 16) - currentRN;
 	//currentRN = ((RandValues->seed&0xFF0000) >> 16) + (currentRN << 6) + (currentRN << 16) - currentRN;
@@ -1410,6 +1401,11 @@ u16 HashByte_Ch(int number, int max, int noise[], int offset){
 s16 HashPercent(int number, int noise[], int offset, int global, int earlygamePromo){
 	if (number < 0) number = 0;
 	int variation = (RandValues->variance)*5;
+	if (earlygamePromo == 3) { // 2/3rds
+		variation += variation; 
+		variation = variation / 3; 
+		
+	} 
 	int percentage = 0; 
 	if (global) { 
 		percentage = HashByte_Global(number, variation*2, noise, offset); //rn up to 150 e.g. 125
@@ -1432,6 +1428,10 @@ s16 HashByPercent(int number, int noise[], int offset){
 	return HashPercent(number, noise, offset, true, false);
 };
 
+s16 HashByTwoThirdsPercent(int number, int noise[], int offset){
+	return HashPercent(number, noise, offset, true, 3);
+};
+
 int GetRNByID(int id) { 
 	int noise[4] = { 0, 0, 0, 0 };
 	int result = HashByte_Global(5, 254, noise, id)+1;
@@ -1444,12 +1444,12 @@ int GetRNByID(int id) {
 s16 HashMight(int number, int noise[]) { 
 	if (!RandBitflags->itemStats) { return number; } 
 	if (number == 255) { return number; } // eclipse 
-	return HashByPercent(number, noise, 0)+2; 
+	return HashByTwoThirdsPercent(number, noise, 0)+2; 
 } 
 extern int MaxWeaponHitrate; 
 s16 HashHit(int number, int noise[]) { 
 	if (!RandBitflags->itemStats) { return number; } 
-	number = HashByPercent(number, noise, 0);
+	number = HashByTwoThirdsPercent(number, noise, 0);
 	if (number < 50) number += number + (noise[0] & 0x1F) + 30; 
 	if (number > MaxWeaponHitrate) { number = MaxWeaponHitrate; } 
 	return number; 
@@ -1461,7 +1461,7 @@ s16 HashCrit(int number, int noise[]) {
 } 
 s16 HashWeight(int number, int noise[]) { 
 	if (!RandBitflags->itemStats) { return number; } 
-	return HashByPercent(number, noise, 0); 
+	return HashByTwoThirdsPercent(number, noise, 0); 
 } 
 
 inline int IsUnitAlliedOrPlayable(struct Unit* unit) { 
@@ -2519,14 +2519,14 @@ int NewGetStatDecrease(int growth) {
     int result = 0;
 
     while (growth > 100) {
-        result--;
+        result++;
         growth -= 100;
     }
 	//offset += (level*15) + level; 
 	
 	//if (useRN) { 
 	if (Roll1RN(growth)) { // 50 
-	result--; } 
+	result++; } 
 	//}
 	//else if (HashByte_Global(growth, 100, noise, offset) >= (100 - growth)) {
     //if (Roll1RN(growth)) { // 50 
@@ -2538,8 +2538,10 @@ int NewGetStatDecrease(int growth) {
 
 
 int GetAutoleveledStatDecrease(int growth, int levelCount, int stat) {
-	int posLevel = ABS(levelCount);
-	int result = stat + NewGetStatDecrease((((growth * posLevel) + (NextRN_N(growth * posLevel) >> 2)) - (growth * posLevel)) >> 3); 
+	levelCount = ABS(levelCount);
+	//int result = stat - NewGetStatDecrease((((growth * posLevel) + (NextRN_N(growth * posLevel) / 4)) - (growth * posLevel)) / 8); 
+	int result = stat - NewGetStatDecrease((growth * levelCount) + (NextRN_N((growth * levelCount) / 4) - (growth * levelCount) / 8));
+	//int result = stat - NewGetStatDecrease(growth * levelCount); 
 	if (result < 0) { result = 0; } 
     return result;
 }
@@ -2576,7 +2578,12 @@ void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
 	UnitCheckStatCaps(unit); 
 }
 
-#define CharAutolevelBonusGrowth 10
+#define MinCharAutolevelBonusGrowth 10
+int AdjustGrowthForLosingLevels(int growth, int avg) { 
+	int num = avg - (growth - avg); // invert growths so high growths become low and vice versa 
+	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
+	return num; 
+} 
 void UnitAutolevelCore_Char(struct Unit* unit, u8 classId, int levelCount) {
     if (levelCount > 0) {
 		#ifdef USECHARGROWTHS
@@ -2620,13 +2627,25 @@ void UnitAutolevelCore_Char(struct Unit* unit, u8 classId, int levelCount) {
         unit->lck   = GetAutoleveledStatDecrease(GetUnitLckGrowth(unit, true), levelCount, unit->lck);
 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetUnitMagGrowth(unit, true), levelCount, unit->_u3A); } 
 		#else 
-        unit->pow   = GetAutoleveledStatDecrease(GetClassPowGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->pow);
-        unit->skl   = GetAutoleveledStatDecrease(GetClassSklGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->skl);
-        unit->spd   = GetAutoleveledStatDecrease(GetClassSpdGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->spd);
-        unit->def   = GetAutoleveledStatDecrease(GetClassDefGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->def);
-        unit->res   = GetAutoleveledStatDecrease(GetClassResGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->res);
-        unit->lck   = GetAutoleveledStatDecrease(GetClassLckGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->lck);
-		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true)+CharAutolevelBonusGrowth, levelCount, unit->_u3A); } 
+		int i = 0; 
+		int avg = 0; 
+		avg += GetClassPowGrowth(unit, false); i++; 
+		avg += GetClassSklGrowth(unit, false); i++; 
+		avg += GetClassSpdGrowth(unit, false); i++; 
+		avg += GetClassDefGrowth(unit, false); i++; 
+		avg += GetClassResGrowth(unit, false); i++; 
+		avg += GetClassLckGrowth(unit, false); i++; 
+		if (StrMagInstalled) { 
+		avg += GetClassMagGrowth(unit, false); i++; }
+		avg = avg / i; 
+		//avg += 5; 
+        unit->pow   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassPowGrowth(unit, false), avg), levelCount, unit->pow);
+        unit->skl   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassSklGrowth(unit, false), avg), levelCount, unit->skl);
+        unit->spd   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassSpdGrowth(unit, false), avg), levelCount, unit->spd);
+        unit->def   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassDefGrowth(unit, false), avg), levelCount, unit->def);
+        unit->res   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassResGrowth(unit, false), avg), levelCount, unit->res);
+        unit->lck   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassLckGrowth(unit, false), avg), levelCount, unit->lck);
+		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u3A); } 
 		#endif 
     }
 	UnitCheckStatMins(unit); 
@@ -2857,7 +2876,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	if (gCh > 0xD) { if (max150percent == 2) { max150percent = 0; } } // Lyn mode + first ch of eliwood/hector mode: nerf enemies a little 
 	if (gCh > 0xE) { if (max150percent == 1) { max150percent = 0; } } // Lyn mode + first 2 chs of eliwood/hector mode: nerf promoted units a little 
 	
-    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, max150percent);
+    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, 3);
 	if (IsUnitAlliedOrPlayable(unit)) { 
 		if (unit->maxHP < 15) { unit->maxHP += 15; } 
 	}
@@ -4901,6 +4920,16 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 		proc->seed = GetInitialSeed(2); 
 		proc->digit = 0; 
 		StartGreenText(proc); 
+		
+		 
+		#ifdef FORCE_SPECIFIC_SEED 
+		proc->Option[2] = 0; 
+		proc->Option[3] = 0; 
+		proc->Option[5] = 0; 
+		proc->Option[6] = 0; 
+		proc->seed = 674677; 
+		proc->freezeSeed = true; 
+		#endif 
 	} 
 	return proc; 
 } 
@@ -5343,8 +5372,8 @@ void DrawVersionNumber(int addr) {
 	y -= 5; 
 	} 
 	#endif 
-	if (addr) { PrintDebugStringAsOBJ(0, y+7, " SRR V1.4.1          by Vesly"); y = 5; } 
-	else { PrintDebugStringAsOBJ(0, 0, " SRR V1.4.1          by Vesly"); } 
+	if (addr) { PrintDebugStringAsOBJ(0, y+7, VersionNumber"          by Vesly"); y = 5; } 
+	else { PrintDebugStringAsOBJ(0, 0, VersionNumber"          by Vesly"); } 
 	int x = 20; 
 	PrintDebugStringAsOBJ(x+0, y, "discord.com/invite/XEZ");
 	PrintDebugStringAsOBJ(x+177, y+1, ")");
