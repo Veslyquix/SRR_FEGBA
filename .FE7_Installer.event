@@ -374,6 +374,16 @@ callHackNew(TitleScreen_FE7)
 ORG $a39fc
 jumpToHack(SaveScreen_FE7) 
 
+// display range on page 2 
+ORG $801F6 
+SHORT $205e $5a20 $1c05 
+ORG $80202 
+SHORT $46c0 $46c0 
+SHORT $2128 $46c0 
+
+ORG $80210 
+BL(0x8005B3C) 
+
 POP 
 
 TextA:
