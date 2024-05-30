@@ -221,11 +221,9 @@ int GetPreviousAlwaysSkill(int id) {
 #endif 
 extern u8 ReplacePortraitTable[]; 
 int GetUnitIdOfPortrait(int portraitID) { 
-	#ifdef FE7 
 	if (portraitID < 0x100) { 
 		if (ReplacePortraitTable[portraitID]) { portraitID = ReplacePortraitTable[portraitID]; } 
 	} 
-	#endif 
 	const struct CharacterData* table = GetCharacterData(1); 
 	for (int i = 1; i <= MAX_CHAR_ID; i++) { 
 		if (table->portraitId == portraitID) { return table->number; } 

@@ -525,6 +525,16 @@ callHackNew(GetMapLevelUpPortraitId_FE6)
 
 POP 
 
+ALIGN 4 
+ReplacePortraitTable:
+FILL(256) 
+
+#define ReplacePortraitEntry(id, newID) "PUSH; ORG ReplacePortraitTable + id; BYTE newID; POP" 
+
+#ifdef VeslyBuildfile
+ReplacePortraitEntry(0xBF, 0x58) // Hector  
+#endif 
+
 ALIGN 4
 DIS_matrixTable:
 #incbin "matrixTable.bin"
