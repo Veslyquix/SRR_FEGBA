@@ -219,7 +219,13 @@ int GetPreviousAlwaysSkill(int id) {
 #define ListSize MAX_CHAR_ID //0x3f // 0x44 but max is 0x3f atm? 
 #define PlayerPortraitSize 0x35
 #endif 
+extern u8 ReplacePortraitTable[]; 
 int GetUnitIdOfPortrait(int portraitID) { 
+	#ifdef FE7 
+	if (portraitID < 0x100) { 
+		if (ReplacePortraitTable[portraitID]) { portraitID = ReplacePortraitTable[portraitID]; } 
+	} 
+	#endif 
 	const struct CharacterData* table = GetCharacterData(1); 
 	for (int i = 1; i <= MAX_CHAR_ID; i++) { 
 		if (table->portraitId == portraitID) { return table->number; } 
@@ -4528,7 +4534,11 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		recruitmentProc = Proc_Find(RecruitmentProcCmd4); 
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 		
+		#ifdef FE8 
 		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions-1))) { 
+		#else 
+		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions))) { 
+		#endif 
 			if (proc->calledFromChapter) { 
 			// clear MU, refresh fog, update gfx, sms update 
 			// 6CCB8 8019ABC 8019504 8025724

@@ -813,6 +813,59 @@ WORD 1
 VramDest_DebugFont: 
 WORD 0x3000 // in glowy or 0x3000 ? // 0x4800 
 
+
+ALIGN 4 
+ReplacePortraitTable:
+FILL(256) 
+
+#define ReplacePortraitEntry(id, newID) "PUSH; ORG ReplacePortraitTable + id; BYTE newID; POP" 
+
+ReplacePortraitEntry(3, 2) // Replace Eliwoods  
+ReplacePortraitEntry(4, 2)
+ReplacePortraitEntry(5, 2)
+ReplacePortraitEntry(6, 2)
+ReplacePortraitEntry(7, 2)
+ReplacePortraitEntry(8, 2)
+ReplacePortraitEntry(9, 2)
+ReplacePortraitEntry(0xA, 2)
+ReplacePortraitEntry(0xB, 2)
+ReplacePortraitEntry(0xB, 2)
+ReplacePortraitEntry(0xD, 0xC)
+ReplacePortraitEntry(0xE, 0xC)
+ReplacePortraitEntry(0xF, 0xC)
+ReplacePortraitEntry(0x10, 0xC)
+ReplacePortraitEntry(0x11, 0xC)
+ReplacePortraitEntry(0x12, 0xC)
+ReplacePortraitEntry(0x13, 0xC)
+ReplacePortraitEntry(0x14, 0xC)
+ReplacePortraitEntry(0x15, 0xC)
+ReplacePortraitEntry(0x17, 0x16)
+ReplacePortraitEntry(0x18, 0x16)
+ReplacePortraitEntry(0x19, 0x16)
+ReplacePortraitEntry(0x1A, 0x16)
+ReplacePortraitEntry(0x17, 0x16)
+ReplacePortraitEntry(0x17, 0x16)
+ReplacePortraitEntry(0x17, 0x16)
+ReplacePortraitEntry(0x17, 0x16)
+ReplacePortraitEntry(0x17, 0x16)
+ReplacePortraitEntry(0x1d, 0x1C)
+ReplacePortraitEntry(0x1e, 0x1C)
+ReplacePortraitEntry(0x22, 0x21)
+ReplacePortraitEntry(0x34, 0x33)
+ReplacePortraitEntry(0x42, 0x41)
+ReplacePortraitEntry(0x43, 0x41)
+ReplacePortraitEntry(0x44, 0x41)
+ReplacePortraitEntry(0x34, 0x33)
+ReplacePortraitEntry(0x4d, 0x4c)
+ReplacePortraitEntry(0x58, 0x57)
+ReplacePortraitEntry(0x5f, 0x61)
+ReplacePortraitEntry(0x60, 0x61)
+ReplacePortraitEntry(0x62, 0x61)
+ReplacePortraitEntry(0x58, 0x57)
+
+
+
+
 ALIGN 4 
 //PUSH 
 //ORG $3FCA4C 
@@ -916,3 +969,9 @@ RecruitValues:
 WORD 0x203eb3a
 AlwaysSkill:
 WORD 0x203eb3b
+
+
+
+
+
+

@@ -395,6 +395,8 @@ ORG $6D0E6 // from 6D0E4
 SHORT $46C0 
 callHackNew(RoyPromoHook)
 SHORT $46C0 
+ORG $675FCC
+//BYTE $02 $00 $00 $00 $01 $00 $00 $00
 //ORG $6D0F0 
 //SHORT $2100 // No equipped item during Roy's forced promotion 
 
