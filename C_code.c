@@ -4219,8 +4219,8 @@ extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase);
 extern int DisplayRandomSkillsOption; 
 const int SRR_MAXDISP = 7;
 extern const int SRR_TotalOptions;
-const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7, 6, 4};   
-const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 13, 4, 7, 8, 9, 10, 10, 6, 5, 5, 17 } ; 
+const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7, 4};   
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 13, 4, 7, 8, 9, 10, 10, 6, 5, 17 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -4288,10 +4288,7 @@ Max Growth: 100
 	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
 	#ifdef FE8 
-	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
-		if (i > SRR_MAXDISP) { break; } 
-	}
-	case 18: { if (DisplayRandomSkillsOption) { 
+	case 17: { if (DisplayRandomSkillsOption) { 
 		if ((proc->Option[16] != 3) || (!IsSkill(proc->skill))) {
 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++; 
 		} 

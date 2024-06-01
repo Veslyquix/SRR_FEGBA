@@ -782,9 +782,9 @@ WORD IconOrrValue
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
 #ifdef SKILLSYS_INSTALLED 
-WORD 18
-#else 
 WORD 17
+#else 
+WORD 16
 #endif  
 #else 
 WORD 16 
