@@ -66,8 +66,16 @@ struct RandomizerValues {
 }; 
 
 struct RecruitmentValues { 
-	u8 recruitment; 
+	u8 recruitment : 3; 
 }; 
+struct TimedHitsDifficultyStruct { 
+	u8 difficulty : 5; 
+	u8 alwaysA : 1; 
+	u8 off : 1; 
+	u8 cheats : 1; 
+}; 
+extern struct TimedHitsDifficultyStruct* TimedHitsDifficultyRam; 
+
 extern struct RecruitmentValues* RecruitValues; 
 
 extern struct RandomizerSettings* RandBitflags; 
@@ -3846,7 +3854,7 @@ const char Option13[OPT13NUM][20] = { // Enemies
 #ifdef FE6 
 extern const char Option14[OPT14NUM][32]; // do align 16 before each? 
 #else 
-const char Option14[OPT14NUM][11] = { // Item durability 
+const char Option14[OPT14NUM][11] = { 
 "Vanilla",
 "Always off",
 "Always on",
@@ -3856,13 +3864,20 @@ const char Option14[OPT14NUM][11] = { // Item durability
 #ifdef FE6 
 extern const char Option15[OPT15NUM][32]; // do align 16 before each? 
 #else 
-const char Option15[OPT15NUM][14] = { // Item durability 
+const char Option15[OPT15NUM][14] = { 
 "Vanilla",
 "Press A",
 }; 
 #endif 
 #define OPT16NUM 4 
-const char Option16[OPT16NUM][10] = { // Item durability 
+const char Option16[OPT16NUM][10] = { 
+"Off",
+"Easy",
+"Normal",
+"Hard",
+}; 
+#define OPT17NUM 4 
+const char Option17[OPT17NUM][10] = { 
 "Vanilla",
 "Random",
 "Fixed",
@@ -3870,7 +3885,7 @@ const char Option16[OPT16NUM][10] = { // Item durability
 }; 
 
 
-const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, 0 }; 
+const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM, 0 }; 
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -4217,6 +4232,7 @@ extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); /
 #define NUMBER_X 20
 extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
 extern int DisplayRandomSkillsOption; 
+extern int DisplayTimedHitsOption; 
 const int SRR_MAXDISP = 7;
 extern const int SRR_TotalOptions;
 const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7, 6, 4};   
@@ -4288,22 +4304,24 @@ Max Growth: 100
 	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
 	#ifdef FE8 
-	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
+	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-	}
+	} } 
 	case 18: { if (DisplayRandomSkillsOption) { 
-		if ((proc->Option[16] != 3) || (!IsSkill(proc->skill))) {
-		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++; 
+		if ((proc->Option[17] != 3) || (!IsSkill(proc->skill))) {
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding)); i++; 
 		} 
 		else { 
 		char string[30]; 
-		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option16[proc->Option[16]], GetSkillName(proc->skill), string)); i++; 
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
 			//DrawIcon(
 				//gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
 				//SKILL_ICON(proc->skill), TILEREF(0, 4));
 		}
 		if (i > SRR_MAXDISP) { break; } 
 	} } 
+
+
 	#endif 
 	default: 
 	} 
@@ -4486,7 +4504,9 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		if (RandBitflags->class != proc->Option[6]) { reloadUnits = true; } 
 		if (RandBitflags->playerBonus != proc->Option[12]) { reloadUnits = true; } 
 		if (RandValues->bonus != proc->Option[13]) { reloadUnits = true; } 
-		if (RandValues->skills != proc->Option[16]) { reloadUnits = true; } 
+		if (DisplayRandomSkillsOption) {
+			if (RandValues->skills != proc->Option[17]) { reloadUnits = true; } 
+		}
 		
 		RandValues->seed = proc->seed; 
 		RandValues->variance = proc->Option[0];
@@ -4510,8 +4530,20 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflags->itemDur = proc->Option[11]; 
 		RandBitflags->playerBonus = proc->Option[12]; 
 		RandValues->bonus = proc->Option[13];
-		RandValues->skills = proc->Option[16]; 
-		AlwaysSkill[0] = proc->skill; 
+		
+		if (DisplayRandomSkillsOption) {
+			RandValues->skills = proc->Option[17]; 
+			AlwaysSkill[0] = proc->skill; 
+		}
+		if (DisplayTimedHitsOption) { 
+			int timedHits = proc->Option[16];
+			TimedHitsDifficultyRam->off = false;
+			TimedHitsDifficultyRam->alwaysA = false;
+			if (timedHits == 0) { TimedHitsDifficultyRam->off = true; }  
+			if (timedHits == 1) { TimedHitsDifficultyRam->alwaysA = true; }  
+			if (timedHits == 2) { TimedHitsDifficultyRam->difficulty = 1; }  
+			if (timedHits == 3) { TimedHitsDifficultyRam->difficulty = 2; }  
+		}
 		
 		if (RandBitflags->fog != proc->Option[14]) { 
 			if ((proc->Option[14] == 1) && proc->calledFromChapter) { 
@@ -4621,7 +4653,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	} 
 	//
 	
-	if (((id+offset) == SRR_TotalOptions) && (proc->Option[16] == 3) && (proc->choosingSkill)) { 
+	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
 
 		if (keys & DPAD_UP) {
 			proc->skill = GetNextAlwaysSkill(proc->skill); 
@@ -4683,7 +4715,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	}
 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	if (proc->redraw == RedrawSome) { 
-		if (((id+offset) == SRR_TotalOptions) && (proc->Option[16] == 3)) { proc->choosingSkill = true; } 
+		if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3)) { proc->choosingSkill = true; } 
 		proc->redraw = RedrawNone; 
 		DrawConfigMenu(proc); 
 	} 
@@ -4733,6 +4765,7 @@ const char EnemyDiffBonusText[] = { "Enemy Diff. Bonus" };
 const char FogText[] = { "Fog" };
 const char SkipChapterText[] = { "Skip chapter" };
 const char SkillsText[] = { "Skills" };
+const char TimedHitsText[] = { "Timed Hits" };
 const char RandomizerText[] = { "Randomizer" };
 #endif 
 
@@ -4784,7 +4817,11 @@ void RedrawAllText(ConfigMenuProc* proc) {
 		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
 		#ifdef FE8 
-		case 17: { if (DisplayRandomSkillsOption) { 
+		case 17: { if (DisplayTimedHitsOption) { 
+			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&TimedHitsText, false)); i++;  
+			if (i > SRR_MAXDISP) { break; } 
+		} } 
+		case 18: { if (DisplayRandomSkillsOption) { 
 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
 			if (i > SRR_MAXDISP) { break; } 
 		} } 
@@ -4932,7 +4969,7 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 		proc->digit = 0; 
 		StartGreenText(proc); 
 		
-		 
+		proc->Option[16] = 1; // timed hits 
 		#ifdef FORCE_SPECIFIC_SEED 
 		proc->Option[2] = 0; 
 		proc->Option[3] = 0; 
@@ -4987,8 +5024,18 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	proc->Option[12] = RandBitflags->playerBonus;	
 	proc->Option[13] = RandValues->bonus;		
 	proc->Option[14] = RandBitflags->fog;
-	proc->Option[16] = RandValues->skills;
-	proc->skill = AlwaysSkill[0];
+	
+	if (DisplayTimedHitsOption) { 
+		proc->Option[16] = 0;
+		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[16] = 1; }  
+		if (TimedHitsDifficultyRam->difficulty == 1) { proc->Option[16] = 2; }  
+		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[16] = 3; }  
+	}
+	
+	if (DisplayRandomSkillsOption) { 
+		proc->Option[17] = RandValues->skills;
+		proc->skill = AlwaysSkill[0];
+	}
 	
 	gLCDControlBuffer.dispcnt.bg0_on = 0;
 	return ME_DISABLE | ME_PLAY_BEEP; // | ME_CLEAR_GFX;

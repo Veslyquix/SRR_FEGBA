@@ -19,6 +19,13 @@ MESSAGE Open FE8_Installer and read / config things please
 #endif 
 #endif 
 
+ALIGN 4 
+DisplayTimedHitsOption:
+#ifdef VeslyBuildfile 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 //#define JankyPalettes // Uncomment if you want to always use char palettes, even with classes randomized 
 #ifndef VeslyBuildfile
 	#define NeverRandomizeMusic // comment this out if you want music randomized 
@@ -232,6 +239,15 @@ WORD 0x4800 // in glowy
 PUSH 
 
 #ifdef VeslyBuildfile
+// default summoner from list 
+ORG $7ad4c 
+WORD 0 // 0 = Ewan, 1 = Knoll, 2 = Lyon 
+// See these links: https://github.com/FireEmblemUniverse/fireemblem8u/blob/60f3ef67d63c8f71ec15eec9a8675814c966ddbc/src/classchg-data.c#L590
+// https://github.com/FireEmblemUniverse/fireemblem8u/blob/60f3ef67d63c8f71ec15eec9a8675814c966ddbc/src/mapanim_summon.c#L32
+
+ORG $7AF5E // don't 0 out phantom wexp 
+SHORT $46C0 
+
 ORG $c5444
 jumpToHack(TitleScreen_FE8) 
 
