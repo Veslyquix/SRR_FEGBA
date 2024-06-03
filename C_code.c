@@ -4568,7 +4568,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 		
 		#ifdef FE8 
-		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions-1))) { 
+		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions-2))) { 
 		#else 
 		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions))) { 
 		#endif 
