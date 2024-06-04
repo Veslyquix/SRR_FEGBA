@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.4.2"
+#define VersionNumber " SRR V1.4.3"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -2526,6 +2526,20 @@ void UnitCheckStatMins(struct Unit* unit) {
 	} 
 } 
 
+#define MinPromotedStat 2 
+void MakePromotedUnitHaveMinStats(struct Unit* unit) { 
+	if (UNIT_CATTRIBUTES(unit) & CA_PROMOTED) { 
+		if (unit->pow < (MinPromotedStat+2)) { unit->pow += MinPromotedStat; } 
+		if (unit->skl < MinPromotedStat) { unit->skl += MinPromotedStat; } 
+		if (unit->spd < MinPromotedStat) { unit->spd += MinPromotedStat; } 
+		if (unit->def < MinPromotedStat) { unit->def += MinPromotedStat; } 
+		if (unit->res < MinPromotedStat) { unit->res += MinPromotedStat; } 
+		if (unit->lck < MinPromotedStat) { unit->lck += MinPromotedStat; } 
+		if (StrMagInstalled) {  
+		if ((unit->_u3A < (MinPromotedStat+2)) || (unit->_u3A > 127)) { unit->_u3A += MinPromotedStat; } } // _u3A is unsigned 
+	}
+} 
+
 //int NewGetStatDecrease(int growth, int noise[], int level, int offset, int useRn) {
 int NewGetStatDecrease(int growth) {
     int result = 0;
@@ -2970,7 +2984,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 		//RandNewItem(int item, int noise[], int offset, int costReq, int varyByCh, int noWeapons)
 		}
 	} 
-	
+	MakePromotedUnitHaveMinStats(unit); 
 	UnitCheckStatMins(unit); 
 	UnitCheckStatCaps(unit);
 }
