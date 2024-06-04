@@ -55,7 +55,7 @@
 
 .if FE8 == 1
 	.equ gWeather, 0x202BCF0+0x15 
-	.equ WarningCache, 			0x0203ACC0	@free space in ram. Change this if necessary.
+	.equ WarningCache, 			0x0203AE00	@free space in ram. Change this if necessary.
 	.equ OptionByte2, 			0x0202BD31
 	.equ CameraStuff, 			0x0202BCB0
 	.equ WRAMDisplay, 			0x08002BB8
