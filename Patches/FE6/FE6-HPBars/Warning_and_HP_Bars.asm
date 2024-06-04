@@ -12,6 +12,7 @@
 .equ crit_warning_cutoff, 24	@anything less than or equal this won't trigger the !
 
 .if FE6 == 1
+	.equ gWeather, 0x202AA48+0x15 
 	.equ WarningCache, 			0x0203ACC0	@free space in ram. Change this if necessary.
 	.equ OptionByte2, 			0x0202AA66
 	.equ CameraStuff, 			0x0202AA08
@@ -32,6 +33,7 @@
 .endif
 
 .if FE7 == 1
+	.equ gWeather, 0x202BBF8+0x15 
 	.equ WarningCache, 			0x0203ACC0	@free space in ram. Change this if necessary.
 	.equ OptionByte2, 			0x0202BC39
 	.equ CameraStuff, 			0x0202BBB8
@@ -52,6 +54,7 @@
 .endif
 
 .if FE8 == 1
+	.equ gWeather, 0x202BCF0+0x15 
 	.equ WarningCache, 			0x0203ACC0	@free space in ram. Change this if necessary.
 	.equ OptionByte2, 			0x0202BD31
 	.equ CameraStuff, 			0x0202BCB0
@@ -74,6 +77,12 @@
 
 push	{r4-r7}
 add		sp,#-0x10
+ldr r0, =gWeather 
+ldrb r0, [r0] 
+cmp r0, #7 
+bne HpBars 
+b GoBack @ do nothing if cloudy 
+
 @First, check if all this stuff is even enabled
 ldr		r0,=OptionByte2
 ldrb	r0,[r0]
