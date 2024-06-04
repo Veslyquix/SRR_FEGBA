@@ -4535,6 +4535,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 			RandValues->skills = proc->Option[17]; 
 			AlwaysSkill[0] = proc->skill; 
 		}
+		#ifdef FE8 
 		if (DisplayTimedHitsOption) { 
 			int timedHits = proc->Option[16];
 			TimedHitsDifficultyRam->off = false;
@@ -4544,6 +4545,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 			if (timedHits == 2) { TimedHitsDifficultyRam->difficulty = 1; }  
 			if (timedHits == 3) { TimedHitsDifficultyRam->difficulty = 2; }  
 		}
+		#endif 
 		
 		if (RandBitflags->fog != proc->Option[14]) { 
 			if ((proc->Option[14] == 1) && proc->calledFromChapter) { 
@@ -5025,12 +5027,14 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	proc->Option[13] = RandValues->bonus;		
 	proc->Option[14] = RandBitflags->fog;
 	
+	#ifdef FE8 
 	if (DisplayTimedHitsOption) { 
 		proc->Option[16] = 0;
 		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[16] = 1; }  
 		if (TimedHitsDifficultyRam->difficulty == 1) { proc->Option[16] = 2; }  
 		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[16] = 3; }  
 	}
+	#endif 
 	
 	if (DisplayRandomSkillsOption) { 
 		proc->Option[17] = RandValues->skills;

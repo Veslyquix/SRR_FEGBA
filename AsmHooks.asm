@@ -43,6 +43,42 @@ mov r11, r11
 bx lr 
 .ltorg 
 
+.global ShouldKarlaAppear
+.type ShouldKarlaAppear, %function 
+ShouldKarlaAppear:
+push {r4, lr} 
+@mov r0, #0x28 @ Bartre portrait 
+@bl GetReorderedCharacterPortraitByPortrait 
+@mov r4, r0 
+@ldrb r0, [r0, #4] @ real unit ID
+mov r0, #9  
+blh 0x8017D34 @ /GetUnitByCharId
+cmp r0, #0 
+beq KarlaWontAppear
+mov r4, r0 @ unit struct 
+ldr r0, [r4, #0] 
+ldr r1, [r4, #4] @ class 
+ldr r0, [r0, #0x28] 
+ldr r1, [r1, #0x28] 
+orr r0, r1 @ attributes 
+mov r1, #1 
+lsl r1, #8 @ promoted bitflag 
+tst r0, r1 
+beq KarlaWontAppear 
+ldrb r0, [r4, #8] @ level 
+cmp r0, #4 
+ble KarlaWontAppear 
+mov r0, #1 
+b ExitKarla 
+
+KarlaWontAppear: 
+mov r0, #0 
+ExitKarla:
+pop {r4} 
+pop {r1} 
+bx r1
+.ltorg 
+
 .global TitleScreen_FE6
 .type TitleScreen_FE6, %function 
 TitleScreen_FE6:
