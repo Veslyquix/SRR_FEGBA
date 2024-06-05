@@ -4622,6 +4622,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
 	
 	// Handle seed 
+	
 	if ((id == 0) && (offset == 0)) { 
 		//if (proc->digit == 9) { 
 		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
@@ -4695,7 +4696,9 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		}
 		if (proc->choosingSkill) { 
 		DisplayHand(CursorLocationTable[proc->digit].x+12, CursorLocationTable[proc->digit].y + (offset * 8) + 32, true); 
-		} 		
+		} 	
+		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
+		proc->freezeSeed = true; 	
 		if (proc->redraw == RedrawSome) { 
 			proc->redraw = RedrawNone; 
 			DrawConfigMenu(proc); 
