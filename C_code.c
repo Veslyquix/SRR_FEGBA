@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.4.3"
+#define VersionNumber " SRR V1.4.4"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -170,7 +170,7 @@ int RandomizeSkill(int id, struct Unit* unit) {
 	if (!RandValues->skills) { if (!VanillaSkill[id]) { return 0; } else { return id; } } 
 	if (RandValues->skills == 2) { return id; } 
 	const struct CharacterData* table = unit->pCharacterData; 	
-	int noise[4] = { table->number, unit->pClassData->number, id, table->portraitId }; 
+	int noise[4] = { table->number, id, id, table->portraitId }; 
 	id = HashByte_Global(id, NumberOfSkills-1, noise, 12)+1; // never 0 
 	if (SkillExceptions[id].NeverChangeInto == id) { return 0; } 
 	return id; 
