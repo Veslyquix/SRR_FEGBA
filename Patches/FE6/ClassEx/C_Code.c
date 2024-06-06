@@ -118,17 +118,17 @@ void WriteGameSavePackedUnit(struct Unit * unit, void * sram_dst)
         save_unit.jid = unit->jinfo->id;
     }
 
-    save_unit.level = unit->level;
+    save_unit.level = (unit->level < 128) ? unit->level : 127;
     save_unit.exp = unit->exp;
     save_unit.x = unit->x;
     save_unit.y = unit->y;
-    save_unit.max_hp = unit->max_hp;
-    save_unit.pow = unit->pow;
-    save_unit.skl = unit->skl;
-    save_unit.spd = unit->spd;
-    save_unit.def = unit->def;
-    save_unit.res = unit->res;
-    save_unit.lck = unit->lck;
+    save_unit.max_hp = (unit->max_hp < 128) ? unit->max_hp : 127;
+    save_unit.pow = (unit->pow < 64) ? unit->pow : 63;
+    save_unit.skl = (unit->skl < 64) ? unit->skl : 63;
+    save_unit.spd = (unit->spd < 64) ? unit->spd : 63;
+    save_unit.def = (unit->def < 64) ? unit->def : 63;
+    save_unit.res = (unit->res < 64) ? unit->res : 63;
+    save_unit.lck = (unit->lck < 64) ? unit->lck : 63;
     save_unit.con = unit->bonus_con;
     save_unit.mov = unit->bonus_mov;
 
@@ -242,19 +242,19 @@ void EncodeSuspendSavePackedUnit(struct Unit * unit, void * buf)
 
     suspend_unit->pid = unit->pinfo->id;
     suspend_unit->jid = unit->jinfo->id;
-    suspend_unit->level = unit->level;
+    suspend_unit->level = (unit->level < 128) ? unit->level : 127;
     suspend_unit->exp = unit->exp;
     suspend_unit->flags = unit->flags;
     suspend_unit->x = unit->x;
     suspend_unit->y = unit->y;
-    suspend_unit->max_hp = unit->max_hp;
-    suspend_unit->hp = unit->hp;
-    suspend_unit->pow = unit->pow;
-    suspend_unit->skl = unit->skl;
-    suspend_unit->spd = unit->spd;
-    suspend_unit->def = unit->def;
-    suspend_unit->res = unit->res;
-    suspend_unit->lck = unit->lck;
+    suspend_unit->max_hp = (unit->max_hp < 128) ? unit->max_hp : 127;
+    suspend_unit->hp = (unit->hp < 128) ? unit->hp : 127;
+    suspend_unit->pow = (unit->pow < 64) ? unit->pow : 63;
+    suspend_unit->skl = (unit->skl < 64) ? unit->skl : 63;
+    suspend_unit->spd = (unit->spd < 64) ? unit->spd : 63;
+    suspend_unit->def = (unit->def < 64) ? unit->def : 63;
+    suspend_unit->res = (unit->res < 64) ? unit->res : 63;
+    suspend_unit->lck = (unit->lck < 64) ? unit->lck : 63;
     suspend_unit->bonus_con = unit->bonus_con;
     suspend_unit->status = unit->status;
     suspend_unit->status_duration = unit->status_duration;
