@@ -17,6 +17,8 @@
 #include "headers/types.h"
 #endif  
 
+#define maxStat 60
+
  
 #include "headers/gbafe.h" 
 #define PUREFUNC __attribute__((pure))
@@ -2183,7 +2185,7 @@ int GetUnitMaxMag(struct Unit* unit) {
 	int cap = 0;
 	if (StrMagInstalled) { cap = MagClassTable[unit->pClassData->number].cap; } 
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return 30; } 
+	if (RandBitflags->caps == 2) { return maxStat; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 77); 
@@ -3029,7 +3031,6 @@ void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* c
 }
 
 
-
 extern int PlayerMaxHP; 
 extern int EnemyBossMaxHP; 
 extern int EnemyMaxHP; 
@@ -3042,72 +3043,72 @@ int GetUnitMaxHP(struct Unit* unit) {
 int GetUnitMaxPow(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxPow); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return 30; } 
+	if (RandBitflags->caps == 2) { return maxStat; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number;  
 	int result = HashByPercent(cap, noise, 17); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 13); }  
-	if (result > 30) { result = 30; } 
+	if (result > maxStat) { result = maxStat; } 
 	return result;  
 } 
 
 int GetUnitMaxSkl(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxSkl); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return 30; } 
+	if (RandBitflags->caps == 2) { return maxStat; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 27); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 23); } 
-	if (result > 30) { result = 30; } 
+	if (result > maxStat) { result = maxStat; } 
 	return result;   
 } 
 
 int GetUnitMaxSpd(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxSpd); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return 30; } 
+	if (RandBitflags->caps == 2) { return maxStat; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 37); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 33); } 
-	if (result > 30) { result = 30; } 
+	if (result > maxStat) { result = maxStat; } 
 	return result;  
 } 
 
 int GetUnitMaxDef(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxDef); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return 30; } 
+	if (RandBitflags->caps == 2) { return maxStat; } 
 	int noise[4] = {0, 0, 0, 0};  
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 47); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 43); } 
-	if (result > 30) { result = 30; } 
+	if (result > maxStat) { result = maxStat; } 
 	return result;  
 } 
 
 int GetUnitMaxRes(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxRes); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return 30; } 
+	if (RandBitflags->caps == 2) { return maxStat; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 57); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 53); } 
-	if (result > 30) { result = 30; } 
+	if (result > maxStat) { result = maxStat; } 
 	return result;  
 } 
 
 int GetUnitMaxLck(struct Unit* unit) { 
-	int cap = 30;
+	int cap = maxStat;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return 30; } 
+	if (RandBitflags->caps == 2) { return maxStat; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 67); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 63); } 
-	if (result > 30) { result = 30; } 
+	if (result > maxStat) { result = maxStat; } 
 	return result;  
 } 
 
