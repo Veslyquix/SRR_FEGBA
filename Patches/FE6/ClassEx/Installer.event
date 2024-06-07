@@ -15,7 +15,10 @@ PUSH
 
 #ifdef _FE6_ 
 
-
+ORG $6ee80 // stat screen something 
+#ifndef VeslyBuildfile 
+BYTE statCap 
+#endif 
 
 // 806EC6C // draw bar 
 ORG $6ECae
@@ -31,11 +34,17 @@ BYTE statCap
 
 
 // Check for battle unit stat caps (luck)
-// 80253CC
+// 80253CC 
 ORG $254BA 
+BYTE statCap 
+ORG $254BE 
 BYTE statCap 
 
 // 80179EC check stat caps 2 luck 
+ORG $17a70
+BYTE statCap 
+ORG $17a74 
+BYTE statCap 
 
 // 8076448 luck see https://github.com/FireEmblemUniverse/fireemblem8u/blob/f0bec31eddc7b563295fe71dd580c598b8400645/src/unitlistscreen.c#L2275
 
@@ -84,6 +93,47 @@ BYTE 0x00 0x20 // mov r0, #0
 
 #ifdef _FE7_
 
+
+// 807FD28 // draw bar 
+ORG $7fd6a
+BYTE statCap
+ORG $7fd6e
+BYTE statCap
+ORG $7fd9e
+BYTE statCap
+ORG $7fdae
+BYTE statCap
+ORG $7fdc0
+BYTE statCap
+
+
+ORG $7ff3e 
+#ifndef VeslyBuildfile 
+BYTE statCap 
+#endif 
+
+// Check for battle unit stat caps (luck)
+// 8029970
+ORG $29a5e
+BYTE statCap 
+ORG $29A62 
+BYTE statCap 
+
+// 8017C64 check stat caps 2 luck 
+ORG $17CE8 
+BYTE statCap 
+ORG $17CEC
+BYTE statCap 
+
+// 808AD00 luck see https://github.com/FireEmblemUniverse/fireemblem8u/blob/f0bec31eddc7b563295fe71dd580c598b8400645/src/unitlistscreen.c#L2275
+
+// 8094BD4 DrawPrepScreenItemUseStatBars
+ORG $94e38 
+BYTE statCap 
+
+
+
+
 // 24D60
 ORG $24D76 
 BYTE 0xFF 
@@ -129,14 +179,14 @@ BYTE 0xFF
 ORG $264B4 
 BYTE 0xFF 
 
-
+// ApplyUnitSpriteImage16x16 16x32 and 32x32
 ORG $24ED4
 BYTE 0x00 0x20 // mov r0, #0 
 ORG $25042 
 BYTE 0x00 0x20 // mov r0, #0 
 ORG $25132 
 BYTE 0x00 0x20 // mov r0, #0 
-// ApplyUnitSpriteImage16x16 16x32 and 32x32 
+ 
 
 
 #endif 
