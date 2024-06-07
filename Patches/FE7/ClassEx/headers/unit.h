@@ -6,7 +6,7 @@
 //#include "bm.h"
 
 #define UNIT_WEAPON_EXP_COUNT 8
-#define UNIT_SUPPORT_COUNT 10
+#define UNIT_SUPPORT_COUNT 7
 #define UNIT_LEVEL_MAX 20
 
 enum
@@ -87,12 +87,26 @@ enum
     // this unit was processed by the AI driver and won't have its turn
     UNIT_FLAG_AI_PROCESSED = 1 << 10,
 
+	US_GROWTH_BOOST = (1 << 13),
     // per unit battle animation config (first bit)
     UNIT_FLAG_SOLOANIM_1   = 1 << 14,
 
     // per unit battle animation config (second bit)
     UNIT_FLAG_SOLOANIM_2   = 1 << 15,
 
+    US_BIT16        = (1 << 16),
+    US_BIT17        = (1 << 17),
+    US_BIT18        = (1 << 18),
+    US_BIT19        = (1 << 19),
+    US_BIT20        = (1 << 20),
+    US_BIT21        = (1 << 21),
+    US_BIT22        = (1 << 22),
+    US_BIT23        = (1 << 23),
+    // = (1 << 24),
+    US_BIT25 = (1 << 25),
+    US_BIT26 = (1 << 26),
+    US_BIT27 = (1 << 27),
+	
     // Helpers
 
     UNIT_FLAG_UNAVAILABLE = UNIT_FLAG_DEAD | UNIT_FLAG_NOT_DEPLOYED,
@@ -244,30 +258,38 @@ struct Unit
     /* 09 */ u8 exp;
     /* 0A */ u8 ai_flags;
     /* 0B */ i8 id;
-    /* 0C */ u16 flags;
-    /* 0E */ i8 x;
-    /* 0F */ i8 y;
-    /* 10 */ i8 max_hp;
-    /* 11 */ i8 hp;
-    /* 12 */ i8 pow;
-    /* 13 */ i8 skl;
-    /* 14 */ i8 spd;
-    /* 15 */ i8 def;
-    /* 16 */ i8 res;
-    /* 17 */ i8 lck;
-    /* 18 */ i8 bonus_con;
-    /* 19 */ u8 rescue;
-    /* 1A */ i8 bonus_mov;
-    /* 1B */ // pad?
-    /* 1C */ u16 items[ITEMSLOT_INV_COUNT];
-    /* 26 */ u8 wexp[UNIT_WEAPON_EXP_COUNT];
-    /* 2E */ u8 status : 4;
-    /* 2E */ u8 status_duration : 4;
-    /* 2F */ u8 torch : 4;
-    /* 2F */ u8 barrier : 4;
-    /* 30 */ u8 supports[UNIT_SUPPORT_COUNT];
-    /* 3A */ // pad?
+    /* 0C */ u32 flags;
+    /* 10 */ i8 x;
+    /* 11 */ i8 y;
+    /* 12 */ i8 max_hp;
+    /* 13 */ i8 hp;
+    /* 14 */ i8 pow;
+    /* 15 */ i8 skl;
+    /* 16 */ i8 spd;
+    /* 17 */ i8 def;
+    /* 18 */ i8 res;
+    /* 19 */ i8 lck;
+	
+    /* 1A */ i8 bonus_con;
+    /* 1B */ u8 rescue;
+	/* 1C */ u8 ballistaIndex;
+    /* 1D */ i8 bonus_mov;
+
+    /* 1E */ u16 items[ITEMSLOT_INV_COUNT];
+    /* 28 */ u8 wexp[UNIT_WEAPON_EXP_COUNT];
+	
+    /* 30 */ u8 status : 4;
+    /* 30 */ u8 status_duration : 4;
+    /* 31 */ u8 torch : 4;
+    /* 31 */ u8 barrier : 4;
+	
+    /* 32 */ u8 supports[UNIT_SUPPORT_COUNT];
+    /* 39 */ s8 supportBits;
+    /* 3A */ u8 _u3A;
+    /* 3B */ u8 _u3B;
+	
     /* 3C */ struct UnitSprite * map_sprite;
+	
     /* 40 */ u16 ai_config;
     /* 42 */ u8 ai_a;
     /* 43 */ u8 ai_a_pc;
@@ -275,7 +297,7 @@ struct Unit
     /* 45 */ u8 ai_b_pc;
     /* 46 */ u8 ai_counter;
     /* 47 */ // pad?
-    /* 48 */ // end
+     // end
 };
 
 // UnitInfo is used for constructing new units
