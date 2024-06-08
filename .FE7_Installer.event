@@ -50,6 +50,8 @@ ClassBasedGrowths:
 WORD 0
 CombinedGrowths:
 WORD 0
+maxStat:
+WORD 60 
 
 // Each shop will have one of these items at random
 RareItemTableSize:
@@ -146,6 +148,10 @@ WORD 0 // If 0, it'll read through your class editor and count
 
 
 PUSH 
+
+ORG $37D84
+jumpToHack(MaybeChargeAtPlayer)
+
 ORG $CE3F0C //ORG $CE45EC // in CE45E4 //B9395C //CE49D8
 PROC_CALL_ROUTINE_2(FE7_StartDifficultySelection)
 

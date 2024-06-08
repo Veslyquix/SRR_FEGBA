@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.4.4"
+#define VersionNumber " SRR V1.4.5"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -17,7 +17,7 @@
 #include "headers/types.h"
 #endif  
 
-#define maxStat 60
+extern int maxStat; 
 
  
 #include "headers/gbafe.h" 
@@ -140,6 +140,7 @@ const struct ProcCmd RecruitmentProcCmd4[] =
 	PROC_REPEAT(LoopRandomRecruitmentProc), 
     PROC_END,
 };
+
 
 int ShouldRandomizeRecruitment(void) { 
 	return RecruitValues->recruitment; 
@@ -1186,6 +1187,18 @@ u32 GetSeed(void) {
 	return RandValues->seed; 
 } 
 
+
+void MaybeChangeAi2(void) { 
+	if (IsAnythingRandomized()) { 
+		if (gActiveUnit->ai2 == 3) { 
+			if (UNIT_CATTRIBUTES(gActiveUnit) & CA_BOSS) { return; } 
+			int noise[4] = { gActiveUnit->pCharacterData->number, gActiveUnit->pClassData->number, 0, 0 }; 
+			if (HashByte_Ch(gTurn, 100, noise, gTurn) < ((gTurn + 5) * 2)) { 
+				gActiveUnit->ai2 = 0; 
+			}
+		} 
+	}
+} 
 
 int GetMaxItems(void) {  
 	if (MaxItems_Link) { return MaxItems_Link; } 
@@ -5115,15 +5128,36 @@ void PrintDebugNumberToBG(int bg, int x, int y, int n) {
 void DrawBarsOrGrowths(void); 
 // fe6: 80700a4 
 // in StatScreen_OnIdle in 808127C
+extern int PressSelectFE8Something(void); 
+extern int GetStatScreenPage(void); 
 void StatScreenSelectLoop(ProcPtr proc) { 
+
 	
 	if (sKeyStatusBuffer.newKeys & R_BUTTON)
 		{
+			int page = gStatScreen.page; 
+			#ifdef FE8 
+			if (SkillSysInstalled) { 
+				page = GetStatScreenPage(); 
+			}
+			#endif 
 			Proc_Goto(proc, 0); // TODO: label name
-			StartStatScreenHelp(gStatScreen.page, proc);
+			StartStatScreenHelp(page, proc);
 		}
 	if (sKeyStatusBuffer.newKeys & SELECT_BUTTON)
 		{
+			int page = gStatScreen.page; 
+			#ifdef FE8 
+			if (SkillSysInstalled) { 
+				page = GetStatScreenPage(); 
+			}
+			#endif 
+			#ifdef FE8 
+			if (SkillSysInstalled) { 
+				if (!PressSelectFE8Something()) { return; } 
+			} 
+			#endif 
+			if (page) { return; } 
 			Proc_Goto(proc, 0); // TODO: label name
 			if (!RandBitflags->disp) { RandBitflags->disp = 1; } 
 			else { RandBitflags->disp = 0; } 

@@ -49,6 +49,8 @@ ClassBasedGrowths:
 WORD 0
 CombinedGrowths:
 WORD 0
+maxStat:
+WORD 60 
 
 // Each shop will have one of these items at random
 RareItemTableSize:
@@ -373,6 +375,9 @@ VramDest_DebugFont:
 WORD 0xd800 // in glowy or 0x3000 ? // 0x4800 
 
 PUSH 
+
+ORG $31740 //$37D84
+jumpToHack(MaybeChargeAtPlayer)
 
 ORG $9B54C
 jumpToHack(TitleScreen_FE6) 

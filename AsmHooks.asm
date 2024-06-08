@@ -43,6 +43,93 @@ mov r11, r11
 bx lr 
 .ltorg 
 
+.global MaybeChargeAtPlayer
+.type MaybeChargeAtPlayer, %function 
+MaybeChargeAtPlayer: 
+push {lr} 
+ldrb r1, [r0] 
+add r1, #1 
+strb r1, [r0] 
+bl MaybeChangeAi2
+pop {r0} 
+bx r0 
+.ltorg 
+
+.equ StatScreenStruct, 0x02003BFC
+.global PressSelectFE8Something
+.type PressSelectFE8Something, %function 
+PressSelectFE8Something:
+ldr		r1,=StatScreenStruct
+ldrb	r0,[r1]
+cmp		r0,#0x0				@stat screen
+bne		NotStatScreen
+ldr		r2,[r1,#0xC]
+ldrb	r2,[r2,#0xB]
+mov		r3,#0xC0
+tst		r2,r3
+bne		NotStatScreen
+sub		r1,#0x2
+mov		r3,#0x1
+strb	r3,[r1]
+ldrb	r2,[r1,#0x1]
+mov		r3,#0x1
+eor		r2,r3
+strb	r2,[r1,#0x1]
+mov r0, #1 
+bx lr 
+NotStatScreen: 
+mov r0, #0 
+bx lr 
+
+.global GetStatScreenPage 
+.type GetStatScreenPage, %function 
+GetStatScreenPage: 
+mov r11, r11 
+ldr r3, =0x2003BFC 
+ldrb r0, [r3] 
+mov r1, #3
+and r0, r1 
+bx lr 
+
+
+.global PreventPhantomTrading
+.type PreventPhantomTrading, %function 
+PreventPhantomTrading: 
+push {lr} 
+@ r4 unitA r5 g_unitB* 
+ldr r0, [r4] 
+ldrb r0, [r0, #4] 
+cmp r0, #0x3b 
+beq CannotTrade 
+cmp r0, #0x3e 
+beq CannotTrade 
+cmp r0, #0x3f 
+beq CannotTrade 
+ldr r0, [r5] 
+ldr r0, [r0] @ we have pointer to unit struct in r5 
+ldrb r0, [r0, #4] 
+cmp r0, #0x3b 
+beq CannotTrade 
+cmp r0, #0x3e 
+beq CannotTrade 
+cmp r0, #0x3f 
+beq CannotTrade 
+
+CanTrade: 
+mov r0, #1 
+b EndTradeCheck 
+
+CannotTrade: 
+mov r0, #0 
+
+EndTradeCheck: 
+cmp r0, #0 
+ldr r2, [r5] 
+ldr r3, [r4] 
+pop {r1} 
+bx r1 
+.ltorg 
+
 .global ShouldKarlaAppear
 .type ShouldKarlaAppear, %function 
 ShouldKarlaAppear:
