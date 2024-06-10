@@ -149,6 +149,9 @@ WORD 0 // If 0, it'll read through your class editor and count
 
 PUSH 
 
+ORG $2cc88
+replaceWithHack(FE7PromoHook)
+
 ORG $37D84
 jumpToHack(MaybeChargeAtPlayer)
 

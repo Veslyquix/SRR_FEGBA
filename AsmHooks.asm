@@ -84,7 +84,6 @@ bx lr
 .global GetStatScreenPage 
 .type GetStatScreenPage, %function 
 GetStatScreenPage: 
-mov r11, r11 
 ldr r3, =0x2003BFC 
 ldrb r0, [r3] 
 mov r1, #3
@@ -340,6 +339,92 @@ mov r0, #2
 bx r1 
 .ltorg 
 
+@ ORG $2cc88 
+.global FE7PromoHook
+.type FE7PromoHook, %function 
+FE7PromoHook: 
+push {r4-r7, lr} 
+mov r6, r9 
+mov r5, r8 
+push {r5-r6} 
+MOV r6 ,r0 @ unit 
+mov r7, r1 @ item (might be 0) 
+LDR r4, =0x203A3F0 @ pointer:0802CD14 -> 0203A3F0 (BattleUnit@gBattleActor.CopyUnit )
+LDR r5, =0x203A470 @ pointer:0802CD18 -> 0203A470 (BattleUnit@gBattleTarget.CopyUnit )
+
+ldr r0, [r6, #0] 
+ldr r1, [r6, #4] 
+ldr r0, [r0, #0x28] 
+ldr r1, [r1, #0x28] 
+orr r0, r1 
+mov r1, #1 
+lsl r1, #8 @ 0x100 
+tst r0, r1 
+bne ExitFE7ForcedPromo @ already promoted 
+ldr r1, [r6, #4] 
+ldrb r0, [r1, #5] @ default promotion 
+cmp r0, #0 
+beq ExitFE7ForcedPromo
+
+
+MOV r0 ,r5
+ADD r0, #0x4A
+MOV r2, #0x0
+MOV r9, r2
+MOV r2, #0x0
+MOV r8, r2
+STRH r7, [r0, #0x0]   @BattleUnit@gBattleTarget.weaponBefore
+LDR r2, =0xFFFF @ pointer:0802CD1C -> 0000FFFF
+MOV r0 ,r2
+MOV r2 ,r7
+AND r2 ,r0
+MOV r0 ,r4
+ADD r0, #0x4A
+STRH r2, [r0, #0x0]   @BattleUnit@gBattleActor.weaponBefore
+MOV r0 ,r5
+ADD r0, #0x48
+STRH r7, [r0, #0x0]   @BattleUnit@gBattleTarget.weapon
+MOV r0 ,r4
+ADD r0, #0x48
+STRH r2, [r0, #0x0]   @BattleUnit@gBattleActor.weapon
+MOV r0 ,r5
+MOV r1 ,r6
+blh 0x080285D4   @CopyUnitToBattleStruct
+MOV r0 ,r6
+blh 0x08029818   @ApplyUnitDefaultPromotion
+MOV r0 ,r4
+MOV r1 ,r6
+blh 0x080285D4   @CopyUnitToBattleStruct
+MOV r0 ,r4
+MOV r1 ,r5
+blh 0x08029904
+MOV r0 ,r4
+blh 0x08028728   @BattleSetupTerrainData
+MOV r0 ,r5
+blh 0x08028728   @BattleSetupTerrainData
+LDR r0, =0x203A4F0 @ pointer:0802CD20 -> 0203A4F0 (ITEMSTOCK@Storage[64].Item ID )
+MOV r1, r8
+STRH r1, [r0, #0x0]   @ITEMSTOCK@Storage[64].Item ID
+MOV r1, #0x80
+STRB r1, [r0, #0x2]   @ITEMSTOCK@Storage[65].Item ID
+MOV r2, r9
+STRB r2, [r0, #0x3]   @ITEMSTOCK@Storage[65].Number of items
+LDR r1, =0x203A3D8 @ pointer:0802CD24 -> 0203A3D8 (BattleStats@BattleStats.bitfield (0x2='battle hasn't started yet', 0x20=arena, 0x80=Promotion, 0x200=Ring))
+MOV r0, #0x10
+STRH r0, [r1, #0x0]   @BattleStats@BattleStats.bitfield (0x2='battle hasn't started yet', 0x20=arena, 0x80=Promotion, 0x200=Ring)
+blh 0x0802A3B0   @BeginBattleAnimations
+LDR r0, [r6, #0xC]
+MOV r1, #0x1
+ORR r0 ,r1
+STR r0, [r6, #0xC]
+ExitFE7ForcedPromo: 
+POP {r3,r4}
+MOV r8, r3
+MOV r9, r4
+POP {r4-r7}
+POP {r0}
+BX r0
+.ltorg 
 
 .global Arm_DecompText
 .type Arm_DecompText, %function 
