@@ -277,7 +277,6 @@ const struct CharacterData* GetReorderedCharacter(const struct CharacterData* ta
 	
 	int unitID = proc->id[(id&0x3F)-1];
 	if (!unitID) { unitID = id; } 
-	
 	return GetCharacterData(unitID);
 }
 
@@ -2096,16 +2095,27 @@ void NewPopup_GoldGot(ProcPtr parent, struct Unit *unit, int value) // fe8 and f
         NewPopup_Simple(PopupScr_GoldWasStole, 0x60, 0x0, parent);
 }
 
-
-
 s16 HashStat(int number, int noise[], int offset, int promoted) { 
 	number = HashByPercent_Ch(number, noise, offset, promoted);
 	return number; 
 } 
-
 extern int MinClassBase; 
+int RandHPStat(struct Unit* unit, int stat, int noise[], int offset, int promoted) { 
+	if (!RandBitflags->base) { return stat; } 
+	if (maxStat == 60) { stat = (stat * 3) / 2; } 
+	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
+	int result = HashStat(stat, noise, offset, 3); // by 2/3rds percent 
+	if (IsUnitAlliedOrPlayable(unit)) { // if below average player, reroll once 
+		if (result < stat) { 
+			stat = HashStat(result, noise, offset+13, 3); 
+			if (stat > result) { result = stat; } 
+		}
+	}
+	return result; 
+} 
 int RandStat(struct Unit* unit, int stat, int noise[], int offset, int promoted) { 
 	if (!RandBitflags->base) { return stat; } 
+	if (maxStat == 60) { stat = (stat * 3) / 2; } 
 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	int result = HashStat(stat, noise, offset, promoted); 
 	if (IsUnitAlliedOrPlayable(unit)) { // if below average player, reroll once 
@@ -2140,6 +2150,12 @@ extern int CallGet_Def_Growth(struct Unit* unit);
 extern int CallGet_Res_Growth(struct Unit* unit); 
 extern int CallGet_Luk_Growth(struct Unit* unit); 
 
+int AdjustGrowthForStatInflation(int growth) { 
+
+	if (maxStat == 60) { return (growth * 3) / 2; } 
+	return growth; 
+
+} 
 
 #ifdef FE8 
 struct magClassTable { 
@@ -2171,18 +2187,20 @@ int GetUnitMagGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	baseGrowth = MagCharTable[GetReorderedUnitID(unit)].growth;  
+	int originalGrowth = MagCharTable[unit->pCharacterData->number].growth;  
 	if (ClassBasedGrowths) { baseGrowth = MagClassTable[unit->pClassData->number].growth;  } 
 	if (CombinedGrowths) { baseGrowth += MagClassTable[unit->pClassData->number].growth;  } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	int growth = CallGet_Mag_Growth(unit); 
 	// we only need growth for the modifiers, so replace `add` with the difference 
-	if (growth != (-1)) { add = growth - baseGrowth; } 
+	if (growth != (-1)) { add = growth - originalGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (MagClassTable[unit->pClassData->number].growth > growth) { growth = MagClassTable[unit->pClassData->number].growth;  } 
+	growth = AdjustGrowthForStatInflation(growth);
 	int noise[4] = {0, 0, 0, 0};  
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 81); 
@@ -2320,18 +2338,20 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	baseGrowth = GetReorderedUnit(unit)->growthHP; 
+	int originalGrowth = unit->pCharacterData->growthHP; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthHP; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthHP; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	int growth = CallGet_Hp_Growth(unit); 
 	// we only need growth for the modifiers, so replace `add` with the difference 
-	if (growth != (-1)) { add = growth - baseGrowth; } 
+	if (growth != (-1)) { add = growth - originalGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthHP > growth) { growth = unit->pClassData->growthHP; } 
+	growth = AdjustGrowthForStatInflation(growth);
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number;  
 	int result = HashByPercent(growth, noise, 11); 
@@ -2341,23 +2361,24 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	return result + add; 
 }
 
-
 int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	int baseGrowth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	baseGrowth = GetReorderedUnit(unit)->growthPow; 
+	int originalGrowth = unit->pCharacterData->growthPow; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthPow; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthPow; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	int growth = CallGet_Str_Growth(unit); 
-	if (growth != (-1)) { add = growth - baseGrowth; } 
+	if (growth != (-1)) { add = growth - originalGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthPow > growth) { growth = unit->pClassData->growthPow; } 
+	growth = AdjustGrowthForStatInflation(growth);
 	int noise[4] = {0, 0, 0, 0};  
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 21); 
@@ -2374,17 +2395,19 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	baseGrowth = GetReorderedUnit(unit)->growthSkl; 
+	int originalGrowth = unit->pCharacterData->growthSkl; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSkl; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSkl; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	int growth = CallGet_Skl_Growth(unit); 
-	if (growth != (-1)) { add = growth - baseGrowth; } 
+	if (growth != (-1)) { add = growth - originalGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthSkl > growth) { growth = unit->pClassData->growthSkl; } 
+	growth = AdjustGrowthForStatInflation(growth);
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 31); 
@@ -2401,17 +2424,19 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	baseGrowth = GetReorderedUnit(unit)->growthSpd; 
+	int originalGrowth = unit->pCharacterData->growthSpd; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSpd; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSpd; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	int growth = CallGet_Spd_Growth(unit); 
-	if (growth != (-1)) { add = growth - baseGrowth; } 
+	if (growth != (-1)) { add = growth - originalGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthSpd > growth) { growth = unit->pClassData->growthSpd; } 
+	growth = AdjustGrowthForStatInflation(growth);
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number;  
 	int result = HashByPercent(growth, noise, 41); 
@@ -2427,18 +2452,20 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	int baseGrowth = 0;
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
+	int originalGrowth = unit->pCharacterData->growthDef; 
 	baseGrowth = GetReorderedUnit(unit)->growthDef; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthDef; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthDef; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	int growth = CallGet_Def_Growth(unit); 
-	if (growth != (-1)) { add = growth - baseGrowth; } 
+	if (growth != (-1)) { add = growth - originalGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthDef > growth) { growth = unit->pClassData->growthDef; } 
+	growth = AdjustGrowthForStatInflation(growth);
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 51); 
@@ -2455,17 +2482,19 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	baseGrowth = GetReorderedUnit(unit)->growthRes; 
+	int originalGrowth = unit->pCharacterData->growthRes; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthRes; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthRes; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	int growth = CallGet_Res_Growth(unit); 
-	if (growth != (-1)) { add = growth - baseGrowth; } 
+	if (growth != (-1)) { add = growth - originalGrowth; }  
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthRes > growth) { growth = unit->pClassData->growthRes; } 
+	growth = AdjustGrowthForStatInflation(growth);
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 61); 
@@ -2482,17 +2511,19 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	int add = 0; 
 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	baseGrowth = GetReorderedUnit(unit)->growthLck; 
+	int originalGrowth = unit->pCharacterData->growthLck; 
 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthLck; } 
 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthLck; } 
 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	int growth = CallGet_Luk_Growth(unit); 
-	if (growth != (-1)) { add = growth - baseGrowth; } 
+	if (growth != (-1)) { add = growth - originalGrowth; } 
 	growth = baseGrowth;
 	int player = (UNIT_FACTION(unit) == FACTION_BLUE);
 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 	
 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	if (unit->pClassData->growthLck > growth) { growth = unit->pClassData->growthLck; } 
+	growth = AdjustGrowthForStatInflation(growth);
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pCharacterData->number; 
 	int result = HashByPercent(growth, noise, 71); 
@@ -2917,7 +2948,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	if (gCh > 0xD) { if (max150percent == 2) { max150percent = 0; } } // Lyn mode + first ch of eliwood/hector mode: nerf enemies a little 
 	if (gCh > 0xE) { if (max150percent == 1) { max150percent = 0; } } // Lyn mode + first 2 chs of eliwood/hector mode: nerf promoted units a little 
 	
-    unit->maxHP = RandStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, 3);
+    unit->maxHP = RandHPStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, 3);
 	if (IsUnitAlliedOrPlayable(unit)) { 
 		if (unit->maxHP < 15) { unit->maxHP += 15; } 
 	}
