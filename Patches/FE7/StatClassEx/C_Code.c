@@ -121,6 +121,16 @@ struct SuspendSavePackedUnit // 0x34 in fe6 and fe7
 
 
 #define min(value, max) ((value < max) ? value : max) 
+extern u8 supportC; 
+extern u8 supportB; 
+extern u8 supportA; 
+int RoundsExp(int sExp) { 
+	if (sExp == (supportA + 1)) { sExp++; } 
+	if (sExp == (supportB + 1)) { sExp++; } 
+	if (sExp == (supportC + 1)) { sExp++; } 
+	return sExp; 
+
+} 
 
 void WriteGameSavePackedUnit(struct Unit * unit, void * sram_dst)
 {
@@ -192,14 +202,16 @@ void WriteGameSavePackedUnit(struct Unit * unit, void * sram_dst)
 
     for (i = 0; i < UNIT_WEAPON_EXP_COUNT; i++) { 
 	save_unit.wexp[i] = unit->wexp[i]; } 
+	
 
-	save_unit.support1 = unit->supports[0] >> 1; 
-	save_unit.support2 = unit->supports[1] >> 1; 
-	save_unit.support3 = unit->supports[2] >> 1; 
-	save_unit.support4 = unit->supports[3] >> 1; 
-	save_unit.support5 = unit->supports[4] >> 1; 
-	save_unit.support6 = unit->supports[5] >> 1; 
-	save_unit.support7 = unit->supports[6] >> 1; 
+	
+	save_unit.support1 = RoundsExp(unit->supports[0]) >> 1; 
+	save_unit.support2 = RoundsExp(unit->supports[1]) >> 1; 
+	save_unit.support3 = RoundsExp(unit->supports[2]) >> 1; 
+	save_unit.support4 = RoundsExp(unit->supports[3]) >> 1; 
+	save_unit.support5 = RoundsExp(unit->supports[4]) >> 1; 
+	save_unit.support6 = RoundsExp(unit->supports[5]) >> 1; 
+	save_unit.support7 = RoundsExp(unit->supports[6]) >> 1; 
     //for (i = 0; i < UNIT_SUPPORT_COUNT; i++)
     //    save_unit.supports[i] = unit->supports[i];
 
@@ -343,13 +355,13 @@ void EncodeSuspendSavePackedUnit(struct Unit * unit, void * buf)
 
 
 
-	suspend_unit->support1 = unit->supports[0] >> 1; 
-	suspend_unit->support2 = unit->supports[1] >> 1; 
-	suspend_unit->support3 = unit->supports[2] >> 1; 
-	suspend_unit->support4 = unit->supports[3] >> 1; 
-	suspend_unit->support5 = unit->supports[4] >> 1; 
-	suspend_unit->support6 = unit->supports[5] >> 1; 
-	suspend_unit->support7 = unit->supports[6] >> 1; 
+	suspend_unit->support1 = RoundsExp(unit->supports[0]) >> 1; 
+	suspend_unit->support2 = RoundsExp(unit->supports[1]) >> 1; 
+	suspend_unit->support3 = RoundsExp(unit->supports[2]) >> 1; 
+	suspend_unit->support4 = RoundsExp(unit->supports[3]) >> 1; 
+	suspend_unit->support5 = RoundsExp(unit->supports[4]) >> 1; 
+	suspend_unit->support6 = RoundsExp(unit->supports[5]) >> 1; 
+	suspend_unit->support7 = RoundsExp(unit->supports[6]) >> 1; 
 
     suspend_unit->ai_a = unit->ai_a;
     suspend_unit->ai_a_pc = unit->ai_a_pc;
