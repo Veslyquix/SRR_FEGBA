@@ -9,7 +9,9 @@
 
 // 15 offsets - missing 7 in fe6 and 2 in fe7 
 
-#define statCap 60
+#ifndef statCap 
+	#define statCap 60
+#endif 
 
 PUSH 
 

@@ -1,0 +1,37 @@
+﻿
+PUSH 
+
+// NOTE: Luck cap is in mss_page1 within the draw_luck_bar_at macro 
+// 
+  //Stat bar drawing
+  ORG $87132
+  BYTE statCap				
+  
+  ORG $87142
+  BYTE statCap				
+  
+  ORG $870FE
+  BYTE statCap				
+  ORG $87102
+  BYTE statCap				
+  ORG $872AE 
+  #ifndef VeslyBuildfile 
+  BYTE statCap			
+  #endif 
+  ORG $2C016 
+  BYTE statCap				
+  ORG $2C01C 
+  BYTE statCap				
+  ORG $18250 
+  BYTE statCap				
+  ORG $18254 
+  BYTE statCap				
+  ORG $926FC 
+  BYTE statCap				
+  ORG $9C154 
+  BYTE statCap				
+  ORG $9C31C
+  BYTE statCap				
+
+POP 
+

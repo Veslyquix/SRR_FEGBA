@@ -169,13 +169,13 @@ extern int NumberOfSkills;
 extern u8* AlwaysSkill; 
 int RandomizeSkill(int id, struct Unit* unit) { 
 	if (!id) { return 0; } 
-	if (SkillExceptions[id].NeverChangeFrom == id) { return id; } 
+	if (SkillExceptions[id].NeverChangeFrom) { return id; } 
 	if (!RandValues->skills) { if (!VanillaSkill[id]) { return 0; } else { return id; } } 
 	if (RandValues->skills == 2) { return id; } 
 	const struct CharacterData* table = unit->pCharacterData; 	
 	int noise[4] = { table->number, id, id, table->portraitId }; 
 	id = HashByte_Global(id, NumberOfSkills-1, noise, 12)+1; // never 0 
-	if (SkillExceptions[id].NeverChangeInto == id) { return 0; } 
+	if (SkillExceptions[id].NeverChangeInto) { return 0; } 
 	return id; 
 } 
 
@@ -4484,12 +4484,15 @@ void ReloadAllUnits(ConfigMenuProc* proc) {
 	}
 	struct UnitDefinition uDef; 
 	struct Unit* unit; 
+	u32 state; 
 	for (int i = 1; i<0xC0; ++i) { 
 		unit = GetUnit(i); 
 		if (!UNIT_IS_VALID(unit)) { continue; } 
+		state = unit->state; 
 		InitUnitDef(&uDef, unit); 
 		ClearUnit(unit); 
-		LoadUnit(&uDef); // lance moves in turn 1 playerr phase event 
+		LoadUnit(&uDef); 
+		unit->state = state; 
 	} 
 } 
 

@@ -50,8 +50,9 @@ ClassBasedGrowths:
 WORD 0
 CombinedGrowths:
 WORD 0
+#define statCap 60 
 maxStat:
-WORD 60 
+WORD statCap 
 
 // Each shop will have one of these items at random
 RareItemTableSize:
