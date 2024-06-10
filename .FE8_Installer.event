@@ -240,6 +240,9 @@ WORD 0x4800 // in glowy
 
 PUSH 
 
+ORG $10b80
+jumpToHack(FE8_ForcedPromotionHook) 
+
 #ifdef VeslyBuildfile
 // default summoner from list 
 ORG $7ad4c 

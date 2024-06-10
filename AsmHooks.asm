@@ -426,6 +426,46 @@ POP {r0}
 BX r0
 .ltorg 
 
+.global FE8_ForcedPromotionHook @ 10b80 hook 
+.type FE8_ForcedPromotionHook, %function 
+FE8_ForcedPromotionHook:
+push {lr} 
+mov r6, r0 
+ldr r0, [r6, #0x38] 
+ldrh r0, [r0, #2] 
+blh 0x800BC50 @ get unit struct 
+cmp r0, #0 
+beq FE8_NoPromo 
+mov r3, r0 
+ldr r0, [r3, #0] 
+ldr r1, [r3, #4] 
+ldr r0, [r0, #0x28] 
+ldr r1, [r1, #0x28] 
+orr r0, r1 
+mov r1, #1 
+lsl r1, #8 @ 0x100 
+tst r0, r1 
+bne FE8_NoPromo @ already promoted 
+ldr r1, [r3, #4] 
+ldrb r0, [r1, #5] @ default promotion 
+cmp r0, #0 
+beq FE8_NoPromo
+
+FE8_Promo: 
+ldr r0, [r6, #0x38] 
+ldrh r5, [r0, #2] 
+ldrh r1, [r0, #4] 
+pop {r3} 
+ldr r3, =0x8010b89 
+bx r3 
+.ltorg 
+FE8_NoPromo: 
+mov r0, #0  
+pop {r3} 
+ldr r3, =0x8010BDD 
+bx r3 
+.ltorg 
+
 .global Arm_DecompText
 .type Arm_DecompText, %function 
 Arm_DecompText:
