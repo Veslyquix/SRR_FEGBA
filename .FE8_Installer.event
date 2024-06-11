@@ -244,6 +244,9 @@ PUSH
 ORG $10b80
 jumpToHack(FE8_ForcedPromotionHook) 
 
+ORG $5E520 
+BYTE 0xA // Fimbulvetr fix 
+
 #ifdef VeslyBuildfile
 // default summoner from list 
 ORG $7ad4c 

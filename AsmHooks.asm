@@ -285,6 +285,43 @@ pop {r3}
 bx r3 
 .ltorg 
 
+
+.global BarLengthHook_A_FE8
+.type BarLengthHook_A_FE8, %function 
+BarLengthHook_A_FE8:
+mov r6, r9 
+mov r5, r8 
+mov r4, r11 
+push {r4-r7} 
+mov r10, r0 
+mov r8, r1 
+mov r7, r3 
+sub sp, #0x10 
+str r2, [sp, #0xC] 
+ldr r5, [sp, #0x34] 
+push {r2} 
+push {lr} 
+bl GetGlobalStatCap
+mov r11, r0 
+pop {r0} 
+pop {r2} 
+
+bx r0 
+.ltorg 
+
+.global BarLengthHook_B_FE8
+.type BarLengthHook_B_FE8, %function 
+BarLengthHook_B_FE8:
+add sp, #0x10 
+pop {r3-r6} 
+mov r11, r3 
+mov r8, r4 
+mov r9, r5 
+mov r10, r6 
+ldr r0, =0x8087171
+bx r0 
+.ltorg 
+
 .global RoyPromoHook
 .type RoyPromoHook, %function 
 RoyPromoHook: 

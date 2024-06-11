@@ -43,11 +43,9 @@ struct RandomizerSettings {
 	u32 base : 2; // vanilla, random 
 	u32 growth : 2; // vanilla, randomized, 0%, 100%
 	u32 levelups : 2; // vanilla, seeded, fixed, pad 
-	u32 caps : 2; // vanilla, randomized, 30 
+	u32 caps : 3; // vanilla, randomized, 0, 15, 30, 45, 60 
 	u32 class : 2; // vanilla, randomized, players only, enemies only  
-	
 	u32 shopItems : 1; 
-	u32 disp : 1; // stat screen display 
 	u32 foundItems : 2; // vanilla, random 
 	u32 randMusic : 2;  // vanilla, random
 	u32 colours : 3; // vanilla, random, janky, portraits only 
@@ -56,7 +54,7 @@ struct RandomizerSettings {
 	u32 playerBonus : 5; // +20 / -10 levels for players 
 	u32 grow50 : 1; // always 50% 
 	u32 fog : 2; // vanilla, always off, always on 
-	u32 pauseNameReplace : 1; 
+	u32 disp : 1; // stat screen display 
 }; // 32 / 32 bits used 
 
 
@@ -69,6 +67,7 @@ struct RandomizerValues {
 
 struct RecruitmentValues { 
 	u8 recruitment : 3; 
+	u8 pauseNameReplace : 1; 
 }; 
 struct TimedHitsDifficultyStruct { 
 	u8 difficulty : 5; 
@@ -2095,6 +2094,55 @@ void NewPopup_GoldGot(ProcPtr parent, struct Unit *unit, int value) // fe8 and f
         NewPopup_Simple(PopupScr_GoldWasStole, 0x60, 0x0, parent);
 }
 
+int AdjustGrowthForStatInflation(int growth) { 
+	int result = growth; 
+	switch (RandBitflags->caps) { 
+		case 0: { result = growth; break; } 
+		case 1: { result = growth; break; } 
+		case 2: { result = 0 * growth; break; } 
+		case 3: { result = (3 * growth) / 4; break; } 
+		case 4: { result = growth; break; } 
+		case 5: { result = (5 * growth) / 4; break; } 
+		case 6: { result = (6 * growth) / 4; break; } 
+	}
+	return result; 
+} 
+
+int GetGeneralStatCap(void) { 
+	int result = (-1); 
+	switch (RandBitflags->caps) { 
+		case 0: { result = (-1); break; } 
+		case 1: { result = (-1); break; } 
+		case 2: { result = 0; break; } 
+		case 3: { result = 15; break; } 
+		case 4: { result = 30; break; } 
+		case 5: { result = 45; break; } 
+		case 6: { result = 60; break; } 
+	}
+	if (result > maxStat) { result = maxStat; } 
+	return result; 
+} 
+
+int GetGlobalStatCap(void) { 
+	int result = GetGeneralStatCap(); 
+	if (result == (-1)) { result = 30; } 
+	return result; 
+}  
+
+int AdjustStatForInflatedNumbers(int stat) { 
+	int result = stat; 
+	switch (RandBitflags->caps) { 
+		case 0: { result = stat; break; } 
+		case 1: { result = stat; break; } 
+		case 2: { result = 0 * stat; break; } 
+		case 3: { result = (3 * stat) / 4; break; } 
+		case 4: { result = stat; break; } 
+		case 5: { result = (5 * stat) / 4; break; } 
+		case 6: { result = (6 * stat) / 4; break; } 
+	}
+	return result; 
+} 
+
 s16 HashStat(int number, int noise[], int offset, int promoted) { 
 	number = HashByPercent_Ch(number, noise, offset, promoted);
 	return number; 
@@ -2115,7 +2163,7 @@ int RandHPStat(struct Unit* unit, int stat, int noise[], int offset, int promote
 } 
 int RandStat(struct Unit* unit, int stat, int noise[], int offset, int promoted) { 
 	if (!RandBitflags->base) { return stat; } 
-	if (maxStat == 60) { stat = (stat * 3) / 2; } 
+	stat = AdjustStatForInflatedNumbers(stat); 
 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	int result = HashStat(stat, noise, offset, promoted); 
 	if (IsUnitAlliedOrPlayable(unit)) { // if below average player, reroll once 
@@ -2150,12 +2198,6 @@ extern int CallGet_Def_Growth(struct Unit* unit);
 extern int CallGet_Res_Growth(struct Unit* unit); 
 extern int CallGet_Luk_Growth(struct Unit* unit); 
 
-int AdjustGrowthForStatInflation(int growth) { 
-
-	if (maxStat == 60) { return (growth * 3) / 2; } 
-	return growth; 
-
-} 
 
 #ifdef FE8 
 struct magClassTable { 
@@ -2216,7 +2258,8 @@ int GetUnitMaxMag(struct Unit* unit) {
 	int cap = 0;
 	if (StrMagInstalled) { cap = MagClassTable[unit->pClassData->number].cap; } 
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return maxStat; } 
+	int max = GetGeneralStatCap(); 
+	if (max != (-1)) { return max; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 77); 
@@ -2226,7 +2269,7 @@ int GetUnitMaxMag(struct Unit* unit) {
 } 
 
 int GetUnitBaseMag(struct Unit* unit) { 
-	return MagClassTable[unit->pClassData->number].base + MagCharTable[unit->pClassData->number].base; 
+	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
 } 
 
 #endif 
@@ -3087,7 +3130,8 @@ int GetUnitMaxHP(struct Unit* unit) {
 int GetUnitMaxPow(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxPow); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return maxStat; } 
+	int max = GetGeneralStatCap(); 
+	if (max != (-1)) { return max; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number;  
 	int result = HashByPercent(cap, noise, 17); 
@@ -3099,7 +3143,8 @@ int GetUnitMaxPow(struct Unit* unit) {
 int GetUnitMaxSkl(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxSkl); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return maxStat; } 
+	int max = GetGeneralStatCap(); 
+	if (max != (-1)) { return max; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 27); 
@@ -3111,7 +3156,8 @@ int GetUnitMaxSkl(struct Unit* unit) {
 int GetUnitMaxSpd(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxSpd); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return maxStat; } 
+	int max = GetGeneralStatCap(); 
+	if (max != (-1)) { return max; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 37); 
@@ -3123,7 +3169,8 @@ int GetUnitMaxSpd(struct Unit* unit) {
 int GetUnitMaxDef(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxDef); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return maxStat; } 
+	int max = GetGeneralStatCap(); 
+	if (max != (-1)) { return max; } 
 	int noise[4] = {0, 0, 0, 0};  
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 47); 
@@ -3135,7 +3182,8 @@ int GetUnitMaxDef(struct Unit* unit) {
 int GetUnitMaxRes(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxRes); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return maxStat; } 
+	int max = GetGeneralStatCap(); 
+	if (max != (-1)) { return max; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 57); 
@@ -3147,7 +3195,8 @@ int GetUnitMaxRes(struct Unit* unit) {
 int GetUnitMaxLck(struct Unit* unit) { 
 	int cap = maxStat;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
-	if (RandBitflags->caps == 2) { return maxStat; } 
+	int max = GetGeneralStatCap(); 
+	if (max != (-1)) { return max; } 
 	int noise[4] = {0, 0, 0, 0}; 
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 67); 
@@ -3758,14 +3807,18 @@ const char Option4[OPT4NUM][15] = { // Levelups
 "Fixed", 
 };
 #endif
-#define OPT5NUM 3
+#define OPT5NUM 7
 #ifdef FE6 
 extern const char Option5[OPT5NUM][32]; // do align 16 before each? 
 #else 
 const char Option5[OPT5NUM][10] = { // Stat Caps 
 "Vanilla",
 "Random",
-"Always 30", 
+"0", 
+"15", 
+"30", 
+"45", 
+"60", 
 }; 
 #endif
 #define OPT6NUM 4
@@ -4201,7 +4254,7 @@ void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 80038
 	int length[1] = {0}; 
 	length[0] = DecompText(a, b); 
 	if (!ShouldRandomizeRecruitment()) { return; }
-	if (RandBitflags->pauseNameReplace) { return; } 
+	if (RecruitValues->pauseNameReplace) { return; } 
 	struct ReplaceTextStruct ReplaceTextList[ListSize+1]; // +1 for terminator 
 	#ifdef SET_TEXT_USED
 	InitReplaceTextListAntiHuffman(ReplaceTextList); 
@@ -4573,7 +4626,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandValues->seed = proc->seed; 
 		RandValues->variance = proc->Option[0];
 		RecruitValues->recruitment = proc->Option[1]; 
-		RandBitflags->pauseNameReplace = false; 
+		RecruitValues->pauseNameReplace = false; 
 		RandBitflags->base = proc->Option[2]; 
 		RandBitflags->growth = proc->Option[3];
 		if (proc->Option[3] > 3) { RandBitflags->grow50 = true; } 
@@ -5003,7 +5056,7 @@ void InitDraw(ConfigMenuProc* proc) {
  
 extern void StartGreenText(ProcPtr parent);
 ConfigMenuProc* StartConfigMenu(ProcPtr parent) { 
-	RandBitflags->pauseNameReplace = true; 
+	RecruitValues->pauseNameReplace = true; 
 	ConfigMenuProc* proc; 
 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
