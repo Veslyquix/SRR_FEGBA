@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.4.5"
+#define VersionNumber " SRR V1.4.6"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -1360,7 +1360,7 @@ int GetInitialSeed(int rate) {
 u16 HashByte_Class(int n, int max, u8 noise[], int offset) {
 	//asm("mov r11, r11"); 
 	int c; 
-	while (c = *noise++) { 
+	while ((c = *noise++)) { 
 	n = c + (n << 6) + (n << 16) - n;
 	} 
 	n = (RandValues->seed&0xFF) + (n << 6) + (n << 16) - n;
@@ -2149,7 +2149,7 @@ void DrawStatBarGfx(
     int tile, int bufWidth, u16* buf, int tileBase,
     int barWidth, int progressLength, int cappedLength);
 extern u16 gUiTmScratchA[0x280];
-extern u16 gUiTmScratchC[0x240];
+extern u16 gUiTmScratchC[0x240]; 
 void NewDrawStatWithBar(int num, int x, int y, int base, int total, int max)
 {
     int diff = total - base;

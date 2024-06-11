@@ -14,9 +14,8 @@
 #endif 
 
 #ifdef _FE6_ 
-	#include "Patches/FE6/Installer.event" 
 	#include ".FE6_Installer.event" 
-
+	#include "Patches/FE6/Installer.event" 
 #endif 
 
 #ifdef _FE7_ 

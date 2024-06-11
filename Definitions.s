@@ -386,6 +386,8 @@ SET_DATA gBG3TilemapBuffer, 0x2023308
 SET_DATA sKeyStatusBuffer, 0x2023B20
 SET_DATA gStatScreen, 0x2003108 @ for text handles 
 SET_DATA gUiTmScratchA, 0x2003238 @ might be wrong 
+SET_DATA gUiTmScratchC, 0x2003C38 
+SET_FUNC DrawStatBarGfx, 0x806E999
 SET_DATA gActiveUnit, 0x30044B0
 @ 202AA08 gBmSt https://github.com/StanHash/fe6/blob/5430c7ea15313a5754ddb466916b1d2946e72c4a/include/bm.h#L90C8-L90C12
 @ 801E2C0	801FFE0	801FB78	0	0	ChapterIntro_InitMapDisplay
@@ -535,7 +537,6 @@ SET_DATA gObject_8x8, 0x8B905B0
 
 SET_FUNC Decompress, 0x8013169 
 SET_DATA gBuf, 0x2020140
-SET_DATA gUiTmScratchB, 0x200373C 
 @SET_DATA Tsa_StatScreenPage0, 0x83FCA4C 
 SET_FUNC TmApplyTsa, 0x80C57B5 
 
@@ -546,6 +547,9 @@ SET_DATA gBG3TilemapBuffer, 0x2024460
 SET_DATA sKeyStatusBuffer, 0x2024C78
 SET_DATA gStatScreen, 0x200310C @ for text handles 
 SET_DATA gUiTmScratchA, 0x200323C 
+SET_DATA gUiTmScratchB, 0x200373C 
+SET_DATA gUiTmScratchC, 0x2003C3C 
+SET_FUNC DrawStatBarGfx, 0x807F849 @ 806E998
 SET_DATA gLCDControlBuffer, 0x3002870
 SET_DATA ProcScr_GotItem, 0x8B91DC4
 SET_DATA gActiveUnit, 0x3004690

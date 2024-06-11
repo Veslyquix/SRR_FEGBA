@@ -22,6 +22,7 @@ ORG $6ee80 // stat screen something
 BYTE statCap 
 #endif 
 
+/*
 // 806EC6C // draw bar 
 ORG $6ECae
 BYTE statCap
@@ -33,7 +34,7 @@ ORG $6ECf2
 BYTE statCap
 ORG $6Ed04
 BYTE statCap
-
+*/
 
 // Check for battle unit stat caps (luck)
 // 80253CC 
