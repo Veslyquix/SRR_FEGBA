@@ -18,7 +18,7 @@
 #endif  
 
 extern int maxStat; 
-
+int GetGlobalStatCap(void); 
  
 #include "headers/gbafe.h" 
 #define PUREFUNC __attribute__((pure))
@@ -2143,6 +2143,34 @@ int AdjustStatForInflatedNumbers(int stat) {
 	return result; 
 } 
 
+extern void PutNumberBonus(int a, u16 *b); // 8006240
+extern void PutNumberOrBlank(u16 *a, int b, int c); // 80061E4
+void DrawStatBarGfx(
+    int tile, int bufWidth, u16* buf, int tileBase,
+    int barWidth, int progressLength, int cappedLength);
+extern u16 gUiTmScratchA[0x280];
+extern u16 gUiTmScratchC[0x240];
+void NewDrawStatWithBar(int num, int x, int y, int base, int total, int max)
+{
+    int diff = total - base;
+	int globalCap = GetGlobalStatCap();
+
+    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y),
+        (base == max) ? green : blue, base);
+
+    PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 1, y));
+
+    if (total > globalCap)
+    {
+        total = globalCap;
+        diff = total - base;
+    }
+
+    DrawStatBarGfx(0x401 + num*6, 6,
+        gUiTmScratchC + TILEMAP_INDEX(x - 2, y + 1),
+        TILEREF(0, 6), max * 41 / globalCap, base * 41 / globalCap, diff * 41 / globalCap);
+}
+
 s16 HashStat(int number, int noise[], int offset, int promoted) { 
 	number = HashByPercent_Ch(number, noise, offset, promoted);
 	return number; 
@@ -2150,7 +2178,7 @@ s16 HashStat(int number, int noise[], int offset, int promoted) {
 extern int MinClassBase; 
 int RandHPStat(struct Unit* unit, int stat, int noise[], int offset, int promoted) { 
 	if (!RandBitflags->base) { return stat; } 
-	if (maxStat == 60) { stat = (stat * 3) / 2; } 
+	stat = AdjustStatForInflatedNumbers(stat);  
 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	int result = HashStat(stat, noise, offset, 3); // by 2/3rds percent 
 	if (IsUnitAlliedOrPlayable(unit)) { // if below average player, reroll once 
@@ -3136,7 +3164,7 @@ int GetUnitMaxPow(struct Unit* unit) {
 	noise[0] = unit->pClassData->number;  
 	int result = HashByPercent(cap, noise, 17); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 13); }  
-	if (result > maxStat) { result = maxStat; } 
+	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	return result;  
 } 
 
@@ -3149,7 +3177,7 @@ int GetUnitMaxSkl(struct Unit* unit) {
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 27); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 23); } 
-	if (result > maxStat) { result = maxStat; } 
+	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	return result;   
 } 
 
@@ -3162,7 +3190,7 @@ int GetUnitMaxSpd(struct Unit* unit) {
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 37); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 33); } 
-	if (result > maxStat) { result = maxStat; } 
+	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	return result;  
 } 
 
@@ -3175,7 +3203,7 @@ int GetUnitMaxDef(struct Unit* unit) {
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 47); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 43); } 
-	if (result > maxStat) { result = maxStat; } 
+	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	return result;  
 } 
 
@@ -3188,12 +3216,12 @@ int GetUnitMaxRes(struct Unit* unit) {
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 57); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 53); } 
-	if (result > maxStat) { result = maxStat; } 
+	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	return result;  
 } 
 
 int GetUnitMaxLck(struct Unit* unit) { 
-	int cap = maxStat;
+	int cap = GetGlobalStatCap();
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	int max = GetGeneralStatCap(); 
 	if (max != (-1)) { return max; } 
@@ -3201,7 +3229,7 @@ int GetUnitMaxLck(struct Unit* unit) {
 	noise[0] = unit->pClassData->number; 
 	int result = HashByPercent(cap, noise, 67); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 63); } 
-	if (result > maxStat) { result = maxStat; } 
+	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	return result;  
 } 
 
@@ -5166,8 +5194,8 @@ int MenuStartConfigMenu(ProcPtr parent) {
 // STAT SCREEN STUFF 
 extern void DrawStatWithBar(int num, int x, int y, int base, int total, int max); // 807FD28
 
-extern void PutNumberOrBlank(u16 *a, int b, int c); // 80061E4
-//extern void PutNumberBonus(int a, u16 *b); // 8006240
+
+
 extern void PutSpecialChar(u16 * tm, int color, int id); //800615C
 extern void PutNumberSmall(u16* a, int b, int c); // 8006234
 
@@ -5195,7 +5223,7 @@ void PutNumberBonus(int number, u16 *tm)
 	} 
 }
 
-extern u16 gUiTmScratchA[0x280];
+
 extern void PrintDebugStringToBG(u16 *dest, const char *str); // 8004F70
 extern void SetupDebugFontForBG(int bg, int tileDataOffset); // 8004EF8
 extern void StatScreen_Display(struct Proc* proc); // 808119C
@@ -5388,13 +5416,13 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
 	} 
 	
 	if (barsOrGrowths) { 
-    DrawStatWithBar(0, 5, 1,
+    NewDrawStatWithBar(0, 5, 1,
         gStatScreen.unit->pow,
         GetUnitPower(gStatScreen.unit),
         GetUnitMaxPow(gStatScreen.unit));
 
     // displaying skl stat value
-    DrawStatWithBar(1, 5, 3,
+    NewDrawStatWithBar(1, 5, 3,
         gStatScreen.unit->state & US_RESCUING
             ? gStatScreen.unit->skl/2
             : gStatScreen.unit->skl,
@@ -5404,7 +5432,7 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
             : GetUnitMaxSkl(gStatScreen.unit));
 
     // displaying spd stat value
-    DrawStatWithBar(2, 5, 5,
+    NewDrawStatWithBar(2, 5, 5,
         gStatScreen.unit->state & US_RESCUING
             ? gStatScreen.unit->spd/2
             : gStatScreen.unit->spd,
@@ -5414,19 +5442,19 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
             : GetUnitMaxSpd(gStatScreen.unit));
 
     // displaying lck stat value
-    DrawStatWithBar(3, 5, 7,
+    NewDrawStatWithBar(3, 5, 7,
         gStatScreen.unit->lck,
         GetUnitLuck(gStatScreen.unit),
         GetUnitMaxLck(gStatScreen.unit));
 
     // displaying def stat value
-    DrawStatWithBar(4, 5, 9,
+    NewDrawStatWithBar(4, 5, 9,
         gStatScreen.unit->def,
         GetUnitDefense(gStatScreen.unit),
         GetUnitMaxDef(gStatScreen.unit));
 
     // displaying res stat value
-    DrawStatWithBar(5, 5, 11,
+    NewDrawStatWithBar(5, 5, 11,
         gStatScreen.unit->res,
         GetUnitResistance(gStatScreen.unit),
         GetUnitMaxRes(gStatScreen.unit));
@@ -5888,7 +5916,7 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 	} 
 	if (gStatScreenFunction[id].GetUnitUnadjustedStat) { // could be null, in which case we draw nothing 
 		if (disp == 1) {
-			DrawStatWithBar(barID, x, y, gStatScreenFunction[id].GetUnitUnadjustedStat(unit),
+			NewDrawStatWithBar(barID, x, y, gStatScreenFunction[id].GetUnitUnadjustedStat(unit),
 			gStatScreenFunction[id].GetUnitStat(unit), gStatScreenFunction[id].GetUnitMaxStat(unit));  
 		}
 		if (disp == 0) {
@@ -5990,6 +6018,15 @@ void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6
     // displaying str/mag stat value
 	int disp = RandBitflags->disp; 
 	struct Unit* unit = gStatScreen.unit; 
+	//for (int i = 0; i < 0x240; ++i) { 
+		//gUiTmScratchC[i] = 0; 
+	//} 
+	//for (int i = 0; i < 0x280; ++i) { 
+		//gUiTmScratchA[i] = 0; 
+	//} 
+	//BG_Fill(gBG2TilemapBuffer, 0);
+	//BG_EnableSyncByMask(BG2_SYNC_BIT); 
+	
 	if (UNIT_FACTION(unit) != FACTION_BLUE) { disp = 1; } 
 	int barCount = 0; 
 	barCount += DrawStatByID(barCount, 5, 1, disp, unit, 0); 
