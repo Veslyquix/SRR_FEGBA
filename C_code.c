@@ -1190,10 +1190,12 @@ void MaybeChangeAi2(void) {
 	if (IsAnythingRandomized()) { 
 		if (gActiveUnit->ai2 == 3) { 
 			if (UNIT_CATTRIBUTES(gActiveUnit) & CA_BOSS) { return; } 
-			int noise[4] = { gActiveUnit->pCharacterData->number, gActiveUnit->pClassData->number, 0, 0 }; 
-			if (HashByte_Ch(gTurn, 100, noise, gTurn) < ((gTurn + 5) * 2)) { 
-				gActiveUnit->ai2 = 0; 
-			}
+			if (gTurn > 10) { 
+				int noise[4] = { gActiveUnit->pCharacterData->number, gActiveUnit->pClassData->number, 0, 0 }; 
+				if (HashByte_Ch(gTurn, 100, noise, gTurn) < ((gTurn) * 2)) { 
+					gActiveUnit->ai2 = 0; 
+				}
+			} 
 		} 
 	}
 } 
