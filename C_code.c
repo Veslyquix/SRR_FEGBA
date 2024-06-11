@@ -2137,11 +2137,12 @@ int AdjustStatForInflatedNumbers(int stat) {
 		case 0: { result = stat; break; } 
 		case 1: { result = stat; break; } 
 		case 2: { result = 0 * stat; break; } 
-		case 3: { result = (3 * stat) / 4; break; } 
+		case 3: { result = ((3 * stat) / 4) - 2; break; } 
 		case 4: { result = stat; break; } 
-		case 5: { result = (5 * stat) / 4; break; } 
-		case 6: { result = (6 * stat) / 4; break; } 
+		case 5: { result = ((5 * stat) / 4) + 2; break; } 
+		case 6: { result = ((6 * stat) / 4) + 4; break; } 
 	}
+	if (result < 0) { result = 0; } 
 	return result; 
 } 
 
@@ -2180,7 +2181,6 @@ s16 HashStat(int number, int noise[], int offset, int promoted) {
 extern int MinClassBase; 
 int RandHPStat(struct Unit* unit, int stat, int noise[], int offset, int promoted) { 
 	if (!RandBitflags->base) { return stat; } 
-	stat = AdjustStatForInflatedNumbers(stat);  
 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	int result = HashStat(stat, noise, offset, 3); // by 2/3rds percent 
 	if (IsUnitAlliedOrPlayable(unit)) { // if below average player, reroll once 
@@ -2189,11 +2189,11 @@ int RandHPStat(struct Unit* unit, int stat, int noise[], int offset, int promote
 			if (stat > result) { result = stat; } 
 		}
 	}
+	result = AdjustStatForInflatedNumbers(result); 
 	return result; 
 } 
 int RandStat(struct Unit* unit, int stat, int noise[], int offset, int promoted) { 
 	if (!RandBitflags->base) { return stat; } 
-	stat = AdjustStatForInflatedNumbers(stat); 
 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	int result = HashStat(stat, noise, offset, promoted); 
 	if (IsUnitAlliedOrPlayable(unit)) { // if below average player, reroll once 
@@ -2202,6 +2202,7 @@ int RandStat(struct Unit* unit, int stat, int noise[], int offset, int promoted)
 			if (stat > result) { result = stat; } 
 		}
 	}
+	result = AdjustStatForInflatedNumbers(result); 
 	return result; 
 } 
 
@@ -2295,6 +2296,7 @@ int GetUnitMaxMag(struct Unit* unit) {
 	int result = HashByPercent(cap, noise, 77); 
 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap >> 1), noise, 73); } 
 	if (result > cap) { result = cap; } 
+	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	return result;  
 } 
 
@@ -2817,7 +2819,7 @@ extern int RandomizeMovConBonus;
 int GetAdjustedLevel(const struct CharacterData* table, const struct ClassData* classTable) { 
 	int promoted = ((table->attributes | classTable->attributes) & CA_PROMOTED);
 	int level = table->baseLevel; 
-	if (promoted) { level += 10; } 
+	if (promoted) { level += 15; } 
 	return level; 
 } 
 extern int BonusItemChance; 
@@ -3677,6 +3679,77 @@ void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu) {
 }
 
 
+void ApplyUnitDefaultPromotion(struct Unit* unit) {
+    const struct ClassData* promotedClass = GetClassData(unit->pClassData->promotion);
+
+    int baseClassId = unit->pClassData->number;
+    int promClassId = promotedClass->number;
+
+    int i;
+
+    // Apply stat ups
+
+    unit->maxHP += promotedClass->promotionHp;
+
+    if (unit->maxHP > promotedClass->maxHP)
+        unit->maxHP = promotedClass->maxHP;
+
+    unit->pow += promotedClass->promotionPow;
+
+    if (unit->pow > promotedClass->maxPow)
+        unit->pow = promotedClass->maxPow;
+
+    unit->skl += promotedClass->promotionSkl;
+
+    if (unit->skl > promotedClass->maxSkl)
+        unit->skl = promotedClass->maxSkl;
+
+    unit->spd += promotedClass->promotionSpd;
+
+    if (unit->spd > promotedClass->maxSpd)
+        unit->spd = promotedClass->maxSpd;
+
+    unit->def += promotedClass->promotionDef;
+
+    if (unit->def > promotedClass->maxDef)
+        unit->def = promotedClass->maxDef;
+
+    unit->res += promotedClass->promotionRes;
+
+    if (unit->res > promotedClass->maxRes)
+        unit->res = promotedClass->maxRes;
+
+    // Remove base class' base wexp from unit wexp
+    for (i = 0; i < 8; ++i)
+        unit->ranks[i] -= unit->pClassData->baseRanks[i];
+
+    // Update unit class
+    unit->pClassData = promotedClass;
+
+    // Add promoted class' base wexp to unit wexp
+    for (i = 0; i < 8; ++i) {
+        int wexp = unit->ranks[i];
+
+        wexp += unit->pClassData->baseRanks[i];
+
+        if (wexp > WPN_EXP_S)
+            wexp = WPN_EXP_S;
+
+        unit->ranks[i] = wexp;
+    }
+
+    // If Pupil -> Shaman promotion, set Anima rank to 0
+    if (baseClassId == CLASS_PUPIL && promClassId == CLASS_SHAMAN)
+        unit->ranks[ITYPE_ANIMA] = 0;
+
+    unit->level = 1;
+    unit->exp   = 0;
+
+    unit->curHP += promotedClass->promotionHp;
+
+    if (unit->curHP > GetUnitMaxHp(unit))
+        unit->curHP = GetUnitMaxHp(unit);
+}
 
 
 
@@ -4685,10 +4758,11 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 			int timedHits = proc->Option[16];
 			TimedHitsDifficultyRam->off = false;
 			TimedHitsDifficultyRam->alwaysA = false;
+			TimedHitsDifficultyRam->difficulty = 0; 
 			if (timedHits == 0) { TimedHitsDifficultyRam->off = true; }  
 			if (timedHits == 1) { TimedHitsDifficultyRam->alwaysA = true; }  
-			if (timedHits == 2) { TimedHitsDifficultyRam->difficulty = 1; }  
-			if (timedHits == 3) { TimedHitsDifficultyRam->difficulty = 2; }  
+			if (timedHits == 2) { TimedHitsDifficultyRam->difficulty = 2; }  
+			if (timedHits == 3) { TimedHitsDifficultyRam->difficulty = 3; }  
 		}
 		#endif 
 		
@@ -5179,8 +5253,8 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	if (DisplayTimedHitsOption) { 
 		proc->Option[16] = 0;
 		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[16] = 1; }  
-		if (TimedHitsDifficultyRam->difficulty == 1) { proc->Option[16] = 2; }  
-		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[16] = 3; }  
+		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[16] = 2; }  
+		if (TimedHitsDifficultyRam->difficulty == 3) { proc->Option[16] = 3; }  
 	}
 	#endif 
 	
