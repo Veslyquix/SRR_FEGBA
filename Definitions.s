@@ -401,10 +401,12 @@ SET_DATA sPrevHandScreenPosition, 0x203C9D4
 SET_DATA gLCDControlBuffer, 0x30026B0
 SET_DATA ProcScr_GotItem, 0x85C4934 @ maybe 
 SET_FUNC StartBlockingPrepShop, 0x8095df1
+SET_FUNC ApplyUnitDefaultPromotion, 0x8029819
 .endif
 
 
 .if FE7 == true 
+SET_FUNC ApplyUnitDefaultPromotion, 0x8029819
 SET_DATA TacticianName, 0x202BC18
 SET_FUNC __aeabi_idiv, 0x80BFA15 
 @SET_FUNC Div, 0x80BFA15

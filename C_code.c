@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.4.6"
+#define VersionNumber " SRR V1.4.7"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -2303,6 +2303,9 @@ int GetUnitMaxMag(struct Unit* unit) {
 int GetUnitBaseMag(struct Unit* unit) { 
 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
 } 
+int GetPromoMag(int classId) { 
+	return MagClassTable[classId].promo; 
+} 
 
 #endif 
 #ifndef FE8 
@@ -3678,46 +3681,28 @@ void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu) {
 	} 
 }
 
-
-void ApplyUnitDefaultPromotion(struct Unit* unit) {
-    const struct ClassData* promotedClass = GetClassData(unit->pClassData->promotion);
-
+#ifndef FE6 
+void ApplyUnitPromotion(struct Unit* unit, u8 classId) {
+    const struct ClassData* promotedClass = GetClassData(classId);
+	#ifdef FE8 
     int baseClassId = unit->pClassData->number;
     int promClassId = promotedClass->number;
+	#endif 
 
     int i;
 
     // Apply stat ups
-
     unit->maxHP += promotedClass->promotionHp;
-
-    if (unit->maxHP > promotedClass->maxHP)
-        unit->maxHP = promotedClass->maxHP;
-
     unit->pow += promotedClass->promotionPow;
-
-    if (unit->pow > promotedClass->maxPow)
-        unit->pow = promotedClass->maxPow;
-
     unit->skl += promotedClass->promotionSkl;
-
-    if (unit->skl > promotedClass->maxSkl)
-        unit->skl = promotedClass->maxSkl;
-
     unit->spd += promotedClass->promotionSpd;
-
-    if (unit->spd > promotedClass->maxSpd)
-        unit->spd = promotedClass->maxSpd;
-
     unit->def += promotedClass->promotionDef;
-
-    if (unit->def > promotedClass->maxDef)
-        unit->def = promotedClass->maxDef;
-
     unit->res += promotedClass->promotionRes;
-
-    if (unit->res > promotedClass->maxRes)
-        unit->res = promotedClass->maxRes;
+	#ifdef FE8 
+	if (SkillSysInstalled) { 
+	unit->_u3A += GetPromoMag(classId); 
+	} 
+	#endif 
 
     // Remove base class' base wexp from unit wexp
     for (i = 0; i < 8; ++i)
@@ -3732,25 +3717,31 @@ void ApplyUnitDefaultPromotion(struct Unit* unit) {
 
         wexp += unit->pClassData->baseRanks[i];
 
-        if (wexp > WPN_EXP_S)
-            wexp = WPN_EXP_S;
+        if (wexp > 251) // wexp s rank 
+            wexp = 251;
 
         unit->ranks[i] = wexp;
     }
 
+	#ifdef FE8 
     // If Pupil -> Shaman promotion, set Anima rank to 0
-    if (baseClassId == CLASS_PUPIL && promClassId == CLASS_SHAMAN)
-        unit->ranks[ITYPE_ANIMA] = 0;
+    if (baseClassId == 0x3E && promClassId == 0x2D) { // pupil to shaman 
+		unit->ranks[5] = 0; } // anima = 0 
+	#endif 
 
     unit->level = 1;
     unit->exp   = 0;
 
     unit->curHP += promotedClass->promotionHp;
-
+	UnitCheckStatCaps(unit); 
     if (unit->curHP > GetUnitMaxHp(unit))
         unit->curHP = GetUnitMaxHp(unit);
 }
 
+void ApplyUnitDefaultPromotion(struct Unit* unit) {
+    ApplyUnitPromotion(unit, unit->pClassData->promotion);
+} 
+#endif 
 
 
 
