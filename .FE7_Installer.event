@@ -150,6 +150,19 @@ WORD 0 // If 0, it'll read through your class editor and count
 
 PUSH 
 
+// checksum testing stuff 
+//ORG $9f924 
+//SHORT $4770 // bx lr 
+//ORG $9f92c 
+//SHORT $2001 
+//SHORT $46db // mov r11, r11 
+// 
+/// 9f924 -> 9e4f0 -> 80130b4 
+// is saved string the same as rom string? 
+//ORG $ad2
+//SHORT $46c0 $46c0 
+// 80130B4 
+
 ORG $2cc88
 replaceWithHack(FE7PromoHook)
 

@@ -1577,7 +1577,7 @@ CallGetMaxHP:
 push {lr} 
 @ prMaxHPGetter is for unit's current max hp, not hp cap 
 Replace_GetMaxHP:
-bl GetUnitMaxHP
+bl GetUnitHPCap
 Exit_GetMaxHP:
 pop {r3} 
 bx r3 

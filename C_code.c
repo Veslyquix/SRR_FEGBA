@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.4.7"
+#define VersionNumber " SRR V1.4.8"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -2104,8 +2104,8 @@ int AdjustGrowthForStatInflation(int growth) {
 		case 2: { result = 0 * growth; break; } 
 		case 3: { result = (3 * growth) / 4; break; } 
 		case 4: { result = growth; break; } 
-		case 5: { result = (5 * growth) / 4; break; } 
-		case 6: { result = (6 * growth) / 4; break; } 
+		case 5: { result = ((5 * growth) / 4) + 10; break; } 
+		case 6: { result = ((6 * growth) / 4) + 20; break; } 
 	}
 	return result; 
 } 
@@ -2139,12 +2139,27 @@ int AdjustStatForInflatedNumbers(int stat) {
 		case 2: { result = 0 * stat; break; } 
 		case 3: { result = ((3 * stat) / 4) - 2; break; } 
 		case 4: { result = stat; break; } 
-		case 5: { result = ((5 * stat) / 4) + 2; break; } 
-		case 6: { result = ((6 * stat) / 4) + 4; break; } 
+		case 5: { result = ((5 * stat) / 4) + 1; break; } 
+		case 6: { result = ((6 * stat) / 4) + 2; break; } 
 	}
 	if (result < 0) { result = 0; } 
 	return result; 
 } 
+
+int SlightlyAdjustStatForInflatedNumbers(int stat) { 
+	int result = stat; 
+	switch (RandBitflags->caps) { 
+		case 0: { result = stat; break; } 
+		case 1: { result = stat; break; } 
+		case 2: { result = 0 * stat; break; } 
+		case 3: { result = ((7 * stat) / 8) - 1; break; } 
+		case 4: { result = stat; break; } 
+		case 5: { result = ((9 * stat) / 8) + 0; break; } 
+		case 6: { result = ((10 * stat) / 8) + 1; break; } 
+	}
+	if (result < 0) { result = 0; } 
+	return result; 
+}
 
 extern void PutNumberBonus(int a, u16 *b); // 8006240
 extern void PutNumberOrBlank(u16 *a, int b, int c); // 80061E4
@@ -2189,7 +2204,7 @@ int RandHPStat(struct Unit* unit, int stat, int noise[], int offset, int promote
 			if (stat > result) { result = stat; } 
 		}
 	}
-	result = AdjustStatForInflatedNumbers(result); 
+	result = SlightlyAdjustStatForInflatedNumbers(result); 
 	return result; 
 } 
 int RandStat(struct Unit* unit, int stat, int noise[], int offset, int promoted) { 
@@ -2202,7 +2217,7 @@ int RandStat(struct Unit* unit, int stat, int noise[], int offset, int promoted)
 			if (stat > result) { result = stat; } 
 		}
 	}
-	result = AdjustStatForInflatedNumbers(result); 
+	result = SlightlyAdjustStatForInflatedNumbers(result); 
 	return result; 
 } 
 
@@ -2303,6 +2318,10 @@ int GetUnitMaxMag(struct Unit* unit) {
 int GetUnitBaseMag(struct Unit* unit) { 
 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
 } 
+int GetBaseMag(int charID, int classID) { 
+	return MagClassTable[classID].base + MagCharTable[charID].base; 
+} 
+
 int GetPromoMag(int classId) { 
 	return MagClassTable[classId].promo; 
 } 
@@ -2319,7 +2338,7 @@ int GetUnitMagGrowth(struct Unit* unit, int modifiersBool) {
 int GetUnitMaxMag(struct Unit* unit) { 
 	return 0;  
 } 
-
+int GetBaseMag(int a, int b) { return 0; } 
 int GetUnitBaseMag(struct Unit* unit) { 
 	return 0; 
 } 
@@ -2728,7 +2747,7 @@ void UnitAutolevelCore(struct Unit* unit, u8 classId, int levelCount) {
 	UnitCheckStatCaps(unit); 
 }
 
-#define MinCharAutolevelBonusGrowth 10
+#define MinCharAutolevelBonusGrowth 20
 int AdjustGrowthForLosingLevels(int growth, int avg) { 
 	int num = avg - (growth - avg); // invert growths so high growths become low and vice versa 
 	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
@@ -2826,6 +2845,25 @@ int GetAdjustedLevel(const struct CharacterData* table, const struct ClassData* 
 	return level; 
 } 
 extern int BonusItemChance; 
+#define HPStatMaxBonus 12
+int GetHPStatMaxBonus(struct Unit* unit, int stat, int avg) { 
+	int result = (stat + avg) / 2; 
+	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
+	result += bonus; 
+	if (result < stat) { result = stat; } 
+	if (result < (avg + 1)) { result = avg+1; } 
+	return result; 
+} 
+#define StatMaxBonus 8 
+int GetStatMaxBonus(struct Unit* unit, int stat, int avg) { 
+	int result = (stat + avg) / 2; 
+	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
+	result += bonus; 
+	if (result < stat) { result = stat; } 
+	if (result < (avg + 1)) { result = avg+1; } 
+	return result; 
+} 
+
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
 	const struct CharacterData* character = unit->pCharacterData; 
@@ -2920,7 +2958,6 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	int RandomizeRecruitment = ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number); 
 	const struct ClassData* originalClass;
 	const struct ClassData* randCharOriginalClass;
- 
 	if (uDef->classIndex) { originalClass = GetClassData(uDef->classIndex); } 
 	else { originalClass = GetClassData(unit->pCharacterData->defaultClass); } 
 	
@@ -3110,6 +3147,47 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	} 
 	MakePromotedUnitHaveMinStats(unit); 
 	UnitCheckStatMins(unit); 
+	
+	int orgHP  = unit->pCharacterData->baseHP  + originalClass->baseHP; 
+	int orgPow = unit->pCharacterData->basePow + originalClass->basePow; 
+	int orgSkl = unit->pCharacterData->baseSkl + originalClass->baseSkl; 
+	int orgSpd = unit->pCharacterData->baseSpd + originalClass->baseSpd; 
+	int orgDef = unit->pCharacterData->baseDef + originalClass->baseDef; 
+	int orgRes = unit->pCharacterData->baseRes + originalClass->baseRes; 
+	int orgLck = unit->pCharacterData->baseLck; 
+	int countOfStats = 6; 
+	int avgStat = orgPow + orgSkl + orgSpd + orgDef + orgRes + orgLck; 
+	#ifdef FE8 
+	int orgMag = 0; 
+	if (SkillSysInstalled) { 
+		orgMag = GetBaseMag(unit->pCharacterData->number, originalClass->number); 
+		avgStat += orgMag; countOfStats++; 
+	} 
+	#endif 
+	avgStat = (avgStat + (countOfStats / 2)) / countOfStats; 
+	int max = GetHPStatMaxBonus(unit, orgHP, avgStat); 
+	if (unit->maxHP > max) { unit->maxHP = max; unit->curHP = max; } 
+	max = GetStatMaxBonus(unit, orgPow, avgStat); 
+	if (unit->pow > max) { unit->pow = max; } 
+	max = GetStatMaxBonus(unit, orgSkl, avgStat); 
+	if (unit->skl > max) { unit->skl = max; } 
+	max = GetStatMaxBonus(unit, orgSpd, avgStat); 
+	if (unit->spd > max) { unit->spd = max; } 
+	max = GetStatMaxBonus(unit, orgDef, avgStat); 
+	if (unit->def > max) { unit->def = max; } 
+	max = GetStatMaxBonus(unit, orgRes, avgStat); 
+	if (unit->res > max) { unit->res = max; } 
+	max = GetStatMaxBonus(unit, orgLck, avgStat); 
+	if (unit->lck > max) { unit->lck = max; } 
+	
+	#ifdef FE8
+	if (SkillSysInstalled) { 	
+		max = GetStatMaxBonus(unit, orgMag, avgStat); 
+		if (unit->_u3A > max) { unit->_u3A = max; } 
+	} 
+	#endif 
+	
+	
 	UnitCheckStatCaps(unit);
 }
 
@@ -3156,12 +3234,12 @@ void UnitLoadStatsFromCharacter(struct Unit* unit, const struct CharacterData* c
 extern int PlayerMaxHP; 
 extern int EnemyBossMaxHP; 
 extern int EnemyMaxHP; 
-int GetUnitMaxHP(struct Unit* unit) { 
+int GetUnitHPCap(struct Unit* unit) { 
 	if (UNIT_CATTRIBUTES(unit) & CA_BOSS) { if (unit->pCharacterData->number > 0x3F) { return EnemyBossMaxHP; } } 
 	else { if (UNIT_FACTION(unit) != FACTION_RED) { return PlayerMaxHP; } } 
 	return EnemyMaxHP; 
 } 
-
+//8000ad2
 int GetUnitMaxPow(struct Unit* unit) { 
 	int cap = ((unit)->pClassData->maxPow); //return cap;
 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
@@ -3595,10 +3673,11 @@ void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 #define UNIT_CON_MAX(aUnit) ((aUnit)->pClassData->maxCon)
 #define UNIT_MOV_MAX(aUnit) (15)
 void UnitCheckStatCaps(struct Unit* unit) {
-    if (unit->maxHP > CallGetMaxHP(unit)) { 
-	unit->maxHP = CallGetMaxHP(unit); } 
+	int max = CallGetMaxHP(unit); 
+    if (unit->maxHP > max) { 
+	unit->maxHP = max; } 
 
-	int max = GetUnitMaxPow(unit);
+	max = GetUnitMaxPow(unit);
     if (unit->pow > max ) { 
 	unit->pow = max; } 
 
@@ -3648,10 +3727,11 @@ void UnitCheckStatCaps(struct Unit* unit) {
 
 
 void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu) {
-    if ((unit->maxHP + bu->changeHP) > CallGetMaxHP(unit)) { 
-	bu->changeHP = CallGetMaxHP(unit) - unit->maxHP; } 
+	int max = CallGetMaxHP(unit); 
+    if ((unit->maxHP + bu->changeHP) > max) { 
+	bu->changeHP = max - unit->maxHP; } 
 
-	int max = GetUnitMaxPow(unit);
+	max = GetUnitMaxPow(unit);
     if ((unit->pow + bu->changePow) > max ) { 
 	bu->changePow = max - unit->pow; } 
 
