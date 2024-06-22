@@ -5,15 +5,18 @@
 @cd %~dp0/png
 
 @for /d %%i in (.\*) do ( 
+@cd %~dp0/png
 cd "%%i"  
+cd
 @for /R %%m in (.) do (
 	cd "%%m"
 	@rem cd
 	if exist *.bin ( 
 		@dir *.bin /b > bin.txt
 		@for /f "tokens=*" %%n in (bin.txt) do ( 
-			@rem if exist "%%~nn Installer.event" ( @echo "%%n already processed" )
-			if not exist "%%~nn Installer.event" ( "%AnimationAssembler%" "%%n" )
+			if not exist "%%~nn Installer.event" (
+			"%AnimationAssembler%" "%%n" 
+			)
 		)
 		@dir *.event /b > event.txt
 		@for /f "tokens=*" %%n in (event.txt) do ( 
