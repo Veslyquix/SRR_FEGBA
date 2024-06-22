@@ -9,9 +9,14 @@
 	cd "%%m"
 	cd
 	@dir *.bin /b > bin.txt
-	@for /f "tokens=*" %%n in (bin.txt) do ("%AnimationAssembler%" "%%n")
+	@for /f "tokens=*" %%n in (bin.txt) do (
+		@echo %%~nn.event 
+		if not exist "%%~nn Installer.event" ( "%AnimationAssembler%" "%%n"  )
+	)
 	@dir *.event /b > event.txt
-	@for /f "tokens=*" %%n in (event.txt) do ( echo n | @copy /-y "%%n" "%~dp0Event" > nul)
+	@for /f "tokens=*" %%n in (event.txt) do ( 
+		if not exist "%~dp0%%~nn Installer.event" ( echo n | @copy /-y "%%n" "%~dp0Event" > nul  )
+	)
 )  
 
 
