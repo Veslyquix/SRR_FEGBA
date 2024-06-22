@@ -6,11 +6,13 @@
 
 
 @for /R %%m in (.) do ( 
-cd "%%m"
-cd
-@dir *.bin /b > bin.txt
-@for /f "tokens=*" %%n in (bin.txt) do ("%AnimationAssembler%" "%%n")
-) 
+	cd "%%m"
+	cd
+	@dir *.bin /b > bin.txt
+	@for /f "tokens=*" %%n in (bin.txt) do ("%AnimationAssembler%" "%%n")
+	@dir *.event /b > event.txt
+	@for /f "tokens=*" %%n in (event.txt) do ( echo n | @copy /-y "%%n" "%~dp0Event" > nul)
+)  
 
 
 @rem @del bin.txt
