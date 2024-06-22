@@ -30,6 +30,24 @@ cd
 )
 
 
+@cd %~dp0/event 
+
+
+@dir *.event /b > event.txt 
+@echo //Generated - do not edit!>GeneratedInstaller.txt
+@echo. >> GeneratedInstaller.txt
+
+for /f "tokens=*" %%n in (event.txt) do ( 
+	@echo { ; #include "event/%%~nn.event" ; } >> GeneratedInstaller.txt
+) 
+
+@cd %~dp0
+
+type %~dp0event\GeneratedInstaller.txt > %~dp0event\GeneratedInstaller.event
+@copy "%~dp0event\GeneratedInstaller.event" "%~dp0" > nul
+
+@del "%~dp0event\GeneratedInstaller.txt"
+@del "%~dp0event\GeneratedInstaller.event"
 @rem @del bin.txt
 
 @rem @dir *.event /b/s > event.txt
