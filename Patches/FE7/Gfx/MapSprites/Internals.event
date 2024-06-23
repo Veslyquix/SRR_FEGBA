@@ -1,14 +1,131 @@
-#include "Tools/Tool Helpers.txt"
+//#include "Tools/Tool Helpers.txt"
 #define SetSMS(index, size, graphics) "ORG NewStandingMapSpriteTable + (index)*8 + 2; BYTE size 0; POIN graphics"
 #define SetMMS(index, graphics, another_ptr) "ORG NewMovingMapSpriteTable + (index)*8; POIN graphics another_ptr"
-#define DemonKingAP 0x81fd028
 
+#define SMS_TableEntrySize 8 
+#define MMS_TableEntrySize 8 
+
+
+#ifdef _FE8_ 
+	#define DemonKingAP 0x81fd028
+	#define DefaultSMSEntry "SHORT 0x02	0x01 ; POIN	0x81B7828 ; " //00
+	#define DefaultMMSEntry "POIN 0x81C33CC	0x81E8840 ; " // Lord can dance 
+#endif 
+
+#ifdef _FE7_ 
+	#define DancerAP 0x83DCF00
+	#define DemonKingAP DancerAP
+	#define DefaultSMSEntry "SHORT 0x02 0x01 ; POIN 0x3728F0 ; " //00
+	#define DefaultMMSEntry "POIN 0x3B8CAC 0x3DCF00 ; " // Lord can dance 
+#endif 
+
+
+#define SMSEntries16 "DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry DefaultSMSEntry"
+#define SMSEntries256 "SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16 SMSEntries16"
+#define MMSEntries16 "DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry DefaultMMSEntry"
+#define MMSEntries256 "MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16 MMSEntries16"
 
 
 
 ALIGN 4
 NewStandingMapSpriteTable:
+SMSEntries256
+ORG NewStandingMapSpriteTable 
+
+#ifdef _FE7_
+	//	Anime pattern	Size	Image Address
+	SHORT 0x02 0x01;POIN 0x3728F0 //00
+	SHORT 0x02 0x00;POIN 0x372A7C //01 Lord
+	SHORT 0x02 0x01;POIN 0x372B98 //02 Lord
+	SHORT 0x02 0x01;POIN 0x372D70 //03 Knight Lord
+	SHORT 0x02 0x00;POIN 0x372F60 //04 Blade Lord
+	SHORT 0x02 0x01;POIN 0x37308C //05 Great Lord
+	SHORT 0x02 0x00;POIN 0x373270 //06 Mercenary
+	SHORT 0x02 0x02;POIN 0x3733A8 //07 Mercenary
+	SHORT 0x02 0x00;POIN 0x373538 //08 Hero
+	SHORT 0x02 0x00;POIN 0x373698 //09 Hero
+	SHORT 0x02 0x00;POIN 0x3737D4 //0A Myrmidon
+	SHORT 0x02 0x00;POIN 0x3738E8 //0B Myrmidon
+	SHORT 0x02 0x00;POIN 0x3739F8 //0C Swordmaster
+	SHORT 0x02 0x00;POIN 0x373AE0 //0D Swordmaster
+	SHORT 0x02 0x01;POIN 0x373BBC //0E Fighter
+	SHORT 0x02 0x01;POIN 0x373CE8 //0F Warrior
+	SHORT 0x02 0x00;POIN 0x373E68 //10 Knight
+	SHORT 0x00 0x01;POIN 0x373F74 //11 General
+	SHORT 0x02 0x00;POIN 0x374114 //12 Archer
+	SHORT 0x02 0x00;POIN 0x37422C //13 Archer
+	SHORT 0x02 0x00;POIN 0x374340 //14 Sniper
+	SHORT 0x02 0x00;POIN 0x374484 //15 Sniper
+	SHORT 0x02 0x00;POIN 0x3745A8 //16 Monk
+	SHORT 0x02 0x00;POIN 0x3746C4 //17 Cleric
+	SHORT 0x02 0x00;POIN 0x374800 //18 Bishop
+	SHORT 0x02 0x00;POIN 0x374954 //19 Bishop
+	SHORT 0x02 0x00;POIN 0x374AAC //1A Mage
+	SHORT 0x02 0x00;POIN 0x374BE4 //1B Mage
+	SHORT 0x02 0x00;POIN 0x374D24 //1C Sage
+	SHORT 0x02 0x00;POIN 0x374E80 //1D Sage
+	SHORT 0x02 0x00;POIN 0x374FE0 //1E Shaman
+	SHORT 0x02 0x00;POIN 0x375138 //1F Shaman
+	SHORT 0x02 0x00;POIN 0x37527C //20 Druid
+	SHORT 0x02 0x00;POIN 0x3753F0 //21 Druid
+	SHORT 0x02 0x01;POIN 0x37553C //22 Cavalier
+	SHORT 0x02 0x01;POIN 0x3756F8 //23 Paladin
+	SHORT 0x02 0x01;POIN 0x3758C8 //24 Troubadour
+	SHORT 0x02 0x01;POIN 0x375A84 //25 Valkyrie
+	SHORT 0x02 0x01;POIN 0x375C34 //26 Nomad
+	SHORT 0x02 0x01;POIN 0x375E04 //27 Nomad
+	SHORT 0x02 0x01;POIN 0x375FE0 //28 Nmd Trooper
+	SHORT 0x02 0x01;POIN 0x3761BC //29 Nmd Trooper
+	SHORT 0x02 0x01;POIN 0x3763A0 //2A Peg Knight
+	SHORT 0x02 0x01;POIN 0x376544 //2B Falcoknight
+	SHORT 0x02 0x01;POIN 0x3766F0 //2C Wyvern Rider
+	SHORT 0x02 0x01;POIN 0x3768E4 //2D Wyvern Lord
+	SHORT 0x02 0x00;POIN 0x376AD8 //2E Soldier
+	SHORT 0x02 0x01;POIN 0x376C2C //2F Brigand
+	SHORT 0x02 0x00;POIN 0x376DA0 //30 Pirate
+	SHORT 0x02 0x01;POIN 0x376F1C //31 Berserker
+	SHORT 0x02 0x00;POIN 0x3770F4 //32 Thief
+	SHORT 0x02 0x00;POIN 0x377230 //33 Thief
+	SHORT 0x02 0x00;POIN 0x377360 //34 Assassin
+	SHORT 0x02 0x00;POIN 0x37749C //35 Civilian
+	SHORT 0x02 0x00;POIN 0x377524 //36 Dancer
+	SHORT 0x02 0x00;POIN 0x37763C //37 Bard
+	SHORT 0x02 0x01;POIN 0x37773C //38 Archsage
+	SHORT 0x02 0x00;POIN 0x377848 //39 Magic Seal
+	SHORT 0x02 0x01;POIN 0x377940 //3A Transporter
+	SHORT 0x03 0x01;POIN 0x377A34 //3B Dark Druid
+	SHORT 0x03 0x02;POIN 0x377BF0 //3C Fire Dragon
+	SHORT 0x02 0x00;POIN 0x377FB0 //3D Civilian
+	SHORT 0x02 0x00;POIN 0x378090 //3E Civilian
+	SHORT 0x02 0x00;POIN 0x378174 //3F Child
+	SHORT 0x02 0x01;POIN 0x3781F8 //40 Bramimond
+	SHORT 0x02 0x00;POIN 0x378380 //41 Peer
+	SHORT 0x02 0x01;POIN 0x37845C //42 Peer
+	SHORT 0x02 0x00;POIN 0x378570 //43 Prince
+	SHORT 0x02 0x00;POIN 0x378648 //44 Queen
+	SHORT 0x02 0x00;POIN 0x3786FC //45 Civilian
+	SHORT 0x02 0x00;POIN 0x378794 //46 Prince
+	SHORT 0x02 0x00;POIN 0x378850 //47 Prince
+	SHORT 0x02 0x00;POIN 0x3788DC //48 Prince
+	SHORT 0x02 0x00;POIN 0x378990 //49 Child
+	SHORT 0x02 0x02;POIN 0x378A10 //4A Fire Dragon
+	SHORT 0x02 0x02;POIN 0x378C10 //4B Warrior
+	SHORT 0x02 0x00;POIN 0x378D48 //4C Child
+	SHORT 0x02 0x00;POIN 0x378E18 //4D Child
+	SHORT 0x02 0x01;POIN 0x378EEC //4E Transporter
+	SHORT 0x02 0x01;POIN 0x379094 //4F
+	SHORT 0x02 0x01;POIN 0x379228 //50
+	SHORT 0x02 0x01;POIN 0x3793BC //51
+	SHORT 0x02 0x01;POIN 0x379550 //52
+	SHORT 0x02 0x01;POIN 0x3796C4 //53
+	SHORT 0x02 0x01;POIN 0x379838 //54
+	SHORT 0x02 0x00;POIN 0x3799AC //55
+	SHORT 0x02 0x00;POIN 0x3799E4 //56
+	SHORT 0x00 0x00;POIN 0x379A1C //57
+#endif // fe7 
+
 // Vanilla data 
+#ifdef _FE8_ 
 SHORT 0x02	0x01 ; POIN	0x81B7828   
 SHORT 0x00	0x00 ; POIN	0x81B79D4   
 SHORT 0x02	0x01 ; POIN	0x81B7AD8   
@@ -116,12 +233,120 @@ SHORT 0x02	0x00 ; POIN	0x81C07BC
 SHORT 0x02	0x01 ; POIN	0x81C0840   
 SHORT 0x02	0x01 ; POIN	0x81C0934   
 SHORT 0x00	0x00 ; POIN	0x81C0A70  
+#endif // fe8 
 FILL(128*8) // Expanded to 255
 WORD 0 
 
 
 ALIGN 4
 NewMovingMapSpriteTable:
+MMSEntries256
+ORG NewMovingMapSpriteTable 
+
+#ifdef _FE7_ 
+//	Image Address	AP
+POIN 0x3B8CAC 0x3B9670 //01 Lord
+POIN 0x3B97C8 0x3B9F88 //02 Lord
+POIN 0x3BA0E0 0x3BA990 //03 Lord
+POIN 0x3B8CAC 0x3B9670 //04 Knight Lord
+POIN 0x3B97C8 0x3B9F88 //05 Blade Lord
+POIN 0x3BA0E0 0x3BA990 //06 Great Lord
+POIN 0x3BAAE8 0x3BB458 //07 Knight Lord
+POIN 0x3BB5B8 0x3BBE44 //08 Blade Lord
+POIN 0x3BBFA4 0x3BCA90 //09 Great Lord
+POIN 0x3BCBE8 0x3BD38C //0A Mercenary
+POIN 0x3BD4E4 0x3BDC4C //0B Mercenary
+POIN 0x3BDDA4 0x3BE700 //0C Hero
+POIN 0x3BE860 0x3BF1E0 //0D Hero
+POIN 0x3BF340 0x3BFB28 //0E Myrmidon
+POIN 0x3BFC80 0x3C04C4 //0F Myrmidon
+POIN 0x3C061C 0x3C0E68 //10 Swordmaster
+POIN 0x3C0FC8 0x3C184C //11 Swordmaster
+POIN 0x3C19AC 0x3C21A8 //12 Fighter
+POIN 0x3C2300 0x3C2D0C //13 Warrior
+POIN 0x3C2E64 0x3C3758 //14 Knight
+POIN 0x3C2E64 0x3C3758 //15 Knight
+POIN 0x3C38B0 0x3C4364 //16 General
+POIN 0x3C38B0 0x3C4364 //17 General
+POIN 0x3C44C4 0x3C4C88 //18 Archer
+POIN 0x3C4DE0 0x3C55D4 //19 Archer
+POIN 0x3C572C 0x3C5F54 //1A Sniper
+POIN 0x3C60AC 0x3C6920 //1B Sniper
+POIN 0x3C6A78 0x3C7164 //1C Monk
+POIN 0x3C72BC 0x3C79D4 //1D Cleric
+POIN 0x3C7B2C 0x3C8398 //1E Bishop
+POIN 0x3C84F8 0x3C8D4C //1F Bishop
+POIN 0x3C8EAC 0x3C96EC //20 Mage
+POIN 0x3C9844 0x3CA110 //21 Mage
+POIN 0x3CA268 0x3CABDC //22 Sage
+POIN 0x3CAD34 0x3CB718 //23 Sage
+POIN 0x3CB870 0x3CC054 //24 Shaman
+POIN 0x3CC1AC 0x3CC9E0 //25 Shaman
+POIN 0x3CCB38 0x3CD41C //26 Druid
+POIN 0x3CD574 0x3CDE30 //27 Druid
+POIN 0x3CDF88 0x3CE8D0 //28 Cavalier
+POIN 0x3CDF88 0x3CE8D0 //29 Cavalier
+POIN 0x3CEA28 0x3CF3CC //2A Paladin
+POIN 0x3CEA28 0x3CF3CC //2B Paladin
+POIN 0x3CF524 0x3CFEC8 //2C Troubadour
+POIN 0x3D0020 0x3D0A28 //2D Valkyrie
+POIN 0x3D0B80 0x3D1494 //2E Nomad
+POIN 0x3D15EC 0x3D1F88 //2F Nomad
+POIN 0x3D20E0 0x3D2A68 //30 Nmd Trooper
+POIN 0x3D2BC0 0x3D35DC //31 Nmd Trooper
+POIN 0x3D3734 0x3D4454 //32 Peg Knight
+POIN 0x3D45AC 0x3D5340 //33 Falcoknight
+POIN 0x3D5498 0x3D61E8 //34 Wyvern Rider
+POIN 0x3D5498 0x3D61E8 //35 Wyvern Rider
+POIN 0x3D6348 0x3D7154 //36 Wyvern Lord
+POIN 0x3D6348 0x3D7154 //37 Wyvern Lord
+POIN 0x3D72BC 0x3D7A68 //38 Soldier
+POIN 0x3D7BC0 0x3D83F0 //39 Brigand
+POIN 0x3D8548 0x3D8E78 //3A Pirate
+POIN 0x3D8FD0 0x3D98D0 //3B Berserker
+POIN 0x3D9A28 0x3DA2A4 //3C Thief
+POIN 0x3DA3FC 0x3DABFC //3D Thief
+POIN 0x3DAD54 0x3DB4FC //3E Assassin
+POIN 0x3DB654 0x3DBA34 //3F Civilian
+POIN 0x3DBB8C 0x3DC578 //40 Dancer
+POIN 0x3DC770 0x3DCF00 //41 Bard
+POIN 0x3DD090 0x3DD7F8 //42 Archsage
+POIN 0x3DD950 0x3DDFA0 //43 Magic Seal
+POIN 0x3DE0F8 0x3DE518 //44 Transporter
+POIN 0x3DE670 0x3DEF18 //45 Dark Druid
+POIN 0x3DF070 0x3DFC14 //46 Fire Dragon
+POIN 0x3DFD6C 0x3E0450 //47 Civilian
+POIN 0x3E05A8 0x3E0C9C //48 Civilian
+POIN 0x3E0DF4 0x3E11D8 //49 Child
+POIN 0x3E1330 0x3E1A64 //4A Bramimond
+POIN 0x3E1BBC 0x3E2438 //4B Peer
+POIN 0x3E2590 0x3E2AE4 //4C Peer
+POIN 0x3E2C3C 0x3E3248 //4D Prince
+POIN 0x3E33A0 0x3E3880 //4E Queen
+POIN 0x3E39D8 0x3E3DC8 //4F Civilian
+POIN 0x3D8548 0x3D8E78 //50 Corsair
+POIN 0x3E3F20 0x3E4410 //51 Prince
+POIN 0x3E4568 0x3E4954 //52 Prince
+POIN 0x3E4AAC 0x3E4EBC //53 Prince
+POIN 0x3E5014 0x3E54BC //54 Child
+POIN 0x3E5614 0x3E5CD4 //55 Fire Dragon
+POIN 0x3E5E2C 0x3E623C //56 Warrior
+POIN 0x3E6394 0x3E69B8 //57 Child
+POIN 0x3E6B10 0x3E716C //58 Child
+POIN 0x3E72C4 0x3E7CEC //59 Transporter
+POIN 0x3CAD34 0x3CB718 //5A Sage
+POIN 0x3E7E44 0x3E84CC //5B
+POIN 0x3E8624 0x3E8CAC //5C
+POIN 0x3E8E04 0x3E948C //5D
+POIN 0x3E95E4 0x3E9B38 //5E
+POIN 0x3E9CA0 0x3EA18C //5F
+POIN 0x3EA2E4 0x3EA880 //60
+POIN 0x3EA9E8 0x3EB02C //61 Mage
+POIN 0x3EB194 0x3EB800 //62 Mage
+POIN 0x3EB968 0x3EBCFC //63 Mage
+#endif // fe7 
+
+#ifdef _FE8_ 
 // Vanilla data 
 POIN 0x81C33CC	0x81C3D7C
 POIN 0x81C3ED4	0x81C46CC
@@ -250,12 +475,42 @@ POIN 0x81F40F8	0x81F49B8
 POIN 0x81F38EC	0x81F3FA0
 POIN 0x81E0F98	0x81E173C
 POIN 0x81E189C	0x81E2088
-FILL(128*8) // Expanded to 255
+#endif
 WORD 0 
 
 
 PUSH
 
+#ifdef _FE7_ 
+ORG $24DA0 
+POIN NewStandingMapSpriteTable
+ORG $24E28 
+POIN NewStandingMapSpriteTable
+ORG $25278 
+POIN NewStandingMapSpriteTable
+ORG $2583C 
+POIN NewStandingMapSpriteTable
+ORG $26104 
+POIN NewStandingMapSpriteTable
+ORG $261F0 
+POIN NewStandingMapSpriteTable
+ORG $2629C
+POIN NewStandingMapSpriteTable
+ORG $26360 
+POIN NewStandingMapSpriteTable
+ORG $263F0
+POIN NewStandingMapSpriteTable
+ORG $264CC 
+POIN NewStandingMapSpriteTable
+
+ORG $6D574 
+POIN NewMovingMapSpriteTable 
+ORG $6D5A0 
+POIN NewMovingMapSpriteTable 
+#endif // fe7 
+
+
+#ifdef _FE8_ 
 ORG $26730
 POIN NewStandingMapSpriteTable
 ORG $267B0
@@ -289,12 +544,15 @@ ORG $BAC2C
 POIN NewMovingMapSpriteTable
 ORG $BAC40
 POIN NewMovingMapSpriteTable
+#endif // fe8 
 
 POP
 
 
 
 PUSH 
+
+#ifdef _FE8_ // in a different file for fe6/fe7 
 // SMS fix for classes past 0x7F 
 // By Icecube, Snakey1 
 ORG 0x26706 
@@ -341,6 +599,7 @@ BYTE 0x00 0x20
 
 ORG 0x26B42 
 BYTE 0x00 0x20	
+#endif 
 
 POP
 

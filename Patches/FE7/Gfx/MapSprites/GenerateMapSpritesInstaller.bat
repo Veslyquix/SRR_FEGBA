@@ -59,6 +59,14 @@ For %%a in (*.png) Do (
     Ren "%%a" "!File:%Pattern%=%Replace%!"
 )
 
+@dir *.png /b > png.txt
+Set "Pattern=."
+Set "Replace=_"
+For %%a in (*.png) Do (
+    Set "File=%%~na"
+    Ren "%%a" "!File:%Pattern%=%Replace%!%%~xa"
+)
+
 
 @cd %~dp0/mms
 
@@ -115,6 +123,15 @@ For %%a in (*.png) Do (
     Set "File=%%~a"
     Ren "%%a" "!File:%Pattern%=%Replace%!"
 )
+
+@dir *.png /b > png.txt
+Set "Pattern=."
+Set "Replace=_"
+For %%a in (*.png) Do (
+    Set "File=%%~na"
+    Ren "%%a" "!File:%Pattern%=%Replace%!%%~xa"
+)
+
 
 @cd %~dp0/sms
 

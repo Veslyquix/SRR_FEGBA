@@ -7,14 +7,13 @@
 /* 
 //First free SMS is 107
 #define Cavalier_M_Sword_SALVAGEDstand 107 
-#define Halberdier_M_2.0_TBAstand 108 
+#define Halberdier_M_2_0_TBAstand 108 
 #define Soldier_F_Echoes_Lance_FireEmblemier_flasubanstand 109 
  
  
 //First free MMS is 127 and will show up if you've expanded classes.
 #define Cavalier_M_Sword_SALVAGEDwalk 127 
-#define Halberdier_M_2.0_TBAwalk 128 
-#define Soldier_F_Echoes_Lance_FireEmblemier_flasubanwalk 129 
+#define Halberdier_M_2_0_TBAwalk 128 
  
 */ 
  
@@ -25,13 +24,12 @@
 PUSH 
  
 SetSMS(Cavalier_M_Sword_SALVAGEDstand, 1, Cavalier_M_Sword_SALVAGEDstand_Data) 
-SetSMS(Halberdier_M_2.0_TBAstand, 1, Halberdier_M_2.0_TBAstand_Data) 
+SetSMS(Halberdier_M_2_0_TBAstand, 1, Halberdier_M_2_0_TBAstand_Data) 
 SetSMS(Soldier_F_Echoes_Lance_FireEmblemier_flasubanstand, 1, Soldier_F_Echoes_Lance_FireEmblemier_flasubanstand_Data) 
  
  
 SetMMS(Cavalier_M_Sword_SALVAGEDwalk, Cavalier_M_Sword_SALVAGEDwalk_Data, DemonKingAP) 
-SetMMS(Halberdier_M_2.0_TBAwalk, Halberdier_M_2.0_TBAwalk_Data, DemonKingAP) 
-SetMMS(Soldier_F_Echoes_Lance_FireEmblemier_flasubanwalk, Soldier_F_Echoes_Lance_FireEmblemier_flasubanwalk_Data, DemonKingAP) 
+SetMMS(Halberdier_M_2_0_TBAwalk, Halberdier_M_2_0_TBAwalk_Data, DemonKingAP) 
  
 POP 
 //Copy until here 
@@ -45,8 +43,8 @@ Cavalier_M_Sword_SALVAGEDstand_Data:
 #incbin "dmp/Cavalier_M_Sword_SALVAGEDstand.dmp" 
  
 ALIGN 4 
-Halberdier_M_2.0_TBAstand_Data: 
-#incbin "dmp/Halberdier_M_2.0_TBAstand.dmp" 
+Halberdier_M_2_0_TBAstand_Data: 
+#incbin "dmp/Halberdier_M_2_0_TBAstand.dmp" 
  
 ALIGN 4 
 Soldier_F_Echoes_Lance_FireEmblemier_flasubanstand_Data: 
@@ -62,10 +60,6 @@ Cavalier_M_Sword_SALVAGEDwalk_Data:
 #incbin "dmp/Cavalier_M_Sword_SALVAGEDwalk.dmp" 
  
 ALIGN 4 
-Halberdier_M_2.0_TBAwalk_Data: 
-#incbin "dmp/Halberdier_M_2.0_TBAwalk.dmp" 
- 
-ALIGN 4 
-Soldier_F_Echoes_Lance_FireEmblemier_flasubanwalk_Data: 
-#incbin "dmp/Soldier_F_Echoes_Lance_FireEmblemier_flasubanwalk.dmp" 
+Halberdier_M_2_0_TBAwalk_Data: 
+#incbin "dmp/Halberdier_M_2_0_TBAwalk.dmp" 
  
