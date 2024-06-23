@@ -6,14 +6,17 @@
  
 /* 
 //First free SMS is 107
-#define Cavalier_M_Sword_SALVAGEDstand 107 
+#define FE15Myrmidon_U_Sword_Nuramonstand 107 
 #define Halberdier_M_2_0_TBAstand 108 
-#define Soldier_F_Echoes_Lance_FireEmblemier_flasubanstand 109 
+#define Mogall_U_Jockey_Bow_Haifriedstand 109 
+#define US_Infantry_Amydstand 110 
  
  
 //First free MMS is 127 and will show up if you've expanded classes.
-#define Cavalier_M_Sword_SALVAGEDwalk 127 
+#define FE15Myrmidon_U_Sword_Nuramonwalk 127 
 #define Halberdier_M_2_0_TBAwalk 128 
+#define Mogall_U_Jockey_Bow_Haifriedwalk 129 
+#define US_Infantry_Amydwalk_1 130 
  
 */ 
  
@@ -23,13 +26,16 @@
 //Copy from here 
 PUSH 
  
-SetSMS(Cavalier_M_Sword_SALVAGEDstand, 1, Cavalier_M_Sword_SALVAGEDstand_Data) 
+SetSMS(FE15Myrmidon_U_Sword_Nuramonstand, 1, FE15Myrmidon_U_Sword_Nuramonstand_Data) 
 SetSMS(Halberdier_M_2_0_TBAstand, 1, Halberdier_M_2_0_TBAstand_Data) 
-SetSMS(Soldier_F_Echoes_Lance_FireEmblemier_flasubanstand, 1, Soldier_F_Echoes_Lance_FireEmblemier_flasubanstand_Data) 
+SetSMS(Mogall_U_Jockey_Bow_Haifriedstand, 1, Mogall_U_Jockey_Bow_Haifriedstand_Data) 
+SetSMS(US_Infantry_Amydstand, 1, US_Infantry_Amydstand_Data) 
  
  
-SetMMS(Cavalier_M_Sword_SALVAGEDwalk, Cavalier_M_Sword_SALVAGEDwalk_Data, DemonKingAP) 
+SetMMS(FE15Myrmidon_U_Sword_Nuramonwalk, FE15Myrmidon_U_Sword_Nuramonwalk_Data, DemonKingAP) 
 SetMMS(Halberdier_M_2_0_TBAwalk, Halberdier_M_2_0_TBAwalk_Data, DemonKingAP) 
+SetMMS(Mogall_U_Jockey_Bow_Haifriedwalk, Mogall_U_Jockey_Bow_Haifriedwalk_Data, DemonKingAP) 
+SetMMS(US_Infantry_Amydwalk_1, US_Infantry_Amydwalk_1_Data, DemonKingAP) 
  
 POP 
 //Copy until here 
@@ -39,16 +45,20 @@ POP
 //SMS Image Data 
  
 ALIGN 4 
-Cavalier_M_Sword_SALVAGEDstand_Data: 
-#incbin "dmp/Cavalier_M_Sword_SALVAGEDstand.dmp" 
+FE15Myrmidon_U_Sword_Nuramonstand_Data: 
+#incbin "dmp/FE15Myrmidon_U_Sword_Nuramonstand.dmp" 
  
 ALIGN 4 
 Halberdier_M_2_0_TBAstand_Data: 
 #incbin "dmp/Halberdier_M_2_0_TBAstand.dmp" 
  
 ALIGN 4 
-Soldier_F_Echoes_Lance_FireEmblemier_flasubanstand_Data: 
-#incbin "dmp/Soldier_F_Echoes_Lance_FireEmblemier_flasubanstand.dmp" 
+Mogall_U_Jockey_Bow_Haifriedstand_Data: 
+#incbin "dmp/Mogall_U_Jockey_Bow_Haifriedstand.dmp" 
+ 
+ALIGN 4 
+US_Infantry_Amydstand_Data: 
+#incbin "dmp/US_Infantry_Amydstand.dmp" 
  
  
  
@@ -56,10 +66,18 @@ Soldier_F_Echoes_Lance_FireEmblemier_flasubanstand_Data:
 //MMS Image Data 
  
 ALIGN 4 
-Cavalier_M_Sword_SALVAGEDwalk_Data: 
-#incbin "dmp/Cavalier_M_Sword_SALVAGEDwalk.dmp" 
+FE15Myrmidon_U_Sword_Nuramonwalk_Data: 
+#incbin "dmp/FE15Myrmidon_U_Sword_Nuramonwalk.dmp" 
  
 ALIGN 4 
 Halberdier_M_2_0_TBAwalk_Data: 
 #incbin "dmp/Halberdier_M_2_0_TBAwalk.dmp" 
+ 
+ALIGN 4 
+Mogall_U_Jockey_Bow_Haifriedwalk_Data: 
+#incbin "dmp/Mogall_U_Jockey_Bow_Haifriedwalk.dmp" 
+ 
+ALIGN 4 
+US_Infantry_Amydwalk_1_Data: 
+#incbin "dmp/US_Infantry_Amydwalk_1.dmp" 
  

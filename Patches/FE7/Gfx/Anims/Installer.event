@@ -1,5 +1,5 @@
 
-#define AnimTableSize 256 
+#define AnimTableSize 512
 
 #define SwordAnim(Animation) "BYTE 0 0x01 ; SHORT Animation"
 #define LanceAnim(Animation) "BYTE 1 0x01 ; SHORT Animation"
@@ -34,9 +34,17 @@ POIN NewAnimTable
 
 POP 
 
+#ifdef _FE7_ 
+#define DefaultAnimEntry "BYTE 0x65 0x72 0x6C 0x6D 0x5F 0x73 0x77 0x31 0x00 0x00 0x00 0x00;POIN 0xE09D10 0xE0981C 0xE08900 0xE079BC 0xE07958 ; "
+#define DefAnim16 "DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry"
+#define DefAnim256 "DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16"
+#define DefAnim512 "DefAnim256 DefAnim256"
+
+#endif // fe7 
+
 ALIGN 4 
 NewAnimTable: 
-FILL(32 * AnimTableSize) 
+DefAnim512
 ORG NewAnimTable 
 
 #ifdef _FE7_ 

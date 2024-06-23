@@ -30,6 +30,7 @@
 ALIGN 4
 NewStandingMapSpriteTable:
 SMSEntries256
+WORD 0 0 
 ORG NewStandingMapSpriteTable 
 
 #ifdef _FE7_
@@ -234,15 +235,15 @@ SHORT 0x02	0x01 ; POIN	0x81C0840
 SHORT 0x02	0x01 ; POIN	0x81C0934   
 SHORT 0x00	0x00 ; POIN	0x81C0A70  
 #endif // fe8 
-FILL(128*8) // Expanded to 255
-WORD 0 
+
+ORG NewStandingMapSpriteTable + (SMS_TableEntrySize * 256) 
 
 
 ALIGN 4
 NewMovingMapSpriteTable:
 MMSEntries256
+WORD 0 0 
 ORG NewMovingMapSpriteTable 
-
 #ifdef _FE7_ 
 //	Image Address	AP
 POIN 0x3B8CAC 0x3B9670 //01 Lord
@@ -476,7 +477,8 @@ POIN 0x81F38EC	0x81F3FA0
 POIN 0x81E0F98	0x81E173C
 POIN 0x81E189C	0x81E2088
 #endif
-WORD 0 
+
+ORG NewMovingMapSpriteTable + (MMS_TableEntrySize * 256) 
 
 
 PUSH
