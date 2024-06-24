@@ -4,7 +4,7 @@
 @call RenameFolders.cmd
 @rem twice because this doesn't rename subfolders properly unless done repeatedly and I cba fixing that 
 
-@set "AnimationAssembler=%~dp0/../../../../Tools/AA/AA.exe"
+@set "AnimationAssembler=%~dp0/../../../Tools/AA/AA.exe"
 @rem @set "AnimationAssembler=%~dp0/AAA.exe"
 
 @cd %~dp0/png

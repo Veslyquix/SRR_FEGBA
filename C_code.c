@@ -5258,7 +5258,7 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 		proc->Option[3] = 1; 
 		proc->Option[4] = 1; 
 		proc->Option[5] = 1; 
-		proc->Option[6] = 1; 
+		proc->Option[6] = 4; 
 		proc->Option[7] = 1; 
 		//proc->Option[8] = 0; // Classic 
 		proc->Option[9] = 1; // Random BGM 
@@ -5320,6 +5320,7 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	proc->Option[4] = RandBitflags->levelups; 
 	proc->Option[5] = RandBitflags->caps; 
 	proc->Option[6] = RandBitflags->class; 
+	if (RecruitValues->newClasses) { proc->Option[6] = 4; } 
 	if (RandBitflags->itemStats && RandBitflags->foundItems) { proc->Option[7] = 1; } 
 	else if (RandBitflags->itemStats) { proc->Option[7] = 3; } 
 	else if (RandBitflags->foundItems) { proc->Option[7] = 2; } 
