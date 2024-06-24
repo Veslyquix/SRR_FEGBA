@@ -242,12 +242,13 @@ ALIGN 32; STRING "60" "FE6TR" ; BYTE 0
 
 ALIGN 64
 Option6:
-FILL(64*4)
+FILL(64*5)
 ORG Option6
 ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0
-ALIGN 64; STRING "Random" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Random vanilla classes" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Random for players" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Random for enemies" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Random with new classes" "FE6TR" ; BYTE 0
 
 ALIGN 64
 Option7:

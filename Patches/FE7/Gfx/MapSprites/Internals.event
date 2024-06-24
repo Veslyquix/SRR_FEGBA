@@ -237,6 +237,7 @@ SHORT 0x00	0x00 ; POIN	0x81C0A70
 #endif // fe8 
 
 ORG NewStandingMapSpriteTable + (SMS_TableEntrySize * 256) 
+WORD 0 0 
 
 
 ALIGN 4
@@ -479,7 +480,7 @@ POIN 0x81E189C	0x81E2088
 #endif
 
 ORG NewMovingMapSpriteTable + (MMS_TableEntrySize * 256) 
-
+WORD 0 0 
 
 PUSH
 

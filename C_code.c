@@ -68,6 +68,7 @@ struct RandomizerValues {
 struct RecruitmentValues { 
 	u8 recruitment : 3; 
 	u8 pauseNameReplace : 1; 
+	u8 newClasses : 2; 
 }; 
 struct TimedHitsDifficultyStruct { 
 	u8 difficulty : 5; 
@@ -1215,7 +1216,17 @@ int GetMaxClasses(void) {
 	if (MaxClasses_Link) { return MaxClasses_Link; } 
 	if (*MaxClasses) { return *MaxClasses; } 
 	const struct ClassData* table = GetClassData(1); 
-	for (int i = 1; i < 255; i++) { 
+	int c = 255; 
+	#ifdef FE6
+	if (!RecruitValues->newClasses) { c = 67; } 
+	#endif 
+	#ifdef FE7 
+	if (!RecruitValues->newClasses) { c = 90; } 
+	#endif 
+	#ifdef FE8 
+	if (!RecruitValues->newClasses) { c = 127; } 
+	#endif 
+	for (int i = 1; i < c; i++) { 
 		if (table->number != i) { table--; break; } 
 		table++; 
 	} 
@@ -1598,7 +1609,7 @@ int RandClass(int id, int noise[], struct Unit* unit) {
 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	int allegiance = (unit->index)>>6;
 	//if (allegiance && (id == 0x3C)) { return id; } 
-	u8 list[127]; 
+	u8 list[255]; 
 	list[0] = 99; 
 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
 	 
@@ -1614,7 +1625,7 @@ int RandClass2(int id, u8 noise[], struct Unit* unit) {
 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	int allegiance = (unit->index)>>6;
 	//if (allegiance && (id == 0x3C)) { return id; } 
-	u8 list[127]; 
+	u8 list[255]; 
 	list[0] = 99; 
 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
 	 
@@ -3995,16 +4006,16 @@ const char Option5[OPT5NUM][10] = { // Stat Caps
 "60", 
 }; 
 #endif
-#define OPT6NUM 4
+#define OPT6NUM 5
 #ifdef FE6 
 extern const char Option6[OPT6NUM][64]; // do align 16 before each? 
 #else 
-const char Option6[OPT6NUM][20] = { // Class
+const char Option6[OPT6NUM][26] = { // Class
 "Vanilla",
-"Random",
+"Random vanilla classes",
 "Random for players",
 "Random for enemies",
-//"Players",
+"Random with new classes",
 //"Enemies",
 }; 
 #endif
@@ -4522,7 +4533,7 @@ extern int DisplayTimedHitsOption;
 const int SRR_MAXDISP = 7;
 extern const int SRR_TotalOptions;
 const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7, 6, 4};   
-const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 11, 13, 4, 7, 8, 9, 10, 10, 6, 5, 5, 17 } ; 
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 14, 13, 4, 7, 8, 9, 10, 10, 6, 5, 5, 17 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -4807,7 +4818,8 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		else { RandBitflags->grow50 = false; }
 		RandBitflags->levelups = proc->Option[4]; 
 		RandBitflags->caps = proc->Option[5]; 
-		RandBitflags->class = proc->Option[6]; 
+		RandBitflags->class = proc->Option[6];
+		if (proc->Option[6] == 4) { RandBitflags->class = 1; RecruitValues->newClasses = 1; } 
 		RandBitflags->itemStats = ((proc->Option[7] == 1) || (proc->Option[7] == 3)); 
 		RandBitflags->foundItems = ((proc->Option[7] == 1) || (proc->Option[7] == 2)); 
 		RandBitflags->shopItems = ((proc->Option[7] == 1) || (proc->Option[7] == 2)); 
@@ -4884,7 +4896,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 			ClearText(&th[i]);
 		}	
 		
-		if (reloadUnits) { proc->reloadUnits = true; } 
+		if (reloadUnits) { proc->reloadUnits = true; *MaxClasses = 0; } 
 		
 		Proc_Break((ProcPtr)proc);
 		return; 
