@@ -39,12 +39,11 @@ POP
 #define DefAnim16 "DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry DefaultAnimEntry"
 #define DefAnim256 "DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16 DefAnim16"
 #define DefAnim512 "DefAnim256 DefAnim256"
-
 #endif // fe7 
 
 ALIGN 4 
 NewAnimTable: 
-DefAnim512
+//DefAnim512
 ORG NewAnimTable 
 
 #ifdef _FE7_ 
