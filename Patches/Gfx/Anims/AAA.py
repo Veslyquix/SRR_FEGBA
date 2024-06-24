@@ -562,7 +562,7 @@ def main():
     exit()
 
   animName = args.filename[:-4]
-  scriptFile = open(args.filename, "r")
+  scriptFile = open(args.filename, "r", encoding="utf8")
   outputFile = open(animName+"Installer.event", "w")
   mode = 1                            # Current mode. [1, 12].
   rtlOAMData = b'\x01' + b'\x00'*11   # Starts with terminator for empty pierce frames.
