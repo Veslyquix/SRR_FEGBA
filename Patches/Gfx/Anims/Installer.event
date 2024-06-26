@@ -30,13 +30,10 @@
 
 
 ALIGN 4 
-EirikaT1_Anim: // class POINs here 
+EphraimT1_Anim: // class POINs here 
 animEntry(1) // default animation id 
-//ORG EirikaT1_Anim 
-SwordAnim(2) // animation id 
-AxeAnim(2) // animation id 
+LanceAnim(0xCA) // animation id 
 weaponAnimEnd
-
 // if you want more weapons to have unique animations: 
 //ORG EirikaT1_Anim + (15 * 4)
 //wA(Tomahawk, 3) 
@@ -46,8 +43,8 @@ weaponAnimEnd
 
 
 
-
-#include "GeneratedInstaller.event" 
+MESSAGE "Installing Animations"
+//#include "GeneratedInstaller.event" 
 
 
 
