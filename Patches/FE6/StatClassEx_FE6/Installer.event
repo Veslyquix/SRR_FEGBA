@@ -54,9 +54,10 @@ BYTE statCap
 // ?? fe8 9C0B4 DrawPrepScreenItemUseStatBars
 
 
-
+ORG $2DBFB4 // kill the really old stat expansion patch 
+SHORT $4770 // bx lr 
 ORG $2DBFCE 
-BYTE $FF // & stat cap when suspending 
+BYTE $FF // & stat cap when suspending with above patch 
 
 
 

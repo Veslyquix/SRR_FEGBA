@@ -144,7 +144,10 @@ MaxClasses_Link:
 #ifdef TLP 
 WORD 0x5A 
 #endif 
-WORD 0 // If 0, it'll read through your class editor and count
+#ifndef VeslyBuildfile 
+WORD 90 // If 0, it'll read through your class editor and count
+#endif 
+WORD 67 
 // until it finds a class with an ID that does not match (eg. says 0) 
 
 

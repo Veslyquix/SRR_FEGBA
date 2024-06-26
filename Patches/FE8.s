@@ -2196,7 +2196,7 @@ GetMaxClasses:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:1223: 	if (MaxClasses_Link) { return MaxClasses_Link; } 
-	ldr	r3, .L327	@ tmp127,
+	ldr	r3, .L326	@ tmp127,
 	ldr	r0, [r3]	@ <retval>, MaxClasses_Link
 @ Patches/../C_code.c:1222: int GetMaxClasses(void) { 
 	push	{r4, lr}	@
@@ -2204,39 +2204,39 @@ GetMaxClasses:
 	cmp	r0, #0	@ <retval>,
 	bne	.L314		@,
 @ Patches/../C_code.c:1224: 	if (*MaxClasses) { return *MaxClasses; } 
-	ldr	r4, .L327+4	@ tmp146,
+	ldr	r4, .L326+4	@ tmp146,
 	ldr	r3, [r4]	@ MaxClasses, MaxClasses
 	ldrb	r0, [r3]	@ _3, *MaxClasses.80_2
 @ Patches/../C_code.c:1224: 	if (*MaxClasses) { return *MaxClasses; } 
 	cmp	r0, #0	@ _3,
-	beq	.L326		@,
+	beq	.L325		@,
 .L314:
 @ Patches/../C_code.c:1245: } 
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L326:
+.L325:
 @ Patches/../C_code.c:1225: 	const struct ClassData* table = GetClassData(1); 
-	ldr	r3, .L327+8	@ tmp130,
+	ldr	r3, .L326+8	@ tmp130,
 	adds	r0, r0, #1	@,
 	bl	.L14		@
 @ Patches/../C_code.c:1234: 	if (!RecruitValues->newClasses) { c = 127; } 
-	ldr	r3, .L327+12	@ tmp132,
+	movs	r1, #48	@ tmp138,
+@ Patches/../C_code.c:1234: 	if (!RecruitValues->newClasses) { c = 127; } 
+	ldr	r3, .L326+12	@ tmp132,
 	ldr	r3, [r3]	@ RecruitValues, RecruitValues
-	ldrb	r2, [r3]	@ *RecruitValues.82_11, *RecruitValues.82_11
+	ldrb	r3, [r3]	@ *RecruitValues.82_11, *RecruitValues.82_11
 @ Patches/../C_code.c:1234: 	if (!RecruitValues->newClasses) { c = 127; } 
-	movs	r3, #48	@ tmp138,
-	ands	r3, r2	@ tmp140, *RecruitValues.82_11
+	ands	r1, r3	@ tmp140, *RecruitValues.82_11
 @ Patches/../C_code.c:1234: 	if (!RecruitValues->newClasses) { c = 127; } 
-	subs	r2, r3, #1	@ tmp148, tmp140
-	sbcs	r3, r3, r2	@ tmp147, tmp140, tmp148
-	movs	r1, #127	@ tmp150,
-	rsbs	r3, r3, #0	@ tmp149, tmp147
-	ands	r1, r3	@ c, tmp149
-	adds	r1, r1, #127	@ c,
+	subs	r3, r1, #1	@ tmp148, tmp140
+	sbcs	r1, r1, r3	@ tmp147, tmp140, tmp148
+	lsls	r1, r1, #7	@ c, tmp147,
 @ Patches/../C_code.c:1236: 	for (int i = 1; i < c; i++) { 
 	movs	r3, #1	@ i,
+@ Patches/../C_code.c:1234: 	if (!RecruitValues->newClasses) { c = 127; } 
+	adds	r1, r1, #127	@ c,
 	b	.L320		@
 .L318:
 @ Patches/../C_code.c:1236: 	for (int i = 1; i < c; i++) { 
@@ -2256,32 +2256,23 @@ GetMaxClasses:
 	subs	r0, r0, #84	@ table,
 .L319:
 @ Patches/../C_code.c:1240: 	c = table->number;
-	ldrb	r3, [r0, #4]	@ prephitmp_5,
+	ldrb	r3, [r0, #4]	@ prephitmp_7,
 @ Patches/../C_code.c:1240: 	c = table->number;
-	movs	r0, r3	@ <retval>, prephitmp_5
-@ Patches/../C_code.c:1241: 	if (c > 155) { c = 155; } 
-	cmp	r3, #155	@ prephitmp_5,
-	bgt	.L323		@,
+	subs	r0, r3, #0	@ <retval>, prephitmp_7,
 @ Patches/../C_code.c:1242: 	if (c < 1) { c = 1; } 
-	cmp	r3, #0	@ prephitmp_5,
 	bne	.L321		@,
-	movs	r3, #1	@ prephitmp_5,
 @ Patches/../C_code.c:1242: 	if (c < 1) { c = 1; } 
 	movs	r0, #1	@ <retval>,
+	adds	r3, r3, #1	@ prephitmp_7,
 .L321:
 @ Patches/../C_code.c:1243: 	*MaxClasses = c;
 	ldr	r2, [r4]	@ MaxClasses.83_26, MaxClasses
 @ Patches/../C_code.c:1243: 	*MaxClasses = c;
-	strb	r3, [r2]	@ prephitmp_5, *MaxClasses.83_26
+	strb	r3, [r2]	@ prephitmp_7, *MaxClasses.83_26
 	b	.L314		@
-.L323:
-	movs	r3, #155	@ prephitmp_5,
-@ Patches/../C_code.c:1241: 	if (c > 155) { c = 155; } 
-	movs	r0, #155	@ <retval>,
-	b	.L321		@
-.L328:
-	.align	2
 .L327:
+	.align	2
+.L326:
 	.word	MaxClasses_Link
 	.word	MaxClasses
 	.word	GetClassData
@@ -2340,7 +2331,7 @@ InitSeededRN_Simple:
 @ Patches/../C_code.c:1269: u32 InitSeededRN_Simple(int seed, u32 currentRN) {
 	movs	r5, r0	@ seed, tmp164
 @ Patches/../C_code.c:1273:     u16 initTable[8] = {
-	ldr	r3, .L340	@ tmp136,
+	ldr	r3, .L339	@ tmp136,
 	ldmia	r3!, {r0, r1, r6}	@ tmp138, tmp168, tmp167, tmp169
 	stmia	r2!, {r0, r1, r6}	@ tmp137, tmp168, tmp167, tmp169
 	ldr	r3, [r3]	@ tmp139,
@@ -2350,8 +2341,8 @@ InitSeededRN_Simple:
 	str	r3, [r2]	@ tmp139,
 @ Patches/../C_code.c:1284:     int mod = Mod(seed, 7);
 	movs	r0, r5	@, seed
-	ldr	r6, .L340+4	@ tmp140,
-	bl	.L342		@
+	ldr	r6, .L339+4	@ tmp140,
+	bl	.L341		@
 @ Patches/../C_code.c:1286:     currentRN = initTable[(mod++ & 7)];
 	movs	r3, #7	@ tmp142,
 	movs	r2, r3	@ tmp143, tmp142
@@ -2377,11 +2368,11 @@ InitSeededRN_Simple:
 @ Patches/../C_code.c:1287:     currentRN |= initTable[(mod++ & 7)] << 16;
 	orrs	r4, r2	@ <retval>, currentRN
 @ Patches/../C_code.c:1289:     if (Mod(seed, 5) > 0) { 
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:1289:     if (Mod(seed, 5) > 0) { 
 	cmp	r0, #0	@ mod,
-	ble	.L333		@,
-.L336:
+	ble	.L332		@,
+.L335:
 @ Patches/../C_code.c:1251: 	u32 rn0 = rn & 0xFFFF; 
 	lsls	r2, r4, #16	@ tmp153, <retval>,
 @ Patches/../C_code.c:1252: 	u32 rn1 = rn >> 16; 
@@ -2404,8 +2395,8 @@ InitSeededRN_Simple:
 	eors	r4, r3	@ <retval>, rn0
 @ Patches/../C_code.c:1290:         for (mod = Mod(seed,  5); mod != 0; mod--) { 
 	cmp	r0, #0	@ mod,
-	bne	.L336		@,
-.L333:
+	bne	.L335		@,
+.L332:
 @ Patches/../C_code.c:1296: }
 	movs	r0, r4	@, <retval>
 	add	sp, sp, #16	@,,
@@ -2413,9 +2404,9 @@ InitSeededRN_Simple:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L341:
-	.align	2
 .L340:
+	.align	2
+.L339:
 	.word	.LANCHOR0
 	.word	Mod
 	.size	InitSeededRN_Simple, .-InitSeededRN_Simple
@@ -2443,18 +2434,18 @@ GetNthRN_Simple:
 	ands	r4, r3	@ n, _2
 @ Patches/../C_code.c:1300: 	if (!currentRN) { 
 	cmp	r2, #0	@ currentRN,
-	bne	.L344		@,
+	bne	.L343		@,
 @ Patches/../C_code.c:1301: 		currentRN = InitSeededRN_Simple(seed, currentRN); 
 	movs	r1, #0	@,
 	movs	r0, r5	@, seed
 	bl	InitSeededRN_Simple		@
 	movs	r2, r0	@ currentRN, tmp147
-.L344:
+.L343:
 @ Patches/../C_code.c:1303: 	for (int i = 0; i < n; i++) { 
 	cmp	r4, #0	@ n,
-	beq	.L345		@,
+	beq	.L344		@,
 	movs	r0, #0	@ i,
-.L347:
+.L346:
 @ Patches/../C_code.c:1251: 	u32 rn0 = rn & 0xFFFF; 
 	lsls	r1, r2, #16	@ tmp133, currentRN,
 @ Patches/../C_code.c:1252: 	u32 rn1 = rn >> 16; 
@@ -2477,8 +2468,8 @@ GetNthRN_Simple:
 	eors	r2, r3	@ currentRN, rn0
 @ Patches/../C_code.c:1303: 	for (int i = 0; i < n; i++) { 
 	cmp	r4, r0	@ n, i
-	bne	.L347		@,
-.L345:
+	bne	.L346		@,
+.L344:
 @ Patches/../C_code.c:1307: } 
 	@ sp needed	@
 	movs	r0, r2	@, currentRN
@@ -2505,25 +2496,25 @@ InitRandomRecruitmentProc:
 	push	{r5, r6, r7, lr}	@
 	sub	sp, sp, #204	@,,
 @ Patches/../C_code.c:425: 	const struct CharacterData* table = GetCharacterData(1); 
-	ldr	r6, .L433	@ tmp326,
+	ldr	r6, .L432	@ tmp326,
 @ Patches/../C_code.c:422: RecruitmentProc* InitRandomRecruitmentProc(int procID) { 
 	str	r0, [sp, #36]	@ tmp349, %sfp
 @ Patches/../C_code.c:425: 	const struct CharacterData* table = GetCharacterData(1); 
 	movs	r0, #1	@,
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:430: 	RecruitmentProc* proc1 = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3); 
-	ldr	r4, .L433+4	@ tmp203,
+	ldr	r4, .L432+4	@ tmp203,
 @ Patches/../C_code.c:425: 	const struct CharacterData* table = GetCharacterData(1); 
 	movs	r5, r0	@ table, tmp350
 @ Patches/../C_code.c:430: 	RecruitmentProc* proc1 = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3); 
 	movs	r0, r4	@ tmp204, tmp203
 @ Patches/../C_code.c:428: 	int seed = RandValues->seed; 
-	ldr	r3, .L433+8	@ tmp200,
+	ldr	r3, .L432+8	@ tmp200,
 	ldr	r3, [r3]	@ RandValues, RandValues
 	ldr	r3, [r3]	@ *RandValues.16_1, *RandValues.16_1
 	lsls	r3, r3, #12	@ tmp202, *RandValues.16_1,
 @ Patches/../C_code.c:430: 	RecruitmentProc* proc1 = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3); 
-	ldr	r7, .L433+12	@ tmp205,
+	ldr	r7, .L432+12	@ tmp205,
 @ Patches/../C_code.c:428: 	int seed = RandValues->seed; 
 	lsrs	r3, r3, #12	@ seed, tmp202,
 @ Patches/../C_code.c:430: 	RecruitmentProc* proc1 = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3); 
@@ -2593,8 +2584,8 @@ InitRandomRecruitmentProc:
 	str	r1, [sp, #8]	@ proc3, %sfp
 @ Patches/../C_code.c:436: 	table--; 
 	subs	r5, r5, #52	@ table,
-	b	.L359		@
-.L419:
+	b	.L358		@
+.L418:
 @ Patches/../C_code.c:446: 		boss = table->attributes & (CA_BOSS);
 	mov	r3, r8	@ tmp346, tmp346
 	ldr	r1, [r5, #40]	@ MEM[(long unsigned int *)table_124 + 40B], MEM[(long unsigned int *)table_124 + 40B]
@@ -2604,11 +2595,11 @@ InitRandomRecruitmentProc:
 	adds	r4, r4, #1	@ i,
 @ Patches/../C_code.c:447: 		switch (GetUnitListToUse(table, boss, true)) { 
 	cmp	r0, #1	@ _106,
-	bne	.LCB2205	@
-	b	.L357	@long jump	@
-.LCB2205:
+	bne	.LCB2197	@
+	b	.L356	@long jump	@
+.LCB2197:
 	cmp	r0, #2	@ _106,
-	bne	.L356		@,
+	bne	.L355		@,
 @ Patches/../C_code.c:455: 				bosses[b] = i+1; 
 	movs	r1, #80	@ tmp413,
 	mov	r2, fp	@ b, b
@@ -2619,27 +2610,27 @@ InitRandomRecruitmentProc:
 	movs	r3, #1	@ tmp414,
 	mov	ip, r3	@ tmp414, tmp414
 	add	fp, fp, ip	@ b, tmp414
-.L356:
+.L355:
 @ Patches/../C_code.c:437: 	for (int i = 0; i <= MAX_CHAR_ID; ++i) { // all available units 
 	movs	r3, #128	@ tmp234,
 	lsls	r3, r3, #1	@ tmp234, tmp234,
 	cmp	r4, r3	@ i, tmp234
-	beq	.L425		@,
-.L359:
+	beq	.L424		@,
+.L358:
 @ Patches/../C_code.c:438: 		table++; 
 	adds	r5, r5, #52	@ table,
 @ Patches/../C_code.c:439: 		if (i == 0x40) { proc = proc2; } 
 	cmp	r4, #64	@ i,
-	beq	.L386		@,
+	beq	.L385		@,
 @ Patches/../C_code.c:440: 		if (i == 0x80) { proc = proc3; } 
 	cmp	r4, #128	@ i,
-	beq	.L387		@,
+	beq	.L386		@,
 @ Patches/../C_code.c:441: 		if (i == 0xC0) { proc = proc4; } 
 	cmp	r4, #192	@ i,
-	bne	.L355		@,
+	bne	.L354		@,
 @ Patches/../C_code.c:441: 		if (i == 0xC0) { proc = proc4; } 
 	ldr	r7, [sp, #16]	@ proc, %sfp
-.L355:
+.L354:
 @ Patches/../C_code.c:442: 		proc->id[i&0x3F] = 0x0; 
 	mov	r3, r10	@ tmp216, tmp215
 @ Patches/../C_code.c:442: 		proc->id[i&0x3F] = 0x0; 
@@ -2653,14 +2644,14 @@ InitRandomRecruitmentProc:
 @ Patches/../C_code.c:383: 	if (!table->portraitId) { return result; } 
 	ldrh	r3, [r5, #6]	@ MEM[(short unsigned int *)table_124 + 6B], MEM[(short unsigned int *)table_124 + 6B]
 	cmp	r3, #0	@ MEM[(short unsigned int *)table_124 + 6B],
-	bne	.L419		@,
+	bne	.L418		@,
 @ Patches/../C_code.c:437: 	for (int i = 0; i <= MAX_CHAR_ID; ++i) { // all available units 
 	movs	r3, #128	@ tmp234,
 	adds	r4, r4, #1	@ i,
 	lsls	r3, r3, #1	@ tmp234, tmp234,
 	cmp	r4, r3	@ i, tmp234
-	bne	.L359		@,
-.L425:
+	bne	.L358		@,
+.L424:
 	mov	r3, fp	@ b, b
 	str	r3, [sp, #32]	@ b, %sfp
 @ Patches/../C_code.c:463: 	proc = proc4; 
@@ -2678,22 +2669,22 @@ InitRandomRecruitmentProc:
 	movs	r6, r7	@ c, c
 	movs	r7, r3	@ rn, rn
 @ Patches/../C_code.c:418: 	if (RecruitValues->recruitment == 4) { if (result == 1) { return 2; } else if (result == 2) { return 1; } }  
-	ldr	r2, .L433+16	@ tmp340,
+	ldr	r2, .L432+16	@ tmp340,
 	mov	r10, r2	@ tmp340, tmp340
 @ Patches/../C_code.c:170: 	return Mod((rn >> 3), max);
-	ldr	r2, .L433+20	@ tmp341,
+	ldr	r2, .L432+20	@ tmp341,
 	str	r2, [sp, #24]	@ tmp341, %sfp
-.L360:
+.L359:
 @ Patches/../C_code.c:474: 		table = GetCharacterData(i);  
 	movs	r0, r4	@, i
-	bl	.L435		@
+	bl	.L434		@
 @ Patches/../C_code.c:383: 	if (!table->portraitId) { return result; } 
 	ldrh	r3, [r0, #6]	@ tmp236,
 @ Patches/../C_code.c:483: 			rn = GetNthRN_Simple(i-1, seed, rn);  
 	subs	r5, r4, #1	@ _139, i,
 @ Patches/../C_code.c:383: 	if (!table->portraitId) { return result; } 
 	cmp	r3, #0	@ tmp236,
-	beq	.L362		@,
+	beq	.L361		@,
 @ Patches/../C_code.c:478: 		boss = table->attributes & (CA_BOSS);
 	movs	r3, #128	@ tmp239,
 	ldr	r1, [r0, #40]	@ table_103->attributes, table_103->attributes
@@ -2708,13 +2699,13 @@ InitRandomRecruitmentProc:
 	movs	r3, #7	@ tmp247,
 	ands	r3, r2	@ tmp248, *RecruitValues.15_136
 	cmp	r3, #4	@ tmp248,
-	beq	.L426		@,
+	beq	.L425		@,
 @ Patches/../C_code.c:480: 		switch (CallGetUnitListToUse(table, boss, true)) { 
 	cmp	r0, #1	@ _135,
-	beq	.L365		@,
+	beq	.L364		@,
 	cmp	r0, #2	@ _135,
-	bne	.L362		@,
-.L364:
+	bne	.L361		@,
+.L363:
 @ Patches/../C_code.c:493: 				rn = GetNthRN_Simple(i-1, seed, rn);  				
 	movs	r2, r7	@, rn
 	movs	r0, r5	@, _139
@@ -2726,17 +2717,17 @@ InitRandomRecruitmentProc:
 	movs	r7, r0	@ rn, tmp360
 @ Patches/../C_code.c:495: 				if (b < 0) { b = b_max-1; } 
 	subs	r3, r3, #1	@ b, b,
-	bpl	.LCB2301	@
-	b	.L427	@long jump	@
-.LCB2301:
+	bpl	.LCB2293	@
+	b	.L426	@long jump	@
+.LCB2293:
 	mov	r8, r3	@ b, b
 @ Patches/../C_code.c:169: 	if (max==0) return 0;
 	mov	r3, r8	@ b, b
 	cmp	r3, #0	@ b,
-	bne	.LCB2305	@
-	b	.L391	@long jump	@
-.LCB2305:
-.L432:
+	bne	.LCB2297	@
+	b	.L390	@long jump	@
+.LCB2297:
+.L431:
 @ Patches/../C_code.c:170: 	return Mod((rn >> 3), max);
 	mov	r1, r8	@, b
 	ldr	r3, [sp, #24]	@ tmp341, %sfp
@@ -2744,7 +2735,7 @@ InitRandomRecruitmentProc:
 	lsrs	r0, r7, #3	@ tmp264, rn,
 @ Patches/../C_code.c:170: 	return Mod((rn >> 3), max);
 	bl	.L14		@
-.L369:
+.L368:
 @ Patches/../C_code.c:498: 				proc->id[(i&0x3F)-1] = bosses[num]; 
 	movs	r3, #63	@ tmp267,
 @ Patches/../C_code.c:498: 				proc->id[(i&0x3F)-1] = bosses[num]; 
@@ -2765,57 +2756,57 @@ InitRandomRecruitmentProc:
 @ Patches/../C_code.c:500: 				bosses[b] = proc->id[(i&0x3F)-1];
 	mov	r3, r8	@ b, b
 	strb	r1, [r2, r3]	@ _19, bosses[b_51]
-.L362:
+.L361:
 @ Patches/../C_code.c:469: 	for (int i = MAX_CHAR_ID; i > 0 ; --i) { // reordered at random 
 	cmp	r5, #0	@ _139,
-	beq	.L428		@,
-.L370:
+	beq	.L427		@,
+.L369:
 @ Patches/../C_code.c:471: 		if (i <= 0xBF) { proc = proc3; } 
 	cmp	r5, #191	@ _139,
-	bgt	.L361		@,
+	bgt	.L360		@,
 	ldr	r3, [sp, #8]	@ proc, %sfp
 	mov	r9, r3	@ proc, proc
 @ Patches/../C_code.c:472: 		if (i <= 0x7F) { proc = proc2; } 
 	cmp	r5, #127	@ _139,
-	bgt	.L361		@,
+	bgt	.L360		@,
 	ldr	r3, [sp, #4]	@ proc, %sfp
 	mov	r9, r3	@ proc, proc
 @ Patches/../C_code.c:473: 		if (i <= 0x3F) { proc = proc1; } 
 	cmp	r5, #63	@ _139,
-	ble	.L429		@,
-.L361:
+	ble	.L428		@,
+.L360:
 	movs	r4, r5	@ i, _139
-	b	.L360		@
-.L386:
+	b	.L359		@
+.L385:
 @ Patches/../C_code.c:439: 		if (i == 0x40) { proc = proc2; } 
 	ldr	r7, [sp, #4]	@ proc, %sfp
-	b	.L355		@
-.L387:
+	b	.L354		@
+.L386:
 @ Patches/../C_code.c:440: 		if (i == 0x80) { proc = proc3; } 
 	ldr	r7, [sp, #8]	@ proc, %sfp
-	b	.L355		@
-.L357:
+	b	.L354		@
+.L356:
 @ Patches/../C_code.c:450: 				unit[c] = i+1; 
 	add	r3, sp, #40	@ tmp409,,
 	strb	r4, [r3, r6]	@ i, unit[c_156]
 @ Patches/../C_code.c:451: 				c++; 
 	adds	r6, r6, #1	@ c,
 @ Patches/../C_code.c:452: 				break; 
-	b	.L356		@
-.L429:
+	b	.L355		@
+.L428:
 @ Patches/../C_code.c:473: 		if (i <= 0x3F) { proc = proc1; } 
 	ldr	r3, [sp, #20]	@ proc, %sfp
 	movs	r4, r5	@ i, _139
 	mov	r9, r3	@ proc, proc
-	b	.L360		@
-.L426:
+	b	.L359		@
+.L425:
 @ Patches/../C_code.c:418: 	if (RecruitValues->recruitment == 4) { if (result == 1) { return 2; } else if (result == 2) { return 1; } }  
 	cmp	r0, #1	@ _135,
-	beq	.L364		@,
+	beq	.L363		@,
 @ Patches/../C_code.c:418: 	if (RecruitValues->recruitment == 4) { if (result == 1) { return 2; } else if (result == 2) { return 1; } }  
 	cmp	r0, #2	@ _135,
-	bne	.L362		@,
-.L365:
+	bne	.L361		@,
+.L364:
 @ Patches/../C_code.c:483: 			rn = GetNthRN_Simple(i-1, seed, rn);  
 	movs	r2, r7	@, rn
 	movs	r0, r5	@, _139
@@ -2824,14 +2815,14 @@ InitRandomRecruitmentProc:
 	movs	r7, r0	@ rn, tmp358
 @ Patches/../C_code.c:485: 			if (c < 0) { c = c_max-1; } 
 	subs	r6, r6, #1	@ c, c,
-	bpl	.L366		@,
+	bpl	.L365		@,
 @ Patches/../C_code.c:485: 			if (c < 0) { c = c_max-1; } 
 	ldr	r3, [sp, #28]	@ c, %sfp
 	subs	r6, r3, #1	@ c, c,
-.L366:
+.L365:
 @ Patches/../C_code.c:169: 	if (max==0) return 0;
 	cmp	r6, #0	@ c,
-	beq	.L390		@,
+	beq	.L389		@,
 @ Patches/../C_code.c:170: 	return Mod((rn >> 3), max);
 	movs	r1, r6	@, c
 	ldr	r3, [sp, #24]	@ tmp341, %sfp
@@ -2839,7 +2830,7 @@ InitRandomRecruitmentProc:
 	lsrs	r0, r7, #3	@ tmp250, rn,
 @ Patches/../C_code.c:170: 	return Mod((rn >> 3), max);
 	bl	.L14		@
-.L367:
+.L366:
 @ Patches/../C_code.c:487: 			proc->id[(i&0x3F)-1] = unit[num]; 
 	add	r3, sp, #40	@ tmp430,,
 	ldrb	r2, [r3, r0]	@ _14, unit
@@ -2860,8 +2851,8 @@ InitRandomRecruitmentProc:
 	strb	r2, [r1, r6]	@ _14, unit[c_46]
 @ Patches/../C_code.c:469: 	for (int i = MAX_CHAR_ID; i > 0 ; --i) { // reordered at random 
 	cmp	r5, #0	@ _139,
-	bne	.L370		@,
-.L428:
+	bne	.L369		@,
+.L427:
 @ Patches/../C_code.c:510: 	proc = proc4; 
 	ldr	r3, [sp, #8]	@ proc3, %sfp
 	mov	r6, fp	@ tmp326, tmp326
@@ -2873,47 +2864,47 @@ InitRandomRecruitmentProc:
 	movs	r7, #63	@ tmp337,
 @ Patches/../C_code.c:510: 	proc = proc4; 
 	ldr	r5, [sp, #16]	@ proc, %sfp
-.L380:
+.L379:
 @ Patches/../C_code.c:513: 		if (i <= 0xBF) { proc = proc3; } 
 	cmp	r4, #191	@ i,
-	bgt	.L371		@,
+	bgt	.L370		@,
 @ Patches/../C_code.c:514: 		if (i <= 0x7F) { proc = proc2; } 
 	cmp	r4, #127	@ i,
-	bgt	.L392		@,
+	bgt	.L391		@,
 	ldr	r5, [sp, #4]	@ proc, %sfp
 @ Patches/../C_code.c:515: 		if (i <= 0x3F) { proc = proc1; } 
 	cmp	r4, #63	@ i,
-	ble	.L430		@,
-.L371:
+	ble	.L429		@,
+.L370:
 @ Patches/../C_code.c:516: 		table = GetCharacterData(i);  
 	movs	r0, r4	@, i
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:519: 			num = GetAdjustedCharacterID(table);
 	bl	GetAdjustedCharacterID		@
 @ Patches/../C_code.c:520: 			if (num != (i+1)) { 
 	adds	r3, r4, #1	@ tmp324, i,
 	cmp	r0, r3	@ num, tmp324
-	beq	.L431		@,
-.L384:
+	beq	.L430		@,
+.L383:
 @ Patches/../C_code.c:521: 				switch (num >> 6) { 
 	asrs	r3, r0, #6	@ _22, num,
 @ Patches/../C_code.c:521: 				switch (num >> 6) { 
 	cmp	r3, #2	@ _22,
-	beq	.L373		@,
-	bgt	.L374		@,
+	beq	.L372		@,
+	bgt	.L373		@,
 	cmp	r3, #0	@ _22,
-	beq	.L375		@,
+	beq	.L374		@,
 	cmp	r3, #1	@ _22,
-	bne	.L372		@,
+	bne	.L371		@,
 @ Patches/../C_code.c:523: 					case 1: { proc->id[(i&0x3F)-1] =  proc2->id[(num&0x3F)-1]; break; } 
 	ldr	r3, [sp, #4]	@ proc2, %sfp
 @ Patches/../C_code.c:523: 					case 1: { proc->id[(i&0x3F)-1] =  proc2->id[(num&0x3F)-1]; break; } 
 	ands	r0, r7	@ tmp290, tmp337
-.L423:
+.L422:
 @ Patches/../C_code.c:525: 					case 3: { proc->id[(i&0x3F)-1] =  proc4->id[(num&0x3F)-1]; break; } 
 	mov	ip, r3	@ proc4, proc4
 	add	r0, r0, ip	@ tmp314, proc4
-.L424:
+.L423:
 @ Patches/../C_code.c:525: 					case 3: { proc->id[(i&0x3F)-1] =  proc4->id[(num&0x3F)-1]; break; } 
 	movs	r3, r7	@ tmp317, tmp337
 @ Patches/../C_code.c:525: 					case 3: { proc->id[(i&0x3F)-1] =  proc4->id[(num&0x3F)-1]; break; } 
@@ -2926,19 +2917,19 @@ InitRandomRecruitmentProc:
 	adds	r3, r5, r3	@ tmp319, proc, tmp317
 	adds	r3, r3, #41	@ tmp320,
 	strb	r2, [r3]	@ _42,
-.L372:
+.L371:
 @ Patches/../C_code.c:511: 	for (int i = MAX_CHAR_ID; i > 0 ; --i) { 
 	subs	r4, r4, #1	@ i,
 @ Patches/../C_code.c:511: 	for (int i = MAX_CHAR_ID; i > 0 ; --i) { 
 	cmp	r4, #0	@ i,
-	bne	.L380		@,
+	bne	.L379		@,
 @ Patches/../C_code.c:533: 	switch (procID) { 
 	ldr	r3, [sp, #36]	@ procID, %sfp
 	cmp	r3, #2	@ procID,
-	beq	.L395		@,
-	bgt	.L382		@,
+	beq	.L394		@,
+	bgt	.L381		@,
 	cmp	r3, #0	@ procID,
-	beq	.L354		@,
+	beq	.L353		@,
 	subs	r3, r3, #1	@ procID,
 	rsbs	r2, r3, #0	@ tmp330, tmp329
 	adcs	r3, r3, r2	@ tmp328, tmp329, tmp330
@@ -2946,7 +2937,7 @@ InitRandomRecruitmentProc:
 	rsbs	r3, r3, #0	@ tmp331, tmp328
 	ands	r2, r3	@ proc2, tmp331
 	str	r2, [sp, #20]	@ proc2, %sfp
-.L354:
+.L353:
 @ Patches/../C_code.c:543: } 
 	ldr	r0, [sp, #20]	@, %sfp
 	add	sp, sp, #204	@,,
@@ -2959,7 +2950,7 @@ InitRandomRecruitmentProc:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L427:
+.L426:
 @ Patches/../C_code.c:495: 				if (b < 0) { b = b_max-1; } 
 	ldr	r3, [sp, #32]	@ b, %sfp
 	subs	r3, r3, #1	@ b,
@@ -2967,53 +2958,53 @@ InitRandomRecruitmentProc:
 @ Patches/../C_code.c:169: 	if (max==0) return 0;
 	mov	r3, r8	@ b, b
 	cmp	r3, #0	@ b,
-	beq	.LCB2502	@
-	b	.L432	@long jump	@
-.LCB2502:
-.L391:
-	movs	r0, #0	@ _148,
-	b	.L369		@
+	beq	.LCB2494	@
+	b	.L431	@long jump	@
+.LCB2494:
 .L390:
+	movs	r0, #0	@ _148,
+	b	.L368		@
+.L389:
 	movs	r0, #0	@ _143,
-	b	.L367		@
-.L392:
+	b	.L366		@
+.L391:
 @ Patches/../C_code.c:516: 		table = GetCharacterData(i);  
 	movs	r0, r4	@, i
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:519: 			num = GetAdjustedCharacterID(table);
 	bl	GetAdjustedCharacterID		@
 @ Patches/../C_code.c:520: 			if (num != (i+1)) { 
 	adds	r3, r4, #1	@ tmp324, i,
 	mov	r5, fp	@ proc, proc3
 	cmp	r0, r3	@ num, tmp324
-	bne	.L384		@,
-.L431:
+	bne	.L383		@,
+.L430:
 @ Patches/../C_code.c:511: 	for (int i = MAX_CHAR_ID; i > 0 ; --i) { 
 	subs	r4, r4, #1	@ i,
-	b	.L380		@
-.L374:
+	b	.L379		@
+.L373:
 @ Patches/../C_code.c:521: 				switch (num >> 6) { 
 	cmp	r3, #3	@ _22,
-	bne	.L372		@,
+	bne	.L371		@,
 @ Patches/../C_code.c:525: 					case 3: { proc->id[(i&0x3F)-1] =  proc4->id[(num&0x3F)-1]; break; } 
 	ldr	r3, [sp, #16]	@ proc4, %sfp
 @ Patches/../C_code.c:525: 					case 3: { proc->id[(i&0x3F)-1] =  proc4->id[(num&0x3F)-1]; break; } 
 	ands	r0, r7	@ tmp312, tmp337
-	b	.L423		@
-.L375:
+	b	.L422		@
+.L374:
 @ Patches/../C_code.c:522: 					case 0: { proc->id[(i&0x3F)-1] =  proc1->id[(num&0x3F)-1]; break; } 
 	ldr	r3, [sp, #20]	@ <retval>, %sfp
-	b	.L423		@
-.L373:
+	b	.L422		@
+.L372:
 @ Patches/../C_code.c:524: 					case 2: { proc->id[(i&0x3F)-1] =  proc3->id[(num&0x3F)-1]; break; } 
 	ands	r0, r7	@ tmp301, tmp337
 @ Patches/../C_code.c:524: 					case 2: { proc->id[(i&0x3F)-1] =  proc3->id[(num&0x3F)-1]; break; } 
 	add	r0, r0, fp	@ tmp303, proc3
-	b	.L424		@
-.L430:
+	b	.L423		@
+.L429:
 @ Patches/../C_code.c:516: 		table = GetCharacterData(i);  
 	movs	r0, r4	@, i
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:519: 			num = GetAdjustedCharacterID(table);
 	bl	GetAdjustedCharacterID		@
 @ Patches/../C_code.c:520: 			if (num != (i+1)) { 
@@ -3022,10 +3013,10 @@ InitRandomRecruitmentProc:
 	ldr	r5, [sp, #20]	@ proc, %sfp
 @ Patches/../C_code.c:520: 			if (num != (i+1)) { 
 	cmp	r0, r3	@ num, tmp279
-	bne	.L384		@,
+	bne	.L383		@,
 @ Patches/../C_code.c:526: 					default: 
-	b	.L372		@
-.L382:
+	b	.L371		@
+.L381:
 @ Patches/../C_code.c:537: 		case 3: { return proc4; break; } 
 	ldr	r3, [sp, #36]	@ procID, %sfp
 	subs	r3, r3, #3	@ procID,
@@ -3035,15 +3026,15 @@ InitRandomRecruitmentProc:
 	rsbs	r3, r3, #0	@ tmp336, tmp333
 	ands	r2, r3	@ proc4, tmp336
 	str	r2, [sp, #20]	@ proc4, %sfp
-	b	.L354		@
-.L395:
+	b	.L353		@
+.L394:
 @ Patches/../C_code.c:536: 		case 2: { return proc3; break; } 
 	mov	r3, fp	@ proc3, proc3
 	str	r3, [sp, #20]	@ proc3, %sfp
-	b	.L354		@
-.L434:
-	.align	2
+	b	.L353		@
 .L433:
+	.align	2
+.L432:
 	.word	GetCharacterData
 	.word	.LANCHOR0
 	.word	RandValues
@@ -3063,7 +3054,7 @@ GetReorderedCharacter.part.0.isra.0:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r3, r4, r5, r6, r7, lr}	@
 @ Patches/../C_code.c:156: 	if (!GetCharacterData(id)->portraitId) { return false; } 
-	ldr	r4, .L454	@ tmp163,
+	ldr	r4, .L453	@ tmp163,
 @ Patches/../C_code.c:255: const struct CharacterData* GetReorderedCharacter(const struct CharacterData* table) { 
 	movs	r6, r0	@ ISRA.906, tmp164
 @ Patches/../C_code.c:258: 	int id = table->number; 
@@ -3073,32 +3064,32 @@ GetReorderedCharacter.part.0.isra.0:
 @ Patches/../C_code.c:156: 	if (!GetCharacterData(id)->portraitId) { return false; } 
 	ldrh	r3, [r0, #6]	@ tmp129,
 	cmp	r3, #0	@ tmp129,
-	beq	.L437		@,
+	beq	.L436		@,
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
-	ldr	r3, .L454+4	@ tmp131,
+	ldr	r3, .L453+4	@ tmp131,
 	ldr	r3, [r3]	@ RecruitValues, RecruitValues
 	ldrb	r3, [r3]	@ *RecruitValues.0_36, *RecruitValues.0_36
 	lsls	r3, r3, #29	@ tmp136, *RecruitValues.0_36,
 @ Patches/../C_code.c:259: 	if (!ShouldRandomizeRecruitmentForUnitID(id)) { return GetCharacterData(id); } 
-	beq	.L437		@,
+	beq	.L436		@,
 @ Patches/../C_code.c:261: 	int procID = id >> 6; // 0, 1, 2, or 3 
 	asrs	r7, r6, #6	@ procID, ISRA.906,
 @ Patches/../C_code.c:263: 	switch (procID) { 
 	cmp	r7, #2	@ procID,
-	beq	.L440		@,
+	beq	.L439		@,
 	cmp	r7, #3	@ procID,
-	beq	.L441		@,
+	beq	.L440		@,
 	cmp	r7, #1	@ procID,
-	bne	.L452		@,
+	bne	.L451		@,
 @ Patches/../C_code.c:269: 			proc = Proc_Find(RecruitmentProcCmd2); 
-	ldr	r0, .L454+8	@ tmp144,
-	ldr	r3, .L454+12	@ tmp145,
+	ldr	r0, .L453+8	@ tmp144,
+	ldr	r3, .L453+12	@ tmp145,
 	bl	.L14		@
-.L443:
+.L442:
 @ Patches/../C_code.c:283: 	if (!proc) { proc = InitRandomRecruitmentProc(procID); } 
 	cmp	r0, #0	@ proc,
-	beq	.L453		@,
-.L444:
+	beq	.L452		@,
+.L443:
 @ Patches/../C_code.c:285: 	int unitID = proc->id[(id&0x3F)-1];
 	movs	r3, #63	@ tmp155,
 	ands	r3, r6	@ tmp156, ISRA.906
@@ -3109,54 +3100,54 @@ GetReorderedCharacter.part.0.isra.0:
 	ldrb	r3, [r0]	@ unitID, *proc_15
 @ Patches/../C_code.c:286: 	if (!unitID) { unitID = id; } 
 	cmp	r3, #0	@ unitID,
-	beq	.L445		@,
+	beq	.L444		@,
 @ Patches/../C_code.c:285: 	int unitID = proc->id[(id&0x3F)-1];
 	movs	r5, r3	@ id, unitID
-.L445:
+.L444:
 @ Patches/../C_code.c:287: 	return GetCharacterData(unitID);
 	movs	r0, r5	@, id
 	bl	.L240		@
-	b	.L436		@
-.L437:
+	b	.L435		@
+.L436:
 @ Patches/../C_code.c:259: 	if (!ShouldRandomizeRecruitmentForUnitID(id)) { return GetCharacterData(id); } 
 	movs	r0, r6	@, ISRA.906
 	bl	.L240		@
-.L436:
+.L435:
 @ Patches/../C_code.c:288: }
 	@ sp needed	@
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L452:
+.L451:
 @ Patches/../C_code.c:265: 			proc = Proc_Find(RecruitmentProcCmd1); 
-	ldr	r0, .L454+16	@ tmp141,
-	ldr	r3, .L454+12	@ tmp142,
+	ldr	r0, .L453+16	@ tmp141,
+	ldr	r3, .L453+12	@ tmp142,
 	bl	.L14		@
 @ Patches/../C_code.c:283: 	if (!proc) { proc = InitRandomRecruitmentProc(procID); } 
 	cmp	r0, #0	@ proc,
-	bne	.L444		@,
-.L453:
+	bne	.L443		@,
+.L452:
 @ Patches/../C_code.c:283: 	if (!proc) { proc = InitRandomRecruitmentProc(procID); } 
 	movs	r0, r7	@, procID
 	bl	InitRandomRecruitmentProc		@
-	b	.L444		@
-.L441:
-@ Patches/../C_code.c:277: 			proc = Proc_Find(RecruitmentProcCmd4); 
-	ldr	r3, .L454+12	@ tmp151,
-	ldr	r0, .L454+20	@ tmp150,
-	bl	.L14		@
-@ Patches/../C_code.c:278: 			break; 
 	b	.L443		@
 .L440:
+@ Patches/../C_code.c:277: 			proc = Proc_Find(RecruitmentProcCmd4); 
+	ldr	r3, .L453+12	@ tmp151,
+	ldr	r0, .L453+20	@ tmp150,
+	bl	.L14		@
+@ Patches/../C_code.c:278: 			break; 
+	b	.L442		@
+.L439:
 @ Patches/../C_code.c:273: 			proc = Proc_Find(RecruitmentProcCmd3); 
-	ldr	r3, .L454+12	@ tmp148,
-	ldr	r0, .L454+24	@ tmp147,
+	ldr	r3, .L453+12	@ tmp148,
+	ldr	r0, .L453+24	@ tmp147,
 	bl	.L14		@
 @ Patches/../C_code.c:274: 			break; 
-	b	.L443		@
-.L455:
-	.align	2
+	b	.L442		@
 .L454:
+	.align	2
+.L453:
 	.word	GetCharacterData
 	.word	RecruitValues
 	.word	.LANCHOR0+48
@@ -3182,63 +3173,63 @@ GetReorderedCharacterPortraitByPortrait:
 	movs	r4, r0	@ portraitID, portraitID
 @ Patches/../C_code.c:242: 	if (portraitID < 0x100) { 
 	cmp	r0, #255	@ portraitID,
-	bgt	.L457		@,
+	bgt	.L456		@,
 @ Patches/../C_code.c:243: 		if (ReplacePortraitTable[portraitID]) { portraitID = ReplacePortraitTable[portraitID]; } 
-	ldr	r3, .L475	@ tmp128,
+	ldr	r3, .L474	@ tmp128,
 	ldrb	r3, [r3, r0]	@ _17, ReplacePortraitTable
 @ Patches/../C_code.c:243: 		if (ReplacePortraitTable[portraitID]) { portraitID = ReplacePortraitTable[portraitID]; } 
 	cmp	r3, #0	@ _17,
-	bne	.L474		@,
-.L457:
+	bne	.L473		@,
+.L456:
 @ Patches/../C_code.c:245: 	const struct CharacterData* table = GetCharacterData(1); 
 	movs	r0, #1	@,
-	ldr	r6, .L475+4	@ tmp134,
-	bl	.L342		@
-	ldr	r3, .L475+8	@ tmp140,
+	ldr	r6, .L474+4	@ tmp134,
+	bl	.L341		@
+	ldr	r3, .L474+8	@ tmp140,
 	adds	r2, r0, r3	@ _7, table, tmp140
-	b	.L461		@
-.L458:
+	b	.L460		@
+.L457:
 @ Patches/../C_code.c:248: 		table++; 
 	adds	r0, r0, #52	@ table,
 @ Patches/../C_code.c:246: 	for (int i = 1; i <= MAX_CHAR_ID; i++) { 
 	cmp	r2, r0	@ _7, table
-	beq	.L459		@,
-.L461:
+	beq	.L458		@,
+.L460:
 @ Patches/../C_code.c:247: 		if (table->portraitId == portraitID) { return table->number; } 
 	ldrh	r3, [r0, #6]	@ MEM[(short unsigned int *)table_24 + 6B], MEM[(short unsigned int *)table_24 + 6B]
 @ Patches/../C_code.c:247: 		if (table->portraitId == portraitID) { return table->number; } 
 	cmp	r3, r4	@ MEM[(short unsigned int *)table_24 + 6B], portraitID
-	bne	.L458		@,
+	bne	.L457		@,
 @ Patches/../C_code.c:247: 		if (table->portraitId == portraitID) { return table->number; } 
 	ldrb	r0, [r0, #4]	@ _26,
 @ Patches/../C_code.c:298: 	if (!result) { return portraitID; }
 	cmp	r0, #0	@ _26,
-	beq	.L459		@,
+	beq	.L458		@,
 @ Patches/../C_code.c:299: 	return GetReorderedCharacter(GetCharacterData(result))->portraitId; 
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r5, [r0, #6]	@ _11,
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	cmp	r5, #0	@ _11,
-	beq	.L459		@,
+	beq	.L458		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_1 + 4B], MEM[(unsigned char *)_1 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:299: 	return GetReorderedCharacter(GetCharacterData(result))->portraitId; 
 	ldrh	r5, [r0, #6]	@ _11,
-.L459:
+.L458:
 @ Patches/../C_code.c:300: } 
 	@ sp needed	@
 	movs	r0, r5	@, portraitID
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L474:
+.L473:
 @ Patches/../C_code.c:243: 		if (ReplacePortraitTable[portraitID]) { portraitID = ReplacePortraitTable[portraitID]; } 
 	movs	r4, r3	@ portraitID, _17
-	b	.L457		@
-.L476:
-	.align	2
+	b	.L456		@
 .L475:
+	.align	2
+.L474:
 	.word	ReplacePortraitTable
 	.word	GetCharacterData
 	.word	13260
@@ -3258,34 +3249,34 @@ GetRandomizedPortrait:
 @ Patches/../C_code.c:303: int GetRandomizedPortrait(int portraitID, int seed) {  
 	subs	r4, r0, #0	@ portraitID, tmp130,
 @ Patches/../C_code.c:304: 	if (portraitID < 0) { return portraitID; } 
-	blt	.L479		@,
+	blt	.L478		@,
 @ Patches/../C_code.c:161: 	if (!id) { return false; } 
 	cmp	r0, #0	@ portraitID,
-	beq	.L479		@,
+	beq	.L478		@,
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
-	ldr	r3, .L490	@ tmp121,
+	ldr	r3, .L489	@ tmp121,
 	ldr	r3, [r3]	@ RecruitValues, RecruitValues
 	ldrb	r3, [r3]	@ *RecruitValues.0_10, *RecruitValues.0_10
 	lsls	r3, r3, #29	@ tmp126, *RecruitValues.0_10,
 @ Patches/../C_code.c:305: 	if (!ShouldRandomizeRecruitmentForPortraitID(portraitID)) { return portraitID; } 
-	beq	.L479		@,
+	beq	.L478		@,
 @ Patches/../C_code.c:306: 	int result = GetReorderedCharacterPortraitByPortrait(portraitID); 
 	bl	GetReorderedCharacterPortraitByPortrait		@
 @ Patches/../C_code.c:308: 	if (!result) { return portraitID; } 
 	cmp	r0, #0	@ result,
-	beq	.L479		@,
+	beq	.L478		@,
 @ Patches/../C_code.c:320: 	return result; 
 	movs	r4, r0	@ portraitID, result
-.L479:
+.L478:
 @ Patches/../C_code.c:321: } 
 	@ sp needed	@
 	movs	r0, r4	@, portraitID
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L491:
-	.align	2
 .L490:
+	.align	2
+.L489:
 	.word	RecruitValues
 	.size	GetRandomizedPortrait, .-GetRandomizedPortrait
 	.align	1
@@ -3303,59 +3294,59 @@ GetNameTextIdOfRandomizedPortrait:
 @ Patches/../C_code.c:323: int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed) { 
 	subs	r4, r0, #0	@ portraitID, tmp137,
 @ Patches/../C_code.c:304: 	if (portraitID < 0) { return portraitID; } 
-	blt	.L494		@,
+	blt	.L493		@,
 @ Patches/../C_code.c:161: 	if (!id) { return false; } 
 	cmp	r0, #0	@ portraitID,
-	beq	.L494		@,
+	beq	.L493		@,
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
-	ldr	r3, .L510	@ tmp126,
+	ldr	r3, .L509	@ tmp126,
 	ldr	r3, [r3]	@ RecruitValues, RecruitValues
 	ldrb	r3, [r3]	@ *RecruitValues.0_18, *RecruitValues.0_18
 	lsls	r3, r3, #29	@ tmp131, *RecruitValues.0_18,
 @ Patches/../C_code.c:305: 	if (!ShouldRandomizeRecruitmentForPortraitID(portraitID)) { return portraitID; } 
-	beq	.L494		@,
+	beq	.L493		@,
 @ Patches/../C_code.c:306: 	int result = GetReorderedCharacterPortraitByPortrait(portraitID); 
 	bl	GetReorderedCharacterPortraitByPortrait		@
 @ Patches/../C_code.c:308: 	if (!result) { return portraitID; } 
 	cmp	r0, #0	@ result,
-	beq	.L494		@,
+	beq	.L493		@,
 @ Patches/../C_code.c:320: 	return result; 
 	movs	r4, r0	@ portraitID, result
-.L494:
+.L493:
 @ Patches/../C_code.c:325: 	const struct CharacterData* table = GetCharacterData(1); 
-	ldr	r3, .L510+4	@ tmp134,
+	ldr	r3, .L509+4	@ tmp134,
 	movs	r0, #1	@,
 	bl	.L14		@
-	ldr	r3, .L510+8	@ tmp141,
+	ldr	r3, .L509+8	@ tmp141,
 	adds	r2, r0, r3	@ _14, table, tmp141
-	b	.L498		@
-.L496:
+	b	.L497		@
+.L495:
 @ Patches/../C_code.c:329: 		table++; 
 	adds	r0, r0, #52	@ table,
 @ Patches/../C_code.c:326: 	for (int i = 1; i <= 0xFF; i++) { 
 	cmp	r2, r0	@ _14, table
-	beq	.L509		@,
-.L498:
+	beq	.L508		@,
+.L497:
 @ Patches/../C_code.c:327: 		if (table->portraitId == portraitID) { return table->nameTextId; } 
 	ldrh	r3, [r0, #6]	@ MEM[(short unsigned int *)table_11 + 6B], MEM[(short unsigned int *)table_11 + 6B]
 @ Patches/../C_code.c:327: 		if (table->portraitId == portraitID) { return table->nameTextId; } 
 	cmp	r3, r4	@ MEM[(short unsigned int *)table_11 + 6B], portraitID
-	bne	.L496		@,
+	bne	.L495		@,
 @ Patches/../C_code.c:327: 		if (table->portraitId == portraitID) { return table->nameTextId; } 
 	ldrh	r0, [r0]	@ <retval>, *table_11
-.L492:
+.L491:
 @ Patches/../C_code.c:333: } 
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L509:
+.L508:
 @ Patches/../C_code.c:332: 	return 1; // "Yes"
 	movs	r0, #1	@ <retval>,
-	b	.L492		@
-.L511:
-	.align	2
+	b	.L491		@
 .L510:
+	.align	2
+.L509:
 	.word	RecruitValues
 	.word	GetCharacterData
 	.word	13260
@@ -3377,10 +3368,10 @@ GetReorderedUnitID:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp120,
 	cmp	r3, #0	@ tmp120,
-	beq	.L513		@,
+	beq	.L512		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_1 + 4B], MEM[(unsigned char *)_1 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
-.L513:
+.L512:
 @ Patches/../C_code.c:295: } 
 	@ sp needed	@
 @ Patches/../C_code.c:294: 	return GetReorderedCharacter(unit->pCharacterData)->number; 
@@ -3407,10 +3398,10 @@ GetReorderedUnit:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp118,
 	cmp	r3, #0	@ tmp118,
-	beq	.L517		@,
+	beq	.L516		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_1 + 4B], MEM[(unsigned char *)_1 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
-.L517:
+.L516:
 @ Patches/../C_code.c:292: } 
 	@ sp needed	@
 	pop	{r4}
@@ -3432,10 +3423,10 @@ GetReorderedCharacter:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp118,
 	cmp	r3, #0	@ tmp118,
-	beq	.L523		@,
+	beq	.L522		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)table_4(D) + 4B], MEM[(unsigned char *)table_4(D) + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
-.L523:
+.L522:
 @ Patches/../C_code.c:288: }
 	@ sp needed	@
 	pop	{r4}
@@ -3455,7 +3446,7 @@ HbPopulate_SSCharacter:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
 @ Patches/../C_code.c:548: 	if (ShouldRandomizeRecruitmentForUnitID(gStatScreen.unit->pCharacterData->number)) { 
-	ldr	r5, .L546	@ tmp154,
+	ldr	r5, .L545	@ tmp154,
 @ Patches/../C_code.c:548: 	if (ShouldRandomizeRecruitmentForUnitID(gStatScreen.unit->pCharacterData->number)) { 
 	ldr	r3, [r5, #12]	@ gStatScreen.unit, gStatScreen.unit
 @ Patches/../C_code.c:548: 	if (ShouldRandomizeRecruitmentForUnitID(gStatScreen.unit->pCharacterData->number)) { 
@@ -3465,20 +3456,20 @@ HbPopulate_SSCharacter:
 @ Patches/../C_code.c:548: 	if (ShouldRandomizeRecruitmentForUnitID(gStatScreen.unit->pCharacterData->number)) { 
 	ldrb	r0, [r3, #4]	@ tmp133,
 @ Patches/../C_code.c:156: 	if (!GetCharacterData(id)->portraitId) { return false; } 
-	ldr	r3, .L546+4	@ tmp134,
+	ldr	r3, .L545+4	@ tmp134,
 	bl	.L14		@
 @ Patches/../C_code.c:156: 	if (!GetCharacterData(id)->portraitId) { return false; } 
 	ldrh	r3, [r0, #6]	@ tmp135,
 	cmp	r3, #0	@ tmp135,
-	beq	.L528		@,
+	beq	.L527		@,
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
-	ldr	r3, .L546+8	@ tmp137,
+	ldr	r3, .L545+8	@ tmp137,
 	ldr	r3, [r3]	@ RecruitValues, RecruitValues
 	ldrb	r3, [r3]	@ *RecruitValues.0_24, *RecruitValues.0_24
 	lsls	r3, r3, #29	@ tmp142, *RecruitValues.0_24,
 @ Patches/../C_code.c:548: 	if (ShouldRandomizeRecruitmentForUnitID(gStatScreen.unit->pCharacterData->number)) { 
-	bne	.L544		@,
-.L528:
+	bne	.L543		@,
+.L527:
 @ Patches/../C_code.c:567:     int midDesc = gStatScreen.unit->pCharacterData->descTextId;
 	ldr	r3, [r5, #12]	@ gStatScreen.unit, gStatScreen.unit
 @ Patches/../C_code.c:567:     int midDesc = gStatScreen.unit->pCharacterData->descTextId;
@@ -3486,8 +3477,8 @@ HbPopulate_SSCharacter:
 	ldrh	r3, [r3, #2]	@ _11,
 @ Patches/../C_code.c:569: 		if (midDesc) {
 	cmp	r3, #0	@ _11,
-	beq	.L531		@,
-.L530:
+	beq	.L530		@,
+.L529:
 @ Patches/../C_code.c:582: }
 	@ sp needed	@
 @ Patches/../C_code.c:555: 		proc->mid = 0x6BE; } // TODO: mid constants
@@ -3497,31 +3488,31 @@ HbPopulate_SSCharacter:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L544:
+.L543:
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r3, [r5, #12]	@ gStatScreen.unit, gStatScreen.unit
 	ldr	r0, [r3]	@ pretmp_12, pretmp_26->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp147,
 	cmp	r3, #0	@ tmp147,
-	bne	.L545		@,
-.L529:
+	bne	.L544		@,
+.L528:
 @ Patches/../C_code.c:549: 		int midDesc = GetReorderedUnit(gStatScreen.unit)->descTextId;
 	ldrh	r3, [r0, #2]	@ _11,
 @ Patches/../C_code.c:551: 		if (midDesc) {
 	cmp	r3, #0	@ _11,
-	bne	.L530		@,
-.L531:
+	bne	.L529		@,
+.L530:
 @ Patches/../C_code.c:547: {
-	ldr	r3, .L546+12	@ _11,
-	b	.L530		@
-.L545:
+	ldr	r3, .L545+12	@ _11,
+	b	.L529		@
+.L544:
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)pretmp_12 + 4B], MEM[(unsigned char *)pretmp_12 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
-	b	.L529		@
-.L547:
-	.align	2
+	b	.L528		@
 .L546:
+	.align	2
+.L545:
 	.word	gStatScreen
 	.word	GetCharacterData
 	.word	RecruitValues
@@ -3564,12 +3555,12 @@ NextSeededRN:
 	lsrs	r2, r2, #16	@ _6, tmp134,
 @ Patches/../C_code.c:1319:     if (currentRN[1] & 0x8000)
 	asrs	r5, r5, #16	@ _1, _1,
-	bpl	.L549		@,
+	bpl	.L548		@,
 @ Patches/../C_code.c:1320:         currentRN[2]++;
 	adds	r2, r2, #1	@ tmp138,
 	lsls	r2, r2, #16	@ tmp139, tmp138,
 	lsrs	r2, r2, #16	@ _6, tmp139,
-.L549:
+.L548:
 @ Patches/../C_code.c:1322:     rn ^= currentRN[2];
 	eors	r0, r2	@ rn, _6
 @ Patches/../C_code.c:1325:     currentRN[2] = currentRN[1];
@@ -3607,7 +3598,7 @@ InitSeededRN:
 @ Patches/../C_code.c:1333: void InitSeededRN(int seed, u16* currentRN) {
 	mov	r8, r0	@ seed, tmp175
 @ Patches/../C_code.c:1337:     u16 initTable[8] = {
-	ldr	r3, .L556	@ tmp133,
+	ldr	r3, .L555	@ tmp133,
 @ Patches/../C_code.c:1333: void InitSeededRN(int seed, u16* currentRN) {
 	movs	r7, r1	@ currentRN, tmp176
 @ Patches/../C_code.c:1337:     u16 initTable[8] = {
@@ -3616,7 +3607,7 @@ InitSeededRN:
 	ldr	r3, [r3]	@ tmp136,
 	str	r3, [r2]	@ tmp136,
 @ Patches/../C_code.c:1348:     int mod = Mod(seed, 7);
-	ldr	r3, .L556+4	@ tmp137,
+	ldr	r3, .L555+4	@ tmp137,
 	movs	r1, #7	@,
 	mov	r0, r8	@, seed
 	mov	r9, r3	@ tmp137, tmp137
@@ -3654,17 +3645,17 @@ InitSeededRN:
 @ Patches/../C_code.c:1352:     currentRN[2] = initTable[(mod & 7)];
 	strh	r4, [r7, #4]	@ currentRN__lsm.956, MEM[(u16 *)currentRN_16(D) + 4B]
 @ Patches/../C_code.c:1354:     if (Mod(seed, 23) > 0)
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:1354:     if (Mod(seed, 23) > 0)
 	cmp	r0, #0	@ mod,
-	bgt	.L553		@,
-	b	.L550		@
-.L554:
+	bgt	.L552		@,
+	b	.L549		@
+.L553:
 @ Patches/../C_code.c:1326:     currentRN[1] = currentRN[0];
 	movs	r5, r6	@ currentRN__lsm.954, currentRN__lsm.955
 @ Patches/../C_code.c:1327:     currentRN[0] = rn;
 	movs	r6, r3	@ currentRN__lsm.955, rn
-.L553:
+.L552:
 @ Patches/../C_code.c:1313:     u16 rn = (currentRN[1] << 11) + (currentRN[0] >> 5);
 	lsls	r3, r5, #11	@ tmp156, currentRN__lsm.954,
 @ Patches/../C_code.c:1313:     u16 rn = (currentRN[1] << 11) + (currentRN[0] >> 5);
@@ -3680,12 +3671,12 @@ InitSeededRN:
 	lsrs	r4, r4, #16	@ currentRN__lsm.956, tmp164,
 @ Patches/../C_code.c:1319:     if (currentRN[1] & 0x8000)
 	lsls	r2, r5, #16	@ tmp182, currentRN__lsm.954,
-	bpl	.L552		@,
+	bpl	.L551		@,
 @ Patches/../C_code.c:1320:         currentRN[2]++;
 	adds	r4, r4, #1	@ tmp168,
 	lsls	r4, r4, #16	@ tmp169, tmp168,
 	lsrs	r4, r4, #16	@ currentRN__lsm.956, tmp169,
-.L552:
+.L551:
 @ Patches/../C_code.c:1355:         for (mod = Mod(seed,  23); mod != 0; mod--)
 	subs	r0, r0, #1	@ mod,
 @ Patches/../C_code.c:1322:     rn ^= currentRN[2];
@@ -3694,11 +3685,11 @@ InitSeededRN:
 	movs	r4, r5	@ currentRN__lsm.956, currentRN__lsm.954
 @ Patches/../C_code.c:1355:         for (mod = Mod(seed,  23); mod != 0; mod--)
 	cmp	r0, #0	@ mod,
-	bne	.L554		@,
+	bne	.L553		@,
 	strh	r5, [r7, #4]	@ currentRN__lsm.954, MEM[(u16 *)currentRN_16(D) + 4B]
 	strh	r6, [r7, #2]	@ currentRN__lsm.955, MEM[(u16 *)currentRN_16(D) + 2B]
 	strh	r3, [r7]	@ rn, *currentRN_16(D)
-.L550:
+.L549:
 @ Patches/../C_code.c:1357: }
 	add	sp, sp, #20	@,,
 	@ sp needed	@
@@ -3708,9 +3699,9 @@ InitSeededRN:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L557:
-	.align	2
 .L556:
+	.align	2
+.L555:
 	.word	.LANCHOR0
 	.word	Mod
 	.size	InitSeededRN, .-InitSeededRN
@@ -3741,20 +3732,20 @@ GetNthRN:
 	bl	InitSeededRN		@
 @ Patches/../C_code.c:1364: 	for (int i = 0; i < n; i++) { 
 	cmp	r4, #0	@ n,
-	beq	.L563		@,
+	beq	.L562		@,
 	mov	r3, sp	@ tmp154,
 @ Patches/../C_code.c:1364: 	for (int i = 0; i < n; i++) { 
 	movs	r1, #0	@ i,
 	ldrh	r2, [r3, #2]	@ currentRN__lsm.966, MEM[(u16 *)&currentRN + 2B]
 	ldrh	r5, [r3]	@ currentRN__lsm.967, MEM[(u16 *)&currentRN]
 	ldrh	r6, [r3, #4]	@ currentRN__lsm.968, MEM[(u16 *)&currentRN + 4B]
-	b	.L562		@
-.L564:
+	b	.L561		@
+.L563:
 @ Patches/../C_code.c:1326:     currentRN[1] = currentRN[0];
 	movs	r2, r5	@ currentRN__lsm.966, currentRN__lsm.967
 @ Patches/../C_code.c:1327:     currentRN[0] = rn;
 	movs	r5, r0	@ currentRN__lsm.967, <retval>
-.L562:
+.L561:
 @ Patches/../C_code.c:1313:     u16 rn = (currentRN[1] << 11) + (currentRN[0] >> 5);
 	lsls	r0, r2, #11	@ tmp133, currentRN__lsm.966,
 @ Patches/../C_code.c:1313:     u16 rn = (currentRN[1] << 11) + (currentRN[0] >> 5);
@@ -3770,12 +3761,12 @@ GetNthRN:
 	lsrs	r0, r6, #16	@ currentRN__lsm.968, tmp140,
 @ Patches/../C_code.c:1319:     if (currentRN[1] & 0x8000)
 	lsls	r6, r2, #16	@ tmp151, currentRN__lsm.966,
-	bpl	.L561		@,
+	bpl	.L560		@,
 @ Patches/../C_code.c:1320:         currentRN[2]++;
 	adds	r0, r0, #1	@ tmp144,
 	lsls	r0, r0, #16	@ tmp145, tmp144,
 	lsrs	r0, r0, #16	@ currentRN__lsm.968, tmp145,
-.L561:
+.L560:
 @ Patches/../C_code.c:1364: 	for (int i = 0; i < n; i++) { 
 	adds	r1, r1, #1	@ i,
 @ Patches/../C_code.c:1325:     currentRN[2] = currentRN[1];
@@ -3784,18 +3775,18 @@ GetNthRN:
 	eors	r0, r3	@ <retval>, rn
 @ Patches/../C_code.c:1364: 	for (int i = 0; i < n; i++) { 
 	cmp	r4, r1	@ n, i
-	bne	.L564		@,
-.L560:
+	bne	.L563		@,
+.L559:
 @ Patches/../C_code.c:1368: } 
 	add	sp, sp, #8	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L563:
+.L562:
 @ Patches/../C_code.c:1364: 	for (int i = 0; i < n; i++) { 
 	movs	r0, #0	@ <retval>,
-	b	.L560		@
+	b	.L559		@
 	.size	GetNthRN, .-GetNthRN
 	.align	1
 	.p2align 2,,3
@@ -3809,24 +3800,24 @@ GetInitialSeed:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:1372: 	int result = RandValues->seed;
-	ldr	r3, .L570	@ tmp133,
+	ldr	r3, .L569	@ tmp133,
 	ldr	r3, [r3]	@ RandValues, RandValues
 @ Patches/../C_code.c:1371: int GetInitialSeed(int rate) { 
 	push	{r4, r5, r6, lr}	@
 @ Patches/../C_code.c:1372: 	int result = RandValues->seed;
 	ldr	r4, [r3]	@ *RandValues.88_1, *RandValues.88_1
 @ Patches/../C_code.c:1373: 	int clock = GetGameClock()>>rate; 
-	ldr	r6, .L570+4	@ tmp136,
+	ldr	r6, .L569+4	@ tmp136,
 @ Patches/../C_code.c:1372: 	int result = RandValues->seed;
 	lsls	r4, r4, #12	@ tmp135, *RandValues.88_1,
 	lsrs	r4, r4, #12	@ <retval>, tmp135,
 @ Patches/../C_code.c:1371: int GetInitialSeed(int rate) { 
 	movs	r5, r0	@ rate, tmp152
 @ Patches/../C_code.c:1373: 	int clock = GetGameClock()>>rate; 
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:1374: 	if (!result) { 
 	cmp	r4, #0	@ <retval>,
-	bne	.L567		@,
+	bne	.L566		@,
 @ Patches/../C_code.c:1373: 	int clock = GetGameClock()>>rate; 
 	lsrs	r0, r0, r5	@ _3, _3, rate
 @ Patches/../C_code.c:1375: 		result = (GetNthRN(clock, (clock&0xF))<<4) | GetNthRN(clock, (clock&0xF0)); 
@@ -3849,31 +3840,31 @@ GetInitialSeed:
 @ Patches/../C_code.c:1375: 		result = (GetNthRN(clock, (clock&0xF))<<4) | GetNthRN(clock, (clock&0xF0)); 
 	orrs	r4, r0	@ <retval>, tmp155
 @ Patches/../C_code.c:1377: 	if (!result) { result = GetGameClock()<<9; } 
-	beq	.L569		@,
-.L567:
-@ Patches/../C_code.c:1378: 	if (result > 999999) { result &= 0xEFFFF; } 
-	ldr	r3, .L570+8	@ tmp147,
-	cmp	r4, r3	@ <retval>, tmp147
-	ble	.L566		@,
-@ Patches/../C_code.c:1378: 	if (result > 999999) { result &= 0xEFFFF; } 
-	ldr	r3, .L570+12	@ tmp150,
-	ands	r4, r3	@ <retval>, tmp150
+	beq	.L568		@,
 .L566:
+@ Patches/../C_code.c:1378: 	if (result > 999999) { result &= 0xEFFFF; } 
+	ldr	r3, .L569+8	@ tmp147,
+	cmp	r4, r3	@ <retval>, tmp147
+	ble	.L565		@,
+@ Patches/../C_code.c:1378: 	if (result > 999999) { result &= 0xEFFFF; } 
+	ldr	r3, .L569+12	@ tmp150,
+	ands	r4, r3	@ <retval>, tmp150
+.L565:
 @ Patches/../C_code.c:1380: } 
 	movs	r0, r4	@, <retval>
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L569:
+.L568:
 @ Patches/../C_code.c:1377: 	if (!result) { result = GetGameClock()<<9; } 
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:1377: 	if (!result) { result = GetGameClock()<<9; } 
 	lsls	r4, r0, #9	@ <retval>, tmp156,
-	b	.L567		@
-.L571:
-	.align	2
+	b	.L566		@
 .L570:
+	.align	2
+.L569:
 	.word	RandValues
 	.word	GetGameClock
 	.word	999999
@@ -3897,8 +3888,8 @@ HashByte_Class:
 	adds	r4, r2, #1	@ noise, noise,
 @ Patches/../C_code.c:1386: 	while ((c = *noise++)) { 
 	cmp	r5, #0	@ c,
-	beq	.L573		@,
-.L574:
+	beq	.L572		@,
+.L573:
 @ Patches/../C_code.c:1387: 	n = c + (n << 6) + (n << 16) - n;
 	lsls	r2, r0, #6	@ tmp154, n,
 @ Patches/../C_code.c:1387: 	n = c + (n << 6) + (n << 16) - n;
@@ -3914,15 +3905,15 @@ HashByte_Class:
 @ Patches/../C_code.c:1386: 	while ((c = *noise++)) { 
 	adds	r4, r4, #1	@ ivtmp.982,
 	cmp	r5, #0	@ c,
-	bne	.L574		@,
-.L573:
+	bne	.L573		@,
+.L572:
 @ Patches/../C_code.c:1393: }
 	@ sp needed	@
 @ Patches/../C_code.c:1389: 	n = (RandValues->seed&0xFF) + (n << 6) + (n << 16) - n;
 	movs	r4, #255	@ tmp161,
 	movs	r5, r4	@ tmp162, tmp161
 @ Patches/../C_code.c:1389: 	n = (RandValues->seed&0xFF) + (n << 6) + (n << 16) - n;
-	ldr	r2, .L579	@ tmp158,
+	ldr	r2, .L578	@ tmp158,
 	ldr	r2, [r2]	@ RandValues, RandValues
 	ldr	r2, [r2]	@ *RandValues.90_6, *RandValues.90_6
 	lsls	r2, r2, #12	@ tmp160, *RandValues.90_6,
@@ -3964,12 +3955,12 @@ HashByte_Class:
 @ Patches/../C_code.c:1391: 	n = ((offset&0xFF)) + (n << 6) + (n << 16) - n;	
 	adds	r0, r0, r3	@ _25, tmp175, tmp176
 @ Patches/../C_code.c:1392: 	return Mod((n & 0x2FFFFFFF), max);
-	ldr	r3, .L579+4	@ tmp179,
+	ldr	r3, .L578+4	@ tmp179,
 @ Patches/../C_code.c:1391: 	n = ((offset&0xFF)) + (n << 6) + (n << 16) - n;	
 	subs	r0, r0, r2	@ n, _25, n
 @ Patches/../C_code.c:1392: 	return Mod((n & 0x2FFFFFFF), max);
 	ands	r0, r3	@ tmp178, tmp179
-	ldr	r3, .L579+8	@ tmp180,
+	ldr	r3, .L578+8	@ tmp180,
 	bl	.L14		@
 @ Patches/../C_code.c:1392: 	return Mod((n & 0x2FFFFFFF), max);
 	lsls	r0, r0, #16	@ tmp183, tmp188,
@@ -3978,9 +3969,9 @@ HashByte_Class:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L580:
-	.align	2
 .L579:
+	.align	2
+.L578:
 	.word	RandValues
 	.word	805306367
 	.word	Mod
@@ -4001,7 +3992,7 @@ HashByte_Global:
 	movs	r6, r0	@ number, tmp225
 	mov	lr, r8	@,
 @ Patches/../C_code.c:1400: 	currentRN = GetNthRN_Simple(offset, RandValues->seed, currentRN); 
-	ldr	r2, .L592	@ tmp175,
+	ldr	r2, .L591	@ tmp175,
 	ldr	r2, [r2]	@ RandValues, RandValues
 @ Patches/../C_code.c:1397: 	offset += noise[0] + noise[1] + noise[2] + noise[3] + number; 
 	ldr	r0, [r5]	@ *noise_44(D), *noise_44(D)
@@ -4074,7 +4065,7 @@ HashByte_Global:
 @ Patches/../C_code.c:1407: 		for (int i = 0; i < (noise[c] & 0xF); ++i) { 
 	movs	r6, #15	@ tmp213,
 	add	ip, ip, r5	@ _68, ivtmp.997
-.L582:
+.L581:
 	ldr	r3, [r5]	@ MEM[(int *)_63], MEM[(int *)_63]
 	movs	r2, r3	@ _82, MEM[(int *)_63]
 @ Patches/../C_code.c:1407: 		for (int i = 0; i < (noise[c] & 0xF); ++i) { 
@@ -4083,8 +4074,8 @@ HashByte_Global:
 	ands	r2, r6	@ _82, tmp213
 @ Patches/../C_code.c:1407: 		for (int i = 0; i < (noise[c] & 0xF); ++i) { 
 	tst	r3, r6	@ MEM[(int *)_63], tmp213
-	beq	.L586		@,
-.L584:
+	beq	.L585		@,
+.L583:
 @ Patches/../C_code.c:1251: 	u32 rn0 = rn & 0xFFFF; 
 	lsls	r4, r0, #16	@ tmp206, currentRN,
 @ Patches/../C_code.c:1252: 	u32 rn1 = rn >> 16; 
@@ -4107,19 +4098,19 @@ HashByte_Global:
 	eors	r0, r3	@ currentRN, rn
 @ Patches/../C_code.c:1407: 		for (int i = 0; i < (noise[c] & 0xF); ++i) { 
 	cmp	r1, r2	@ i, _82
-	bne	.L584		@,
-.L586:
+	bne	.L583		@,
+.L585:
 @ Patches/../C_code.c:1406: 	for (int c = 0; c < 4; ++c) { 
 	adds	r5, r5, #4	@ ivtmp.997,
 	cmp	ip, r5	@ _68, ivtmp.997
-	bne	.L582		@,
+	bne	.L581		@,
 @ Patches/../C_code.c:1414: }
 	@ sp needed	@
 @ Patches/../C_code.c:1413: 	return Mod((currentRN & 0x2FFFFFFF), max);
-	ldr	r3, .L592+4	@ tmp216,
+	ldr	r3, .L591+4	@ tmp216,
 	mov	r1, r8	@, max
 	ands	r0, r3	@ tmp215, tmp216
-	ldr	r3, .L592+8	@ tmp217,
+	ldr	r3, .L591+8	@ tmp217,
 	bl	.L14		@
 @ Patches/../C_code.c:1413: 	return Mod((currentRN & 0x2FFFFFFF), max);
 	lsls	r0, r0, #16	@ tmp220, tmp230,
@@ -4130,9 +4121,9 @@ HashByte_Global:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L593:
-	.align	2
 .L592:
+	.align	2
+.L591:
 	.word	RandValues
 	.word	805306367
 	.word	Mod
@@ -4152,43 +4143,43 @@ RandomizeSkill:
 	sub	sp, sp, #16	@,,
 @ Patches/../C_code.c:178: 	if (!id) { return 0; } 
 	cmp	r0, #0	@ id,
-	beq	.L598		@,
+	beq	.L597		@,
 @ Patches/../C_code.c:179: 	if (SkillExceptions[id].NeverChangeFrom) { return id; } 
-	ldr	r4, .L605	@ tmp132,
+	ldr	r4, .L604	@ tmp132,
 	lsls	r3, r0, #1	@ tmp133, id,
 @ Patches/../C_code.c:179: 	if (SkillExceptions[id].NeverChangeFrom) { return id; } 
 	ldrb	r3, [r3, r4]	@ tmp134, SkillExceptions
 	cmp	r3, #0	@ tmp134,
-	bne	.L594		@,
+	bne	.L593		@,
 @ Patches/../C_code.c:180: 	if (!RandValues->skills) { if (!VanillaSkill[id]) { return 0; } else { return id; } } 
-	ldr	r3, .L605+4	@ tmp136,
+	ldr	r3, .L604+4	@ tmp136,
 	ldr	r3, [r3]	@ RandValues, RandValues
 	ldrb	r3, [r3, #3]	@ _3, *RandValues.1_2
 @ Patches/../C_code.c:180: 	if (!RandValues->skills) { if (!VanillaSkill[id]) { return 0; } else { return id; } } 
 	cmp	r3, #63	@ _3,
-	bhi	.L597		@,
+	bhi	.L596		@,
 @ Patches/../C_code.c:180: 	if (!RandValues->skills) { if (!VanillaSkill[id]) { return 0; } else { return id; } } 
-	ldr	r3, .L605+8	@ tmp139,
+	ldr	r3, .L604+8	@ tmp139,
 @ Patches/../C_code.c:180: 	if (!RandValues->skills) { if (!VanillaSkill[id]) { return 0; } else { return id; } } 
 	ldrb	r3, [r3, r0]	@ tmp140, VanillaSkill
 	cmp	r3, #0	@ tmp140,
-	bne	.L594		@,
-.L598:
+	bne	.L593		@,
+.L597:
 @ Patches/../C_code.c:178: 	if (!id) { return 0; } 
 	movs	r0, #0	@ <retval>,
-.L594:
+.L593:
 @ Patches/../C_code.c:187: } 
 	add	sp, sp, #16	@,,
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L597:
+.L596:
 @ Patches/../C_code.c:181: 	if (RandValues->skills == 2) { return id; } 
 	movs	r2, #63	@ tmp142,
 	bics	r3, r2	@ tmp143, tmp142
 	cmp	r3, #128	@ tmp143,
-	beq	.L594		@,
+	beq	.L593		@,
 @ Patches/../C_code.c:182: 	const struct CharacterData* table = unit->pCharacterData; 	
 	ldr	r3, [r1]	@ table, unit_20(D)->pCharacterData
 @ Patches/../C_code.c:183: 	int noise[4] = { table->number, id, id, table->portraitId }; 
@@ -4203,7 +4194,7 @@ RandomizeSkill:
 	ldrh	r3, [r3, #6]	@ tmp150,
 	str	r3, [sp, #12]	@ tmp150, noise[3]
 @ Patches/../C_code.c:184: 	id = HashByte_Global(id, NumberOfSkills-1, noise, 12)+1; // never 0 
-	ldr	r3, .L605+12	@ tmp152,
+	ldr	r3, .L604+12	@ tmp152,
 	ldr	r1, [r3]	@ NumberOfSkills, NumberOfSkills
 	mov	r2, sp	@,
 	movs	r3, #12	@,
@@ -4217,11 +4208,11 @@ RandomizeSkill:
 @ Patches/../C_code.c:185: 	if (SkillExceptions[id].NeverChangeInto) { return 0; } 
 	ldrb	r3, [r4, #1]	@ tmp161, SkillExceptions
 	cmp	r3, #0	@ tmp161,
-	beq	.L594		@,
-	b	.L598		@
-.L606:
-	.align	2
+	beq	.L593		@,
+	b	.L597		@
 .L605:
+	.align	2
+.L604:
 	.word	SkillExceptions
 	.word	RandValues
 	.word	VanillaSkill
@@ -4254,7 +4245,7 @@ AdjustNonSkinColours:
 	movs	r5, r3	@ NeverRandomizeBeforeThisColour, tmp194
 @ Patches/../C_code.c:1484: 	int noise[4] = { 0, 0, 0, 0 };
 	movs	r2, #16	@,
-	ldr	r3, .L621	@ tmp148,
+	ldr	r3, .L620	@ tmp148,
 	mov	r0, sp	@,
 	bl	.L14		@
 @ Patches/../C_code.c:1485: 	int result = HashByte_Global(5, 254, noise, id)+1;
@@ -4267,15 +4258,15 @@ AdjustNonSkinColours:
 	adds	r6, r0, #1	@ result, tmp152,
 @ Patches/../C_code.c:1486: 	if (result < 40) { result += 40; } 
 	cmp	r6, #39	@ result,
-	bgt	.L608		@,
+	bgt	.L607		@,
 @ Patches/../C_code.c:1486: 	if (result < 40) { result += 40; } 
 	adds	r0, r0, #41	@ tmp152,
 	movs	r6, r0	@ result, tmp152
-.L609:
-	ldr	r2, .L621+4	@ tmp187,
+.L608:
+	ldr	r2, .L620+4	@ tmp187,
 	mov	r9, r2	@ tmp187, tmp187
 @ Patches/../C_code.c:925: 		RandColours(bank, i, 1, id);
-	ldr	r2, .L621+8	@ tmp190,
+	ldr	r2, .L620+8	@ tmp190,
 @ Patches/../C_code.c:907: 	u16* buffer = &gPaletteBuffer[(bank * 16)];
 	lsls	r3, r7, #4	@ _45, bank,
 	mov	r10, r3	@ _45, _45
@@ -4286,13 +4277,13 @@ AdjustNonSkinColours:
 @ Patches/../C_code.c:925: 		RandColours(bank, i, 1, id);
 	lsls	r6, r6, #24	@ tmp188, result,
 	lsrs	r6, r6, #24	@ tmp189, tmp188,
-.L613:
+.L612:
 @ Patches/../C_code.c:909: 		if (i < NeverRandomizeBeforeThisColour) { i = NeverRandomizeBeforeThisColour; } 
 	movs	r4, r5	@ _25, NeverRandomizeBeforeThisColour
 	cmp	r5, r3	@ NeverRandomizeBeforeThisColour, i
-	bge	.L610		@,
+	bge	.L609		@,
 	movs	r4, r3	@ _25, i
-.L610:
+.L609:
 @ Patches/../C_code.c:910: 		col = buffer[i]; 
 	mov	r3, r10	@ _45, _45
 	mov	r2, r9	@ tmp187, tmp187
@@ -4301,7 +4292,7 @@ AdjustNonSkinColours:
 	ldrh	r0, [r2, r3]	@ _5, *_4
 @ Patches/../C_code.c:914: 		if (i < AlwaysRandomizePastThisColour) { 
 	cmp	r4, r8	@ _25, AlwaysRandomizePastThisColour
-	bge	.L611		@,
+	bge	.L610		@,
 	movs	r3, #31	@ tmp159,
 	movs	r1, r3	@ _23, tmp159
 @ Patches/../C_code.c:912: 		g = (col & (0x1F << 5)) >> 5; 
@@ -4315,44 +4306,44 @@ AdjustNonSkinColours:
 	ands	r3, r0	@ b, tmp165
 @ Patches/../C_code.c:915: 			if ((r >= g) && (g >= b)) { // yellowish/brownish (skin colours) 
 	cmp	r1, r2	@ _23, g
-	bcc	.L611		@,
+	bcc	.L610		@,
 	cmp	r2, r3	@ g, b
-	bcc	.L611		@,
+	bcc	.L610		@,
 @ Patches/../C_code.c:916: 				if (((r - g) < 14) && ((g - b) < 25)) { // no extreme differences 
 	subs	r0, r1, r2	@ tmp179, _23, g
 @ Patches/../C_code.c:916: 				if (((r - g) < 14) && ((g - b) < 25)) { // no extreme differences 
 	cmp	r0, #13	@ tmp179,
-	bgt	.L611		@,
+	bgt	.L610		@,
 @ Patches/../C_code.c:916: 				if (((r - g) < 14) && ((g - b) < 25)) { // no extreme differences 
 	subs	r3, r2, r3	@ tmp180, g, b
 @ Patches/../C_code.c:916: 				if (((r - g) < 14) && ((g - b) < 25)) { // no extreme differences 
 	cmp	r3, #24	@ tmp180,
-	bgt	.L611		@,
+	bgt	.L610		@,
 @ Patches/../C_code.c:917: 					if (fading) { continue; } 
 	ldr	r3, [sp, #56]	@ tmp205, fading
 	cmp	r3, #0	@ tmp205,
-	bne	.L612		@,
+	bne	.L611		@,
 @ Patches/../C_code.c:918: 					else if (r > 17) { // r > g > b 
 	cmp	r1, #17	@ _23,
-	bls	.L611		@,
+	bls	.L610		@,
 @ Patches/../C_code.c:919: 						if ((r+g) > 36) { 
 	adds	r1, r1, r2	@ tmp183, _23, g
 @ Patches/../C_code.c:919: 						if ((r+g) > 36) { 
 	cmp	r1, #36	@ tmp183,
-	bgt	.L612		@,
-.L611:
+	bgt	.L611		@,
+.L610:
 @ Patches/../C_code.c:925: 		RandColours(bank, i, 1, id);
 	movs	r3, r6	@, tmp189
 	movs	r2, #1	@,
 	movs	r1, r4	@, _25
 	movs	r0, r7	@, bank
-	bl	.L435		@
-.L612:
+	bl	.L434		@
+.L611:
 @ Patches/../C_code.c:908: 	for (int i = 0; i < 16; i++) { 
 	adds	r3, r4, #1	@ i, _25,
 @ Patches/../C_code.c:908: 	for (int i = 0; i < 16; i++) { 
 	cmp	r3, #15	@ i,
-	ble	.L613		@,
+	ble	.L612		@,
 @ Patches/../C_code.c:928: } 
 	add	sp, sp, #20	@,,
 	@ sp needed	@
@@ -4364,17 +4355,17 @@ AdjustNonSkinColours:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L608:
+.L607:
 @ Patches/../C_code.c:1487: 	if (result > 210) { result -= 40; } 
 	cmp	r6, #210	@ result,
-	ble	.L609		@,
+	ble	.L608		@,
 @ Patches/../C_code.c:1487: 	if (result > 210) { result -= 40; } 
 	subs	r0, r0, #39	@ tmp152,
 	movs	r6, r0	@ result, tmp152
-	b	.L609		@
-.L622:
-	.align	2
+	b	.L608		@
 .L621:
+	.align	2
+.L620:
 	.word	memset
 	.word	gPaletteBuffer
 	.word	RandColours
@@ -4394,11 +4385,11 @@ PortraitAdjustNonSkinColours:
 	sub	sp, sp, #12	@,,
 @ Patches/../C_code.c:993: 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	cmp	r2, #0	@ AlwaysRandomizePastThisColour,
-	beq	.L624		@,
+	beq	.L623		@,
 	cmp	r3, #0	@ NeverRandomizeBeforeThisColour,
-	bne	.L624		@,
+	bne	.L623		@,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
-	ldr	r3, .L634	@ tmp136,
+	ldr	r3, .L633	@ tmp136,
 	lsls	r4, r0, #5	@ tmp138, bank,
 	adds	r4, r4, #2	@ tmp139,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
@@ -4411,16 +4402,16 @@ PortraitAdjustNonSkinColours:
 	rsbs	r4, r3, #0	@ tmp149, tmp147
 	movs	r3, #5	@ tmp150,
 	ands	r3, r4	@ NeverRandomizeBeforeThisColour, tmp149
-.L624:
+.L623:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	ldr	r4, [sp, #28]	@ tmp158, classCard
 	cmp	r4, #0	@ tmp158,
-	beq	.L625		@,
+	beq	.L624		@,
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r2, #99	@ AlwaysRandomizePastThisColour,
-.L625:
+.L624:
 @ Patches/../C_code.c:997: 	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
 	ldr	r4, [sp, #24]	@ tmp159, fading
 	str	r4, [sp]	@ tmp159,
@@ -4431,9 +4422,9 @@ PortraitAdjustNonSkinColours:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L635:
-	.align	2
 .L634:
+	.align	2
+.L633:
 	.word	gPaletteBuffer
 	.size	PortraitAdjustNonSkinColours, .-PortraitAdjustNonSkinColours
 	.align	1
@@ -4457,7 +4448,7 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:1001: int MaybeRandomizeColours(void) { 
 	push	{r5, r6, r7, lr}	@
 @ Patches/../C_code.c:1002: 	if (RandBitflags->fog == 1) { gVision = 0; } 
-	ldr	r7, .L780	@ tmp510,
+	ldr	r7, .L779	@ tmp510,
 	ldr	r2, [r7]	@ RandBitflags.37_1, RandBitflags
 @ Patches/../C_code.c:1002: 	if (RandBitflags->fog == 1) { gVision = 0; } 
 	ldrb	r1, [r2, #3]	@ *RandBitflags.37_1, *RandBitflags.37_1
@@ -4467,28 +4458,28 @@ MaybeRandomizeColours:
 	ands	r3, r1	@ _3, *RandBitflags.37_1
 @ Patches/../C_code.c:1002: 	if (RandBitflags->fog == 1) { gVision = 0; } 
 	cmp	r3, #32	@ _3,
-	beq	.L772		@,
+	beq	.L771		@,
 @ Patches/../C_code.c:1003: 	if (RandBitflags->fog == 2) { gVision = 3; } 
 	cmp	r3, #64	@ _3,
-	bne	.L638		@,
+	bne	.L637		@,
 @ Patches/../C_code.c:1003: 	if (RandBitflags->fog == 2) { gVision = 3; } 
 	movs	r1, #3	@ tmp296,
-	ldr	r3, .L780+4	@ tmp295,
+	ldr	r3, .L779+4	@ tmp295,
 	strb	r1, [r3]	@ tmp296, gVision
-.L638:
+.L637:
 @ Patches/../C_code.c:894: 	if (NeverRandomizeColours) { return false; } 
-	ldr	r3, .L780+8	@ tmp298,
+	ldr	r3, .L779+8	@ tmp298,
 	ldr	r4, [r3]	@ <retval>, NeverRandomizeColours
 @ Patches/../C_code.c:894: 	if (NeverRandomizeColours) { return false; } 
 	cmp	r4, #0	@ <retval>,
-	bne	.L696		@,
-.L774:
+	bne	.L695		@,
+.L773:
 @ Patches/../C_code.c:895: 	if (RandBitflags->colours) { return true; } 
 	ldrb	r3, [r2, #2]	@ *RandBitflags.37_1, *RandBitflags.37_1
 @ Patches/../C_code.c:895: 	if (RandBitflags->colours) { return true; } 
 	lsls	r3, r3, #29	@ tmp587, *RandBitflags.37_1,
-	bne	.L773		@,
-.L636:
+	bne	.L772		@,
+.L635:
 @ Patches/../C_code.c:1159: } 
 	movs	r0, r4	@, <retval>
 	add	sp, sp, #20	@,,
@@ -4501,26 +4492,26 @@ MaybeRandomizeColours:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L773:
+.L772:
 @ Patches/../C_code.c:1007: 	int fading = AnyFadeExists();
 	bl	AnyFadeExists		@
 @ Patches/../C_code.c:1017: 	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait  
-	ldr	r3, .L780+12	@ tmp511,
+	ldr	r3, .L779+12	@ tmp511,
 @ Patches/../C_code.c:1007: 	int fading = AnyFadeExists();
 	mov	r8, r0	@ fading, tmp558
 @ Patches/../C_code.c:1017: 	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait  
-	ldr	r0, .L780+16	@ tmp308,
+	ldr	r0, .L779+16	@ tmp308,
 	mov	r10, r3	@ tmp511, tmp511
 	bl	.L14		@
 @ Patches/../C_code.c:1017: 	if (Proc_Find(gProcScr_StatScreen)) { // stat screen portrait  
 	cmp	r0, #0	@ tmp559,
-	beq	.L640		@,
+	beq	.L639		@,
 @ Patches/../C_code.c:1018: 		unit = gStatScreen.unit; 
-	ldr	r3, .L780+20	@ tmp310,
+	ldr	r3, .L779+20	@ tmp310,
 	ldr	r5, [r3, #12]	@ unit, gStatScreen.unit
 @ Patches/../C_code.c:1019: 		if (unit) { 
 	cmp	r5, #0	@ unit,
-	beq	.L640		@,
+	beq	.L639		@,
 @ Patches/../C_code.c:1020: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
 	ldr	r3, [r5]	@ unit_122->pCharacterData, unit_122->pCharacterData
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
@@ -4528,14 +4519,14 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:1020: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
 	ldrh	r6, [r3, #6]	@ _8,
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
-	ldr	r3, .L780+24	@ tmp312,
+	ldr	r3, .L779+24	@ tmp312,
 	bl	.L14		@
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	ldr	r3, [r5]	@ _178, unit_122->pCharacterData
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	ldrh	r2, [r3, #6]	@ tmp313,
 	cmp	r2, #0	@ tmp313,
-	bne	.L641		@,
+	bne	.L640		@,
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	movs	r2, #11	@ tmp314,
 	ldrsb	r2, [r5, r2]	@ tmp314,
@@ -4545,28 +4536,28 @@ MaybeRandomizeColours:
 	adds	r0, r2, r0	@ portraitID, tmp314, portraitID
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	adds	r0, r3, r0	@ portraitID, tmp315, portraitID
-.L641:
+.L640:
 @ Patches/../C_code.c:886: 	portraitID &= 0xFF; 
 	movs	r3, #255	@ tmp316,
 	movs	r1, r3	@ portraitID, tmp316
 	ands	r1, r0	@ portraitID, portraitID
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	tst	r3, r0	@ tmp316, portraitID
-	bne	.L642		@,
+	bne	.L641		@,
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	movs	r1, #1	@ portraitID,
-.L642:
+.L641:
 @ Patches/../C_code.c:1024: 			PortraitAdjustNonSkinColours(11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
-	ldr	r3, .L780+28	@ tmp317,
+	ldr	r3, .L779+28	@ tmp317,
 	ldr	r2, [r3]	@ AlwaysRandomizePastThisColour, PortraitColoursPastThisAreNotSkin
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:993: 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	cmp	r2, #0	@ AlwaysRandomizePastThisColour,
-	beq	.L643		@,
+	beq	.L642		@,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	movs	r5, #177	@ tmp319,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
-	ldr	r0, .L780+32	@ tmp318,
+	ldr	r0, .L779+32	@ tmp318,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	lsls	r5, r5, #1	@ tmp319, tmp319,
 	ldrh	r5, [r0, r5]	@ tmp324,
@@ -4577,14 +4568,14 @@ MaybeRandomizeColours:
 	rsbs	r0, r3, #0	@ tmp533, tmp531
 	movs	r3, #5	@ tmp534,
 	ands	r3, r0	@ NeverRandomizeBeforeThisColour, tmp533
-.L643:
+.L642:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	cmp	r6, #0	@ _8,
-	bne	.LCB3826	@
-	b	.L700	@long jump	@
-.LCB3826:
+	bne	.LCB3818	@
+	b	.L699	@long jump	@
+.LCB3818:
 	movs	r4, r3	@ <retval>, NeverRandomizeBeforeThisColour
-.L644:
+.L643:
 @ Patches/../C_code.c:997: 	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
 	mov	r3, r8	@ fading, fading
 	movs	r0, #11	@,
@@ -4593,25 +4584,25 @@ MaybeRandomizeColours:
 	bl	AdjustNonSkinColours		@
 @ Patches/../C_code.c:1026: 			return true; // so we don't alter prep palettes during stat screen 
 	movs	r4, #1	@ <retval>,
-	b	.L636		@
-.L772:
+	b	.L635		@
+.L771:
 @ Patches/../C_code.c:1002: 	if (RandBitflags->fog == 1) { gVision = 0; } 
 	movs	r1, #0	@ tmp293,
-	ldr	r3, .L780+4	@ tmp292,
+	ldr	r3, .L779+4	@ tmp292,
 	strb	r1, [r3]	@ tmp293, gVision
 @ Patches/../C_code.c:894: 	if (NeverRandomizeColours) { return false; } 
-	ldr	r3, .L780+8	@ tmp298,
+	ldr	r3, .L779+8	@ tmp298,
 	ldr	r4, [r3]	@ <retval>, NeverRandomizeColours
 @ Patches/../C_code.c:894: 	if (NeverRandomizeColours) { return false; } 
 	cmp	r4, #0	@ <retval>,
-	beq	.L774		@,
-.L696:
+	beq	.L773		@,
+.L695:
 @ Patches/../C_code.c:1005: 	if (!ShouldRandomizeColours()) { return false; } 
 	movs	r4, #0	@ <retval>,
-	b	.L636		@
-.L781:
-	.align	2
+	b	.L635		@
 .L780:
+	.align	2
+.L779:
 	.word	RandBitflags
 	.word	gVision
 	.word	NeverRandomizeColours
@@ -4621,22 +4612,22 @@ MaybeRandomizeColours:
 	.word	GetUnitPortraitId
 	.word	PortraitColoursPastThisAreNotSkin
 	.word	gPaletteBuffer
-.L640:
+.L639:
 @ Patches/../C_code.c:1029: 	struct PlayerInterfaceProc* proc = Proc_Find((struct ProcCmd*)gProcScr_UnitDisplay_MinimugBox);
-	ldr	r0, .L782	@ tmp327,
-	bl	.L786		@
+	ldr	r0, .L781	@ tmp327,
+	bl	.L785		@
 	subs	r5, r0, #0	@ proc, tmp561,
 @ Patches/../C_code.c:1030: 	if (proc) { 
-	bne	.LCB3871	@
-	b	.L650	@long jump	@
-.LCB3871:
+	bne	.LCB3863	@
+	b	.L649	@long jump	@
+.LCB3863:
 @ Patches/../C_code.c:1031: 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
-	ldr	r3, .L782+4	@ tmp329,
-	ldr	r6, .L782+8	@ tmp332,
+	ldr	r3, .L781+4	@ tmp329,
+	ldr	r6, .L781+8	@ tmp332,
 	ldrh	r3, [r3]	@ gCursorY, gCursorY
 	ldr	r1, [r6]	@ gBmMapUnit, gBmMapUnit
 @ Patches/../C_code.c:1031: 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
-	ldr	r2, .L782+12	@ tmp334,
+	ldr	r2, .L781+12	@ tmp334,
 @ Patches/../C_code.c:1031: 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
 	lsls	r3, r3, #2	@ tmp333, gCursorY,
 @ Patches/../C_code.c:1031: 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
@@ -4644,7 +4635,7 @@ MaybeRandomizeColours:
 	ldrh	r2, [r2]	@ gCursorX, gCursorX
 @ Patches/../C_code.c:1031: 		unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]); 
 	ldrb	r0, [r3, r2]	@ *_19, *_19
-	ldr	r3, .L782+16	@ tmp338,
+	ldr	r3, .L781+16	@ tmp338,
 	mov	r9, r3	@ tmp338, tmp338
 	bl	.L14		@
 @ Patches/../C_code.c:1037: 		if (proc->isRetracting) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
@@ -4652,25 +4643,25 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:1037: 		if (proc->isRetracting) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
 	ldrsb	r3, [r5, r3]	@ tmp340,
 	cmp	r3, #0	@ tmp340,
-	beq	.LCB3887	@
-	b	.L775	@long jump	@
-.LCB3887:
-.L648:
+	beq	.LCB3879	@
+	b	.L774	@long jump	@
+.LCB3879:
+.L647:
 @ Patches/../C_code.c:1039: 		if (gActiveUnit->state & US_HIDDEN) { unit = gActiveUnit; } // for frame we select unit 
-	ldr	r3, .L782+20	@ tmp351,
+	ldr	r3, .L781+20	@ tmp351,
 	ldr	r5, [r3]	@ gActiveUnit.44_34, gActiveUnit
 @ Patches/../C_code.c:1039: 		if (gActiveUnit->state & US_HIDDEN) { unit = gActiveUnit; } // for frame we select unit 
 	ldr	r3, [r5, #12]	@ gActiveUnit.44_34->state, gActiveUnit.44_34->state
 @ Patches/../C_code.c:1039: 		if (gActiveUnit->state & US_HIDDEN) { unit = gActiveUnit; } // for frame we select unit 
 	lsls	r3, r3, #31	@ tmp588, gActiveUnit.44_34->state,
-	bmi	.L649		@,
+	bmi	.L648		@,
 @ Patches/../C_code.c:1040: 		if (unit) { 
 	cmp	r0, #0	@ unit,
-	bne	.LCB3897	@
-	b	.L650	@long jump	@
-.LCB3897:
+	bne	.LCB3889	@
+	b	.L649	@long jump	@
+.LCB3889:
 	movs	r5, r0	@ gActiveUnit.44_34, unit
-.L649:
+.L648:
 @ Patches/../C_code.c:1041: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
 	ldr	r3, [r5]	@ unit_326->pCharacterData, unit_326->pCharacterData
 	ldrh	r6, [r3, #6]	@ _38,
@@ -4679,7 +4670,7 @@ MaybeRandomizeColours:
 	adcs	r2, r2, r6	@ classCard, _38
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
 	movs	r0, r5	@, gActiveUnit.44_34
-	ldr	r3, .L782+24	@ tmp359,
+	ldr	r3, .L781+24	@ tmp359,
 @ Patches/../C_code.c:1041: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
 	mov	r9, r2	@ classCard, classCard
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
@@ -4689,7 +4680,7 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	ldrh	r2, [r3, #6]	@ tmp360,
 	cmp	r2, #0	@ tmp360,
-	bne	.L651		@,
+	bne	.L650		@,
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	movs	r2, #11	@ tmp361,
 	ldrsb	r2, [r5, r2]	@ tmp361,
@@ -4699,28 +4690,28 @@ MaybeRandomizeColours:
 	adds	r0, r2, r0	@ portraitID, tmp361, portraitID
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	adds	r0, r3, r0	@ portraitID, tmp362, portraitID
-.L651:
+.L650:
 @ Patches/../C_code.c:886: 	portraitID &= 0xFF; 
 	movs	r3, #255	@ tmp363,
 	movs	r1, r3	@ portraitID, tmp363
 	ands	r1, r0	@ portraitID, portraitID
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	tst	r3, r0	@ tmp363, portraitID
-	bne	.L652		@,
+	bne	.L651		@,
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	movs	r1, #1	@ portraitID,
-.L652:
+.L651:
 @ Patches/../C_code.c:1042: 			PortraitAdjustNonSkinColours(4, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
-	ldr	r3, .L782+28	@ tmp364,
+	ldr	r3, .L781+28	@ tmp364,
 	ldr	r2, [r3]	@ AlwaysRandomizePastThisColour, PortraitColoursPastThisAreNotSkin
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:993: 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	cmp	r2, #0	@ AlwaysRandomizePastThisColour,
-	beq	.L653		@,
+	beq	.L652		@,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	movs	r5, #130	@ tmp366,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
-	ldr	r0, .L782+32	@ tmp365,
+	ldr	r0, .L781+32	@ tmp365,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	ldrh	r5, [r0, r5]	@ tmp371,
 	movs	r0, #192	@ tmp370,
@@ -4730,13 +4721,13 @@ MaybeRandomizeColours:
 	movs	r0, #5	@ tmp538,
 	rsbs	r3, r3, #0	@ tmp537, tmp535
 	ands	r3, r0	@ NeverRandomizeBeforeThisColour, tmp538
-.L653:
+.L652:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	cmp	r6, #0	@ _38,
-	bne	.LCB3945	@
-	b	.L776	@long jump	@
-.LCB3945:
-.L654:
+	bne	.LCB3937	@
+	b	.L775	@long jump	@
+.LCB3937:
+.L653:
 @ Patches/../C_code.c:997: 	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
 	mov	r0, r8	@ fading, fading
 	str	r0, [sp]	@ fading,
@@ -4745,28 +4736,28 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:1043: 			result = true;
 	movs	r3, #1	@ result,
 	str	r3, [sp, #8]	@ result, %sfp
-.L647:
+.L646:
 @ Patches/../C_code.c:1068: 		PortraitAdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
-	ldr	r3, .L782+28	@ tmp555,
+	ldr	r3, .L781+28	@ tmp555,
 	mov	fp, r3	@ tmp555, tmp555
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	movs	r1, r4	@ <retval>, <retval>
-	ldr	r3, .L782+32	@ tmp556,
+	ldr	r3, .L781+32	@ tmp556,
 	str	r3, [sp, #12]	@ tmp556, %sfp
 	mov	r3, fp	@ tmp555, tmp555
 	mov	r4, r8	@ fading, fading
 	mov	fp, r7	@ tmp510, tmp510
 	mov	r8, r1	@ <retval>, <retval>
 	ldr	r2, [sp, #8]	@ result, %sfp
-	ldr	r6, .L782+36	@ ivtmp.1017,
-	ldr	r5, .L782+40	@ ivtmp.1019,
+	ldr	r6, .L781+36	@ ivtmp.1017,
+	ldr	r5, .L781+40	@ ivtmp.1019,
 	str	r3, [sp, #8]	@ tmp555, %sfp
-.L660:
+.L659:
 @ Patches/../C_code.c:1051: 		if (gFaces[i] == NULL) {
 	ldr	r3, [r6]	@ _41, MEM[(struct FaceProc * *)_4]
 @ Patches/../C_code.c:1051: 		if (gFaces[i] == NULL) {
 	cmp	r3, #0	@ _41,
-	beq	.L655		@,
+	beq	.L654		@,
 @ Patches/../C_code.c:1061: 		if (gFaces[i]->faceId < 0x72) { classCard = false; } 
 	ldrh	r1, [r3, #62]	@ _43,
 @ Patches/../C_code.c:1068: 		PortraitAdjustNonSkinColours(sFaceConfig[i].paletteId+16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
@@ -4777,14 +4768,14 @@ MaybeRandomizeColours:
 	ldr	r2, [r3]	@ AlwaysRandomizePastThisColour, PortraitColoursPastThisAreNotSkin
 @ Patches/../C_code.c:1061: 		if (gFaces[i]->faceId < 0x72) { classCard = false; } 
 	cmp	r1, #113	@ _43,
-	bls	.LCB3982	@
-	b	.L656	@long jump	@
-.LCB3982:
+	bls	.LCB3974	@
+	b	.L655	@long jump	@
+.LCB3974:
 @ Patches/../C_code.c:993: 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	cmp	r2, #0	@ AlwaysRandomizePastThisColour,
-	bne	.LCB3984	@
-	b	.L771	@long jump	@
-.LCB3984:
+	bne	.LCB3976	@
+	b	.L770	@long jump	@
+.LCB3976:
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	movs	r7, #192	@ tmp506,
 	lsls	r7, r7, #7	@ tmp506, tmp506,
@@ -4798,47 +4789,47 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	ldrh	r3, [r7, r3]	@ tmp507, gPaletteBuffer
 	cmp	r3, ip	@ tmp507, tmp506
-	bcs	.LCB3994	@
-	b	.L771	@long jump	@
-.LCB3994:
+	bcs	.LCB3986	@
+	b	.L770	@long jump	@
+.LCB3986:
 	movs	r3, #0	@ classCard,
 	mov	r9, r3	@ classCard, classCard
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	adds	r3, r3, #5	@ NeverRandomizeBeforeThisColour,
-.L658:
+.L657:
 @ Patches/../C_code.c:997: 	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
 	str	r4, [sp]	@ fading,
 	bl	AdjustNonSkinColours		@
 @ Patches/../C_code.c:1070: 		result = true;
 	movs	r2, #1	@ result,
-.L655:
+.L654:
 @ Patches/../C_code.c:1050: 	for (int i = 0; i < 4; ++i) {
-	ldr	r3, .L782+44	@ tmp630,
+	ldr	r3, .L781+44	@ tmp630,
 	adds	r5, r5, #8	@ ivtmp.1019,
 	adds	r6, r6, #4	@ ivtmp.1017,
 	cmp	r3, r5	@ tmp630, ivtmp.1019
-	bne	.L660		@,
+	bne	.L659		@,
 @ Patches/../C_code.c:1073: 	struct PrepItemScreenProc* proc_2 = Proc_Find((struct ProcCmd*)ProcScr_PrepUnitScreen);
 	mov	r3, r8	@ <retval>, <retval>
-	ldr	r0, .L782+48	@ tmp389,
+	ldr	r0, .L781+48	@ tmp389,
 	mov	r8, r4	@ fading, fading
 	mov	r7, fp	@ tmp510, tmp510
 	movs	r4, r3	@ <retval>, <retval>
 	str	r2, [sp, #8]	@ result, %sfp
-	bl	.L786		@
+	bl	.L785		@
 @ Patches/../C_code.c:1074: 	if (proc_2) { 
 	cmp	r0, #0	@ proc_2,
-	beq	.L663		@,
+	beq	.L662		@,
 @ Patches/../C_code.c:1083: 		id = proc_2->id; 
 	movs	r3, #44	@ tmp391,
 @ Patches/../C_code.c:1083: 		id = proc_2->id; 
 	ldrb	r0, [r0, r3]	@ id,
 @ Patches/../C_code.c:1085: 		unit = GetUnitFromPrepList(id); 
-	ldr	r3, .L782+52	@ tmp393,
+	ldr	r3, .L781+52	@ tmp393,
 	bl	.L14		@
 	subs	r5, r0, #0	@ unit, tmp566,
 @ Patches/../C_code.c:1090: 		if (unit) { 
-	beq	.L663		@,
+	beq	.L662		@,
 @ Patches/../C_code.c:1091: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
 	ldr	r3, [r0]	@ unit_138->pCharacterData, unit_138->pCharacterData
 @ Patches/../C_code.c:1091: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
@@ -4850,7 +4841,7 @@ MaybeRandomizeColours:
 	rsbs	r3, r3, #0	@ tmp518, tmp516
 	ands	r2, r3	@ classCard, tmp518
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
-	ldr	r3, .L782+24	@ tmp396,
+	ldr	r3, .L781+24	@ tmp396,
 @ Patches/../C_code.c:1091: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
 	mov	r9, r2	@ classCard, classCard
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
@@ -4860,7 +4851,7 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	ldrh	r2, [r3, #6]	@ tmp397,
 	cmp	r2, #0	@ tmp397,
-	bne	.L665		@,
+	bne	.L664		@,
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	movs	r2, #11	@ tmp398,
 	ldrsb	r2, [r5, r2]	@ tmp398,
@@ -4870,28 +4861,28 @@ MaybeRandomizeColours:
 	adds	r0, r2, r0	@ portraitID, tmp398, portraitID
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	adds	r0, r3, r0	@ portraitID, tmp399, portraitID
-.L665:
+.L664:
 @ Patches/../C_code.c:886: 	portraitID &= 0xFF; 
 	movs	r3, #255	@ tmp400,
 	movs	r1, r3	@ portraitID, tmp400
 	ands	r1, r0	@ portraitID, portraitID
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	tst	r3, r0	@ tmp400, portraitID
-	bne	.L666		@,
+	bne	.L665		@,
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	movs	r1, #1	@ portraitID,
-.L666:
+.L665:
 @ Patches/../C_code.c:1092: 			PortraitAdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
-	ldr	r3, .L782+28	@ tmp401,
+	ldr	r3, .L781+28	@ tmp401,
 	ldr	r2, [r3]	@ AlwaysRandomizePastThisColour, PortraitColoursPastThisAreNotSkin
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:993: 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	cmp	r2, #0	@ AlwaysRandomizePastThisColour,
-	beq	.L667		@,
+	beq	.L666		@,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	movs	r5, #66	@ tmp403,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
-	ldr	r0, .L782+32	@ tmp402,
+	ldr	r0, .L781+32	@ tmp402,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	ldrh	r5, [r0, r5]	@ tmp408,
 	movs	r0, #192	@ tmp407,
@@ -4901,14 +4892,14 @@ MaybeRandomizeColours:
 	rsbs	r0, r3, #0	@ tmp545, tmp543
 	movs	r3, #5	@ tmp546,
 	ands	r3, r0	@ NeverRandomizeBeforeThisColour, tmp545
-.L667:
+.L666:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	mov	r0, r9	@ classCard, classCard
 	cmp	r0, #0	@ classCard,
-	beq	.LCB4073	@
-	b	.L777	@long jump	@
-.LCB4073:
-.L668:
+	beq	.LCB4065	@
+	b	.L776	@long jump	@
+.LCB4065:
+.L667:
 @ Patches/../C_code.c:997: 	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
 	mov	r0, r8	@ fading, fading
 	str	r0, [sp]	@ fading,
@@ -4917,31 +4908,31 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:1093: 			result = true;
 	movs	r3, #1	@ result,
 	str	r3, [sp, #8]	@ result, %sfp
-.L663:
+.L662:
 @ Patches/../C_code.c:1097: 	struct PrepItemScreenProc* proc_3 = Proc_Find((struct ProcCmd*)ProcScr_PrepItemScreen);
-	ldr	r0, .L782+56	@ tmp411,
-	bl	.L786		@
+	ldr	r0, .L781+56	@ tmp411,
+	bl	.L785		@
 	subs	r3, r0, #0	@ proc_3, tmp568,
 @ Patches/../C_code.c:1098: 	if (proc_3) { 
-	beq	.L672		@,
+	beq	.L671		@,
 @ Patches/../C_code.c:1111: 		id = proc_3->selectedUnitIdx; 
 	movs	r2, #43	@ tmp413,
 @ Patches/../C_code.c:1111: 		id = proc_3->selectedUnitIdx; 
 	ldrb	r0, [r0, r2]	@ id,
 @ Patches/../C_code.c:1112: 		if (id == 0xFF) { id = proc_3->hoverUnitIdx; } 
 	cmp	r0, #255	@ id,
-	bne	.L670		@,
+	bne	.L669		@,
 @ Patches/../C_code.c:1112: 		if (id == 0xFF) { id = proc_3->hoverUnitIdx; } 
 	subs	r2, r2, #1	@ tmp414,
 @ Patches/../C_code.c:1112: 		if (id == 0xFF) { id = proc_3->hoverUnitIdx; } 
 	ldrb	r0, [r3, r2]	@ id,
-.L670:
+.L669:
 @ Patches/../C_code.c:1114: 		unit = GetUnitFromPrepList(id); 
-	ldr	r3, .L782+52	@ tmp415,
+	ldr	r3, .L781+52	@ tmp415,
 	bl	.L14		@
 	subs	r5, r0, #0	@ unit, tmp569,
 @ Patches/../C_code.c:1115: 		if (unit) { 
-	beq	.L672		@,
+	beq	.L671		@,
 @ Patches/../C_code.c:1116: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
 	ldr	r3, [r0]	@ unit_146->pCharacterData, unit_146->pCharacterData
 @ Patches/../C_code.c:1116: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
@@ -4953,7 +4944,7 @@ MaybeRandomizeColours:
 	rsbs	r3, r3, #0	@ tmp522, tmp520
 	ands	r2, r3	@ classCard, tmp522
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
-	ldr	r3, .L782+24	@ tmp418,
+	ldr	r3, .L781+24	@ tmp418,
 @ Patches/../C_code.c:1116: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
 	mov	r9, r2	@ classCard, classCard
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
@@ -4963,7 +4954,7 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	ldrh	r2, [r3, #6]	@ tmp419,
 	cmp	r2, #0	@ tmp419,
-	bne	.L674		@,
+	bne	.L673		@,
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	movs	r2, #11	@ tmp420,
 	ldrsb	r2, [r5, r2]	@ tmp420,
@@ -4973,28 +4964,28 @@ MaybeRandomizeColours:
 	adds	r0, r2, r0	@ portraitID, tmp420, portraitID
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	adds	r0, r3, r0	@ portraitID, tmp421, portraitID
-.L674:
+.L673:
 @ Patches/../C_code.c:886: 	portraitID &= 0xFF; 
 	movs	r3, #255	@ tmp422,
 	movs	r1, r3	@ portraitID, tmp422
 	ands	r1, r0	@ portraitID, portraitID
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	tst	r3, r0	@ tmp422, portraitID
-	bne	.L675		@,
+	bne	.L674		@,
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	movs	r1, #1	@ portraitID,
-.L675:
+.L674:
 @ Patches/../C_code.c:1117: 			PortraitAdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
-	ldr	r3, .L782+28	@ tmp423,
+	ldr	r3, .L781+28	@ tmp423,
 	ldr	r2, [r3]	@ AlwaysRandomizePastThisColour, PortraitColoursPastThisAreNotSkin
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:993: 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	cmp	r2, #0	@ AlwaysRandomizePastThisColour,
-	beq	.L676		@,
+	beq	.L675		@,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	movs	r5, #98	@ tmp425,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
-	ldr	r0, .L782+32	@ tmp424,
+	ldr	r0, .L781+32	@ tmp424,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	ldrh	r5, [r0, r5]	@ tmp430,
 	movs	r0, #192	@ tmp429,
@@ -5004,12 +4995,12 @@ MaybeRandomizeColours:
 	rsbs	r0, r3, #0	@ tmp549, tmp547
 	movs	r3, #5	@ tmp550,
 	ands	r3, r0	@ NeverRandomizeBeforeThisColour, tmp549
-.L676:
+.L675:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	mov	r0, r9	@ classCard, classCard
 	cmp	r0, #0	@ classCard,
-	bne	.L778		@,
-.L677:
+	bne	.L777		@,
+.L676:
 @ Patches/../C_code.c:997: 	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
 	mov	r0, r8	@ fading, fading
 	str	r0, [sp]	@ fading,
@@ -5018,20 +5009,20 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:1118: 			result = true;
 	movs	r3, #1	@ result,
 	str	r3, [sp, #8]	@ result, %sfp
-.L672:
+.L671:
 @ Patches/../C_code.c:1123: 	struct SupportScreenProc* proc_4 = Proc_Find((struct ProcCmd*)gProcScr_SupportScreen);
-	ldr	r0, .L782+60	@ tmp433,
-	bl	.L786		@
+	ldr	r0, .L781+60	@ tmp433,
+	bl	.L785		@
 @ Patches/../C_code.c:1124: 	if (proc_4) { 
 	cmp	r0, #0	@ proc_4,
-	beq	.L680		@,
+	beq	.L679		@,
 @ Patches/../C_code.c:1125: 		unit = GetUnitFromPrepList(proc_4->curIndex); 
 	ldr	r0, [r0, #56]	@ proc_4_150->curIndex, proc_4_150->curIndex
-	ldr	r3, .L782+52	@ tmp436,
+	ldr	r3, .L781+52	@ tmp436,
 	bl	.L14		@
 	subs	r5, r0, #0	@ unit, tmp572,
 @ Patches/../C_code.c:1126: 		if (unit) { 
-	beq	.L680		@,
+	beq	.L679		@,
 @ Patches/../C_code.c:1127: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
 	ldr	r3, [r0]	@ unit_152->pCharacterData, unit_152->pCharacterData
 @ Patches/../C_code.c:1127: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
@@ -5043,7 +5034,7 @@ MaybeRandomizeColours:
 	rsbs	r3, r3, #0	@ tmp526, tmp524
 	ands	r2, r3	@ classCard, tmp526
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
-	ldr	r3, .L782+24	@ tmp439,
+	ldr	r3, .L781+24	@ tmp439,
 @ Patches/../C_code.c:1127: 			if (unit->pCharacterData->portraitId) { classCard = false; } 
 	mov	r9, r2	@ classCard, classCard
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
@@ -5053,7 +5044,7 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	ldrh	r2, [r3, #6]	@ tmp440,
 	cmp	r2, #0	@ tmp440,
-	bne	.L682		@,
+	bne	.L681		@,
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	movs	r2, #11	@ tmp441,
 	ldrsb	r2, [r5, r2]	@ tmp441,
@@ -5063,28 +5054,28 @@ MaybeRandomizeColours:
 	adds	r0, r2, r0	@ portraitID, tmp441, portraitID
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	adds	r0, r3, r0	@ portraitID, tmp442, portraitID
-.L682:
+.L681:
 @ Patches/../C_code.c:886: 	portraitID &= 0xFF; 
 	movs	r3, #255	@ tmp443,
 	movs	r1, r3	@ portraitID, tmp443
 	ands	r1, r0	@ portraitID, portraitID
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	tst	r3, r0	@ tmp443, portraitID
-	bne	.L683		@,
+	bne	.L682		@,
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	movs	r1, #1	@ portraitID,
-.L683:
+.L682:
 @ Patches/../C_code.c:1128: 			PortraitAdjustNonSkinColours(2, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
-	ldr	r3, .L782+28	@ tmp444,
+	ldr	r3, .L781+28	@ tmp444,
 	ldr	r2, [r3]	@ AlwaysRandomizePastThisColour, PortraitColoursPastThisAreNotSkin
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:993: 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	cmp	r2, #0	@ AlwaysRandomizePastThisColour,
-	beq	.L684		@,
+	beq	.L683		@,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	movs	r5, #66	@ tmp446,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
-	ldr	r0, .L782+32	@ tmp445,
+	ldr	r0, .L781+32	@ tmp445,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	ldrh	r5, [r0, r5]	@ tmp451,
 	movs	r0, #192	@ tmp450,
@@ -5094,14 +5085,14 @@ MaybeRandomizeColours:
 	rsbs	r0, r3, #0	@ tmp553, tmp551
 	movs	r3, #5	@ tmp554,
 	ands	r3, r0	@ NeverRandomizeBeforeThisColour, tmp553
-.L684:
+.L683:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	mov	r0, r9	@ classCard, classCard
 	cmp	r0, #0	@ classCard,
-	beq	.LCB4213	@
-	b	.L779	@long jump	@
-.LCB4213:
-.L685:
+	beq	.LCB4205	@
+	b	.L778	@long jump	@
+.LCB4205:
+.L684:
 @ Patches/../C_code.c:997: 	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
 	mov	r0, r8	@ fading, fading
 	str	r0, [sp]	@ fading,
@@ -5110,7 +5101,7 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:1129: 			result = true;
 	movs	r3, #1	@ result,
 	str	r3, [sp, #8]	@ result, %sfp
-.L680:
+.L679:
 @ Patches/../C_code.c:1136: 	if (RandBitflags->colours == 1) { // if 3, it's portraits only. 2 is janky 
 	ldr	r3, [r7]	@ RandBitflags, RandBitflags
 	ldrb	r2, [r3, #2]	@ *RandBitflags.50_67, *RandBitflags.50_67
@@ -5118,16 +5109,16 @@ MaybeRandomizeColours:
 	movs	r3, #7	@ tmp461,
 	ands	r3, r2	@ tmp462, *RandBitflags.50_67
 	cmp	r3, #1	@ tmp462,
-	beq	.L686		@,
-.L687:
+	beq	.L685		@,
+.L686:
 @ Patches/../C_code.c:1026: 			return true; // so we don't alter prep palettes during stat screen 
 	ldr	r4, [sp, #8]	@ <retval>, %sfp
-	b	.L636		@
-.L656:
+	b	.L635		@
+.L655:
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:993: 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	cmp	r2, #0	@ AlwaysRandomizePastThisColour,
-	beq	.L659		@,
+	beq	.L658		@,
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	ldr	r7, [sp, #12]	@ tmp556, %sfp
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
@@ -5143,44 +5134,44 @@ MaybeRandomizeColours:
 	movs	r7, #4	@ tmp542,
 	bics	r3, r7	@ NeverRandomizeBeforeThisColour, tmp542
 	adds	r3, r3, #5	@ NeverRandomizeBeforeThisColour,
-.L659:
+.L658:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	mov	r7, r9	@ classCard, classCard
 	cmp	r7, #0	@ classCard,
-	bne	.LCB4256	@
-	b	.L658	@long jump	@
-.LCB4256:
+	bne	.LCB4248	@
+	b	.L657	@long jump	@
+.LCB4248:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r2, #99	@ AlwaysRandomizePastThisColour,
-	b	.L658		@
-.L771:
+	b	.L657		@
+.L770:
 @ Patches/../C_code.c:994: 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	movs	r3, #0	@ classCard,
 	mov	r9, r3	@ classCard, classCard
-	b	.L658		@
-.L650:
+	b	.L657		@
+.L649:
 @ Patches/../C_code.c:1006: 	int result = false; //sizeof(struct BattleUnit);  
 	movs	r3, #0	@ result,
 	str	r3, [sp, #8]	@ result, %sfp
 @ Patches/../C_code.c:1014: 	int classCard = true; 
 	adds	r3, r3, #1	@ classCard,
 	mov	r9, r3	@ classCard, classCard
-	b	.L647		@
-.L700:
+	b	.L646		@
+.L699:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r2, #99	@ AlwaysRandomizePastThisColour,
-	b	.L644		@
-.L778:
+	b	.L643		@
+.L777:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r2, #99	@ AlwaysRandomizePastThisColour,
-	b	.L677		@
-.L783:
-	.align	2
+	b	.L676		@
 .L782:
+	.align	2
+.L781:
 	.word	gProcScr_UnitDisplay_MinimugBox
 	.word	gCursorY
 	.word	gBmMapUnit
@@ -5197,38 +5188,38 @@ MaybeRandomizeColours:
 	.word	GetUnitFromPrepList
 	.word	ProcScr_PrepItemScreen
 	.word	gProcScr_SupportScreen
-.L686:
+.L685:
 @ Patches/../C_code.c:1138: 		if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
-	ldr	r0, .L784	@ tmp464,
-	bl	.L786		@
+	ldr	r0, .L783	@ tmp464,
+	bl	.L785		@
 @ Patches/../C_code.c:1138: 		if (Proc_Find(gProc_ekrBattleDeamon)) { // battle anim 
 	cmp	r0, #0	@ tmp574,
-	beq	.L687		@,
+	beq	.L686		@,
 @ Patches/../C_code.c:1140: 			if (BattleAttackerSideBool) { // swap units 
-	ldr	r3, .L784+4	@ tmp514,
+	ldr	r3, .L783+4	@ tmp514,
 	mov	r10, r3	@ tmp514, tmp514
 @ Patches/../C_code.c:1140: 			if (BattleAttackerSideBool) { // swap units 
 	ldrb	r3, [r3]	@ BattleAttackerSideBool, BattleAttackerSideBool
 	cmp	r3, #0	@ BattleAttackerSideBool,
-	bne	.L722		@,
+	bne	.L721		@,
 @ Patches/../C_code.c:1139: 			unit = &gBattleActorUnit; 
-	ldr	r6, .L784+8	@ unit,
-.L688:
+	ldr	r6, .L783+8	@ unit,
+.L687:
 @ Patches/../C_code.c:1144: 			if (gPaletteBuffer[((7+16) * 16) + 1]  >= 0x7BBE) { offset = 5; } 
-	ldr	r3, .L784+12	@ tmp513,
+	ldr	r3, .L783+12	@ tmp513,
 	mov	r9, r3	@ tmp513, tmp513
 @ Patches/../C_code.c:1144: 			if (gPaletteBuffer[((7+16) * 16) + 1]  >= 0x7BBE) { offset = 5; } 
 	mov	r2, r9	@ tmp513, tmp513
-	ldr	r3, .L784+16	@ tmp469,
+	ldr	r3, .L783+16	@ tmp469,
 	ldrh	r2, [r2, r3]	@ tmp474,
 @ Patches/../C_code.c:1143: 			int offset = 0; 
-	ldr	r3, .L784+20	@ tmp473,
+	ldr	r3, .L783+20	@ tmp473,
 	movs	r5, #5	@ tmp530,
 	cmp	r3, r2	@ tmp473, tmp474
 	sbcs	r3, r3, r3	@ tmp529
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
 	movs	r0, r6	@, unit
-	ldr	r7, .L784+24	@ tmp512,
+	ldr	r7, .L783+24	@ tmp512,
 @ Patches/../C_code.c:1143: 			int offset = 0; 
 	ands	r5, r3	@ offset, tmp529
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
@@ -5238,7 +5229,7 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	ldrh	r2, [r3, #6]	@ tmp478,
 	cmp	r2, #0	@ tmp478,
-	bne	.L690		@,
+	bne	.L689		@,
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	movs	r2, #11	@ tmp479,
 	ldrsb	r2, [r6, r2]	@ tmp479,
@@ -5248,17 +5239,17 @@ MaybeRandomizeColours:
 	adds	r0, r2, r0	@ portraitID, tmp479, portraitID
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	adds	r0, r3, r0	@ portraitID, tmp480, portraitID
-.L690:
+.L689:
 @ Patches/../C_code.c:886: 	portraitID &= 0xFF; 
 	movs	r3, #255	@ tmp481,
 	movs	r1, r3	@ portraitID, tmp481
 	ands	r1, r0	@ portraitID, portraitID
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	tst	r3, r0	@ tmp481, portraitID
-	bne	.L691		@,
+	bne	.L690		@,
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	movs	r1, #1	@ portraitID,
-.L691:
+.L690:
 @ Patches/../C_code.c:1146: 			AdjustNonSkinColours(7+16, GetAdjustedPortraitId(unit), 99, offset, fading); 
 	mov	r3, r8	@ fading, fading
 	movs	r2, #99	@,
@@ -5270,20 +5261,20 @@ MaybeRandomizeColours:
 	mov	r3, r10	@ tmp514, tmp514
 	ldrb	r3, [r3]	@ BattleAttackerSideBool, BattleAttackerSideBool
 	cmp	r3, #0	@ BattleAttackerSideBool,
-	bne	.L725		@,
+	bne	.L724		@,
 @ Patches/../C_code.c:1147: 			unit = &gBattleTargetUnit; 
-	ldr	r5, .L784+28	@ unit,
-.L692:
+	ldr	r5, .L783+28	@ unit,
+.L691:
 @ Patches/../C_code.c:1152: 			if (gPaletteBuffer[((9+16) * 16) + 1]  >= 0x7BBE) { offset = 5; } 
 	mov	r1, r9	@ tmp513, tmp513
-	ldr	r2, .L784+32	@ tmp485,
-	ldr	r3, .L784+20	@ tmp489,
+	ldr	r2, .L783+32	@ tmp485,
+	ldr	r3, .L783+20	@ tmp489,
 	ldrh	r2, [r1, r2]	@ tmp490,
 	cmp	r2, r3	@ tmp490, tmp489
-	bls	.L693		@,
+	bls	.L692		@,
 @ Patches/../C_code.c:1152: 			if (gPaletteBuffer[((9+16) * 16) + 1]  >= 0x7BBE) { offset = 5; } 
 	movs	r4, #5	@ <retval>,
-.L693:
+.L692:
 @ Patches/../C_code.c:884: 	int portraitID = GetUnitPortraitId(unit);
 	movs	r0, r5	@, unit
 	bl	.L223		@
@@ -5292,7 +5283,7 @@ MaybeRandomizeColours:
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	ldrh	r2, [r3, #6]	@ tmp494,
 	cmp	r2, #0	@ tmp494,
-	bne	.L694		@,
+	bne	.L693		@,
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	movs	r2, #11	@ tmp495,
 	ldrsb	r2, [r5, r2]	@ tmp495,
@@ -5302,17 +5293,17 @@ MaybeRandomizeColours:
 	adds	r0, r2, r0	@ portraitID, tmp495, portraitID
 @ Patches/../C_code.c:885: 	if (!unit->pCharacterData->portraitId) { portraitID += unit->index; portraitID += unit->pCharacterData->number;} 
 	adds	r0, r3, r0	@ portraitID, tmp496, portraitID
-.L694:
+.L693:
 @ Patches/../C_code.c:886: 	portraitID &= 0xFF; 
 	movs	r3, #255	@ tmp497,
 	movs	r1, r3	@ portraitID, tmp497
 	ands	r1, r0	@ portraitID, portraitID
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	tst	r3, r0	@ tmp497, portraitID
-	bne	.L695		@,
+	bne	.L694		@,
 @ Patches/../C_code.c:887: 	if (!portraitID) { portraitID = 1; } 
 	movs	r1, #1	@ portraitID,
-.L695:
+.L694:
 @ Patches/../C_code.c:1153: 			AdjustNonSkinColours(9+16, GetAdjustedPortraitId(unit), 99, offset, fading); 
 	mov	r3, r8	@ fading, fading
 	movs	r2, #99	@,
@@ -5322,26 +5313,26 @@ MaybeRandomizeColours:
 	bl	AdjustNonSkinColours		@
 @ Patches/../C_code.c:1026: 			return true; // so we don't alter prep palettes during stat screen 
 	movs	r4, #1	@ <retval>,
-	b	.L636		@
-.L779:
+	b	.L635		@
+.L778:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r2, #99	@ AlwaysRandomizePastThisColour,
-	b	.L685		@
-.L777:
-@ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
-	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
-@ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
-	movs	r2, #99	@ AlwaysRandomizePastThisColour,
-	b	.L668		@
+	b	.L684		@
 .L776:
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
 @ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	movs	r2, #99	@ AlwaysRandomizePastThisColour,
-	b	.L654		@
+	b	.L667		@
 .L775:
+@ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
+	movs	r3, #0	@ NeverRandomizeBeforeThisColour,
+@ Patches/../C_code.c:996: 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
+	movs	r2, #99	@ AlwaysRandomizePastThisColour,
+	b	.L653		@
+.L774:
 @ Patches/../C_code.c:1037: 		if (proc->isRetracting) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
 	movs	r3, #77	@ tmp341,
 @ Patches/../C_code.c:1037: 		if (proc->isRetracting) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
@@ -5357,19 +5348,19 @@ MaybeRandomizeColours:
 	ldr	r3, [r3, r1]	@ *_27, *_27
 @ Patches/../C_code.c:1037: 		if (proc->isRetracting) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); } 
 	ldrb	r0, [r3, r2]	@ *_31, *_31
-	bl	.L558		@
-	b	.L648		@
-.L725:
+	bl	.L557		@
+	b	.L647		@
+.L724:
 @ Patches/../C_code.c:1149: 				unit = &gBattleActorUnit; 
-	ldr	r5, .L784+8	@ unit,
-	b	.L692		@
-.L722:
+	ldr	r5, .L783+8	@ unit,
+	b	.L691		@
+.L721:
 @ Patches/../C_code.c:1141: 				unit = &gBattleTargetUnit; 
-	ldr	r6, .L784+28	@ unit,
-	b	.L688		@
-.L785:
-	.align	2
+	ldr	r6, .L783+28	@ unit,
+	b	.L687		@
 .L784:
+	.align	2
+.L783:
 	.word	gProc_ekrBattleDeamon
 	.word	BattleAttackerSideBool
 	.word	gBattleActorUnit
@@ -5393,80 +5384,80 @@ GetBGMTrack:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, lr}	@
 @ Patches/../C_code.c:595: 	if (NeverRandomizeBGM) { return false; } 
-	ldr	r3, .L795	@ tmp131,
+	ldr	r3, .L794	@ tmp131,
 @ Patches/../C_code.c:595: 	if (NeverRandomizeBGM) { return false; } 
 	ldr	r3, [r3]	@ NeverRandomizeBGM, NeverRandomizeBGM
 @ Patches/../C_code.c:651: int GetBGMTrack(){ // fe7/fe8 only? 
 	sub	sp, sp, #20	@,,
 @ Patches/../C_code.c:595: 	if (NeverRandomizeBGM) { return false; } 
 	cmp	r3, #0	@ NeverRandomizeBGM,
-	bne	.L788		@,
+	bne	.L787		@,
 @ Patches/../C_code.c:596: 	if (!RandBitflags->randMusic) { return false; } 
-	ldr	r2, .L795+4	@ tmp134,
+	ldr	r2, .L794+4	@ tmp134,
 	ldr	r2, [r2]	@ RandBitflags, RandBitflags
 @ Patches/../C_code.c:596: 	if (!RandBitflags->randMusic) { return false; } 
 	ldrb	r2, [r2, #1]	@ *RandBitflags.19_10, *RandBitflags.19_10
 	cmp	r2, #63	@ *RandBitflags.19_10,
-	bls	.L788		@,
+	bls	.L787		@,
 @ Patches/../C_code.c:653: 	int noise[4] = {1, 2, gCh, 0}; 
 	movs	r0, #1	@ tmp138,
 	movs	r1, #2	@,
-	ldr	r2, .L795+8	@ tmp139,
+	ldr	r2, .L794+8	@ tmp139,
 	ldrb	r5, [r2]	@ _14, gCh
 	mov	r2, sp	@ ivtmp.1032,
 	str	r3, [sp, #12]	@ NeverRandomizeBGM, noise[3]
 @ Patches/../C_code.c:654: 	int number = gPhase; 
-	ldr	r3, .L795+12	@ tmp143,
+	ldr	r3, .L794+12	@ tmp143,
 @ Patches/../C_code.c:653: 	int noise[4] = {1, 2, gCh, 0}; 
 	str	r0, [sp]	@ tmp138, MEM <vector(2) int> [(int *)&noise]
 	str	r1, [sp, #4]	@ tmp138,
 @ Patches/../C_code.c:654: 	int number = gPhase; 
 	ldrb	r0, [r3]	@ gPhase.27_15, gPhase
 @ Patches/../C_code.c:659: 	return MapMusicList[HashByte_Ch(number, sizeof(MapMusicList), noise, gTurn)]; 
-	ldr	r3, .L795+16	@ tmp144,
+	ldr	r3, .L794+16	@ tmp144,
 @ Patches/../C_code.c:653: 	int noise[4] = {1, 2, gCh, 0}; 
 	str	r5, [sp, #8]	@ _14, noise[2]
 @ Patches/../C_code.c:659: 	return MapMusicList[HashByte_Ch(number, sizeof(MapMusicList), noise, gTurn)]; 
 	ldrh	r3, [r3]	@ gTurn.28_17, gTurn
 	add	r4, sp, #16	@ _9,,
-.L789:
+.L788:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r1, [r2]	@ MEM[(int *)_27], MEM[(int *)_27]
 	cmp	r1, #0	@ MEM[(int *)_27],
-	beq	.L794		@,
+	beq	.L793		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r2, r2, #4	@ ivtmp.1032,
 	cmp	r4, r2	@ _9, ivtmp.1032
-	bne	.L789		@,
-.L792:
+	bne	.L788		@,
+.L791:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	mov	r2, sp	@,
 	movs	r1, #29	@,
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:659: 	return MapMusicList[HashByte_Ch(number, sizeof(MapMusicList), noise, gTurn)]; 
-	ldr	r3, .L795+20	@ tmp150,
+	ldr	r3, .L794+20	@ tmp150,
 	adds	r3, r3, r0	@ tmp151, tmp150, tmp155
 	ldrb	r0, [r3, #16]	@ <retval>, MapMusicList
-	b	.L787		@
-.L788:
-@ Patches/../C_code.c:652: 	if (!ShouldRandomizeBGM()) { return GetCurrentMapMusicIndex(); } 
-	ldr	r3, .L795+24	@ tmp145,
-	bl	.L14		@
+	b	.L786		@
 .L787:
+@ Patches/../C_code.c:652: 	if (!ShouldRandomizeBGM()) { return GetCurrentMapMusicIndex(); } 
+	ldr	r3, .L794+24	@ tmp145,
+	bl	.L14		@
+.L786:
 @ Patches/../C_code.c:660: };
 	add	sp, sp, #20	@,,
 	@ sp needed	@
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
-.L794:
+.L793:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	str	r5, [r2]	@ _14, *_27
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L792		@
-.L796:
-	.align	2
+	b	.L791		@
 .L795:
+	.align	2
+.L794:
 	.word	NeverRandomizeBGM
 	.word	RandBitflags
 	.word	gCh
@@ -5493,15 +5484,15 @@ StartMapSongBgm:
 	@ sp needed	@
 @ Patches/../C_code.c:710:     StartBgm(GetBGMTrack(), 0); //8003890, 8003210
 	movs	r1, #0	@,
-	ldr	r3, .L798	@ tmp115,
+	ldr	r3, .L797	@ tmp115,
 	bl	.L14		@
 @ Patches/../C_code.c:712: }
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L799:
-	.align	2
 .L798:
+	.align	2
+.L797:
 	.word	StartBgm
 	.size	StartMapSongBgm, .-StartMapSongBgm
 	.align	1
@@ -5517,7 +5508,7 @@ PhaseIntroInitText:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
 @ Patches/../C_code.c:725:     if (GetCurrentBgmSong() != GetBGMTrack()) // 80034DC, 8002F68
-	ldr	r3, .L805	@ tmp119,
+	ldr	r3, .L804	@ tmp119,
 @ Patches/../C_code.c:724: {
 	movs	r4, r0	@ proc, tmp135
 @ Patches/../C_code.c:725:     if (GetCurrentBgmSong() != GetBGMTrack()) // 80034DC, 8002F68
@@ -5527,18 +5518,18 @@ PhaseIntroInitText:
 	bl	GetBGMTrack		@
 @ Patches/../C_code.c:725:     if (GetCurrentBgmSong() != GetBGMTrack()) // 80034DC, 8002F68
 	cmp	r5, r0	@ _1, tmp137
-	beq	.L801		@,
+	beq	.L800		@,
 @ Patches/../C_code.c:726:         Sound_FadeOutBGM(4); // 80035EC, 8003064
 	movs	r0, #4	@,
-	ldr	r3, .L805+4	@ tmp120,
+	ldr	r3, .L804+4	@ tmp120,
 	bl	.L14		@
-.L801:
+.L800:
 @ Patches/../C_code.c:729:     PlaySoundEffect(0x73); // 803DD98, 8036D08
-	ldr	r3, .L805+8	@ tmp121,
+	ldr	r3, .L804+8	@ tmp121,
 	ldrb	r3, [r3]	@ gSfx, gSfx
 	lsls	r3, r3, #30	@ tmp138, gSfx,
-	bpl	.L804		@,
-.L802:
+	bpl	.L803		@,
+.L801:
 @ Patches/../C_code.c:739: }
 	@ sp needed	@
 @ Patches/../C_code.c:738:     proc->timer = 15;
@@ -5549,15 +5540,15 @@ PhaseIntroInitText:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L804:
+.L803:
 @ Patches/../C_code.c:729:     PlaySoundEffect(0x73); // 803DD98, 8036D08
 	movs	r0, #115	@,
-	ldr	r3, .L805+12	@ tmp131,
+	ldr	r3, .L804+12	@ tmp131,
 	bl	.L14		@
-	b	.L802		@
-.L806:
-	.align	2
+	b	.L801		@
 .L805:
+	.align	2
+.L804:
 	.word	GetCurrentBgmSong
 	.word	Sound_FadeOutBGM
 	.word	gSfx
@@ -5578,29 +5569,29 @@ sub_80328B0:
 @ Patches/../C_code.c:742:     int bgmIdx = GetBGMTrack();
 	bl	GetBGMTrack		@
 @ Patches/../C_code.c:744:     if (GetCurrentBgmSong() != bgmIdx) {
-	ldr	r3, .L809	@ tmp116,
+	ldr	r3, .L808	@ tmp116,
 @ Patches/../C_code.c:742:     int bgmIdx = GetBGMTrack();
 	movs	r4, r0	@ bgmIdx, tmp118
 @ Patches/../C_code.c:744:     if (GetCurrentBgmSong() != bgmIdx) {
 	bl	.L14		@
 @ Patches/../C_code.c:744:     if (GetCurrentBgmSong() != bgmIdx) {
 	cmp	r0, r4	@ tmp119, bgmIdx
-	beq	.L807		@,
+	beq	.L806		@,
 @ Patches/../C_code.c:745:         StartBgmExt(bgmIdx, 6, NULL); //80038AC, 800322C
 	movs	r2, #0	@,
 	movs	r1, #6	@,
 	movs	r0, r4	@, bgmIdx
-	ldr	r3, .L809+4	@ tmp117,
+	ldr	r3, .L808+4	@ tmp117,
 	bl	.L14		@
-.L807:
+.L806:
 @ Patches/../C_code.c:749: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L810:
-	.align	2
 .L809:
+	.align	2
+.L808:
 	.word	GetCurrentBgmSong
 	.word	StartBgmExt
 	.size	sub_80328B0, .-sub_80328B0
@@ -5616,10 +5607,10 @@ MaybeChangeAi2:
 	@ args = 0, pretend = 0, frame = 16
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:1189: 	return RandBitflags->base | RecruitValues->recruitment | ((RandBitflags->growth != 4) && (RandBitflags->growth)) | RandBitflags->caps | RandBitflags->itemStats | RandBitflags->class | RandBitflags->shopItems | RandBitflags->foundItems; 
-	ldr	r3, .L824	@ tmp164,
+	ldr	r3, .L823	@ tmp164,
 	ldr	r0, [r3]	@ RandBitflags.56_29, RandBitflags
 @ Patches/../C_code.c:1189: 	return RandBitflags->base | RecruitValues->recruitment | ((RandBitflags->growth != 4) && (RandBitflags->growth)) | RandBitflags->caps | RandBitflags->itemStats | RandBitflags->class | RandBitflags->shopItems | RandBitflags->foundItems; 
-	ldr	r3, .L824+4	@ tmp166,
+	ldr	r3, .L823+4	@ tmp166,
 	ldr	r3, [r3]	@ RecruitValues, RecruitValues
 @ Patches/../C_code.c:1189: 	return RandBitflags->base | RecruitValues->recruitment | ((RandBitflags->growth != 4) && (RandBitflags->growth)) | RandBitflags->caps | RandBitflags->itemStats | RandBitflags->class | RandBitflags->shopItems | RandBitflags->foundItems; 
 	ldrb	r1, [r0]	@ *RandBitflags.56_29, *RandBitflags.56_29
@@ -5675,23 +5666,23 @@ MaybeChangeAi2:
 	sub	sp, sp, #20	@,,
 @ Patches/../C_code.c:1198: 	if (IsAnythingRandomized()) { 
 	cmp	r3, #0	@ tmp233,
-	beq	.L811		@,
+	beq	.L810		@,
 @ Patches/../C_code.c:1199: 		if (gActiveUnit->ai2 == 3) { 
-	ldr	r3, .L824+8	@ tmp234,
+	ldr	r3, .L823+8	@ tmp234,
 	ldr	r4, [r3]	@ gActiveUnit.65_2, gActiveUnit
 	movs	r3, #68	@ tmp235,
 @ Patches/../C_code.c:1199: 		if (gActiveUnit->ai2 == 3) { 
 	ldrb	r3, [r4, r3]	@ tmp236,
 	cmp	r3, #3	@ tmp236,
-	beq	.L822		@,
-.L811:
+	beq	.L821		@,
+.L810:
 @ Patches/../C_code.c:1209: } 
 	add	sp, sp, #20	@,,
 	@ sp needed	@
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L822:
+.L821:
 @ Patches/../C_code.c:1200: 			if (UNIT_CATTRIBUTES(gActiveUnit) & CA_BOSS) { return; } 
 	ldr	r1, [r4]	@ _4, gActiveUnit.65_2->pCharacterData
 	ldr	r2, [r4, #4]	@ _6, gActiveUnit.65_2->pClassData
@@ -5700,13 +5691,13 @@ MaybeChangeAi2:
 	orrs	r3, r0	@ tmp237, _6->attributes
 @ Patches/../C_code.c:1200: 			if (UNIT_CATTRIBUTES(gActiveUnit) & CA_BOSS) { return; } 
 	lsls	r3, r3, #16	@ tmp264, tmp237,
-	bmi	.L811		@,
+	bmi	.L810		@,
 @ Patches/../C_code.c:1201: 			if (gTurn > 10) { 
-	ldr	r3, .L824+12	@ tmp242,
+	ldr	r3, .L823+12	@ tmp242,
 	ldrh	r5, [r3]	@ gTurn.68_10, gTurn
 @ Patches/../C_code.c:1201: 			if (gTurn > 10) { 
 	cmp	r5, #10	@ gTurn.68_10,
-	bls	.L811		@,
+	bls	.L810		@,
 @ Patches/../C_code.c:1202: 				int noise[4] = { gActiveUnit->pCharacterData->number, gActiveUnit->pClassData->number, 0, 0 }; 
 	ldrb	r3, [r1, #4]	@ tmp246,
 	str	r3, [sp]	@ tmp246, noise[0]
@@ -5722,16 +5713,16 @@ MaybeChangeAi2:
 	str	r3, [sp, #12]	@ tmp249,
 	mov	r3, sp	@ ivtmp.1054,
 	add	r1, sp, #16	@ _121,,
-.L815:
+.L814:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_59], MEM[(int *)_59]
 	cmp	r2, #0	@ MEM[(int *)_59],
-	beq	.L823		@,
+	beq	.L822		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.1054,
 	cmp	r1, r3	@ _121, ivtmp.1054
-	bne	.L815		@,
-.L814:
+	bne	.L814		@,
+.L813:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	movs	r3, r5	@, gTurn.68_10
 	movs	r0, r5	@, gTurn.68_10
@@ -5742,22 +5733,22 @@ MaybeChangeAi2:
 	lsls	r5, r5, #1	@ tmp256, gTurn.68_10,
 @ Patches/../C_code.c:1203: 				if (HashByte_Ch(gTurn, 100, noise, gTurn) < ((gTurn) * 2)) { 
 	cmp	r0, r5	@ tmp262, tmp256
-	bge	.L811		@,
+	bge	.L810		@,
 @ Patches/../C_code.c:1204: 					gActiveUnit->ai2 = 0; 
 	movs	r3, #68	@ tmp257,
 	movs	r2, #0	@ tmp258,
 	strb	r2, [r4, r3]	@ tmp258, gActiveUnit.65_2->ai2
-	b	.L811		@
-.L823:
+	b	.L810		@
+.L822:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	ldr	r2, .L824+16	@ tmp251,
+	ldr	r2, .L823+16	@ tmp251,
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r2, [r3]	@ gCh, *_59
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L814		@
-.L825:
-	.align	2
+	b	.L813		@
 .L824:
+	.align	2
+.L823:
 	.word	RandBitflags
 	.word	RecruitValues
 	.word	gActiveUnit
@@ -5780,7 +5771,7 @@ HashByte_GlobalOld:
 	movs	r5, r0	@ number, tmp212
 	subs	r4, r1, #0	@ max, tmp213,
 @ Patches/../C_code.c:1417: 	if (max==0) return 0;
-	beq	.L830		@,
+	beq	.L829		@,
 @ Patches/../C_code.c:1423: 	offset &= 0xFF; 
 	movs	r6, #255	@ tmp179,
 @ Patches/../C_code.c:1418: 	offset += noise[0]*3; 
@@ -5811,10 +5802,10 @@ HashByte_GlobalOld:
 	lsls	r3, r3, #1	@ tmp177, tmp176,
 	adds	r0, r3, r0	@ tmp178, tmp177, MEM[(int *)noise_40(D) + 12B]
 @ Patches/../C_code.c:1427: 	u8 seed[3] = { (RandValues->seed & 0xFF), (RandValues->seed&0xFF00)>>8, (RandValues->seed&0xFF0000)>>16 }; 
-	ldr	r3, .L835	@ tmp181,
+	ldr	r3, .L834	@ tmp181,
 	ldr	r3, [r3]	@ RandValues, RandValues
 @ Patches/../C_code.c:1425: 	hash = ((hash << 5) + hash) ^ number;
-	ldr	r7, .L835+4	@ tmp185,
+	ldr	r7, .L834+4	@ tmp185,
 @ Patches/../C_code.c:1421: 	offset += noise[3]*11; 
 	adds	r0, r0, r1	@ offset, tmp178, offset
 @ Patches/../C_code.c:1427: 	u8 seed[3] = { (RandValues->seed & 0xFF), (RandValues->seed&0xFF00)>>8, (RandValues->seed&0xFF0000)>>16 }; 
@@ -5848,44 +5839,44 @@ HashByte_GlobalOld:
 @ Patches/../C_code.c:1429: 		hash = ((hash << 5) + hash) ^ seed[i];
 	eors	r1, r5	@ hash, tmp201
 	adds	r6, r6, #16	@ _102,
-.L829:
+.L828:
 @ Patches/../C_code.c:1433: 		if (!noise[i]) { continue; } 
 	ldr	r3, [r2]	@ _34, MEM[(int *)_104]
 @ Patches/../C_code.c:1433: 		if (!noise[i]) { continue; } 
 	cmp	r3, #0	@ _34,
-	beq	.L828		@,
+	beq	.L827		@,
 	lsls	r5, r1, #5	@ tmp204, hash,
 	adds	r1, r5, r1	@ tmp205, tmp204, hash
 @ Patches/../C_code.c:1434: 		hash = ((hash << 5) + hash) ^ noise[i];
 	eors	r1, r3	@ hash, _34
-.L828:
+.L827:
 @ Patches/../C_code.c:1432: 	for (int i = 0; i < 4; ++i){
 	adds	r2, r2, #4	@ ivtmp.1066,
 	cmp	r2, r6	@ ivtmp.1066, _102
-	bne	.L829		@,
+	bne	.L828		@,
 @ Patches/../C_code.c:1436: 	hash = GetNthRN(offset + 1, hash); 
 	adds	r0, r0, #1	@ tmp206,
 	bl	GetNthRN		@
 @ Patches/../C_code.c:1438: 	return Mod((hash & 0x2FFFFFFF), max);
 	movs	r1, r4	@, max
-	ldr	r3, .L835+8	@ tmp209,
+	ldr	r3, .L834+8	@ tmp209,
 	bl	.L14		@
 @ Patches/../C_code.c:1438: 	return Mod((hash & 0x2FFFFFFF), max);
 	lsls	r0, r0, #16	@ tmp210, tmp217,
 	lsrs	r0, r0, #16	@ <retval>, tmp210,
-.L827:
+.L826:
 @ Patches/../C_code.c:1439: }; 
 	@ sp needed	@
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L830:
+.L829:
 @ Patches/../C_code.c:1417: 	if (max==0) return 0;
 	movs	r0, #0	@ <retval>,
-	b	.L827		@
-.L836:
-	.align	2
+	b	.L826		@
 .L835:
+	.align	2
+.L834:
 	.word	RandValues
 	.word	177573
 	.word	Mod
@@ -5905,16 +5896,16 @@ HashByte_Ch:
 	movs	r6, r2	@ _25, noise
 	movs	r4, r2	@ ivtmp.1076, noise
 	adds	r6, r6, #16	@ _25,
-.L840:
+.L839:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r5, [r4]	@ MEM[(int *)_3], MEM[(int *)_3]
 	cmp	r5, #0	@ MEM[(int *)_3],
-	beq	.L842		@,
+	beq	.L841		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r4, r4, #4	@ ivtmp.1076,
 	cmp	r4, r6	@ ivtmp.1076, _25
-	bne	.L840		@,
-.L839:
+	bne	.L839		@,
+.L838:
 @ Patches/../C_code.c:1447: };
 	@ sp needed	@
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
@@ -5923,16 +5914,16 @@ HashByte_Ch:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L842:
+.L841:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	ldr	r5, .L843	@ tmp126,
+	ldr	r5, .L842	@ tmp126,
 	ldrb	r5, [r5]	@ gCh, gCh
 	str	r5, [r4]	@ gCh, *_3
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L839		@
-.L844:
-	.align	2
+	b	.L838		@
 .L843:
+	.align	2
+.L842:
 	.word	gCh
 	.size	HashByte_Ch, .-HashByte_Ch
 	.global	__aeabi_uidiv
@@ -5959,7 +5950,7 @@ HashPercent:
 	asrs	r3, r3, #31	@ tmp199, tmp200,
 	ands	r5, r3	@ _25, tmp199
 @ Patches/../C_code.c:1451: 	int variation = (RandValues->variance)*5;
-	ldr	r3, .L869	@ tmp147,
+	ldr	r3, .L868	@ tmp147,
 	ldr	r3, [r3]	@ RandValues, RandValues
 @ Patches/../C_code.c:1449: s16 HashPercent(int number, int noise[], int offset, int global, int earlygamePromo){
 	push	{lr}	@
@@ -5976,7 +5967,7 @@ HashPercent:
 	lsrs	r4, r4, #27	@ _3, tmp152,
 @ Patches/../C_code.c:1452: 	if (earlygamePromo == 3) { // 2/3rds
 	cmp	r3, #3	@ tmp230,
-	beq	.L847		@,
+	beq	.L846		@,
 @ Patches/../C_code.c:1451: 	int variation = (RandValues->variance)*5;
 	lsls	r3, r4, #2	@ tmp155, _3,
 	adds	r4, r3, r4	@ variation, tmp155, _3
@@ -5986,8 +5977,8 @@ HashPercent:
 	lsls	r1, r4, #1	@ _61, variation,
 @ Patches/../C_code.c:1458: 	if (global) { 
 	cmp	r3, #0	@ global,
-	beq	.L849		@,
-.L852:
+	beq	.L848		@,
+.L851:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	movs	r3, r6	@, offset
 	movs	r2, r7	@, noise
@@ -6001,36 +5992,36 @@ HashPercent:
 	adds	r4, r4, #100	@ percentage,
 @ Patches/../C_code.c:1463: 	if (earlygamePromo == 1) { if (percentage > 125) { percentage = percentage >> 1; } }
 	cmp	r3, #1	@ tmp233,
-	beq	.L867		@,
+	beq	.L866		@,
 @ Patches/../C_code.c:1464: 	if (earlygamePromo == 2) { if (percentage > 150) { percentage = percentage >> 1; } }
 	ldr	r3, [sp, #24]	@ tmp234, earlygamePromo
 	cmp	r3, #2	@ tmp234,
-	bne	.L855		@,
+	bne	.L854		@,
 	movs	r3, #1	@ tmp184,
 	cmp	r4, #150	@ percentage,
-	bgt	.L856		@,
+	bgt	.L855		@,
 	movs	r3, #0	@ tmp184,
-.L856:
-	lsls	r3, r3, #24	@ tmp189, tmp184,
-	bne	.L866		@,
 .L855:
+	lsls	r3, r3, #24	@ tmp189, tmp184,
+	bne	.L865		@,
+.L854:
 @ Patches/../C_code.c:1465: 	int ret = Div1((percentage * number), 100); //1.5 * 120 (we want to negate this)
 	movs	r1, #100	@,
 	movs	r0, r5	@ tmp190, _25
 	muls	r0, r4	@ tmp190, percentage
-	ldr	r6, .L869+4	@ tmp191,
-	bl	.L342		@
+	ldr	r6, .L868+4	@ tmp191,
+	bl	.L341		@
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	cmp	r0, #127	@ ret,
-	ble	.L857		@,
+	ble	.L856		@,
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r0, #200	@ tmp192,
 	subs	r0, r0, r4	@ tmp193, tmp192, percentage
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r1, #100	@,
 	muls	r0, r5	@ tmp194, _25
-	bl	.L342		@
-.L857:
+	bl	.L341		@
+.L856:
 @ Patches/../C_code.c:1469: };
 	@ sp needed	@
 @ Patches/../C_code.c:1467: 	if (ret < 0) ret = 0;
@@ -6046,21 +6037,21 @@ HashPercent:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L867:
+.L866:
 @ Patches/../C_code.c:1463: 	if (earlygamePromo == 1) { if (percentage > 125) { percentage = percentage >> 1; } }
 	cmp	r4, #125	@ percentage,
-	ble	.L855		@,
-.L866:
+	ble	.L854		@,
+.L865:
 @ Patches/../C_code.c:1464: 	if (earlygamePromo == 2) { if (percentage > 150) { percentage = percentage >> 1; } }
 	asrs	r4, r4, #1	@ percentage, percentage,
-	b	.L855		@
-.L847:
+	b	.L854		@
+.L846:
 @ Patches/../C_code.c:1453: 		variation += variation; 
 	lsls	r0, r4, #2	@ tmp158, _3,
 	adds	r0, r0, r4	@ tmp159, tmp158, _3
 @ Patches/../C_code.c:1454: 		variation = variation / 3; 
 	movs	r1, #3	@,
-	ldr	r3, .L869+8	@ tmp167,
+	ldr	r3, .L868+8	@ tmp167,
 @ Patches/../C_code.c:1453: 		variation += variation; 
 	lsls	r0, r0, #1	@ tmp160, tmp159,
 @ Patches/../C_code.c:1454: 		variation = variation / 3; 
@@ -6073,31 +6064,31 @@ HashPercent:
 	lsls	r1, r4, #1	@ _61, variation,
 @ Patches/../C_code.c:1458: 	if (global) { 
 	cmp	r3, #0	@ global,
-	bne	.L852		@,
-.L849:
+	bne	.L851		@,
+.L848:
 	movs	r0, r7	@ _4, noise
 	movs	r3, r7	@ ivtmp.1087, noise
 	adds	r0, r0, #16	@ _4,
-.L853:
+.L852:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_41], MEM[(int *)_41]
 	cmp	r2, #0	@ MEM[(int *)_41],
-	beq	.L868		@,
+	beq	.L867		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.1087,
 	cmp	r0, r3	@ _4, ivtmp.1087
-	bne	.L853		@,
-	b	.L852		@
-.L868:
+	bne	.L852		@,
+	b	.L851		@
+.L867:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	ldr	r2, .L869+12	@ tmp172,
+	ldr	r2, .L868+12	@ tmp172,
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r2, [r3]	@ gCh, *_41
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L852		@
-.L870:
-	.align	2
+	b	.L851		@
 .L869:
+	.align	2
+.L868:
 	.word	RandValues
 	.word	Div1
 	.word	__aeabi_idiv
@@ -6149,7 +6140,7 @@ HashByPercent:
 	asrs	r2, r2, #31	@ tmp161, tmp162,
 	ands	r4, r2	@ _7, tmp161
 @ Patches/../C_code.c:1451: 	int variation = (RandValues->variance)*5;
-	ldr	r2, .L876	@ tmp134,
+	ldr	r2, .L875	@ tmp134,
 	ldr	r2, [r2]	@ RandValues, RandValues
 	ldrh	r0, [r2, #2]	@ *RandValues.110_8, *RandValues.110_8
 	lsls	r0, r0, #23	@ tmp139, *RandValues.110_8,
@@ -6169,19 +6160,19 @@ HashByPercent:
 	movs	r1, #100	@,
 	movs	r0, r5	@ tmp152, percentage
 	muls	r0, r4	@ tmp152, _7
-	ldr	r6, .L876+4	@ tmp153,
-	bl	.L342		@
+	ldr	r6, .L875+4	@ tmp153,
+	bl	.L341		@
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	cmp	r0, #127	@ ret,
-	ble	.L874		@,
+	ble	.L873		@,
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r0, #200	@ tmp154,
 	subs	r0, r0, r5	@ tmp155, tmp154, percentage
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r1, #100	@,
 	muls	r0, r4	@ tmp156, _7
-	bl	.L342		@
-.L874:
+	bl	.L341		@
+.L873:
 @ Patches/../C_code.c:1477: };
 	@ sp needed	@
 @ Patches/../C_code.c:1467: 	if (ret < 0) ret = 0;
@@ -6195,9 +6186,9 @@ HashByPercent:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L877:
-	.align	2
 .L876:
+	.align	2
+.L875:
 	.word	RandValues
 	.word	Div1
 	.size	HashByPercent, .-HashByPercent
@@ -6221,7 +6212,7 @@ HashByTwoThirdsPercent:
 	asrs	r3, r3, #31	@ tmp169, tmp170,
 	ands	r4, r3	@ _7, tmp169
 @ Patches/../C_code.c:1451: 	int variation = (RandValues->variance)*5;
-	ldr	r3, .L882	@ tmp135,
+	ldr	r3, .L881	@ tmp135,
 	ldr	r3, [r3]	@ RandValues, RandValues
 	ldrh	r5, [r3, #2]	@ *RandValues.110_8, *RandValues.110_8
 	lsls	r5, r5, #23	@ tmp140, *RandValues.110_8,
@@ -6232,7 +6223,7 @@ HashByTwoThirdsPercent:
 @ Patches/../C_code.c:1479: s16 HashByTwoThirdsPercent(int number, int noise[], int offset){
 	movs	r6, r1	@ noise, tmp174
 @ Patches/../C_code.c:1454: 		variation = variation / 3; 
-	ldr	r3, .L882+4	@ tmp153,
+	ldr	r3, .L881+4	@ tmp153,
 	movs	r1, #3	@,
 @ Patches/../C_code.c:1453: 		variation += variation; 
 	lsls	r0, r0, #1	@ tmp146, tmp145,
@@ -6257,19 +6248,19 @@ HashByTwoThirdsPercent:
 	movs	r1, #100	@,
 	movs	r0, r5	@ tmp160, percentage
 	muls	r0, r4	@ tmp160, _7
-	ldr	r6, .L882+8	@ tmp161,
-	bl	.L342		@
+	ldr	r6, .L881+8	@ tmp161,
+	bl	.L341		@
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	cmp	r0, #127	@ ret,
-	ble	.L880		@,
+	ble	.L879		@,
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r0, #200	@ tmp162,
 	subs	r0, r0, r5	@ tmp163, tmp162, percentage
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r1, #100	@,
 	muls	r0, r4	@ tmp164, _7
-	bl	.L342		@
-.L880:
+	bl	.L341		@
+.L879:
 @ Patches/../C_code.c:1481: };
 	@ sp needed	@
 @ Patches/../C_code.c:1467: 	if (ret < 0) ret = 0;
@@ -6283,9 +6274,9 @@ HashByTwoThirdsPercent:
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L883:
-	.align	2
 .L882:
+	.align	2
+.L881:
 	.word	RandValues
 	.word	__aeabi_idiv
 	.word	Div1
@@ -6307,7 +6298,7 @@ GetRNByID:
 @ Patches/../C_code.c:1484: 	int noise[4] = { 0, 0, 0, 0 };
 	movs	r2, #16	@,
 	movs	r1, #0	@,
-	ldr	r3, .L887	@ tmp121,
+	ldr	r3, .L886	@ tmp121,
 	mov	r0, sp	@,
 	bl	.L14		@
 @ Patches/../C_code.c:1485: 	int result = HashByte_Global(5, 254, noise, id)+1;
@@ -6321,29 +6312,29 @@ GetRNByID:
 	adds	r0, r0, #1	@ <retval>,
 @ Patches/../C_code.c:1486: 	if (result < 40) { result += 40; } 
 	cmp	r0, #39	@ <retval>,
-	bgt	.L885		@,
+	bgt	.L884		@,
 @ Patches/../C_code.c:1486: 	if (result < 40) { result += 40; } 
 	adds	r3, r3, #41	@ tmp125,
 	movs	r0, r3	@ <retval>, tmp125
-.L884:
+.L883:
 @ Patches/../C_code.c:1489: }
 	add	sp, sp, #16	@,,
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L885:
+.L884:
 @ Patches/../C_code.c:1487: 	if (result > 210) { result -= 40; } 
 	cmp	r0, #210	@ <retval>,
-	ble	.L884		@,
+	ble	.L883		@,
 @ Patches/../C_code.c:1487: 	if (result > 210) { result -= 40; } 
 	subs	r3, r3, #39	@ tmp125,
 	movs	r0, r3	@ <retval>, tmp125
 @ Patches/../C_code.c:1488: 	return result; 
-	b	.L884		@
-.L888:
-	.align	2
+	b	.L883		@
 .L887:
+	.align	2
+.L886:
 	.word	memset
 	.size	GetRNByID, .-GetRNByID
 	.align	1
@@ -6359,7 +6350,7 @@ HashMight:
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:1493: 	if (!RandBitflags->itemStats) { return number; } 
 	movs	r2, #24	@ tmp145,
-	ldr	r3, .L898	@ tmp139,
+	ldr	r3, .L897	@ tmp139,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #2]	@ *RandBitflags.111_1, *RandBitflags.111_1
 @ Patches/../C_code.c:1492: s16 HashMight(int number, int noise[]) { 
@@ -6368,14 +6359,14 @@ HashMight:
 	movs	r5, r1	@ noise, tmp190
 @ Patches/../C_code.c:1493: 	if (!RandBitflags->itemStats) { return number; } 
 	tst	r2, r3	@ tmp145, *RandBitflags.111_1
-	beq	.L896		@,
+	beq	.L895		@,
 @ Patches/../C_code.c:1494: 	if (number == 255) { return number; } // eclipse 
 	cmp	r0, #255	@ number,
-	beq	.L895		@,
+	beq	.L894		@,
 @ Patches/../C_code.c:1450: 	if (number < 0) number = 0;
 	mvns	r4, r0	@ tmp186, number
 @ Patches/../C_code.c:1451: 	int variation = (RandValues->variance)*5;
-	ldr	r3, .L898+4	@ tmp150,
+	ldr	r3, .L897+4	@ tmp150,
 	ldr	r3, [r3]	@ RandValues, RandValues
 	ldrh	r3, [r3, #2]	@ *RandValues.110_18, *RandValues.110_18
 	lsls	r3, r3, #23	@ tmp155, *RandValues.110_18,
@@ -6388,7 +6379,7 @@ HashMight:
 	adds	r0, r0, r3	@ tmp160, tmp159, tmp156
 @ Patches/../C_code.c:1454: 		variation = variation / 3; 
 	movs	r1, #3	@,
-	ldr	r3, .L898+8	@ tmp168,
+	ldr	r3, .L897+8	@ tmp168,
 @ Patches/../C_code.c:1453: 		variation += variation; 
 	lsls	r0, r0, #1	@ tmp161, tmp160,
 @ Patches/../C_code.c:1454: 		variation = variation / 3; 
@@ -6410,43 +6401,43 @@ HashMight:
 	movs	r1, #100	@,
 	movs	r0, r5	@ tmp175, percentage
 	muls	r0, r4	@ tmp175, _17
-	ldr	r6, .L898+12	@ tmp176,
-	bl	.L342		@
+	ldr	r6, .L897+12	@ tmp176,
+	bl	.L341		@
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	cmp	r0, #127	@ ret,
-	bgt	.L897		@,
-.L893:
+	bgt	.L896		@,
+.L892:
 @ Patches/../C_code.c:1467: 	if (ret < 0) ret = 0;
 	mvns	r3, r0	@ tmp188, ret
 	asrs	r3, r3, #31	@ tmp187, tmp188,
 	ands	r0, r3	@ ret, tmp187
 @ Patches/../C_code.c:1495: 	return HashByTwoThirdsPercent(number, noise, 0)+2; 
 	adds	r0, r0, #2	@ tmp183,
-.L896:
+.L895:
 	lsls	r0, r0, #16	@ <retval>, tmp183,
 	asrs	r0, r0, #16	@ <retval>, <retval>,
-.L891:
+.L890:
 @ Patches/../C_code.c:1496: } 
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L897:
+.L896:
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r0, #200	@ tmp177,
 	subs	r0, r0, r5	@ tmp178, tmp177, percentage
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r1, #100	@,
 	muls	r0, r4	@ tmp179, _17
-	bl	.L342		@
-	b	.L893		@
-.L895:
+	bl	.L341		@
+	b	.L892		@
+.L894:
 @ Patches/../C_code.c:1494: 	if (number == 255) { return number; } // eclipse 
 	movs	r0, #255	@ <retval>,
-	b	.L891		@
-.L899:
-	.align	2
+	b	.L890		@
 .L898:
+	.align	2
+.L897:
 	.word	RandBitflags
 	.word	RandValues
 	.word	__aeabi_idiv
@@ -6465,7 +6456,7 @@ HashHit:
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:1499: 	if (!RandBitflags->itemStats) { return number; } 
 	movs	r2, #24	@ tmp135,
-	ldr	r3, .L905	@ tmp129,
+	ldr	r3, .L904	@ tmp129,
 @ Patches/../C_code.c:1498: s16 HashHit(int number, int noise[]) { 
 	push	{r4, lr}	@
 @ Patches/../C_code.c:1499: 	if (!RandBitflags->itemStats) { return number; } 
@@ -6476,18 +6467,18 @@ HashHit:
 	sub	sp, sp, #8	@,,
 @ Patches/../C_code.c:1499: 	if (!RandBitflags->itemStats) { return number; } 
 	tst	r2, r3	@ tmp135, *RandBitflags.112_1
-	bne	.L901		@,
+	bne	.L900		@,
 @ Patches/../C_code.c:1499: 	if (!RandBitflags->itemStats) { return number; } 
 	lsls	r0, r0, #16	@ <retval>, number,
 	asrs	r0, r0, #16	@ <retval>, <retval>,
-.L902:
+.L901:
 @ Patches/../C_code.c:1504: } 
 	add	sp, sp, #8	@,,
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L901:
+.L900:
 @ Patches/../C_code.c:1480: 	return HashPercent(number, noise, offset, true, 3);
 	movs	r3, #3	@ tmp139,
 	movs	r2, #0	@,
@@ -6496,7 +6487,7 @@ HashHit:
 	bl	HashPercent		@
 @ Patches/../C_code.c:1501: 	if (number < 50) number += number + (noise[0] & 0x1F) + 30; 
 	cmp	r0, #49	@ number,
-	bgt	.L903		@,
+	bgt	.L902		@,
 @ Patches/../C_code.c:1501: 	if (number < 50) number += number + (noise[0] & 0x1F) + 30; 
 	movs	r2, #31	@ tmp142,
 	ldr	r3, [r4]	@ *noise_9(D), *noise_9(D)
@@ -6507,22 +6498,22 @@ HashHit:
 	adds	r3, r3, #30	@ _17,
 @ Patches/../C_code.c:1501: 	if (number < 50) number += number + (noise[0] & 0x1F) + 30; 
 	adds	r0, r0, r3	@ number, number, _17
-.L903:
+.L902:
 @ Patches/../C_code.c:1502: 	if (number > MaxWeaponHitrate) { number = MaxWeaponHitrate; } 
-	ldr	r3, .L905+4	@ tmp147,
+	ldr	r3, .L904+4	@ tmp147,
 @ Patches/../C_code.c:1502: 	if (number > MaxWeaponHitrate) { number = MaxWeaponHitrate; } 
 	ldr	r3, [r3]	@ MaxWeaponHitrate, MaxWeaponHitrate
 	cmp	r3, r0	@ MaxWeaponHitrate, number
-	ble	.L904		@,
+	ble	.L903		@,
 	movs	r3, r0	@ MaxWeaponHitrate, number
-.L904:
+.L903:
 @ Patches/../C_code.c:1503: 	return number; 
 	lsls	r0, r3, #16	@ <retval>, MaxWeaponHitrate,
 	asrs	r0, r0, #16	@ <retval>, <retval>,
-	b	.L902		@
-.L906:
-	.align	2
+	b	.L901		@
 .L905:
+	.align	2
+.L904:
 	.word	RandBitflags
 	.word	MaxWeaponHitrate
 	.size	HashHit, .-HashHit
@@ -6540,21 +6531,21 @@ HashCrit:
 	movs	r2, r1	@ noise, tmp178
 @ Patches/../C_code.c:1506: 	if (!RandBitflags->itemStats) { return number; } 
 	movs	r1, #24	@ tmp142,
-	ldr	r3, .L916	@ tmp136,
+	ldr	r3, .L915	@ tmp136,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #2]	@ *RandBitflags.114_1, *RandBitflags.114_1
 @ Patches/../C_code.c:1505: s16 HashCrit(int number, int noise[]) { 
 	push	{r4, r5, r6, lr}	@
 @ Patches/../C_code.c:1506: 	if (!RandBitflags->itemStats) { return number; } 
 	tst	r1, r3	@ tmp142, *RandBitflags.114_1
-	beq	.L914		@,
+	beq	.L913		@,
 @ Patches/../C_code.c:1507: 	if (number == 255) { return number; } // weps that cannot crit  
 	cmp	r0, #255	@ number,
-	beq	.L913		@,
+	beq	.L912		@,
 @ Patches/../C_code.c:1450: 	if (number < 0) number = 0;
 	mvns	r4, r0	@ tmp174, number
 @ Patches/../C_code.c:1451: 	int variation = (RandValues->variance)*5;
-	ldr	r3, .L916+4	@ tmp147,
+	ldr	r3, .L915+4	@ tmp147,
 	ldr	r3, [r3]	@ RandValues, RandValues
 	ldrh	r3, [r3, #2]	@ *RandValues.110_15, *RandValues.110_15
 	lsls	r3, r3, #23	@ tmp152, *RandValues.110_15,
@@ -6580,42 +6571,42 @@ HashCrit:
 	movs	r1, #100	@,
 	movs	r0, r5	@ tmp165, percentage
 	muls	r0, r4	@ tmp165, _14
-	ldr	r6, .L916+8	@ tmp166,
-	bl	.L342		@
+	ldr	r6, .L915+8	@ tmp166,
+	bl	.L341		@
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	cmp	r0, #127	@ ret,
-	bgt	.L915		@,
-.L911:
+	bgt	.L914		@,
+.L910:
 @ Patches/../C_code.c:1467: 	if (ret < 0) ret = 0;
 	mvns	r3, r0	@ tmp176, ret
 	asrs	r3, r3, #31	@ tmp175, tmp176,
 	ands	r0, r3	@ ret, tmp175
-.L914:
+.L913:
 @ Patches/../C_code.c:1468: 	return ret;
 	lsls	r0, r0, #16	@ <retval>, ret,
 	asrs	r0, r0, #16	@ <retval>, <retval>,
-.L909:
+.L908:
 @ Patches/../C_code.c:1509: } 
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L915:
+.L914:
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r0, #200	@ tmp167,
 	subs	r0, r0, r5	@ tmp168, tmp167, percentage
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r1, #100	@,
 	muls	r0, r4	@ tmp169, _14
-	bl	.L342		@
-	b	.L911		@
-.L913:
+	bl	.L341		@
+	b	.L910		@
+.L912:
 @ Patches/../C_code.c:1507: 	if (number == 255) { return number; } // weps that cannot crit  
 	movs	r0, #255	@ <retval>,
-	b	.L909		@
-.L917:
-	.align	2
+	b	.L908		@
 .L916:
+	.align	2
+.L915:
 	.word	RandBitflags
 	.word	RandValues
 	.word	Div1
@@ -6633,7 +6624,7 @@ HashWeight:
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:1511: 	if (!RandBitflags->itemStats) { return number; } 
 	movs	r2, #24	@ tmp143,
-	ldr	r3, .L925	@ tmp137,
+	ldr	r3, .L924	@ tmp137,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #2]	@ *RandBitflags.115_1, *RandBitflags.115_1
 @ Patches/../C_code.c:1510: s16 HashWeight(int number, int noise[]) { 
@@ -6642,8 +6633,8 @@ HashWeight:
 	movs	r5, r1	@ noise, tmp186
 @ Patches/../C_code.c:1511: 	if (!RandBitflags->itemStats) { return number; } 
 	tst	r2, r3	@ tmp143, *RandBitflags.115_1
-	bne	.L919		@,
-.L924:
+	bne	.L918		@,
+.L923:
 @ Patches/../C_code.c:1513: } 
 	@ sp needed	@
 @ Patches/../C_code.c:1468: 	return ret;
@@ -6653,11 +6644,11 @@ HashWeight:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L919:
+.L918:
 @ Patches/../C_code.c:1450: 	if (number < 0) number = 0;
 	mvns	r4, r0	@ tmp182, number
 @ Patches/../C_code.c:1451: 	int variation = (RandValues->variance)*5;
-	ldr	r3, .L925+4	@ tmp148,
+	ldr	r3, .L924+4	@ tmp148,
 	ldr	r3, [r3]	@ RandValues, RandValues
 	ldrh	r3, [r3, #2]	@ *RandValues.110_15, *RandValues.110_15
 	lsls	r3, r3, #23	@ tmp153, *RandValues.110_15,
@@ -6670,7 +6661,7 @@ HashWeight:
 	adds	r0, r0, r3	@ tmp158, tmp157, tmp154
 @ Patches/../C_code.c:1454: 		variation = variation / 3; 
 	movs	r1, #3	@,
-	ldr	r3, .L925+8	@ tmp166,
+	ldr	r3, .L924+8	@ tmp166,
 @ Patches/../C_code.c:1453: 		variation += variation; 
 	lsls	r0, r0, #1	@ tmp159, tmp158,
 @ Patches/../C_code.c:1454: 		variation = variation / 3; 
@@ -6692,27 +6683,27 @@ HashWeight:
 	movs	r1, #100	@,
 	movs	r0, r5	@ tmp173, percentage
 	muls	r0, r4	@ tmp173, _14
-	ldr	r6, .L925+12	@ tmp174,
-	bl	.L342		@
+	ldr	r6, .L924+12	@ tmp174,
+	bl	.L341		@
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	cmp	r0, #127	@ ret,
-	ble	.L922		@,
+	ble	.L921		@,
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r0, #200	@ tmp175,
 	subs	r0, r0, r5	@ tmp176, tmp175, percentage
 @ Patches/../C_code.c:1466: 	if (ret > 127) ret = Div1((200 - percentage) * number, 100);
 	movs	r1, #100	@,
 	muls	r0, r4	@ tmp177, _14
-	bl	.L342		@
-.L922:
+	bl	.L341		@
+.L921:
 @ Patches/../C_code.c:1467: 	if (ret < 0) ret = 0;
 	mvns	r3, r0	@ tmp184, ret
 	asrs	r3, r3, #31	@ tmp183, tmp184,
 	ands	r0, r3	@ ret, tmp183
-	b	.L924		@
-.L926:
-	.align	2
+	b	.L923		@
 .L925:
+	.align	2
+.L924:
 	.word	RandBitflags
 	.word	RandValues
 	.word	__aeabi_idiv
@@ -6740,11 +6731,11 @@ GetItemMight:
 	ands	r4, r0	@ item, tmp153
 @ Patches/../C_code.c:1537: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r1, #0	@,
-	ldr	r3, .L935	@ tmp130,
+	ldr	r3, .L934	@ tmp130,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:1539: 	int might = GetItemData(item&0xFF)->might;
-	ldr	r3, .L935+4	@ tmp134,
+	ldr	r3, .L934+4	@ tmp134,
 	movs	r0, r4	@, item
 @ Patches/../C_code.c:1538: 	noise[0] = item; 
 	str	r4, [sp, #8]	@ item, noise[0]
@@ -6752,17 +6743,17 @@ GetItemMight:
 	bl	.L14		@
 @ Patches/../C_code.c:1493: 	if (!RandBitflags->itemStats) { return number; } 
 	movs	r2, #24	@ tmp142,
-	ldr	r3, .L935+8	@ tmp136,
+	ldr	r3, .L934+8	@ tmp136,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #2]	@ *RandBitflags.111_14, *RandBitflags.111_14
 @ Patches/../C_code.c:1539: 	int might = GetItemData(item&0xFF)->might;
 	ldrb	r0, [r0, #21]	@ <retval>,
 @ Patches/../C_code.c:1493: 	if (!RandBitflags->itemStats) { return number; } 
 	tst	r2, r3	@ tmp142, *RandBitflags.111_14
-	beq	.L927		@,
+	beq	.L926		@,
 @ Patches/../C_code.c:1494: 	if (number == 255) { return number; } // eclipse 
 	cmp	r0, #255	@ <retval>,
-	beq	.L927		@,
+	beq	.L926		@,
 @ Patches/../C_code.c:1480: 	return HashPercent(number, noise, offset, true, 3);
 	movs	r3, #3	@ tmp147,
 	movs	r2, #0	@,
@@ -6775,16 +6766,16 @@ GetItemMight:
 @ Patches/../C_code.c:1540: 	return HashMight(might, noise); 
 	lsls	r0, r0, #16	@ <retval>, tmp151,
 	asrs	r0, r0, #16	@ <retval>, <retval>,
-.L927:
+.L926:
 @ Patches/../C_code.c:1541: } 
 	add	sp, sp, #24	@,,
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L936:
-	.align	2
 .L935:
+	.align	2
+.L934:
 	.word	memset
 	.word	GetItemData
 	.word	RandBitflags
@@ -6811,11 +6802,11 @@ GetItemHit:
 	ands	r4, r0	@ item, tmp135
 @ Patches/../C_code.c:1545: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r1, #0	@,
-	ldr	r3, .L938	@ tmp125,
+	ldr	r3, .L937	@ tmp125,
 	add	r0, sp, #4	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:1547: 	int hit = GetItemData(item&0xFF)->hit;
-	ldr	r3, .L938+4	@ tmp129,
+	ldr	r3, .L937+4	@ tmp129,
 	movs	r0, r4	@, item
 @ Patches/../C_code.c:1546: 	noise[0] = item; 
 	str	r4, [sp]	@ item, noise[0]
@@ -6833,9 +6824,9 @@ GetItemHit:
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L939:
-	.align	2
 .L938:
+	.align	2
+.L937:
 	.word	memset
 	.word	GetItemData
 	.size	GetItemHit, .-GetItemHit
@@ -6861,11 +6852,11 @@ GetItemCrit:
 	ands	r4, r0	@ item, tmp148
 @ Patches/../C_code.c:1553: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r1, #0	@,
-	ldr	r3, .L948	@ tmp127,
+	ldr	r3, .L947	@ tmp127,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:1555: 	int crit = GetItemData(item&0xFF)->crit;
-	ldr	r3, .L948+4	@ tmp131,
+	ldr	r3, .L947+4	@ tmp131,
 	movs	r0, r4	@, item
 @ Patches/../C_code.c:1554: 	noise[0] = item; 
 	str	r4, [sp, #8]	@ item, noise[0]
@@ -6873,17 +6864,17 @@ GetItemCrit:
 	bl	.L14		@
 @ Patches/../C_code.c:1506: 	if (!RandBitflags->itemStats) { return number; } 
 	movs	r2, #24	@ tmp139,
-	ldr	r3, .L948+8	@ tmp133,
+	ldr	r3, .L947+8	@ tmp133,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #2]	@ *RandBitflags.114_14, *RandBitflags.114_14
 @ Patches/../C_code.c:1555: 	int crit = GetItemData(item&0xFF)->crit;
 	ldrb	r0, [r0, #24]	@ <retval>,
 @ Patches/../C_code.c:1506: 	if (!RandBitflags->itemStats) { return number; } 
 	tst	r2, r3	@ tmp139, *RandBitflags.114_14
-	beq	.L940		@,
+	beq	.L939		@,
 @ Patches/../C_code.c:1507: 	if (number == 255) { return number; } // weps that cannot crit  
 	cmp	r0, #255	@ <retval>,
-	beq	.L940		@,
+	beq	.L939		@,
 @ Patches/../C_code.c:1476: 	return HashPercent(number, noise, offset, true, false);
 	movs	r3, #0	@ tmp144,
 	movs	r2, #0	@,
@@ -6891,16 +6882,16 @@ GetItemCrit:
 	add	r1, sp, #8	@,,
 	adds	r3, r3, #1	@,
 	bl	HashPercent		@
-.L940:
+.L939:
 @ Patches/../C_code.c:1557: } 
 	add	sp, sp, #24	@,,
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L949:
-	.align	2
 .L948:
+	.align	2
+.L947:
 	.word	memset
 	.word	GetItemData
 	.word	RandBitflags
@@ -6927,11 +6918,11 @@ GetItemWeight:
 	ands	r4, r0	@ item, tmp148
 @ Patches/../C_code.c:1561: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r1, #0	@,
-	ldr	r3, .L955	@ tmp127,
+	ldr	r3, .L954	@ tmp127,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:1563: 	int weight = GetItemData(item&0xFF)->weight;
-	ldr	r3, .L955+4	@ tmp131,
+	ldr	r3, .L954+4	@ tmp131,
 	movs	r0, r4	@, item
 @ Patches/../C_code.c:1562: 	noise[0] = item; 
 	str	r4, [sp, #8]	@ item, noise[0]
@@ -6939,14 +6930,14 @@ GetItemWeight:
 	bl	.L14		@
 @ Patches/../C_code.c:1511: 	if (!RandBitflags->itemStats) { return number; } 
 	movs	r2, #24	@ tmp139,
-	ldr	r3, .L955+8	@ tmp133,
+	ldr	r3, .L954+8	@ tmp133,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #2]	@ *RandBitflags.115_14, *RandBitflags.115_14
 @ Patches/../C_code.c:1563: 	int weight = GetItemData(item&0xFF)->weight;
 	ldrb	r0, [r0, #23]	@ <retval>,
 @ Patches/../C_code.c:1511: 	if (!RandBitflags->itemStats) { return number; } 
 	tst	r2, r3	@ tmp139, *RandBitflags.115_14
-	beq	.L950		@,
+	beq	.L949		@,
 @ Patches/../C_code.c:1480: 	return HashPercent(number, noise, offset, true, 3);
 	movs	r3, #3	@ tmp144,
 	movs	r2, #0	@,
@@ -6954,16 +6945,16 @@ GetItemWeight:
 	add	r1, sp, #8	@,,
 	subs	r3, r3, #2	@,
 	bl	HashPercent		@
-.L950:
+.L949:
 @ Patches/../C_code.c:1565: } 
 	add	sp, sp, #24	@,,
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L956:
-	.align	2
 .L955:
+	.align	2
+.L954:
 	.word	memset
 	.word	GetItemData
 	.word	RandBitflags
@@ -6991,13 +6982,13 @@ BuildAvailableClassList:
 @ Patches/../C_code.c:1573: 	list[0] = 0; // count 
 	strb	r3, [r0]	@ tmp156, *list_29(D)
 @ Patches/../C_code.c:1583: 		const struct ClassData* table = GetClassData(i); 
-	ldr	r3, .L984	@ tmp221,
+	ldr	r3, .L983	@ tmp221,
 	mov	r9, r3	@ tmp221, tmp221
 @ Patches/../C_code.c:1592: 		int wexp = table->baseRanks[0]; 
 	movs	r3, #44	@ tmp222,
 	mov	fp, r3	@ tmp222, tmp222
 @ Patches/../C_code.c:1601: 		if (IncludeMonstersWithoutWEXP) { 
-	ldr	r3, .L984+4	@ tmp223,
+	ldr	r3, .L983+4	@ tmp223,
 @ Patches/../C_code.c:1580: 	for (int i = 1; i <= GetMaxClasses(); i++) { 
 	movs	r4, #1	@ i,
 @ Patches/../C_code.c:1570: u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
@@ -7006,37 +6997,37 @@ BuildAvailableClassList:
 	mov	r8, r2	@ allegiance, tmp226
 @ Patches/../C_code.c:1601: 		if (IncludeMonstersWithoutWEXP) { 
 	mov	r10, r3	@ tmp223, tmp223
-	ldr	r5, .L984+8	@ ivtmp.1133,
+	ldr	r5, .L983+8	@ ivtmp.1133,
 @ Patches/../C_code.c:1580: 	for (int i = 1; i <= GetMaxClasses(); i++) { 
 	bl	GetMaxClasses		@
 @ Patches/../C_code.c:1580: 	for (int i = 1; i <= GetMaxClasses(); i++) { 
 	cmp	r0, r4	@ tmp228, i
-	blt	.L983		@,
-.L967:
+	blt	.L982		@,
+.L966:
 @ Patches/../C_code.c:1582: 		if (IsClassInvalid(i)) { continue; } 
 	ldrb	r3, [r5]	@ MEM[(unsigned char *)_74], MEM[(unsigned char *)_74]
 	cmp	r3, #0	@ MEM[(unsigned char *)_74],
-	bne	.L960		@,
+	bne	.L959		@,
 @ Patches/../C_code.c:1583: 		const struct ClassData* table = GetClassData(i); 
 	movs	r0, r4	@, i
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:1584: 		attr = table->attributes; 
 	ldr	r2, [r0, #40]	@ _1, table_37->attributes
 @ Patches/../C_code.c:1585: 		if (!promotedBitflag) { if (attr & CA_PROMOTED) { continue; } } 
 	cmp	r7, #0	@ promotedBitflag,
-	bne	.L961		@,
+	bne	.L960		@,
 @ Patches/../C_code.c:1585: 		if (!promotedBitflag) { if (attr & CA_PROMOTED) { continue; } } 
 	lsls	r3, r2, #23	@ tmp229, _1,
-	bmi	.L960		@,
-.L963:
+	bmi	.L959		@,
+.L962:
 @ Patches/../C_code.c:1588: 		if (!allegiance) { // no enemy bards / dancers 
 	mov	r3, r8	@ allegiance, allegiance
 	cmp	r3, #0	@ allegiance,
-	bne	.L964		@,
+	bne	.L963		@,
 @ Patches/../C_code.c:1589: 			if (attrExceptions & attr) { list[0]++; list[list[0]] = i; } 
 	adds	r3, r3, #48	@ tmp164,
 	tst	r3, r2	@ tmp164, _1
-	beq	.L964		@,
+	beq	.L963		@,
 @ Patches/../C_code.c:1589: 			if (attrExceptions & attr) { list[0]++; list[list[0]] = i; } 
 	ldrb	r3, [r6]	@ *list_29(D), *list_29(D)
 	adds	r3, r3, #1	@ tmp168,
@@ -7045,7 +7036,7 @@ BuildAvailableClassList:
 	strb	r3, [r6]	@ _4, *list_29(D)
 @ Patches/../C_code.c:1589: 			if (attrExceptions & attr) { list[0]++; list[list[0]] = i; } 
 	strb	r4, [r6, r3]	@ i, *_6
-.L964:
+.L963:
 @ Patches/../C_code.c:1599: 		wexp |= table->baseRanks[7]; 
 	mov	r3, fp	@ tmp222, tmp222
 	movs	r1, #45	@ tmp173,
@@ -7086,14 +7077,14 @@ BuildAvailableClassList:
 	mov	r1, r10	@ tmp223, tmp223
 	ldr	r1, [r1]	@ IncludeMonstersWithoutWEXP, IncludeMonstersWithoutWEXP
 	cmp	r1, #0	@ IncludeMonstersWithoutWEXP,
-	beq	.L965		@,
+	beq	.L964		@,
 @ Patches/../C_code.c:1602: 			if ((!wexp) && (!(attr & CA_LOCK_3))) { // Dragons or Monster depending of game
 	cmp	r3, #0	@ wexp,
-	bne	.L966		@,
+	bne	.L965		@,
 @ Patches/../C_code.c:1602: 			if ((!wexp) && (!(attr & CA_LOCK_3))) { // Dragons or Monster depending of game
 	lsls	r2, r2, #13	@ tmp231, _1,
-	bpl	.L960		@,
-.L966:
+	bpl	.L959		@,
+.L965:
 @ Patches/../C_code.c:1610: 		list[0]++; list[list[0]] = i;
 	ldrb	r3, [r6]	@ *list_29(D), *list_29(D)
 	adds	r3, r3, #1	@ tmp216,
@@ -7102,7 +7093,7 @@ BuildAvailableClassList:
 	strb	r3, [r6]	@ _19, *list_29(D)
 @ Patches/../C_code.c:1610: 		list[0]++; list[list[0]] = i;
 	strb	r4, [r6, r3]	@ i, *_21
-.L960:
+.L959:
 @ Patches/../C_code.c:1580: 	for (int i = 1; i <= GetMaxClasses(); i++) { 
 	adds	r4, r4, #1	@ i,
 	adds	r5, r5, #2	@ ivtmp.1133,
@@ -7110,8 +7101,8 @@ BuildAvailableClassList:
 	bl	GetMaxClasses		@
 @ Patches/../C_code.c:1580: 	for (int i = 1; i <= GetMaxClasses(); i++) { 
 	cmp	r0, r4	@ tmp228, i
-	bge	.L967		@,
-.L983:
+	bge	.L966		@,
+.L982:
 @ Patches/../C_code.c:1614: } 
 	@ sp needed	@
 	movs	r0, r6	@, list
@@ -7123,19 +7114,19 @@ BuildAvailableClassList:
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L961:
+.L960:
 @ Patches/../C_code.c:1586: 		else if (!(attr & CA_PROMOTED)) { continue; } 
 	lsls	r3, r2, #23	@ tmp230, _1,
-	bmi	.L963		@,
-	b	.L960		@
-.L965:
+	bmi	.L962		@,
+	b	.L959		@
+.L964:
 @ Patches/../C_code.c:1606: 		else if (!wexp) { 
 	cmp	r3, #0	@ wexp,
-	bne	.L966		@,
-	b	.L960		@
-.L985:
-	.align	2
+	bne	.L965		@,
+	b	.L959		@
 .L984:
+	.align	2
+.L983:
 	.word	GetClassData
 	.word	IncludeMonstersWithoutWEXP
 	.word	ClassExceptions+3
@@ -7163,15 +7154,15 @@ RandClass:
 	bl	ShouldRandomizeClass		@
 @ Patches/../C_code.c:1618: 	if (!ShouldRandomizeClass(unit)) { return id; } 
 	cmp	r0, #0	@ tmp174,
-	beq	.L987		@,
+	beq	.L986		@,
 @ Patches/../C_code.c:1619: 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
-	ldr	r3, .L1000	@ tmp142,
+	ldr	r3, .L999	@ tmp142,
 	lsls	r2, r4, #1	@ tmp143, id,
 @ Patches/../C_code.c:1619: 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	ldrb	r3, [r2, r3]	@ tmp144, ClassExceptions
 	cmp	r3, #0	@ tmp144,
-	beq	.L998		@,
-.L987:
+	beq	.L997		@,
+.L986:
 @ Patches/../C_code.c:1631: } 
 	movs	r0, r4	@, id
 	add	sp, sp, #260	@,,
@@ -7179,7 +7170,7 @@ RandClass:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L998:
+.L997:
 @ Patches/../C_code.c:1623: 	list[0] = 99; 
 	mov	r2, sp	@ tmp180,
 @ Patches/../C_code.c:1620: 	int allegiance = (unit->index)>>6;
@@ -7197,7 +7188,7 @@ RandClass:
 @ Patches/../C_code.c:1624: 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
 	ldr	r5, [r3, #40]	@ _6, _5->attributes
 @ Patches/../C_code.c:1624: 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
-	ldr	r3, .L1000+4	@ tmp153,
+	ldr	r3, .L999+4	@ tmp153,
 	bl	.L14		@
 @ Patches/../C_code.c:1624: 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
 	movs	r3, #128	@ tmp157,
@@ -7223,16 +7214,16 @@ RandClass:
 @ Patches/../C_code.c:1627: 	id = HashByte_Ch(id, list[0]+1, noise, 0);
 	adds	r1, r1, #1	@ _12,
 	adds	r0, r0, #16	@ _52,
-.L990:
+.L989:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_35], MEM[(int *)_35]
 	cmp	r2, #0	@ MEM[(int *)_35],
-	beq	.L999		@,
+	beq	.L998		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.1145,
 	cmp	r0, r3	@ _52, ivtmp.1145
-	bne	.L990		@,
-.L989:
+	bne	.L989		@,
+.L988:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	movs	r3, #0	@,
 	movs	r2, r6	@, noise
@@ -7240,29 +7231,29 @@ RandClass:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:1628: 	if (!id) { id = 1; } // never 0  
 	cmp	r0, #0	@ id,
-	bne	.L991		@,
+	bne	.L990		@,
 @ Patches/../C_code.c:1628: 	if (!id) { id = 1; } // never 0  
 	adds	r0, r0, #1	@ id,
-.L991:
+.L990:
 @ Patches/../C_code.c:1629: 	if (!list[id]) { return 1; } // never 0 
 	mov	r3, sp	@ tmp183,
 	ldrb	r4, [r3, r0]	@ _14, list
 @ Patches/../C_code.c:1629: 	if (!list[id]) { return 1; } // never 0 
 	cmp	r4, #0	@ _14,
-	bne	.L987		@,
+	bne	.L986		@,
 @ Patches/../C_code.c:1629: 	if (!list[id]) { return 1; } // never 0 
 	adds	r4, r4, #1	@ id,
-	b	.L987		@
-.L999:
+	b	.L986		@
+.L998:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	ldr	r2, .L1000+8	@ tmp163,
+	ldr	r2, .L999+8	@ tmp163,
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r2, [r3]	@ gCh, *_35
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L989		@
-.L1001:
-	.align	2
+	b	.L988		@
 .L1000:
+	.align	2
+.L999:
 	.word	ClassExceptions
 	.word	GetClassData
 	.word	gCh
@@ -7290,15 +7281,15 @@ RandClass2:
 	bl	ShouldRandomizeClass		@
 @ Patches/../C_code.c:1634: 	if (!ShouldRandomizeClass(unit)) { return id; } 
 	cmp	r0, #0	@ tmp173,
-	beq	.L1003		@,
+	beq	.L1002		@,
 @ Patches/../C_code.c:1635: 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
-	ldr	r3, .L1012	@ tmp137,
+	ldr	r3, .L1011	@ tmp137,
 	lsls	r2, r4, #1	@ tmp138, id,
 @ Patches/../C_code.c:1635: 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	ldrb	r3, [r2, r3]	@ tmp139, ClassExceptions
 	cmp	r3, #0	@ tmp139,
-	beq	.L1010		@,
-.L1003:
+	beq	.L1009		@,
+.L1002:
 @ Patches/../C_code.c:1647: } 
 	movs	r0, r4	@, id
 	add	sp, sp, #260	@,,
@@ -7306,7 +7297,7 @@ RandClass2:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1010:
+.L1009:
 @ Patches/../C_code.c:1639: 	list[0] = 99; 
 	mov	r2, sp	@ tmp179,
 @ Patches/../C_code.c:1636: 	int allegiance = (unit->index)>>6;
@@ -7324,7 +7315,7 @@ RandClass2:
 @ Patches/../C_code.c:1640: 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
 	ldr	r5, [r3, #40]	@ _15, _14->attributes
 @ Patches/../C_code.c:1640: 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
-	ldr	r3, .L1012+4	@ tmp148,
+	ldr	r3, .L1011+4	@ tmp148,
 	bl	.L14		@
 @ Patches/../C_code.c:1640: 	int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes)& CA_PROMOTED;
 	movs	r3, #128	@ tmp152,
@@ -7353,26 +7344,26 @@ RandClass2:
 	bl	HashByte_Class		@
 @ Patches/../C_code.c:1644: 	if (!id) { id = 1; } // never 0  
 	cmp	r0, #0	@ id,
-	bne	.L1004		@,
+	bne	.L1003		@,
 @ Patches/../C_code.c:1644: 	if (!id) { id = 1; } // never 0  
 	adds	r0, r0, #1	@ id,
-.L1004:
+.L1003:
 	mov	r3, sp	@ tmp181,
 	ldrb	r3, [r3, r0]	@ tmp163, list
 	adds	r4, r3, #0	@ tmp160, tmp163
 	cmp	r3, #0	@ tmp163,
-	beq	.L1011		@,
+	beq	.L1010		@,
 	lsls	r4, r4, #24	@ tmp167, tmp160,
 	lsrs	r4, r4, #24	@ id, tmp167,
-	b	.L1003		@
-.L1011:
+	b	.L1002		@
+.L1010:
 	movs	r4, #1	@ tmp160,
 	lsls	r4, r4, #24	@ tmp167, tmp160,
 	lsrs	r4, r4, #24	@ id, tmp167,
-	b	.L1003		@
-.L1013:
-	.align	2
+	b	.L1002		@
 .L1012:
+	.align	2
+.L1011:
 	.word	ClassExceptions
 	.word	GetClassData
 	.size	RandClass2, .-RandClass2
@@ -7398,22 +7389,22 @@ GetValidWexpMask:
 @ Patches/../C_code.c:1655: 			result |= 1<<i;
 	movs	r4, #1	@ tmp128,
 	adds	r1, r1, #44	@ tmp127,
-.L1016:
+.L1015:
 @ Patches/../C_code.c:1654: 		if (wexp) { 
 	ldrb	r2, [r1, r3]	@ MEM[(unsigned char *)_6 + _16 * 1], MEM[(unsigned char *)_6 + _16 * 1]
 	cmp	r2, #0	@ MEM[(unsigned char *)_6 + _16 * 1],
-	beq	.L1015		@,
+	beq	.L1014		@,
 @ Patches/../C_code.c:1655: 			result |= 1<<i;
 	movs	r2, r4	@ tmp124, tmp128
 	lsls	r2, r2, r3	@ tmp124, tmp124, i
 @ Patches/../C_code.c:1655: 			result |= 1<<i;
 	orrs	r0, r2	@ <retval>, tmp124
-.L1015:
+.L1014:
 @ Patches/../C_code.c:1652:     for (int i = 0; i < 8; ++i) {
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:1652:     for (int i = 0; i < 8; ++i) {
 	cmp	r3, #8	@ i,
-	bne	.L1016		@,
+	bne	.L1015		@,
 @ Patches/../C_code.c:1659: } 
 	@ sp needed	@
 	pop	{r4}
@@ -7440,22 +7431,22 @@ GetUsedWexpMask:
 @ Patches/../C_code.c:1667: 			result |= 1<<i;
 	movs	r4, #1	@ tmp127,
 	adds	r1, r1, #40	@ tmp126,
-.L1023:
+.L1022:
 @ Patches/../C_code.c:1666: 		if (wexp) { 
 	ldrb	r2, [r1, r3]	@ MEM[(unsigned char *)_5 + _15 * 1], MEM[(unsigned char *)_5 + _15 * 1]
 	cmp	r2, #0	@ MEM[(unsigned char *)_5 + _15 * 1],
-	beq	.L1022		@,
+	beq	.L1021		@,
 @ Patches/../C_code.c:1667: 			result |= 1<<i;
 	movs	r2, r4	@ tmp123, tmp127
 	lsls	r2, r2, r3	@ tmp123, tmp123, i
 @ Patches/../C_code.c:1667: 			result |= 1<<i;
 	orrs	r0, r2	@ <retval>, tmp123
-.L1022:
+.L1021:
 @ Patches/../C_code.c:1664:     for (int i = 0; i < 8; ++i) {
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:1664:     for (int i = 0; i < 8; ++i) {
 	cmp	r3, #8	@ i,
-	bne	.L1023		@,
+	bne	.L1022		@,
 @ Patches/../C_code.c:1671: } 
 	@ sp needed	@
 	pop	{r4}
@@ -7490,22 +7481,22 @@ BuildAvailableWeaponList:
 @ Patches/../C_code.c:1675: u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) { 
 	sub	sp, sp, #28	@,,
 	adds	r4, r4, #40	@ tmp350,
-.L1030:
+.L1029:
 @ Patches/../C_code.c:1666: 		if (wexp) { 
 	ldrb	r0, [r4, r3]	@ MEM[(unsigned char *)_81 + _82 * 1], MEM[(unsigned char *)_81 + _82 * 1]
 	cmp	r0, #0	@ MEM[(unsigned char *)_81 + _82 * 1],
-	beq	.L1029		@,
+	beq	.L1028		@,
 @ Patches/../C_code.c:1667: 			result |= 1<<i;
 	movs	r0, r5	@ tmp209, tmp360
 	lsls	r0, r0, r3	@ tmp209, tmp209, i
 @ Patches/../C_code.c:1667: 			result |= 1<<i;
 	orrs	r2, r0	@ result, tmp209
-.L1029:
+.L1028:
 @ Patches/../C_code.c:1664:     for (int i = 0; i < 8; ++i) {
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:1664:     for (int i = 0; i < 8; ++i) {
 	cmp	r3, #8	@ i,
-	bne	.L1030		@,
+	bne	.L1029		@,
 @ Patches/../C_code.c:1688: 	attr = unit->pCharacterData->attributes | unit->pClassData->attributes; 
 	ldr	r3, [r1, #4]	@ unit_64(D)->pClassData, unit_64(D)->pClassData
 @ Patches/../C_code.c:1688: 	attr = unit->pCharacterData->attributes | unit->pClassData->attributes; 
@@ -7527,15 +7518,15 @@ BuildAvailableWeaponList:
 	subs	r5, r3, #1	@ tmp220, tmp219
 	sbcs	r3, r3, r5	@ tmp221, tmp219, tmp220
 	cmp	r3, #0	@ tmp221,
-	bne	.L1031		@,
+	bne	.L1030		@,
 	ldrb	r3, [r4, #4]	@ tmp226,
 	cmp	r3, #44	@ tmp226,
-	bls	.LCB6249	@
-	b	.L1143	@long jump	@
-.LCB6249:
-.L1031:
+	bls	.LCB6241	@
+	b	.L1142	@long jump	@
+.LCB6241:
+.L1030:
 @ Patches/../C_code.c:1686: 	badAttr = IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_LOCK_5|IA_LOCK_6|IA_LOCK_7|IA_UNCOUNTERABLE; 
-	ldr	r3, .L1150	@ tmp406,
+	ldr	r3, .L1149	@ tmp406,
 	mov	ip, r3	@ tmp406, tmp406
 @ Patches/../C_code.c:1690: 		if (attr & CA_LOCK_1) { badAttr &= ~IA_LOCK_1; } // "wep lock 1" 
 	lsls	r6, r0, #15	@ tmp234, _5,
@@ -7546,61 +7537,61 @@ BuildAvailableWeaponList:
 	add	r6, r6, ip	@ badAttr, tmp406
 @ Patches/../C_code.c:1691: 		if (attr & CA_LOCK_2) { badAttr &= ~IA_LOCK_2; } // myrm 
 	lsls	r3, r0, #14	@ tmp370, _5,
-	bpl	.L1034		@,
+	bpl	.L1033		@,
 @ Patches/../C_code.c:1691: 		if (attr & CA_LOCK_2) { badAttr &= ~IA_LOCK_2; } // myrm 
-	ldr	r3, .L1150+4	@ tmp240,
+	ldr	r3, .L1149+4	@ tmp240,
 	ands	r6, r3	@ badAttr, tmp240
-.L1034:
+.L1033:
 @ Patches/../C_code.c:1692: 		if (attr & CA_LOCK_3) { badAttr &= ~IA_LOCK_3; } // manakete 
 	lsls	r3, r0, #13	@ tmp371, _5,
-	bpl	.L1035		@,
+	bpl	.L1034		@,
 @ Patches/../C_code.c:1692: 		if (attr & CA_LOCK_3) { badAttr &= ~IA_LOCK_3; } // manakete 
-	ldr	r3, .L1150+8	@ tmp245,
+	ldr	r3, .L1149+8	@ tmp245,
 	ands	r6, r3	@ badAttr, tmp245
-.L1035:
+.L1034:
 @ Patches/../C_code.c:1693: 		if (attr & CA_LOCK_4) { badAttr &= ~IA_LOCK_4; } // eliwood 
 	lsls	r3, r0, #3	@ tmp372, _5,
-	bpl	.L1036		@,
+	bpl	.L1035		@,
 @ Patches/../C_code.c:1693: 		if (attr & CA_LOCK_4) { badAttr &= ~IA_LOCK_4; } // eliwood 
-	ldr	r3, .L1150+12	@ tmp250,
+	ldr	r3, .L1149+12	@ tmp250,
 	ands	r6, r3	@ badAttr, tmp250
-.L1036:
+.L1035:
 @ Patches/../C_code.c:1695: 		if (attr & CA_LOCK_5) { badAttr &= ~IA_LOCK_5; } // hector 
 	lsls	r3, r0, #2	@ tmp373, _5,
-	bpl	.L1037		@,
+	bpl	.L1036		@,
 @ Patches/../C_code.c:1695: 		if (attr & CA_LOCK_5) { badAttr &= ~IA_LOCK_5; } // hector 
-	ldr	r3, .L1150+16	@ tmp255,
+	ldr	r3, .L1149+16	@ tmp255,
 	ands	r6, r3	@ badAttr, tmp255
-.L1037:
+.L1036:
 @ Patches/../C_code.c:1696: 		if (attr & CA_LOCK_6) { badAttr &= ~IA_LOCK_6; } // lyn 
 	lsls	r3, r0, #1	@ tmp374, _5,
-	bpl	.LCB6295	@
-	b	.L1144	@long jump	@
-.LCB6295:
-.L1038:
+	bpl	.LCB6287	@
+	b	.L1143	@long jump	@
+.LCB6287:
+.L1037:
 @ Patches/../C_code.c:1699: 		allowStatBoosts = true; 
 	movs	r3, #1	@ allowStatBoosts,
 	str	r3, [sp, #8]	@ allowStatBoosts, %sfp
 @ Patches/../C_code.c:1697: 		if (attr & CA_LOCK_7) { badAttr &= ~IA_LOCK_7; } // athos 
 	cmp	r0, #0	@ _5,
-	bge	.L1032		@,
+	bge	.L1031		@,
 @ Patches/../C_code.c:1697: 		if (attr & CA_LOCK_7) { badAttr &= ~IA_LOCK_7; } // athos 
-	ldr	r3, .L1150+20	@ tmp263,
+	ldr	r3, .L1149+20	@ tmp263,
 	ands	r6, r3	@ badAttr, tmp263
-.L1032:
+.L1031:
 @ Patches/../C_code.c:1701: 	if (IncludeMonstersWithoutWEXP && (attr & CA_LOCK_3)) { badAttr &= ~IA_LOCK_3; } // manakete 
-	ldr	r3, .L1150+24	@ tmp264,
+	ldr	r3, .L1149+24	@ tmp264,
 	ldr	r3, [r3]	@ IncludeMonstersWithoutWEXP.117_6, IncludeMonstersWithoutWEXP
 	mov	r8, r3	@ IncludeMonstersWithoutWEXP.117_6, IncludeMonstersWithoutWEXP.117_6
 @ Patches/../C_code.c:1701: 	if (IncludeMonstersWithoutWEXP && (attr & CA_LOCK_3)) { badAttr &= ~IA_LOCK_3; } // manakete 
 	cmp	r3, #0	@ IncludeMonstersWithoutWEXP.117_6,
-	beq	.L1039		@,
+	beq	.L1038		@,
 @ Patches/../C_code.c:1701: 	if (IncludeMonstersWithoutWEXP && (attr & CA_LOCK_3)) { badAttr &= ~IA_LOCK_3; } // manakete 
 	lsls	r3, r0, #13	@ tmp375, _5,
-	bpl	.LCB6313	@
-	b	.L1145	@long jump	@
-.LCB6313:
-.L1039:
+	bpl	.LCB6305	@
+	b	.L1144	@long jump	@
+.LCB6305:
+.L1038:
 @ Patches/../C_code.c:1704: 	ranks[0] = unit->ranks[0]; 
 	ldr	r7, [r1, #40]	@ vect__7.1182, MEM <vector(4) unsigned char> [(unsigned char *)unit_64(D) + 40B]
 @ Patches/../C_code.c:1712: 	int doWeHaveNonStaff = ranks[0] | ranks[1] | ranks[2] | ranks[3] | ranks[5] | ranks[6] | ranks[7];
@@ -7635,26 +7626,26 @@ BuildAvailableWeaponList:
 	lsrs	r3, r3, #24	@ _20, tmp292,
 @ Patches/../C_code.c:1713: 	if (IncludeMonstersWithoutWEXP && (attr & CA_LOCK_3)) { 
 	cmp	r4, #0	@ IncludeMonstersWithoutWEXP.117_6,
-	beq	.L1040		@,
+	beq	.L1039		@,
 @ Patches/../C_code.c:1713: 	if (IncludeMonstersWithoutWEXP && (attr & CA_LOCK_3)) { 
 	lsls	r0, r0, #13	@ tmp376, _5,
-	bpl	.L1040		@,
+	bpl	.L1039		@,
 @ Patches/../C_code.c:1722: 	if (doWeHaveNonStaff) { ranks[4] = 0; doWeHaveNonStaff = 0; } // do not include staves at first 
 	movs	r3, #0	@ tmp299,
 	add	r0, sp, #16	@ tmp413,,
 	strb	r3, [r0, #4]	@ tmp299, ranks[4]
 @ Patches/../C_code.c:1722: 	if (doWeHaveNonStaff) { ranks[4] = 0; doWeHaveNonStaff = 0; } // do not include staves at first 
 	str	r3, [sp, #4]	@ doWeHaveNonStaff, %sfp
-.L1042:
+.L1041:
 @ Patches/../C_code.c:1725: 	list[0] = 0; // count  
 	movs	r3, #0	@ tmp301,
 	mov	r0, fp	@ list, list
 	strb	r3, [r0]	@ tmp301, *list_91(D)
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
-	ldr	r3, .L1150+28	@ tmp357,
+	ldr	r3, .L1149+28	@ tmp357,
 	mov	r8, r3	@ tmp357, tmp357
 @ Patches/../C_code.c:1214: 	const struct ItemData* table = GetItemData(1); 
-	ldr	r3, .L1150+32	@ tmp358,
+	ldr	r3, .L1149+32	@ tmp358,
 	mov	r9, r3	@ tmp358, tmp358
 	mov	r3, r8	@ tmp357, tmp357
 @ Patches/../C_code.c:1727: 	for (int i = 1; i <= GetMaxItems(); i++) { 
@@ -7662,75 +7653,75 @@ BuildAvailableWeaponList:
 	mov	r8, r6	@ badAttr, badAttr
 	mov	r10, r2	@ result, result
 	movs	r6, r3	@ tmp357, tmp357
-	ldr	r5, .L1150+36	@ ivtmp.1201,
-	ldr	r7, .L1150+40	@ tmp351,
+	ldr	r5, .L1149+36	@ ivtmp.1201,
+	ldr	r7, .L1149+40	@ tmp351,
 	str	r1, [sp, #12]	@ unit, %sfp
-.L1043:
+.L1042:
 @ Patches/../C_code.c:1212: 	if (MaxItems_Link) { return MaxItems_Link; } 
 	ldr	r3, [r7]	@ MaxItems_Link.75_122, MaxItems_Link
 @ Patches/../C_code.c:1212: 	if (MaxItems_Link) { return MaxItems_Link; } 
 	cmp	r3, #0	@ MaxItems_Link.75_122,
-	bne	.L1062		@,
+	bne	.L1061		@,
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
 	ldr	r3, [r6]	@ MaxItems, MaxItems
 	ldrb	r3, [r3]	@ _124, *MaxItems.76_123
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
 	cmp	r3, #0	@ _124,
-	bne	.L1062		@,
+	bne	.L1061		@,
 @ Patches/../C_code.c:1214: 	const struct ItemData* table = GetItemData(1); 
 	movs	r0, #1	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	movs	r3, #1	@ i,
-	b	.L1066		@
-.L1064:
+	b	.L1065		@
+.L1063:
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:1217: 		table++; 
 	adds	r0, r0, #36	@ table,
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	cmp	r3, #255	@ i,
-	beq	.L1065		@,
-.L1066:
+	beq	.L1064		@,
+.L1065:
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	ldrb	r2, [r0, #6]	@ MEM[(unsigned char *)table_163 + 6B], MEM[(unsigned char *)table_163 + 6B]
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	cmp	r2, r3	@ MEM[(unsigned char *)table_163 + 6B], i
-	beq	.L1064		@,
+	beq	.L1063		@,
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	subs	r0, r0, #36	@ table,
-.L1065:
+.L1064:
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	ldr	r2, [r6]	@ MaxItems.78_137, MaxItems
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	ldrb	r3, [r0, #6]	@ _139,
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	strb	r3, [r2]	@ _139, *MaxItems.78_137
-.L1062:
+.L1061:
 @ Patches/../C_code.c:1727: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	cmp	r4, r3	@ i, MaxItems_Link.75_122
-	bgt	.L1146		@,
+	bgt	.L1145		@,
 @ Patches/../C_code.c:1728: 		if (ItemExceptions[i].NeverChangeInto) { continue; } 
 	ldrb	r3, [r5]	@ MEM[(unsigned char *)_83], MEM[(unsigned char *)_83]
 	cmp	r3, #0	@ MEM[(unsigned char *)_83],
-	bne	.L1045		@,
+	bne	.L1044		@,
 @ Patches/../C_code.c:1729: 		table = GetItemData(i);  
 	movs	r0, r4	@, i
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:1732: 		if ((attr & badAttr) || (!(attr & (IA_WEAPON|doWeHaveNonStaff)))) { // must be equippable (or a staff if we have no other weapons) 
 	mov	r2, r8	@ badAttr, badAttr
 @ Patches/../C_code.c:1730: 		attr = table->attributes; 
 	ldr	r3, [r0, #8]	@ _22, table_98->attributes
 @ Patches/../C_code.c:1732: 		if ((attr & badAttr) || (!(attr & (IA_WEAPON|doWeHaveNonStaff)))) { // must be equippable (or a staff if we have no other weapons) 
 	tst	r3, r2	@ _22, badAttr
-	bne	.L1045		@,
+	bne	.L1044		@,
 @ Patches/../C_code.c:1732: 		if ((attr & badAttr) || (!(attr & (IA_WEAPON|doWeHaveNonStaff)))) { // must be equippable (or a staff if we have no other weapons) 
 	movs	r2, #1	@ tmp306,
 	ldr	r1, [sp, #4]	@ doWeHaveNonStaff, %sfp
 	orrs	r2, r1	@ tmp307, doWeHaveNonStaff
 @ Patches/../C_code.c:1732: 		if ((attr & badAttr) || (!(attr & (IA_WEAPON|doWeHaveNonStaff)))) { // must be equippable (or a staff if we have no other weapons) 
 	tst	r3, r2	@ _22, tmp307
-	beq	.L1045		@,
+	beq	.L1044		@,
 @ Patches/../C_code.c:1737: 		rank = table->weaponRank;
 	ldrb	r1, [r0, #28]	@ rank,
 @ Patches/../C_code.c:1736: 		type = table->weaponType; 
@@ -7743,37 +7734,37 @@ BuildAvailableWeaponList:
 @ Patches/../C_code.c:1741: 		if ((!rank) && (!(attr & (IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_LOCK_5|IA_LOCK_6|IA_LOCK_7)))) { 
 	ldr	r1, [sp]	@ rank, %sfp
 	cmp	r1, #0	@ rank,
-	beq	.L1047		@,
+	beq	.L1046		@,
 @ Patches/../C_code.c:1754: 		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 71; } // devil weapons are considered C rank
 	mov	r1, ip	@ pretmp_182, pretmp_182
 @ Patches/../C_code.c:1748: 		if (type <= 7) { if (!rank) { rank = 1; } } // PRFs require at least 1 wexp in that type 
 	cmp	r2, #7	@ type,
-	ble	.L1147		@,
-.L1048:
+	ble	.L1146		@,
+.L1047:
 @ Patches/../C_code.c:1754: 		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 71; } // devil weapons are considered C rank
 	cmp	r1, #4	@ pretmp_182,
-	beq	.L1140		@,
-.L1055:
+	beq	.L1139		@,
+.L1054:
 @ Patches/../C_code.c:1770: 		if ((!allowStatBoosts) && (table->pStatBonuses)) { continue; } 
 	ldr	r2, [sp, #8]	@ allowStatBoosts, %sfp
 	cmp	r2, #0	@ allowStatBoosts,
-	bne	.L1058		@,
+	bne	.L1057		@,
 @ Patches/../C_code.c:1770: 		if ((!allowStatBoosts) && (table->pStatBonuses)) { continue; } 
 	ldr	r2, [r0, #12]	@ table_98->pStatBonuses, table_98->pStatBonuses
 	cmp	r2, #0	@ table_98->pStatBonuses,
-	beq	.L1058		@,
-.L1045:
+	beq	.L1057		@,
+.L1044:
 @ Patches/../C_code.c:1727: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	adds	r4, r4, #1	@ i,
 	adds	r5, r5, #2	@ ivtmp.1201,
-	b	.L1043		@
-.L1040:
+	b	.L1042		@
+.L1039:
 @ Patches/../C_code.c:1723: 	else { doWeHaveNonStaff = IA_STAFF; } 
 	movs	r0, #4	@ doWeHaveNonStaff,
 	str	r0, [sp, #4]	@ doWeHaveNonStaff, %sfp
 @ Patches/../C_code.c:1718: 	else if (doWeHaveNonStaff){ 
 	cmp	r3, #0	@ _20,
-	beq	.L1042		@,
+	beq	.L1041		@,
 @ Patches/../C_code.c:1719: 		badAttr |= IA_LOCK_3;
 	movs	r3, #128	@ tmp297,
 	lsls	r3, r3, #3	@ tmp297, tmp297,
@@ -7784,14 +7775,14 @@ BuildAvailableWeaponList:
 	strb	r3, [r0, #4]	@ tmp299, ranks[4]
 @ Patches/../C_code.c:1722: 	if (doWeHaveNonStaff) { ranks[4] = 0; doWeHaveNonStaff = 0; } // do not include staves at first 
 	str	r3, [sp, #4]	@ doWeHaveNonStaff, %sfp
-	b	.L1042		@
-.L1058:
+	b	.L1041		@
+.L1057:
 @ Patches/../C_code.c:1772: 		if (WepLockExInstalled) { 
-	ldr	r2, .L1150+44	@ tmp322,
+	ldr	r2, .L1149+44	@ tmp322,
 @ Patches/../C_code.c:1772: 		if (WepLockExInstalled) { 
 	ldr	r2, [r2]	@ WepLockExInstalled, WepLockExInstalled
 	cmp	r2, #0	@ WepLockExInstalled,
-	beq	.L1061		@,
+	beq	.L1060		@,
 @ Patches/../C_code.c:1773: 			if (attr & IA_STAFF) { if (!CanUnitUseStaff(unit, i|0x100)) { continue; } } 
 	movs	r1, #128	@ tmp330,
 	lsls	r1, r1, #1	@ tmp330, tmp330,
@@ -7799,14 +7790,14 @@ BuildAvailableWeaponList:
 	orrs	r1, r4	@ _46, i
 @ Patches/../C_code.c:1773: 			if (attr & IA_STAFF) { if (!CanUnitUseStaff(unit, i|0x100)) { continue; } } 
 	lsls	r3, r3, #29	@ tmp377, _22,
-	bpl	.L1060		@,
+	bpl	.L1059		@,
 @ Patches/../C_code.c:1773: 			if (attr & IA_STAFF) { if (!CanUnitUseStaff(unit, i|0x100)) { continue; } } 
-	ldr	r3, .L1150+48	@ tmp333,
+	ldr	r3, .L1149+48	@ tmp333,
 	bl	.L14		@
 @ Patches/../C_code.c:1773: 			if (attr & IA_STAFF) { if (!CanUnitUseStaff(unit, i|0x100)) { continue; } } 
 	cmp	r0, #0	@ tmp364,
-	beq	.L1045		@,
-.L1061:
+	beq	.L1044		@,
+.L1060:
 @ Patches/../C_code.c:1777: 		list[0]++; 
 	mov	r3, fp	@ list, list
 	mov	r2, fp	@ list, list
@@ -7817,12 +7808,12 @@ BuildAvailableWeaponList:
 	strb	r3, [r2]	@ _40, *list_91(D)
 @ Patches/../C_code.c:1778: 		list[list[0]] = i; 
 	strb	r4, [r2, r3]	@ i, *_42
-.L1149:
+.L1148:
 @ Patches/../C_code.c:1727: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	adds	r4, r4, #1	@ i,
 	adds	r5, r5, #2	@ ivtmp.1201,
-	b	.L1043		@
-.L1146:
+	b	.L1042		@
+.L1145:
 @ Patches/../C_code.c:1781: } 
 	mov	r0, fp	@, list
 	add	sp, sp, #28	@,,
@@ -7835,41 +7826,41 @@ BuildAvailableWeaponList:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1047:
+.L1046:
 @ Patches/../C_code.c:1741: 		if ((!rank) && (!(attr & (IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_LOCK_5|IA_LOCK_6|IA_LOCK_7)))) { 
-	ldr	r1, .L1150+52	@ tmp310,
+	ldr	r1, .L1149+52	@ tmp310,
 	tst	r3, r1	@ _22, tmp310
-	bne	.L1052		@,
+	bne	.L1051		@,
 @ Patches/../C_code.c:1754: 		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 71; } // devil weapons are considered C rank
 	mov	r1, ip	@ pretmp_182, pretmp_182
 @ Patches/../C_code.c:1748: 		if (type <= 7) { if (!rank) { rank = 1; } } // PRFs require at least 1 wexp in that type 
 	cmp	r2, #7	@ type,
-	bgt	.L1048		@,
+	bgt	.L1047		@,
 @ Patches/../C_code.c:1754: 		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 71; } // devil weapons are considered C rank
 	cmp	r1, #4	@ pretmp_182,
-	beq	.L1073		@,
+	beq	.L1072		@,
 @ Patches/../C_code.c:1746: 			rank = 251; 
 	movs	r1, #251	@ rank,
 	str	r1, [sp]	@ rank, %sfp
-	b	.L1049		@
-.L1052:
+	b	.L1048		@
+.L1051:
 @ Patches/../C_code.c:1754: 		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 71; } // devil weapons are considered C rank
 	mov	r1, ip	@ pretmp_182, pretmp_182
 @ Patches/../C_code.c:1748: 		if (type <= 7) { if (!rank) { rank = 1; } } // PRFs require at least 1 wexp in that type 
 	cmp	r2, #7	@ type,
-	bgt	.L1048		@,
+	bgt	.L1047		@,
 @ Patches/../C_code.c:1754: 		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 71; } // devil weapons are considered C rank
 	cmp	r1, #4	@ pretmp_182,
-	beq	.L1050		@,
+	beq	.L1049		@,
 @ Patches/../C_code.c:1748: 		if (type <= 7) { if (!rank) { rank = 1; } } // PRFs require at least 1 wexp in that type 
 	movs	r1, #1	@ rank,
 	str	r1, [sp]	@ rank, %sfp
-	b	.L1049		@
-.L1147:
+	b	.L1048		@
+.L1146:
 @ Patches/../C_code.c:1754: 		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 71; } // devil weapons are considered C rank
 	cmp	r1, #4	@ pretmp_182,
-	beq	.L1148		@,
-.L1049:
+	beq	.L1147		@,
+.L1048:
 @ Patches/../C_code.c:1758: 			if (rank > ranks[type]) { 
 	add	r1, sp, #16	@ tmp436,,
 	ldrb	r1, [r1, r2]	@ tmp349, ranks
@@ -7877,50 +7868,50 @@ BuildAvailableWeaponList:
 @ Patches/../C_code.c:1758: 			if (rank > ranks[type]) { 
 	ldr	r1, [sp]	@ rank, %sfp
 	cmp	ip, r1	@ tmp349, rank
-	blt	.L1045		@,
-.L1140:
+	blt	.L1044		@,
+.L1139:
 @ Patches/../C_code.c:1764: 		type = 1<<(type); // now bitmask only 
 	movs	r1, #1	@ tmp319,
 	lsls	r1, r1, r2	@ type, tmp319, type
 @ Patches/../C_code.c:1766: 			if (!(type & wexpMask)) { 
 	mov	r2, r10	@ result, result
 	tst	r1, r2	@ type, result
-	bne	.L1055		@,
-.L1141:
+	bne	.L1054		@,
+.L1140:
 @ Patches/../C_code.c:1727: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	adds	r4, r4, #1	@ i,
 	adds	r5, r5, #2	@ ivtmp.1201,
-	b	.L1043		@
-.L1144:
-@ Patches/../C_code.c:1696: 		if (attr & CA_LOCK_6) { badAttr &= ~IA_LOCK_6; } // lyn 
-	ldr	r3, .L1150+56	@ tmp260,
-	ands	r6, r3	@ badAttr, tmp260
-	b	.L1038		@
+	b	.L1042		@
 .L1143:
+@ Patches/../C_code.c:1696: 		if (attr & CA_LOCK_6) { badAttr &= ~IA_LOCK_6; } // lyn 
+	ldr	r3, .L1149+56	@ tmp260,
+	ands	r6, r3	@ badAttr, tmp260
+	b	.L1037		@
+.L1142:
 @ Patches/../C_code.c:1689: 	if ((IsUnitAlliedOrPlayable(unit)) || (attr & CA_BOSS)) { // only player units / bosses can start with wep locked weps 
 	lsls	r3, r0, #16	@ tmp369, _5,
-	bpl	.LCB6574	@
-	b	.L1031	@long jump	@
-.LCB6574:
+	bpl	.LCB6566	@
+	b	.L1030	@long jump	@
+.LCB6566:
 @ Patches/../C_code.c:1681: 	int allowStatBoosts = false; 
 	movs	r3, #0	@ allowStatBoosts,
 @ Patches/../C_code.c:1686: 	badAttr = IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_LOCK_5|IA_LOCK_6|IA_LOCK_7|IA_UNCOUNTERABLE; 
-	ldr	r6, .L1150	@ badAttr,
+	ldr	r6, .L1149	@ badAttr,
 @ Patches/../C_code.c:1681: 	int allowStatBoosts = false; 
 	str	r3, [sp, #8]	@ allowStatBoosts, %sfp
-	b	.L1032		@
-.L1145:
+	b	.L1031		@
+.L1144:
 @ Patches/../C_code.c:1701: 	if (IncludeMonstersWithoutWEXP && (attr & CA_LOCK_3)) { badAttr &= ~IA_LOCK_3; } // manakete 
-	ldr	r3, .L1150+8	@ tmp269,
+	ldr	r3, .L1149+8	@ tmp269,
 	ands	r6, r3	@ badAttr, tmp269
-	b	.L1039		@
-.L1060:
+	b	.L1038		@
+.L1059:
 @ Patches/../C_code.c:1774: 			else if (!CanUnitUseWeapon(unit, i|0x100)) { continue; } 
-	ldr	r3, .L1150+60	@ tmp336,
+	ldr	r3, .L1149+60	@ tmp336,
 	bl	.L14		@
 @ Patches/../C_code.c:1774: 			else if (!CanUnitUseWeapon(unit, i|0x100)) { continue; } 
 	cmp	r0, #0	@ tmp365,
-	beq	.L1045		@,
+	beq	.L1044		@,
 @ Patches/../C_code.c:1777: 		list[0]++; 
 	mov	r3, fp	@ list, list
 	mov	r2, fp	@ list, list
@@ -7931,31 +7922,31 @@ BuildAvailableWeaponList:
 	strb	r3, [r2]	@ _40, *list_91(D)
 @ Patches/../C_code.c:1778: 		list[list[0]] = i; 
 	strb	r4, [r2, r3]	@ i, *_42
-	b	.L1149		@
-.L1050:
+	b	.L1148		@
+.L1049:
 @ Patches/../C_code.c:1758: 			if (rank > ranks[type]) { 
 	add	r1, sp, #16	@ tmp430,,
 	ldrb	r1, [r1, r2]	@ tmp318, ranks
 	cmp	r1, #70	@ tmp318,
-	bhi	.LCB6609	@
-	b	.L1045	@long jump	@
-.LCB6609:
+	bhi	.LCB6601	@
+	b	.L1044	@long jump	@
+.LCB6601:
 @ Patches/../C_code.c:1764: 		type = 1<<(type); // now bitmask only 
 	movs	r1, #1	@ tmp319,
 	lsls	r1, r1, r2	@ type, tmp319, type
 @ Patches/../C_code.c:1766: 			if (!(type & wexpMask)) { 
 	mov	r2, r10	@ result, result
 	tst	r1, r2	@ type, result
-	beq	.LCB6614	@
-	b	.L1055	@long jump	@
-.LCB6614:
-	b	.L1141		@
-.L1148:
+	beq	.LCB6606	@
+	b	.L1054	@long jump	@
+.LCB6606:
+	b	.L1140		@
+.L1147:
 @ Patches/../C_code.c:1754: 		if ((table->weaponEffectId == 4) && (rank < 101)) { rank = 71; } // devil weapons are considered C rank
 	ldr	r1, [sp]	@ rank, %sfp
 	cmp	r1, #100	@ rank,
-	ble	.L1050		@,
-.L1051:
+	ble	.L1049		@,
+.L1050:
 @ Patches/../C_code.c:1758: 			if (rank > ranks[type]) { 
 	add	r1, sp, #16	@ tmp428,,
 	ldrb	r1, [r1, r2]	@ tmp312, ranks
@@ -7963,27 +7954,27 @@ BuildAvailableWeaponList:
 @ Patches/../C_code.c:1758: 			if (rank > ranks[type]) { 
 	ldr	r1, [sp]	@ rank, %sfp
 	cmp	ip, r1	@ tmp312, rank
-	bge	.LCB6629	@
-	b	.L1045	@long jump	@
-.LCB6629:
+	bge	.LCB6621	@
+	b	.L1044	@long jump	@
+.LCB6621:
 @ Patches/../C_code.c:1764: 		type = 1<<(type); // now bitmask only 
 	movs	r1, #1	@ tmp319,
 	lsls	r1, r1, r2	@ type, tmp319, type
 @ Patches/../C_code.c:1766: 			if (!(type & wexpMask)) { 
 	mov	r2, r10	@ result, result
 	tst	r1, r2	@ type, result
-	beq	.LCB6634	@
-	b	.L1055	@long jump	@
-.LCB6634:
-	b	.L1141		@
-.L1073:
+	beq	.LCB6626	@
+	b	.L1054	@long jump	@
+.LCB6626:
+	b	.L1140		@
+.L1072:
 @ Patches/../C_code.c:1746: 			rank = 251; 
 	movs	r1, #251	@ rank,
 	str	r1, [sp]	@ rank, %sfp
-	b	.L1051		@
-.L1151:
-	.align	2
+	b	.L1050		@
 .L1150:
+	.align	2
+.L1149:
 	.word	3939456
 	.word	-4097
 	.word	-1025
@@ -8029,22 +8020,22 @@ AppendAvailableStaffList:
 	movs	r5, r1	@ unit, tmp248
 	sub	sp, sp, #12	@,,
 	adds	r1, r1, #40	@ tmp242,
-.L1154:
+.L1153:
 @ Patches/../C_code.c:1666: 		if (wexp) { 
 	ldrb	r2, [r1, r3]	@ MEM[(unsigned char *)_90 + _77 * 1], MEM[(unsigned char *)_90 + _77 * 1]
 	cmp	r2, #0	@ MEM[(unsigned char *)_90 + _77 * 1],
-	beq	.L1153		@,
+	beq	.L1152		@,
 @ Patches/../C_code.c:1667: 			result |= 1<<i;
 	movs	r2, r0	@ tmp167, tmp246
 	lsls	r2, r2, r3	@ tmp167, tmp167, i
 @ Patches/../C_code.c:1667: 			result |= 1<<i;
 	orrs	r7, r2	@ result, tmp167
-.L1153:
+.L1152:
 @ Patches/../C_code.c:1664:     for (int i = 0; i < 8; ++i) {
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:1664:     for (int i = 0; i < 8; ++i) {
 	cmp	r3, #8	@ i,
-	bne	.L1154		@,
+	bne	.L1153		@,
 @ Patches/../C_code.c:1799: 	int doWeHaveNonStaff = ranks[0] | ranks[1] | ranks[2] | ranks[3] | ranks[5] | ranks[6] | ranks[7];
 	movs	r2, #41	@ tmp171,
 @ Patches/../C_code.c:1795: 	ranks[4] = unit->ranks[4]; 
@@ -8083,58 +8074,58 @@ AppendAvailableStaffList:
 @ Patches/../C_code.c:1800: 	if (!doWeHaveNonStaff) { return list; } // only append staves if we had other weapon ranks before 
 	orrs	r3, r2	@ tmp203, tmp200
 @ Patches/../C_code.c:1801: 	if (!ranks[4]) { return list; } // we cannot use staves 
-	beq	.L1174		@,
+	beq	.L1173		@,
 	cmp	r1, #0	@ _5,
-	beq	.L1174		@,
-	ldr	r3, .L1189	@ tmp240,
+	beq	.L1173		@,
+	ldr	r3, .L1188	@ tmp240,
 	mov	r9, r3	@ tmp240, tmp240
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
-	ldr	r3, .L1189+4	@ tmp243,
+	ldr	r3, .L1188+4	@ tmp243,
 	mov	r10, r3	@ tmp243, tmp243
 @ Patches/../C_code.c:1214: 	const struct ItemData* table = GetItemData(1); 
-	ldr	r3, .L1189+8	@ tmp244,
+	ldr	r3, .L1188+8	@ tmp244,
 @ Patches/../C_code.c:1802: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	movs	r4, #1	@ i,
 @ Patches/../C_code.c:1214: 	const struct ItemData* table = GetItemData(1); 
 	mov	fp, r3	@ tmp244, tmp244
-	ldr	r6, .L1189+12	@ ivtmp.1232,
-.L1156:
+	ldr	r6, .L1188+12	@ ivtmp.1232,
+.L1155:
 @ Patches/../C_code.c:1212: 	if (MaxItems_Link) { return MaxItems_Link; } 
 	mov	r3, r9	@ tmp240, tmp240
 	ldr	r3, [r3]	@ MaxItems_Link.75_54, MaxItems_Link
 @ Patches/../C_code.c:1212: 	if (MaxItems_Link) { return MaxItems_Link; } 
 	cmp	r3, #0	@ MaxItems_Link.75_54,
-	bne	.L1163		@,
+	bne	.L1162		@,
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
 	mov	r3, r10	@ tmp243, tmp243
 	ldr	r3, [r3]	@ MaxItems, MaxItems
 	ldrb	r3, [r3]	@ _56, *MaxItems.76_55
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
 	cmp	r3, #0	@ _56,
-	bne	.L1163		@,
+	bne	.L1162		@,
 @ Patches/../C_code.c:1214: 	const struct ItemData* table = GetItemData(1); 
 	movs	r0, #1	@,
-	bl	.L435		@
+	bl	.L434		@
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	movs	r3, #1	@ i,
-	b	.L1167		@
-.L1165:
+	b	.L1166		@
+.L1164:
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:1217: 		table++; 
 	adds	r0, r0, #36	@ table,
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	cmp	r3, #255	@ i,
-	beq	.L1166		@,
-.L1167:
+	beq	.L1165		@,
+.L1166:
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	ldrb	r2, [r0, #6]	@ MEM[(unsigned char *)table_80 + 6B], MEM[(unsigned char *)table_80 + 6B]
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	cmp	r2, r3	@ MEM[(unsigned char *)table_80 + 6B], i
-	beq	.L1165		@,
+	beq	.L1164		@,
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	subs	r0, r0, #36	@ table,
-.L1166:
+.L1165:
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	mov	r3, r10	@ tmp243, tmp243
 	ldr	r2, [r3]	@ MaxItems.78_69, MaxItems
@@ -8142,36 +8133,36 @@ AppendAvailableStaffList:
 	ldrb	r3, [r0, #6]	@ _71,
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	strb	r3, [r2]	@ _71, *MaxItems.78_69
-.L1163:
+.L1162:
 @ Patches/../C_code.c:1802: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	cmp	r4, r3	@ i, MaxItems_Link.75_54
-	bgt	.L1174		@,
+	bgt	.L1173		@,
 @ Patches/../C_code.c:1803: 		if (ItemExceptions[i].NeverChangeInto) { continue; } 
 	ldrb	r3, [r6]	@ MEM[(unsigned char *)_48], MEM[(unsigned char *)_48]
 	cmp	r3, #0	@ MEM[(unsigned char *)_48],
-	bne	.L1158		@,
+	bne	.L1157		@,
 @ Patches/../C_code.c:1804: 		table = GetItemData(i);  
 	movs	r0, r4	@, i
-	bl	.L435		@
+	bl	.L434		@
 @ Patches/../C_code.c:1807: 		if (!(attr & IA_STAFF)) { // must be staff
 	ldr	r3, [r0, #8]	@ table_41->attributes, table_41->attributes
 	lsls	r3, r3, #29	@ tmp252, table_41->attributes,
-	bpl	.L1158		@,
+	bpl	.L1157		@,
 @ Patches/../C_code.c:1812: 		rank = table->weaponRank;
 	ldrb	r3, [r0, #28]	@ _17,
 @ Patches/../C_code.c:1814: 		if (!rank) { rank = 1; } // PRFs require at least 1 wexp in that type 
 	cmp	r3, #0	@ _17,
-	beq	.L1160		@,
+	beq	.L1159		@,
 @ Patches/../C_code.c:1816: 		if (rank > ranks[4]) { // staves 
 	ldr	r2, [sp, #4]	@ _5, %sfp
 	cmp	r2, r3	@ _5, _17
-	bcs	.L1160		@,
-.L1158:
+	bcs	.L1159		@,
+.L1157:
 @ Patches/../C_code.c:1802: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	adds	r4, r4, #1	@ i,
 	adds	r6, r6, #2	@ ivtmp.1232,
-	b	.L1156		@
-.L1174:
+	b	.L1155		@
+.L1173:
 @ Patches/../C_code.c:1836: } 
 	mov	r0, r8	@, list
 	add	sp, sp, #12	@,,
@@ -8184,17 +8175,17 @@ AppendAvailableStaffList:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1160:
+.L1159:
 @ Patches/../C_code.c:1823: 			if (!(type & wexpMask)) { 
 	lsls	r3, r7, #27	@ tmp253, result,
-	bpl	.L1158		@,
+	bpl	.L1157		@,
 @ Patches/../C_code.c:1828: 		if (WepLockExInstalled) { 
-	ldr	r3, .L1189+16	@ tmp222,
+	ldr	r3, .L1188+16	@ tmp222,
 @ Patches/../C_code.c:1828: 		if (WepLockExInstalled) { 
 	ldr	r3, [r3]	@ WepLockExInstalled, WepLockExInstalled
 	cmp	r3, #0	@ WepLockExInstalled,
-	bne	.L1161		@,
-.L1162:
+	bne	.L1160		@,
+.L1161:
 @ Patches/../C_code.c:1832: 		list[0]++; 
 	mov	r3, r8	@ list, list
 	mov	r2, r8	@ list, list
@@ -8205,20 +8196,20 @@ AppendAvailableStaffList:
 	strb	r3, [r2]	@ _23, *list_39(D)
 @ Patches/../C_code.c:1833: 		list[list[0]] = i; 
 	strb	r4, [r2, r3]	@ i, *_25
-	b	.L1158		@
-.L1161:
+	b	.L1157		@
+.L1160:
 @ Patches/../C_code.c:1829: 			if (!CanUnitUseStaff(unit, i)) { continue; } 
 	movs	r1, r4	@, i
 	movs	r0, r5	@, unit
-	ldr	r3, .L1189+20	@ tmp230,
+	ldr	r3, .L1188+20	@ tmp230,
 	bl	.L14		@
 @ Patches/../C_code.c:1829: 			if (!CanUnitUseStaff(unit, i)) { continue; } 
 	cmp	r0, #0	@ tmp250,
-	bne	.L1162		@,
-	b	.L1158		@
-.L1190:
-	.align	2
+	bne	.L1161		@,
+	b	.L1157		@
 .L1189:
+	.align	2
+.L1188:
 	.word	MaxItems_Link
 	.word	MaxItems
 	.word	GetItemData
@@ -8247,77 +8238,77 @@ BuildRingItemList:
 @ Patches/../C_code.c:1840: 	list[0] = 0; 
 	strb	r3, [r0]	@ tmp138, *list_14(D)
 @ Patches/../C_code.c:1214: 	const struct ItemData* table = GetItemData(1); 
-	ldr	r3, .L1207	@ tmp161,
+	ldr	r3, .L1206	@ tmp161,
 @ Patches/../C_code.c:1838: u8* BuildRingItemList(u8 list[], struct Unit* unit) { 
 	mov	r8, r0	@ list, tmp163
 @ Patches/../C_code.c:1842: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	movs	r4, #1	@ i,
 @ Patches/../C_code.c:1214: 	const struct ItemData* table = GetItemData(1); 
 	mov	r9, r3	@ tmp161, tmp161
-	ldr	r5, .L1207+4	@ ivtmp.1261,
-	ldr	r6, .L1207+8	@ tmp158,
+	ldr	r5, .L1206+4	@ ivtmp.1261,
+	ldr	r6, .L1206+8	@ tmp158,
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
-	ldr	r7, .L1207+12	@ tmp160,
-.L1192:
+	ldr	r7, .L1206+12	@ tmp160,
+.L1191:
 @ Patches/../C_code.c:1212: 	if (MaxItems_Link) { return MaxItems_Link; } 
 	ldr	r3, [r6]	@ MaxItems_Link.75_22, MaxItems_Link
 @ Patches/../C_code.c:1212: 	if (MaxItems_Link) { return MaxItems_Link; } 
 	cmp	r3, #0	@ MaxItems_Link.75_22,
-	bne	.L1196		@,
+	bne	.L1195		@,
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
 	ldr	r3, [r7]	@ MaxItems, MaxItems
 	ldrb	r3, [r3]	@ _24, *MaxItems.76_23
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
 	cmp	r3, #0	@ _24,
-	bne	.L1196		@,
+	bne	.L1195		@,
 @ Patches/../C_code.c:1214: 	const struct ItemData* table = GetItemData(1); 
 	movs	r0, #1	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	movs	r3, #1	@ i,
-	b	.L1200		@
-.L1198:
+	b	.L1199		@
+.L1197:
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:1217: 		table++; 
 	adds	r0, r0, #36	@ table,
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	cmp	r3, #255	@ i,
-	beq	.L1199		@,
-.L1200:
+	beq	.L1198		@,
+.L1199:
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	ldrb	r2, [r0, #6]	@ MEM[(unsigned char *)table_33 + 6B], MEM[(unsigned char *)table_33 + 6B]
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	cmp	r2, r3	@ MEM[(unsigned char *)table_33 + 6B], i
-	beq	.L1198		@,
+	beq	.L1197		@,
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	subs	r0, r0, #36	@ table,
-.L1199:
+.L1198:
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	ldr	r2, [r7]	@ MaxItems.78_37, MaxItems
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	ldrb	r3, [r0, #6]	@ _39,
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	strb	r3, [r2]	@ _39, *MaxItems.78_37
-.L1196:
+.L1195:
 @ Patches/../C_code.c:1842: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	cmp	r4, r3	@ i, MaxItems_Link.75_22
-	bgt	.L1206		@,
+	bgt	.L1205		@,
 @ Patches/../C_code.c:1843: 		if (ItemExceptions[i].NeverChangeInto) { continue; } 
 	ldrb	r3, [r5]	@ MEM[(unsigned char *)_51], MEM[(unsigned char *)_51]
 	cmp	r3, #0	@ MEM[(unsigned char *)_51],
-	bne	.L1194		@,
+	bne	.L1193		@,
 @ Patches/../C_code.c:1844: 		table = GetItemData(i);  
 	movs	r0, r4	@, i
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:1846: 		if (!table->useEffectId) { // must have effect
 	ldrb	r3, [r0, #30]	@ tmp142,
 	cmp	r3, #0	@ tmp142,
-	beq	.L1194		@,
+	beq	.L1193		@,
 @ Patches/../C_code.c:1850: 		if (table->weaponType != 0xC) { // must be ring 
 	ldrb	r3, [r0, #7]	@ tmp143,
 	cmp	r3, #12	@ tmp143,
-	bne	.L1194		@,
+	bne	.L1193		@,
 @ Patches/../C_code.c:1853: 		list[0]++; 
 	mov	r3, r8	@ list, list
 	mov	r2, r8	@ list, list
@@ -8328,12 +8319,12 @@ BuildRingItemList:
 	strb	r3, [r2]	@ _5, *list_14(D)
 @ Patches/../C_code.c:1854: 		list[list[0]] = i; 
 	strb	r4, [r2, r3]	@ i, *_7
-.L1194:
+.L1193:
 @ Patches/../C_code.c:1842: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	adds	r4, r4, #1	@ i,
 	adds	r5, r5, #2	@ ivtmp.1261,
-	b	.L1192		@
-.L1206:
+	b	.L1191		@
+.L1205:
 @ Patches/../C_code.c:1857: } 
 	mov	r0, r8	@, list
 	@ sp needed	@
@@ -8343,9 +8334,9 @@ BuildRingItemList:
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1208:
-	.align	2
 .L1207:
+	.align	2
+.L1206:
 	.word	GetItemData
 	.word	ItemExceptions+3
 	.word	MaxItems_Link
@@ -8382,7 +8373,7 @@ BuildSimilarPriceItemList:
 	lsls	r3, r3, #3	@ tmp329, tmp329,
 	mov	ip, r3	@ tmp329, tmp329
 @ Patches/../C_code.c:1867: 	int originalPrice = GetItemData(item)->costPerUse; 
-	ldr	r7, .L1248	@ tmp257,
+	ldr	r7, .L1247	@ tmp257,
 @ Patches/../C_code.c:1860: u8* BuildSimilarPriceItemList(u8 list[], int item, int noWeapons, int costReq) { 
 	mov	fp, r0	@ list, tmp286
 @ Patches/../C_code.c:1867: 	int originalPrice = GetItemData(item)->costPerUse; 
@@ -8394,7 +8385,7 @@ BuildSimilarPriceItemList:
 @ Patches/../C_code.c:1867: 	int originalPrice = GetItemData(item)->costPerUse; 
 	bl	.L223		@
 @ Patches/../C_code.c:1869: 	originalPrice += 200 + (Div1((originalPrice * RandValues->variance), 100) * 5);
-	ldr	r3, .L1248+4	@ tmp179,
+	ldr	r3, .L1247+4	@ tmp179,
 	ldr	r3, [r3]	@ RandValues, RandValues
 @ Patches/../C_code.c:1867: 	int originalPrice = GetItemData(item)->costPerUse; 
 	ldrh	r4, [r0, #26]	@ originalPrice,
@@ -8403,7 +8394,7 @@ BuildSimilarPriceItemList:
 	lsls	r0, r0, #23	@ tmp184, *RandValues.121_3,
 	lsrs	r0, r0, #27	@ tmp185, tmp184,
 @ Patches/../C_code.c:1869: 	originalPrice += 200 + (Div1((originalPrice * RandValues->variance), 100) * 5);
-	ldr	r3, .L1248+8	@ tmp188,
+	ldr	r3, .L1247+8	@ tmp188,
 	movs	r1, #100	@,
 	muls	r0, r4	@ tmp187, originalPrice
 	bl	.L14		@
@@ -8424,14 +8415,14 @@ BuildSimilarPriceItemList:
 	add	r10, r10, r4	@ tmp192, originalPrice
 @ Patches/../C_code.c:1871: 	if (!uses) { uses = 1; } 
 	cmp	r3, #0	@ uses,
-	beq	.L1211		@,
+	beq	.L1210		@,
 @ Patches/../C_code.c:1872: 	originalPrice = originalPrice * uses; 
 	mov	r2, r10	@ originalPrice, originalPrice
 	muls	r2, r3	@ originalPrice, uses
 	mov	r10, r2	@ originalPrice, originalPrice
 @ Patches/../C_code.c:1873: 	minPrice = minPrice * uses; 
 	muls	r4, r3	@ originalPrice, uses
-.L1211:
+.L1210:
 @ Patches/../C_code.c:1874: 	if (minPrice < 2000) { minPrice = 0; } 
 	movs	r3, #250	@ tmp194,
 @ Patches/../C_code.c:1874: 	if (minPrice < 2000) { minPrice = 0; } 
@@ -8439,7 +8430,7 @@ BuildSimilarPriceItemList:
 @ Patches/../C_code.c:1874: 	if (minPrice < 2000) { minPrice = 0; } 
 	lsls	r3, r3, #3	@ tmp194, tmp194,
 	cmp	r4, r3	@ originalPrice, tmp194
-	blt	.L1212		@,
+	blt	.L1211		@,
 @ Patches/../C_code.c:1875: 	else { minPrice = minPrice >> 2; if (minPrice > 4000) { minPrice = 4000; } } 
 	movs	r3, #250	@ tmp195,
 @ Patches/../C_code.c:1875: 	else { minPrice = minPrice >> 2; if (minPrice > 4000) { minPrice = 4000; } } 
@@ -8447,70 +8438,70 @@ BuildSimilarPriceItemList:
 @ Patches/../C_code.c:1875: 	else { minPrice = minPrice >> 2; if (minPrice > 4000) { minPrice = 4000; } } 
 	lsls	r3, r3, #4	@ tmp195, tmp195,
 	cmp	r2, r3	@ _22, tmp195
-	bgt	.L1244		@,
-.L1212:
+	bgt	.L1243		@,
+.L1211:
 @ Patches/../C_code.c:1877: 	list[0] = 0; // count 
 	movs	r3, #0	@ tmp196,
 	mov	r1, fp	@ list, list
 	strb	r3, [r1]	@ tmp196, *list_53(D)
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
-	ldr	r3, .L1248+12	@ tmp284,
+	ldr	r3, .L1247+12	@ tmp284,
 	mov	r8, r7	@ tmp257, tmp257
 @ Patches/../C_code.c:1878: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	movs	r4, #1	@ i,
 	movs	r7, r3	@ tmp284, tmp284
-	ldr	r5, .L1248+16	@ ivtmp.1283,
-	ldr	r6, .L1248+20	@ tmp258,
+	ldr	r5, .L1247+16	@ ivtmp.1283,
+	ldr	r6, .L1247+20	@ tmp258,
 	str	r2, [sp, #4]	@ _22, %sfp
-.L1214:
+.L1213:
 @ Patches/../C_code.c:1212: 	if (MaxItems_Link) { return MaxItems_Link; } 
 	ldr	r3, [r6]	@ MaxItems_Link.75_64, MaxItems_Link
 @ Patches/../C_code.c:1212: 	if (MaxItems_Link) { return MaxItems_Link; } 
 	cmp	r3, #0	@ MaxItems_Link.75_64,
-	bne	.L1222		@,
+	bne	.L1221		@,
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
 	ldr	r3, [r7]	@ MaxItems, MaxItems
 	ldrb	r3, [r3]	@ _66, *MaxItems.76_65
 @ Patches/../C_code.c:1213: 	if (*MaxItems) { return *MaxItems; } 
 	cmp	r3, #0	@ _66,
-	bne	.L1222		@,
+	bne	.L1221		@,
 @ Patches/../C_code.c:1214: 	const struct ItemData* table = GetItemData(1); 
 	movs	r0, #1	@,
 	bl	.L179		@
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	movs	r3, #1	@ i,
-	b	.L1226		@
-.L1224:
+	b	.L1225		@
+.L1223:
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:1217: 		table++; 
 	adds	r0, r0, #36	@ table,
 @ Patches/../C_code.c:1215: 	for (int i = 1; i < 255; i++) { 
 	cmp	r3, #255	@ i,
-	beq	.L1225		@,
-.L1226:
+	beq	.L1224		@,
+.L1225:
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	ldrb	r2, [r0, #6]	@ MEM[(unsigned char *)table_90 + 6B], MEM[(unsigned char *)table_90 + 6B]
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	cmp	r2, r3	@ MEM[(unsigned char *)table_90 + 6B], i
-	beq	.L1224		@,
+	beq	.L1223		@,
 @ Patches/../C_code.c:1216: 		if (table->number != i) { table--; break; } 
 	subs	r0, r0, #36	@ table,
-.L1225:
+.L1224:
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	ldr	r2, [r7]	@ MaxItems.78_79, MaxItems
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	ldrb	r3, [r0, #6]	@ _81,
 @ Patches/../C_code.c:1219: 	*MaxItems = table->number; 
 	strb	r3, [r2]	@ _81, *MaxItems.78_79
-.L1222:
+.L1221:
 @ Patches/../C_code.c:1878: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	cmp	r4, r3	@ i, MaxItems_Link.75_64
-	bgt	.L1245		@,
+	bgt	.L1244		@,
 @ Patches/../C_code.c:1879: 		if (ItemExceptions[i].NeverChangeInto) { continue; } 
 	ldrb	r3, [r5]	@ MEM[(unsigned char *)_55], MEM[(unsigned char *)_55]
 	cmp	r3, #0	@ MEM[(unsigned char *)_55],
-	bne	.L1216		@,
+	bne	.L1215		@,
 @ Patches/../C_code.c:1880: 		table = GetItemData(i);  		
 	movs	r0, r4	@, i
 	bl	.L179		@
@@ -8520,33 +8511,33 @@ BuildSimilarPriceItemList:
 	ldr	r3, [r0, #8]	@ table_57->attributes, table_57->attributes
 @ Patches/../C_code.c:1881: 		if (table->attributes & badAttr) { // must not be equippable/staff 
 	tst	r3, r2	@ table_57->attributes, badAttr
-	bne	.L1216		@,
+	bne	.L1215		@,
 @ Patches/../C_code.c:1887: 		if ((effectID == 0x33) || (effectID == 0x34) || (effectID == 0x35)) { // fe7 / fe8 (fe6 doesn't go this high) 
 	ldrb	r3, [r0, #30]	@ tmp202,
 	subs	r3, r3, #51	@ tmp203,
 @ Patches/../C_code.c:1887: 		if ((effectID == 0x33) || (effectID == 0x34) || (effectID == 0x35)) { // fe7 / fe8 (fe6 doesn't go this high) 
 	cmp	r3, #2	@ tmp203,
-	bls	.L1216		@,
+	bls	.L1215		@,
 @ Patches/../C_code.c:1890: 		if (table->weaponType == 0xC) { // no rings for now 
 	ldrb	r3, [r0, #7]	@ tmp204,
 	cmp	r3, #12	@ tmp204,
-	beq	.L1216		@,
+	beq	.L1215		@,
 @ Patches/../C_code.c:1894: 		if (table->descTextId == MONEYBAG_DESC) { // bags of gold description text id 
 	ldrh	r3, [r0, #2]	@ _20,
 @ Patches/../C_code.c:1894: 		if (table->descTextId == MONEYBAG_DESC) { // bags of gold description text id 
-	ldr	r2, .L1248+24	@ tmp338,
+	ldr	r2, .L1247+24	@ tmp338,
 	cmp	r3, r2	@ _20, tmp338
-	beq	.L1216		@,
+	beq	.L1215		@,
 @ Patches/../C_code.c:1897: 		if (!table->nameTextId) { continue; }
 	ldrh	r2, [r0]	@ *table_57, *table_57
 @ Patches/../C_code.c:1902: 		if (table->descTextId == 0x4AB) { // dummy item description text id 
 	cmp	r2, #0	@ *table_57,
-	beq	.L1216		@,
-	ldr	r2, .L1248+28	@ tmp339,
+	beq	.L1215		@,
+	ldr	r2, .L1247+28	@ tmp339,
 	mov	ip, r2	@ tmp339, tmp339
 	add	r3, r3, ip	@ tmp217, tmp339
 	cmp	r3, #0	@ tmp217,
-	beq	.L1216		@,
+	beq	.L1215		@,
 @ Patches/../C_code.c:1909: 		if ((costReq) && (!cost)) { continue; } 
 	ldr	r1, [sp]	@ costReq, %sfp
 @ Patches/../C_code.c:1907: 		uses = table->maxUses; 
@@ -8555,32 +8546,32 @@ BuildSimilarPriceItemList:
 	ldrh	r3, [r0, #26]	@ cost,
 @ Patches/../C_code.c:1909: 		if ((costReq) && (!cost)) { continue; } 
 	cmp	r1, #0	@ costReq,
-	beq	.L1230		@,
+	beq	.L1229		@,
 	cmp	r3, #0	@ cost,
-	beq	.L1216		@,
-.L1230:
+	beq	.L1215		@,
+.L1229:
 @ Patches/../C_code.c:1910: 		if (!uses) { uses = 1; } 
 	cmp	r2, #0	@ _23,
-	beq	.L1219		@,
+	beq	.L1218		@,
 @ Patches/../C_code.c:1911: 		if ((cost*uses) > originalPrice) { 
 	muls	r3, r2	@ cost, _23
-.L1219:
+.L1218:
 @ Patches/../C_code.c:1911: 		if ((cost*uses) > originalPrice) { 
 	movs	r2, #1	@ tmp231,
 	cmp	r10, r3	@ originalPrice, cost
-	blt	.L1220		@,
+	blt	.L1219		@,
 	movs	r2, #0	@ tmp231,
-.L1220:
+.L1219:
 @ Patches/../C_code.c:1914: 		if ((cost*uses) < minPrice) { 
 	lsls	r2, r2, #24	@ tmp236, tmp231,
-	bne	.L1216		@,
+	bne	.L1215		@,
 	ldr	r1, [sp, #4]	@ _22, %sfp
 	movs	r2, #1	@ tmp237,
 	cmp	r1, r3	@ _22, cost
-	ble	.L1246		@,
+	ble	.L1245		@,
 	lsls	r2, r2, #24	@ tmp242, tmp237,
-	bne	.L1216		@,
-.L1247:
+	bne	.L1215		@,
+.L1246:
 @ Patches/../C_code.c:1917: 		list[0]++; 
 	mov	r3, fp	@ list, list
 	mov	r2, fp	@ list, list
@@ -8591,12 +8582,12 @@ BuildSimilarPriceItemList:
 	strb	r3, [r2]	@ _30, *list_53(D)
 @ Patches/../C_code.c:1918: 		list[list[0]] = i; 
 	strb	r4, [r2, r3]	@ i, *_32
-.L1216:
+.L1215:
 @ Patches/../C_code.c:1878: 	for (int i = 1; i <= GetMaxItems(); i++) { 
 	adds	r4, r4, #1	@ i,
 	adds	r5, r5, #2	@ ivtmp.1283,
-	b	.L1214		@
-.L1245:
+	b	.L1213		@
+.L1244:
 @ Patches/../C_code.c:1924: } 
 	mov	r0, fp	@, list
 	add	sp, sp, #12	@,,
@@ -8609,19 +8600,19 @@ BuildSimilarPriceItemList:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1244:
+.L1243:
 @ Patches/../C_code.c:1875: 	else { minPrice = minPrice >> 2; if (minPrice > 4000) { minPrice = 4000; } } 
 	movs	r2, r3	@ _22, tmp195
-	b	.L1212		@
-.L1246:
+	b	.L1211		@
+.L1245:
 @ Patches/../C_code.c:1914: 		if ((cost*uses) < minPrice) { 
 	movs	r2, #0	@ tmp237,
 	lsls	r2, r2, #24	@ tmp242, tmp237,
-	beq	.L1247		@,
-	b	.L1216		@
-.L1249:
-	.align	2
+	beq	.L1246		@,
+	b	.L1215		@
 .L1248:
+	.align	2
+.L1247:
 	.word	GetItemData
 	.word	RandValues
 	.word	Div1
@@ -8646,7 +8637,7 @@ RandNewItem.part.0:
 	movs	r4, #255	@ tmp136,
 	ands	r4, r0	@ item, tmp160
 @ Patches/../C_code.c:1946: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
-	ldr	r0, .L1267	@ tmp137,
+	ldr	r0, .L1266	@ tmp137,
 @ Patches/../C_code.c:1943: int RandNewItem(int item, int noise[], int offset, int costReq, int varyByCh, int noWeapons) { 
 	movs	r6, r2	@ offset, tmp162
 @ Patches/../C_code.c:1946: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
@@ -8658,7 +8649,7 @@ RandNewItem.part.0:
 	sub	sp, sp, #256	@,,
 @ Patches/../C_code.c:1946: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
 	cmp	r2, #0	@ tmp139,
-	bne	.L1253		@,
+	bne	.L1252		@,
 @ Patches/../C_code.c:1948: 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	movs	r2, #99	@ tmp143,
 	mov	r1, sp	@ tmp170,
@@ -8675,15 +8666,15 @@ RandNewItem.part.0:
 	ldrb	r1, [r3]	@ _7, list
 @ Patches/../C_code.c:1951: 	if (list[0]) { 
 	cmp	r1, #0	@ _7,
-	beq	.L1253		@,
+	beq	.L1252		@,
 @ Patches/../C_code.c:1952: 		if (varyByCh) { 
 	ldr	r3, [sp, #272]	@ tmp172, varyByCh
 @ Patches/../C_code.c:1953: 			c = HashByte_Ch(item, list[0]+1, noise, offset); 
 	adds	r1, r1, #1	@ _53,
 @ Patches/../C_code.c:1952: 		if (varyByCh) { 
 	cmp	r3, #0	@ tmp172,
-	bne	.L1265		@,
-.L1254:
+	bne	.L1264		@,
+.L1253:
 @ Patches/../C_code.c:1956: 			c = HashByte_Global(item, list[0]+1, noise, offset); 
 	movs	r3, r6	@, offset
 	movs	r2, r5	@, noise
@@ -8691,17 +8682,17 @@ RandNewItem.part.0:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:1958: 		if (!c) { c = 1; } // never 0  
 	cmp	r0, #0	@ c,
-	bne	.L1259		@,
+	bne	.L1258		@,
 @ Patches/../C_code.c:1958: 		if (!c) { c = 1; } // never 0  
 	adds	r0, r0, #1	@ c,
-.L1259:
+.L1258:
 @ Patches/../C_code.c:1959: 		item = list[c]; 
 	mov	r3, sp	@ tmp174,
 	ldrb	r4, [r3, r0]	@ item, list
-.L1253:
+.L1252:
 @ Patches/../C_code.c:1961: 	return MakeNewItem(item); 
 	movs	r0, r4	@, item
-	ldr	r3, .L1267+4	@ tmp157,
+	ldr	r3, .L1266+4	@ tmp157,
 	bl	.L14		@
 @ Patches/../C_code.c:1962: } 
 	add	sp, sp, #256	@,,
@@ -8709,30 +8700,30 @@ RandNewItem.part.0:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L1265:
+.L1264:
 	movs	r0, r5	@ _16, noise
 	movs	r3, r5	@ ivtmp.1295, noise
 	adds	r0, r0, #16	@ _16,
-.L1257:
+.L1256:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_39], MEM[(int *)_39]
 	cmp	r2, #0	@ MEM[(int *)_39],
-	beq	.L1266		@,
+	beq	.L1265		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.1295,
 	cmp	r0, r3	@ _16, ivtmp.1295
-	bne	.L1257		@,
-	b	.L1254		@
-.L1266:
+	bne	.L1256		@,
+	b	.L1253		@
+.L1265:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	ldr	r2, .L1267+8	@ tmp149,
+	ldr	r2, .L1266+8	@ tmp149,
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r2, [r3]	@ gCh, *_39
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L1254		@
-.L1268:
-	.align	2
+	b	.L1253		@
 .L1267:
+	.align	2
+.L1266:
 	.word	ItemExceptions
 	.word	MakeNewItem
 	.word	gCh
@@ -8769,26 +8760,26 @@ RandNewWeapon.part.0:
 @ Patches/../C_code.c:1183: 	result |= ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number); 
 	ldrb	r0, [r3, #4]	@ tmp190,
 @ Patches/../C_code.c:156: 	if (!GetCharacterData(id)->portraitId) { return false; } 
-	ldr	r3, .L1347	@ tmp191,
+	ldr	r3, .L1346	@ tmp191,
 	bl	.L14		@
 @ Patches/../C_code.c:156: 	if (!GetCharacterData(id)->portraitId) { return false; } 
 	ldrh	r3, [r0, #6]	@ tmp192,
 	cmp	r3, #0	@ tmp192,
-	beq	.L1270		@,
+	beq	.L1269		@,
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
-	ldr	r3, .L1347+4	@ tmp194,
+	ldr	r3, .L1346+4	@ tmp194,
 	ldr	r3, [r3]	@ RecruitValues, RecruitValues
 	ldrb	r1, [r3]	@ *RecruitValues.0_108, *RecruitValues.0_108
 	lsls	r1, r1, #29	@ tmp199, *RecruitValues.0_108,
 	lsrs	r1, r1, #29	@ tmp200, tmp199,
 @ Patches/../C_code.c:1183: 	result |= ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number); 
 	orrs	r6, r1	@ result, tmp200
-.L1270:
+.L1269:
 @ Patches/../C_code.c:1968: 	if (!IsClassOrRecruitmentRandomized(unit)) { return MakeNewItem(item); } 
 	cmp	r6, #0	@ result,
-	beq	.L1299		@,
+	beq	.L1298		@,
 @ Patches/../C_code.c:1969: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
-	ldr	r3, .L1347+8	@ tmp203,
+	ldr	r3, .L1346+8	@ tmp203,
 	lsls	r2, r4, #1	@ tmp204, item,
 @ Patches/../C_code.c:1969: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
 	ldrb	r3, [r2, r3]	@ tmp205, ItemExceptions
@@ -8796,39 +8787,39 @@ RandNewWeapon.part.0:
 	movs	r0, r4	@, item
 @ Patches/../C_code.c:1969: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
 	cmp	r3, #0	@ tmp205,
-	bne	.L1334		@,
+	bne	.L1333		@,
 @ Patches/../C_code.c:1973: 	if (!((GetItemData(item)->attributes) & (IA_REQUIRES_WEXP))) { // not a wep/staff 
-	ldr	r3, .L1347+12	@ tmp207,
+	ldr	r3, .L1346+12	@ tmp207,
 	bl	.L14		@
 @ Patches/../C_code.c:1973: 	if (!((GetItemData(item)->attributes) & (IA_REQUIRES_WEXP))) { // not a wep/staff 
 	movs	r3, #5	@ tmp208,
 	ldr	r2, [r0, #8]	@ _8->attributes, _8->attributes
 @ Patches/../C_code.c:1973: 	if (!((GetItemData(item)->attributes) & (IA_REQUIRES_WEXP))) { // not a wep/staff 
 	tst	r2, r3	@ _8->attributes, tmp208
-	bne	.L1274		@,
+	bne	.L1273		@,
 @ Patches/../C_code.c:1974: 		if ((unit->pClassData->number == CLASS_THIEF_A) || (unit->pClassData->number == CLASS_THIEF_B)) { // Thief 
 	ldr	r3, [r5, #4]	@ unit_3(D)->pClassData, unit_3(D)->pClassData
 	ldrb	r3, [r3, #4]	@ _12,
 @ Patches/../C_code.c:1974: 		if ((unit->pClassData->number == CLASS_THIEF_A) || (unit->pClassData->number == CLASS_THIEF_B)) { // Thief 
 	cmp	r3, #13	@ _12,
-	beq	.L1282		@,
+	beq	.L1281		@,
 	cmp	r3, #51	@ _12,
-	beq	.L1282		@,
+	beq	.L1281		@,
 @ Patches/../C_code.c:1977: 		if (item == CHEST_KEY_A) { return MakeNewItem(CHEST_KEY_A); } 
 	cmp	r4, #105	@ item,
-	bne	.LCB7361	@
-	b	.L1338	@long jump	@
-.LCB7361:
+	bne	.LCB7353	@
+	b	.L1337	@long jump	@
+.LCB7353:
 @ Patches/../C_code.c:1978: 		if (item == CHEST_KEY_B) { return MakeNewItem(CHEST_KEY_B); } 
 	cmp	r4, #121	@ item,
-	bne	.LCB7363	@
-	b	.L1339	@long jump	@
-.LCB7363:
+	bne	.LCB7355	@
+	b	.L1338	@long jump	@
+.LCB7355:
 @ Patches/../C_code.c:1979: 		if (item == DOOR_KEY) { return MakeNewItem(DOOR_KEY); }  
 	cmp	r4, #106	@ item,
-	bne	.LCB7365	@
-	b	.L1340	@long jump	@
-.LCB7365:
+	bne	.LCB7357	@
+	b	.L1339	@long jump	@
+.LCB7357:
 @ Patches/../C_code.c:1980: 		if (UNIT_FACTION(unit) != FACTION_BLUE) { 
 	movs	r2, #192	@ tmp229,
 	movs	r3, #11	@ tmp228,
@@ -8837,31 +8828,31 @@ RandNewWeapon.part.0:
 	ands	r1, r3	@ _22, tmp228
 @ Patches/../C_code.c:1980: 		if (UNIT_FACTION(unit) != FACTION_BLUE) { 
 	tst	r2, r3	@ tmp229, tmp228
-	beq	.L1332		@,
+	beq	.L1331		@,
 @ Patches/../C_code.c:1981: 			if (item == LOCKPICK) { return MakeNewItem(LOCKPICK); } // lockpick  
 	cmp	r4, #107	@ item,
-	beq	.L1282		@,
+	beq	.L1281		@,
 @ Patches/../C_code.c:1517: 	int uid = unit->pCharacterData->number; 
 	ldr	r3, [r5]	@ unit_3(D)->pCharacterData, unit_3(D)->pCharacterData
 	ldrb	r3, [r3, #4]	@ _25,
 @ Patches/../C_code.c:1518: 	if (UNIT_FACTION(unit) != FACTION_RED) { return true; } 
 	cmp	r1, #128	@ _22,
-	bne	.L1332		@,
+	bne	.L1331		@,
 @ Patches/../C_code.c:1526: 	if (uid < 0x2d) { result = true; } 
 	cmp	r3, #44	@ _25,
-	bhi	.L1287		@,
-.L1332:
+	bhi	.L1286		@,
+.L1331:
 @ Patches/../C_code.c:1984: 		if (IsUnitAlliedOrPlayable(unit)) { if (item == VULNERARY) { return MakeNewItem(VULNERARY); } }
 	cmp	r4, #108	@ item,
-	bne	.LCB7383	@
-	b	.L1341	@long jump	@
-.LCB7383:
+	bne	.LCB7375	@
+	b	.L1340	@long jump	@
+.LCB7375:
 @ Patches/../C_code.c:1985: 		if (IsUnitAlliedOrPlayable(unit)) { if (item == ELIXIR) { return MakeNewItem(ELIXIR); } }
 	cmp	r4, #109	@ item,
-	bne	.LCB7385	@
-	b	.L1342	@long jump	@
-.LCB7385:
-.L1287:
+	bne	.LCB7377	@
+	b	.L1341	@long jump	@
+.LCB7377:
+.L1286:
 @ Patches/../C_code.c:1987: 		list2[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	mov	r6, sp	@ tmp285,
 	movs	r3, #99	@ tmp237,
@@ -8878,14 +8869,14 @@ RandNewWeapon.part.0:
 	ldrb	r1, [r6]	@ _28, MEM[(u8[255] *)_163]
 @ Patches/../C_code.c:1989: 		if (list2[0]) { 
 	cmp	r1, #0	@ _28,
-	bne	.L1343		@,
-.L1299:
+	bne	.L1342		@,
+.L1298:
 @ Patches/../C_code.c:2024: 	return MakeNewItem(item); 
 	movs	r0, r4	@, item
-.L1334:
-	ldr	r3, .L1347+16	@ tmp283,
+.L1333:
+	ldr	r3, .L1346+16	@ tmp283,
 	bl	.L14		@
-.L1269:
+.L1268:
 @ Patches/../C_code.c:2025: } 
 	add	sp, sp, #256	@,,
 	@ sp needed	@
@@ -8894,7 +8885,7 @@ RandNewWeapon.part.0:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1274:
+.L1273:
 @ Patches/../C_code.c:1997: 	if ((unit->pCharacterData->attributes | unit->pClassData->attributes)& (CA_DANCE|CA_PLAY)) { 
 	ldr	r3, [r5]	@ unit_3(D)->pCharacterData, unit_3(D)->pCharacterData
 @ Patches/../C_code.c:1997: 	if ((unit->pCharacterData->attributes | unit->pClassData->attributes)& (CA_DANCE|CA_PLAY)) { 
@@ -8907,28 +8898,28 @@ RandNewWeapon.part.0:
 	movs	r2, #48	@ tmp255,
 @ Patches/../C_code.c:1997: 	if ((unit->pCharacterData->attributes | unit->pClassData->attributes)& (CA_DANCE|CA_PLAY)) { 
 	tst	r2, r3	@ tmp255, tmp252
-	bne	.L1344		@,
+	bne	.L1343		@,
 @ Patches/../C_code.c:2019: 	if (list[0]) { 
 	ldr	r3, [sp, #280]	@ tmp312, list
 	ldrb	r1, [r3]	@ _57, *list_56(D)
 @ Patches/../C_code.c:2019: 	if (list[0]) { 
 	cmp	r1, #0	@ _57,
-	beq	.L1299		@,
+	beq	.L1298		@,
 	movs	r0, r7	@ _23, noise
 	movs	r3, r7	@ ivtmp.1322, noise
 @ Patches/../C_code.c:2020: 		c = HashByte_Ch(item, list[0]+1, noise, offset); 
 	adds	r1, r1, #1	@ _59,
 	adds	r0, r0, #16	@ _23,
-.L1302:
+.L1301:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_135], MEM[(int *)_135]
 	cmp	r2, #0	@ MEM[(int *)_135],
-	beq	.L1345		@,
+	beq	.L1344		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.1322,
 	cmp	r0, r3	@ _23, ivtmp.1322
-	bne	.L1302		@,
-.L1301:
+	bne	.L1301		@,
+.L1300:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	mov	r3, r8	@, offset
 	movs	r2, r7	@, noise
@@ -8937,8 +8928,8 @@ RandNewWeapon.part.0:
 @ Patches/../C_code.c:2022: 		item = list[c]; 
 	adds	r3, r0, #0	@ _141, tmp275
 	cmp	r0, #0	@ tmp275,
-	beq	.L1346		@,
-.L1303:
+	beq	.L1345		@,
+.L1302:
 @ Patches/../C_code.c:2022: 		item = list[c]; 
 	ldr	r2, [sp, #280]	@ tmp314, list
 @ Patches/../C_code.c:2022: 		item = list[c]; 
@@ -8948,14 +8939,14 @@ RandNewWeapon.part.0:
 	ldrb	r4, [r2, r3]	@ item, *_64
 @ Patches/../C_code.c:2024: 	return MakeNewItem(item); 
 	movs	r0, r4	@, item
-	b	.L1334		@
-.L1282:
+	b	.L1333		@
+.L1281:
 @ Patches/../C_code.c:1975: 			return MakeNewItem(LOCKPICK); // Non weapons become lockpick for thieves  
-	ldr	r3, .L1347+16	@ tmp224,
+	ldr	r3, .L1346+16	@ tmp224,
 	movs	r0, #107	@,
 	bl	.L14		@
-	b	.L1269		@
-.L1344:
+	b	.L1268		@
+.L1343:
 @ Patches/../C_code.c:2007: 		list2[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	mov	r6, sp	@ tmp285,
 	movs	r3, #99	@ tmp259,
@@ -8970,22 +8961,22 @@ RandNewWeapon.part.0:
 	ldrb	r1, [r6]	@ _46, MEM[(u8[255] *)_163]
 @ Patches/../C_code.c:2009: 		if (list2[0]) { 
 	cmp	r1, #0	@ _46,
-	beq	.L1299		@,
+	beq	.L1298		@,
 	movs	r0, r7	@ _139, noise
 	movs	r3, r7	@ ivtmp.1315, noise
 @ Patches/../C_code.c:2010: 			c = HashByte_Ch(item, list2[0]+1, noise, offset); 
 	adds	r1, r1, #1	@ _48,
 	adds	r0, r0, #16	@ _139,
-.L1297:
+.L1296:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_125], MEM[(int *)_125]
 	cmp	r2, #0	@ MEM[(int *)_125],
-	beq	.L1337		@,
+	beq	.L1336		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.1315,
 	cmp	r3, r0	@ ivtmp.1315, _139
-	bne	.L1297		@,
-.L1296:
+	bne	.L1296		@,
+.L1295:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	mov	r3, r8	@, offset
 	movs	r2, r7	@, noise
@@ -8993,87 +8984,87 @@ RandNewWeapon.part.0:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:2011: 			if (!c) { c = 1; } // never 0  
 	cmp	r0, #0	@ c,
-	bne	.L1298		@,
+	bne	.L1297		@,
 @ Patches/../C_code.c:2011: 			if (!c) { c = 1; } // never 0  
 	adds	r0, r0, #1	@ c,
-.L1298:
+.L1297:
 @ Patches/../C_code.c:2012: 			item = list2[c]; 
 	ldrb	r4, [r6, r0]	@ item, MEM[(u8[255] *)_163]
 @ Patches/../C_code.c:2024: 	return MakeNewItem(item); 
 	movs	r0, r4	@, item
-	b	.L1334		@
-.L1343:
+	b	.L1333		@
+.L1342:
 	movs	r0, r7	@ _112, noise
 	movs	r3, r7	@ ivtmp.1308, noise
 @ Patches/../C_code.c:1990: 			c = HashByte_Ch(item, list2[0]+1, noise, offset); 
 	adds	r1, r1, #1	@ _30,
 	adds	r0, r0, #16	@ _112,
-.L1291:
+.L1290:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_115], MEM[(int *)_115]
 	cmp	r2, #0	@ MEM[(int *)_115],
-	beq	.L1337		@,
+	beq	.L1336		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.1308,
 	cmp	r3, r0	@ ivtmp.1308, _112
-	bne	.L1291		@,
-	b	.L1296		@
-.L1346:
+	bne	.L1290		@,
+	b	.L1295		@
+.L1345:
 @ Patches/../C_code.c:2022: 		item = list[c]; 
 	movs	r3, #1	@ _141,
-	b	.L1303		@
-.L1338:
+	b	.L1302		@
+.L1337:
 @ Patches/../C_code.c:1977: 		if (item == CHEST_KEY_A) { return MakeNewItem(CHEST_KEY_A); } 
-	ldr	r3, .L1347+16	@ tmp225,
+	ldr	r3, .L1346+16	@ tmp225,
 	movs	r0, #105	@,
 	bl	.L14		@
 @ Patches/../C_code.c:1977: 		if (item == CHEST_KEY_A) { return MakeNewItem(CHEST_KEY_A); } 
-	b	.L1269		@
-.L1339:
+	b	.L1268		@
+.L1338:
 @ Patches/../C_code.c:1978: 		if (item == CHEST_KEY_B) { return MakeNewItem(CHEST_KEY_B); } 
-	ldr	r3, .L1347+16	@ tmp226,
+	ldr	r3, .L1346+16	@ tmp226,
 	movs	r0, #121	@,
 	bl	.L14		@
 @ Patches/../C_code.c:1978: 		if (item == CHEST_KEY_B) { return MakeNewItem(CHEST_KEY_B); } 
-	b	.L1269		@
-.L1340:
+	b	.L1268		@
+.L1339:
 @ Patches/../C_code.c:1979: 		if (item == DOOR_KEY) { return MakeNewItem(DOOR_KEY); }  
-	ldr	r3, .L1347+16	@ tmp227,
+	ldr	r3, .L1346+16	@ tmp227,
 	movs	r0, #106	@,
 	bl	.L14		@
 @ Patches/../C_code.c:1979: 		if (item == DOOR_KEY) { return MakeNewItem(DOOR_KEY); }  
-	b	.L1269		@
-.L1342:
+	b	.L1268		@
+.L1341:
 @ Patches/../C_code.c:1985: 		if (IsUnitAlliedOrPlayable(unit)) { if (item == ELIXIR) { return MakeNewItem(ELIXIR); } }
-	ldr	r3, .L1347+16	@ tmp234,
+	ldr	r3, .L1346+16	@ tmp234,
 	movs	r0, #109	@,
 	bl	.L14		@
 @ Patches/../C_code.c:1985: 		if (IsUnitAlliedOrPlayable(unit)) { if (item == ELIXIR) { return MakeNewItem(ELIXIR); } }
-	b	.L1269		@
-.L1345:
+	b	.L1268		@
+.L1344:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	ldr	r2, .L1347+20	@ tmp273,
+	ldr	r2, .L1346+20	@ tmp273,
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r2, [r3]	@ gCh, *_135
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L1301		@
-.L1341:
+	b	.L1300		@
+.L1340:
 @ Patches/../C_code.c:1984: 		if (IsUnitAlliedOrPlayable(unit)) { if (item == VULNERARY) { return MakeNewItem(VULNERARY); } }
-	ldr	r3, .L1347+16	@ tmp233,
+	ldr	r3, .L1346+16	@ tmp233,
 	movs	r0, #108	@,
 	bl	.L14		@
 @ Patches/../C_code.c:1984: 		if (IsUnitAlliedOrPlayable(unit)) { if (item == VULNERARY) { return MakeNewItem(VULNERARY); } }
-	b	.L1269		@
-.L1337:
+	b	.L1268		@
+.L1336:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	ldr	r2, .L1347+20	@ tmp265,
+	ldr	r2, .L1346+20	@ tmp265,
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r2, [r3]	@ gCh,* ivtmp.1315
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L1296		@
-.L1348:
-	.align	2
+	b	.L1295		@
 .L1347:
+	.align	2
+.L1346:
 	.word	GetCharacterData
 	.word	RecruitValues
 	.word	ItemExceptions
@@ -9098,11 +9089,11 @@ RandRareItem:
 	movs	r5, r1	@ noise, tmp152
 @ Patches/../C_code.c:1929: 	if (!item) { return item; } 
 	cmp	r0, #0	@ item,
-	beq	.L1357		@,
+	beq	.L1356		@,
 @ Patches/../C_code.c:1930: 	item &= 0xFF; 
 	movs	r2, #255	@ tmp134,
 @ Patches/../C_code.c:1931: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
-	ldr	r4, .L1362	@ tmp135,
+	ldr	r4, .L1361	@ tmp135,
 @ Patches/../C_code.c:1930: 	item &= 0xFF; 
 	ands	r0, r2	@ item, tmp134
 @ Patches/../C_code.c:1931: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
@@ -9110,60 +9101,60 @@ RandRareItem:
 @ Patches/../C_code.c:1931: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
 	ldrb	r2, [r2, r4]	@ tmp137, ItemExceptions
 	cmp	r2, #0	@ tmp137,
-	bne	.L1359		@,
+	bne	.L1358		@,
 @ Patches/../C_code.c:1934: 		c = HashByte_Ch(item, RareItemTableSize, noise, offset); 
-	ldr	r2, .L1362+4	@ tmp139,
+	ldr	r2, .L1361+4	@ tmp139,
 	ldr	r1, [r2]	@ pretmp_44, RareItemTableSize
 @ Patches/../C_code.c:1933: 	if (varyByCh) { 
 	ldr	r2, [sp, #16]	@ tmp160, varyByCh
 	cmp	r2, #0	@ tmp160,
-	bne	.L1360		@,
-.L1352:
+	bne	.L1359		@,
+.L1351:
 @ Patches/../C_code.c:1937: 		c = HashByte_Global(item, RareItemTableSize, noise, offset); 
 	movs	r2, r5	@, noise
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:1939: 	item = RareItemTable[c]; 
-	ldr	r3, .L1362+8	@ tmp147,
+	ldr	r3, .L1361+8	@ tmp147,
 @ Patches/../C_code.c:1939: 	item = RareItemTable[c]; 
 	ldrb	r0, [r3, r0]	@ item, RareItemTable
-.L1359:
+.L1358:
 @ Patches/../C_code.c:1940: 	return MakeNewItem(item); 
-	ldr	r3, .L1362+12	@ tmp149,
+	ldr	r3, .L1361+12	@ tmp149,
 	bl	.L14		@
-.L1349:
+.L1348:
 @ Patches/../C_code.c:1941: } 
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L1357:
+.L1356:
 @ Patches/../C_code.c:1929: 	if (!item) { return item; } 
 	movs	r0, #0	@ <retval>,
-	b	.L1349		@
-.L1360:
+	b	.L1348		@
+.L1359:
 	movs	r6, r5	@ _7, noise
 	movs	r4, r5	@ ivtmp.1333, noise
 	adds	r6, r6, #16	@ _7,
-.L1355:
+.L1354:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r4]	@ MEM[(int *)_28], MEM[(int *)_28]
 	cmp	r2, #0	@ MEM[(int *)_28],
-	beq	.L1361		@,
+	beq	.L1360		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r4, r4, #4	@ ivtmp.1333,
 	cmp	r6, r4	@ _7, ivtmp.1333
-	bne	.L1355		@,
-	b	.L1352		@
-.L1361:
+	bne	.L1354		@,
+	b	.L1351		@
+.L1360:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	ldr	r2, .L1362+16	@ tmp141,
+	ldr	r2, .L1361+16	@ tmp141,
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r2, [r4]	@ gCh, *_28
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L1352		@
-.L1363:
-	.align	2
+	b	.L1351		@
 .L1362:
+	.align	2
+.L1361:
 	.word	ItemExceptions
 	.word	RareItemTableSize
 	.word	RareItemTable
@@ -9185,23 +9176,23 @@ RandNewItem:
 	sub	sp, sp, #8	@,,
 @ Patches/../C_code.c:1944: 	if (!item) { return item; } 
 	cmp	r0, #0	@ item,
-	beq	.L1366		@,
+	beq	.L1365		@,
 	ldr	r4, [sp, #20]	@ tmp128, noWeapons
 	str	r4, [sp, #4]	@ tmp128,
 	ldr	r4, [sp, #16]	@ tmp129, varyByCh
 	str	r4, [sp]	@ tmp129,
 	bl	RandNewItem.part.0		@
-.L1364:
+.L1363:
 @ Patches/../C_code.c:1962: } 
 	add	sp, sp, #8	@,,
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L1366:
+.L1365:
 @ Patches/../C_code.c:1944: 	if (!item) { return item; } 
 	movs	r0, #0	@ <retval>,
-	b	.L1364		@
+	b	.L1363		@
 	.size	RandNewItem, .-RandNewItem
 	.align	1
 	.p2align 2,,3
@@ -9218,12 +9209,12 @@ RandNewWeapon:
 	sub	sp, sp, #8	@,,
 @ Patches/../C_code.c:1966: 	if (!item) { return item; } 
 	cmp	r1, #0	@ item,
-	beq	.L1368		@,
+	beq	.L1367		@,
 	ldr	r4, [sp, #16]	@ tmp127, list
 	str	r4, [sp]	@ tmp127,
 	bl	RandNewWeapon.part.0		@
 	movs	r1, r0	@ item, tmp125
-.L1368:
+.L1367:
 @ Patches/../C_code.c:2025: } 
 	movs	r0, r1	@, item
 	add	sp, sp, #8	@,,
@@ -9246,7 +9237,7 @@ NewPopup_ItemGot:
 	movs	r3, r0	@ parent, tmp168
 	push	{r4, r5, r6, lr}	@
 @ Patches/../C_code.c:2047:          ? Proc_Start(ProcScr_GotItem, parent)
-	ldr	r0, .L1384	@ tmp133,
+	ldr	r0, .L1383	@ tmp133,
 @ Patches/../C_code.c:2043: {
 	movs	r5, r1	@ unit, tmp169
 	movs	r4, r2	@ item, tmp170
@@ -9256,15 +9247,15 @@ NewPopup_ItemGot:
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:2046:     proc = (PROC_IS_ROOT(parent))
 	cmp	r3, #7	@ parent,
-	bhi	.L1373		@,
+	bhi	.L1372		@,
 @ Patches/../C_code.c:2047:          ? Proc_Start(ProcScr_GotItem, parent)
-	ldr	r3, .L1384+4	@ tmp134,
+	ldr	r3, .L1383+4	@ tmp134,
 	bl	.L14		@
 	movs	r6, r0	@ iftmp.127_17, tmp171
-.L1374:
+.L1373:
 @ Patches/../C_code.c:2050: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #8	@,
-	ldr	r3, .L1384+8	@ tmp140,
+	ldr	r3, .L1383+8	@ tmp140,
 	movs	r1, #0	@,
 	add	r0, sp, #16	@,,
 	bl	.L14		@
@@ -9280,17 +9271,17 @@ NewPopup_ItemGot:
 	ldrsb	r3, [r5, r3]	@ tmp146,
 	str	r3, [sp, #12]	@ tmp146, noise[1]
 @ Patches/../C_code.c:2054: 	if (RandBitflags->foundItems) { item = RandNewItem(item, noise, 0, false, true, false); } 
-	ldr	r3, .L1384+12	@ tmp148,
+	ldr	r3, .L1383+12	@ tmp148,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #1]	@ *RandBitflags.129_6, *RandBitflags.129_6
 @ Patches/../C_code.c:2054: 	if (RandBitflags->foundItems) { item = RandNewItem(item, noise, 0, false, true, false); } 
 	movs	r0, r4	@ prephitmp_61, item
 @ Patches/../C_code.c:2054: 	if (RandBitflags->foundItems) { item = RandNewItem(item, noise, 0, false, true, false); } 
 	tst	r2, r3	@ tmp154, *RandBitflags.129_6
-	beq	.L1375		@,
+	beq	.L1374		@,
 @ Patches/../C_code.c:1944: 	if (!item) { return item; } 
 	cmp	r4, #0	@ prephitmp_61,
-	beq	.L1375		@,
+	beq	.L1374		@,
 	movs	r3, #0	@ tmp159,
 	str	r3, [sp, #4]	@ tmp159,
 	adds	r3, r3, #1	@ tmp160,
@@ -9301,7 +9292,7 @@ NewPopup_ItemGot:
 	bl	RandNewItem.part.0		@
 	lsls	r0, r0, #16	@ tmp161, tmp173,
 	lsrs	r0, r0, #16	@ prephitmp_61, tmp161,
-.L1375:
+.L1374:
 @ Patches/../C_code.c:2059:     if (FACTION_RED == UNIT_FACTION(unit))
 	movs	r2, #11	@ tmp162,
 	movs	r3, #192	@ tmp163,
@@ -9314,29 +9305,29 @@ NewPopup_ItemGot:
 	ands	r3, r2	@ tmp164, tmp162
 @ Patches/../C_code.c:2059:     if (FACTION_RED == UNIT_FACTION(unit))
 	cmp	r3, #128	@ tmp164,
-	bne	.L1372		@,
+	bne	.L1371		@,
 @ Patches/../C_code.c:2060:         unit->state |= US_DROP_ITEM;
 	movs	r3, #128	@ tmp167,
 	ldr	r2, [r5, #12]	@ unit_28(D)->state, unit_28(D)->state
 	lsls	r3, r3, #5	@ tmp167, tmp167,
 	orrs	r3, r2	@ tmp165, unit_28(D)->state
 	str	r3, [r5, #12]	@ tmp165, unit_28(D)->state
-.L1372:
+.L1371:
 @ Patches/../C_code.c:2061: }
 	add	sp, sp, #24	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L1373:
+.L1372:
 @ Patches/../C_code.c:2048:          : Proc_StartBlocking(ProcScr_GotItem, parent);
-	ldr	r3, .L1384+16	@ tmp136,
+	ldr	r3, .L1383+16	@ tmp136,
 	bl	.L14		@
 	movs	r6, r0	@ iftmp.127_17, tmp172
-	b	.L1374		@
-.L1385:
-	.align	2
+	b	.L1373		@
 .L1384:
+	.align	2
+.L1383:
 	.word	ProcScr_GotItem
 	.word	Proc_Start
 	.word	memset
@@ -9356,7 +9347,7 @@ NewPopup_ItemGot_NoRand:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
 @ Patches/../C_code.c:2073:          ? Proc_Start(ProcScr_GotItem, parent)
-	ldr	r3, .L1390	@ tmp125,
+	ldr	r3, .L1389	@ tmp125,
 @ Patches/../C_code.c:2069: {
 	movs	r4, r1	@ unit, tmp136
 	movs	r5, r2	@ item, tmp137
@@ -9364,12 +9355,12 @@ NewPopup_ItemGot_NoRand:
 	movs	r1, r0	@, parent
 @ Patches/../C_code.c:2072:     proc = (PROC_IS_ROOT(parent))
 	cmp	r0, #7	@ parent,
-	bhi	.L1387		@,
+	bhi	.L1386		@,
 @ Patches/../C_code.c:2073:          ? Proc_Start(ProcScr_GotItem, parent)
 	movs	r0, r3	@ tmp125, tmp125
-	ldr	r3, .L1390+4	@ tmp126,
+	ldr	r3, .L1389+4	@ tmp126,
 	bl	.L14		@
-.L1388:
+.L1387:
 @ Patches/../C_code.c:2080:     if (FACTION_RED == UNIT_FACTION(unit))
 	movs	r2, #11	@ tmp129,
 	movs	r3, #192	@ tmp130,
@@ -9382,28 +9373,28 @@ NewPopup_ItemGot_NoRand:
 	ands	r3, r2	@ tmp131, tmp129
 @ Patches/../C_code.c:2080:     if (FACTION_RED == UNIT_FACTION(unit))
 	cmp	r3, #128	@ tmp131,
-	bne	.L1386		@,
+	bne	.L1385		@,
 @ Patches/../C_code.c:2081:         unit->state |= US_DROP_ITEM;
 	movs	r3, #128	@ tmp134,
 	ldr	r2, [r4, #12]	@ unit_19(D)->state, unit_19(D)->state
 	lsls	r3, r3, #5	@ tmp134, tmp134,
 	orrs	r3, r2	@ tmp132, unit_19(D)->state
 	str	r3, [r4, #12]	@ tmp132, unit_19(D)->state
-.L1386:
+.L1385:
 @ Patches/../C_code.c:2082: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L1387:
+.L1386:
 @ Patches/../C_code.c:2074:          : Proc_StartBlocking(ProcScr_GotItem, parent);
 	movs	r0, r3	@ tmp127, tmp127
-	ldr	r3, .L1390+8	@ tmp128,
+	ldr	r3, .L1389+8	@ tmp128,
 	bl	.L14		@
-	b	.L1388		@
-.L1391:
-	.align	2
+	b	.L1387		@
 .L1390:
+	.align	2
+.L1389:
 	.word	ProcScr_GotItem
 	.word	Proc_Start
 	.word	Proc_StartBlocking
@@ -9424,7 +9415,7 @@ NewPopup_GoldGot:
 @ Patches/../C_code.c:2100: {
 	movs	r5, r1	@ unit, tmp167
 @ Patches/../C_code.c:2104: 	int noise[4] = {0, 0, 0, 0}; 
-	ldr	r3, .L1402	@ tmp133,
+	ldr	r3, .L1401	@ tmp133,
 @ Patches/../C_code.c:2100: {
 	movs	r6, r0	@ parent, tmp166
 	movs	r4, r2	@ value, tmp168
@@ -9445,15 +9436,15 @@ NewPopup_GoldGot:
 	ldrsb	r3, [r5, r3]	@ tmp139,
 	str	r3, [sp, #12]	@ tmp139, noise[1]
 @ Patches/../C_code.c:2109: 	if (RandBitflags->foundItems) { value = HashByPercent_Ch(value, noise, 13, false); if (!value) { value = 1; } } 
-	ldr	r3, .L1402+4	@ tmp141,
+	ldr	r3, .L1401+4	@ tmp141,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #1]	@ *RandBitflags.132_5, *RandBitflags.132_5
 @ Patches/../C_code.c:2109: 	if (RandBitflags->foundItems) { value = HashByPercent_Ch(value, noise, 13, false); if (!value) { value = 1; } } 
 	tst	r2, r3	@ tmp147, *RandBitflags.132_5
-	bne	.L1401		@,
-.L1393:
+	bne	.L1400		@,
+.L1392:
 @ Patches/../C_code.c:2110:     SetPopupNumber(value); 
-	ldr	r3, .L1402+8	@ tmp155,
+	ldr	r3, .L1401+8	@ tmp155,
 	movs	r0, r4	@, value
 	bl	.L14		@
 @ Patches/../C_code.c:2112:     if (FACTION_BLUE == UNIT_FACTION(unit)) {
@@ -9462,24 +9453,24 @@ NewPopup_GoldGot:
 	ldrsb	r3, [r5, r3]	@ tmp156,
 @ Patches/../C_code.c:2112:     if (FACTION_BLUE == UNIT_FACTION(unit)) {
 	tst	r2, r3	@ tmp157, tmp156
-	bne	.L1394		@,
+	bne	.L1393		@,
 @ Patches/../C_code.c:2113:         value += GetPartyGoldAmount(); 
-	ldr	r3, .L1402+12	@ tmp159,
+	ldr	r3, .L1401+12	@ tmp159,
 	bl	.L14		@
 @ Patches/../C_code.c:2114:         SetPartyGoldAmount(value); 
-	ldr	r3, .L1402+16	@ tmp161,
+	ldr	r3, .L1401+16	@ tmp161,
 @ Patches/../C_code.c:2113:         value += GetPartyGoldAmount(); 
 	adds	r0, r4, r0	@ value, value, tmp170
 @ Patches/../C_code.c:2114:         SetPartyGoldAmount(value); 
 	bl	.L14		@
 @ Patches/../C_code.c:2115:         NewPopup_Simple(PopupScr_GotGold, 0x60, 0x0, parent); // 0D720 //5C3FE4 fe6 
-	ldr	r0, .L1402+20	@ tmp162,
-.L1400:
+	ldr	r0, .L1401+20	@ tmp162,
+.L1399:
 @ Patches/../C_code.c:2117:         NewPopup_Simple(PopupScr_GoldWasStole, 0x60, 0x0, parent);
 	movs	r3, r6	@, parent
 	movs	r2, #0	@,
 	movs	r1, #96	@,
-	ldr	r4, .L1402+24	@ tmp165,
+	ldr	r4, .L1401+24	@ tmp165,
 	bl	.L240		@
 @ Patches/../C_code.c:2118: }
 	add	sp, sp, #24	@,,
@@ -9487,11 +9478,11 @@ NewPopup_GoldGot:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L1394:
+.L1393:
 @ Patches/../C_code.c:2117:         NewPopup_Simple(PopupScr_GoldWasStole, 0x60, 0x0, parent);
-	ldr	r0, .L1402+28	@ tmp164,
-	b	.L1400		@
-.L1401:
+	ldr	r0, .L1401+28	@ tmp164,
+	b	.L1399		@
+.L1400:
 @ Patches/../C_code.c:1472: 	return HashPercent(number, noise, offset, false, earlygamePromo);
 	movs	r3, #0	@ tmp152,
 	movs	r0, r4	@, value
@@ -9501,13 +9492,13 @@ NewPopup_GoldGot:
 	bl	HashPercent		@
 	subs	r4, r0, #0	@ value, tmp169,
 @ Patches/../C_code.c:2109: 	if (RandBitflags->foundItems) { value = HashByPercent_Ch(value, noise, 13, false); if (!value) { value = 1; } } 
-	bne	.L1393		@,
+	bne	.L1392		@,
 @ Patches/../C_code.c:2109: 	if (RandBitflags->foundItems) { value = HashByPercent_Ch(value, noise, 13, false); if (!value) { value = 1; } } 
 	adds	r4, r4, #1	@ value,
-	b	.L1393		@
-.L1403:
-	.align	2
+	b	.L1392		@
 .L1402:
+	.align	2
+.L1401:
 	.word	memset
 	.word	RandBitflags
 	.word	SetPopupNumber
@@ -9530,7 +9521,7 @@ AdjustGrowthForStatInflation:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
 @ Patches/../C_code.c:2122: 	switch (RandBitflags->caps) { 
-	ldr	r3, .L1413	@ tmp124,
+	ldr	r3, .L1412	@ tmp124,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrh	r3, [r3]	@ *RandBitflags.133_1, *RandBitflags.133_1
 	lsls	r3, r3, #23	@ tmp129, *RandBitflags.133_1,
@@ -9540,13 +9531,13 @@ AdjustGrowthForStatInflation:
 	lsrs	r3, r3, #29	@ _2, tmp129,
 @ Patches/../C_code.c:2122: 	switch (RandBitflags->caps) { 
 	cmp	r3, #5	@ _2,
-	beq	.L1405		@,
-	bhi	.L1406		@,
+	beq	.L1404		@,
+	bhi	.L1405		@,
 	movs	r0, #0	@ <retval>,
 	cmp	r3, #2	@ _2,
-	beq	.L1404		@,
+	beq	.L1403		@,
 	cmp	r3, #3	@ _2,
-	bne	.L1412		@,
+	bne	.L1411		@,
 @ Patches/../C_code.c:2126: 		case 3: { result = (3 * growth) / 4; break; } 
 	lsls	r1, r2, #1	@ tmp134, growth,
 	adds	r2, r1, r2	@ tmp135, tmp134, growth
@@ -9556,11 +9547,11 @@ AdjustGrowthForStatInflation:
 	adds	r0, r3, r2	@ tmp141, tmp140, tmp135
 	asrs	r0, r0, #2	@ <retval>, tmp141,
 @ Patches/../C_code.c:2126: 		case 3: { result = (3 * growth) / 4; break; } 
-	b	.L1404		@
-.L1406:
+	b	.L1403		@
+.L1405:
 @ Patches/../C_code.c:2122: 	switch (RandBitflags->caps) { 
 	cmp	r3, #6	@ _2,
-	bne	.L1412		@,
+	bne	.L1411		@,
 @ Patches/../C_code.c:2129: 		case 6: { result = ((6 * growth) / 4) + 20; break; } 
 	lsls	r3, r0, #1	@ tmp155, growth,
 	adds	r3, r3, r0	@ tmp156, tmp155, growth
@@ -9575,15 +9566,15 @@ AdjustGrowthForStatInflation:
 	asrs	r0, r0, #2	@ tmp165, tmp164,
 @ Patches/../C_code.c:2129: 		case 6: { result = ((6 * growth) / 4) + 20; break; } 
 	adds	r0, r0, #20	@ <retval>,
-.L1404:
+.L1403:
 @ Patches/../C_code.c:2132: } 
 	@ sp needed	@
 	bx	lr
-.L1412:
+.L1411:
 @ Patches/../C_code.c:2121: 	int result = growth; 
 	movs	r0, r2	@ <retval>, growth
-	b	.L1404		@
-.L1405:
+	b	.L1403		@
+.L1404:
 @ Patches/../C_code.c:2128: 		case 5: { result = ((5 * growth) / 4) + 10; break; } 
 	lsls	r3, r0, #2	@ tmp144, growth,
 	adds	r3, r3, r0	@ tmp145, tmp144, growth
@@ -9596,10 +9587,10 @@ AdjustGrowthForStatInflation:
 @ Patches/../C_code.c:2128: 		case 5: { result = ((5 * growth) / 4) + 10; break; } 
 	adds	r0, r0, #10	@ <retval>,
 @ Patches/../C_code.c:2128: 		case 5: { result = ((5 * growth) / 4) + 10; break; } 
-	b	.L1404		@
-.L1414:
-	.align	2
+	b	.L1403		@
 .L1413:
+	.align	2
+.L1412:
 	.word	RandBitflags
 	.size	AdjustGrowthForStatInflation, .-AdjustGrowthForStatInflation
 	.align	1
@@ -9615,7 +9606,7 @@ GetGeneralStatCap:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
-	ldr	r3, .L1419	@ tmp125,
+	ldr	r3, .L1418	@ tmp125,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrh	r3, [r3]	@ *RandBitflags.134_1, *RandBitflags.134_1
 	lsls	r3, r3, #23	@ tmp130, *RandBitflags.134_1,
@@ -9624,30 +9615,30 @@ GetGeneralStatCap:
 	lsls	r2, r2, #24	@ tmp136, tmp132,
 	lsrs	r2, r2, #24	@ tmp135, tmp136,
 	cmp	r2, #4	@ tmp135,
-	bhi	.L1418		@,
+	bhi	.L1417		@,
 	lsls	r2, r3, #4	@ tmp138, _2,
 	subs	r3, r2, r3	@ tmp139, tmp138, _2
 	subs	r3, r3, #30	@ result,
-.L1416:
+.L1415:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
-	ldr	r2, .L1419+4	@ tmp141,
+	ldr	r2, .L1418+4	@ tmp141,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r0, [r2]	@ maxStat, maxStat
 	cmp	r0, r3	@ maxStat, result
-	ble	.L1417		@,
+	ble	.L1416		@,
 	movs	r0, r3	@ maxStat, result
-.L1417:
+.L1416:
 @ Patches/../C_code.c:2147: } 
 	@ sp needed	@
 	bx	lr
-.L1418:
+.L1417:
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	movs	r3, #1	@ result,
 	rsbs	r3, r3, #0	@ result, result
-	b	.L1416		@
-.L1420:
-	.align	2
+	b	.L1415		@
 .L1419:
+	.align	2
+.L1418:
 	.word	RandBitflags
 	.word	maxStat
 	.size	GetGeneralStatCap, .-GetGeneralStatCap
@@ -9664,7 +9655,7 @@ GetGlobalStatCap:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
-	ldr	r3, .L1429	@ tmp125,
+	ldr	r3, .L1428	@ tmp125,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrh	r3, [r3]	@ *RandBitflags.134_4, *RandBitflags.134_4
 	lsls	r3, r3, #23	@ tmp130, *RandBitflags.134_4,
@@ -9673,39 +9664,39 @@ GetGlobalStatCap:
 	lsls	r2, r2, #24	@ tmp136, tmp132,
 	lsrs	r2, r2, #24	@ tmp135, tmp136,
 	cmp	r2, #4	@ tmp135,
-	bhi	.L1425		@,
+	bhi	.L1424		@,
 	lsls	r2, r3, #4	@ tmp138, _5,
 	subs	r3, r2, r3	@ tmp139, tmp138, _5
 	subs	r3, r3, #30	@ result,
-.L1422:
+.L1421:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
-	ldr	r2, .L1429+4	@ tmp140,
+	ldr	r2, .L1428+4	@ tmp140,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r0, [r2]	@ <retval>, maxStat
 	cmp	r0, r3	@ <retval>, result
-	ble	.L1423		@,
+	ble	.L1422		@,
 	movs	r0, r3	@ <retval>, result
-.L1423:
+.L1422:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r3, r0, #1	@ tmp143, <retval>,
-	beq	.L1428		@,
-.L1421:
+	beq	.L1427		@,
+.L1420:
 @ Patches/../C_code.c:2153: }  
 	@ sp needed	@
 	bx	lr
-.L1425:
+.L1424:
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	movs	r3, #1	@ result,
 	rsbs	r3, r3, #0	@ result, result
-	b	.L1422		@
-.L1428:
+	b	.L1421		@
+.L1427:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r0, r0, #31	@ <retval>,
 @ Patches/../C_code.c:2152: 	return result; 
-	b	.L1421		@
-.L1430:
-	.align	2
+	b	.L1420		@
 .L1429:
+	.align	2
+.L1428:
 	.word	RandBitflags
 	.word	maxStat
 	.size	GetGlobalStatCap, .-GetGlobalStatCap
@@ -9722,7 +9713,7 @@ AdjustStatForInflatedNumbers:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
 @ Patches/../C_code.c:2157: 	switch (RandBitflags->caps) { 
-	ldr	r2, .L1441	@ tmp125,
+	ldr	r2, .L1440	@ tmp125,
 	ldr	r2, [r2]	@ RandBitflags, RandBitflags
 	ldrh	r2, [r2]	@ *RandBitflags.136_1, *RandBitflags.136_1
 	lsls	r2, r2, #23	@ tmp130, *RandBitflags.136_1,
@@ -9732,13 +9723,13 @@ AdjustStatForInflatedNumbers:
 	lsrs	r2, r2, #29	@ _2, tmp130,
 @ Patches/../C_code.c:2157: 	switch (RandBitflags->caps) { 
 	cmp	r2, #5	@ _2,
-	beq	.L1432		@,
-	bhi	.L1433		@,
+	beq	.L1431		@,
+	bhi	.L1432		@,
 	movs	r0, #0	@ <retval>,
 	cmp	r2, #2	@ _2,
-	beq	.L1431		@,
+	beq	.L1430		@,
 	cmp	r2, #3	@ _2,
-	bne	.L1436		@,
+	bne	.L1435		@,
 @ Patches/../C_code.c:2161: 		case 3: { result = ((3 * stat) / 4) - 2; break; } 
 	lsls	r1, r3, #1	@ tmp135, stat,
 	adds	r3, r1, r3	@ tmp136, tmp135, stat
@@ -9750,11 +9741,11 @@ AdjustStatForInflatedNumbers:
 @ Patches/../C_code.c:2161: 		case 3: { result = ((3 * stat) / 4) - 2; break; } 
 	subs	r3, r3, #2	@ stat,
 @ Patches/../C_code.c:2161: 		case 3: { result = ((3 * stat) / 4) - 2; break; } 
-	b	.L1436		@
-.L1433:
+	b	.L1435		@
+.L1432:
 @ Patches/../C_code.c:2157: 	switch (RandBitflags->caps) { 
 	cmp	r2, #6	@ _2,
-	bne	.L1436		@,
+	bne	.L1435		@,
 @ Patches/../C_code.c:2164: 		case 6: { result = ((6 * stat) / 4) + 2; break; } 
 	movs	r3, #3	@ tmp164,
 @ Patches/../C_code.c:2164: 		case 6: { result = ((6 * stat) / 4) + 2; break; } 
@@ -9768,16 +9759,16 @@ AdjustStatForInflatedNumbers:
 	asrs	r3, r3, #2	@ tmp167, tmp166,
 @ Patches/../C_code.c:2164: 		case 6: { result = ((6 * stat) / 4) + 2; break; } 
 	adds	r3, r3, #2	@ stat,
-.L1436:
+.L1435:
 @ Patches/../C_code.c:2166: 	if (result < 0) { result = 0; } 
 	mvns	r0, r3	@ tmp170, stat
 	asrs	r0, r0, #31	@ tmp169, tmp170,
 	ands	r0, r3	@ <retval>, stat
-.L1431:
+.L1430:
 @ Patches/../C_code.c:2168: } 
 	@ sp needed	@
 	bx	lr
-.L1432:
+.L1431:
 @ Patches/../C_code.c:2163: 		case 5: { result = ((5 * stat) / 4) + 1; break; } 
 	movs	r3, #3	@ tmp152,
 @ Patches/../C_code.c:2163: 		case 5: { result = ((5 * stat) / 4) + 1; break; } 
@@ -9791,10 +9782,10 @@ AdjustStatForInflatedNumbers:
 @ Patches/../C_code.c:2163: 		case 5: { result = ((5 * stat) / 4) + 1; break; } 
 	adds	r3, r3, #1	@ stat,
 @ Patches/../C_code.c:2163: 		case 5: { result = ((5 * stat) / 4) + 1; break; } 
-	b	.L1436		@
-.L1442:
-	.align	2
+	b	.L1435		@
 .L1441:
+	.align	2
+.L1440:
 	.word	RandBitflags
 	.size	AdjustStatForInflatedNumbers, .-AdjustStatForInflatedNumbers
 	.align	1
@@ -9810,7 +9801,7 @@ SlightlyAdjustStatForInflatedNumbers:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
 @ Patches/../C_code.c:2172: 	switch (RandBitflags->caps) { 
-	ldr	r2, .L1453	@ tmp124,
+	ldr	r2, .L1452	@ tmp124,
 	ldr	r2, [r2]	@ RandBitflags, RandBitflags
 	ldrh	r2, [r2]	@ *RandBitflags.137_1, *RandBitflags.137_1
 	lsls	r2, r2, #23	@ tmp129, *RandBitflags.137_1,
@@ -9820,13 +9811,13 @@ SlightlyAdjustStatForInflatedNumbers:
 	lsrs	r2, r2, #29	@ _2, tmp129,
 @ Patches/../C_code.c:2172: 	switch (RandBitflags->caps) { 
 	cmp	r2, #5	@ _2,
-	beq	.L1444		@,
-	bhi	.L1445		@,
+	beq	.L1443		@,
+	bhi	.L1444		@,
 	movs	r0, #0	@ <retval>,
 	cmp	r2, #2	@ _2,
-	beq	.L1443		@,
+	beq	.L1442		@,
 	cmp	r2, #3	@ _2,
-	bne	.L1448		@,
+	bne	.L1447		@,
 @ Patches/../C_code.c:2176: 		case 3: { result = ((7 * stat) / 8) - 1; break; } 
 	lsls	r2, r3, #3	@ tmp134, stat,
 	subs	r2, r2, r3	@ tmp135, tmp134, stat
@@ -9839,11 +9830,11 @@ SlightlyAdjustStatForInflatedNumbers:
 @ Patches/../C_code.c:2176: 		case 3: { result = ((7 * stat) / 8) - 1; break; } 
 	subs	r3, r3, #1	@ stat,
 @ Patches/../C_code.c:2176: 		case 3: { result = ((7 * stat) / 8) - 1; break; } 
-	b	.L1448		@
-.L1445:
+	b	.L1447		@
+.L1444:
 @ Patches/../C_code.c:2172: 	switch (RandBitflags->caps) { 
 	cmp	r2, #6	@ _2,
-	bne	.L1448		@,
+	bne	.L1447		@,
 @ Patches/../C_code.c:2179: 		case 6: { result = ((10 * stat) / 8) + 1; break; } 
 	movs	r3, #7	@ tmp162,
 @ Patches/../C_code.c:2179: 		case 6: { result = ((10 * stat) / 8) + 1; break; } 
@@ -9857,16 +9848,16 @@ SlightlyAdjustStatForInflatedNumbers:
 	asrs	r3, r3, #3	@ tmp165, tmp164,
 @ Patches/../C_code.c:2179: 		case 6: { result = ((10 * stat) / 8) + 1; break; } 
 	adds	r3, r3, #1	@ stat,
-.L1448:
+.L1447:
 @ Patches/../C_code.c:2181: 	if (result < 0) { result = 0; } 
 	mvns	r0, r3	@ tmp168, stat
 	asrs	r0, r0, #31	@ tmp167, tmp168,
 	ands	r0, r3	@ <retval>, stat
-.L1443:
+.L1442:
 @ Patches/../C_code.c:2183: }
 	@ sp needed	@
 	bx	lr
-.L1444:
+.L1443:
 @ Patches/../C_code.c:2178: 		case 5: { result = ((9 * stat) / 8) + 0; break; } 
 	movs	r3, #7	@ tmp150,
 @ Patches/../C_code.c:2178: 		case 5: { result = ((9 * stat) / 8) + 0; break; } 
@@ -9878,10 +9869,10 @@ SlightlyAdjustStatForInflatedNumbers:
 	adds	r3, r3, r2	@ tmp152, tmp151, tmp146
 	asrs	r3, r3, #3	@ stat, tmp152,
 @ Patches/../C_code.c:2178: 		case 5: { result = ((9 * stat) / 8) + 0; break; } 
-	b	.L1448		@
-.L1454:
-	.align	2
+	b	.L1447		@
 .L1453:
+	.align	2
+.L1452:
 	.word	RandBitflags
 	.size	SlightlyAdjustStatForInflatedNumbers, .-SlightlyAdjustStatForInflatedNumbers
 	.align	1
@@ -9927,7 +9918,7 @@ RandHPStat:
 @ Patches/../C_code.c:2218: int RandHPStat(struct Unit* unit, int stat, int noise[], int offset, int promoted) { 
 	movs	r6, r3	@ offset, tmp181
 @ Patches/../C_code.c:2219: 	if (!RandBitflags->base) { return stat; } 
-	ldr	r3, .L1470	@ tmp139,
+	ldr	r3, .L1469	@ tmp139,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3]	@ *RandBitflags.139_1, *RandBitflags.139_1
 @ Patches/../C_code.c:2218: int RandHPStat(struct Unit* unit, int stat, int noise[], int offset, int promoted) { 
@@ -9936,20 +9927,20 @@ RandHPStat:
 	sub	sp, sp, #8	@,,
 @ Patches/../C_code.c:2219: 	if (!RandBitflags->base) { return stat; } 
 	tst	r2, r3	@ tmp141, *RandBitflags.139_1
-	beq	.L1457		@,
+	beq	.L1456		@,
 @ Patches/../C_code.c:2220: 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	ldr	r3, [r0]	@ unit_7(D)->pCharacterData, unit_7(D)->pCharacterData
 	ldrb	r3, [r3, #4]	@ _15,
 	mov	r8, r3	@ _15, _15
 @ Patches/../C_code.c:2220: 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	mov	r1, r8	@ _15, _15
-	ldr	r3, .L1470+4	@ tmp150,
+	ldr	r3, .L1469+4	@ tmp150,
 	lsls	r1, r1, #1	@ tmp151, _15,
 @ Patches/../C_code.c:2220: 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	ldrb	r3, [r1, r3]	@ tmp152, CharExceptions
 	cmp	r3, #0	@ tmp152,
-	beq	.L1468		@,
-.L1457:
+	beq	.L1467		@,
+.L1456:
 @ Patches/../C_code.c:2230: } 
 	movs	r0, r4	@, stat
 	add	sp, sp, #8	@,,
@@ -9961,7 +9952,7 @@ RandHPStat:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1468:
+.L1467:
 @ Patches/../C_code.c:1472: 	return HashPercent(number, noise, offset, false, earlygamePromo);
 	str	r2, [sp]	@ tmp141,
 	movs	r1, r7	@, noise
@@ -9984,22 +9975,22 @@ RandHPStat:
 	mov	r10, r0	@ result, tmp154
 @ Patches/../C_code.c:1526: 	if (uid < 0x2d) { result = true; } 
 	cmp	r3, #0	@ tmp163,
-	bne	.L1461		@,
+	bne	.L1460		@,
 	mov	r3, r8	@ _15, _15
 	cmp	r3, #44	@ _15,
-	bhi	.L1458		@,
-.L1461:
+	bhi	.L1457		@,
+.L1460:
 @ Patches/../C_code.c:2223: 		if (result < stat) { 
 	cmp	r4, r9	@ stat, tmp154
-	bgt	.L1469		@,
-.L1458:
+	bgt	.L1468		@,
+.L1457:
 @ Patches/../C_code.c:2228: 	result = SlightlyAdjustStatForInflatedNumbers(result); 
 	mov	r0, r10	@, result
 	bl	SlightlyAdjustStatForInflatedNumbers		@
 	movs	r4, r0	@ stat, tmp184
 @ Patches/../C_code.c:2229: 	return result; 
-	b	.L1457		@
-.L1469:
+	b	.L1456		@
+.L1468:
 @ Patches/../C_code.c:1472: 	return HashPercent(number, noise, offset, false, earlygamePromo);
 	movs	r3, #3	@ tmp174,
 @ Patches/../C_code.c:2224: 			stat = HashStat(result, noise, offset+13, 3); 
@@ -10015,12 +10006,12 @@ RandHPStat:
 	bl	HashPercent		@
 @ Patches/../C_code.c:2225: 			if (stat > result) { result = stat; } 
 	cmp	r9, r0	@ tmp154, tmp175
-	bge	.L1458		@,
+	bge	.L1457		@,
 	mov	r10, r0	@ result, tmp175
-	b	.L1458		@
-.L1471:
-	.align	2
+	b	.L1457		@
 .L1470:
+	.align	2
+.L1469:
 	.word	RandBitflags
 	.word	CharExceptions
 	.size	RandHPStat, .-RandHPStat
@@ -10042,7 +10033,7 @@ RandStat:
 	push	{r6, r7, lr}	@
 	movs	r6, r3	@ offset, tmp179
 @ Patches/../C_code.c:2232: 	if (!RandBitflags->base) { return stat; } 
-	ldr	r3, .L1487	@ tmp139,
+	ldr	r3, .L1486	@ tmp139,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3]	@ *RandBitflags.140_1, *RandBitflags.140_1
 @ Patches/../C_code.c:2231: int RandStat(struct Unit* unit, int stat, int noise[], int offset, int promoted) { 
@@ -10052,20 +10043,20 @@ RandStat:
 	sub	sp, sp, #8	@,,
 @ Patches/../C_code.c:2232: 	if (!RandBitflags->base) { return stat; } 
 	lsls	r3, r3, #30	@ tmp183, *RandBitflags.140_1,
-	beq	.L1473		@,
+	beq	.L1472		@,
 @ Patches/../C_code.c:2233: 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	ldr	r3, [r0]	@ unit_7(D)->pCharacterData, unit_7(D)->pCharacterData
 	ldrb	r3, [r3, #4]	@ _15,
 	mov	r8, r3	@ _15, _15
 @ Patches/../C_code.c:2233: 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	mov	r2, r8	@ _15, _15
-	ldr	r3, .L1487+4	@ tmp150,
+	ldr	r3, .L1486+4	@ tmp150,
 	lsls	r2, r2, #1	@ tmp151, _15,
 @ Patches/../C_code.c:2233: 	if (CharExceptions[unit->pCharacterData->number].NeverChangeFrom) { return stat; } 
 	ldrb	r3, [r2, r3]	@ tmp152, CharExceptions
 	cmp	r3, #0	@ tmp152,
-	beq	.L1485		@,
-.L1473:
+	beq	.L1484		@,
+.L1472:
 @ Patches/../C_code.c:2243: } 
 	movs	r0, r4	@, stat
 	add	sp, sp, #8	@,,
@@ -10077,7 +10068,7 @@ RandStat:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1485:
+.L1484:
 @ Patches/../C_code.c:1472: 	return HashPercent(number, noise, offset, false, earlygamePromo);
 	ldr	r3, [sp, #40]	@ tmp188, promoted
 	movs	r2, r6	@, offset
@@ -10102,22 +10093,22 @@ RandStat:
 	mov	r10, r0	@ result, tmp153
 @ Patches/../C_code.c:1526: 	if (uid < 0x2d) { result = true; } 
 	cmp	r3, #0	@ tmp162,
-	bne	.L1477		@,
+	bne	.L1476		@,
 	mov	r3, r8	@ _15, _15
 	cmp	r3, #44	@ _15,
-	bhi	.L1474		@,
-.L1477:
+	bhi	.L1473		@,
+.L1476:
 @ Patches/../C_code.c:2236: 		if (result < stat) { 
 	cmp	r4, r9	@ stat, tmp153
-	bgt	.L1486		@,
-.L1474:
+	bgt	.L1485		@,
+.L1473:
 @ Patches/../C_code.c:2241: 	result = SlightlyAdjustStatForInflatedNumbers(result); 
 	mov	r0, r10	@, result
 	bl	SlightlyAdjustStatForInflatedNumbers		@
 	movs	r4, r0	@ stat, tmp182
 @ Patches/../C_code.c:2242: 	return result; 
-	b	.L1473		@
-.L1486:
+	b	.L1472		@
+.L1485:
 @ Patches/../C_code.c:2237: 			stat = HashStat(result, noise, offset+13, promoted); 
 	movs	r2, r6	@ offset, offset
 @ Patches/../C_code.c:1472: 	return HashPercent(number, noise, offset, false, earlygamePromo);
@@ -10132,12 +10123,12 @@ RandStat:
 	bl	HashPercent		@
 @ Patches/../C_code.c:2238: 			if (stat > result) { result = stat; } 
 	cmp	r9, r0	@ tmp153, tmp173
-	bge	.L1474		@,
+	bge	.L1473		@,
 	mov	r10, r0	@ result, tmp173
-	b	.L1474		@
-.L1488:
-	.align	2
+	b	.L1473		@
 .L1487:
+	.align	2
+.L1486:
 	.word	RandBitflags
 	.word	CharExceptions
 	.size	RandStat, .-RandStat
@@ -10156,27 +10147,27 @@ HashWexp:
 	sub	sp, sp, #8	@,,
 @ Patches/../C_code.c:2247: 	if (!number) { return number; } 
 	cmp	r0, #0	@ number,
-	beq	.L1493		@,
+	beq	.L1492		@,
 @ Patches/../C_code.c:2248: 	if (!RandBitflags->class) { return number; } 
 	movs	r4, #6	@ tmp132,
-	ldr	r3, .L1494	@ tmp126,
+	ldr	r3, .L1493	@ tmp126,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #1]	@ *RandBitflags.141_1, *RandBitflags.141_1
 @ Patches/../C_code.c:2248: 	if (!RandBitflags->class) { return number; } 
 	tst	r4, r3	@ tmp132, *RandBitflags.141_1
-	bne	.L1491		@,
-.L1492:
+	bne	.L1490		@,
+.L1491:
 @ Patches/../C_code.c:2251: 	return number; 
 	lsls	r0, r0, #16	@ <retval>, number,
 	asrs	r0, r0, #16	@ <retval>, <retval>,
-.L1490:
+.L1489:
 @ Patches/../C_code.c:2252: } 
 	add	sp, sp, #8	@,,
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L1491:
+.L1490:
 @ Patches/../C_code.c:1476: 	return HashPercent(number, noise, offset, true, false);
 	movs	r3, #0	@ tmp136,
 	str	r3, [sp]	@ tmp136,
@@ -10186,16 +10177,16 @@ HashWexp:
 	adds	r0, r0, #1	@ number,
 @ Patches/../C_code.c:2250: 	if (number > 255) { number = 255; } 
 	cmp	r0, #255	@ number,
-	ble	.L1492		@,
+	ble	.L1491		@,
 	movs	r0, #255	@ number,
-	b	.L1492		@
-.L1493:
+	b	.L1491		@
+.L1492:
 @ Patches/../C_code.c:2247: 	if (!number) { return number; } 
 	movs	r0, #0	@ <retval>,
-	b	.L1490		@
-.L1495:
-	.align	2
+	b	.L1489		@
 .L1494:
+	.align	2
+.L1493:
 	.word	RandBitflags
 	.size	HashWexp, .-HashWexp
 	.align	1
@@ -10244,39 +10235,39 @@ GetClassMagGrowth:
 	ldr	r3, [r0, #4]	@ unit_13(D)->pClassData, unit_13(D)->pClassData
 	ldrb	r6, [r3, #4]	@ _3,
 @ Patches/../C_code.c:2285: 	growth += MagClassTable[unit->pClassData->number].growth; 
-	ldr	r3, .L1507	@ tmp136,
+	ldr	r3, .L1506	@ tmp136,
 	lsls	r2, r6, #2	@ tmp137, _3,
 	adds	r3, r3, r2	@ tmp138, tmp136, tmp137
 	ldrb	r5, [r3, #1]	@ <retval>, MagClassTable
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1507+4	@ tmp141,
+	ldr	r3, .L1506+4	@ tmp141,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r2, [r3]	@ *RandBitflags.53_23, *RandBitflags.53_23
-	ldr	r3, .L1507+8	@ tmp144,
+	ldr	r3, .L1506+8	@ tmp144,
 @ Patches/../C_code.c:2283: int GetClassMagGrowth(struct Unit* unit, int modifiersBool) {
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_23, tmp144
-	beq	.L1499		@,
+	beq	.L1498		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r0]	@ MEM[(const struct CharacterData * *)unit_13(D)], MEM[(const struct CharacterData * *)unit_13(D)]
 	ldrb	r2, [r2, #4]	@ tmp147,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1507+12	@ tmp145,
+	ldr	r3, .L1506+12	@ tmp145,
 	lsls	r2, r2, #1	@ tmp148, tmp147,
 @ Patches/../C_code.c:2286: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	ldrb	r3, [r2, r3]	@ tmp150, CharExceptions
 @ Patches/../C_code.c:2286: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	cmp	r3, #0	@ tmp150,
-	bne	.L1499		@,
+	bne	.L1498		@,
 	rsbs	r4, r1, #0	@ tmp158, modifiersBool
 	adcs	r4, r4, r1	@ tmp158, modifiersBool
 	cmp	r4, #0	@ tmp158,
-	bne	.L1499		@,
+	bne	.L1498		@,
 @ Patches/../C_code.c:2287: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L1507+16	@ tmp163,
+	ldr	r3, .L1506+16	@ tmp163,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:1476: 	return HashPercent(number, noise, offset, true, false);
@@ -10293,15 +10284,15 @@ GetClassMagGrowth:
 	subs	r3, r0, r5	@ tmp171, tmp169, <retval>
 @ Patches/../C_code.c:2290: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp171,
-	bgt	.L1506		@,
+	bgt	.L1505		@,
 @ Patches/../C_code.c:2291: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r0	@ tmp172, <retval>, tmp169
 @ Patches/../C_code.c:2291: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp172,
-	ble	.L1502		@,
+	ble	.L1501		@,
 @ Patches/../C_code.c:2291: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r5, r5, #99	@ <retval>,
-.L1499:
+.L1498:
 @ Patches/../C_code.c:2293: }
 	movs	r0, r5	@, <retval>
 	add	sp, sp, #24	@,,
@@ -10309,16 +10300,16 @@ GetClassMagGrowth:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L1506:
+.L1505:
 @ Patches/../C_code.c:2290: 	if ((result-growth) > 99) { result = growth+99; } 
 	adds	r5, r5, #99	@ <retval>,
-	b	.L1499		@
-.L1502:
+	b	.L1498		@
+.L1501:
 	movs	r5, r0	@ <retval>, tmp169
-	b	.L1499		@
-.L1508:
-	.align	2
+	b	.L1498		@
 .L1507:
+	.align	2
+.L1506:
 	.word	MagClassTable
 	.word	RandBitflags
 	.word	268435468
@@ -10347,7 +10338,7 @@ GetUnitMagGrowth:
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:2297: 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	cmp	r1, #0	@ modifiersBool,
-	beq	.L1510		@,
+	beq	.L1509		@,
 @ Patches/../C_code.c:2255: 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 	ldr	r3, [r0, #12]	@ unit_55(D)->state, unit_55(D)->state
 	lsls	r3, r3, #18	@ tmp175, unit_55(D)->state,
@@ -10355,94 +10346,94 @@ GetUnitMagGrowth:
 	asrs	r3, r3, #31	@ tmp280, tmp175,
 	adds	r6, r6, #5	@ tmp281,
 	ands	r6, r3	@ add, tmp280
-.L1510:
+.L1509:
 @ Patches/../C_code.c:294: 	return GetReorderedCharacter(unit->pCharacterData)->number; 
 	ldr	r0, [r4]	@ _78, unit_55(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp178,
 	movs	r1, r0	@ pretmp_103, _78
 	cmp	r3, #0	@ tmp178,
-	beq	.L1511		@,
+	beq	.L1510		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_78 + 4B], MEM[(unsigned char *)_78 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2299: 	int originalGrowth = MagCharTable[unit->pCharacterData->number].growth;  
 	ldr	r1, [r4]	@ pretmp_103, unit_55(D)->pCharacterData
-.L1511:
+.L1510:
 @ Patches/../C_code.c:294: 	return GetReorderedCharacter(unit->pCharacterData)->number; 
 	ldrb	r3, [r0, #4]	@ tmp181,
 @ Patches/../C_code.c:2298: 	baseGrowth = MagCharTable[GetReorderedUnitID(unit)].growth;  
-	ldr	r2, .L1550	@ tmp274,
+	ldr	r2, .L1549	@ tmp274,
 	lsls	r3, r3, #1	@ tmp182, tmp181,
 	adds	r3, r2, r3	@ tmp183, tmp274, tmp182
 	ldrb	r7, [r3, #1]	@ _2, MagCharTable
 @ Patches/../C_code.c:2300: 	if (ClassBasedGrowths) { baseGrowth = MagClassTable[unit->pClassData->number].growth;  } 
-	ldr	r3, .L1550+4	@ tmp185,
+	ldr	r3, .L1549+4	@ tmp185,
 @ Patches/../C_code.c:2300: 	if (ClassBasedGrowths) { baseGrowth = MagClassTable[unit->pClassData->number].growth;  } 
 	ldr	r3, [r3]	@ ClassBasedGrowths, ClassBasedGrowths
 	cmp	r3, #0	@ ClassBasedGrowths,
-	beq	.L1512		@,
+	beq	.L1511		@,
 @ Patches/../C_code.c:2300: 	if (ClassBasedGrowths) { baseGrowth = MagClassTable[unit->pClassData->number].growth;  } 
 	ldr	r0, [r4, #4]	@ unit_55(D)->pClassData, unit_55(D)->pClassData
 	ldrb	r0, [r0, #4]	@ tmp189,
 @ Patches/../C_code.c:2300: 	if (ClassBasedGrowths) { baseGrowth = MagClassTable[unit->pClassData->number].growth;  } 
-	ldr	r3, .L1550+8	@ tmp187,
+	ldr	r3, .L1549+8	@ tmp187,
 	lsls	r0, r0, #2	@ tmp190, tmp189,
 	adds	r3, r3, r0	@ tmp191, tmp187, tmp190
 	ldrb	r7, [r3, #1]	@ _2, MagClassTable
-.L1512:
+.L1511:
 @ Patches/../C_code.c:2301: 	if (CombinedGrowths) { baseGrowth += MagClassTable[unit->pClassData->number].growth;  } 
-	ldr	r3, .L1550+12	@ tmp193,
+	ldr	r3, .L1549+12	@ tmp193,
 @ Patches/../C_code.c:2301: 	if (CombinedGrowths) { baseGrowth += MagClassTable[unit->pClassData->number].growth;  } 
 	ldr	r3, [r3]	@ CombinedGrowths, CombinedGrowths
 	cmp	r3, #0	@ CombinedGrowths,
-	beq	.L1513		@,
+	beq	.L1512		@,
 @ Patches/../C_code.c:2301: 	if (CombinedGrowths) { baseGrowth += MagClassTable[unit->pClassData->number].growth;  } 
 	ldr	r0, [r4, #4]	@ unit_55(D)->pClassData, unit_55(D)->pClassData
 	ldrb	r0, [r0, #4]	@ tmp197,
 @ Patches/../C_code.c:2301: 	if (CombinedGrowths) { baseGrowth += MagClassTable[unit->pClassData->number].growth;  } 
-	ldr	r3, .L1550+8	@ tmp195,
+	ldr	r3, .L1549+8	@ tmp195,
 	lsls	r0, r0, #2	@ tmp198, tmp197,
 	adds	r3, r3, r0	@ tmp199, tmp195, tmp198
 	ldrb	r3, [r3, #1]	@ tmp201, MagClassTable
 @ Patches/../C_code.c:2301: 	if (CombinedGrowths) { baseGrowth += MagClassTable[unit->pClassData->number].growth;  } 
 	adds	r7, r7, r3	@ baseGrowth, baseGrowth, tmp201
-.L1513:
+.L1512:
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1550+16	@ tmp275,
+	ldr	r3, .L1549+16	@ tmp275,
 	mov	r8, r3	@ tmp275, tmp275
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r0, [r3]	@ *RandBitflags.53_85, *RandBitflags.53_85
-	ldr	r3, .L1550+20	@ tmp206,
+	ldr	r3, .L1549+20	@ tmp206,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r0, r3	@ *RandBitflags.53_85, tmp206
-	beq	.L1514		@,
+	beq	.L1513		@,
 @ Patches/../C_code.c:2299: 	int originalGrowth = MagCharTable[unit->pCharacterData->number].growth;  
 	ldrb	r3, [r1, #4]	@ _5,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r1, .L1550+24	@ tmp207,
+	ldr	r1, .L1549+24	@ tmp207,
 	lsls	r3, r3, #1	@ tmp208, _5,
 @ Patches/../C_code.c:2302: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	ldrb	r1, [r3, r1]	@ tmp210, CharExceptions
 @ Patches/../C_code.c:2302: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	cmp	r1, #0	@ tmp210,
-	bne	.L1514		@,
+	bne	.L1513		@,
 	cmp	r5, #0	@ modifiersBool,
-	beq	.L1514		@,
+	beq	.L1513		@,
 @ Patches/../C_code.c:2299: 	int originalGrowth = MagCharTable[unit->pCharacterData->number].growth;  
 	adds	r2, r2, r3	@ tmp222, tmp274, tmp208
 @ Patches/../C_code.c:2303: 	int growth = CallGet_Mag_Growth(unit); 
 	movs	r0, r4	@, unit
-	ldr	r3, .L1550+28	@ tmp224,
+	ldr	r3, .L1549+28	@ tmp224,
 @ Patches/../C_code.c:2299: 	int originalGrowth = MagCharTable[unit->pCharacterData->number].growth;  
 	ldrb	r5, [r2, #1]	@ _6, MagCharTable
 @ Patches/../C_code.c:2303: 	int growth = CallGet_Mag_Growth(unit); 
 	bl	.L14		@
 @ Patches/../C_code.c:2305: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	adds	r3, r0, #1	@ tmp289, growth,
-	beq	.L1518		@,
+	beq	.L1517		@,
 @ Patches/../C_code.c:2305: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	subs	r6, r0, r5	@ add, growth, _6
-.L1518:
+.L1517:
 @ Patches/../C_code.c:2307: 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	movs	r2, #192	@ tmp226,
 	movs	r3, #11	@ tmp225,
@@ -10451,7 +10442,7 @@ GetUnitMagGrowth:
 	ands	r0, r3	@ <retval>, tmp225
 @ Patches/../C_code.c:2308: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	tst	r2, r3	@ tmp226, tmp225
-	bne	.L1519		@,
+	bne	.L1518		@,
 @ Patches/../C_code.c:2308: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	mov	r3, r8	@ tmp275, tmp275
 	ldr	r2, [r3]	@ RandBitflags.145_23, RandBitflags
@@ -10459,30 +10450,30 @@ GetUnitMagGrowth:
 	ldrb	r3, [r2, #3]	@ *RandBitflags.145_23, *RandBitflags.145_23
 @ Patches/../C_code.c:2308: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	lsls	r3, r3, #27	@ tmp290, *RandBitflags.145_23,
-	bmi	.L1528		@,
+	bmi	.L1527		@,
 @ Patches/../C_code.c:2309: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	movs	r3, #12	@ tmp242,
 	ldrb	r2, [r2]	@ *RandBitflags.145_23, *RandBitflags.145_23
 	ands	r3, r2	@ _27, *RandBitflags.145_23
 @ Patches/../C_code.c:2309: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	cmp	r3, #8	@ _27,
-	beq	.L1509		@,
+	beq	.L1508		@,
 @ Patches/../C_code.c:2310: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	cmp	r3, #12	@ _27,
-	beq	.L1529		@,
-.L1519:
+	beq	.L1528		@,
+.L1518:
 @ Patches/../C_code.c:2311: 	if (MagClassTable[unit->pClassData->number].growth > growth) { growth = MagClassTable[unit->pClassData->number].growth;  } 
 	ldr	r2, [r4, #4]	@ unit_55(D)->pClassData, unit_55(D)->pClassData
 	ldrb	r2, [r2, #4]	@ tmp247,
 @ Patches/../C_code.c:2311: 	if (MagClassTable[unit->pClassData->number].growth > growth) { growth = MagClassTable[unit->pClassData->number].growth;  } 
-	ldr	r3, .L1550+8	@ tmp245,
+	ldr	r3, .L1549+8	@ tmp245,
 	lsls	r2, r2, #2	@ tmp248, tmp247,
 	adds	r3, r3, r2	@ tmp249, tmp245, tmp248
 	ldrb	r0, [r3, #1]	@ baseGrowth, MagClassTable
 @ Patches/../C_code.c:2311: 	if (MagClassTable[unit->pClassData->number].growth > growth) { growth = MagClassTable[unit->pClassData->number].growth;  } 
 	cmp	r0, r7	@ baseGrowth, baseGrowth
-	blt	.L1548		@,
-.L1520:
+	blt	.L1547		@,
+.L1519:
 @ Patches/../C_code.c:2312: 	growth = AdjustGrowthForStatInflation(growth);
 	bl	AdjustGrowthForStatInflation		@
 @ Patches/../C_code.c:2313: 	int noise[4] = {0, 0, 0, 0};  
@@ -10491,7 +10482,7 @@ GetUnitMagGrowth:
 	movs	r5, r0	@ growth, tmp286
 @ Patches/../C_code.c:2313: 	int noise[4] = {0, 0, 0, 0};  
 	movs	r1, #0	@,
-	ldr	r3, .L1550+32	@ tmp255,
+	ldr	r3, .L1549+32	@ tmp255,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2314: 	noise[0] = unit->pCharacterData->number; 
@@ -10515,7 +10506,7 @@ GetUnitMagGrowth:
 	asrs	r1, r1, #1	@ tmp267, tmp266,
 @ Patches/../C_code.c:2316: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 89); } 
 	cmp	r1, r0	@ tmp267, result
-	ble	.L1521		@,
+	ble	.L1520		@,
 @ Patches/../C_code.c:2316: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 89); } 
 	movs	r3, #89	@,
 	movs	r0, r5	@, growth
@@ -10523,32 +10514,32 @@ GetUnitMagGrowth:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:2316: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 89); } 
 	adds	r4, r4, r0	@ result, result, tmp288
-.L1521:
+.L1520:
 @ Patches/../C_code.c:2317: 	if ((result-growth) > 99) { result = growth+99; } 
 	subs	r3, r4, r5	@ tmp271, result, growth
 @ Patches/../C_code.c:2317: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp271,
-	bgt	.L1549		@,
+	bgt	.L1548		@,
 @ Patches/../C_code.c:2318: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r4	@ tmp272, growth, result
 @ Patches/../C_code.c:2318: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp272,
-	ble	.L1523		@,
+	ble	.L1522		@,
 @ Patches/../C_code.c:2318: 	if ((growth-result) > 99) { result = growth-99; } 
 	movs	r4, r5	@ growth, growth
 	subs	r4, r4, #99	@ growth,
-.L1523:
+.L1522:
 @ Patches/../C_code.c:2319: 	result += add; 
 	adds	r0, r6, r4	@ <retval>, add, result
 @ Patches/../C_code.c:2320: 	if (result < 0) { result = 0; } 
 	mvns	r3, r0	@ tmp277, <retval>
 	asrs	r3, r3, #31	@ tmp276, tmp277,
 	ands	r0, r3	@ <retval>, tmp276
-	b	.L1509		@
-.L1514:
+	b	.L1508		@
+.L1513:
 @ Patches/../C_code.c:2302: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	adds	r0, r7, r6	@ <retval>, baseGrowth, add
-.L1509:
+.L1508:
 @ Patches/../C_code.c:2322: }
 	add	sp, sp, #24	@,,
 	@ sp needed	@
@@ -10557,26 +10548,26 @@ GetUnitMagGrowth:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1549:
+.L1548:
 @ Patches/../C_code.c:2317: 	if ((result-growth) > 99) { result = growth+99; } 
 	movs	r4, r5	@ growth, growth
 	adds	r4, r4, #99	@ growth,
-	b	.L1523		@
-.L1548:
+	b	.L1522		@
+.L1547:
 @ Patches/../C_code.c:2311: 	if (MagClassTable[unit->pClassData->number].growth > growth) { growth = MagClassTable[unit->pClassData->number].growth;  } 
 	movs	r0, r7	@ baseGrowth, baseGrowth
-	b	.L1520		@
-.L1529:
+	b	.L1519		@
+.L1528:
 @ Patches/../C_code.c:2310: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	movs	r0, #100	@ <retval>,
-	b	.L1509		@
-.L1528:
+	b	.L1508		@
+.L1527:
 @ Patches/../C_code.c:2308: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	movs	r0, #50	@ <retval>,
-	b	.L1509		@
-.L1551:
-	.align	2
+	b	.L1508		@
 .L1550:
+	.align	2
+.L1549:
 	.word	MagCharTable
 	.word	ClassBasedGrowths
 	.word	MagClassTable
@@ -10600,28 +10591,28 @@ GetUnitMaxMag:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, r7, lr}	@
 @ Patches/../C_code.c:2326: 	if (StrMagInstalled) { cap = MagClassTable[unit->pClassData->number].cap; } 
-	ldr	r3, .L1576	@ tmp147,
+	ldr	r3, .L1575	@ tmp147,
 	ldr	r4, [r3]	@ cap, StrMagInstalled
 @ Patches/../C_code.c:2324: int GetUnitMaxMag(struct Unit* unit) { 
 	movs	r5, r0	@ unit, tmp201
 	sub	sp, sp, #28	@,,
 @ Patches/../C_code.c:2326: 	if (StrMagInstalled) { cap = MagClassTable[unit->pClassData->number].cap; } 
 	cmp	r4, #0	@ cap,
-	beq	.L1553		@,
+	beq	.L1552		@,
 @ Patches/../C_code.c:2326: 	if (StrMagInstalled) { cap = MagClassTable[unit->pClassData->number].cap; } 
 	ldr	r2, [r0, #4]	@ unit_19(D)->pClassData, unit_19(D)->pClassData
 	ldrb	r2, [r2, #4]	@ tmp150,
 @ Patches/../C_code.c:2326: 	if (StrMagInstalled) { cap = MagClassTable[unit->pClassData->number].cap; } 
-	ldr	r3, .L1576+4	@ tmp148,
+	ldr	r3, .L1575+4	@ tmp148,
 	lsls	r2, r2, #2	@ tmp151, tmp150,
 	adds	r3, r3, r2	@ tmp152, tmp148, tmp151
 @ Patches/../C_code.c:2326: 	if (StrMagInstalled) { cap = MagClassTable[unit->pClassData->number].cap; } 
 	ldrb	r4, [r3, #2]	@ cap, MagClassTable
-.L1553:
+.L1552:
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	movs	r2, #224	@ tmp158,
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
-	ldr	r3, .L1576+8	@ tmp154,
+	ldr	r3, .L1575+8	@ tmp154,
 	ldr	r3, [r3]	@ RandBitflags.54_32, RandBitflags
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	ldrh	r3, [r3]	@ *RandBitflags.54_32, *RandBitflags.54_32
@@ -10630,17 +10621,17 @@ GetUnitMaxMag:
 	movs	r0, r4	@ <retval>, cap
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	tst	r3, r2	@ *RandBitflags.54_32, tmp158
-	beq	.L1552		@,
+	beq	.L1551		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r1, [r5]	@ MEM[(const struct CharacterData * *)unit_19(D)], MEM[(const struct CharacterData * *)unit_19(D)]
 	ldrb	r1, [r1, #4]	@ tmp164,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r2, .L1576+12	@ tmp162,
+	ldr	r2, .L1575+12	@ tmp162,
 	lsls	r1, r1, #1	@ tmp165, tmp164,
 @ Patches/../C_code.c:2327: 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	ldrb	r2, [r1, r2]	@ tmp166, CharExceptions
 	cmp	r2, #0	@ tmp166,
-	bne	.L1552		@,
+	bne	.L1551		@,
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	lsls	r3, r3, #23	@ tmp171, *RandBitflags.54_32,
 	lsrs	r3, r3, #29	@ _46, tmp171,
@@ -10648,26 +10639,26 @@ GetUnitMaxMag:
 	lsls	r2, r2, #24	@ tmp177, tmp173,
 	lsrs	r2, r2, #24	@ tmp176, tmp177,
 	cmp	r2, #4	@ tmp176,
-	bhi	.L1564		@,
+	bhi	.L1563		@,
 	lsls	r6, r3, #4	@ tmp179, _46,
 	subs	r6, r6, r3	@ tmp180, tmp179, _46
 	subs	r6, r6, #30	@ result,
-.L1555:
+.L1554:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
-	ldr	r7, .L1576+16	@ tmp200,
+	ldr	r7, .L1575+16	@ tmp200,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r0, [r7]	@ <retval>, maxStat
 	cmp	r0, r6	@ <retval>, result
-	ble	.L1556		@,
+	ble	.L1555		@,
 	movs	r0, r6	@ <retval>, result
-.L1556:
+.L1555:
 @ Patches/../C_code.c:2329: 	if (max != (-1)) { return max; } 
 	adds	r3, r0, #1	@ tmp206, <retval>,
-	bne	.L1552		@,
+	bne	.L1551		@,
 @ Patches/../C_code.c:2330: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L1576+20	@ tmp185,
+	ldr	r3, .L1575+20	@ tmp185,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2331: 	noise[0] = unit->pClassData->number; 
@@ -10688,7 +10679,7 @@ GetUnitMaxMag:
 	movs	r5, r0	@ result, tmp202
 @ Patches/../C_code.c:2333: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap >> 1), noise, 73); } 
 	cmp	r1, r0	@ _10, result
-	ble	.L1557		@,
+	ble	.L1556		@,
 @ Patches/../C_code.c:2333: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap >> 1), noise, 73); } 
 	movs	r3, #73	@,
 	movs	r0, r4	@, cap
@@ -10696,62 +10687,62 @@ GetUnitMaxMag:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:2333: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap >> 1), noise, 73); } 
 	adds	r5, r5, r0	@ result, result, tmp203
-.L1557:
+.L1556:
 @ Patches/../C_code.c:2334: 	if (result > cap) { result = cap; } 
 	cmp	r4, r5	@ _16, result
-	bgt	.L1572		@,
+	bgt	.L1571		@,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r3, [r7]	@ result, maxStat
 	cmp	r3, r6	@ result, result
-	bgt	.L1573		@,
-.L1559:
+	bgt	.L1572		@,
+.L1558:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp207, result,
-	beq	.L1574		@,
-.L1560:
+	beq	.L1573		@,
+.L1559:
 @ Patches/../C_code.c:2335: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r4	@ <retval>, _16
 	cmp	r4, r3	@ <retval>, result
-	bgt	.L1575		@,
-.L1552:
+	bgt	.L1574		@,
+.L1551:
 @ Patches/../C_code.c:2337: } 
 	add	sp, sp, #28	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1564:
+.L1563:
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	movs	r6, #1	@ result,
 	rsbs	r6, r6, #0	@ result, result
-	b	.L1555		@
-.L1575:
+	b	.L1554		@
+.L1574:
 @ Patches/../C_code.c:2335: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r3	@ <retval>, result
-	b	.L1552		@
-.L1573:
+	b	.L1551		@
+.L1572:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	movs	r3, r6	@ result, result
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp207, result,
-	bne	.L1560		@,
-	b	.L1574		@
-.L1572:
+	bne	.L1559		@,
+	b	.L1573		@
+.L1571:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r3, [r7]	@ result, maxStat
 @ Patches/../C_code.c:2334: 	if (result > cap) { result = cap; } 
 	movs	r4, r5	@ _16, result
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	cmp	r3, r6	@ result, result
-	ble	.L1559		@,
-	b	.L1573		@
-.L1574:
+	ble	.L1558		@,
+	b	.L1572		@
+.L1573:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r3, r3, #31	@ result,
-	b	.L1560		@
-.L1577:
-	.align	2
+	b	.L1559		@
 .L1576:
+	.align	2
+.L1575:
 	.word	StrMagInstalled
 	.word	MagClassTable
 	.word	RandBitflags
@@ -10775,7 +10766,7 @@ GetUnitBaseMag:
 	ldr	r2, [r0, #4]	@ unit_10(D)->pClassData, unit_10(D)->pClassData
 	ldrb	r2, [r2, #4]	@ tmp130,
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
-	ldr	r3, .L1583	@ tmp128,
+	ldr	r3, .L1582	@ tmp128,
 @ Patches/../C_code.c:294: 	return GetReorderedCharacter(unit->pCharacterData)->number; 
 	ldr	r0, [r0]	@ _13, unit_10(D)->pCharacterData
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
@@ -10784,16 +10775,16 @@ GetUnitBaseMag:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp132,
 	cmp	r3, #0	@ tmp132,
-	beq	.L1579		@,
+	beq	.L1578		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_13 + 4B], MEM[(unsigned char *)_13 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
-.L1579:
+.L1578:
 @ Patches/../C_code.c:2341: } 
 	@ sp needed	@
 @ Patches/../C_code.c:294: 	return GetReorderedCharacter(unit->pCharacterData)->number; 
 	ldrb	r2, [r0, #4]	@ tmp136,
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
-	ldr	r3, .L1583+4	@ tmp135,
+	ldr	r3, .L1582+4	@ tmp135,
 	lsls	r2, r2, #1	@ tmp137, tmp136,
 	ldrb	r0, [r2, r3]	@ tmp138, MagCharTable
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
@@ -10802,9 +10793,9 @@ GetUnitBaseMag:
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L1584:
-	.align	2
 .L1583:
+	.align	2
+.L1582:
 	.word	MagClassTable
 	.word	MagCharTable
 	.size	GetUnitBaseMag, .-GetUnitBaseMag
@@ -10821,11 +10812,11 @@ GetBaseMag:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
 @ Patches/../C_code.c:2343: 	return MagClassTable[classID].base + MagCharTable[charID].base; 
-	ldr	r3, .L1586	@ tmp122,
+	ldr	r3, .L1585	@ tmp122,
 @ Patches/../C_code.c:2344: } 
 	@ sp needed	@
 @ Patches/../C_code.c:2343: 	return MagClassTable[classID].base + MagCharTable[charID].base; 
-	ldr	r2, .L1586+4	@ tmp125,
+	ldr	r2, .L1585+4	@ tmp125,
 @ Patches/../C_code.c:2343: 	return MagClassTable[classID].base + MagCharTable[charID].base; 
 	lsls	r1, r1, #2	@ tmp123, tmp129,
 @ Patches/../C_code.c:2343: 	return MagClassTable[classID].base + MagCharTable[charID].base; 
@@ -10838,9 +10829,9 @@ GetBaseMag:
 	adds	r0, r3, r0	@ tmp121, tmp124, tmp127
 @ Patches/../C_code.c:2344: } 
 	bx	lr
-.L1587:
-	.align	2
 .L1586:
+	.align	2
+.L1585:
 	.word	MagClassTable
 	.word	MagCharTable
 	.size	GetBaseMag, .-GetBaseMag
@@ -10857,7 +10848,7 @@ GetPromoMag:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	@ link register save eliminated.
 @ Patches/../C_code.c:2347: 	return MagClassTable[classId].promo; 
-	ldr	r3, .L1589	@ tmp118,
+	ldr	r3, .L1588	@ tmp118,
 @ Patches/../C_code.c:2348: } 
 	@ sp needed	@
 @ Patches/../C_code.c:2347: 	return MagClassTable[classId].promo; 
@@ -10866,9 +10857,9 @@ GetPromoMag:
 	ldrb	r0, [r3, #3]	@ tmp117, MagClassTable
 @ Patches/../C_code.c:2348: } 
 	bx	lr
-.L1590:
-	.align	2
 .L1589:
+	.align	2
+.L1588:
 	.word	MagClassTable
 	.size	GetPromoMag, .-GetPromoMag
 	.align	1
@@ -10886,39 +10877,39 @@ GetClassHPGrowth:
 @ Patches/../C_code.c:2371: 	growth += unit->pClassData->growthHP; 
 	movs	r5, #27	@ <retval>,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1599	@ tmp136,
+	ldr	r3, .L1598	@ tmp136,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 @ Patches/../C_code.c:2371: 	growth += unit->pClassData->growthHP; 
 	ldr	r6, [r0, #4]	@ _1, unit_13(D)->pClassData
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	ldr	r2, [r3]	@ *RandBitflags.53_23, *RandBitflags.53_23
-	ldr	r3, .L1599+4	@ tmp139,
+	ldr	r3, .L1598+4	@ tmp139,
 @ Patches/../C_code.c:2371: 	growth += unit->pClassData->growthHP; 
 	ldrsb	r5, [r6, r5]	@ <retval>,* <retval>
 @ Patches/../C_code.c:2369: int GetClassHPGrowth(struct Unit* unit, int modifiersBool) {
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_23, tmp139
-	beq	.L1591		@,
+	beq	.L1590		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r0]	@ MEM[(const struct CharacterData * *)unit_13(D)], MEM[(const struct CharacterData * *)unit_13(D)]
 	ldrb	r2, [r2, #4]	@ tmp142,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1599+8	@ tmp140,
+	ldr	r3, .L1598+8	@ tmp140,
 	lsls	r2, r2, #1	@ tmp143, tmp142,
 @ Patches/../C_code.c:2372: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	ldrb	r3, [r2, r3]	@ tmp145, CharExceptions
 @ Patches/../C_code.c:2372: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	cmp	r3, #0	@ tmp145,
-	bne	.L1591		@,
+	bne	.L1590		@,
 	rsbs	r4, r1, #0	@ tmp153, modifiersBool
 	adcs	r4, r4, r1	@ tmp153, modifiersBool
 	cmp	r4, #0	@ tmp153,
-	bne	.L1591		@,
+	bne	.L1590		@,
 @ Patches/../C_code.c:2373: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L1599+12	@ tmp158,
+	ldr	r3, .L1598+12	@ tmp158,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2374: 	noise[0] = unit->pClassData->number; 
@@ -10937,15 +10928,15 @@ GetClassHPGrowth:
 	subs	r3, r0, r5	@ tmp167, tmp165, <retval>
 @ Patches/../C_code.c:2376: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp167,
-	bgt	.L1598		@,
+	bgt	.L1597		@,
 @ Patches/../C_code.c:2377: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r0	@ tmp168, <retval>, tmp165
 @ Patches/../C_code.c:2377: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp168,
-	ble	.L1594		@,
+	ble	.L1593		@,
 @ Patches/../C_code.c:2377: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r5, r5, #99	@ <retval>,
-.L1591:
+.L1590:
 @ Patches/../C_code.c:2379: }
 	movs	r0, r5	@, <retval>
 	add	sp, sp, #24	@,,
@@ -10953,16 +10944,16 @@ GetClassHPGrowth:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L1598:
+.L1597:
 @ Patches/../C_code.c:2376: 	if ((result-growth) > 99) { result = growth+99; } 
 	adds	r5, r5, #99	@ <retval>,
-	b	.L1591		@
-.L1594:
+	b	.L1590		@
+.L1593:
 	movs	r5, r0	@ <retval>, tmp165
-	b	.L1591		@
-.L1600:
-	.align	2
+	b	.L1590		@
 .L1599:
+	.align	2
+.L1598:
 	.word	RandBitflags
 	.word	268435468
 	.word	CharExceptions
@@ -10983,39 +10974,39 @@ GetClassPowGrowth:
 @ Patches/../C_code.c:2383: 	growth += unit->pClassData->growthPow; 
 	movs	r5, #28	@ <retval>,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1609	@ tmp136,
+	ldr	r3, .L1608	@ tmp136,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 @ Patches/../C_code.c:2383: 	growth += unit->pClassData->growthPow; 
 	ldr	r6, [r0, #4]	@ _1, unit_13(D)->pClassData
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	ldr	r2, [r3]	@ *RandBitflags.53_23, *RandBitflags.53_23
-	ldr	r3, .L1609+4	@ tmp139,
+	ldr	r3, .L1608+4	@ tmp139,
 @ Patches/../C_code.c:2383: 	growth += unit->pClassData->growthPow; 
 	ldrsb	r5, [r6, r5]	@ <retval>,* <retval>
 @ Patches/../C_code.c:2381: int GetClassPowGrowth(struct Unit* unit, int modifiersBool) {
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_23, tmp139
-	beq	.L1601		@,
+	beq	.L1600		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r0]	@ MEM[(const struct CharacterData * *)unit_13(D)], MEM[(const struct CharacterData * *)unit_13(D)]
 	ldrb	r2, [r2, #4]	@ tmp142,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1609+8	@ tmp140,
+	ldr	r3, .L1608+8	@ tmp140,
 	lsls	r2, r2, #1	@ tmp143, tmp142,
 @ Patches/../C_code.c:2384: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	ldrb	r3, [r2, r3]	@ tmp145, CharExceptions
 @ Patches/../C_code.c:2384: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	cmp	r3, #0	@ tmp145,
-	bne	.L1601		@,
+	bne	.L1600		@,
 	rsbs	r4, r1, #0	@ tmp153, modifiersBool
 	adcs	r4, r4, r1	@ tmp153, modifiersBool
 	cmp	r4, #0	@ tmp153,
-	bne	.L1601		@,
+	bne	.L1600		@,
 @ Patches/../C_code.c:2385: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L1609+12	@ tmp158,
+	ldr	r3, .L1608+12	@ tmp158,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2386: 	noise[0] = unit->pClassData->number;  
@@ -11034,15 +11025,15 @@ GetClassPowGrowth:
 	subs	r3, r0, r5	@ tmp167, tmp165, <retval>
 @ Patches/../C_code.c:2388: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp167,
-	bgt	.L1608		@,
+	bgt	.L1607		@,
 @ Patches/../C_code.c:2389: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r0	@ tmp168, <retval>, tmp165
 @ Patches/../C_code.c:2389: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp168,
-	ble	.L1604		@,
+	ble	.L1603		@,
 @ Patches/../C_code.c:2389: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r5, r5, #99	@ <retval>,
-.L1601:
+.L1600:
 @ Patches/../C_code.c:2391: }
 	movs	r0, r5	@, <retval>
 	add	sp, sp, #24	@,,
@@ -11050,16 +11041,16 @@ GetClassPowGrowth:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L1608:
+.L1607:
 @ Patches/../C_code.c:2388: 	if ((result-growth) > 99) { result = growth+99; } 
 	adds	r5, r5, #99	@ <retval>,
-	b	.L1601		@
-.L1604:
+	b	.L1600		@
+.L1603:
 	movs	r5, r0	@ <retval>, tmp165
-	b	.L1601		@
-.L1610:
-	.align	2
+	b	.L1600		@
 .L1609:
+	.align	2
+.L1608:
 	.word	RandBitflags
 	.word	268435468
 	.word	CharExceptions
@@ -11080,39 +11071,39 @@ GetClassSklGrowth:
 @ Patches/../C_code.c:2395: 	growth += unit->pClassData->growthSkl; 
 	movs	r5, #29	@ <retval>,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1619	@ tmp136,
+	ldr	r3, .L1618	@ tmp136,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 @ Patches/../C_code.c:2395: 	growth += unit->pClassData->growthSkl; 
 	ldr	r6, [r0, #4]	@ _1, unit_13(D)->pClassData
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	ldr	r2, [r3]	@ *RandBitflags.53_23, *RandBitflags.53_23
-	ldr	r3, .L1619+4	@ tmp139,
+	ldr	r3, .L1618+4	@ tmp139,
 @ Patches/../C_code.c:2395: 	growth += unit->pClassData->growthSkl; 
 	ldrsb	r5, [r6, r5]	@ <retval>,* <retval>
 @ Patches/../C_code.c:2393: int GetClassSklGrowth(struct Unit* unit, int modifiersBool) {
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_23, tmp139
-	beq	.L1611		@,
+	beq	.L1610		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r0]	@ MEM[(const struct CharacterData * *)unit_13(D)], MEM[(const struct CharacterData * *)unit_13(D)]
 	ldrb	r2, [r2, #4]	@ tmp142,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1619+8	@ tmp140,
+	ldr	r3, .L1618+8	@ tmp140,
 	lsls	r2, r2, #1	@ tmp143, tmp142,
 @ Patches/../C_code.c:2396: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	ldrb	r3, [r2, r3]	@ tmp145, CharExceptions
 @ Patches/../C_code.c:2396: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	cmp	r3, #0	@ tmp145,
-	bne	.L1611		@,
+	bne	.L1610		@,
 	rsbs	r4, r1, #0	@ tmp153, modifiersBool
 	adcs	r4, r4, r1	@ tmp153, modifiersBool
 	cmp	r4, #0	@ tmp153,
-	bne	.L1611		@,
+	bne	.L1610		@,
 @ Patches/../C_code.c:2397: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L1619+12	@ tmp158,
+	ldr	r3, .L1618+12	@ tmp158,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2398: 	noise[0] = unit->pClassData->number; 
@@ -11131,15 +11122,15 @@ GetClassSklGrowth:
 	subs	r3, r0, r5	@ tmp167, tmp165, <retval>
 @ Patches/../C_code.c:2400: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp167,
-	bgt	.L1618		@,
+	bgt	.L1617		@,
 @ Patches/../C_code.c:2401: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r0	@ tmp168, <retval>, tmp165
 @ Patches/../C_code.c:2401: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp168,
-	ble	.L1614		@,
+	ble	.L1613		@,
 @ Patches/../C_code.c:2401: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r5, r5, #99	@ <retval>,
-.L1611:
+.L1610:
 @ Patches/../C_code.c:2403: }
 	movs	r0, r5	@, <retval>
 	add	sp, sp, #24	@,,
@@ -11147,16 +11138,16 @@ GetClassSklGrowth:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L1618:
+.L1617:
 @ Patches/../C_code.c:2400: 	if ((result-growth) > 99) { result = growth+99; } 
 	adds	r5, r5, #99	@ <retval>,
-	b	.L1611		@
-.L1614:
+	b	.L1610		@
+.L1613:
 	movs	r5, r0	@ <retval>, tmp165
-	b	.L1611		@
-.L1620:
-	.align	2
+	b	.L1610		@
 .L1619:
+	.align	2
+.L1618:
 	.word	RandBitflags
 	.word	268435468
 	.word	CharExceptions
@@ -11177,39 +11168,39 @@ GetClassSpdGrowth:
 @ Patches/../C_code.c:2407: 	growth += unit->pClassData->growthSpd; 
 	movs	r5, #30	@ <retval>,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1629	@ tmp136,
+	ldr	r3, .L1628	@ tmp136,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 @ Patches/../C_code.c:2407: 	growth += unit->pClassData->growthSpd; 
 	ldr	r6, [r0, #4]	@ _1, unit_13(D)->pClassData
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	ldr	r2, [r3]	@ *RandBitflags.53_23, *RandBitflags.53_23
-	ldr	r3, .L1629+4	@ tmp139,
+	ldr	r3, .L1628+4	@ tmp139,
 @ Patches/../C_code.c:2407: 	growth += unit->pClassData->growthSpd; 
 	ldrsb	r5, [r6, r5]	@ <retval>,* <retval>
 @ Patches/../C_code.c:2405: int GetClassSpdGrowth(struct Unit* unit, int modifiersBool) {
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_23, tmp139
-	beq	.L1621		@,
+	beq	.L1620		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r0]	@ MEM[(const struct CharacterData * *)unit_13(D)], MEM[(const struct CharacterData * *)unit_13(D)]
 	ldrb	r2, [r2, #4]	@ tmp142,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1629+8	@ tmp140,
+	ldr	r3, .L1628+8	@ tmp140,
 	lsls	r2, r2, #1	@ tmp143, tmp142,
 @ Patches/../C_code.c:2408: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	ldrb	r3, [r2, r3]	@ tmp145, CharExceptions
 @ Patches/../C_code.c:2408: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	cmp	r3, #0	@ tmp145,
-	bne	.L1621		@,
+	bne	.L1620		@,
 	rsbs	r4, r1, #0	@ tmp153, modifiersBool
 	adcs	r4, r4, r1	@ tmp153, modifiersBool
 	cmp	r4, #0	@ tmp153,
-	bne	.L1621		@,
+	bne	.L1620		@,
 @ Patches/../C_code.c:2409: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L1629+12	@ tmp158,
+	ldr	r3, .L1628+12	@ tmp158,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2410: 	noise[0] = unit->pClassData->number; 
@@ -11228,15 +11219,15 @@ GetClassSpdGrowth:
 	subs	r3, r0, r5	@ tmp167, tmp165, <retval>
 @ Patches/../C_code.c:2412: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp167,
-	bgt	.L1628		@,
+	bgt	.L1627		@,
 @ Patches/../C_code.c:2413: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r0	@ tmp168, <retval>, tmp165
 @ Patches/../C_code.c:2413: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp168,
-	ble	.L1624		@,
+	ble	.L1623		@,
 @ Patches/../C_code.c:2413: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r5, r5, #99	@ <retval>,
-.L1621:
+.L1620:
 @ Patches/../C_code.c:2415: }
 	movs	r0, r5	@, <retval>
 	add	sp, sp, #24	@,,
@@ -11244,16 +11235,16 @@ GetClassSpdGrowth:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L1628:
+.L1627:
 @ Patches/../C_code.c:2412: 	if ((result-growth) > 99) { result = growth+99; } 
 	adds	r5, r5, #99	@ <retval>,
-	b	.L1621		@
-.L1624:
+	b	.L1620		@
+.L1623:
 	movs	r5, r0	@ <retval>, tmp165
-	b	.L1621		@
-.L1630:
-	.align	2
+	b	.L1620		@
 .L1629:
+	.align	2
+.L1628:
 	.word	RandBitflags
 	.word	268435468
 	.word	CharExceptions
@@ -11274,39 +11265,39 @@ GetClassDefGrowth:
 @ Patches/../C_code.c:2419: 	growth += unit->pClassData->growthDef; 
 	movs	r5, #31	@ <retval>,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1639	@ tmp136,
+	ldr	r3, .L1638	@ tmp136,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 @ Patches/../C_code.c:2419: 	growth += unit->pClassData->growthDef; 
 	ldr	r6, [r0, #4]	@ _1, unit_13(D)->pClassData
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	ldr	r2, [r3]	@ *RandBitflags.53_23, *RandBitflags.53_23
-	ldr	r3, .L1639+4	@ tmp139,
+	ldr	r3, .L1638+4	@ tmp139,
 @ Patches/../C_code.c:2419: 	growth += unit->pClassData->growthDef; 
 	ldrsb	r5, [r6, r5]	@ <retval>,* <retval>
 @ Patches/../C_code.c:2417: int GetClassDefGrowth(struct Unit* unit, int modifiersBool) {
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_23, tmp139
-	beq	.L1631		@,
+	beq	.L1630		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r0]	@ MEM[(const struct CharacterData * *)unit_13(D)], MEM[(const struct CharacterData * *)unit_13(D)]
 	ldrb	r2, [r2, #4]	@ tmp142,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1639+8	@ tmp140,
+	ldr	r3, .L1638+8	@ tmp140,
 	lsls	r2, r2, #1	@ tmp143, tmp142,
 @ Patches/../C_code.c:2420: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	ldrb	r3, [r2, r3]	@ tmp145, CharExceptions
 @ Patches/../C_code.c:2420: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	cmp	r3, #0	@ tmp145,
-	bne	.L1631		@,
+	bne	.L1630		@,
 	rsbs	r4, r1, #0	@ tmp153, modifiersBool
 	adcs	r4, r4, r1	@ tmp153, modifiersBool
 	cmp	r4, #0	@ tmp153,
-	bne	.L1631		@,
+	bne	.L1630		@,
 @ Patches/../C_code.c:2421: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L1639+12	@ tmp158,
+	ldr	r3, .L1638+12	@ tmp158,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2422: 	noise[0] = unit->pClassData->number; 
@@ -11325,15 +11316,15 @@ GetClassDefGrowth:
 	subs	r3, r0, r5	@ tmp167, tmp165, <retval>
 @ Patches/../C_code.c:2424: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp167,
-	bgt	.L1638		@,
+	bgt	.L1637		@,
 @ Patches/../C_code.c:2425: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r0	@ tmp168, <retval>, tmp165
 @ Patches/../C_code.c:2425: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp168,
-	ble	.L1634		@,
+	ble	.L1633		@,
 @ Patches/../C_code.c:2425: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r5, r5, #99	@ <retval>,
-.L1631:
+.L1630:
 @ Patches/../C_code.c:2427: }
 	movs	r0, r5	@, <retval>
 	add	sp, sp, #24	@,,
@@ -11341,16 +11332,16 @@ GetClassDefGrowth:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L1638:
+.L1637:
 @ Patches/../C_code.c:2424: 	if ((result-growth) > 99) { result = growth+99; } 
 	adds	r5, r5, #99	@ <retval>,
-	b	.L1631		@
-.L1634:
+	b	.L1630		@
+.L1633:
 	movs	r5, r0	@ <retval>, tmp165
-	b	.L1631		@
-.L1640:
-	.align	2
+	b	.L1630		@
 .L1639:
+	.align	2
+.L1638:
 	.word	RandBitflags
 	.word	268435468
 	.word	CharExceptions
@@ -11376,34 +11367,34 @@ GetClassResGrowth:
 @ Patches/../C_code.c:2431: 	growth += unit->pClassData->growthRes; 
 	ldrsb	r5, [r6, r3]	@ <retval>,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1649	@ tmp137,
+	ldr	r3, .L1648	@ tmp137,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r2, [r3]	@ *RandBitflags.53_23, *RandBitflags.53_23
-	ldr	r3, .L1649+4	@ tmp140,
+	ldr	r3, .L1648+4	@ tmp140,
 @ Patches/../C_code.c:2429: int GetClassResGrowth(struct Unit* unit, int modifiersBool) {
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_23, tmp140
-	beq	.L1641		@,
+	beq	.L1640		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r0]	@ MEM[(const struct CharacterData * *)unit_13(D)], MEM[(const struct CharacterData * *)unit_13(D)]
 	ldrb	r2, [r2, #4]	@ tmp143,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1649+8	@ tmp141,
+	ldr	r3, .L1648+8	@ tmp141,
 	lsls	r2, r2, #1	@ tmp144, tmp143,
 @ Patches/../C_code.c:2432: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	ldrb	r3, [r2, r3]	@ tmp146, CharExceptions
 @ Patches/../C_code.c:2432: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	cmp	r3, #0	@ tmp146,
-	bne	.L1641		@,
+	bne	.L1640		@,
 	rsbs	r4, r1, #0	@ tmp154, modifiersBool
 	adcs	r4, r4, r1	@ tmp154, modifiersBool
 	cmp	r4, #0	@ tmp154,
-	bne	.L1641		@,
+	bne	.L1640		@,
 @ Patches/../C_code.c:2433: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L1649+12	@ tmp159,
+	ldr	r3, .L1648+12	@ tmp159,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2434: 	noise[0] = unit->pClassData->number; 
@@ -11422,15 +11413,15 @@ GetClassResGrowth:
 	subs	r3, r0, r5	@ tmp168, tmp166, <retval>
 @ Patches/../C_code.c:2436: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp168,
-	bgt	.L1648		@,
+	bgt	.L1647		@,
 @ Patches/../C_code.c:2437: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r0	@ tmp169, <retval>, tmp166
 @ Patches/../C_code.c:2437: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp169,
-	ble	.L1644		@,
+	ble	.L1643		@,
 @ Patches/../C_code.c:2437: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r5, r5, #99	@ <retval>,
-.L1641:
+.L1640:
 @ Patches/../C_code.c:2439: }
 	movs	r0, r5	@, <retval>
 	add	sp, sp, #24	@,,
@@ -11438,16 +11429,16 @@ GetClassResGrowth:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L1648:
+.L1647:
 @ Patches/../C_code.c:2436: 	if ((result-growth) > 99) { result = growth+99; } 
 	adds	r5, r5, #99	@ <retval>,
-	b	.L1641		@
-.L1644:
+	b	.L1640		@
+.L1643:
 	movs	r5, r0	@ <retval>, tmp166
-	b	.L1641		@
-.L1650:
-	.align	2
+	b	.L1640		@
 .L1649:
+	.align	2
+.L1648:
 	.word	RandBitflags
 	.word	268435468
 	.word	CharExceptions
@@ -11473,34 +11464,34 @@ GetClassLckGrowth:
 @ Patches/../C_code.c:2443: 	growth += unit->pClassData->growthLck; 
 	ldrsb	r5, [r6, r3]	@ <retval>,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1659	@ tmp137,
+	ldr	r3, .L1658	@ tmp137,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r2, [r3]	@ *RandBitflags.53_23, *RandBitflags.53_23
-	ldr	r3, .L1659+4	@ tmp140,
+	ldr	r3, .L1658+4	@ tmp140,
 @ Patches/../C_code.c:2441: int GetClassLckGrowth(struct Unit* unit, int modifiersBool) { 
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_23, tmp140
-	beq	.L1651		@,
+	beq	.L1650		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r0]	@ MEM[(const struct CharacterData * *)unit_13(D)], MEM[(const struct CharacterData * *)unit_13(D)]
 	ldrb	r2, [r2, #4]	@ tmp143,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1659+8	@ tmp141,
+	ldr	r3, .L1658+8	@ tmp141,
 	lsls	r2, r2, #1	@ tmp144, tmp143,
 @ Patches/../C_code.c:2444: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	ldrb	r3, [r2, r3]	@ tmp146, CharExceptions
 @ Patches/../C_code.c:2444: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return growth; } 
 	cmp	r3, #0	@ tmp146,
-	bne	.L1651		@,
+	bne	.L1650		@,
 	rsbs	r4, r1, #0	@ tmp154, modifiersBool
 	adcs	r4, r4, r1	@ tmp154, modifiersBool
 	cmp	r4, #0	@ tmp154,
-	bne	.L1651		@,
+	bne	.L1650		@,
 @ Patches/../C_code.c:2445: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L1659+12	@ tmp159,
+	ldr	r3, .L1658+12	@ tmp159,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2446: 	noise[0] = unit->pClassData->number; 
@@ -11519,15 +11510,15 @@ GetClassLckGrowth:
 	subs	r3, r0, r5	@ tmp168, tmp166, <retval>
 @ Patches/../C_code.c:2448: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp168,
-	bgt	.L1658		@,
+	bgt	.L1657		@,
 @ Patches/../C_code.c:2449: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r0	@ tmp169, <retval>, tmp166
 @ Patches/../C_code.c:2449: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp169,
-	ble	.L1654		@,
+	ble	.L1653		@,
 @ Patches/../C_code.c:2449: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r5, r5, #99	@ <retval>,
-.L1651:
+.L1650:
 @ Patches/../C_code.c:2451: }
 	movs	r0, r5	@, <retval>
 	add	sp, sp, #24	@,,
@@ -11535,16 +11526,16 @@ GetClassLckGrowth:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L1658:
+.L1657:
 @ Patches/../C_code.c:2448: 	if ((result-growth) > 99) { result = growth+99; } 
 	adds	r5, r5, #99	@ <retval>,
-	b	.L1651		@
-.L1654:
+	b	.L1650		@
+.L1653:
 	movs	r5, r0	@ <retval>, tmp166
-	b	.L1651		@
-.L1660:
-	.align	2
+	b	.L1650		@
 .L1659:
+	.align	2
+.L1658:
 	.word	RandBitflags
 	.word	268435468
 	.word	CharExceptions
@@ -11572,7 +11563,7 @@ GetUnitHPGrowth:
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:2457: 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	cmp	r1, #0	@ modifiersBool,
-	beq	.L1662		@,
+	beq	.L1661		@,
 @ Patches/../C_code.c:2255: 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 	ldr	r3, [r0, #12]	@ unit_46(D)->state, unit_46(D)->state
 	lsls	r3, r3, #18	@ tmp167, unit_46(D)->state,
@@ -11580,41 +11571,41 @@ GetUnitHPGrowth:
 	asrs	r3, r3, #31	@ tmp246, tmp167,
 	adds	r7, r7, #5	@ tmp247,
 	ands	r7, r3	@ add, tmp246
-.L1662:
+.L1661:
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r0, [r4]	@ _70, unit_46(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp170,
 	movs	r1, r0	@ pretmp_12, _70
 	cmp	r3, #0	@ tmp170,
-	beq	.L1663		@,
+	beq	.L1662		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_70 + 4B], MEM[(unsigned char *)_70 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2459: 	int originalGrowth = unit->pCharacterData->growthHP; 
 	ldr	r1, [r4]	@ pretmp_12, unit_46(D)->pCharacterData
-.L1663:
+.L1662:
 @ Patches/../C_code.c:2460: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthHP; } 
-	ldr	r3, .L1699	@ tmp172,
+	ldr	r3, .L1698	@ tmp172,
 @ Patches/../C_code.c:2460: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthHP; } 
 	ldr	r3, [r3]	@ ClassBasedGrowths, ClassBasedGrowths
 @ Patches/../C_code.c:2458: 	baseGrowth = GetReorderedUnit(unit)->growthHP; 
 	ldrb	r5, [r0, #28]	@ _2,
 @ Patches/../C_code.c:2460: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthHP; } 
 	cmp	r3, #0	@ ClassBasedGrowths,
-	beq	.L1665		@,
+	beq	.L1664		@,
 @ Patches/../C_code.c:2460: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthHP; } 
 	movs	r5, #27	@ baseGrowth,
 @ Patches/../C_code.c:2460: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthHP; } 
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 @ Patches/../C_code.c:2460: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthHP; } 
 	ldrsb	r5, [r3, r5]	@ baseGrowth,* baseGrowth
-.L1665:
+.L1664:
 @ Patches/../C_code.c:2461: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthHP; } 
-	ldr	r3, .L1699+4	@ tmp175,
+	ldr	r3, .L1698+4	@ tmp175,
 @ Patches/../C_code.c:2461: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthHP; } 
 	ldr	r3, [r3]	@ CombinedGrowths, CombinedGrowths
 	cmp	r3, #0	@ CombinedGrowths,
-	beq	.L1666		@,
+	beq	.L1665		@,
 @ Patches/../C_code.c:2461: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthHP; } 
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrb	r3, [r3, #27]	@ tmp178,
@@ -11622,30 +11613,30 @@ GetUnitHPGrowth:
 	asrs	r3, r3, #24	@ tmp178, tmp178,
 @ Patches/../C_code.c:2461: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthHP; } 
 	adds	r5, r5, r3	@ baseGrowth, baseGrowth, tmp178
-.L1666:
+.L1665:
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1699+8	@ tmp243,
+	ldr	r3, .L1698+8	@ tmp243,
 	mov	r8, r3	@ tmp243, tmp243
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r2, [r3]	@ *RandBitflags.53_75, *RandBitflags.53_75
-	ldr	r3, .L1699+12	@ tmp183,
+	ldr	r3, .L1698+12	@ tmp183,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_75, tmp183
-	beq	.L1667		@,
+	beq	.L1666		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldrb	r2, [r1, #4]	@ tmp185,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1699+16	@ tmp184,
+	ldr	r3, .L1698+16	@ tmp184,
 	lsls	r2, r2, #1	@ tmp186, tmp185,
 @ Patches/../C_code.c:2462: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	ldrb	r3, [r2, r3]	@ tmp188, CharExceptions
 @ Patches/../C_code.c:2462: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	cmp	r3, #0	@ tmp188,
-	bne	.L1667		@,
+	bne	.L1666		@,
 	cmp	r6, #0	@ modifiersBool,
-	beq	.L1667		@,
+	beq	.L1666		@,
 @ Patches/../C_code.c:2463: 	int growth = CallGet_Hp_Growth(unit); 
-	ldr	r3, .L1699+20	@ tmp198,
+	ldr	r3, .L1698+20	@ tmp198,
 	movs	r0, r4	@, unit
 @ Patches/../C_code.c:2459: 	int originalGrowth = unit->pCharacterData->growthHP; 
 	ldrb	r6, [r1, #28]	@ _4,
@@ -11653,10 +11644,10 @@ GetUnitHPGrowth:
 	bl	.L14		@
 @ Patches/../C_code.c:2465: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	adds	r3, r0, #1	@ tmp255, growth,
-	beq	.L1671		@,
+	beq	.L1670		@,
 @ Patches/../C_code.c:2465: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	subs	r7, r0, r6	@ add, growth, _4
-.L1671:
+.L1670:
 @ Patches/../C_code.c:2467: 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	movs	r2, #192	@ tmp200,
 	movs	r3, #11	@ tmp199,
@@ -11665,7 +11656,7 @@ GetUnitHPGrowth:
 	ands	r0, r3	@ <retval>, tmp199
 @ Patches/../C_code.c:2468: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	tst	r2, r3	@ tmp200, tmp199
-	bne	.L1672		@,
+	bne	.L1671		@,
 @ Patches/../C_code.c:2468: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	mov	r3, r8	@ tmp243, tmp243
 	ldr	r2, [r3]	@ RandBitflags.151_16, RandBitflags
@@ -11673,26 +11664,26 @@ GetUnitHPGrowth:
 	ldrb	r3, [r2, #3]	@ *RandBitflags.151_16, *RandBitflags.151_16
 @ Patches/../C_code.c:2468: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	lsls	r3, r3, #27	@ tmp256, *RandBitflags.151_16,
-	bmi	.L1680		@,
+	bmi	.L1679		@,
 @ Patches/../C_code.c:2469: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	movs	r3, #12	@ tmp216,
 	ldrb	r2, [r2]	@ *RandBitflags.151_16, *RandBitflags.151_16
 	ands	r3, r2	@ _20, *RandBitflags.151_16
 @ Patches/../C_code.c:2469: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	cmp	r3, #8	@ _20,
-	beq	.L1661		@,
+	beq	.L1660		@,
 @ Patches/../C_code.c:2470: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	cmp	r3, #12	@ _20,
-	beq	.L1681		@,
-.L1672:
+	beq	.L1680		@,
+.L1671:
 @ Patches/../C_code.c:2471: 	if (unit->pClassData->growthHP > growth) { growth = unit->pClassData->growthHP; } 
 	movs	r0, #27	@ tmp218,
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrsb	r0, [r3, r0]	@ tmp218,
 @ Patches/../C_code.c:2471: 	if (unit->pClassData->growthHP > growth) { growth = unit->pClassData->growthHP; } 
 	cmp	r0, r5	@ tmp218, baseGrowth
-	blt	.L1697		@,
-.L1673:
+	blt	.L1696		@,
+.L1672:
 @ Patches/../C_code.c:2472: 	growth = AdjustGrowthForStatInflation(growth);
 	bl	AdjustGrowthForStatInflation		@
 @ Patches/../C_code.c:2473: 	int noise[4] = {0, 0, 0, 0}; 
@@ -11701,7 +11692,7 @@ GetUnitHPGrowth:
 	movs	r5, r0	@ growth, tmp252
 @ Patches/../C_code.c:2473: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r1, #0	@,
-	ldr	r3, .L1699+24	@ tmp224,
+	ldr	r3, .L1698+24	@ tmp224,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2474: 	noise[0] = unit->pCharacterData->number;  
@@ -11725,7 +11716,7 @@ GetUnitHPGrowth:
 	asrs	r1, r1, #1	@ tmp236, tmp235,
 @ Patches/../C_code.c:2476: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 19); } // if really low, try to add some points 
 	cmp	r1, r0	@ tmp236, result
-	ble	.L1674		@,
+	ble	.L1673		@,
 @ Patches/../C_code.c:2476: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 19); } // if really low, try to add some points 
 	movs	r3, #19	@,
 	movs	r0, r5	@, growth
@@ -11733,28 +11724,28 @@ GetUnitHPGrowth:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:2476: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 19); } // if really low, try to add some points 
 	adds	r4, r4, r0	@ result, result, tmp254
-.L1674:
+.L1673:
 @ Patches/../C_code.c:2477: 	if ((result-growth) > 99) { result = growth+99; } 
 	subs	r3, r4, r5	@ tmp240, result, growth
 @ Patches/../C_code.c:2477: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp240,
-	bgt	.L1698		@,
+	bgt	.L1697		@,
 @ Patches/../C_code.c:2478: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r4	@ tmp241, growth, result
 @ Patches/../C_code.c:2478: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp241,
-	ble	.L1676		@,
+	ble	.L1675		@,
 @ Patches/../C_code.c:2478: 	if ((growth-result) > 99) { result = growth-99; } 
 	movs	r4, r5	@ growth, growth
 	subs	r4, r4, #99	@ growth,
-.L1676:
+.L1675:
 @ Patches/../C_code.c:2479: 	return result + add; 
 	adds	r0, r7, r4	@ <retval>, add, result
-	b	.L1661		@
-.L1667:
+	b	.L1660		@
+.L1666:
 @ Patches/../C_code.c:2462: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	adds	r0, r5, r7	@ <retval>, baseGrowth, add
-.L1661:
+.L1660:
 @ Patches/../C_code.c:2480: }
 	add	sp, sp, #24	@,,
 	@ sp needed	@
@@ -11763,28 +11754,28 @@ GetUnitHPGrowth:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1698:
+.L1697:
 @ Patches/../C_code.c:2477: 	if ((result-growth) > 99) { result = growth+99; } 
 	movs	r4, r5	@ growth, growth
 	adds	r4, r4, #99	@ growth,
 @ Patches/../C_code.c:2479: 	return result + add; 
 	adds	r0, r7, r4	@ <retval>, add, result
-	b	.L1661		@
-.L1697:
+	b	.L1660		@
+.L1696:
 @ Patches/../C_code.c:2471: 	if (unit->pClassData->growthHP > growth) { growth = unit->pClassData->growthHP; } 
 	movs	r0, r5	@ tmp218, baseGrowth
-	b	.L1673		@
-.L1681:
+	b	.L1672		@
+.L1680:
 @ Patches/../C_code.c:2470: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	movs	r0, #100	@ <retval>,
-	b	.L1661		@
-.L1680:
+	b	.L1660		@
+.L1679:
 @ Patches/../C_code.c:2468: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	movs	r0, #50	@ <retval>,
-	b	.L1661		@
-.L1700:
-	.align	2
+	b	.L1660		@
 .L1699:
+	.align	2
+.L1698:
 	.word	ClassBasedGrowths
 	.word	CombinedGrowths
 	.word	RandBitflags
@@ -11815,7 +11806,7 @@ GetUnitPowGrowth:
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:2485: 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	cmp	r1, #0	@ modifiersBool,
-	beq	.L1702		@,
+	beq	.L1701		@,
 @ Patches/../C_code.c:2255: 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 	ldr	r3, [r0, #12]	@ unit_46(D)->state, unit_46(D)->state
 	lsls	r3, r3, #18	@ tmp168, unit_46(D)->state,
@@ -11823,41 +11814,41 @@ GetUnitPowGrowth:
 	asrs	r3, r3, #31	@ tmp249, tmp168,
 	adds	r7, r7, #5	@ tmp250,
 	ands	r7, r3	@ add, tmp249
-.L1702:
+.L1701:
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r0, [r4]	@ _71, unit_46(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp171,
 	movs	r1, r0	@ pretmp_82, _71
 	cmp	r3, #0	@ tmp171,
-	beq	.L1703		@,
+	beq	.L1702		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_71 + 4B], MEM[(unsigned char *)_71 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2487: 	int originalGrowth = unit->pCharacterData->growthPow; 
 	ldr	r1, [r4]	@ pretmp_82, unit_46(D)->pCharacterData
-.L1703:
+.L1702:
 @ Patches/../C_code.c:2488: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthPow; } 
-	ldr	r3, .L1740	@ tmp173,
+	ldr	r3, .L1739	@ tmp173,
 @ Patches/../C_code.c:2488: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthPow; } 
 	ldr	r3, [r3]	@ ClassBasedGrowths, ClassBasedGrowths
 @ Patches/../C_code.c:2486: 	baseGrowth = GetReorderedUnit(unit)->growthPow; 
 	ldrb	r5, [r0, #29]	@ _2,
 @ Patches/../C_code.c:2488: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthPow; } 
 	cmp	r3, #0	@ ClassBasedGrowths,
-	beq	.L1705		@,
+	beq	.L1704		@,
 @ Patches/../C_code.c:2488: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthPow; } 
 	movs	r5, #28	@ baseGrowth,
 @ Patches/../C_code.c:2488: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthPow; } 
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 @ Patches/../C_code.c:2488: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthPow; } 
 	ldrsb	r5, [r3, r5]	@ baseGrowth,* baseGrowth
-.L1705:
+.L1704:
 @ Patches/../C_code.c:2489: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthPow; } 
-	ldr	r3, .L1740+4	@ tmp176,
+	ldr	r3, .L1739+4	@ tmp176,
 @ Patches/../C_code.c:2489: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthPow; } 
 	ldr	r3, [r3]	@ CombinedGrowths, CombinedGrowths
 	cmp	r3, #0	@ CombinedGrowths,
-	beq	.L1706		@,
+	beq	.L1705		@,
 @ Patches/../C_code.c:2489: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthPow; } 
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrb	r3, [r3, #28]	@ tmp179,
@@ -11865,30 +11856,30 @@ GetUnitPowGrowth:
 	asrs	r3, r3, #24	@ tmp179, tmp179,
 @ Patches/../C_code.c:2489: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthPow; } 
 	adds	r5, r5, r3	@ baseGrowth, baseGrowth, tmp179
-.L1706:
+.L1705:
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1740+8	@ tmp244,
+	ldr	r3, .L1739+8	@ tmp244,
 	mov	r8, r3	@ tmp244, tmp244
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r2, [r3]	@ *RandBitflags.53_76, *RandBitflags.53_76
-	ldr	r3, .L1740+12	@ tmp184,
+	ldr	r3, .L1739+12	@ tmp184,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_76, tmp184
-	beq	.L1707		@,
+	beq	.L1706		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldrb	r2, [r1, #4]	@ tmp186,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1740+16	@ tmp185,
+	ldr	r3, .L1739+16	@ tmp185,
 	lsls	r2, r2, #1	@ tmp187, tmp186,
 @ Patches/../C_code.c:2490: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	ldrb	r3, [r2, r3]	@ tmp189, CharExceptions
 @ Patches/../C_code.c:2490: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	cmp	r3, #0	@ tmp189,
-	bne	.L1707		@,
+	bne	.L1706		@,
 	cmp	r6, #0	@ modifiersBool,
-	beq	.L1707		@,
+	beq	.L1706		@,
 @ Patches/../C_code.c:2491: 	int growth = CallGet_Str_Growth(unit); 
-	ldr	r3, .L1740+20	@ tmp199,
+	ldr	r3, .L1739+20	@ tmp199,
 	movs	r0, r4	@, unit
 @ Patches/../C_code.c:2487: 	int originalGrowth = unit->pCharacterData->growthPow; 
 	ldrb	r6, [r1, #29]	@ _4,
@@ -11896,10 +11887,10 @@ GetUnitPowGrowth:
 	bl	.L14		@
 @ Patches/../C_code.c:2492: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	adds	r3, r0, #1	@ tmp258, growth,
-	beq	.L1711		@,
+	beq	.L1710		@,
 @ Patches/../C_code.c:2492: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	subs	r7, r0, r6	@ add, growth, _4
-.L1711:
+.L1710:
 @ Patches/../C_code.c:2494: 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	movs	r2, #192	@ tmp201,
 	movs	r3, #11	@ tmp200,
@@ -11908,7 +11899,7 @@ GetUnitPowGrowth:
 	ands	r0, r3	@ <retval>, tmp200
 @ Patches/../C_code.c:2495: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	tst	r2, r3	@ tmp201, tmp200
-	bne	.L1712		@,
+	bne	.L1711		@,
 @ Patches/../C_code.c:2495: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	mov	r3, r8	@ tmp244, tmp244
 	ldr	r2, [r3]	@ RandBitflags.156_16, RandBitflags
@@ -11916,26 +11907,26 @@ GetUnitPowGrowth:
 	ldrb	r3, [r2, #3]	@ *RandBitflags.156_16, *RandBitflags.156_16
 @ Patches/../C_code.c:2495: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	lsls	r3, r3, #27	@ tmp259, *RandBitflags.156_16,
-	bmi	.L1721		@,
+	bmi	.L1720		@,
 @ Patches/../C_code.c:2496: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	movs	r3, #12	@ tmp217,
 	ldrb	r2, [r2]	@ *RandBitflags.156_16, *RandBitflags.156_16
 	ands	r3, r2	@ _20, *RandBitflags.156_16
 @ Patches/../C_code.c:2496: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	cmp	r3, #8	@ _20,
-	beq	.L1701		@,
+	beq	.L1700		@,
 @ Patches/../C_code.c:2497: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	cmp	r3, #12	@ _20,
-	beq	.L1722		@,
-.L1712:
+	beq	.L1721		@,
+.L1711:
 @ Patches/../C_code.c:2498: 	if (unit->pClassData->growthPow > growth) { growth = unit->pClassData->growthPow; } 
 	movs	r0, #28	@ tmp219,
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrsb	r0, [r3, r0]	@ tmp219,
 @ Patches/../C_code.c:2498: 	if (unit->pClassData->growthPow > growth) { growth = unit->pClassData->growthPow; } 
 	cmp	r0, r5	@ tmp219, baseGrowth
-	blt	.L1738		@,
-.L1713:
+	blt	.L1737		@,
+.L1712:
 @ Patches/../C_code.c:2499: 	growth = AdjustGrowthForStatInflation(growth);
 	bl	AdjustGrowthForStatInflation		@
 @ Patches/../C_code.c:2500: 	int noise[4] = {0, 0, 0, 0};  
@@ -11944,7 +11935,7 @@ GetUnitPowGrowth:
 	movs	r5, r0	@ growth, tmp255
 @ Patches/../C_code.c:2500: 	int noise[4] = {0, 0, 0, 0};  
 	movs	r1, #0	@,
-	ldr	r3, .L1740+24	@ tmp225,
+	ldr	r3, .L1739+24	@ tmp225,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2501: 	noise[0] = unit->pCharacterData->number; 
@@ -11968,7 +11959,7 @@ GetUnitPowGrowth:
 	asrs	r1, r1, #1	@ tmp237, tmp236,
 @ Patches/../C_code.c:2503: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 29); } 
 	cmp	r1, r0	@ tmp237, result
-	ble	.L1714		@,
+	ble	.L1713		@,
 @ Patches/../C_code.c:2503: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 29); } 
 	movs	r3, #29	@,
 	movs	r0, r5	@, growth
@@ -11976,32 +11967,32 @@ GetUnitPowGrowth:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:2503: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 29); } 
 	adds	r4, r4, r0	@ result, result, tmp257
-.L1714:
+.L1713:
 @ Patches/../C_code.c:2504: 	if ((result-growth) > 99) { result = growth+99; } 
 	subs	r3, r4, r5	@ tmp241, result, growth
 @ Patches/../C_code.c:2504: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp241,
-	bgt	.L1739		@,
+	bgt	.L1738		@,
 @ Patches/../C_code.c:2505: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r4	@ tmp242, growth, result
 @ Patches/../C_code.c:2505: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp242,
-	ble	.L1716		@,
+	ble	.L1715		@,
 @ Patches/../C_code.c:2505: 	if ((growth-result) > 99) { result = growth-99; } 
 	movs	r4, r5	@ growth, growth
 	subs	r4, r4, #99	@ growth,
-.L1716:
+.L1715:
 @ Patches/../C_code.c:2506: 	result += add; 
 	adds	r0, r7, r4	@ <retval>, add, result
 @ Patches/../C_code.c:2507: 	if (result < 0) { result = 0; } 
 	mvns	r3, r0	@ tmp246, <retval>
 	asrs	r3, r3, #31	@ tmp245, tmp246,
 	ands	r0, r3	@ <retval>, tmp245
-	b	.L1701		@
-.L1707:
+	b	.L1700		@
+.L1706:
 @ Patches/../C_code.c:2490: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	adds	r0, r5, r7	@ <retval>, baseGrowth, add
-.L1701:
+.L1700:
 @ Patches/../C_code.c:2509: }
 	add	sp, sp, #24	@,,
 	@ sp needed	@
@@ -12010,26 +12001,26 @@ GetUnitPowGrowth:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1739:
+.L1738:
 @ Patches/../C_code.c:2504: 	if ((result-growth) > 99) { result = growth+99; } 
 	movs	r4, r5	@ growth, growth
 	adds	r4, r4, #99	@ growth,
-	b	.L1716		@
-.L1738:
+	b	.L1715		@
+.L1737:
 @ Patches/../C_code.c:2498: 	if (unit->pClassData->growthPow > growth) { growth = unit->pClassData->growthPow; } 
 	movs	r0, r5	@ tmp219, baseGrowth
-	b	.L1713		@
-.L1722:
+	b	.L1712		@
+.L1721:
 @ Patches/../C_code.c:2497: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	movs	r0, #100	@ <retval>,
-	b	.L1701		@
-.L1721:
+	b	.L1700		@
+.L1720:
 @ Patches/../C_code.c:2495: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	movs	r0, #50	@ <retval>,
-	b	.L1701		@
-.L1741:
-	.align	2
+	b	.L1700		@
 .L1740:
+	.align	2
+.L1739:
 	.word	ClassBasedGrowths
 	.word	CombinedGrowths
 	.word	RandBitflags
@@ -12060,7 +12051,7 @@ GetUnitSklGrowth:
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:2514: 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	cmp	r1, #0	@ modifiersBool,
-	beq	.L1743		@,
+	beq	.L1742		@,
 @ Patches/../C_code.c:2255: 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 	ldr	r3, [r0, #12]	@ unit_46(D)->state, unit_46(D)->state
 	lsls	r3, r3, #18	@ tmp168, unit_46(D)->state,
@@ -12068,41 +12059,41 @@ GetUnitSklGrowth:
 	asrs	r3, r3, #31	@ tmp249, tmp168,
 	adds	r7, r7, #5	@ tmp250,
 	ands	r7, r3	@ add, tmp249
-.L1743:
+.L1742:
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r0, [r4]	@ _71, unit_46(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp171,
 	movs	r1, r0	@ pretmp_82, _71
 	cmp	r3, #0	@ tmp171,
-	beq	.L1744		@,
+	beq	.L1743		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_71 + 4B], MEM[(unsigned char *)_71 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2516: 	int originalGrowth = unit->pCharacterData->growthSkl; 
 	ldr	r1, [r4]	@ pretmp_82, unit_46(D)->pCharacterData
-.L1744:
+.L1743:
 @ Patches/../C_code.c:2517: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSkl; } 
-	ldr	r3, .L1781	@ tmp173,
+	ldr	r3, .L1780	@ tmp173,
 @ Patches/../C_code.c:2517: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSkl; } 
 	ldr	r3, [r3]	@ ClassBasedGrowths, ClassBasedGrowths
 @ Patches/../C_code.c:2515: 	baseGrowth = GetReorderedUnit(unit)->growthSkl; 
 	ldrb	r5, [r0, #30]	@ _2,
 @ Patches/../C_code.c:2517: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSkl; } 
 	cmp	r3, #0	@ ClassBasedGrowths,
-	beq	.L1746		@,
+	beq	.L1745		@,
 @ Patches/../C_code.c:2517: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSkl; } 
 	movs	r5, #29	@ baseGrowth,
 @ Patches/../C_code.c:2517: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSkl; } 
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 @ Patches/../C_code.c:2517: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSkl; } 
 	ldrsb	r5, [r3, r5]	@ baseGrowth,* baseGrowth
-.L1746:
+.L1745:
 @ Patches/../C_code.c:2518: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSkl; } 
-	ldr	r3, .L1781+4	@ tmp176,
+	ldr	r3, .L1780+4	@ tmp176,
 @ Patches/../C_code.c:2518: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSkl; } 
 	ldr	r3, [r3]	@ CombinedGrowths, CombinedGrowths
 	cmp	r3, #0	@ CombinedGrowths,
-	beq	.L1747		@,
+	beq	.L1746		@,
 @ Patches/../C_code.c:2518: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSkl; } 
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrb	r3, [r3, #29]	@ tmp179,
@@ -12110,30 +12101,30 @@ GetUnitSklGrowth:
 	asrs	r3, r3, #24	@ tmp179, tmp179,
 @ Patches/../C_code.c:2518: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSkl; } 
 	adds	r5, r5, r3	@ baseGrowth, baseGrowth, tmp179
-.L1747:
+.L1746:
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1781+8	@ tmp244,
+	ldr	r3, .L1780+8	@ tmp244,
 	mov	r8, r3	@ tmp244, tmp244
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r2, [r3]	@ *RandBitflags.53_76, *RandBitflags.53_76
-	ldr	r3, .L1781+12	@ tmp184,
+	ldr	r3, .L1780+12	@ tmp184,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_76, tmp184
-	beq	.L1748		@,
+	beq	.L1747		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldrb	r2, [r1, #4]	@ tmp186,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1781+16	@ tmp185,
+	ldr	r3, .L1780+16	@ tmp185,
 	lsls	r2, r2, #1	@ tmp187, tmp186,
 @ Patches/../C_code.c:2519: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	ldrb	r3, [r2, r3]	@ tmp189, CharExceptions
 @ Patches/../C_code.c:2519: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	cmp	r3, #0	@ tmp189,
-	bne	.L1748		@,
+	bne	.L1747		@,
 	cmp	r6, #0	@ modifiersBool,
-	beq	.L1748		@,
+	beq	.L1747		@,
 @ Patches/../C_code.c:2520: 	int growth = CallGet_Skl_Growth(unit); 
-	ldr	r3, .L1781+20	@ tmp199,
+	ldr	r3, .L1780+20	@ tmp199,
 	movs	r0, r4	@, unit
 @ Patches/../C_code.c:2516: 	int originalGrowth = unit->pCharacterData->growthSkl; 
 	ldrb	r6, [r1, #30]	@ _4,
@@ -12141,10 +12132,10 @@ GetUnitSklGrowth:
 	bl	.L14		@
 @ Patches/../C_code.c:2521: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	adds	r3, r0, #1	@ tmp258, growth,
-	beq	.L1752		@,
+	beq	.L1751		@,
 @ Patches/../C_code.c:2521: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	subs	r7, r0, r6	@ add, growth, _4
-.L1752:
+.L1751:
 @ Patches/../C_code.c:2523: 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	movs	r2, #192	@ tmp201,
 	movs	r3, #11	@ tmp200,
@@ -12153,7 +12144,7 @@ GetUnitSklGrowth:
 	ands	r0, r3	@ <retval>, tmp200
 @ Patches/../C_code.c:2524: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	tst	r2, r3	@ tmp201, tmp200
-	bne	.L1753		@,
+	bne	.L1752		@,
 @ Patches/../C_code.c:2524: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	mov	r3, r8	@ tmp244, tmp244
 	ldr	r2, [r3]	@ RandBitflags.161_16, RandBitflags
@@ -12161,26 +12152,26 @@ GetUnitSklGrowth:
 	ldrb	r3, [r2, #3]	@ *RandBitflags.161_16, *RandBitflags.161_16
 @ Patches/../C_code.c:2524: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	lsls	r3, r3, #27	@ tmp259, *RandBitflags.161_16,
-	bmi	.L1762		@,
+	bmi	.L1761		@,
 @ Patches/../C_code.c:2525: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	movs	r3, #12	@ tmp217,
 	ldrb	r2, [r2]	@ *RandBitflags.161_16, *RandBitflags.161_16
 	ands	r3, r2	@ _20, *RandBitflags.161_16
 @ Patches/../C_code.c:2525: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	cmp	r3, #8	@ _20,
-	beq	.L1742		@,
+	beq	.L1741		@,
 @ Patches/../C_code.c:2526: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	cmp	r3, #12	@ _20,
-	beq	.L1763		@,
-.L1753:
+	beq	.L1762		@,
+.L1752:
 @ Patches/../C_code.c:2527: 	if (unit->pClassData->growthSkl > growth) { growth = unit->pClassData->growthSkl; } 
 	movs	r0, #29	@ tmp219,
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrsb	r0, [r3, r0]	@ tmp219,
 @ Patches/../C_code.c:2527: 	if (unit->pClassData->growthSkl > growth) { growth = unit->pClassData->growthSkl; } 
 	cmp	r0, r5	@ tmp219, baseGrowth
-	blt	.L1779		@,
-.L1754:
+	blt	.L1778		@,
+.L1753:
 @ Patches/../C_code.c:2528: 	growth = AdjustGrowthForStatInflation(growth);
 	bl	AdjustGrowthForStatInflation		@
 @ Patches/../C_code.c:2529: 	int noise[4] = {0, 0, 0, 0}; 
@@ -12189,7 +12180,7 @@ GetUnitSklGrowth:
 	movs	r5, r0	@ growth, tmp255
 @ Patches/../C_code.c:2529: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r1, #0	@,
-	ldr	r3, .L1781+24	@ tmp225,
+	ldr	r3, .L1780+24	@ tmp225,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2530: 	noise[0] = unit->pCharacterData->number; 
@@ -12213,7 +12204,7 @@ GetUnitSklGrowth:
 	asrs	r1, r1, #1	@ tmp237, tmp236,
 @ Patches/../C_code.c:2532: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 39); } 
 	cmp	r1, r0	@ tmp237, result
-	ble	.L1755		@,
+	ble	.L1754		@,
 @ Patches/../C_code.c:2532: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 39); } 
 	movs	r3, #39	@,
 	movs	r0, r5	@, growth
@@ -12221,32 +12212,32 @@ GetUnitSklGrowth:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:2532: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 39); } 
 	adds	r4, r4, r0	@ result, result, tmp257
-.L1755:
+.L1754:
 @ Patches/../C_code.c:2533: 	if ((result-growth) > 99) { result = growth+99; } 
 	subs	r3, r4, r5	@ tmp241, result, growth
 @ Patches/../C_code.c:2533: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp241,
-	bgt	.L1780		@,
+	bgt	.L1779		@,
 @ Patches/../C_code.c:2534: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r4	@ tmp242, growth, result
 @ Patches/../C_code.c:2534: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp242,
-	ble	.L1757		@,
+	ble	.L1756		@,
 @ Patches/../C_code.c:2534: 	if ((growth-result) > 99) { result = growth-99; } 
 	movs	r4, r5	@ growth, growth
 	subs	r4, r4, #99	@ growth,
-.L1757:
+.L1756:
 @ Patches/../C_code.c:2535: 	result += add; 
 	adds	r0, r7, r4	@ <retval>, add, result
 @ Patches/../C_code.c:2536: 	if (result < 0) { result = 0; } 
 	mvns	r3, r0	@ tmp246, <retval>
 	asrs	r3, r3, #31	@ tmp245, tmp246,
 	ands	r0, r3	@ <retval>, tmp245
-	b	.L1742		@
-.L1748:
+	b	.L1741		@
+.L1747:
 @ Patches/../C_code.c:2519: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	adds	r0, r5, r7	@ <retval>, baseGrowth, add
-.L1742:
+.L1741:
 @ Patches/../C_code.c:2538: }
 	add	sp, sp, #24	@,,
 	@ sp needed	@
@@ -12255,26 +12246,26 @@ GetUnitSklGrowth:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1780:
+.L1779:
 @ Patches/../C_code.c:2533: 	if ((result-growth) > 99) { result = growth+99; } 
 	movs	r4, r5	@ growth, growth
 	adds	r4, r4, #99	@ growth,
-	b	.L1757		@
-.L1779:
+	b	.L1756		@
+.L1778:
 @ Patches/../C_code.c:2527: 	if (unit->pClassData->growthSkl > growth) { growth = unit->pClassData->growthSkl; } 
 	movs	r0, r5	@ tmp219, baseGrowth
-	b	.L1754		@
-.L1763:
+	b	.L1753		@
+.L1762:
 @ Patches/../C_code.c:2526: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	movs	r0, #100	@ <retval>,
-	b	.L1742		@
-.L1762:
+	b	.L1741		@
+.L1761:
 @ Patches/../C_code.c:2524: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	movs	r0, #50	@ <retval>,
-	b	.L1742		@
-.L1782:
-	.align	2
+	b	.L1741		@
 .L1781:
+	.align	2
+.L1780:
 	.word	ClassBasedGrowths
 	.word	CombinedGrowths
 	.word	RandBitflags
@@ -12305,7 +12296,7 @@ GetUnitSpdGrowth:
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:2543: 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	cmp	r1, #0	@ modifiersBool,
-	beq	.L1784		@,
+	beq	.L1783		@,
 @ Patches/../C_code.c:2255: 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 	ldr	r3, [r0, #12]	@ unit_46(D)->state, unit_46(D)->state
 	lsls	r3, r3, #18	@ tmp168, unit_46(D)->state,
@@ -12313,41 +12304,41 @@ GetUnitSpdGrowth:
 	asrs	r3, r3, #31	@ tmp249, tmp168,
 	adds	r7, r7, #5	@ tmp250,
 	ands	r7, r3	@ add, tmp249
-.L1784:
+.L1783:
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r0, [r4]	@ _71, unit_46(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp171,
 	movs	r1, r0	@ pretmp_82, _71
 	cmp	r3, #0	@ tmp171,
-	beq	.L1785		@,
+	beq	.L1784		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_71 + 4B], MEM[(unsigned char *)_71 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2545: 	int originalGrowth = unit->pCharacterData->growthSpd; 
 	ldr	r1, [r4]	@ pretmp_82, unit_46(D)->pCharacterData
-.L1785:
+.L1784:
 @ Patches/../C_code.c:2546: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSpd; } 
-	ldr	r3, .L1822	@ tmp173,
+	ldr	r3, .L1821	@ tmp173,
 @ Patches/../C_code.c:2546: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSpd; } 
 	ldr	r3, [r3]	@ ClassBasedGrowths, ClassBasedGrowths
 @ Patches/../C_code.c:2544: 	baseGrowth = GetReorderedUnit(unit)->growthSpd; 
 	ldrb	r5, [r0, #31]	@ _2,
 @ Patches/../C_code.c:2546: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSpd; } 
 	cmp	r3, #0	@ ClassBasedGrowths,
-	beq	.L1787		@,
+	beq	.L1786		@,
 @ Patches/../C_code.c:2546: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSpd; } 
 	movs	r5, #30	@ baseGrowth,
 @ Patches/../C_code.c:2546: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSpd; } 
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 @ Patches/../C_code.c:2546: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthSpd; } 
 	ldrsb	r5, [r3, r5]	@ baseGrowth,* baseGrowth
-.L1787:
+.L1786:
 @ Patches/../C_code.c:2547: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSpd; } 
-	ldr	r3, .L1822+4	@ tmp176,
+	ldr	r3, .L1821+4	@ tmp176,
 @ Patches/../C_code.c:2547: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSpd; } 
 	ldr	r3, [r3]	@ CombinedGrowths, CombinedGrowths
 	cmp	r3, #0	@ CombinedGrowths,
-	beq	.L1788		@,
+	beq	.L1787		@,
 @ Patches/../C_code.c:2547: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSpd; } 
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrb	r3, [r3, #30]	@ tmp179,
@@ -12355,30 +12346,30 @@ GetUnitSpdGrowth:
 	asrs	r3, r3, #24	@ tmp179, tmp179,
 @ Patches/../C_code.c:2547: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthSpd; } 
 	adds	r5, r5, r3	@ baseGrowth, baseGrowth, tmp179
-.L1788:
+.L1787:
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1822+8	@ tmp244,
+	ldr	r3, .L1821+8	@ tmp244,
 	mov	r8, r3	@ tmp244, tmp244
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r2, [r3]	@ *RandBitflags.53_76, *RandBitflags.53_76
-	ldr	r3, .L1822+12	@ tmp184,
+	ldr	r3, .L1821+12	@ tmp184,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_76, tmp184
-	beq	.L1789		@,
+	beq	.L1788		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldrb	r2, [r1, #4]	@ tmp186,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1822+16	@ tmp185,
+	ldr	r3, .L1821+16	@ tmp185,
 	lsls	r2, r2, #1	@ tmp187, tmp186,
 @ Patches/../C_code.c:2548: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	ldrb	r3, [r2, r3]	@ tmp189, CharExceptions
 @ Patches/../C_code.c:2548: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	cmp	r3, #0	@ tmp189,
-	bne	.L1789		@,
+	bne	.L1788		@,
 	cmp	r6, #0	@ modifiersBool,
-	beq	.L1789		@,
+	beq	.L1788		@,
 @ Patches/../C_code.c:2549: 	int growth = CallGet_Spd_Growth(unit); 
-	ldr	r3, .L1822+20	@ tmp199,
+	ldr	r3, .L1821+20	@ tmp199,
 	movs	r0, r4	@, unit
 @ Patches/../C_code.c:2545: 	int originalGrowth = unit->pCharacterData->growthSpd; 
 	ldrb	r6, [r1, #31]	@ _4,
@@ -12386,10 +12377,10 @@ GetUnitSpdGrowth:
 	bl	.L14		@
 @ Patches/../C_code.c:2550: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	adds	r3, r0, #1	@ tmp258, growth,
-	beq	.L1793		@,
+	beq	.L1792		@,
 @ Patches/../C_code.c:2550: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	subs	r7, r0, r6	@ add, growth, _4
-.L1793:
+.L1792:
 @ Patches/../C_code.c:2552: 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	movs	r2, #192	@ tmp201,
 	movs	r3, #11	@ tmp200,
@@ -12398,7 +12389,7 @@ GetUnitSpdGrowth:
 	ands	r0, r3	@ <retval>, tmp200
 @ Patches/../C_code.c:2553: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	tst	r2, r3	@ tmp201, tmp200
-	bne	.L1794		@,
+	bne	.L1793		@,
 @ Patches/../C_code.c:2553: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	mov	r3, r8	@ tmp244, tmp244
 	ldr	r2, [r3]	@ RandBitflags.166_16, RandBitflags
@@ -12406,26 +12397,26 @@ GetUnitSpdGrowth:
 	ldrb	r3, [r2, #3]	@ *RandBitflags.166_16, *RandBitflags.166_16
 @ Patches/../C_code.c:2553: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	lsls	r3, r3, #27	@ tmp259, *RandBitflags.166_16,
-	bmi	.L1803		@,
+	bmi	.L1802		@,
 @ Patches/../C_code.c:2554: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	movs	r3, #12	@ tmp217,
 	ldrb	r2, [r2]	@ *RandBitflags.166_16, *RandBitflags.166_16
 	ands	r3, r2	@ _20, *RandBitflags.166_16
 @ Patches/../C_code.c:2554: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	cmp	r3, #8	@ _20,
-	beq	.L1783		@,
+	beq	.L1782		@,
 @ Patches/../C_code.c:2555: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	cmp	r3, #12	@ _20,
-	beq	.L1804		@,
-.L1794:
+	beq	.L1803		@,
+.L1793:
 @ Patches/../C_code.c:2556: 	if (unit->pClassData->growthSpd > growth) { growth = unit->pClassData->growthSpd; } 
 	movs	r0, #30	@ tmp219,
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrsb	r0, [r3, r0]	@ tmp219,
 @ Patches/../C_code.c:2556: 	if (unit->pClassData->growthSpd > growth) { growth = unit->pClassData->growthSpd; } 
 	cmp	r0, r5	@ tmp219, baseGrowth
-	blt	.L1820		@,
-.L1795:
+	blt	.L1819		@,
+.L1794:
 @ Patches/../C_code.c:2557: 	growth = AdjustGrowthForStatInflation(growth);
 	bl	AdjustGrowthForStatInflation		@
 @ Patches/../C_code.c:2558: 	int noise[4] = {0, 0, 0, 0}; 
@@ -12434,7 +12425,7 @@ GetUnitSpdGrowth:
 	movs	r5, r0	@ growth, tmp255
 @ Patches/../C_code.c:2558: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r1, #0	@,
-	ldr	r3, .L1822+24	@ tmp225,
+	ldr	r3, .L1821+24	@ tmp225,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2559: 	noise[0] = unit->pCharacterData->number;  
@@ -12458,7 +12449,7 @@ GetUnitSpdGrowth:
 	asrs	r1, r1, #1	@ tmp237, tmp236,
 @ Patches/../C_code.c:2561: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 49); } 
 	cmp	r1, r0	@ tmp237, result
-	ble	.L1796		@,
+	ble	.L1795		@,
 @ Patches/../C_code.c:2561: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 49); } 
 	movs	r3, #49	@,
 	movs	r0, r5	@, growth
@@ -12466,32 +12457,32 @@ GetUnitSpdGrowth:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:2561: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 49); } 
 	adds	r4, r4, r0	@ result, result, tmp257
-.L1796:
+.L1795:
 @ Patches/../C_code.c:2562: 	if ((result-growth) > 99) { result = growth+99; } 
 	subs	r3, r4, r5	@ tmp241, result, growth
 @ Patches/../C_code.c:2562: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp241,
-	bgt	.L1821		@,
+	bgt	.L1820		@,
 @ Patches/../C_code.c:2563: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r4	@ tmp242, growth, result
 @ Patches/../C_code.c:2563: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp242,
-	ble	.L1798		@,
+	ble	.L1797		@,
 @ Patches/../C_code.c:2563: 	if ((growth-result) > 99) { result = growth-99; } 
 	movs	r4, r5	@ growth, growth
 	subs	r4, r4, #99	@ growth,
-.L1798:
+.L1797:
 @ Patches/../C_code.c:2564: 	result += add; 
 	adds	r0, r7, r4	@ <retval>, add, result
 @ Patches/../C_code.c:2565: 	if (result < 0) { result = 0; } 
 	mvns	r3, r0	@ tmp246, <retval>
 	asrs	r3, r3, #31	@ tmp245, tmp246,
 	ands	r0, r3	@ <retval>, tmp245
-	b	.L1783		@
-.L1789:
+	b	.L1782		@
+.L1788:
 @ Patches/../C_code.c:2548: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	adds	r0, r5, r7	@ <retval>, baseGrowth, add
-.L1783:
+.L1782:
 @ Patches/../C_code.c:2567: }
 	add	sp, sp, #24	@,,
 	@ sp needed	@
@@ -12500,26 +12491,26 @@ GetUnitSpdGrowth:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1821:
+.L1820:
 @ Patches/../C_code.c:2562: 	if ((result-growth) > 99) { result = growth+99; } 
 	movs	r4, r5	@ growth, growth
 	adds	r4, r4, #99	@ growth,
-	b	.L1798		@
-.L1820:
+	b	.L1797		@
+.L1819:
 @ Patches/../C_code.c:2556: 	if (unit->pClassData->growthSpd > growth) { growth = unit->pClassData->growthSpd; } 
 	movs	r0, r5	@ tmp219, baseGrowth
-	b	.L1795		@
-.L1804:
+	b	.L1794		@
+.L1803:
 @ Patches/../C_code.c:2555: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	movs	r0, #100	@ <retval>,
-	b	.L1783		@
-.L1803:
+	b	.L1782		@
+.L1802:
 @ Patches/../C_code.c:2553: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	movs	r0, #50	@ <retval>,
-	b	.L1783		@
-.L1823:
-	.align	2
+	b	.L1782		@
 .L1822:
+	.align	2
+.L1821:
 	.word	ClassBasedGrowths
 	.word	CombinedGrowths
 	.word	RandBitflags
@@ -12551,7 +12542,7 @@ GetUnitDefGrowth:
 	sub	sp, sp, #28	@,,
 @ Patches/../C_code.c:2572: 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	cmp	r1, #0	@ modifiersBool,
-	beq	.L1825		@,
+	beq	.L1824		@,
 @ Patches/../C_code.c:2255: 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 	ldr	r3, [r0, #12]	@ unit_46(D)->state, unit_46(D)->state
 	lsls	r3, r3, #18	@ tmp169, unit_46(D)->state,
@@ -12559,7 +12550,7 @@ GetUnitDefGrowth:
 	asrs	r3, r3, #31	@ tmp253, tmp169,
 	adds	r7, r7, #5	@ tmp254,
 	ands	r7, r3	@ add, tmp253
-.L1825:
+.L1824:
 @ Patches/../C_code.c:2573: 	int originalGrowth = unit->pCharacterData->growthDef; 
 	movs	r2, #32	@ tmp172,
 @ Patches/../C_code.c:2573: 	int originalGrowth = unit->pCharacterData->growthDef; 
@@ -12573,32 +12564,32 @@ GetUnitDefGrowth:
 	ldrh	r2, [r3, #6]	@ tmp173,
 	mov	r6, r8	@ baseGrowth, originalGrowth
 	cmp	r2, #0	@ tmp173,
-	beq	.L1826		@,
+	beq	.L1825		@,
 	ldrb	r0, [r3, #4]	@ MEM[(unsigned char *)_1 + 4B], MEM[(unsigned char *)_1 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2574: 	baseGrowth = GetReorderedUnit(unit)->growthDef; 
 	mov	r3, r9	@ tmp172, tmp172
 	ldrb	r6, [r0, r3]	@ baseGrowth,
-.L1826:
+.L1825:
 @ Patches/../C_code.c:2575: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthDef; } 
-	ldr	r3, .L1865	@ tmp176,
+	ldr	r3, .L1864	@ tmp176,
 @ Patches/../C_code.c:2575: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthDef; } 
 	ldr	r3, [r3]	@ ClassBasedGrowths, ClassBasedGrowths
 	cmp	r3, #0	@ ClassBasedGrowths,
-	beq	.L1827		@,
+	beq	.L1826		@,
 @ Patches/../C_code.c:2575: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthDef; } 
 	movs	r6, #31	@ baseGrowth,
 @ Patches/../C_code.c:2575: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthDef; } 
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 @ Patches/../C_code.c:2575: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthDef; } 
 	ldrsb	r6, [r3, r6]	@ baseGrowth,* baseGrowth
-.L1827:
+.L1826:
 @ Patches/../C_code.c:2576: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthDef; } 
-	ldr	r3, .L1865+4	@ tmp179,
+	ldr	r3, .L1864+4	@ tmp179,
 @ Patches/../C_code.c:2576: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthDef; } 
 	ldr	r3, [r3]	@ CombinedGrowths, CombinedGrowths
 	cmp	r3, #0	@ CombinedGrowths,
-	beq	.L1828		@,
+	beq	.L1827		@,
 @ Patches/../C_code.c:2576: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthDef; } 
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrb	r3, [r3, #31]	@ tmp182,
@@ -12606,40 +12597,40 @@ GetUnitDefGrowth:
 	asrs	r3, r3, #24	@ tmp182, tmp182,
 @ Patches/../C_code.c:2576: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthDef; } 
 	adds	r6, r6, r3	@ baseGrowth, baseGrowth, tmp182
-.L1828:
+.L1827:
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1865+8	@ tmp248,
+	ldr	r3, .L1864+8	@ tmp248,
 	mov	r9, r3	@ tmp248, tmp248
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r2, [r3]	@ *RandBitflags.53_76, *RandBitflags.53_76
-	ldr	r3, .L1865+12	@ tmp187,
+	ldr	r3, .L1864+12	@ tmp187,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_76, tmp187
-	beq	.L1829		@,
+	beq	.L1828		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r4]	@ MEM[(const struct CharacterData * *)unit_46(D)], MEM[(const struct CharacterData * *)unit_46(D)]
 	ldrb	r2, [r2, #4]	@ tmp190,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1865+16	@ tmp188,
+	ldr	r3, .L1864+16	@ tmp188,
 	lsls	r2, r2, #1	@ tmp191, tmp190,
 @ Patches/../C_code.c:2577: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	ldrb	r3, [r2, r3]	@ tmp193, CharExceptions
 @ Patches/../C_code.c:2577: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	cmp	r3, #0	@ tmp193,
-	bne	.L1829		@,
+	bne	.L1828		@,
 	cmp	r5, #0	@ modifiersBool,
-	beq	.L1829		@,
+	beq	.L1828		@,
 @ Patches/../C_code.c:2578: 	int growth = CallGet_Def_Growth(unit); 
-	ldr	r3, .L1865+20	@ tmp203,
+	ldr	r3, .L1864+20	@ tmp203,
 	movs	r0, r4	@, unit
 	bl	.L14		@
 @ Patches/../C_code.c:2579: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	adds	r3, r0, #1	@ tmp262, growth,
-	beq	.L1833		@,
+	beq	.L1832		@,
 @ Patches/../C_code.c:2579: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	mov	r3, r8	@ originalGrowth, originalGrowth
 	subs	r7, r0, r3	@ add, growth, originalGrowth
-.L1833:
+.L1832:
 @ Patches/../C_code.c:2581: 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	movs	r2, #192	@ tmp205,
 	movs	r3, #11	@ tmp204,
@@ -12648,7 +12639,7 @@ GetUnitDefGrowth:
 	ands	r0, r3	@ <retval>, tmp204
 @ Patches/../C_code.c:2582: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	tst	r2, r3	@ tmp205, tmp204
-	bne	.L1834		@,
+	bne	.L1833		@,
 @ Patches/../C_code.c:2582: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	mov	r3, r9	@ tmp248, tmp248
 	ldr	r2, [r3]	@ RandBitflags.171_16, RandBitflags
@@ -12656,26 +12647,26 @@ GetUnitDefGrowth:
 	ldrb	r3, [r2, #3]	@ *RandBitflags.171_16, *RandBitflags.171_16
 @ Patches/../C_code.c:2582: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	lsls	r3, r3, #27	@ tmp263, *RandBitflags.171_16,
-	bmi	.L1843		@,
+	bmi	.L1842		@,
 @ Patches/../C_code.c:2583: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	movs	r3, #12	@ tmp221,
 	ldrb	r2, [r2]	@ *RandBitflags.171_16, *RandBitflags.171_16
 	ands	r3, r2	@ _20, *RandBitflags.171_16
 @ Patches/../C_code.c:2583: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	cmp	r3, #8	@ _20,
-	beq	.L1824		@,
+	beq	.L1823		@,
 @ Patches/../C_code.c:2584: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	cmp	r3, #12	@ _20,
-	beq	.L1844		@,
-.L1834:
+	beq	.L1843		@,
+.L1833:
 @ Patches/../C_code.c:2585: 	if (unit->pClassData->growthDef > growth) { growth = unit->pClassData->growthDef; } 
 	movs	r0, #31	@ tmp223,
 	ldr	r3, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrsb	r0, [r3, r0]	@ tmp223,
 @ Patches/../C_code.c:2585: 	if (unit->pClassData->growthDef > growth) { growth = unit->pClassData->growthDef; } 
 	cmp	r0, r6	@ tmp223, baseGrowth
-	blt	.L1863		@,
-.L1835:
+	blt	.L1862		@,
+.L1834:
 @ Patches/../C_code.c:2586: 	growth = AdjustGrowthForStatInflation(growth);
 	bl	AdjustGrowthForStatInflation		@
 @ Patches/../C_code.c:2587: 	int noise[4] = {0, 0, 0, 0}; 
@@ -12684,7 +12675,7 @@ GetUnitDefGrowth:
 	movs	r5, r0	@ growth, tmp259
 @ Patches/../C_code.c:2587: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r1, #0	@,
-	ldr	r3, .L1865+24	@ tmp229,
+	ldr	r3, .L1864+24	@ tmp229,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2588: 	noise[0] = unit->pCharacterData->number; 
@@ -12708,7 +12699,7 @@ GetUnitDefGrowth:
 	asrs	r1, r1, #1	@ tmp241, tmp240,
 @ Patches/../C_code.c:2590: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 59); } 
 	cmp	r1, r0	@ tmp241, result
-	ble	.L1836		@,
+	ble	.L1835		@,
 @ Patches/../C_code.c:2590: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 59); } 
 	movs	r3, #59	@,
 	movs	r0, r5	@, growth
@@ -12716,32 +12707,32 @@ GetUnitDefGrowth:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:2590: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 59); } 
 	adds	r4, r4, r0	@ result, result, tmp261
-.L1836:
+.L1835:
 @ Patches/../C_code.c:2591: 	if ((result-growth) > 99) { result = growth+99; } 
 	subs	r3, r4, r5	@ tmp245, result, growth
 @ Patches/../C_code.c:2591: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp245,
-	bgt	.L1864		@,
+	bgt	.L1863		@,
 @ Patches/../C_code.c:2592: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r4	@ tmp246, growth, result
 @ Patches/../C_code.c:2592: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp246,
-	ble	.L1838		@,
+	ble	.L1837		@,
 @ Patches/../C_code.c:2592: 	if ((growth-result) > 99) { result = growth-99; } 
 	movs	r4, r5	@ growth, growth
 	subs	r4, r4, #99	@ growth,
-.L1838:
+.L1837:
 @ Patches/../C_code.c:2593: 	result += add; 
 	adds	r0, r7, r4	@ <retval>, add, result
 @ Patches/../C_code.c:2594: 	if (result < 0) { result = 0; } 
 	mvns	r3, r0	@ tmp250, <retval>
 	asrs	r3, r3, #31	@ tmp249, tmp250,
 	ands	r0, r3	@ <retval>, tmp249
-	b	.L1824		@
-.L1829:
+	b	.L1823		@
+.L1828:
 @ Patches/../C_code.c:2577: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	adds	r0, r6, r7	@ <retval>, baseGrowth, add
-.L1824:
+.L1823:
 @ Patches/../C_code.c:2596: }
 	add	sp, sp, #28	@,,
 	@ sp needed	@
@@ -12751,26 +12742,26 @@ GetUnitDefGrowth:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1864:
+.L1863:
 @ Patches/../C_code.c:2591: 	if ((result-growth) > 99) { result = growth+99; } 
 	movs	r4, r5	@ growth, growth
 	adds	r4, r4, #99	@ growth,
-	b	.L1838		@
-.L1863:
+	b	.L1837		@
+.L1862:
 @ Patches/../C_code.c:2585: 	if (unit->pClassData->growthDef > growth) { growth = unit->pClassData->growthDef; } 
 	movs	r0, r6	@ tmp223, baseGrowth
-	b	.L1835		@
-.L1844:
+	b	.L1834		@
+.L1843:
 @ Patches/../C_code.c:2584: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	movs	r0, #100	@ <retval>,
-	b	.L1824		@
-.L1843:
+	b	.L1823		@
+.L1842:
 @ Patches/../C_code.c:2582: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	movs	r0, #50	@ <retval>,
-	b	.L1824		@
-.L1866:
-	.align	2
+	b	.L1823		@
 .L1865:
+	.align	2
+.L1864:
 	.word	ClassBasedGrowths
 	.word	CombinedGrowths
 	.word	RandBitflags
@@ -12801,7 +12792,7 @@ GetUnitResGrowth:
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:2601: 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	cmp	r1, #0	@ modifiersBool,
-	beq	.L1868		@,
+	beq	.L1867		@,
 @ Patches/../C_code.c:2255: 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 	ldr	r3, [r0, #12]	@ unit_46(D)->state, unit_46(D)->state
 	lsls	r3, r3, #18	@ tmp168, unit_46(D)->state,
@@ -12809,68 +12800,68 @@ GetUnitResGrowth:
 	asrs	r3, r3, #31	@ tmp254, tmp168,
 	adds	r7, r7, #5	@ tmp255,
 	ands	r7, r3	@ add, tmp254
-.L1868:
+.L1867:
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r0, [r4]	@ _71, unit_46(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp171,
 	movs	r1, r0	@ pretmp_82, _71
 	cmp	r3, #0	@ tmp171,
-	beq	.L1869		@,
+	beq	.L1868		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_71 + 4B], MEM[(unsigned char *)_71 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2603: 	int originalGrowth = unit->pCharacterData->growthRes; 
 	ldr	r1, [r4]	@ pretmp_82, unit_46(D)->pCharacterData
-.L1869:
+.L1868:
 @ Patches/../C_code.c:2602: 	baseGrowth = GetReorderedUnit(unit)->growthRes; 
 	movs	r3, #33	@ tmp173,
 	ldrb	r5, [r0, r3]	@ _2,
 @ Patches/../C_code.c:2604: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthRes; } 
-	ldr	r3, .L1906	@ tmp174,
+	ldr	r3, .L1905	@ tmp174,
 @ Patches/../C_code.c:2604: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthRes; } 
 	ldr	r3, [r3]	@ ClassBasedGrowths, ClassBasedGrowths
 	cmp	r3, #0	@ ClassBasedGrowths,
-	beq	.L1871		@,
+	beq	.L1870		@,
 @ Patches/../C_code.c:2604: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthRes; } 
 	movs	r3, #32	@ tmp177,
 	ldr	r2, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 @ Patches/../C_code.c:2604: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthRes; } 
 	ldrsb	r5, [r2, r3]	@ baseGrowth,
-.L1871:
+.L1870:
 @ Patches/../C_code.c:2605: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthRes; } 
-	ldr	r3, .L1906+4	@ tmp178,
+	ldr	r3, .L1905+4	@ tmp178,
 @ Patches/../C_code.c:2605: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthRes; } 
 	ldr	r3, [r3]	@ CombinedGrowths, CombinedGrowths
 	cmp	r3, #0	@ CombinedGrowths,
-	beq	.L1872		@,
+	beq	.L1871		@,
 @ Patches/../C_code.c:2605: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthRes; } 
 	movs	r3, #32	@ tmp181,
 	ldr	r2, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrsb	r3, [r2, r3]	@ tmp182,
 @ Patches/../C_code.c:2605: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthRes; } 
 	adds	r5, r5, r3	@ baseGrowth, baseGrowth, tmp182
-.L1872:
+.L1871:
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1906+8	@ tmp249,
+	ldr	r3, .L1905+8	@ tmp249,
 	mov	r8, r3	@ tmp249, tmp249
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r2, [r3]	@ *RandBitflags.53_76, *RandBitflags.53_76
-	ldr	r3, .L1906+12	@ tmp187,
+	ldr	r3, .L1905+12	@ tmp187,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_76, tmp187
-	beq	.L1873		@,
+	beq	.L1872		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldrb	r2, [r1, #4]	@ tmp189,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1906+16	@ tmp188,
+	ldr	r3, .L1905+16	@ tmp188,
 	lsls	r2, r2, #1	@ tmp190, tmp189,
 @ Patches/../C_code.c:2606: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	ldrb	r3, [r2, r3]	@ tmp192, CharExceptions
 @ Patches/../C_code.c:2606: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	cmp	r3, #0	@ tmp192,
-	bne	.L1873		@,
+	bne	.L1872		@,
 	cmp	r6, #0	@ modifiersBool,
-	beq	.L1873		@,
+	beq	.L1872		@,
 @ Patches/../C_code.c:2603: 	int originalGrowth = unit->pCharacterData->growthRes; 
 	movs	r3, #33	@ tmp202,
 @ Patches/../C_code.c:2607: 	int growth = CallGet_Res_Growth(unit); 
@@ -12878,14 +12869,14 @@ GetUnitResGrowth:
 @ Patches/../C_code.c:2603: 	int originalGrowth = unit->pCharacterData->growthRes; 
 	ldrb	r6, [r1, r3]	@ _4,
 @ Patches/../C_code.c:2607: 	int growth = CallGet_Res_Growth(unit); 
-	ldr	r3, .L1906+20	@ tmp203,
+	ldr	r3, .L1905+20	@ tmp203,
 	bl	.L14		@
 @ Patches/../C_code.c:2608: 	if (growth != (-1)) { add = growth - originalGrowth; }  
 	adds	r3, r0, #1	@ tmp263, growth,
-	beq	.L1877		@,
+	beq	.L1876		@,
 @ Patches/../C_code.c:2608: 	if (growth != (-1)) { add = growth - originalGrowth; }  
 	subs	r7, r0, r6	@ add, growth, _4
-.L1877:
+.L1876:
 @ Patches/../C_code.c:2610: 	int player = (UNIT_FACTION(unit) == FACTION_BLUE); 
 	movs	r2, #192	@ tmp205,
 	movs	r3, #11	@ tmp204,
@@ -12894,7 +12885,7 @@ GetUnitResGrowth:
 	ands	r0, r3	@ <retval>, tmp204
 @ Patches/../C_code.c:2611: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	tst	r2, r3	@ tmp205, tmp204
-	bne	.L1878		@,
+	bne	.L1877		@,
 @ Patches/../C_code.c:2611: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	mov	r3, r8	@ tmp249, tmp249
 	ldr	r2, [r3]	@ RandBitflags.176_16, RandBitflags
@@ -12902,26 +12893,26 @@ GetUnitResGrowth:
 	ldrb	r3, [r2, #3]	@ *RandBitflags.176_16, *RandBitflags.176_16
 @ Patches/../C_code.c:2611: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	lsls	r3, r3, #27	@ tmp264, *RandBitflags.176_16,
-	bmi	.L1887		@,
+	bmi	.L1886		@,
 @ Patches/../C_code.c:2612: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	movs	r3, #12	@ tmp221,
 	ldrb	r2, [r2]	@ *RandBitflags.176_16, *RandBitflags.176_16
 	ands	r3, r2	@ _20, *RandBitflags.176_16
 @ Patches/../C_code.c:2612: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	cmp	r3, #8	@ _20,
-	beq	.L1867		@,
+	beq	.L1866		@,
 @ Patches/../C_code.c:2613: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	cmp	r3, #12	@ _20,
-	beq	.L1888		@,
-.L1878:
+	beq	.L1887		@,
+.L1877:
 @ Patches/../C_code.c:2614: 	if (unit->pClassData->growthRes > growth) { growth = unit->pClassData->growthRes; } 
 	movs	r3, #32	@ tmp225,
 	ldr	r2, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrsb	r0, [r2, r3]	@ tmp223,
 @ Patches/../C_code.c:2614: 	if (unit->pClassData->growthRes > growth) { growth = unit->pClassData->growthRes; } 
 	cmp	r0, r5	@ tmp223, baseGrowth
-	blt	.L1904		@,
-.L1879:
+	blt	.L1903		@,
+.L1878:
 @ Patches/../C_code.c:2615: 	growth = AdjustGrowthForStatInflation(growth);
 	bl	AdjustGrowthForStatInflation		@
 @ Patches/../C_code.c:2616: 	int noise[4] = {0, 0, 0, 0}; 
@@ -12930,7 +12921,7 @@ GetUnitResGrowth:
 	movs	r5, r0	@ growth, tmp260
 @ Patches/../C_code.c:2616: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r1, #0	@,
-	ldr	r3, .L1906+24	@ tmp230,
+	ldr	r3, .L1905+24	@ tmp230,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2617: 	noise[0] = unit->pCharacterData->number; 
@@ -12954,7 +12945,7 @@ GetUnitResGrowth:
 	asrs	r1, r1, #1	@ tmp242, tmp241,
 @ Patches/../C_code.c:2619: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 69); } 
 	cmp	r1, r0	@ tmp242, result
-	ble	.L1880		@,
+	ble	.L1879		@,
 @ Patches/../C_code.c:2619: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 69); } 
 	movs	r3, #69	@,
 	movs	r0, r5	@, growth
@@ -12962,32 +12953,32 @@ GetUnitResGrowth:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:2619: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 69); } 
 	adds	r4, r4, r0	@ result, result, tmp262
-.L1880:
+.L1879:
 @ Patches/../C_code.c:2620: 	if ((result-growth) > 99) { result = growth+99; } 
 	subs	r3, r4, r5	@ tmp246, result, growth
 @ Patches/../C_code.c:2620: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp246,
-	bgt	.L1905		@,
+	bgt	.L1904		@,
 @ Patches/../C_code.c:2621: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r4	@ tmp247, growth, result
 @ Patches/../C_code.c:2621: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp247,
-	ble	.L1882		@,
+	ble	.L1881		@,
 @ Patches/../C_code.c:2621: 	if ((growth-result) > 99) { result = growth-99; } 
 	movs	r4, r5	@ growth, growth
 	subs	r4, r4, #99	@ growth,
-.L1882:
+.L1881:
 @ Patches/../C_code.c:2622: 	result += add; 
 	adds	r0, r7, r4	@ <retval>, add, result
 @ Patches/../C_code.c:2623: 	if (result < 0) { result = 0; } 
 	mvns	r3, r0	@ tmp251, <retval>
 	asrs	r3, r3, #31	@ tmp250, tmp251,
 	ands	r0, r3	@ <retval>, tmp250
-	b	.L1867		@
-.L1873:
+	b	.L1866		@
+.L1872:
 @ Patches/../C_code.c:2606: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	adds	r0, r5, r7	@ <retval>, baseGrowth, add
-.L1867:
+.L1866:
 @ Patches/../C_code.c:2625: }
 	add	sp, sp, #24	@,,
 	@ sp needed	@
@@ -12996,26 +12987,26 @@ GetUnitResGrowth:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1905:
+.L1904:
 @ Patches/../C_code.c:2620: 	if ((result-growth) > 99) { result = growth+99; } 
 	movs	r4, r5	@ growth, growth
 	adds	r4, r4, #99	@ growth,
-	b	.L1882		@
-.L1904:
+	b	.L1881		@
+.L1903:
 @ Patches/../C_code.c:2614: 	if (unit->pClassData->growthRes > growth) { growth = unit->pClassData->growthRes; } 
 	movs	r0, r5	@ tmp223, baseGrowth
-	b	.L1879		@
-.L1888:
+	b	.L1878		@
+.L1887:
 @ Patches/../C_code.c:2613: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	movs	r0, #100	@ <retval>,
-	b	.L1867		@
-.L1887:
+	b	.L1866		@
+.L1886:
 @ Patches/../C_code.c:2611: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 
 	movs	r0, #50	@ <retval>,
-	b	.L1867		@
-.L1907:
-	.align	2
+	b	.L1866		@
 .L1906:
+	.align	2
+.L1905:
 	.word	ClassBasedGrowths
 	.word	CombinedGrowths
 	.word	RandBitflags
@@ -13046,7 +13037,7 @@ GetUnitLckGrowth:
 	sub	sp, sp, #24	@,,
 @ Patches/../C_code.c:2630: 	if (modifiersBool) { add = GetGrowthModifiers(unit); } 
 	cmp	r1, #0	@ modifiersBool,
-	beq	.L1909		@,
+	beq	.L1908		@,
 @ Patches/../C_code.c:2255: 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 	ldr	r3, [r0, #12]	@ unit_46(D)->state, unit_46(D)->state
 	lsls	r3, r3, #18	@ tmp168, unit_46(D)->state,
@@ -13054,68 +13045,68 @@ GetUnitLckGrowth:
 	asrs	r3, r3, #31	@ tmp254, tmp168,
 	adds	r7, r7, #5	@ tmp255,
 	ands	r7, r3	@ add, tmp254
-.L1909:
+.L1908:
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r0, [r4]	@ _71, unit_46(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp171,
 	movs	r1, r0	@ pretmp_82, _71
 	cmp	r3, #0	@ tmp171,
-	beq	.L1910		@,
+	beq	.L1909		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_71 + 4B], MEM[(unsigned char *)_71 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2632: 	int originalGrowth = unit->pCharacterData->growthLck; 
 	ldr	r1, [r4]	@ pretmp_82, unit_46(D)->pCharacterData
-.L1910:
+.L1909:
 @ Patches/../C_code.c:2631: 	baseGrowth = GetReorderedUnit(unit)->growthLck; 
 	movs	r3, #34	@ tmp173,
 	ldrb	r5, [r0, r3]	@ _2,
 @ Patches/../C_code.c:2633: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthLck; } 
-	ldr	r3, .L1947	@ tmp174,
+	ldr	r3, .L1946	@ tmp174,
 @ Patches/../C_code.c:2633: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthLck; } 
 	ldr	r3, [r3]	@ ClassBasedGrowths, ClassBasedGrowths
 	cmp	r3, #0	@ ClassBasedGrowths,
-	beq	.L1912		@,
+	beq	.L1911		@,
 @ Patches/../C_code.c:2633: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthLck; } 
 	movs	r3, #33	@ tmp177,
 	ldr	r2, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 @ Patches/../C_code.c:2633: 	if (ClassBasedGrowths) { baseGrowth = unit->pClassData->growthLck; } 
 	ldrsb	r5, [r2, r3]	@ baseGrowth,
-.L1912:
+.L1911:
 @ Patches/../C_code.c:2634: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthLck; } 
-	ldr	r3, .L1947+4	@ tmp178,
+	ldr	r3, .L1946+4	@ tmp178,
 @ Patches/../C_code.c:2634: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthLck; } 
 	ldr	r3, [r3]	@ CombinedGrowths, CombinedGrowths
 	cmp	r3, #0	@ CombinedGrowths,
-	beq	.L1913		@,
+	beq	.L1912		@,
 @ Patches/../C_code.c:2634: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthLck; } 
 	movs	r3, #33	@ tmp181,
 	ldr	r2, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrsb	r3, [r2, r3]	@ tmp182,
 @ Patches/../C_code.c:2634: 	if (CombinedGrowths) { baseGrowth += unit->pClassData->growthLck; } 
 	adds	r5, r5, r3	@ baseGrowth, baseGrowth, tmp182
-.L1913:
+.L1912:
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
-	ldr	r3, .L1947+8	@ tmp249,
+	ldr	r3, .L1946+8	@ tmp249,
 	mov	r8, r3	@ tmp249, tmp249
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldr	r2, [r3]	@ *RandBitflags.53_76, *RandBitflags.53_76
-	ldr	r3, .L1947+12	@ tmp187,
+	ldr	r3, .L1946+12	@ tmp187,
 @ Patches/../C_code.c:1165: 	if ((!RandBitflags->growth) && (!RandBitflags->grow50)) { return false; } 
 	tst	r2, r3	@ *RandBitflags.53_76, tmp187
-	beq	.L1914		@,
+	beq	.L1913		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldrb	r2, [r1, #4]	@ tmp189,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L1947+16	@ tmp188,
+	ldr	r3, .L1946+16	@ tmp188,
 	lsls	r2, r2, #1	@ tmp190, tmp189,
 @ Patches/../C_code.c:2635: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	ldrb	r3, [r2, r3]	@ tmp192, CharExceptions
 @ Patches/../C_code.c:2635: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	cmp	r3, #0	@ tmp192,
-	bne	.L1914		@,
+	bne	.L1913		@,
 	cmp	r6, #0	@ modifiersBool,
-	beq	.L1914		@,
+	beq	.L1913		@,
 @ Patches/../C_code.c:2632: 	int originalGrowth = unit->pCharacterData->growthLck; 
 	movs	r3, #34	@ tmp202,
 @ Patches/../C_code.c:2636: 	int growth = CallGet_Luk_Growth(unit); 
@@ -13123,14 +13114,14 @@ GetUnitLckGrowth:
 @ Patches/../C_code.c:2632: 	int originalGrowth = unit->pCharacterData->growthLck; 
 	ldrb	r6, [r1, r3]	@ _4,
 @ Patches/../C_code.c:2636: 	int growth = CallGet_Luk_Growth(unit); 
-	ldr	r3, .L1947+20	@ tmp203,
+	ldr	r3, .L1946+20	@ tmp203,
 	bl	.L14		@
 @ Patches/../C_code.c:2637: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	adds	r3, r0, #1	@ tmp263, growth,
-	beq	.L1918		@,
+	beq	.L1917		@,
 @ Patches/../C_code.c:2637: 	if (growth != (-1)) { add = growth - originalGrowth; } 
 	subs	r7, r0, r6	@ add, growth, _4
-.L1918:
+.L1917:
 @ Patches/../C_code.c:2639: 	int player = (UNIT_FACTION(unit) == FACTION_BLUE);
 	movs	r2, #192	@ tmp205,
 	movs	r3, #11	@ tmp204,
@@ -13139,7 +13130,7 @@ GetUnitLckGrowth:
 	ands	r0, r3	@ <retval>, tmp204
 @ Patches/../C_code.c:2640: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 	
 	tst	r2, r3	@ tmp205, tmp204
-	bne	.L1919		@,
+	bne	.L1918		@,
 @ Patches/../C_code.c:2640: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 	
 	mov	r3, r8	@ tmp249, tmp249
 	ldr	r2, [r3]	@ RandBitflags.181_16, RandBitflags
@@ -13147,26 +13138,26 @@ GetUnitLckGrowth:
 	ldrb	r3, [r2, #3]	@ *RandBitflags.181_16, *RandBitflags.181_16
 @ Patches/../C_code.c:2640: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 	
 	lsls	r3, r3, #27	@ tmp264, *RandBitflags.181_16,
-	bmi	.L1928		@,
+	bmi	.L1927		@,
 @ Patches/../C_code.c:2641: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	movs	r3, #12	@ tmp221,
 	ldrb	r2, [r2]	@ *RandBitflags.181_16, *RandBitflags.181_16
 	ands	r3, r2	@ _20, *RandBitflags.181_16
 @ Patches/../C_code.c:2641: 	if (player && (RandBitflags->growth == 2)) { return 0; } // 0% growths 
 	cmp	r3, #8	@ _20,
-	beq	.L1908		@,
+	beq	.L1907		@,
 @ Patches/../C_code.c:2642: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	cmp	r3, #12	@ _20,
-	beq	.L1929		@,
-.L1919:
+	beq	.L1928		@,
+.L1918:
 @ Patches/../C_code.c:2643: 	if (unit->pClassData->growthLck > growth) { growth = unit->pClassData->growthLck; } 
 	movs	r3, #33	@ tmp225,
 	ldr	r2, [r4, #4]	@ unit_46(D)->pClassData, unit_46(D)->pClassData
 	ldrsb	r0, [r2, r3]	@ tmp223,
 @ Patches/../C_code.c:2643: 	if (unit->pClassData->growthLck > growth) { growth = unit->pClassData->growthLck; } 
 	cmp	r0, r5	@ tmp223, baseGrowth
-	blt	.L1945		@,
-.L1920:
+	blt	.L1944		@,
+.L1919:
 @ Patches/../C_code.c:2644: 	growth = AdjustGrowthForStatInflation(growth);
 	bl	AdjustGrowthForStatInflation		@
 @ Patches/../C_code.c:2645: 	int noise[4] = {0, 0, 0, 0}; 
@@ -13175,7 +13166,7 @@ GetUnitLckGrowth:
 	movs	r5, r0	@ growth, tmp260
 @ Patches/../C_code.c:2645: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r1, #0	@,
-	ldr	r3, .L1947+24	@ tmp230,
+	ldr	r3, .L1946+24	@ tmp230,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:2646: 	noise[0] = unit->pCharacterData->number; 
@@ -13199,7 +13190,7 @@ GetUnitLckGrowth:
 	asrs	r1, r1, #1	@ tmp242, tmp241,
 @ Patches/../C_code.c:2648: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 79); } 
 	cmp	r1, r0	@ tmp242, result
-	ble	.L1921		@,
+	ble	.L1920		@,
 @ Patches/../C_code.c:2648: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 79); } 
 	movs	r3, #79	@,
 	movs	r0, r5	@, growth
@@ -13207,32 +13198,32 @@ GetUnitLckGrowth:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:2648: 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 79); } 
 	adds	r4, r4, r0	@ result, result, tmp262
-.L1921:
+.L1920:
 @ Patches/../C_code.c:2649: 	if ((result-growth) > 99) { result = growth+99; } 
 	subs	r3, r4, r5	@ tmp246, result, growth
 @ Patches/../C_code.c:2649: 	if ((result-growth) > 99) { result = growth+99; } 
 	cmp	r3, #99	@ tmp246,
-	bgt	.L1946		@,
+	bgt	.L1945		@,
 @ Patches/../C_code.c:2650: 	if ((growth-result) > 99) { result = growth-99; } 
 	subs	r3, r5, r4	@ tmp247, growth, result
 @ Patches/../C_code.c:2650: 	if ((growth-result) > 99) { result = growth-99; } 
 	cmp	r3, #99	@ tmp247,
-	ble	.L1923		@,
+	ble	.L1922		@,
 @ Patches/../C_code.c:2650: 	if ((growth-result) > 99) { result = growth-99; } 
 	movs	r4, r5	@ growth, growth
 	subs	r4, r4, #99	@ growth,
-.L1923:
+.L1922:
 @ Patches/../C_code.c:2651: 	result += add; 
 	adds	r0, r7, r4	@ <retval>, add, result
 @ Patches/../C_code.c:2652: 	if (result < 0) { result = 0; } 
 	mvns	r3, r0	@ tmp251, <retval>
 	asrs	r3, r3, #31	@ tmp250, tmp251,
 	ands	r0, r3	@ <retval>, tmp250
-	b	.L1908		@
-.L1914:
+	b	.L1907		@
+.L1913:
 @ Patches/../C_code.c:2635: 	if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool)) { return baseGrowth + add; } 
 	adds	r0, r5, r7	@ <retval>, baseGrowth, add
-.L1908:
+.L1907:
 @ Patches/../C_code.c:2654: }
 	add	sp, sp, #24	@,,
 	@ sp needed	@
@@ -13241,26 +13232,26 @@ GetUnitLckGrowth:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L1946:
+.L1945:
 @ Patches/../C_code.c:2649: 	if ((result-growth) > 99) { result = growth+99; } 
 	movs	r4, r5	@ growth, growth
 	adds	r4, r4, #99	@ growth,
-	b	.L1923		@
-.L1945:
+	b	.L1922		@
+.L1944:
 @ Patches/../C_code.c:2643: 	if (unit->pClassData->growthLck > growth) { growth = unit->pClassData->growthLck; } 
 	movs	r0, r5	@ tmp223, baseGrowth
-	b	.L1920		@
-.L1929:
+	b	.L1919		@
+.L1928:
 @ Patches/../C_code.c:2642: 	if (player && (RandBitflags->growth == 3)) { return 100; } // 100% growths 
 	movs	r0, #100	@ <retval>,
-	b	.L1908		@
-.L1928:
+	b	.L1907		@
+.L1927:
 @ Patches/../C_code.c:2640: 	if (player && (RandBitflags->grow50 == 1)) { return 50; } // 50% growths 	
 	movs	r0, #50	@ <retval>,
-	b	.L1908		@
-.L1948:
-	.align	2
+	b	.L1907		@
 .L1947:
+	.align	2
+.L1946:
 	.word	ClassBasedGrowths
 	.word	CombinedGrowths
 	.word	RandBitflags
@@ -13281,7 +13272,7 @@ UnitCheckStatMins:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:2665: 	if (MinClassBase) { 
-	ldr	r3, .L2021	@ tmp250,
+	ldr	r3, .L2020	@ tmp250,
 @ Patches/../C_code.c:2665: 	if (MinClassBase) { 
 	ldr	r3, [r3]	@ MinClassBase, MinClassBase
 @ Patches/../C_code.c:2664: void UnitCheckStatMins(struct Unit* unit) { 
@@ -13290,113 +13281,113 @@ UnitCheckStatMins:
 	movs	r4, r0	@ unit, tmp426
 @ Patches/../C_code.c:2665: 	if (MinClassBase) { 
 	cmp	r3, #0	@ MinClassBase,
-	bne	.L2010		@,
+	bne	.L2009		@,
 @ Patches/../C_code.c:2682: 		if (unit->pow < 0) { unit->pow = 0; } 
 	ldrb	r2, [r0, #20]	@ tmp308,
 	cmp	r2, #127	@ tmp308,
-	bhi	.L2011		@,
+	bhi	.L2010		@,
 @ Patches/../C_code.c:2683: 		if (unit->skl < 0) { unit->skl = 0; } 
 	ldrb	r3, [r4, #21]	@ tmp313,
 	cmp	r3, #127	@ tmp313,
-	bhi	.L2012		@,
-.L1978:
+	bhi	.L2011		@,
+.L1977:
 @ Patches/../C_code.c:2684: 		if (unit->spd < 0) { unit->spd = 0; } 
 	ldrb	r3, [r4, #22]	@ tmp318,
 	cmp	r3, #127	@ tmp318,
-	bhi	.L2013		@,
-.L1979:
+	bhi	.L2012		@,
+.L1978:
 @ Patches/../C_code.c:2685: 		if (unit->def < 0) { unit->def = 0; } 
 	ldrb	r3, [r4, #23]	@ tmp323,
 	cmp	r3, #127	@ tmp323,
-	bhi	.L2014		@,
-.L1980:
+	bhi	.L2013		@,
+.L1979:
 @ Patches/../C_code.c:2686: 		if (unit->res < 0) { unit->res = 0; } 
 	ldrb	r3, [r4, #24]	@ tmp328,
 	cmp	r3, #127	@ tmp328,
-	bhi	.L2015		@,
-.L1981:
+	bhi	.L2014		@,
+.L1980:
 @ Patches/../C_code.c:2687: 		if (unit->lck < 0) { unit->lck = 0; } 
 	ldrb	r3, [r4, #25]	@ tmp333,
 	cmp	r3, #127	@ tmp333,
-	bhi	.L2016		@,
-.L1982:
+	bhi	.L2015		@,
+.L1981:
 @ Patches/../C_code.c:2688: 		if (StrMagInstalled) {  
-	ldr	r3, .L2021+4	@ tmp336,
+	ldr	r3, .L2020+4	@ tmp336,
 @ Patches/../C_code.c:2688: 		if (StrMagInstalled) {  
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.L1949		@,
-.L2018:
+	beq	.L1948		@,
+.L2017:
 @ Patches/../C_code.c:2689: 		if ((unit->_u3A < 0) || (unit->_u3A > 127)) { unit->_u3A = 0; } } // _u3A is unsigned 
 	movs	r3, #58	@ tmp338,
 @ Patches/../C_code.c:2689: 		if ((unit->_u3A < 0) || (unit->_u3A > 127)) { unit->_u3A = 0; } } // _u3A is unsigned 
 	ldrb	r2, [r4, r3]	@ tmp341,
 	cmp	r2, #127	@ tmp341,
-	bls	.LCB11307	@
-	b	.L2017	@long jump	@
-.LCB11307:
-.L1949:
+	bls	.LCB11299	@
+	b	.L2016	@long jump	@
+.LCB11299:
+.L1948:
 @ Patches/../C_code.c:2691: } 
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L2016:
+.L2015:
 @ Patches/../C_code.c:2687: 		if (unit->lck < 0) { unit->lck = 0; } 
 	movs	r3, #0	@ tmp334,
 	strb	r3, [r4, #25]	@ tmp334, unit_79(D)->lck
 @ Patches/../C_code.c:2688: 		if (StrMagInstalled) {  
-	ldr	r3, .L2021+4	@ tmp336,
+	ldr	r3, .L2020+4	@ tmp336,
 @ Patches/../C_code.c:2688: 		if (StrMagInstalled) {  
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.L1949		@,
-	b	.L2018		@
-.L2015:
+	beq	.L1948		@,
+	b	.L2017		@
+.L2014:
 @ Patches/../C_code.c:2686: 		if (unit->res < 0) { unit->res = 0; } 
 	movs	r3, #0	@ tmp329,
 	strb	r3, [r4, #24]	@ tmp329, unit_79(D)->res
 @ Patches/../C_code.c:2687: 		if (unit->lck < 0) { unit->lck = 0; } 
 	ldrb	r3, [r4, #25]	@ tmp333,
 	cmp	r3, #127	@ tmp333,
-	bls	.L1982		@,
-	b	.L2016		@
-.L2014:
+	bls	.L1981		@,
+	b	.L2015		@
+.L2013:
 @ Patches/../C_code.c:2685: 		if (unit->def < 0) { unit->def = 0; } 
 	movs	r3, #0	@ tmp324,
 	strb	r3, [r4, #23]	@ tmp324, unit_79(D)->def
 @ Patches/../C_code.c:2686: 		if (unit->res < 0) { unit->res = 0; } 
 	ldrb	r3, [r4, #24]	@ tmp328,
 	cmp	r3, #127	@ tmp328,
-	bls	.L1981		@,
-	b	.L2015		@
-.L2013:
+	bls	.L1980		@,
+	b	.L2014		@
+.L2012:
 @ Patches/../C_code.c:2684: 		if (unit->spd < 0) { unit->spd = 0; } 
 	movs	r3, #0	@ tmp319,
 	strb	r3, [r4, #22]	@ tmp319, unit_79(D)->spd
 @ Patches/../C_code.c:2685: 		if (unit->def < 0) { unit->def = 0; } 
 	ldrb	r3, [r4, #23]	@ tmp323,
 	cmp	r3, #127	@ tmp323,
-	bls	.L1980		@,
-	b	.L2014		@
-.L2012:
+	bls	.L1979		@,
+	b	.L2013		@
+.L2011:
 @ Patches/../C_code.c:2683: 		if (unit->skl < 0) { unit->skl = 0; } 
 	movs	r3, #0	@ tmp314,
 	strb	r3, [r4, #21]	@ tmp314, unit_79(D)->skl
 @ Patches/../C_code.c:2684: 		if (unit->spd < 0) { unit->spd = 0; } 
 	ldrb	r3, [r4, #22]	@ tmp318,
 	cmp	r3, #127	@ tmp318,
-	bls	.L1979		@,
-	b	.L2013		@
-.L2011:
+	bls	.L1978		@,
+	b	.L2012		@
+.L2010:
 @ Patches/../C_code.c:2682: 		if (unit->pow < 0) { unit->pow = 0; } 
 	strb	r3, [r0, #20]	@ MinClassBase, unit_79(D)->pow
 @ Patches/../C_code.c:2683: 		if (unit->skl < 0) { unit->skl = 0; } 
 	ldrb	r3, [r4, #21]	@ tmp313,
 	cmp	r3, #127	@ tmp313,
-	bls	.L1978		@,
-	b	.L2012		@
-.L2010:
+	bls	.L1977		@,
+	b	.L2011		@
+.L2009:
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r0, [r0]	@ _115, unit_79(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
@@ -13404,10 +13395,10 @@ UnitCheckStatMins:
 	movs	r3, r0	@ prephitmp_397, _115
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	cmp	r6, #0	@ _116,
-	beq	.LCB11376	@
-	b	.L2019	@long jump	@
-.LCB11376:
-.L1951:
+	beq	.LCB11368	@
+	b	.L2018	@long jump	@
+.LCB11368:
+.L1950:
 @ Patches/../C_code.c:2666: 		int minStat = GetReorderedUnit(unit)->basePow + unit->pClassData->basePow; if (minStat < 0) { minStat = 0; } 
 	movs	r2, #13	@ tmp253,
 	ldrsb	r2, [r0, r2]	@ tmp253,
@@ -13430,15 +13421,15 @@ UnitCheckStatMins:
 	movs	r5, r1	@ prephitmp_400, prephitmp_400
 @ Patches/../C_code.c:2667: 		if (unit->pow < minStat) { unit->pow = minStat; } 
 	cmp	r0, r2	@ tmp255, _113
-	bge	.L1953		@,
+	bge	.L1952		@,
 @ Patches/../C_code.c:2667: 		if (unit->pow < minStat) { unit->pow = minStat; } 
 	strb	r2, [r4, #20]	@ _113, unit_79(D)->pow
-.L1953:
+.L1952:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	cmp	r6, #0	@ _116,
-	beq	.LCB11396	@
-	b	.L2020	@long jump	@
-.LCB11396:
+	beq	.LCB11388	@
+	b	.L2019	@long jump	@
+.LCB11388:
 @ Patches/../C_code.c:2668: 		minStat = GetReorderedUnit(unit)->baseSkl + unit->pClassData->baseSkl; if (minStat < 0) { minStat = 0; } 
 	movs	r2, #13	@ tmp357,
 @ Patches/../C_code.c:2668: 		minStat = GetReorderedUnit(unit)->baseSkl + unit->pClassData->baseSkl; if (minStat < 0) { minStat = 0; } 
@@ -13458,10 +13449,10 @@ UnitCheckStatMins:
 	ldrsb	r0, [r4, r0]	@ tmp359,
 @ Patches/../C_code.c:2669: 		if (unit->skl < minStat) { unit->skl = minStat; } 
 	cmp	r0, r2	@ tmp359, _411
-	bge	.L1957		@,
+	bge	.L1956		@,
 @ Patches/../C_code.c:2669: 		if (unit->skl < minStat) { unit->skl = minStat; } 
 	strb	r2, [r4, #21]	@ _411, unit_79(D)->skl
-.L1957:
+.L1956:
 @ Patches/../C_code.c:2670: 		minStat = GetReorderedUnit(unit)->baseSpd + unit->pClassData->baseSpd; if (minStat < 0) { minStat = 0; } 
 	movs	r0, #14	@ tmp349,
 @ Patches/../C_code.c:2670: 		minStat = GetReorderedUnit(unit)->baseSpd + unit->pClassData->baseSpd; if (minStat < 0) { minStat = 0; } 
@@ -13484,14 +13475,14 @@ UnitCheckStatMins:
 @ Patches/../C_code.c:2671: 		if (unit->spd < minStat) { unit->spd = minStat; } 
 	movs	r2, r3	@ _142, prephitmp_397
 	cmp	r0, r6	@ _184, tmp351
-	ble	.L1962		@,
+	ble	.L1961		@,
 @ Patches/../C_code.c:2671: 		if (unit->spd < minStat) { unit->spd = minStat; } 
 	strb	r0, [r4, #22]	@ _184, unit_79(D)->spd
-.L1987:
+.L1986:
 @ Patches/../C_code.c:2672: 		minStat = GetReorderedUnit(unit)->baseDef + unit->pClassData->baseDef; if (minStat < 0) { minStat = 0; } 
 	movs	r5, r1	@ prephitmp_400, prephitmp_400
 	movs	r2, r3	@ _142, prephitmp_397
-.L1962:
+.L1961:
 @ Patches/../C_code.c:2672: 		minStat = GetReorderedUnit(unit)->baseDef + unit->pClassData->baseDef; if (minStat < 0) { minStat = 0; } 
 	ldrb	r1, [r1, #15]	@ tmp353,
 @ Patches/../C_code.c:2672: 		minStat = GetReorderedUnit(unit)->baseDef + unit->pClassData->baseDef; if (minStat < 0) { minStat = 0; } 
@@ -13515,10 +13506,10 @@ UnitCheckStatMins:
 	ldrsb	r1, [r4, r1]	@ tmp355,
 @ Patches/../C_code.c:2673: 		if (unit->def < minStat) { unit->def = minStat; } 
 	cmp	r1, r3	@ tmp355, _425
-	bge	.L1965		@,
+	bge	.L1964		@,
 @ Patches/../C_code.c:2673: 		if (unit->def < minStat) { unit->def = minStat; } 
 	strb	r3, [r4, #23]	@ _425, unit_79(D)->def
-.L1965:
+.L1964:
 @ Patches/../C_code.c:2674: 		minStat = GetReorderedUnit(unit)->baseRes + unit->pClassData->baseRes; if (minStat < 0) { minStat = 0; } 
 	movs	r3, #17	@ tmp345,
 @ Patches/../C_code.c:2674: 		minStat = GetReorderedUnit(unit)->baseRes + unit->pClassData->baseRes; if (minStat < 0) { minStat = 0; } 
@@ -13538,10 +13529,10 @@ UnitCheckStatMins:
 	ldrsb	r1, [r4, r1]	@ tmp347,
 @ Patches/../C_code.c:2675: 		if (unit->res < minStat) { unit->res = minStat; } 
 	cmp	r3, r1	@ _175, tmp347
-	ble	.L1969		@,
+	ble	.L1968		@,
 @ Patches/../C_code.c:2675: 		if (unit->res < minStat) { unit->res = minStat; } 
 	strb	r3, [r4, #24]	@ _175, unit_79(D)->res
-.L1969:
+.L1968:
 @ Patches/../C_code.c:2676: 		minStat = GetReorderedUnit(unit)->baseLck; if (minStat < 0) { minStat = 0; } 
 	ldrb	r2, [r2, #18]	@ _48,
 	lsls	r2, r2, #24	@ _48, _48,
@@ -13557,26 +13548,26 @@ UnitCheckStatMins:
 	ands	r3, r2	@ minStat, _48
 @ Patches/../C_code.c:2677: 		if (unit->lck < minStat) { unit->lck = minStat; } 
 	cmp	r1, r3	@ tmp280, minStat
-	bge	.L1970		@,
+	bge	.L1969		@,
 @ Patches/../C_code.c:2677: 		if (unit->lck < minStat) { unit->lck = minStat; } 
 	mvns	r3, r2	@ tmp376, _48
 	asrs	r3, r3, #31	@ tmp380, tmp376,
 	ands	r3, r2	@ tmp379, _48
 	strb	r3, [r4, #25]	@ tmp379, unit_79(D)->lck
-.L1970:
+.L1969:
 @ Patches/../C_code.c:2678: 		if (StrMagInstalled) { minStat = GetUnitBaseMag(unit); if (minStat < 0) { minStat = 0; } 
-	ldr	r3, .L2021+4	@ tmp289,
+	ldr	r3, .L2020+4	@ tmp289,
 @ Patches/../C_code.c:2678: 		if (StrMagInstalled) { minStat = GetUnitBaseMag(unit); if (minStat < 0) { minStat = 0; } 
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	bne	.LCB11488	@
-	b	.L1949	@long jump	@
-.LCB11488:
+	bne	.LCB11480	@
+	b	.L1948	@long jump	@
+.LCB11480:
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
 	ldr	r2, [r4, #4]	@ unit_79(D)->pClassData, unit_79(D)->pClassData
 	ldrb	r2, [r2, #4]	@ tmp293,
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
-	ldr	r3, .L2021+8	@ tmp291,
+	ldr	r3, .L2020+8	@ tmp291,
 @ Patches/../C_code.c:294: 	return GetReorderedCharacter(unit->pCharacterData)->number; 
 	ldr	r0, [r4]	@ _154, unit_79(D)->pCharacterData
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
@@ -13585,14 +13576,14 @@ UnitCheckStatMins:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp295,
 	cmp	r3, #0	@ tmp295,
-	beq	.L1975		@,
+	beq	.L1974		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_154 + 4B], MEM[(unsigned char *)_154 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
-.L1975:
+.L1974:
 @ Patches/../C_code.c:294: 	return GetReorderedCharacter(unit->pCharacterData)->number; 
 	ldrb	r2, [r0, #4]	@ tmp298,
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
-	ldr	r3, .L2021+12	@ tmp297,
+	ldr	r3, .L2020+12	@ tmp297,
 	lsls	r2, r2, #1	@ tmp299, tmp298,
 	ldrb	r3, [r2, r3]	@ _151, MagCharTable
 @ Patches/../C_code.c:2679: 			if (unit->_u3A < minStat) { unit->_u3A = minStat; } } 
@@ -13602,21 +13593,21 @@ UnitCheckStatMins:
 	adds	r3, r3, r5	@ tmp361, _151, _148
 @ Patches/../C_code.c:2679: 			if (unit->_u3A < minStat) { unit->_u3A = minStat; } } 
 	cmp	r1, r3	@ tmp301, tmp361
-	blt	.LCB11510	@
-	b	.L1949	@long jump	@
-.LCB11510:
+	blt	.LCB11502	@
+	b	.L1948	@long jump	@
+.LCB11502:
 @ Patches/../C_code.c:2679: 			if (unit->_u3A < minStat) { unit->_u3A = minStat; } } 
 	strb	r3, [r4, r2]	@ tmp361, unit_79(D)->_u3A
-	b	.L1949		@
-.L2019:
+	b	.L1948		@
+.L2018:
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_115 + 4B], MEM[(unsigned char *)_115 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r3, [r4]	@ prephitmp_397, unit_79(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r6, [r3, #6]	@ _116,
-	b	.L1951		@
-.L2020:
+	b	.L1950		@
+.L2019:
 	ldrb	r0, [r3, #4]	@ MEM[(unsigned char *)prephitmp_253 + 4B], MEM[(unsigned char *)prephitmp_253 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2668: 		minStat = GetReorderedUnit(unit)->baseSkl + unit->pClassData->baseSkl; if (minStat < 0) { minStat = 0; } 
@@ -13646,15 +13637,15 @@ UnitCheckStatMins:
 	ldrh	r6, [r3, #6]	@ pretmp_260,
 @ Patches/../C_code.c:2669: 		if (unit->skl < minStat) { unit->skl = minStat; } 
 	cmp	r0, r2	@ tmp260, _109
-	bge	.L1956		@,
+	bge	.L1955		@,
 @ Patches/../C_code.c:2669: 		if (unit->skl < minStat) { unit->skl = minStat; } 
 	strb	r2, [r4, #21]	@ _109, unit_79(D)->skl
-.L1956:
+.L1955:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	cmp	r6, #0	@ pretmp_260,
-	bne	.LCB11547	@
-	b	.L1957	@long jump	@
-.LCB11547:
+	bne	.LCB11539	@
+	b	.L1956	@long jump	@
+.LCB11539:
 	ldrb	r0, [r3, #4]	@ MEM[(unsigned char *)pretmp_258 + 4B], MEM[(unsigned char *)pretmp_258 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2670: 		minStat = GetReorderedUnit(unit)->baseSpd + unit->pClassData->baseSpd; if (minStat < 0) { minStat = 0; } 
@@ -13678,17 +13669,17 @@ UnitCheckStatMins:
 	ldrsb	r3, [r4, r3]	@ tmp266,
 @ Patches/../C_code.c:2671: 		if (unit->spd < minStat) { unit->spd = minStat; } 
 	cmp	r3, r2	@ tmp266, _105
-	blt	.L1959		@,
+	blt	.L1958		@,
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r3, [r4]	@ prephitmp_397, unit_79(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r0, [r3, #6]	@ pretmp_268,
-.L1960:
+.L1959:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	cmp	r0, #0	@ pretmp_268,
-	bne	.LCB11569	@
-	b	.L1987	@long jump	@
-.LCB11569:
+	bne	.LCB11561	@
+	b	.L1986	@long jump	@
+.LCB11561:
 	ldrb	r0, [r3, #4]	@ MEM[(unsigned char *)prephitmp_267 + 4B], MEM[(unsigned char *)prephitmp_267 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2672: 		minStat = GetReorderedUnit(unit)->baseDef + unit->pClassData->baseDef; if (minStat < 0) { minStat = 0; } 
@@ -13717,15 +13708,15 @@ UnitCheckStatMins:
 	ldrh	r6, [r2, #6]	@ pretmp_275,
 @ Patches/../C_code.c:2673: 		if (unit->def < minStat) { unit->def = minStat; } 
 	cmp	r1, r3	@ tmp271, _101
-	bge	.L1964		@,
+	bge	.L1963		@,
 @ Patches/../C_code.c:2673: 		if (unit->def < minStat) { unit->def = minStat; } 
 	strb	r3, [r4, #23]	@ _101, unit_79(D)->def
-.L1964:
+.L1963:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	cmp	r6, #0	@ pretmp_275,
-	bne	.LCB11592	@
-	b	.L1965	@long jump	@
-.LCB11592:
+	bne	.LCB11584	@
+	b	.L1964	@long jump	@
+.LCB11584:
 	ldrb	r0, [r2, #4]	@ MEM[(unsigned char *)pretmp_273 + 4B], MEM[(unsigned char *)pretmp_273 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:2674: 		minStat = GetReorderedUnit(unit)->baseRes + unit->pClassData->baseRes; if (minStat < 0) { minStat = 0; } 
@@ -13749,46 +13740,46 @@ UnitCheckStatMins:
 	ldrsb	r2, [r4, r2]	@ tmp277,
 @ Patches/../C_code.c:2675: 		if (unit->res < minStat) { unit->res = minStat; } 
 	cmp	r2, r3	@ tmp277, _97
-	blt	.L1967		@,
+	blt	.L1966		@,
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r2, [r4]	@ _142, unit_79(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r1, [r2, #6]	@ pretmp_283,
-.L1968:
+.L1967:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	cmp	r1, #0	@ pretmp_283,
-	bne	.LCB11615	@
-	b	.L1969	@long jump	@
-.LCB11615:
+	bne	.LCB11607	@
+	b	.L1968	@long jump	@
+.LCB11607:
 	ldrb	r0, [r2, #4]	@ MEM[(unsigned char *)prephitmp_282 + 4B], MEM[(unsigned char *)prephitmp_282 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 	movs	r2, r0	@ _142, tmp432
-	b	.L1969		@
-.L2017:
+	b	.L1968		@
+.L2016:
 @ Patches/../C_code.c:2689: 		if ((unit->_u3A < 0) || (unit->_u3A > 127)) { unit->_u3A = 0; } } // _u3A is unsigned 
 	movs	r2, #0	@ tmp343,
 	strb	r2, [r4, r3]	@ tmp343, unit_79(D)->_u3A
 @ Patches/../C_code.c:2691: } 
-	b	.L1949		@
-.L1959:
+	b	.L1948		@
+.L1958:
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r3, [r4]	@ prephitmp_397, unit_79(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r0, [r3, #6]	@ pretmp_268,
 @ Patches/../C_code.c:2671: 		if (unit->spd < minStat) { unit->spd = minStat; } 
 	strb	r2, [r4, #22]	@ _105, unit_79(D)->spd
-	b	.L1960		@
-.L1967:
+	b	.L1959		@
+.L1966:
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	ldr	r2, [r4]	@ _142, unit_79(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r1, [r2, #6]	@ pretmp_283,
 @ Patches/../C_code.c:2675: 		if (unit->res < minStat) { unit->res = minStat; } 
 	strb	r3, [r4, #24]	@ _97, unit_79(D)->res
-	b	.L1968		@
-.L2022:
-	.align	2
+	b	.L1967		@
 .L2021:
+	.align	2
+.L2020:
 	.word	MinClassBase
 	.word	StrMagInstalled
 	.word	MagClassTable
@@ -13814,58 +13805,58 @@ MakePromotedUnitHaveMinStats:
 	orrs	r3, r2	@ tmp151, _3->attributes
 @ Patches/../C_code.c:2695: 	if (UNIT_CATTRIBUTES(unit) & CA_PROMOTED) { 
 	lsls	r3, r3, #23	@ tmp212, tmp151,
-	bpl	.L2023		@,
+	bpl	.L2022		@,
 @ Patches/../C_code.c:2696: 		if (unit->pow < (MinPromotedStat+2)) { unit->pow += MinPromotedStat; } 
 	movs	r3, #20	@ _11,
 	ldrsb	r3, [r0, r3]	@ _11,* _11
 @ Patches/../C_code.c:2696: 		if (unit->pow < (MinPromotedStat+2)) { unit->pow += MinPromotedStat; } 
 	cmp	r3, #3	@ _11,
-	bgt	.L2026		@,
+	bgt	.L2025		@,
 @ Patches/../C_code.c:2696: 		if (unit->pow < (MinPromotedStat+2)) { unit->pow += MinPromotedStat; } 
 	adds	r3, r3, #2	@ tmp159,
 	strb	r3, [r0, #20]	@ tmp159, unit_10(D)->pow
-.L2026:
+.L2025:
 @ Patches/../C_code.c:2697: 		if (unit->skl < MinPromotedStat) { unit->skl += MinPromotedStat; } 
 	movs	r3, #21	@ _15,
 	ldrsb	r3, [r0, r3]	@ _15,* _15
 @ Patches/../C_code.c:2697: 		if (unit->skl < MinPromotedStat) { unit->skl += MinPromotedStat; } 
 	cmp	r3, #1	@ _15,
-	ble	.L2037		@,
+	ble	.L2036		@,
 @ Patches/../C_code.c:2698: 		if (unit->spd < MinPromotedStat) { unit->spd += MinPromotedStat; } 
 	movs	r3, #22	@ _19,
 	ldrsb	r3, [r0, r3]	@ _19,* _19
 @ Patches/../C_code.c:2698: 		if (unit->spd < MinPromotedStat) { unit->spd += MinPromotedStat; } 
 	cmp	r3, #1	@ _19,
-	ble	.L2038		@,
-.L2028:
+	ble	.L2037		@,
+.L2027:
 @ Patches/../C_code.c:2699: 		if (unit->def < MinPromotedStat) { unit->def += MinPromotedStat; } 
 	movs	r3, #23	@ _23,
 	ldrsb	r3, [r0, r3]	@ _23,* _23
 @ Patches/../C_code.c:2699: 		if (unit->def < MinPromotedStat) { unit->def += MinPromotedStat; } 
 	cmp	r3, #1	@ _23,
-	ble	.L2039		@,
-.L2029:
+	ble	.L2038		@,
+.L2028:
 @ Patches/../C_code.c:2700: 		if (unit->res < MinPromotedStat) { unit->res += MinPromotedStat; } 
 	movs	r3, #24	@ _27,
 	ldrsb	r3, [r0, r3]	@ _27,* _27
 @ Patches/../C_code.c:2700: 		if (unit->res < MinPromotedStat) { unit->res += MinPromotedStat; } 
 	cmp	r3, #1	@ _27,
-	ble	.L2040		@,
-.L2030:
+	ble	.L2039		@,
+.L2029:
 @ Patches/../C_code.c:2701: 		if (unit->lck < MinPromotedStat) { unit->lck += MinPromotedStat; } 
 	movs	r3, #25	@ _31,
 	ldrsb	r3, [r0, r3]	@ _31,* _31
 @ Patches/../C_code.c:2701: 		if (unit->lck < MinPromotedStat) { unit->lck += MinPromotedStat; } 
 	cmp	r3, #1	@ _31,
-	ble	.L2041		@,
-.L2031:
+	ble	.L2040		@,
+.L2030:
 @ Patches/../C_code.c:2702: 		if (StrMagInstalled) {  
-	ldr	r3, .L2043	@ tmp186,
+	ldr	r3, .L2042	@ tmp186,
 @ Patches/../C_code.c:2702: 		if (StrMagInstalled) {  
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.L2023		@,
-.L2042:
+	beq	.L2022		@,
+.L2041:
 @ Patches/../C_code.c:2703: 		if ((unit->_u3A < (MinPromotedStat+2)) || (unit->_u3A > 127)) { unit->_u3A += MinPromotedStat; } } // _u3A is unsigned 
 	movs	r1, #58	@ tmp188,
 	ldrb	r2, [r0, r1]	@ _36,
@@ -13875,15 +13866,15 @@ MakePromotedUnitHaveMinStats:
 	lsls	r3, r3, #24	@ tmp193, tmp189,
 	lsrs	r3, r3, #24	@ tmp192, tmp193,
 	cmp	r3, #123	@ tmp192,
-	bls	.L2023		@,
+	bls	.L2022		@,
 @ Patches/../C_code.c:2703: 		if ((unit->_u3A < (MinPromotedStat+2)) || (unit->_u3A > 127)) { unit->_u3A += MinPromotedStat; } } // _u3A is unsigned 
 	adds	r2, r2, #2	@ tmp194,
 	strb	r2, [r0, r1]	@ tmp194, unit_10(D)->_u3A
-.L2023:
+.L2022:
 @ Patches/../C_code.c:2705: } 
 	@ sp needed	@
 	bx	lr
-.L2037:
+.L2036:
 @ Patches/../C_code.c:2697: 		if (unit->skl < MinPromotedStat) { unit->skl += MinPromotedStat; } 
 	adds	r3, r3, #2	@ tmp164,
 	strb	r3, [r0, #21]	@ tmp164, unit_10(D)->skl
@@ -13892,20 +13883,20 @@ MakePromotedUnitHaveMinStats:
 	ldrsb	r3, [r0, r3]	@ _19,* _19
 @ Patches/../C_code.c:2698: 		if (unit->spd < MinPromotedStat) { unit->spd += MinPromotedStat; } 
 	cmp	r3, #1	@ _19,
-	bgt	.L2028		@,
-	b	.L2038		@
-.L2041:
+	bgt	.L2027		@,
+	b	.L2037		@
+.L2040:
 @ Patches/../C_code.c:2701: 		if (unit->lck < MinPromotedStat) { unit->lck += MinPromotedStat; } 
 	adds	r3, r3, #2	@ tmp184,
 	strb	r3, [r0, #25]	@ tmp184, unit_10(D)->lck
 @ Patches/../C_code.c:2702: 		if (StrMagInstalled) {  
-	ldr	r3, .L2043	@ tmp186,
+	ldr	r3, .L2042	@ tmp186,
 @ Patches/../C_code.c:2702: 		if (StrMagInstalled) {  
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.L2023		@,
-	b	.L2042		@
-.L2040:
+	beq	.L2022		@,
+	b	.L2041		@
+.L2039:
 @ Patches/../C_code.c:2700: 		if (unit->res < MinPromotedStat) { unit->res += MinPromotedStat; } 
 	adds	r3, r3, #2	@ tmp179,
 	strb	r3, [r0, #24]	@ tmp179, unit_10(D)->res
@@ -13914,9 +13905,9 @@ MakePromotedUnitHaveMinStats:
 	ldrsb	r3, [r0, r3]	@ _31,* _31
 @ Patches/../C_code.c:2701: 		if (unit->lck < MinPromotedStat) { unit->lck += MinPromotedStat; } 
 	cmp	r3, #1	@ _31,
-	bgt	.L2031		@,
-	b	.L2041		@
-.L2039:
+	bgt	.L2030		@,
+	b	.L2040		@
+.L2038:
 @ Patches/../C_code.c:2699: 		if (unit->def < MinPromotedStat) { unit->def += MinPromotedStat; } 
 	adds	r3, r3, #2	@ tmp174,
 	strb	r3, [r0, #23]	@ tmp174, unit_10(D)->def
@@ -13925,9 +13916,9 @@ MakePromotedUnitHaveMinStats:
 	ldrsb	r3, [r0, r3]	@ _27,* _27
 @ Patches/../C_code.c:2700: 		if (unit->res < MinPromotedStat) { unit->res += MinPromotedStat; } 
 	cmp	r3, #1	@ _27,
-	bgt	.L2030		@,
-	b	.L2040		@
-.L2038:
+	bgt	.L2029		@,
+	b	.L2039		@
+.L2037:
 @ Patches/../C_code.c:2698: 		if (unit->spd < MinPromotedStat) { unit->spd += MinPromotedStat; } 
 	adds	r3, r3, #2	@ tmp169,
 	strb	r3, [r0, #22]	@ tmp169, unit_10(D)->spd
@@ -13936,11 +13927,11 @@ MakePromotedUnitHaveMinStats:
 	ldrsb	r3, [r0, r3]	@ _23,* _23
 @ Patches/../C_code.c:2699: 		if (unit->def < MinPromotedStat) { unit->def += MinPromotedStat; } 
 	cmp	r3, #1	@ _23,
-	bgt	.L2029		@,
-	b	.L2039		@
-.L2044:
-	.align	2
+	bgt	.L2028		@,
+	b	.L2038		@
 .L2043:
+	.align	2
+.L2042:
 	.word	StrMagInstalled
 	.size	MakePromotedUnitHaveMinStats, .-MakePromotedUnitHaveMinStats
 	.align	1
@@ -13959,20 +13950,20 @@ NewGetStatDecrease:
 	movs	r4, #0	@ <retval>,
 @ Patches/../C_code.c:2711:     while (growth > 100) {
 	cmp	r0, #100	@ growth,
-	ble	.L2046		@,
-.L2047:
+	ble	.L2045		@,
+.L2046:
 @ Patches/../C_code.c:2713:         growth -= 100;
 	subs	r0, r0, #100	@ growth,
 @ Patches/../C_code.c:2712:         result++;
 	adds	r4, r4, #1	@ <retval>,
 @ Patches/../C_code.c:2711:     while (growth > 100) {
 	cmp	r0, #100	@ growth,
-	bgt	.L2047		@,
-.L2046:
+	bgt	.L2046		@,
+.L2045:
 @ Patches/../C_code.c:2727: }
 	@ sp needed	@
 @ Patches/../C_code.c:2718: 	if (Roll1RN(growth)) { // 50 
-	ldr	r3, .L2053	@ tmp117,
+	ldr	r3, .L2052	@ tmp117,
 	bl	.L14		@
 @ Patches/../C_code.c:2719: 	result++; } 
 	subs	r3, r0, #1	@ tmp123, tmp125
@@ -13983,9 +13974,9 @@ NewGetStatDecrease:
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L2054:
-	.align	2
 .L2053:
+	.align	2
+.L2052:
 	.word	Roll1RN
 	.size	NewGetStatDecrease, .-NewGetStatDecrease
 	.align	1
@@ -14013,7 +14004,7 @@ GetAutoleveledStatDecrease:
 	asrs	r6, r4, #31	@ tmp132, _1,
 	ands	r0, r6	@ tmp134, tmp132
 	adds	r0, r0, r4	@ tmp135, tmp134, _1
-	ldr	r3, .L2064	@ tmp137,
+	ldr	r3, .L2063	@ tmp137,
 	asrs	r0, r0, #2	@ tmp136, tmp135,
 @ Patches/../C_code.c:2730: int GetAutoleveledStatDecrease(int growth, int levelCount, int stat) {
 	movs	r5, r2	@ stat, tmp158
@@ -14032,20 +14023,20 @@ GetAutoleveledStatDecrease:
 	movs	r4, #0	@ result,
 @ Patches/../C_code.c:2711:     while (growth > 100) {
 	cmp	r0, #100	@ growth,
-	ble	.L2056		@,
-.L2057:
+	ble	.L2055		@,
+.L2056:
 @ Patches/../C_code.c:2713:         growth -= 100;
 	subs	r0, r0, #100	@ growth,
 @ Patches/../C_code.c:2712:         result++;
 	adds	r4, r4, #1	@ result,
 @ Patches/../C_code.c:2711:     while (growth > 100) {
 	cmp	r0, #100	@ growth,
-	bgt	.L2057		@,
-.L2056:
+	bgt	.L2056		@,
+.L2055:
 @ Patches/../C_code.c:2737: }
 	@ sp needed	@
 @ Patches/../C_code.c:2718: 	if (Roll1RN(growth)) { // 50 
-	ldr	r3, .L2064+4	@ tmp147,
+	ldr	r3, .L2063+4	@ tmp147,
 	bl	.L14		@
 @ Patches/../C_code.c:2719: 	result++; } 
 	subs	r3, r0, #1	@ tmp153, tmp160
@@ -14061,9 +14052,9 @@ GetAutoleveledStatDecrease:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L2065:
-	.align	2
 .L2064:
+	.align	2
+.L2063:
 	.word	NextRN_N
 	.word	Roll1RN
 	.size	GetAutoleveledStatDecrease, .-GetAutoleveledStatDecrease
@@ -14085,9 +14076,9 @@ AdjustGrowthForLosingLevels:
 	subs	r0, r1, r0	@ num, tmp120, tmp121
 @ Patches/../C_code.c:2774: 	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
 	cmp	r0, #20	@ num,
-	bge	.L2067		@,
+	bge	.L2066		@,
 	movs	r0, #20	@ num,
-.L2067:
+.L2066:
 @ Patches/../C_code.c:2776: } 
 	@ sp needed	@
 	bx	lr
@@ -14117,10 +14108,10 @@ GetAdjustedLevel:
 	orrs	r3, r2	@ tmp122, classTable_8(D)->attributes
 @ Patches/../C_code.c:2865: 	if (promoted) { level += 15; } 
 	lsls	r3, r3, #23	@ tmp130, tmp122,
-	bpl	.L2068		@,
+	bpl	.L2067		@,
 @ Patches/../C_code.c:2865: 	if (promoted) { level += 15; } 
 	adds	r0, r0, #15	@ <retval>,
-.L2068:
+.L2067:
 @ Patches/../C_code.c:2867: } 
 	@ sp needed	@
 	bx	lr
@@ -14144,11 +14135,11 @@ GetHPStatMaxBonus:
 	lsrs	r5, r3, #31	@ tmp132, tmp131,
 	adds	r5, r5, r3	@ tmp133, tmp132, tmp131
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
-	ldr	r3, .L2086	@ tmp136,
+	ldr	r3, .L2085	@ tmp136,
 	ldr	r3, [r3]	@ RandValues, RandValues
 	ldrh	r0, [r3, #2]	@ *RandValues.193_2, *RandValues.193_2
 @ Patches/../C_code.c:2157: 	switch (RandBitflags->caps) { 
-	ldr	r3, .L2086+4	@ tmp144,
+	ldr	r3, .L2085+4	@ tmp144,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrh	r3, [r3]	@ *RandBitflags.136_16, *RandBitflags.136_16
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
@@ -14166,65 +14157,65 @@ GetHPStatMaxBonus:
 	lsrs	r3, r3, #29	@ _17, tmp149,
 @ Patches/../C_code.c:2157: 	switch (RandBitflags->caps) { 
 	cmp	r3, #5	@ _17,
-	beq	.L2075		@,
-	bhi	.L2076		@,
+	beq	.L2074		@,
+	bhi	.L2075		@,
 	cmp	r3, #2	@ _17,
-	beq	.L2077		@,
+	beq	.L2076		@,
 	cmp	r3, #3	@ _17,
-	bne	.L2079		@,
+	bne	.L2078		@,
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	lsls	r3, r0, #3	@ tmp168, _4,
 	subs	r0, r3, r0	@ tmp169, tmp168, _4
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	movs	r1, #20	@,
-	ldr	r3, .L2086+8	@ tmp178,
+	ldr	r3, .L2085+8	@ tmp178,
 	bl	.L14		@
 @ Patches/../C_code.c:2873: 	result += bonus; 
 	adds	r5, r5, r0	@ result, result, tmp195
 @ Patches/../C_code.c:2161: 		case 3: { result = ((3 * stat) / 4) - 2; break; } 
-	b	.L2077		@
-.L2076:
+	b	.L2076		@
+.L2075:
 @ Patches/../C_code.c:2157: 	switch (RandBitflags->caps) { 
 	cmp	r3, #6	@ _17,
-	bne	.L2079		@,
+	bne	.L2078		@,
 @ Patches/../C_code.c:2873: 	result += bonus; 
 	adds	r5, r5, r0	@ result, result, _4
-.L2077:
+.L2076:
 @ Patches/../C_code.c:2874: 	if (result < stat) { result = stat; } 
 	movs	r0, r4	@ <retval>, stat
 	cmp	r4, r5	@ <retval>, result
-	bge	.L2081		@,
+	bge	.L2080		@,
 	movs	r0, r5	@ <retval>, result
-.L2081:
+.L2080:
 @ Patches/../C_code.c:2875: 	if (result < (avg + 1)) { result = avg+1; } 
 	cmp	r6, r0	@ avg, <retval>
-	blt	.L2074		@,
+	blt	.L2073		@,
 @ Patches/../C_code.c:2875: 	if (result < (avg + 1)) { result = avg+1; } 
 	adds	r0, r6, #1	@ <retval>, avg,
-.L2074:
+.L2073:
 @ Patches/../C_code.c:2877: } 
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L2079:
+.L2078:
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	lsls	r3, r0, #1	@ tmp154, _4,
 	adds	r0, r3, r0	@ tmp155, tmp154, _4
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	movs	r1, #20	@,
-	ldr	r3, .L2086+8	@ tmp165,
+	ldr	r3, .L2085+8	@ tmp165,
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	lsls	r0, r0, #2	@ tmp156, tmp155,
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	bl	.L14		@
 @ Patches/../C_code.c:2873: 	result += bonus; 
 	adds	r5, r5, r0	@ result, result, tmp194
-	b	.L2077		@
-.L2075:
+	b	.L2076		@
+.L2074:
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	movs	r1, #20	@,
-	ldr	r3, .L2086+8	@ tmp189,
+	ldr	r3, .L2085+8	@ tmp189,
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	lsls	r0, r0, #4	@ tmp180, _4,
 @ Patches/../C_code.c:2872: 	int bonus = (AdjustStatForInflatedNumbers(HPStatMaxBonus) * ((RandValues->variance)*5)) / 100; 
@@ -14232,10 +14223,10 @@ GetHPStatMaxBonus:
 @ Patches/../C_code.c:2873: 	result += bonus; 
 	adds	r5, r5, r0	@ result, result, tmp196
 @ Patches/../C_code.c:2163: 		case 5: { result = ((5 * stat) / 4) + 1; break; } 
-	b	.L2077		@
-.L2087:
-	.align	2
+	b	.L2076		@
 .L2086:
+	.align	2
+.L2085:
 	.word	RandValues
 	.word	RandBitflags
 	.word	__aeabi_idiv
@@ -14259,14 +14250,14 @@ GetStatMaxBonus:
 	lsrs	r5, r3, #31	@ tmp134, tmp133,
 	adds	r5, r5, r3	@ tmp135, tmp134, tmp133
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
-	ldr	r3, .L2101	@ tmp138,
+	ldr	r3, .L2100	@ tmp138,
 	ldr	r3, [r3]	@ RandValues, RandValues
 @ Patches/../C_code.c:2879: int GetStatMaxBonus(struct Unit* unit, int stat, int avg) { 
 	movs	r4, r1	@ stat, tmp209
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	ldrh	r1, [r3, #2]	@ *RandValues.194_2, *RandValues.194_2
 @ Patches/../C_code.c:2172: 	switch (RandBitflags->caps) { 
-	ldr	r3, .L2101+4	@ tmp146,
+	ldr	r3, .L2100+4	@ tmp146,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrh	r3, [r3]	@ *RandBitflags.137_16, *RandBitflags.137_16
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
@@ -14283,17 +14274,17 @@ GetStatMaxBonus:
 	lsrs	r3, r3, #29	@ _17, tmp151,
 @ Patches/../C_code.c:2172: 	switch (RandBitflags->caps) { 
 	cmp	r3, #5	@ _17,
-	beq	.L2089		@,
-	bhi	.L2090		@,
+	beq	.L2088		@,
+	bhi	.L2089		@,
 	cmp	r3, #2	@ _17,
-	beq	.L2091		@,
+	beq	.L2090		@,
 	cmp	r3, #3	@ _17,
-	bne	.L2093		@,
+	bne	.L2092		@,
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	lsls	r0, r1, #1	@ tmp167, _4,
 	adds	r0, r0, r1	@ tmp168, tmp167, _4
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
-	ldr	r3, .L2101+8	@ tmp178,
+	ldr	r3, .L2100+8	@ tmp178,
 	movs	r1, #20	@,
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	lsls	r0, r0, #1	@ tmp169, tmp168,
@@ -14302,58 +14293,58 @@ GetStatMaxBonus:
 @ Patches/../C_code.c:2882: 	result += bonus; 
 	adds	r5, r5, r0	@ result, result, tmp212
 @ Patches/../C_code.c:2176: 		case 3: { result = ((7 * stat) / 8) - 1; break; } 
-	b	.L2091		@
-.L2090:
+	b	.L2090		@
+.L2089:
 @ Patches/../C_code.c:2172: 	switch (RandBitflags->caps) { 
 	cmp	r3, #6	@ _17,
-	bne	.L2093		@,
+	bne	.L2092		@,
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	lsls	r0, r1, #2	@ tmp194, _4,
 	adds	r0, r0, r1	@ tmp195, tmp194, _4
 	lsls	r0, r0, #1	@ tmp196, tmp195,
-.L2100:
+.L2099:
 	adds	r0, r0, r1	@ tmp197, tmp196, _4
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
-	ldr	r3, .L2101+8	@ tmp206,
+	ldr	r3, .L2100+8	@ tmp206,
 	movs	r1, #20	@,
 	bl	.L14		@
 @ Patches/../C_code.c:2882: 	result += bonus; 
 	adds	r5, r5, r0	@ result, result, tmp214
-.L2091:
+.L2090:
 @ Patches/../C_code.c:2883: 	if (result < stat) { result = stat; } 
 	movs	r0, r4	@ <retval>, stat
 	cmp	r4, r5	@ <retval>, result
-	bge	.L2095		@,
+	bge	.L2094		@,
 	movs	r0, r5	@ <retval>, result
-.L2095:
+.L2094:
 @ Patches/../C_code.c:2884: 	if (result < (avg + 1)) { result = avg+1; } 
 	cmp	r6, r0	@ avg, <retval>
-	blt	.L2088		@,
+	blt	.L2087		@,
 @ Patches/../C_code.c:2884: 	if (result < (avg + 1)) { result = avg+1; } 
 	adds	r0, r6, #1	@ <retval>, avg,
-.L2088:
+.L2087:
 @ Patches/../C_code.c:2886: } 
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L2093:
+.L2092:
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	lsls	r0, r1, #3	@ tmp155, _4,
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
-	ldr	r3, .L2101+8	@ tmp164,
+	ldr	r3, .L2100+8	@ tmp164,
 	movs	r1, #20	@,
 	bl	.L14		@
 @ Patches/../C_code.c:2882: 	result += bonus; 
 	adds	r5, r5, r0	@ result, result, tmp211
-	b	.L2091		@
-.L2089:
+	b	.L2090		@
+.L2088:
 @ Patches/../C_code.c:2881: 	int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance)*5)) / 100; 
 	lsls	r0, r1, #3	@ tmp181, _4,
-	b	.L2100		@
-.L2102:
-	.align	2
+	b	.L2099		@
 .L2101:
+	.align	2
+.L2100:
 	.word	RandValues
 	.word	RandBitflags
 	.word	__aeabi_idiv
@@ -14373,7 +14364,7 @@ UnitLoadItemsFromDefinition:
 	mov	lr, r8	@,
 	push	{lr}	@
 @ Patches/../C_code.c:3228:     UnitClearInventory(unit);
-	ldr	r3, .L2112	@ tmp130,
+	ldr	r3, .L2111	@ tmp130,
 @ Patches/../C_code.c:3225: void UnitLoadItemsFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
 	sub	sp, sp, #64	@,,
 @ Patches/../C_code.c:3225: void UnitLoadItemsFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
@@ -14409,22 +14400,22 @@ UnitLoadItemsFromDefinition:
 @ Patches/../C_code.c:3241: 	BuildAvailableWeaponList(list, unit); 
 	bl	BuildAvailableWeaponList		@
 @ Patches/../C_code.c:3244:         UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise, i, list));
-	ldr	r3, .L2112+4	@ tmp164,
+	ldr	r3, .L2111+4	@ tmp164,
 @ Patches/../C_code.c:3242:     for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	movs	r4, #0	@ i,
 @ Patches/../C_code.c:3244:         UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise, i, list));
 	mov	r8, r3	@ tmp164, tmp164
 	adds	r7, r7, #12	@ _40,
-.L2104:
+.L2103:
 @ Patches/../C_code.c:3242:     for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	ldrb	r1, [r7, r4]	@ _10, MEM[(unsigned char *)_40 + _39 * 1]
 @ Patches/../C_code.c:3242:     for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	cmp	r1, #0	@ _10,
-	beq	.L2103		@,
+	beq	.L2102		@,
 @ Patches/../C_code.c:3243: 		if (i == 1) { AppendAvailableStaffList(list, unit); } // first item will always be a weapon if possible 
 	cmp	r4, #1	@ i,
-	beq	.L2111		@,
-.L2106:
+	beq	.L2110		@,
+.L2105:
 	movs	r3, r4	@, i
 	add	r2, sp, #8	@ tmp170,,
 	movs	r0, r6	@, unit
@@ -14438,8 +14429,8 @@ UnitLoadItemsFromDefinition:
 	bl	.L179		@
 @ Patches/../C_code.c:3242:     for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	cmp	r4, #4	@ i,
-	bne	.L2104		@,
-.L2103:
+	bne	.L2103		@,
+.L2102:
 @ Patches/../C_code.c:3246: }
 	add	sp, sp, #64	@,,
 	@ sp needed	@
@@ -14448,7 +14439,7 @@ UnitLoadItemsFromDefinition:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L2111:
+.L2110:
 @ Patches/../C_code.c:3243: 		if (i == 1) { AppendAvailableStaffList(list, unit); } // first item will always be a weapon if possible 
 	movs	r1, r6	@, unit
 	movs	r0, r5	@, tmp162
@@ -14457,18 +14448,18 @@ UnitLoadItemsFromDefinition:
 	ldrb	r1, [r7, #1]	@ _13, MEM[(unsigned char *)_40 + 1B]
 @ Patches/../C_code.c:1966: 	if (!item) { return item; } 
 	cmp	r1, #0	@ _13,
-	bne	.L2106		@,
+	bne	.L2105		@,
 @ Patches/../C_code.c:3244:         UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise, i, list));
 	movs	r1, #0	@,
 	movs	r0, r6	@, unit
-	ldr	r3, .L2112+4	@ tmp160,
+	ldr	r3, .L2111+4	@ tmp160,
 	bl	.L14		@
 @ Patches/../C_code.c:3242:     for (i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	movs	r4, #2	@ i,
-	b	.L2104		@
-.L2113:
-	.align	2
+	b	.L2103		@
 .L2112:
+	.align	2
+.L2111:
 	.word	UnitClearInventory
 	.word	UnitAddItem
 	.size	UnitLoadItemsFromDefinition, .-UnitLoadItemsFromDefinition
@@ -14508,20 +14499,20 @@ GetUnitHPCap:
 	orrs	r3, r1	@ tmp127, _1->attributes
 @ Patches/../C_code.c:3261: 	if (UNIT_CATTRIBUTES(unit) & CA_BOSS) { if (unit->pCharacterData->number > 0x3F) { return EnemyBossMaxHP; } } 
 	lsls	r3, r3, #16	@ tmp143, tmp127,
-	bpl	.L2116		@,
+	bpl	.L2115		@,
 @ Patches/../C_code.c:3261: 	if (UNIT_CATTRIBUTES(unit) & CA_BOSS) { if (unit->pCharacterData->number > 0x3F) { return EnemyBossMaxHP; } } 
 	ldrb	r3, [r2, #4]	@ tmp134,
 	cmp	r3, #63	@ tmp134,
-	bhi	.L2122		@,
-.L2117:
+	bhi	.L2121		@,
+.L2116:
 @ Patches/../C_code.c:3263: 	return EnemyMaxHP; 
-	ldr	r3, .L2123	@ tmp140,
+	ldr	r3, .L2122	@ tmp140,
 	ldr	r0, [r3]	@ <retval>,
-.L2115:
+.L2114:
 @ Patches/../C_code.c:3264: } 
 	@ sp needed	@
 	bx	lr
-.L2116:
+.L2115:
 @ Patches/../C_code.c:3262: 	else { if (UNIT_FACTION(unit) != FACTION_RED) { return PlayerMaxHP; } } 
 	movs	r2, #11	@ tmp136,
 	movs	r3, #192	@ tmp137,
@@ -14529,21 +14520,21 @@ GetUnitHPCap:
 	ands	r3, r2	@ tmp138, tmp136
 @ Patches/../C_code.c:3262: 	else { if (UNIT_FACTION(unit) != FACTION_RED) { return PlayerMaxHP; } } 
 	cmp	r3, #128	@ tmp138,
-	beq	.L2117		@,
+	beq	.L2116		@,
 @ Patches/../C_code.c:3262: 	else { if (UNIT_FACTION(unit) != FACTION_RED) { return PlayerMaxHP; } } 
-	ldr	r3, .L2123+4	@ tmp139,
+	ldr	r3, .L2122+4	@ tmp139,
 	ldr	r0, [r3]	@ <retval>,
 @ Patches/../C_code.c:3262: 	else { if (UNIT_FACTION(unit) != FACTION_RED) { return PlayerMaxHP; } } 
-	b	.L2115		@
-.L2122:
+	b	.L2114		@
+.L2121:
 @ Patches/../C_code.c:3261: 	if (UNIT_CATTRIBUTES(unit) & CA_BOSS) { if (unit->pCharacterData->number > 0x3F) { return EnemyBossMaxHP; } } 
-	ldr	r3, .L2123+8	@ tmp135,
+	ldr	r3, .L2122+8	@ tmp135,
 	ldr	r0, [r3]	@ <retval>,
 @ Patches/../C_code.c:3261: 	if (UNIT_CATTRIBUTES(unit) & CA_BOSS) { if (unit->pCharacterData->number > 0x3F) { return EnemyBossMaxHP; } } 
-	b	.L2115		@
-.L2124:
-	.align	2
+	b	.L2114		@
 .L2123:
+	.align	2
+.L2122:
 	.word	EnemyMaxHP
 	.word	PlayerMaxHP
 	.word	EnemyBossMaxHP
@@ -14565,7 +14556,7 @@ GetUnitMaxPow:
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	movs	r1, #224	@ tmp148,
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
-	ldr	r3, .L2143	@ tmp144,
+	ldr	r3, .L2142	@ tmp144,
 @ Patches/../C_code.c:3267: 	int cap = ((unit)->pClassData->maxPow); //return cap;
 	ldr	r5, [r0, #4]	@ _1, unit_14(D)->pClassData
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
@@ -14582,17 +14573,17 @@ GetUnitMaxPow:
 	movs	r0, r4	@ <retval>, cap
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	tst	r3, r1	@ *RandBitflags.54_27, tmp148
-	beq	.L2125		@,
+	beq	.L2124		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r2]	@ MEM[(const struct CharacterData * *)unit_14(D)], MEM[(const struct CharacterData * *)unit_14(D)]
 	ldrb	r1, [r2, #4]	@ tmp154,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r6, .L2143+4	@ tmp152,
+	ldr	r6, .L2142+4	@ tmp152,
 	lsls	r1, r1, #1	@ tmp155, tmp154,
 @ Patches/../C_code.c:3268: 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	ldrb	r2, [r1, r6]	@ tmp156, CharExceptions
 	cmp	r2, #0	@ tmp156,
-	bne	.L2125		@,
+	bne	.L2124		@,
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	lsls	r3, r3, #23	@ tmp161, *RandBitflags.54_27,
 	lsrs	r3, r3, #29	@ _41, tmp161,
@@ -14600,26 +14591,26 @@ GetUnitMaxPow:
 	lsls	r2, r2, #24	@ tmp167, tmp163,
 	lsrs	r2, r2, #24	@ tmp166, tmp167,
 	cmp	r2, #4	@ tmp166,
-	bhi	.L2135		@,
+	bhi	.L2134		@,
 	lsls	r6, r3, #4	@ tmp169, _41,
 	subs	r6, r6, r3	@ tmp170, tmp169, _41
 	subs	r6, r6, #30	@ result,
-.L2127:
+.L2126:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
-	ldr	r7, .L2143+8	@ tmp194,
+	ldr	r7, .L2142+8	@ tmp194,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r0, [r7]	@ <retval>, maxStat
 	cmp	r0, r6	@ <retval>, result
-	ble	.L2128		@,
+	ble	.L2127		@,
 	movs	r0, r6	@ <retval>, result
-.L2128:
+.L2127:
 @ Patches/../C_code.c:3270: 	if (max != (-1)) { return max; } 
 	adds	r3, r0, #1	@ tmp200, <retval>,
-	bne	.L2125		@,
+	bne	.L2124		@,
 @ Patches/../C_code.c:3271: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L2143+12	@ tmp175,
+	ldr	r3, .L2142+12	@ tmp175,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:3272: 	noise[0] = unit->pClassData->number;  
@@ -14639,7 +14630,7 @@ GetUnitMaxPow:
 	movs	r5, r0	@ result, tmp196
 @ Patches/../C_code.c:3274: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 13); }  
 	cmp	r3, r0	@ tmp184, result
-	ble	.L2129		@,
+	ble	.L2128		@,
 @ Patches/../C_code.c:3274: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 13); }  
 	lsrs	r1, r4, #31	@ tmp187, cap,
 	adds	r1, r1, r4	@ tmp188, tmp187, cap
@@ -14650,48 +14641,48 @@ GetUnitMaxPow:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:3274: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 13); }  
 	adds	r5, r5, r0	@ result, result, tmp197
-.L2129:
+.L2128:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r3, [r7]	@ result, maxStat
 	cmp	r3, r6	@ result, result
-	bgt	.L2140		@,
+	bgt	.L2139		@,
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp201, result,
-	beq	.L2141		@,
-.L2131:
+	beq	.L2140		@,
+.L2130:
 @ Patches/../C_code.c:3275: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r5	@ <retval>, result
 	cmp	r5, r3	@ <retval>, result
-	bgt	.L2142		@,
-.L2125:
+	bgt	.L2141		@,
+.L2124:
 @ Patches/../C_code.c:3277: } 
 	add	sp, sp, #28	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L2135:
+.L2134:
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	movs	r6, #1	@ result,
 	rsbs	r6, r6, #0	@ result, result
-	b	.L2127		@
-.L2142:
+	b	.L2126		@
+.L2141:
 @ Patches/../C_code.c:3275: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r3	@ <retval>, result
-	b	.L2125		@
-.L2140:
+	b	.L2124		@
+.L2139:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	movs	r3, r6	@ result, result
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp201, result,
-	bne	.L2131		@,
-.L2141:
+	bne	.L2130		@,
+.L2140:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r3, r3, #31	@ result,
-	b	.L2131		@
-.L2144:
-	.align	2
+	b	.L2130		@
 .L2143:
+	.align	2
+.L2142:
 	.word	RandBitflags
 	.word	CharExceptions
 	.word	maxStat
@@ -14714,7 +14705,7 @@ GetUnitMaxSkl:
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	movs	r1, #224	@ tmp148,
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
-	ldr	r3, .L2163	@ tmp144,
+	ldr	r3, .L2162	@ tmp144,
 @ Patches/../C_code.c:3280: 	int cap = ((unit)->pClassData->maxSkl); //return cap;
 	ldr	r5, [r0, #4]	@ _1, unit_14(D)->pClassData
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
@@ -14731,17 +14722,17 @@ GetUnitMaxSkl:
 	movs	r0, r4	@ <retval>, cap
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	tst	r3, r1	@ *RandBitflags.54_27, tmp148
-	beq	.L2145		@,
+	beq	.L2144		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r2]	@ MEM[(const struct CharacterData * *)unit_14(D)], MEM[(const struct CharacterData * *)unit_14(D)]
 	ldrb	r1, [r2, #4]	@ tmp154,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r6, .L2163+4	@ tmp152,
+	ldr	r6, .L2162+4	@ tmp152,
 	lsls	r1, r1, #1	@ tmp155, tmp154,
 @ Patches/../C_code.c:3281: 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	ldrb	r2, [r1, r6]	@ tmp156, CharExceptions
 	cmp	r2, #0	@ tmp156,
-	bne	.L2145		@,
+	bne	.L2144		@,
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	lsls	r3, r3, #23	@ tmp161, *RandBitflags.54_27,
 	lsrs	r3, r3, #29	@ _41, tmp161,
@@ -14749,26 +14740,26 @@ GetUnitMaxSkl:
 	lsls	r2, r2, #24	@ tmp167, tmp163,
 	lsrs	r2, r2, #24	@ tmp166, tmp167,
 	cmp	r2, #4	@ tmp166,
-	bhi	.L2155		@,
+	bhi	.L2154		@,
 	lsls	r6, r3, #4	@ tmp169, _41,
 	subs	r6, r6, r3	@ tmp170, tmp169, _41
 	subs	r6, r6, #30	@ result,
-.L2147:
+.L2146:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
-	ldr	r7, .L2163+8	@ tmp194,
+	ldr	r7, .L2162+8	@ tmp194,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r0, [r7]	@ <retval>, maxStat
 	cmp	r0, r6	@ <retval>, result
-	ble	.L2148		@,
+	ble	.L2147		@,
 	movs	r0, r6	@ <retval>, result
-.L2148:
+.L2147:
 @ Patches/../C_code.c:3283: 	if (max != (-1)) { return max; } 
 	adds	r3, r0, #1	@ tmp200, <retval>,
-	bne	.L2145		@,
+	bne	.L2144		@,
 @ Patches/../C_code.c:3284: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L2163+12	@ tmp175,
+	ldr	r3, .L2162+12	@ tmp175,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:3285: 	noise[0] = unit->pClassData->number; 
@@ -14788,7 +14779,7 @@ GetUnitMaxSkl:
 	movs	r5, r0	@ result, tmp196
 @ Patches/../C_code.c:3287: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 23); } 
 	cmp	r3, r0	@ tmp184, result
-	ble	.L2149		@,
+	ble	.L2148		@,
 @ Patches/../C_code.c:3287: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 23); } 
 	lsrs	r1, r4, #31	@ tmp187, cap,
 	adds	r1, r1, r4	@ tmp188, tmp187, cap
@@ -14799,48 +14790,48 @@ GetUnitMaxSkl:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:3287: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 23); } 
 	adds	r5, r5, r0	@ result, result, tmp197
-.L2149:
+.L2148:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r3, [r7]	@ result, maxStat
 	cmp	r3, r6	@ result, result
-	bgt	.L2160		@,
+	bgt	.L2159		@,
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp201, result,
-	beq	.L2161		@,
-.L2151:
+	beq	.L2160		@,
+.L2150:
 @ Patches/../C_code.c:3288: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r5	@ <retval>, result
 	cmp	r5, r3	@ <retval>, result
-	bgt	.L2162		@,
-.L2145:
+	bgt	.L2161		@,
+.L2144:
 @ Patches/../C_code.c:3290: } 
 	add	sp, sp, #28	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L2155:
+.L2154:
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	movs	r6, #1	@ result,
 	rsbs	r6, r6, #0	@ result, result
-	b	.L2147		@
-.L2162:
+	b	.L2146		@
+.L2161:
 @ Patches/../C_code.c:3288: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r3	@ <retval>, result
-	b	.L2145		@
-.L2160:
+	b	.L2144		@
+.L2159:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	movs	r3, r6	@ result, result
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp201, result,
-	bne	.L2151		@,
-.L2161:
+	bne	.L2150		@,
+.L2160:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r3, r3, #31	@ result,
-	b	.L2151		@
-.L2164:
-	.align	2
+	b	.L2150		@
 .L2163:
+	.align	2
+.L2162:
 	.word	RandBitflags
 	.word	CharExceptions
 	.word	maxStat
@@ -14863,7 +14854,7 @@ GetUnitMaxSpd:
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	movs	r1, #224	@ tmp148,
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
-	ldr	r3, .L2183	@ tmp144,
+	ldr	r3, .L2182	@ tmp144,
 @ Patches/../C_code.c:3293: 	int cap = ((unit)->pClassData->maxSpd); //return cap;
 	ldr	r5, [r0, #4]	@ _1, unit_14(D)->pClassData
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
@@ -14880,17 +14871,17 @@ GetUnitMaxSpd:
 	movs	r0, r4	@ <retval>, cap
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	tst	r3, r1	@ *RandBitflags.54_27, tmp148
-	beq	.L2165		@,
+	beq	.L2164		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r2]	@ MEM[(const struct CharacterData * *)unit_14(D)], MEM[(const struct CharacterData * *)unit_14(D)]
 	ldrb	r1, [r2, #4]	@ tmp154,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r6, .L2183+4	@ tmp152,
+	ldr	r6, .L2182+4	@ tmp152,
 	lsls	r1, r1, #1	@ tmp155, tmp154,
 @ Patches/../C_code.c:3294: 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	ldrb	r2, [r1, r6]	@ tmp156, CharExceptions
 	cmp	r2, #0	@ tmp156,
-	bne	.L2165		@,
+	bne	.L2164		@,
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	lsls	r3, r3, #23	@ tmp161, *RandBitflags.54_27,
 	lsrs	r3, r3, #29	@ _41, tmp161,
@@ -14898,26 +14889,26 @@ GetUnitMaxSpd:
 	lsls	r2, r2, #24	@ tmp167, tmp163,
 	lsrs	r2, r2, #24	@ tmp166, tmp167,
 	cmp	r2, #4	@ tmp166,
-	bhi	.L2175		@,
+	bhi	.L2174		@,
 	lsls	r6, r3, #4	@ tmp169, _41,
 	subs	r6, r6, r3	@ tmp170, tmp169, _41
 	subs	r6, r6, #30	@ result,
-.L2167:
+.L2166:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
-	ldr	r7, .L2183+8	@ tmp194,
+	ldr	r7, .L2182+8	@ tmp194,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r0, [r7]	@ <retval>, maxStat
 	cmp	r0, r6	@ <retval>, result
-	ble	.L2168		@,
+	ble	.L2167		@,
 	movs	r0, r6	@ <retval>, result
-.L2168:
+.L2167:
 @ Patches/../C_code.c:3296: 	if (max != (-1)) { return max; } 
 	adds	r3, r0, #1	@ tmp200, <retval>,
-	bne	.L2165		@,
+	bne	.L2164		@,
 @ Patches/../C_code.c:3297: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L2183+12	@ tmp175,
+	ldr	r3, .L2182+12	@ tmp175,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:3298: 	noise[0] = unit->pClassData->number; 
@@ -14937,7 +14928,7 @@ GetUnitMaxSpd:
 	movs	r5, r0	@ result, tmp196
 @ Patches/../C_code.c:3300: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 33); } 
 	cmp	r3, r0	@ tmp184, result
-	ble	.L2169		@,
+	ble	.L2168		@,
 @ Patches/../C_code.c:3300: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 33); } 
 	lsrs	r1, r4, #31	@ tmp187, cap,
 	adds	r1, r1, r4	@ tmp188, tmp187, cap
@@ -14948,48 +14939,48 @@ GetUnitMaxSpd:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:3300: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 33); } 
 	adds	r5, r5, r0	@ result, result, tmp197
-.L2169:
+.L2168:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r3, [r7]	@ result, maxStat
 	cmp	r3, r6	@ result, result
-	bgt	.L2180		@,
+	bgt	.L2179		@,
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp201, result,
-	beq	.L2181		@,
-.L2171:
+	beq	.L2180		@,
+.L2170:
 @ Patches/../C_code.c:3301: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r5	@ <retval>, result
 	cmp	r5, r3	@ <retval>, result
-	bgt	.L2182		@,
-.L2165:
+	bgt	.L2181		@,
+.L2164:
 @ Patches/../C_code.c:3303: } 
 	add	sp, sp, #28	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L2175:
+.L2174:
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	movs	r6, #1	@ result,
 	rsbs	r6, r6, #0	@ result, result
-	b	.L2167		@
-.L2182:
+	b	.L2166		@
+.L2181:
 @ Patches/../C_code.c:3301: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r3	@ <retval>, result
-	b	.L2165		@
-.L2180:
+	b	.L2164		@
+.L2179:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	movs	r3, r6	@ result, result
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp201, result,
-	bne	.L2171		@,
-.L2181:
+	bne	.L2170		@,
+.L2180:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r3, r3, #31	@ result,
-	b	.L2171		@
-.L2184:
-	.align	2
+	b	.L2170		@
 .L2183:
+	.align	2
+.L2182:
 	.word	RandBitflags
 	.word	CharExceptions
 	.word	maxStat
@@ -15012,7 +15003,7 @@ GetUnitMaxDef:
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	movs	r1, #224	@ tmp148,
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
-	ldr	r3, .L2203	@ tmp144,
+	ldr	r3, .L2202	@ tmp144,
 @ Patches/../C_code.c:3306: 	int cap = ((unit)->pClassData->maxDef); //return cap;
 	ldr	r5, [r0, #4]	@ _1, unit_14(D)->pClassData
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
@@ -15029,17 +15020,17 @@ GetUnitMaxDef:
 	movs	r0, r4	@ <retval>, cap
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	tst	r3, r1	@ *RandBitflags.54_27, tmp148
-	beq	.L2185		@,
+	beq	.L2184		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r2]	@ MEM[(const struct CharacterData * *)unit_14(D)], MEM[(const struct CharacterData * *)unit_14(D)]
 	ldrb	r1, [r2, #4]	@ tmp154,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r6, .L2203+4	@ tmp152,
+	ldr	r6, .L2202+4	@ tmp152,
 	lsls	r1, r1, #1	@ tmp155, tmp154,
 @ Patches/../C_code.c:3307: 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	ldrb	r2, [r1, r6]	@ tmp156, CharExceptions
 	cmp	r2, #0	@ tmp156,
-	bne	.L2185		@,
+	bne	.L2184		@,
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	lsls	r3, r3, #23	@ tmp161, *RandBitflags.54_27,
 	lsrs	r3, r3, #29	@ _41, tmp161,
@@ -15047,26 +15038,26 @@ GetUnitMaxDef:
 	lsls	r2, r2, #24	@ tmp167, tmp163,
 	lsrs	r2, r2, #24	@ tmp166, tmp167,
 	cmp	r2, #4	@ tmp166,
-	bhi	.L2195		@,
+	bhi	.L2194		@,
 	lsls	r6, r3, #4	@ tmp169, _41,
 	subs	r6, r6, r3	@ tmp170, tmp169, _41
 	subs	r6, r6, #30	@ result,
-.L2187:
+.L2186:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
-	ldr	r7, .L2203+8	@ tmp194,
+	ldr	r7, .L2202+8	@ tmp194,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r0, [r7]	@ <retval>, maxStat
 	cmp	r0, r6	@ <retval>, result
-	ble	.L2188		@,
+	ble	.L2187		@,
 	movs	r0, r6	@ <retval>, result
-.L2188:
+.L2187:
 @ Patches/../C_code.c:3309: 	if (max != (-1)) { return max; } 
 	adds	r3, r0, #1	@ tmp200, <retval>,
-	bne	.L2185		@,
+	bne	.L2184		@,
 @ Patches/../C_code.c:3310: 	int noise[4] = {0, 0, 0, 0};  
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L2203+12	@ tmp175,
+	ldr	r3, .L2202+12	@ tmp175,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:3311: 	noise[0] = unit->pClassData->number; 
@@ -15086,7 +15077,7 @@ GetUnitMaxDef:
 	movs	r5, r0	@ result, tmp196
 @ Patches/../C_code.c:3313: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 43); } 
 	cmp	r3, r0	@ tmp184, result
-	ble	.L2189		@,
+	ble	.L2188		@,
 @ Patches/../C_code.c:3313: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 43); } 
 	lsrs	r1, r4, #31	@ tmp187, cap,
 	adds	r1, r1, r4	@ tmp188, tmp187, cap
@@ -15097,48 +15088,48 @@ GetUnitMaxDef:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:3313: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 43); } 
 	adds	r5, r5, r0	@ result, result, tmp197
-.L2189:
+.L2188:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r3, [r7]	@ result, maxStat
 	cmp	r3, r6	@ result, result
-	bgt	.L2200		@,
+	bgt	.L2199		@,
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp201, result,
-	beq	.L2201		@,
-.L2191:
+	beq	.L2200		@,
+.L2190:
 @ Patches/../C_code.c:3314: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r5	@ <retval>, result
 	cmp	r5, r3	@ <retval>, result
-	bgt	.L2202		@,
-.L2185:
+	bgt	.L2201		@,
+.L2184:
 @ Patches/../C_code.c:3316: } 
 	add	sp, sp, #28	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L2195:
+.L2194:
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	movs	r6, #1	@ result,
 	rsbs	r6, r6, #0	@ result, result
-	b	.L2187		@
-.L2202:
+	b	.L2186		@
+.L2201:
 @ Patches/../C_code.c:3314: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r3	@ <retval>, result
-	b	.L2185		@
-.L2200:
+	b	.L2184		@
+.L2199:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	movs	r3, r6	@ result, result
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp201, result,
-	bne	.L2191		@,
-.L2201:
+	bne	.L2190		@,
+.L2200:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r3, r3, #31	@ result,
-	b	.L2191		@
-.L2204:
-	.align	2
+	b	.L2190		@
 .L2203:
+	.align	2
+.L2202:
 	.word	RandBitflags
 	.word	CharExceptions
 	.word	maxStat
@@ -15161,7 +15152,7 @@ GetUnitMaxRes:
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	movs	r1, #224	@ tmp148,
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
-	ldr	r3, .L2223	@ tmp144,
+	ldr	r3, .L2222	@ tmp144,
 @ Patches/../C_code.c:3319: 	int cap = ((unit)->pClassData->maxRes); //return cap;
 	ldr	r5, [r0, #4]	@ _1, unit_14(D)->pClassData
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
@@ -15178,17 +15169,17 @@ GetUnitMaxRes:
 	movs	r0, r4	@ <retval>, cap
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	tst	r3, r1	@ *RandBitflags.54_27, tmp148
-	beq	.L2205		@,
+	beq	.L2204		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r2]	@ MEM[(const struct CharacterData * *)unit_14(D)], MEM[(const struct CharacterData * *)unit_14(D)]
 	ldrb	r1, [r2, #4]	@ tmp154,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r6, .L2223+4	@ tmp152,
+	ldr	r6, .L2222+4	@ tmp152,
 	lsls	r1, r1, #1	@ tmp155, tmp154,
 @ Patches/../C_code.c:3320: 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	ldrb	r2, [r1, r6]	@ tmp156, CharExceptions
 	cmp	r2, #0	@ tmp156,
-	bne	.L2205		@,
+	bne	.L2204		@,
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	lsls	r3, r3, #23	@ tmp161, *RandBitflags.54_27,
 	lsrs	r3, r3, #29	@ _41, tmp161,
@@ -15196,26 +15187,26 @@ GetUnitMaxRes:
 	lsls	r2, r2, #24	@ tmp167, tmp163,
 	lsrs	r2, r2, #24	@ tmp166, tmp167,
 	cmp	r2, #4	@ tmp166,
-	bhi	.L2215		@,
+	bhi	.L2214		@,
 	lsls	r6, r3, #4	@ tmp169, _41,
 	subs	r6, r6, r3	@ tmp170, tmp169, _41
 	subs	r6, r6, #30	@ result,
-.L2207:
+.L2206:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
-	ldr	r7, .L2223+8	@ tmp194,
+	ldr	r7, .L2222+8	@ tmp194,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r0, [r7]	@ <retval>, maxStat
 	cmp	r0, r6	@ <retval>, result
-	ble	.L2208		@,
+	ble	.L2207		@,
 	movs	r0, r6	@ <retval>, result
-.L2208:
+.L2207:
 @ Patches/../C_code.c:3322: 	if (max != (-1)) { return max; } 
 	adds	r3, r0, #1	@ tmp200, <retval>,
-	bne	.L2205		@,
+	bne	.L2204		@,
 @ Patches/../C_code.c:3323: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L2223+12	@ tmp175,
+	ldr	r3, .L2222+12	@ tmp175,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:3324: 	noise[0] = unit->pClassData->number; 
@@ -15235,7 +15226,7 @@ GetUnitMaxRes:
 	movs	r5, r0	@ result, tmp196
 @ Patches/../C_code.c:3326: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 53); } 
 	cmp	r3, r0	@ tmp184, result
-	ble	.L2209		@,
+	ble	.L2208		@,
 @ Patches/../C_code.c:3326: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 53); } 
 	lsrs	r1, r4, #31	@ tmp187, cap,
 	adds	r1, r1, r4	@ tmp188, tmp187, cap
@@ -15246,48 +15237,48 @@ GetUnitMaxRes:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:3326: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 53); } 
 	adds	r5, r5, r0	@ result, result, tmp197
-.L2209:
+.L2208:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r3, [r7]	@ result, maxStat
 	cmp	r3, r6	@ result, result
-	bgt	.L2220		@,
+	bgt	.L2219		@,
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp201, result,
-	beq	.L2221		@,
-.L2211:
+	beq	.L2220		@,
+.L2210:
 @ Patches/../C_code.c:3327: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r5	@ <retval>, result
 	cmp	r5, r3	@ <retval>, result
-	bgt	.L2222		@,
-.L2205:
+	bgt	.L2221		@,
+.L2204:
 @ Patches/../C_code.c:3329: } 
 	add	sp, sp, #28	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L2215:
+.L2214:
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	movs	r6, #1	@ result,
 	rsbs	r6, r6, #0	@ result, result
-	b	.L2207		@
-.L2222:
+	b	.L2206		@
+.L2221:
 @ Patches/../C_code.c:3327: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r3	@ <retval>, result
-	b	.L2205		@
-.L2220:
+	b	.L2204		@
+.L2219:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	movs	r3, r6	@ result, result
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp201, result,
-	bne	.L2211		@,
-.L2221:
+	bne	.L2210		@,
+.L2220:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r3, r3, #31	@ result,
-	b	.L2211		@
-.L2224:
-	.align	2
+	b	.L2210		@
 .L2223:
+	.align	2
+.L2222:
 	.word	RandBitflags
 	.word	CharExceptions
 	.word	maxStat
@@ -15307,7 +15298,7 @@ GetUnitMaxLck:
 	push	{r4, r5, r6, r7, lr}	@
 	mov	lr, r8	@,
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
-	ldr	r3, .L2244	@ tmp143,
+	ldr	r3, .L2243	@ tmp143,
 	ldr	r3, [r3]	@ RandBitflags.134_26, RandBitflags
 	ldrh	r1, [r3]	@ *RandBitflags.134_26, *RandBitflags.134_26
 @ Patches/../C_code.c:3331: int GetUnitMaxLck(struct Unit* unit) { 
@@ -15322,46 +15313,46 @@ GetUnitMaxLck:
 	sub	sp, sp, #24	@,,
 	lsrs	r3, r3, #24	@ tmp153, tmp154,
 	cmp	r3, #4	@ tmp153,
-	bhi	.L2234		@,
+	bhi	.L2233		@,
 	lsls	r4, r2, #4	@ tmp156, _27,
 	subs	r4, r4, r2	@ tmp157, tmp156, _27
 	subs	r4, r4, #30	@ result,
-.L2226:
+.L2225:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
-	ldr	r6, .L2244+4	@ tmp194,
+	ldr	r6, .L2243+4	@ tmp194,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r0, [r6]	@ <retval>, maxStat
 	cmp	r0, r4	@ <retval>, result
-	ble	.L2227		@,
+	ble	.L2226		@,
 	movs	r0, r4	@ <retval>, result
-.L2227:
+.L2226:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r3, r0, #1	@ tmp201, <retval>,
-	beq	.L2235		@,
+	beq	.L2234		@,
 @ Patches/../C_code.c:2150: 	int result = GetGeneralStatCap(); 
 	movs	r7, r0	@ result, <retval>
-.L2228:
+.L2227:
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	movs	r3, #224	@ tmp162,
 	lsls	r3, r3, #1	@ tmp162, tmp162,
 @ Patches/../C_code.c:1169: 	if (!RandBitflags->caps) { return false; } 
 	tst	r1, r3	@ *RandBitflags.134_26, tmp162
-	beq	.L2237		@,
+	beq	.L2236		@,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r5]	@ MEM[(const struct CharacterData * *)unit_13(D)], MEM[(const struct CharacterData * *)unit_13(D)]
 	ldrb	r2, [r2, #4]	@ tmp168,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L2244+8	@ tmp166,
+	ldr	r3, .L2243+8	@ tmp166,
 	lsls	r2, r2, #1	@ tmp169, tmp168,
 @ Patches/../C_code.c:3333: 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	ldrb	r3, [r2, r3]	@ tmp170, CharExceptions
 	mov	r8, r3	@ tmp170, tmp170
 	cmp	r3, #0	@ tmp170,
-	bne	.L2237		@,
+	bne	.L2236		@,
 @ Patches/../C_code.c:3335: 	if (max != (-1)) { return max; } 
 	adds	r3, r0, #1	@ tmp202, <retval>,
-	beq	.L2241		@,
-.L2225:
+	beq	.L2240		@,
+.L2224:
 @ Patches/../C_code.c:3342: } 
 	add	sp, sp, #24	@,,
 	@ sp needed	@
@@ -15370,16 +15361,16 @@ GetUnitMaxLck:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L2234:
+.L2233:
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	movs	r4, #1	@ result,
 	rsbs	r4, r4, #0	@ result, result
-	b	.L2226		@
-.L2241:
+	b	.L2225		@
+.L2240:
 @ Patches/../C_code.c:3336: 	int noise[4] = {0, 0, 0, 0}; 
 	movs	r2, #12	@,
 	movs	r1, #0	@,
-	ldr	r3, .L2244+12	@ tmp174,
+	ldr	r3, .L2243+12	@ tmp174,
 	add	r0, sp, #12	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:3337: 	noise[0] = unit->pClassData->number; 
@@ -15400,7 +15391,7 @@ GetUnitMaxLck:
 	movs	r5, r0	@ result, tmp197
 @ Patches/../C_code.c:3339: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 63); } 
 	cmp	r3, r0	@ tmp184, result
-	ble	.L2230		@,
+	ble	.L2229		@,
 @ Patches/../C_code.c:3339: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 63); } 
 	lsrs	r1, r7, #31	@ tmp187, result,
 	adds	r1, r1, r7	@ tmp188, tmp187, result
@@ -15411,42 +15402,42 @@ GetUnitMaxLck:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:3339: 	if (result < (cap >> 1)) { result += HashByte_Global(cap, (cap/2), noise, 63); } 
 	adds	r5, r5, r0	@ result, result, tmp198
-.L2230:
+.L2229:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r3, [r6]	@ result, maxStat
 	cmp	r3, r4	@ result, result
-	bgt	.L2242		@,
+	bgt	.L2241		@,
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp203, result,
-	beq	.L2243		@,
-.L2232:
+	beq	.L2242		@,
+.L2231:
 @ Patches/../C_code.c:3340: 	if (result > GetGlobalStatCap()) { result = GetGlobalStatCap(); } 
 	movs	r0, r5	@ <retval>, result
 	cmp	r5, r3	@ <retval>, result
-	ble	.L2225		@,
+	ble	.L2224		@,
 	movs	r0, r3	@ <retval>, result
-	b	.L2225		@
-.L2237:
+	b	.L2224		@
+.L2236:
 @ Patches/../C_code.c:3333: 	if (!ShouldRandomizeStatCaps(unit)) { return cap; } 
 	movs	r0, r7	@ <retval>, result
-	b	.L2225		@
-.L2235:
+	b	.L2224		@
+.L2234:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	movs	r7, #30	@ result,
-	b	.L2228		@
-.L2242:
+	b	.L2227		@
+.L2241:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	movs	r3, r4	@ result, result
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r2, r3, #1	@ tmp203, result,
-	bne	.L2232		@,
-.L2243:
+	bne	.L2231		@,
+.L2242:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r3, r3, #31	@ result,
-	b	.L2232		@
-.L2245:
-	.align	2
+	b	.L2231		@
 .L2244:
+	.align	2
+.L2243:
 	.word	RandBitflags
 	.word	maxStat
 	.word	CharExceptions
@@ -15472,28 +15463,28 @@ NewGetStatIncrease:
 	push	{lr}	@
 @ Patches/../C_code.c:3358:     while (growth > 100) {
 	cmp	r0, #100	@ growth,
-	ble	.L2247		@,
-.L2248:
+	ble	.L2246		@,
+.L2247:
 @ Patches/../C_code.c:3360:         growth -= 100;
 	subs	r4, r4, #100	@ growth,
 @ Patches/../C_code.c:3359:         result++;
 	adds	r5, r5, #1	@ <retval>,
 @ Patches/../C_code.c:3358:     while (growth > 100) {
 	cmp	r4, #100	@ growth,
-	bgt	.L2248		@,
-.L2247:
+	bgt	.L2247		@,
+.L2246:
 @ Patches/../C_code.c:3364: 	if ((RandBitflags->levelups == 2)) { 
-	ldr	r0, .L2260	@ tmp136,
+	ldr	r0, .L2259	@ tmp136,
 	ldr	r0, [r0]	@ RandBitflags, RandBitflags
 	ldrb	r6, [r0]	@ *RandBitflags.207_1, *RandBitflags.207_1
 	movs	r0, #48	@ tmp142,
 	ands	r0, r6	@ _3, *RandBitflags.207_1
 @ Patches/../C_code.c:3364: 	if ((RandBitflags->levelups == 2)) { 
 	cmp	r0, #32	@ _3,
-	beq	.L2257		@,
+	beq	.L2256		@,
 @ Patches/../C_code.c:3375: 	if (!(RandBitflags->levelups)) { if (Roll1RN(growth)) { // 50 
 	cmp	r0, #0	@ _3,
-	beq	.L2258		@,
+	beq	.L2257		@,
 @ Patches/../C_code.c:3373: 	offset += (level*15) + level; 
 	lsls	r2, r2, #4	@ tmp152, level,
 @ Patches/../C_code.c:3373: 	offset += (level*15) + level; 
@@ -15512,7 +15503,7 @@ NewGetStatIncrease:
 	cmp	r0, r3	@ tmp154, tmp157
 	adcs	r2, r2, r1	@ tmp165, tmp166, tmp167
 	adds	r5, r5, r2	@ <retval>, <retval>, tmp165
-.L2246:
+.L2245:
 @ Patches/../C_code.c:3383: }
 	movs	r0, r5	@, <retval>
 	@ sp needed	@
@@ -15521,25 +15512,25 @@ NewGetStatIncrease:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L2258:
+.L2257:
 @ Patches/../C_code.c:3375: 	if (!(RandBitflags->levelups)) { if (Roll1RN(growth)) { // 50 
-	ldr	r3, .L2260+4	@ tmp149,
+	ldr	r3, .L2259+4	@ tmp149,
 	movs	r0, r4	@, growth
 	bl	.L14		@
 @ Patches/../C_code.c:3376: 	result++; } }
 	subs	r3, r0, #1	@ tmp163, tmp176
 	sbcs	r0, r0, r3	@ tmp162, tmp176, tmp163
 	adds	r5, r5, r0	@ <retval>, <retval>, tmp162
-	b	.L2246		@
-.L2257:
+	b	.L2245		@
+.L2256:
 @ Patches/../C_code.c:3365: 		if (level < 1) { level = 1; } 
 	cmp	r2, #0	@ level,
-	ble	.L2259		@,
-.L2250:
+	ble	.L2258		@,
+.L2249:
 @ Patches/../C_code.c:3367: 		if (Div1((growth * (level)), 100) < Div1(((growth * level+1) + growth), 100)) { 
 	movs	r6, r4	@ _4, growth
 	muls	r6, r2	@ _4, level
-	ldr	r3, .L2260+8	@ tmp145,
+	ldr	r3, .L2259+8	@ tmp145,
 	movs	r1, #100	@,
 	movs	r0, r6	@, _4
 	mov	r8, r3	@ tmp145, tmp145
@@ -15554,17 +15545,17 @@ NewGetStatIncrease:
 	bl	.L179		@
 @ Patches/../C_code.c:3367: 		if (Div1((growth * (level)), 100) < Div1(((growth * level+1) + growth), 100)) { 
 	cmp	r7, r0	@ _5, tmp175
-	bge	.L2246		@,
+	bge	.L2245		@,
 @ Patches/../C_code.c:3368: 			result++; 
 	adds	r5, r5, #1	@ <retval>,
-	b	.L2246		@
-.L2259:
+	b	.L2245		@
+.L2258:
 @ Patches/../C_code.c:3365: 		if (level < 1) { level = 1; } 
 	movs	r2, #1	@ level,
-	b	.L2250		@
-.L2261:
-	.align	2
+	b	.L2249		@
 .L2260:
+	.align	2
+.L2259:
 	.word	RandBitflags
 	.word	Roll1RN
 	.word	Div1
@@ -15594,16 +15585,16 @@ UnitLevelUp:
 	sub	sp, sp, #108	@,,
 @ Patches/../C_code.c:3388:     if (unit->level != 20) {
 	cmp	r7, #20	@ _1,
-	bne	.LCB13195	@
-	b	.L2262	@long jump	@
-.LCB13195:
+	bne	.LCB13187	@
+	b	.L2261	@long jump	@
+.LCB13187:
 @ Patches/../C_code.c:3393:         unit->level++;
 	adds	r7, r7, #1	@ tmp247,
 	lsls	r7, r7, #24	@ tmp248, tmp247,
 	asrs	r7, r7, #24	@ _4, tmp248,
 	strb	r7, [r0, #8]	@ _4, unit_168(D)->level
 @ Patches/../C_code.c:3395: 		int noise[4] = {0, 0, 0, 0}; 
-	ldr	r3, .L2365	@ tmp253,
+	ldr	r3, .L2364	@ tmp253,
 	movs	r2, #12	@,
 	movs	r1, #0	@,
 	add	r0, sp, #92	@,,
@@ -15620,10 +15611,10 @@ UnitLevelUp:
 	movs	r6, r7	@ _8, _4
 @ Patches/../C_code.c:3397: 		int level = unit->level + (((unit->pClassData->attributes & CA_PROMOTED) != 0)*20); 
 	lsls	r3, r3, #23	@ tmp397, _9->attributes,
-	bpl	.L2264		@,
+	bpl	.L2263		@,
 @ Patches/../C_code.c:3397: 		int level = unit->level + (((unit->pClassData->attributes & CA_PROMOTED) != 0)*20); 
 	adds	r6, r6, #20	@ _8,
-.L2264:
+.L2263:
 @ Patches/../C_code.c:3400:         if (unit->level == 20) { 
 	subs	r7, r7, #20	@ tmp268,
 	rsbs	r3, r7, #0	@ tmp269, tmp268
@@ -15684,7 +15675,7 @@ UnitLevelUp:
 	movs	r0, r4	@, unit
 	bl	GetUnitLckGrowth		@
 @ Patches/../C_code.c:3413: 		int maxHP = CallGetMaxHP(unit); 
-	ldr	r3, .L2365+4	@ tmp272,
+	ldr	r3, .L2364+4	@ tmp272,
 @ Patches/../C_code.c:3411: 		int lckGrowth = GetUnitLckGrowth(unit, true);
 	str	r0, [sp, #60]	@ tmp375, %sfp
 @ Patches/../C_code.c:3413: 		int maxHP = CallGetMaxHP(unit); 
@@ -15728,7 +15719,7 @@ UnitLevelUp:
 	mov	r8, r0	@ hpGain, tmp383
 @ Patches/../C_code.c:3422: 		if (hpGain && (unit->maxHP + hpGain) <= maxHP)
 	cmp	r0, #0	@ hpGain,
-	beq	.L2265		@,
+	beq	.L2264		@,
 @ Patches/../C_code.c:3422: 		if (hpGain && (unit->maxHP + hpGain) <= maxHP)
 	movs	r2, #18	@ tmp274,
 @ Patches/../C_code.c:3423:         totalGain += hpGain; else hpGain = 0; 
@@ -15746,7 +15737,7 @@ UnitLevelUp:
 	rsbs	r3, r3, #0	@ tmp363, tmp360
 	ands	r2, r3	@ hpGain, tmp363
 	mov	r8, r2	@ hpGain, hpGain
-.L2265:
+.L2264:
 @ Patches/../C_code.c:3425:         powGain = NewGetStatIncrease(powGrowth, noise, level, 2, useRN); 
 	movs	r2, r6	@, _8
 	movs	r3, #2	@,
@@ -15758,7 +15749,7 @@ UnitLevelUp:
 	subs	r2, r0, #0	@ powGain, tmp384,
 	str	r0, [sp, #16]	@ powGain, %sfp
 @ Patches/../C_code.c:3426: 		if (powGain && ((unit->pow + powGain) <= maxPow))
-	beq	.L2266		@,
+	beq	.L2265		@,
 @ Patches/../C_code.c:3426: 		if (powGain && ((unit->pow + powGain) <= maxPow))
 	movs	r3, #20	@ tmp277,
 @ Patches/../C_code.c:3426: 		if (powGain && ((unit->pow + powGain) <= maxPow))
@@ -15771,13 +15762,13 @@ UnitLevelUp:
 	add	r3, r3, ip	@ tmp278, powGain
 @ Patches/../C_code.c:3426: 		if (powGain && ((unit->pow + powGain) <= maxPow))
 	cmp	r3, r1	@ tmp278, maxPow
-	ble	.LCB13317	@
-	b	.L2291	@long jump	@
-.LCB13317:
+	ble	.LCB13309	@
+	b	.L2290	@long jump	@
+.LCB13309:
 @ Patches/../C_code.c:3427:         totalGain += powGain; else powGain = 0; 
 	add	r2, r2, r8	@ totalGain, hpGain
 	movs	r7, r2	@ totalGain, totalGain
-.L2266:
+.L2265:
 @ Patches/../C_code.c:3429:         sklGain = NewGetStatIncrease(sklGrowth, noise, level, 3, useRN); 
 	movs	r3, #3	@,
 	movs	r2, r6	@, _8
@@ -15788,7 +15779,7 @@ UnitLevelUp:
 	mov	r9, r0	@ sklGain, tmp385
 @ Patches/../C_code.c:3430: 		if (sklGain && ((unit->skl + sklGain) <= maxSkl))
 	cmp	r0, #0	@ sklGain,
-	beq	.L2267		@,
+	beq	.L2266		@,
 @ Patches/../C_code.c:3430: 		if (sklGain && ((unit->skl + sklGain) <= maxSkl))
 	movs	r3, #21	@ tmp280,
 	ldrsb	r3, [r4, r3]	@ tmp280,
@@ -15798,12 +15789,12 @@ UnitLevelUp:
 	add	r3, r3, r9	@ tmp281, sklGain
 @ Patches/../C_code.c:3430: 		if (sklGain && ((unit->skl + sklGain) <= maxSkl))
 	cmp	r3, r2	@ tmp281, maxSkl
-	ble	.LCB13336	@
-	b	.L2292	@long jump	@
-.LCB13336:
+	ble	.LCB13328	@
+	b	.L2291	@long jump	@
+.LCB13328:
 @ Patches/../C_code.c:3431:         totalGain += sklGain; else sklGain = 0; 
 	add	r7, r7, r9	@ totalGain, sklGain
-.L2267:
+.L2266:
 @ Patches/../C_code.c:3433:         spdGain = NewGetStatIncrease(spdGrowth, noise, level, 4, useRN); 
 	movs	r3, #4	@,
 	movs	r2, r6	@, _8
@@ -15814,7 +15805,7 @@ UnitLevelUp:
 	mov	r10, r0	@ spdGain, tmp386
 @ Patches/../C_code.c:3434: 		if (spdGain && ((unit->spd + spdGain) <= maxSpd))
 	cmp	r0, #0	@ spdGain,
-	beq	.L2268		@,
+	beq	.L2267		@,
 @ Patches/../C_code.c:3434: 		if (spdGain && ((unit->spd + spdGain) <= maxSpd))
 	movs	r3, #22	@ tmp283,
 	ldrsb	r3, [r4, r3]	@ tmp283,
@@ -15824,12 +15815,12 @@ UnitLevelUp:
 	add	r3, r3, r10	@ tmp284, spdGain
 @ Patches/../C_code.c:3434: 		if (spdGain && ((unit->spd + spdGain) <= maxSpd))
 	cmp	r3, r2	@ tmp284, maxSpd
-	ble	.LCB13354	@
-	b	.L2293	@long jump	@
-.LCB13354:
+	ble	.LCB13346	@
+	b	.L2292	@long jump	@
+.LCB13346:
 @ Patches/../C_code.c:3435:         totalGain += spdGain; else spdGain = 0; 
 	add	r7, r7, r10	@ totalGain, spdGain
-.L2268:
+.L2267:
 @ Patches/../C_code.c:3437:         defGain = NewGetStatIncrease(defGrowth, noise, level, 5, useRN); 
 	movs	r3, #5	@,
 	movs	r2, r6	@, _8
@@ -15840,7 +15831,7 @@ UnitLevelUp:
 	mov	fp, r0	@ defGain, tmp387
 @ Patches/../C_code.c:3438: 		if (defGain && ((unit->def + defGain) <= maxDef))
 	cmp	r0, #0	@ defGain,
-	beq	.L2269		@,
+	beq	.L2268		@,
 @ Patches/../C_code.c:3438: 		if (defGain && ((unit->def + defGain) <= maxDef))
 	movs	r3, #23	@ tmp286,
 	ldrsb	r3, [r4, r3]	@ tmp286,
@@ -15850,12 +15841,12 @@ UnitLevelUp:
 	add	r3, r3, fp	@ tmp287, defGain
 @ Patches/../C_code.c:3438: 		if (defGain && ((unit->def + defGain) <= maxDef))
 	cmp	r3, r2	@ tmp287, maxDef
-	ble	.LCB13372	@
-	b	.L2294	@long jump	@
-.LCB13372:
+	ble	.LCB13364	@
+	b	.L2293	@long jump	@
+.LCB13364:
 @ Patches/../C_code.c:3439:         totalGain += defGain; else defGain = 0; 
 	add	r7, r7, fp	@ totalGain, defGain
-.L2269:
+.L2268:
 @ Patches/../C_code.c:3441:         resGain = NewGetStatIncrease(resGrowth, noise, level, 6, useRN); 
 	movs	r3, #6	@,
 	movs	r2, r6	@, _8
@@ -15866,7 +15857,7 @@ UnitLevelUp:
 	str	r0, [sp, #8]	@ resGain, %sfp
 @ Patches/../C_code.c:3442: 		if (resGain && ((unit->res + resGain) <= maxRes))
 	cmp	r0, #0	@ resGain,
-	beq	.L2270		@,
+	beq	.L2269		@,
 @ Patches/../C_code.c:3442: 		if (resGain && ((unit->res + resGain) <= maxRes))
 	movs	r3, #24	@ tmp289,
 @ Patches/../C_code.c:3442: 		if (resGain && ((unit->res + resGain) <= maxRes))
@@ -15879,12 +15870,12 @@ UnitLevelUp:
 	add	r3, r3, ip	@ tmp290, resGain
 @ Patches/../C_code.c:3442: 		if (resGain && ((unit->res + resGain) <= maxRes))
 	cmp	r3, r1	@ tmp290, maxRes
-	ble	.LCB13391	@
-	b	.L2295	@long jump	@
-.LCB13391:
+	ble	.LCB13383	@
+	b	.L2294	@long jump	@
+.LCB13383:
 @ Patches/../C_code.c:3443:         totalGain += resGain; else resGain = 0; 
 	add	r7, r7, ip	@ totalGain, resGain
-.L2270:
+.L2269:
 @ Patches/../C_code.c:3445:         lckGain = NewGetStatIncrease(lckGrowth, noise, level, 7, useRN); 
 	movs	r3, #7	@,
 	movs	r2, r6	@, _8
@@ -15894,7 +15885,7 @@ UnitLevelUp:
 	bl	NewGetStatIncrease		@
 @ Patches/../C_code.c:3446: 		if (lckGain && ((unit->lck + lckGain) <= maxLck))
 	cmp	r0, #0	@ lckGain,
-	beq	.L2271		@,
+	beq	.L2270		@,
 @ Patches/../C_code.c:3446: 		if (lckGain && ((unit->lck + lckGain) <= maxLck))
 	movs	r3, #25	@ tmp292,
 	ldrsb	r3, [r4, r3]	@ tmp292,
@@ -15904,18 +15895,18 @@ UnitLevelUp:
 	adds	r3, r3, r0	@ tmp293, tmp292, lckGain
 @ Patches/../C_code.c:3446: 		if (lckGain && ((unit->lck + lckGain) <= maxLck))
 	cmp	r3, r2	@ tmp293, maxLck
-	ble	.LCB13408	@
-	b	.L2296	@long jump	@
-.LCB13408:
+	ble	.LCB13400	@
+	b	.L2295	@long jump	@
+.LCB13400:
 @ Patches/../C_code.c:3447:         totalGain += lckGain; else lckGain = 0; 
 	adds	r7, r7, r0	@ totalGain, totalGain, lckGain
-.L2271:
+.L2270:
 @ Patches/../C_code.c:3451:         if (totalGain < MinimumStatUps) {
 	cmp	r7, #1	@ totalGain,
-	bgt	.LCB13413	@
-	b	.L2356	@long jump	@
-.LCB13413:
-.L2272:
+	bgt	.LCB13405	@
+	b	.L2355	@long jump	@
+.LCB13405:
+.L2271:
 @ Patches/../C_code.c:3520:         if ((unit->skl + sklGain) > maxSkl)
 	movs	r1, #21	@ pretmp_389,
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
@@ -15976,7 +15967,7 @@ UnitLevelUp:
 @ Patches/../C_code.c:3532:         if ((unit->lck + lckGain) > maxLck)
 	mov	r5, ip	@ _491, _491
 	str	r5, [sp, #56]	@ _491, %sfp
-.L2275:
+.L2274:
 @ Patches/../C_code.c:3514:         if ((unit->maxHP + hpGain) > maxHP)
 	movs	r5, #18	@ _71,
 	ldrsb	r5, [r4, r5]	@ _71,* _71
@@ -15986,58 +15977,58 @@ UnitLevelUp:
 	add	r5, r5, r8	@ tmp357, hpGain
 @ Patches/../C_code.c:3514:         if ((unit->maxHP + hpGain) > maxHP)
 	cmp	r5, r6	@ tmp357, maxHP
-	ble	.L2282		@,
+	ble	.L2281		@,
 	movs	r5, r6	@ tmp357, maxHP
-.L2282:
+.L2281:
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
 	ldr	r6, [sp, #20]	@ maxPow, %sfp
 	cmp	r6, r3	@ maxPow, tmp358
-	bge	.L2283		@,
+	bge	.L2282		@,
 	movs	r3, r6	@ tmp358, maxPow
-.L2283:
+.L2282:
 @ Patches/../C_code.c:3520:         if ((unit->skl + sklGain) > maxSkl)
 	ldr	r6, [sp, #24]	@ maxSkl, %sfp
 	cmp	r6, r7	@ maxSkl, _405
-	bge	.L2284		@,
+	bge	.L2283		@,
 @ Patches/../C_code.c:3521:             sklGain = maxSkl - unit->skl;
 	subs	r6, r6, r1	@ sklGain, maxSkl, pretmp_389
 	mov	r9, r6	@ sklGain, sklGain
-.L2284:
+.L2283:
 @ Patches/../C_code.c:3523:         if ((unit->spd + spdGain) > maxSpd)
 	ldr	r6, [sp, #28]	@ maxSpd, %sfp
 	ldr	r7, [sp, #44]	@ _428, %sfp
 	cmp	r6, r7	@ maxSpd, _428
-	bge	.L2285		@,
+	bge	.L2284		@,
 @ Patches/../C_code.c:3524:             spdGain = maxSpd - unit->spd;
 	ldr	r7, [sp, #12]	@ pretmp_412, %sfp
 	subs	r6, r6, r7	@ spdGain, maxSpd, pretmp_412
 	mov	r10, r6	@ spdGain, spdGain
-.L2285:
+.L2284:
 @ Patches/../C_code.c:3526:         if ((unit->def + defGain) > maxDef)
 	ldr	r6, [sp, #32]	@ maxDef, %sfp
 	ldr	r7, [sp, #48]	@ _450, %sfp
 	cmp	r6, r7	@ maxDef, _450
-	bge	.L2286		@,
+	bge	.L2285		@,
 @ Patches/../C_code.c:3527:             defGain = maxDef - unit->def;
 	ldr	r7, [sp, #36]	@ pretmp_434, %sfp
 	subs	r6, r6, r7	@ defGain, maxDef, pretmp_434
 	mov	fp, r6	@ defGain, defGain
-.L2286:
+.L2285:
 @ Patches/../C_code.c:3529:         if ((unit->res + resGain) > maxRes)
 	ldr	r6, [sp, #40]	@ maxRes, %sfp
 	ldr	r7, [sp, #52]	@ _471, %sfp
 	cmp	r6, r7	@ maxRes, _471
-	bge	.L2287		@,
+	bge	.L2286		@,
 @ Patches/../C_code.c:3530:             resGain = maxRes - unit->res;
 	subs	r6, r6, r2	@ resGain, maxRes, pretmp_455
 	str	r6, [sp, #8]	@ resGain, %sfp
-.L2287:
+.L2286:
 @ Patches/../C_code.c:3532:         if ((unit->lck + lckGain) > maxLck)
 	ldr	r6, [sp, #64]	@ maxLck, %sfp
 	ldr	r7, [sp, #56]	@ _491, %sfp
 	cmp	r6, r7	@ maxLck, _491
-	blt	.L2357		@,
-.L2288:
+	blt	.L2356		@,
+.L2287:
 @ Patches/../C_code.c:3536:         unit->pow += powGain;
 	strb	r3, [r4, #20]	@ tmp358, unit_168(D)->pow
 @ Patches/../C_code.c:3539:         unit->def += defGain;
@@ -16068,7 +16059,7 @@ UnitLevelUp:
 	strb	r2, [r4, #24]	@ tmp350, unit_168(D)->res
 @ Patches/../C_code.c:3541:         unit->lck += lckGain;
 	strb	r1, [r4, #25]	@ tmp354, unit_168(D)->lck
-.L2262:
+.L2261:
 @ Patches/../C_code.c:3543: }
 	add	sp, sp, #108	@,,
 	@ sp needed	@
@@ -16080,24 +16071,24 @@ UnitLevelUp:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L2357:
+.L2356:
 @ Patches/../C_code.c:3533:             lckGain = maxLck - unit->lck;
 	ldr	r0, [sp, #72]	@ pretmp_475, %sfp
 	subs	r0, r6, r0	@ lckGain, maxLck, pretmp_475
-	b	.L2288		@
-.L2366:
-	.align	2
+	b	.L2287		@
 .L2365:
+	.align	2
+.L2364:
 	.word	memset
 	.word	CallGetMaxHP
-.L2356:
+.L2355:
 	movs	r7, #8	@ ivtmp.1529,
 @ Patches/../C_code.c:3464:                 if (hpGain && ((unit->maxHP + hpGain) <= maxHP))
 	mov	r9, r4	@ unit, unit
 	ldr	r3, [sp, #68]	@ maxHP, %sfp
 	asrs	r3, r3, #31	@ tmp365, maxHP,
 	str	r3, [sp, #84]	@ tmp365, %sfp
-.L2281:
+.L2280:
 @ Patches/../C_code.c:3462:                 hpGain = NewGetStatIncrease(hpGrowth, noise, level, 8 + (i * 13), useRN); 
 	movs	r3, r7	@, ivtmp.1529
 	movs	r2, r6	@, _8
@@ -16111,7 +16102,7 @@ UnitLevelUp:
 	str	r0, [sp, #80]	@ hpGain, %sfp
 @ Patches/../C_code.c:3464:                 if (hpGain && ((unit->maxHP + hpGain) <= maxHP))
 	cmp	r0, #0	@ hpGain,
-	beq	.L2273		@,
+	beq	.L2272		@,
 @ Patches/../C_code.c:3464:                 if (hpGain && ((unit->maxHP + hpGain) <= maxHP))
 	mov	r3, r9	@ unit, unit
 @ Patches/../C_code.c:3464:                 if (hpGain && ((unit->maxHP + hpGain) <= maxHP))
@@ -16128,7 +16119,7 @@ UnitLevelUp:
 	lsrs	r4, r3, #31	@ tmp299, tmp296,
 	cmp	r1, r3	@ maxHP, tmp296
 	adcs	r4, r4, r2	@ totalGain, tmp299, tmp365
-.L2273:
+.L2272:
 @ Patches/../C_code.c:3469:                 powGain = NewGetStatIncrease(powGrowth, noise, level, 9 + (i * 13), useRN); 
 	movs	r2, r6	@, _8
 	str	r5, [sp]	@ tmp264,
@@ -16139,7 +16130,7 @@ UnitLevelUp:
 	str	r0, [sp, #16]	@ powGain, %sfp
 @ Patches/../C_code.c:3471:                 if (powGain && ((unit->pow + powGain) <= maxPow))
 	cmp	r0, #0	@ powGain,
-	beq	.L2274		@,
+	beq	.L2273		@,
 @ Patches/../C_code.c:3471:                 if (powGain && ((unit->pow + powGain) <= maxPow))
 	mov	r3, r9	@ unit, unit
 @ Patches/../C_code.c:3471:                 if (powGain && ((unit->pow + powGain) <= maxPow))
@@ -16154,15 +16145,15 @@ UnitLevelUp:
 	add	r3, r3, ip	@ tmp358, powGain
 @ Patches/../C_code.c:3471:                 if (powGain && ((unit->pow + powGain) <= maxPow))
 	cmp	r3, r2	@ tmp358, maxPow
-	bgt	.L2274		@,
+	bgt	.L2273		@,
 @ Patches/../C_code.c:3473: 					if (totalGain >= MinimumStatUps) { 
 	cmp	r4, #1	@ totalGain,
-	bne	.LCB13605	@
-	b	.L2358	@long jump	@
-.LCB13605:
+	bne	.LCB13597	@
+	b	.L2357	@long jump	@
+.LCB13597:
 @ Patches/../C_code.c:3472: 				{	totalGain++; 
 	movs	r4, #1	@ totalGain,
-.L2274:
+.L2273:
 @ Patches/../C_code.c:3476:                 sklGain = NewGetStatIncrease(sklGrowth, noise, level, 10 + (i * 13), useRN); 
 	movs	r2, r6	@, _8
 	str	r5, [sp]	@ tmp264,
@@ -16173,7 +16164,7 @@ UnitLevelUp:
 	mov	r8, r0	@ sklGain, tmp392
 @ Patches/../C_code.c:3478:                 if (sklGain && ((unit->skl + sklGain) <= maxSkl))
 	cmp	r0, #0	@ sklGain,
-	beq	.L2276		@,
+	beq	.L2275		@,
 @ Patches/../C_code.c:3478:                 if (sklGain && ((unit->skl + sklGain) <= maxSkl))
 	mov	r3, r9	@ unit, unit
 	movs	r1, #21	@ pretmp_389,
@@ -16184,15 +16175,15 @@ UnitLevelUp:
 	adds	r3, r1, r0	@ _405, pretmp_389, sklGain
 @ Patches/../C_code.c:3478:                 if (sklGain && ((unit->skl + sklGain) <= maxSkl))
 	cmp	r3, r2	@ _405, maxSkl
-	bgt	.L2276		@,
+	bgt	.L2275		@,
 @ Patches/../C_code.c:3480: 					if (totalGain >= MinimumStatUps) { 
 	cmp	r4, #1	@ totalGain,
-	bne	.LCB13626	@
-	b	.L2359	@long jump	@
-.LCB13626:
+	bne	.LCB13618	@
+	b	.L2358	@long jump	@
+.LCB13618:
 @ Patches/../C_code.c:3479: 				{	totalGain++; 
 	movs	r4, #1	@ totalGain,
-.L2276:
+.L2275:
 @ Patches/../C_code.c:3483:                 spdGain = NewGetStatIncrease(spdGrowth, noise, level, 11 + (i * 13), useRN); 
 	movs	r2, r6	@, _8
 	str	r5, [sp]	@ tmp264,
@@ -16203,7 +16194,7 @@ UnitLevelUp:
 	mov	r10, r0	@ spdGain, tmp393
 @ Patches/../C_code.c:3485:                 if (spdGain && ((unit->spd + spdGain) <= maxSpd))
 	cmp	r0, #0	@ spdGain,
-	beq	.L2277		@,
+	beq	.L2276		@,
 @ Patches/../C_code.c:3485:                 if (spdGain && ((unit->spd + spdGain) <= maxSpd))
 	mov	r3, r9	@ unit, unit
 	ldrb	r3, [r3, #22]	@ pretmp_412,
@@ -16215,15 +16206,15 @@ UnitLevelUp:
 	adds	r2, r3, r0	@ _428, pretmp_412, spdGain
 @ Patches/../C_code.c:3485:                 if (spdGain && ((unit->spd + spdGain) <= maxSpd))
 	cmp	r2, r1	@ _428, maxSpd
-	bgt	.L2277		@,
+	bgt	.L2276		@,
 @ Patches/../C_code.c:3487: 					if (totalGain >= MinimumStatUps) { 
 	cmp	r4, #1	@ totalGain,
-	bne	.LCB13648	@
-	b	.L2360	@long jump	@
-.LCB13648:
+	bne	.LCB13640	@
+	b	.L2359	@long jump	@
+.LCB13640:
 @ Patches/../C_code.c:3486: 				{	totalGain++; 
 	movs	r4, #1	@ totalGain,
-.L2277:
+.L2276:
 @ Patches/../C_code.c:3490:                 defGain = NewGetStatIncrease(defGrowth, noise, level, 12 + (i * 13), useRN); 
 	movs	r2, r6	@, _8
 	str	r5, [sp]	@ tmp264,
@@ -16234,7 +16225,7 @@ UnitLevelUp:
 	mov	fp, r0	@ defGain, tmp394
 @ Patches/../C_code.c:3492:                 if (defGain && ((unit->def + defGain) <= maxDef))
 	cmp	r0, #0	@ defGain,
-	beq	.L2278		@,
+	beq	.L2277		@,
 @ Patches/../C_code.c:3492:                 if (defGain && ((unit->def + defGain) <= maxDef))
 	mov	r3, r9	@ unit, unit
 	ldrb	r3, [r3, #23]	@ pretmp_434,
@@ -16246,15 +16237,15 @@ UnitLevelUp:
 	adds	r2, r3, r0	@ _450, pretmp_434, defGain
 @ Patches/../C_code.c:3492:                 if (defGain && ((unit->def + defGain) <= maxDef))
 	cmp	r2, r1	@ _450, maxDef
-	bgt	.L2278		@,
+	bgt	.L2277		@,
 @ Patches/../C_code.c:3494: 					if (totalGain >= MinimumStatUps) { 
 	cmp	r4, #1	@ totalGain,
-	bne	.LCB13670	@
-	b	.L2361	@long jump	@
-.LCB13670:
+	bne	.LCB13662	@
+	b	.L2360	@long jump	@
+.LCB13662:
 @ Patches/../C_code.c:3493: 				{	totalGain++; 
 	movs	r4, #1	@ totalGain,
-.L2278:
+.L2277:
 @ Patches/../C_code.c:3497:                 resGain = NewGetStatIncrease(resGrowth, noise, level, 13 + (i * 13), useRN); 
 	movs	r2, r6	@, _8
 	str	r5, [sp]	@ tmp264,
@@ -16265,7 +16256,7 @@ UnitLevelUp:
 	str	r0, [sp, #8]	@ resGain, %sfp
 @ Patches/../C_code.c:3499:                 if (resGain && ((unit->res + resGain) <= maxRes))
 	cmp	r0, #0	@ resGain,
-	beq	.L2279		@,
+	beq	.L2278		@,
 @ Patches/../C_code.c:3499:                 if (resGain && ((unit->res + resGain) <= maxRes))
 	mov	r2, r9	@ unit, unit
 	ldrb	r2, [r2, #24]	@ pretmp_455,
@@ -16277,8 +16268,8 @@ UnitLevelUp:
 	adds	r3, r2, r0	@ _471, pretmp_455, resGain
 @ Patches/../C_code.c:3499:                 if (resGain && ((unit->res + resGain) <= maxRes))
 	cmp	r3, r1	@ _471, maxRes
-	ble	.L2362		@,
-.L2279:
+	ble	.L2361		@,
+.L2278:
 @ Patches/../C_code.c:3504:                 lckGain = NewGetStatIncrease(lckGrowth, noise, level, 14 + (i * 13), useRN); 
 	movs	r2, r6	@, _8
 	str	r5, [sp]	@ tmp264,
@@ -16289,7 +16280,7 @@ UnitLevelUp:
 	str	r0, [sp, #12]	@ tmp396, %sfp
 @ Patches/../C_code.c:3506:                 if (lckGain && ((unit->lck + lckGain) <= maxLck))
 	cmp	r0, #0	@ lckGain,
-	beq	.L2280		@,
+	beq	.L2279		@,
 @ Patches/../C_code.c:3506:                 if (lckGain && ((unit->lck + lckGain) <= maxLck))
 	mov	r3, r9	@ unit, unit
 	ldrb	r3, [r3, #25]	@ pretmp_475,
@@ -16310,67 +16301,67 @@ UnitLevelUp:
 	adcs	r0, r0, r1	@ tmp315, tmp315, tmp316
 @ Patches/../C_code.c:3508: 					if (totalGain >= MinimumStatUps) { 
 	lsls	r3, r0, #24	@ tmp318, tmp314,
-	beq	.L2280		@,
+	beq	.L2279		@,
 	lsls	r4, r4, #31	@ tmp398, totalGain,
-	bpl	.LCB13727	@
-	b	.L2363	@long jump	@
-.LCB13727:
-.L2280:
+	bpl	.LCB13719	@
+	b	.L2362	@long jump	@
+.LCB13719:
+.L2279:
 @ Patches/../C_code.c:3452: 			for (int i = 0; i < 4; i++) { 
 	adds	r7, r7, #13	@ ivtmp.1529,
 	cmp	r7, #60	@ ivtmp.1529,
-	beq	.LCB13731	@
-	b	.L2281	@long jump	@
-.LCB13731:
+	beq	.LCB13723	@
+	b	.L2280	@long jump	@
+.LCB13723:
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
 	ldr	r3, [sp, #80]	@ hpGain, %sfp
 	mov	r4, r9	@ unit, unit
 	ldr	r0, [sp, #12]	@ lckGain, %sfp
 	mov	r9, r8	@ sklGain, sklGain
 	mov	r8, r3	@ hpGain, hpGain
-	b	.L2272		@
-.L2362:
+	b	.L2271		@
+.L2361:
 @ Patches/../C_code.c:3501: 					if (totalGain >= MinimumStatUps) { 
 	cmp	r4, #1	@ totalGain,
-	beq	.L2364		@,
+	beq	.L2363		@,
 @ Patches/../C_code.c:3500: 				{	totalGain++; 
 	movs	r4, #1	@ totalGain,
-	b	.L2279		@
-.L2291:
+	b	.L2278		@
+.L2290:
 @ Patches/../C_code.c:3427:         totalGain += powGain; else powGain = 0; 
 	movs	r3, #0	@ powGain,
 	str	r3, [sp, #16]	@ powGain, %sfp
-	b	.L2266		@
-.L2292:
+	b	.L2265		@
+.L2291:
 @ Patches/../C_code.c:3431:         totalGain += sklGain; else sklGain = 0; 
 	movs	r3, #0	@ sklGain,
 	mov	r9, r3	@ sklGain, sklGain
-	b	.L2267		@
-.L2293:
+	b	.L2266		@
+.L2292:
 @ Patches/../C_code.c:3435:         totalGain += spdGain; else spdGain = 0; 
 	movs	r3, #0	@ spdGain,
 	mov	r10, r3	@ spdGain, spdGain
-	b	.L2268		@
-.L2294:
+	b	.L2267		@
+.L2293:
 @ Patches/../C_code.c:3439:         totalGain += defGain; else defGain = 0; 
 	movs	r3, #0	@ defGain,
 	mov	fp, r3	@ defGain, defGain
-	b	.L2269		@
-.L2295:
+	b	.L2268		@
+.L2294:
 @ Patches/../C_code.c:3443:         totalGain += resGain; else resGain = 0; 
 	movs	r3, #0	@ resGain,
 	str	r3, [sp, #8]	@ resGain, %sfp
-	b	.L2270		@
-.L2296:
+	b	.L2269		@
+.L2295:
 @ Patches/../C_code.c:3447:         totalGain += lckGain; else lckGain = 0; 
 	movs	r0, #0	@ lckGain,
 @ Patches/../C_code.c:3451:         if (totalGain < MinimumStatUps) {
 	cmp	r7, #1	@ totalGain,
-	ble	.LCB13780	@
-	b	.L2272	@long jump	@
-.LCB13780:
-	b	.L2356		@
-.L2364:
+	ble	.LCB13772	@
+	b	.L2271	@long jump	@
+.LCB13772:
+	b	.L2355		@
+.L2363:
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
 	ldr	r1, [sp, #16]	@ powGain, %sfp
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
@@ -16425,8 +16416,8 @@ UnitLevelUp:
 	str	r0, [sp, #56]	@ pretmp_475, %sfp
 @ Patches/../C_code.c:3460: 				lckGain = 0; 
 	movs	r0, #0	@ lckGain,
-	b	.L2275		@
-.L2358:
+	b	.L2274		@
+.L2357:
 @ Patches/../C_code.c:3520:         if ((unit->skl + sklGain) > maxSkl)
 	ldr	r2, [sp, #80]	@ hpGain, %sfp
 	mov	r4, r9	@ unit, unit
@@ -16476,8 +16467,8 @@ UnitLevelUp:
 	str	r6, [sp, #44]	@ pretmp_412, %sfp
 @ Patches/../C_code.c:3459: 				resGain = 0; 
 	str	r5, [sp, #8]	@ resGain, %sfp
-	b	.L2275		@
-.L2359:
+	b	.L2274		@
+.L2358:
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
 	ldr	r2, [sp, #16]	@ powGain, %sfp
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
@@ -16533,8 +16524,8 @@ UnitLevelUp:
 	str	r5, [sp, #8]	@ resGain, %sfp
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
 	add	r3, r3, ip	@ tmp358, powGain
-	b	.L2275		@
-.L2360:
+	b	.L2274		@
+.L2359:
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
 	mov	r4, r9	@ unit, unit
 @ Patches/../C_code.c:3520:         if ((unit->skl + sklGain) > maxSkl)
@@ -16593,8 +16584,8 @@ UnitLevelUp:
 	str	r5, [sp, #8]	@ resGain, %sfp
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
 	add	r3, r3, ip	@ tmp358, powGain
-	b	.L2275		@
-.L2361:
+	b	.L2274		@
+.L2360:
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
 	mov	r4, r9	@ unit, unit
 @ Patches/../C_code.c:3520:         if ((unit->skl + sklGain) > maxSkl)
@@ -16654,8 +16645,8 @@ UnitLevelUp:
 	movs	r0, #0	@ lckGain,
 @ Patches/../C_code.c:3459: 				resGain = 0; 
 	str	r5, [sp, #8]	@ resGain, %sfp
-	b	.L2275		@
-.L2363:
+	b	.L2274		@
+.L2362:
 @ Patches/../C_code.c:3517:         if ((unit->pow + powGain) > maxPow)
 	mov	r4, r9	@ unit, unit
 @ Patches/../C_code.c:3520:         if ((unit->skl + sklGain) > maxSkl)
@@ -16716,7 +16707,7 @@ UnitLevelUp:
 	add	ip, ip, r2	@ _471, pretmp_455
 	mov	r5, ip	@ _471, _471
 	str	r5, [sp, #52]	@ _471, %sfp
-	b	.L2275		@
+	b	.L2274		@
 	.size	UnitLevelUp, .-UnitLevelUp
 	.align	1
 	.p2align 2,,3
@@ -16731,7 +16722,7 @@ UnitCheckStatCaps:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
 @ Patches/../C_code.c:3699: 	int max = CallGetMaxHP(unit); 
-	ldr	r3, .L2381	@ tmp174,
+	ldr	r3, .L2380	@ tmp174,
 @ Patches/../C_code.c:3698: void UnitCheckStatCaps(struct Unit* unit) {
 	movs	r4, r0	@ unit, tmp225
 @ Patches/../C_code.c:3699: 	int max = CallGetMaxHP(unit); 
@@ -16741,10 +16732,10 @@ UnitCheckStatCaps:
 	ldrsb	r3, [r4, r3]	@ tmp175,
 @ Patches/../C_code.c:3700:     if (unit->maxHP > max) { 
 	cmp	r3, r0	@ tmp175, max
-	ble	.L2368		@,
+	ble	.L2367		@,
 @ Patches/../C_code.c:3701: 	unit->maxHP = max; } 
 	strb	r0, [r4, #18]	@ max, unit_63(D)->maxHP
-.L2368:
+.L2367:
 @ Patches/../C_code.c:3703: 	max = GetUnitMaxPow(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxPow		@
@@ -16753,10 +16744,10 @@ UnitCheckStatCaps:
 	ldrsb	r3, [r4, r3]	@ tmp177,
 @ Patches/../C_code.c:3704:     if (unit->pow > max ) { 
 	cmp	r3, r0	@ tmp177, max
-	ble	.L2369		@,
+	ble	.L2368		@,
 @ Patches/../C_code.c:3705: 	unit->pow = max; } 
 	strb	r0, [r4, #20]	@ max, unit_63(D)->pow
-.L2369:
+.L2368:
 @ Patches/../C_code.c:3707: 	max = GetUnitMaxSkl(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxSkl		@
@@ -16765,10 +16756,10 @@ UnitCheckStatCaps:
 	ldrsb	r3, [r4, r3]	@ tmp179,
 @ Patches/../C_code.c:3708:     if (unit->skl > max) { 
 	cmp	r3, r0	@ tmp179, max
-	ble	.L2370		@,
+	ble	.L2369		@,
 @ Patches/../C_code.c:3709: 	unit->skl = max; }
 	strb	r0, [r4, #21]	@ max, unit_63(D)->skl
-.L2370:
+.L2369:
 @ Patches/../C_code.c:3711: 	max = GetUnitMaxSpd(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxSpd		@
@@ -16777,10 +16768,10 @@ UnitCheckStatCaps:
 	ldrsb	r3, [r4, r3]	@ tmp181,
 @ Patches/../C_code.c:3712:     if (unit->spd > max) { 
 	cmp	r3, r0	@ tmp181, max
-	ble	.L2371		@,
+	ble	.L2370		@,
 @ Patches/../C_code.c:3713: 	unit->spd = max; }
 	strb	r0, [r4, #22]	@ max, unit_63(D)->spd
-.L2371:
+.L2370:
 @ Patches/../C_code.c:3715: 	max = GetUnitMaxDef(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxDef		@
@@ -16789,10 +16780,10 @@ UnitCheckStatCaps:
 	ldrsb	r3, [r4, r3]	@ tmp183,
 @ Patches/../C_code.c:3716:     if (unit->def > max) { 
 	cmp	r3, r0	@ tmp183, max
-	ble	.L2372		@,
+	ble	.L2371		@,
 @ Patches/../C_code.c:3717: 	unit->def = max; } 
 	strb	r0, [r4, #23]	@ max, unit_63(D)->def
-.L2372:
+.L2371:
 @ Patches/../C_code.c:3719: 	max = GetUnitMaxRes(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxRes		@
@@ -16801,10 +16792,10 @@ UnitCheckStatCaps:
 	ldrsb	r3, [r4, r3]	@ tmp185,
 @ Patches/../C_code.c:3720:     if (unit->res > max) { 
 	cmp	r3, r0	@ tmp185, max
-	ble	.L2373		@,
+	ble	.L2372		@,
 @ Patches/../C_code.c:3721: 	unit->res = max; } 
 	strb	r0, [r4, #24]	@ max, unit_63(D)->res
-.L2373:
+.L2372:
 @ Patches/../C_code.c:3723: 	max = GetUnitMaxLck(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxLck		@
@@ -16813,17 +16804,17 @@ UnitCheckStatCaps:
 	ldrsb	r3, [r4, r3]	@ tmp187,
 @ Patches/../C_code.c:3724:     if (unit->lck > max) { 
 	cmp	r3, r0	@ tmp187, max
-	ble	.L2374		@,
+	ble	.L2373		@,
 @ Patches/../C_code.c:3725: 	unit->lck = max; } 
 	strb	r0, [r4, #25]	@ max, unit_63(D)->lck
-.L2374:
+.L2373:
 @ Patches/../C_code.c:3727: 	if (StrMagInstalled) { 
-	ldr	r3, .L2381+4	@ tmp189,
+	ldr	r3, .L2380+4	@ tmp189,
 @ Patches/../C_code.c:3727: 	if (StrMagInstalled) { 
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	bne	.L2380		@,
-.L2376:
+	bne	.L2379		@,
+.L2375:
 @ Patches/../C_code.c:3734:     if (unit->conBonus > (UNIT_CON_MAX(unit) - UNIT_CON_BASE(unit)))
 	movs	r5, #19	@ _34,
 	ldr	r0, [r4]	@ unit_63(D)->pCharacterData, unit_63(D)->pCharacterData
@@ -16847,10 +16838,10 @@ UnitCheckStatCaps:
 	subs	r3, r3, r1	@ tmp198, _29, tmp214
 @ Patches/../C_code.c:3734:     if (unit->conBonus > (UNIT_CON_MAX(unit) - UNIT_CON_BASE(unit)))
 	cmp	r0, r3	@ tmp196, tmp198
-	ble	.L2378		@,
+	ble	.L2377		@,
 @ Patches/../C_code.c:3735:         unit->conBonus = (UNIT_CON_MAX(unit) - UNIT_CON_BASE(unit));
 	strb	r3, [r4, #26]	@ tmp198, unit_63(D)->conBonus
-.L2378:
+.L2377:
 @ Patches/../C_code.c:3738:     if (unit->movBonus > (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit)))
 	movs	r1, #29	@ tmp206,
 @ Patches/../C_code.c:3738:     if (unit->movBonus > (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit)))
@@ -16866,19 +16857,19 @@ UnitCheckStatCaps:
 	subs	r3, r3, r2	@ tmp208, tmp207, _46
 @ Patches/../C_code.c:3738:     if (unit->movBonus > (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit)))
 	cmp	r1, r3	@ tmp206, tmp208
-	ble	.L2367		@,
+	ble	.L2366		@,
 @ Patches/../C_code.c:3739:         unit->movBonus = (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit));
 	movs	r3, #15	@ tmp209,
 	subs	r3, r3, r2	@ tmp212, tmp209, _46
 @ Patches/../C_code.c:3739:         unit->movBonus = (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit));
 	strb	r3, [r4, #29]	@ tmp212, unit_63(D)->movBonus
-.L2367:
+.L2366:
 @ Patches/../C_code.c:3748: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L2380:
+.L2379:
 @ Patches/../C_code.c:3728: 	max = GetUnitMaxMag(unit); 
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxMag		@
@@ -16887,13 +16878,13 @@ UnitCheckStatCaps:
 	ldrb	r2, [r4, r3]	@ tmp192,
 @ Patches/../C_code.c:3729: 	if (unit->_u3A > max) { 
 	cmp	r2, r0	@ tmp192, max
-	ble	.L2376		@,
+	ble	.L2375		@,
 @ Patches/../C_code.c:3730: 	unit->_u3A = max; } 
 	strb	r0, [r4, r3]	@ max, unit_63(D)->_u3A
-	b	.L2376		@
-.L2382:
-	.align	2
+	b	.L2375		@
 .L2381:
+	.align	2
+.L2380:
 	.word	CallGetMaxHP
 	.word	StrMagInstalled
 	.size	UnitCheckStatCaps, .-UnitCheckStatCaps
@@ -16913,12 +16904,12 @@ UnitAutolevelCore:
 	movs	r4, r0	@ unit, tmp323
 	subs	r5, r2, #0	@ levelCount, tmp324,
 @ Patches/../C_code.c:2741:     if (levelCount > 0) {
-	ble	.LCB14140	@
-	b	.L2400	@long jump	@
-.LCB14140:
+	ble	.LCB14132	@
+	b	.L2399	@long jump	@
+.LCB14132:
 @ Patches/../C_code.c:2751:     if (levelCount < 0) {
 	cmp	r2, #0	@ levelCount,
-	beq	.L2386		@,
+	beq	.L2385		@,
 @ Patches/../C_code.c:2752:         unit->maxHP = GetAutoleveledStatDecrease(GetClassHPGrowth(unit , true),  levelCount, unit->maxHP);
 	movs	r1, #1	@,
 	bl	GetClassHPGrowth		@
@@ -16936,7 +16927,7 @@ UnitAutolevelCore:
 @ Patches/../C_code.c:1526: 	if (uid < 0x2d) { result = true; } 
 	ldrb	r3, [r3, #4]	@ tmp280,
 	cmp	r3, #44	@ tmp280,
-	bls	.L2393		@,
+	bls	.L2392		@,
 @ Patches/../C_code.c:1518: 	if (UNIT_FACTION(unit) != FACTION_RED) { return true; } 
 	movs	r2, #11	@ tmp286,
 	movs	r3, #192	@ tmp287,
@@ -16944,17 +16935,17 @@ UnitAutolevelCore:
 	ands	r3, r2	@ tmp288, tmp286
 @ Patches/../C_code.c:1526: 	if (uid < 0x2d) { result = true; } 
 	cmp	r3, #128	@ tmp288,
-	bne	.LCB14171	@
-	b	.L2388	@long jump	@
-.LCB14171:
-.L2393:
+	bne	.LCB14163	@
+	b	.L2387	@long jump	@
+.LCB14163:
+.L2392:
 @ Patches/../C_code.c:2754: 			if (unit->maxHP < 15) { unit->maxHP = 15; } 
 	cmp	r0, #14	@ _52,
-	bgt	.L2391		@,
+	bgt	.L2390		@,
 @ Patches/../C_code.c:2754: 			if (unit->maxHP < 15) { unit->maxHP = 15; } 
 	movs	r3, #15	@ tmp299,
 	strb	r3, [r4, #18]	@ tmp299, unit_94(D)->maxHP
-.L2391:
+.L2390:
 @ Patches/../C_code.c:2759:         unit->pow   = GetAutoleveledStatDecrease(GetClassPowGrowth(unit, true), levelCount, unit->pow);
 	movs	r1, #1	@,
 	movs	r0, r4	@, unit
@@ -17025,14 +17016,14 @@ UnitAutolevelCore:
 	ldrsb	r2, [r4, r2]	@ tmp313,
 	bl	GetAutoleveledStatDecrease		@
 @ Patches/../C_code.c:2765: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u3A); } 
-	ldr	r3, .L2401	@ tmp315,
+	ldr	r3, .L2400	@ tmp315,
 @ Patches/../C_code.c:2765: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u3A); } 
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 @ Patches/../C_code.c:2764:         unit->lck   = GetAutoleveledStatDecrease(GetClassLckGrowth(unit, true), levelCount, unit->lck);
 	strb	r0, [r4, #25]	@ tmp354, unit_94(D)->lck
 @ Patches/../C_code.c:2765: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u3A); } 
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.L2386		@,
+	beq	.L2385		@,
 @ Patches/../C_code.c:2765: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u3A); } 
 	movs	r6, #58	@ tmp317,
 @ Patches/../C_code.c:2765: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u3A); } 
@@ -17044,7 +17035,7 @@ UnitAutolevelCore:
 	bl	GetAutoleveledStatDecrease		@
 @ Patches/../C_code.c:2765: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u3A); } 
 	strb	r0, [r4, r6]	@ tmp356, unit_94(D)->_u3A
-.L2386:
+.L2385:
 @ Patches/../C_code.c:2769: }
 	@ sp needed	@
 @ Patches/../C_code.c:2767: 	UnitCheckStatMins(unit); 
@@ -17057,14 +17048,14 @@ UnitAutolevelCore:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L2400:
+.L2399:
 @ Patches/../C_code.c:2742:         unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit , true),  levelCount);
 	movs	r1, #1	@,
 	bl	GetClassHPGrowth		@
 @ Patches/../C_code.c:2742:         unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit , true),  levelCount);
-	ldr	r6, .L2401+4	@ tmp221,
+	ldr	r6, .L2400+4	@ tmp221,
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2742:         unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit , true),  levelCount);
 	ldrb	r3, [r4, #18]	@ tmp223,
 	adds	r3, r3, r0	@ tmp225, tmp223, tmp326
@@ -17075,7 +17066,7 @@ UnitAutolevelCore:
 	bl	GetClassPowGrowth		@
 @ Patches/../C_code.c:2743:         unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2743:         unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #20]	@ tmp229,
 	adds	r3, r3, r0	@ tmp231, tmp229, tmp328
@@ -17086,7 +17077,7 @@ UnitAutolevelCore:
 	bl	GetClassSklGrowth		@
 @ Patches/../C_code.c:2744:         unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2744:         unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #21]	@ tmp235,
 	adds	r3, r3, r0	@ tmp237, tmp235, tmp330
@@ -17097,7 +17088,7 @@ UnitAutolevelCore:
 	bl	GetClassSpdGrowth		@
 @ Patches/../C_code.c:2745:         unit->spd   += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2745:         unit->spd   += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #22]	@ tmp241,
 	adds	r3, r3, r0	@ tmp243, tmp241, tmp332
@@ -17108,7 +17099,7 @@ UnitAutolevelCore:
 	bl	GetClassDefGrowth		@
 @ Patches/../C_code.c:2746:         unit->def   += GetAutoleveledStatIncrease(GetClassDefGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2746:         unit->def   += GetAutoleveledStatIncrease(GetClassDefGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #23]	@ tmp247,
 	adds	r3, r3, r0	@ tmp249, tmp247, tmp334
@@ -17119,7 +17110,7 @@ UnitAutolevelCore:
 	bl	GetClassResGrowth		@
 @ Patches/../C_code.c:2747:         unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2747:         unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #24]	@ tmp253,
 	adds	r3, r3, r0	@ tmp255, tmp253, tmp336
@@ -17130,43 +17121,43 @@ UnitAutolevelCore:
 	bl	GetClassLckGrowth		@
 @ Patches/../C_code.c:2748:         unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2748:         unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #25]	@ tmp259,
 	adds	r3, r3, r0	@ tmp261, tmp259, tmp338
 	strb	r3, [r4, #25]	@ tmp261, unit_94(D)->lck
 @ Patches/../C_code.c:2749: 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
-	ldr	r3, .L2401	@ tmp263,
+	ldr	r3, .L2400	@ tmp263,
 @ Patches/../C_code.c:2749: 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.L2386		@,
+	beq	.L2385		@,
 @ Patches/../C_code.c:2749: 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
 	movs	r1, #1	@,
 	movs	r0, r4	@, unit
 	bl	GetClassMagGrowth		@
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2749: 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
 	movs	r2, #58	@ tmp266,
 @ Patches/../C_code.c:2749: 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
 	ldrb	r3, [r4, r2]	@ tmp268,
 	adds	r3, r3, r0	@ tmp270, tmp268, tmp340
 	strb	r3, [r4, r2]	@ tmp270, unit_94(D)->_u3A
-	b	.L2386		@
-.L2388:
+	b	.L2385		@
+.L2387:
 @ Patches/../C_code.c:2757: 			if (unit->maxHP < 10) { unit->maxHP = 10; } 
 	cmp	r0, #9	@ _52,
-	ble	.LCB14343	@
-	b	.L2391	@long jump	@
-.LCB14343:
+	ble	.LCB14335	@
+	b	.L2390	@long jump	@
+.LCB14335:
 @ Patches/../C_code.c:2757: 			if (unit->maxHP < 10) { unit->maxHP = 10; } 
 	movs	r3, #10	@ tmp301,
 	strb	r3, [r4, #18]	@ tmp301, unit_94(D)->maxHP
-	b	.L2391		@
-.L2402:
-	.align	2
+	b	.L2390		@
 .L2401:
+	.align	2
+.L2400:
 	.word	StrMagInstalled
 	.word	GetAutoleveledStatIncrease
 	.size	UnitAutolevelCore, .-UnitAutolevelCore
@@ -17188,13 +17179,13 @@ UnitAutolevelCore_Char:
 	push	{lr}	@
 @ Patches/../C_code.c:2778:     if (levelCount > 0) {
 	cmp	r2, #0	@ levelCount,
-	ble	.LCB14366	@
-	b	.L2436	@long jump	@
-.LCB14366:
+	ble	.LCB14358	@
+	b	.L2435	@long jump	@
+.LCB14358:
 @ Patches/../C_code.c:2799:     if (levelCount < 0) {
-	bne	.LCB14368	@
-	b	.L2406	@long jump	@
-.LCB14368:
+	bne	.LCB14360	@
+	b	.L2405	@long jump	@
+.LCB14360:
 @ Patches/../C_code.c:2803: 		unit->maxHP = GetAutoleveledStatDecrease(GetClassHPGrowth(unit , true),  levelCount, unit->maxHP);
 	movs	r1, #1	@,
 	bl	GetClassHPGrowth		@
@@ -17212,7 +17203,7 @@ UnitAutolevelCore_Char:
 @ Patches/../C_code.c:1526: 	if (uid < 0x2d) { result = true; } 
 	ldrb	r3, [r3, #4]	@ tmp347,
 	cmp	r3, #44	@ tmp347,
-	bls	.L2426		@,
+	bls	.L2425		@,
 @ Patches/../C_code.c:1518: 	if (UNIT_FACTION(unit) != FACTION_RED) { return true; } 
 	movs	r2, #11	@ tmp353,
 	movs	r3, #192	@ tmp354,
@@ -17220,17 +17211,17 @@ UnitAutolevelCore_Char:
 	ands	r3, r2	@ tmp355, tmp353
 @ Patches/../C_code.c:1526: 	if (uid < 0x2d) { result = true; } 
 	cmp	r3, #128	@ tmp355,
-	bne	.LCB14397	@
-	b	.L2408	@long jump	@
-.LCB14397:
-.L2426:
+	bne	.LCB14389	@
+	b	.L2407	@long jump	@
+.LCB14389:
+.L2425:
 @ Patches/../C_code.c:2806: 			if (unit->maxHP < 15) { unit->maxHP = 15; } 
 	cmp	r0, #14	@ _52,
-	bgt	.L2411		@,
+	bgt	.L2410		@,
 @ Patches/../C_code.c:2806: 			if (unit->maxHP < 15) { unit->maxHP = 15; } 
 	movs	r3, #15	@ tmp366,
 	strb	r3, [r4, #18]	@ tmp366, unit_98(D)->maxHP
-.L2411:
+.L2410:
 @ Patches/../C_code.c:2383: 	growth += unit->pClassData->growthPow; 
 	movs	r7, #28	@ _278,
 @ Patches/../C_code.c:2395: 	growth += unit->pClassData->growthSkl; 
@@ -17265,20 +17256,20 @@ UnitAutolevelCore_Char:
 @ Patches/../C_code.c:2827: 		avg += GetClassLckGrowth(unit, false); i++; 
 	adds	r0, r3, r0	@ _350, tmp378, tmp380
 @ Patches/../C_code.c:2828: 		if (StrMagInstalled) { 
-	ldr	r3, .L2439	@ tmp466,
+	ldr	r3, .L2438	@ tmp466,
 	ldr	r6, [r3]	@ pretmp_351, StrMagInstalled
 	mov	r8, r3	@ tmp466, tmp466
 @ Patches/../C_code.c:2828: 		if (StrMagInstalled) { 
 	cmp	r6, #0	@ pretmp_351,
-	beq	.LCB14428	@
-	b	.L2437	@long jump	@
-.LCB14428:
+	beq	.LCB14420	@
+	b	.L2436	@long jump	@
+.LCB14420:
 @ Patches/../C_code.c:2830: 		avg = avg / i; 
 	movs	r1, #6	@,
-	ldr	r3, .L2439+4	@ tmp413,
+	ldr	r3, .L2438+4	@ tmp413,
 	bl	.L14		@
 	movs	r6, r0	@ avg, tmp492
-.L2418:
+.L2417:
 @ Patches/../C_code.c:2832:         unit->pow   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassPowGrowth(unit, false), avg), levelCount, unit->pow);
 	movs	r2, #20	@ tmp415,
 @ Patches/../C_code.c:2773: 	int num = avg - (growth - avg); // invert growths so high growths become low and vice versa 
@@ -17289,9 +17280,9 @@ UnitAutolevelCore_Char:
 	subs	r0, r6, r0	@ num, avg, tmp417
 @ Patches/../C_code.c:2774: 	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
 	cmp	r0, #20	@ num,
-	bge	.L2419		@,
+	bge	.L2418		@,
 	movs	r0, #20	@ num,
-.L2419:
+.L2418:
 @ Patches/../C_code.c:2832:         unit->pow   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassPowGrowth(unit, false), avg), levelCount, unit->pow);
 	movs	r1, r5	@, levelCount
 	bl	GetAutoleveledStatDecrease		@
@@ -17312,9 +17303,9 @@ UnitAutolevelCore_Char:
 	subs	r0, r6, r0	@ num, avg, tmp423
 @ Patches/../C_code.c:2774: 	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
 	cmp	r0, #20	@ num,
-	bge	.L2420		@,
+	bge	.L2419		@,
 	movs	r0, #20	@ num,
-.L2420:
+.L2419:
 @ Patches/../C_code.c:2833:         unit->skl   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassSklGrowth(unit, false), avg), levelCount, unit->skl);
 	movs	r1, r5	@, levelCount
 	bl	GetAutoleveledStatDecrease		@
@@ -17335,9 +17326,9 @@ UnitAutolevelCore_Char:
 	subs	r0, r6, r0	@ num, avg, tmp429
 @ Patches/../C_code.c:2774: 	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
 	cmp	r0, #20	@ num,
-	bge	.L2421		@,
+	bge	.L2420		@,
 	movs	r0, #20	@ num,
-.L2421:
+.L2420:
 @ Patches/../C_code.c:2834:         unit->spd   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassSpdGrowth(unit, false), avg), levelCount, unit->spd);
 	movs	r1, r5	@, levelCount
 	bl	GetAutoleveledStatDecrease		@
@@ -17358,9 +17349,9 @@ UnitAutolevelCore_Char:
 	subs	r0, r6, r0	@ num, avg, tmp435
 @ Patches/../C_code.c:2774: 	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
 	cmp	r0, #20	@ num,
-	bge	.L2422		@,
+	bge	.L2421		@,
 	movs	r0, #20	@ num,
-.L2422:
+.L2421:
 @ Patches/../C_code.c:2835:         unit->def   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassDefGrowth(unit, false), avg), levelCount, unit->def);
 	movs	r1, r5	@, levelCount
 	bl	GetAutoleveledStatDecrease		@
@@ -17381,9 +17372,9 @@ UnitAutolevelCore_Char:
 	subs	r0, r6, r0	@ num, avg, tmp442
 @ Patches/../C_code.c:2774: 	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
 	cmp	r0, #20	@ num,
-	bge	.L2423		@,
+	bge	.L2422		@,
 	movs	r0, #20	@ num,
-.L2423:
+.L2422:
 @ Patches/../C_code.c:2836:         unit->res   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassResGrowth(unit, false), avg), levelCount, unit->res);
 	movs	r1, r5	@, levelCount
 	bl	GetAutoleveledStatDecrease		@
@@ -17404,9 +17395,9 @@ UnitAutolevelCore_Char:
 	subs	r0, r6, r0	@ num, avg, tmp449
 @ Patches/../C_code.c:2774: 	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
 	cmp	r0, #20	@ num,
-	bge	.L2424		@,
+	bge	.L2423		@,
 	movs	r0, #20	@ num,
-.L2424:
+.L2423:
 @ Patches/../C_code.c:2837:         unit->lck   = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassLckGrowth(unit, false), avg), levelCount, unit->lck);
 	movs	r1, r5	@, levelCount
 	bl	GetAutoleveledStatDecrease		@
@@ -17417,7 +17408,7 @@ UnitAutolevelCore_Char:
 	strb	r0, [r4, #25]	@ tmp498, unit_98(D)->lck
 @ Patches/../C_code.c:2838: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u3A); } 
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.L2406		@,
+	beq	.L2405		@,
 @ Patches/../C_code.c:2838: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u3A); } 
 	movs	r3, #58	@ tmp453,
 @ Patches/../C_code.c:2285: 	growth += MagClassTable[unit->pClassData->number].growth; 
@@ -17426,7 +17417,7 @@ UnitAutolevelCore_Char:
 @ Patches/../C_code.c:2838: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u3A); } 
 	ldrb	r2, [r4, r3]	@ tmp454,
 @ Patches/../C_code.c:2285: 	growth += MagClassTable[unit->pClassData->number].growth; 
-	ldr	r3, .L2439+8	@ tmp456,
+	ldr	r3, .L2438+8	@ tmp456,
 	lsls	r1, r1, #2	@ tmp459, tmp458,
 	adds	r3, r3, r1	@ tmp460, tmp456, tmp459
 	ldrb	r3, [r3, #1]	@ tmp462, MagClassTable
@@ -17436,17 +17427,17 @@ UnitAutolevelCore_Char:
 	subs	r0, r6, r3	@ num, avg, tmp463
 @ Patches/../C_code.c:2774: 	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
 	cmp	r0, #20	@ num,
-	bge	.LCB14543	@
-	b	.L2438	@long jump	@
-.LCB14543:
-.L2425:
+	bge	.LCB14535	@
+	b	.L2437	@long jump	@
+.LCB14535:
+.L2424:
 @ Patches/../C_code.c:2838: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u3A); } 
 	movs	r1, r5	@, levelCount
 	bl	GetAutoleveledStatDecrease		@
 @ Patches/../C_code.c:2838: 		if (StrMagInstalled) { unit->_u3A = GetAutoleveledStatDecrease(AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u3A); } 
 	movs	r3, #58	@ tmp464,
 	strb	r0, [r4, r3]	@ tmp499, unit_98(D)->_u3A
-.L2406:
+.L2405:
 @ Patches/../C_code.c:2843: }
 	@ sp needed	@
 @ Patches/../C_code.c:2841: 	UnitCheckStatMins(unit); 
@@ -17461,14 +17452,14 @@ UnitAutolevelCore_Char:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L2436:
+.L2435:
 @ Patches/../C_code.c:2789:         unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit , true),  levelCount);
 	movs	r1, #1	@,
 	bl	GetClassHPGrowth		@
 @ Patches/../C_code.c:2789:         unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit , true),  levelCount);
-	ldr	r6, .L2439+12	@ tmp288,
+	ldr	r6, .L2438+12	@ tmp288,
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2789:         unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit , true),  levelCount);
 	ldrb	r3, [r4, #18]	@ tmp290,
 	adds	r3, r3, r0	@ tmp292, tmp290, tmp472
@@ -17479,7 +17470,7 @@ UnitAutolevelCore_Char:
 	bl	GetClassPowGrowth		@
 @ Patches/../C_code.c:2790:         unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2790:         unit->pow   += GetAutoleveledStatIncrease(GetClassPowGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #20]	@ tmp296,
 	adds	r3, r3, r0	@ tmp298, tmp296, tmp474
@@ -17490,7 +17481,7 @@ UnitAutolevelCore_Char:
 	bl	GetClassSklGrowth		@
 @ Patches/../C_code.c:2791:         unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2791:         unit->skl   += GetAutoleveledStatIncrease(GetClassSklGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #21]	@ tmp302,
 	adds	r3, r3, r0	@ tmp304, tmp302, tmp476
@@ -17501,7 +17492,7 @@ UnitAutolevelCore_Char:
 	bl	GetClassSpdGrowth		@
 @ Patches/../C_code.c:2792:         unit->spd   += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2792:         unit->spd   += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #22]	@ tmp308,
 	adds	r3, r3, r0	@ tmp310, tmp308, tmp478
@@ -17512,7 +17503,7 @@ UnitAutolevelCore_Char:
 	bl	GetClassDefGrowth		@
 @ Patches/../C_code.c:2793:         unit->def   += GetAutoleveledStatIncrease(GetClassDefGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2793:         unit->def   += GetAutoleveledStatIncrease(GetClassDefGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #23]	@ tmp314,
 	adds	r3, r3, r0	@ tmp316, tmp314, tmp480
@@ -17523,7 +17514,7 @@ UnitAutolevelCore_Char:
 	bl	GetClassResGrowth		@
 @ Patches/../C_code.c:2794:         unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2794:         unit->res   += GetAutoleveledStatIncrease(GetClassResGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #24]	@ tmp320,
 	adds	r3, r3, r0	@ tmp322, tmp320, tmp482
@@ -17534,35 +17525,35 @@ UnitAutolevelCore_Char:
 	bl	GetClassLckGrowth		@
 @ Patches/../C_code.c:2795:         unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2795:         unit->lck   += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
 	ldrb	r3, [r4, #25]	@ tmp326,
 	adds	r3, r3, r0	@ tmp328, tmp326, tmp484
 	strb	r3, [r4, #25]	@ tmp328, unit_98(D)->lck
 @ Patches/../C_code.c:2796: 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
-	ldr	r3, .L2439	@ tmp330,
+	ldr	r3, .L2438	@ tmp330,
 @ Patches/../C_code.c:2796: 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.L2406		@,
+	beq	.L2405		@,
 @ Patches/../C_code.c:2796: 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
 	movs	r1, #1	@,
 	movs	r0, r4	@, unit
 	bl	GetClassMagGrowth		@
 	movs	r1, r5	@, levelCount
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:2796: 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
 	movs	r2, #58	@ tmp333,
 @ Patches/../C_code.c:2796: 		if (StrMagInstalled) { unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount); } 
 	ldrb	r3, [r4, r2]	@ tmp335,
 	adds	r3, r3, r0	@ tmp337, tmp335, tmp486
 	strb	r3, [r4, r2]	@ tmp337, unit_98(D)->_u3A
-	b	.L2406		@
-.L2437:
+	b	.L2405		@
+.L2436:
 @ Patches/../C_code.c:2285: 	growth += MagClassTable[unit->pClassData->number].growth; 
 	ldrb	r2, [r2, #4]	@ tmp402,
 @ Patches/../C_code.c:2285: 	growth += MagClassTable[unit->pClassData->number].growth; 
-	ldr	r3, .L2439+8	@ tmp401,
+	ldr	r3, .L2438+8	@ tmp401,
 	lsls	r2, r2, #2	@ tmp403, tmp402,
 	adds	r3, r3, r2	@ tmp404, tmp401, tmp403
 	ldrb	r3, [r3, #1]	@ tmp406, MagClassTable
@@ -17571,27 +17562,27 @@ UnitAutolevelCore_Char:
 @ Patches/../C_code.c:2829: 		avg += GetClassMagGrowth(unit, false); i++; }
 	adds	r0, r3, r0	@ avg, tmp406, _350
 @ Patches/../C_code.c:2830: 		avg = avg / i; 
-	ldr	r3, .L2439+4	@ tmp409,
+	ldr	r3, .L2438+4	@ tmp409,
 	bl	.L14		@
 	movs	r6, r0	@ avg, tmp491
-	b	.L2418		@
-.L2408:
+	b	.L2417		@
+.L2407:
 @ Patches/../C_code.c:2809: 			if (unit->maxHP < 10) { unit->maxHP = 10; } 
 	cmp	r0, #9	@ _52,
-	ble	.LCB14663	@
-	b	.L2411	@long jump	@
-.LCB14663:
+	ble	.LCB14655	@
+	b	.L2410	@long jump	@
+.LCB14655:
 @ Patches/../C_code.c:2809: 			if (unit->maxHP < 10) { unit->maxHP = 10; } 
 	movs	r3, #10	@ tmp368,
 	strb	r3, [r4, #18]	@ tmp368, unit_98(D)->maxHP
-	b	.L2411		@
-.L2438:
+	b	.L2410		@
+.L2437:
 @ Patches/../C_code.c:2774: 	if (num < MinCharAutolevelBonusGrowth) { num = MinCharAutolevelBonusGrowth; } 
 	movs	r0, #20	@ num,
-	b	.L2425		@
-.L2440:
-	.align	2
+	b	.L2424		@
 .L2439:
+	.align	2
+.L2438:
 	.word	StrMagInstalled
 	.word	__aeabi_idiv
 	.word	MagClassTable
@@ -17616,7 +17607,7 @@ UnitInitFromDefinition:
 	mov	r10, r0	@ unit, tmp1209
 	push	{r5, r6, r7, lr}	@
 @ Patches/../C_code.c:2889:     unit->pCharacterData = GetCharacterData(uDef->charIndex);
-	ldr	r3, .L2650	@ tmp1170,
+	ldr	r3, .L2649	@ tmp1170,
 @ Patches/../C_code.c:2888: void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
 	sub	sp, sp, #396	@,,
 @ Patches/../C_code.c:2889:     unit->pCharacterData = GetCharacterData(uDef->charIndex);
@@ -17655,18 +17646,18 @@ UnitInitFromDefinition:
 @ Patches/../C_code.c:2897: 	int noise[4] = {0, 0, 0, 0};  // 1 extra so gCh is used 
 	movs	r2, #16	@,
 	movs	r1, #0	@,
-	ldr	r3, .L2650+4	@ tmp594,
+	ldr	r3, .L2649+4	@ tmp594,
 	add	r0, sp, #96	@ tmp1343,,
 	bl	.L14		@
 @ Patches/../C_code.c:2902: 	if (uDef->classIndex) { originalClass = GetClassData(uDef->classIndex); } 
 	ldrb	r0, [r5, #1]	@ _10,
 @ Patches/../C_code.c:2902: 	if (uDef->classIndex) { originalClass = GetClassData(uDef->classIndex); } 
 	cmp	r0, #0	@ _10,
-	bne	.L2626		@,
+	bne	.L2625		@,
 @ Patches/../C_code.c:2903: 	else { originalClass = GetClassData(unit->pCharacterData->defaultClass); } 
 	ldrb	r0, [r4, #5]	@ tmp598,
-.L2626:
-	ldr	r3, .L2650+8	@ tmp1171,
+.L2625:
+	ldr	r3, .L2649+8	@ tmp1171,
 	str	r3, [sp, #12]	@ tmp1171, %sfp
 	bl	.L14		@
 @ Patches/../C_code.c:2904: 	unit->pClassData = originalClass; // for now 
@@ -17822,7 +17813,7 @@ UnitInitFromDefinition:
 	ldr	r6, [r5]	@ pretmp_889, unit_375(D)->pCharacterData
 @ Patches/../C_code.c:2929: 	if (UNIT_FACTION(unit) != FACTION_BLUE) { 
 	tst	r3, r0	@ tmp672, _42
-	beq	.L2539		@,
+	beq	.L2538		@,
 @ Patches/../C_code.c:2930: 		if (!(UNIT_CATTRIBUTES(unit) & CA_BOSS)) { 
 	ldr	r1, [sp, #16]	@ originalClass, %sfp
 	ldr	r3, [r6, #40]	@ pretmp_889->attributes, pretmp_889->attributes
@@ -17830,17 +17821,17 @@ UnitInitFromDefinition:
 	orrs	r3, r1	@ tmp673, originalClass_322->attributes
 @ Patches/../C_code.c:2930: 		if (!(UNIT_CATTRIBUTES(unit) & CA_BOSS)) { 
 	lsls	r3, r3, #16	@ tmp1272, tmp673,
-	bmi	.LCB14873	@
-	b	.L2633	@long jump	@
-.LCB14873:
-.L2539:
+	bmi	.LCB14865	@
+	b	.L2632	@long jump	@
+.LCB14865:
+.L2538:
 	movs	r3, #20	@ prephitmp_868,
-	ldr	r1, .L2650+12	@ tmp1172,
+	ldr	r1, .L2649+12	@ tmp1172,
 	str	r1, [sp, #36]	@ tmp1172, %sfp
 	movs	r7, r3	@ prephitmp_868, prephitmp_868
 @ Patches/../C_code.c:2928: 	noise2[c] = unit->index; c++;
 	subs	r3, r3, #1	@ c,
-.L2444:
+.L2443:
 @ Patches/../C_code.c:2942: 	noise2[c] = 0; 
 	mov	r5, fp	@ tmp1169, tmp1169
 	movs	r1, #0	@ tmp699,
@@ -17851,21 +17842,21 @@ UnitInitFromDefinition:
 @ Patches/../C_code.c:2945: 	    if (!noise2[i]) { noise2[i]++; }
 	movs	r5, #1	@ tmp1208,
 	ldr	r7, [sp, #12]	@ tmp1171, %sfp
-	b	.L2446		@
-.L2540:
+	b	.L2445		@
+.L2539:
 	movs	r3, r1	@ ivtmp.1616, ivtmp.1616
-.L2446:
+.L2445:
 @ Patches/../C_code.c:2945: 	    if (!noise2[i]) { noise2[i]++; }
 	ldrb	r1, [r3]	@ MEM[(unsigned char *)_738], MEM[(unsigned char *)_738]
 	cmp	r1, #0	@ MEM[(unsigned char *)_738],
-	bne	.L2445		@,
+	bne	.L2444		@,
 @ Patches/../C_code.c:2945: 	    if (!noise2[i]) { noise2[i]++; }
 	strb	r5, [r3]	@ tmp1208, MEM[(unsigned char *)_738]
-.L2445:
+.L2444:
 @ Patches/../C_code.c:2944: 	for (int i = c; i >= 0; --i) { 
 	subs	r1, r3, #1	@ ivtmp.1616, ivtmp.1616,
 	cmp	fp, r3	@ tmp1169, ivtmp.1616
-	bne	.L2540		@,
+	bne	.L2539		@,
 @ Patches/../C_code.c:2950: 	noise[0] = character->number + character->baseLevel + character->baseHP + character->basePow + character->baseSkl + character->baseSpd + character->baseDef + character->baseRes + character->baseLck;
 	ldr	r1, [sp, #40]	@ _18, %sfp
 @ Patches/../C_code.c:2950: 	noise[0] = character->number + character->baseLevel + character->baseHP + character->basePow + character->baseSkl + character->baseSpd + character->baseDef + character->baseRes + character->baseLck;
@@ -17959,9 +17950,9 @@ UnitInitFromDefinition:
 	str	r2, [sp, #100]	@ tmp727, noise[1]
 @ Patches/../C_code.c:2961: 	if (UNIT_FACTION(unit) != FACTION_BLUE) { 
 	cmp	r3, #0	@ _45,
-	bne	.LCB14952	@
-	b	.L2447	@long jump	@
-.LCB14952:
+	bne	.LCB14944	@
+	b	.L2446	@long jump	@
+.LCB14944:
 @ Patches/../C_code.c:2962: 		if (!(UNIT_CATTRIBUTES(unit) & CA_BOSS)) { 
 	ldr	r2, [sp, #16]	@ originalClass, %sfp
 	ldr	r3, [r6, #40]	@ pretmp_889->attributes, pretmp_889->attributes
@@ -17969,10 +17960,10 @@ UnitInitFromDefinition:
 	orrs	r3, r2	@ tmp728, originalClass_322->attributes
 @ Patches/../C_code.c:2962: 		if (!(UNIT_CATTRIBUTES(unit) & CA_BOSS)) { 
 	lsls	r3, r3, #16	@ tmp1273, tmp728,
-	bmi	.LCB14960	@
-	b	.L2634	@long jump	@
-.LCB14960:
-.L2448:
+	bmi	.LCB14952	@
+	b	.L2633	@long jump	@
+.LCB14952:
+.L2447:
 @ Patches/../C_code.c:156: 	if (!GetCharacterData(id)->portraitId) { return false; } 
 	ldr	r3, [sp, #84]	@ tmp1170, %sfp
 @ Patches/../C_code.c:2985: 	int RandomizeRecruitment = ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number); 
@@ -17982,9 +17973,9 @@ UnitInitFromDefinition:
 @ Patches/../C_code.c:156: 	if (!GetCharacterData(id)->portraitId) { return false; } 
 	ldrh	r3, [r0, #6]	@ tmp758,
 	cmp	r3, #0	@ tmp758,
-	beq	.L2452		@,
+	beq	.L2451		@,
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
-	ldr	r3, .L2650+16	@ tmp760,
+	ldr	r3, .L2649+16	@ tmp760,
 	ldr	r3, [r3]	@ RecruitValues, RecruitValues
 	ldrb	r3, [r3]	@ *RecruitValues.0_575, *RecruitValues.0_575
 	lsls	r3, r3, #29	@ tmp765, *RecruitValues.0_575,
@@ -17992,17 +17983,17 @@ UnitInitFromDefinition:
 	str	r2, [sp, #24]	@ _577, %sfp
 @ Patches/../C_code.c:2987: 	if (RandomizeRecruitment) { character = GetReorderedUnit(unit); randCharOriginalClass = GetClassData(character->defaultClass); } 
 	cmp	r3, #0	@ tmp765,
-	beq	.L2452		@,
+	beq	.L2451		@,
 @ Patches/../C_code.c:291: 	return GetReorderedCharacter(unit->pCharacterData); 
 	mov	r3, r10	@ unit, unit
 	ldr	r4, [r3]	@ character, unit_375(D)->pCharacterData
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r4, #6]	@ tmp767,
 	cmp	r3, #0	@ tmp767,
-	beq	.LCB14983	@
-	b	.L2635	@long jump	@
-.LCB14983:
-.L2453:
+	beq	.LCB14975	@
+	b	.L2634	@long jump	@
+.LCB14975:
+.L2452:
 @ Patches/../C_code.c:2987: 	if (RandomizeRecruitment) { character = GetReorderedUnit(unit); randCharOriginalClass = GetClassData(character->defaultClass); } 
 	ldr	r3, [sp, #12]	@ tmp1171, %sfp
 	ldrb	r0, [r4, #5]	@ tmp769,
@@ -18028,27 +18019,27 @@ UnitInitFromDefinition:
 	mov	r8, r0	@ _658, tmp1218
 @ Patches/../C_code.c:3006: 		if ((!(originalClass->attributes & CA_PROMOTED)) && (unit->pClassData->attributes & CA_PROMOTED)) { 
 	tst	r2, r3	@ originalClass_322->attributes, tmp776
-	bne	.L2455		@,
+	bne	.L2454		@,
 @ Patches/../C_code.c:3006: 		if ((!(originalClass->attributes & CA_PROMOTED)) && (unit->pClassData->attributes & CA_PROMOTED)) { 
 	ldr	r2, [r0, #40]	@ _658->attributes, _658->attributes
 @ Patches/../C_code.c:3006: 		if ((!(originalClass->attributes & CA_PROMOTED)) && (unit->pClassData->attributes & CA_PROMOTED)) { 
 	tst	r2, r3	@ _658->attributes, tmp776
-	beq	.L2455		@,
+	beq	.L2454		@,
 	ldr	r7, [sp, #12]	@ tmp1171, %sfp
 	add	r3, sp, #96	@ tmp1437,,
-.L2459:
+.L2458:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_587], MEM[(int *)_587]
 	cmp	r2, #0	@ MEM[(int *)_587],
-	bne	.LCB15015	@
-	bl	.L2636	@far jump	@
-.LCB15015:
+	bne	.LCB15007	@
+	bl	.L2635	@far jump	@
+.LCB15007:
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.1610,
 	cmp	fp, r3	@ tmp1169, ivtmp.1610
-	bne	.L2459		@,
+	bne	.L2458		@,
 	str	r7, [sp, #12]	@ tmp1171, %sfp
-.L2458:
+.L2457:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	movs	r3, #3	@,
 	movs	r1, #5	@,
@@ -18057,13 +18048,13 @@ UnitInitFromDefinition:
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:3007: 			if ((HashByte_Ch(noise[0], 5, noise, 3))) { // 20%, as HashByte never returns the max number 
 	cmp	r0, #0	@ tmp1221,
-	beq	.L2455		@,
+	beq	.L2454		@,
 @ Patches/../C_code.c:3008: 				int prepromoteClassId = unit->pClassData->promotion; 
 	mov	r3, r8	@ _658, _658
 	ldrb	r0, [r3, #5]	@ prepromoteClassId,
 @ Patches/../C_code.c:3009: 				if (prepromoteClassId) { 
 	cmp	r0, #0	@ prepromoteClassId,
-	beq	.L2455		@,
+	beq	.L2454		@,
 @ Patches/../C_code.c:3014: 					unit->pClassData = originalClass; // so RandClass will treat us as promoted or not based on that 
 	mov	r3, r10	@ unit, unit
 	ldr	r2, [sp, #16]	@ originalClass, %sfp
@@ -18083,25 +18074,25 @@ UnitInitFromDefinition:
 	mov	r8, r0	@ _658, tmp1223
 @ Patches/../C_code.c:3016: 					unit->pClassData = GetClassData(RandClass2(prepromoteClassId, noise2, unit));
 	str	r0, [r3, #4]	@ _658, unit_375(D)->pClassData
-	b	.L2455		@
-.L2651:
-	.align	2
+	b	.L2454		@
 .L2650:
+	.align	2
+.L2649:
 	.word	GetCharacterData
 	.word	memset
 	.word	GetClassData
 	.word	gCh
 	.word	RecruitValues
-.L2452:
+.L2451:
 @ Patches/../C_code.c:2989:     if ((!uDef->classIndex) || RandomizeRecruitment) {
 	ldr	r3, [sp, #20]	@ uDef, %sfp
 	ldrb	r0, [r3, #1]	@ _106,
 @ Patches/../C_code.c:2989:     if ((!uDef->classIndex) || RandomizeRecruitment) {
 	cmp	r0, #0	@ _106,
-	bne	.LCB15062	@
-	b	.L2450	@long jump	@
-.LCB15062:
-.L2627:
+	bne	.LCB15054	@
+	b	.L2449	@long jump	@
+.LCB15054:
+.L2626:
 @ Patches/../C_code.c:2991:         unit->pClassData = GetClassData(RandClass2(character->defaultClass, noise2, unit));
 	mov	r2, r10	@, unit
 	mov	r1, fp	@, tmp1169
@@ -18117,7 +18108,7 @@ UnitInitFromDefinition:
 	mov	r8, r0	@ _658, tmp1254
 @ Patches/../C_code.c:2991:         unit->pClassData = GetClassData(RandClass2(character->defaultClass, noise2, unit));
 	str	r3, [sp, #24]	@ _577, %sfp
-.L2455:
+.L2454:
 @ Patches/../C_code.c:3032: 	noise[2] = unit->pClassData->number; 
 	mov	r3, r8	@ _658, _658
 	ldrb	r3, [r3, #4]	@ tmp792,
@@ -18129,29 +18120,29 @@ UnitInitFromDefinition:
 	bl	ShouldRandomizeClass		@
 	subs	r7, r0, #0	@ personalWexp, tmp1224,
 @ Patches/../C_code.c:3034: 	if (ShouldRandomizeClass(unit)) { 
-	beq	.L2460		@,
+	beq	.L2459		@,
 	movs	r3, r4	@ ivtmp.1603, character
 	movs	r1, r4	@ _726, character
 @ Patches/../C_code.c:3031: 	int personalWexp = 0; 
 	movs	r7, #0	@ personalWexp,
 	adds	r3, r3, #20	@ ivtmp.1603,
 	adds	r1, r1, #28	@ _726,
-.L2462:
+.L2461:
 @ Patches/../C_code.c:3036: 			tmp = character->baseRanks[c]; 
 	ldrb	r2, [r3]	@ tmp, MEM[(unsigned char *)_724]
 @ Patches/../C_code.c:3037: 			if (tmp > personalWexp) { personalWexp = tmp; } 
 	cmp	r7, r2	@ personalWexp, tmp
-	bge	.L2461		@,
+	bge	.L2460		@,
 	movs	r7, r2	@ personalWexp, tmp
-.L2461:
+.L2460:
 @ Patches/../C_code.c:3035: 		for (int c = 0; c < 8; ++c) { 
 	adds	r3, r3, #1	@ ivtmp.1603,
 	cmp	r3, r1	@ ivtmp.1603, _726
-	bne	.L2462		@,
-.L2460:
+	bne	.L2461		@,
+.L2459:
 	movs	r3, #44	@ tmp1449,
 	mov	ip, r3	@ tmp1449, tmp1449
-	ldr	r3, .L2652	@ tmp1165,
+	ldr	r3, .L2651	@ tmp1165,
 	mov	r9, r3	@ tmp1165, tmp1165
 @ Patches/../C_code.c:3061: 			if (character->baseRanks[i]) { // original
 	movs	r3, #20	@ tmp1205,
@@ -18165,15 +18156,15 @@ UnitInitFromDefinition:
 @ Patches/../C_code.c:3061: 			if (character->baseRanks[i]) { // original
 	str	r3, [sp, #12]	@ tmp1205, %sfp
 	adds	r6, r6, #40	@ ivtmp.1594,
-.L2477:
+.L2476:
 @ Patches/../C_code.c:3041: 		wexp = unit->pClassData->baseRanks[i]; 
 	mov	r3, r8	@ tmp1166, tmp1166
 	ldrb	r3, [r3, r5]	@ wexp, MEM[(unsigned char *)_713 + _712 * 1]
 @ Patches/../C_code.c:3042: 		if (wexp) { 
 	cmp	r3, #0	@ wexp,
-	beq	.LCB15120	@
-	b	.L2637	@long jump	@
-.LCB15120:
+	beq	.LCB15112	@
+	b	.L2636	@long jump	@
+.LCB15112:
 @ Patches/../C_code.c:3060: 		if (!ShouldRandomizeClass(unit)) { 
 	mov	r0, r10	@, unit
 @ Patches/../C_code.c:3047: 		unit->ranks[i] = wexp; 
@@ -18182,23 +18173,23 @@ UnitInitFromDefinition:
 	bl	ShouldRandomizeClass		@
 @ Patches/../C_code.c:3060: 		if (!ShouldRandomizeClass(unit)) { 
 	cmp	r0, #0	@ tmp1225,
-	bne	.L2468		@,
+	bne	.L2467		@,
 @ Patches/../C_code.c:3061: 			if (character->baseRanks[i]) { // original
 	ldr	r3, [sp, #12]	@ tmp1205, %sfp
 	ldrb	r3, [r3, r5]	@ _134, MEM[(unsigned char *)_719 + _712 * 1]
 @ Patches/../C_code.c:3061: 			if (character->baseRanks[i]) { // original
 	cmp	r3, #0	@ _134,
-	beq	.L2468		@,
+	beq	.L2467		@,
 @ Patches/../C_code.c:3062: 				unit->ranks[i] = character->baseRanks[i]; } 
 	strb	r3, [r6]	@ _134, MEM[(unsigned char *)_714]
-.L2468:
+.L2467:
 @ Patches/../C_code.c:3040:     for (int i = 0; i < 8; ++i) { 
 	adds	r5, r5, #1	@ i,
 @ Patches/../C_code.c:3040:     for (int i = 0; i < 8; ++i) { 
 	adds	r6, r6, #1	@ ivtmp.1594,
 	cmp	r5, #8	@ i,
-	bne	.L2477		@,
-.L2475:
+	bne	.L2476		@,
+.L2474:
 @ Patches/../C_code.c:3067: 	list[0] = 99; // so compiler doesn't assume uninitialized or whatever 
 	movs	r3, #99	@ tmp831,
 	add	r5, sp, #136	@ tmp1173,,
@@ -18210,25 +18201,25 @@ UnitInitFromDefinition:
 @ Patches/../C_code.c:3068: 	BuildAvailableWeaponList(list, unit); 
 	bl	BuildAvailableWeaponList		@
 @ Patches/../C_code.c:3073: 	UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise, i, list)); }
-	ldr	r3, .L2652+4	@ tmp1204,
+	ldr	r3, .L2651+4	@ tmp1204,
 @ Patches/../C_code.c:3071: 	for (int i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	movs	r6, #0	@ i,
 @ Patches/../C_code.c:3073: 	UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise, i, list)); }
 	mov	r8, r3	@ tmp1204, tmp1204
 	ldr	r7, [sp, #20]	@ _690, %sfp
 	adds	r7, r7, #12	@ _690,
-.L2478:
+.L2477:
 @ Patches/../C_code.c:3071: 	for (int i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	ldrb	r1, [r7, r6]	@ _137, MEM[(unsigned char *)_690 + _688 * 1]
 @ Patches/../C_code.c:3071: 	for (int i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	cmp	r1, #0	@ _137,
-	beq	.L2486		@,
+	beq	.L2485		@,
 @ Patches/../C_code.c:3072: 	if (i == 1) { AppendAvailableStaffList(list, unit); } // first item will always be a weapon if possible 
 	cmp	r6, #1	@ i,
-	bne	.LCB15156	@
-	b	.L2638	@long jump	@
-.LCB15156:
-.L2480:
+	bne	.LCB15148	@
+	b	.L2637	@long jump	@
+.LCB15148:
+.L2479:
 	movs	r3, r6	@, i
 	add	r2, sp, #96	@ tmp1464,,
 	mov	r0, r10	@, unit
@@ -18242,8 +18233,8 @@ UnitInitFromDefinition:
 	bl	.L179		@
 @ Patches/../C_code.c:3071: 	for (int i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	cmp	r6, #4	@ i,
-	bne	.L2478		@,
-.L2486:
+	bne	.L2477		@,
+.L2485:
 @ Patches/../C_code.c:3075:     unit->ai1 = uDef->ai[0];
 	mov	r1, r10	@ unit, unit
 	movs	r3, #66	@ tmp838,
@@ -18295,15 +18286,15 @@ UnitInitFromDefinition:
 	orrs	r3, r1	@ tmp864, _155->attributes
 @ Patches/../C_code.c:3084: 	if (UNIT_CATTRIBUTES(unit) & CA_PROMOTED) { max150percent = 1; } 
 	lsls	r3, r3, #23	@ tmp1274, tmp864,
-	bmi	.LCB15207	@
-	b	.L2639	@long jump	@
-.LCB15207:
+	bmi	.LCB15199	@
+	b	.L2638	@long jump	@
+.LCB15199:
 @ Patches/../C_code.c:3087: 	if (gCh > 0xE) { if (max150percent == 1) { max150percent = 0; } } // Lyn mode + first 2 chs of eliwood/hector mode: nerf promoted units a little 
 	movs	r5, #0	@ tmp874,
 	movs	r3, #14	@ tmp873,
 	cmp	r3, r2	@ tmp873, pretmp_888
 	adcs	r5, r5, r5	@ max150percent, tmp874, tmp874
-.L2487:
+.L2486:
 @ Patches/../C_code.c:3089:     unit->maxHP = RandHPStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, 3);
 	movs	r1, #12	@ tmp881,
 @ Patches/../C_code.c:3089:     unit->maxHP = RandHPStat(unit, character->baseHP + unit->pClassData->baseHP, noise, 15, 3);
@@ -18329,20 +18320,20 @@ UnitInitFromDefinition:
 	mov	r2, r8	@ _153, _153
 	ldrb	r2, [r2, #4]	@ tmp890,
 	cmp	r2, #44	@ tmp890,
-	bls	.L2547		@,
+	bls	.L2546		@,
 	cmp	r7, #128	@ _152,
-	bne	.LCB15242	@
-	b	.L2488	@long jump	@
-.LCB15242:
-.L2547:
+	bne	.LCB15234	@
+	b	.L2487	@long jump	@
+.LCB15234:
+.L2546:
 @ Patches/../C_code.c:3091: 		if (unit->maxHP < 15) { unit->maxHP += 15; } 
 	cmp	r3, #14	@ _166,
-	bgt	.L2491		@,
+	bgt	.L2490		@,
 @ Patches/../C_code.c:3091: 		if (unit->maxHP < 15) { unit->maxHP += 15; } 
 	mov	r3, r10	@ unit, unit
 	adds	r0, r0, #15	@ tmp907,
 	strb	r0, [r3, #18]	@ tmp907, unit_375(D)->maxHP
-.L2491:
+.L2490:
 @ Patches/../C_code.c:3094: 	unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise, 25, max150percent);
 	movs	r1, #13	@ tmp913,
 @ Patches/../C_code.c:3094: 	unit->pow   = RandStat(unit, character->basePow + unit->pClassData->basePow, noise, 25, max150percent);
@@ -18451,14 +18442,14 @@ UnitInitFromDefinition:
 	mov	r3, r10	@ unit, unit
 	strb	r0, [r3, #25]	@ tmp1235, unit_375(D)->lck
 @ Patches/../C_code.c:3100: 	if (StrMagInstalled) { unit->_u3A = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent); } 
-	ldr	r3, .L2652+8	@ tmp940,
+	ldr	r3, .L2651+8	@ tmp940,
 @ Patches/../C_code.c:3100: 	if (StrMagInstalled) { unit->_u3A = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent); } 
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.LCB15329	@
-	b	.L2640	@long jump	@
-.LCB15329:
-.L2493:
+	beq	.LCB15321	@
+	b	.L2639	@long jump	@
+.LCB15321:
+.L2492:
 @ Patches/../C_code.c:3106: 	unit->conBonus = 0; unit->movBonus = 0; 
 	movs	r3, #0	@ tmp957,
 	mov	r2, r10	@ unit, unit
@@ -18466,29 +18457,29 @@ UnitInitFromDefinition:
 @ Patches/../C_code.c:3106: 	unit->conBonus = 0; unit->movBonus = 0; 
 	strb	r3, [r2, #29]	@ tmp957, unit_375(D)->movBonus
 @ Patches/../C_code.c:3108: 	if (RandomizeMovConBonus) { 
-	ldr	r3, .L2652+12	@ tmp961,
+	ldr	r3, .L2651+12	@ tmp961,
 @ Patches/../C_code.c:3108: 	if (RandomizeMovConBonus) { 
 	ldr	r3, [r3]	@ RandomizeMovConBonus, RandomizeMovConBonus
 	cmp	r3, #0	@ RandomizeMovConBonus,
-	beq	.L2496		@,
+	beq	.L2495		@,
 @ Patches/../C_code.c:3109: 		if (RandBitflags->base) {
 	mov	r3, r9	@ tmp1165, tmp1165
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3]	@ *RandBitflags.200_217, *RandBitflags.200_217
 @ Patches/../C_code.c:3109: 		if (RandBitflags->base) {
 	lsls	r3, r3, #30	@ tmp1275, *RandBitflags.200_217,
-	beq	.L2496		@,
+	beq	.L2495		@,
 @ Patches/../C_code.c:1517: 	int uid = unit->pCharacterData->number; 
 	ldr	r3, [r2]	@ unit_375(D)->pCharacterData, unit_375(D)->pCharacterData
 @ Patches/../C_code.c:1526: 	if (uid < 0x2d) { result = true; } 
 	ldrb	r3, [r3, #4]	@ tmp978,
 	cmp	r3, #44	@ tmp978,
-	bls	.L2548		@,
+	bls	.L2547		@,
 	cmp	r7, #128	@ _152,
-	bne	.LCB15361	@
-	b	.L2498	@long jump	@
-.LCB15361:
-.L2548:
+	bne	.LCB15353	@
+	b	.L2497	@long jump	@
+.LCB15353:
+.L2547:
 @ Patches/../C_code.c:3111: 				unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
 	movs	r3, #16	@,
 	add	r2, sp, #96	@ tmp1507,,
@@ -18499,7 +18490,7 @@ UnitInitFromDefinition:
 	movs	r3, #48	@ tmp994,
 	mov	r2, r10	@ unit, unit
 @ Patches/../C_code.c:3111: 				unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
-	ldr	r5, .L2652+16	@ tmp993,
+	ldr	r5, .L2651+16	@ tmp993,
 	adds	r0, r5, r0	@ tmp995, tmp993, tmp1238
 @ Patches/../C_code.c:3111: 				unit->conBonus = ConModifiers[HashByte_Global(1, sizeof(ConModifiers), noise, 16)]; // num, max, noise, offset 
 	ldrb	r3, [r0, r3]	@ tmp996, ConModifiers
@@ -18511,7 +18502,7 @@ UnitInitFromDefinition:
 	lsls	r3, r3, #24	@ tmp1001, tmp1001,
 	asrs	r3, r3, #24	@ tmp1001, tmp1001,
 	cmp	r3, #6	@ tmp1001,
-	bgt	.L2496		@,
+	bgt	.L2495		@,
 @ Patches/../C_code.c:3118: 					unit->movBonus = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
 	movs	r3, #14	@,
 	add	r2, sp, #96	@ tmp1510,,
@@ -18526,25 +18517,25 @@ UnitInitFromDefinition:
 @ Patches/../C_code.c:3118: 					unit->movBonus = MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset 
 	ldrb	r3, [r5, r3]	@ tmp1008, MovModifiers
 	strb	r3, [r2, #29]	@ tmp1008, unit_375(D)->movBonus
-.L2496:
+.L2495:
 @ Patches/../C_code.c:3127:     if (UNIT_FACTION(unit) == FACTION_BLUE && (unit->level != 20))
 	cmp	r7, #0	@ _152,
-	beq	.LCB15395	@
-	b	.L2500	@long jump	@
-.LCB15395:
+	beq	.LCB15387	@
+	b	.L2499	@long jump	@
+.LCB15387:
 @ Patches/../C_code.c:3127:     if (UNIT_FACTION(unit) == FACTION_BLUE && (unit->level != 20))
 	mov	r3, r10	@ unit, unit
 	ldrb	r3, [r3, #8]	@ tmp1010,
 	lsls	r3, r3, #24	@ tmp1010, tmp1010,
 	asrs	r3, r3, #24	@ tmp1010, tmp1010,
 	cmp	r3, #20	@ tmp1010,
-	bne	.LCB15401	@
-	b	.L2501	@long jump	@
-.LCB15401:
+	bne	.LCB15393	@
+	b	.L2500	@long jump	@
+.LCB15393:
 @ Patches/../C_code.c:3128:         unit->exp = 0;
 	mov	r3, r10	@ unit, unit
 	strb	r7, [r3, #9]	@ _152, unit_375(D)->exp
-.L2502:
+.L2501:
 @ Patches/../C_code.c:3134: 		int bonusLevels = RandBitflags->playerBonus; 
 	mov	r3, r9	@ tmp1165, tmp1165
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
@@ -18554,20 +18545,20 @@ UnitInitFromDefinition:
 	lsrs	r2, r2, #27	@ bonusLevels, tmp1025,
 @ Patches/../C_code.c:3135: 		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
 	cmp	r2, #20	@ bonusLevels,
-	ble	.LCB15414	@
-	b	.L2631	@long jump	@
-.LCB15414:
-.L2507:
+	ble	.LCB15406	@
+	b	.L2630	@long jump	@
+.LCB15406:
+.L2506:
 @ Patches/../C_code.c:3141: 		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
 	cmp	r2, #0	@ bonusLevels,
-	beq	.LCB15417	@
-	b	.L2641	@long jump	@
-.LCB15417:
-.L2506:
+	beq	.LCB15409	@
+	b	.L2640	@long jump	@
+.LCB15409:
+.L2505:
 @ Patches/../C_code.c:3144: 	if (RandomizeRecruitment) { 
 	ldr	r3, [sp, #24]	@ _577, %sfp
 	cmp	r3, #0	@ _577,
-	beq	.L2509		@,
+	beq	.L2508		@,
 @ Patches/../C_code.c:3145: 		int bonusLevels = GetAdjustedLevel(unit->pCharacterData, originalClass) - GetAdjustedLevel(character, unit->pClassData); 
 	mov	r3, r10	@ unit, unit
 @ Patches/../C_code.c:2864: 	int level = table->baseLevel; 
@@ -18585,10 +18576,10 @@ UnitInitFromDefinition:
 	orrs	r3, r2	@ tmp1039, _557
 @ Patches/../C_code.c:2865: 	if (promoted) { level += 15; } 
 	lsls	r3, r3, #23	@ tmp1276, tmp1039,
-	bpl	.L2510		@,
+	bpl	.L2509		@,
 @ Patches/../C_code.c:2865: 	if (promoted) { level += 15; } 
 	adds	r0, r0, #15	@ level,
-.L2510:
+.L2509:
 @ Patches/../C_code.c:3145: 		int bonusLevels = GetAdjustedLevel(unit->pCharacterData, originalClass) - GetAdjustedLevel(character, unit->pClassData); 
 	mov	r3, r10	@ unit, unit
 	ldr	r1, [r3, #4]	@ _241, unit_375(D)->pClassData
@@ -18607,10 +18598,10 @@ UnitInitFromDefinition:
 	movs	r6, r4	@ level, level
 @ Patches/../C_code.c:2865: 	if (promoted) { level += 15; } 
 	lsls	r5, r5, #23	@ tmp1277, tmp1043,
-	bpl	.L2511		@,
+	bpl	.L2510		@,
 @ Patches/../C_code.c:2865: 	if (promoted) { level += 15; } 
 	adds	r6, r6, #15	@ level,
-.L2511:
+.L2510:
 @ Patches/../C_code.c:2863: 	int promoted = ((table->attributes | classTable->attributes) & CA_PROMOTED);
 	orrs	r2, r3	@ _557, _548
 	movs	r5, r2	@ tmp1047, _557
@@ -18620,30 +18611,30 @@ UnitInitFromDefinition:
 	movs	r2, r4	@ level, level
 @ Patches/../C_code.c:2865: 	if (promoted) { level += 15; } 
 	lsls	r5, r5, #23	@ tmp1278, tmp1047,
-	bpl	.L2512		@,
+	bpl	.L2511		@,
 @ Patches/../C_code.c:2865: 	if (promoted) { level += 15; } 
 	adds	r2, r2, #15	@ level,
-.L2512:
+.L2511:
 @ Patches/../C_code.c:2863: 	int promoted = ((table->attributes | classTable->attributes) & CA_PROMOTED);
 	ldr	r5, [sp, #92]	@ randCharOriginalClass, %sfp
 	ldr	r5, [r5, #40]	@ randCharOriginalClass_706->attributes, randCharOriginalClass_706->attributes
 	orrs	r3, r5	@ tmp1050, randCharOriginalClass_706->attributes
 @ Patches/../C_code.c:2865: 	if (promoted) { level += 15; } 
 	lsls	r3, r3, #23	@ tmp1279, tmp1050,
-	bpl	.L2513		@,
+	bpl	.L2512		@,
 @ Patches/../C_code.c:2865: 	if (promoted) { level += 15; } 
 	adds	r4, r4, #15	@ level,
-.L2513:
+.L2512:
 @ Patches/../C_code.c:3146: 		bonusLevels += GetAdjustedLevel(character, originalClass) - GetAdjustedLevel(character, randCharOriginalClass); 
 	subs	r2, r2, r4	@ tmp1054, level, level
 @ Patches/../C_code.c:3146: 		bonusLevels += GetAdjustedLevel(character, originalClass) - GetAdjustedLevel(character, randCharOriginalClass); 
 	adds	r2, r2, r0	@ bonusLevels, tmp1054, bonusLevels
 @ Patches/../C_code.c:3147: 		if (bonusLevels) { UnitAutolevelCore_Char(unit, unit->pClassData->number, bonusLevels); } 
 	cmp	r2, #0	@ bonusLevels,
-	beq	.LCB15477	@
-	b	.L2642	@long jump	@
-.LCB15477:
-.L2509:
+	beq	.LCB15469	@
+	b	.L2641	@long jump	@
+.LCB15469:
+.L2508:
 @ Patches/../C_code.c:3154: 	if (RandBitflags->foundItems) { 
 	mov	r3, r9	@ tmp1165, tmp1165
 	movs	r2, #48	@ tmp1063,
@@ -18651,10 +18642,10 @@ UnitInitFromDefinition:
 	ldrb	r3, [r3, #1]	@ *RandBitflags.203_243, *RandBitflags.203_243
 @ Patches/../C_code.c:3154: 	if (RandBitflags->foundItems) { 
 	tst	r2, r3	@ tmp1063, *RandBitflags.203_243
-	beq	.LCB15487	@
-	b	.L2643	@long jump	@
-.LCB15487:
-.L2515:
+	beq	.LCB15479	@
+	b	.L2642	@long jump	@
+.LCB15479:
+.L2514:
 @ Patches/../C_code.c:3171: 	MakePromotedUnitHaveMinStats(unit); 
 	mov	r0, r10	@, unit
 	bl	MakePromotedUnitHaveMinStats		@
@@ -18747,7 +18738,7 @@ UnitInitFromDefinition:
 @ Patches/../C_code.c:3182: 	int avgStat = orgPow + orgSkl + orgSpd + orgDef + orgRes + orgLck; 
 	add	r0, r0, r8	@ tmp1104, orgSkl
 @ Patches/../C_code.c:3185: 	if (SkillSysInstalled) { 
-	ldr	r2, .L2652+20	@ tmp1108,
+	ldr	r2, .L2651+20	@ tmp1108,
 @ Patches/../C_code.c:3182: 	int avgStat = orgPow + orgSkl + orgSpd + orgDef + orgRes + orgLck; 
 	adds	r0, r0, r7	@ tmp1105, tmp1104, orgSpd
 @ Patches/../C_code.c:3182: 	int avgStat = orgPow + orgSkl + orgSpd + orgDef + orgRes + orgLck; 
@@ -18760,20 +18751,20 @@ UnitInitFromDefinition:
 	add	r0, r0, fp	@ avgStat, orgLck
 @ Patches/../C_code.c:3185: 	if (SkillSysInstalled) { 
 	cmp	r5, #0	@ SkillSysInstalled.205_289,
-	bne	.LCB15544	@
-	b	.L2546	@long jump	@
-.LCB15544:
+	bne	.LCB15536	@
+	b	.L2545	@long jump	@
+.LCB15536:
 @ Patches/../C_code.c:3186: 		orgMag = GetBaseMag(unit->pCharacterData->number, originalClass->number); 
 	ldrb	r1, [r1, #4]	@ tmp1110,
 @ Patches/../C_code.c:2343: 	return MagClassTable[classID].base + MagCharTable[charID].base; 
-	ldr	r2, .L2652+24	@ tmp1109,
+	ldr	r2, .L2651+24	@ tmp1109,
 @ Patches/../C_code.c:3186: 		orgMag = GetBaseMag(unit->pCharacterData->number, originalClass->number); 
 	ldrb	r3, [r3, #4]	@ tmp1114,
 @ Patches/../C_code.c:2343: 	return MagClassTable[classID].base + MagCharTable[charID].base; 
 	lsls	r1, r1, #2	@ tmp1111, tmp1110,
 	ldrb	r1, [r1, r2]	@ tmp1112, MagClassTable
 @ Patches/../C_code.c:2343: 	return MagClassTable[classID].base + MagCharTable[charID].base; 
-	ldr	r2, .L2652+28	@ tmp1113,
+	ldr	r2, .L2651+28	@ tmp1113,
 	lsls	r3, r3, #1	@ tmp1115, tmp1114,
 	ldrb	r3, [r3, r2]	@ tmp1116, MagCharTable
 @ Patches/../C_code.c:2343: 	return MagClassTable[classID].base + MagCharTable[charID].base; 
@@ -18786,10 +18777,10 @@ UnitInitFromDefinition:
 	str	r3, [sp, #20]	@ orgMag, %sfp
 @ Patches/../C_code.c:3187: 		avgStat += orgMag; countOfStats++; 
 	add	r0, r0, ip	@ avgStat, orgMag
-	b	.L2653		@
-.L2654:
+	b	.L2652		@
+.L2653:
 	.align	2
-.L2652:
+.L2651:
 	.word	RandBitflags
 	.word	UnitAddItem
 	.word	StrMagInstalled
@@ -18798,10 +18789,10 @@ UnitInitFromDefinition:
 	.word	SkillSysInstalled
 	.word	MagClassTable
 	.word	MagCharTable
-.L2653:
-.L2528:
+.L2652:
+.L2527:
 @ Patches/../C_code.c:3190: 	avgStat = (avgStat + (countOfStats / 2)) / countOfStats; 
-	ldr	r3, .L2655	@ tmp1119,
+	ldr	r3, .L2654	@ tmp1119,
 @ Patches/../C_code.c:3190: 	avgStat = (avgStat + (countOfStats / 2)) / countOfStats; 
 	adds	r0, r0, #3	@ _294,
 @ Patches/../C_code.c:3190: 	avgStat = (avgStat + (countOfStats / 2)) / countOfStats; 
@@ -18821,7 +18812,7 @@ UnitInitFromDefinition:
 	asrs	r3, r3, #24	@ tmp1121, tmp1121,
 @ Patches/../C_code.c:3192: 	if (unit->maxHP > max) { unit->maxHP = max; unit->curHP = max; } 
 	cmp	r3, r0	@ tmp1121, max
-	ble	.L2529		@,
+	ble	.L2528		@,
 @ Patches/../C_code.c:3192: 	if (unit->maxHP > max) { unit->maxHP = max; unit->curHP = max; } 
 	lsls	r0, r0, #24	@ tmp1127, max,
 	lsrs	r3, r0, #16	@ tmp1136, tmp1127,
@@ -18829,7 +18820,7 @@ UnitInitFromDefinition:
 	orrs	r0, r3	@ tmp1143, tmp1136
 	mov	r3, r10	@ unit, unit
 	strh	r0, [r3, #18]	@ tmp1143, MEM <vector(2) signed char> [(signed char *)unit_375(D) + 18B]
-.L2529:
+.L2528:
 @ Patches/../C_code.c:3193: 	max = GetStatMaxBonus(unit, orgPow, avgStat); 
 	movs	r2, r4	@, avgStat
 	mov	r1, r9	@, orgPow
@@ -18842,11 +18833,11 @@ UnitInitFromDefinition:
 	asrs	r3, r3, #24	@ tmp1145, tmp1145,
 @ Patches/../C_code.c:3194: 	if (unit->pow > max) { unit->pow = max; } 
 	cmp	r3, r0	@ tmp1145, max
-	ble	.L2530		@,
+	ble	.L2529		@,
 @ Patches/../C_code.c:3194: 	if (unit->pow > max) { unit->pow = max; } 
 	mov	r3, r10	@ unit, unit
 	strb	r0, [r3, #20]	@ max, unit_375(D)->pow
-.L2530:
+.L2529:
 @ Patches/../C_code.c:3195: 	max = GetStatMaxBonus(unit, orgSkl, avgStat); 
 	movs	r2, r4	@, avgStat
 	mov	r1, r8	@, orgSkl
@@ -18859,11 +18850,11 @@ UnitInitFromDefinition:
 	asrs	r3, r3, #24	@ tmp1147, tmp1147,
 @ Patches/../C_code.c:3196: 	if (unit->skl > max) { unit->skl = max; } 
 	cmp	r3, r0	@ tmp1147, max
-	ble	.L2531		@,
+	ble	.L2530		@,
 @ Patches/../C_code.c:3196: 	if (unit->skl > max) { unit->skl = max; } 
 	mov	r3, r10	@ unit, unit
 	strb	r0, [r3, #21]	@ max, unit_375(D)->skl
-.L2531:
+.L2530:
 @ Patches/../C_code.c:3197: 	max = GetStatMaxBonus(unit, orgSpd, avgStat); 
 	movs	r2, r4	@, avgStat
 	movs	r1, r7	@, orgSpd
@@ -18876,11 +18867,11 @@ UnitInitFromDefinition:
 	asrs	r3, r3, #24	@ tmp1149, tmp1149,
 @ Patches/../C_code.c:3198: 	if (unit->spd > max) { unit->spd = max; } 
 	cmp	r3, r0	@ tmp1149, max
-	ble	.L2532		@,
+	ble	.L2531		@,
 @ Patches/../C_code.c:3198: 	if (unit->spd > max) { unit->spd = max; } 
 	mov	r3, r10	@ unit, unit
 	strb	r0, [r3, #22]	@ max, unit_375(D)->spd
-.L2532:
+.L2531:
 @ Patches/../C_code.c:3199: 	max = GetStatMaxBonus(unit, orgDef, avgStat); 
 	movs	r2, r4	@, avgStat
 	movs	r1, r6	@, orgDef
@@ -18893,11 +18884,11 @@ UnitInitFromDefinition:
 	asrs	r3, r3, #24	@ tmp1151, tmp1151,
 @ Patches/../C_code.c:3200: 	if (unit->def > max) { unit->def = max; } 
 	cmp	r3, r0	@ tmp1151, max
-	ble	.L2533		@,
+	ble	.L2532		@,
 @ Patches/../C_code.c:3200: 	if (unit->def > max) { unit->def = max; } 
 	mov	r3, r10	@ unit, unit
 	strb	r0, [r3, #23]	@ max, unit_375(D)->def
-.L2533:
+.L2532:
 @ Patches/../C_code.c:3201: 	max = GetStatMaxBonus(unit, orgRes, avgStat); 
 	movs	r2, r4	@, avgStat
 	mov	r0, r10	@, unit
@@ -18910,11 +18901,11 @@ UnitInitFromDefinition:
 	asrs	r3, r3, #24	@ tmp1153, tmp1153,
 @ Patches/../C_code.c:3202: 	if (unit->res > max) { unit->res = max; } 
 	cmp	r3, r0	@ tmp1153, max
-	ble	.L2534		@,
+	ble	.L2533		@,
 @ Patches/../C_code.c:3202: 	if (unit->res > max) { unit->res = max; } 
 	mov	r3, r10	@ unit, unit
 	strb	r0, [r3, #24]	@ max, unit_375(D)->res
-.L2534:
+.L2533:
 @ Patches/../C_code.c:3203: 	max = GetStatMaxBonus(unit, orgLck, avgStat); 
 	movs	r2, r4	@, avgStat
 	mov	r1, fp	@, orgLck
@@ -18927,14 +18918,14 @@ UnitInitFromDefinition:
 	asrs	r3, r3, #24	@ tmp1155, tmp1155,
 @ Patches/../C_code.c:3204: 	if (unit->lck > max) { unit->lck = max; } 
 	cmp	r3, r0	@ tmp1155, max
-	ble	.L2535		@,
+	ble	.L2534		@,
 @ Patches/../C_code.c:3204: 	if (unit->lck > max) { unit->lck = max; } 
 	mov	r3, r10	@ unit, unit
 	strb	r0, [r3, #25]	@ max, unit_375(D)->lck
-.L2535:
+.L2534:
 @ Patches/../C_code.c:3207: 	if (SkillSysInstalled) { 	
 	cmp	r5, #0	@ SkillSysInstalled.205_289,
-	beq	.L2536		@,
+	beq	.L2535		@,
 @ Patches/../C_code.c:3208: 		max = GetStatMaxBonus(unit, orgMag, avgStat); 
 	movs	r2, r4	@, avgStat
 	mov	r0, r10	@, unit
@@ -18946,11 +18937,11 @@ UnitInitFromDefinition:
 	ldrb	r2, [r2, r3]	@ tmp1158,
 @ Patches/../C_code.c:3209: 		if (unit->_u3A > max) { unit->_u3A = max; } 
 	cmp	r2, r0	@ tmp1158, max
-	ble	.L2536		@,
+	ble	.L2535		@,
 @ Patches/../C_code.c:3209: 		if (unit->_u3A > max) { unit->_u3A = max; } 
 	mov	r2, r10	@ unit, unit
 	strb	r0, [r2, r3]	@ max, unit_375(D)->_u3A
-.L2536:
+.L2535:
 @ Patches/../C_code.c:3214: 	UnitCheckStatCaps(unit);
 	mov	r0, r10	@, unit
 	bl	UnitCheckStatCaps		@
@@ -18965,15 +18956,15 @@ UnitInitFromDefinition:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L2447:
+.L2446:
 @ Patches/../C_code.c:2976: 	noise[2] = 5; // becomes class id 
 	movs	r3, #5	@ tmp753,
 	str	r3, [sp, #104]	@ tmp753, noise[2]
 @ Patches/../C_code.c:2977: 	noise[3] = character->affinity; // players don't use gCh anymore 
 	ldr	r3, [sp, #88]	@ _41, %sfp
 	str	r3, [sp, #108]	@ _41, noise[3]
-	b	.L2448		@
-.L2634:
+	b	.L2447		@
+.L2633:
 @ Patches/../C_code.c:2968: 		noise[1] = uDef->xPosition; 
 	ldr	r2, [sp, #20]	@ uDef, %sfp
 	ldrb	r3, [r2, #4]	@ *uDef_373(D), *uDef_373(D)
@@ -18985,8 +18976,8 @@ UnitInitFromDefinition:
 	lsls	r3, r3, #20	@ tmp748, *uDef_373(D),
 	lsrs	r3, r3, #26	@ tmp749, tmp748,
 	str	r3, [sp, #104]	@ tmp749, noise[2]
-	b	.L2448		@
-.L2633:
+	b	.L2447		@
+.L2632:
 @ Patches/../C_code.c:2936: 		noise2[c] = uDef->xPosition; c++; 
 	mov	r5, fp	@ tmp1169, tmp1169
 @ Patches/../C_code.c:2936: 		noise2[c] = uDef->xPosition; c++; 
@@ -19003,7 +18994,7 @@ UnitInitFromDefinition:
 @ Patches/../C_code.c:2937: 		noise2[c] = uDef->yPosition; c++; 
 	strb	r3, [r5, #20]	@ tmp690, noise2[20]
 @ Patches/../C_code.c:2939: 		noise2[c] = gCh; c++; // so gCh is used 
-	ldr	r3, .L2655+4	@ tmp1172,
+	ldr	r3, .L2654+4	@ tmp1172,
 	str	r3, [sp, #36]	@ tmp1172, %sfp
 	ldrb	r3, [r3]	@ gCh, gCh
 	strb	r3, [r5, #21]	@ gCh, noise2[21]
@@ -19011,18 +19002,18 @@ UnitInitFromDefinition:
 	movs	r7, r3	@ prephitmp_868, prephitmp_868
 @ Patches/../C_code.c:2939: 		noise2[c] = gCh; c++; // so gCh is used 
 	subs	r3, r3, #1	@ c,
-	b	.L2444		@
-.L2450:
+	b	.L2443		@
+.L2449:
 @ Patches/../C_code.c:2991:         unit->pClassData = GetClassData(RandClass2(character->defaultClass, noise2, unit));
 	ldrb	r0, [r4, #5]	@ tmp1162,
-	b	.L2627		@
-.L2637:
+	b	.L2626		@
+.L2636:
 @ Patches/../C_code.c:3043: 			if (personalWexp > wexp) { wexp = personalWexp; } 
 	movs	r0, r7	@ _147, personalWexp
 	cmp	r7, r3	@ personalWexp, wexp
-	bge	.L2464		@,
+	bge	.L2463		@,
 	movs	r0, r3	@ _147, wexp
-.L2464:
+.L2463:
 @ Patches/../C_code.c:2248: 	if (!RandBitflags->class) { return number; } 
 	mov	r3, r9	@ tmp1165, tmp1165
 @ Patches/../C_code.c:2248: 	if (!RandBitflags->class) { return number; } 
@@ -19032,7 +19023,7 @@ UnitInitFromDefinition:
 	ldrb	r3, [r3, #1]	@ *RandBitflags.141_594, *RandBitflags.141_594
 @ Patches/../C_code.c:2248: 	if (!RandBitflags->class) { return number; } 
 	tst	r2, r3	@ tmp1457, *RandBitflags.141_594
-	beq	.L2470		@,
+	beq	.L2469		@,
 @ Patches/../C_code.c:1476: 	return HashPercent(number, noise, offset, true, false);
 	movs	r3, #0	@ tmp809,
 	movs	r2, r5	@, i
@@ -19044,9 +19035,9 @@ UnitInitFromDefinition:
 	adds	r0, r0, #1	@ number,
 @ Patches/../C_code.c:2250: 	if (number > 255) { number = 255; } 
 	cmp	r0, #255	@ number,
-	ble	.L2470		@,
+	ble	.L2469		@,
 	movs	r0, #255	@ number,
-.L2470:
+.L2469:
 @ Patches/../C_code.c:2251: 	return number; 
 	lsls	r0, r0, #16	@ _597, number,
 	asrs	r0, r0, #16	@ _597, _597,
@@ -19056,72 +19047,72 @@ UnitInitFromDefinition:
 	strb	r0, [r6]	@ _131, MEM[(unsigned char *)_716]
 @ Patches/../C_code.c:3049: 		if (i == 7) { // dark 
 	cmp	r5, #7	@ i,
-	beq	.L2644		@,
+	beq	.L2643		@,
 @ Patches/../C_code.c:3060: 		if (!ShouldRandomizeClass(unit)) { 
 	mov	r0, r10	@, unit
 	bl	ShouldRandomizeClass		@
 @ Patches/../C_code.c:3060: 		if (!ShouldRandomizeClass(unit)) { 
 	cmp	r0, #0	@ tmp1227,
-	bne	.L2628		@,
+	bne	.L2627		@,
 @ Patches/../C_code.c:3061: 			if (character->baseRanks[i]) { // original
 	ldr	r3, [sp, #12]	@ tmp1205, %sfp
 	ldrb	r3, [r3, r5]	@ _860, MEM[(unsigned char *)_861 + _712 * 1]
 @ Patches/../C_code.c:3061: 			if (character->baseRanks[i]) { // original
 	cmp	r3, #0	@ _860,
-	beq	.L2628		@,
+	beq	.L2627		@,
 @ Patches/../C_code.c:3062: 				unit->ranks[i] = character->baseRanks[i]; } 
 	strb	r3, [r6]	@ _860, MEM[(unsigned char *)_863]
-.L2628:
+.L2627:
 @ Patches/../C_code.c:3040:     for (int i = 0; i < 8; ++i) { 
 	adds	r5, r5, #1	@ i,
 @ Patches/../C_code.c:3040:     for (int i = 0; i < 8; ++i) { 
 	adds	r6, r6, #1	@ ivtmp.1594,
-	b	.L2477		@
-.L2644:
+	b	.L2476		@
+.L2643:
 @ Patches/../C_code.c:3054: 			if ((unit->ranks[i]) && (unit->ranks[i] < 31)) { unit->ranks[i] = 31; } 
 	subs	r0, r0, #1	@ tmp815,
 @ Patches/../C_code.c:3054: 			if ((unit->ranks[i]) && (unit->ranks[i] < 31)) { unit->ranks[i] = 31; } 
 	lsls	r0, r0, #24	@ tmp819, tmp815,
 	lsrs	r0, r0, #24	@ tmp818, tmp819,
 	cmp	r0, #29	@ tmp818,
-	bhi	.L2472		@,
+	bhi	.L2471		@,
 @ Patches/../C_code.c:3054: 			if ((unit->ranks[i]) && (unit->ranks[i] < 31)) { unit->ranks[i] = 31; } 
 	movs	r3, #47	@ tmp820,
 	movs	r2, #31	@ tmp821,
 	mov	r1, r10	@ unit, unit
 	strb	r2, [r1, r3]	@ tmp821, unit_375(D)->ranks[7]
-.L2472:
+.L2471:
 @ Patches/../C_code.c:3060: 		if (!ShouldRandomizeClass(unit)) { 
 	mov	r0, r10	@, unit
 	bl	ShouldRandomizeClass		@
 @ Patches/../C_code.c:3060: 		if (!ShouldRandomizeClass(unit)) { 
 	cmp	r0, #0	@ tmp1252,
-	beq	.LCB15838	@
-	b	.L2475	@long jump	@
-.LCB15838:
+	beq	.LCB15830	@
+	b	.L2474	@long jump	@
+.LCB15830:
 @ Patches/../C_code.c:3061: 			if (character->baseRanks[i]) { // original
 	ldrb	r3, [r4, #27]	@ _895, MEM[(unsigned char *)_523 + 7B]
 @ Patches/../C_code.c:3061: 			if (character->baseRanks[i]) { // original
 	cmp	r3, #0	@ _895,
-	bne	.LCB15842	@
-	b	.L2475	@long jump	@
-.LCB15842:
+	bne	.LCB15834	@
+	b	.L2474	@long jump	@
+.LCB15834:
 @ Patches/../C_code.c:3062: 				unit->ranks[i] = character->baseRanks[i]; } 
 	strb	r3, [r6]	@ _895, MEM[(unsigned char *)_849]
-	b	.L2475		@
-.L2500:
+	b	.L2474		@
+.L2499:
 @ Patches/../C_code.c:3130:         unit->exp = UNIT_EXP_DISABLED;
 	movs	r3, #255	@ tmp1017,
 	mov	r2, r10	@ unit, unit
 	strb	r3, [r2, #9]	@ tmp1017, unit_375(D)->exp
 @ Patches/../C_code.c:3133: 	if (UNIT_FACTION(unit) != FACTION_RED) { 
 	cmp	r7, #128	@ _152,
-	beq	.LCB15852	@
-	b	.L2502	@long jump	@
-.LCB15852:
-.L2503:
+	beq	.LCB15844	@
+	b	.L2501	@long jump	@
+.LCB15844:
+.L2502:
 @ Patches/../C_code.c:3139: 		int bonusLevels = RandValues->bonus; 
-	ldr	r3, .L2655+8	@ tmp1030,
+	ldr	r3, .L2654+8	@ tmp1030,
 	ldr	r3, [r3]	@ RandValues, RandValues
 	ldrb	r2, [r3, #3]	@ *RandValues.202_236, *RandValues.202_236
 	lsls	r2, r2, #26	@ tmp1035, *RandValues.202_236,
@@ -19129,18 +19120,18 @@ UnitInitFromDefinition:
 	lsrs	r2, r2, #27	@ bonusLevels, tmp1035,
 @ Patches/../C_code.c:3140: 		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
 	cmp	r2, #20	@ bonusLevels,
-	bgt	.LCB15862	@
-	b	.L2507	@long jump	@
-.LCB15862:
-.L2631:
+	bgt	.LCB15854	@
+	b	.L2506	@long jump	@
+.LCB15854:
+.L2630:
 @ Patches/../C_code.c:3140: 		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
 	subs	r2, r2, #31	@ bonusLevels,
 @ Patches/../C_code.c:3141: 		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
 	cmp	r2, #0	@ bonusLevels,
-	bne	.LCB15866	@
-	b	.L2506	@long jump	@
-.LCB15866:
-.L2641:
+	bne	.LCB15858	@
+	b	.L2505	@long jump	@
+.LCB15858:
+.L2640:
 @ Patches/../C_code.c:3141: 		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
 	mov	r3, r10	@ unit, unit
 	ldr	r3, [r3, #4]	@ unit_375(D)->pClassData, unit_375(D)->pClassData
@@ -19148,29 +19139,29 @@ UnitInitFromDefinition:
 	mov	r0, r10	@, unit
 	ldrb	r1, [r3, #4]	@ tmp1038,
 	bl	UnitAutolevelCore		@
-	b	.L2506		@
-.L2546:
+	b	.L2505		@
+.L2545:
 @ Patches/../C_code.c:3184: 	int orgMag = 0; 
 	movs	r3, #0	@ orgMag,
 @ Patches/../C_code.c:3181: 	int countOfStats = 6; 
 	movs	r1, #6	@ countOfStats,
 @ Patches/../C_code.c:3184: 	int orgMag = 0; 
 	str	r3, [sp, #20]	@ orgMag, %sfp
-	b	.L2528		@
-.L2639:
+	b	.L2527		@
+.L2638:
 @ Patches/../C_code.c:3086: 	if (gCh > 0xD) { if (max150percent == 2) { max150percent = 0; } } // Lyn mode + first ch of eliwood/hector mode: nerf enemies a little 
 	movs	r5, #0	@ max150percent,
 	cmp	r2, #13	@ pretmp_888,
-	bls	.LCB15886	@
-	b	.L2487	@long jump	@
-.LCB15886:
+	bls	.LCB15878	@
+	b	.L2486	@long jump	@
+.LCB15878:
 @ Patches/../C_code.c:3083: 	if (UNIT_FACTION(unit) != FACTION_BLUE) { max150percent = 2; } 
 	movs	r5, r7	@ tmp878, _152
 	subs	r3, r5, #1	@ tmp879, tmp878
 	sbcs	r5, r5, r3	@ tmp878, tmp878, tmp879
 	lsls	r5, r5, #1	@ max150percent, tmp878,
-	b	.L2487		@
-.L2638:
+	b	.L2486		@
+.L2637:
 @ Patches/../C_code.c:3072: 	if (i == 1) { AppendAvailableStaffList(list, unit); } // first item will always be a weapon if possible 
 	mov	r1, r10	@, unit
 	movs	r0, r5	@, tmp1173
@@ -19179,35 +19170,35 @@ UnitInitFromDefinition:
 	ldrb	r1, [r7, #1]	@ _639, MEM[(unsigned char *)_690 + 1B]
 @ Patches/../C_code.c:1966: 	if (!item) { return item; } 
 	cmp	r1, #0	@ _639,
-	beq	.LCB15899	@
-	b	.L2480	@long jump	@
-.LCB15899:
+	beq	.LCB15891	@
+	b	.L2479	@long jump	@
+.LCB15891:
 @ Patches/../C_code.c:3073: 	UnitAddItem(unit, RandNewWeapon(unit, uDef->items[i], noise, i, list)); }
 	movs	r1, #0	@,
 	mov	r0, r10	@, unit
-	ldr	r3, .L2655+12	@ tmp1164,
+	ldr	r3, .L2654+12	@ tmp1164,
 	bl	.L14		@
 @ Patches/../C_code.c:3071: 	for (int i = 0; (i < UNIT_DEFINITION_ITEM_COUNT) && (uDef->items[i]); ++i) { 
 	movs	r6, #2	@ i,
-	b	.L2478		@
-.L2640:
+	b	.L2477		@
+.L2639:
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
 	ldrb	r2, [r6, #4]	@ tmp943,
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
-	ldr	r3, .L2655+16	@ tmp942,
+	ldr	r3, .L2654+16	@ tmp942,
 	lsls	r2, r2, #2	@ tmp944, tmp943,
 	ldrb	r6, [r2, r3]	@ _610, MagClassTable
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	mov	r3, r8	@ _153, _153
 	ldrh	r3, [r3, #6]	@ tmp945,
 	cmp	r3, #0	@ tmp945,
-	bne	.L2645		@,
-.L2494:
+	bne	.L2644		@,
+.L2493:
 @ Patches/../C_code.c:294: 	return GetReorderedCharacter(unit->pCharacterData)->number; 
 	mov	r2, r8	@ _153, _153
 	ldrb	r2, [r2, #4]	@ tmp949,
 @ Patches/../C_code.c:2340: 	return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base; 
-	ldr	r3, .L2655+20	@ tmp948,
+	ldr	r3, .L2654+20	@ tmp948,
 	lsls	r2, r2, #1	@ tmp950, tmp949,
 	ldrb	r1, [r2, r3]	@ tmp951, MagCharTable
 @ Patches/../C_code.c:3100: 	if (StrMagInstalled) { unit->_u3A = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent); } 
@@ -19231,21 +19222,21 @@ UnitInitFromDefinition:
 	lsls	r3, r3, #24	@ tmp955, tmp955,
 	asrs	r3, r3, #24	@ tmp955, tmp955,
 	ands	r7, r3	@ _152, tmp955
-	b	.L2493		@
-.L2643:
+	b	.L2492		@
+.L2642:
 	add	r4, sp, #96	@ tmp1529,,
 @ Patches/../C_code.c:3154: 	if (RandBitflags->foundItems) { 
 	movs	r3, r4	@ tmp1530, tmp1529
-.L2518:
+.L2517:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_625], MEM[(int *)_625]
 	cmp	r2, #0	@ MEM[(int *)_625],
-	beq	.L2646		@,
+	beq	.L2645		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.1578,
 	cmp	fp, r3	@ tmp1169, ivtmp.1578
-	bne	.L2518		@,
-.L2517:
+	bne	.L2517		@,
+.L2516:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	movs	r3, #8	@,
 	movs	r1, #100	@,
@@ -19253,23 +19244,23 @@ UnitInitFromDefinition:
 	add	r2, sp, #96	@ tmp1532,,
 	bl	HashByte_Global		@
 @ Patches/../C_code.c:3155: 		if (HashByte_Ch(1, 100, noise, 8) < BonusItemChance) { UnitHasBonusItem = true; 
-	ldr	r3, .L2655+24	@ tmp1073,
+	ldr	r3, .L2654+24	@ tmp1073,
 @ Patches/../C_code.c:3155: 		if (HashByte_Ch(1, 100, noise, 8) < BonusItemChance) { UnitHasBonusItem = true; 
 	ldr	r3, [r3]	@ BonusItemChance, BonusItemChance
 	cmp	r0, r3	@ tmp1240, BonusItemChance
-	blt	.LCB15962	@
-	b	.L2515	@long jump	@
-.LCB15962:
-.L2522:
+	blt	.LCB15954	@
+	b	.L2514	@long jump	@
+.LCB15954:
+.L2521:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r3, [r4]	@ MEM[(int *)_635], MEM[(int *)_635]
 	cmp	r3, #0	@ MEM[(int *)_635],
-	beq	.L2647		@,
+	beq	.L2646		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r4, r4, #4	@ ivtmp.1571,
 	cmp	fp, r4	@ tmp1169, ivtmp.1571
-	bne	.L2522		@,
-.L2521:
+	bne	.L2521		@,
+.L2520:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	movs	r3, #7	@,
 	movs	r1, #100	@,
@@ -19285,64 +19276,64 @@ UnitInitFromDefinition:
 	ands	r4, r3	@ noWeapons, tmp1081
 @ Patches/../C_code.c:3156: 			if (HashByte_Ch(2, 100, noise, 7) < 50) { 
 	cmp	r0, #49	@ tmp1241,
-	bls	.L2523		@,
+	bls	.L2522		@,
 @ Patches/../C_code.c:3163: 	if (UNIT_FACTION(unit) == FACTION_BLUE) { c = 3; } 
 	cmp	r4, #0	@ noWeapons,
-	bne	.L2648		@,
+	bne	.L2647		@,
 @ Patches/../C_code.c:3152: 	int noWeapons = true; 
 	movs	r4, #1	@ noWeapons,
 @ Patches/../C_code.c:3163: 	if (UNIT_FACTION(unit) == FACTION_BLUE) { c = 3; } 
 	movs	r0, #3	@ c,
-	b	.L2524		@
-.L2488:
+	b	.L2523		@
+.L2487:
 @ Patches/../C_code.c:3093: 	else { if (unit->maxHP < 10) { unit->maxHP += 10; } }
 	cmp	r3, #9	@ _166,
-	ble	.LCB15994	@
-	b	.L2491	@long jump	@
-.LCB15994:
+	ble	.LCB15986	@
+	b	.L2490	@long jump	@
+.LCB15986:
 @ Patches/../C_code.c:3093: 	else { if (unit->maxHP < 10) { unit->maxHP += 10; } }
 	mov	r3, r10	@ unit, unit
 	adds	r0, r0, #10	@ tmp910,
 	strb	r0, [r3, #18]	@ tmp910, unit_375(D)->maxHP
-	b	.L2491		@
-.L2645:
+	b	.L2490		@
+.L2644:
 	mov	r3, r8	@ _153, _153
 	ldrb	r0, [r3, #4]	@ MEM[(unsigned char *)_153 + 4B], MEM[(unsigned char *)_153 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 	mov	r8, r0	@ _153, tmp1236
-	b	.L2494		@
-.L2635:
+	b	.L2493		@
+.L2634:
 	ldrb	r0, [r4, #4]	@ MEM[(unsigned char *)_579 + 4B], MEM[(unsigned char *)_579 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 	movs	r4, r0	@ character, tmp1215
-	b	.L2453		@
-.L2501:
+	b	.L2452		@
+.L2500:
 @ Patches/../C_code.c:3130:         unit->exp = UNIT_EXP_DISABLED;
 	movs	r3, #255	@ tmp1013,
 	mov	r2, r10	@ unit, unit
 	strb	r3, [r2, #9]	@ tmp1013, unit_375(D)->exp
-	b	.L2502		@
-.L2642:
+	b	.L2501		@
+.L2641:
 @ Patches/../C_code.c:3147: 		if (bonusLevels) { UnitAutolevelCore_Char(unit, unit->pClassData->number, bonusLevels); } 
 	mov	r0, r10	@, unit
 	ldrb	r1, [r1, #4]	@ tmp1055,
 	bl	UnitAutolevelCore_Char		@
-	b	.L2509		@
-.L2498:
+	b	.L2508		@
+.L2497:
 @ Patches/../C_code.c:3130:         unit->exp = UNIT_EXP_DISABLED;
 	movs	r3, #255	@ tmp1015,
 	strb	r3, [r2, #9]	@ tmp1015, unit_375(D)->exp
-	b	.L2503		@
-.L2646:
+	b	.L2502		@
+.L2645:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [sp, #36]	@ tmp1172, %sfp
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r2, [r3]	@ gCh, *_625
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L2517		@
-.L2656:
-	.align	2
+	b	.L2516		@
 .L2655:
+	.align	2
+.L2654:
 	.word	__aeabi_idiv
 	.word	gCh
 	.word	RandValues
@@ -19350,20 +19341,20 @@ UnitInitFromDefinition:
 	.word	MagClassTable
 	.word	MagCharTable
 	.word	BonusItemChance
-.L2523:
+.L2522:
 @ Patches/../C_code.c:3157: 				noWeapons = false; if (UNIT_FACTION(unit) == FACTION_RED) { unit->state |= US_DROP_ITEM; } 
 	cmp	r4, #128	@ noWeapons,
-	beq	.L2525		@,
+	beq	.L2524		@,
 @ Patches/../C_code.c:3163: 	if (UNIT_FACTION(unit) == FACTION_BLUE) { c = 3; } 
 	movs	r0, #3	@ c,
 @ Patches/../C_code.c:3163: 	if (UNIT_FACTION(unit) == FACTION_BLUE) { c = 3; } 
 	cmp	r4, #0	@ noWeapons,
-	beq	.L2524		@,
+	beq	.L2523		@,
 @ Patches/../C_code.c:3157: 				noWeapons = false; if (UNIT_FACTION(unit) == FACTION_RED) { unit->state |= US_DROP_ITEM; } 
 	movs	r4, #0	@ noWeapons,
 @ Patches/../C_code.c:3162: 	c = 2; 
 	subs	r0, r0, #1	@ c,
-.L2524:
+.L2523:
 	mov	r3, r10	@ ivtmp.1563, unit
 @ Patches/../C_code.c:3166: 		if (unit->items[i]) { continue; } 
 	ldrh	r1, [r3, #30]	@ MEM[(short unsigned int *)_605], MEM[(short unsigned int *)_605]
@@ -19372,21 +19363,21 @@ UnitInitFromDefinition:
 	movs	r2, #0	@ i,
 @ Patches/../C_code.c:3166: 		if (unit->items[i]) { continue; } 
 	cmp	r1, #0	@ MEM[(short unsigned int *)_605],
-	beq	.L2526		@,
-.L2649:
+	beq	.L2525		@,
+.L2648:
 @ Patches/../C_code.c:3165: 		for (int i = 0; i < c; ++i) { 
 	adds	r2, r2, #1	@ i,
 @ Patches/../C_code.c:3165: 		for (int i = 0; i < c; ++i) { 
 	adds	r3, r3, #2	@ ivtmp.1563,
 	cmp	r0, r2	@ c, i
-	bne	.LCB16075	@
-	b	.L2515	@long jump	@
-.LCB16075:
+	bne	.LCB16067	@
+	b	.L2514	@long jump	@
+.LCB16067:
 @ Patches/../C_code.c:3166: 		if (unit->items[i]) { continue; } 
 	ldrh	r1, [r3]	@ MEM[(short unsigned int *)_605], MEM[(short unsigned int *)_605]
 	cmp	r1, #0	@ MEM[(short unsigned int *)_605],
-	bne	.L2649		@,
-.L2526:
+	bne	.L2648		@,
+.L2525:
 	movs	r3, #1	@ tmp1090,
 	add	r1, sp, #96	@ tmp1539,,
 	str	r3, [sp]	@ tmp1090,
@@ -19395,19 +19386,19 @@ UnitInitFromDefinition:
 	movs	r0, #4	@,
 	bl	RandNewItem.part.0		@
 @ Patches/../C_code.c:3167: 		UnitAddItem(unit, RandNewItem(4, noise, i, false, true, noWeapons)); break; 
-	ldr	r3, .L2657	@ tmp1091,
+	ldr	r3, .L2656	@ tmp1091,
 	movs	r1, r0	@ _564, tmp1242
 	mov	r0, r10	@, unit
 	bl	.L14		@
 @ Patches/../C_code.c:3167: 		UnitAddItem(unit, RandNewItem(4, noise, i, false, true, noWeapons)); break; 
-	b	.L2515		@
-.L2648:
+	b	.L2514		@
+.L2647:
 @ Patches/../C_code.c:3152: 	int noWeapons = true; 
 	movs	r4, #1	@ noWeapons,
 @ Patches/../C_code.c:3162: 	c = 2; 
 	movs	r0, #2	@ c,
-	b	.L2524		@
-.L2525:
+	b	.L2523		@
+.L2524:
 @ Patches/../C_code.c:3157: 				noWeapons = false; if (UNIT_FACTION(unit) == FACTION_RED) { unit->state |= US_DROP_ITEM; } 
 	mov	r3, r10	@ unit, unit
 	ldr	r2, [r3, #12]	@ unit_375(D)->state, unit_375(D)->state
@@ -19421,25 +19412,25 @@ UnitInitFromDefinition:
 	movs	r0, #2	@ c,
 @ Patches/../C_code.c:3157: 				noWeapons = false; if (UNIT_FACTION(unit) == FACTION_RED) { unit->state |= US_DROP_ITEM; } 
 	str	r3, [r2, #12]	@ tmp1085, unit_375(D)->state
-	b	.L2524		@
-.L2647:
+	b	.L2523		@
+.L2646:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r3, [sp, #36]	@ tmp1172, %sfp
 	ldrb	r3, [r3]	@ gCh, gCh
 	str	r3, [r4]	@ gCh, *_635
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L2521		@
-.L2636:
+	b	.L2520		@
+.L2635:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [sp, #36]	@ tmp1172, %sfp
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r7, [sp, #12]	@ tmp1171, %sfp
 	str	r2, [r3]	@ gCh, *_587
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	bl	.L2458	@ far jump	@
-.L2658:
-	.align	2
+	bl	.L2457	@ far jump	@
 .L2657:
+	.align	2
+.L2656:
 	.word	UnitAddItem
 	.size	UnitInitFromDefinition, .-UnitInitFromDefinition
 	.align	1
@@ -19455,7 +19446,7 @@ CheckBattleUnitStatCaps:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
 @ Patches/../C_code.c:3753: 	int max = CallGetMaxHP(unit); 
-	ldr	r3, .L2671	@ tmp196,
+	ldr	r3, .L2670	@ tmp196,
 @ Patches/../C_code.c:3752: void CheckBattleUnitStatCaps(struct Unit* unit, struct BattleUnit* bu) {
 	movs	r5, r1	@ bu, tmp272
 	movs	r4, r0	@ unit, tmp271
@@ -19473,12 +19464,12 @@ CheckBattleUnitStatCaps:
 	adds	r3, r3, r1	@ tmp199, tmp198, _1
 @ Patches/../C_code.c:3754:     if ((unit->maxHP + bu->changeHP) > max) { 
 	cmp	r3, r0	@ tmp199, max
-	ble	.L2660		@,
+	ble	.L2659		@,
 @ Patches/../C_code.c:3755: 	bu->changeHP = max - unit->maxHP; } 
 	subs	r0, r0, r1	@ tmp202, max, _1
 @ Patches/../C_code.c:3755: 	bu->changeHP = max - unit->maxHP; } 
 	strb	r0, [r5, r2]	@ tmp202, bu_85(D)->changeHP
-.L2660:
+.L2659:
 @ Patches/../C_code.c:3757: 	max = GetUnitMaxPow(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxPow		@
@@ -19494,12 +19485,12 @@ CheckBattleUnitStatCaps:
 	adds	r3, r3, r1	@ tmp207, tmp206, _10
 @ Patches/../C_code.c:3758:     if ((unit->pow + bu->changePow) > max ) { 
 	cmp	r3, r0	@ tmp207, max
-	ble	.L2661		@,
+	ble	.L2660		@,
 @ Patches/../C_code.c:3759: 	bu->changePow = max - unit->pow; } 
 	subs	r0, r0, r1	@ tmp210, max, _10
 @ Patches/../C_code.c:3759: 	bu->changePow = max - unit->pow; } 
 	strb	r0, [r5, r2]	@ tmp210, bu_85(D)->changePow
-.L2661:
+.L2660:
 @ Patches/../C_code.c:3761: 	max = GetUnitMaxSkl(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxSkl		@
@@ -19515,12 +19506,12 @@ CheckBattleUnitStatCaps:
 	adds	r3, r3, r1	@ tmp215, tmp214, _19
 @ Patches/../C_code.c:3762:     if ((unit->skl + bu->changeSkl) > max) { 
 	cmp	r3, r0	@ tmp215, max
-	ble	.L2662		@,
+	ble	.L2661		@,
 @ Patches/../C_code.c:3763: 	bu->changeSkl = max - unit->skl; }
 	subs	r0, r0, r1	@ tmp218, max, _19
 @ Patches/../C_code.c:3763: 	bu->changeSkl = max - unit->skl; }
 	strb	r0, [r5, r2]	@ tmp218, bu_85(D)->changeSkl
-.L2662:
+.L2661:
 @ Patches/../C_code.c:3765: 	max = GetUnitMaxSpd(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxSpd		@
@@ -19536,12 +19527,12 @@ CheckBattleUnitStatCaps:
 	adds	r3, r3, r1	@ tmp223, tmp222, _28
 @ Patches/../C_code.c:3766:     if ((unit->spd + bu->changeSpd) > max) { 
 	cmp	r3, r0	@ tmp223, max
-	ble	.L2663		@,
+	ble	.L2662		@,
 @ Patches/../C_code.c:3767: 	bu->changeSpd = max - unit->spd; }
 	subs	r0, r0, r1	@ tmp226, max, _28
 @ Patches/../C_code.c:3767: 	bu->changeSpd = max - unit->spd; }
 	strb	r0, [r5, r2]	@ tmp226, bu_85(D)->changeSpd
-.L2663:
+.L2662:
 @ Patches/../C_code.c:3769: 	max = GetUnitMaxDef(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxDef		@
@@ -19557,12 +19548,12 @@ CheckBattleUnitStatCaps:
 	adds	r3, r3, r1	@ tmp231, tmp230, _37
 @ Patches/../C_code.c:3770:     if ((unit->def + bu->changeDef) > max) { 
 	cmp	r3, r0	@ tmp231, max
-	ble	.L2664		@,
+	ble	.L2663		@,
 @ Patches/../C_code.c:3771: 	bu->changeDef = max - unit->def; } 
 	subs	r0, r0, r1	@ tmp234, max, _37
 @ Patches/../C_code.c:3771: 	bu->changeDef = max - unit->def; } 
 	strb	r0, [r5, r2]	@ tmp234, bu_85(D)->changeDef
-.L2664:
+.L2663:
 @ Patches/../C_code.c:3773: 	max = GetUnitMaxRes(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxRes		@
@@ -19578,12 +19569,12 @@ CheckBattleUnitStatCaps:
 	adds	r3, r3, r1	@ tmp239, tmp238, _46
 @ Patches/../C_code.c:3774:     if ((unit->res + bu->changeRes) > max) { 
 	cmp	r3, r0	@ tmp239, max
-	ble	.L2665		@,
+	ble	.L2664		@,
 @ Patches/../C_code.c:3775: 	bu->changeRes = max - unit->res; } 
 	subs	r0, r0, r1	@ tmp242, max, _46
 @ Patches/../C_code.c:3775: 	bu->changeRes = max - unit->res; } 
 	strb	r0, [r5, r2]	@ tmp242, bu_85(D)->changeRes
-.L2665:
+.L2664:
 @ Patches/../C_code.c:3777: 	max = GetUnitMaxLck(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxLck		@
@@ -19599,25 +19590,25 @@ CheckBattleUnitStatCaps:
 	adds	r3, r3, r1	@ tmp247, tmp246, _55
 @ Patches/../C_code.c:3778:     if ((unit->lck + bu->changeLck) > max) { 
 	cmp	r3, r0	@ tmp247, max
-	ble	.L2666		@,
+	ble	.L2665		@,
 @ Patches/../C_code.c:3779: 	bu->changeLck = max - unit->lck; } 
 	subs	r0, r0, r1	@ tmp250, max, _55
 @ Patches/../C_code.c:3779: 	bu->changeLck = max - unit->lck; } 
 	strb	r0, [r5, r2]	@ tmp250, bu_85(D)->changeLck
-.L2666:
+.L2665:
 @ Patches/../C_code.c:3781: 	if (StrMagInstalled) { max = GetUnitMaxMag(unit);
-	ldr	r3, .L2671+4	@ tmp253,
+	ldr	r3, .L2670+4	@ tmp253,
 @ Patches/../C_code.c:3781: 	if (StrMagInstalled) { max = GetUnitMaxMag(unit);
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	bne	.L2670		@,
-.L2659:
+	bne	.L2669		@,
+.L2658:
 @ Patches/../C_code.c:3785: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L2670:
+.L2669:
 @ Patches/../C_code.c:3781: 	if (StrMagInstalled) { max = GetUnitMaxMag(unit);
 	movs	r0, r4	@, unit
 	bl	GetUnitMaxMag		@
@@ -19633,16 +19624,16 @@ CheckBattleUnitStatCaps:
 	adds	r3, r3, r1	@ tmp258, tmp257, _65
 @ Patches/../C_code.c:3782: 		if ((unit->_u3A + bu->changeCon) > max) { 
 	cmp	r3, r0	@ tmp258, max
-	ble	.L2659		@,
+	ble	.L2658		@,
 @ Patches/../C_code.c:3783: 		bu->changeCon = max - unit->_u3A; } 
 	subs	r0, r0, r1	@ tmp260, max, _65
 @ Patches/../C_code.c:3783: 		bu->changeCon = max - unit->_u3A; } 
 	strb	r0, [r5, r2]	@ tmp260, bu_85(D)->changeCon
 @ Patches/../C_code.c:3785: }
-	b	.L2659		@
-.L2672:
-	.align	2
+	b	.L2658		@
 .L2671:
+	.align	2
+.L2670:
 	.word	CallGetMaxHP
 	.word	StrMagInstalled
 	.size	CheckBattleUnitStatCaps, .-CheckBattleUnitStatCaps
@@ -19664,7 +19655,7 @@ CheckBattleUnitLevelUp:
 	mov	r5, r8	@,
 	push	{r5, r6, r7, lr}	@
 @ Patches/../C_code.c:3548:     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
-	ldr	r3, .L2796	@ tmp271,
+	ldr	r3, .L2795	@ tmp271,
 @ Patches/../C_code.c:3547: void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
 	sub	sp, sp, #92	@,,
 @ Patches/../C_code.c:3547: void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
@@ -19673,18 +19664,18 @@ CheckBattleUnitLevelUp:
 	bl	.L14		@
 @ Patches/../C_code.c:3548:     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
 	cmp	r0, #0	@ tmp472,
-	bne	.LCB16282	@
-	b	.L2673	@long jump	@
-.LCB16282:
+	bne	.LCB16274	@
+	b	.L2672	@long jump	@
+.LCB16274:
 @ Patches/../C_code.c:3548:     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
 	ldrb	r5, [r4, #9]	@ _2,
 @ Patches/../C_code.c:3548:     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
 	cmp	r5, #99	@ _2,
-	bhi	.LCB16285	@
-	b	.L2673	@long jump	@
-.LCB16285:
+	bhi	.LCB16277	@
+	b	.L2672	@long jump	@
+.LCB16277:
 @ Patches/../C_code.c:3550: 		int noise[4] = {0, 0, 0, 0}; 
-	ldr	r3, .L2796+4	@ tmp279,
+	ldr	r3, .L2795+4	@ tmp279,
 	movs	r2, #12	@,
 	movs	r1, #0	@,
 	add	r0, sp, #76	@,,
@@ -19704,10 +19695,10 @@ CheckBattleUnitLevelUp:
 	ldr	r3, [r3, #40]	@ _8->attributes, _8->attributes
 @ Patches/../C_code.c:3552: 		int level = bu->unit.level + (((bu->unit.pClassData->attributes & CA_PROMOTED) != 0)*20);
 	lsls	r3, r3, #23	@ tmp508, _8->attributes,
-	bpl	.L2675		@,
+	bpl	.L2674		@,
 @ Patches/../C_code.c:3552: 		int level = bu->unit.level + (((bu->unit.pClassData->attributes & CA_PROMOTED) != 0)*20);
 	adds	r7, r7, #20	@ _7,
-.L2675:
+.L2674:
 @ Patches/../C_code.c:3553: 		int useRN = !(IsAnythingRandomized());
 	bl	IsAnythingRandomized		@
 @ Patches/../C_code.c:3553: 		int useRN = !(IsAnythingRandomized());
@@ -19733,13 +19724,13 @@ CheckBattleUnitLevelUp:
 	strb	r3, [r4, #8]	@ _16, bu_159(D)->unit.level
 @ Patches/../C_code.c:3557: 		if (bu->unit.level == 20) {
 	cmp	r3, #20	@ _16,
-	bne	.LCB16320	@
-	b	.L2792	@long jump	@
-.LCB16320:
-.L2676:
+	bne	.LCB16312	@
+	b	.L2791	@long jump	@
+.LCB16312:
+.L2675:
 @ Patches/../C_code.c:3563: 		struct Unit* unit = GetUnit(bu->unit.index); 
 	movs	r0, #11	@ tmp307,
-	ldr	r3, .L2796+8	@ tmp308,
+	ldr	r3, .L2795+8	@ tmp308,
 	ldrsb	r0, [r4, r0]	@ tmp307,
 	bl	.L14		@
 @ Patches/../C_code.c:3564: 		int hpGrowth = GetUnitHPGrowth(unit, true);
@@ -19798,7 +19789,7 @@ CheckBattleUnitLevelUp:
 	movs	r0, r5	@, unit
 	bl	GetUnitMagGrowth		@
 @ Patches/../C_code.c:3575: 		int maxHP = CallGetMaxHP(unit); 
-	ldr	r3, .L2796+12	@ tmp309,
+	ldr	r3, .L2795+12	@ tmp309,
 @ Patches/../C_code.c:3571: 		int magGrowth = GetUnitMagGrowth(unit, true); 
 	str	r0, [sp, #60]	@ tmp482, %sfp
 @ Patches/../C_code.c:3575: 		int maxHP = CallGetMaxHP(unit); 
@@ -19849,10 +19840,10 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _24, tmp311,
 	strb	r0, [r4, r3]	@ _24, bu_159(D)->changeHP
 @ Patches/../C_code.c:3586: 		if (bu->changeHP && ((unit->maxHP + bu->changeHP) <= maxHP))
-	beq	.LCB16397	@
-	b	.L2793	@long jump	@
-.LCB16397:
-.L2677:
+	beq	.LCB16389	@
+	b	.L2792	@long jump	@
+.LCB16389:
+.L2676:
 @ Patches/../C_code.c:3587:         statGainTotal += bu->changeHP; else bu->changeHP = 0; 
 	movs	r3, #115	@ tmp316,
 	movs	r2, #0	@ tmp317,
@@ -19860,7 +19851,7 @@ CheckBattleUnitLevelUp:
 @ Patches/../C_code.c:3562:         statGainTotal = 0;
 	movs	r3, #0	@ statGainTotal,
 	mov	r8, r3	@ statGainTotal, statGainTotal
-.L2678:
+.L2677:
 @ Patches/../C_code.c:3589:         bu->changePow = NewGetStatIncrease(powGrowth, noise, level, 2, useRN); 
 	movs	r3, #2	@,
 	movs	r2, r7	@, _7
@@ -19874,9 +19865,9 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _30, tmp320,
 	strb	r0, [r4, r3]	@ _30, bu_159(D)->changePow
 @ Patches/../C_code.c:3590: 		if (bu->changePow && ((unit->pow + bu->changePow) <= maxPow))
-	bne	.LCB16418	@
-	b	.L2679	@long jump	@
-.LCB16418:
+	bne	.LCB16410	@
+	b	.L2678	@long jump	@
+.LCB16410:
 @ Patches/../C_code.c:3590: 		if (bu->changePow && ((unit->pow + bu->changePow) <= maxPow))
 	movs	r3, #20	@ tmp323,
 	ldrsb	r3, [r5, r3]	@ tmp323,
@@ -19886,12 +19877,12 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp324, tmp323, _30
 @ Patches/../C_code.c:3590: 		if (bu->changePow && ((unit->pow + bu->changePow) <= maxPow))
 	cmp	r3, r2	@ tmp324, maxPow
-	ble	.LCB16424	@
-	b	.L2679	@long jump	@
-.LCB16424:
+	ble	.LCB16416	@
+	b	.L2678	@long jump	@
+.LCB16416:
 @ Patches/../C_code.c:3591:         statGainTotal += bu->changePow; else bu->changePow = 0; 
 	add	r8, r8, r0	@ statGainTotal, _30
-.L2680:
+.L2679:
 @ Patches/../C_code.c:3593:         bu->changeSkl = NewGetStatIncrease(sklGrowth, noise, level, 3, useRN); 
 	movs	r3, #3	@,
 	movs	r2, r7	@, _7
@@ -19905,9 +19896,9 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _36, tmp329,
 	strb	r0, [r4, r3]	@ _36, bu_159(D)->changeSkl
 @ Patches/../C_code.c:3594: 		if (bu->changeSkl && ((unit->skl + bu->changeSkl) <= maxSkl))
-	bne	.LCB16440	@
-	b	.L2681	@long jump	@
-.LCB16440:
+	bne	.LCB16432	@
+	b	.L2680	@long jump	@
+.LCB16432:
 @ Patches/../C_code.c:3594: 		if (bu->changeSkl && ((unit->skl + bu->changeSkl) <= maxSkl))
 	movs	r3, #21	@ tmp332,
 	ldrsb	r3, [r5, r3]	@ tmp332,
@@ -19917,12 +19908,12 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp333, tmp332, _36
 @ Patches/../C_code.c:3594: 		if (bu->changeSkl && ((unit->skl + bu->changeSkl) <= maxSkl))
 	cmp	r3, r2	@ tmp333, maxSkl
-	ble	.LCB16446	@
-	b	.L2681	@long jump	@
-.LCB16446:
+	ble	.LCB16438	@
+	b	.L2680	@long jump	@
+.LCB16438:
 @ Patches/../C_code.c:3595:         statGainTotal += bu->changeSkl; else bu->changeSkl = 0; 
 	add	r8, r8, r0	@ statGainTotal, _36
-.L2682:
+.L2681:
 @ Patches/../C_code.c:3597:         bu->changeSpd = NewGetStatIncrease(spdGrowth, noise, level, 4, useRN); 
 	movs	r3, #4	@,
 	movs	r2, r7	@, _7
@@ -19936,9 +19927,9 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _42, tmp338,
 	strb	r0, [r4, r3]	@ _42, bu_159(D)->changeSpd
 @ Patches/../C_code.c:3598: 		if (bu->changeSpd && ((unit->spd + bu->changeSpd) <= maxSpd))
-	bne	.LCB16462	@
-	b	.L2683	@long jump	@
-.LCB16462:
+	bne	.LCB16454	@
+	b	.L2682	@long jump	@
+.LCB16454:
 @ Patches/../C_code.c:3598: 		if (bu->changeSpd && ((unit->spd + bu->changeSpd) <= maxSpd))
 	movs	r3, #22	@ tmp341,
 	ldrsb	r3, [r5, r3]	@ tmp341,
@@ -19948,12 +19939,12 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp342, tmp341, _42
 @ Patches/../C_code.c:3598: 		if (bu->changeSpd && ((unit->spd + bu->changeSpd) <= maxSpd))
 	cmp	r3, r2	@ tmp342, maxSpd
-	ble	.LCB16468	@
-	b	.L2683	@long jump	@
-.LCB16468:
+	ble	.LCB16460	@
+	b	.L2682	@long jump	@
+.LCB16460:
 @ Patches/../C_code.c:3599:         statGainTotal += bu->changeSpd; else bu->changeSpd = 0; 
 	add	r8, r8, r0	@ statGainTotal, _42
-.L2684:
+.L2683:
 @ Patches/../C_code.c:3601:         bu->changeDef = NewGetStatIncrease(defGrowth, noise, level, 5, useRN); 
 	movs	r3, #5	@,
 	movs	r2, r7	@, _7
@@ -19967,7 +19958,7 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _48, tmp347,
 	strb	r0, [r4, r3]	@ _48, bu_159(D)->changeDef
 @ Patches/../C_code.c:3602: 		if (bu->changeDef && ((unit->def + bu->changeDef) <= maxDef))
-	beq	.L2685		@,
+	beq	.L2684		@,
 @ Patches/../C_code.c:3602: 		if (bu->changeDef && ((unit->def + bu->changeDef) <= maxDef))
 	movs	r3, #23	@ tmp350,
 	ldrsb	r3, [r5, r3]	@ tmp350,
@@ -19977,10 +19968,10 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp351, tmp350, _48
 @ Patches/../C_code.c:3602: 		if (bu->changeDef && ((unit->def + bu->changeDef) <= maxDef))
 	cmp	r3, r2	@ tmp351, maxDef
-	bgt	.L2685		@,
+	bgt	.L2684		@,
 @ Patches/../C_code.c:3603:         statGainTotal += bu->changeDef; else bu->changeDef = 0; 
 	add	r8, r8, r0	@ statGainTotal, _48
-.L2686:
+.L2685:
 @ Patches/../C_code.c:3605:         bu->changeRes = NewGetStatIncrease(resGrowth, noise, level, 6, useRN); 
 	movs	r3, #6	@,
 	movs	r2, r7	@, _7
@@ -19994,7 +19985,7 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _54, tmp356,
 	strb	r0, [r4, r3]	@ _54, bu_159(D)->changeRes
 @ Patches/../C_code.c:3606: 		if (bu->changeRes && ((unit->res + bu->changeRes) <= maxRes))
-	beq	.L2687		@,
+	beq	.L2686		@,
 @ Patches/../C_code.c:3606: 		if (bu->changeRes && ((unit->res + bu->changeRes) <= maxRes))
 	movs	r3, #24	@ tmp359,
 	ldrsb	r3, [r5, r3]	@ tmp359,
@@ -20004,10 +19995,10 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp360, tmp359, _54
 @ Patches/../C_code.c:3606: 		if (bu->changeRes && ((unit->res + bu->changeRes) <= maxRes))
 	cmp	r3, r2	@ tmp360, maxRes
-	bgt	.L2687		@,
+	bgt	.L2686		@,
 @ Patches/../C_code.c:3607:         statGainTotal += bu->changeRes; else bu->changeRes = 0; 
 	add	r8, r8, r0	@ statGainTotal, _54
-.L2688:
+.L2687:
 @ Patches/../C_code.c:3609:         bu->changeLck = NewGetStatIncrease(lckGrowth, noise, level, 7, useRN); 
 	movs	r3, #7	@,
 	movs	r2, r7	@, _7
@@ -20021,7 +20012,7 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _60, tmp365,
 	strb	r0, [r4, r3]	@ _60, bu_159(D)->changeLck
 @ Patches/../C_code.c:3610: 		if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
-	beq	.L2689		@,
+	beq	.L2688		@,
 @ Patches/../C_code.c:3610: 		if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
 	movs	r3, #25	@ tmp368,
 	ldrsb	r3, [r5, r3]	@ tmp368,
@@ -20031,30 +20022,30 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp369, tmp368, _60
 @ Patches/../C_code.c:3610: 		if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
 	cmp	r3, r2	@ tmp369, maxLck
-	bgt	.L2689		@,
+	bgt	.L2688		@,
 @ Patches/../C_code.c:3611:         statGainTotal += bu->changeLck; else bu->changeLck = 0; 
 	add	r8, r8, r0	@ statGainTotal, _60
-.L2690:
+.L2689:
 @ Patches/../C_code.c:3613: 		if (StrMagInstalled) { bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 8, useRN); } 
-	ldr	r3, .L2796+16	@ tmp467,
+	ldr	r3, .L2795+16	@ tmp467,
 	mov	r10, r3	@ tmp467, tmp467
 @ Patches/../C_code.c:3613: 		if (StrMagInstalled) { bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 8, useRN); } 
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.LCB16542	@
-	b	.L2794	@long jump	@
-.LCB16542:
-.L2691:
+	beq	.LCB16534	@
+	b	.L2793	@long jump	@
+.LCB16534:
+.L2690:
 @ Patches/../C_code.c:3616:         if (statGainTotal < MinimumStatUps) {
 	mov	r3, r8	@ statGainTotal, statGainTotal
 	cmp	r3, #1	@ statGainTotal,
-	ble	.L2705		@,
-.L2696:
+	ble	.L2704		@,
+.L2695:
 @ Patches/../C_code.c:3690:         CheckBattleUnitStatCaps(unit, bu);
 	movs	r1, r4	@, bu
 	movs	r0, r5	@, unit
 	bl	CheckBattleUnitStatCaps		@
-.L2673:
+.L2672:
 @ Patches/../C_code.c:3692: }
 	add	sp, sp, #92	@,,
 	@ sp needed	@
@@ -20066,7 +20057,7 @@ CheckBattleUnitLevelUp:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L2793:
+.L2792:
 @ Patches/../C_code.c:3586: 		if (bu->changeHP && ((unit->maxHP + bu->changeHP) <= maxHP))
 	movs	r3, #18	@ tmp314,
 @ Patches/../C_code.c:3586: 		if (bu->changeHP && ((unit->maxHP + bu->changeHP) <= maxHP))
@@ -20077,11 +20068,11 @@ CheckBattleUnitLevelUp:
 	add	r3, r3, r8	@ tmp315, statGainTotal
 @ Patches/../C_code.c:3586: 		if (bu->changeHP && ((unit->maxHP + bu->changeHP) <= maxHP))
 	cmp	r3, r9	@ tmp315, maxHP
-	bgt	.LCB16574	@
-	b	.L2678	@long jump	@
-.LCB16574:
-	b	.L2677		@
-.L2792:
+	bgt	.LCB16566	@
+	b	.L2677	@long jump	@
+.LCB16566:
+	b	.L2676		@
+.L2791:
 @ Patches/../C_code.c:3558:             bu->expGain -= bu->unit.exp;
 	movs	r2, #110	@ tmp299,
 @ Patches/../C_code.c:3558:             bu->expGain -= bu->unit.exp;
@@ -20091,58 +20082,58 @@ CheckBattleUnitLevelUp:
 @ Patches/../C_code.c:3559:             bu->unit.exp = UNIT_EXP_DISABLED;
 	movs	r3, #255	@ tmp305,
 	strb	r3, [r4, #9]	@ tmp305, bu_159(D)->unit.exp
-	b	.L2676		@
-.L2681:
+	b	.L2675		@
+.L2680:
 @ Patches/../C_code.c:3595:         statGainTotal += bu->changeSkl; else bu->changeSkl = 0; 
 	movs	r3, #117	@ tmp334,
 	movs	r2, #0	@ tmp335,
 	strb	r2, [r4, r3]	@ tmp335, bu_159(D)->changeSkl
-	b	.L2682		@
-.L2679:
+	b	.L2681		@
+.L2678:
 @ Patches/../C_code.c:3591:         statGainTotal += bu->changePow; else bu->changePow = 0; 
 	movs	r3, #116	@ tmp325,
 	movs	r2, #0	@ tmp326,
 	strb	r2, [r4, r3]	@ tmp326, bu_159(D)->changePow
-	b	.L2680		@
-.L2689:
+	b	.L2679		@
+.L2688:
 @ Patches/../C_code.c:3611:         statGainTotal += bu->changeLck; else bu->changeLck = 0; 
 	movs	r3, #121	@ tmp370,
 	movs	r2, #0	@ tmp371,
 	strb	r2, [r4, r3]	@ tmp371, bu_159(D)->changeLck
-	b	.L2690		@
-.L2687:
+	b	.L2689		@
+.L2686:
 @ Patches/../C_code.c:3607:         statGainTotal += bu->changeRes; else bu->changeRes = 0; 
 	movs	r3, #120	@ tmp361,
 	movs	r2, #0	@ tmp362,
 	strb	r2, [r4, r3]	@ tmp362, bu_159(D)->changeRes
-	b	.L2688		@
-.L2685:
+	b	.L2687		@
+.L2684:
 @ Patches/../C_code.c:3603:         statGainTotal += bu->changeDef; else bu->changeDef = 0; 
 	movs	r3, #119	@ tmp352,
 	movs	r2, #0	@ tmp353,
 	strb	r2, [r4, r3]	@ tmp353, bu_159(D)->changeDef
-	b	.L2686		@
-.L2683:
+	b	.L2685		@
+.L2682:
 @ Patches/../C_code.c:3599:         statGainTotal += bu->changeSpd; else bu->changeSpd = 0; 
 	movs	r3, #118	@ tmp343,
 	movs	r2, #0	@ tmp344,
 	strb	r2, [r4, r3]	@ tmp344, bu_159(D)->changeSpd
-	b	.L2684		@
-.L2797:
-	.align	2
+	b	.L2683		@
 .L2796:
+	.align	2
+.L2795:
 	.word	CanBattleUnitGainLevels
 	.word	memset
 	.word	GetUnit
 	.word	CallGetMaxHP
 	.word	StrMagInstalled
-.L2705:
+.L2704:
 	movs	r3, #15	@ ivtmp.1629,
 @ Patches/../C_code.c:3624: 				bu->changeRes = 0; 
 	mov	r9, r5	@ unit, unit
 	movs	r5, r6	@ tmp290, tmp290
 	movs	r6, r3	@ ivtmp.1629, ivtmp.1629
-.L2692:
+.L2691:
 @ Patches/../C_code.c:3619: 				bu->changeHP = 0; 
 	movs	r3, #0	@ tmp550,
 	movs	r2, #115	@ tmp548,
@@ -20157,12 +20148,12 @@ CheckBattleUnitLevelUp:
 	mov	r3, r10	@ tmp467, tmp467
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	beq	.L2693		@,
+	beq	.L2692		@,
 @ Patches/../C_code.c:3626: 				if (StrMagInstalled) { bu->changeCon = 0; } 
 	movs	r2, #0	@ tmp384,
 	movs	r3, #122	@ tmp387,
 	strb	r2, [r4, r3]	@ tmp384, bu_159(D)->changeCon
-.L2693:
+.L2692:
 @ Patches/../C_code.c:3629: 				bu->changeHP = NewGetStatIncrease(hpGrowth, noise, level, 8 + (i * 13), useRN); 
 	subs	r3, r6, #7	@ tmp390, ivtmp.1629,
 	movs	r2, r7	@, _7
@@ -20180,7 +20171,7 @@ CheckBattleUnitLevelUp:
 	mov	r8, r3	@ statGainTotal, statGainTotal
 @ Patches/../C_code.c:3631: 				if (bu->changeHP && ((unit->maxHP + bu->changeHP) <= maxHP))
 	cmp	r0, #0	@ _72,
-	beq	.L2694		@,
+	beq	.L2693		@,
 @ Patches/../C_code.c:3631: 				if (bu->changeHP && ((unit->maxHP + bu->changeHP) <= maxHP))
 	mov	r3, r9	@ unit, unit
 	ldrb	r3, [r3, #18]	@ tmp395,
@@ -20195,7 +20186,7 @@ CheckBattleUnitLevelUp:
 	cmp	r0, r3	@ maxHP, tmp396
 	adcs	r1, r1, r2	@ tmp399, tmp399, tmp400
 	mov	r8, r1	@ statGainTotal, tmp399
-.L2694:
+.L2693:
 @ Patches/../C_code.c:3636: 				bu->changePow = NewGetStatIncrease(powGrowth, noise, level, 9 + (i * 13), useRN); 
 	subs	r3, r6, #6	@ tmp401, ivtmp.1629,
 	movs	r2, r7	@, _7
@@ -20209,7 +20200,7 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _79, tmp403,
 	strb	r0, [r4, r3]	@ _79, bu_159(D)->changePow
 @ Patches/../C_code.c:3638: 				if (bu->changePow && ((unit->pow + bu->changePow) <= maxPow))
-	beq	.L2695		@,
+	beq	.L2694		@,
 @ Patches/../C_code.c:3638: 				if (bu->changePow && ((unit->pow + bu->changePow) <= maxPow))
 	mov	r3, r9	@ unit, unit
 	ldrb	r3, [r3, #20]	@ tmp406,
@@ -20221,17 +20212,17 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp407, tmp406, _79
 @ Patches/../C_code.c:3638: 				if (bu->changePow && ((unit->pow + bu->changePow) <= maxPow))
 	cmp	r3, r2	@ tmp407, maxPow
-	bgt	.L2695		@,
+	bgt	.L2694		@,
 @ Patches/../C_code.c:3640: 					if (statGainTotal >= MinimumStatUps) { 
 	mov	r3, r8	@ statGainTotal, statGainTotal
 	cmp	r3, #1	@ statGainTotal,
-	bne	.LCB16718	@
-	b	.L2791	@long jump	@
-.LCB16718:
+	bne	.LCB16710	@
+	b	.L2790	@long jump	@
+.LCB16710:
 @ Patches/../C_code.c:3639: 				{	statGainTotal++; 
 	movs	r3, #1	@ statGainTotal,
 	mov	r8, r3	@ statGainTotal, statGainTotal
-.L2695:
+.L2694:
 @ Patches/../C_code.c:3643: 				bu->changeSkl = NewGetStatIncrease(sklGrowth, noise, level, 10 + (i * 13), useRN); 
 	subs	r3, r6, #5	@ tmp408, ivtmp.1629,
 	movs	r2, r7	@, _7
@@ -20245,7 +20236,7 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _86, tmp410,
 	strb	r0, [r4, r3]	@ _86, bu_159(D)->changeSkl
 @ Patches/../C_code.c:3645: 				if (bu->changeSkl && ((unit->skl + bu->changeSkl) <= maxSkl))
-	beq	.L2697		@,
+	beq	.L2696		@,
 @ Patches/../C_code.c:3645: 				if (bu->changeSkl && ((unit->skl + bu->changeSkl) <= maxSkl))
 	mov	r3, r9	@ unit, unit
 	ldrb	r3, [r3, #21]	@ tmp413,
@@ -20257,15 +20248,15 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp414, tmp413, _86
 @ Patches/../C_code.c:3645: 				if (bu->changeSkl && ((unit->skl + bu->changeSkl) <= maxSkl))
 	cmp	r3, r2	@ tmp414, maxSkl
-	bgt	.L2697		@,
+	bgt	.L2696		@,
 @ Patches/../C_code.c:3647: 					if (statGainTotal >= MinimumStatUps) { 
 	mov	r3, r8	@ statGainTotal, statGainTotal
 	cmp	r3, #1	@ statGainTotal,
-	beq	.L2791		@,
+	beq	.L2790		@,
 @ Patches/../C_code.c:3646: 				{	statGainTotal++; 
 	movs	r3, #1	@ statGainTotal,
 	mov	r8, r3	@ statGainTotal, statGainTotal
-.L2697:
+.L2696:
 @ Patches/../C_code.c:3650: 				bu->changeSpd = NewGetStatIncrease(spdGrowth, noise, level, 11 + (i * 13), useRN); 
 	subs	r3, r6, #4	@ tmp415, ivtmp.1629,
 	movs	r2, r7	@, _7
@@ -20279,7 +20270,7 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _93, tmp417,
 	strb	r0, [r4, r3]	@ _93, bu_159(D)->changeSpd
 @ Patches/../C_code.c:3652: 				if (bu->changeSpd && ((unit->spd + bu->changeSpd) <= maxSpd))
-	beq	.L2698		@,
+	beq	.L2697		@,
 @ Patches/../C_code.c:3652: 				if (bu->changeSpd && ((unit->spd + bu->changeSpd) <= maxSpd))
 	mov	r3, r9	@ unit, unit
 	ldrb	r3, [r3, #22]	@ tmp420,
@@ -20291,15 +20282,15 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp421, tmp420, _93
 @ Patches/../C_code.c:3652: 				if (bu->changeSpd && ((unit->spd + bu->changeSpd) <= maxSpd))
 	cmp	r3, r2	@ tmp421, maxSpd
-	bgt	.L2698		@,
+	bgt	.L2697		@,
 @ Patches/../C_code.c:3654: 					if (statGainTotal >= MinimumStatUps) { 
 	mov	r3, r8	@ statGainTotal, statGainTotal
 	cmp	r3, #1	@ statGainTotal,
-	beq	.L2791		@,
+	beq	.L2790		@,
 @ Patches/../C_code.c:3653: 				{	statGainTotal++; 
 	movs	r3, #1	@ statGainTotal,
 	mov	r8, r3	@ statGainTotal, statGainTotal
-.L2698:
+.L2697:
 @ Patches/../C_code.c:3657: 				bu->changeDef = NewGetStatIncrease(defGrowth, noise, level, 12 + (i * 13), useRN); 
 	subs	r3, r6, #3	@ tmp422, ivtmp.1629,
 	movs	r2, r7	@, _7
@@ -20313,7 +20304,7 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _100, tmp424,
 	strb	r0, [r4, r3]	@ _100, bu_159(D)->changeDef
 @ Patches/../C_code.c:3659: 				if (bu->changeDef && ((unit->def + bu->changeDef) <= maxDef))
-	beq	.L2699		@,
+	beq	.L2698		@,
 @ Patches/../C_code.c:3659: 				if (bu->changeDef && ((unit->def + bu->changeDef) <= maxDef))
 	mov	r3, r9	@ unit, unit
 	ldrb	r3, [r3, #23]	@ tmp427,
@@ -20325,15 +20316,15 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp428, tmp427, _100
 @ Patches/../C_code.c:3659: 				if (bu->changeDef && ((unit->def + bu->changeDef) <= maxDef))
 	cmp	r3, r2	@ tmp428, maxDef
-	bgt	.L2699		@,
+	bgt	.L2698		@,
 @ Patches/../C_code.c:3661: 					if (statGainTotal >= MinimumStatUps) { 
 	mov	r3, r8	@ statGainTotal, statGainTotal
 	cmp	r3, #1	@ statGainTotal,
-	beq	.L2791		@,
+	beq	.L2790		@,
 @ Patches/../C_code.c:3660: 				{	statGainTotal++; 
 	movs	r3, #1	@ statGainTotal,
 	mov	r8, r3	@ statGainTotal, statGainTotal
-.L2699:
+.L2698:
 @ Patches/../C_code.c:3664: 				bu->changeRes = NewGetStatIncrease(resGrowth, noise, level, 13 + (i * 13), useRN); 
 	subs	r3, r6, #2	@ tmp429, ivtmp.1629,
 	movs	r2, r7	@, _7
@@ -20347,7 +20338,7 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _108, tmp431,
 	strb	r0, [r4, r3]	@ _108, bu_159(D)->changeRes
 @ Patches/../C_code.c:3666: 				if (bu->changeRes && ((unit->res + bu->changeRes) <= maxRes))
-	beq	.L2700		@,
+	beq	.L2699		@,
 @ Patches/../C_code.c:3666: 				if (bu->changeRes && ((unit->res + bu->changeRes) <= maxRes))
 	mov	r3, r9	@ unit, unit
 	ldrb	r3, [r3, #24]	@ tmp434,
@@ -20359,15 +20350,15 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp435, tmp434, _108
 @ Patches/../C_code.c:3666: 				if (bu->changeRes && ((unit->res + bu->changeRes) <= maxRes))
 	cmp	r3, r2	@ tmp435, maxRes
-	bgt	.L2700		@,
+	bgt	.L2699		@,
 @ Patches/../C_code.c:3668: 					if (statGainTotal >= MinimumStatUps) { 
 	mov	r3, r8	@ statGainTotal, statGainTotal
 	cmp	r3, #1	@ statGainTotal,
-	beq	.L2791		@,
+	beq	.L2790		@,
 @ Patches/../C_code.c:3667: 				{	statGainTotal++; 
 	movs	r3, #1	@ statGainTotal,
 	mov	r8, r3	@ statGainTotal, statGainTotal
-.L2700:
+.L2699:
 @ Patches/../C_code.c:3671: 				bu->changeLck = NewGetStatIncrease(lckGrowth, noise, level, 14 + (i * 13), useRN); 
 	subs	r3, r6, #1	@ tmp436, ivtmp.1629,
 	movs	r2, r7	@, _7
@@ -20381,7 +20372,7 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _115, tmp438,
 	strb	r0, [r4, r3]	@ _115, bu_159(D)->changeLck
 @ Patches/../C_code.c:3673: 				if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
-	beq	.L2701		@,
+	beq	.L2700		@,
 @ Patches/../C_code.c:3673: 				if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
 	mov	r3, r9	@ unit, unit
 	ldrb	r3, [r3, #25]	@ tmp441,
@@ -20393,24 +20384,24 @@ CheckBattleUnitLevelUp:
 	adds	r3, r3, r0	@ tmp442, tmp441, _115
 @ Patches/../C_code.c:3673: 				if (bu->changeLck && ((unit->lck + bu->changeLck) <= maxLck))
 	cmp	r3, r2	@ tmp442, maxLck
-	ble	.L2795		@,
-.L2701:
+	ble	.L2794		@,
+.L2700:
 @ Patches/../C_code.c:3679: 				if (StrMagInstalled) { 
 	mov	r3, r10	@ tmp467, tmp467
 	ldr	r3, [r3]	@ StrMagInstalled, StrMagInstalled
 	cmp	r3, #0	@ StrMagInstalled,
-	bne	.L2702		@,
-.L2703:
+	bne	.L2701		@,
+.L2702:
 @ Patches/../C_code.c:3617: 			for (int i = 0; i < 4; i++) { 
 	adds	r6, r6, #13	@ ivtmp.1629,
 	cmp	r6, #67	@ ivtmp.1629,
-	beq	.LCB16864	@
-	b	.L2692	@long jump	@
-.LCB16864:
-.L2791:
+	beq	.LCB16856	@
+	b	.L2691	@long jump	@
+.LCB16856:
+.L2790:
 	mov	r5, r9	@ unit, unit
-	b	.L2696		@
-.L2702:
+	b	.L2695		@
+.L2701:
 @ Patches/../C_code.c:3680: 					bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 15 + (i * 13), useRN); 
 	movs	r3, r6	@, ivtmp.1629
 	movs	r2, r7	@, _7
@@ -20424,7 +20415,7 @@ CheckBattleUnitLevelUp:
 	asrs	r0, r0, #24	@ _123, tmp446,
 	strb	r0, [r4, r3]	@ _123, bu_159(D)->changeCon
 @ Patches/../C_code.c:3682: 					if (bu->changeCon && ((unit->_u3A + bu->changeCon) <= maxMag))
-	beq	.L2703		@,
+	beq	.L2702		@,
 @ Patches/../C_code.c:3682: 					if (bu->changeCon && ((unit->_u3A + bu->changeCon) <= maxMag))
 	mov	r2, r9	@ unit, unit
 	subs	r3, r3, #64	@ tmp449,
@@ -20439,13 +20430,13 @@ CheckBattleUnitLevelUp:
 	adcs	r3, r3, r1	@ tmp453, tmp454, tmp455
 @ Patches/../C_code.c:3684: 						if (statGainTotal >= MinimumStatUps) { 
 	lsls	r3, r3, #24	@ tmp457, tmp453,
-	beq	.L2703		@,
+	beq	.L2702		@,
 	mov	r3, r8	@ statGainTotal, statGainTotal
 	lsls	r3, r3, #31	@ tmp509, statGainTotal,
-	bpl	.L2703		@,
+	bpl	.L2702		@,
 	mov	r5, r9	@ unit, unit
-	b	.L2696		@
-.L2794:
+	b	.L2695		@
+.L2793:
 @ Patches/../C_code.c:3613: 		if (StrMagInstalled) { bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 8, useRN); } 
 	movs	r3, #8	@,
 	movs	r2, r7	@, _7
@@ -20456,16 +20447,16 @@ CheckBattleUnitLevelUp:
 @ Patches/../C_code.c:3613: 		if (StrMagInstalled) { bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 8, useRN); } 
 	movs	r3, #122	@ tmp376,
 	strb	r0, [r4, r3]	@ tmp498, bu_159(D)->changeCon
-	b	.L2691		@
-.L2795:
+	b	.L2690		@
+.L2794:
 @ Patches/../C_code.c:3675: 					if (statGainTotal >= MinimumStatUps) { 
 	mov	r3, r8	@ statGainTotal, statGainTotal
 	cmp	r3, #1	@ statGainTotal,
-	beq	.L2791		@,
+	beq	.L2790		@,
 @ Patches/../C_code.c:3674: 				{	statGainTotal++; 
 	movs	r3, #1	@ statGainTotal,
 	mov	r8, r3	@ statGainTotal, statGainTotal
-	b	.L2701		@
+	b	.L2700		@
 	.size	CheckBattleUnitLevelUp, .-CheckBattleUnitLevelUp
 	.align	1
 	.p2align 2,,3
@@ -20486,7 +20477,7 @@ ApplyUnitPromotion:
 	push	{r6, r7, lr}	@
 @ Patches/../C_code.c:3789:     const struct ClassData* promotedClass = GetClassData(classId);
 	movs	r0, r1	@, classId
-	ldr	r3, .L2817	@ tmp182,
+	ldr	r3, .L2816	@ tmp182,
 @ Patches/../C_code.c:3788: void ApplyUnitPromotion(struct Unit* unit, u8 classId) {
 	movs	r6, r1	@ classId, tmp267
 @ Patches/../C_code.c:3789:     const struct ClassData* promotedClass = GetClassData(classId);
@@ -20523,7 +20514,7 @@ ApplyUnitPromotion:
 	lsls	r2, r2, #24	@ tmp199, MEM <long unsigned int> [(unsigned char *)promotedClass_67 + 35B],
 	orrs	r2, r0	@ tmp200, tmp197
 @ Patches/../C_code.c:3799:     unit->pow += promotedClass->promotionPow;
-	ldr	r0, .L2817+4	@ tmp202,
+	ldr	r0, .L2816+4	@ tmp202,
 	mov	r9, r0	@ tmp202, tmp202
 	mov	r4, r9	@ tmp202, tmp202
 	ldr	r3, [r5, #20]	@ _111, MEM <vector(4) signed char> [(signed char *)unit_68(D) + 20B]
@@ -20531,7 +20522,7 @@ ApplyUnitPromotion:
 	mov	r9, r4	@ tmp203, tmp202
 	ands	r0, r2	@ tmp201, tmp200
 	eors	r2, r3	@ tmp206, _111
-	ldr	r3, .L2817+8	@ tmp208,
+	ldr	r3, .L2816+8	@ tmp208,
 	add	r0, r0, r9	@ tmp205, tmp203
 	ands	r2, r3	@ tmp207, tmp208
 	eors	r2, r0	@ vect__14.1648, tmp205
@@ -20545,15 +20536,15 @@ ApplyUnitPromotion:
 	adds	r2, r2, r0	@ tmp215, tmp212, tmp214
 	strb	r2, [r5, #24]	@ tmp215, unit_68(D)->res
 @ Patches/../C_code.c:3805: 	if (SkillSysInstalled) { 
-	ldr	r2, .L2817+12	@ tmp217,
+	ldr	r2, .L2816+12	@ tmp217,
 @ Patches/../C_code.c:3805: 	if (SkillSysInstalled) { 
 	ldr	r2, [r2]	@ SkillSysInstalled, SkillSysInstalled
 	cmp	r2, #0	@ SkillSysInstalled,
-	beq	.L2799		@,
+	beq	.L2798		@,
 @ Patches/../C_code.c:3806: 	unit->_u3A += GetPromoMag(classId); 
 	movs	r0, #58	@ tmp219,
 @ Patches/../C_code.c:2347: 	return MagClassTable[classId].promo; 
-	ldr	r2, .L2817+16	@ tmp220,
+	ldr	r2, .L2816+16	@ tmp220,
 	lsls	r4, r6, #2	@ tmp221, classId,
 	adds	r2, r2, r4	@ tmp222, tmp220, tmp221
 @ Patches/../C_code.c:3806: 	unit->_u3A += GetPromoMag(classId); 
@@ -20561,7 +20552,7 @@ ApplyUnitPromotion:
 	ldrb	r4, [r5, r0]	@ tmp225,
 	adds	r2, r4, r2	@ tmp228, tmp225, tmp227
 	strb	r2, [r5, r0]	@ tmp228, unit_68(D)->_u3A
-.L2799:
+.L2798:
 	movs	r2, r5	@ ivtmp.1656, unit
 	movs	r0, r5	@ _129, unit
 	adds	r2, r2, #40	@ ivtmp.1656,
@@ -20569,7 +20560,7 @@ ApplyUnitPromotion:
 	movs	r3, r2	@ ivtmp.1665, ivtmp.1656
 	adds	r7, r7, #44	@ ivtmp.1667,
 	adds	r0, r0, #48	@ _129,
-.L2800:
+.L2799:
 @ Patches/../C_code.c:3812:         unit->ranks[i] -= unit->pClassData->baseRanks[i];
 	ldrb	r4, [r3]	@ MEM[(unsigned char *)_105], MEM[(unsigned char *)_105]
 	ldrb	r6, [r7]	@ MEM[(unsigned char *)_127], MEM[(unsigned char *)_127]
@@ -20579,11 +20570,11 @@ ApplyUnitPromotion:
 	adds	r3, r3, #1	@ ivtmp.1665,
 	adds	r7, r7, #1	@ ivtmp.1667,
 	cmp	r3, r0	@ ivtmp.1665, _129
-	bne	.L2800		@,
+	bne	.L2799		@,
 @ Patches/../C_code.c:3815:     unit->pClassData = promotedClass;
 	str	r1, [r5, #4]	@ promotedClass, unit_68(D)->pClassData
 	adds	r1, r1, #44	@ ivtmp.1658,
-.L2802:
+.L2801:
 @ Patches/../C_code.c:3819:         int wexp = unit->ranks[i];
 	ldrb	r4, [r2]	@ wexp, MEM[(unsigned char *)_125]
 @ Patches/../C_code.c:3821:         wexp += unit->pClassData->baseRanks[i];
@@ -20592,27 +20583,27 @@ ApplyUnitPromotion:
 	adds	r3, r3, r4	@ wexp, MEM[(unsigned char *)_74], wexp
 @ Patches/../C_code.c:3823:         if (wexp > 251) // wexp s rank 
 	cmp	r3, #251	@ wexp,
-	ble	.L2801		@,
+	ble	.L2800		@,
 	movs	r3, #251	@ wexp,
-.L2801:
+.L2800:
 @ Patches/../C_code.c:3826:         unit->ranks[i] = wexp;
 	strb	r3, [r2]	@ wexp, MEM[(unsigned char *)_125]
 @ Patches/../C_code.c:3818:     for (i = 0; i < 8; ++i) {
 	adds	r2, r2, #1	@ ivtmp.1656,
 	adds	r1, r1, #1	@ ivtmp.1658,
 	cmp	r2, r0	@ ivtmp.1656, _129
-	bne	.L2802		@,
+	bne	.L2801		@,
 @ Patches/../C_code.c:3831:     if (baseClassId == 0x3E && promClassId == 0x2D) { // pupil to shaman 
 	mov	r3, r8	@ _3, _3
 	cmp	r3, #62	@ _3,
-	bne	.L2803		@,
+	bne	.L2802		@,
 	mov	r3, ip	@ _4, _4
 	cmp	r3, #45	@ _4,
-	bne	.L2803		@,
+	bne	.L2802		@,
 @ Patches/../C_code.c:3832: 		unit->ranks[5] = 0; } // anima = 0 
 	movs	r2, #0	@ tmp253,
 	strb	r2, [r5, r3]	@ tmp253, unit_68(D)->ranks[5]
-.L2803:
+.L2802:
 @ Patches/../C_code.c:3835:     unit->level = 1;
 	movs	r3, #1	@ tmp255,
 @ Patches/../C_code.c:3840:     if (unit->curHP > GetUnitMaxHp(unit))
@@ -20630,15 +20621,15 @@ ApplyUnitPromotion:
 	bl	UnitCheckStatCaps		@
 @ Patches/../C_code.c:3840:     if (unit->curHP > GetUnitMaxHp(unit))
 	movs	r0, r5	@, unit
-	ldr	r4, .L2817+20	@ tmp261,
+	ldr	r4, .L2816+20	@ tmp261,
 @ Patches/../C_code.c:3840:     if (unit->curHP > GetUnitMaxHp(unit))
 	ldrsb	r6, [r5, r6]	@ _54,* _54
 @ Patches/../C_code.c:3840:     if (unit->curHP > GetUnitMaxHp(unit))
 	bl	.L240		@
 @ Patches/../C_code.c:3840:     if (unit->curHP > GetUnitMaxHp(unit))
 	cmp	r6, r0	@ _54, tmp269
-	bgt	.L2816		@,
-.L2798:
+	bgt	.L2815		@,
+.L2797:
 @ Patches/../C_code.c:3842: }
 	@ sp needed	@
 	pop	{r5, r6, r7}
@@ -20648,17 +20639,17 @@ ApplyUnitPromotion:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L2816:
+.L2815:
 @ Patches/../C_code.c:3841:         unit->curHP = GetUnitMaxHp(unit);
 	movs	r0, r5	@, unit
 	bl	.L240		@
 @ Patches/../C_code.c:3841:         unit->curHP = GetUnitMaxHp(unit);
 	strb	r0, [r5, #19]	@ tmp270, unit_68(D)->curHP
 @ Patches/../C_code.c:3842: }
-	b	.L2798		@
-.L2818:
-	.align	2
+	b	.L2797		@
 .L2817:
+	.align	2
+.L2816:
 	.word	GetClassData
 	.word	2139062143
 	.word	-2139062144
@@ -20703,7 +20694,7 @@ CallSetupBackgrounds:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
 @ Patches/../C_code.c:3863: 	SetupBackgrounds(0);
-	ldr	r3, .L2821	@ tmp118,
+	ldr	r3, .L2820	@ tmp118,
 @ Patches/../C_code.c:3879: } 
 	@ sp needed	@
 @ Patches/../C_code.c:3863: 	SetupBackgrounds(0);
@@ -20711,7 +20702,7 @@ CallSetupBackgrounds:
 	bl	.L14		@
 @ Patches/../C_code.c:3869: 	gLCDControlBuffer.dispcnt.mode = 0;
 	movs	r2, #120	@ tmp126,
-	ldr	r1, .L2821+4	@ tmp119,
+	ldr	r1, .L2820+4	@ tmp119,
 	ldrh	r3, [r1]	@ MEM[(struct DispCnt *)&gLCDControlBuffer], MEM[(struct DispCnt *)&gLCDControlBuffer]
 	ands	r2, r3	@ tmp125, MEM[(struct DispCnt *)&gLCDControlBuffer]
 	movs	r3, #128	@ tmp129,
@@ -20722,9 +20713,9 @@ CallSetupBackgrounds:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L2822:
-	.align	2
 .L2821:
+	.align	2
+.L2820:
 	.word	SetupBackgrounds
 	.word	gLCDControlBuffer
 	.size	CallSetupBackgrounds, .-CallSetupBackgrounds
@@ -20740,18 +20731,18 @@ CountBWLUnits:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:4233: 	const struct CharacterData* table = GetCharacterData(1); 
-	ldr	r3, .L2829	@ tmp118,
+	ldr	r3, .L2828	@ tmp118,
 	movs	r0, #1	@,
 @ Patches/../C_code.c:4232: int CountBWLUnits(void) { 
 	push	{r4, lr}	@
 @ Patches/../C_code.c:4233: 	const struct CharacterData* table = GetCharacterData(1); 
 	bl	.L14		@
-	ldr	r2, .L2829+4	@ tmp126,
+	ldr	r2, .L2828+4	@ tmp126,
 	movs	r3, r0	@ table, tmp124
 	adds	r1, r0, r2	@ _13, table, tmp126
 @ Patches/../C_code.c:4234: 	int c = 0; 
 	movs	r0, #0	@ <retval>,
-.L2825:
+.L2824:
 @ Patches/../C_code.c:4236: 		if (table->portraitId) { c++; } 
 	ldrh	r2, [r3, #6]	@ MEM[(short unsigned int *)table_14 + 6B], MEM[(short unsigned int *)table_14 + 6B]
 @ Patches/../C_code.c:4236: 		if (table->portraitId) { c++; } 
@@ -20763,15 +20754,15 @@ CountBWLUnits:
 	adds	r0, r0, r2	@ <retval>, <retval>, tmp122
 @ Patches/../C_code.c:4235: 	for (int i = 1; i <= 0x45; ++i) { 
 	cmp	r1, r3	@ _13, table
-	bne	.L2825		@,
+	bne	.L2824		@,
 @ Patches/../C_code.c:4240: } 
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L2830:
-	.align	2
 .L2829:
+	.align	2
+.L2828:
 	.word	GetCharacterData
 	.word	3588
 	.size	CountBWLUnits, .-CountBWLUnits
@@ -20790,7 +20781,7 @@ InitReplaceTextListAntiHuffman:
 	mov	lr, r9	@,
 	mov	r7, r8	@,
 @ Patches/../C_code.c:4283: 	const struct CharacterData* table = GetCharacterData(1); 
-	ldr	r4, .L2840	@ tmp145,
+	ldr	r4, .L2839	@ tmp145,
 @ Patches/../C_code.c:4282: void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) { 
 	push	{r7, lr}	@
 @ Patches/../C_code.c:4282: void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) { 
@@ -20802,14 +20793,14 @@ InitReplaceTextListAntiHuffman:
 @ Patches/../C_code.c:4284: 	const struct CharacterData* table2 = GetCharacterData(1); 
 	movs	r0, #1	@,
 	bl	.L240		@
-	ldr	r3, .L2840+4	@ tmp169,
+	ldr	r3, .L2839+4	@ tmp169,
 	mov	ip, r3	@ tmp169, tmp169
 	movs	r3, #0	@ tmp161,
 @ Patches/../C_code.c:4287: 	table--; 
 	movs	r4, r6	@ table, table
 	mov	r9, r3	@ tmp161, tmp161
 @ Patches/../C_code.c:4296: 		list[c].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
-	ldr	r3, .L2840+8	@ tmp162,
+	ldr	r3, .L2839+8	@ tmp162,
 @ Patches/../C_code.c:4286: 	int c = 0; 
 	movs	r5, #0	@ c,
 @ Patches/../C_code.c:4296: 		list[c].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
@@ -20817,8 +20808,8 @@ InitReplaceTextListAntiHuffman:
 @ Patches/../C_code.c:4287: 	table--; 
 	subs	r4, r4, #52	@ table,
 	add	r6, r6, ip	@ _13, tmp169
-	b	.L2835		@
-.L2839:
+	b	.L2834		@
+.L2838:
 @ Patches/../C_code.c:4296: 		list[c].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
 	mov	r0, r8	@ tmp162, tmp162
 	ldr	r0, [r0]	@ ggMsgStringTable.220_3, ggMsgStringTable
@@ -20841,11 +20832,11 @@ InitReplaceTextListAntiHuffman:
 	str	r3, [r1, #4]	@ tmp156, _61->replace
 	lsls	r3, r5, #3	@ tmp161, c,
 	mov	r9, r3	@ tmp161, tmp161
-.L2833:
+.L2832:
 @ Patches/../C_code.c:4288: 	for (int i = 0; i < MAX_CHAR_ID; ++i) { 
 	cmp	r6, r4	@ _13, table
-	beq	.L2834		@,
-.L2835:
+	beq	.L2833		@,
+.L2834:
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r4, #58]	@ MEM[(short unsigned int *)table_37 + 6B], MEM[(short unsigned int *)table_37 + 6B]
 @ Patches/../C_code.c:4290: 		table++; 
@@ -20854,10 +20845,10 @@ InitReplaceTextListAntiHuffman:
 	movs	r0, r4	@ _45, table
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	cmp	r3, #0	@ MEM[(short unsigned int *)table_37 + 6B],
-	beq	.L2832		@,
+	beq	.L2831		@,
 	ldrb	r0, [r4, #4]	@ MEM[(unsigned char *)table_37 + 4B], MEM[(unsigned char *)table_37 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
-.L2832:
+.L2831:
 @ Patches/../C_code.c:4296: 		list[c].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
 	mov	r1, r9	@ tmp161, tmp161
 @ Patches/../C_code.c:4292: 		if (table->nameTextId == table2->nameTextId) { 
@@ -20868,11 +20859,11 @@ InitReplaceTextListAntiHuffman:
 	adds	r1, r7, r1	@ _61, list, tmp161
 @ Patches/../C_code.c:4292: 		if (table->nameTextId == table2->nameTextId) { 
 	cmp	r3, r2	@ _1, _2
-	beq	.L2833		@,
+	beq	.L2832		@,
 @ Patches/../C_code.c:4295: 		if (c >= ListSize) { break; } 
 	cmp	r5, #119	@ c,
-	ble	.L2839		@,
-.L2834:
+	ble	.L2838		@,
+.L2833:
 @ Patches/../C_code.c:4301: 	list[c].find = NULL; 
 	mov	r2, r9	@ tmp161, tmp161
 @ Patches/../C_code.c:4303: } 
@@ -20887,9 +20878,9 @@ InitReplaceTextListAntiHuffman:
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L2841:
-	.align	2
 .L2840:
+	.align	2
+.L2839:
 	.word	GetCharacterData
 	.word	13208
 	.word	ggMsgStringTable
@@ -20926,26 +20917,26 @@ GetStringLength:
 	movs	r2, r0	@ str, tmp120
 @ Patches/../C_code.c:4345: 	for (int i = 0; i < 255; ++i) { 
 	movs	r0, #0	@ <retval>,
-	b	.L2845		@
-.L2851:
+	b	.L2844		@
+.L2850:
 @ Patches/../C_code.c:4345: 	for (int i = 0; i < 255; ++i) { 
 	adds	r0, r0, #1	@ <retval>,
 @ Patches/../C_code.c:4345: 	for (int i = 0; i < 255; ++i) { 
 	cmp	r0, #255	@ <retval>,
-	beq	.L2850		@,
-.L2845:
+	beq	.L2849		@,
+.L2844:
 @ Patches/../C_code.c:4346: 		if (!str[i]) return i; 
 	ldrb	r3, [r2, r0]	@ MEM[(const char *)str_7(D) + _12 * 1], MEM[(const char *)str_7(D) + _12 * 1]
 	cmp	r3, #0	@ MEM[(const char *)str_7(D) + _12 * 1],
-	bne	.L2851		@,
-.L2843:
+	bne	.L2850		@,
+.L2842:
 @ Patches/../C_code.c:4350: } 
 	@ sp needed	@
 	bx	lr
-.L2850:
+.L2849:
 @ Patches/../C_code.c:4348: 	return 0; 
 	movs	r0, #0	@ <retval>,
-	b	.L2843		@
+	b	.L2842		@
 	.size	GetStringLength, .-GetStringLength
 	.align	1
 	.p2align 2,,3
@@ -20967,26 +20958,26 @@ GetEndOfBuffer:
 	lsls	r1, r1, #5	@ tmp121, tmp121,
 @ Patches/../C_code.c:4352: 	for (int i = 0; i < 0x1000; ++i) { 
 	movs	r0, #0	@ <retval>,
-	b	.L2854		@
-.L2860:
+	b	.L2853		@
+.L2859:
 @ Patches/../C_code.c:4352: 	for (int i = 0; i < 0x1000; ++i) { 
 	adds	r0, r0, #1	@ <retval>,
 @ Patches/../C_code.c:4352: 	for (int i = 0; i < 0x1000; ++i) { 
 	cmp	r0, r1	@ <retval>, tmp121
-	beq	.L2859		@,
-.L2854:
+	beq	.L2858		@,
+.L2853:
 @ Patches/../C_code.c:4353: 		if (!buffer[i]) { return i; } 
 	ldrb	r3, [r2, r0]	@ MEM[(char *)buffer_7(D) + _12 * 1], MEM[(char *)buffer_7(D) + _12 * 1]
 	cmp	r3, #0	@ MEM[(char *)buffer_7(D) + _12 * 1],
-	bne	.L2860		@,
-.L2852:
+	bne	.L2859		@,
+.L2851:
 @ Patches/../C_code.c:4357: } 
 	@ sp needed	@
 	bx	lr
-.L2859:
+.L2858:
 @ Patches/../C_code.c:4355: 	return 0; 
 	movs	r0, #0	@ <retval>,
-	b	.L2852		@
+	b	.L2851		@
 	.size	GetEndOfBuffer, .-GetEndOfBuffer
 	.align	1
 	.p2align 2,,3
@@ -21002,9 +20993,9 @@ ShiftDataInBuffer:
 	push	{r4, lr}	@
 @ Patches/../C_code.c:4359: 	if (!amount) { return; } 
 	cmp	r1, #0	@ amount,
-	beq	.L2861		@,
+	beq	.L2860		@,
 	bl	ShiftDataInBuffer.part.0		@
-.L2861:
+.L2860:
 @ Patches/../C_code.c:4378: } 
 	@ sp needed	@
 	pop	{r4}
@@ -21033,53 +21024,53 @@ ReplaceIfMatching:
 	movs	r4, #0	@ i,
 @ Patches/../C_code.c:4382: 	char* buffer = &b[c]; 
 	adds	r7, r3, r2	@ buffer, tmp144, c
-	b	.L2869		@
-.L2892:
+	b	.L2868		@
+.L2891:
 @ Patches/../C_code.c:4396: 		if (buffer[i] != find[i]) { return false; }
 	ldrb	r6, [r7, r4]	@ MEM[(char *)buffer_20 + _47 * 1], MEM[(char *)buffer_20 + _47 * 1]
 	cmp	r6, r5	@ MEM[(char *)buffer_20 + _47 * 1], _4
-	bne	.L2876		@,
+	bne	.L2875		@,
 @ Patches/../C_code.c:4394: 	for (i = 0; i < 255; ++i) { 
 	adds	r4, r4, #1	@ i,
 @ Patches/../C_code.c:4394: 	for (i = 0; i < 255; ++i) { 
 	cmp	r4, #255	@ i,
-	beq	.L2867		@,
-.L2869:
+	beq	.L2866		@,
+.L2868:
 @ Patches/../C_code.c:4395: 		if (!find[i]) { break; } 
 	ldrb	r5, [r1, r4]	@ _4, MEM[(const char *)find_21(D) + _47 * 1]
 @ Patches/../C_code.c:4395: 		if (!find[i]) { break; } 
 	cmp	r5, #0	@ _4,
-	bne	.L2892		@,
-.L2867:
+	bne	.L2891		@,
+.L2866:
 @ Patches/../C_code.c:4394: 	for (i = 0; i < 255; ++i) { 
 	movs	r5, #0	@ i,
-	b	.L2871		@
-.L2894:
+	b	.L2870		@
+.L2893:
 @ Patches/../C_code.c:4345: 	for (int i = 0; i < 255; ++i) { 
 	adds	r5, r5, #1	@ i,
 @ Patches/../C_code.c:4345: 	for (int i = 0; i < 255; ++i) { 
 	cmp	r5, #255	@ i,
-	beq	.L2893		@,
-.L2871:
+	beq	.L2892		@,
+.L2870:
 @ Patches/../C_code.c:4346: 		if (!str[i]) return i; 
 	mov	r3, r8	@ replace, replace
 	ldrb	r1, [r3, r5]	@ MEM[(const char *)replace_24(D) + _46 * 1], MEM[(const char *)replace_24(D) + _46 * 1]
 	cmp	r1, #0	@ MEM[(const char *)replace_24(D) + _46 * 1],
-	bne	.L2894		@,
+	bne	.L2893		@,
 @ Patches/../C_code.c:4400: 	ShiftDataInBuffer(b, len2-i, c, usedBufferLength); 
 	subs	r1, r5, r4	@ _8, i, i
 @ Patches/../C_code.c:4359: 	if (!amount) { return; } 
 	cmp	r5, r4	@ i, i
-	beq	.L2873		@,
+	beq	.L2872		@,
 	movs	r3, r0	@, usedBufferLength
 	ldr	r0, [sp, #24]	@, b
 	bl	ShiftDataInBuffer.part.0		@
-.L2873:
+.L2872:
 @ Patches/../C_code.c:4402: 	for (i = 0; i < len2; ++i) { 
 	movs	r3, #0	@ i,
 	cmp	r5, #0	@ i,
-	beq	.L2875		@,
-.L2874:
+	beq	.L2874		@,
+.L2873:
 @ Patches/../C_code.c:4403: 		buffer[i] = replace[i]; 
 	mov	r2, r8	@ replace, replace
 	ldrb	r2, [r2, r3]	@ _12, MEM[(const char *)replace_24(D) + _39 * 1]
@@ -21089,11 +21080,11 @@ ReplaceIfMatching:
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:4402: 	for (i = 0; i < len2; ++i) { 
 	cmp	r3, r5	@ i, i
-	bne	.L2874		@,
-.L2875:
+	bne	.L2873		@,
+.L2874:
 @ Patches/../C_code.c:4405: 	return true; 
 	movs	r0, #1	@ <retval>,
-.L2866:
+.L2865:
 @ Patches/../C_code.c:4407: }  
 	@ sp needed	@
 	pop	{r7}
@@ -21101,20 +21092,20 @@ ReplaceIfMatching:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L2876:
+.L2875:
 @ Patches/../C_code.c:4396: 		if (buffer[i] != find[i]) { return false; }
 	movs	r0, #0	@ <retval>,
-	b	.L2866		@
-.L2893:
+	b	.L2865		@
+.L2892:
 @ Patches/../C_code.c:4359: 	if (!amount) { return; } 
 	cmp	r4, #0	@ i,
-	beq	.L2875		@,
+	beq	.L2874		@,
 	movs	r3, r0	@, usedBufferLength
 @ Patches/../C_code.c:4400: 	ShiftDataInBuffer(b, len2-i, c, usedBufferLength); 
 	rsbs	r1, r4, #0	@ tmp138, i
 	ldr	r0, [sp, #24]	@, b
 	bl	ShiftDataInBuffer.part.0		@
-	b	.L2875		@
+	b	.L2874		@
 	.size	ReplaceIfMatching, .-ReplaceIfMatching
 	.align	1
 	.p2align 2,,3
@@ -21132,59 +21123,59 @@ DecompText:
 	movs	r4, r1	@ b, tmp142
 @ Patches/../C_code.c:4416: 	if ((int)a & 0x80000000) { // anti huffman 
 	cmp	r0, #0	@ a,
-	bge	.L2896		@,
+	bge	.L2895		@,
 @ Patches/../C_code.c:4417: 		a = (const char*) ((int)a & 0x7FFFFFFF); 
 	lsls	r0, r0, #1	@ tmp128, a,
 	lsrs	r2, r0, #1	@ _2, tmp128,
 @ Patches/../C_code.c:4418: 		for (int i = 0; i < TextBufferSize; ++i) { 
-	ldr	r1, .L2907	@ tmp140,
+	ldr	r1, .L2906	@ tmp140,
 @ Patches/../C_code.c:4418: 		for (int i = 0; i < TextBufferSize; ++i) { 
 	movs	r0, #0	@ <retval>,
-	b	.L2898		@
-.L2906:
+	b	.L2897		@
+.L2905:
 @ Patches/../C_code.c:4418: 		for (int i = 0; i < TextBufferSize; ++i) { 
 	adds	r0, r0, #1	@ <retval>,
 @ Patches/../C_code.c:4418: 		for (int i = 0; i < TextBufferSize; ++i) { 
 	cmp	r0, r1	@ <retval>, tmp140
-	beq	.L2905		@,
-.L2898:
+	beq	.L2904		@,
+.L2897:
 @ Patches/../C_code.c:4419: 			b[i] = a[i];
 	ldrb	r3, [r2, r0]	@ _6, *_4
 @ Patches/../C_code.c:4419: 			b[i] = a[i];
 	strb	r3, [r4, r0]	@ _6, MEM[(char *)b_18(D) + _32 * 1]
 @ Patches/../C_code.c:4420: 			if (!a[i]) { 
 	cmp	r3, #0	@ _6,
-	bne	.L2906		@,
-.L2900:
+	bne	.L2905		@,
+.L2899:
 @ Patches/../C_code.c:4440: 		b[length] = 0; 
 	movs	r3, #0	@ tmp134,
 	strb	r3, [r4, r0]	@ tmp134, *_8
 @ Patches/../C_code.c:4441: 		b[length+1] = 0; 
 	adds	r4, r4, r0	@ tmp136, b, <retval>
 	strb	r3, [r4, #1]	@ tmp134, *_10
-.L2895:
+.L2894:
 @ Patches/../C_code.c:4446: } 
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L2896:
+.L2895:
 @ Patches/../C_code.c:4427: 		length = Arm_DecompText(a, b, 0x3004150);
-	ldr	r3, .L2907+4	@ tmp132,
-	ldr	r2, .L2907+8	@,
+	ldr	r3, .L2906+4	@ tmp132,
+	ldr	r2, .L2906+8	@,
 	bl	.L14		@
 @ Patches/../C_code.c:4439: 	if (length < 0xFFF) {
-	ldr	r3, .L2907+12	@ tmp133,
+	ldr	r3, .L2906+12	@ tmp133,
 	cmp	r0, r3	@ <retval>, tmp133
-	bgt	.L2895		@,
-	b	.L2900		@
-.L2905:
+	bgt	.L2894		@,
+	b	.L2899		@
+.L2904:
 @ Patches/../C_code.c:4415: 	int length = 0; 
 	movs	r0, #0	@ <retval>,
-	b	.L2900		@
-.L2908:
-	.align	2
+	b	.L2899		@
 .L2907:
+	.align	2
+.L2906:
 	.word	1365
 	.word	Arm_DecompText
 	.word	50348368
@@ -21202,7 +21193,7 @@ GetStringFromIndexInBufferWithoutReplacing:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:4246:     int size = DecompText((void*)ggMsgStringTable[index], buffer);
-	ldr	r3, .L2913	@ tmp126,
+	ldr	r3, .L2912	@ tmp126,
 	ldr	r3, [r3]	@ ggMsgStringTable, ggMsgStringTable
 	lsls	r0, r0, #2	@ tmp127, tmp132,
 @ Patches/../C_code.c:4245: {
@@ -21218,18 +21209,18 @@ GetStringFromIndexInBufferWithoutReplacing:
 	strb	r3, [r4, r0]	@ tmp129, *_7
 @ Patches/../C_code.c:4248: 	if (size > 100) { asm("mov r11, r11"); } 
 	cmp	r0, #100	@ size,
-	bgt	.L2912		@,
+	bgt	.L2911		@,
 @ Patches/../C_code.c:4249: 	if (size < 0) { asm("mov r11, r11"); } 
 	cmp	r0, #0	@ size,
-	blt	.L2912		@,
-.L2911:
+	blt	.L2911		@,
+.L2910:
 @ Patches/../C_code.c:4252: }
 	@ sp needed	@
 	movs	r0, r4	@, buffer
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L2912:
+.L2911:
 @ Patches/../C_code.c:4249: 	if (size < 0) { asm("mov r11, r11"); } 
 	.syntax divided
 @ 4249 "Patches/../C_code.c" 1
@@ -21237,10 +21228,10 @@ GetStringFromIndexInBufferWithoutReplacing:
 @ 0 "" 2
 	.thumb
 	.syntax unified
-	b	.L2911		@
-.L2914:
-	.align	2
+	b	.L2910		@
 .L2913:
+	.align	2
+.L2912:
 	.word	ggMsgStringTable
 	.size	GetStringFromIndexInBufferWithoutReplacing, .-GetStringFromIndexInBufferWithoutReplacing
 	.align	1
@@ -21262,7 +21253,7 @@ InitReplaceTextList:
 	push	{r5, r6, r7, lr}	@
 	mov	r9, r2	@ buffer2, tmp204
 @ Patches/../C_code.c:4309: 	const struct CharacterData* table = GetCharacterData(1); 
-	ldr	r3, .L2953	@ tmp199,
+	ldr	r3, .L2952	@ tmp199,
 @ Patches/../C_code.c:4306: void InitReplaceTextList(struct ReplaceTextStruct list[], char buffer[][TempTextBufferSize], char buffer2[][TempTextBufferSize]) { 
 	sub	sp, sp, #20	@,,
 @ Patches/../C_code.c:4306: void InitReplaceTextList(struct ReplaceTextStruct list[], char buffer[][TempTextBufferSize], char buffer2[][TempTextBufferSize]) { 
@@ -21274,7 +21265,7 @@ InitReplaceTextList:
 	str	r1, [sp, #4]	@ tmp203, %sfp
 @ Patches/../C_code.c:4309: 	const struct CharacterData* table = GetCharacterData(1); 
 	bl	.L14		@
-	ldr	r3, .L2953+4	@ tmp200,
+	ldr	r3, .L2952+4	@ tmp200,
 @ Patches/../C_code.c:4246:     int size = DecompText((void*)ggMsgStringTable[index], buffer);
 	ldr	r3, [r3]	@ ggMsgStringTable.217_56, ggMsgStringTable
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
@@ -21282,7 +21273,7 @@ InitReplaceTextList:
 @ Patches/../C_code.c:4246:     int size = DecompText((void*)ggMsgStringTable[index], buffer);
 	mov	r10, r3	@ ggMsgStringTable.217_56, ggMsgStringTable.217_56
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
-	ldr	r3, .L2953+8	@ tmp201,
+	ldr	r3, .L2952+8	@ tmp201,
 @ Patches/../C_code.c:4309: 	const struct CharacterData* table = GetCharacterData(1); 
 	movs	r6, r0	@ table, tmp205
 	movs	r7, r4	@ ivtmp.1794, list
@@ -21291,7 +21282,7 @@ InitReplaceTextList:
 	mov	r9, r3	@ tmp201, tmp201
 	str	r4, [sp, #12]	@ list, %sfp
 	str	r2, [sp, #8]	@ buffer2, %sfp
-.L2929:
+.L2928:
 @ Patches/../C_code.c:4246:     int size = DecompText((void*)ggMsgStringTable[index], buffer);
 	mov	r2, r10	@ ggMsgStringTable.217_56, ggMsgStringTable.217_56
 @ Patches/../C_code.c:4315: 		list[i].find = GetStringFromIndexInBufferWithoutReplacing(table->nameTextId, &buffer[i][0]); 
@@ -21309,100 +21300,100 @@ InitReplaceTextList:
 	strb	r3, [r4, r0]	@ tmp249, *_63
 @ Patches/../C_code.c:4248: 	if (size > 100) { asm("mov r11, r11"); } 
 	cmp	r0, #100	@ size,
-	bgt	.L2950		@,
+	bgt	.L2949		@,
 @ Patches/../C_code.c:4249: 	if (size < 0) { asm("mov r11, r11"); } 
 	cmp	r0, #0	@ size,
-	blt	.L2950		@,
-.L2917:
+	blt	.L2949		@,
+.L2916:
 @ Patches/../C_code.c:4315: 		list[i].find = GetStringFromIndexInBufferWithoutReplacing(table->nameTextId, &buffer[i][0]); 
 	str	r4, [r7]	@ _8, MEM[(const char * *)_93]
 @ Patches/../C_code.c:4316: 		list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetNameTextIdOfRandomizedPortrait(table->portraitId, seed), &buffer2[i][0]); 
 	ldrh	r4, [r6, #6]	@ _13, MEM[(short unsigned int *)table_24 + 6B]
 @ Patches/../C_code.c:161: 	if (!id) { return false; } 
 	cmp	r4, #0	@ _13,
-	beq	.L2918		@,
+	beq	.L2917		@,
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
 	mov	r3, r9	@ tmp201, tmp201
 	ldr	r3, [r3]	@ RecruitValues, RecruitValues
 	ldrb	r3, [r3]	@ *RecruitValues.0_64, *RecruitValues.0_64
 	lsls	r3, r3, #29	@ tmp181, *RecruitValues.0_64,
 @ Patches/../C_code.c:305: 	if (!ShouldRandomizeRecruitmentForPortraitID(portraitID)) { return portraitID; } 
-	beq	.L2918		@,
+	beq	.L2917		@,
 	mov	r8, r4	@ portraitID, _13
 @ Patches/../C_code.c:242: 	if (portraitID < 0x100) { 
 	cmp	r4, #255	@ _13,
-	bgt	.L2920		@,
+	bgt	.L2919		@,
 @ Patches/../C_code.c:243: 		if (ReplacePortraitTable[portraitID]) { portraitID = ReplacePortraitTable[portraitID]; } 
-	ldr	r3, .L2953+12	@ tmp184,
+	ldr	r3, .L2952+12	@ tmp184,
 	ldrb	r3, [r3, r4]	@ _77, ReplacePortraitTable
 @ Patches/../C_code.c:243: 		if (ReplacePortraitTable[portraitID]) { portraitID = ReplacePortraitTable[portraitID]; } 
 	cmp	r3, #0	@ _77,
-	beq	.L2920		@,
+	beq	.L2919		@,
 @ Patches/../C_code.c:243: 		if (ReplacePortraitTable[portraitID]) { portraitID = ReplacePortraitTable[portraitID]; } 
 	mov	r8, r3	@ portraitID, _77
-.L2920:
+.L2919:
 @ Patches/../C_code.c:245: 	const struct CharacterData* table = GetCharacterData(1); 
 	movs	r0, #1	@,
-	bl	.L435		@
-	ldr	r3, .L2953+16	@ tmp252,
+	bl	.L434		@
+	ldr	r3, .L2952+16	@ tmp252,
 	mov	r1, r8	@ portraitID, portraitID
 	adds	r2, r0, r3	@ _54, table, tmp252
-	b	.L2923		@
-.L2921:
+	b	.L2922		@
+.L2920:
 @ Patches/../C_code.c:248: 		table++; 
 	adds	r0, r0, #52	@ table,
 @ Patches/../C_code.c:246: 	for (int i = 1; i <= MAX_CHAR_ID; i++) { 
 	cmp	r2, r0	@ _54, table
-	beq	.L2918		@,
-.L2923:
+	beq	.L2917		@,
+.L2922:
 @ Patches/../C_code.c:247: 		if (table->portraitId == portraitID) { return table->number; } 
 	ldrh	r3, [r0, #6]	@ MEM[(short unsigned int *)table_109 + 6B], MEM[(short unsigned int *)table_109 + 6B]
 @ Patches/../C_code.c:247: 		if (table->portraitId == portraitID) { return table->number; } 
 	cmp	r3, r1	@ MEM[(short unsigned int *)table_109 + 6B], portraitID
-	bne	.L2921		@,
+	bne	.L2920		@,
 @ Patches/../C_code.c:247: 		if (table->portraitId == portraitID) { return table->number; } 
 	ldrb	r0, [r0, #4]	@ _86,
 @ Patches/../C_code.c:298: 	if (!result) { return portraitID; }
 	cmp	r0, #0	@ _86,
-	beq	.L2918		@,
+	beq	.L2917		@,
 @ Patches/../C_code.c:299: 	return GetReorderedCharacter(GetCharacterData(result))->portraitId; 
-	bl	.L435		@
+	bl	.L434		@
 @ Patches/../C_code.c:256: 	if (!table->portraitId) { return table; } 
 	ldrh	r3, [r0, #6]	@ tmp188,
 	cmp	r3, #0	@ tmp188,
-	beq	.L2918		@,
+	beq	.L2917		@,
 	ldrb	r0, [r0, #4]	@ MEM[(unsigned char *)_69 + 4B], MEM[(unsigned char *)_69 + 4B]
 	bl	GetReorderedCharacter.part.0.isra.0		@
 @ Patches/../C_code.c:299: 	return GetReorderedCharacter(GetCharacterData(result))->portraitId; 
 	ldrh	r3, [r0, #6]	@ _74,
 @ Patches/../C_code.c:308: 	if (!result) { return portraitID; } 
 	cmp	r3, #0	@ _74,
-	beq	.L2918		@,
+	beq	.L2917		@,
 @ Patches/../C_code.c:320: 	return result; 
 	movs	r4, r3	@ _13, _74
-.L2918:
+.L2917:
 @ Patches/../C_code.c:325: 	const struct CharacterData* table = GetCharacterData(1); 
 	movs	r0, #1	@,
-	bl	.L435		@
-	ldr	r3, .L2953+16	@ tmp253,
+	bl	.L434		@
+	ldr	r3, .L2952+16	@ tmp253,
 	adds	r2, r0, r3	@ _44, table, tmp253
-	b	.L2926		@
-.L2924:
+	b	.L2925		@
+.L2923:
 @ Patches/../C_code.c:329: 		table++; 
 	adds	r0, r0, #52	@ table,
 @ Patches/../C_code.c:326: 	for (int i = 1; i <= 0xFF; i++) { 
 	cmp	r2, r0	@ _44, table
-	beq	.L2952		@,
-.L2926:
+	beq	.L2951		@,
+.L2925:
 @ Patches/../C_code.c:327: 		if (table->portraitId == portraitID) { return table->nameTextId; } 
 	ldrh	r3, [r0, #6]	@ MEM[(short unsigned int *)table_107 + 6B], MEM[(short unsigned int *)table_107 + 6B]
 @ Patches/../C_code.c:327: 		if (table->portraitId == portraitID) { return table->nameTextId; } 
 	cmp	r3, r4	@ MEM[(short unsigned int *)table_107 + 6B], _13
-	bne	.L2924		@,
+	bne	.L2923		@,
 @ Patches/../C_code.c:4246:     int size = DecompText((void*)ggMsgStringTable[index], buffer);
 	ldrh	r3, [r0]	@ *table_107, *table_107
 	lsls	r3, r3, #2	@ _131, *table_107,
-.L2925:
+.L2924:
 @ Patches/../C_code.c:4316: 		list[i].replace = GetStringFromIndexInBufferWithoutReplacing(GetNameTextIdOfRandomizedPortrait(table->portraitId, seed), &buffer2[i][0]); 
 	ldr	r2, [sp, #8]	@ buffer2, %sfp
 	adds	r4, r2, r5	@ _16, buffer2, ivtmp.1798
@@ -21416,11 +21407,11 @@ InitReplaceTextList:
 	strb	r3, [r4, r0]	@ tmp256, *_43
 @ Patches/../C_code.c:4248: 	if (size > 100) { asm("mov r11, r11"); } 
 	cmp	r0, #100	@ size,
-	bgt	.L2951		@,
+	bgt	.L2950		@,
 @ Patches/../C_code.c:4249: 	if (size < 0) { asm("mov r11, r11"); } 
 	cmp	r0, #0	@ size,
-	blt	.L2951		@,
-.L2928:
+	blt	.L2950		@,
+.L2927:
 @ Patches/../C_code.c:4314: 		if (i >= ListSize) { break; } 
 	movs	r3, #210	@ tmp196,
 	adds	r5, r5, #14	@ ivtmp.1798,
@@ -21432,7 +21423,7 @@ InitReplaceTextList:
 	adds	r7, r7, #8	@ ivtmp.1794,
 	lsls	r3, r3, #3	@ tmp196, tmp196,
 	cmp	r5, r3	@ ivtmp.1798, tmp196
-	bne	.L2929		@,
+	bne	.L2928		@,
 @ Patches/../C_code.c:4319: 	list[ListSize].find = NULL; 
 	movs	r3, #240	@ tmp197,
 	movs	r2, #0	@ tmp198,
@@ -21450,7 +21441,7 @@ InitReplaceTextList:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L2951:
+.L2950:
 @ Patches/../C_code.c:4249: 	if (size < 0) { asm("mov r11, r11"); } 
 	.syntax divided
 @ 4249 "Patches/../C_code.c" 1
@@ -21458,21 +21449,21 @@ InitReplaceTextList:
 @ 0 "" 2
 	.thumb
 	.syntax unified
-	b	.L2928		@
-.L2950:
+	b	.L2927		@
+.L2949:
 	.syntax divided
 @ 4249 "Patches/../C_code.c" 1
 	mov r11, r11
 @ 0 "" 2
 	.thumb
 	.syntax unified
-	b	.L2917		@
-.L2952:
+	b	.L2916		@
+.L2951:
 	movs	r3, #4	@ _131,
-	b	.L2925		@
-.L2954:
-	.align	2
+	b	.L2924		@
 .L2953:
+	.align	2
+.L2952:
 	.word	GetCharacterData
 	.word	ggMsgStringTable
 	.word	RecruitValues
@@ -21493,14 +21484,14 @@ CallARM_DecompText:
 	push	{r4, r5, r6, r7, lr}	@
 	mov	lr, r8	@,
 	push	{lr}	@
-	ldr	r4, .L2978	@,
+	ldr	r4, .L2977	@,
 	add	sp, sp, r4	@,
 @ Patches/../C_code.c:4449: {
 	movs	r5, r1	@ b, tmp161
 @ Patches/../C_code.c:4452: 	length[0] = DecompText(a, b); 
 	bl	DecompText		@
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
-	ldr	r3, .L2978+4	@ tmp132,
+	ldr	r3, .L2977+4	@ tmp132,
 	ldr	r3, [r3]	@ RecruitValues.0_24, RecruitValues
 	ldrb	r3, [r3]	@ *RecruitValues.0_24, *RecruitValues.0_24
 @ Patches/../C_code.c:4452: 	length[0] = DecompText(a, b); 
@@ -21508,11 +21499,11 @@ CallARM_DecompText:
 @ Patches/../C_code.c:153: 	return RecruitValues->recruitment; 
 	lsls	r2, r3, #29	@ tmp137, *RecruitValues.0_24,
 @ Patches/../C_code.c:4453: 	if (!ShouldRandomizeRecruitment()) { return; }
-	beq	.L2955		@,
+	beq	.L2954		@,
 @ Patches/../C_code.c:4454: 	if (RecruitValues->pauseNameReplace) { return; } 
 	lsls	r3, r3, #28	@ tmp164, *RecruitValues.0_24,
-	bpl	.L2976		@,
-.L2955:
+	bpl	.L2975		@,
+.L2954:
 @ Patches/../C_code.c:4483: }
 	movs	r3, #246	@,
 	lsls	r3, r3, #2	@,,
@@ -21523,7 +21514,7 @@ CallARM_DecompText:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L2976:
+.L2975:
 @ Patches/../C_code.c:4457: 	InitReplaceTextListAntiHuffman(ReplaceTextList); 
 	add	r0, sp, #16	@ tmp166,,
 	bl	InitReplaceTextListAntiHuffman		@
@@ -21532,18 +21523,18 @@ CallARM_DecompText:
 @ Patches/../C_code.c:4472: 	for (int i = 0; i < TextBufferSize; ++i) { 
 	movs	r6, #0	@ i,
 	mov	r8, r3	@ _46, _46
-.L2959:
+.L2958:
 @ Patches/../C_code.c:4473: 		if (!b[i]) { return; } 
 	ldrb	r3, [r7]	@ MEM[(char *)_52], MEM[(char *)_52]
 	cmp	r3, #0	@ MEM[(char *)_52],
-	beq	.L2955		@,
+	beq	.L2954		@,
 @ Patches/../C_code.c:4476: 			if (!ReplaceTextList[c].find) { break; } 
 	ldr	r1, [sp, #16]	@ _8, MEM[(const char * *)_47]
 	add	r4, sp, #16	@ tmp168,,
 @ Patches/../C_code.c:4476: 			if (!ReplaceTextList[c].find) { break; } 
 	cmp	r1, #0	@ _8,
-	beq	.L2957		@,
-.L2977:
+	beq	.L2956		@,
+.L2976:
 @ Patches/../C_code.c:4477: 			if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b)) { break; };
 	ldr	r2, [r4, #4]	@ MEM[(const char * *)_47 + 4B], MEM[(const char * *)_47 + 4B]
 	movs	r3, r6	@, i
@@ -21552,33 +21543,33 @@ CallARM_DecompText:
 	bl	ReplaceIfMatching		@
 @ Patches/../C_code.c:4477: 			if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b)) { break; };
 	cmp	r0, #0	@ tmp163,
-	bne	.L2957		@,
+	bne	.L2956		@,
 @ Patches/../C_code.c:4474: 		for (int c = 0; c < ListSize; ++c) { 
 	adds	r4, r4, #8	@ ivtmp.1814,
 	cmp	r4, r8	@ ivtmp.1814, _46
-	beq	.L2957		@,
+	beq	.L2956		@,
 @ Patches/../C_code.c:4475: 			if (!b[i]) { return; } 
 	ldrb	r3, [r7]	@ MEM[(char *)_52], MEM[(char *)_52]
 	cmp	r3, #0	@ MEM[(char *)_52],
-	beq	.L2955		@,
+	beq	.L2954		@,
 @ Patches/../C_code.c:4476: 			if (!ReplaceTextList[c].find) { break; } 
 	ldr	r1, [r4]	@ _8, MEM[(const char * *)_47]
 @ Patches/../C_code.c:4476: 			if (!ReplaceTextList[c].find) { break; } 
 	cmp	r1, #0	@ _8,
-	bne	.L2977		@,
-.L2957:
+	bne	.L2976		@,
+.L2956:
 @ Patches/../C_code.c:4472: 	for (int i = 0; i < TextBufferSize; ++i) { 
-	ldr	r3, .L2978+8	@ tmp154,
+	ldr	r3, .L2977+8	@ tmp154,
 @ Patches/../C_code.c:4472: 	for (int i = 0; i < TextBufferSize; ++i) { 
 	adds	r6, r6, #1	@ i,
 @ Patches/../C_code.c:4472: 	for (int i = 0; i < TextBufferSize; ++i) { 
 	adds	r7, r7, #1	@ ivtmp.1825,
 	cmp	r6, r3	@ i, tmp154
-	bne	.L2959		@,
-	b	.L2955		@
-.L2979:
-	.align	2
+	bne	.L2958		@,
+	b	.L2954		@
 .L2978:
+	.align	2
+.L2977:
 	.word	-984
 	.word	RecruitValues
 	.word	1365
@@ -21597,27 +21588,27 @@ IsSkill:
 	@ link register save eliminated.
 @ Patches/../C_code.c:4495:     if (skillId == 255)
 	cmp	r0, #255	@ skillId,
-	beq	.L2982		@,
+	beq	.L2981		@,
 	cmp	r0, #0	@ skillId,
-	beq	.L2982		@,
+	beq	.L2981		@,
 @ Patches/../C_code.c:4498:     return !!SkillDescTable[skillId];
-	ldr	r3, .L2983	@ tmp132,
+	ldr	r3, .L2982	@ tmp132,
 	lsls	r0, r0, #1	@ tmp133, skillId,
 @ Patches/../C_code.c:4498:     return !!SkillDescTable[skillId];
 	ldrh	r0, [r0, r3]	@ tmp135, SkillDescTable
 	subs	r3, r0, #1	@ tmp137, tmp135
 	sbcs	r0, r0, r3	@ <retval>, tmp135, tmp137
-.L2980:
+.L2979:
 @ Patches/../C_code.c:4499: }
 	@ sp needed	@
 	bx	lr
-.L2982:
+.L2981:
 @ Patches/../C_code.c:4493:         return FALSE;
 	movs	r0, #0	@ <retval>,
-	b	.L2980		@
-.L2984:
-	.align	2
+	b	.L2979		@
 .L2983:
+	.align	2
+.L2982:
 	.word	SkillDescTable
 	.size	IsSkill, .-IsSkill
 	.align	1
@@ -21632,46 +21623,46 @@ GetSkillName:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:4502:     char* desc = GetStringFromIndex(SkillDescTable[skillId]);
-	ldr	r3, .L2993	@ tmp120,
+	ldr	r3, .L2992	@ tmp120,
 	lsls	r0, r0, #1	@ tmp121, tmp127,
 @ Patches/../C_code.c:4502:     char* desc = GetStringFromIndex(SkillDescTable[skillId]);
 	ldrh	r0, [r0, r3]	@ tmp122, SkillDescTable
 @ Patches/../C_code.c:4501: {
 	push	{r4, lr}	@
 @ Patches/../C_code.c:4502:     char* desc = GetStringFromIndex(SkillDescTable[skillId]);
-	ldr	r3, .L2993+4	@ tmp123,
+	ldr	r3, .L2992+4	@ tmp123,
 	bl	.L14		@
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	ldrb	r3, [r0]	@ _4, *desc_10
 	cmp	r3, #0	@ _4,
-	beq	.L2985		@,
+	beq	.L2984		@,
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	movs	r2, r0	@ it, <retval>
-	b	.L2988		@
-.L2987:
+	b	.L2987		@
+.L2986:
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	ldrb	r3, [r2, #1]	@ _4, MEM[(char *)it_11]
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	adds	r2, r2, #1	@ it,
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	cmp	r3, #0	@ _4,
-	beq	.L2985		@,
-.L2988:
+	beq	.L2984		@,
+.L2987:
 @ Patches/../C_code.c:4506:         if (*it == ':')
 	cmp	r3, #58	@ _4,
-	bne	.L2987		@,
+	bne	.L2986		@,
 @ Patches/../C_code.c:4508:             *it = 0;
 	movs	r3, #0	@ tmp124,
 	strb	r3, [r2]	@ tmp124, *it_15
-.L2985:
+.L2984:
 @ Patches/../C_code.c:4514: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L2994:
-	.align	2
 .L2993:
+	.align	2
+.L2992:
 	.word	SkillDescTable
 	.word	GetStringFromIndex
 	.size	GetSkillName, .-GetSkillName
@@ -21699,13 +21690,13 @@ GetCombinedString:
 	lsls	r7, r7, #5	@ tmp141, tmp141,
 @ Patches/../C_code.c:4520: 		c[i] = a[i]; 
 	subs	r2, r2, #1	@ tmp140,
-	b	.L2997		@
-.L3009:
+	b	.L2996		@
+.L3008:
 	strb	r4, [r2, r3]	@ _3, MEM[(char *)_25 + _6 * 1]
 @ Patches/../C_code.c:4518: 	for (i = 0; i < 0x1000; ++i) { 
 	cmp	r3, r7	@ i, tmp141
-	beq	.L3008		@,
-.L2997:
+	beq	.L3007		@,
+.L2996:
 @ Patches/../C_code.c:4519: 		if (!a[i]) { break; } 
 	ldrb	r4, [r5, r3]	@ _3, MEM[(const char *)a_20(D) + _23 * 1]
 	movs	r6, r3	@ _23, i
@@ -21713,8 +21704,8 @@ GetCombinedString:
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:4519: 		if (!a[i]) { break; } 
 	cmp	r4, #0	@ _3,
-	bne	.L3009		@,
-.L2996:
+	bne	.L3008		@,
+.L2995:
 @ Patches/../C_code.c:4522: 	c[i] = *" "; 
 	movs	r2, #32	@ tmp132,
 	strb	r2, [r0, r6]	@ tmp132, *_7
@@ -21725,35 +21716,35 @@ GetCombinedString:
 	adds	r3, r0, r3	@ tmp138, c, i
 @ Patches/../C_code.c:4525: 	for (int d = 0; d<0x1000; ++d) { 
 	lsls	r6, r6, #5	@ tmp139, tmp139,
-	b	.L2999		@
-.L3010:
+	b	.L2998		@
+.L3009:
 @ Patches/../C_code.c:4525: 	for (int d = 0; d<0x1000; ++d) { 
 	adds	r4, r4, #1	@ d,
 @ Patches/../C_code.c:4525: 	for (int d = 0; d<0x1000; ++d) { 
 	cmp	r4, r6	@ d, tmp139
-	beq	.L2998		@,
-.L2999:
+	beq	.L2997		@,
+.L2998:
 @ Patches/../C_code.c:4526: 		c[i+d] = b[d]; 
 	ldrb	r5, [r1, r4]	@ _13, MEM[(char *)b_26(D) + _14 * 1]
 @ Patches/../C_code.c:4526: 		c[i+d] = b[d]; 
 	strb	r5, [r3, r4]	@ _13, MEM[(char *)_44 + _14 * 1]
 @ Patches/../C_code.c:4527: 		if (!b[d]) { break; } 
 	cmp	r5, #0	@ _13,
-	bne	.L3010		@,
-.L2998:
+	bne	.L3009		@,
+.L2997:
 @ Patches/../C_code.c:4530: } 
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L3008:
+.L3007:
 	movs	r6, #128	@ _23,
-	ldr	r3, .L3011	@ i,
+	ldr	r3, .L3010	@ i,
 	lsls	r6, r6, #5	@ _23, _23,
-	b	.L2996		@
-.L3012:
-	.align	2
+	b	.L2995		@
 .L3011:
+	.align	2
+.L3010:
 	.word	4097
 	.size	GetCombinedString, .-GetCombinedString
 	.align	1
@@ -21790,7 +21781,7 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4562: 	ClearText(&th[hOff + offset+proc->id]); 
 	adds	r0, r0, r3	@ tmp427, tmp424, tmp426
 @ Patches/../C_code.c:4562: 	ClearText(&th[hOff + offset+proc->id]); 
-	ldr	r3, .L3103	@ tmp818,
+	ldr	r3, .L3102	@ tmp818,
 	mov	ip, r3	@ tmp818, tmp818
 @ Patches/../C_code.c:4549: void DrawConfigMenu(ConfigMenuProc* proc) { 
 	sub	sp, sp, #92	@,,
@@ -21799,19 +21790,20 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4562: 	ClearText(&th[hOff + offset+proc->id]); 
 	str	r3, [sp, #12]	@ tmp818, %sfp
 	add	r0, r0, ip	@ tmp429, tmp818
-	ldr	r3, .L3103+4	@ tmp431,
+	ldr	r3, .L3102+4	@ tmp431,
 	bl	.L14		@
 @ Patches/../C_code.c:4580: 	switch (offset) { 
 	cmp	r6, #18	@ offset,
-	bhi	.L3014		@,
-	ldr	r2, .L3103+8	@ tmp436,
+	bhi	.L3013		@,
+	ldr	r2, .L3102+8	@ tmp436,
 	lsls	r3, r6, #2	@ tmp434, offset,
 	ldr	r3, [r2, r3]	@ tmp437,
 	mov	pc, r3	@ tmp437
 	.section	.rodata
 	.align	2
-.L3016:
-	.word	.L3034
+.L3015:
+	.word	.L3033
+	.word	.L3041
 	.word	.L3042
 	.word	.L3043
 	.word	.L3044
@@ -21829,26 +21821,25 @@ DrawConfigMenu:
 	.word	.L3056
 	.word	.L3057
 	.word	.L3058
-	.word	.L3059
 	.text
-.L3058:
+.L3057:
 	movs	r5, #0	@ i,
-.L3017:
+.L3016:
 @ Patches/../C_code.c:4616: 	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
-	ldr	r3, .L3103+12	@ tmp751,
+	ldr	r3, .L3102+12	@ tmp751,
 @ Patches/../C_code.c:4616: 	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
 	ldr	r3, [r3]	@ DisplayTimedHitsOption, DisplayTimedHitsOption
 	cmp	r3, #0	@ DisplayTimedHitsOption,
-	beq	.LCB18018	@
-	bl	.L3101	@far jump	@
-.LCB18018:
-.L3015:
+	beq	.LCB18010	@
+	bl	.L3100	@far jump	@
+.LCB18010:
+.L3014:
 @ Patches/../C_code.c:4619: 	case 18: { if (DisplayRandomSkillsOption) { 
-	ldr	r3, .L3103+16	@ tmp777,
+	ldr	r3, .L3102+16	@ tmp777,
 @ Patches/../C_code.c:4619: 	case 18: { if (DisplayRandomSkillsOption) { 
 	ldr	r3, [r3]	@ DisplayRandomSkillsOption, DisplayRandomSkillsOption
 	cmp	r3, #0	@ DisplayRandomSkillsOption,
-	beq	.L3014		@,
+	beq	.L3013		@,
 @ Patches/../C_code.c:4620: 		if ((proc->Option[17] != 3) || (!IsSkill(proc->skill))) {
 	movs	r3, #74	@ tmp779,
 @ Patches/../C_code.c:4625: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
@@ -21866,43 +21857,43 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4625: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
 	adds	r7, r2, r3	@ _1277, tmp818, tmp781
 	movs	r2, #52	@ tmp789,
-	ldr	r3, .L3103+20	@ tmp787,
+	ldr	r3, .L3102+20	@ tmp787,
 @ Patches/../C_code.c:4625: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
 	lsls	r5, r5, #7	@ tmp784, i,
 @ Patches/../C_code.c:4625: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
 	adds	r5, r5, r3	@ _1283, tmp784, tmp787
 @ Patches/../C_code.c:4625: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
-	ldr	r3, .L3103+24	@ tmp788,
+	ldr	r3, .L3102+24	@ tmp788,
 	adds	r3, r3, r6	@ tmp790, tmp788, _1273
 @ Patches/../C_code.c:4625: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
 	ldrb	r6, [r3, r2]	@ _1285, RtWidths
 @ Patches/../C_code.c:4620: 		if ((proc->Option[17] != 3) || (!IsSkill(proc->skill))) {
 	cmp	r1, #3	@ _284,
-	bne	.LCB18043	@
-	b	.L3102	@long jump	@
-.LCB18043:
-.L3037:
+	bne	.LCB18035	@
+	b	.L3101	@long jump	@
+.LCB18035:
+.L3036:
 @ Patches/../C_code.c:4621: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding)); i++; 
 	lsls	r2, r1, #2	@ tmp802, _284,
-	ldr	r3, .L3103+28	@ tmp800,
+	ldr	r3, .L3102+28	@ tmp800,
 	adds	r2, r2, r1	@ tmp803, tmp802, _284
 	lsls	r2, r2, #1	@ tmp804, tmp803,
 	adds	r3, r3, r2	@ tmp805, tmp800, tmp804
 @ Patches/../C_code.c:4621: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding)); i++; 
 	str	r3, [sp, #4]	@ tmp805,
-.L3100:
+.L3099:
 @ Patches/../C_code.c:4625: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
 	movs	r3, #0	@,
 	movs	r2, #0	@,
 	movs	r1, r5	@, _1283
 	movs	r0, r7	@, _1277
 	str	r6, [sp]	@ _1285,
-	ldr	r4, .L3103+32	@ tmp814,
+	ldr	r4, .L3102+32	@ tmp814,
 	bl	.L240		@
-.L3014:
+.L3013:
 @ Patches/../C_code.c:4639: 	BG_EnableSyncByMask(BG0_SYNC_BIT); 
 	movs	r0, #1	@,
-	ldr	r3, .L3103+36	@ tmp815,
+	ldr	r3, .L3102+36	@ tmp815,
 	bl	.L14		@
 @ Patches/../C_code.c:4641: } 
 	add	sp, sp, #92	@,,
@@ -21915,16 +21906,16 @@ DrawConfigMenu:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3059:
+.L3058:
 @ Patches/../C_code.c:4580: 	switch (offset) { 
 	movs	r5, #0	@ i,
-	b	.L3015		@
-.L3104:
-	.align	2
+	b	.L3014		@
 .L3103:
+	.align	2
+.L3102:
 	.word	gStatScreen+24
 	.word	ClearText
-	.word	.L3016
+	.word	.L3015
 	.word	DisplayTimedHitsOption
 	.word	DisplayRandomSkillsOption
 	.word	gBG0TilemapBuffer+220
@@ -21932,7 +21923,7 @@ DrawConfigMenu:
 	.word	.LANCHOR7+60
 	.word	PutDrawText
 	.word	BG_EnableSyncByMask
-.L3042:
+.L3041:
 	movs	r3, #7	@ prephitmp_1092,
 	mov	r10, r3	@ prephitmp_1092, prephitmp_1092
 	movs	r3, #247	@ prephitmp_1091,
@@ -21966,28 +21957,28 @@ DrawConfigMenu:
 	mov	r8, r3	@ prephitmp_921, prephitmp_921
 	movs	r5, #1	@ prephitmp_916,
 	movs	r1, #220	@ prephitmp_915,
-.L3033:
+.L3032:
 @ Patches/../C_code.c:4583: 	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
 	movs	r2, #57	@ tmp448,
 @ Patches/../C_code.c:4583: 	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
 	ldrsb	r2, [r4, r2]	@ tmp449,
 	mov	ip, r2	@ tmp449, tmp449
 @ Patches/../C_code.c:4583: 	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
-	ldr	r3, .L3105	@ tmp816,
+	ldr	r3, .L3104	@ tmp816,
 @ Patches/../C_code.c:4583: 	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
 	lsls	r2, r2, #2	@ tmp451, tmp449,
 @ Patches/../C_code.c:4583: 	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
 	mov	fp, r3	@ tmp816, tmp816
 @ Patches/../C_code.c:4583: 	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
-	ldr	r3, .L3105+4	@ tmp447,
+	ldr	r3, .L3104+4	@ tmp447,
 	add	r2, r2, ip	@ tmp452, tmp449
 	adds	r3, r3, r2	@ tmp453, tmp447, tmp452
 @ Patches/../C_code.c:4583: 	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
 	str	r3, [sp, #4]	@ tmp453,
 	movs	r3, #4	@ tmp454,
-	ldr	r0, .L3105+8	@ tmp445,
+	ldr	r0, .L3104+8	@ tmp445,
 	str	r3, [sp]	@ tmp454,
-	ldr	r7, .L3105+12	@ tmp817,
+	ldr	r7, .L3104+12	@ tmp817,
 	movs	r3, #0	@,
 	movs	r2, #0	@,
 @ Patches/../C_code.c:4583: 	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
@@ -22002,7 +21993,7 @@ DrawConfigMenu:
 	mov	r9, r7	@ tmp817, tmp817
 @ Patches/../C_code.c:4585: 	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
 	adds	r0, r0, #19	@ _955,
-.L3032:
+.L3031:
 @ Patches/../C_code.c:4585: 	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
 	ldr	r3, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r3	@ tmp818, tmp818
@@ -22010,13 +22001,13 @@ DrawConfigMenu:
 	movs	r3, #58	@ tmp461,
 @ Patches/../C_code.c:4585: 	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
 	ldrsb	r3, [r4, r3]	@ tmp462,
-	ldr	r2, .L3105+16	@ tmp465,
+	ldr	r2, .L3104+16	@ tmp465,
 	lsls	r3, r3, #5	@ tmp463, tmp462,
 	adds	r3, r3, r2	@ tmp464, tmp463, tmp465
 @ Patches/../C_code.c:4585: 	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
 	str	r3, [sp, #4]	@ tmp464,
 @ Patches/../C_code.c:4585: 	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
-	ldr	r3, .L3105+20	@ tmp819,
+	ldr	r3, .L3104+20	@ tmp819,
 @ Patches/../C_code.c:4585: 	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
 	mov	r1, r8	@ prephitmp_921, prephitmp_921
 @ Patches/../C_code.c:4585: 	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
@@ -22038,14 +22029,14 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4585: 	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
 	add	r1, r1, fp	@ prephitmp_921, tmp816
 @ Patches/../C_code.c:4585: 	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4587: 	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
 	ldr	r3, [sp, #52]	@ prephitmp_922, %sfp
 	adds	r3, r6, r3	@ _993, offset, prephitmp_922
 @ Patches/../C_code.c:4587: 	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
 	movs	r0, r3	@ _995, _993
 	adds	r0, r0, #19	@ _995,
-.L3031:
+.L3030:
 @ Patches/../C_code.c:4587: 	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
 	ldr	r2, [sp, #12]	@ tmp818, %sfp
 @ Patches/../C_code.c:4587: 	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
@@ -22078,14 +22069,14 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4587: 	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
 	add	r1, r1, fp	@ prephitmp_967, tmp816
 @ Patches/../C_code.c:4587: 	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4589: 	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
 	ldr	r3, [sp, #48]	@ prephitmp_968, %sfp
 	adds	r3, r6, r3	@ _1027, offset, prephitmp_968
 @ Patches/../C_code.c:4589: 	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
 	movs	r0, r3	@ _1029, _1027
 	adds	r0, r0, #19	@ _1029,
-.L3030:
+.L3029:
 @ Patches/../C_code.c:4589: 	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
 	ldr	r2, [sp, #12]	@ tmp818, %sfp
 @ Patches/../C_code.c:4589: 	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
@@ -22122,14 +22113,14 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4589: 	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
 	add	r1, r1, fp	@ prephitmp_1007, tmp816
 @ Patches/../C_code.c:4589: 	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4591: 	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
 	ldr	r3, [sp, #40]	@ prephitmp_1008, %sfp
 	adds	r3, r6, r3	@ _1055, offset, prephitmp_1008
 @ Patches/../C_code.c:4591: 	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
 	movs	r0, r3	@ _1057, _1055
 	adds	r0, r0, #19	@ _1057,
-.L3029:
+.L3028:
 @ Patches/../C_code.c:4591: 	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
 	ldr	r2, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r2	@ tmp818, tmp818
@@ -22145,7 +22136,7 @@ DrawConfigMenu:
 	add	r0, r0, ip	@ tmp508, tmp818
 @ Patches/../C_code.c:4591: 	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
 	mov	ip, r2	@ tmp516, tmp516
-	ldr	r2, .L3105+24	@ tmp517,
+	ldr	r2, .L3104+24	@ tmp517,
 	add	r2, r2, ip	@ tmp517, tmp516
 @ Patches/../C_code.c:4591: 	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
 	str	r2, [sp, #4]	@ tmp517,
@@ -22164,16 +22155,16 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4591: 	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
 	movs	r3, #0	@,
 @ Patches/../C_code.c:4591: 	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
-	ldr	r5, .L3105+28	@ tmp820,
+	ldr	r5, .L3104+28	@ tmp820,
 @ Patches/../C_code.c:4591: 	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4593: 	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding)); i++; 
 	ldr	r3, [sp, #32]	@ prephitmp_1042, %sfp
 	adds	r2, r6, r3	@ _1077, offset, prephitmp_1042
 @ Patches/../C_code.c:4593: 	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding)); i++; 
 	movs	r0, r2	@ _1079, _1077
 	adds	r0, r0, #19	@ _1079,
-.L3028:
+.L3027:
 @ Patches/../C_code.c:4593: 	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding)); i++; 
 	ldr	r3, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r3	@ tmp818, tmp818
@@ -22209,14 +22200,14 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4593: 	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding)); i++; 
 	add	r1, r1, fp	@ prephitmp_1069, tmp816
 @ Patches/../C_code.c:4593: 	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding)); i++; 
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4595: 	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding)); i++; 
 	ldr	r3, [sp, #24]	@ prephitmp_1070, %sfp
 	adds	r2, r6, r3	@ _1093, offset, prephitmp_1070
 @ Patches/../C_code.c:4595: 	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding)); i++; 
 	movs	r0, r2	@ _1095, _1093
 	adds	r0, r0, #19	@ _1095,
-.L3027:
+.L3026:
 @ Patches/../C_code.c:4595: 	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding)); i++; 
 	ldr	r3, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r3	@ tmp818, tmp818
@@ -22226,7 +22217,7 @@ DrawConfigMenu:
 	ldrsb	r5, [r4, r3]	@ tmp548,
 	subs	r3, r3, #37	@ tmp549,
 	muls	r3, r5	@ tmp550, tmp548
-	ldr	r5, .L3105+32	@ tmp552,
+	ldr	r5, .L3104+32	@ tmp552,
 	adds	r3, r3, r5	@ tmp551, tmp550, tmp552
 @ Patches/../C_code.c:4595: 	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding)); i++; 
 	str	r3, [sp, #4]	@ tmp551,
@@ -22248,13 +22239,13 @@ DrawConfigMenu:
 	add	r1, r1, fp	@ prephitmp_1091, tmp816
 	add	r0, r0, ip	@ tmp545, tmp818
 @ Patches/../C_code.c:4595: 	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding)); i++; 
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4596: 	if (i > SRR_MAXDISP) { break; } 	
 	mov	r3, r10	@ prephitmp_1092, prephitmp_1092
 	cmp	r3, #8	@ prephitmp_1092,
-	bne	.LCB18323	@
-	b	.L3014	@long jump	@
-.LCB18323:
+	bne	.LCB18315	@
+	b	.L3013	@long jump	@
+.LCB18315:
 @ Patches/../C_code.c:4597: 	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding)); i++;  
 	mov	ip, r6	@ _1103, offset
 	add	ip, ip, r10	@ _1103, prephitmp_1092
@@ -22268,7 +22259,7 @@ DrawConfigMenu:
 	adds	r1, r1, #220	@ _1115,
 @ Patches/../C_code.c:4597: 	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding)); i++;  
 	adds	r5, r3, #1	@ _1117, prephitmp_1092,
-.L3026:
+.L3025:
 @ Patches/../C_code.c:4597: 	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding)); i++;  
 	ldr	r3, [sp, #12]	@ tmp818, %sfp
 	mov	r10, r3	@ tmp818, tmp818
@@ -22286,7 +22277,7 @@ DrawConfigMenu:
 	add	r3, r3, r10	@ tmp572, tmp569
 	lsls	r7, r3, #2	@ tmp573, tmp572,
 	mov	r10, r7	@ tmp573, tmp573
-	ldr	r2, .L3105+36	@ tmp567,
+	ldr	r2, .L3104+36	@ tmp567,
 	add	r3, r3, r10	@ tmp574, tmp573
 	adds	r2, r2, r3	@ tmp575, tmp567, tmp574
 @ Patches/../C_code.c:4597: 	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding)); i++;  
@@ -22304,12 +22295,12 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4597: 	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding)); i++;  
 	movs	r2, #0	@,
 	movs	r3, #0	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4598: 	if (i > SRR_MAXDISP) { break; } 
 	cmp	r5, #8	@ _1117,
-	bne	.LCB18361	@
-	b	.L3014	@long jump	@
-.LCB18361:
+	bne	.LCB18353	@
+	b	.L3013	@long jump	@
+.LCB18353:
 @ Patches/../C_code.c:4599: 	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
 	adds	r2, r6, r5	@ _1119, offset, _1117
 @ Patches/../C_code.c:4599: 	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
@@ -22322,12 +22313,12 @@ DrawConfigMenu:
 	adds	r1, r1, #220	@ _1131,
 @ Patches/../C_code.c:4599: 	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
 	adds	r5, r5, #1	@ _1133,
-.L3025:
+.L3024:
 @ Patches/../C_code.c:4599: 	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
 	ldr	r3, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r3	@ tmp818, tmp818
 @ Patches/../C_code.c:4599: 	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
-	ldr	r3, .L3105+40	@ tmp821,
+	ldr	r3, .L3104+40	@ tmp821,
 	mov	r10, r3	@ tmp821, tmp821
 @ Patches/../C_code.c:4599: 	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
 	movs	r3, #65	@ tmp590,
@@ -22356,12 +22347,12 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4599: 	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
 	movs	r2, #0	@,
 	movs	r3, #0	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4600: 	if (i > SRR_MAXDISP) { break; } 
 	cmp	r5, #8	@ _1133,
-	bne	.LCB18395	@
-	b	.L3014	@long jump	@
-.LCB18395:
+	bne	.LCB18387	@
+	b	.L3013	@long jump	@
+.LCB18387:
 @ Patches/../C_code.c:4601: 	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding)); i++;  
 	adds	r3, r6, r5	@ _1135, offset, _1133
 @ Patches/../C_code.c:4601: 	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding)); i++;  
@@ -22374,7 +22365,7 @@ DrawConfigMenu:
 	adds	r1, r1, #220	@ _1147,
 @ Patches/../C_code.c:4601: 	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding)); i++;  
 	adds	r5, r5, #1	@ _1149,
-.L3024:
+.L3023:
 @ Patches/../C_code.c:4601: 	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding)); i++;  
 	ldr	r2, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r2	@ tmp818, tmp818
@@ -22410,12 +22401,12 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4601: 	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding)); i++;  
 	movs	r2, #0	@,
 	movs	r3, #0	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4602: 	if (i > SRR_MAXDISP) { break; } 
 	cmp	r5, #8	@ _1149,
-	bne	.LCB18433	@
-	b	.L3014	@long jump	@
-.LCB18433:
+	bne	.LCB18425	@
+	b	.L3013	@long jump	@
+.LCB18425:
 @ Patches/../C_code.c:4603: 	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding)); i++;  
 	adds	r3, r6, r5	@ _1151, offset, _1149
 @ Patches/../C_code.c:4603: 	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding)); i++;  
@@ -22428,7 +22419,7 @@ DrawConfigMenu:
 	adds	r1, r1, #220	@ _1163,
 @ Patches/../C_code.c:4603: 	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding)); i++;  
 	adds	r5, r5, #1	@ _1165,
-.L3023:
+.L3022:
 @ Patches/../C_code.c:4603: 	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding)); i++;  
 	ldr	r2, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r2	@ tmp818, tmp818
@@ -22466,12 +22457,12 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4603: 	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding)); i++;  
 	movs	r2, #0	@,
 	movs	r3, #0	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4604: 	if (i > SRR_MAXDISP) { break; } 
 	cmp	r5, #8	@ _1165,
-	bne	.LCB18471	@
-	b	.L3014	@long jump	@
-.LCB18471:
+	bne	.LCB18463	@
+	b	.L3013	@long jump	@
+.LCB18463:
 @ Patches/../C_code.c:4605: 	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
 	adds	r2, r6, r5	@ _1167, offset, _1165
 @ Patches/../C_code.c:4605: 	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
@@ -22484,7 +22475,7 @@ DrawConfigMenu:
 	adds	r1, r1, #220	@ _1179,
 @ Patches/../C_code.c:4605: 	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
 	adds	r5, r5, #1	@ _1181,
-.L3022:
+.L3021:
 @ Patches/../C_code.c:4605: 	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
 	movs	r7, #68	@ tmp652,
 @ Patches/../C_code.c:4605: 	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
@@ -22505,7 +22496,7 @@ DrawConfigMenu:
 	mov	r7, ip	@ tmp656, tmp656
 	lsls	r7, r7, #2	@ tmp657, tmp656,
 	mov	ip, r7	@ tmp657, tmp657
-	ldr	r3, .L3105+44	@ tmp651,
+	ldr	r3, .L3104+44	@ tmp651,
 	add	r3, r3, ip	@ tmp658, tmp657
 @ Patches/../C_code.c:4605: 	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
 	str	r3, [sp, #4]	@ tmp658,
@@ -22520,12 +22511,12 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4605: 	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
 	movs	r2, #0	@,
 	movs	r3, #0	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4606: 	if (i > SRR_MAXDISP) { break; } 
 	cmp	r5, #8	@ _1181,
-	bne	.LCB18508	@
-	b	.L3014	@long jump	@
-.LCB18508:
+	bne	.LCB18500	@
+	b	.L3013	@long jump	@
+.LCB18500:
 @ Patches/../C_code.c:4607: 	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
 	adds	r2, r6, r5	@ _1183, offset, _1181
 @ Patches/../C_code.c:4607: 	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
@@ -22538,7 +22529,7 @@ DrawConfigMenu:
 	adds	r1, r1, #220	@ _1195,
 @ Patches/../C_code.c:4607: 	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
 	adds	r5, r5, #1	@ _1197,
-.L3021:
+.L3020:
 @ Patches/../C_code.c:4607: 	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
 	ldr	r3, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r3	@ tmp818, tmp818
@@ -22552,7 +22543,7 @@ DrawConfigMenu:
 	add	r0, r0, ip	@ tmp670, tmp818
 @ Patches/../C_code.c:4607: 	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
 	mov	ip, r3	@ tmp673, tmp673
-	ldr	r7, .L3105+48	@ tmp679,
+	ldr	r7, .L3104+48	@ tmp679,
 	lsls	r3, r3, #2	@ tmp675, tmp673,
 	add	r3, r3, ip	@ tmp676, tmp673
 	mov	ip, r7	@ tmp679, tmp679
@@ -22571,12 +22562,12 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4607: 	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
 	movs	r2, #0	@,
 	movs	r3, #0	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4608: 	if (i > SRR_MAXDISP) { break; } 
 	cmp	r5, #8	@ _1197,
-	bne	.LCB18542	@
-	b	.L3014	@long jump	@
-.LCB18542:
+	bne	.LCB18534	@
+	b	.L3013	@long jump	@
+.LCB18534:
 @ Patches/../C_code.c:4609: 	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
 	adds	r2, r6, r5	@ _1199, offset, _1197
 @ Patches/../C_code.c:4609: 	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
@@ -22589,7 +22580,7 @@ DrawConfigMenu:
 	adds	r1, r1, #220	@ _1211,
 @ Patches/../C_code.c:4609: 	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
 	adds	r5, r5, #1	@ _1213,
-.L3020:
+.L3019:
 @ Patches/../C_code.c:4609: 	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
 	ldr	r3, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r3	@ tmp818, tmp818
@@ -22603,7 +22594,7 @@ DrawConfigMenu:
 	add	r0, r0, ip	@ tmp691, tmp818
 @ Patches/../C_code.c:4609: 	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
 	mov	ip, r3	@ tmp694, tmp694
-	ldr	r7, .L3105+52	@ tmp700,
+	ldr	r7, .L3104+52	@ tmp700,
 	lsls	r3, r3, #2	@ tmp696, tmp694,
 	add	r3, r3, ip	@ tmp697, tmp694
 	mov	ip, r7	@ tmp700, tmp700
@@ -22622,12 +22613,12 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4609: 	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
 	movs	r2, #0	@,
 	movs	r3, #0	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4610: 	if (i > SRR_MAXDISP) { break; } 
 	cmp	r5, #8	@ _1213,
-	bne	.LCB18576	@
-	b	.L3014	@long jump	@
-.LCB18576:
+	bne	.LCB18568	@
+	b	.L3013	@long jump	@
+.LCB18568:
 @ Patches/../C_code.c:4611: 	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
 	adds	r3, r6, r5	@ _1215, offset, _1213
 @ Patches/../C_code.c:4611: 	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
@@ -22642,12 +22633,12 @@ DrawConfigMenu:
 	adds	r1, r1, #220	@ _1227,
 @ Patches/../C_code.c:4611: 	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
 	adds	r5, r5, #1	@ _1229,
-.L3019:
+.L3018:
 @ Patches/../C_code.c:4611: 	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
 	ldr	r3, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r3	@ tmp818, tmp818
 @ Patches/../C_code.c:4611: 	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
-	ldr	r3, .L3105+56	@ tmp822,
+	ldr	r3, .L3104+56	@ tmp822,
 	mov	r10, r3	@ tmp822, tmp822
 	movs	r3, #84	@ tmp715,
 @ Patches/../C_code.c:4611: 	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
@@ -22682,12 +22673,12 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4611: 	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
 	movs	r2, #0	@,
 	movs	r3, #0	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4612: 	if (i > SRR_MAXDISP) { break; } 
 	cmp	r5, #8	@ _1229,
-	bne	.LCB18615	@
-	b	.L3014	@long jump	@
-.LCB18615:
+	bne	.LCB18607	@
+	b	.L3013	@long jump	@
+.LCB18607:
 @ Patches/../C_code.c:4613: 	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
 	adds	r2, r6, r5	@ _1231, offset, _1229
 @ Patches/../C_code.c:4613: 	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
@@ -22700,10 +22691,10 @@ DrawConfigMenu:
 	adds	r1, r1, #220	@ _1243,
 @ Patches/../C_code.c:4613: 	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
 	adds	r5, r5, #1	@ i,
-	b	.L3106		@
-.L3107:
+	b	.L3105		@
+.L3106:
 	.align	2
-.L3105:
+.L3104:
 	.word	gBG0TilemapBuffer
 	.word	.LANCHOR1+72
 	.word	gStatScreen+184
@@ -22719,8 +22710,8 @@ DrawConfigMenu:
 	.word	Option12
 	.word	Option13
 	.word	.LANCHOR6
-.L3106:
-.L3018:
+.L3105:
+.L3017:
 @ Patches/../C_code.c:4613: 	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
 	ldr	r3, [sp, #12]	@ tmp818, %sfp
 	mov	ip, r3	@ tmp818, tmp818
@@ -22758,14 +22749,14 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4613: 	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
 	movs	r2, #0	@,
 	movs	r3, #0	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4614: 	if (i > SRR_MAXDISP) { break; } 
 	cmp	r5, #8	@ i,
-	beq	.LCB18675	@
-	b	.L3017	@long jump	@
-.LCB18675:
-	b	.L3014		@
-.L3043:
+	beq	.LCB18667	@
+	b	.L3016	@long jump	@
+.LCB18667:
+	b	.L3013		@
+.L3042:
 @ Patches/../C_code.c:4580: 	switch (offset) { 
 	movs	r3, #6	@ prephitmp_1092,
 	mov	r10, r3	@ prephitmp_1092, prephitmp_1092
@@ -22798,14 +22789,14 @@ DrawConfigMenu:
 	str	r3, [sp, #52]	@ prephitmp_922, %sfp
 	adds	r3, r3, #219	@ prephitmp_921,
 	mov	r8, r3	@ prephitmp_921, prephitmp_921
-	ldr	r3, .L3108	@ tmp816,
+	ldr	r3, .L3107	@ tmp816,
 	mov	fp, r3	@ tmp816, tmp816
-	ldr	r3, .L3108+4	@ tmp817,
+	ldr	r3, .L3107+4	@ tmp817,
 	movs	r0, #21	@ _955,
 	movs	r5, #2	@ _953,
 	mov	r9, r3	@ tmp817, tmp817
-	b	.L3032		@
-.L3044:
+	b	.L3031		@
+.L3043:
 	movs	r3, #5	@ prephitmp_1092,
 	mov	r10, r3	@ prephitmp_1092, prephitmp_1092
 	movs	r3, #183	@ prephitmp_1091,
@@ -22822,26 +22813,26 @@ DrawConfigMenu:
 	adds	r3, r3, #255	@ prephitmp_1041,
 	str	r3, [sp, #28]	@ prephitmp_1041, %sfp
 	subs	r3, r3, #219	@ prephitmp_1008,
-	ldr	r2, .L3108	@ tmp816,
+	ldr	r2, .L3107	@ tmp816,
 	subs	r3, r3, #255	@ prephitmp_1008,
 	str	r3, [sp, #40]	@ prephitmp_1008, %sfp
 	adds	r3, r3, #91	@ prephitmp_1007,
 	adds	r3, r3, #255	@ prephitmp_1007,
 	mov	fp, r2	@ tmp816, tmp816
-	ldr	r2, .L3108+4	@ tmp817,
+	ldr	r2, .L3107+4	@ tmp817,
 	str	r3, [sp, #36]	@ prephitmp_1007, %sfp
 	subs	r3, r3, #92	@ prephitmp_968,
 	subs	r3, r3, #255	@ prephitmp_968,
 	mov	r9, r2	@ tmp817, tmp817
-	ldr	r2, .L3108+8	@ tmp819,
+	ldr	r2, .L3107+8	@ tmp819,
 	str	r3, [sp, #48]	@ prephitmp_968, %sfp
 	adds	r3, r3, #219	@ prephitmp_967,
 	str	r3, [sp, #44]	@ prephitmp_967, %sfp
 	movs	r0, #22	@ _995,
 	mov	r8, r2	@ tmp819, tmp819
 	subs	r3, r3, #217	@ _993,
-	b	.L3031		@
-.L3045:
+	b	.L3030		@
+.L3044:
 	movs	r3, #4	@ prephitmp_1092,
 	mov	r10, r3	@ prephitmp_1092, prephitmp_1092
 	movs	r3, #151	@ prephitmp_1091,
@@ -22853,52 +22844,52 @@ DrawConfigMenu:
 	adds	r3, r3, #255	@ prephitmp_1069,
 	str	r3, [sp, #20]	@ prephitmp_1069, %sfp
 	subs	r3, r3, #219	@ prephitmp_1042,
-	ldr	r2, .L3108	@ tmp816,
+	ldr	r2, .L3107	@ tmp816,
 	subs	r3, r3, #255	@ prephitmp_1042,
 	str	r3, [sp, #32]	@ prephitmp_1042, %sfp
 	adds	r3, r3, #91	@ prephitmp_1041,
 	adds	r3, r3, #255	@ prephitmp_1041,
 	mov	fp, r2	@ tmp816, tmp816
-	ldr	r2, .L3108+4	@ tmp817,
+	ldr	r2, .L3107+4	@ tmp817,
 	str	r3, [sp, #28]	@ prephitmp_1041, %sfp
 	subs	r3, r3, #92	@ prephitmp_1008,
 	subs	r3, r3, #255	@ prephitmp_1008,
 	mov	r9, r2	@ tmp817, tmp817
-	ldr	r2, .L3108+8	@ tmp819,
+	ldr	r2, .L3107+8	@ tmp819,
 	str	r3, [sp, #40]	@ prephitmp_1008, %sfp
 	adds	r3, r3, #219	@ prephitmp_1007,
 	str	r3, [sp, #36]	@ prephitmp_1007, %sfp
 	movs	r0, #23	@ _1029,
 	mov	r8, r2	@ tmp819, tmp819
 	subs	r3, r3, #216	@ _1027,
-	b	.L3030		@
-.L3046:
+	b	.L3029		@
+.L3045:
 	movs	r3, #3	@ prephitmp_1092,
 	mov	r10, r3	@ prephitmp_1092, prephitmp_1092
 	adds	r3, r3, #218	@ prephitmp_1091,
 	adds	r3, r3, #255	@ prephitmp_1091,
 	str	r3, [sp, #16]	@ prephitmp_1091, %sfp
 	subs	r3, r3, #219	@ prephitmp_1070,
-	ldr	r2, .L3108	@ tmp816,
+	ldr	r2, .L3107	@ tmp816,
 	subs	r3, r3, #255	@ prephitmp_1070,
 	str	r3, [sp, #24]	@ prephitmp_1070, %sfp
 	adds	r3, r3, #91	@ prephitmp_1069,
 	adds	r3, r3, #255	@ prephitmp_1069,
 	mov	fp, r2	@ tmp816, tmp816
-	ldr	r2, .L3108+4	@ tmp817,
+	ldr	r2, .L3107+4	@ tmp817,
 	str	r3, [sp, #20]	@ prephitmp_1069, %sfp
 	subs	r3, r3, #92	@ prephitmp_1042,
 	subs	r3, r3, #255	@ prephitmp_1042,
 	mov	r9, r2	@ tmp817, tmp817
-	ldr	r2, .L3108+8	@ tmp819,
+	ldr	r2, .L3107+8	@ tmp819,
 	str	r3, [sp, #32]	@ prephitmp_1042, %sfp
 	adds	r3, r3, #219	@ prephitmp_1041,
 	str	r3, [sp, #28]	@ prephitmp_1041, %sfp
 	movs	r0, #24	@ _1057,
 	mov	r8, r2	@ tmp819, tmp819
 	subs	r3, r3, #215	@ _1055,
-	b	.L3029		@
-.L3047:
+	b	.L3028		@
+.L3046:
 	movs	r3, #2	@ prephitmp_1092,
 	mov	r10, r3	@ prephitmp_1092, prephitmp_1092
 	adds	r3, r3, #91	@ prephitmp_1091,
@@ -22909,165 +22900,165 @@ DrawConfigMenu:
 	str	r3, [sp, #24]	@ prephitmp_1070, %sfp
 	adds	r3, r3, #219	@ prephitmp_1069,
 	str	r3, [sp, #20]	@ prephitmp_1069, %sfp
-	ldr	r3, .L3108	@ tmp816,
+	ldr	r3, .L3107	@ tmp816,
 	mov	fp, r3	@ tmp816, tmp816
-	ldr	r3, .L3108+4	@ tmp817,
+	ldr	r3, .L3107+4	@ tmp817,
 	mov	r9, r3	@ tmp817, tmp817
-	ldr	r3, .L3108+8	@ tmp819,
+	ldr	r3, .L3107+8	@ tmp819,
 	movs	r0, #25	@ _1079,
 	movs	r2, #6	@ _1077,
 	mov	r8, r3	@ tmp819, tmp819
-	ldr	r5, .L3108+12	@ tmp820,
-	b	.L3028		@
-.L3048:
+	ldr	r5, .L3107+12	@ tmp820,
+	b	.L3027		@
+.L3047:
 	movs	r3, #1	@ prephitmp_1092,
 	mov	r10, r3	@ prephitmp_1092, prephitmp_1092
 	adds	r3, r3, #219	@ prephitmp_1091,
 	str	r3, [sp, #16]	@ prephitmp_1091, %sfp
-	ldr	r3, .L3108	@ tmp816,
+	ldr	r3, .L3107	@ tmp816,
 	mov	fp, r3	@ tmp816, tmp816
-	ldr	r3, .L3108+4	@ tmp817,
+	ldr	r3, .L3107+4	@ tmp817,
 	mov	r9, r3	@ tmp817, tmp817
-	ldr	r3, .L3108+8	@ tmp819,
+	ldr	r3, .L3107+8	@ tmp819,
 	movs	r0, #26	@ _1095,
 	movs	r2, #7	@ _1093,
 	mov	r8, r3	@ tmp819, tmp819
-	b	.L3027		@
-.L3049:
+	b	.L3026		@
+.L3048:
 	movs	r3, #8	@ _1103,
 	mov	ip, r3	@ _1103, _1103
-	ldr	r3, .L3108	@ tmp816,
+	ldr	r3, .L3107	@ tmp816,
 	mov	fp, r3	@ tmp816, tmp816
-	ldr	r3, .L3108+4	@ tmp817,
+	ldr	r3, .L3107+4	@ tmp817,
 	mov	r9, r3	@ tmp817, tmp817
-	ldr	r3, .L3108+8	@ tmp819,
+	ldr	r3, .L3107+8	@ tmp819,
 	movs	r5, #1	@ _1117,
 	movs	r1, #220	@ _1115,
 	movs	r0, #27	@ _1105,
 	mov	r8, r3	@ tmp819, tmp819
-	b	.L3026		@
-.L3050:
-	ldr	r3, .L3108	@ tmp816,
+	b	.L3025		@
+.L3049:
+	ldr	r3, .L3107	@ tmp816,
 	mov	fp, r3	@ tmp816, tmp816
-	ldr	r3, .L3108+4	@ tmp817,
+	ldr	r3, .L3107+4	@ tmp817,
 	mov	r9, r3	@ tmp817, tmp817
-	ldr	r3, .L3108+8	@ tmp819,
+	ldr	r3, .L3107+8	@ tmp819,
 	movs	r5, #1	@ _1133,
 	movs	r1, #220	@ _1131,
 	movs	r0, #28	@ _1121,
 	movs	r2, #9	@ _1119,
 	mov	r8, r3	@ tmp819, tmp819
-	b	.L3025		@
-.L3051:
-	ldr	r2, .L3108	@ tmp816,
+	b	.L3024		@
+.L3050:
+	ldr	r2, .L3107	@ tmp816,
 	mov	fp, r2	@ tmp816, tmp816
-	ldr	r2, .L3108+4	@ tmp817,
+	ldr	r2, .L3107+4	@ tmp817,
 	mov	r9, r2	@ tmp817, tmp817
-	ldr	r2, .L3108+8	@ tmp819,
+	ldr	r2, .L3107+8	@ tmp819,
 	mov	r8, r2	@ tmp819, tmp819
-	ldr	r2, .L3108+16	@ tmp821,
+	ldr	r2, .L3107+16	@ tmp821,
 	movs	r5, #1	@ _1149,
 	movs	r1, #220	@ _1147,
 	movs	r0, #29	@ _1137,
 	movs	r3, #10	@ _1135,
 	mov	r10, r2	@ tmp821, tmp821
-	b	.L3024		@
-.L3052:
-	ldr	r2, .L3108	@ tmp816,
+	b	.L3023		@
+.L3051:
+	ldr	r2, .L3107	@ tmp816,
 	mov	fp, r2	@ tmp816, tmp816
-	ldr	r2, .L3108+4	@ tmp817,
+	ldr	r2, .L3107+4	@ tmp817,
 	mov	r9, r2	@ tmp817, tmp817
-	ldr	r2, .L3108+8	@ tmp819,
+	ldr	r2, .L3107+8	@ tmp819,
 	mov	r8, r2	@ tmp819, tmp819
-	ldr	r2, .L3108+16	@ tmp821,
+	ldr	r2, .L3107+16	@ tmp821,
 	movs	r5, #1	@ _1165,
 	movs	r1, #220	@ _1163,
 	movs	r0, #30	@ _1153,
 	movs	r3, #11	@ _1151,
 	mov	r10, r2	@ tmp821, tmp821
-	b	.L3023		@
-.L3053:
-	ldr	r3, .L3108	@ tmp816,
+	b	.L3022		@
+.L3052:
+	ldr	r3, .L3107	@ tmp816,
 	mov	fp, r3	@ tmp816, tmp816
-	ldr	r3, .L3108+4	@ tmp817,
+	ldr	r3, .L3107+4	@ tmp817,
 	mov	r9, r3	@ tmp817, tmp817
-	ldr	r3, .L3108+8	@ tmp819,
+	ldr	r3, .L3107+8	@ tmp819,
 	movs	r5, #1	@ _1181,
 	movs	r1, #220	@ _1179,
 	movs	r0, #31	@ _1169,
 	movs	r2, #12	@ _1167,
 	mov	r8, r3	@ tmp819, tmp819
-	b	.L3022		@
-.L3054:
-	ldr	r3, .L3108	@ tmp816,
+	b	.L3021		@
+.L3053:
+	ldr	r3, .L3107	@ tmp816,
 	mov	fp, r3	@ tmp816, tmp816
-	ldr	r3, .L3108+4	@ tmp817,
+	ldr	r3, .L3107+4	@ tmp817,
 	mov	r9, r3	@ tmp817, tmp817
-	ldr	r3, .L3108+8	@ tmp819,
+	ldr	r3, .L3107+8	@ tmp819,
 	movs	r5, #1	@ _1197,
 	movs	r1, #220	@ _1195,
 	movs	r0, #32	@ _1185,
 	movs	r2, #13	@ _1183,
 	mov	r8, r3	@ tmp819, tmp819
-	b	.L3021		@
-.L3055:
-	ldr	r3, .L3108	@ tmp816,
+	b	.L3020		@
+.L3054:
+	ldr	r3, .L3107	@ tmp816,
 	mov	fp, r3	@ tmp816, tmp816
-	ldr	r3, .L3108+4	@ tmp817,
+	ldr	r3, .L3107+4	@ tmp817,
 	mov	r9, r3	@ tmp817, tmp817
-	ldr	r3, .L3108+8	@ tmp819,
+	ldr	r3, .L3107+8	@ tmp819,
 	movs	r5, #1	@ _1213,
 	movs	r1, #220	@ _1211,
 	movs	r0, #33	@ _1201,
 	movs	r2, #14	@ _1199,
 	mov	r8, r3	@ tmp819, tmp819
-	b	.L3020		@
-.L3056:
+	b	.L3019		@
+.L3055:
 	movs	r3, #15	@ _1215,
 	movs	r7, r3	@ _1215, _1215
-	ldr	r3, .L3108	@ tmp816,
+	ldr	r3, .L3107	@ tmp816,
 	mov	fp, r3	@ tmp816, tmp816
-	ldr	r3, .L3108+4	@ tmp817,
+	ldr	r3, .L3107+4	@ tmp817,
 	mov	r9, r3	@ tmp817, tmp817
-	ldr	r3, .L3108+8	@ tmp819,
+	ldr	r3, .L3107+8	@ tmp819,
 	movs	r5, #1	@ _1229,
 	movs	r1, #220	@ _1227,
 	movs	r0, #34	@ _1217,
 	mov	r8, r3	@ tmp819, tmp819
-	b	.L3019		@
-.L3057:
-	ldr	r3, .L3108	@ tmp816,
+	b	.L3018		@
+.L3056:
+	ldr	r3, .L3107	@ tmp816,
 	mov	fp, r3	@ tmp816, tmp816
-	ldr	r3, .L3108+4	@ tmp817,
+	ldr	r3, .L3107+4	@ tmp817,
 	mov	r9, r3	@ tmp817, tmp817
-	ldr	r3, .L3108+8	@ tmp819,
+	ldr	r3, .L3107+8	@ tmp819,
 	mov	r8, r3	@ tmp819, tmp819
-	ldr	r3, .L3108+20	@ tmp822,
+	ldr	r3, .L3107+20	@ tmp822,
 	movs	r5, #1	@ i,
 	movs	r1, #220	@ _1243,
 	movs	r0, #35	@ _1233,
 	movs	r2, #16	@ _1231,
 	mov	r10, r3	@ tmp822, tmp822
-	b	.L3018		@
-.L3034:
+	b	.L3017		@
+.L3033:
 @ Patches/../C_code.c:4581: 	case 0: TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0); // seed first 
-	ldr	r5, .L3108+24	@ tmp438,
+	ldr	r5, .L3107+24	@ tmp438,
 	movs	r3, #0	@,
 	movs	r0, r5	@, tmp438
 	movs	r2, #2	@,
 	movs	r1, #9	@,
-	ldr	r7, .L3108+28	@ tmp439,
+	ldr	r7, .L3107+28	@ tmp439,
 	bl	.L223		@
 @ Patches/../C_code.c:4582: 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-1, 3+((i)*2)), white, proc->seed); i++; 
 	movs	r0, r5	@ tmp438, tmp438
 	movs	r1, #0	@,
-	ldr	r3, .L3108+32	@ tmp442,
+	ldr	r3, .L3107+32	@ tmp442,
 	ldr	r2, [r4, #44]	@ proc_355(D)->seed, proc_355(D)->seed
 	adds	r0, r0, #10	@ tmp438,
 	bl	.L14		@
 	movs	r3, #8	@ prephitmp_1092,
 	mov	r10, r3	@ prephitmp_1092, prephitmp_1092
-	ldr	r3, .L3108+36	@ prephitmp_1091,
+	ldr	r3, .L3107+36	@ prephitmp_1091,
 	str	r3, [sp, #16]	@ prephitmp_1091, %sfp
 	movs	r3, #7	@ prephitmp_1070,
 	str	r3, [sp, #24]	@ prephitmp_1070, %sfp
@@ -23097,8 +23088,8 @@ DrawConfigMenu:
 	mov	r8, r3	@ prephitmp_921, prephitmp_921
 	movs	r5, #2	@ prephitmp_916,
 	lsls	r1, r1, #1	@ prephitmp_915, prephitmp_915,
-	b	.L3033		@
-.L3102:
+	b	.L3032		@
+.L3101:
 @ Patches/../C_code.c:4620: 		if ((proc->Option[17] != 3) || (!IsSkill(proc->skill))) {
 	movs	r3, #55	@ tmp791,
 	ldrb	r2, [r4, r3]	@ _285,
@@ -23108,20 +23099,20 @@ DrawConfigMenu:
 	lsls	r3, r3, #24	@ tmp796, tmp792,
 	lsrs	r3, r3, #24	@ tmp795, tmp796,
 	cmp	r3, #253	@ tmp795,
-	bls	.LCB19048	@
-	b	.L3037	@long jump	@
-.LCB19048:
+	bls	.LCB19040	@
+	b	.L3036	@long jump	@
+.LCB19040:
 @ Patches/../C_code.c:4498:     return !!SkillDescTable[skillId];
-	ldr	r3, .L3108+40	@ tmp797,
+	ldr	r3, .L3107+40	@ tmp797,
 	lsls	r2, r2, #1	@ tmp798, _285,
 	ldrh	r0, [r2, r3]	@ _401, SkillDescTable
 @ Patches/../C_code.c:4620: 		if ((proc->Option[17] != 3) || (!IsSkill(proc->skill))) {
 	cmp	r0, #0	@ _401,
-	bne	.LCB19053	@
-	b	.L3037	@long jump	@
-.LCB19053:
+	bne	.LCB19045	@
+	b	.L3036	@long jump	@
+.LCB19045:
 @ Patches/../C_code.c:4502:     char* desc = GetStringFromIndex(SkillDescTable[skillId]);
-	ldr	r3, .L3108+44	@ tmp807,
+	ldr	r3, .L3107+44	@ tmp807,
 	bl	.L14		@
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	ldrb	r3, [r0]	@ _408, *desc_407
@@ -23129,39 +23120,39 @@ DrawConfigMenu:
 	movs	r1, r0	@ desc, tmp824
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	cmp	r3, #0	@ _408,
-	beq	.L3039		@,
+	beq	.L3038		@,
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	movs	r2, r0	@ it, desc
-	b	.L3041		@
-.L3040:
+	b	.L3040		@
+.L3039:
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	ldrb	r3, [r2, #1]	@ _408, MEM[(char *)it_411]
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	adds	r2, r2, #1	@ it,
 @ Patches/../C_code.c:4504:     for (char* it = desc; *it; ++it)
 	cmp	r3, #0	@ _408,
-	beq	.L3039		@,
-.L3041:
+	beq	.L3038		@,
+.L3040:
 @ Patches/../C_code.c:4506:         if (*it == ':')
 	cmp	r3, #58	@ _408,
-	bne	.L3040		@,
+	bne	.L3039		@,
 @ Patches/../C_code.c:4508:             *it = 0;
 	movs	r3, #0	@ tmp808,
 	strb	r3, [r2]	@ tmp808, *it_416
-.L3039:
+.L3038:
 @ Patches/../C_code.c:4625: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
-	ldr	r0, .L3108+48	@ tmp812,
+	ldr	r0, .L3107+48	@ tmp812,
 	add	r2, sp, #56	@,,
 	bl	GetCombinedString		@
 @ Patches/../C_code.c:4625: 		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
 	str	r0, [sp, #4]	@ tmp825,
-	b	.L3100		@
-.L3101:
+	b	.L3099		@
+.L3100:
 @ Patches/../C_code.c:4616: 	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
 	adds	r3, r5, r6	@ _267, i, offset
 	mov	ip, r3	@ _267, _267
 @ Patches/../C_code.c:4616: 	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
-	ldr	r3, .L3108+24	@ tmp758,
+	ldr	r3, .L3107+24	@ tmp758,
 @ Patches/../C_code.c:4616: 	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
 	lsls	r1, r5, #7	@ tmp754, i,
 @ Patches/../C_code.c:4616: 	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
@@ -23184,7 +23175,7 @@ DrawConfigMenu:
 @ Patches/../C_code.c:4616: 	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
 	mov	r8, r2	@ tmp766, tmp766
 	lsls	r2, r2, #2	@ tmp768, tmp766,
-	ldr	r3, .L3108+52	@ tmp764,
+	ldr	r3, .L3107+52	@ tmp764,
 	add	r2, r2, r8	@ tmp769, tmp766
 	lsls	r2, r2, #1	@ tmp770, tmp769,
 	adds	r3, r3, r2	@ tmp771, tmp764, tmp770
@@ -23192,11 +23183,11 @@ DrawConfigMenu:
 	movs	r2, #52	@ tmp773,
 	str	r3, [sp, #4]	@ tmp771,
 @ Patches/../C_code.c:4616: 	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
-	ldr	r3, .L3108+8	@ tmp772,
+	ldr	r3, .L3107+8	@ tmp772,
 	add	r3, r3, ip	@ tmp774, _267
 @ Patches/../C_code.c:4616: 	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
 	ldrb	r3, [r3, r2]	@ tmp775, RtWidths
-	ldr	r7, .L3108+4	@ tmp776,
+	ldr	r7, .L3107+4	@ tmp776,
 	str	r3, [sp]	@ tmp775,
 	movs	r2, #0	@,
 	movs	r3, #0	@,
@@ -23206,13 +23197,13 @@ DrawConfigMenu:
 	bl	.L223		@
 @ Patches/../C_code.c:4617: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r5, #8	@ i,
-	beq	.LCB19121	@
-	bl	.L3015	@far jump	@
-.LCB19121:
-	bl	.L3014	@ far jump	@
-.L3109:
-	.align	2
+	beq	.LCB19113	@
+	bl	.L3014	@far jump	@
+.LCB19113:
+	bl	.L3013	@ far jump	@
 .L3108:
+	.align	2
+.L3107:
 	.word	gBG0TilemapBuffer
 	.word	PutDrawText
 	.word	.LANCHOR2
@@ -23241,43 +23232,43 @@ DisplayVertUiHand:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, r7, lr}	@
 @ Patches/../C_code.c:4711:     if ((GetGameClock() - 1) == sPrevHandClockFrame)
-	ldr	r6, .L3114	@ tmp163,
+	ldr	r6, .L3113	@ tmp163,
 @ Patches/../C_code.c:4710: {
 	sub	sp, sp, #12	@,,
 @ Patches/../C_code.c:4710: {
 	movs	r4, r0	@ x, tmp166
 	movs	r5, r1	@ y, tmp167
 @ Patches/../C_code.c:4711:     if ((GetGameClock() - 1) == sPrevHandClockFrame)
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:4711:     if ((GetGameClock() - 1) == sPrevHandClockFrame)
-	ldr	r7, .L3114+4	@ tmp164,
+	ldr	r7, .L3113+4	@ tmp164,
 @ Patches/../C_code.c:4711:     if ((GetGameClock() - 1) == sPrevHandClockFrame)
 	ldr	r3, [r7]	@ sPrevHandClockFrame, sPrevHandClockFrame
 @ Patches/../C_code.c:4711:     if ((GetGameClock() - 1) == sPrevHandClockFrame)
 	subs	r0, r0, #1	@ tmp138,
 @ Patches/../C_code.c:4711:     if ((GetGameClock() - 1) == sPrevHandClockFrame)
 	cmp	r0, r3	@ tmp138, sPrevHandClockFrame
-	beq	.L3113		@,
-	ldr	r3, .L3114+8	@ tmp165,
-.L3111:
+	beq	.L3112		@,
+	ldr	r3, .L3113+8	@ tmp165,
+.L3110:
 @ Patches/../C_code.c:4717:     sPrevHandScreenPosition.x = x;
 	strh	r4, [r3]	@ x, sPrevHandScreenPosition.x
 @ Patches/../C_code.c:4718:     sPrevHandScreenPosition.y = y;
 	strh	r5, [r3, #2]	@ y, sPrevHandScreenPosition.y
 @ Patches/../C_code.c:4719:     sPrevHandClockFrame = GetGameClock();
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:4719:     sPrevHandClockFrame = GetGameClock();
 	str	r0, [r7]	@ tmp169, sPrevHandClockFrame
 @ Patches/../C_code.c:4721:     y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))] - 14);
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:4721:     y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))] - 14);
-	ldr	r3, .L3114+12	@ tmp152,
+	ldr	r3, .L3113+12	@ tmp152,
 	movs	r1, #32	@,
 	bl	.L14		@
 @ Patches/../C_code.c:4721:     y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))] - 14);
 	movs	r1, #108	@ tmp156,
 @ Patches/../C_code.c:4722:     PutSprite(2, x, y, sSprite_VertHand, 0);
-	ldr	r2, .L3114+16	@ tmp153,
+	ldr	r2, .L3113+16	@ tmp153,
 	movs	r3, r2	@ tmp154, tmp153
 @ Patches/../C_code.c:4721:     y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))] - 14);
 	adds	r2, r2, r0	@ tmp157, tmp153, tmp171
@@ -23291,7 +23282,7 @@ DisplayVertUiHand:
 	movs	r0, #2	@,
 	movs	r1, r4	@, x
 	adds	r3, r3, #100	@ tmp154,
-	ldr	r4, .L3114+20	@ tmp162,
+	ldr	r4, .L3113+20	@ tmp162,
 @ Patches/../C_code.c:4721:     y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))] - 14);
 	adds	r2, r2, r5	@ y, tmp159, y
 @ Patches/../C_code.c:4722:     PutSprite(2, x, y, sSprite_VertHand, 0);
@@ -23302,9 +23293,9 @@ DisplayVertUiHand:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3113:
+.L3112:
 @ Patches/../C_code.c:4713:         x = (x + sPrevHandScreenPosition.x) >> 1;
-	ldr	r3, .L3114+8	@ tmp165,
+	ldr	r3, .L3113+8	@ tmp165,
 	movs	r1, #0	@ tmp173,
 	ldrsh	r2, [r3, r1]	@ sPrevHandScreenPosition, tmp165, tmp173
 @ Patches/../C_code.c:4713:         x = (x + sPrevHandScreenPosition.x) >> 1;
@@ -23318,10 +23309,10 @@ DisplayVertUiHand:
 	asrs	r4, r4, #1	@ x, _7,
 @ Patches/../C_code.c:4714:         y = (y + sPrevHandScreenPosition.y) >> 1;
 	asrs	r5, r5, #1	@ y, _10,
-	b	.L3111		@
-.L3115:
-	.align	2
+	b	.L3110		@
 .L3114:
+	.align	2
+.L3113:
 	.word	GetGameClock
 	.word	sPrevHandClockFrame
 	.word	sPrevHandScreenPosition
@@ -23343,24 +23334,24 @@ DisplayHand:
 	push	{r4, lr}	@
 @ Patches/../C_code.c:4648: 	if (type) { 
 	cmp	r2, #0	@ tmp120,
-	beq	.L3117		@,
+	beq	.L3116		@,
 @ Patches/../C_code.c:4649: 		DisplayVertUiHand(x, y); 
 	bl	DisplayVertUiHand		@
-.L3116:
+.L3115:
 @ Patches/../C_code.c:4652: } 
 	@ sp needed	@
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L3117:
+.L3116:
 @ Patches/../C_code.c:4651: 	else { DisplayUiHand(x, y); } 
-	ldr	r3, .L3119	@ tmp117,
+	ldr	r3, .L3118	@ tmp117,
 	bl	.L14		@
 @ Patches/../C_code.c:4652: } 
-	b	.L3116		@
-.L3120:
-	.align	2
+	b	.L3115		@
 .L3119:
+	.align	2
+.L3118:
 	.word	DisplayUiHand
 	.size	DisplayHand, .-DisplayHand
 	.align	1
@@ -23495,34 +23486,34 @@ ReloadAllUnits:
 	sub	sp, sp, #28	@,,
 @ Patches/../C_code.c:4763: 	if (!((proc->calledFromChapter) && (proc->reloadUnits))) { 
 	cmp	r3, #0	@ tmp122,
-	beq	.L3122		@,
+	beq	.L3121		@,
 @ Patches/../C_code.c:4763: 	if (!((proc->calledFromChapter) && (proc->reloadUnits))) { 
 	movs	r3, #54	@ tmp123,
 @ Patches/../C_code.c:4763: 	if (!((proc->calledFromChapter) && (proc->reloadUnits))) { 
 	ldrb	r3, [r0, r3]	@ tmp124,
 	cmp	r3, #0	@ tmp124,
-	beq	.L3122		@,
+	beq	.L3121		@,
 @ Patches/../C_code.c:4774: 		ClearUnit(unit); 
-	ldr	r3, .L3139	@ tmp133,
+	ldr	r3, .L3138	@ tmp133,
 	mov	r9, r3	@ tmp133, tmp133
 @ Patches/../C_code.c:4775: 		LoadUnit(&uDef); 
-	ldr	r3, .L3139+4	@ tmp134,
+	ldr	r3, .L3138+4	@ tmp134,
 @ Patches/../C_code.c:4769: 	for (int i = 1; i<0xC0; ++i) { 
 	movs	r5, #1	@ i,
 @ Patches/../C_code.c:4775: 		LoadUnit(&uDef); 
 	mov	r8, r3	@ tmp134, tmp134
-	ldr	r7, .L3139+8	@ tmp131,
-.L3125:
+	ldr	r7, .L3138+8	@ tmp131,
+.L3124:
 @ Patches/../C_code.c:4770: 		unit = GetUnit(i); 
 	movs	r0, r5	@, i
 	bl	.L223		@
 	subs	r4, r0, #0	@ unit, tmp136,
 @ Patches/../C_code.c:4771: 		if (!UNIT_IS_VALID(unit)) { continue; } 
-	beq	.L3124		@,
+	beq	.L3123		@,
 @ Patches/../C_code.c:4771: 		if (!UNIT_IS_VALID(unit)) { continue; } 
 	ldr	r3, [r0]	@ unit_10->pCharacterData, unit_10->pCharacterData
 	cmp	r3, #0	@ unit_10->pCharacterData,
-	beq	.L3124		@,
+	beq	.L3123		@,
 @ Patches/../C_code.c:4773: 		InitUnitDef(&uDef, unit); 
 	movs	r1, r0	@, unit
 @ Patches/../C_code.c:4772: 		state = unit->state; 
@@ -23532,19 +23523,19 @@ ReloadAllUnits:
 	bl	InitUnitDef		@
 @ Patches/../C_code.c:4774: 		ClearUnit(unit); 
 	movs	r0, r4	@, unit
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:4775: 		LoadUnit(&uDef); 
 	add	r0, sp, #4	@ tmp141,,
 	bl	.L179		@
 @ Patches/../C_code.c:4776: 		unit->state = state; 
 	str	r6, [r4, #12]	@ state, unit_10->state
-.L3124:
+.L3123:
 @ Patches/../C_code.c:4769: 	for (int i = 1; i<0xC0; ++i) { 
 	adds	r5, r5, #1	@ i,
 @ Patches/../C_code.c:4769: 	for (int i = 1; i<0xC0; ++i) { 
 	cmp	r5, #192	@ i,
-	bne	.L3125		@,
-.L3122:
+	bne	.L3124		@,
+.L3121:
 @ Patches/../C_code.c:4778: } 
 	add	sp, sp, #28	@,,
 	@ sp needed	@
@@ -23554,9 +23545,9 @@ ReloadAllUnits:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3140:
-	.align	2
 .L3139:
+	.align	2
+.L3138:
 	.word	ClearUnit
 	.word	LoadUnit
 	.word	GetUnit
@@ -23578,32 +23569,32 @@ RedrawAllText:
 	mov	r5, r8	@,
 	mov	lr, fp	@,
 	push	{r5, r6, r7, lr}	@
-	ldr	r6, .L3228	@ tmp595,
+	ldr	r6, .L3227	@ tmp595,
 	movs	r7, r6	@ _232, tmp595
 	mov	r10, r0	@ proc, tmp601
 	movs	r4, r6	@ ivtmp.1901, tmp595
 	adds	r7, r7, #17	@ _232,
-	ldr	r5, .L3228+4	@ tmp596,
+	ldr	r5, .L3227+4	@ tmp596,
 	sub	sp, sp, #60	@,,
 	adds	r7, r7, #255	@ _232,
-.L3142:
+.L3141:
 @ Patches/../C_code.c:5094: 		ClearText(&th[i]);
 	movs	r0, r4	@, ivtmp.1901
 @ Patches/../C_code.c:5093: 	for (int i = 0; i < 34; ++i) { 
 	adds	r4, r4, #8	@ ivtmp.1901,
 @ Patches/../C_code.c:5094: 		ClearText(&th[i]);
-	bl	.L3232		@
+	bl	.L3231		@
 @ Patches/../C_code.c:5093: 	for (int i = 0; i < 34; ++i) { 
 	cmp	r4, r7	@ ivtmp.1901, _232
-	bne	.L3142		@,
+	bne	.L3141		@,
 @ Patches/../C_code.c:5096: 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0, 0), 0x1d, 0x13, 0); // all 
-	ldr	r3, .L3228+8	@ tmp597,
+	ldr	r3, .L3227+8	@ tmp597,
 	mov	r8, r3	@ tmp597, tmp597
 	movs	r2, #19	@,
 	movs	r3, #0	@,
 	movs	r1, #29	@,
 	mov	r0, r8	@, tmp597
-	ldr	r4, .L3228+12	@ tmp324,
+	ldr	r4, .L3227+12	@ tmp324,
 	bl	.L240		@
 @ Patches/../C_code.c:5098: 	int offset = proc->offset;
 	movs	r3, #49	@ tmp325,
@@ -23611,17 +23602,18 @@ RedrawAllText:
 	ldrb	r7, [r2, r3]	@ offset,
 @ Patches/../C_code.c:5103: 	switch (offset) { 
 	cmp	r7, #18	@ offset,
-	bls	.LCB19458	@
-	b	.L3225	@long jump	@
-.LCB19458:
-	ldr	r2, .L3228+16	@ tmp330,
+	bls	.LCB19450	@
+	b	.L3224	@long jump	@
+.LCB19450:
+	ldr	r2, .L3227+16	@ tmp330,
 	lsls	r3, r7, #2	@ tmp328, offset,
 	ldr	r3, [r2, r3]	@ tmp331,
 	mov	pc, r3	@ tmp331
 	.section	.rodata
 	.align	2
-.L3145:
-	.word	.L3163
+.L3144:
+	.word	.L3162
+	.word	.L3165
 	.word	.L3166
 	.word	.L3167
 	.word	.L3168
@@ -23639,33 +23631,32 @@ RedrawAllText:
 	.word	.L3180
 	.word	.L3181
 	.word	.L3182
-	.word	.L3183
 	.text
-.L3182:
-	ldr	r3, .L3228+20	@ tmp599,
+.L3181:
+	ldr	r3, .L3227+20	@ tmp599,
 	mov	r9, r3	@ tmp599, tmp599
-	ldr	r3, .L3228+24	@ tmp600,
+	ldr	r3, .L3227+24	@ tmp600,
 	movs	r4, #0	@ i,
 	mov	fp, r3	@ tmp600, tmp600
-.L3146:
+.L3145:
 @ Patches/../C_code.c:5139: 		case 17: { if (DisplayTimedHitsOption) { 
-	ldr	r3, .L3228+28	@ tmp552,
+	ldr	r3, .L3227+28	@ tmp552,
 @ Patches/../C_code.c:5139: 		case 17: { if (DisplayTimedHitsOption) { 
 	ldr	r3, [r3]	@ DisplayTimedHitsOption, DisplayTimedHitsOption
 	cmp	r3, #0	@ DisplayTimedHitsOption,
-	beq	.LCB19480	@
-	b	.L3226	@long jump	@
-.LCB19480:
-.L3144:
+	beq	.LCB19472	@
+	b	.L3225	@long jump	@
+.LCB19472:
+.L3143:
 @ Patches/../C_code.c:5143: 		case 18: { if (DisplayRandomSkillsOption) { 
-	ldr	r3, .L3228+32	@ tmp570,
+	ldr	r3, .L3227+32	@ tmp570,
 @ Patches/../C_code.c:5143: 		case 18: { if (DisplayRandomSkillsOption) { 
 	ldr	r3, [r3]	@ DisplayRandomSkillsOption, DisplayRandomSkillsOption
 	cmp	r3, #0	@ DisplayRandomSkillsOption,
-	beq	.LCB19485	@
-	b	.L3227	@long jump	@
-.LCB19485:
-.L3143:
+	beq	.LCB19477	@
+	b	.L3226	@long jump	@
+.LCB19477:
+.L3142:
 @ Patches/../C_code.c:5151: 	DrawConfigMenu(proc);
 	mov	r0, r10	@, proc
 	bl	DrawConfigMenu		@
@@ -23675,14 +23666,14 @@ RedrawAllText:
 	str	r3, [sp, #4]	@ tmp591,
 	movs	r3, #6	@ tmp592,
 	movs	r2, #4	@,
-	ldr	r1, .L3228+36	@ tmp588,
+	ldr	r1, .L3227+36	@ tmp588,
 	str	r3, [sp]	@ tmp592,
-	ldr	r0, .L3228+40	@ tmp589,
+	ldr	r0, .L3227+40	@ tmp589,
 	movs	r3, #0	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5154: 	BG_EnableSyncByMask(BG0_SYNC_BIT);
 	movs	r0, #1	@,
-	ldr	r3, .L3228+44	@ tmp594,
+	ldr	r3, .L3227+44	@ tmp594,
 	bl	.L14		@
 @ Patches/../C_code.c:5156: }
 	add	sp, sp, #60	@,,
@@ -23695,28 +23686,28 @@ RedrawAllText:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3183:
-	ldr	r3, .L3228+20	@ tmp599,
+.L3182:
+	ldr	r3, .L3227+20	@ tmp599,
 	mov	r9, r3	@ tmp599, tmp599
-	ldr	r3, .L3228+24	@ tmp600,
+	ldr	r3, .L3227+24	@ tmp600,
 @ Patches/../C_code.c:5103: 	switch (offset) { 
 	movs	r4, #0	@ i,
 	mov	fp, r3	@ tmp600, tmp600
-	b	.L3144		@
-.L3166:
-	ldr	r3, .L3228+48	@ prephitmp_776,
+	b	.L3143		@
+.L3165:
+	ldr	r3, .L3227+48	@ prephitmp_776,
 	mov	fp, r3	@ prephitmp_776, prephitmp_776
 	movs	r3, #6	@ prephitmp_757,
 	str	r3, [sp, #16]	@ prephitmp_757, %sfp
-	ldr	r3, .L3228+52	@ prephitmp_756,
+	ldr	r3, .L3227+52	@ prephitmp_756,
 	str	r3, [sp, #12]	@ prephitmp_756, %sfp
 	movs	r3, #5	@ prephitmp_731,
 	str	r3, [sp, #24]	@ prephitmp_731, %sfp
-	ldr	r3, .L3228+56	@ prephitmp_730,
+	ldr	r3, .L3227+56	@ prephitmp_730,
 	str	r3, [sp, #20]	@ prephitmp_730, %sfp
 	movs	r3, #4	@ prephitmp_699,
 	str	r3, [sp, #32]	@ prephitmp_699, %sfp
-	ldr	r3, .L3228+60	@ prephitmp_698,
+	ldr	r3, .L3227+60	@ prephitmp_698,
 	str	r3, [sp, #28]	@ prephitmp_698, %sfp
 	movs	r3, #3	@ prephitmp_661,
 	str	r3, [sp, #40]	@ prephitmp_661, %sfp
@@ -23732,12 +23723,12 @@ RedrawAllText:
 	subs	r3, r3, #70	@ prephitmp_611,
 	subs	r3, r3, #255	@ prephitmp_611,
 	str	r3, [sp, #52]	@ prephitmp_611, %sfp
-	ldr	r3, .L3228+20	@ tmp599,
+	ldr	r3, .L3227+20	@ tmp599,
 	movs	r4, #7	@ prephitmp_777,
 	movs	r1, #198	@ prephitmp_610,
 	mov	r9, r3	@ tmp599, tmp599
-	ldr	r5, .L3228+64	@ tmp598,
-.L3162:
+	ldr	r5, .L3227+64	@ tmp598,
+.L3161:
 @ Patches/../C_code.c:5106: 		case 1: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&VarianceText, false)); i++; 
 	movs	r3, r5	@ tmp342, tmp598
 	adds	r3, r3, #20	@ tmp342,
@@ -23745,16 +23736,16 @@ RedrawAllText:
 	movs	r3, #5	@ tmp343,
 	movs	r2, #3	@,
 	str	r3, [sp]	@ tmp343,
-	ldr	r0, .L3228+68	@ tmp340,
+	ldr	r0, .L3227+68	@ tmp340,
 	movs	r3, #0	@,
 @ Patches/../C_code.c:5106: 		case 1: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&VarianceText, false)); i++; 
 	add	r1, r1, r8	@ tmp338, tmp597
 @ Patches/../C_code.c:5106: 		case 1: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&VarianceText, false)); i++; 
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5108: 		case 2: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&CharactersText, false)); i++; 
 	ldr	r3, [sp, #52]	@ prephitmp_611, %sfp
 	adds	r3, r7, r3	@ _648, offset, prephitmp_611
-.L3161:
+.L3160:
 @ Patches/../C_code.c:5108: 		case 2: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&CharactersText, false)); i++; 
 	movs	r2, r5	@ tmp351, tmp598
 	adds	r2, r2, #32	@ tmp351,
@@ -23776,11 +23767,11 @@ RedrawAllText:
 	adds	r0, r6, r0	@ tmp348, tmp595, tmp347
 @ Patches/../C_code.c:5108: 		case 2: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&CharactersText, false)); i++; 
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5110: 		case 3: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&BaseStatsText, false)); i++; 
 	ldr	r3, [sp, #48]	@ prephitmp_617, %sfp
 	adds	r3, r7, r3	@ _686, offset, prephitmp_617
-.L3160:
+.L3159:
 @ Patches/../C_code.c:5110: 		case 3: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&BaseStatsText, false)); i++; 
 	movs	r2, r5	@ tmp363, tmp598
 	adds	r2, r2, #64	@ tmp363,
@@ -23802,11 +23793,11 @@ RedrawAllText:
 	adds	r0, r6, r0	@ tmp360, tmp595, tmp359
 @ Patches/../C_code.c:5110: 		case 3: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&BaseStatsText, false)); i++; 
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5112: 		case 4: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&GrowthsText, false)); i++; 
 	ldr	r3, [sp, #40]	@ prephitmp_661, %sfp
 	adds	r3, r7, r3	@ _718, offset, prephitmp_661
-.L3159:
+.L3158:
 @ Patches/../C_code.c:5112: 		case 4: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&GrowthsText, false)); i++; 
 	movs	r2, r5	@ tmp375, tmp598
 	adds	r2, r2, #76	@ tmp375,
@@ -23828,11 +23819,11 @@ RedrawAllText:
 	adds	r0, r6, r0	@ tmp372, tmp595, tmp371
 @ Patches/../C_code.c:5112: 		case 4: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&GrowthsText, false)); i++; 
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5114: 		case 5: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&LevelupsText, false)); i++; 
 	ldr	r3, [sp, #32]	@ prephitmp_699, %sfp
 	adds	r3, r7, r3	@ _744, offset, prephitmp_699
-.L3158:
+.L3157:
 @ Patches/../C_code.c:5114: 		case 5: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&LevelupsText, false)); i++; 
 	movs	r2, r5	@ tmp387, tmp598
 	adds	r2, r2, #84	@ tmp387,
@@ -23854,11 +23845,11 @@ RedrawAllText:
 	adds	r0, r6, r0	@ tmp384, tmp595, tmp383
 @ Patches/../C_code.c:5114: 		case 5: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&LevelupsText, false)); i++; 
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5116: 		case 6: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&StatCapsText, false)); i++; 
 	ldr	r3, [sp, #24]	@ prephitmp_731, %sfp
 	adds	r3, r7, r3	@ _764, offset, prephitmp_731
-.L3157:
+.L3156:
 @ Patches/../C_code.c:5116: 		case 6: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&StatCapsText, false)); i++; 
 	movs	r2, r5	@ tmp399, tmp598
 	adds	r2, r2, #96	@ tmp399,
@@ -23880,11 +23871,11 @@ RedrawAllText:
 	adds	r0, r6, r0	@ tmp396, tmp595, tmp395
 @ Patches/../C_code.c:5116: 		case 6: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&StatCapsText, false)); i++; 
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5118: 		case 7: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ClassText, false)); i++; 
 	ldr	r3, [sp, #16]	@ prephitmp_757, %sfp
 	adds	r3, r7, r3	@ _778, offset, prephitmp_757
-.L3156:
+.L3155:
 @ Patches/../C_code.c:5118: 		case 7: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ClassText, false)); i++; 
 	movs	r2, r5	@ tmp411, tmp598
 	adds	r2, r2, #108	@ tmp411,
@@ -23904,12 +23895,12 @@ RedrawAllText:
 @ Patches/../C_code.c:5118: 		case 7: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ClassText, false)); i++; 
 	movs	r3, #0	@,
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5119: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ prephitmp_777,
-	bne	.LCB19681	@
-	b	.L3224	@long jump	@
-.LCB19681:
+	bne	.LCB19673	@
+	b	.L3223	@long jump	@
+.LCB19673:
 @ Patches/../C_code.c:5120: 		case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemsText, false)); i++;  
 	lsls	r1, r4, #7	@ tmp418, prephitmp_777,
 @ Patches/../C_code.c:5120: 		case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemsText, false)); i++;  
@@ -23918,7 +23909,7 @@ RedrawAllText:
 	adds	r1, r1, #198	@ _796,
 @ Patches/../C_code.c:5120: 		case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemsText, false)); i++;  
 	adds	r4, r4, #1	@ _798,
-.L3155:
+.L3154:
 @ Patches/../C_code.c:5120: 		case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemsText, false)); i++;  
 	movs	r2, r5	@ tmp426, tmp598
 	adds	r2, r2, #116	@ tmp426,
@@ -23937,12 +23928,12 @@ RedrawAllText:
 @ Patches/../C_code.c:5120: 		case 8: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemsText, false)); i++;  
 	movs	r3, #0	@,
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5121: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ _798,
-	bne	.LCB19704	@
-	b	.L3224	@long jump	@
-.LCB19704:
+	bne	.LCB19696	@
+	b	.L3223	@long jump	@
+.LCB19696:
 @ Patches/../C_code.c:5122: 		case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ModeText, false)); i++;  // Classic/Casual 
 	lsls	r1, r4, #7	@ tmp433, _798,
 @ Patches/../C_code.c:5122: 		case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ModeText, false)); i++;  // Classic/Casual 
@@ -23951,7 +23942,7 @@ RedrawAllText:
 	adds	r1, r1, #198	@ _810,
 @ Patches/../C_code.c:5122: 		case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ModeText, false)); i++;  // Classic/Casual 
 	adds	r4, r4, #1	@ _812,
-.L3154:
+.L3153:
 @ Patches/../C_code.c:5122: 		case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ModeText, false)); i++;  // Classic/Casual 
 	movs	r2, r5	@ tmp441, tmp598
 	adds	r2, r2, #124	@ tmp441,
@@ -23970,12 +23961,12 @@ RedrawAllText:
 @ Patches/../C_code.c:5122: 		case 9: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ModeText, false)); i++;  // Classic/Casual 
 	movs	r3, #0	@,
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5123: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ _812,
-	bne	.LCB19727	@
-	b	.L3224	@long jump	@
-.LCB19727:
+	bne	.LCB19719	@
+	b	.L3223	@long jump	@
+.LCB19719:
 @ Patches/../C_code.c:5124: 		case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&MusicText, false)); i++; 
 	lsls	r1, r4, #7	@ tmp448, _812,
 @ Patches/../C_code.c:5124: 		case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&MusicText, false)); i++; 
@@ -23984,9 +23975,9 @@ RedrawAllText:
 	adds	r1, r1, #198	@ _824,
 @ Patches/../C_code.c:5124: 		case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&MusicText, false)); i++; 
 	adds	r4, r4, #1	@ _826,
-.L3153:
+.L3152:
 @ Patches/../C_code.c:5124: 		case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&MusicText, false)); i++; 
-	ldr	r2, .L3228+24	@ tmp600,
+	ldr	r2, .L3227+24	@ tmp600,
 	mov	fp, r2	@ tmp600, tmp600
 	adds	r2, r2, #4	@ tmp456,
 	str	r2, [sp, #4]	@ tmp456,
@@ -24004,12 +23995,12 @@ RedrawAllText:
 @ Patches/../C_code.c:5124: 		case 10: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&MusicText, false)); i++; 
 	movs	r3, #0	@,
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5125: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ _826,
-	bne	.LCB19751	@
-	b	.L3143	@long jump	@
-.LCB19751:
+	bne	.LCB19743	@
+	b	.L3142	@long jump	@
+.LCB19743:
 @ Patches/../C_code.c:5126: 		case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ColoursText, false)); i++;  
 	lsls	r1, r4, #7	@ tmp463, _826,
 @ Patches/../C_code.c:5126: 		case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ColoursText, false)); i++;  
@@ -24018,7 +24009,7 @@ RedrawAllText:
 	adds	r1, r1, #198	@ _838,
 @ Patches/../C_code.c:5126: 		case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ColoursText, false)); i++;  
 	adds	r4, r4, #1	@ _840,
-.L3152:
+.L3151:
 @ Patches/../C_code.c:5126: 		case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ColoursText, false)); i++;  
 	mov	r2, fp	@ tmp471, tmp600
 	adds	r2, r2, #12	@ tmp471,
@@ -24037,12 +24028,12 @@ RedrawAllText:
 @ Patches/../C_code.c:5126: 		case 11: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ColoursText, false)); i++;  
 	movs	r3, #0	@,
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5127: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ _840,
-	bne	.LCB19774	@
-	b	.L3143	@long jump	@
-.LCB19774:
+	bne	.LCB19766	@
+	b	.L3142	@long jump	@
+.LCB19766:
 @ Patches/../C_code.c:5128: 		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemDurabilityText, false)); i++;  
 	lsls	r1, r4, #7	@ tmp478, _840,
 @ Patches/../C_code.c:5128: 		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemDurabilityText, false)); i++;  
@@ -24051,7 +24042,7 @@ RedrawAllText:
 	adds	r1, r1, #198	@ _852,
 @ Patches/../C_code.c:5128: 		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemDurabilityText, false)); i++;  
 	adds	r4, r4, #1	@ _854,
-.L3151:
+.L3150:
 @ Patches/../C_code.c:5128: 		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemDurabilityText, false)); i++;  
 	mov	r2, fp	@ tmp486, tmp600
 	adds	r2, r2, #20	@ tmp486,
@@ -24070,12 +24061,12 @@ RedrawAllText:
 @ Patches/../C_code.c:5128: 		case 12: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ItemDurabilityText, false)); i++;  
 	movs	r3, #0	@,
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5129: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ _854,
-	bne	.LCB19797	@
-	b	.L3143	@long jump	@
-.LCB19797:
+	bne	.LCB19789	@
+	b	.L3142	@long jump	@
+.LCB19789:
 @ Patches/../C_code.c:5130: 		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText, false)); i++;  // make players have bonus levels
 	lsls	r1, r4, #7	@ tmp493, _854,
 @ Patches/../C_code.c:5130: 		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText, false)); i++;  // make players have bonus levels
@@ -24084,7 +24075,7 @@ RedrawAllText:
 	adds	r1, r1, #198	@ _866,
 @ Patches/../C_code.c:5130: 		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText, false)); i++;  // make players have bonus levels
 	adds	r4, r4, #1	@ _868,
-.L3150:
+.L3149:
 @ Patches/../C_code.c:5130: 		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText, false)); i++;  // make players have bonus levels
 	mov	r2, fp	@ tmp501, tmp600
 	adds	r2, r2, #36	@ tmp501,
@@ -24103,12 +24094,12 @@ RedrawAllText:
 @ Patches/../C_code.c:5130: 		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText, false)); i++;  // make players have bonus levels
 	movs	r3, #0	@,
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5131: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ _868,
-	bne	.LCB19820	@
-	b	.L3143	@long jump	@
-.LCB19820:
+	bne	.LCB19812	@
+	b	.L3142	@long jump	@
+.LCB19812:
 @ Patches/../C_code.c:5132: 		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels?
 	lsls	r1, r4, #7	@ tmp508, _868,
 @ Patches/../C_code.c:5132: 		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels?
@@ -24117,7 +24108,7 @@ RedrawAllText:
 	adds	r1, r1, #198	@ _880,
 @ Patches/../C_code.c:5132: 		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels?
 	adds	r4, r4, #1	@ _882,
-.L3149:
+.L3148:
 @ Patches/../C_code.c:5132: 		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels?
 	mov	r2, fp	@ tmp516, tmp600
 	adds	r2, r2, #52	@ tmp516,
@@ -24136,12 +24127,12 @@ RedrawAllText:
 @ Patches/../C_code.c:5132: 		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels?
 	movs	r3, #0	@,
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5133: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ _882,
-	bne	.LCB19843	@
-	b	.L3143	@long jump	@
-.LCB19843:
+	bne	.LCB19835	@
+	b	.L3142	@long jump	@
+.LCB19835:
 @ Patches/../C_code.c:5134: 		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
 	lsls	r1, r4, #7	@ tmp523, _882,
 @ Patches/../C_code.c:5134: 		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
@@ -24150,7 +24141,7 @@ RedrawAllText:
 	adds	r1, r1, #198	@ _894,
 @ Patches/../C_code.c:5134: 		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
 	adds	r4, r4, #1	@ _896,
-.L3148:
+.L3147:
 @ Patches/../C_code.c:5134: 		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
 	mov	r2, fp	@ tmp531, tmp600
 	adds	r2, r2, #72	@ tmp531,
@@ -24169,12 +24160,12 @@ RedrawAllText:
 @ Patches/../C_code.c:5134: 		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
 	movs	r3, #0	@,
 	subs	r2, r2, #41	@,
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5135: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ _896,
-	bne	.LCB19866	@
-	b	.L3143	@long jump	@
-.LCB19866:
+	bne	.LCB19858	@
+	b	.L3142	@long jump	@
+.LCB19858:
 @ Patches/../C_code.c:5136: 		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 	lsls	r1, r4, #7	@ tmp538, _896,
 @ Patches/../C_code.c:5136: 		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
@@ -24183,7 +24174,7 @@ RedrawAllText:
 	adds	r1, r1, #198	@ _908,
 @ Patches/../C_code.c:5136: 		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 	adds	r4, r4, #1	@ i,
-.L3147:
+.L3146:
 @ Patches/../C_code.c:5136: 		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 	lsls	r0, r3, #3	@ tmp542, _898,
 @ Patches/../C_code.c:5136: 		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
@@ -24206,24 +24197,24 @@ RedrawAllText:
 	add	r1, r1, r8	@ tmp540, tmp597
 	adds	r0, r6, r0	@ tmp543, tmp595, tmp542
 @ Patches/../C_code.c:5136: 		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5137: 		if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ i,
-	beq	.LCB19889	@
-	b	.L3146	@long jump	@
-.LCB19889:
-	b	.L3143		@
-.L3167:
+	beq	.LCB19881	@
+	b	.L3145	@long jump	@
+.LCB19881:
+	b	.L3142		@
+.L3166:
 @ Patches/../C_code.c:5103: 	switch (offset) { 
-	ldr	r3, .L3228+52	@ prephitmp_776,
+	ldr	r3, .L3227+52	@ prephitmp_776,
 	mov	fp, r3	@ prephitmp_776, prephitmp_776
 	movs	r3, #5	@ prephitmp_757,
 	str	r3, [sp, #16]	@ prephitmp_757, %sfp
-	ldr	r3, .L3228+56	@ prephitmp_756,
+	ldr	r3, .L3227+56	@ prephitmp_756,
 	str	r3, [sp, #12]	@ prephitmp_756, %sfp
 	movs	r3, #4	@ prephitmp_731,
 	str	r3, [sp, #24]	@ prephitmp_731, %sfp
-	ldr	r3, .L3228+60	@ prephitmp_730,
+	ldr	r3, .L3227+60	@ prephitmp_730,
 	str	r3, [sp, #20]	@ prephitmp_730, %sfp
 	movs	r3, #3	@ prephitmp_699,
 	str	r3, [sp, #32]	@ prephitmp_699, %sfp
@@ -24238,39 +24229,39 @@ RedrawAllText:
 	str	r3, [sp, #36]	@ prephitmp_660, %sfp
 	subs	r3, r3, #70	@ prephitmp_617,
 	subs	r3, r3, #255	@ prephitmp_617,
-	ldr	r2, .L3228+20	@ tmp599,
+	ldr	r2, .L3227+20	@ tmp599,
 	str	r3, [sp, #48]	@ prephitmp_617, %sfp
 	adds	r3, r3, #197	@ prephitmp_616,
 	str	r3, [sp, #44]	@ prephitmp_616, %sfp
 	movs	r4, #6	@ prephitmp_777,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r5, .L3228+64	@ tmp598,
+	ldr	r5, .L3227+64	@ tmp598,
 	subs	r3, r3, #196	@ _648,
-	b	.L3161		@
-.L3174:
-	ldr	r2, .L3228+20	@ tmp599,
+	b	.L3160		@
+.L3173:
+	ldr	r2, .L3227+20	@ tmp599,
 	movs	r4, #1	@ _812,
 	movs	r1, #198	@ _810,
 	movs	r3, #9	@ _800,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r5, .L3228+64	@ tmp598,
-	b	.L3154		@
-.L3175:
-	ldr	r2, .L3228+20	@ tmp599,
+	ldr	r5, .L3227+64	@ tmp598,
+	b	.L3153		@
+.L3174:
+	ldr	r2, .L3227+20	@ tmp599,
 	movs	r4, #1	@ _826,
 	movs	r1, #198	@ _824,
 	movs	r3, #10	@ _814,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r5, .L3228+64	@ tmp598,
-	b	.L3153		@
-.L3229:
-	.align	2
+	ldr	r5, .L3227+64	@ tmp598,
+	b	.L3152		@
 .L3228:
+	.align	2
+.L3227:
 	.word	gStatScreen+24
 	.word	ClearText
 	.word	gBG0TilemapBuffer
 	.word	TileMap_FillRect
-	.word	.L3145
+	.word	.L3144
 	.word	PutDrawText
 	.word	.LANCHOR9
 	.word	DisplayTimedHitsOption
@@ -24284,67 +24275,67 @@ RedrawAllText:
 	.word	582
 	.word	.LANCHOR8
 	.word	gStatScreen+32
-.L3176:
-	ldr	r2, .L3230	@ tmp599,
+.L3175:
+	ldr	r2, .L3229	@ tmp599,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r2, .L3230+4	@ tmp600,
+	ldr	r2, .L3229+4	@ tmp600,
 	movs	r4, #1	@ _840,
 	movs	r1, #198	@ _838,
 	movs	r3, #11	@ _828,
 	mov	fp, r2	@ tmp600, tmp600
-	ldr	r5, .L3230+8	@ tmp598,
-	b	.L3152		@
-.L3177:
-	ldr	r2, .L3230	@ tmp599,
+	ldr	r5, .L3229+8	@ tmp598,
+	b	.L3151		@
+.L3176:
+	ldr	r2, .L3229	@ tmp599,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r2, .L3230+4	@ tmp600,
+	ldr	r2, .L3229+4	@ tmp600,
 	movs	r4, #1	@ _854,
 	movs	r1, #198	@ _852,
 	movs	r3, #12	@ _842,
 	mov	fp, r2	@ tmp600, tmp600
-	ldr	r5, .L3230+8	@ tmp598,
-	b	.L3151		@
-.L3178:
-	ldr	r2, .L3230	@ tmp599,
+	ldr	r5, .L3229+8	@ tmp598,
+	b	.L3150		@
+.L3177:
+	ldr	r2, .L3229	@ tmp599,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r2, .L3230+4	@ tmp600,
+	ldr	r2, .L3229+4	@ tmp600,
 	movs	r4, #1	@ _868,
 	movs	r1, #198	@ _866,
 	movs	r3, #13	@ _856,
 	mov	fp, r2	@ tmp600, tmp600
-	ldr	r5, .L3230+8	@ tmp598,
-	b	.L3150		@
-.L3179:
-	ldr	r2, .L3230	@ tmp599,
+	ldr	r5, .L3229+8	@ tmp598,
+	b	.L3149		@
+.L3178:
+	ldr	r2, .L3229	@ tmp599,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r2, .L3230+4	@ tmp600,
+	ldr	r2, .L3229+4	@ tmp600,
 	movs	r4, #1	@ _882,
 	movs	r1, #198	@ _880,
 	movs	r3, #14	@ _870,
 	mov	fp, r2	@ tmp600, tmp600
-	ldr	r5, .L3230+8	@ tmp598,
-	b	.L3149		@
-.L3180:
-	ldr	r2, .L3230	@ tmp599,
+	ldr	r5, .L3229+8	@ tmp598,
+	b	.L3148		@
+.L3179:
+	ldr	r2, .L3229	@ tmp599,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r2, .L3230+4	@ tmp600,
+	ldr	r2, .L3229+4	@ tmp600,
 	movs	r4, #1	@ _896,
 	movs	r1, #198	@ _894,
 	movs	r3, #15	@ _884,
 	mov	fp, r2	@ tmp600, tmp600
-	ldr	r5, .L3230+8	@ tmp598,
-	b	.L3148		@
-.L3181:
-	ldr	r2, .L3230	@ tmp599,
+	ldr	r5, .L3229+8	@ tmp598,
+	b	.L3147		@
+.L3180:
+	ldr	r2, .L3229	@ tmp599,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r2, .L3230+4	@ tmp600,
+	ldr	r2, .L3229+4	@ tmp600,
 	movs	r4, #1	@ i,
 	movs	r1, #198	@ _908,
 	movs	r3, #16	@ _898,
 	mov	fp, r2	@ tmp600, tmp600
-	ldr	r5, .L3230+8	@ tmp598,
-	b	.L3147		@
-.L3170:
+	ldr	r5, .L3229+8	@ tmp598,
+	b	.L3146		@
+.L3169:
 	movs	r3, #227	@ prephitmp_776,
 	lsls	r3, r3, #1	@ prephitmp_776, prephitmp_776,
 	mov	fp, r3	@ prephitmp_776, prephitmp_776
@@ -24356,53 +24347,53 @@ RedrawAllText:
 	str	r3, [sp, #12]	@ prephitmp_756, %sfp
 	subs	r3, r3, #70	@ prephitmp_731,
 	subs	r3, r3, #255	@ prephitmp_731,
-	ldr	r2, .L3230	@ tmp599,
+	ldr	r2, .L3229	@ tmp599,
 	str	r3, [sp, #24]	@ prephitmp_731, %sfp
 	adds	r3, r3, #197	@ prephitmp_730,
 	str	r3, [sp, #20]	@ prephitmp_730, %sfp
 	movs	r4, #3	@ prephitmp_777,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r5, .L3230+8	@ tmp598,
+	ldr	r5, .L3229+8	@ tmp598,
 	subs	r3, r3, #193	@ _744,
-	b	.L3158		@
-.L3171:
+	b	.L3157		@
+.L3170:
 	movs	r3, #163	@ prephitmp_776,
 	lsls	r3, r3, #1	@ prephitmp_776, prephitmp_776,
 	mov	fp, r3	@ prephitmp_776, prephitmp_776
 	subs	r3, r3, #70	@ prephitmp_757,
 	subs	r3, r3, #255	@ prephitmp_757,
-	ldr	r2, .L3230	@ tmp599,
+	ldr	r2, .L3229	@ tmp599,
 	str	r3, [sp, #16]	@ prephitmp_757, %sfp
 	adds	r3, r3, #197	@ prephitmp_756,
 	str	r3, [sp, #12]	@ prephitmp_756, %sfp
 	movs	r4, #2	@ prephitmp_777,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r5, .L3230+8	@ tmp598,
+	ldr	r5, .L3229+8	@ tmp598,
 	subs	r3, r3, #192	@ _764,
-	b	.L3157		@
-.L3172:
+	b	.L3156		@
+.L3171:
 	movs	r3, #198	@ prephitmp_776,
-	ldr	r2, .L3230	@ tmp599,
+	ldr	r2, .L3229	@ tmp599,
 	mov	fp, r3	@ prephitmp_776, prephitmp_776
 	movs	r4, #1	@ prephitmp_777,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r5, .L3230+8	@ tmp598,
+	ldr	r5, .L3229+8	@ tmp598,
 	subs	r3, r3, #191	@ _778,
-	b	.L3156		@
-.L3173:
-	ldr	r2, .L3230	@ tmp599,
+	b	.L3155		@
+.L3172:
+	ldr	r2, .L3229	@ tmp599,
 	movs	r4, #1	@ _798,
 	movs	r1, #198	@ _796,
 	movs	r3, #8	@ _786,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r5, .L3230+8	@ tmp598,
-	b	.L3155		@
-.L3168:
-	ldr	r3, .L3230+12	@ prephitmp_776,
+	ldr	r5, .L3229+8	@ tmp598,
+	b	.L3154		@
+.L3167:
+	ldr	r3, .L3229+12	@ prephitmp_776,
 	mov	fp, r3	@ prephitmp_776, prephitmp_776
 	movs	r3, #4	@ prephitmp_757,
 	str	r3, [sp, #16]	@ prephitmp_757, %sfp
-	ldr	r3, .L3230+16	@ prephitmp_756,
+	ldr	r3, .L3229+16	@ prephitmp_756,
 	str	r3, [sp, #12]	@ prephitmp_756, %sfp
 	movs	r3, #3	@ prephitmp_731,
 	str	r3, [sp, #24]	@ prephitmp_731, %sfp
@@ -24417,17 +24408,17 @@ RedrawAllText:
 	str	r3, [sp, #28]	@ prephitmp_698, %sfp
 	subs	r3, r3, #70	@ prephitmp_661,
 	subs	r3, r3, #255	@ prephitmp_661,
-	ldr	r2, .L3230	@ tmp599,
+	ldr	r2, .L3229	@ tmp599,
 	str	r3, [sp, #40]	@ prephitmp_661, %sfp
 	adds	r3, r3, #197	@ prephitmp_660,
 	str	r3, [sp, #36]	@ prephitmp_660, %sfp
 	movs	r4, #5	@ prephitmp_777,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r5, .L3230+8	@ tmp598,
+	ldr	r5, .L3229+8	@ tmp598,
 	subs	r3, r3, #195	@ _686,
-	b	.L3160		@
-.L3169:
-	ldr	r3, .L3230+16	@ prephitmp_776,
+	b	.L3159		@
+.L3168:
+	ldr	r3, .L3229+16	@ prephitmp_776,
 	mov	fp, r3	@ prephitmp_776, prephitmp_776
 	movs	r3, #3	@ prephitmp_757,
 	str	r3, [sp, #16]	@ prephitmp_757, %sfp
@@ -24442,46 +24433,46 @@ RedrawAllText:
 	str	r3, [sp, #20]	@ prephitmp_730, %sfp
 	subs	r3, r3, #70	@ prephitmp_699,
 	subs	r3, r3, #255	@ prephitmp_699,
-	ldr	r2, .L3230	@ tmp599,
+	ldr	r2, .L3229	@ tmp599,
 	str	r3, [sp, #32]	@ prephitmp_699, %sfp
 	adds	r3, r3, #197	@ prephitmp_698,
 	str	r3, [sp, #28]	@ prephitmp_698, %sfp
 	movs	r4, #4	@ prephitmp_777,
 	mov	r9, r2	@ tmp599, tmp599
-	ldr	r5, .L3230+8	@ tmp598,
+	ldr	r5, .L3229+8	@ tmp598,
 	subs	r3, r3, #194	@ _718,
-	b	.L3159		@
-.L3163:
+	b	.L3158		@
+.L3162:
 @ Patches/../C_code.c:5104: 		case 0: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SeedText, false)); i++;  // Classic/Casual 
-	ldr	r5, .L3230+8	@ tmp598,
+	ldr	r5, .L3229+8	@ tmp598,
 	movs	r3, r5	@ tmp335, tmp598
 	adds	r3, r3, #12	@ tmp335,
 	str	r3, [sp, #4]	@ tmp335,
 	movs	r3, #3	@ tmp336,
-	ldr	r4, .L3230	@ tmp599,
-	ldr	r1, .L3230+20	@ tmp332,
+	ldr	r4, .L3229	@ tmp599,
+	ldr	r1, .L3229+20	@ tmp332,
 	str	r3, [sp]	@ tmp336,
 	movs	r2, #3	@,
 	movs	r3, #0	@,
 	movs	r0, r6	@, tmp595
 	bl	.L240		@
-	ldr	r3, .L3230+24	@ prephitmp_776,
+	ldr	r3, .L3229+24	@ prephitmp_776,
 	mov	fp, r3	@ prephitmp_776, prephitmp_776
 	movs	r3, #7	@ prephitmp_757,
 	str	r3, [sp, #16]	@ prephitmp_757, %sfp
-	ldr	r3, .L3230+28	@ prephitmp_756,
+	ldr	r3, .L3229+28	@ prephitmp_756,
 	str	r3, [sp, #12]	@ prephitmp_756, %sfp
 	movs	r3, #6	@ prephitmp_731,
 	str	r3, [sp, #24]	@ prephitmp_731, %sfp
-	ldr	r3, .L3230+32	@ prephitmp_730,
+	ldr	r3, .L3229+32	@ prephitmp_730,
 	str	r3, [sp, #20]	@ prephitmp_730, %sfp
 	movs	r3, #5	@ prephitmp_699,
 	str	r3, [sp, #32]	@ prephitmp_699, %sfp
-	ldr	r3, .L3230+12	@ prephitmp_698,
+	ldr	r3, .L3229+12	@ prephitmp_698,
 	str	r3, [sp, #28]	@ prephitmp_698, %sfp
 	movs	r3, #4	@ prephitmp_661,
 	str	r3, [sp, #40]	@ prephitmp_661, %sfp
-	ldr	r3, .L3230+16	@ prephitmp_660,
+	ldr	r3, .L3229+16	@ prephitmp_660,
 	str	r3, [sp, #36]	@ prephitmp_660, %sfp
 	movs	r3, #3	@ prephitmp_617,
 	movs	r1, #163	@ prephitmp_610,
@@ -24495,12 +24486,12 @@ RedrawAllText:
 	str	r3, [sp, #52]	@ prephitmp_611, %sfp
 	movs	r4, #8	@ prephitmp_777,
 	lsls	r1, r1, #1	@ prephitmp_610, prephitmp_610,
-	b	.L3162		@
-.L3224:
-	ldr	r3, .L3230+4	@ tmp600,
+	b	.L3161		@
+.L3223:
+	ldr	r3, .L3229+4	@ tmp600,
 	mov	fp, r3	@ tmp600, tmp600
-	b	.L3143		@
-.L3227:
+	b	.L3142		@
+.L3226:
 @ Patches/../C_code.c:5144: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
 	mov	r3, fp	@ tmp582, tmp600
 @ Patches/../C_code.c:5144: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
@@ -24509,7 +24500,7 @@ RedrawAllText:
 	adds	r3, r3, #104	@ tmp582,
 	str	r3, [sp, #4]	@ tmp582,
 @ Patches/../C_code.c:5144: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
-	ldr	r3, .L3230+8	@ tmp583,
+	ldr	r3, .L3229+8	@ tmp583,
 @ Patches/../C_code.c:5144: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
 	adds	r7, r4, r7	@ _211, i, offset
 @ Patches/../C_code.c:5144: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
@@ -24531,15 +24522,15 @@ RedrawAllText:
 	adds	r0, r6, r0	@ tmp579, tmp595, tmp578
 @ Patches/../C_code.c:5144: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
 	subs	r2, r2, #41	@,
-	bl	.L558		@
-	b	.L3143		@
-.L3226:
+	bl	.L557		@
+	b	.L3142		@
+.L3225:
 @ Patches/../C_code.c:5140: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&TimedHitsText, false)); i++;  
 	mov	r3, fp	@ tmp564, tmp600
 	adds	r3, r3, #92	@ tmp564,
 	str	r3, [sp, #4]	@ tmp564,
 @ Patches/../C_code.c:5140: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&TimedHitsText, false)); i++;  
-	ldr	r3, .L3230+8	@ tmp565,
+	ldr	r3, .L3229+8	@ tmp565,
 @ Patches/../C_code.c:5140: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&TimedHitsText, false)); i++;  
 	adds	r2, r4, r7	@ _198, i, offset
 @ Patches/../C_code.c:5140: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&TimedHitsText, false)); i++;  
@@ -24566,22 +24557,22 @@ RedrawAllText:
 @ Patches/../C_code.c:5140: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&TimedHitsText, false)); i++;  
 	adds	r4, r4, #1	@ i,
 @ Patches/../C_code.c:5140: 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&TimedHitsText, false)); i++;  
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5141: 			if (i > SRR_MAXDISP) { break; } 
 	cmp	r4, #8	@ i,
-	beq	.LCB20259	@
-	b	.L3144	@long jump	@
-.LCB20259:
-	b	.L3143		@
-.L3225:
-	ldr	r3, .L3230	@ tmp599,
+	beq	.LCB20251	@
+	b	.L3143	@long jump	@
+.LCB20251:
+	b	.L3142		@
+.L3224:
+	ldr	r3, .L3229	@ tmp599,
 	mov	r9, r3	@ tmp599, tmp599
-	ldr	r3, .L3230+4	@ tmp600,
+	ldr	r3, .L3229+4	@ tmp600,
 	mov	fp, r3	@ tmp600, tmp600
-	b	.L3143		@
-.L3231:
-	.align	2
+	b	.L3142		@
 .L3230:
+	.align	2
+.L3229:
 	.word	PutDrawText
 	.word	.LANCHOR9
 	.word	.LANCHOR8
@@ -24612,7 +24603,7 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4790: 	if (proc->offset) {
 	movs	r5, #49	@ tmp432,
 @ Patches/../C_code.c:4794: 	if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
-	ldr	r3, .L3447	@ tmp431,
+	ldr	r3, .L3446	@ tmp431,
 	ldr	r7, [r3]	@ pretmp_593, SRR_TotalOptions
 @ Patches/../C_code.c:4790: 	if (proc->offset) {
 	ldrb	r3, [r0, r5]	@ tmp433,
@@ -24621,17 +24612,17 @@ ConfigMenuLoop:
 	sub	sp, sp, #44	@,,
 @ Patches/../C_code.c:4790: 	if (proc->offset) {
 	cmp	r3, #0	@ tmp433,
-	beq	.LCB20302	@
-	b	.L3428	@long jump	@
-.LCB20302:
+	beq	.LCB20294	@
+	b	.L3427	@long jump	@
+.LCB20294:
 @ Patches/../C_code.c:4794: 	if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
 	cmp	r7, #7	@ pretmp_593,
-	ble	.LCB20304	@
-	b	.L3429	@long jump	@
-.LCB20304:
-.L3236:
+	ble	.LCB20296	@
+	b	.L3428	@long jump	@
+.LCB20296:
+.L3235:
 @ Patches/../C_code.c:4800: 	u16 keys = sKeyStatusBuffer.newKeys; 
-	ldr	r3, .L3447+4	@ tmp1314,
+	ldr	r3, .L3446+4	@ tmp1314,
 	mov	r8, r3	@ tmp1314, tmp1314
 	ldrh	r5, [r3, #8]	@ keys,
 @ Patches/../C_code.c:4801: 	if (!proc->freezeSeed) { proc->seed = GetInitialSeed(2); proc->redraw = true; } 
@@ -24639,10 +24630,10 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4801: 	if (!proc->freezeSeed) { proc->seed = GetInitialSeed(2); proc->redraw = true; } 
 	ldrb	r3, [r4, r3]	@ tmp443,
 	cmp	r3, #0	@ tmp443,
-	bne	.LCB20312	@
-	b	.L3430	@long jump	@
-.LCB20312:
-.L3238:
+	bne	.LCB20304	@
+	b	.L3429	@long jump	@
+.LCB20304:
+.L3237:
 @ Patches/../C_code.c:4802: 	int id = proc->id;
 	movs	r3, #48	@ tmp447,
 @ Patches/../C_code.c:4802: 	int id = proc->id;
@@ -24655,44 +24646,44 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4805: 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
 	movs	r3, #9	@ tmp452,
 	tst	r3, r5	@ tmp452, keys
-	beq	.LCB20324	@
-	b	.L3431	@long jump	@
-.LCB20324:
+	beq	.LCB20316	@
+	b	.L3430	@long jump	@
+.LCB20316:
 @ Patches/../C_code.c:4922: 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
 	cmp	r5, #0	@ keys,
-	bne	.L3277		@,
+	bne	.L3276		@,
 @ Patches/../C_code.c:4922: 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
 	mov	r3, r8	@ tmp1314, tmp1314
 	ldrh	r5, [r3, #6]	@ keys,
-.L3277:
+.L3276:
 @ Patches/../C_code.c:4926: 	if ((id == 0) && (offset == 0)) { 
 	ldr	r3, [sp, #4]	@ _119, %sfp
 	orrs	r3, r6	@ _119, id
 	mov	r8, r3	@ _119, _119
 @ Patches/../C_code.c:4926: 	if ((id == 0) && (offset == 0)) { 
-	bne	.L3278		@,
+	bne	.L3277		@,
 @ Patches/../C_code.c:4928: 		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
 	adds	r3, r3, #52	@ tmp929,
 @ Patches/../C_code.c:4928: 		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
 	ldrb	r3, [r4, r3]	@ tmp930,
 	cmp	r3, #0	@ tmp930,
-	bne	.LCB20339	@
-	b	.L3432	@long jump	@
-.LCB20339:
-.L3279:
+	bne	.LCB20331	@
+	b	.L3431	@long jump	@
+.LCB20331:
+.L3278:
 @ Patches/../C_code.c:4929: 		proc->freezeSeed = true; 
 	movs	r3, #52	@ tmp934,
 	movs	r2, #1	@ tmp935,
 	strb	r2, [r4, r3]	@ tmp935, proc_282(D)->freezeSeed
-	ldr	r3, .L3447+8	@ tmp1324,
+	ldr	r3, .L3446+8	@ tmp1324,
 	movs	r2, r3	@ ivtmp.1945, tmp1324
 	mov	ip, r3	@ tmp1324, tmp1324
 @ Patches/../C_code.c:4683: 	int result = 1; 
 	movs	r3, #1	@ result,
 @ Patches/../C_code.c:4684: 	while (number > DigitDecimalTable[result]) { result++; } 
-	ldr	r0, .L3447+12	@ tmp940,
+	ldr	r0, .L3446+12	@ tmp940,
 	adds	r2, r2, #132	@ ivtmp.1945,
-.L3280:
+.L3279:
 	adds	r2, r2, #4	@ ivtmp.1945,
 @ Patches/../C_code.c:4684: 	while (number > DigitDecimalTable[result]) { result++; } 
 	subs	r1, r2, #4	@ tmp939, ivtmp.1945,
@@ -24702,13 +24693,13 @@ ConfigMenuLoop:
 	adds	r3, r3, #1	@ result,
 @ Patches/../C_code.c:4684: 	while (number > DigitDecimalTable[result]) { result++; } 
 	cmp	r1, r0	@ MEM[(long unsigned int *)_458 + 4294967292B], tmp940
-	bls	.L3280		@,
+	bls	.L3279		@,
 @ Patches/../C_code.c:4686: 	if (result > 6) { result = 6; } 
 	cmp	r3, #7	@ result,
-	bne	.LCB20359	@
-	b	.L3433	@long jump	@
-.LCB20359:
-.L3281:
+	bne	.LCB20351	@
+	b	.L3432	@long jump	@
+.LCB20351:
+.L3280:
 	movs	r2, #16	@ tmp945,
 	mov	r10, r2	@ tmp945, tmp945
 @ Patches/../C_code.c:4935: 		  if (proc->digit > 0) { proc->digit--; }
@@ -24724,14 +24715,14 @@ ConfigMenuLoop:
 	str	r1, [sp]	@ tmp951, %sfp
 @ Patches/../C_code.c:4934: 		if (keys & DPAD_RIGHT) {
 	tst	r0, r5	@ tmp945, keys
-	bne	.LCB20378	@
-	b	.L3282	@long jump	@
-.LCB20378:
+	bne	.LCB20370	@
+	b	.L3281	@long jump	@
+.LCB20370:
 @ Patches/../C_code.c:4935: 		  if (proc->digit > 0) { proc->digit--; }
 	cmp	r2, #0	@ _128,
-	bgt	.LCB20380	@
-	b	.L3283	@long jump	@
-.LCB20380:
+	bgt	.LCB20372	@
+	b	.L3282	@long jump	@
+.LCB20372:
 @ Patches/../C_code.c:4935: 		  if (proc->digit > 0) { proc->digit--; }
 	subs	r0, r2, #1	@ tmp956, _128,
 	lsls	r0, r0, #24	@ tmp957, tmp956,
@@ -24745,26 +24736,26 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4938: 		if (keys & DPAD_LEFT) {
 	ldr	r1, [sp]	@ _592, %sfp
 	cmp	r1, #0	@ _592,
-	beq	.LCB20395	@
-	b	.L3284	@long jump	@
-.LCB20395:
+	beq	.LCB20387	@
+	b	.L3283	@long jump	@
+.LCB20387:
 	movs	r2, r0	@ _128, _127
-.L3285:
+.L3284:
 @ Patches/../C_code.c:4943: 		if (proc->digit) { 
 	cmp	r2, #0	@ _128,
-	bne	.LCB20400	@
-	b	.L3288	@long jump	@
-.LCB20400:
-.L3287:
+	bne	.LCB20392	@
+	b	.L3287	@long jump	@
+.LCB20392:
+.L3286:
 @ Patches/../C_code.c:4944: 			if (keys & DPAD_UP) {
 	lsls	r3, r5, #25	@ tmp1358, keys,
-	bpl	.L3289		@,
+	bpl	.L3288		@,
 @ Patches/../C_code.c:4945: 				if (proc->seed == max) { proc->seed = min; } 
 	ldr	r1, [r4, #44]	@ _136, proc_282(D)->seed
 @ Patches/../C_code.c:4945: 				if (proc->seed == max) { proc->seed = min; } 
-	ldr	r3, .L3447+16	@ tmp981,
+	ldr	r3, .L3446+16	@ tmp981,
 	cmp	r1, r3	@ _136, tmp981
-	beq	.L3290		@,
+	beq	.L3289		@,
 @ Patches/../C_code.c:4947: 					proc->seed += DigitDecimalTable[proc->digit]; 
 	mov	r8, r1	@ _136, _136
 @ Patches/../C_code.c:4947: 					proc->seed += DigitDecimalTable[proc->digit]; 
@@ -24775,9 +24766,9 @@ ConfigMenuLoop:
 	add	r8, r8, r0	@ _136, DigitDecimalTable[_581]
 @ Patches/../C_code.c:4948: 					if (proc->seed > max) { proc->seed = max; } 
 	cmp	r8, r3	@ _119, tmp981
-	ble	.L3290		@,
+	ble	.L3289		@,
 	mov	r8, r3	@ _119, tmp981
-.L3290:
+.L3289:
 @ Patches/../C_code.c:4945: 				if (proc->seed == max) { proc->seed = min; } 
 	mov	r3, r8	@ _119, _119
 @ Patches/../C_code.c:4950: 				proc->redraw = RedrawSome;
@@ -24787,28 +24778,28 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4950: 				proc->redraw = RedrawSome;
 	movs	r3, #50	@ tmp988,
 	strb	r1, [r4, r3]	@ tmp989, proc_282(D)->redraw
-.L3289:
+.L3288:
 @ Patches/../C_code.c:4952: 			if (keys & DPAD_DOWN) {
 	lsls	r5, r5, #24	@ tmp1359, keys,
-	bpl	.L3292		@,
+	bpl	.L3291		@,
 @ Patches/../C_code.c:4954: 				if (proc->seed == min) { proc->seed = max; } 
 	ldr	r1, [r4, #44]	@ _142, proc_282(D)->seed
 @ Patches/../C_code.c:4954: 				if (proc->seed == min) { proc->seed = max; } 
 	cmp	r1, #0	@ _142,
-	beq	.LCB20437	@
-	b	.L3434	@long jump	@
-.LCB20437:
-	ldr	r3, .L3447+16	@ _304,
-.L3293:
+	beq	.LCB20429	@
+	b	.L3433	@long jump	@
+.LCB20429:
+	ldr	r3, .L3446+16	@ _304,
+.L3292:
 @ Patches/../C_code.c:4954: 				if (proc->seed == min) { proc->seed = max; } 
 	str	r3, [r4, #44]	@ _304, proc_282(D)->seed
 @ Patches/../C_code.c:4960: 				proc->redraw = RedrawSome;
 	movs	r1, #1	@ tmp1004,
 	movs	r3, #50	@ tmp1003,
 	strb	r1, [r4, r3]	@ tmp1004, proc_282(D)->redraw
-.L3292:
+.L3291:
 @ Patches/../C_code.c:4963: 			DisplayHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y + (offset * 8), true); 	
-	ldr	r3, .L3447+20	@ tmp1006,
+	ldr	r3, .L3446+20	@ tmp1006,
 	lsls	r2, r2, #3	@ tmp1007, _128,
 	adds	r3, r3, r2	@ tmp1008, tmp1006, tmp1007
 @ Patches/../C_code.c:4649: 		DisplayVertUiHand(x, y); 
@@ -24820,10 +24811,10 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4964: 			if (proc->redraw == RedrawSome) { 
 	ldrb	r3, [r4, r3]	@ tmp1017,
 	cmp	r3, #1	@ tmp1017,
-	beq	.LCB20456	@
-	b	.L3233	@long jump	@
-.LCB20456:
-.L3295:
+	beq	.LCB20448	@
+	b	.L3232	@long jump	@
+.LCB20448:
+.L3294:
 @ Patches/../C_code.c:4965: 				proc->redraw = RedrawNone; 
 	movs	r3, #50	@ tmp1018,
 	movs	r2, #0	@ tmp1019,
@@ -24833,24 +24824,24 @@ ConfigMenuLoop:
 	strb	r2, [r4, r3]	@ tmp1019, proc_282(D)->redraw
 @ Patches/../C_code.c:4966: 				DrawConfigMenu(proc); 
 	bl	DrawConfigMenu		@
-	b	.L3233		@
-.L3278:
+	b	.L3232		@
+.L3277:
 @ Patches/../C_code.c:4973: 	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
 	ldr	r3, [sp, #4]	@ offset, %sfp
 	adds	r2, r6, r3	@ _155, id, offset
 @ Patches/../C_code.c:4973: 	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
 	cmp	r2, r7	@ _155, pretmp_593
-	bne	.LCB20470	@
-	b	.L3296	@long jump	@
-.LCB20470:
-.L3299:
+	bne	.LCB20462	@
+	b	.L3295	@long jump	@
+.LCB20462:
+.L3298:
 @ Patches/../C_code.c:5009:     if (keys & DPAD_DOWN) {
 	lsls	r3, r5, #24	@ tmp1362, keys,
-	bmi	.LCB20477	@
-	b	.L3318	@long jump	@
-.LCB20477:
+	bmi	.LCB20469	@
+	b	.L3317	@long jump	@
+.LCB20469:
 @ Patches/../C_code.c:5035: 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
-	ldr	r3, .L3447+20	@ tmp1325,
+	ldr	r3, .L3446+20	@ tmp1325,
 	lsls	r5, r6, #3	@ tmp1310, id,
 	adds	r1, r3, r5	@ tmp1118, tmp1325, tmp1310
 @ Patches/../C_code.c:5035: 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
@@ -24858,14 +24849,14 @@ ConfigMenuLoop:
 	ldmia	r1, {r0, r1}	@,,
 @ Patches/../C_code.c:5010: 		if (id < SRR_MAXDISP) { proc->id++; } 
 	cmp	r6, #6	@ id,
-	bgt	.LCB20484	@
-	b	.L3319	@long jump	@
-.LCB20484:
+	bgt	.LCB20476	@
+	b	.L3318	@long jump	@
+.LCB20476:
 @ Patches/../C_code.c:5011: 		else if ((id+offset) < SRR_TotalOptions) { proc->offset++; proc->redraw = RedrawAll; } 
 	cmp	r2, r7	@ _155, pretmp_593
-	blt	.LCB20486	@
-	b	.L3320	@long jump	@
-.LCB20486:
+	blt	.LCB20478	@
+	b	.L3319	@long jump	@
+.LCB20478:
 @ Patches/../C_code.c:5011: 		else if ((id+offset) < SRR_TotalOptions) { proc->offset++; proc->redraw = RedrawAll; } 
 	movs	r2, #49	@ tmp1124,
 @ Patches/../C_code.c:5011: 		else if ((id+offset) < SRR_TotalOptions) { proc->offset++; proc->redraw = RedrawAll; } 
@@ -24876,24 +24867,24 @@ ConfigMenuLoop:
 	movs	r3, #50	@ tmp1130,
 	subs	r2, r2, #47	@ tmp1131,
 	strb	r2, [r4, r3]	@ tmp1131, proc_282(D)->redraw
-.L3298:
+.L3297:
 @ Patches/../C_code.c:4651: 	else { DisplayUiHand(x, y); } 
-	ldr	r3, .L3447+24	@ tmp1279,
+	ldr	r3, .L3446+24	@ tmp1279,
 	bl	.L14		@
 @ Patches/../C_code.c:5036: 	if (proc->redraw == RedrawSome) { 
 	movs	r3, #50	@ tmp1280,
 	ldrb	r3, [r4, r3]	@ _223,
 @ Patches/../C_code.c:5036: 	if (proc->redraw == RedrawSome) { 
 	cmp	r3, #1	@ _223,
-	bne	.LCB20501	@
-	b	.L3435	@long jump	@
-.LCB20501:
-.L3330:
+	bne	.LCB20493	@
+	b	.L3434	@long jump	@
+.LCB20493:
+.L3329:
 @ Patches/../C_code.c:5041: 	if (proc->redraw == RedrawAll) { 
 	cmp	r3, #2	@ _223,
-	beq	.LCB20504	@
-	b	.L3233	@long jump	@
-.LCB20504:
+	beq	.LCB20496	@
+	b	.L3232	@long jump	@
+.LCB20496:
 @ Patches/../C_code.c:5042: 		proc->redraw = RedrawNone; 
 	movs	r2, #0	@ tmp1292,
 	adds	r3, r3, #48	@ tmp1291,
@@ -24903,10 +24894,10 @@ ConfigMenuLoop:
 	strb	r2, [r4, r3]	@ tmp1292, proc_282(D)->redraw
 @ Patches/../C_code.c:5043: 		RedrawAllText(proc); 
 	bl	RedrawAllText		@
-	b	.L3233		@
-.L3448:
-	.align	2
+	b	.L3232		@
 .L3447:
+	.align	2
+.L3446:
 	.word	SRR_TotalOptions
 	.word	sKeyStatusBuffer
 	.word	.LANCHOR9
@@ -24914,9 +24905,9 @@ ConfigMenuLoop:
 	.word	999999
 	.word	.LANCHOR10
 	.word	DisplayUiHand
-.L3431:
+.L3430:
 @ Patches/../C_code.c:4809: 		if (RandValues->seed != proc->seed) { reloadUnits = true; } 
-	ldr	r3, .L3449	@ tmp1315,
+	ldr	r3, .L3448	@ tmp1315,
 	ldr	r1, [r3]	@ RandValues.262_11, RandValues
 	mov	fp, r3	@ tmp1315, tmp1315
 	ldr	r3, [r1]	@ *RandValues.262_11, *RandValues.262_11
@@ -24942,16 +24933,16 @@ ConfigMenuLoop:
 	lsrs	r3, r3, #27	@ tmp465, tmp464,
 @ Patches/../C_code.c:4810: 		if (RandValues->variance != proc->Option[0]) { reloadUnits = true; } 
 	cmp	r3, r0	@ tmp465, _17
-	bne	.L3240		@,
+	bne	.L3239		@,
 @ Patches/../C_code.c:4809: 		if (RandValues->seed != proc->seed) { reloadUnits = true; } 
 	ldr	r3, [sp, #12]	@ _14, %sfp
 	subs	r2, r2, r3	@ tmp469, _12, _14
 	subs	r3, r2, #1	@ tmp470, tmp469
 	sbcs	r2, r2, r3	@ tmp469, tmp469, tmp470
 	str	r2, [sp]	@ tmp469, %sfp
-.L3240:
+.L3239:
 @ Patches/../C_code.c:4811: 		if (RecruitValues->recruitment != proc->Option[1]) { reloadUnits = true; } 
-	ldr	r3, .L3449+4	@ tmp471,
+	ldr	r3, .L3448+4	@ tmp471,
 	ldr	r3, [r3]	@ RecruitValues.264_19, RecruitValues
 	mov	r9, r3	@ RecruitValues.264_19, RecruitValues.264_19
 @ Patches/../C_code.c:4811: 		if (RecruitValues->recruitment != proc->Option[1]) { reloadUnits = true; } 
@@ -24967,13 +24958,13 @@ ConfigMenuLoop:
 	lsrs	r3, r3, #29	@ tmp478, tmp477,
 @ Patches/../C_code.c:4811: 		if (RecruitValues->recruitment != proc->Option[1]) { reloadUnits = true; } 
 	cmp	r3, r2	@ tmp478, _22
-	beq	.L3241		@,
+	beq	.L3240		@,
 @ Patches/../C_code.c:4811: 		if (RecruitValues->recruitment != proc->Option[1]) { reloadUnits = true; } 
 	movs	r3, #1	@ reloadUnits,
 	str	r3, [sp]	@ reloadUnits, %sfp
-.L3241:
+.L3240:
 @ Patches/../C_code.c:4812: 		if (RandBitflags->base != proc->Option[2]) { reloadUnits = true; } 
-	ldr	r3, .L3449+8	@ tmp1316,
+	ldr	r3, .L3448+8	@ tmp1316,
 	str	r3, [sp, #8]	@ tmp1316, %sfp
 	ldr	r2, [r3]	@ RandBitflags.265_24, RandBitflags
 @ Patches/../C_code.c:4812: 		if (RandBitflags->base != proc->Option[2]) { reloadUnits = true; } 
@@ -24987,11 +24978,11 @@ ConfigMenuLoop:
 	lsrs	r0, r0, #30	@ tmp487, tmp486,
 @ Patches/../C_code.c:4812: 		if (RandBitflags->base != proc->Option[2]) { reloadUnits = true; } 
 	cmp	r0, r5	@ tmp487, _27
-	beq	.L3242		@,
+	beq	.L3241		@,
 @ Patches/../C_code.c:4812: 		if (RandBitflags->base != proc->Option[2]) { reloadUnits = true; } 
 	movs	r0, #1	@ reloadUnits,
 	str	r0, [sp]	@ reloadUnits, %sfp
-.L3242:
+.L3241:
 @ Patches/../C_code.c:4813: 		if (RandBitflags->growth != proc->Option[3]) { reloadUnits = true; } 
 	movs	r0, #60	@ tmp489,
 	ldrsb	r0, [r4, r0]	@ _31,
@@ -25001,11 +24992,11 @@ ConfigMenuLoop:
 	lsrs	r0, r0, #30	@ tmp495, tmp494,
 @ Patches/../C_code.c:4813: 		if (RandBitflags->growth != proc->Option[3]) { reloadUnits = true; } 
 	cmp	r0, r10	@ tmp495, _31
-	beq	.L3243		@,
+	beq	.L3242		@,
 @ Patches/../C_code.c:4813: 		if (RandBitflags->growth != proc->Option[3]) { reloadUnits = true; } 
 	movs	r0, #1	@ reloadUnits,
 	str	r0, [sp]	@ reloadUnits, %sfp
-.L3243:
+.L3242:
 @ Patches/../C_code.c:4814: 		if (RandBitflags->levelups != proc->Option[4]) { reloadUnits = true; } 
 	movs	r0, #61	@ tmp497,
 	ldrsb	r0, [r4, r0]	@ _35,
@@ -25017,11 +25008,11 @@ ConfigMenuLoop:
 	lsrs	r3, r3, #30	@ tmp503, tmp502,
 @ Patches/../C_code.c:4814: 		if (RandBitflags->levelups != proc->Option[4]) { reloadUnits = true; } 
 	cmp	r3, r0	@ tmp503, _35
-	beq	.L3244		@,
+	beq	.L3243		@,
 @ Patches/../C_code.c:4814: 		if (RandBitflags->levelups != proc->Option[4]) { reloadUnits = true; } 
 	movs	r3, #1	@ reloadUnits,
 	str	r3, [sp]	@ reloadUnits, %sfp
-.L3244:
+.L3243:
 @ Patches/../C_code.c:4815: 		if (RandBitflags->caps != proc->Option[5]) { reloadUnits = true; } 
 	movs	r3, #62	@ tmp505,
 	ldrsb	r0, [r4, r3]	@ _39,
@@ -25034,11 +25025,11 @@ ConfigMenuLoop:
 	lsrs	r3, r3, #29	@ tmp511, tmp510,
 @ Patches/../C_code.c:4815: 		if (RandBitflags->caps != proc->Option[5]) { reloadUnits = true; } 
 	cmp	r3, r0	@ tmp511, _39
-	beq	.L3245		@,
+	beq	.L3244		@,
 @ Patches/../C_code.c:4815: 		if (RandBitflags->caps != proc->Option[5]) { reloadUnits = true; } 
 	movs	r3, #1	@ reloadUnits,
 	str	r3, [sp]	@ reloadUnits, %sfp
-.L3245:
+.L3244:
 @ Patches/../C_code.c:4816: 		if (RandBitflags->class != proc->Option[6]) { reloadUnits = true; } 
 	movs	r3, #63	@ tmp513,
 	ldrsb	r0, [r4, r3]	@ _43,
@@ -25051,11 +25042,11 @@ ConfigMenuLoop:
 	lsrs	r3, r3, #30	@ tmp519, tmp518,
 @ Patches/../C_code.c:4816: 		if (RandBitflags->class != proc->Option[6]) { reloadUnits = true; } 
 	cmp	r3, r0	@ tmp519, _43
-	beq	.L3246		@,
+	beq	.L3245		@,
 @ Patches/../C_code.c:4816: 		if (RandBitflags->class != proc->Option[6]) { reloadUnits = true; } 
 	movs	r3, #1	@ reloadUnits,
 	str	r3, [sp]	@ reloadUnits, %sfp
-.L3246:
+.L3245:
 @ Patches/../C_code.c:4817: 		if (RandBitflags->playerBonus != proc->Option[12]) { reloadUnits = true; } 
 	movs	r0, #69	@ tmp528,
 @ Patches/../C_code.c:4817: 		if (RandBitflags->playerBonus != proc->Option[12]) { reloadUnits = true; } 
@@ -25067,11 +25058,11 @@ ConfigMenuLoop:
 	lsrs	r3, r3, #27	@ tmp526, tmp525,
 @ Patches/../C_code.c:4817: 		if (RandBitflags->playerBonus != proc->Option[12]) { reloadUnits = true; } 
 	cmp	r3, r0	@ tmp526, tmp529
-	beq	.L3247		@,
+	beq	.L3246		@,
 @ Patches/../C_code.c:4817: 		if (RandBitflags->playerBonus != proc->Option[12]) { reloadUnits = true; } 
 	movs	r3, #1	@ reloadUnits,
 	str	r3, [sp]	@ reloadUnits, %sfp
-.L3247:
+.L3246:
 @ Patches/../C_code.c:4818: 		if (RandValues->bonus != proc->Option[13]) { reloadUnits = true; } 
 	movs	r5, #70	@ tmp537,
 @ Patches/../C_code.c:4818: 		if (RandValues->bonus != proc->Option[13]) { reloadUnits = true; } 
@@ -25083,18 +25074,18 @@ ConfigMenuLoop:
 	lsrs	r3, r3, #27	@ tmp535, tmp534,
 @ Patches/../C_code.c:4818: 		if (RandValues->bonus != proc->Option[13]) { reloadUnits = true; } 
 	cmp	r3, r5	@ tmp535, tmp538
-	beq	.L3248		@,
+	beq	.L3247		@,
 @ Patches/../C_code.c:4818: 		if (RandValues->bonus != proc->Option[13]) { reloadUnits = true; } 
 	movs	r3, #1	@ reloadUnits,
 	str	r3, [sp]	@ reloadUnits, %sfp
-.L3248:
+.L3247:
 @ Patches/../C_code.c:4819: 		if (DisplayRandomSkillsOption) {
-	ldr	r3, .L3449+12	@ tmp1317,
+	ldr	r3, .L3448+12	@ tmp1317,
 	mov	r8, r3	@ tmp1317, tmp1317
 @ Patches/../C_code.c:4819: 		if (DisplayRandomSkillsOption) {
 	ldr	r3, [r3]	@ DisplayRandomSkillsOption, DisplayRandomSkillsOption
 	cmp	r3, #0	@ DisplayRandomSkillsOption,
-	beq	.L3249		@,
+	beq	.L3248		@,
 @ Patches/../C_code.c:4820: 			if (RandValues->skills != proc->Option[17]) { reloadUnits = true; } 
 	movs	r3, #74	@ tmp548,
 	ldrsb	r3, [r4, r3]	@ tmp549,
@@ -25102,11 +25093,11 @@ ConfigMenuLoop:
 	lsrs	r0, r0, #6	@ tmp546, *RandValues.262_11,
 @ Patches/../C_code.c:4820: 			if (RandValues->skills != proc->Option[17]) { reloadUnits = true; } 
 	cmp	r0, r3	@ tmp546, tmp549
-	beq	.L3249		@,
+	beq	.L3248		@,
 @ Patches/../C_code.c:4820: 			if (RandValues->skills != proc->Option[17]) { reloadUnits = true; } 
 	movs	r3, #1	@ reloadUnits,
 	str	r3, [sp]	@ reloadUnits, %sfp
-.L3249:
+.L3248:
 @ Patches/../C_code.c:4823: 		RandValues->seed = proc->seed; 
 	movs	r0, #31	@ tmp553,
 	ldr	r3, [sp, #16]	@ _17, %sfp
@@ -25156,14 +25147,14 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4829: 		if (proc->Option[3] > 3) { RandBitflags->grow50 = true; } 
 	movs	r1, #1	@ tmp613,
 	cmp	r0, #3	@ _31,
-	bgt	.LCB20741	@
-	b	.L3436	@long jump	@
-.LCB20741:
-.L3250:
+	bgt	.LCB20733	@
+	b	.L3435	@long jump	@
+.LCB20733:
+.L3249:
 @ Patches/../C_code.c:4827: 		RandBitflags->base = proc->Option[2]; 
 	lsls	r1, r1, #28	@ tmp619, tmp613,
 	orrs	r3, r1	@ tmp621, tmp619
-	ldr	r0, .L3449+16	@ tmp625,
+	ldr	r0, .L3448+16	@ tmp625,
 	ldr	r1, [r2]	@ MEM[(struct RandomizerSettings *)RandBitflags.265_24], MEM[(struct RandomizerSettings *)RandBitflags.265_24]
 	ands	r1, r0	@ tmp623, tmp625
 	orrs	r3, r1	@ tmp626, tmp623
@@ -25171,9 +25162,9 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4834: 		if (proc->Option[6] == 4) { RandBitflags->class = 1; RecruitValues->newClasses = 1; } 
 	ldr	r3, [sp, #36]	@ _43, %sfp
 	cmp	r3, #4	@ _43,
-	bne	.LCB20754	@
-	b	.L3251	@long jump	@
-.LCB20754:
+	bne	.LCB20746	@
+	b	.L3250	@long jump	@
+.LCB20746:
 @ Patches/../C_code.c:4833: 		RandBitflags->class = proc->Option[6];
 	movs	r1, #3	@ tmp633,
 	movs	r0, #6	@ tmp639,
@@ -25183,7 +25174,7 @@ ConfigMenuLoop:
 	bics	r3, r0	@ tmp638, tmp639
 	orrs	r3, r1	@ tmp642, tmp635
 	strb	r3, [r2, #1]	@ tmp642, RandBitflags.265_24->class
-.L3252:
+.L3251:
 @ Patches/../C_code.c:4835: 		RandBitflags->itemStats = ((proc->Option[7] == 1) || (proc->Option[7] == 3)); 
 	movs	r3, #64	@ tmp666,
 @ Patches/../C_code.c:4836: 		RandBitflags->foundItems = ((proc->Option[7] == 1) || (proc->Option[7] == 2)); 
@@ -25208,27 +25199,27 @@ ConfigMenuLoop:
 	lsls	r1, r1, #11	@ tmp688, _72,
 	orrs	r1, r0	@ tmp689, tmp687
 	lsls	r3, r3, #19	@ tmp686, tmp683,
-	ldr	r0, .L3449+20	@ tmp695,
+	ldr	r0, .L3448+20	@ tmp695,
 	orrs	r3, r1	@ tmp691, tmp689
 	ldr	r1, [r2]	@ MEM[(struct RandomizerSettings *)RandBitflags.265_24], MEM[(struct RandomizerSettings *)RandBitflags.265_24]
 	ands	r1, r0	@ tmp693, tmp695
 	orrs	r3, r1	@ tmp696, tmp693
 	str	r3, [r2]	@ tmp696, MEM[(struct RandomizerSettings *)RandBitflags.265_24]
 @ Patches/../C_code.c:4838: 		if (proc->Option[8] == 1){ SetFlag(CasualModeFlag); } 
-	ldr	r3, .L3449+24	@ tmp697,
+	ldr	r3, .L3448+24	@ tmp697,
 	ldr	r0, [r3]	@ pretmp_579, CasualModeFlag
 @ Patches/../C_code.c:4838: 		if (proc->Option[8] == 1){ SetFlag(CasualModeFlag); } 
 	movs	r3, #65	@ tmp698,
 @ Patches/../C_code.c:4838: 		if (proc->Option[8] == 1){ SetFlag(CasualModeFlag); } 
 	ldrsb	r3, [r4, r3]	@ tmp699,
 	cmp	r3, #1	@ tmp699,
-	bne	.LCB20797	@
-	b	.L3437	@long jump	@
-.LCB20797:
+	bne	.LCB20789	@
+	b	.L3436	@long jump	@
+.LCB20789:
 @ Patches/../C_code.c:4839: 		else { UnsetFlag(CasualModeFlag); } 
-	ldr	r3, .L3449+28	@ tmp701,
+	ldr	r3, .L3448+28	@ tmp701,
 	bl	.L14		@
-.L3254:
+.L3253:
 @ Patches/../C_code.c:4841: 		RandBitflags->randMusic = proc->Option[9]; 
 	ldr	r3, [sp, #8]	@ tmp1316, %sfp
 	ldr	r2, [r3]	@ RandBitflags.292_78, RandBitflags
@@ -25261,7 +25252,7 @@ ConfigMenuLoop:
 	subs	r3, r3, #38	@ tmp741,
 	ands	r1, r3	@ tmp742, tmp741
 	lsls	r1, r1, #23	@ tmp744, tmp742,
-	ldr	r5, .L3449+32	@ tmp750,
+	ldr	r5, .L3448+32	@ tmp750,
 	orrs	r1, r0	@ tmp746, tmp734
 	ldr	r0, [r2]	@ MEM[(struct RandomizerSettings *)RandBitflags.292_78], MEM[(struct RandomizerSettings *)RandBitflags.292_78]
 	ands	r0, r5	@ tmp748, tmp750
@@ -25285,7 +25276,7 @@ ConfigMenuLoop:
 	mov	r3, r8	@ tmp1317, tmp1317
 	ldr	r3, [r3]	@ DisplayRandomSkillsOption, DisplayRandomSkillsOption
 	cmp	r3, #0	@ DisplayRandomSkillsOption,
-	beq	.L3255		@,
+	beq	.L3254		@,
 @ Patches/../C_code.c:4848: 			RandValues->skills = proc->Option[17]; 
 	movs	r3, #74	@ tmp774,
 @ Patches/../C_code.c:4848: 			RandValues->skills = proc->Option[17]; 
@@ -25300,7 +25291,7 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4848: 			RandValues->skills = proc->Option[17]; 
 	strb	r3, [r0, #3]	@ tmp788, RandValues.296_87->skills
 @ Patches/../C_code.c:4849: 			AlwaysSkill[0] = proc->skill; 
-	ldr	r3, .L3449+36	@ tmp790,
+	ldr	r3, .L3448+36	@ tmp790,
 @ Patches/../C_code.c:4849: 			AlwaysSkill[0] = proc->skill; 
 	ldrb	r2, [r4, r2]	@ _93,
 @ Patches/../C_code.c:4849: 			AlwaysSkill[0] = proc->skill; 
@@ -25310,13 +25301,13 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4864: 		if (RandBitflags->fog != proc->Option[14]) { 
 	ldr	r3, [sp, #8]	@ tmp1316, %sfp
 	ldr	r2, [r3]	@ RandBitflags.292_78, RandBitflags
-.L3255:
+.L3254:
 @ Patches/../C_code.c:4852: 		if (DisplayTimedHitsOption) { 
-	ldr	r3, .L3449+40	@ tmp794,
+	ldr	r3, .L3448+40	@ tmp794,
 @ Patches/../C_code.c:4852: 		if (DisplayTimedHitsOption) { 
 	ldr	r3, [r3]	@ DisplayTimedHitsOption, DisplayTimedHitsOption
 	cmp	r3, #0	@ DisplayTimedHitsOption,
-	beq	.L3257		@,
+	beq	.L3256		@,
 @ Patches/../C_code.c:4853: 			int timedHits = proc->Option[16];
 	movs	r3, #73	@ tmp796,
 @ Patches/../C_code.c:4856: 			TimedHitsDifficultyRam->difficulty = 0; 
@@ -25324,7 +25315,7 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4853: 			int timedHits = proc->Option[16];
 	ldrsb	r0, [r4, r3]	@ timedHits,
 @ Patches/../C_code.c:4854: 			TimedHitsDifficultyRam->off = false;
-	ldr	r3, .L3449+44	@ tmp797,
+	ldr	r3, .L3448+44	@ tmp797,
 	ldr	r3, [r3]	@ TimedHitsDifficultyRam.301_96, TimedHitsDifficultyRam
 @ Patches/../C_code.c:4856: 			TimedHitsDifficultyRam->difficulty = 0; 
 	ldrb	r1, [r3]	@ MEM[(struct TimedHitsDifficultyStruct *)TimedHitsDifficultyRam.301_96], MEM[(struct TimedHitsDifficultyStruct *)TimedHitsDifficultyRam.301_96]
@@ -25332,16 +25323,16 @@ ConfigMenuLoop:
 	strb	r1, [r3]	@ tmp800, MEM[(struct TimedHitsDifficultyStruct *)TimedHitsDifficultyRam.301_96]
 @ Patches/../C_code.c:4857: 			if (timedHits == 0) { TimedHitsDifficultyRam->off = true; }  
 	cmp	r0, #0	@ timedHits,
-	beq	.LCB20887	@
-	b	.L3258	@long jump	@
-.LCB20887:
+	beq	.LCB20879	@
+	b	.L3257	@long jump	@
+.LCB20879:
 @ Patches/../C_code.c:4857: 			if (timedHits == 0) { TimedHitsDifficultyRam->off = true; }  
 	movs	r0, #64	@ tmp811,
 	lsls	r1, r1, #24	@ TimedHitsDifficultyRam.301_96->off,,
 	lsrs	r1, r1, #24	@ TimedHitsDifficultyRam.301_96->off, TimedHitsDifficultyRam.301_96->off,
 	orrs	r1, r0	@ tmp813, tmp811
 	strb	r1, [r3]	@ tmp813,* TimedHitsDifficultyRam.301_96
-.L3257:
+.L3256:
 @ Patches/../C_code.c:4864: 		if (RandBitflags->fog != proc->Option[14]) { 
 	movs	r3, #71	@ tmp845,
 	mov	r8, r3	@ tmp845, tmp845
@@ -25352,35 +25343,35 @@ ConfigMenuLoop:
 	lsrs	r3, r3, #30	@ tmp851, tmp850,
 @ Patches/../C_code.c:4864: 		if (RandBitflags->fog != proc->Option[14]) { 
 	cmp	r3, r0	@ tmp851, _100
-	beq	.L3262		@,
+	beq	.L3261		@,
 @ Patches/../C_code.c:4865: 			if ((proc->Option[14] == 1) && proc->calledFromChapter) { 
 	cmp	r0, #1	@ _100,
-	bne	.LCB20906	@
-	b	.L3438	@long jump	@
-.LCB20906:
-.L3263:
+	bne	.LCB20898	@
+	b	.L3437	@long jump	@
+.LCB20898:
+.L3262:
 @ Patches/../C_code.c:4868: 			if ((proc->Option[14] == 2) && proc->calledFromChapter) { 
 	cmp	r0, #2	@ _100,
-	bne	.LCB20909	@
-	b	.L3439	@long jump	@
-.LCB20909:
-.L3265:
+	bne	.LCB20901	@
+	b	.L3438	@long jump	@
+.LCB20901:
+.L3264:
 @ Patches/../C_code.c:4871: 			if ((proc->Option[14] == 0) && proc->calledFromChapter) { 
 	cmp	r0, #0	@ _100,
-	bne	.L3423		@,
+	bne	.L3422		@,
 @ Patches/../C_code.c:4871: 			if ((proc->Option[14] == 0) && proc->calledFromChapter) { 
 	movs	r3, #53	@ tmp863,
 @ Patches/../C_code.c:4871: 			if ((proc->Option[14] == 0) && proc->calledFromChapter) { 
 	ldrb	r3, [r4, r3]	@ tmp864,
 	cmp	r3, #0	@ tmp864,
-	beq	.LCB20916	@
-	b	.L3268	@long jump	@
-.LCB20916:
-.L3423:
+	beq	.LCB20908	@
+	b	.L3267	@long jump	@
+.LCB20908:
+.L3422:
 @ Patches/../C_code.c:4875: 		RandBitflags->fog = proc->Option[14]; 
 	ldr	r3, [sp, #8]	@ tmp1316, %sfp
 	ldr	r2, [r3]	@ RandBitflags.292_78, RandBitflags
-.L3262:
+.L3261:
 @ Patches/../C_code.c:4875: 		RandBitflags->fog = proc->Option[14]; 
 	movs	r1, #3	@ tmp876,
 	ands	r1, r0	@ tmp875, _100
@@ -25391,58 +25382,58 @@ ConfigMenuLoop:
 	orrs	r3, r1	@ tmp885, tmp878
 	strb	r3, [r2, #3]	@ tmp885, prephitmp_578->fog
 @ Patches/../C_code.c:4877: 		RecruitmentProc* recruitmentProc = Proc_Find(RecruitmentProcCmd1); 
-	ldr	r3, .L3449+48	@ tmp1320,
+	ldr	r3, .L3448+48	@ tmp1320,
 	movs	r0, r3	@ tmp888, tmp1320
 	mov	r8, r3	@ tmp1320, tmp1320
-	ldr	r3, .L3449+52	@ tmp1321,
+	ldr	r3, .L3448+52	@ tmp1321,
 	adds	r0, r0, #16	@ tmp888,
 	mov	r10, r3	@ tmp1321, tmp1321
 	bl	.L14		@
 @ Patches/../C_code.c:4878: 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
-	ldr	r3, .L3449+56	@ tmp1322,
+	ldr	r3, .L3448+56	@ tmp1322,
 	mov	fp, r3	@ tmp1322, tmp1322
 @ Patches/../C_code.c:4878: 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 	cmp	r0, #0	@ recruitmentProc,
-	beq	.L3269		@,
+	beq	.L3268		@,
 @ Patches/../C_code.c:4878: 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 	bl	.L14		@
-.L3269:
+.L3268:
 @ Patches/../C_code.c:4879: 		recruitmentProc = Proc_Find(RecruitmentProcCmd2); 
 	mov	r0, r8	@ tmp892, tmp1320
 	adds	r0, r0, #48	@ tmp892,
-	bl	.L786		@
+	bl	.L785		@
 @ Patches/../C_code.c:4880: 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 	cmp	r0, #0	@ recruitmentProc,
-	beq	.L3270		@,
+	beq	.L3269		@,
 @ Patches/../C_code.c:4880: 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
-	bl	.L435		@
-.L3270:
+	bl	.L434		@
+.L3269:
 @ Patches/../C_code.c:4881: 		recruitmentProc = Proc_Find(RecruitmentProcCmd3); 
 	mov	r0, r8	@ tmp896, tmp1320
 	adds	r0, r0, #80	@ tmp896,
-	bl	.L786		@
+	bl	.L785		@
 @ Patches/../C_code.c:4882: 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 	cmp	r0, #0	@ recruitmentProc,
-	beq	.L3271		@,
+	beq	.L3270		@,
 @ Patches/../C_code.c:4882: 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
-	bl	.L435		@
-.L3271:
+	bl	.L434		@
+.L3270:
 @ Patches/../C_code.c:4883: 		recruitmentProc = Proc_Find(RecruitmentProcCmd4); 
 	mov	r0, r8	@ tmp1320, tmp1320
 	adds	r0, r0, #112	@ tmp1320,
-	bl	.L786		@
+	bl	.L785		@
 @ Patches/../C_code.c:4884: 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 	cmp	r0, #0	@ recruitmentProc,
-	beq	.L3272		@,
+	beq	.L3271		@,
 @ Patches/../C_code.c:4884: 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
-	bl	.L435		@
-.L3272:
+	bl	.L434		@
+.L3271:
 @ Patches/../C_code.c:4887: 		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions-2))) { 
 	movs	r3, #72	@ tmp903,
 @ Patches/../C_code.c:4887: 		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions-2))) { 
 	ldrsb	r3, [r4, r3]	@ tmp904,
 	cmp	r3, #0	@ tmp904,
-	beq	.L3273		@,
+	beq	.L3272		@,
 @ Patches/../C_code.c:4887: 		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions-2))) { 
 	ldr	r3, [sp, #4]	@ offset, %sfp
 	mov	ip, r3	@ offset, offset
@@ -25452,19 +25443,19 @@ ConfigMenuLoop:
 	add	r6, r6, ip	@ tmp905, offset
 @ Patches/../C_code.c:4887: 		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions-2))) { 
 	cmp	r6, r7	@ tmp905, tmp906
-	bne	.L3273		@,
+	bne	.L3272		@,
 @ Patches/../C_code.c:4891: 			if (proc->calledFromChapter) { 
 	movs	r3, #53	@ tmp907,
 @ Patches/../C_code.c:4891: 			if (proc->calledFromChapter) { 
 	ldrb	r3, [r4, r3]	@ tmp908,
 	cmp	r3, #0	@ tmp908,
-	beq	.LCB20981	@
-	b	.L3440	@long jump	@
-.LCB20981:
-.L3273:
+	beq	.LCB20973	@
+	b	.L3439	@long jump	@
+.LCB20973:
+.L3272:
 @ Patches/../C_code.c:4903: 		RandBitflags->disp = 1; 
 	ldr	r3, [sp, #8]	@ tmp1316, %sfp
-	ldr	r6, .L3449+60	@ ivtmp.1918,
+	ldr	r6, .L3448+60	@ ivtmp.1918,
 	ldr	r2, [r3]	@ RandBitflags, RandBitflags
 	movs	r3, #128	@ tmp917,
 	movs	r5, r6	@ _275, ivtmp.1918
@@ -25473,9 +25464,9 @@ ConfigMenuLoop:
 	orrs	r3, r1	@ tmp916, RandBitflags.311_114->disp
 	adds	r5, r5, #33	@ _275,
 	strb	r3, [r2, #3]	@ tmp916, RandBitflags.311_114->disp
-	ldr	r7, .L3449+64	@ tmp1323,
+	ldr	r7, .L3448+64	@ tmp1323,
 	adds	r5, r5, #255	@ _275,
-.L3274:
+.L3273:
 @ Patches/../C_code.c:4908: 			ClearText(&th[i]);
 	movs	r0, r6	@, ivtmp.1918
 @ Patches/../C_code.c:4907: 		for (int i = 0; i < 36; ++i) { 
@@ -25484,17 +25475,17 @@ ConfigMenuLoop:
 	bl	.L223		@
 @ Patches/../C_code.c:4907: 		for (int i = 0; i < 36; ++i) { 
 	cmp	r6, r5	@ ivtmp.1918, _275
-	bne	.L3274		@,
+	bne	.L3273		@,
 @ Patches/../C_code.c:4911: 		if (reloadUnits) { proc->reloadUnits = true; *MaxClasses = 0; } 
 	ldr	r3, [sp]	@ reloadUnits, %sfp
 	cmp	r3, #0	@ reloadUnits,
-	beq	.LCB21004	@
-	b	.L3441	@long jump	@
-.LCB21004:
-	b	.L3450		@
-.L3451:
+	beq	.LCB20996	@
+	b	.L3440	@long jump	@
+.LCB20996:
+	b	.L3449		@
+.L3450:
 	.align	2
-.L3449:
+.L3448:
 	.word	RandValues
 	.word	RecruitValues
 	.word	RandBitflags
@@ -25512,12 +25503,12 @@ ConfigMenuLoop:
 	.word	Proc_Break
 	.word	gStatScreen+24
 	.word	ClearText
-.L3450:
-.L3275:
+.L3449:
+.L3274:
 @ Patches/../C_code.c:4913: 		Proc_Break((ProcPtr)proc);
 	movs	r0, r4	@, proc
-	bl	.L435		@
-.L3233:
+	bl	.L434		@
+.L3232:
 @ Patches/../C_code.c:5046: } 
 	add	sp, sp, #44	@,,
 	@ sp needed	@
@@ -25529,7 +25520,7 @@ ConfigMenuLoop:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3430:
+.L3429:
 @ Patches/../C_code.c:4801: 	if (!proc->freezeSeed) { proc->seed = GetInitialSeed(2); proc->redraw = true; } 
 	movs	r0, #2	@,
 	bl	GetInitialSeed		@
@@ -25540,47 +25531,47 @@ ConfigMenuLoop:
 	str	r0, [r4, #44]	@ tmp1341, proc_282(D)->seed
 @ Patches/../C_code.c:4801: 	if (!proc->freezeSeed) { proc->seed = GetInitialSeed(2); proc->redraw = true; } 
 	strb	r2, [r4, r3]	@ tmp445, proc_282(D)->redraw
-	b	.L3238		@
-.L3428:
+	b	.L3237		@
+.L3427:
 @ Patches/../C_code.c:4791:         DisplayUiVArrow(MENU_X+(8*8), MENU_Y+8, 0x3240, 1); // up arrow 
 	movs	r2, #201	@,
 	movs	r3, #1	@,
 	movs	r1, #16	@,
 	movs	r0, #82	@,
-	ldr	r6, .L3452	@ tmp1313,
+	ldr	r6, .L3451	@ tmp1313,
 	lsls	r2, r2, #6	@,,
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:4794: 	if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
 	cmp	r7, #7	@ pretmp_593,
-	bgt	.LCB21070	@
-	b	.L3236	@long jump	@
-.LCB21070:
+	bgt	.LCB21062	@
+	b	.L3235	@long jump	@
+.LCB21062:
 @ Patches/../C_code.c:4794: 	if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
 	ldrb	r2, [r4, r5]	@ tmp437,
 @ Patches/../C_code.c:4794: 	if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
 	subs	r3, r7, #7	@ tmp438, pretmp_593,
 @ Patches/../C_code.c:4794: 	if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
 	cmp	r2, r3	@ tmp437, tmp438
-	blt	.LCB21074	@
-	b	.L3236	@long jump	@
-.LCB21074:
-	b	.L3333		@
-.L3318:
+	blt	.LCB21066	@
+	b	.L3235	@long jump	@
+.LCB21066:
+	b	.L3332		@
+.L3317:
 @ Patches/../C_code.c:5016:     else if (keys & DPAD_UP) {
 	lsls	r3, r5, #25	@ tmp1364, keys,
-	bpl	.LCB21084	@
-	b	.L3322	@long jump	@
-.LCB21084:
+	bpl	.LCB21076	@
+	b	.L3321	@long jump	@
+.LCB21076:
 	movs	r3, #16	@ tmp1173,
 	ands	r3, r5	@ tmp1173, keys
 	mov	r9, r3	@ _514, tmp1173
-.L3321:
+.L3320:
 @ Patches/../C_code.c:5023:     else if (keys & DPAD_RIGHT) {
 	mov	r3, r9	@ _514, _514
 	cmp	r3, #0	@ _514,
-	bne	.LCB21094	@
-	b	.L3325	@long jump	@
-.LCB21094:
+	bne	.LCB21086	@
+	b	.L3324	@long jump	@
+.LCB21086:
 @ Patches/../C_code.c:5024: 		id--; id += offset; 
 	ldr	r3, [sp, #4]	@ offset, %sfp
 	mov	ip, r3	@ offset, offset
@@ -25593,7 +25584,7 @@ ConfigMenuLoop:
 	movs	r2, r3	@ tmp1210, tmp1319
 @ Patches/../C_code.c:5025: 		if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; } 
 	movs	r0, #36	@ tmp1212,
-	ldr	r1, .L3452+4	@ tmp1211,
+	ldr	r1, .L3451+4	@ tmp1211,
 @ Patches/../C_code.c:5025: 		if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; } 
 	adds	r2, r2, #57	@ tmp1210,
 @ Patches/../C_code.c:5025: 		if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; } 
@@ -25611,13 +25602,13 @@ ConfigMenuLoop:
 	asrs	r2, r2, #24	@ _202, _202,
 @ Patches/../C_code.c:5025: 		if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; } 
 	cmp	r2, r1	@ _202, tmp1215
-	bge	.LCB21112	@
-	b	.L3442	@long jump	@
-.LCB21112:
-.L3326:
+	bge	.LCB21104	@
+	b	.L3441	@long jump	@
+.LCB21104:
+.L3325:
 	adds	r3, r3, #57	@ tmp1221,
 	strb	r0, [r3]	@ cstore_123, proc_282(D)->Option[id_335]
-.L3425:
+.L3424:
 @ Patches/../C_code.c:5033: 		proc->redraw = RedrawSome; id++; id -= offset; 
 	movs	r3, #50	@ tmp1268,
 	movs	r2, #1	@ tmp1269,
@@ -25628,36 +25619,36 @@ ConfigMenuLoop:
 	adds	r6, r6, #1	@ id,
 @ Patches/../C_code.c:5033: 		proc->redraw = RedrawSome; id++; id -= offset; 
 	subs	r6, r6, r3	@ id, id, offset
-.L3426:
+.L3425:
 @ Patches/../C_code.c:5035: 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
-	ldr	r3, .L3452+8	@ tmp1271,
+	ldr	r3, .L3451+8	@ tmp1271,
 	lsls	r2, r6, #3	@ tmp1272, id,
 	adds	r3, r3, r2	@ tmp1273, tmp1271, tmp1272
 @ Patches/../C_code.c:5035: 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	adds	r3, r3, #100	@,
 	ldmia	r3!, {r0, r1}	@,,
 @ Patches/../C_code.c:4651: 	else { DisplayUiHand(x, y); } 
-	ldr	r3, .L3452+12	@ tmp1279,
+	ldr	r3, .L3451+12	@ tmp1279,
 	bl	.L14		@
 @ Patches/../C_code.c:5036: 	if (proc->redraw == RedrawSome) { 
 	movs	r3, #50	@ tmp1280,
 	ldrb	r3, [r4, r3]	@ _223,
 @ Patches/../C_code.c:5036: 	if (proc->redraw == RedrawSome) { 
 	cmp	r3, #1	@ _223,
-	beq	.LCB21136	@
-	b	.L3330	@long jump	@
-.LCB21136:
-.L3435:
+	beq	.LCB21128	@
+	b	.L3329	@long jump	@
+.LCB21128:
+.L3434:
 @ Patches/../C_code.c:5037: 		if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3)) { proc->choosingSkill = true; } 
 	ldr	r2, [sp, #4]	@ offset, %sfp
 	mov	ip, r2	@ offset, offset
 	add	r6, r6, ip	@ tmp1281, offset
 @ Patches/../C_code.c:5037: 		if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3)) { proc->choosingSkill = true; } 
 	cmp	r6, r7	@ tmp1281, pretmp_593
-	bne	.LCB21142	@
-	b	.L3443	@long jump	@
-.LCB21142:
-.L3331:
+	bne	.LCB21134	@
+	b	.L3442	@long jump	@
+.LCB21134:
+.L3330:
 @ Patches/../C_code.c:5038: 		proc->redraw = RedrawNone; 
 	movs	r3, #0	@ tmp1288,
 	movs	r5, #50	@ tmp1287,
@@ -25669,8 +25660,8 @@ ConfigMenuLoop:
 	bl	DrawConfigMenu		@
 @ Patches/../C_code.c:5041: 	if (proc->redraw == RedrawAll) { 
 	ldrb	r3, [r4, r5]	@ _223,
-	b	.L3330		@
-.L3441:
+	b	.L3329		@
+.L3440:
 @ Patches/../C_code.c:4911: 		if (reloadUnits) { proc->reloadUnits = true; *MaxClasses = 0; } 
 	movs	r3, #54	@ tmp921,
 	movs	r2, #1	@ tmp922,
@@ -25678,44 +25669,44 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4911: 		if (reloadUnits) { proc->reloadUnits = true; *MaxClasses = 0; } 
 	movs	r2, #0	@ tmp925,
 @ Patches/../C_code.c:4911: 		if (reloadUnits) { proc->reloadUnits = true; *MaxClasses = 0; } 
-	ldr	r3, .L3452+16	@ tmp924,
+	ldr	r3, .L3451+16	@ tmp924,
 	ldr	r3, [r3]	@ MaxClasses.313_118, MaxClasses
 @ Patches/../C_code.c:4911: 		if (reloadUnits) { proc->reloadUnits = true; *MaxClasses = 0; } 
 	strb	r2, [r3]	@ tmp925, *MaxClasses.313_118
-	b	.L3275		@
-.L3436:
+	b	.L3274		@
+.L3435:
 @ Patches/../C_code.c:4829: 		if (proc->Option[3] > 3) { RandBitflags->grow50 = true; } 
 	movs	r1, #0	@ tmp613,
-	b	.L3250		@
-.L3282:
+	b	.L3249		@
+.L3281:
 @ Patches/../C_code.c:4938: 		if (keys & DPAD_LEFT) {
 	ldr	r1, [sp]	@ _592, %sfp
 	cmp	r1, #0	@ _592,
-	bne	.LCB21172	@
-	b	.L3285	@long jump	@
-.LCB21172:
+	bne	.LCB21164	@
+	b	.L3284	@long jump	@
+.LCB21164:
 @ Patches/../C_code.c:4939: 		  if (proc->digit < (max_digits)) { proc->digit++; }
 	cmp	r2, r3	@ _128, result
-	bge	.LCB21174	@
-	b	.L3444	@long jump	@
-.LCB21174:
-.L3286:
+	bge	.LCB21166	@
+	b	.L3443	@long jump	@
+.LCB21166:
+.L3285:
 @ Patches/../C_code.c:4940: 		  else { proc->digit = 0; } 
 	movs	r3, #51	@ tmp971,
 	movs	r2, #0	@ tmp972,
 	strb	r2, [r4, r3]	@ tmp972, proc_282(D)->digit
-.L3288:
+.L3287:
 @ Patches/../C_code.c:4973: 	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
 	cmp	r7, #0	@ pretmp_593,
-	beq	.L3346		@,
+	beq	.L3345		@,
 @ Patches/../C_code.c:5009:     if (keys & DPAD_DOWN) {
 	lsls	r3, r5, #24	@ tmp1360, keys,
-	bmi	.LCB21188	@
-	b	.L3297	@long jump	@
-.LCB21188:
-	ldr	r3, .L3452+8	@ tmp1325,
+	bmi	.LCB21180	@
+	b	.L3296	@long jump	@
+.LCB21180:
+	ldr	r3, .L3451+8	@ tmp1325,
 	lsls	r5, r6, #3	@ tmp1310, id,
-.L3319:
+.L3318:
 @ Patches/../C_code.c:5010: 		if (id < SRR_MAXDISP) { proc->id++; } 
 	movs	r1, #48	@ tmp1028,
 @ Patches/../C_code.c:5010: 		if (id < SRR_MAXDISP) { proc->id++; } 
@@ -25730,51 +25721,51 @@ ConfigMenuLoop:
 	strb	r2, [r4, r1]	@ tmp1031, proc_282(D)->id
 @ Patches/../C_code.c:5035: 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	ldmia	r3!, {r0, r1}	@,,
-	b	.L3298		@
-.L3438:
+	b	.L3297		@
+.L3437:
 @ Patches/../C_code.c:4865: 			if ((proc->Option[14] == 1) && proc->calledFromChapter) { 
 	movs	r3, #53	@ tmp853,
 @ Patches/../C_code.c:4865: 			if ((proc->Option[14] == 1) && proc->calledFromChapter) { 
 	ldrb	r3, [r4, r3]	@ tmp854,
 	cmp	r3, #0	@ tmp854,
-	bne	.LCB21207	@
-	b	.L3423	@long jump	@
-.LCB21207:
+	bne	.LCB21199	@
+	b	.L3422	@long jump	@
+.LCB21199:
 @ Patches/../C_code.c:4866: 				UpdateMapViewWithFog(0); 
 	movs	r0, #0	@,
-	ldr	r3, .L3452+20	@ tmp855,
+	ldr	r3, .L3451+20	@ tmp855,
 	bl	.L14		@
 @ Patches/../C_code.c:4868: 			if ((proc->Option[14] == 2) && proc->calledFromChapter) { 
 	mov	r3, r8	@ tmp845, tmp845
 	ldrsb	r0, [r4, r3]	@ _100,
-	b	.L3263		@
-.L3346:
+	b	.L3262		@
+.L3345:
 @ Patches/../C_code.c:4973: 	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
 	movs	r2, #0	@ _155,
-.L3296:
+.L3295:
 @ Patches/../C_code.c:4973: 	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
 	movs	r3, #74	@ tmp1042,
 @ Patches/../C_code.c:4973: 	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
 	ldrsb	r3, [r4, r3]	@ tmp1043,
 	cmp	r3, #3	@ tmp1043,
-	beq	.LCB21223	@
-	b	.L3299	@long jump	@
-.LCB21223:
+	beq	.LCB21215	@
+	b	.L3298	@long jump	@
+.LCB21215:
 @ Patches/../C_code.c:4973: 	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
 	adds	r3, r3, #53	@ tmp1044,
 @ Patches/../C_code.c:4973: 	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
 	ldrb	r1, [r4, r3]	@ tmp1045,
 	cmp	r1, #0	@ tmp1045,
-	bne	.LCB21227	@
-	b	.L3299	@long jump	@
-.LCB21227:
+	bne	.LCB21219	@
+	b	.L3298	@long jump	@
+.LCB21219:
 @ Patches/../C_code.c:4975: 		if (keys & DPAD_UP) {
 	lsls	r2, r5, #25	@ tmp1361, keys,
-	bmi	.LCB21233	@
-	b	.L3300	@long jump	@
-.LCB21233:
+	bmi	.LCB21225	@
+	b	.L3299	@long jump	@
+.LCB21225:
 @ Patches/../C_code.c:198: 	for (int i = id; i < NumberOfSkills; ++i) { 
-	ldr	r2, .L3452+24	@ tmp1055,
+	ldr	r2, .L3451+24	@ tmp1055,
 @ Patches/../C_code.c:4976: 			proc->skill = GetNextAlwaysSkill(proc->skill); 
 	subs	r3, r3, #1	@ tmp1053,
 @ Patches/../C_code.c:4976: 			proc->skill = GetNextAlwaysSkill(proc->skill); 
@@ -25785,41 +25776,41 @@ ConfigMenuLoop:
 	adds	r3, r3, #1	@ id,
 @ Patches/../C_code.c:198: 	for (int i = id; i < NumberOfSkills; ++i) { 
 	cmp	r0, r3	@ NumberOfSkills.6_336, id
-	bgt	.LCB21240	@
-	b	.L3301	@long jump	@
-.LCB21240:
-	ldr	r1, .L3452+28	@ tmp1312,
-	b	.L3303		@
-.L3445:
+	bgt	.LCB21232	@
+	b	.L3300	@long jump	@
+.LCB21232:
+	ldr	r1, .L3451+28	@ tmp1312,
+	b	.L3302		@
+.L3444:
 @ Patches/../C_code.c:198: 	for (int i = id; i < NumberOfSkills; ++i) { 
 	adds	r3, r3, #1	@ id,
 @ Patches/../C_code.c:198: 	for (int i = id; i < NumberOfSkills; ++i) { 
 	cmp	r0, r3	@ NumberOfSkills.6_336, id
-	bne	.LCB21248	@
-	b	.L3307	@long jump	@
-.LCB21248:
-.L3303:
+	bne	.LCB21240	@
+	b	.L3306	@long jump	@
+.LCB21240:
+.L3302:
 @ Patches/../C_code.c:199: 		if (AlwaysSkillTable[i]) { return i; } 
 	ldrb	r2, [r1, r3]	@ MEM[(unsigned char *)&AlwaysSkillTable + _337 * 1], MEM[(unsigned char *)&AlwaysSkillTable + _337 * 1]
 	cmp	r2, #0	@ MEM[(unsigned char *)&AlwaysSkillTable + _337 * 1],
-	beq	.L3445		@,
-.L3311:
+	beq	.L3444		@,
+.L3310:
 @ Patches/../C_code.c:4980: 			proc->skill = GetPreviousAlwaysSkill(proc->skill); 
 	lsls	r3, r3, #24	@ tmp1084, id,
 	lsrs	r3, r3, #24	@ _554, tmp1084,
-.L3313:
+.L3312:
 	movs	r2, #55	@ tmp1085,
 	strb	r3, [r4, r2]	@ _554, proc_282(D)->skill
 @ Patches/../C_code.c:4981: 			proc->redraw = RedrawSome;
 	movs	r3, #50	@ tmp1087,
 	subs	r2, r2, #54	@ tmp1088,
 	strb	r2, [r4, r3]	@ tmp1088, proc_282(D)->redraw
-.L3308:
+.L3307:
 @ Patches/../C_code.c:4998: 		DisplayHand(CursorLocationTable[proc->digit].x+12, CursorLocationTable[proc->digit].y + (offset * 8) + 32, true); 
 	movs	r3, #51	@ tmp1294,
 	ldrsb	r2, [r4, r3]	@ _168,
 @ Patches/../C_code.c:4998: 		DisplayHand(CursorLocationTable[proc->digit].x+12, CursorLocationTable[proc->digit].y + (offset * 8) + 32, true); 
-	ldr	r3, .L3452+8	@ tmp1295,
+	ldr	r3, .L3451+8	@ tmp1295,
 	lsls	r2, r2, #3	@ tmp1296, _168,
 	adds	r2, r3, r2	@ tmp1297, tmp1295, tmp1296
 @ Patches/../C_code.c:4998: 		DisplayHand(CursorLocationTable[proc->digit].x+12, CursorLocationTable[proc->digit].y + (offset * 8) + 32, true); 
@@ -25838,15 +25829,15 @@ ConfigMenuLoop:
 	adds	r0, r0, #12	@ tmp1307,
 @ Patches/../C_code.c:4649: 		DisplayVertUiHand(x, y); 
 	bl	DisplayVertUiHand		@
-.L3332:
+.L3331:
 @ Patches/../C_code.c:5000: 		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
 	movs	r5, #52	@ tmp1100,
 @ Patches/../C_code.c:5000: 		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
 	ldrb	r3, [r4, r5]	@ tmp1101,
 	cmp	r3, #0	@ tmp1101,
-	bne	.LCB21284	@
-	b	.L3316	@long jump	@
-.LCB21284:
+	bne	.LCB21276	@
+	b	.L3315	@long jump	@
+.LCB21276:
 @ Patches/../C_code.c:5002: 		if (proc->redraw == RedrawSome) { 
 	movs	r3, #50	@ tmp1102,
 @ Patches/../C_code.c:5001: 		proc->freezeSeed = true; 	
@@ -25857,27 +25848,27 @@ ConfigMenuLoop:
 	strb	r2, [r4, r5]	@ tmp1104, proc_282(D)->freezeSeed
 @ Patches/../C_code.c:5002: 		if (proc->redraw == RedrawSome) { 
 	cmp	r3, #1	@ pretmp_560,
-	beq	.LCB21290	@
-	b	.L3233	@long jump	@
-.LCB21290:
-	b	.L3295		@
-.L3429:
-	ldr	r6, .L3452	@ tmp1313,
-.L3333:
+	beq	.LCB21282	@
+	b	.L3232	@long jump	@
+.LCB21282:
+	b	.L3294		@
+.L3428:
+	ldr	r6, .L3451	@ tmp1313,
+.L3332:
 @ Patches/../C_code.c:4795: 		DisplayUiVArrow(MENU_X+(8*8), MENU_Y+(16*9), 0x3240, 0);
 	movs	r2, #201	@,
 	movs	r3, #0	@,
 	movs	r1, #152	@,
 	movs	r0, #82	@,
 	lsls	r2, r2, #6	@,,
-	bl	.L342		@
-	b	.L3236		@
-.L3437:
+	bl	.L341		@
+	b	.L3235		@
+.L3436:
 @ Patches/../C_code.c:4838: 		if (proc->Option[8] == 1){ SetFlag(CasualModeFlag); } 
-	ldr	r3, .L3452+32	@ tmp700,
+	ldr	r3, .L3451+32	@ tmp700,
 	bl	.L14		@
-	b	.L3254		@
-.L3251:
+	b	.L3253		@
+.L3250:
 @ Patches/../C_code.c:4834: 		if (proc->Option[6] == 4) { RandBitflags->class = 1; RecruitValues->newClasses = 1; } 
 	movs	r1, #6	@ tmp649,
 	ldrb	r3, [r2, #1]	@ RandBitflags.265_24->class, RandBitflags.265_24->class
@@ -25894,8 +25885,8 @@ ConfigMenuLoop:
 	orrs	r3, r1	@ tmp664, tmp662
 	mov	r1, r9	@ RecruitValues.264_19, RecruitValues.264_19
 	strb	r3, [r1]	@ tmp664, RecruitValues.264_19->newClasses
-	b	.L3252		@
-.L3432:
+	b	.L3251		@
+.L3431:
 @ Patches/../C_code.c:4928: 		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
 	movs	r0, #0	@,
 	bl	GetInitialSeed		@
@@ -25906,21 +25897,21 @@ ConfigMenuLoop:
 	str	r0, [r4, #44]	@ tmp1346, proc_282(D)->seed
 @ Patches/../C_code.c:4928: 		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
 	strb	r2, [r4, r3]	@ tmp932, proc_282(D)->redraw
-	b	.L3279		@
-.L3322:
+	b	.L3278		@
+.L3321:
 @ Patches/../C_code.c:5017: 		if ((id + offset) <= 0) { proc->id = SRR_MAXDISP; proc->offset = SRR_TotalOptions - SRR_MAXDISP; proc->redraw = RedrawAll; } 
 	cmp	r2, #0	@ _155,
-	ble	.L3323		@,
+	ble	.L3322		@,
 @ Patches/../C_code.c:5018: 		else if ((!id) && (offset)) { proc->offset--; proc->redraw = RedrawAll; } 
 	cmp	r6, #0	@ id,
-	beq	.LCB21349	@
-	b	.L3324	@long jump	@
-.LCB21349:
+	beq	.LCB21341	@
+	b	.L3323	@long jump	@
+.LCB21341:
 	ldr	r3, [sp, #4]	@ offset, %sfp
 	cmp	r3, #0	@ offset,
-	bne	.LCB21355	@
-	b	.L3324	@long jump	@
-.LCB21355:
+	bne	.LCB21347	@
+	b	.L3323	@long jump	@
+.LCB21347:
 @ Patches/../C_code.c:5018: 		else if ((!id) && (offset)) { proc->offset--; proc->redraw = RedrawAll; } 
 	movs	r2, #49	@ tmp1185,
 @ Patches/../C_code.c:5018: 		else if ((!id) && (offset)) { proc->offset--; proc->redraw = RedrawAll; } 
@@ -25933,43 +25924,43 @@ ConfigMenuLoop:
 	movs	r1, #24	@ prephitmp_551,
 	movs	r0, #18	@ prephitmp_533,
 	strb	r2, [r4, r3]	@ tmp1192, proc_282(D)->redraw
-	b	.L3298		@
-.L3258:
+	b	.L3297		@
+.L3257:
 @ Patches/../C_code.c:4858: 			if (timedHits == 1) { TimedHitsDifficultyRam->alwaysA = true; }  
 	cmp	r0, #1	@ timedHits,
-	beq	.LCB21370	@
-	b	.L3259	@long jump	@
-.LCB21370:
+	beq	.LCB21362	@
+	b	.L3258	@long jump	@
+.LCB21362:
 @ Patches/../C_code.c:4858: 			if (timedHits == 1) { TimedHitsDifficultyRam->alwaysA = true; }  
 	movs	r0, #32	@ tmp819,
 	ldrb	r1, [r3]	@ TimedHitsDifficultyRam.301_96->alwaysA, TimedHitsDifficultyRam.301_96->alwaysA
 	orrs	r1, r0	@ tmp821, tmp819
 	strb	r1, [r3]	@ tmp821,* TimedHitsDifficultyRam.301_96
-	b	.L3257		@
-.L3439:
+	b	.L3256		@
+.L3438:
 @ Patches/../C_code.c:4868: 			if ((proc->Option[14] == 2) && proc->calledFromChapter) { 
 	movs	r3, #53	@ tmp857,
 @ Patches/../C_code.c:4868: 			if ((proc->Option[14] == 2) && proc->calledFromChapter) { 
 	ldrb	r3, [r4, r3]	@ tmp858,
 	cmp	r3, #0	@ tmp858,
-	bne	.LCB21382	@
-	b	.L3423	@long jump	@
-.LCB21382:
+	bne	.LCB21374	@
+	b	.L3422	@long jump	@
+.LCB21374:
 @ Patches/../C_code.c:4869: 				UpdateMapViewWithFog(3); 
 	movs	r0, #3	@,
-	ldr	r3, .L3452+20	@ tmp860,
+	ldr	r3, .L3451+20	@ tmp860,
 	bl	.L14		@
 @ Patches/../C_code.c:4871: 			if ((proc->Option[14] == 0) && proc->calledFromChapter) { 
 	movs	r3, #71	@ tmp861,
 	ldrsb	r0, [r4, r3]	@ _100,
-	b	.L3265		@
-.L3297:
+	b	.L3264		@
+.L3296:
 @ Patches/../C_code.c:5016:     else if (keys & DPAD_UP) {
 	lsls	r3, r5, #25	@ tmp1363, keys,
-	bmi	.LCB21397	@
-	b	.L3321	@long jump	@
-.LCB21397:
-.L3323:
+	bmi	.LCB21389	@
+	b	.L3320	@long jump	@
+.LCB21389:
+.L3322:
 @ Patches/../C_code.c:5017: 		if ((id + offset) <= 0) { proc->id = SRR_MAXDISP; proc->offset = SRR_TotalOptions - SRR_MAXDISP; proc->redraw = RedrawAll; } 
 	movs	r3, #48	@ tmp1145,
 	movs	r2, #7	@ tmp1146,
@@ -25983,12 +25974,12 @@ ConfigMenuLoop:
 	movs	r3, #50	@ tmp1152,
 	subs	r2, r2, #47	@ tmp1153,
 	strb	r2, [r4, r3]	@ tmp1153, proc_282(D)->redraw
-	b	.L3426		@
-.L3433:
+	b	.L3425		@
+.L3432:
 @ Patches/../C_code.c:4686: 	if (result > 6) { result = 6; } 
 	subs	r3, r3, #1	@ result,
-	b	.L3281		@
-.L3283:
+	b	.L3280		@
+.L3282:
 @ Patches/../C_code.c:4936: 		  else { proc->digit = max_digits; } 
 	lsls	r2, r3, #24	@ tmp961, result,
 	movs	r3, #51	@ tmp1525,
@@ -25997,16 +25988,16 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:4938: 		if (keys & DPAD_LEFT) {
 	ldr	r3, [sp]	@ _592, %sfp
 	cmp	r3, #0	@ _592,
-	beq	.LCB21423	@
-	b	.L3286	@long jump	@
-.LCB21423:
-	b	.L3287		@
-.L3325:
+	beq	.LCB21415	@
+	b	.L3285	@long jump	@
+.LCB21415:
+	b	.L3286		@
+.L3324:
 @ Patches/../C_code.c:5029:     else if (keys & DPAD_LEFT) {
 	lsls	r5, r5, #26	@ tmp1365, keys,
-	bmi	.LCB21433	@
-	b	.L3426	@long jump	@
-.LCB21433:
+	bmi	.LCB21425	@
+	b	.L3425	@long jump	@
+.LCB21425:
 @ Patches/../C_code.c:5030: 		id--; id += offset; 
 	ldr	r3, [sp, #4]	@ offset, %sfp
 	mov	ip, r3	@ offset, offset
@@ -26023,22 +26014,22 @@ ConfigMenuLoop:
 	asrs	r3, r3, #24	@ _211, _211,
 @ Patches/../C_code.c:5031: 		if (proc->Option[id] > 0) { proc->Option[id]--; } 
 	cmp	r3, #0	@ _211,
-	bgt	.L3424		@,
+	bgt	.L3423		@,
 @ Patches/../C_code.c:5032: 		else { proc->Option[id] = OptionAmounts[id] - 1;  } 
 	movs	r1, #36	@ tmp1258,
 @ Patches/../C_code.c:5032: 		else { proc->Option[id] = OptionAmounts[id] - 1;  } 
-	ldr	r3, .L3452+4	@ tmp1257,
+	ldr	r3, .L3451+4	@ tmp1257,
 	adds	r3, r3, r6	@ tmp1259, tmp1257, id
 @ Patches/../C_code.c:5032: 		else { proc->Option[id] = OptionAmounts[id] - 1;  } 
 	ldrb	r3, [r3, r1]	@ tmp1261, OptionAmounts
-.L3424:
+.L3423:
 	subs	r3, r3, #1	@ tmp1262,
 	lsls	r3, r3, #24	@ tmp1263, tmp1262,
 	asrs	r3, r3, #24	@ _215, tmp1263,
 	adds	r2, r2, #57	@ tmp1266,
 	strb	r3, [r2]	@ _215, proc_282(D)->Option[id_328]
-	b	.L3425		@
-.L3320:
+	b	.L3424		@
+.L3319:
 @ Patches/../C_code.c:5012: 		else { proc->id = 0; proc->offset = 0; proc->redraw = RedrawAll; } 
 	movs	r3, #0	@ tmp1133,
 @ Patches/../C_code.c:5012: 		else { proc->id = 0; proc->offset = 0; proc->redraw = RedrawAll; } 
@@ -26048,44 +26039,44 @@ ConfigMenuLoop:
 @ Patches/../C_code.c:5012: 		else { proc->id = 0; proc->offset = 0; proc->redraw = RedrawAll; } 
 	adds	r3, r3, #50	@ tmp1135,
 	strb	r2, [r4, r3]	@ tmp1136, proc_282(D)->redraw
-	b	.L3298		@
-.L3443:
+	b	.L3297		@
+.L3442:
 @ Patches/../C_code.c:5037: 		if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3)) { proc->choosingSkill = true; } 
 	movs	r2, #74	@ tmp1282,
 @ Patches/../C_code.c:5037: 		if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3)) { proc->choosingSkill = true; } 
 	ldrsb	r2, [r4, r2]	@ tmp1283,
 	cmp	r2, #3	@ tmp1283,
-	beq	.LCB21473	@
-	b	.L3331	@long jump	@
-.LCB21473:
+	beq	.LCB21465	@
+	b	.L3330	@long jump	@
+.LCB21465:
 @ Patches/../C_code.c:5037: 		if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3)) { proc->choosingSkill = true; } 
 	adds	r2, r2, #53	@ tmp1284,
 	strb	r3, [r4, r2]	@ _223, proc_282(D)->choosingSkill
-	b	.L3331		@
-.L3284:
+	b	.L3330		@
+.L3283:
 @ Patches/../C_code.c:4939: 		  if (proc->digit < (max_digits)) { proc->digit++; }
 	cmp	r3, fp	@ result, _126
-	bgt	.LCB21481	@
-	b	.L3286	@long jump	@
-.LCB21481:
+	bgt	.LCB21473	@
+	b	.L3285	@long jump	@
+.LCB21473:
 @ Patches/../C_code.c:4939: 		  if (proc->digit < (max_digits)) { proc->digit++; }
 	movs	r3, #51	@ tmp1524,
 	strb	r2, [r4, r3]	@ _128, proc_282(D)->digit
-	b	.L3287		@
-.L3444:
+	b	.L3286		@
+.L3443:
 	movs	r3, #51	@ tmp1523,
 	adds	r2, r2, #1	@ tmp967,
 	lsls	r2, r2, #24	@ tmp968, tmp967,
 	asrs	r2, r2, #24	@ _128, tmp968,
 	strb	r2, [r4, r3]	@ _128, proc_282(D)->digit
-	b	.L3285		@
-.L3442:
+	b	.L3284		@
+.L3441:
 @ Patches/../C_code.c:5025: 		if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; } 
 	adds	r2, r2, #1	@ tmp1217,
 	lsls	r2, r2, #24	@ tmp1218, tmp1217,
 	asrs	r0, r2, #24	@ cstore_123, tmp1218,
-	b	.L3326		@
-.L3434:
+	b	.L3325		@
+.L3433:
 @ Patches/../C_code.c:4956: 					proc->seed -= DigitDecimalTable[proc->digit]; 
 	lsls	r3, r2, #2	@ tmp999, _128,
 	add	r3, r3, ip	@ tmp1000, tmp1324
@@ -26096,53 +26087,53 @@ ConfigMenuLoop:
 	mvns	r1, r3	@ tmp1332, _304
 	asrs	r1, r1, #31	@ tmp1331, tmp1332,
 	ands	r3, r1	@ _304, tmp1331
-	b	.L3293		@
-.L3306:
+	b	.L3292		@
+.L3305:
 @ Patches/../C_code.c:201: 	for (int i = 0; i < NumberOfSkills; ++i) { 
 	adds	r2, r2, #1	@ i,
 @ Patches/../C_code.c:201: 	for (int i = 0; i < NumberOfSkills; ++i) { 
 	cmp	r0, r2	@ NumberOfSkills.6_336, i
-	bne	.LCB21517	@
-	b	.L3313	@long jump	@
-.LCB21517:
-.L3307:
+	bne	.LCB21509	@
+	b	.L3312	@long jump	@
+.LCB21509:
+.L3306:
 @ Patches/../C_code.c:202: 		if (AlwaysSkillTable[i]) { return i; } 
 	ldrb	r3, [r1, r2]	@ _557, MEM[(unsigned char *)&AlwaysSkillTable + _276 * 1]
 @ Patches/../C_code.c:202: 		if (AlwaysSkillTable[i]) { return i; } 
 	cmp	r3, #0	@ _557,
-	beq	.L3306		@,
-.L3427:
+	beq	.L3305		@,
+.L3426:
 @ Patches/../C_code.c:4980: 			proc->skill = GetPreviousAlwaysSkill(proc->skill); 
 	lsls	r3, r2, #24	@ tmp1083, i,
 	lsrs	r3, r3, #24	@ _554, tmp1083,
-	b	.L3313		@
-.L3324:
+	b	.L3312		@
+.L3323:
 @ Patches/../C_code.c:5019: 		else { proc->id--;  } 
 	movs	r2, #48	@ tmp1194,
 @ Patches/../C_code.c:5019: 		else { proc->id--;  } 
 	ldrb	r3, [r4, r2]	@ tmp1196,
 	subs	r3, r3, #1	@ tmp1197,
 	strb	r3, [r4, r2]	@ tmp1197, proc_282(D)->id
-	b	.L3426		@
-.L3440:
+	b	.L3425		@
+.L3439:
 @ Patches/../C_code.c:4897: 			CallEndEvent();
-	ldr	r3, .L3452+36	@ tmp909,
+	ldr	r3, .L3451+36	@ tmp909,
 	bl	.L14		@
-	b	.L3273		@
-.L3268:
+	b	.L3272		@
+.L3267:
 @ Patches/../C_code.c:4872: 				UpdateMapViewWithFog(-1); 
 	movs	r0, #1	@,
-	ldr	r3, .L3452+20	@ tmp867,
+	ldr	r3, .L3451+20	@ tmp867,
 	rsbs	r0, r0, #0	@,
 	bl	.L14		@
 @ Patches/../C_code.c:4875: 		RandBitflags->fog = proc->Option[14]; 
 	movs	r3, #71	@ tmp868,
 	ldrsb	r0, [r4, r3]	@ _100,
-	b	.L3423		@
-.L3259:
+	b	.L3422		@
+.L3258:
 @ Patches/../C_code.c:4859: 			if (timedHits == 2) { TimedHitsDifficultyRam->difficulty = 2; }  
 	cmp	r0, #2	@ timedHits,
-	bne	.L3260		@,
+	bne	.L3259		@,
 @ Patches/../C_code.c:4859: 			if (timedHits == 2) { TimedHitsDifficultyRam->difficulty = 2; }  
 	ldrb	r1, [r3]	@ TimedHitsDifficultyRam.301_96->difficulty, TimedHitsDifficultyRam.301_96->difficulty
 	adds	r0, r0, #29	@ tmp828,
@@ -26150,13 +26141,13 @@ ConfigMenuLoop:
 	movs	r0, #2	@ tmp830,
 	orrs	r1, r0	@ tmp832, tmp830
 	strb	r1, [r3]	@ tmp832,* TimedHitsDifficultyRam.301_96
-	b	.L3257		@
-.L3260:
+	b	.L3256		@
+.L3259:
 @ Patches/../C_code.c:4860: 			if (timedHits == 3) { TimedHitsDifficultyRam->difficulty = 3; }  
 	cmp	r0, #3	@ timedHits,
-	beq	.LCB21567	@
-	b	.L3257	@long jump	@
-.LCB21567:
+	beq	.LCB21559	@
+	b	.L3256	@long jump	@
+.LCB21559:
 @ Patches/../C_code.c:4860: 			if (timedHits == 3) { TimedHitsDifficultyRam->difficulty = 3; }  
 	ldrb	r1, [r3]	@ TimedHitsDifficultyRam.301_96->difficulty, TimedHitsDifficultyRam.301_96->difficulty
 	adds	r0, r0, #28	@ tmp839,
@@ -26164,14 +26155,14 @@ ConfigMenuLoop:
 	movs	r0, #3	@ tmp841,
 	orrs	r1, r0	@ tmp843, tmp841
 	strb	r1, [r3]	@ tmp843,* TimedHitsDifficultyRam.301_96
-	b	.L3257		@
-.L3300:
+	b	.L3256		@
+.L3299:
 @ Patches/../C_code.c:4979: 		else if (keys & DPAD_DOWN) {
 	movs	r2, #128	@ tmp1071,
 	movs	r1, r2	@ tmp1073, tmp1071
 	ands	r1, r5	@ tmp1073, keys
 	tst	r2, r5	@ tmp1071, keys
-	beq	.L3309		@,
+	beq	.L3308		@,
 @ Patches/../C_code.c:4980: 			proc->skill = GetPreviousAlwaysSkill(proc->skill); 
 	movs	r3, #55	@ tmp1075,
 @ Patches/../C_code.c:4980: 			proc->skill = GetPreviousAlwaysSkill(proc->skill); 
@@ -26180,12 +26171,12 @@ ConfigMenuLoop:
 	subs	r3, r3, #1	@ id,
 @ Patches/../C_code.c:208: 	for (int i = id; i > 0; --i) { 
 	cmp	r3, #0	@ id,
-	ble	.L3310		@,
-	ldr	r1, .L3452+28	@ tmp1312,
-	b	.L3312		@
-.L3453:
-	.align	2
+	ble	.L3309		@,
+	ldr	r1, .L3451+28	@ tmp1312,
+	b	.L3311		@
 .L3452:
+	.align	2
+.L3451:
 	.word	DisplayUiVArrow
 	.word	.LANCHOR11
 	.word	.LANCHOR10
@@ -26196,19 +26187,19 @@ ConfigMenuLoop:
 	.word	AlwaysSkillTable
 	.word	SetFlag
 	.word	CallEndEvent
-.L3446:
+.L3445:
 @ Patches/../C_code.c:208: 	for (int i = id; i > 0; --i) { 
 	subs	r3, r3, #1	@ id,
 @ Patches/../C_code.c:208: 	for (int i = id; i > 0; --i) { 
 	cmp	r3, #0	@ id,
-	beq	.L3310		@,
-.L3312:
+	beq	.L3309		@,
+.L3311:
 @ Patches/../C_code.c:209: 		if (AlwaysSkillTable[i]) { return i; } 
 	ldrb	r2, [r1, r3]	@ MEM[(unsigned char *)&AlwaysSkillTable + _423 * 1], MEM[(unsigned char *)&AlwaysSkillTable + _423 * 1]
 	cmp	r2, #0	@ MEM[(unsigned char *)&AlwaysSkillTable + _423 * 1],
-	beq	.L3446		@,
-	b	.L3311		@
-.L3316:
+	beq	.L3445		@,
+	b	.L3310		@
+.L3315:
 @ Patches/../C_code.c:5000: 		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
 	movs	r0, #0	@,
 	bl	GetInitialSeed		@
@@ -26218,55 +26209,55 @@ ConfigMenuLoop:
 	str	r0, [r4, #44]	@ tmp1347, proc_282(D)->seed
 @ Patches/../C_code.c:5001: 		proc->freezeSeed = true; 	
 	strb	r3, [r4, r5]	@ tmp1107, proc_282(D)->freezeSeed
-	bl	.L3295	@ far jump	@
-.L3309:
+	bl	.L3294	@ far jump	@
+.L3308:
 @ Patches/../C_code.c:4990: 		else if (keys & DPAD_LEFT) {
 	movs	r2, #48	@ tmp1093,
 	tst	r2, r5	@ tmp1093, keys
-	bne	.LCB21637	@
-	b	.L3308	@long jump	@
-.LCB21637:
+	bne	.LCB21629	@
+	b	.L3307	@long jump	@
+.LCB21629:
 @ Patches/../C_code.c:4984: 			proc->choosingSkill = false; 
 	strb	r1, [r4, r3]	@ tmp1073, proc_282(D)->choosingSkill
-	b	.L3332		@
-.L3310:
+	b	.L3331		@
+.L3309:
 @ Patches/../C_code.c:211: 	for (int i = NumberOfSkills; i > 0; --i) { 
-	ldr	r3, .L3454	@ tmp1080,
+	ldr	r3, .L3453	@ tmp1080,
 	ldr	r2, [r3]	@ i, NumberOfSkills
 @ Patches/../C_code.c:211: 	for (int i = NumberOfSkills; i > 0; --i) { 
 	cmp	r2, #0	@ i,
-	ble	.L3348		@,
-	ldr	r1, .L3454+4	@ tmp1312,
-	b	.L3315		@
-.L3314:
+	ble	.L3347		@,
+	ldr	r1, .L3453+4	@ tmp1312,
+	b	.L3314		@
+.L3313:
 @ Patches/../C_code.c:211: 	for (int i = NumberOfSkills; i > 0; --i) { 
 	subs	r2, r2, #1	@ i,
 @ Patches/../C_code.c:211: 	for (int i = NumberOfSkills; i > 0; --i) { 
 	cmp	r2, #0	@ i,
-	bne	.LCB21654	@
-	b	.L3313	@long jump	@
-.LCB21654:
-.L3315:
+	bne	.LCB21646	@
+	b	.L3312	@long jump	@
+.LCB21646:
+.L3314:
 @ Patches/../C_code.c:212: 		if (AlwaysSkillTable[i]) { return i; } 
 	ldrb	r3, [r1, r2]	@ _554, MEM[(unsigned char *)&AlwaysSkillTable + _390 * 1]
 @ Patches/../C_code.c:212: 		if (AlwaysSkillTable[i]) { return i; } 
 	cmp	r3, #0	@ _554,
-	beq	.L3314		@,
-	b	.L3427		@
-.L3301:
+	beq	.L3313		@,
+	b	.L3426		@
+.L3300:
 @ Patches/../C_code.c:201: 	for (int i = 0; i < NumberOfSkills; ++i) { 
 	cmp	r0, #0	@ NumberOfSkills.6_336,
-	ble	.L3348		@,
+	ble	.L3347		@,
 	movs	r2, #0	@ i,
-	ldr	r1, .L3454+4	@ tmp1312,
-	b	.L3307		@
-.L3348:
+	ldr	r1, .L3453+4	@ tmp1312,
+	b	.L3306		@
+.L3347:
 @ Patches/../C_code.c:211: 	for (int i = NumberOfSkills; i > 0; --i) { 
 	movs	r3, #0	@ _554,
-	b	.L3313		@
-.L3455:
-	.align	2
+	b	.L3312		@
 .L3454:
+	.align	2
+.L3453:
 	.word	NumberOfSkills
 	.word	AlwaysSkillTable
 	.size	ConfigMenuLoop, .-ConfigMenuLoop
@@ -26287,7 +26278,7 @@ InitDraw:
 	mov	r6, r9	@,
 	mov	r5, r8	@,
 @ Patches/../C_code.c:5164: 	RegisterBlankTile(0); // so bg fill works I guess 
-	ldr	r3, .L3461	@ tmp136,
+	ldr	r3, .L3460	@ tmp136,
 @ Patches/../C_code.c:5159: void InitDraw(ConfigMenuProc* proc) { 
 	push	{r5, r6, r7, lr}	@
 @ Patches/../C_code.c:5159: void InitDraw(ConfigMenuProc* proc) { 
@@ -26297,11 +26288,11 @@ InitDraw:
 	bl	.L14		@
 @ Patches/../C_code.c:3863: 	SetupBackgrounds(0);
 	movs	r0, #0	@,
-	ldr	r3, .L3461+4	@ tmp137,
+	ldr	r3, .L3460+4	@ tmp137,
 	bl	.L14		@
 @ Patches/../C_code.c:3869: 	gLCDControlBuffer.dispcnt.mode = 0;
 	movs	r2, #120	@ tmp145,
-	ldr	r3, .L3461+8	@ tmp182,
+	ldr	r3, .L3460+8	@ tmp182,
 	mov	r8, r3	@ tmp182, tmp182
 	ldrh	r3, [r3]	@ MEM[(struct DispCnt *)&gLCDControlBuffer], MEM[(struct DispCnt *)&gLCDControlBuffer]
 	ands	r2, r3	@ tmp144, MEM[(struct DispCnt *)&gLCDControlBuffer]
@@ -26314,83 +26305,83 @@ InitDraw:
 @ Patches/../C_code.c:3869: 	gLCDControlBuffer.dispcnt.mode = 0;
 	strh	r3, [r2]	@ tmp147, MEM[(struct DispCnt *)&gLCDControlBuffer]
 @ Patches/../C_code.c:5166: 	BG_Fill(gBG0TilemapBuffer, 0); 
-	ldr	r0, .L3461+12	@ tmp150,
-	ldr	r3, .L3461+16	@ tmp151,
+	ldr	r0, .L3460+12	@ tmp150,
+	ldr	r3, .L3460+16	@ tmp151,
 	bl	.L14		@
 @ Patches/../C_code.c:5167: 	BG_EnableSyncByMask(BG0_SYNC_BIT); 
-	ldr	r3, .L3461+20	@ tmp183,
+	ldr	r3, .L3460+20	@ tmp183,
 	movs	r0, #1	@,
 	mov	r10, r3	@ tmp183, tmp183
 	bl	.L14		@
 @ Patches/../C_code.c:5170: 	ResetTextFont();
-	ldr	r3, .L3461+24	@ tmp153,
+	ldr	r3, .L3460+24	@ tmp153,
 	bl	.L14		@
 @ Patches/../C_code.c:5171: 	SetTextFontGlyphs(0);
 	movs	r0, #0	@,
-	ldr	r3, .L3461+28	@ tmp154,
+	ldr	r3, .L3460+28	@ tmp154,
 	bl	.L14		@
 @ Patches/../C_code.c:5172: 	SetTextFont(0);
 	movs	r0, #0	@,
-	ldr	r3, .L3461+32	@ tmp155,
+	ldr	r3, .L3460+32	@ tmp155,
 	bl	.L14		@
 @ Patches/../C_code.c:5173: 	InitSystemTextFont();
-	ldr	r3, .L3461+36	@ tmp156,
+	ldr	r3, .L3460+36	@ tmp156,
 	bl	.L14		@
 @ Patches/../C_code.c:5175: 	ResetText(); // need this 
-	ldr	r3, .L3461+40	@ tmp157,
+	ldr	r3, .L3460+40	@ tmp157,
 	bl	.L14		@
 	movs	r3, #24	@ _81,
-	ldr	r4, .L3461+44	@ ivtmp.1968,
+	ldr	r4, .L3460+44	@ ivtmp.1968,
 	rsbs	r3, r3, #0	@ _81, _81
 	mov	fp, r3	@ _81, _81
 	movs	r7, r4	@ _82, ivtmp.1968
-	ldr	r5, .L3461+48	@ ivtmp.1967,
-	ldr	r6, .L3461+52	@ tmp184,
+	ldr	r5, .L3460+48	@ ivtmp.1967,
+	ldr	r6, .L3460+52	@ tmp184,
 	add	fp, fp, r4	@ _81, ivtmp.1968
 	adds	r7, r7, #152	@ _82,
-.L3457:
+.L3456:
 @ Patches/../C_code.c:5205: 	InitText(&th[i], tWidths[i]);
 	movs	r0, r4	@, ivtmp.1968
 	ldrb	r1, [r5]	@ MEM[(unsigned char *)_80], MEM[(unsigned char *)_80]
 @ Patches/../C_code.c:5204: 	for (int i = 0; i < sizeof(tWidths); ++i) { 
 	adds	r4, r4, #8	@ ivtmp.1968,
 @ Patches/../C_code.c:5205: 	InitText(&th[i], tWidths[i]);
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:5204: 	for (int i = 0; i < sizeof(tWidths); ++i) { 
 	adds	r5, r5, #1	@ ivtmp.1967,
 	cmp	r4, r7	@ ivtmp.1968, _82
-	bne	.L3457		@,
+	bne	.L3456		@,
 	mov	r7, fp	@ _81, _81
-	ldr	r5, .L3461+56	@ ivtmp.1958,
+	ldr	r5, .L3460+56	@ ivtmp.1958,
 	adds	r7, r7, #73	@ _81,
-	ldr	r4, .L3461+60	@ ivtmp.1959,
+	ldr	r4, .L3460+60	@ ivtmp.1959,
 	adds	r7, r7, #255	@ _81,
-.L3458:
+.L3457:
 @ Patches/../C_code.c:5209: 	InitText(&th[i+hOff], RtWidths[i]);
 	movs	r0, r4	@, ivtmp.1959
 	ldrb	r1, [r5]	@ MEM[(unsigned char *)_70], MEM[(unsigned char *)_70]
 @ Patches/../C_code.c:5208: 	for (int i = 0; i < sizeof(RtWidths); ++i) { 
 	adds	r4, r4, #8	@ ivtmp.1959,
 @ Patches/../C_code.c:5209: 	InitText(&th[i+hOff], RtWidths[i]);
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:5208: 	for (int i = 0; i < sizeof(RtWidths); ++i) { 
 	adds	r5, r5, #1	@ ivtmp.1958,
 	cmp	r4, r7	@ ivtmp.1959, _72
-	bne	.L3458		@,
+	bne	.L3457		@,
 @ Patches/../C_code.c:5211: 	InitText(&th[sizeof(tWidths) + sizeof(RtWidths)], 6); // "Randomizer" title  
 	movs	r1, #6	@,
 @ Patches/../C_code.c:5254: }
 	@ sp needed	@
 @ Patches/../C_code.c:5211: 	InitText(&th[sizeof(tWidths) + sizeof(RtWidths)], 6); // "Randomizer" title  
-	ldr	r0, .L3461+64	@ tmp164,
-	bl	.L342		@
+	ldr	r0, .L3460+64	@ tmp164,
+	bl	.L341		@
 @ Patches/../C_code.c:5214: 	LoadObjUIGfx(); 
-	ldr	r3, .L3461+68	@ tmp166,
+	ldr	r3, .L3460+68	@ tmp166,
 	bl	.L14		@
 @ Patches/../C_code.c:5215: 	UnpackUiVArrowGfx(0x240, 3);
 	movs	r0, #144	@,
 	movs	r1, #3	@,
-	ldr	r3, .L3461+72	@ tmp168,
+	ldr	r3, .L3460+72	@ tmp168,
 	lsls	r0, r0, #2	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:5217: 	RedrawAllText(proc); 
@@ -26410,7 +26401,7 @@ InitDraw:
 @ Patches/../C_code.c:5225: 	gLCDControlBuffer.dispcnt.mode = 0;
 	strh	r3, [r2]	@ tmp178, MEM[(struct DispCnt *)&gLCDControlBuffer]
 @ Patches/../C_code.c:5253: 	BG_EnableSyncByMask(BG0_SYNC_BIT|BG1_SYNC_BIT);
-	bl	.L786		@
+	bl	.L785		@
 @ Patches/../C_code.c:5254: }
 	pop	{r4, r5, r6, r7}
 	mov	fp, r7
@@ -26420,9 +26411,9 @@ InitDraw:
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3462:
-	.align	2
 .L3461:
+	.align	2
+.L3460:
 	.word	RegisterBlankTile
 	.word	SetupBackgrounds
 	.word	gLCDControlBuffer
@@ -26457,31 +26448,31 @@ StartConfigMenu:
 	movs	r1, r0	@ parent, tmp208
 @ Patches/../C_code.c:5258: 	RecruitValues->pauseNameReplace = true; 
 	movs	r0, #8	@ tmp138,
-	ldr	r3, .L3483	@ tmp133,
+	ldr	r3, .L3482	@ tmp133,
 	ldr	r2, [r3]	@ RecruitValues, RecruitValues
 	ldrb	r3, [r2]	@ RecruitValues.325_1->pauseNameReplace, RecruitValues.325_1->pauseNameReplace
 	orrs	r3, r0	@ tmp140, tmp138
 @ Patches/../C_code.c:5257: ConfigMenuProc* StartConfigMenu(ProcPtr parent) { 
 	push	{r4, r5, r6, lr}	@
 @ Patches/../C_code.c:5260: 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
-	ldr	r0, .L3483+4	@ tmp142,
+	ldr	r0, .L3482+4	@ tmp142,
 @ Patches/../C_code.c:5258: 	RecruitValues->pauseNameReplace = true; 
 	strb	r3, [r2]	@ tmp140, RecruitValues.325_1->pauseNameReplace
 @ Patches/../C_code.c:5260: 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
 	cmp	r1, #0	@ parent,
-	beq	.L3464		@,
+	beq	.L3463		@,
 @ Patches/../C_code.c:5260: 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
-	ldr	r3, .L3483+8	@ tmp143,
+	ldr	r3, .L3482+8	@ tmp143,
 	bl	.L14		@
 	movs	r4, r0	@ <retval>, tmp209
-.L3465:
+.L3464:
 @ Patches/../C_code.c:5262: 	if (proc) { 
 	cmp	r4, #0	@ <retval>,
-	beq	.L3463		@,
+	beq	.L3462		@,
 @ Patches/../C_code.c:5264: 		proc->Option[i] = 0; } 
 	movs	r0, r4	@ tmp146, <retval>
 	movs	r2, #20	@,
-	ldr	r3, .L3483+12	@ tmp149,
+	ldr	r3, .L3482+12	@ tmp149,
 	movs	r1, #0	@,
 	adds	r0, r0, #57	@ tmp146,
 	bl	.L14		@
@@ -26490,12 +26481,12 @@ StartConfigMenu:
 	movs	r2, #0	@ tmp153,
 	strb	r2, [r4, r3]	@ tmp153, proc_9->reloadUnits
 @ Patches/../C_code.c:5266: 		if (!DefaultConfigToVanilla) {
-	ldr	r3, .L3483+16	@ tmp155,
+	ldr	r3, .L3482+16	@ tmp155,
 @ Patches/../C_code.c:5266: 		if (!DefaultConfigToVanilla) {
 	ldr	r3, [r3]	@ DefaultConfigToVanilla, DefaultConfigToVanilla
 	cmp	r3, #0	@ DefaultConfigToVanilla,
-	beq	.L3481		@,
-.L3467:
+	beq	.L3480		@,
+.L3466:
 @ Patches/../C_code.c:5280: 		proc->calledFromChapter = false; 
 	movs	r3, #0	@ tmp170,
 	movs	r2, #53	@ tmp169,
@@ -26507,29 +26498,29 @@ StartConfigMenu:
 	adds	r2, r2, #49	@ tmp174,
 	strb	r3, [r4, r2]	@ tmp170, proc_9->redraw
 @ Patches/../C_code.c:198: 	for (int i = id; i < NumberOfSkills; ++i) { 
-	ldr	r3, .L3483+20	@ tmp177,
+	ldr	r3, .L3482+20	@ tmp177,
 	ldr	r1, [r3]	@ NumberOfSkills.6_61, NumberOfSkills
 	cmp	r1, #1	@ NumberOfSkills.6_61,
-	ble	.L3468		@,
+	ble	.L3467		@,
 @ Patches/../C_code.c:198: 	for (int i = id; i < NumberOfSkills; ++i) { 
 	movs	r3, #1	@ i,
-	ldr	r0, .L3483+24	@ tmp207,
-	b	.L3470		@
-.L3482:
+	ldr	r0, .L3482+24	@ tmp207,
+	b	.L3469		@
+.L3481:
 @ Patches/../C_code.c:198: 	for (int i = id; i < NumberOfSkills; ++i) { 
 	adds	r3, r3, #1	@ i,
 @ Patches/../C_code.c:198: 	for (int i = id; i < NumberOfSkills; ++i) { 
 	cmp	r3, r1	@ i, NumberOfSkills.6_61
-	beq	.L3474		@,
-.L3470:
+	beq	.L3473		@,
+.L3469:
 @ Patches/../C_code.c:199: 		if (AlwaysSkillTable[i]) { return i; } 
 	ldrb	r2, [r0, r3]	@ MEM[(unsigned char *)&AlwaysSkillTable + _32 * 1], MEM[(unsigned char *)&AlwaysSkillTable + _32 * 1]
 	cmp	r2, #0	@ MEM[(unsigned char *)&AlwaysSkillTable + _32 * 1],
-	beq	.L3482		@,
+	beq	.L3481		@,
 @ Patches/../C_code.c:5283: 		proc->skill = GetNextAlwaysSkill(0); 
 	lsls	r3, r3, #24	@ tmp184, i,
 	lsrs	r3, r3, #24	@ prephitmp_54, tmp184,
-.L3472:
+.L3471:
 	movs	r2, #55	@ tmp185,
 @ Patches/../C_code.c:5284: 		proc->choosingSkill = 0; 
 	movs	r5, #0	@ tmp188,
@@ -26539,7 +26530,7 @@ StartConfigMenu:
 	movs	r3, #56	@ tmp187,
 	strb	r5, [r4, r3]	@ tmp188, proc_9->choosingSkill
 @ Patches/../C_code.c:5286: 		if (RandValues->seed) { proc->freezeSeed = true; } 
-	ldr	r3, .L3483+28	@ tmp191,
+	ldr	r3, .L3482+28	@ tmp191,
 	ldr	r3, [r3]	@ RandValues, RandValues
 	ldr	r3, [r3]	@ *RandValues.327_5, *RandValues.327_5
 	lsls	r3, r3, #12	@ tmp194, *RandValues.327_5,
@@ -26559,42 +26550,42 @@ StartConfigMenu:
 	strb	r5, [r4, r3]	@ tmp188, proc_9->digit
 @ Patches/../C_code.c:5289: 		StartGreenText(proc); 
 	movs	r0, r4	@, <retval>
-	ldr	r3, .L3483+32	@ tmp202,
+	ldr	r3, .L3482+32	@ tmp202,
 	bl	.L14		@
 @ Patches/../C_code.c:5291: 		proc->Option[16] = 1; // timed hits 
 	movs	r3, #73	@ tmp203,
 	movs	r2, #1	@ tmp204,
 	strb	r2, [r4, r3]	@ tmp204, proc_9->Option[16]
-.L3463:
+.L3462:
 @ Patches/../C_code.c:5302: } 
 	@ sp needed	@
 	movs	r0, r4	@, <retval>
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L3473:
+.L3472:
 @ Patches/../C_code.c:201: 	for (int i = 0; i < NumberOfSkills; ++i) { 
 	adds	r2, r2, #1	@ i,
 @ Patches/../C_code.c:201: 	for (int i = 0; i < NumberOfSkills; ++i) { 
 	cmp	r2, r1	@ i, NumberOfSkills.6_61
-	beq	.L3472		@,
-.L3474:
+	beq	.L3471		@,
+.L3473:
 @ Patches/../C_code.c:202: 		if (AlwaysSkillTable[i]) { return i; } 
 	ldrb	r3, [r0, r2]	@ prephitmp_54, MEM[(unsigned char *)&AlwaysSkillTable + _33 * 1]
 @ Patches/../C_code.c:202: 		if (AlwaysSkillTable[i]) { return i; } 
 	cmp	r3, #0	@ prephitmp_54,
-	beq	.L3473		@,
+	beq	.L3472		@,
 @ Patches/../C_code.c:5283: 		proc->skill = GetNextAlwaysSkill(0); 
 	lsls	r2, r2, #24	@ tmp183, i,
 	lsrs	r3, r2, #24	@ prephitmp_54, tmp183,
-	b	.L3472		@
-.L3481:
+	b	.L3471		@
+.L3480:
 @ Patches/../C_code.c:5267: 		proc->Option[0] = OptionAmounts[0]-1; // start on 100% 
 	adds	r2, r2, #20	@ tmp148,
 	adds	r3, r3, #57	@ tmp157,
 	strb	r2, [r4, r3]	@ tmp148, proc_9->Option[0]
 @ Patches/../C_code.c:5270: 		proc->Option[3] = 1; 
-	ldr	r2, .L3483+36	@ tmp162,
+	ldr	r2, .L3482+36	@ tmp162,
 @ Patches/../C_code.c:5268: 		proc->Option[1] = 1; 
 	movs	r3, #2	@ tmp160,
 @ Patches/../C_code.c:5270: 		proc->Option[3] = 1; 
@@ -26610,27 +26601,27 @@ StartConfigMenu:
 @ Patches/../C_code.c:5276: 		proc->Option[9] = 1; // Random BGM 
 	adds	r2, r2, #2	@ tmp166,
 	strh	r3, [r4, r2]	@ tmp160, MEM <vector(2) signed char> [(signed char *)proc_9 + 66B]
-	b	.L3467		@
-.L3464:
+	b	.L3466		@
+.L3463:
 @ Patches/../C_code.c:5261: 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
 	movs	r1, #3	@,
-	ldr	r3, .L3483+40	@ tmp145,
+	ldr	r3, .L3482+40	@ tmp145,
 	bl	.L14		@
 	movs	r4, r0	@ <retval>, tmp210
-	b	.L3465		@
-.L3468:
+	b	.L3464		@
+.L3467:
 @ Patches/../C_code.c:201: 	for (int i = 0; i < NumberOfSkills; ++i) { 
 	cmp	r1, #1	@ NumberOfSkills.6_61,
-	bne	.L3475		@,
+	bne	.L3474		@,
 	movs	r2, #0	@ i,
-	ldr	r0, .L3483+24	@ tmp207,
-	b	.L3474		@
-.L3475:
+	ldr	r0, .L3482+24	@ tmp207,
+	b	.L3473		@
+.L3474:
 	movs	r3, #0	@ prephitmp_54,
-	b	.L3472		@
-.L3484:
-	.align	2
+	b	.L3471		@
 .L3483:
+	.align	2
+.L3482:
 	.word	RecruitValues
 	.word	ConfigMenuProcCmd
 	.word	Proc_StartBlocking
@@ -26640,7 +26631,7 @@ StartConfigMenu:
 	.word	AlwaysSkillTable
 	.word	RandValues
 	.word	StartGreenText
-	.word	67174657
+	.word	16843009
 	.word	Proc_Start
 	.size	StartConfigMenu, .-StartConfigMenu
 	.align	1
@@ -26660,7 +26651,7 @@ MenuStartConfigMenu:
 @ Patches/../C_code.c:5319: int MenuStartConfigMenu(ProcPtr parent) { 
 	mov	lr, r8	@,
 @ Patches/../C_code.c:5320: 	gLCDControlBuffer.dispcnt.bg0_on = 0;
-	ldr	r5, .L3502	@ tmp388,
+	ldr	r5, .L3501	@ tmp388,
 	ldrb	r3, [r5, #1]	@ MEM <unsigned char> [(struct DispCnt *)&gLCDControlBuffer + 1B], MEM <unsigned char> [(struct DispCnt *)&gLCDControlBuffer + 1B]
 @ Patches/../C_code.c:5319: int MenuStartConfigMenu(ProcPtr parent) { 
 	push	{lr}	@
@@ -26673,7 +26664,7 @@ MenuStartConfigMenu:
 	movs	r3, #53	@ tmp193,
 	movs	r2, #1	@ tmp194,
 @ Patches/../C_code.c:5328: 	proc->Option[0] = RandValues->variance; 
-	ldr	r6, .L3502+4	@ tmp389,
+	ldr	r6, .L3501+4	@ tmp389,
 @ Patches/../C_code.c:5325: 	proc->calledFromChapter = true; 
 	strb	r2, [r0, r3]	@ tmp194, proc_71->calledFromChapter
 @ Patches/../C_code.c:5328: 	proc->Option[0] = RandValues->variance; 
@@ -26685,7 +26676,7 @@ MenuStartConfigMenu:
 	adds	r2, r2, #56	@ tmp203,
 	strb	r3, [r0, r2]	@ tmp201, proc_71->Option[0]
 @ Patches/../C_code.c:5329: 	proc->Option[1] = RecruitValues->recruitment; 
-	ldr	r3, .L3502+8	@ tmp204,
+	ldr	r3, .L3501+8	@ tmp204,
 	ldr	r1, [r3]	@ RecruitValues.329_4, RecruitValues
 	ldrb	r3, [r1]	@ *RecruitValues.329_4, *RecruitValues.329_4
 	lsls	r3, r3, #29	@ tmp209, *RecruitValues.329_4,
@@ -26698,7 +26689,7 @@ MenuStartConfigMenu:
 @ Patches/../C_code.c:5330: 	proc->Option[2] = RandBitflags->base; 
 	movs	r0, #59	@ tmp217,
 @ Patches/../C_code.c:5330: 	proc->Option[2] = RandBitflags->base; 
-	ldr	r7, .L3502+12	@ tmp390,
+	ldr	r7, .L3501+12	@ tmp390,
 	ldr	r3, [r7]	@ RandBitflags.330_7, RandBitflags
 	ldrb	r2, [r3]	@ *RandBitflags.330_7, *RandBitflags.330_7
 	lsls	r2, r2, #30	@ tmp216, *RandBitflags.330_7,
@@ -26751,10 +26742,10 @@ MenuStartConfigMenu:
 	subs	r1, r1, #44	@ _22,
 @ Patches/../C_code.c:5335: 	if (RecruitValues->newClasses) { proc->Option[6] = 4; } 
 	tst	r2, r0	@ tmp261, *RecruitValues.329_4
-	bne	.L3486		@,
+	bne	.L3485		@,
 @ Patches/../C_code.c:5334: 	proc->Option[6] = RandBitflags->class; 
 	mov	r1, r8	@ _22, _21
-.L3486:
+.L3485:
 	movs	r2, #63	@ tmp266,
 	strb	r1, [r4, r2]	@ _22, MEM <struct ConfigMenuProc> [(void *)proc_71].Option[6]
 @ Patches/../C_code.c:5336: 	if (RandBitflags->itemStats && RandBitflags->foundItems) { proc->Option[7] = 1; } 
@@ -26762,7 +26753,7 @@ MenuStartConfigMenu:
 	ldrb	r2, [r3, #2]	@ *RandBitflags.330_7, *RandBitflags.330_7
 @ Patches/../C_code.c:5336: 	if (RandBitflags->itemStats && RandBitflags->foundItems) { proc->Option[7] = 1; } 
 	tst	r1, r2	@ tmp273, *RandBitflags.330_7
-	bne	.L3500		@,
+	bne	.L3499		@,
 @ Patches/../C_code.c:5338: 	else if (RandBitflags->foundItems) { proc->Option[7] = 2; } 
 	ldrb	r2, [r3, #1]	@ *RandBitflags.330_7, *RandBitflags.330_7
 @ Patches/../C_code.c:5338: 	else if (RandBitflags->foundItems) { proc->Option[7] = 2; } 
@@ -26771,14 +26762,14 @@ MenuStartConfigMenu:
 	subs	r2, r3, #1	@ tmp296, tmp293
 	sbcs	r3, r3, r2	@ tmp295, tmp293, tmp296
 	lsls	r3, r3, #1	@ _60, tmp295,
-.L3488:
+.L3487:
 @ Patches/../C_code.c:5336: 	if (RandBitflags->itemStats && RandBitflags->foundItems) { proc->Option[7] = 1; } 
 	movs	r2, #64	@ tmp299,
 	strb	r3, [r4, r2]	@ _60, proc_71->Option[7]
 @ Patches/../C_code.c:5340: 	proc->Option[8] = CheckFlag(CasualModeFlag);
-	ldr	r3, .L3502+16	@ tmp301,
+	ldr	r3, .L3501+16	@ tmp301,
 	ldr	r0, [r3]	@ CasualModeFlag, CasualModeFlag
-	ldr	r3, .L3502+20	@ tmp303,
+	ldr	r3, .L3501+20	@ tmp303,
 	bl	.L14		@
 @ Patches/../C_code.c:5340: 	proc->Option[8] = CheckFlag(CasualModeFlag);
 	movs	r3, #65	@ tmp304,
@@ -26831,13 +26822,13 @@ MenuStartConfigMenu:
 @ Patches/../C_code.c:5346: 	proc->Option[14] = RandBitflags->fog;
 	strb	r3, [r4, r2]	@ tmp341, proc_71->Option[14]
 @ Patches/../C_code.c:5349: 	if (DisplayTimedHitsOption) { 
-	ldr	r3, .L3502+24	@ tmp344,
+	ldr	r3, .L3501+24	@ tmp344,
 @ Patches/../C_code.c:5349: 	if (DisplayTimedHitsOption) { 
 	ldr	r3, [r3]	@ DisplayTimedHitsOption, DisplayTimedHitsOption
 	cmp	r3, #0	@ DisplayTimedHitsOption,
-	beq	.L3490		@,
+	beq	.L3489		@,
 @ Patches/../C_code.c:5351: 		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[16] = 1; }  
-	ldr	r3, .L3502+28	@ tmp347,
+	ldr	r3, .L3501+28	@ tmp347,
 	ldr	r3, [r3]	@ TimedHitsDifficultyRam, TimedHitsDifficultyRam
 	ldrb	r2, [r3]	@ _50, *TimedHitsDifficultyRam.349_49
 @ Patches/../C_code.c:5352: 		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[16] = 2; }  
@@ -26845,21 +26836,21 @@ MenuStartConfigMenu:
 	ands	r3, r2	@ _52, _50
 @ Patches/../C_code.c:5352: 		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[16] = 2; }  
 	cmp	r3, #2	@ _52,
-	beq	.L3492		@,
+	beq	.L3491		@,
 @ Patches/../C_code.c:5353: 		if (TimedHitsDifficultyRam->difficulty == 3) { proc->Option[16] = 3; }  
 	cmp	r3, #3	@ _52,
-	bne	.L3501		@,
-.L3492:
+	bne	.L3500		@,
+.L3491:
 @ Patches/../C_code.c:5353: 		if (TimedHitsDifficultyRam->difficulty == 3) { proc->Option[16] = 3; }  
 	movs	r2, #73	@ tmp364,
 	strb	r3, [r4, r2]	@ _52, proc_71->Option[16]
-.L3490:
+.L3489:
 @ Patches/../C_code.c:5357: 	if (DisplayRandomSkillsOption) { 
-	ldr	r3, .L3502+32	@ tmp367,
+	ldr	r3, .L3501+32	@ tmp367,
 @ Patches/../C_code.c:5357: 	if (DisplayRandomSkillsOption) { 
 	ldr	r3, [r3]	@ DisplayRandomSkillsOption, DisplayRandomSkillsOption
 	cmp	r3, #0	@ DisplayRandomSkillsOption,
-	beq	.L3494		@,
+	beq	.L3493		@,
 @ Patches/../C_code.c:5358: 		proc->Option[17] = RandValues->skills;
 	movs	r2, #74	@ tmp374,
 @ Patches/../C_code.c:5358: 		proc->Option[17] = RandValues->skills;
@@ -26868,13 +26859,13 @@ MenuStartConfigMenu:
 @ Patches/../C_code.c:5358: 		proc->Option[17] = RandValues->skills;
 	strb	r3, [r4, r2]	@ tmp372, proc_71->Option[17]
 @ Patches/../C_code.c:5359: 		proc->skill = AlwaysSkill[0];
-	ldr	r3, .L3502+36	@ tmp376,
+	ldr	r3, .L3501+36	@ tmp376,
 	ldr	r3, [r3]	@ AlwaysSkill, AlwaysSkill
 	ldrb	r2, [r3]	@ _57, *AlwaysSkill.354_56
 @ Patches/../C_code.c:5359: 		proc->skill = AlwaysSkill[0];
 	movs	r3, #55	@ tmp377,
 	strb	r2, [r4, r3]	@ _57, proc_71->skill
-.L3494:
+.L3493:
 @ Patches/../C_code.c:5364: } 
 	@ sp needed	@
 @ Patches/../C_code.c:5362: 	gLCDControlBuffer.dispcnt.bg0_on = 0;
@@ -26891,7 +26882,7 @@ MenuStartConfigMenu:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L3500:
+.L3499:
 @ Patches/../C_code.c:5336: 	if (RandBitflags->itemStats && RandBitflags->foundItems) { proc->Option[7] = 1; } 
 	ldrb	r2, [r3, #1]	@ *RandBitflags.330_7, *RandBitflags.330_7
 	movs	r3, #48	@ tmp282,
@@ -26902,17 +26893,17 @@ MenuStartConfigMenu:
 	rsbs	r3, r3, #0	@ tmp393, tmp391
 	bics	r3, r2	@ _60, tmp394
 	adds	r3, r3, #3	@ _60,
-	b	.L3488		@
-.L3501:
+	b	.L3487		@
+.L3500:
 	movs	r3, #73	@ tmp362,
 @ Patches/../C_code.c:5351: 		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[16] = 1; }  
 	lsls	r2, r2, #26	@ tmp361, _50,
 	lsrs	r2, r2, #31	@ tmp360, tmp361,
 	strb	r2, [r4, r3]	@ tmp360, MEM <struct ConfigMenuProc> [(void *)proc_71].Option[16]
-	b	.L3490		@
-.L3503:
-	.align	2
+	b	.L3489		@
 .L3502:
+	.align	2
+.L3501:
 	.word	gLCDControlBuffer
 	.word	RandValues
 	.word	RecruitValues
@@ -26946,44 +26937,44 @@ PutNumberBonus:
 	sub	sp, sp, #12	@,,
 @ Patches/../C_code.c:5376:     if (number == 0) { 
 	cmp	r0, #0	@ number,
-	beq	.L3504		@,
+	beq	.L3503		@,
 @ Patches/../C_code.c:5380: 	if (number > 0) { 
-	ble	.L3506		@,
+	ble	.L3505		@,
 @ Patches/../C_code.c:5381:     PutSpecialChar(tm, green, 0x15); // + 
 	movs	r0, r5	@, tm
 	movs	r2, #21	@,
 	movs	r1, #4	@,
-	ldr	r3, .L3515	@ tmp121,
+	ldr	r3, .L3514	@ tmp121,
 	bl	.L14		@
 @ Patches/../C_code.c:5382:     PutNumberSmall(tm + ((number >= 10) ? 2 : 1), green, number);
 	movs	r0, #2	@ iftmp.355_2,
 @ Patches/../C_code.c:5382:     PutNumberSmall(tm + ((number >= 10) ? 2 : 1), green, number);
 	cmp	r4, #9	@ number,
-	ble	.L3507		@,
+	ble	.L3506		@,
 @ Patches/../C_code.c:5382:     PutNumberSmall(tm + ((number >= 10) ? 2 : 1), green, number);
 	adds	r0, r0, #2	@ iftmp.355_2,
-.L3507:
+.L3506:
 @ Patches/../C_code.c:5382:     PutNumberSmall(tm + ((number >= 10) ? 2 : 1), green, number);
 	movs	r2, r4	@, number
 	movs	r1, #4	@,
-	ldr	r3, .L3515+4	@ tmp123,
+	ldr	r3, .L3514+4	@ tmp123,
 	adds	r0, r5, r0	@ tmp122, tm, iftmp.355_2
 	bl	.L14		@
-.L3504:
+.L3503:
 @ Patches/../C_code.c:5396: }
 	add	sp, sp, #12	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3506:
+.L3505:
 @ Patches/../C_code.c:5388:     PutDrawText(0, tm, gold, 2, 1, "-"); 
-	ldr	r3, .L3515+8	@ tmp124,
+	ldr	r3, .L3514+8	@ tmp124,
 	str	r3, [sp, #4]	@ tmp124,
 	movs	r3, #1	@ tmp125,
 	movs	r2, #3	@,
 	str	r3, [sp]	@ tmp125,
-	ldr	r7, .L3515+12	@ tmp126,
+	ldr	r7, .L3514+12	@ tmp126,
 @ Patches/../C_code.c:5385: 	number = ~number + 1; // neg 
 	rsbs	r6, r0, #0	@ number, number
 @ Patches/../C_code.c:5388:     PutDrawText(0, tm, gold, 2, 1, "-"); 
@@ -26994,20 +26985,20 @@ PutNumberBonus:
 	movs	r0, #2	@ iftmp.356_11,
 @ Patches/../C_code.c:5394:     PutNumberSmall(tm + ((number >= 10) ? 2 : 1), gold, number);
 	adds	r4, r4, #9	@ tmp167, number,
-	bge	.L3508		@,
+	bge	.L3507		@,
 @ Patches/../C_code.c:5394:     PutNumberSmall(tm + ((number >= 10) ? 2 : 1), gold, number);
 	adds	r0, r0, #2	@ iftmp.356_11,
-.L3508:
+.L3507:
 @ Patches/../C_code.c:5394:     PutNumberSmall(tm + ((number >= 10) ? 2 : 1), gold, number);
 	movs	r2, r6	@, number
 	movs	r1, #3	@,
-	ldr	r3, .L3515+4	@ tmp128,
+	ldr	r3, .L3514+4	@ tmp128,
 	adds	r0, r5, r0	@ tmp127, tm, iftmp.356_11
 	bl	.L14		@
-	b	.L3504		@
-.L3516:
-	.align	2
+	b	.L3503		@
 .L3515:
+	.align	2
+.L3514:
 	.word	PutSpecialChar
 	.word	PutNumberSmall
 	.word	.LC634
@@ -27036,7 +27027,7 @@ NewDrawStatWithBar:
 	subs	r3, r3, r5	@ diff, tmp244, base
 	mov	r8, r3	@ diff, diff
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
-	ldr	r3, .L3528	@ tmp157,
+	ldr	r3, .L3527	@ tmp157,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrh	r3, [r3]	@ *RandBitflags.134_42, *RandBitflags.134_42
 	lsls	r3, r3, #23	@ tmp162, *RandBitflags.134_42,
@@ -27048,25 +27039,25 @@ NewDrawStatWithBar:
 	mov	r9, r0	@ num, tmp231
 	lsrs	r1, r1, #24	@ tmp167, tmp168,
 	cmp	r1, #4	@ tmp167,
-	bhi	.L3523		@,
+	bhi	.L3522		@,
 	lsls	r1, r3, #4	@ tmp170, _43,
 	subs	r3, r1, r3	@ tmp171, tmp170, _43
 	subs	r3, r3, #30	@ result,
-.L3518:
+.L3517:
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
-	ldr	r1, .L3528+4	@ tmp172,
+	ldr	r1, .L3527+4	@ tmp172,
 @ Patches/../C_code.c:2145: 	if (result > maxStat) { result = maxStat; } 
 	ldr	r6, [r1]	@ result, maxStat
 	cmp	r6, r3	@ result, result
-	ble	.L3519		@,
+	ble	.L3518		@,
 	movs	r6, r3	@ result, result
-.L3519:
+.L3518:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r3, r6, #1	@ tmp240, result,
-	beq	.L3527		@,
-.L3520:
+	beq	.L3526		@,
+.L3519:
 @ Patches/../C_code.c:2197:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y),
-	ldr	r3, .L3528+8	@ tmp225,
+	ldr	r3, .L3527+8	@ tmp225,
 	mov	r10, r3	@ tmp225, tmp225
 @ Patches/../C_code.c:2197:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y),
 	ldr	r3, [sp, #52]	@ tmp246, max
@@ -27083,7 +27074,7 @@ NewDrawStatWithBar:
 @ Patches/../C_code.c:2197:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y),
 	lsls	r0, r0, #1	@ tmp174, tmp173,
 @ Patches/../C_code.c:2197:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y),
-	ldr	r3, .L3528+12	@ tmp176,
+	ldr	r3, .L3527+12	@ tmp176,
 	movs	r2, r5	@, base
 @ Patches/../C_code.c:2197:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y),
 	add	r0, r0, r10	@ _5, tmp225
@@ -27103,11 +27094,11 @@ NewDrawStatWithBar:
 @ Patches/../C_code.c:2202:     if (total > globalCap)
 	ldr	r3, [sp, #48]	@ tmp247, total
 	cmp	r3, r6	@ tmp247, result
-	ble	.L3522		@,
+	ble	.L3521		@,
 @ Patches/../C_code.c:2205:         diff = total - base;
 	subs	r3, r6, r5	@ diff, result, base
 	mov	r8, r3	@ diff, diff
-.L3522:
+.L3521:
 @ Patches/../C_code.c:2209:         gUiTmScratchC + TILEMAP_INDEX(x - 2, y + 1),
 	adds	r4, r4, r7	@ tmp184, _1, x
 	adds	r4, r4, #30	@ tmp185,
@@ -27115,20 +27106,20 @@ NewDrawStatWithBar:
 	lsls	r4, r4, #1	@ tmp186, tmp185,
 @ Patches/../C_code.c:2208:     DrawStatBarGfx(0x401 + num*6, 6,
 	mov	r10, r4	@ tmp186, tmp186
-	ldr	r3, .L3528+16	@ tmp188,
+	ldr	r3, .L3527+16	@ tmp188,
 	add	r10, r10, r3	@ tmp186, tmp188
 @ Patches/../C_code.c:2208:     DrawStatBarGfx(0x401 + num*6, 6,
 	mov	r3, r9	@ num, num
 	lsls	r7, r3, #1	@ tmp190, num,
 @ Patches/../C_code.c:2208:     DrawStatBarGfx(0x401 + num*6, 6,
-	ldr	r3, .L3528+20	@ tmp251,
+	ldr	r3, .L3527+20	@ tmp251,
 	mov	ip, r3	@ tmp251, tmp251
 @ Patches/../C_code.c:2210:         TILEREF(0, 6), max * 41 / globalCap, base * 41 / globalCap, diff * 41 / globalCap);
 	mov	r3, r8	@ diff, diff
 	lsls	r0, r3, #2	@ tmp195, diff,
 	add	r0, r0, r8	@ tmp196, diff
 @ Patches/../C_code.c:2208:     DrawStatBarGfx(0x401 + num*6, 6,
-	ldr	r3, .L3528+24	@ tmp202,
+	ldr	r3, .L3527+24	@ tmp202,
 @ Patches/../C_code.c:2208:     DrawStatBarGfx(0x401 + num*6, 6,
 	add	r7, r7, r9	@ tmp191, num
 @ Patches/../C_code.c:2210:         TILEREF(0, 6), max * 41 / globalCap, base * 41 / globalCap, diff * 41 / globalCap);
@@ -27174,7 +27165,7 @@ NewDrawStatWithBar:
 	mov	r2, r10	@, tmp187
 	movs	r1, #6	@,
 	movs	r0, r7	@, tmp193
-	ldr	r4, .L3528+28	@ tmp224,
+	ldr	r4, .L3527+28	@ tmp224,
 	lsls	r3, r3, #7	@,,
 	bl	.L240		@
 @ Patches/../C_code.c:2211: }
@@ -27187,18 +27178,18 @@ NewDrawStatWithBar:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3523:
+.L3522:
 @ Patches/../C_code.c:2136: 	switch (RandBitflags->caps) { 
 	movs	r3, #1	@ result,
 	rsbs	r3, r3, #0	@ result, result
-	b	.L3518		@
-.L3527:
+	b	.L3517		@
+.L3526:
 @ Patches/../C_code.c:2151: 	if (result == (-1)) { result = 30; } 
 	adds	r6, r6, #31	@ result,
-	b	.L3520		@
-.L3529:
-	.align	2
+	b	.L3519		@
 .L3528:
+	.align	2
+.L3527:
 	.word	RandBitflags
 	.word	maxStat
 	.word	gUiTmScratchA
@@ -27227,25 +27218,25 @@ PrintDebugNumberToBG:
 	sub	sp, sp, #12	@,,
 @ Patches/../C_code.c:5406: 	while (n != 0) {
 	cmp	r3, #0	@ n,
-	beq	.L3530		@,
+	beq	.L3529		@,
 @ Patches/../C_code.c:5410:         PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(x, y), (char *)&c);
 	lsls	r2, r2, #5	@ tmp128, y,
-	ldr	r3, .L3537	@ tmp131,
+	ldr	r3, .L3536	@ tmp131,
 	adds	r5, r2, r1	@ tmp129, tmp128, x
 	lsls	r5, r5, #1	@ tmp130, tmp129,
 	adds	r5, r5, r3	@ ivtmp.2004, tmp130, tmp131
-	ldr	r3, .L3537+4	@ tmp146,
+	ldr	r3, .L3536+4	@ tmp146,
 	mov	r9, r3	@ tmp146, tmp146
 	mov	r3, sp	@ tmp155,
 	adds	r6, r3, #6	@ tmp145, tmp155,
-	ldr	r3, .L3537+8	@ tmp147,
+	ldr	r3, .L3536+8	@ tmp147,
 	mov	r8, r3	@ tmp147, tmp147
-	ldr	r7, .L3537+12	@ tmp144,
-.L3532:
+	ldr	r7, .L3536+12	@ tmp144,
+.L3531:
 @ Patches/../C_code.c:5407:         u16 c = '0' + Mod(n, 10);
 	movs	r1, #10	@,
 	movs	r0, r4	@, n
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5407:         u16 c = '0' + Mod(n, 10);
 	adds	r0, r0, #48	@ tmp135,
 @ Patches/../C_code.c:5409:         n /= 10;
@@ -27265,8 +27256,8 @@ PrintDebugNumberToBG:
 @ Patches/../C_code.c:5406: 	while (n != 0) {
 	subs	r5, r5, #2	@ ivtmp.2004,
 	cmp	r4, #0	@ n,
-	bne	.L3532		@,
-.L3530:
+	bne	.L3531		@,
+.L3529:
 @ Patches/../C_code.c:5413: } 
 	add	sp, sp, #12	@,,
 	@ sp needed	@
@@ -27276,9 +27267,9 @@ PrintDebugNumberToBG:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3538:
-	.align	2
 .L3537:
+	.align	2
+.L3536:
 	.word	gBG0TilemapBuffer
 	.word	Mod
 	.word	__aeabi_idiv
@@ -27297,60 +27288,60 @@ StatScreenSelectLoop:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}	@
 @ Patches/../C_code.c:5423: 	if (sKeyStatusBuffer.newKeys & R_BUTTON)
-	ldr	r5, .L3560	@ tmp183,
+	ldr	r5, .L3559	@ tmp183,
 	ldrh	r3, [r5, #8]	@ _1,
 @ Patches/../C_code.c:5420: void StatScreenSelectLoop(ProcPtr proc) { 
 	movs	r4, r0	@ proc, tmp184
 @ Patches/../C_code.c:5423: 	if (sKeyStatusBuffer.newKeys & R_BUTTON)
 	lsls	r2, r3, #23	@ tmp188, _1,
-	bpl	.L3540		@,
+	bpl	.L3539		@,
 @ Patches/../C_code.c:5425: 			int page = gStatScreen.page; 
-	ldr	r3, .L3560+4	@ tmp136,
+	ldr	r3, .L3559+4	@ tmp136,
 	ldrb	r6, [r3]	@ _2, gStatScreen
 @ Patches/../C_code.c:5427: 			if (SkillSysInstalled) { 
-	ldr	r3, .L3560+8	@ tmp137,
+	ldr	r3, .L3559+8	@ tmp137,
 @ Patches/../C_code.c:5427: 			if (SkillSysInstalled) { 
 	ldr	r3, [r3]	@ SkillSysInstalled, SkillSysInstalled
 	cmp	r3, #0	@ SkillSysInstalled,
-	bne	.L3558		@,
-.L3542:
+	bne	.L3557		@,
+.L3541:
 @ Patches/../C_code.c:5431: 			Proc_Goto(proc, 0); // TODO: label name
 	movs	r1, #0	@,
 	movs	r0, r4	@, proc
-	ldr	r3, .L3560+12	@ tmp140,
+	ldr	r3, .L3559+12	@ tmp140,
 	bl	.L14		@
 @ Patches/../C_code.c:5432: 			StartStatScreenHelp(page, proc);
-	ldr	r3, .L3560+16	@ tmp141,
+	ldr	r3, .L3559+16	@ tmp141,
 	movs	r1, r4	@, proc
 	movs	r0, r6	@, page
 	bl	.L14		@
 @ Patches/../C_code.c:5434: 	if (sKeyStatusBuffer.newKeys & SELECT_BUTTON)
 	ldrh	r3, [r5, #8]	@ _1,
-.L3540:
+.L3539:
 @ Patches/../C_code.c:5434: 	if (sKeyStatusBuffer.newKeys & SELECT_BUTTON)
 	lsls	r3, r3, #29	@ tmp189, _1,
-	bpl	.L3539		@,
+	bpl	.L3538		@,
 @ Patches/../C_code.c:5436: 			int page = gStatScreen.page; 
-	ldr	r3, .L3560+4	@ tmp150,
+	ldr	r3, .L3559+4	@ tmp150,
 @ Patches/../C_code.c:5438: 			if (SkillSysInstalled) { 
-	ldr	r6, .L3560+8	@ tmp151,
+	ldr	r6, .L3559+8	@ tmp151,
 @ Patches/../C_code.c:5436: 			int page = gStatScreen.page; 
 	ldrb	r5, [r3]	@ _5, gStatScreen
 @ Patches/../C_code.c:5438: 			if (SkillSysInstalled) { 
 	ldr	r3, [r6]	@ SkillSysInstalled, SkillSysInstalled
 	cmp	r3, #0	@ SkillSysInstalled,
-	bne	.L3559		@,
-.L3546:
+	bne	.L3558		@,
+.L3545:
 @ Patches/../C_code.c:5447: 			if (page) { return; } 
 	cmp	r5, #0	@ page,
-	bne	.L3539		@,
+	bne	.L3538		@,
 @ Patches/../C_code.c:5448: 			Proc_Goto(proc, 0); // TODO: label name
 	movs	r1, #0	@,
 	movs	r0, r4	@, proc
-	ldr	r3, .L3560+12	@ tmp157,
+	ldr	r3, .L3559+12	@ tmp157,
 	bl	.L14		@
 @ Patches/../C_code.c:5449: 			if (!RandBitflags->disp) { RandBitflags->disp = 1; } 
-	ldr	r3, .L3560+20	@ tmp158,
+	ldr	r3, .L3559+20	@ tmp158,
 @ Patches/../C_code.c:5449: 			if (!RandBitflags->disp) { RandBitflags->disp = 1; } 
 	movs	r2, #128	@ tmp167,
 @ Patches/../C_code.c:5449: 			if (!RandBitflags->disp) { RandBitflags->disp = 1; } 
@@ -27364,23 +27355,23 @@ StatScreenSelectLoop:
 	strb	r3, [r1, #3]	@ tmp180, RandBitflags.360_9->disp
 @ Patches/../C_code.c:5451: 			StatScreen_Display(proc); 
 	movs	r0, r4	@, proc
-	ldr	r3, .L3560+24	@ tmp182,
+	ldr	r3, .L3559+24	@ tmp182,
 	bl	.L14		@
-.L3539:
+.L3538:
 @ Patches/../C_code.c:5455: } 
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L3558:
+.L3557:
 @ Patches/../C_code.c:5428: 				page = GetStatScreenPage(); 
-	ldr	r3, .L3560+28	@ tmp139,
+	ldr	r3, .L3559+28	@ tmp139,
 	bl	.L14		@
 	movs	r6, r0	@ page, tmp185
-	b	.L3542		@
-.L3559:
+	b	.L3541		@
+.L3558:
 @ Patches/../C_code.c:5439: 				page = GetStatScreenPage(); 
-	ldr	r3, .L3560+28	@ tmp153,
+	ldr	r3, .L3559+28	@ tmp153,
 	bl	.L14		@
 @ Patches/../C_code.c:5443: 			if (SkillSysInstalled) { 
 	ldr	r3, [r6]	@ SkillSysInstalled, SkillSysInstalled
@@ -27388,17 +27379,17 @@ StatScreenSelectLoop:
 	movs	r5, r0	@ page, tmp186
 @ Patches/../C_code.c:5443: 			if (SkillSysInstalled) { 
 	cmp	r3, #0	@ SkillSysInstalled,
-	beq	.L3546		@,
+	beq	.L3545		@,
 @ Patches/../C_code.c:5444: 				if (!PressSelectFE8Something()) { return; } 
-	ldr	r3, .L3560+32	@ tmp156,
+	ldr	r3, .L3559+32	@ tmp156,
 	bl	.L14		@
 @ Patches/../C_code.c:5444: 				if (!PressSelectFE8Something()) { return; } 
 	cmp	r0, #0	@ tmp187,
-	bne	.L3546		@,
-	b	.L3539		@
-.L3561:
-	.align	2
+	bne	.L3545		@,
+	b	.L3538		@
 .L3560:
+	.align	2
+.L3559:
 	.word	sKeyStatusBuffer
 	.word	gStatScreen
 	.word	SkillSysInstalled
@@ -27429,7 +27420,7 @@ DrawGrowthWithDifference:
 	lsls	r7, r1, #5	@ _1, tmp142,
 	adds	r0, r0, #1	@ tmp130,
 @ Patches/../C_code.c:5460:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
-	ldr	r6, .L3563	@ tmp134,
+	ldr	r6, .L3562	@ tmp134,
 @ Patches/../C_code.c:5460:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
 	adds	r0, r0, r7	@ tmp131, tmp130, _1
 @ Patches/../C_code.c:5460:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
@@ -27438,7 +27429,7 @@ DrawGrowthWithDifference:
 	subs	r5, r3, r2	@ diff, tmp144, base
 @ Patches/../C_code.c:5460:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
 	adds	r0, r0, r6	@ tmp133, tmp132, tmp134
-	ldr	r3, .L3563+4	@ tmp135,
+	ldr	r3, .L3562+4	@ tmp135,
 	movs	r1, #2	@,
 @ Patches/../C_code.c:5462:     PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 2, y));
 	adds	r4, r4, #2	@ tmp136,
@@ -27456,9 +27447,9 @@ DrawGrowthWithDifference:
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3564:
-	.align	2
 .L3563:
+	.align	2
+.L3562:
 	.word	gUiTmScratchA
 	.word	PutNumberOrBlank
 	.size	DrawGrowthWithDifference, .-DrawGrowthWithDifference
@@ -27559,83 +27550,83 @@ _GetTalkee:
 	mov	r7, r9	@,
 	push	{r6, r7, lr}	@
 @ Patches/../C_code.c:5544: 	const struct TalkEventCond* talkCond = GetChapterEventDataPointer(gCh)->characterBasedEvents;
-	ldr	r3, .L3590	@ tmp135,
+	ldr	r3, .L3589	@ tmp135,
 @ Patches/../C_code.c:5543: int _GetTalkee(int unitID) { 
 	movs	r5, r0	@ unitID, tmp151
 @ Patches/../C_code.c:5544: 	const struct TalkEventCond* talkCond = GetChapterEventDataPointer(gCh)->characterBasedEvents;
 	ldrb	r0, [r3]	@ gCh, gCh
-	ldr	r3, .L3590+4	@ tmp137,
+	ldr	r3, .L3589+4	@ tmp137,
 	bl	.L14		@
 	movs	r3, #255	@ tmp156,
 	ldr	r4, [r0, #4]	@ ivtmp.2029, _3->characterBasedEvents
 	lsls	r3, r3, #4	@ tmp156, tmp156,
 	adds	r6, r4, r3	@ _43, ivtmp.2029, tmp156
 @ Patches/../C_code.c:5551: 		if (flag) { if (CheckFlag(flag)) { continue; } } 
-	ldr	r3, .L3590+8	@ tmp148,
+	ldr	r3, .L3589+8	@ tmp148,
 	mov	r10, r3	@ tmp148, tmp148
 @ Patches/../C_code.c:5560: 			unit = GetUnitFromCharId(pid); 
-	ldr	r3, .L3590+12	@ tmp149,
+	ldr	r3, .L3589+12	@ tmp149,
 	mov	r8, r3	@ tmp149, tmp149
 @ Patches/../C_code.c:5562: 			if (unit->state & (US_DEAD|US_NOT_DEPLOYED|US_BIT16)) { continue; } 
-	ldr	r3, .L3590+16	@ tmp150,
+	ldr	r3, .L3589+16	@ tmp150,
 	mov	r9, r3	@ tmp150, tmp150
-	b	.L3571		@
-.L3589:
+	b	.L3570		@
+.L3588:
 @ Patches/../C_code.c:5552: 		pid = talkCond[i].pidB; 
 	ldrb	r7, [r4, #9]	@ <retval>, MEM[(unsigned char *)_18 + 9B]
 @ Patches/../C_code.c:5558: 		if (pid) { 
 	cmp	r7, #0	@ <retval>,
-	bne	.L3588		@,
-.L3574:
+	bne	.L3587		@,
+.L3573:
 @ Patches/../C_code.c:5547: 	for (int i = 0; i < 255; ++i) { 
 	adds	r4, r4, #16	@ ivtmp.2029,
 	cmp	r4, r6	@ ivtmp.2029, _43
-	beq	.L3569		@,
-.L3571:
+	beq	.L3568		@,
+.L3570:
 @ Patches/../C_code.c:5548: 		if (!talkCond[i].eventType) { break; } 
 	ldrh	r3, [r4]	@ MEM[(short unsigned int *)_18], MEM[(short unsigned int *)_18]
 	cmp	r3, #0	@ MEM[(short unsigned int *)_18],
-	beq	.L3569		@,
+	beq	.L3568		@,
 @ Patches/../C_code.c:5549: 		if (talkCond[i].pidA != unitID) { continue; } 
 	ldrb	r3, [r4, #8]	@ MEM[(unsigned char *)_18 + 8B], MEM[(unsigned char *)_18 + 8B]
 @ Patches/../C_code.c:5549: 		if (talkCond[i].pidA != unitID) { continue; } 
 	cmp	r3, r5	@ MEM[(unsigned char *)_18 + 8B], unitID
-	bne	.L3574		@,
+	bne	.L3573		@,
 @ Patches/../C_code.c:5550: 		flag = talkCond[i].flag; 
 	ldrh	r0, [r4, #2]	@ flag, MEM[(short unsigned int *)_18 + 2B]
 @ Patches/../C_code.c:5551: 		if (flag) { if (CheckFlag(flag)) { continue; } } 
 	cmp	r0, #0	@ flag,
-	beq	.L3589		@,
+	beq	.L3588		@,
 @ Patches/../C_code.c:5551: 		if (flag) { if (CheckFlag(flag)) { continue; } } 
-	bl	.L786		@
+	bl	.L785		@
 @ Patches/../C_code.c:5551: 		if (flag) { if (CheckFlag(flag)) { continue; } } 
 	cmp	r0, #0	@ tmp153,
-	bne	.L3574		@,
+	bne	.L3573		@,
 @ Patches/../C_code.c:5552: 		pid = talkCond[i].pidB; 
 	ldrb	r7, [r4, #9]	@ <retval>, MEM[(unsigned char *)_18 + 9B]
 @ Patches/../C_code.c:5558: 		if (pid) { 
 	cmp	r7, #0	@ <retval>,
-	beq	.L3574		@,
-.L3588:
+	beq	.L3573		@,
+.L3587:
 @ Patches/../C_code.c:5560: 			unit = GetUnitFromCharId(pid); 
 	lsls	r0, r7, #16	@ _13, <retval>,
 	asrs	r0, r0, #16	@ _13, _13,
 	bl	.L179		@
 @ Patches/../C_code.c:5561: 			if (!UNIT_IS_VALID(unit)) { continue; } 
 	cmp	r0, #0	@ unit,
-	beq	.L3574		@,
+	beq	.L3573		@,
 @ Patches/../C_code.c:5561: 			if (!UNIT_IS_VALID(unit)) { continue; } 
 	ldr	r3, [r0]	@ unit_32->pCharacterData, unit_32->pCharacterData
 	cmp	r3, #0	@ unit_32->pCharacterData,
-	beq	.L3574		@,
+	beq	.L3573		@,
 @ Patches/../C_code.c:5562: 			if (unit->state & (US_DEAD|US_NOT_DEPLOYED|US_BIT16)) { continue; } 
 	mov	r2, r9	@ tmp150, tmp150
 @ Patches/../C_code.c:5562: 			if (unit->state & (US_DEAD|US_NOT_DEPLOYED|US_BIT16)) { continue; } 
 	ldr	r3, [r0, #12]	@ unit_32->state, unit_32->state
 @ Patches/../C_code.c:5562: 			if (unit->state & (US_DEAD|US_NOT_DEPLOYED|US_BIT16)) { continue; } 
 	tst	r3, r2	@ unit_32->state, tmp150
-	bne	.L3574		@,
-.L3568:
+	bne	.L3573		@,
+.L3567:
 @ Patches/../C_code.c:5567: } 
 	@ sp needed	@
 	movs	r0, r7	@, <retval>
@@ -27646,13 +27637,13 @@ _GetTalkee:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L3569:
+.L3568:
 @ Patches/../C_code.c:5566: 	return 0; 
 	movs	r7, #0	@ <retval>,
-	b	.L3568		@
-.L3591:
-	.align	2
+	b	.L3567		@
 .L3590:
+	.align	2
+.L3589:
 	.word	gCh
 	.word	GetChapterEventDataPointer
 	.word	CheckFlag
@@ -27662,7 +27653,7 @@ _GetTalkee:
 	.section	.rodata.str1.4
 	.align	2
 .LC664:
-	.ascii	" SRR V1.4.8          by Vesly\000"
+	.ascii	" SRR V1.4.9          by Vesly\000"
 	.align	2
 .LC667:
 	.ascii	"discord.com/invite/XEZ\000"
@@ -27693,64 +27684,64 @@ DrawVersionNumber:
 @ Patches/../C_code.c:5759: 	SetupDebugFontForOBJ(0x5000, 5); 
 	movs	r0, #160	@,
 	movs	r1, #5	@,
-	ldr	r3, .L3595	@ tmp119,
+	ldr	r3, .L3594	@ tmp119,
 	lsls	r0, r0, #7	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:5777: 	else { PrintDebugStringAsOBJ(0, 0, VersionNumber"          by Vesly"); } 
-	ldr	r2, .L3595+4	@ tmp122,
+	ldr	r2, .L3594+4	@ tmp122,
 @ Patches/../C_code.c:5772: 	if (!addr) { 
 	cmp	r4, #0	@ addr,
-	beq	.L3593		@,
+	beq	.L3592		@,
 @ Patches/../C_code.c:5776: 	if (addr) { PrintDebugStringAsOBJ(0, y+7, VersionNumber"          by Vesly"); y = 5; } 
 	movs	r1, #151	@,
 	movs	r0, #0	@,
-	ldr	r4, .L3595+8	@ tmp132,
+	ldr	r4, .L3594+8	@ tmp132,
 	bl	.L240		@
 	movs	r6, #0	@ prephitmp_15,
 	movs	r7, #6	@ prephitmp_14,
 @ Patches/../C_code.c:5776: 	if (addr) { PrintDebugStringAsOBJ(0, y+7, VersionNumber"          by Vesly"); y = 5; } 
 	movs	r5, #5	@ y,
-.L3594:
+.L3593:
 @ Patches/../C_code.c:5787: } 
 	@ sp needed	@
 @ Patches/../C_code.c:5779: 	PrintDebugStringAsOBJ(x+0, y, "discord.com/invite/XEZ");
 	movs	r1, r5	@, y
 	movs	r0, #20	@,
-	ldr	r2, .L3595+12	@ tmp124,
+	ldr	r2, .L3594+12	@ tmp124,
 	bl	.L240		@
 @ Patches/../C_code.c:5780: 	PrintDebugStringAsOBJ(x+177, y+1, ")");
 	movs	r1, r7	@, prephitmp_14
 	movs	r0, #197	@,
-	ldr	r2, .L3595+16	@ tmp126,
+	ldr	r2, .L3594+16	@ tmp126,
 	bl	.L240		@
 @ Patches/../C_code.c:5781: 	PrintDebugStringAsOBJ(x+173, y-5, ".");
 	movs	r1, r6	@, prephitmp_15
 	movs	r0, #193	@,
-	ldr	r2, .L3595+20	@ tmp128,
+	ldr	r2, .L3594+20	@ tmp128,
 	bl	.L240		@
 @ Patches/../C_code.c:5782: 	PrintDebugStringAsOBJ(x+180, y, "TJQ");
 	movs	r1, r5	@, y
 	movs	r0, #200	@,
-	ldr	r2, .L3595+24	@ tmp130,
+	ldr	r2, .L3594+24	@ tmp130,
 	bl	.L240		@
 @ Patches/../C_code.c:5787: } 
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3593:
+.L3592:
 @ Patches/../C_code.c:5777: 	else { PrintDebugStringAsOBJ(0, 0, VersionNumber"          by Vesly"); } 
 	movs	r1, #0	@,
 	movs	r0, #0	@,
-	ldr	r4, .L3595+8	@ tmp132,
+	ldr	r4, .L3594+8	@ tmp132,
 	bl	.L240		@
 	movs	r6, #134	@ prephitmp_15,
 	movs	r7, #140	@ prephitmp_14,
 @ Patches/../C_code.c:5773: 	y -= 5; 
 	movs	r5, #139	@ y,
-	b	.L3594		@
-.L3596:
-	.align	2
+	b	.L3593		@
 .L3595:
+	.align	2
+.L3594:
 	.word	SetupDebugFontForOBJ
 	.word	.LC664
 	.word	PrintDebugStringAsOBJ
@@ -27780,7 +27771,7 @@ DrawStatus:
 @ Patches/../C_code.c:5830:     if (gStatScreen.unit->statusIndex != UNIT_STATUS_RECOVER)
 	movs	r7, #15	@ tmp138,
 @ Patches/../C_code.c:5830:     if (gStatScreen.unit->statusIndex != UNIT_STATUS_RECOVER)
-	ldr	r4, .L3610	@ tmp210,
+	ldr	r4, .L3609	@ tmp210,
 	ldr	r5, [r4, #12]	@ _1, gStatScreen.unit
 @ Patches/../C_code.c:5830:     if (gStatScreen.unit->statusIndex != UNIT_STATUS_RECOVER)
 	ldrb	r3, [r5, r6]	@ *_1, *_1
@@ -27792,23 +27783,23 @@ DrawStatus:
 	ands	r3, r7	@ _3, tmp138
 @ Patches/../C_code.c:5830:     if (gStatScreen.unit->statusIndex != UNIT_STATUS_RECOVER)
 	cmp	r3, #10	@ _3,
-	beq	.L3598		@,
+	beq	.L3597		@,
 @ Patches/../C_code.c:5839:                 GetUnitStatusName(gStatScreen.unit));
 	movs	r0, r5	@, _1
 @ Patches/../C_code.c:5834:         if (gStatScreen.unit->statusIndex == UNIT_STATUS_NONE)
 	cmp	r3, #0	@ _3,
-	beq	.L3608		@,
+	beq	.L3607		@,
 @ Patches/../C_code.c:5846:                 GetUnitStatusName(gStatScreen.unit));
-	ldr	r3, .L3610+4	@ tmp147,
+	ldr	r3, .L3609+4	@ tmp147,
 	bl	.L14		@
 	movs	r3, r0	@ _5, tmp214
 @ Patches/../C_code.c:5843:             Text_InsertDrawString(
 	movs	r0, r4	@ tmp148, tmp210
 	movs	r2, #2	@,
 	movs	r1, #22	@,
-	ldr	r5, .L3610+8	@ tmp149,
+	ldr	r5, .L3609+8	@ tmp149,
 	adds	r0, r0, #136	@ tmp148,
-	bl	.L3232		@
+	bl	.L3231		@
 @ Patches/../C_code.c:5851:         if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
 	movs	r3, #48	@ tmp151,
 @ Patches/../C_code.c:5851:         if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
@@ -27817,8 +27808,8 @@ DrawStatus:
 	ldrb	r2, [r2, r3]	@ *_6, *_6
 @ Patches/../C_code.c:5851:         if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
 	lsls	r3, r2, #28	@ tmp217, *_6,
-	bne	.L3609		@,
-.L3597:
+	bne	.L3608		@,
+.L3596:
 @ Patches/../C_code.c:5881: }
 	add	sp, sp, #76	@,,
 	@ sp needed	@
@@ -27828,18 +27819,18 @@ DrawStatus:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3608:
+.L3607:
 @ Patches/../C_code.c:5839:                 GetUnitStatusName(gStatScreen.unit));
-	ldr	r3, .L3610+4	@ tmp144,
+	ldr	r3, .L3609+4	@ tmp144,
 	bl	.L14		@
 	movs	r3, r0	@ _4, tmp213
 @ Patches/../C_code.c:5836:             Text_InsertDrawString(
 	movs	r0, r4	@ tmp145, tmp210
 	movs	r2, #2	@,
 	movs	r1, #24	@,
-	ldr	r5, .L3610+8	@ tmp146,
+	ldr	r5, .L3609+8	@ tmp146,
 	adds	r0, r0, #136	@ tmp145,
-	bl	.L3232		@
+	bl	.L3231		@
 @ Patches/../C_code.c:5851:         if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
 	movs	r3, #48	@ tmp151,
 @ Patches/../C_code.c:5851:         if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
@@ -27848,27 +27839,27 @@ DrawStatus:
 	ldrb	r2, [r2, r3]	@ *_6, *_6
 @ Patches/../C_code.c:5851:         if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
 	lsls	r3, r2, #28	@ tmp217, *_6,
-	beq	.L3597		@,
-.L3609:
+	beq	.L3596		@,
+.L3608:
 @ Patches/../C_code.c:5854:                 gUiTmScratchA + TILEMAP_INDEX(x, y),
 	mov	r3, r9	@ y, y
 	lsls	r0, r3, #5	@ tmp170, y,
 	add	r0, r0, r8	@ tmp171, x
 @ Patches/../C_code.c:5853:             PutNumberSmall(
-	ldr	r3, .L3610+12	@ tmp174,
+	ldr	r3, .L3609+12	@ tmp174,
 @ Patches/../C_code.c:5854:                 gUiTmScratchA + TILEMAP_INDEX(x, y),
 	lsls	r0, r0, #1	@ tmp172, tmp171,
 @ Patches/../C_code.c:5853:             PutNumberSmall(
 	adds	r0, r0, r3	@ tmp173, tmp172, tmp174
 	movs	r1, #0	@,
-	ldr	r3, .L3610+16	@ tmp175,
+	ldr	r3, .L3609+16	@ tmp175,
 	lsrs	r2, r2, #4	@ tmp168, *_6,
 	bl	.L14		@
-	b	.L3597		@
-.L3598:
+	b	.L3596		@
+.L3597:
 @ Patches/../C_code.c:5862:         struct Unit tmp = *gStatScreen.unit;
 	movs	r2, #72	@,
-	ldr	r3, .L3610+20	@ tmp180,
+	ldr	r3, .L3609+20	@ tmp180,
 	movs	r1, r5	@, _1
 	mov	r0, sp	@,
 	bl	.L14		@
@@ -27884,36 +27875,36 @@ DrawStatus:
 	mov	r0, sp	@,
 @ Patches/../C_code.c:5866:         if (gStatScreen.unit->statusIndex == UNIT_STATUS_NONE)
 	tst	r7, r3	@ tmp138, *_1
-	bne	.L3602		@,
+	bne	.L3601		@,
 @ Patches/../C_code.c:5871:                 GetUnitStatusName(&tmp));
-	ldr	r3, .L3610+4	@ tmp203,
+	ldr	r3, .L3609+4	@ tmp203,
 	bl	.L14		@
 	movs	r3, r0	@ _18, tmp215
 @ Patches/../C_code.c:5868:             Text_InsertDrawString(
 	movs	r0, r4	@ tmp210, tmp210
 	movs	r2, #2	@,
 	movs	r1, #24	@,
-	ldr	r4, .L3610+8	@ tmp205,
+	ldr	r4, .L3609+8	@ tmp205,
 	adds	r0, r0, #136	@ tmp210,
 	bl	.L240		@
-	b	.L3597		@
-.L3602:
+	b	.L3596		@
+.L3601:
 @ Patches/../C_code.c:5878:                 GetUnitStatusName(&tmp));
-	ldr	r3, .L3610+4	@ tmp207,
+	ldr	r3, .L3609+4	@ tmp207,
 	bl	.L14		@
 	movs	r3, r0	@ _19, tmp216
 @ Patches/../C_code.c:5875:             Text_InsertDrawString(
 	movs	r0, r4	@ tmp210, tmp210
 	movs	r2, #2	@,
 	movs	r1, #22	@,
-	ldr	r4, .L3610+8	@ tmp209,
+	ldr	r4, .L3609+8	@ tmp209,
 	adds	r0, r0, #136	@ tmp210,
 	bl	.L240		@
 @ Patches/../C_code.c:5881: }
-	b	.L3597		@
-.L3611:
-	.align	2
+	b	.L3596		@
 .L3610:
+	.align	2
+.L3609:
 	.word	gStatScreen
 	.word	GetUnitStatusName
 	.word	Text_InsertDrawString
@@ -28208,7 +28199,7 @@ DrawStatByID:
 @ Patches/../C_code.c:5911: int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) { 
 	str	r3, [sp, #8]	@ tmp789, %sfp
 @ Patches/../C_code.c:5912: 	if (gStatScreenFunction[id].specialCase) { 
-	ldr	r3, .L3693	@ tmp777,
+	ldr	r3, .L3692	@ tmp777,
 	mov	r10, r3	@ tmp777, tmp777
 @ Patches/../C_code.c:5911: int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) { 
 	movs	r6, r2	@ y, tmp788
@@ -28224,19 +28215,18 @@ DrawStatByID:
 	movs	r5, r1	@ x, tmp787
 @ Patches/../C_code.c:5912: 	if (gStatScreenFunction[id].specialCase) { 
 	cmp	r3, #0	@ _1,
-	beq	.L3624		@,
+	beq	.L3623		@,
 @ Patches/../C_code.c:5913: 		switch (gStatScreenFunction[id].specialCase) { 
 	cmp	r3, #17	@ _1,
-	bhi	.L3624		@,
-	ldr	r2, .L3693+4	@ tmp367,
+	bhi	.L3623		@,
+	ldr	r2, .L3692+4	@ tmp367,
 	lsls	r3, r3, #2	@ tmp365, _1,
 	ldr	r3, [r2, r3]	@ tmp368,
 	mov	pc, r3	@ tmp368
 	.section	.rodata
 	.align	2
-.L3626:
-	.word	.L3624
-	.word	.L3642
+.L3625:
+	.word	.L3623
 	.word	.L3641
 	.word	.L3640
 	.word	.L3639
@@ -28252,36 +28242,37 @@ DrawStatByID:
 	.word	.L3629
 	.word	.L3628
 	.word	.L3627
-	.word	.L3625
+	.word	.L3626
+	.word	.L3624
 	.text
-.L3625:
+.L3624:
 @ Patches/../C_code.c:6078: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
-	ldr	r3, .L3693+8	@ tmp712,
-	ldr	r0, .L3693+12	@,
+	ldr	r3, .L3692+8	@ tmp712,
+	ldr	r0, .L3692+12	@,
 	bl	.L14		@
 @ Patches/../C_code.c:6078: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
 	lsls	r3, r6, #5	@ tmp713, y,
 	subs	r1, r5, #4	@ tmp714, x,
 	adds	r1, r3, r1	@ tmp715, tmp713, tmp714
 @ Patches/../C_code.c:6078: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
-	ldr	r3, .L3693+16	@ tmp718,
+	ldr	r3, .L3692+16	@ tmp718,
 @ Patches/../C_code.c:6078: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
 	movs	r2, r0	@ tmp817,
 @ Patches/../C_code.c:6078: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
 	lsls	r1, r1, #1	@ tmp716, tmp715,
 @ Patches/../C_code.c:6078: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
-	ldr	r0, .L3693+20	@ tmp719,
+	ldr	r0, .L3692+20	@ tmp719,
 @ Patches/../C_code.c:6078: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
 	adds	r1, r1, r3	@ tmp717, tmp716, tmp718
-.L3688:
+.L3687:
 @ Patches/../C_code.c:6078: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
 	movs	r3, #0	@ tmp720,
 	str	r2, [sp, #4]	@ tmp817,
 	str	r3, [sp]	@ tmp720,
 	movs	r2, #3	@,
-	ldr	r7, .L3693+24	@ tmp721,
+	ldr	r7, .L3692+24	@ tmp721,
 	bl	.L223		@
-.L3624:
+.L3623:
 @ Patches/../C_code.c:6089: 	if (gStatScreenFunction[id].GetUnitUnadjustedStat) { // could be null, in which case we draw nothing 
 	ldr	r3, [sp, #60]	@ tmp897, id
 	mov	ip, r3	@ tmp897, tmp897
@@ -28291,17 +28282,17 @@ DrawStatByID:
 	ldr	r3, [r4, #4]	@ _236, gStatScreenFunction[id_268(D)].GetUnitUnadjustedStat
 @ Patches/../C_code.c:6089: 	if (gStatScreenFunction[id].GetUnitUnadjustedStat) { // could be null, in which case we draw nothing 
 	cmp	r3, #0	@ _236,
-	beq	.L3648		@,
+	beq	.L3647		@,
 @ Patches/../C_code.c:6090: 		if (disp == 1) {
 	ldr	r2, [sp, #8]	@ disp, %sfp
 	cmp	r2, #1	@ disp,
-	beq	.L3689		@,
+	beq	.L3688		@,
 @ Patches/../C_code.c:6094: 		if (disp == 0) {
 	ldr	r3, [sp, #8]	@ disp, %sfp
 	cmp	r3, #0	@ disp,
-	bne	.L3644		@,
+	bne	.L3643		@,
 @ Patches/../C_code.c:6095: 			DrawGrowthWithDifference(x-1, y, gStatScreenFunction[id].GetUnitGrowth(gStatScreen.unit, false),
-	ldr	r7, .L3693+28	@ tmp745,
+	ldr	r7, .L3692+28	@ tmp745,
 	ldr	r3, [r4, #16]	@ gStatScreenFunction[id_268(D)].GetUnitGrowth, gStatScreenFunction[id_268(D)].GetUnitGrowth
 	movs	r1, #0	@,
 	ldr	r0, [r7, #12]	@ gStatScreen.unit, gStatScreen.unit
@@ -28316,7 +28307,7 @@ DrawStatByID:
 @ Patches/../C_code.c:5460:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
 	lsls	r6, r6, #5	@ _368, y,
 @ Patches/../C_code.c:5460:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
-	ldr	r7, .L3693+16	@ tmp768,
+	ldr	r7, .L3692+16	@ tmp768,
 @ Patches/../C_code.c:5459:     int diff = modified - base;
 	subs	r4, r0, r3	@ diff, tmp822, _245
 @ Patches/../C_code.c:5460:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
@@ -28327,7 +28318,7 @@ DrawStatByID:
 	movs	r1, #2	@,
 	adds	r0, r0, r7	@ tmp767, tmp766, tmp768
 	mov	r2, r8	@, _245
-	ldr	r3, .L3693+32	@ tmp769,
+	ldr	r3, .L3692+32	@ tmp769,
 @ Patches/../C_code.c:5462:     PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 2, y));
 	adds	r5, r5, #1	@ tmp770,
 @ Patches/../C_code.c:5460:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
@@ -28340,11 +28331,11 @@ DrawStatByID:
 	movs	r0, r4	@, diff
 	adds	r1, r1, r7	@ tmp773, tmp772, tmp768
 	bl	PutNumberBonus		@
-.L3644:
+.L3643:
 @ Patches/../C_code.c:5924: 				return 1; break; 
 	movs	r0, #1	@ <retval>,
-	b	.L3623		@
-.L3689:
+	b	.L3622		@
+.L3688:
 @ Patches/../C_code.c:6091: 			NewDrawStatWithBar(barID, x, y, gStatScreenFunction[id].GetUnitUnadjustedStat(unit),
 	ldr	r0, [sp, #56]	@, unit
 	bl	.L14		@
@@ -28367,11 +28358,11 @@ DrawStatByID:
 	bl	NewDrawStatWithBar		@
 @ Patches/../C_code.c:5924: 				return 1; break; 
 	movs	r0, #1	@ <retval>,
-	b	.L3623		@
-.L3636:
+	b	.L3622		@
+.L3635:
 @ Patches/../C_code.c:5962: 				ClearText(gStatScreen.text + STATSCREEN_TEXT_ITEM0); // clear wep1 text here 
-	ldr	r4, .L3693+36	@ tmp562,
-	ldr	r3, .L3693+40	@ tmp563,
+	ldr	r4, .L3692+36	@ tmp562,
+	ldr	r3, .L3692+40	@ tmp563,
 	movs	r0, r4	@, tmp562
 	bl	.L14		@
 @ Patches/../C_code.c:5964: 				int talk_uid = _GetTalkee(unit->pCharacterData->number); 
@@ -28384,7 +28375,7 @@ DrawStatByID:
 	subs	r5, r5, #4	@ tmp567,
 	lsls	r1, r6, #5	@ tmp566, y,
 @ Patches/../C_code.c:5966: 					PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM0,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
-	ldr	r3, .L3693+16	@ tmp570,
+	ldr	r3, .L3692+16	@ tmp570,
 @ Patches/../C_code.c:5966: 					PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM0,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
 	adds	r1, r1, r5	@ tmp568, tmp566, tmp567
 @ Patches/../C_code.c:5966: 					PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM0,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
@@ -28395,27 +28386,27 @@ DrawStatByID:
 	adds	r1, r1, r3	@ _347, tmp569, tmp570
 @ Patches/../C_code.c:5965: 				if (talk_uid) { 
 	cmp	r0, #0	@ talk_uid,
-	bne	.LCB23360	@
-	b	.L3650	@long jump	@
-.LCB23360:
+	bne	.LCB23352	@
+	b	.L3649	@long jump	@
+.LCB23352:
 @ Patches/../C_code.c:5966: 					PutDrawText(gStatScreen.text + STATSCREEN_TEXT_ITEM0,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Talk");
-	ldr	r3, .L3693+44	@ tmp572,
+	ldr	r3, .L3692+44	@ tmp572,
 	str	r3, [sp, #4]	@ tmp572,
 	movs	r3, #0	@ tmp573,
 	movs	r2, #3	@,
 	movs	r0, r4	@, tmp562
 	str	r3, [sp]	@ tmp573,
-	ldr	r5, .L3693+24	@ tmp574,
-	bl	.L3232		@
+	ldr	r5, .L3692+24	@ tmp574,
+	bl	.L3231		@
 @ Patches/../C_code.c:5967: 					talk_uid = GetCharacterData(talk_uid)->nameTextId;
-	ldr	r3, .L3693+48	@ tmp575,
+	ldr	r3, .L3692+48	@ tmp575,
 	movs	r0, r7	@, talk_uid
 	bl	.L14		@
 @ Patches/../C_code.c:5968: 					Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_ITEM0], 24, blue, GetStringFromIndex(talk_uid));
-	ldr	r3, .L3693+8	@ tmp577,
+	ldr	r3, .L3692+8	@ tmp577,
 @ Patches/../C_code.c:5967: 					talk_uid = GetCharacterData(talk_uid)->nameTextId;
 	ldrh	r0, [r0]	@ talk_uid, *_104
-.L3686:
+.L3685:
 @ Patches/../C_code.c:5944: 				Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_RESCUENAME], 24, blue, GetUnitRescueName(unit));
 	bl	.L14		@
 @ Patches/../C_code.c:5944: 				Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_RESCUENAME], 24, blue, GetUnitRescueName(unit));
@@ -28425,12 +28416,12 @@ DrawStatByID:
 @ Patches/../C_code.c:5944: 				Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_RESCUENAME], 24, blue, GetUnitRescueName(unit));
 	movs	r1, #24	@,
 	movs	r0, r4	@, tmp520
-	ldr	r4, .L3693+52	@ tmp526,
+	ldr	r4, .L3692+52	@ tmp526,
 	bl	.L240		@
-.L3648:
+.L3647:
 @ Patches/../C_code.c:5940: 				return 0; break;
 	movs	r0, #0	@ <retval>,
-.L3623:
+.L3622:
 @ Patches/../C_code.c:6101: } 
 	add	sp, sp, #20	@,,
 	@ sp needed	@
@@ -28442,50 +28433,50 @@ DrawStatByID:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L3635:
+.L3634:
 @ Patches/../C_code.c:5979: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_BWL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skills");
 	lsls	r1, r6, #5	@ tmp587, y,
 	subs	r5, r5, #4	@ tmp588,
 @ Patches/../C_code.c:5979: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_BWL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skills");
-	ldr	r3, .L3693+16	@ tmp592,
+	ldr	r3, .L3692+16	@ tmp592,
 @ Patches/../C_code.c:5979: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_BWL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skills");
 	adds	r1, r1, r5	@ tmp589, tmp587, tmp588
 @ Patches/../C_code.c:5979: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_BWL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skills");
 	lsls	r1, r1, #1	@ tmp590, tmp589,
 @ Patches/../C_code.c:5979: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_BWL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skills");
 	adds	r1, r1, r3	@ tmp591, tmp590, tmp592
-	ldr	r3, .L3693+56	@ tmp594,
+	ldr	r3, .L3692+56	@ tmp594,
 	str	r3, [sp, #4]	@ tmp594,
 	movs	r3, #0	@ tmp595,
 	movs	r2, #3	@,
-	ldr	r0, .L3693+60	@ tmp593,
+	ldr	r0, .L3692+60	@ tmp593,
 	str	r3, [sp]	@ tmp595,
-	ldr	r4, .L3693+24	@ tmp596,
+	ldr	r4, .L3692+24	@ tmp596,
 	bl	.L240		@
 @ Patches/../C_code.c:5980: 				return 0; break;
-	b	.L3648		@
-.L3642:
+	b	.L3647		@
+.L3641:
 @ Patches/../C_code.c:5915: 				if (disp == 1) { // 9, 1?
 	ldr	r3, [sp, #8]	@ disp, %sfp
 	cmp	r3, #1	@ disp,
-	bne	.LCB23426	@
-	b	.L3690	@long jump	@
-.LCB23426:
+	bne	.LCB23418	@
+	b	.L3689	@long jump	@
+.LCB23418:
 @ Patches/../C_code.c:5920: 				if (disp == 0) { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "HP"); 
 	ldr	r2, [sp, #8]	@ disp, %sfp
 	cmp	r2, #0	@ disp,
-	bne	.L3644		@,
+	bne	.L3643		@,
 @ Patches/../C_code.c:5920: 				if (disp == 0) { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "HP"); 
 	lsls	r3, r6, #5	@ _14, y,
 	mov	r9, r3	@ _14, _14
 	subs	r1, r1, #4	@ tmp404,
 @ Patches/../C_code.c:5920: 				if (disp == 0) { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "HP"); 
-	ldr	r6, .L3693+16	@ tmp408,
-	ldr	r3, .L3693+64	@ tmp410,
+	ldr	r6, .L3692+16	@ tmp408,
+	ldr	r3, .L3692+64	@ tmp410,
 @ Patches/../C_code.c:5920: 				if (disp == 0) { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "HP"); 
 	add	r1, r1, r9	@ tmp405, _14
 @ Patches/../C_code.c:5920: 				if (disp == 0) { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "HP"); 
-	ldr	r0, .L3693+68	@ tmp409,
+	ldr	r0, .L3692+68	@ tmp409,
 @ Patches/../C_code.c:5920: 				if (disp == 0) { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "HP"); 
 	lsls	r1, r1, #1	@ tmp406, tmp405,
 @ Patches/../C_code.c:5920: 				if (disp == 0) { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "HP"); 
@@ -28493,7 +28484,7 @@ DrawStatByID:
 	str	r2, [sp]	@ disp,
 	movs	r3, #0	@,
 	adds	r2, r2, #3	@,
-	ldr	r7, .L3693+24	@ tmp412,
+	ldr	r7, .L3692+24	@ tmp412,
 	adds	r1, r1, r6	@ tmp407, tmp406, tmp408
 	str	r0, [sp, #8]	@ tmp409, %sfp
 	bl	.L223		@
@@ -28533,7 +28524,7 @@ DrawStatByID:
 @ Patches/../C_code.c:5460:     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
 	movs	r2, r7	@, _23
 	movs	r1, #2	@,
-	ldr	r3, .L3693+32	@ tmp437,
+	ldr	r3, .L3692+32	@ tmp437,
 	adds	r0, r0, r6	@ tmp435, tmp434, tmp408
 @ Patches/../C_code.c:5462:     PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 2, y));
 	adds	r5, r5, #1	@ tmp438,
@@ -28550,21 +28541,21 @@ DrawStatByID:
 	bl	PutNumberBonus		@
 @ Patches/../C_code.c:5924: 				return 1; break; 
 	movs	r0, #1	@ <retval>,
-	b	.L3623		@
-.L3633:
+	b	.L3622		@
+.L3632:
 @ Patches/../C_code.c:5995: 				u8* skillID = CallSkill_Getter(unit); 
-	ldr	r3, .L3693+72	@ tmp613,
+	ldr	r3, .L3692+72	@ tmp613,
 	ldr	r0, [sp, #56]	@, unit
 	bl	.L14		@
 @ Patches/../C_code.c:6002: 						DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + ((i-3)*3), y), skillID[i], 0x4000); }
 	lsls	r6, r6, #5	@ tmp615, y,
 	subs	r5, r5, #13	@ tmp614,
-	ldr	r3, .L3693+16	@ tmp618,
+	ldr	r3, .L3692+16	@ tmp618,
 	adds	r5, r5, r6	@ tmp616, tmp614, tmp615
 	lsls	r5, r5, #1	@ tmp617, tmp616,
 	adds	r5, r5, r3	@ ivtmp.2093, tmp617, tmp618
 @ Patches/../C_code.c:6002: 						DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + ((i-3)*3), y), skillID[i], 0x4000); }
-	ldr	r3, .L3693+76	@ tmp785,
+	ldr	r3, .L3692+76	@ tmp785,
 @ Patches/../C_code.c:5995: 				u8* skillID = CallSkill_Getter(unit); 
 	movs	r7, r0	@ skillID, tmp807
 @ Patches/../C_code.c:5996: 				for (int i = 0; i<6; ++i) { 
@@ -28572,64 +28563,64 @@ DrawStatByID:
 @ Patches/../C_code.c:6002: 						DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + ((i-3)*3), y), skillID[i], 0x4000); }
 	mov	r8, r3	@ tmp785, tmp785
 @ Patches/../C_code.c:5999: 						if (SkillSysInstalled) { 
-	ldr	r6, .L3693+80	@ tmp783,
-.L3660:
+	ldr	r6, .L3692+80	@ tmp783,
+.L3659:
 @ Patches/../C_code.c:5997: 					if (!(*skillID)) { return 0; break; } 
 	ldrb	r3, [r7, r4]	@ _144, MEM[(u8 *)skillID_292 + _496 * 1]
 @ Patches/../C_code.c:5997: 					if (!(*skillID)) { return 0; break; } 
 	cmp	r3, #0	@ _144,
-	beq	.L3648		@,
-.L3692:
+	beq	.L3647		@,
+.L3691:
 @ Patches/../C_code.c:5998: 					if (i > 2) { 
 	cmp	r4, #2	@ i,
-	bgt	.LCB23512	@
-	b	.L3691	@long jump	@
-.LCB23512:
+	bgt	.LCB23504	@
+	b	.L3690	@long jump	@
+.LCB23504:
 @ Patches/../C_code.c:5999: 						if (SkillSysInstalled) { 
 	ldr	r2, [r6]	@ SkillSysInstalled, SkillSysInstalled
 	cmp	r2, #0	@ SkillSysInstalled,
-	bne	.LCB23515	@
-	b	.L3658	@long jump	@
-.LCB23515:
+	bne	.LCB23507	@
+	b	.L3657	@long jump	@
+.LCB23507:
 @ Patches/../C_code.c:6000: 						DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + ((i-3)*3), y), *skillID|0x100, 0x4000); }
 	movs	r1, #128	@ tmp623,
 	movs	r2, #128	@,
 	lsls	r1, r1, #1	@ tmp623, tmp623,
 	orrs	r1, r3	@ tmp622, _144
 	movs	r0, r5	@, ivtmp.2093
-	ldr	r3, .L3693+76	@ tmp624,
+	ldr	r3, .L3692+76	@ tmp624,
 	lsls	r2, r2, #7	@,,
 	bl	.L14		@
-.L3659:
+.L3658:
 @ Patches/../C_code.c:5996: 				for (int i = 0; i<6; ++i) { 
 	adds	r4, r4, #1	@ i,
 @ Patches/../C_code.c:5996: 				for (int i = 0; i<6; ++i) { 
 	cmp	r4, #6	@ i,
-	bne	.LCB23528	@
-	b	.L3648	@long jump	@
-.LCB23528:
+	bne	.LCB23520	@
+	b	.L3647	@long jump	@
+.LCB23520:
 @ Patches/../C_code.c:5997: 					if (!(*skillID)) { return 0; break; } 
 	ldrb	r3, [r7, r4]	@ _144, MEM[(u8 *)skillID_292 + _496 * 1]
 @ Patches/../C_code.c:5996: 				for (int i = 0; i<6; ++i) { 
 	adds	r5, r5, #6	@ ivtmp.2093,
 @ Patches/../C_code.c:5997: 					if (!(*skillID)) { return 0; break; } 
 	cmp	r3, #0	@ _144,
-	bne	.L3692		@,
-	b	.L3648		@
-.L3634:
+	bne	.L3691		@,
+	b	.L3647		@
+.L3633:
 @ Patches/../C_code.c:5983: 				u8* skillID = CallSkill_Getter(unit); 
-	ldr	r3, .L3693+72	@ tmp597,
+	ldr	r3, .L3692+72	@ tmp597,
 	ldr	r0, [sp, #56]	@, unit
 	bl	.L14		@
 	subs	r5, r5, #4	@ tmp598,
 @ Patches/../C_code.c:5989: 					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*3), y), skillID[i], 0x4000); }
 	lsls	r6, r6, #5	@ tmp599, y,
 	adds	r4, r5, r6	@ tmp600, tmp598, tmp599
-	ldr	r3, .L3693+16	@ tmp602,
+	ldr	r3, .L3692+16	@ tmp602,
 	lsls	r4, r4, #1	@ tmp601, tmp600,
 	adds	r4, r4, r3	@ ivtmp.2083, tmp601, tmp602
 @ Patches/../C_code.c:5989: 					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*3), y), skillID[i], 0x4000); }
-	ldr	r3, .L3693+76	@ tmp782,
+	ldr	r3, .L3692+76	@ tmp782,
 @ Patches/../C_code.c:5983: 				u8* skillID = CallSkill_Getter(unit); 
 	movs	r7, r0	@ skillID, tmp806
 @ Patches/../C_code.c:5984: 				for (int i = 0; i<3; ++i) { 
@@ -28637,49 +28628,49 @@ DrawStatByID:
 @ Patches/../C_code.c:5989: 					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*3), y), skillID[i], 0x4000); }
 	mov	r8, r3	@ tmp782, tmp782
 @ Patches/../C_code.c:5986: 					if (SkillSysInstalled) { 
-	ldr	r6, .L3693+80	@ tmp780,
-.L3654:
+	ldr	r6, .L3692+80	@ tmp780,
+.L3653:
 @ Patches/../C_code.c:5985: 				if (!(*skillID)) { return 0; break; } 
 	ldrb	r3, [r7, r5]	@ _120, MEM[(u8 *)skillID_298 + _508 * 1]
 @ Patches/../C_code.c:5985: 				if (!(*skillID)) { return 0; break; } 
 	cmp	r3, #0	@ _120,
-	bne	.LCB23555	@
-	b	.L3648	@long jump	@
-.LCB23555:
+	bne	.LCB23547	@
+	b	.L3647	@long jump	@
+.LCB23547:
 @ Patches/../C_code.c:5986: 					if (SkillSysInstalled) { 
 	ldr	r2, [r6]	@ SkillSysInstalled, SkillSysInstalled
 	cmp	r2, #0	@ SkillSysInstalled,
-	bne	.LCB23558	@
-	b	.L3652	@long jump	@
-.LCB23558:
+	bne	.LCB23550	@
+	b	.L3651	@long jump	@
+.LCB23550:
 @ Patches/../C_code.c:5987: 					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*3), y), *skillID|0x100, 0x4000); }
 	movs	r1, #128	@ tmp607,
 	movs	r2, #128	@,
 	lsls	r1, r1, #1	@ tmp607, tmp607,
 	orrs	r1, r3	@ tmp606, _120
 	movs	r0, r4	@, ivtmp.2083
-	ldr	r3, .L3693+76	@ tmp608,
+	ldr	r3, .L3692+76	@ tmp608,
 	lsls	r2, r2, #7	@,,
 	bl	.L14		@
-.L3653:
+.L3652:
 @ Patches/../C_code.c:5984: 				for (int i = 0; i<3; ++i) { 
 	adds	r5, r5, #1	@ i,
 @ Patches/../C_code.c:5984: 				for (int i = 0; i<3; ++i) { 
 	adds	r4, r4, #6	@ ivtmp.2083,
 	cmp	r5, #3	@ i,
-	bne	.L3654		@,
-	b	.L3648		@
-.L3629:
+	bne	.L3653		@,
+	b	.L3647		@
+.L3628:
 @ Patches/../C_code.c:6054: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
-	ldr	r3, .L3693+8	@ tmp679,
-	ldr	r0, .L3693+84	@,
+	ldr	r3, .L3692+8	@ tmp679,
+	ldr	r0, .L3692+84	@,
 	bl	.L14		@
 @ Patches/../C_code.c:6054: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
 	lsls	r3, r6, #5	@ tmp680, y,
 	subs	r1, r5, #4	@ tmp681, x,
 	adds	r1, r3, r1	@ tmp682, tmp680, tmp681
 @ Patches/../C_code.c:6054: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
-	ldr	r3, .L3693+16	@ tmp685,
+	ldr	r3, .L3692+16	@ tmp685,
 @ Patches/../C_code.c:6054: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
 	lsls	r1, r1, #1	@ tmp683, tmp682,
 @ Patches/../C_code.c:6054: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
@@ -28687,19 +28678,19 @@ DrawStatByID:
 @ Patches/../C_code.c:6054: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
 	adds	r1, r1, r3	@ tmp684, tmp683, tmp685
 @ Patches/../C_code.c:6054: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
-	ldr	r0, .L3693+88	@ tmp686,
-	b	.L3688		@
-.L3631:
+	ldr	r0, .L3692+88	@ tmp686,
+	b	.L3687		@
+.L3630:
 @ Patches/../C_code.c:6038: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
-	ldr	r3, .L3693+8	@ tmp657,
-	ldr	r0, .L3693+92	@,
+	ldr	r3, .L3692+8	@ tmp657,
+	ldr	r0, .L3692+92	@,
 	bl	.L14		@
 @ Patches/../C_code.c:6038: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
 	lsls	r3, r6, #5	@ tmp658, y,
 	subs	r1, r5, #4	@ tmp659, x,
 	adds	r1, r3, r1	@ tmp660, tmp658, tmp659
 @ Patches/../C_code.c:6038: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
-	ldr	r3, .L3693+16	@ tmp663,
+	ldr	r3, .L3692+16	@ tmp663,
 @ Patches/../C_code.c:6038: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
 	lsls	r1, r1, #1	@ tmp661, tmp660,
 @ Patches/../C_code.c:6038: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
@@ -28707,45 +28698,45 @@ DrawStatByID:
 @ Patches/../C_code.c:6038: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
 	adds	r1, r1, r3	@ tmp662, tmp661, tmp663
 @ Patches/../C_code.c:6038: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
-	ldr	r0, .L3693+96	@ tmp664,
-	b	.L3688		@
-.L3632:
+	ldr	r0, .L3692+96	@ tmp664,
+	b	.L3687		@
+.L3631:
 @ Patches/../C_code.c:5916: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mov");
 	subs	r2, r1, #4	@ tmp630, x,
 	lsls	r3, r6, #5	@ tmp629, y,
 @ Patches/../C_code.c:6014: 						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
 	adds	r3, r3, r2	@ tmp631, tmp629, tmp630
 @ Patches/../C_code.c:6014: 						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
-	ldr	r2, .L3693+16	@ tmp633,
+	ldr	r2, .L3692+16	@ tmp633,
 @ Patches/../C_code.c:6014: 						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
 	lsls	r3, r3, #1	@ tmp632, tmp631,
 @ Patches/../C_code.c:6014: 						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
 	adds	r3, r3, r2	@ _409, tmp632, tmp633
 	movs	r7, r3	@ _409, _409
 @ Patches/../C_code.c:6009: 				if (!SkillSysInstalled) { 
-	ldr	r3, .L3693+80	@ tmp634,
+	ldr	r3, .L3692+80	@ tmp634,
 @ Patches/../C_code.c:6009: 				if (!SkillSysInstalled) { 
 	ldr	r2, [r3]	@ SkillSysInstalled, SkillSysInstalled
 	mov	fp, r2	@ SkillSysInstalled, SkillSysInstalled
 	cmp	r2, #0	@ SkillSysInstalled,
-	beq	.LCB23620	@
-	b	.L3661	@long jump	@
-.LCB23620:
+	beq	.LCB23612	@
+	b	.L3660	@long jump	@
+.LCB23612:
 @ Patches/../C_code.c:6010: 					if (UnitHasMagicRank(gStatScreen.unit))
-	ldr	r2, .L3693+28	@ tmp636,
-	ldr	r3, .L3693+100	@ tmp638,
+	ldr	r2, .L3692+28	@ tmp636,
+	ldr	r3, .L3692+100	@ tmp638,
 	ldr	r0, [r2, #12]	@ gStatScreen.unit, gStatScreen.unit
 	mov	r8, r2	@ tmp636, tmp636
 	bl	.L14		@
 	str	r0, [sp, #12]	@ tmp639, %sfp
 @ Patches/../C_code.c:6010: 					if (UnitHasMagicRank(gStatScreen.unit))
 	cmp	r0, #0	@ tmp639,
-	bne	.LCB23628	@
-	b	.L3662	@long jump	@
-.LCB23628:
+	bne	.LCB23620	@
+	b	.L3661	@long jump	@
+.LCB23620:
 @ Patches/../C_code.c:6014: 						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
-	ldr	r3, .L3693+8	@ tmp642,
-	ldr	r0, .L3693+12	@,
+	ldr	r3, .L3692+8	@ tmp642,
+	ldr	r0, .L3692+12	@,
 	bl	.L14		@
 	movs	r3, r0	@ tmp809,
 @ Patches/../C_code.c:6014: 						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
@@ -28755,24 +28746,24 @@ DrawStatByID:
 	movs	r3, #0	@,
 	str	r2, [sp]	@ SkillSysInstalled,
 	adds	r0, r0, #48	@ tmp636,
-.L3687:
+.L3686:
 @ Patches/../C_code.c:6030: 				else { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_POWLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FE)); } 
 	movs	r1, r7	@, _409
 	movs	r2, #3	@,
-	ldr	r7, .L3693+24	@ tmp655,
+	ldr	r7, .L3692+24	@ tmp655,
 	bl	.L223		@
-	b	.L3624		@
-.L3630:
+	b	.L3623		@
+.L3629:
 @ Patches/../C_code.c:6046: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SPDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4ED));
-	ldr	r3, .L3693+8	@ tmp668,
-	ldr	r0, .L3693+104	@,
+	ldr	r3, .L3692+8	@ tmp668,
+	ldr	r0, .L3692+104	@,
 	bl	.L14		@
 @ Patches/../C_code.c:6046: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SPDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4ED));
 	lsls	r3, r6, #5	@ tmp669, y,
 	subs	r1, r5, #4	@ tmp670, x,
 	adds	r1, r3, r1	@ tmp671, tmp669, tmp670
 @ Patches/../C_code.c:6046: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SPDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4ED));
-	ldr	r3, .L3693+16	@ tmp674,
+	ldr	r3, .L3692+16	@ tmp674,
 @ Patches/../C_code.c:6046: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SPDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4ED));
 	lsls	r1, r1, #1	@ tmp672, tmp671,
 @ Patches/../C_code.c:6046: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SPDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4ED));
@@ -28780,12 +28771,12 @@ DrawStatByID:
 @ Patches/../C_code.c:6046: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SPDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4ED));
 	adds	r1, r1, r3	@ tmp673, tmp672, tmp674
 @ Patches/../C_code.c:6046: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SPDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4ED));
-	ldr	r0, .L3693+108	@ tmp675,
-	b	.L3688		@
-.L3627:
+	ldr	r0, .L3692+108	@ tmp675,
+	b	.L3687		@
+.L3626:
 @ Patches/../C_code.c:6070: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4F0));
 	movs	r0, #158	@,
-	ldr	r3, .L3693+8	@ tmp701,
+	ldr	r3, .L3692+8	@ tmp701,
 	lsls	r0, r0, #3	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:6070: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4F0));
@@ -28793,7 +28784,7 @@ DrawStatByID:
 	subs	r1, r5, #4	@ tmp703, x,
 	adds	r1, r3, r1	@ tmp704, tmp702, tmp703
 @ Patches/../C_code.c:6070: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4F0));
-	ldr	r3, .L3693+16	@ tmp707,
+	ldr	r3, .L3692+16	@ tmp707,
 @ Patches/../C_code.c:6070: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4F0));
 	lsls	r1, r1, #1	@ tmp705, tmp704,
 @ Patches/../C_code.c:6070: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4F0));
@@ -28801,13 +28792,13 @@ DrawStatByID:
 @ Patches/../C_code.c:6070: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4F0));
 	adds	r1, r1, r3	@ tmp706, tmp705, tmp707
 @ Patches/../C_code.c:6070: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4F0));
-	ldr	r0, .L3693+112	@ tmp708,
-	b	.L3688		@
-.L3694:
-	.align	2
+	ldr	r0, .L3692+112	@ tmp708,
+	b	.L3687		@
 .L3693:
+	.align	2
+.L3692:
 	.word	gStatScreenFunction
-	.word	.L3626
+	.word	.L3625
 	.word	GetStringFromIndex
 	.word	1279
 	.word	gUiTmScratchA
@@ -28835,28 +28826,28 @@ DrawStatByID:
 	.word	1261
 	.word	gStatScreen+64
 	.word	gStatScreen+88
-.L3640:
+.L3639:
 @ Patches/../C_code.c:5933: 				int icon = GetUnitAidIconId(UNIT_CATTRIBUTES(gStatScreen.unit)); 
-	ldr	r3, .L3695	@ tmp478,
+	ldr	r3, .L3694	@ tmp478,
 	ldr	r3, [r3, #12]	@ _39, gStatScreen.unit
 	ldmia	r3, {r2, r3}	@ _39,,
 @ Patches/../C_code.c:5933: 				int icon = GetUnitAidIconId(UNIT_CATTRIBUTES(gStatScreen.unit)); 
 	ldr	r3, [r3, #40]	@ _43->attributes, _43->attributes
 	ldr	r0, [r2, #40]	@ _40->attributes, _40->attributes
 	orrs	r0, r3	@ tmp481, _43->attributes
-	ldr	r3, .L3695+4	@ tmp484,
+	ldr	r3, .L3694+4	@ tmp484,
 	bl	.L14		@
 @ Patches/../C_code.c:5934: 				if (SkillSysInstalled) { icon |= IconOrr*3; } 
-	ldr	r3, .L3695+8	@ tmp485,
+	ldr	r3, .L3694+8	@ tmp485,
 @ Patches/../C_code.c:5934: 				if (SkillSysInstalled) { icon |= IconOrr*3; } 
 	ldr	r3, [r3]	@ SkillSysInstalled, SkillSysInstalled
 @ Patches/../C_code.c:5933: 				int icon = GetUnitAidIconId(UNIT_CATTRIBUTES(gStatScreen.unit)); 
 	mov	r9, r0	@ icon, tmp798
 @ Patches/../C_code.c:5934: 				if (SkillSysInstalled) { icon |= IconOrr*3; } 
 	cmp	r3, #0	@ SkillSysInstalled,
-	beq	.L3647		@,
+	beq	.L3646		@,
 @ Patches/../C_code.c:5934: 				if (SkillSysInstalled) { icon |= IconOrr*3; } 
-	ldr	r3, .L3695+12	@ tmp487,
+	ldr	r3, .L3694+12	@ tmp487,
 	ldr	r2, [r3]	@ IconOrr, IconOrr
 	lsls	r3, r2, #1	@ tmp490, IconOrr,
 	adds	r3, r3, r2	@ tmp491, tmp490, IconOrr
@@ -28864,16 +28855,16 @@ DrawStatByID:
 	movs	r2, r0	@ icon, icon
 	orrs	r2, r3	@ icon, tmp491
 	mov	r9, r2	@ icon, icon
-.L3647:
+.L3646:
 @ Patches/../C_code.c:5935: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AIDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Aid");
-	ldr	r3, .L3695+16	@ tmp498,
+	ldr	r3, .L3694+16	@ tmp498,
 	str	r3, [sp, #4]	@ tmp498,
 	movs	r3, #0	@ tmp499,
 @ Patches/../C_code.c:5935: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AIDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Aid");
 	lsls	r6, r6, #5	@ _49, y,
 	subs	r1, r5, #4	@ tmp492, x,
 @ Patches/../C_code.c:5935: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AIDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Aid");
-	ldr	r7, .L3695+20	@ tmp496,
+	ldr	r7, .L3694+20	@ tmp496,
 @ Patches/../C_code.c:5935: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AIDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Aid");
 	adds	r1, r1, r6	@ tmp493, tmp492, _49
 @ Patches/../C_code.c:5935: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AIDLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Aid");
@@ -28882,12 +28873,12 @@ DrawStatByID:
 	adds	r1, r1, r7	@ tmp495, tmp494, tmp496
 	movs	r2, #3	@,
 	str	r3, [sp]	@ tmp499,
-	ldr	r0, .L3695+24	@ tmp497,
-	ldr	r4, .L3695+28	@ tmp500,
+	ldr	r0, .L3694+24	@ tmp497,
+	ldr	r4, .L3694+28	@ tmp500,
 	bl	.L240		@
 @ Patches/../C_code.c:5936: 				PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y), blue,
 	ldr	r0, [sp, #56]	@, unit
-	ldr	r3, .L3695+32	@ tmp501,
+	ldr	r3, .L3694+32	@ tmp501,
 	bl	.L14		@
 @ Patches/../C_code.c:5936: 				PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y), blue,
 	adds	r3, r6, r5	@ tmp502, _49, x
@@ -28900,7 +28891,7 @@ DrawStatByID:
 @ Patches/../C_code.c:5936: 				PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y), blue,
 	adds	r0, r3, r7	@ tmp504, tmp503, tmp496
 @ Patches/../C_code.c:5936: 				PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y), blue,
-	ldr	r3, .L3695+36	@ tmp506,
+	ldr	r3, .L3694+36	@ tmp506,
 	bl	.L14		@
 @ Patches/../C_code.c:5938: 				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x+1, y),
 	movs	r2, #160	@,
@@ -28912,30 +28903,30 @@ DrawStatByID:
 @ Patches/../C_code.c:5938: 				DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x+1, y),
 	adds	r0, r3, r7	@ tmp511, tmp510, tmp496
 	mov	r1, r9	@, icon
-	ldr	r3, .L3695+40	@ tmp513,
+	ldr	r3, .L3694+40	@ tmp513,
 	lsls	r2, r2, #7	@,,
 	bl	.L14		@
 @ Patches/../C_code.c:5940: 				return 0; break;
-	b	.L3648		@
-.L3641:
+	b	.L3647		@
+.L3640:
 @ Patches/../C_code.c:5927: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_CONLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Con");
 	subs	r3, r5, #4	@ tmp444, x,
 	lsls	r1, r6, #5	@ tmp443, y,
 	adds	r1, r1, r3	@ tmp445, tmp443, tmp444
 @ Patches/../C_code.c:5927: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_CONLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Con");
-	ldr	r3, .L3695+20	@ tmp448,
+	ldr	r3, .L3694+20	@ tmp448,
 @ Patches/../C_code.c:5927: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_CONLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Con");
 	lsls	r1, r1, #1	@ tmp446, tmp445,
 @ Patches/../C_code.c:5927: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_CONLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Con");
 	adds	r1, r1, r3	@ tmp447, tmp446, tmp448
-	ldr	r0, .L3695+44	@ tmp449,
-	ldr	r3, .L3695+48	@ tmp450,
-.L3684:
+	ldr	r0, .L3694+44	@ tmp449,
+	ldr	r3, .L3694+48	@ tmp450,
+.L3683:
 	str	r3, [sp, #4]	@ tmp450,
 	movs	r3, #0	@ tmp451,
 	movs	r2, #3	@,
 	str	r3, [sp]	@ tmp451,
-	ldr	r7, .L3695+28	@ tmp452,
+	ldr	r7, .L3694+28	@ tmp452,
 	bl	.L223		@
 @ Patches/../C_code.c:5928: 				DrawStatWithBar(barID, x, y, gStatScreenFunction[id].GetUnitUnadjustedStat(unit),
 	ldr	r3, [sp, #60]	@ tmp871, id
@@ -28962,73 +28953,73 @@ DrawStatByID:
 	mov	r0, r9	@, barID
 	movs	r1, r5	@, x
 	str	r7, [sp]	@ _36,
-	ldr	r4, .L3695+52	@ tmp477,
+	ldr	r4, .L3694+52	@ tmp477,
 	bl	.L240		@
 @ Patches/../C_code.c:5924: 				return 1; break; 
 	movs	r0, #1	@ <retval>,
-	b	.L3623		@
-.L3637:
+	b	.L3622		@
+.L3636:
 @ Patches/../C_code.c:5957: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_STATUS,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Cond");
 	subs	r3, r5, #4	@ tmp552, x,
 	lsls	r1, r6, #5	@ tmp551, y,
 	adds	r1, r1, r3	@ tmp553, tmp551, tmp552
 @ Patches/../C_code.c:5957: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_STATUS,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Cond");
-	ldr	r3, .L3695+20	@ tmp556,
+	ldr	r3, .L3694+20	@ tmp556,
 @ Patches/../C_code.c:5957: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_STATUS,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Cond");
 	lsls	r1, r1, #1	@ tmp554, tmp553,
 @ Patches/../C_code.c:5957: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_STATUS,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Cond");
 	adds	r1, r1, r3	@ tmp555, tmp554, tmp556
-	ldr	r3, .L3695+56	@ tmp558,
+	ldr	r3, .L3694+56	@ tmp558,
 	str	r3, [sp, #4]	@ tmp558,
 	movs	r3, #0	@ tmp559,
 	movs	r2, #3	@,
-	ldr	r0, .L3695+60	@ tmp557,
+	ldr	r0, .L3694+60	@ tmp557,
 	str	r3, [sp]	@ tmp559,
-	ldr	r4, .L3695+28	@ tmp560,
+	ldr	r4, .L3694+28	@ tmp560,
 	bl	.L240		@
 @ Patches/../C_code.c:5958: 				DrawStatus(x+1, y); 
 	movs	r1, r6	@, y
 	adds	r0, r5, #1	@ tmp561, x,
 	bl	DrawStatus		@
 @ Patches/../C_code.c:5959: 				return 0; break;
-	b	.L3648		@
-.L3639:
+	b	.L3647		@
+.L3638:
 @ Patches/../C_code.c:5943: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Trv");
 	lsls	r1, r6, #5	@ tmp514, y,
 	subs	r5, r5, #4	@ tmp515,
 @ Patches/../C_code.c:5943: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Trv");
-	ldr	r3, .L3695+20	@ tmp519,
+	ldr	r3, .L3694+20	@ tmp519,
 @ Patches/../C_code.c:5943: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Trv");
 	adds	r1, r1, r5	@ tmp516, tmp514, tmp515
 @ Patches/../C_code.c:5943: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Trv");
 	lsls	r1, r1, #1	@ tmp517, tmp516,
 @ Patches/../C_code.c:5943: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Trv");
 	adds	r1, r1, r3	@ tmp518, tmp517, tmp519
-	ldr	r3, .L3695+64	@ tmp521,
+	ldr	r3, .L3694+64	@ tmp521,
 	str	r3, [sp, #4]	@ tmp521,
 	movs	r3, #0	@ tmp522,
-	ldr	r4, .L3695+68	@ tmp520,
+	ldr	r4, .L3694+68	@ tmp520,
 	str	r3, [sp]	@ tmp522,
-.L3685:
+.L3684:
 	movs	r0, r4	@, tmp520
 	movs	r2, #3	@,
-	ldr	r5, .L3695+28	@ tmp523,
-	bl	.L3232		@
+	ldr	r5, .L3694+28	@ tmp523,
+	bl	.L3231		@
 @ Patches/../C_code.c:5944: 				Text_InsertDrawString(&gStatScreen.text[STATSCREEN_TEXT_RESCUENAME], 24, blue, GetUnitRescueName(unit));
 	ldr	r0, [sp, #56]	@, unit
-	ldr	r3, .L3695+72	@ tmp524,
-	b	.L3686		@
-.L3628:
+	ldr	r3, .L3694+72	@ tmp524,
+	b	.L3685		@
+.L3627:
 @ Patches/../C_code.c:6062: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_DEFLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EF));
-	ldr	r3, .L3695+76	@ tmp690,
-	ldr	r0, .L3695+80	@,
+	ldr	r3, .L3694+76	@ tmp690,
+	ldr	r0, .L3694+80	@,
 	bl	.L14		@
 @ Patches/../C_code.c:6062: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_DEFLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EF));
 	lsls	r3, r6, #5	@ tmp691, y,
 	subs	r1, r5, #4	@ tmp692, x,
 	adds	r1, r3, r1	@ tmp693, tmp691, tmp692
 @ Patches/../C_code.c:6062: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_DEFLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EF));
-	ldr	r3, .L3695+20	@ tmp696,
+	ldr	r3, .L3694+20	@ tmp696,
 @ Patches/../C_code.c:6062: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_DEFLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EF));
 	lsls	r1, r1, #1	@ tmp694, tmp693,
 @ Patches/../C_code.c:6062: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_DEFLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EF));
@@ -29036,12 +29027,12 @@ DrawStatByID:
 @ Patches/../C_code.c:6062: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_DEFLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EF));
 	adds	r1, r1, r3	@ tmp695, tmp694, tmp696
 @ Patches/../C_code.c:6062: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_DEFLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EF));
-	ldr	r0, .L3695+84	@ tmp697,
-	b	.L3688		@
-.L3638:
+	ldr	r0, .L3694+84	@ tmp697,
+	b	.L3687		@
+.L3637:
 @ Patches/../C_code.c:5948: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AFFINLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Affin");
-	ldr	r3, .L3695+88	@ tmp533,
-	ldr	r4, .L3695+92	@ tmp532,
+	ldr	r3, .L3694+88	@ tmp533,
+	ldr	r4, .L3694+92	@ tmp532,
 	str	r3, [sp, #4]	@ tmp533,
 	movs	r3, #0	@ tmp534,
 	mov	r9, r4	@ tmp532, tmp532
@@ -29049,7 +29040,7 @@ DrawStatByID:
 	lsls	r6, r6, #5	@ _73, y,
 	subs	r1, r1, #4	@ tmp527,
 @ Patches/../C_code.c:5948: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AFFINLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Affin");
-	ldr	r7, .L3695+20	@ tmp778,
+	ldr	r7, .L3694+20	@ tmp778,
 @ Patches/../C_code.c:5948: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AFFINLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Affin");
 	adds	r1, r1, r6	@ tmp528, tmp527, _73
 @ Patches/../C_code.c:5948: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_AFFINLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Affin");
@@ -29059,30 +29050,30 @@ DrawStatByID:
 	adds	r1, r7, r1	@ tmp530, tmp778, tmp529
 	movs	r2, #3	@,
 	str	r3, [sp]	@ tmp534,
-	ldr	r4, .L3695+28	@ tmp535,
+	ldr	r4, .L3694+28	@ tmp535,
 	bl	.L240		@
 @ Patches/../C_code.c:5949: 				int icon = GetUnitAffinityIcon(gStatScreen.unit); 
 	mov	r4, r9	@ tmp532, tmp532
 	subs	r4, r4, #128	@ tmp532,
-	ldr	r3, .L3695+96	@ tmp538,
+	ldr	r3, .L3694+96	@ tmp538,
 	ldr	r0, [r4, #12]	@ gStatScreen.unit, gStatScreen.unit
 	bl	.L14		@
 @ Patches/../C_code.c:5950: 				if (SkillSysInstalled) { icon |= IconOrr*2; } 
-	ldr	r3, .L3695+8	@ tmp539,
+	ldr	r3, .L3694+8	@ tmp539,
 @ Patches/../C_code.c:5950: 				if (SkillSysInstalled) { icon |= IconOrr*2; } 
 	ldr	r3, [r3]	@ SkillSysInstalled, SkillSysInstalled
 @ Patches/../C_code.c:5949: 				int icon = GetUnitAffinityIcon(gStatScreen.unit); 
 	movs	r1, r0	@ icon, tmp801
 @ Patches/../C_code.c:5950: 				if (SkillSysInstalled) { icon |= IconOrr*2; } 
 	cmp	r3, #0	@ SkillSysInstalled,
-	beq	.L3649		@,
+	beq	.L3648		@,
 @ Patches/../C_code.c:5950: 				if (SkillSysInstalled) { icon |= IconOrr*2; } 
-	ldr	r3, .L3695+12	@ tmp541,
+	ldr	r3, .L3694+12	@ tmp541,
 	ldr	r3, [r3]	@ IconOrr, IconOrr
 	lsls	r3, r3, #1	@ tmp542, IconOrr,
 @ Patches/../C_code.c:5950: 				if (SkillSysInstalled) { icon |= IconOrr*2; } 
 	orrs	r1, r3	@ icon, tmp542
-.L3649:
+.L3648:
 @ Patches/../C_code.c:5951: 				DrawIcon(
 	movs	r2, #160	@,
 @ Patches/../C_code.c:5952: 					gUiTmScratchA + TILEMAP_INDEX(x-1, y),
@@ -29093,11 +29084,11 @@ DrawStatByID:
 @ Patches/../C_code.c:5951: 				DrawIcon(
 	adds	r0, r7, r3	@ tmp548, tmp778, tmp547
 	lsls	r2, r2, #7	@,,
-	ldr	r3, .L3695+40	@ tmp550,
+	ldr	r3, .L3694+40	@ tmp550,
 	bl	.L14		@
 @ Patches/../C_code.c:5954: 				return 0; break;
-	b	.L3648		@
-.L3658:
+	b	.L3647		@
+.L3657:
 @ Patches/../C_code.c:6002: 						DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + ((i-3)*3), y), skillID[i], 0x4000); }
 	movs	r2, #128	@,
 @ Patches/../C_code.c:6002: 						DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + ((i-3)*3), y), skillID[i], 0x4000); }
@@ -29107,14 +29098,14 @@ DrawStatByID:
 	ldrb	r1, [r7, r3]	@ MEM[(u8 *)skillID_292 + _494 * 1], MEM[(u8 *)skillID_292 + _494 * 1]
 	lsls	r2, r2, #7	@,,
 	bl	.L179		@
-	b	.L3659		@
-.L3691:
+	b	.L3658		@
+.L3690:
 @ Patches/../C_code.c:5996: 				for (int i = 0; i<6; ++i) { 
 	adds	r4, r4, #1	@ i,
 @ Patches/../C_code.c:5996: 				for (int i = 0; i<6; ++i) { 
 	adds	r5, r5, #6	@ ivtmp.2093,
-	b	.L3660		@
-.L3652:
+	b	.L3659		@
+.L3651:
 @ Patches/../C_code.c:5989: 					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*3), y), skillID[i], 0x4000); }
 	movs	r2, #128	@,
 @ Patches/../C_code.c:5989: 					DrawIcon(gUiTmScratchA + TILEMAP_INDEX(x-4 + (i*3), y), skillID[i], 0x4000); }
@@ -29124,31 +29115,31 @@ DrawStatByID:
 	ldrb	r1, [r7, r3]	@ MEM[(u8 *)skillID_298 + _507 * 1], MEM[(u8 *)skillID_298 + _507 * 1]
 	lsls	r2, r2, #7	@,,
 	bl	.L179		@
-	b	.L3653		@
-.L3650:
+	b	.L3652		@
+.L3649:
 @ Patches/../C_code.c:5972: 					PutDrawText(gStatScreen.text + STATSCREEN_TEXT_RESCUENAME,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Trv");
-	ldr	r3, .L3695+64	@ tmp581,
+	ldr	r3, .L3694+64	@ tmp581,
 	str	r0, [sp]	@ talk_uid,
 	str	r3, [sp, #4]	@ tmp581,
 	subs	r4, r4, #24	@ tmp580,
 	movs	r3, #0	@,
-	b	.L3685		@
-.L3661:
+	b	.L3684		@
+.L3660:
 @ Patches/../C_code.c:6030: 				else { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_POWLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FE)); } 
-	ldr	r3, .L3695+76	@ tmp652,
-	ldr	r0, .L3695+100	@,
+	ldr	r3, .L3694+76	@ tmp652,
+	ldr	r0, .L3694+100	@,
 	bl	.L14		@
 	movs	r3, r0	@ tmp811,
 @ Patches/../C_code.c:6030: 				else { PutDrawText(gStatScreen.text + STATSCREEN_TEXT_POWLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FE)); } 
 	str	r3, [sp, #4]	@ tmp811,
 	movs	r3, #0	@ tmp654,
-	ldr	r0, .L3695+104	@ tmp653,
+	ldr	r0, .L3694+104	@ tmp653,
 	str	r3, [sp]	@ tmp654,
-	b	.L3687		@
-.L3662:
+	b	.L3686		@
+.L3661:
 @ Patches/../C_code.c:6023: 						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL], gUiTmScratchA + TILEMAP_INDEX(x-4, y), gold, 0, 0, GetStringFromIndex(0x4FE)); // Str
-	ldr	r3, .L3695+76	@ tmp647,
-	ldr	r0, .L3695+100	@,
+	ldr	r3, .L3694+76	@ tmp647,
+	ldr	r0, .L3694+100	@,
 	bl	.L14		@
 	movs	r3, r0	@ tmp810,
 @ Patches/../C_code.c:6023: 						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL], gUiTmScratchA + TILEMAP_INDEX(x-4, y), gold, 0, 0, GetStringFromIndex(0x4FE)); // Str
@@ -29158,24 +29149,24 @@ DrawStatByID:
 	adds	r0, r0, #48	@ tmp636,
 	str	r3, [sp]	@ tmp639,
 	movs	r3, #0	@,
-	b	.L3687		@
-.L3690:
+	b	.L3686		@
+.L3689:
 @ Patches/../C_code.c:5916: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mov");
 	subs	r3, r5, #4	@ tmp370, x,
 	lsls	r1, r6, #5	@ tmp369, y,
 	adds	r1, r1, r3	@ tmp371, tmp369, tmp370
 @ Patches/../C_code.c:5916: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mov");
-	ldr	r3, .L3695+20	@ tmp374,
+	ldr	r3, .L3694+20	@ tmp374,
 @ Patches/../C_code.c:5916: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mov");
 	lsls	r1, r1, #1	@ tmp372, tmp371,
 @ Patches/../C_code.c:5916: 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_MOVLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mov");
 	adds	r1, r1, r3	@ tmp373, tmp372, tmp374
-	ldr	r0, .L3695+108	@ tmp375,
-	ldr	r3, .L3695+112	@ tmp376,
-	b	.L3684		@
-.L3696:
-	.align	2
+	ldr	r0, .L3694+108	@ tmp375,
+	ldr	r3, .L3694+112	@ tmp376,
+	b	.L3683		@
 .L3695:
+	.align	2
+.L3694:
 	.word	gStatScreen
 	.word	GetUnitAidIconId
 	.word	SkillSysInstalled
@@ -29225,16 +29216,16 @@ GetIconCoordFromStatScreenLayout:
 	movs	r6, r5	@ result$x, result$y
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	movs	r2, #0	@ i,
-	ldr	r1, .L3704	@ ivtmp.2106,
+	ldr	r1, .L3703	@ ivtmp.2106,
 @ Patches/../C_code.c:6117: struct Vec2 GetIconCoordFromStatScreenLayout(int id) { 
-	ldr	r3, .L3704+4	@ ivtmp.2107,
+	ldr	r3, .L3703+4	@ ivtmp.2107,
 	sub	sp, sp, #8	@,,
-.L3702:
+.L3701:
 @ Patches/../C_code.c:6122: 		if (gStatScreenFunction[i].specialCase == id) { 
 	ldr	r4, [r1]	@ MEM[(int *)_3], MEM[(int *)_3]
 	cmp	r0, r4	@ id, MEM[(int *)_3]
-	beq	.L3703		@,
-.L3698:
+	beq	.L3702		@,
+.L3697:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r3, r3, #2	@ tmp128,
 	lsls	r3, r3, #16	@ tmp129, tmp128,
@@ -29244,7 +29235,7 @@ GetIconCoordFromStatScreenLayout:
 	adds	r1, r1, #20	@ ivtmp.2106,
 	lsrs	r3, r3, #16	@ ivtmp.2107, tmp129,
 	cmp	r2, #16	@ i,
-	bne	.L3702		@,
+	bne	.L3701		@,
 @ Patches/../C_code.c:6126: 	return result; 
 	lsls	r0, r6, #16	@ tmp145, result$x,
 	lsls	r5, r5, #16	@ tmp143, result$y,
@@ -29256,10 +29247,10 @@ GetIconCoordFromStatScreenLayout:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L3703:
+.L3702:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	cmp	r2, #7	@ i,
-	bgt	.L3699		@,
+	bgt	.L3698		@,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r5, r3	@ tmp125, ivtmp.2107
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
@@ -29278,18 +29269,18 @@ GetIconCoordFromStatScreenLayout:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r1, r1, #20	@ ivtmp.2106,
 	lsrs	r3, r3, #16	@ ivtmp.2107, tmp127,
-	b	.L3702		@
-.L3699:
+	b	.L3701		@
+.L3698:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	lsls	r5, r3, #16	@ result$y, ivtmp.2107,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r6, #21	@ result$x,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	asrs	r5, r5, #16	@ result$y, result$y,
-	b	.L3698		@
-.L3705:
-	.align	2
+	b	.L3697		@
 .L3704:
+	.align	2
+.L3703:
 	.word	gStatScreenFunction
 	.word	65523
 	.size	GetIconCoordFromStatScreenLayout, .-GetIconCoordFromStatScreenLayout
@@ -29312,16 +29303,16 @@ GetTrvCoordFromStatScreenLayout:
 	movs	r5, r4	@ result$x, result$y
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	movs	r2, #0	@ i,
-	ldr	r1, .L3713	@ ivtmp.2122,
+	ldr	r1, .L3712	@ ivtmp.2122,
 @ Patches/../C_code.c:6128: struct Vec2 GetTrvCoordFromStatScreenLayout() { 
-	ldr	r3, .L3713+4	@ ivtmp.2123,
+	ldr	r3, .L3712+4	@ ivtmp.2123,
 	sub	sp, sp, #12	@,,
-.L3711:
+.L3710:
 @ Patches/../C_code.c:6122: 		if (gStatScreenFunction[i].specialCase == id) { 
 	ldr	r0, [r1]	@ MEM[(int *)_6], MEM[(int *)_6]
 	cmp	r0, #4	@ MEM[(int *)_6],
-	beq	.L3712		@,
-.L3707:
+	beq	.L3711		@,
+.L3706:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r3, r3, #2	@ tmp127,
 	lsls	r3, r3, #16	@ tmp128, tmp127,
@@ -29331,7 +29322,7 @@ GetTrvCoordFromStatScreenLayout:
 	adds	r1, r1, #20	@ ivtmp.2122,
 	lsrs	r3, r3, #16	@ ivtmp.2123, tmp128,
 	cmp	r2, #16	@ i,
-	bne	.L3711		@,
+	bne	.L3710		@,
 @ Patches/../C_code.c:6129: 	return GetIconCoordFromStatScreenLayout(4); 
 	lsls	r0, r5, #16	@ tmp144, result$x,
 	lsls	r4, r4, #16	@ tmp142, result$y,
@@ -29343,10 +29334,10 @@ GetTrvCoordFromStatScreenLayout:
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
-.L3712:
+.L3711:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	cmp	r2, #7	@ i,
-	bgt	.L3708		@,
+	bgt	.L3707		@,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r4, r3	@ tmp124, ivtmp.2123
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
@@ -29365,18 +29356,18 @@ GetTrvCoordFromStatScreenLayout:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r1, r1, #20	@ ivtmp.2122,
 	lsrs	r3, r3, #16	@ ivtmp.2123, tmp126,
-	b	.L3711		@
-.L3708:
+	b	.L3710		@
+.L3707:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	lsls	r4, r3, #16	@ result$y, ivtmp.2123,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r5, #21	@ result$x,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	asrs	r4, r4, #16	@ result$y, result$y,
-	b	.L3707		@
-.L3714:
-	.align	2
+	b	.L3706		@
 .L3713:
+	.align	2
+.L3712:
 	.word	gStatScreenFunction
 	.word	65523
 	.size	GetTrvCoordFromStatScreenLayout, .-GetTrvCoordFromStatScreenLayout
@@ -29399,16 +29390,16 @@ GetSklCoordFromStatScreenLayout:
 	movs	r5, r4	@ result$x, result$y
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	movs	r2, #0	@ i,
-	ldr	r1, .L3722	@ ivtmp.2138,
+	ldr	r1, .L3721	@ ivtmp.2138,
 @ Patches/../C_code.c:6131: struct Vec2 GetSklCoordFromStatScreenLayout() { 
-	ldr	r3, .L3722+4	@ ivtmp.2139,
+	ldr	r3, .L3721+4	@ ivtmp.2139,
 	sub	sp, sp, #12	@,,
-.L3720:
+.L3719:
 @ Patches/../C_code.c:6122: 		if (gStatScreenFunction[i].specialCase == id) { 
 	ldr	r0, [r1]	@ MEM[(int *)_6], MEM[(int *)_6]
 	cmp	r0, #12	@ MEM[(int *)_6],
-	beq	.L3721		@,
-.L3716:
+	beq	.L3720		@,
+.L3715:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r3, r3, #2	@ tmp127,
 	lsls	r3, r3, #16	@ tmp128, tmp127,
@@ -29418,7 +29409,7 @@ GetSklCoordFromStatScreenLayout:
 	adds	r1, r1, #20	@ ivtmp.2138,
 	lsrs	r3, r3, #16	@ ivtmp.2139, tmp128,
 	cmp	r2, #16	@ i,
-	bne	.L3720		@,
+	bne	.L3719		@,
 @ Patches/../C_code.c:6132: 	return GetIconCoordFromStatScreenLayout(12); 
 	lsls	r0, r5, #16	@ tmp144, result$x,
 	lsls	r4, r4, #16	@ tmp142, result$y,
@@ -29430,10 +29421,10 @@ GetSklCoordFromStatScreenLayout:
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
-.L3721:
+.L3720:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	cmp	r2, #7	@ i,
-	bgt	.L3717		@,
+	bgt	.L3716		@,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r4, r3	@ tmp124, ivtmp.2139
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
@@ -29452,18 +29443,18 @@ GetSklCoordFromStatScreenLayout:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r1, r1, #20	@ ivtmp.2138,
 	lsrs	r3, r3, #16	@ ivtmp.2139, tmp126,
-	b	.L3720		@
-.L3717:
+	b	.L3719		@
+.L3716:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	lsls	r4, r3, #16	@ result$y, ivtmp.2139,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r5, #21	@ result$x,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	asrs	r4, r4, #16	@ result$y, result$y,
-	b	.L3716		@
-.L3723:
-	.align	2
+	b	.L3715		@
 .L3722:
+	.align	2
+.L3721:
 	.word	gStatScreenFunction
 	.word	65523
 	.size	GetSklCoordFromStatScreenLayout, .-GetSklCoordFromStatScreenLayout
@@ -29486,16 +29477,16 @@ GetSpdCoordFromStatScreenLayout:
 	movs	r5, r4	@ result$x, result$y
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	movs	r2, #0	@ i,
-	ldr	r1, .L3731	@ ivtmp.2154,
+	ldr	r1, .L3730	@ ivtmp.2154,
 @ Patches/../C_code.c:6134: struct Vec2 GetSpdCoordFromStatScreenLayout() { 
-	ldr	r3, .L3731+4	@ ivtmp.2155,
+	ldr	r3, .L3730+4	@ ivtmp.2155,
 	sub	sp, sp, #12	@,,
-.L3729:
+.L3728:
 @ Patches/../C_code.c:6122: 		if (gStatScreenFunction[i].specialCase == id) { 
 	ldr	r0, [r1]	@ MEM[(int *)_6], MEM[(int *)_6]
 	cmp	r0, #13	@ MEM[(int *)_6],
-	beq	.L3730		@,
-.L3725:
+	beq	.L3729		@,
+.L3724:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r3, r3, #2	@ tmp127,
 	lsls	r3, r3, #16	@ tmp128, tmp127,
@@ -29505,7 +29496,7 @@ GetSpdCoordFromStatScreenLayout:
 	adds	r1, r1, #20	@ ivtmp.2154,
 	lsrs	r3, r3, #16	@ ivtmp.2155, tmp128,
 	cmp	r2, #16	@ i,
-	bne	.L3729		@,
+	bne	.L3728		@,
 @ Patches/../C_code.c:6135: 	return GetIconCoordFromStatScreenLayout(13); 
 	lsls	r0, r5, #16	@ tmp144, result$x,
 	lsls	r4, r4, #16	@ tmp142, result$y,
@@ -29517,10 +29508,10 @@ GetSpdCoordFromStatScreenLayout:
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
-.L3730:
+.L3729:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	cmp	r2, #7	@ i,
-	bgt	.L3726		@,
+	bgt	.L3725		@,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r4, r3	@ tmp124, ivtmp.2155
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
@@ -29539,18 +29530,18 @@ GetSpdCoordFromStatScreenLayout:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r1, r1, #20	@ ivtmp.2154,
 	lsrs	r3, r3, #16	@ ivtmp.2155, tmp126,
-	b	.L3729		@
-.L3726:
+	b	.L3728		@
+.L3725:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	lsls	r4, r3, #16	@ result$y, ivtmp.2155,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r5, #21	@ result$x,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	asrs	r4, r4, #16	@ result$y, result$y,
-	b	.L3725		@
-.L3732:
-	.align	2
+	b	.L3724		@
 .L3731:
+	.align	2
+.L3730:
 	.word	gStatScreenFunction
 	.word	65523
 	.size	GetSpdCoordFromStatScreenLayout, .-GetSpdCoordFromStatScreenLayout
@@ -29567,13 +29558,13 @@ PageNumCtrl_DisplayBlinkIcons:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, r7, lr}	@
 @ Patches/../C_code.c:6140:     s8 displayIcon = (GetGameClock() % 32) < 20;
-	ldr	r3, .L3784	@ tmp200,
+	ldr	r3, .L3783	@ tmp200,
 @ Patches/../C_code.c:6139: {
 	sub	sp, sp, #20	@,,
 @ Patches/../C_code.c:6140:     s8 displayIcon = (GetGameClock() % 32) < 20;
 	bl	.L14		@
 @ Patches/../C_code.c:6142:     u16 palidLut[3] = { 0xC, 0xE, 0xD }; // TODO: palid constants
-	ldr	r3, .L3784+4	@ tmp201,
+	ldr	r3, .L3783+4	@ tmp201,
 	mov	r2, sp	@ tmp327,
 	str	r3, [sp, #8]	@ tmp201, MEM <vector(2) short unsigned int> [(short unsigned int *)&palidLut]
 	movs	r3, #13	@ tmp203,
@@ -29581,11 +29572,11 @@ PageNumCtrl_DisplayBlinkIcons:
 @ Patches/../C_code.c:6144:     if (!gStatScreen.inTransition)
 	movs	r3, #8	@ tmp206,
 @ Patches/../C_code.c:6144:     if (!gStatScreen.inTransition)
-	ldr	r5, .L3784+8	@ tmp305,
+	ldr	r5, .L3783+8	@ tmp305,
 @ Patches/../C_code.c:6144:     if (!gStatScreen.inTransition)
 	ldrsb	r3, [r5, r3]	@ tmp206,
 	cmp	r3, #0	@ tmp206,
-	bne	.L3733		@,
+	bne	.L3732		@,
 @ Patches/../C_code.c:6140:     s8 displayIcon = (GetGameClock() % 32) < 20;
 	movs	r6, #31	@ tmp207,
 @ Patches/../C_code.c:6146:         if ((gStatScreen.page == STATSCREEN_PAGE_0) && (gStatScreen.unit->state & US_RESCUING))
@@ -29598,27 +29589,27 @@ PageNumCtrl_DisplayBlinkIcons:
 	ands	r6, r0	@ _2, _1
 @ Patches/../C_code.c:6146:         if ((gStatScreen.page == STATSCREEN_PAGE_0) && (gStatScreen.unit->state & US_RESCUING))
 	cmp	r2, #0	@ gStatScreen,
-	beq	.L3780		@,
-.L3736:
+	beq	.L3779		@,
+.L3735:
 @ Patches/../C_code.c:6176:             if (displayIcon)
 	lsls	r3, r3, #26	@ tmp325, pretmp_157,
-	bpl	.L3733		@,
+	bpl	.L3732		@,
 	cmp	r6, #19	@ _2,
-	bls	.L3779		@,
-.L3733:
+	bls	.L3778		@,
+.L3732:
 @ Patches/../C_code.c:6186: }
 	add	sp, sp, #20	@,,
 	@ sp needed	@
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3780:
+.L3779:
 @ Patches/../C_code.c:6146:         if ((gStatScreen.page == STATSCREEN_PAGE_0) && (gStatScreen.unit->state & US_RESCUING))
 	lsls	r2, r3, #27	@ tmp319, pretmp_157,
-	bpl	.L3736		@,
+	bpl	.L3735		@,
 @ Patches/../C_code.c:6120: 	result.y = -1; 
 	movs	r7, #1	@ result$y,
-	ldr	r4, .L3784+12	@ ivtmp.2174,
+	ldr	r4, .L3783+12	@ ivtmp.2174,
 	rsbs	r7, r7, #0	@ result$y, result$y
 @ Patches/../C_code.c:6146:         if ((gStatScreen.page == STATSCREEN_PAGE_0) && (gStatScreen.unit->state & US_RESCUING))
 	movs	r1, r4	@ ivtmp.2192, ivtmp.2174
@@ -29627,13 +29618,13 @@ PageNumCtrl_DisplayBlinkIcons:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	movs	r2, #0	@ i,
 @ Patches/../C_code.c:6146:         if ((gStatScreen.page == STATSCREEN_PAGE_0) && (gStatScreen.unit->state & US_RESCUING))
-	ldr	r3, .L3784+16	@ ivtmp.2193,
-.L3741:
+	ldr	r3, .L3783+16	@ ivtmp.2193,
+.L3740:
 @ Patches/../C_code.c:6122: 		if (gStatScreenFunction[i].specialCase == id) { 
 	ldr	r0, [r1]	@ MEM[(int *)_121], MEM[(int *)_121]
 	cmp	r0, #12	@ MEM[(int *)_121],
-	beq	.L3781		@,
-.L3737:
+	beq	.L3780		@,
+.L3736:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r3, r3, #2	@ tmp217,
 	lsls	r3, r3, #16	@ tmp218, tmp217,
@@ -29643,11 +29634,11 @@ PageNumCtrl_DisplayBlinkIcons:
 	adds	r1, r1, #20	@ ivtmp.2192,
 	lsrs	r3, r3, #16	@ ivtmp.2193, tmp218,
 	cmp	r2, #16	@ i,
-	bne	.L3741		@,
+	bne	.L3740		@,
 @ Patches/../C_code.c:6149: 			if (coord.x != (-1)) { 
 	mov	r3, ip	@ result$x, result$x
 	adds	r3, r3, #1	@ tmp320, result$x,
-	beq	.L3742		@,
+	beq	.L3741		@,
 @ Patches/../C_code.c:6150: 				coord.x = (coord.x+2) * 8; 
 	mov	r0, ip	@ result$x, result$x
 @ Patches/../C_code.c:6151: 				coord.y = coord.y * 8; 
@@ -29657,12 +29648,12 @@ PageNumCtrl_DisplayBlinkIcons:
 @ Patches/../C_code.c:6150: 				coord.x = (coord.x+2) * 8; 
 	adds	r0, r0, #2	@ result$x,
 @ Patches/../C_code.c:6152: 				UpdateStatArrowSprites(coord.x, coord.y, 1);
-	ldr	r3, .L3784+20	@ tmp226,
+	ldr	r3, .L3783+20	@ tmp226,
 	asrs	r1, r1, #16	@ tmp221, tmp221,
 	lsls	r0, r0, #3	@ tmp225, tmp222,
 	subs	r2, r2, #15	@,
 	bl	.L14		@
-.L3742:
+.L3741:
 @ Patches/../C_code.c:6120: 	result.y = -1; 
 	movs	r7, #1	@ result$y,
 	rsbs	r7, r7, #0	@ result$y, result$y
@@ -29673,13 +29664,13 @@ PageNumCtrl_DisplayBlinkIcons:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	movs	r2, #0	@ i,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
-	ldr	r3, .L3784+16	@ ivtmp.2184,
-.L3747:
+	ldr	r3, .L3783+16	@ ivtmp.2184,
+.L3746:
 @ Patches/../C_code.c:6122: 		if (gStatScreenFunction[i].specialCase == id) { 
 	ldr	r0, [r1]	@ MEM[(int *)_99], MEM[(int *)_99]
 	cmp	r0, #13	@ MEM[(int *)_99],
-	beq	.L3782		@,
-.L3743:
+	beq	.L3781		@,
+.L3742:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r3, r3, #2	@ tmp231,
 	lsls	r3, r3, #16	@ tmp232, tmp231,
@@ -29689,11 +29680,11 @@ PageNumCtrl_DisplayBlinkIcons:
 	adds	r1, r1, #20	@ ivtmp.2183,
 	lsrs	r3, r3, #16	@ ivtmp.2184, tmp232,
 	cmp	r2, #16	@ i,
-	bne	.L3747		@,
+	bne	.L3746		@,
 @ Patches/../C_code.c:6155: 			if (coord.x != (-1)) { 
 	mov	r3, ip	@ result$x, result$x
 	adds	r3, r3, #1	@ tmp321, result$x,
-	beq	.L3748		@,
+	beq	.L3747		@,
 @ Patches/../C_code.c:6156: 				coord.x = (coord.x+2) * 8; 
 	mov	r0, ip	@ result$x, result$x
 @ Patches/../C_code.c:6157: 				coord.y = coord.y * 8; 
@@ -29703,15 +29694,15 @@ PageNumCtrl_DisplayBlinkIcons:
 @ Patches/../C_code.c:6156: 				coord.x = (coord.x+2) * 8; 
 	adds	r0, r0, #2	@ result$x,
 @ Patches/../C_code.c:6158: 				UpdateStatArrowSprites(coord.x, coord.y, 1);
-	ldr	r3, .L3784+20	@ tmp240,
+	ldr	r3, .L3783+20	@ tmp240,
 	asrs	r1, r1, #16	@ tmp235, tmp235,
 	lsls	r0, r0, #3	@ tmp239, tmp236,
 	subs	r2, r2, #15	@,
 	bl	.L14		@
-.L3748:
+.L3747:
 @ Patches/../C_code.c:6161:             if (displayIcon)
 	cmp	r6, #19	@ _2,
-	bhi	.L3733		@,
+	bhi	.L3732		@,
 @ Patches/../C_code.c:6120: 	result.y = -1; 
 	movs	r0, #1	@ result$y,
 	rsbs	r0, r0, #0	@ result$y, result$y
@@ -29719,13 +29710,13 @@ PageNumCtrl_DisplayBlinkIcons:
 	movs	r6, r0	@ result$x, result$y
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	movs	r2, #0	@ i,
-	ldr	r3, .L3784+16	@ ivtmp.2175,
-.L3754:
+	ldr	r3, .L3783+16	@ ivtmp.2175,
+.L3753:
 @ Patches/../C_code.c:6122: 		if (gStatScreenFunction[i].specialCase == id) { 
 	ldr	r1, [r4]	@ MEM[(int *)_130], MEM[(int *)_130]
 	cmp	r1, #4	@ MEM[(int *)_130],
-	beq	.L3783		@,
-.L3750:
+	beq	.L3782		@,
+.L3749:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r3, r3, #2	@ tmp245,
 	lsls	r3, r3, #16	@ tmp246, tmp245,
@@ -29735,21 +29726,21 @@ PageNumCtrl_DisplayBlinkIcons:
 	adds	r4, r4, #20	@ ivtmp.2174,
 	lsrs	r3, r3, #16	@ ivtmp.2175, tmp246,
 	cmp	r2, #16	@ i,
-	bne	.L3754		@,
+	bne	.L3753		@,
 @ Patches/../C_code.c:6174:         if (gStatScreen.unit->state & US_RESCUED)
 	ldr	r7, [r5, #12]	@ _73, gStatScreen.unit
 @ Patches/../C_code.c:6164: 				if (coord.x != (-1)) { 
 	adds	r3, r6, #1	@ tmp322, result$x,
-	bne	.L3755		@,
+	bne	.L3754		@,
 @ Patches/../C_code.c:6174:         if (gStatScreen.unit->state & US_RESCUED)
 	ldr	r3, [r7, #12]	@ pretmp_155->state, pretmp_155->state
 @ Patches/../C_code.c:6174:         if (gStatScreen.unit->state & US_RESCUED)
 	lsls	r3, r3, #26	@ tmp323, pretmp_155->state,
-	bpl	.L3733		@,
-.L3779:
-	ldr	r4, .L3784+24	@ tmp306,
-	ldr	r6, .L3784+28	@ tmp307,
-.L3756:
+	bpl	.L3732		@,
+.L3778:
+	ldr	r4, .L3783+24	@ tmp306,
+	ldr	r6, .L3783+28	@ tmp307,
+.L3755:
 @ Patches/../C_code.c:6182:                     TILEREF(3, 0xF & palidLut[gStatScreen.unit->rescue>>6]) + OAM2_LAYER(2));
 	mov	r2, sp	@ tmp344,
 	movs	r1, #8	@ tmp346,
@@ -29759,7 +29750,7 @@ PageNumCtrl_DisplayBlinkIcons:
 	lsls	r3, r3, #1	@ tmp298, tmp296,
 	ldrh	r3, [r2, r3]	@ tmp299, palidLut
 @ Patches/../C_code.c:6180:                 PutSprite(4,
-	ldr	r2, .L3784+32	@ tmp347,
+	ldr	r2, .L3783+32	@ tmp347,
 	mov	ip, r2	@ tmp347, tmp347
 @ Patches/../C_code.c:6182:                     TILEREF(3, 0xF & palidLut[gStatScreen.unit->rescue>>6]) + OAM2_LAYER(2));
 	lsls	r3, r3, #28	@ tmp302, tmp299,
@@ -29771,13 +29762,13 @@ PageNumCtrl_DisplayBlinkIcons:
 	movs	r3, r4	@, tmp306
 	movs	r0, #4	@,
 	adds	r1, r1, #2	@,
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:6186: }
-	b	.L3733		@
-.L3781:
+	b	.L3732		@
+.L3780:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	cmp	r2, #7	@ i,
-	bgt	.L3738		@,
+	bgt	.L3737		@,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r7, r3	@ tmp214, ivtmp.2193
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
@@ -29797,11 +29788,11 @@ PageNumCtrl_DisplayBlinkIcons:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r1, r1, #20	@ ivtmp.2192,
 	lsrs	r3, r3, #16	@ ivtmp.2193, tmp216,
-	b	.L3741		@
-.L3782:
+	b	.L3740		@
+.L3781:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	cmp	r2, #7	@ i,
-	bgt	.L3744		@,
+	bgt	.L3743		@,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r7, r3	@ tmp228, ivtmp.2184
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
@@ -29820,11 +29811,11 @@ PageNumCtrl_DisplayBlinkIcons:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r1, r1, #20	@ ivtmp.2183,
 	lsrs	r3, r3, #16	@ ivtmp.2184, tmp230,
-	b	.L3747		@
-.L3783:
+	b	.L3746		@
+.L3782:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	cmp	r2, #7	@ i,
-	bgt	.L3751		@,
+	bgt	.L3750		@,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r0, r3	@ tmp242, ivtmp.2175
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
@@ -29843,8 +29834,8 @@ PageNumCtrl_DisplayBlinkIcons:
 @ Patches/../C_code.c:6121: 	for (int i = 0; i<16; i++) { 
 	adds	r4, r4, #20	@ ivtmp.2174,
 	lsrs	r3, r3, #16	@ ivtmp.2175, tmp244,
-	b	.L3754		@
-.L3738:
+	b	.L3753		@
+.L3737:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r0, #21	@ result$x,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
@@ -29853,8 +29844,8 @@ PageNumCtrl_DisplayBlinkIcons:
 	mov	ip, r0	@ result$x, result$x
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	asrs	r7, r7, #16	@ result$y, result$y,
-	b	.L3737		@
-.L3744:
+	b	.L3736		@
+.L3743:
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r0, #21	@ result$x,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
@@ -29863,15 +29854,15 @@ PageNumCtrl_DisplayBlinkIcons:
 	mov	ip, r0	@ result$x, result$x
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	asrs	r7, r7, #16	@ result$y, result$y,
-	b	.L3743		@
-.L3751:
+	b	.L3742		@
+.L3750:
 	lsls	r0, r3, #16	@ result$y, ivtmp.2175,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	movs	r6, #21	@ result$x,
 @ Patches/../C_code.c:6123: 			if (i < 8) { result.x = 0xD; result.y = 3+(i*2); } else { result.x = 0x15; result.y = 3+((i-8)*2); } 
 	asrs	r0, r0, #16	@ result$y, result$y,
-	b	.L3750		@
-.L3755:
+	b	.L3749		@
+.L3754:
 @ Patches/../C_code.c:6166: 					coord.y = (coord.y * 8) + 6; 
 	lsls	r0, r0, #3	@ tmp253, result$y,
 @ Patches/../C_code.c:6166: 					coord.y = (coord.y * 8) + 6; 
@@ -29890,12 +29881,12 @@ PageNumCtrl_DisplayBlinkIcons:
 	lsls	r3, r3, #1	@ tmp266, tmp264,
 	ldrh	r3, [r0, r3]	@ tmp267, palidLut
 @ Patches/../C_code.c:6167: 					PutSprite(4,
-	ldr	r0, .L3784+32	@ tmp342,
+	ldr	r0, .L3783+32	@ tmp342,
 	mov	ip, r0	@ tmp342, tmp342
 @ Patches/../C_code.c:6169: 						TILEREF(3, 0xF & palidLut[gStatScreen.unit->rescue >> 6]) + OAM2_LAYER(2));
 	lsls	r3, r3, #28	@ tmp270, tmp267,
 @ Patches/../C_code.c:6167: 					PutSprite(4,
-	ldr	r4, .L3784+24	@ tmp306,
+	ldr	r4, .L3783+24	@ tmp306,
 @ Patches/../C_code.c:6169: 						TILEREF(3, 0xF & palidLut[gStatScreen.unit->rescue >> 6]) + OAM2_LAYER(2));
 	lsrs	r3, r3, #16	@ tmp269, tmp270,
 @ Patches/../C_code.c:6167: 					PutSprite(4,
@@ -29903,20 +29894,20 @@ PageNumCtrl_DisplayBlinkIcons:
 	str	r3, [sp]	@ tmp271,
 	movs	r0, #4	@,
 	movs	r3, r4	@, tmp306
-	ldr	r6, .L3784+28	@ tmp307,
+	ldr	r6, .L3783+28	@ tmp307,
 	asrs	r2, r2, #16	@ tmp256, tmp256,
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:6174:         if (gStatScreen.unit->state & US_RESCUED)
 	ldr	r7, [r5, #12]	@ _73, gStatScreen.unit
 @ Patches/../C_code.c:6174:         if (gStatScreen.unit->state & US_RESCUED)
 	ldr	r3, [r7, #12]	@ _81->state, _81->state
 @ Patches/../C_code.c:6174:         if (gStatScreen.unit->state & US_RESCUED)
 	lsls	r3, r3, #26	@ tmp324, _81->state,
-	bmi	.L3756		@,
-	b	.L3733		@
-.L3785:
-	.align	2
+	bmi	.L3755		@,
+	b	.L3732		@
 .L3784:
+	.align	2
+.L3783:
 	.word	GetGameClock
 	.word	917516
 	.word	gStatScreen
@@ -29959,7 +29950,7 @@ DrawBarsOrGrowths:
 	@ args = 0, pretend = 0, frame = 8
 	@ frame_needed = 0, uses_anonymous_args = 0
 @ Patches/../C_code.c:6191: 	int disp = RandBitflags->disp; 
-	ldr	r3, .L3809	@ tmp163,
+	ldr	r3, .L3808	@ tmp163,
 @ Patches/../C_code.c:6189: void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6 
 	push	{r4, r5, r6, r7, lr}	@
 	mov	lr, r9	@,
@@ -29968,7 +29959,7 @@ DrawBarsOrGrowths:
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r5, [r3, #3]	@ *RandBitflags.377_1, *RandBitflags.377_1
 @ Patches/../C_code.c:6192: 	struct Unit* unit = gStatScreen.unit; 
-	ldr	r3, .L3809+4	@ tmp170,
+	ldr	r3, .L3808+4	@ tmp170,
 	ldr	r6, [r3, #12]	@ unit, gStatScreen.unit
 @ Patches/../C_code.c:6202: 	if (UNIT_FACTION(unit) != FACTION_BLUE) { disp = 1; } 
 	movs	r3, #11	@ tmp171,
@@ -29983,9 +29974,9 @@ DrawBarsOrGrowths:
 	lsrs	r5, r5, #7	@ _2, *RandBitflags.377_1,
 @ Patches/../C_code.c:6202: 	if (UNIT_FACTION(unit) != FACTION_BLUE) { disp = 1; } 
 	tst	r2, r3	@ tmp172, tmp171
-	beq	.L3787		@,
+	beq	.L3786		@,
 	movs	r5, #1	@ _2,
-.L3787:
+.L3786:
 @ Patches/../C_code.c:6204: 	barCount += DrawStatByID(barCount, 5, 1, disp, unit, 0); 
 	movs	r3, #0	@ tmp174,
 	movs	r2, #1	@,
@@ -30177,8 +30168,8 @@ DrawBarsOrGrowths:
 	bl	IsAnythingRandomized		@
 @ Patches/../C_code.c:6241: 	if (IsAnythingRandomized()) { 
 	cmp	r0, #0	@ tmp264,
-	bne	.L3808		@,
-.L3786:
+	bne	.L3807		@,
+.L3785:
 @ Patches/../C_code.c:6260: }
 	add	sp, sp, #20	@,,
 	@ sp needed	@
@@ -30188,65 +30179,65 @@ DrawBarsOrGrowths:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3808:
+.L3807:
 @ Patches/../C_code.c:6247: 		SetupDebugFontForBG(0, VramDest_DebugFont);
-	ldr	r3, .L3809+8	@ tmp191,
+	ldr	r3, .L3808+8	@ tmp191,
 	movs	r0, #0	@,
 	ldr	r1, [r3]	@ VramDest_DebugFont, VramDest_DebugFont
-	ldr	r3, .L3809+12	@ tmp193,
+	ldr	r3, .L3808+12	@ tmp193,
 	bl	.L14		@
 @ Patches/../C_code.c:6248: 		switch (RecruitValues->recruitment) { 
-	ldr	r3, .L3809+16	@ tmp195,
+	ldr	r3, .L3808+16	@ tmp195,
 	ldr	r3, [r3]	@ RecruitValues, RecruitValues
 	ldrb	r3, [r3]	@ *RecruitValues.379_8, *RecruitValues.379_8
 	lsls	r3, r3, #29	@ tmp200, *RecruitValues.379_8,
 @ Patches/../C_code.c:6248: 		switch (RecruitValues->recruitment) { 
 	lsrs	r3, r3, #29	@ tmp203, tmp200,
 	cmp	r3, #5	@ tmp203,
-	bhi	.L3789		@,
-	ldr	r2, .L3809+20	@ tmp209,
+	bhi	.L3788		@,
+	ldr	r2, .L3808+20	@ tmp209,
 	lsls	r3, r3, #2	@ tmp207, tmp203,
 	ldr	r3, [r2, r3]	@ tmp210,
 	mov	pc, r3	@ tmp210
 	.section	.rodata
 	.align	2
-.L3791:
-	.word	.L3796
+.L3790:
 	.word	.L3795
 	.word	.L3794
 	.word	.L3793
 	.word	.L3792
-	.word	.L3790
+	.word	.L3791
+	.word	.L3789
 	.text
-.L3790:
-@ Patches/../C_code.c:6254: 			case 5: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "5Seed"); break; } 	
-	ldr	r1, .L3809+24	@ tmp226,
-	ldr	r0, .L3809+28	@ tmp227,
-	ldr	r7, .L3809+32	@ tmp247,
-	bl	.L223		@
 .L3789:
+@ Patches/../C_code.c:6254: 			case 5: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "5Seed"); break; } 	
+	ldr	r1, .L3808+24	@ tmp226,
+	ldr	r0, .L3808+28	@ tmp227,
+	ldr	r7, .L3808+32	@ tmp247,
+	bl	.L223		@
+.L3788:
 @ Patches/../C_code.c:6257: 		PrintDebugNumberToBG(0, 11, 0x13, RandValues->seed); 
-	ldr	r3, .L3809+36	@ tmp230,
+	ldr	r3, .L3808+36	@ tmp230,
 	ldr	r3, [r3]	@ RandValues, RandValues
 	ldr	r3, [r3]	@ *RandValues.380_10, *RandValues.380_10
 	lsls	r3, r3, #12	@ tmp232, *RandValues.380_10,
 	lsrs	r4, r3, #12	@ n, tmp232,
 @ Patches/../C_code.c:5406: 	while (n != 0) {
 	cmp	r3, #0	@ tmp232,
-	beq	.L3786		@,
-	ldr	r3, .L3809+40	@ tmp245,
+	beq	.L3785		@,
+	ldr	r3, .L3808+40	@ tmp245,
 	mov	r9, r3	@ tmp245, tmp245
-	ldr	r3, .L3809+44	@ tmp246,
+	ldr	r3, .L3808+44	@ tmp246,
 	movs	r5, #14	@ tmp248,
 	mov	r8, r3	@ tmp246, tmp246
-	ldr	r6, .L3809+48	@ ivtmp.2204,
-	ldr	r7, .L3809+32	@ tmp247,
+	ldr	r6, .L3808+48	@ ivtmp.2204,
+	ldr	r7, .L3808+32	@ tmp247,
 	add	r5, r5, sp	@ tmp248,
-.L3797:
+.L3796:
 @ Patches/../C_code.c:5407:         u16 c = '0' + Mod(n, 10);
 	movs	r1, #10	@,
 	movs	r0, r4	@, n
-	bl	.L558		@
+	bl	.L557		@
 @ Patches/../C_code.c:5407:         u16 c = '0' + Mod(n, 10);
 	adds	r0, r0, #48	@ tmp236,
 @ Patches/../C_code.c:5409:         n /= 10;
@@ -30266,57 +30257,57 @@ DrawBarsOrGrowths:
 @ Patches/../C_code.c:5406: 	while (n != 0) {
 	subs	r6, r6, #2	@ ivtmp.2204,
 	cmp	r4, #0	@ n,
-	bne	.L3797		@,
-	b	.L3786		@
-.L3792:
+	bne	.L3796		@,
+	b	.L3785		@
+.L3791:
 @ Patches/../C_code.c:6253: 			case 4: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "4Seed"); break; } 	
-	ldr	r1, .L3809+52	@ tmp223,
-	ldr	r0, .L3809+28	@ tmp224,
-	ldr	r7, .L3809+32	@ tmp247,
+	ldr	r1, .L3808+52	@ tmp223,
+	ldr	r0, .L3808+28	@ tmp224,
+	ldr	r7, .L3808+32	@ tmp247,
 	bl	.L223		@
 @ Patches/../C_code.c:6253: 			case 4: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "4Seed"); break; } 	
-	b	.L3789		@
-.L3796:
-@ Patches/../C_code.c:6249: 			case 0: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "0Seed"); break; } 	
-	ldr	r1, .L3809+56	@ tmp211,
-	ldr	r0, .L3809+28	@ tmp212,
-	ldr	r7, .L3809+32	@ tmp247,
-	bl	.L223		@
-@ Patches/../C_code.c:6249: 			case 0: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "0Seed"); break; } 	
-	b	.L3789		@
+	b	.L3788		@
 .L3795:
-@ Patches/../C_code.c:6250: 			case 1: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "1Seed"); break; } 	
-	ldr	r1, .L3809+60	@ tmp214,
-	ldr	r0, .L3809+28	@ tmp215,
-	ldr	r7, .L3809+32	@ tmp247,
+@ Patches/../C_code.c:6249: 			case 0: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "0Seed"); break; } 	
+	ldr	r1, .L3808+56	@ tmp211,
+	ldr	r0, .L3808+28	@ tmp212,
+	ldr	r7, .L3808+32	@ tmp247,
 	bl	.L223		@
-@ Patches/../C_code.c:6250: 			case 1: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "1Seed"); break; } 	
-	b	.L3789		@
+@ Patches/../C_code.c:6249: 			case 0: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "0Seed"); break; } 	
+	b	.L3788		@
 .L3794:
-@ Patches/../C_code.c:6251: 			case 2: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "2Seed"); break; } 	
-	ldr	r1, .L3809+64	@ tmp217,
-	ldr	r0, .L3809+28	@ tmp218,
-	ldr	r7, .L3809+32	@ tmp247,
+@ Patches/../C_code.c:6250: 			case 1: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "1Seed"); break; } 	
+	ldr	r1, .L3808+60	@ tmp214,
+	ldr	r0, .L3808+28	@ tmp215,
+	ldr	r7, .L3808+32	@ tmp247,
 	bl	.L223		@
-@ Patches/../C_code.c:6251: 			case 2: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "2Seed"); break; } 	
-	b	.L3789		@
+@ Patches/../C_code.c:6250: 			case 1: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "1Seed"); break; } 	
+	b	.L3788		@
 .L3793:
+@ Patches/../C_code.c:6251: 			case 2: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "2Seed"); break; } 	
+	ldr	r1, .L3808+64	@ tmp217,
+	ldr	r0, .L3808+28	@ tmp218,
+	ldr	r7, .L3808+32	@ tmp247,
+	bl	.L223		@
+@ Patches/../C_code.c:6251: 			case 2: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "2Seed"); break; } 	
+	b	.L3788		@
+.L3792:
 @ Patches/../C_code.c:6252: 			case 3: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "3Seed"); break; } 	
-	ldr	r1, .L3809+68	@ tmp220,
-	ldr	r0, .L3809+28	@ tmp221,
-	ldr	r7, .L3809+32	@ tmp247,
+	ldr	r1, .L3808+68	@ tmp220,
+	ldr	r0, .L3808+28	@ tmp221,
+	ldr	r7, .L3808+32	@ tmp247,
 	bl	.L223		@
 @ Patches/../C_code.c:6252: 			case 3: { PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "3Seed"); break; } 	
-	b	.L3789		@
-.L3810:
-	.align	2
+	b	.L3788		@
 .L3809:
+	.align	2
+.L3808:
 	.word	RandBitflags
 	.word	gStatScreen
 	.word	VramDest_DebugFont
 	.word	SetupDebugFontForBG
 	.word	RecruitValues
-	.word	.L3791
+	.word	.L3790
 	.word	.LC763
 	.word	gBG0TilemapBuffer+1216
 	.word	PrintDebugStringToBG
@@ -30343,44 +30334,44 @@ DisplayPage0:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
 @ Patches/../C_code.c:6280: 	ResetText(); 
-	ldr	r3, .L3817	@ tmp115,
+	ldr	r3, .L3816	@ tmp115,
 	bl	.L14		@
 @ Patches/../C_code.c:6281: 	ResetIconGraphics_();
-	ldr	r3, .L3817+4	@ tmp116,
+	ldr	r3, .L3816+4	@ tmp116,
 	bl	.L14		@
 @ Patches/../C_code.c:6282: 	InitTexts();
-	ldr	r3, .L3817+8	@ tmp117,
+	ldr	r3, .L3816+8	@ tmp117,
 	bl	.L14		@
 @ Patches/../C_code.c:6283: 	DisplayLeftPanel();
-	ldr	r3, .L3817+12	@ tmp118,
+	ldr	r3, .L3816+12	@ tmp118,
 	bl	.L14		@
 @ Patches/../C_code.c:6289: 	DisplayTexts(sPage0TextInfo);
-	ldr	r3, .L3817+16	@ tmp120,
-	ldr	r0, .L3817+20	@ tmp119,
+	ldr	r3, .L3816+16	@ tmp120,
+	ldr	r0, .L3816+20	@ tmp119,
 	bl	.L14		@
 @ Patches/../C_code.c:6290:     DrawBarsOrGrowths(); 
 	bl	DrawBarsOrGrowths		@
 @ Patches/../C_code.c:6299: 	if (SS_EnableBWL) { 
-	ldr	r3, .L3817+24	@ tmp121,
+	ldr	r3, .L3816+24	@ tmp121,
 @ Patches/../C_code.c:6299: 	if (SS_EnableBWL) { 
 	ldr	r3, [r3]	@ SS_EnableBWL, SS_EnableBWL
 	cmp	r3, #0	@ SS_EnableBWL,
-	bne	.L3816		@,
-.L3811:
+	bne	.L3815		@,
+.L3810:
 @ Patches/../C_code.c:6302: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L3816:
+.L3815:
 @ Patches/../C_code.c:6300: 		DisplayBwl();
-	ldr	r3, .L3817+28	@ tmp123,
+	ldr	r3, .L3816+28	@ tmp123,
 	bl	.L14		@
 @ Patches/../C_code.c:6302: }
-	b	.L3811		@
-.L3818:
-	.align	2
+	b	.L3810		@
 .L3817:
+	.align	2
+.L3816:
 	.word	ResetText
 	.word	ResetIconGraphics_
 	.word	InitTexts
@@ -30410,7 +30401,7 @@ StartShopScreen:
 	movs	r6, r3	@ parent, tmp310
 	sub	sp, sp, #44	@,,
 @ Patches/../C_code.c:6357:     EndPlayerPhaseSideWindows();
-	ldr	r3, .L3888	@ tmp178,
+	ldr	r3, .L3887	@ tmp178,
 @ Patches/../C_code.c:6352: void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr parent) {
 	movs	r7, r0	@ unit, tmp307
 	movs	r5, r1	@ inventory, tmp308
@@ -30418,27 +30409,27 @@ StartShopScreen:
 @ Patches/../C_code.c:6357:     EndPlayerPhaseSideWindows();
 	bl	.L14		@
 @ Patches/../C_code.c:6360:         proc = Proc_StartBlocking(gProcScr_Shop, parent);
-	ldr	r0, .L3888+4	@ tmp179,
+	ldr	r0, .L3887+4	@ tmp179,
 @ Patches/../C_code.c:6359:     if (parent != 0) {
 	cmp	r6, #0	@ parent,
-	bne	.LCB25041	@
-	b	.L3820	@long jump	@
-.LCB25041:
+	bne	.LCB25033	@
+	b	.L3819	@long jump	@
+.LCB25033:
 @ Patches/../C_code.c:6360:         proc = Proc_StartBlocking(gProcScr_Shop, parent);
 	movs	r1, r6	@, parent
-	ldr	r3, .L3888+8	@ tmp180,
+	ldr	r3, .L3887+8	@ tmp180,
 	bl	.L14		@
 	mov	r8, r0	@ proc, tmp311
-.L3821:
+.L3820:
 	movs	r3, r4	@ _1, shopType
 @ Patches/../C_code.c:6366:     if (shopType > 9) { proc->shopType -= 10; } 
 	cmp	r4, #9	@ shopType,
-	bls	.L3822		@,
+	bls	.L3821		@,
 @ Patches/../C_code.c:6366:     if (shopType > 9) { proc->shopType -= 10; } 
 	subs	r3, r3, #10	@ tmp185,
 	lsls	r3, r3, #24	@ tmp186, tmp185,
 	lsrs	r3, r3, #24	@ _1, tmp186,
-.L3822:
+.L3821:
 @ Patches/../C_code.c:6365:     proc->shopType = shopType;
 	mov	r1, r8	@ proc, proc
 	movs	r2, #97	@ tmp187,
@@ -30447,33 +30438,33 @@ StartShopScreen:
 	str	r7, [r1, #44]	@ unit, proc_27->unit
 @ Patches/../C_code.c:6370:     if (inventory != 0) {
 	cmp	r5, #0	@ inventory,
-	bne	.LCB25061	@
-	b	.L3881	@long jump	@
-.LCB25061:
-.L3823:
+	bne	.LCB25053	@
+	b	.L3880	@long jump	@
+.LCB25053:
+.L3822:
 @ Patches/../C_code.c:6374: 	if ((RandBitflags->shopItems) && ((shopType < 10) || (RandomizePrepShop))) { 
-	ldr	r3, .L3888+12	@ tmp190,
+	ldr	r3, .L3887+12	@ tmp190,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #1]	@ *RandBitflags.382_2, *RandBitflags.382_2
 @ Patches/../C_code.c:6374: 	if ((RandBitflags->shopItems) && ((shopType < 10) || (RandomizePrepShop))) { 
 	lsls	r3, r3, #28	@ tmp330, *RandBitflags.382_2,
-	bmi	.LCB25071	@
-	b	.L3850	@long jump	@
-.LCB25071:
+	bmi	.LCB25063	@
+	b	.L3849	@long jump	@
+.LCB25063:
 @ Patches/../C_code.c:6374: 	if ((RandBitflags->shopItems) && ((shopType < 10) || (RandomizePrepShop))) { 
 	cmp	r4, #9	@ shopType,
-	bhi	.L3825		@,
+	bhi	.L3824		@,
 @ Patches/../C_code.c:6376: 		int noise[4] = {0, 0, 0, 0}; 
-	ldr	r3, .L3888+16	@ tmp205,
+	ldr	r3, .L3887+16	@ tmp205,
 	movs	r2, #8	@,
 	movs	r1, #0	@,
 	add	r0, sp, #32	@,,
 	bl	.L14		@
 	add	r3, sp, #24	@ tmp293,,
 	mov	r9, r3	@ tmp293, tmp293
-.L3826:
+.L3825:
 @ Patches/../C_code.c:6380: 		noise[0] = gCh; 
-	ldr	r3, .L3888+20	@ tmp217,
+	ldr	r3, .L3887+20	@ tmp217,
 	ldrb	r3, [r3]	@ gCh, gCh
 @ Patches/../C_code.c:6381: 		noise[1] = proc->shopType; 
 	mov	r2, r8	@ proc, proc
@@ -30487,21 +30478,21 @@ StartShopScreen:
 @ Patches/../C_code.c:6379: 		varyByCh = true; 
 	movs	r3, #1	@ varyByCh,
 	mov	fp, r3	@ varyByCh, varyByCh
-.L3827:
+.L3826:
 	mov	r3, r9	@ ivtmp.2240, tmp293
-.L3830:
+.L3829:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_90], MEM[(int *)_90]
 	cmp	r2, #0	@ MEM[(int *)_90],
-	bne	.LCB25101	@
-	b	.L3882	@long jump	@
-.LCB25101:
+	bne	.LCB25093	@
+	b	.L3881	@long jump	@
+.LCB25093:
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.2240,
 	add	r2, sp, #40	@ tmp372,,
 	cmp	r2, r3	@ tmp372, ivtmp.2240
-	bne	.L3830		@,
-.L3829:
+	bne	.L3829		@,
+.L3828:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	movs	r3, #3	@,
 	mov	r2, r9	@, tmp293
@@ -30510,13 +30501,13 @@ StartShopScreen:
 	bl	HashByte_Global		@
 	mov	r6, r8	@ ivtmp.2232, proc
 @ Patches/../C_code.c:6392: 			if ((i == rareItemSlot) && (RareItemTableSize)) { itemId = RandRareItem(itemId, noise, i, true, varyByCh); } 
-	ldr	r3, .L3888+24	@ tmp304,
+	ldr	r3, .L3887+24	@ tmp304,
 	str	r3, [sp, #12]	@ tmp304, %sfp
 @ Patches/../C_code.c:1931: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
-	ldr	r3, .L3888+28	@ tmp305,
+	ldr	r3, .L3887+28	@ tmp305,
 	str	r3, [sp, #16]	@ tmp305, %sfp
 @ Patches/../C_code.c:1939: 	item = RareItemTable[c]; 
-	ldr	r3, .L3888+32	@ tmp306,
+	ldr	r3, .L3887+32	@ tmp306,
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	mov	r10, r0	@ tmp226, tmp313
 @ Patches/../C_code.c:6384: 		int term = false; 
@@ -30526,20 +30517,20 @@ StartShopScreen:
 @ Patches/../C_code.c:1939: 	item = RareItemTable[c]; 
 	str	r3, [sp, #20]	@ tmp306, %sfp
 	adds	r6, r6, #48	@ ivtmp.2232,
-	b	.L3844		@
-.L3884:
+	b	.L3843		@
+.L3883:
 @ Patches/../C_code.c:6389: 			if ((!itemId) && (i < 5)) { term = true; itemId = i; } // randomized shop will have at least 5 items 
 	movs	r7, #1	@ term,
 	lsls	r0, r4, #16	@ tmp241, i,
 	lsrs	r0, r0, #16	@ itemId, tmp241,
-.L3832:
+.L3831:
 @ Patches/../C_code.c:6392: 			if ((i == rareItemSlot) && (RareItemTableSize)) { itemId = RandRareItem(itemId, noise, i, true, varyByCh); } 
 	cmp	r10, r4	@ tmp226, i
-	beq	.L3883		@,
-.L3836:
+	beq	.L3882		@,
+.L3835:
 @ Patches/../C_code.c:1944: 	if (!item) { return item; } 
 	cmp	r0, #0	@ itemId,
-	beq	.L3843		@,
+	beq	.L3842		@,
 	movs	r3, #0	@ tmp283,
 	str	r3, [sp, #4]	@ tmp283,
 	mov	r3, fp	@ varyByCh, varyByCh
@@ -30551,7 +30542,7 @@ StartShopScreen:
 @ Patches/../C_code.c:6393: 			else { itemId = RandNewItem(itemId, noise, i, true, varyByCh, false); } 
 	lsls	r0, r0, #16	@ tmp284, tmp318,
 	lsrs	r0, r0, #16	@ itemId, tmp284,
-.L3843:
+.L3842:
 @ Patches/../C_code.c:6386: 		for (i = 0; i < 20; i++) {
 	adds	r4, r4, #1	@ i,
 @ Patches/../C_code.c:6395: 			proc->shopItems[i] = itemId; 
@@ -30559,14 +30550,14 @@ StartShopScreen:
 @ Patches/../C_code.c:6386: 		for (i = 0; i < 20; i++) {
 	adds	r6, r6, #2	@ ivtmp.2232,
 	cmp	r4, #20	@ i,
-	beq	.L3845		@,
-.L3844:
+	beq	.L3844		@,
+.L3843:
 @ Patches/../C_code.c:6387: 			u16 itemId = *shopItems++;
 	lsls	r3, r4, #1	@ tmp228, i,
 	ldrh	r0, [r5, r3]	@ itemId, MEM[(const u16 *)shopItems_28 + _34 * 1]
 @ Patches/../C_code.c:6389: 			if ((!itemId) && (i < 5)) { term = true; itemId = i; } // randomized shop will have at least 5 items 
 	cmp	r0, #0	@ itemId,
-	bne	.L3831		@,
+	bne	.L3830		@,
 @ Patches/../C_code.c:6389: 			if ((!itemId) && (i < 5)) { term = true; itemId = i; } // randomized shop will have at least 5 items 
 	movs	r2, #4	@ tmp236,
 	movs	r1, #0	@ tmp238,
@@ -30575,19 +30566,19 @@ StartShopScreen:
 	adcs	r3, r3, r1	@ tmp235, tmp237, tmp238
 @ Patches/../C_code.c:6389: 			if ((!itemId) && (i < 5)) { term = true; itemId = i; } // randomized shop will have at least 5 items 
 	lsls	r3, r3, #24	@ tmp240, tmp235,
-	bne	.L3884		@,
-.L3831:
+	bne	.L3883		@,
+.L3830:
 @ Patches/../C_code.c:6390: 			if ((i>=5) && (term)) { itemId = 0; } 
 	movs	r3, #1	@ tmp242,
 	cmp	r4, #4	@ i,
-	bgt	.L3833		@,
+	bgt	.L3832		@,
 	movs	r3, #0	@ tmp242,
-.L3833:
+.L3832:
 @ Patches/../C_code.c:6390: 			if ((i>=5) && (term)) { itemId = 0; } 
 	lsls	r3, r3, #24	@ tmp247, tmp242,
-	beq	.L3832		@,
+	beq	.L3831		@,
 	cmp	r7, #0	@ term,
-	beq	.L3832		@,
+	beq	.L3831		@,
 @ Patches/../C_code.c:6392: 			if ((i == rareItemSlot) && (RareItemTableSize)) { itemId = RandRareItem(itemId, noise, i, true, varyByCh); } 
 	movs	r0, #0	@ itemId,
 @ Patches/../C_code.c:6386: 		for (i = 0; i < 20; i++) {
@@ -30599,11 +30590,11 @@ StartShopScreen:
 @ Patches/../C_code.c:6386: 		for (i = 0; i < 20; i++) {
 	adds	r6, r6, #2	@ ivtmp.2232,
 	cmp	r4, #20	@ i,
-	bne	.L3844		@,
-.L3845:
+	bne	.L3843		@,
+.L3844:
 @ Patches/../C_code.c:6407:     UpdateShopItemCounts(proc);
 	mov	r0, r8	@, proc
-	ldr	r3, .L3888+36	@ tmp290,
+	ldr	r3, .L3887+36	@ tmp290,
 	bl	.L14		@
 @ Patches/../C_code.c:6410: }
 	add	sp, sp, #44	@,,
@@ -30616,37 +30607,37 @@ StartShopScreen:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L3825:
+.L3824:
 @ Patches/../C_code.c:6374: 	if ((RandBitflags->shopItems) && ((shopType < 10) || (RandomizePrepShop))) { 
-	ldr	r3, .L3888+40	@ tmp208,
+	ldr	r3, .L3887+40	@ tmp208,
 	ldr	r3, [r3]	@ RandomizePrepShop, RandomizePrepShop
 	cmp	r3, #0	@ RandomizePrepShop,
-	bne	.L3885		@,
-.L3850:
+	bne	.L3884		@,
+.L3849:
 	mov	r7, r8	@ tmp292, proc
 	movs	r4, #0	@ ivtmp.2244,
-	ldr	r6, .L3888+44	@ tmp291,
+	ldr	r6, .L3887+44	@ tmp291,
 	adds	r7, r7, #48	@ tmp292,
-.L3846:
+.L3845:
 @ Patches/../C_code.c:6403: 			proc->shopItems[i] = MakeNewItem(itemId);
 	ldrh	r0, [r5, r4]	@ MEM[(const u16 *)shopItems_28 + ivtmp.2244_156 * 1], MEM[(const u16 *)shopItems_28 + ivtmp.2244_156 * 1]
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:6403: 			proc->shopItems[i] = MakeNewItem(itemId);
 	strh	r0, [r7, r4]	@ tmp319, MEM[(short unsigned int *)_147 + ivtmp.2244_156 * 1]
 @ Patches/../C_code.c:6400: 		for (i = 0; i < 20; i++) {
 	adds	r4, r4, #2	@ ivtmp.2244,
 	cmp	r4, #40	@ ivtmp.2244,
-	bne	.L3846		@,
-	b	.L3845		@
-.L3883:
+	bne	.L3845		@,
+	b	.L3844		@
+.L3882:
 @ Patches/../C_code.c:6392: 			if ((i == rareItemSlot) && (RareItemTableSize)) { itemId = RandRareItem(itemId, noise, i, true, varyByCh); } 
 	ldr	r3, [sp, #12]	@ tmp304, %sfp
 	ldr	r1, [r3]	@ RareItemTableSize.386_20, RareItemTableSize
 	cmp	r1, #0	@ RareItemTableSize.386_20,
-	beq	.L3836		@,
+	beq	.L3835		@,
 @ Patches/../C_code.c:1929: 	if (!item) { return item; } 
 	cmp	r0, #0	@ itemId,
-	beq	.L3843		@,
+	beq	.L3842		@,
 @ Patches/../C_code.c:1930: 	item &= 0xFF; 
 	movs	r3, #255	@ tmp262,
 @ Patches/../C_code.c:1931: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
@@ -30658,46 +30649,46 @@ StartShopScreen:
 @ Patches/../C_code.c:1931: 	if (ItemExceptions[item].NeverChangeFrom) { return MakeNewItem(item); } 
 	ldrb	r3, [r3, r2]	@ tmp266, ItemExceptions
 	cmp	r3, #0	@ tmp266,
-	bne	.L3880		@,
+	bne	.L3879		@,
 @ Patches/../C_code.c:1933: 	if (varyByCh) { 
 	mov	r3, fp	@ varyByCh, varyByCh
 	cmp	r3, #0	@ varyByCh,
-	bne	.L3886		@,
+	bne	.L3885		@,
 @ Patches/../C_code.c:1937: 		c = HashByte_Global(item, RareItemTableSize, noise, offset); 
 	mov	r3, r10	@, tmp226
 	mov	r2, r9	@, tmp293
 	bl	HashByte_Global		@
-.L3842:
+.L3841:
 @ Patches/../C_code.c:1939: 	item = RareItemTable[c]; 
 	ldr	r3, [sp, #20]	@ tmp306, %sfp
 	ldrb	r0, [r3, r0]	@ item, RareItemTable
-.L3880:
+.L3879:
 @ Patches/../C_code.c:1940: 	return MakeNewItem(item); 
-	ldr	r3, .L3888+44	@ tmp280,
+	ldr	r3, .L3887+44	@ tmp280,
 	bl	.L14		@
 @ Patches/../C_code.c:6392: 			if ((i == rareItemSlot) && (RareItemTableSize)) { itemId = RandRareItem(itemId, noise, i, true, varyByCh); } 
 	lsls	r0, r0, #16	@ tmp281, tmp317,
 	lsrs	r0, r0, #16	@ itemId, tmp281,
 @ Patches/../C_code.c:1940: 	return MakeNewItem(item); 
-	b	.L3843		@
-.L3881:
+	b	.L3842		@
+.L3880:
 @ Patches/../C_code.c:6369:     shopItems = gDefaultShopInventory;
-	ldr	r5, .L3888+48	@ inventory,
-	b	.L3823		@
-.L3820:
+	ldr	r5, .L3887+48	@ inventory,
+	b	.L3822		@
+.L3819:
 @ Patches/../C_code.c:6362:         proc = Proc_Start(gProcScr_Shop, PROC_TREE_3);
 	movs	r1, #3	@,
-	ldr	r3, .L3888+52	@ tmp182,
+	ldr	r3, .L3887+52	@ tmp182,
 	bl	.L14		@
 	mov	r8, r0	@ proc, tmp312
-	b	.L3821		@
-.L3885:
+	b	.L3820		@
+.L3884:
 @ Patches/../C_code.c:6376: 		int noise[4] = {0, 0, 0, 0}; 
 	add	r3, sp, #24	@ tmp293,,
 	movs	r0, r3	@, tmp293
 	mov	r9, r3	@ tmp293, tmp293
 	movs	r2, #16	@,
-	ldr	r3, .L3888+16	@ tmp213,
+	ldr	r3, .L3887+16	@ tmp213,
 	movs	r1, #0	@,
 	bl	.L14		@
 @ Patches/../C_code.c:6377: 		int varyByCh = false; // prep armoury only 
@@ -30705,45 +30696,45 @@ StartShopScreen:
 	mov	fp, r3	@ varyByCh, varyByCh
 @ Patches/../C_code.c:6378: 		if ((shopType < 10) || (!unit)) { 
 	cmp	r7, #0	@ unit,
-	beq	.LCB25297	@
-	b	.L3827	@long jump	@
-.LCB25297:
-	b	.L3826		@
-.L3886:
+	beq	.LCB25289	@
+	b	.L3826	@long jump	@
+.LCB25289:
+	b	.L3825		@
+.L3885:
 	mov	r3, r9	@ ivtmp.2222, tmp293
-.L3841:
+.L3840:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
 	ldr	r2, [r3]	@ MEM[(int *)_114], MEM[(int *)_114]
 	cmp	r2, #0	@ MEM[(int *)_114],
-	beq	.L3887		@,
+	beq	.L3886		@,
 @ Patches/../C_code.c:1443: 	for (i = 0; i < 4; i++) { 
 	adds	r3, r3, #4	@ ivtmp.2222,
 	add	r2, sp, #40	@ tmp380,,
 	cmp	r2, r3	@ tmp380, ivtmp.2222
-	bne	.L3841		@,
-.L3840:
+	bne	.L3840		@,
+.L3839:
 @ Patches/../C_code.c:1446: 	return HashByte_Global(number, max, noise, offset);
 	movs	r3, r4	@, i
 	mov	r2, r9	@, tmp293
 	bl	HashByte_Global		@
-	b	.L3842		@
-.L3882:
+	b	.L3841		@
+.L3881:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	ldr	r2, .L3888+20	@ tmp223,
+	ldr	r2, .L3887+20	@ tmp223,
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r2, [r3]	@ gCh, *_90
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L3829		@
-.L3887:
+	b	.L3828		@
+.L3886:
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	ldr	r2, .L3888+20	@ tmp270,
+	ldr	r2, .L3887+20	@ tmp270,
 	ldrb	r2, [r2]	@ gCh, gCh
 	str	r2, [r3]	@ gCh, *_114
 @ Patches/../C_code.c:1444: 		if (!noise[i]) { noise[i] = gCh; break; } 
-	b	.L3840		@
-.L3889:
-	.align	2
+	b	.L3839		@
 .L3888:
+	.align	2
+.L3887:
 	.word	EndPlayerPhaseSideWindows
 	.word	gProcScr_Shop
 	.word	Proc_StartBlocking
@@ -30848,39 +30839,39 @@ GetUnitDefaultMovementCost:
 	ldr	r3, [r0, #12]	@ unit_6(D)->state, unit_6(D)->state
 @ Patches/../C_code.c:6646:     if (unit->state & US_IN_BALLISTA) {
 	lsls	r3, r3, #20	@ tmp128, unit_6(D)->state,
-	bmi	.L3898		@,
+	bmi	.L3897		@,
 @ Patches/../C_code.c:6652:     switch (weatherId) {
-	ldr	r3, .L3900	@ tmp123,
+	ldr	r3, .L3899	@ tmp123,
 	ldrb	r3, [r3]	@ weatherId.388_8, weatherId
 	ldr	r2, [r0, #4]	@ _7, MEM[(const struct ClassData * *)unit_6(D) + 4B]
 	cmp	r3, #2	@ weatherId.388_8,
-	bls	.L3899		@,
+	bls	.L3898		@,
 	cmp	r3, #4	@ weatherId.388_8,
-	bne	.L3897		@,
+	bne	.L3896		@,
 @ Patches/../C_code.c:6656: 		return unit->pClassData->pMovCostTable[1]; 
 	ldr	r0, [r2, #60]	@ <retval>, _7->pMovCostTable[1]
-.L3893:
+.L3892:
 @ Patches/../C_code.c:6665: }
 	@ sp needed	@
 	bx	lr
-.L3899:
+.L3898:
 @ Patches/../C_code.c:6652:     switch (weatherId) {
 	cmp	r3, #0	@ weatherId.388_8,
-	beq	.L3897		@,
+	beq	.L3896		@,
 @ Patches/../C_code.c:6659: 		return unit->pClassData->pMovCostTable[2]; 
 	ldr	r0, [r2, #64]	@ <retval>, _7->pMovCostTable[2]
-	b	.L3893		@
-.L3898:
-@ Patches/../C_code.c:6647: 		return Ballista_TerrainTable; } // fe8 is 80BC18
-	ldr	r0, .L3900+4	@ <retval>,
-	b	.L3893		@
+	b	.L3892		@
 .L3897:
+@ Patches/../C_code.c:6647: 		return Ballista_TerrainTable; } // fe8 is 80BC18
+	ldr	r0, .L3899+4	@ <retval>,
+	b	.L3892		@
+.L3896:
 @ Patches/../C_code.c:6664: 	return unit->pClassData->pMovCostTable[0];
 	ldr	r0, [r2, #56]	@ <retval>, _7->pMovCostTable[0]
-	b	.L3893		@
-.L3901:
-	.align	2
+	b	.L3892		@
 .L3900:
+	.align	2
+.L3899:
 	.word	weatherId
 	.word	Ballista_TerrainTable
 	.size	GetUnitDefaultMovementCost, .-GetUnitDefaultMovementCost
@@ -30902,42 +30893,42 @@ IsUnitTrapped:
 	ldrsb	r3, [r0, r3]	@ tmp146,
 @ Patches/../C_code.c:6675: 	if (UNIT_FACTION(unit) == FACTION_BLUE) { return false; } 
 	tst	r2, r3	@ tmp147, tmp146
-	beq	.L3903		@,
+	beq	.L3902		@,
 @ Patches/../C_code.c:6646:     if (unit->state & US_IN_BALLISTA) {
 	ldr	r3, [r0, #12]	@ unit_30(D)->state, unit_30(D)->state
 @ Patches/../C_code.c:6646:     if (unit->state & US_IN_BALLISTA) {
 	lsls	r3, r3, #20	@ tmp184, unit_30(D)->state,
-	bmi	.L3912		@,
+	bmi	.L3911		@,
 @ Patches/../C_code.c:6652:     switch (weatherId) {
-	ldr	r3, .L3923	@ tmp152,
+	ldr	r3, .L3922	@ tmp152,
 	ldrb	r3, [r3]	@ weatherId.388_41, weatherId
 	ldr	r2, [r0, #4]	@ _40, MEM[(const struct ClassData * *)unit_30(D) + 4B]
 	cmp	r3, #2	@ weatherId.388_41,
-	bhi	.L3905		@,
+	bhi	.L3904		@,
 	cmp	r3, #0	@ weatherId.388_41,
-	beq	.L3907		@,
+	beq	.L3906		@,
 @ Patches/../C_code.c:6659: 		return unit->pClassData->pMovCostTable[2]; 
 	ldr	r2, [r2, #64]	@ _39, _40->pMovCostTable[2]
-	b	.L3904		@
-.L3903:
+	b	.L3903		@
+.L3902:
 @ Patches/../C_code.c:6675: 	if (UNIT_FACTION(unit) == FACTION_BLUE) { return false; } 
 	movs	r0, #0	@ <retval>,
-.L3902:
+.L3901:
 @ Patches/../C_code.c:6692: } 
 	@ sp needed	@
 	pop	{r3, r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L3912:
+.L3911:
 @ Patches/../C_code.c:6647: 		return Ballista_TerrainTable; } // fe8 is 80BC18
-	ldr	r2, .L3923+4	@ _39,
-.L3904:
+	ldr	r2, .L3922+4	@ _39,
+.L3903:
 @ Patches/../C_code.c:6676: 	int flierCost = GetUnitDefaultMovementCost(unit)[TERRAIN_CLIFF]; 
 	movs	r3, #38	@ tmp155,
 	ldrsb	r3, [r2, r3]	@ _5, MEM[(const s8 *)_39 + 38B]
 @ Patches/../C_code.c:6677: 	if ((flierCost >= 0) && (flierCost < unit->pClassData->baseMov)) { return false; } 
 	cmp	r3, #0	@ _5,
-	blt	.L3908		@,
+	blt	.L3907		@,
 @ Patches/../C_code.c:6677: 	if ((flierCost >= 0) && (flierCost < unit->pClassData->baseMov)) { return false; } 
 	ldr	r1, [r0, #4]	@ unit_30(D)->pClassData, unit_30(D)->pClassData
 @ Patches/../C_code.c:6677: 	if ((flierCost >= 0) && (flierCost < unit->pClassData->baseMov)) { return false; } 
@@ -30945,8 +30936,8 @@ IsUnitTrapped:
 	lsls	r1, r1, #24	@ tmp160, tmp160,
 	asrs	r1, r1, #24	@ tmp160, tmp160,
 	cmp	r1, r3	@ tmp160, _5
-	bgt	.L3903		@,
-.L3908:
+	bgt	.L3902		@,
+.L3907:
 @ Patches/../C_code.c:6679: 	GenerateExtendedMovementMap(unit->xPos, unit->yPos, GetUnitDefaultMovementCost(unit));
 	movs	r1, #17	@ tmp161,
 @ Patches/../C_code.c:6681: 	for (int i = 1; i<0x40; i++) { 
@@ -30956,32 +30947,32 @@ IsUnitTrapped:
 	ldrb	r0, [r0, #16]	@ tmp162,
 	lsls	r0, r0, #24	@ tmp162, tmp162,
 @ Patches/../C_code.c:6679: 	GenerateExtendedMovementMap(unit->xPos, unit->yPos, GetUnitDefaultMovementCost(unit));
-	ldr	r3, .L3923+8	@ tmp163,
+	ldr	r3, .L3922+8	@ tmp163,
 @ Patches/../C_code.c:6679: 	GenerateExtendedMovementMap(unit->xPos, unit->yPos, GetUnitDefaultMovementCost(unit));
 	asrs	r0, r0, #24	@ tmp162, tmp162,
 @ Patches/../C_code.c:6679: 	GenerateExtendedMovementMap(unit->xPos, unit->yPos, GetUnitDefaultMovementCost(unit));
 	bl	.L14		@
 @ Patches/../C_code.c:6684: 		if (target->state & (US_DEAD|US_NOT_DEPLOYED|US_BIT16)) { continue; } 
-	ldr	r6, .L3923+12	@ tmp180,
-	ldr	r5, .L3923+16	@ tmp179,
+	ldr	r6, .L3922+12	@ tmp180,
+	ldr	r5, .L3922+16	@ tmp179,
 @ Patches/../C_code.c:6685: 		if (gBmMapMovement[target->yPos][target->xPos] > 120) { continue; } 
-	ldr	r7, .L3923+20	@ tmp181,
-.L3910:
+	ldr	r7, .L3922+20	@ tmp181,
+.L3909:
 @ Patches/../C_code.c:6682: 		target = GetUnit(i); 
 	movs	r0, r4	@, i
-	bl	.L3232		@
+	bl	.L3231		@
 @ Patches/../C_code.c:6683: 		if (!UNIT_IS_VALID(target)) { continue; } 
 	cmp	r0, #0	@ target,
-	beq	.L3909		@,
+	beq	.L3908		@,
 @ Patches/../C_code.c:6683: 		if (!UNIT_IS_VALID(target)) { continue; } 
 	ldr	r3, [r0]	@ target_34->pCharacterData, target_34->pCharacterData
 	cmp	r3, #0	@ target_34->pCharacterData,
-	beq	.L3909		@,
+	beq	.L3908		@,
 @ Patches/../C_code.c:6684: 		if (target->state & (US_DEAD|US_NOT_DEPLOYED|US_BIT16)) { continue; } 
 	ldr	r3, [r0, #12]	@ target_34->state, target_34->state
 @ Patches/../C_code.c:6684: 		if (target->state & (US_DEAD|US_NOT_DEPLOYED|US_BIT16)) { continue; } 
 	tst	r3, r6	@ target_34->state, tmp180
-	bne	.L3909		@,
+	bne	.L3908		@,
 @ Patches/../C_code.c:6685: 		if (gBmMapMovement[target->yPos][target->xPos] > 120) { continue; } 
 	movs	r3, #17	@ tmp169,
 @ Patches/../C_code.c:6685: 		if (gBmMapMovement[target->yPos][target->xPos] > 120) { continue; } 
@@ -30998,30 +30989,30 @@ IsUnitTrapped:
 @ Patches/../C_code.c:6685: 		if (gBmMapMovement[target->yPos][target->xPos] > 120) { continue; } 
 	ldrb	r3, [r3, r2]	@ *_23, *_23
 	cmp	r3, #120	@ *_23,
-	bls	.L3903		@,
-.L3909:
+	bls	.L3902		@,
+.L3908:
 @ Patches/../C_code.c:6681: 	for (int i = 1; i<0x40; i++) { 
 	adds	r4, r4, #1	@ i,
 @ Patches/../C_code.c:6681: 	for (int i = 1; i<0x40; i++) { 
 	cmp	r4, #64	@ i,
-	bne	.L3910		@,
+	bne	.L3909		@,
 @ Patches/../C_code.c:6691: 	return true;  
 	movs	r0, #1	@ <retval>,
-	b	.L3902		@
-.L3905:
+	b	.L3901		@
+.L3904:
 @ Patches/../C_code.c:6652:     switch (weatherId) {
 	cmp	r3, #4	@ weatherId.388_41,
-	bne	.L3907		@,
+	bne	.L3906		@,
 @ Patches/../C_code.c:6656: 		return unit->pClassData->pMovCostTable[1]; 
 	ldr	r2, [r2, #60]	@ _39, _40->pMovCostTable[1]
-	b	.L3904		@
-.L3907:
+	b	.L3903		@
+.L3906:
 @ Patches/../C_code.c:6664: 	return unit->pClassData->pMovCostTable[0];
 	ldr	r2, [r2, #56]	@ _39, _40->pMovCostTable[0]
-	b	.L3904		@
-.L3924:
-	.align	2
+	b	.L3903		@
 .L3923:
+	.align	2
+.L3922:
 	.word	weatherId
 	.word	Ballista_TerrainTable
 	.word	GenerateExtendedMovementMap
@@ -31043,7 +31034,7 @@ IsUnitStuck:
 @ Patches/../C_code.c:6699: 	int terrainType = gBmMapTerrain[unit->yPos][unit->xPos]; 
 	movs	r3, #17	@ tmp142,
 @ Patches/../C_code.c:6699: 	int terrainType = gBmMapTerrain[unit->yPos][unit->xPos]; 
-	ldr	r2, .L3943	@ tmp144,
+	ldr	r2, .L3942	@ tmp144,
 	ldr	r1, [r2]	@ gBmMapTerrain, gBmMapTerrain
 @ Patches/../C_code.c:6699: 	int terrainType = gBmMapTerrain[unit->yPos][unit->xPos]; 
 	movs	r2, #16	@ tmp146,
@@ -31063,28 +31054,28 @@ IsUnitStuck:
 	ldr	r3, [r0, #12]	@ _11, unit_23(D)->state
 @ Patches/../C_code.c:6701: 		if (terrainType != TERRAIN_VILLAGE_04) { 
 	lsls	r1, r3, #26	@ tmp182, _11,
-	bmi	.L3926		@,
+	bmi	.L3925		@,
 	cmp	r2, #4	@ _10,
-	beq	.L3926		@,
+	beq	.L3925		@,
 @ Patches/../C_code.c:6646:     if (unit->state & US_IN_BALLISTA) {
 	lsls	r3, r3, #20	@ tmp183, _11,
-	bmi	.L3932		@,
+	bmi	.L3931		@,
 @ Patches/../C_code.c:6652:     switch (weatherId) {
-	ldr	r3, .L3943+4	@ tmp167,
+	ldr	r3, .L3942+4	@ tmp167,
 	ldrb	r3, [r3]	@ weatherId.388_30, weatherId
 	ldr	r1, [r0, #4]	@ _29, MEM[(const struct ClassData * *)unit_23(D) + 4B]
 	cmp	r3, #2	@ weatherId.388_30,
-	bls	.L3942		@,
+	bls	.L3941		@,
 	cmp	r3, #4	@ weatherId.388_30,
-	bne	.L3930		@,
+	bne	.L3929		@,
 @ Patches/../C_code.c:6656: 		return unit->pClassData->pMovCostTable[1]; 
 	ldr	r3, [r1, #60]	@ _28, _29->pMovCostTable[1]
-.L3927:
+.L3926:
 @ Patches/../C_code.c:6702: 			int tcost = GetUnitDefaultMovementCost(unit)[terrainType];
 	ldrsb	r3, [r3, r2]	@ _16, *_15
 @ Patches/../C_code.c:6703: 			if ((tcost < 0) || (tcost > unit->pClassData->baseMov)) { return flierMov; } 
 	cmp	r3, #0	@ _16,
-	blt	.L3934		@,
+	blt	.L3933		@,
 @ Patches/../C_code.c:6703: 			if ((tcost < 0) || (tcost > unit->pClassData->baseMov)) { return flierMov; } 
 	ldr	r2, [r0, #4]	@ unit_23(D)->pClassData, unit_23(D)->pClassData
 @ Patches/../C_code.c:6703: 			if ((tcost < 0) || (tcost > unit->pClassData->baseMov)) { return flierMov; } 
@@ -31092,41 +31083,41 @@ IsUnitStuck:
 	lsls	r2, r2, #24	@ tmp175, tmp175,
 	asrs	r2, r2, #24	@ tmp175, tmp175,
 	cmp	r2, r3	@ tmp175, _16
-	blt	.L3934		@,
-.L3926:
+	blt	.L3933		@,
+.L3925:
 @ Patches/../C_code.c:6707: 	if (IsUnitTrapped(unit)) { return waterPeakMov; } 
 	bl	IsUnitTrapped		@
 @ Patches/../C_code.c:6707: 	if (IsUnitTrapped(unit)) { return waterPeakMov; } 
 	subs	r3, r0, #1	@ tmp178, tmp181
 	sbcs	r0, r0, r3	@ <retval>, tmp181, tmp178
-.L3925:
+.L3924:
 @ Patches/../C_code.c:6710: } 
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L3942:
+.L3941:
 @ Patches/../C_code.c:6652:     switch (weatherId) {
 	cmp	r3, #0	@ weatherId.388_30,
-	beq	.L3930		@,
+	beq	.L3929		@,
 @ Patches/../C_code.c:6659: 		return unit->pClassData->pMovCostTable[2]; 
 	ldr	r3, [r1, #64]	@ _28, _29->pMovCostTable[2]
-	b	.L3927		@
-.L3934:
+	b	.L3926		@
+.L3933:
 @ Patches/../C_code.c:6703: 			if ((tcost < 0) || (tcost > unit->pClassData->baseMov)) { return flierMov; } 
 	movs	r0, #2	@ <retval>,
-	b	.L3925		@
-.L3932:
+	b	.L3924		@
+.L3931:
 @ Patches/../C_code.c:6647: 		return Ballista_TerrainTable; } // fe8 is 80BC18
-	ldr	r3, .L3943+8	@ _28,
-	b	.L3927		@
-.L3930:
+	ldr	r3, .L3942+8	@ _28,
+	b	.L3926		@
+.L3929:
 @ Patches/../C_code.c:6664: 	return unit->pClassData->pMovCostTable[0];
 	ldr	r3, [r1, #56]	@ _28, _29->pMovCostTable[0]
-	b	.L3927		@
-.L3944:
-	.align	2
+	b	.L3926		@
 .L3943:
+	.align	2
+.L3942:
 	.word	gBmMapTerrain
 	.word	weatherId
 	.word	Ballista_TerrainTable
@@ -31150,55 +31141,55 @@ GetUnitMovementCost:
 	movs	r4, r0	@ unit, tmp173
 @ Patches/../C_code.c:6715:     if (unit->state & US_IN_BALLISTA) {
 	lsls	r3, r3, #20	@ tmp179, unit_14(D)->state,
-	bmi	.L3956		@,
+	bmi	.L3955		@,
 @ Patches/../C_code.c:1174: 	int config = RandBitflags->class; 
-	ldr	r3, .L3976	@ tmp144,
+	ldr	r3, .L3975	@ tmp144,
 	ldr	r3, [r3]	@ RandBitflags, RandBitflags
 	ldrb	r3, [r3, #1]	@ *RandBitflags.55_20, *RandBitflags.55_20
 	lsls	r3, r3, #29	@ tmp149, *RandBitflags.55_20,
 @ Patches/../C_code.c:1174: 	int config = RandBitflags->class; 
 	lsrs	r3, r3, #30	@ config, tmp149,
 @ Patches/../C_code.c:1175: 	if (!config) { return false; } 
-	beq	.L3970		@,
+	beq	.L3969		@,
 @ Patches/../C_code.c:1176: 	if ((config == 3) && (UNIT_FACTION(unit) != FACTION_RED)) {  return false; } 
 	cmp	r3, #3	@ config,
-	beq	.L3973		@,
+	beq	.L3972		@,
 @ Patches/../C_code.c:1177: 	if ((config == 2) && (UNIT_FACTION(unit) == FACTION_RED)) {  return false; } 
 	cmp	r3, #2	@ config,
-	beq	.L3974		@,
-.L3949:
+	beq	.L3973		@,
+.L3948:
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
 	ldr	r2, [r4]	@ MEM[(const struct CharacterData * *)unit_14(D)], MEM[(const struct CharacterData * *)unit_14(D)]
 	ldrb	r2, [r2, #4]	@ tmp159,
 @ Patches/../C_code.c:1166: 	return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom; 
-	ldr	r3, .L3976+4	@ tmp157,
+	ldr	r3, .L3975+4	@ tmp157,
 	lsls	r2, r2, #1	@ tmp160, tmp159,
 @ Patches/../C_code.c:6719: 	if (ShouldRandomizeClass(unit)) { 
 	ldrb	r3, [r2, r3]	@ tmp161, CharExceptions
 	cmp	r3, #0	@ tmp161,
-	bne	.L3970		@,
+	bne	.L3969		@,
 @ Patches/../C_code.c:6721: 		int stuck = IsUnitStuck(unit);
 	movs	r0, r4	@, unit
 	bl	IsUnitStuck		@
 @ Patches/../C_code.c:6723: 			switch (weatherId) { 
-	ldr	r3, .L3976+8	@ tmp162,
+	ldr	r3, .L3975+8	@ tmp162,
 @ Patches/../C_code.c:6722: 		if (stuck == flierMov) { 			
 	cmp	r0, #2	@ stuck,
-	beq	.L3975		@,
+	beq	.L3974		@,
 @ Patches/../C_code.c:6723: 			switch (weatherId) { 
 	ldrb	r2, [r3]	@ pretmp_37, weatherId
 @ Patches/../C_code.c:6732: 		if (stuck == waterPeakMov) { 			
 	cmp	r0, #1	@ stuck,
-	bne	.L3947		@,
+	bne	.L3946		@,
 @ Patches/../C_code.c:6733: 			switch (weatherId) { 
 	cmp	r2, #2	@ pretmp_37,
-	bhi	.L3952		@,
+	bhi	.L3951		@,
 	cmp	r2, #0	@ pretmp_37,
-	bne	.L3972		@,
-.L3960:
-	ldr	r0, .L3976+12	@ <retval>,
-	b	.L3945		@
-.L3973:
+	bne	.L3971		@,
+.L3959:
+	ldr	r0, .L3975+12	@ <retval>,
+	b	.L3944		@
+.L3972:
 @ Patches/../C_code.c:1176: 	if ((config == 3) && (UNIT_FACTION(unit) != FACTION_RED)) {  return false; } 
 	movs	r2, #11	@ tmp151,
 	ldrsb	r2, [r0, r2]	@ tmp151,
@@ -31206,39 +31197,39 @@ GetUnitMovementCost:
 	ands	r3, r2	@ tmp153, tmp151
 @ Patches/../C_code.c:1176: 	if ((config == 3) && (UNIT_FACTION(unit) != FACTION_RED)) {  return false; } 
 	cmp	r3, #128	@ tmp153,
-	beq	.L3949		@,
-.L3970:
-	ldr	r3, .L3976+8	@ tmp172,
-.L3947:
+	beq	.L3948		@,
+.L3969:
+	ldr	r3, .L3975+8	@ tmp172,
+.L3946:
 @ Patches/../C_code.c:6745:     switch (weatherId) {
 	ldrb	r3, [r3]	@ weatherId.394_6, weatherId
 @ Patches/../C_code.c:6749: 		return unit->pClassData->pMovCostTable[1]; 
 	ldr	r2, [r4, #4]	@ pretmp_36, unit_14(D)->pClassData
 @ Patches/../C_code.c:6745:     switch (weatherId) {
 	cmp	r3, #2	@ weatherId.394_6,
-	bhi	.L3953		@,
+	bhi	.L3952		@,
 	cmp	r3, #0	@ weatherId.394_6,
-	beq	.L3955		@,
+	beq	.L3954		@,
 @ Patches/../C_code.c:6752: 		return unit->pClassData->pMovCostTable[2]; 
 	ldr	r0, [r2, #64]	@ <retval>, pretmp_36->pMovCostTable[2]
-	b	.L3945		@
-.L3956:
+	b	.L3944		@
+.L3955:
 @ Patches/../C_code.c:6716: 		return Ballista_TerrainTable; } // fe8 is 80BC18
-	ldr	r0, .L3976+16	@ <retval>,
-.L3945:
+	ldr	r0, .L3975+16	@ <retval>,
+.L3944:
 @ Patches/../C_code.c:6757: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L3953:
+.L3952:
 @ Patches/../C_code.c:6745:     switch (weatherId) {
 	cmp	r3, #4	@ weatherId.394_6,
-	bne	.L3955		@,
+	bne	.L3954		@,
 @ Patches/../C_code.c:6749: 		return unit->pClassData->pMovCostTable[1]; 
 	ldr	r0, [r2, #60]	@ <retval>, pretmp_36->pMovCostTable[1]
-	b	.L3945		@
-.L3974:
+	b	.L3944		@
+.L3973:
 @ Patches/../C_code.c:1177: 	if ((config == 2) && (UNIT_FACTION(unit) == FACTION_RED)) {  return false; } 
 	movs	r2, #11	@ tmp154,
 	ldrsb	r2, [r0, r2]	@ tmp154,
@@ -31246,40 +31237,40 @@ GetUnitMovementCost:
 	ands	r3, r2	@ tmp156, tmp154
 @ Patches/../C_code.c:1177: 	if ((config == 2) && (UNIT_FACTION(unit) == FACTION_RED)) {  return false; } 
 	cmp	r3, #128	@ tmp156,
-	bne	.L3949		@,
-	b	.L3970		@
-.L3955:
+	bne	.L3948		@,
+	b	.L3969		@
+.L3954:
 @ Patches/../C_code.c:6756: 	return unit->pClassData->pMovCostTable[0];
 	ldr	r0, [r2, #56]	@ <retval>, pretmp_36->pMovCostTable[0]
-	b	.L3945		@
-.L3975:
+	b	.L3944		@
+.L3974:
 @ Patches/../C_code.c:6723: 			switch (weatherId) { 
 	ldrb	r3, [r3]	@ weatherId.392_4, weatherId
 	cmp	r3, #2	@ weatherId.392_4,
-	bhi	.L3951		@,
+	bhi	.L3950		@,
 	cmp	r3, #0	@ weatherId.392_4,
-	bne	.L3971		@,
-.L3958:
-	ldr	r0, .L3976+20	@ <retval>,
-	b	.L3945		@
-.L3951:
+	bne	.L3970		@,
+.L3957:
+	ldr	r0, .L3975+20	@ <retval>,
+	b	.L3944		@
+.L3950:
 	cmp	r3, #4	@ weatherId.392_4,
-	bne	.L3958		@,
-.L3971:
+	bne	.L3957		@,
+.L3970:
 @ Patches/../C_code.c:6727: 				return TerrainTable_MovCost_StuckRainy; 
-	ldr	r0, .L3976+24	@ <retval>,
-	b	.L3945		@
-.L3952:
+	ldr	r0, .L3975+24	@ <retval>,
+	b	.L3944		@
+.L3951:
 @ Patches/../C_code.c:6733: 			switch (weatherId) { 
 	cmp	r2, #4	@ pretmp_37,
-	bne	.L3960		@,
-.L3972:
+	bne	.L3959		@,
+.L3971:
 @ Patches/../C_code.c:6737: 				return TerrainTable_MovCost_BerserkerRain; //880B90C
-	ldr	r0, .L3976+28	@ <retval>,
-	b	.L3945		@
-.L3977:
-	.align	2
+	ldr	r0, .L3975+28	@ <retval>,
+	b	.L3944		@
 .L3976:
+	.align	2
+.L3975:
 	.word	RandBitflags
 	.word	CharExceptions
 	.word	weatherId
@@ -31302,7 +31293,7 @@ IsItemADanceRing:
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}	@
 @ Patches/../C_code.c:6766:     switch (GetItemIndex(item)) {
-	ldr	r3, .L3979	@ tmp120,
+	ldr	r3, .L3978	@ tmp120,
 @ Patches/../C_code.c:6783: }
 	@ sp needed	@
 @ Patches/../C_code.c:6766:     switch (GetItemIndex(item)) {
@@ -31318,9 +31309,9 @@ IsItemADanceRing:
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L3980:
-	.align	2
 .L3979:
+	.align	2
+.L3978:
 	.word	GetItemIndex
 	.size	IsItemADanceRing, .-IsItemADanceRing
 	.align	1
@@ -31347,13 +31338,13 @@ CanUnitTypicallyUseLockpickItem:
 	movs	r0, #1	@ <retval>,
 @ Patches/../C_code.c:6789: 	if (faction == FACTION_BLUE) { 
 	tst	r1, r2	@ tmp128, tmp127
-	bne	.L3981		@,
+	bne	.L3980		@,
 @ Patches/../C_code.c:6790: 		if (OnlyThievesCanUseLockpicks) { 
-	ldr	r2, .L3986	@ tmp130,
+	ldr	r2, .L3985	@ tmp130,
 @ Patches/../C_code.c:6790: 		if (OnlyThievesCanUseLockpicks) { 
 	ldr	r2, [r2]	@ OnlyThievesCanUseLockpicks, OnlyThievesCanUseLockpicks
 	cmp	r2, #0	@ OnlyThievesCanUseLockpicks,
-	beq	.L3981		@,
+	beq	.L3980		@,
 @ Patches/../C_code.c:6791: 			if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
 	ldmia	r3!, {r1, r2}	@,,
 	ldr	r3, [r1, #40]	@ _9->attributes, _9->attributes
@@ -31362,13 +31353,13 @@ CanUnitTypicallyUseLockpickItem:
 @ Patches/../C_code.c:6791: 			if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
 	lsrs	r3, r3, #3	@ tmp137, tmp134,
 	ands	r0, r3	@ <retval>, tmp137
-.L3981:
+.L3980:
 @ Patches/../C_code.c:6797: } 
 	@ sp needed	@
 	bx	lr
-.L3987:
-	.align	2
 .L3986:
+	.align	2
+.L3985:
 	.word	OnlyThievesCanUseLockpicks
 	.size	CanUnitTypicallyUseLockpickItem, .-CanUnitTypicallyUseLockpickItem
 	.align	1
@@ -31394,13 +31385,13 @@ CanUnitUseLockpickItem:
 	movs	r4, r0	@ unit, tmp156
 @ Patches/../C_code.c:6789: 	if (faction == FACTION_BLUE) { 
 	tst	r2, r3	@ tmp131, tmp130
-	bne	.L3989		@,
+	bne	.L3988		@,
 @ Patches/../C_code.c:6790: 		if (OnlyThievesCanUseLockpicks) { 
-	ldr	r3, .L3997	@ tmp133,
+	ldr	r3, .L3996	@ tmp133,
 @ Patches/../C_code.c:6790: 		if (OnlyThievesCanUseLockpicks) { 
 	ldr	r3, [r3]	@ OnlyThievesCanUseLockpicks, OnlyThievesCanUseLockpicks
 	cmp	r3, #0	@ OnlyThievesCanUseLockpicks,
-	beq	.L3989		@,
+	beq	.L3988		@,
 @ Patches/../C_code.c:6791: 			if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
 	ldr	r3, [r0]	@ MEM[(const struct CharacterData * *)unit_9(D)], MEM[(const struct CharacterData * *)unit_9(D)]
 	ldr	r2, [r0, #4]	@ MEM[(const struct ClassData * *)unit_9(D) + 4B], MEM[(const struct ClassData * *)unit_9(D) + 4B]
@@ -31409,47 +31400,47 @@ CanUnitUseLockpickItem:
 	orrs	r3, r2	@ tmp137, _21->attributes
 @ Patches/../C_code.c:6791: 			if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
 	lsls	r3, r3, #28	@ tmp160, tmp137,
-	bpl	.L3993		@,
-.L3989:
+	bpl	.L3992		@,
+.L3988:
 @ Patches/../C_code.c:6804:     if (!CanUnitUseChestKeyItem(unit) && !CanUnitUseDoorKeyItem(unit) && !CanUnitOpenBridge(unit))
 	movs	r0, r4	@, unit
-	ldr	r3, .L3997+4	@ tmp142,
+	ldr	r3, .L3996+4	@ tmp142,
 	bl	.L14		@
 @ Patches/../C_code.c:6804:     if (!CanUnitUseChestKeyItem(unit) && !CanUnitUseDoorKeyItem(unit) && !CanUnitOpenBridge(unit))
 	cmp	r0, #0	@ tmp157,
-	beq	.L3991		@,
-.L3992:
+	beq	.L3990		@,
+.L3991:
 @ Patches/../C_code.c:6807:     return TRUE;
 	movs	r0, #1	@ <retval>,
-.L3990:
+.L3989:
 @ Patches/../C_code.c:6808: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L3991:
+.L3990:
 @ Patches/../C_code.c:6804:     if (!CanUnitUseChestKeyItem(unit) && !CanUnitUseDoorKeyItem(unit) && !CanUnitOpenBridge(unit))
 	movs	r0, r4	@, unit
-	ldr	r3, .L3997+8	@ tmp145,
+	ldr	r3, .L3996+8	@ tmp145,
 	bl	.L14		@
 @ Patches/../C_code.c:6804:     if (!CanUnitUseChestKeyItem(unit) && !CanUnitUseDoorKeyItem(unit) && !CanUnitOpenBridge(unit))
 	cmp	r0, #0	@ tmp158,
-	bne	.L3992		@,
+	bne	.L3991		@,
 @ Patches/../C_code.c:6804:     if (!CanUnitUseChestKeyItem(unit) && !CanUnitUseDoorKeyItem(unit) && !CanUnitOpenBridge(unit))
-	ldr	r3, .L3997+12	@ tmp148,
+	ldr	r3, .L3996+12	@ tmp148,
 	movs	r0, r4	@, unit
 	bl	.L14		@
 @ Patches/../C_code.c:6804:     if (!CanUnitUseChestKeyItem(unit) && !CanUnitUseDoorKeyItem(unit) && !CanUnitOpenBridge(unit))
 	subs	r3, r0, #1	@ tmp153, tmp159
 	sbcs	r0, r0, r3	@ <retval>, tmp159, tmp153
-	b	.L3990		@
-.L3993:
+	b	.L3989		@
+.L3992:
 @ Patches/../C_code.c:6802: 	if (!CanUnitTypicallyUseLockpickItem(unit)) { return false; } 
 	movs	r0, #0	@ <retval>,
-	b	.L3990		@
-.L3998:
-	.align	2
+	b	.L3989		@
 .L3997:
+	.align	2
+.L3996:
 	.word	OnlyThievesCanUseLockpicks
 	.word	CanUnitUseChestKeyItem
 	.word	CanUnitUseDoorKeyItem
@@ -31475,22 +31466,22 @@ AiGetChestUnlockItemSlot:
 @ Patches/../C_code.c:6813:     *out = 0;
 	strb	r3, [r0]	@ tmp131, *out_20(D)
 @ Patches/../C_code.c:6815:     if (GetUnitItemCount(gActiveUnit) == 5) {
-	ldr	r3, .L4018	@ tmp158,
+	ldr	r3, .L4017	@ tmp158,
 @ Patches/../C_code.c:6810: s8 AiGetChestUnlockItemSlot(u8* out) { // 8036A8C
 	movs	r7, r0	@ out, tmp160
 @ Patches/../C_code.c:6815:     if (GetUnitItemCount(gActiveUnit) == 5) {
 	mov	r8, r3	@ tmp158, tmp158
 	ldr	r0, [r3]	@ gActiveUnit, gActiveUnit
-	ldr	r3, .L4018+4	@ tmp135,
+	ldr	r3, .L4017+4	@ tmp135,
 	bl	.L14		@
 @ Patches/../C_code.c:6820:     for (i = 0; i < 5; i++) {
 	movs	r4, #0	@ i,
 @ Patches/../C_code.c:6815:     if (GetUnitItemCount(gActiveUnit) == 5) {
 	cmp	r0, #5	@ tmp161,
-	beq	.L4017		@,
+	beq	.L4016		@,
 @ Patches/../C_code.c:6829:         if (GetItemIndex(item) == CHEST_KEY_A) {
-	ldr	r6, .L4018+8	@ tmp159,
-.L4000:
+	ldr	r6, .L4017+8	@ tmp159,
+.L3999:
 @ Patches/../C_code.c:6821:         u16 item = gActiveUnit->items[i];
 	mov	r3, r8	@ tmp158, tmp158
 	movs	r2, r4	@ tmp145, i
@@ -31501,38 +31492,38 @@ AiGetChestUnlockItemSlot:
 	ldrh	r5, [r3, #6]	@ item, *gActiveUnit.399_6
 @ Patches/../C_code.c:6823:         if (item == 0) {
 	cmp	r5, #0	@ item,
-	beq	.L4001		@,
+	beq	.L4000		@,
 @ Patches/../C_code.c:6829:         if (GetItemIndex(item) == CHEST_KEY_A) {
 	movs	r0, r5	@, item
 @ Patches/../C_code.c:6827:         *out = i;
 	strb	r4, [r7]	@ i, *out_20(D)
 @ Patches/../C_code.c:6829:         if (GetItemIndex(item) == CHEST_KEY_A) {
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:6829:         if (GetItemIndex(item) == CHEST_KEY_A) {
 	cmp	r0, #105	@ tmp162,
-	beq	.L4005		@,
+	beq	.L4004		@,
 @ Patches/../C_code.c:6832:         if (GetItemIndex(item) == CHEST_KEY_B) {
 	movs	r0, r5	@, item
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:6832:         if (GetItemIndex(item) == CHEST_KEY_B) {
 	cmp	r0, #121	@ tmp163,
-	beq	.L4005		@,
+	beq	.L4004		@,
 @ Patches/../C_code.c:6836:         if (GetItemIndex(item) == LOCKPICK) { //ITEM_LOCKPICK) { // 3bb40 
 	movs	r0, r5	@, item
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:6836:         if (GetItemIndex(item) == LOCKPICK) { //ITEM_LOCKPICK) { // 3bb40 
 	cmp	r0, #107	@ tmp164,
-	beq	.L4006		@,
-.L4007:
+	beq	.L4005		@,
+.L4006:
 @ Patches/../C_code.c:6820:     for (i = 0; i < 5; i++) {
 	adds	r4, r4, #1	@ i,
 @ Patches/../C_code.c:6820:     for (i = 0; i < 5; i++) {
 	cmp	r4, #5	@ i,
-	bne	.L4000		@,
-.L4001:
+	bne	.L3999		@,
+.L4000:
 @ Patches/../C_code.c:6817:         return 0;
 	movs	r0, #0	@ <retval>,
-.L4004:
+.L4003:
 @ Patches/../C_code.c:6845: }
 	@ sp needed	@
 	pop	{r7}
@@ -31540,19 +31531,19 @@ AiGetChestUnlockItemSlot:
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L4006:
+.L4005:
 @ Patches/../C_code.c:6838:             if (CanUnitUseLockpickItem(gActiveUnit)) {
 	mov	r3, r8	@ tmp158, tmp158
 	ldr	r0, [r3]	@ gActiveUnit, gActiveUnit
 	bl	CanUnitUseLockpickItem		@
 @ Patches/../C_code.c:6838:             if (CanUnitUseLockpickItem(gActiveUnit)) {
 	cmp	r0, #0	@ tmp165,
-	beq	.L4007		@,
-.L4005:
+	beq	.L4006		@,
+.L4004:
 @ Patches/../C_code.c:6830:             return 1;
 	movs	r0, #1	@ <retval>,
-	b	.L4004		@
-.L4017:
+	b	.L4003		@
+.L4016:
 @ Patches/../C_code.c:6816:         gActiveUnit->aiFlags |= 1<<3; // AI_UNIT_FLAG_3
 	mov	r3, r8	@ tmp158, tmp158
 @ Patches/../C_code.c:6816:         gActiveUnit->aiFlags |= 1<<3; // AI_UNIT_FLAG_3
@@ -31564,10 +31555,10 @@ AiGetChestUnlockItemSlot:
 	orrs	r3, r1	@ tmp141, tmp137
 	strb	r3, [r2, #10]	@ tmp141, gActiveUnit.397_3->aiFlags
 @ Patches/../C_code.c:6817:         return 0;
-	b	.L4001		@
-.L4019:
-	.align	2
+	b	.L4000		@
 .L4018:
+	.align	2
+.L4017:
 	.word	gActiveUnit
 	.word	GetUnitItemCount
 	.word	GetItemIndex
@@ -31591,58 +31582,58 @@ GetUnitKeyItemSlotForTerrain:
 	bl	CanUnitUseLockpickItem		@
 @ Patches/../C_code.c:6850:     if (CanUnitUseLockpickItem(unit)) {
 	cmp	r0, #0	@ tmp129,
-	bne	.L4021		@,
-	ldr	r6, .L4030	@ tmp126,
+	bne	.L4020		@,
+	ldr	r6, .L4029	@ tmp126,
 @ Patches/../C_code.c:6857:     switch (terrain) {
 	cmp	r5, #30	@ terrain,
-	beq	.L4026		@,
-.L4029:
+	beq	.L4025		@,
+.L4028:
 @ Patches/../C_code.c:6848:     int slot, item = 0;
 	movs	r1, #0	@ item,
 @ Patches/../C_code.c:6857:     switch (terrain) {
 	cmp	r5, #33	@ terrain,
-	beq	.L4028		@,
-.L4022:
+	beq	.L4027		@,
+.L4021:
 @ Patches/../C_code.c:6873:     return GetUnitItemSlot(unit, item);
 	movs	r0, r4	@, unit
-	bl	.L342		@
-.L4020:
+	bl	.L341		@
+.L4019:
 @ Patches/../C_code.c:6874: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L4028:
+.L4027:
 @ Patches/../C_code.c:6860:         slot = GetUnitItemSlot(unit, CHEST_KEY_A);
 	movs	r1, #105	@,
 	movs	r0, r4	@, unit
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:6862:         if (slot < 0)
 	cmp	r0, #0	@ <retval>,
-	bge	.L4020		@,
+	bge	.L4019		@,
 @ Patches/../C_code.c:6863:             slot = GetUnitItemSlot(unit, CHEST_KEY_B);
 	movs	r1, #121	@,
 	movs	r0, r4	@, unit
-	bl	.L342		@
-	b	.L4020		@
-.L4021:
+	bl	.L341		@
+	b	.L4019		@
+.L4020:
 @ Patches/../C_code.c:6851:         int slot = GetUnitItemSlot(unit, LOCKPICK);
 	movs	r1, #107	@,
 	movs	r0, r4	@, unit
-	ldr	r6, .L4030	@ tmp126,
-	bl	.L342		@
+	ldr	r6, .L4029	@ tmp126,
+	bl	.L341		@
 @ Patches/../C_code.c:6853:         if (slot >= 0)
 	cmp	r0, #0	@ <retval>,
-	bge	.L4020		@,
+	bge	.L4019		@,
 @ Patches/../C_code.c:6857:     switch (terrain) {
 	cmp	r5, #30	@ terrain,
-	bne	.L4029		@,
-.L4026:
+	bne	.L4028		@,
+.L4025:
 	movs	r1, #106	@ item,
-	b	.L4022		@
-.L4031:
-	.align	2
+	b	.L4021		@
 .L4030:
+	.align	2
+.L4029:
 	.word	GetUnitItemSlot
 	.size	GetUnitKeyItemSlotForTerrain, .-GetUnitKeyItemSlotForTerrain
 	.align	1
@@ -31667,20 +31658,20 @@ IsItemDisplayUsable:
 	bl	GetItemAttributes		@
 @ Patches/../C_code.c:6877:     if (GetItemAttributes(item) & 1 ) // wep 
 	lsls	r0, r0, #31	@ tmp212, tmp204,
-	bmi	.L4048		@,
+	bmi	.L4047		@,
 @ Patches/../C_code.c:6880:     if (GetItemAttributes(item) & 4) // staff 
 	movs	r0, r4	@, item
 	bl	GetItemAttributes		@
 @ Patches/../C_code.c:6880:     if (GetItemAttributes(item) & 4) // staff 
 	lsls	r0, r0, #29	@ tmp213, tmp206,
-	bmi	.L4049		@,
+	bmi	.L4048		@,
 @ Patches/../C_code.c:6883:     if (GetItemUseEffect(item)) {
 	movs	r0, r4	@, item
-	ldr	r3, .L4051	@ tmp158,
+	ldr	r3, .L4050	@ tmp158,
 	bl	.L14		@
 @ Patches/../C_code.c:6883:     if (GetItemUseEffect(item)) {
 	cmp	r0, #0	@ tmp208,
-	beq	.L4041		@,
+	beq	.L4040		@,
 @ Patches/../C_code.c:6884:         if (unit->statusIndex == UNIT_STATUS_SLEEP)
 	movs	r3, #48	@ tmp159,
 	ldrb	r2, [r5, r3]	@ *unit_25(D), *unit_25(D)
@@ -31692,11 +31683,11 @@ IsItemDisplayUsable:
 	subs	r3, r3, #2	@ tmp167,
 @ Patches/../C_code.c:6887:         if (unit->statusIndex == UNIT_STATUS_BERSERK)
 	tst	r3, r2	@ tmp167, tmp173
-	beq	.L4040		@,
+	beq	.L4039		@,
 @ Patches/../C_code.c:6890:         if (GetItemIndex(item) == LOCKPICK) {// lockpick 
 	movs	r0, r4	@, item
-	ldr	r6, .L4051+4	@ tmp201,
-	bl	.L342		@
+	ldr	r6, .L4050+4	@ tmp201,
+	bl	.L341		@
 @ Patches/../C_code.c:6791: 			if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
 	ldr	r3, [r5]	@ MEM[(const struct CharacterData * *)unit_25(D)], MEM[(const struct CharacterData * *)unit_25(D)]
 	ldr	r2, [r5, #4]	@ MEM[(const struct ClassData * *)unit_25(D) + 4B], MEM[(const struct ClassData * *)unit_25(D) + 4B]
@@ -31705,43 +31696,43 @@ IsItemDisplayUsable:
 	orrs	r3, r2	@ _63, pretmp_73->attributes
 @ Patches/../C_code.c:6890:         if (GetItemIndex(item) == LOCKPICK) {// lockpick 
 	cmp	r0, #107	@ tmp209,
-	beq	.L4038		@,
-.L4039:
+	beq	.L4037		@,
+.L4038:
 @ Patches/../C_code.c:6896:         if (!(UNIT_CATTRIBUTES(unit) & CA_REFRESHER) && IsItemADanceRing(item))
 	movs	r2, #48	@ tmp191,
 @ Patches/../C_code.c:6896:         if (!(UNIT_CATTRIBUTES(unit) & CA_REFRESHER) && IsItemADanceRing(item))
 	tst	r2, r3	@ tmp191, _63
-	beq	.L4050		@,
-.L4041:
+	beq	.L4049		@,
+.L4040:
 @ Patches/../C_code.c:6900:     return TRUE;
 	movs	r0, #1	@ <retval>,
-	b	.L4034		@
-.L4049:
+	b	.L4033		@
+.L4048:
 @ Patches/../C_code.c:6881:         return CanUnitUseStaff(unit, item);
 	movs	r1, r4	@, item
 	movs	r0, r5	@, unit
-	ldr	r3, .L4051+8	@ tmp155,
+	ldr	r3, .L4050+8	@ tmp155,
 	bl	.L14		@
-.L4034:
+.L4033:
 @ Patches/../C_code.c:6901: }
 	@ sp needed	@
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L4048:
+.L4047:
 @ Patches/../C_code.c:6878:         return CanUnitUseWeapon(unit, item);
 	movs	r1, r4	@, item
 	movs	r0, r5	@, unit
-	ldr	r3, .L4051+12	@ tmp150,
+	ldr	r3, .L4050+12	@ tmp150,
 	bl	.L14		@
-	b	.L4034		@
-.L4038:
+	b	.L4033		@
+.L4037:
 @ Patches/../C_code.c:6790: 		if (OnlyThievesCanUseLockpicks) { 
-	ldr	r2, .L4051+16	@ tmp183,
+	ldr	r2, .L4050+16	@ tmp183,
 @ Patches/../C_code.c:6790: 		if (OnlyThievesCanUseLockpicks) { 
 	ldr	r2, [r2]	@ OnlyThievesCanUseLockpicks, OnlyThievesCanUseLockpicks
 	cmp	r2, #0	@ OnlyThievesCanUseLockpicks,
-	beq	.L4039		@,
+	beq	.L4038		@,
 @ Patches/../C_code.c:6788: 	int faction = UNIT_FACTION(unit); 
 	movs	r1, #11	@ tmp185,
 @ Patches/../C_code.c:6788: 	int faction = UNIT_FACTION(unit); 
@@ -31755,25 +31746,25 @@ IsItemDisplayUsable:
 	ands	r1, r3	@ tmp189, _63
 @ Patches/../C_code.c:6791: 			if (!(UNIT_CATTRIBUTES(unit) & CA_THIEF)) { 
 	orrs	r2, r1	@ tmp190, tmp189
-	bne	.L4039		@,
-.L4040:
+	bne	.L4038		@,
+.L4039:
 @ Patches/../C_code.c:6885:             return FALSE;
 	movs	r0, #0	@ <retval>,
-	b	.L4034		@
-.L4050:
+	b	.L4033		@
+.L4049:
 @ Patches/../C_code.c:6766:     switch (GetItemIndex(item)) {
 	movs	r0, r4	@, item
-	bl	.L342		@
+	bl	.L341		@
 @ Patches/../C_code.c:6766:     switch (GetItemIndex(item)) {
 	movs	r3, #3	@ tmp197,
 	subs	r0, r0, #125	@ tmp194,
 	cmp	r3, r0	@ tmp197, tmp194
 	sbcs	r0, r0, r0	@ tmp211
 	rsbs	r0, r0, #0	@ <retval>, tmp211
-	b	.L4034		@
-.L4052:
-	.align	2
+	b	.L4033		@
 .L4051:
+	.align	2
+.L4050:
 	.word	GetItemUseEffect
 	.word	GetItemIndex
 	.word	CanUnitUseStaff
@@ -31804,13 +31795,13 @@ ArenaIsUnitAllowed:
 	movs	r4, r0	@ unit, tmp151
 @ Patches/../C_code.c:6906:     if (unit->statusIndex == UNIT_STATUS_SILENCED) {
 	cmp	r3, #3	@ tmp133,
-	beq	.L4056		@,
+	beq	.L4055		@,
 @ Patches/../C_code.c:6910:     if (GetUnitBestWRankType(unit) < 0) { // fe6 8029964
-	ldr	r3, .L4057	@ tmp135,
+	ldr	r3, .L4056	@ tmp135,
 	bl	.L14		@
 @ Patches/../C_code.c:6910:     if (GetUnitBestWRankType(unit) < 0) { // fe6 8029964
 	cmp	r0, #0	@ tmp152,
-	blt	.L4056		@,
+	blt	.L4055		@,
 @ Patches/../C_code.c:6913: 	if (UNIT_CATTRIBUTES(unit) & CA_LOCK_3) { return 0; } // no monsters 
 	movs	r0, #1	@ tmp142,
 @ Patches/../C_code.c:6913: 	if (UNIT_CATTRIBUTES(unit) & CA_LOCK_3) { return 0; } // no monsters 
@@ -31822,19 +31813,19 @@ ArenaIsUnitAllowed:
 @ Patches/../C_code.c:6913: 	if (UNIT_CATTRIBUTES(unit) & CA_LOCK_3) { return 0; } // no monsters 
 	lsrs	r3, r3, #18	@ tmp141, tmp138,
 	bics	r0, r3	@ <retval>, tmp141
-	b	.L4055		@
-.L4056:
+	b	.L4054		@
+.L4055:
 @ Patches/../C_code.c:6907:         return 0;
 	movs	r0, #0	@ <retval>,
-.L4055:
+.L4054:
 @ Patches/../C_code.c:6916: }
 	@ sp needed	@
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L4058:
-	.align	2
 .L4057:
+	.align	2
+.L4056:
 	.word	GetUnitBestWRankType
 	.size	ArenaIsUnitAllowed, .-ArenaIsUnitAllowed
 	.global	TerrainTable_MovCost_StuckRainy
@@ -32460,7 +32451,7 @@ SRR_CursorLocationTable:
 	.type	OptionAmounts, %object
 	.size	OptionAmounts, 19
 OptionAmounts:
-	.ascii	"\025\006\002\005\003\007\005\004\002\002\004\003\037"
+	.ascii	"\025\006\002\005\003\007\004\004\002\002\004\003\037"
 	.ascii	"\037\003\002\004\004\000"
 	.space	1
 	.type	gDefaultShopInventory, %object
@@ -32784,17 +32775,17 @@ ConfigMenuProcCmd:
 	bx	r3
 .L240:
 	bx	r4
-.L3232:
+.L3231:
 	bx	r5
-.L342:
+.L341:
 	bx	r6
 .L223:
 	bx	r7
 .L179:
 	bx	r8
-.L558:
+.L557:
 	bx	r9
-.L786:
+.L785:
 	bx	r10
-.L435:
+.L434:
 	bx	fp

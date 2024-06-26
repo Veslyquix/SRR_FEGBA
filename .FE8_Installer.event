@@ -75,7 +75,10 @@ WORD 0xBC
 WORD 0 // If 0, it'll read through your item editor and count 
 // until it finds an item with an ID that does not match (eg. says 0) 
 MaxClasses_Link:
-WORD 0 // If 0, it'll read through your class editor and count
+#ifndef VeslyBuildfile 
+WORD 127 // If 0, it'll read through your class editor and count
+#endif 
+WORD 67 
 // until it finds a class with an ID that does not match (eg. says 0) 
 
 // Each shop will have one of these items at random

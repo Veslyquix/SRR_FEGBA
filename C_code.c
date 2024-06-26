@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.4.8"
+#define VersionNumber " SRR V1.4.9"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -4018,11 +4018,11 @@ const char Option5[OPT5NUM][10] = { // Stat Caps
 "60", 
 }; 
 #endif
-#define OPT6NUM 5
+#define OPT6NUM 4
 #ifdef FE6 
-extern const char Option6[OPT6NUM][64]; // do align 16 before each? 
+extern const char Option6[5][64]; // do align 16 before each? 
 #else 
-const char Option6[OPT6NUM][26] = { // Class
+const char Option6[5][26] = { // Class
 "Vanilla",
 "Random vanilla classes",
 "Random for players",
@@ -5270,7 +5270,7 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 		proc->Option[3] = 1; 
 		proc->Option[4] = 1; 
 		proc->Option[5] = 1; 
-		proc->Option[6] = 4; 
+		proc->Option[6] = 1; 
 		proc->Option[7] = 1; 
 		//proc->Option[8] = 0; // Classic 
 		proc->Option[9] = 1; // Random BGM 
