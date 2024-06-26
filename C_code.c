@@ -1223,7 +1223,7 @@ int GetMaxClasses(void) {
 	if (MaxClasses_Link) { return MaxClasses_Link; } 
 	if (*MaxClasses) { return *MaxClasses; } 
 	const struct ClassData* table = GetClassData(1); 
-	int c = 255; 
+	int c = 254; 
 	#ifdef FE6
 	if (!RecruitValues->newClasses) { c = 67; } 
 	#endif 
@@ -1237,8 +1237,11 @@ int GetMaxClasses(void) {
 		if (table->number != i) { table--; break; } 
 		table++; 
 	} 
-	*MaxClasses = table->number; 
-	return table->number; 
+	c = table->number;
+	if (c > 155) { c = 155; } 
+	if (c < 1) { c = 1; } 
+	*MaxClasses = c;
+	return c; 
 } 
 
 
@@ -2894,6 +2897,12 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	int noise[4] = {0, 0, 0, 0};  // 1 extra so gCh is used 
 	int c = 0;
 	
+	const struct ClassData* originalClass;
+	const struct ClassData* randCharOriginalClass;
+	if (uDef->classIndex) { originalClass = GetClassData(uDef->classIndex); } 
+	else { originalClass = GetClassData(unit->pCharacterData->defaultClass); } 
+	unit->pClassData = originalClass; // for now 
+	
 	#define UseRandClass2
 	
 	#ifdef UseRandClass2
@@ -2974,10 +2983,6 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	
 
 	int RandomizeRecruitment = ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number); 
-	const struct ClassData* originalClass;
-	const struct ClassData* randCharOriginalClass;
-	if (uDef->classIndex) { originalClass = GetClassData(uDef->classIndex); } 
-	else { originalClass = GetClassData(unit->pCharacterData->defaultClass); } 
 	
 	if (RandomizeRecruitment) { character = GetReorderedUnit(unit); randCharOriginalClass = GetClassData(character->defaultClass); } 
 

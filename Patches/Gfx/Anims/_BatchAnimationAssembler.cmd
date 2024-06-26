@@ -1,7 +1,7 @@
 @echo off
-@echo Renaming folders...
-@call RenameFolders.cmd
-@call RenameFolders.cmd
+@rem @echo Renaming folders...
+@rem @call RenameFolders.cmd
+@rem @call RenameFolders.cmd
 @rem twice because this doesn't rename subfolders properly unless done repeatedly and I cba fixing that 
 
 @set "AnimationAssembler=%~dp0/../../../Tools/AA/AA.exe"
