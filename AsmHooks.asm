@@ -1618,8 +1618,19 @@ mov   r2, #0x80
 lsl   r2, #0x1
 swi   #0xC        @ CPUFastSet.
 bl MaybeRandomizeColours 
+bl MaybeForceHardModeFE8 
 pop {r0} 
 bx r0
+
+.global ForceHardModeFE8 
+.type ForceHardModeFE8, %function 
+ForceHardModeFE8: 
+ldr r3, =0x202BCF0 
+mov r0, #0x40 
+ldrb r1, [r3, #0x14] 
+orr r1, r0 
+strb r1, [r3, #0x14] @ force hard mode for now 
+bx lr 
 
 @ Increments hue counter.
 @ Applies hue shift to palette.

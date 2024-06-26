@@ -19,6 +19,7 @@
 #define ClassAnimTable NewAnimTable
 #define AnimTableEntry(index) "ORG NewAnimTable + (index * 0x20)"
 
+
 PUSH 
 
 #ifdef _FE6_ 

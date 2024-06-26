@@ -141,6 +141,13 @@ const struct ProcCmd RecruitmentProcCmd4[] =
     PROC_END,
 };
 
+extern void ForceHardModeFE8(void); 
+void MaybeForceHardModeFE8(void) { 
+	#ifndef FE8 
+	return; 
+	#endif 
+	ForceHardModeFE8(); 
+} 
 
 int ShouldRandomizeRecruitment(void) { 
 	return RecruitValues->recruitment; 

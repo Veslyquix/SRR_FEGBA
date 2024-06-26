@@ -1,8 +1,10 @@
 #ifndef SKILLSYS_INSTALLED 
 #define SKILLSYS_INSTALLED 
 #endif 
-#ifndef STRMAG_INSTALLED 
-#define STRMAG_INSTALLED 
+#ifdef USE_STRMAG_SPLIT
+	#ifndef STRMAG_INSTALLED 
+	#define STRMAG_INSTALLED 
+	#endif 
 #endif 
 #include ".FE8_Installer.event" 
 
