@@ -1223,7 +1223,7 @@ int GetMaxClasses(void) {
 	if (MaxClasses_Link) { return MaxClasses_Link; } 
 	if (*MaxClasses) { return *MaxClasses; } 
 	const struct ClassData* table = GetClassData(1); 
-	int c = 254; 
+	int c = 255; 
 	#ifdef FE6
 	if (!RecruitValues->newClasses) { c = 67; } 
 	#endif 
@@ -1238,7 +1238,7 @@ int GetMaxClasses(void) {
 		table++; 
 	} 
 	c = table->number;
-	if (c > 155) { c = 155; } 
+	if (c > 255) { c = 255; } 
 	if (c < 1) { c = 1; } 
 	*MaxClasses = c;
 	return c; 

@@ -1,9 +1,8 @@
 ///////Animation Install.event///////
     
 PUSH
-AnimTableEntry(SageFSword) //CHANGE THIS TO THE SLOT YOU ARE REPLACING
-BYTE $73 $61 $67 $66 $5f $73 $77 $31
-WORD 0
+AnimTableEntry(0x0) //CHANGE THIS TO THE SLOT YOU ARE REPLACING
+WORD 0 0 0 //empty name field, who cares
 POIN Anim_Sword_sectiondata
 POIN Anim_Sword_framedata
 POIN Anim_Sword_rtl Anim_Sword_ltr Anim_Sword_pal

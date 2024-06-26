@@ -17,9 +17,6 @@
 #define MonsterAnim(Animation) "WepTypeAnim(Animation, 11)" 
 #define RingAnim(Animation) "WepTypeAnim(Animation, 12)" 
 
-#define ClassAnimTable NewAnimTable
-#define AnimTableEntry(index) "ORG NewAnimTable + (index * 0x20)"
-
 
 
 #define wTA(weaponType, ID)  "BYTE weaponType 1; SHORT ID;"

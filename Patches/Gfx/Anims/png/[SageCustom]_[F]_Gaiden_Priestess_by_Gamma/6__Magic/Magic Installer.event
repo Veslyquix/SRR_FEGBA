@@ -1,9 +1,8 @@
 ///////Animation Install.event///////
     
 PUSH
-AnimTableEntry(SageFMagic) //CHANGE THIS TO THE SLOT YOU ARE REPLACING
-BYTE $73 $61 $67 $66 $5f $6d $67 $31
-WORD 0 
+AnimTableEntry(0x0) //CHANGE THIS TO THE SLOT YOU ARE REPLACING
+WORD 0 0 0 //empty name field, who cares
 POIN Anim_Magic_sectiondata
 POIN Anim_Magic_framedata
 POIN Anim_Magic_rtl Anim_Magic_ltr Anim_Magic_pal
