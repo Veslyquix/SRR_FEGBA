@@ -4,11 +4,15 @@
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
 
+#define RepointChMenu 
+//#define Reskin 
+
 #include "Extensions/Hack Installation.txt" 
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
 
+#include "FixMugs_FE8.event" 
 #include "Patches/FE8.lyn.event" 
 #include "Patches/FE8_AsmHooks.lyn.event" 
 
@@ -244,13 +248,18 @@ WORD 0x4800 // in glowy
 
 PUSH 
 
+// Kill Improved Sound Mixer
+ORG $D01CC 
+SHORT $F54D $080C $2C60 $0300 $0100 $0400 
+ORG $CF53C 
+SHORT $2C61 $0300 
+
 ORG $10b80
 jumpToHack(FE8_ForcedPromotionHook) 
 
 ORG $5E520 
 BYTE 0xA // Fimbulvetr fix 
 
-#ifdef VeslyBuildfile
 // default summoner from list 
 ORG $7ad4c 
 WORD 0 // 0 = Ewan, 1 = Knoll, 2 = Lyon 
@@ -259,6 +268,8 @@ WORD 0 // 0 = Ewan, 1 = Knoll, 2 = Lyon
 
 ORG $7AF5E // don't 0 out phantom wexp 
 SHORT $46C0 
+
+#ifdef VeslyBuildfile
 
 ORG $c5444
 jumpToHack(TitleScreen_FE8) 
@@ -377,7 +388,7 @@ ORG $3A15C
 callHackNew(MakeStolenItemDroppable_FE8)
 SHORT 0x46C0
 
-#ifdef VeslyBuildfile
+//#ifdef VeslyBuildfile
 ORG $7894 // in 7854 // fe7 8008E34 fe6 800a4f4
 callHackNew(HookLoadFace_FE8)
 
@@ -404,9 +415,36 @@ jumpToHack(GetBattleLevelUpPortraitId_FE8)
 ORG $7F25C 
 callHackNew(GetMapLevelUpPortraitId_FE8)
 
+//#endif 
+
+#ifdef RepointChMenu
+ORG $59D21C
+POIN NewChMenu
 #endif 
 
 POP 
+
+#ifdef RepointChMenu 
+#define SetText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
+ALIGN 4 
+ConfigText:
+String(" Config") ; BYTE 0 
+ConfigDescText:
+String("Reconfigure the randomizer.") ; BYTE 0 
+
+SetText(0x537, ConfigText)
+SetText(0x538, ConfigDescText)
+
+
+ALIGN 4 
+NewChMenu:
+BYTE $DC $7E $0D $08 $9A $06 $DF $06 $00 $6E $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $0D $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $D4 $7E $0D $08 $90 $06 $E0 $06 $00 $6F $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $51 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $CC $7E $0D $08 $9C $06 $E5 $06 $04 $74 $00 $00 $61 $26 $02 $08 $79 $26 $02 $08 $E5 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $C4 $7E $0D $08 $9E $06 $E3 $06 $00 $70 $00 $00 $41 $4C $02 $08 $00 $00 $00 $00 $BD $4C $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $BC $7E $0D $08 $9B $06 $E1 $06 $00 $71 $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $29 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $B4 $7E $0D $08 $9D $06 $E2 $06 $00 $72 $00 $00 $CD $4C $02 $08 $00 $00 $00 $00 $E1 $4C $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $AC $7E $0D $08 $9F $06 $E4 $06 $00 $73 $00 $00 $B1 $25 $02 $08 $00 $00 $00 $00 $D1 $25 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 
+
+// MenuStartConfigMenu
+BYTE $A4 $7E $0D $08; SHORT 0x537 0x538; BYTE $00 $78 $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00; POIN MenuStartConfigMenu ; BYTE 0 0 0 0 0 0 0 0 0 0 0 0
+// End 
+BYTE $A4 $7E $0D $08 $A0 $06 $E6 $06 $00 $78 $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $F9 $25 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+#endif 
 
 
 ALIGN 4 
@@ -519,10 +557,15 @@ AlwaysSkill(DarkBargainID)
 #ifndef setText 
 #define setText(textID, offset) "PUSH; ORG (TextTable+(4*textID)); POIN (offset|0x80000000); POP"
 #endif 
+
 #ifdef VeslyBuildfile
 	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
 #else 
-	#define SetName(id) "ALIGN 16"
+	#ifdef Reskin 
+		#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+	#else 
+		#define SetName(id) "ALIGN 16"
+	#endif 
 #endif 
 
 #ifndef VeslyBuildfile 
@@ -801,16 +844,12 @@ DIS_matrixTable:
 #incbin "matrixTable.bin"
 ALIGN 4 
 NeverRandomizeColours:
-#ifdef VeslyBuildfile
 WORD 0 
-#else 
-WORD 1
-#endif
 PortraitColoursPastThisAreNotSkin:
 #ifdef VeslyBuildfile
 WORD 5 // vanilla portraits use the first few colours for skin  
 #else 
-WORD 0 
+WORD 5 
 #endif 
 
 ALIGN 4 

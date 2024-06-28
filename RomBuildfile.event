@@ -1,5 +1,7 @@
 
 #define VeslyBuildfile
+#define Reskin 
+#define RepointChMenu
 #ifndef FreeSpace 
 	#ifdef _FE6_
 		#define FreeSpace 0x840000
@@ -373,28 +375,8 @@ POP
 #ifndef TextTable 
 	#define TextTable 0x15D48C
 #endif 
-//#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
-ConfigText:
-String(" Config") ; BYTE 0 
-ConfigDescText:
-String("Reconfigure the randomizer.") ; BYTE 0 
-
-setText(0x537, ConfigText)
-setText(0x538, ConfigDescText)
-
-
-ALIGN 4 
-NewChMenu:
-BYTE $DC $7E $0D $08 $9A $06 $DF $06 $00 $6E $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $0D $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $D4 $7E $0D $08 $90 $06 $E0 $06 $00 $6F $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $51 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $CC $7E $0D $08 $9C $06 $E5 $06 $04 $74 $00 $00 $61 $26 $02 $08 $79 $26 $02 $08 $E5 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $C4 $7E $0D $08 $9E $06 $E3 $06 $00 $70 $00 $00 $41 $4C $02 $08 $00 $00 $00 $00 $BD $4C $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $BC $7E $0D $08 $9B $06 $E1 $06 $00 $71 $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $29 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $B4 $7E $0D $08 $9D $06 $E2 $06 $00 $72 $00 $00 $CD $4C $02 $08 $00 $00 $00 $00 $E1 $4C $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $AC $7E $0D $08 $9F $06 $E4 $06 $00 $73 $00 $00 $B1 $25 $02 $08 $00 $00 $00 $00 $D1 $25 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 
-
-// MenuStartConfigMenu
-BYTE $A4 $7E $0D $08; SHORT 0x537 0x538; BYTE $00 $78 $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00; POIN MenuStartConfigMenu ; BYTE 0 0 0 0 0 0 0 0 0 0 0 0
-// End 
-BYTE $A4 $7E $0D $08 $A0 $06 $E6 $06 $00 $78 $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $F9 $25 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
 
 PUSH
-ORG $59D21C
-POIN NewChMenu
 
 ORG $24D8D
 AreUnitsAllied:
