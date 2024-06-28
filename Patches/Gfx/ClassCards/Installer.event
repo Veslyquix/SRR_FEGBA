@@ -1,0 +1,23 @@
+#include "Internals.event" 
+
+#ifdef _FE8_ 
+ALIGN 4
+blank_portrait:
+#incbin "dmp/blank_portrait.dmp"
+SetMugEntry(0x1, blank_portrait, 3, 5, 3, 3)
+#endif 
+
+
+// Class Cards
+#define HalberdierClassCard 0x100
+
+ALIGN 4
+HalberdierClassCardData:
+#incbin "dmp/Halberdier (M) Dragoon v2 Lance {Pikmin, Uncredited}.dmp"
+ALIGN 4
+HalberdierClassCardPal:
+#incbin "dmp/Halberdier (M) Dragoon v2 Lance {Pikmin, Uncredited}.png_pal.dmp"
+setCardEntry(HalberdierClassCard, HalberdierClassCardData, HalberdierClassCardPal)
+
+
+
