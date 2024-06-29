@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.4.A"
+#define VersionNumber " SRR V1.4.B"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -1631,6 +1631,7 @@ int RandClass(int id, int noise[], struct Unit* unit) {
 } 
 
 int RandClass2(int id, u8 noise[], struct Unit* unit) {  
+	//return 0x54; 
 	if (!ShouldRandomizeClass(unit)) { return id; } 
 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	int allegiance = (unit->index)>>6;
@@ -5428,7 +5429,7 @@ void StatScreenSelectLoop(ProcPtr proc) {
 				page = GetStatScreenPage(); 
 			}
 			#endif 
-			Proc_Goto(proc, 0); // TODO: label name
+			Proc_Goto(proc, 0); // TODO: label name 
 			StartStatScreenHelp(page, proc);
 		}
 	if (sKeyStatusBuffer.newKeys & SELECT_BUTTON)
@@ -6006,7 +6007,7 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				return 0; break;
 			}
 			case 11: { 
-				if (!SkillSysInstalled) { 
+				if (!StrMagInstalled) { 
 					if (UnitHasMagicRank(gStatScreen.unit))
 					{
 						// mag
@@ -6270,7 +6271,7 @@ extern u16 gUiTmScratchB[]; // 0x200373C
 extern const u8 Tsa_StatScreenPage0[]; // 0x83FCA4C 
 void TmApplyTsa(u16 * tm, u8 const * tsa, u16 tileref); // 0x80C57B5 
 #endif 
-void DisplayPage0(void) 
+void NewDisplayPage0(void) 
 { 
 
 //ResetTextFont();

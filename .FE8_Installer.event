@@ -80,9 +80,9 @@ WORD 0 // If 0, it'll read through your item editor and count
 // until it finds an item with an ID that does not match (eg. says 0) 
 MaxClasses_Link:
 #ifndef VeslyBuildfile 
-WORD 127 // If 0, it'll read through your class editor and count
+WORD 0 // If 0, it'll read through your class editor and count
 #endif 
-WORD 67 
+WORD 127
 // until it finds a class with an ID that does not match (eg. says 0) 
 
 // Each shop will have one of these items at random
@@ -248,6 +248,11 @@ WORD 0x4800 // in glowy
 
 PUSH 
 
+// Make stat screen not 4 pages 
+//ORG $88690
+//BYTE 4 //make 4 pages
+// this is needed because DisplayPage0 at 87184 is replaced with RText_Page4_ladder
+
 // Kill Improved Sound Mixer
 ORG $D01CC 
 SHORT $F54D $080C $2C60 $0300 $0100 $0400 
@@ -334,7 +339,7 @@ jumpToHack(FE8_RandBattleMusicHook)
 
 
 ORG $205B24 
-POIN DisplayPage0|1
+POIN NewDisplayPage0|1
 
 ORG $115CC 
 jumpToHack(DroppableItemHook_FE8) 

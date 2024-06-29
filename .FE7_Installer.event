@@ -145,9 +145,9 @@ MaxClasses_Link:
 WORD 0x5A 
 #endif 
 #ifndef VeslyBuildfile 
-WORD 90 // If 0, it'll read through your class editor and count
+WORD 0 // If 0, it'll read through your class editor and count
 #endif 
-WORD 67 
+WORD 90 
 // until it finds a class with an ID that does not match (eg. says 0) 
 
 
@@ -326,7 +326,7 @@ ORG $4F40
 SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
 
 ORG $404B60 // in 80804C8
-POIN DisplayPage0|1
+POIN NewDisplayPage0|1
 // normally it is: POIN 0x807FDf1 0x80800B5 0x8080425 0x0807fdf1 
 // as page 1, 2, 3, ?? 
 
