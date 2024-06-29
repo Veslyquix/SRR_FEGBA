@@ -30,6 +30,12 @@ WORD 1
 #else 
 WORD 0 
 #endif 
+VanillaPortraitsOnly:
+#ifdef Reskin 
+WORD 1 
+#else 
+WORD 0
+#endif  
 //#define JankyPalettes // Uncomment if you want to always use char palettes, even with classes randomized 
 #ifndef VeslyBuildfile
 	#define NeverRandomizeMusic // comment this out if you want music randomized 

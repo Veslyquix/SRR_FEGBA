@@ -989,11 +989,13 @@ int AnyFadeExists(void) {
 
 	return false; 
 }
+extern int VanillaPortraitsOnly; 
 void PortraitAdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, int NeverRandomizeBeforeThisColour, int fading, int classCard) { 
 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	}
 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
+	if (!VanillaPortraitsOnly) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
 }
 	

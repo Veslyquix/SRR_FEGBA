@@ -33,6 +33,12 @@ setText(0x11a0, ConfigDescText)
 ALIGN 4
 BonusItemChance: 
 WORD 10
+VanillaPortraitsOnly:
+#ifdef Reskin 
+WORD 1 
+#else 
+WORD 0
+#endif  
 CasualModeFlag:
 WORD 0xA0 
 RandomizePrepShop:

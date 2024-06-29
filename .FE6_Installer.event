@@ -38,6 +38,12 @@ WORD 67
 ALIGN 4
 BonusItemChance: 
 WORD 10
+VanillaPortraitsOnly:
+#ifdef Reskin 
+WORD 1 
+#else 
+WORD 0
+#endif  
 CasualModeFlag:
 WORD 0x8C 
 RandomizePrepShop:
