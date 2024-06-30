@@ -213,6 +213,7 @@ SET_FUNC HbPopulate_SSCharacter, 0x80816FD
 
 .endif 
 .if FE8 == true 
+SET_DATA getSongTable, 0x080458E0 
 SET_DATA ggMsgStringTable, 0x800a2a0 
 SET_DATA u32MsgString, 0x0202A6AC
 SET_FUNC gARM_DecompText, 0x3004150 

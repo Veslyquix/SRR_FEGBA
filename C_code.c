@@ -647,6 +647,34 @@ u8 static const OtherMusicList[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1
 #ifdef FE8 // Thanks Circles
 u8 static const MapMusicList[] = {4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,36,37,38,49,50,55,69,84}; 
 #endif 
+
+
+struct Song
+{
+    void* header;
+    u16 ms;
+    u16 me;
+};
+extern struct Song* getSongTable[];
+const int MaxNumberOfSongs = 99; 
+//#define MaxNumberOfSongs 99 
+u16* BuildTracklist(u16 List[]) { 
+	int i;
+	// 0th entry of List is the count of available tracks 
+	for (i = 0; i < MaxNumberOfSongs; ++i) { 
+		List[i] = 0; 
+	} 
+	struct Song* gST = *getSongTable;  
+	for (i = 0; i < 1000; ++i) { 
+		if (!gST[i].header) { break; } 
+		if (gST[i].ms != 1) { continue; } 
+		if (gST[i].me != 1) { continue; } 
+		List[0]++; 
+		List[List[0]] = i; 
+	} 
+	return List; 
+} 
+
 extern int GetCurrentMapMusicIndex(void); 
 int GetBGMTrack(){ // fe7/fe8 only? 
 	if (!ShouldRandomizeBGM()) { return GetCurrentMapMusicIndex(); } 
@@ -656,7 +684,10 @@ int GetBGMTrack(){ // fe7/fe8 only?
 	//	noise[0] = gActiveUnit->xPos; 
 	//	noise[1] = gActiveUnit->yPos; 
 	//} 
-	return MapMusicList[HashByte_Ch(number, sizeof(MapMusicList), noise, gTurn)]; 
+	u16 List[MaxNumberOfSongs]; 
+	BuildTracklist(List); 
+	int result = List[HashByte_Ch(number, List[0], noise, gTurn)+1]; 
+	return result; 
 };
 // 80726ac T EkrPlayMainBGM 
 #ifdef FE6 
@@ -684,20 +715,29 @@ typedef struct SoundRoomData {
 #ifdef FE8 
 #define SoundRoomTable ((struct SoundRoomData*) 0x8A20E74)
 #endif 
+
+
 extern int NextRN_N(int max); 
 int RandomizeBattleMusic(int id){ 
 	if (!ShouldRandomizeBGM()) { 
 		return id; 
 	}
+	u16 List[MaxNumberOfSongs]; 
+	BuildTracklist(List); 
+	int result = List[NextRN_N(List[0])+1]; 
+	return result; 
 	#ifdef FE6 
 	// #68 is max 
-	return SoundRoomTable[NextRN_N(52)].songID; // before game over at 53 I guess 
+	//return GetUsableTrack(0);  // before game over at 53 I guess 
+	//return SoundRoomTable[NextRN_N(52)].songID; // before game over at 53 I guess 
 	#endif 
 	#ifdef FE7 // #99 is max 
-	return SoundRoomTable[NextRN_N(90)].songID; // before game over at 91 
+	//return GetUsableTrack(0);  // before game over at 91 
+	//return SoundRoomTable[NextRN_N(90)].songID; // before game over at 91 
 	#endif 
 	#ifdef FE8 // #68 is max 
-	return SoundRoomTable[NextRN_N(63)].songID; // before game over at 64
+	//return GetUsableTrack(0); 
+	//return SoundRoomTable[NextRN_N(63)].songID; // before game over at 64
 	#endif 
 };
 

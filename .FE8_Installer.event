@@ -38,7 +38,7 @@ WORD 0
 #endif  
 //#define JankyPalettes // Uncomment if you want to always use char palettes, even with classes randomized 
 #ifndef VeslyBuildfile
-	#define NeverRandomizeMusic // comment this out if you want music randomized 
+	//#define NeverRandomizeMusic // comment this out if you want music randomized 
 	// it only knows of vanilla song IDs though 
 #endif 
 
@@ -464,7 +464,7 @@ FILL(256)
 
 #define ReplacePortraitEntry(id, newID) "PUSH; ORG ReplacePortraitTable + id; BYTE newID; POP" 
 
-#ifdef VeslyBuildfile
+#ifdef Reskin
 ReplacePortraitEntry(3, 2) // Replace Eirika closed eyes   
 ReplacePortraitEntry(0xB, 0xA)  
 ReplacePortraitEntry(0xD, 0xC)  
