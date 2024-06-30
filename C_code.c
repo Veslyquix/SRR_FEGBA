@@ -1240,9 +1240,9 @@ void MaybeChangeAi2(void) {
 	if (IsAnythingRandomized()) { 
 		if (gActiveUnit->ai2 == 3) { 
 			if (UNIT_CATTRIBUTES(gActiveUnit) & CA_BOSS) { return; } 
-			if (gTurn > 10) { 
+			if (gTurn > 15) { 
 				int noise[4] = { gActiveUnit->pCharacterData->number, gActiveUnit->pClassData->number, 0, 0 }; 
-				if (HashByte_Ch(gTurn, 100, noise, gTurn) < ((gTurn) * 2)) { 
+				if (HashByte_Ch(gTurn, 100, noise, gTurn) < ((gTurn - 15) * 3)) { 
 					gActiveUnit->ai2 = 0; 
 				}
 			} 
@@ -4327,6 +4327,7 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) {
 	const struct CharacterData* table2 = GetCharacterData(1); 
 	//u32 rn[1] = {0}; 
 	int c = 0; 
+	u32 value; u32 value2; 
 	table--; 
 	for (int i = 0; i < MAX_CHAR_ID; ++i) { 
 	// remove the 0x8------- from anti-huffman uncompressed text pointer 
@@ -4336,8 +4337,12 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) {
 			continue; 
 		} 
 		if (c >= ListSize) { break; } 
-		list[c].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
-		list[c].replace = (void*)((int)ggMsgStringTable[table2->nameTextId] & 0x7FFFFFFF); 
+		value = (int)ggMsgStringTable[table->nameTextId];
+		value2 = (int)ggMsgStringTable[table2->nameTextId];
+		//if (((value >> 31) || (value2 >> 31))) { continue; } // text must not be huffman compressed 
+		if (value2 >> 31) { continue; } // text must not be huffman compressed 
+		list[c].find = (void*)(value & 0x7FFFFFFF); 
+		list[c].replace = (void*)(value2 & 0x7FFFFFFF); 
 		c++; 
 	} 
 	//c++; 
