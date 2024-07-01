@@ -17,6 +17,8 @@
 .endm
 
 .if FE6 == true 
+SET_DATA getSoundRoom, 0x808b9c4
+SET_DATA getSongTable, 0x8039170
 SET_FUNC UpdateMapViewWithFog, 0x801C6C5
 SET_DATA gVision, 0x202AA48+0x0D
 @SET_FUNC GetItemAttributes, fe7 0x801727c unk fe6 
@@ -115,6 +117,8 @@ SET_FUNC SetupDebugFontForOBJ, 0x8005471
 SET_FUNC PrintDebugStringAsOBJ, 0x8005551
 .endif 
 .if FE7 == true 
+SET_DATA getSoundRoom, 0x80AADB0 
+SET_DATA getSongTable, 0x8040230 
 SET_FUNC SetupDebugFontForOBJ, 0x8005281
 SET_FUNC PrintDebugStringAsOBJ, 0x800530d
 SET_DATA gProcScr_ArenaUiMain, 0x8CE729C
@@ -213,6 +217,7 @@ SET_FUNC HbPopulate_SSCharacter, 0x80816FD
 
 .endif 
 .if FE8 == true 
+SET_DATA getSoundRoom, 0x80AECA8 
 SET_DATA getSongTable, 0x080458E0 
 SET_DATA ggMsgStringTable, 0x800a2a0 
 SET_DATA u32MsgString, 0x0202A6AC

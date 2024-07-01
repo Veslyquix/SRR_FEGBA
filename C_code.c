@@ -706,38 +706,29 @@ typedef struct SoundRoomData {
   int songName;
 } SoundRoomData;
 #endif 
-#ifdef FE6 
-#define SoundRoomTable ((struct SoundRoomData*) 0x88331E8)
-#endif 
-#ifdef FE7 
-#define SoundRoomTable ((struct SoundRoomData*) 0x8CE4D28)
-#endif 
-#ifdef FE8 
-#define SoundRoomTable ((struct SoundRoomData*) 0x8A20E74)
-#endif 
 
+extern struct SoundRoomData* getSoundRoom[];
 
 extern int NextRN_N(int max); 
 int RandomizeBattleMusic(int id){ 
 	if (!ShouldRandomizeBGM()) { 
 		return id; 
 	}
-	u16 List[MaxNumberOfSongs]; 
-	BuildTracklist(List); 
-	int result = List[NextRN_N(List[0])+1]; 
-	return result; 
+	//u16 List[MaxNumberOfSongs]; 
+	//BuildTracklist(List); 
+	//int result = List[NextRN_N(List[0])+1]; 
+	//return result; // not all tracks with 0x10001 priority work for battle music fsr 
+	// a random track from sound room seems to work, though *shrugs* 
+	struct SoundRoomData* SoundRoomTable = *getSoundRoom; // starts at index 1, not 0 
 	#ifdef FE6 
 	// #68 is max 
-	//return GetUsableTrack(0);  // before game over at 53 I guess 
-	//return SoundRoomTable[NextRN_N(52)].songID; // before game over at 53 I guess 
+	return SoundRoomTable[NextRN_N(52)].songID; // before game over at 53 I guess 
 	#endif 
 	#ifdef FE7 // #99 is max 
-	//return GetUsableTrack(0);  // before game over at 91 
-	//return SoundRoomTable[NextRN_N(90)].songID; // before game over at 91 
+	return SoundRoomTable[NextRN_N(90)].songID; // before game over at 91 
 	#endif 
 	#ifdef FE8 // #68 is max 
-	//return GetUsableTrack(0); 
-	//return SoundRoomTable[NextRN_N(63)].songID; // before game over at 64
+	return SoundRoomTable[NextRN_N(63)].songID; // before game over at 64
 	#endif 
 };
 
