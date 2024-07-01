@@ -4941,9 +4941,9 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 		
 		#ifdef FE8 
-		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions-2))) { 
+		if (proc->Option[15] && ((id + offset) == 16)) { 
 		#else 
-		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions))) { 
+		if (proc->Option[15] && ((id + offset) == 16)) { 
 		#endif 
 			if (proc->calledFromChapter) { 
 			// clear MU, refresh fog, update gfx, sms update 
