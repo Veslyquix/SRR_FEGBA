@@ -153,7 +153,7 @@ WORD 0x5A
 #ifndef VeslyBuildfile 
 WORD 0 // If 0, it'll read through your class editor and count
 #endif 
-WORD 90 
+WORD 0 //90 
 // until it finds a class with an ID that does not match (eg. says 0) 
 
 

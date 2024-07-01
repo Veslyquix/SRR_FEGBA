@@ -88,7 +88,7 @@ MaxClasses_Link:
 #ifndef VeslyBuildfile 
 WORD 0 // If 0, it'll read through your class editor and count
 #endif 
-WORD 127
+WORD 0 //127
 // until it finds a class with an ID that does not match (eg. says 0) 
 
 // Each shop will have one of these items at random

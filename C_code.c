@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.4.B"
+#define VersionNumber " SRR V1.5.0"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -1273,7 +1273,7 @@ int GetMaxClasses(void) {
 	if (!RecruitValues->newClasses) { c = 90; } 
 	#endif 
 	#ifdef FE8 
-	if (!RecruitValues->newClasses) { c = 127; } 
+	//if (!RecruitValues->newClasses) { c = 127; } 
 	#endif 
 	for (int i = 1; i < c; i++) { 
 		if (table->number != i) { table--; break; } 
