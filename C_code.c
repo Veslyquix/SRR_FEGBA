@@ -1619,10 +1619,19 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	// 0x56 fallen warrior has axes 
 	// no playable manaketes in fe7, but otherwise units without wexp but 
 	// have monster lock could be possibility 
+	int prevName = 0; int curName = 0; 
+	int prevSMS = 0; int curSMS = 0; 
 	for (int i = 1; i <= GetMaxClasses(); i++) { 
-
-		if (IsClassInvalid(i)) { continue; } 
 		const struct ClassData* table = GetClassData(i); 
+		prevName = curName; 
+		curName = table->nameTextId; 
+		prevSMS = curSMS; 
+		curSMS = table->SMSId; 
+		if (curName && curSMS) { 
+			if ((curName == prevName) && (curSMS == prevSMS)) { continue; } // ignore duplicate classes (same name / same SMS in a row)
+		} 
+		if (IsClassInvalid(i)) { continue; } 
+		
 		attr = table->attributes; 
 		if (!promotedBitflag) { if (attr & CA_PROMOTED) { continue; } } 
 		else if (!(attr & CA_PROMOTED)) { continue; } 
@@ -4340,7 +4349,7 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) {
 		value = (int)ggMsgStringTable[table->nameTextId];
 		value2 = (int)ggMsgStringTable[table2->nameTextId];
 		//if (((value >> 31) || (value2 >> 31))) { continue; } // text must not be huffman compressed 
-		if (value2 >> 31) { continue; } // text must not be huffman compressed 
+		if (!(value2 >> 31)) { continue; } // text must not be huffman compressed 
 		list[c].find = (void*)(value & 0x7FFFFFFF); 
 		list[c].replace = (void*)(value2 & 0x7FFFFFFF); 
 		c++; 
