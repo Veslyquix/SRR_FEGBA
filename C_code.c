@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.4.A"
+#define VersionNumber " SRR V1.5.0"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -647,6 +647,34 @@ u8 static const OtherMusicList[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1
 #ifdef FE8 // Thanks Circles
 u8 static const MapMusicList[] = {4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,36,37,38,49,50,55,69,84}; 
 #endif 
+
+
+struct Song
+{
+    void* header;
+    u16 ms;
+    u16 me;
+};
+extern struct Song* getSongTable[];
+const int MaxNumberOfSongs = 99; 
+//#define MaxNumberOfSongs 99 
+u16* BuildTracklist(u16 List[]) { 
+	int i;
+	// 0th entry of List is the count of available tracks 
+	for (i = 0; i < MaxNumberOfSongs; ++i) { 
+		List[i] = 0; 
+	} 
+	struct Song* gST = *getSongTable;  
+	for (i = 0; i < 1000; ++i) { 
+		if (!gST[i].header) { break; } 
+		if (gST[i].ms != 1) { continue; } 
+		if (gST[i].me != 1) { continue; } 
+		List[0]++; 
+		List[List[0]] = i; 
+	} 
+	return List; 
+} 
+
 extern int GetCurrentMapMusicIndex(void); 
 int GetBGMTrack(){ // fe7/fe8 only? 
 	if (!ShouldRandomizeBGM()) { return GetCurrentMapMusicIndex(); } 
@@ -656,7 +684,10 @@ int GetBGMTrack(){ // fe7/fe8 only?
 	//	noise[0] = gActiveUnit->xPos; 
 	//	noise[1] = gActiveUnit->yPos; 
 	//} 
-	return MapMusicList[HashByte_Ch(number, sizeof(MapMusicList), noise, gTurn)]; 
+	u16 List[MaxNumberOfSongs]; 
+	BuildTracklist(List); 
+	int result = List[HashByte_Ch(number, List[0], noise, gTurn)+1]; 
+	return result; 
 };
 // 80726ac T EkrPlayMainBGM 
 #ifdef FE6 
@@ -675,20 +706,20 @@ typedef struct SoundRoomData {
   int songName;
 } SoundRoomData;
 #endif 
-#ifdef FE6 
-#define SoundRoomTable ((struct SoundRoomData*) 0x88331E8)
-#endif 
-#ifdef FE7 
-#define SoundRoomTable ((struct SoundRoomData*) 0x8CE4D28)
-#endif 
-#ifdef FE8 
-#define SoundRoomTable ((struct SoundRoomData*) 0x8A20E74)
-#endif 
+
+extern struct SoundRoomData* getSoundRoom[];
+
 extern int NextRN_N(int max); 
 int RandomizeBattleMusic(int id){ 
 	if (!ShouldRandomizeBGM()) { 
 		return id; 
 	}
+	//u16 List[MaxNumberOfSongs]; 
+	//BuildTracklist(List); 
+	//int result = List[NextRN_N(List[0])+1]; 
+	//return result; // not all tracks with 0x10001 priority work for battle music fsr 
+	// a random track from sound room seems to work, though *shrugs* 
+	struct SoundRoomData* SoundRoomTable = *getSoundRoom; // starts at index 1, not 0 
 	#ifdef FE6 
 	// #68 is max 
 	return SoundRoomTable[NextRN_N(52)].songID; // before game over at 53 I guess 
@@ -989,11 +1020,13 @@ int AnyFadeExists(void) {
 
 	return false; 
 }
+extern int VanillaPortraitsOnly; 
 void PortraitAdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisColour, int NeverRandomizeBeforeThisColour, int fading, int classCard) { 
 	if ((AlwaysRandomizePastThisColour) && (!NeverRandomizeBeforeThisColour)) { 
 	if (gPaletteBuffer[(bank * 16) + 1]  >= 0x6000) { NeverRandomizeBeforeThisColour = 5; } 
 	}
 	if (classCard) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
+	if (!VanillaPortraitsOnly) { AlwaysRandomizePastThisColour = 99; NeverRandomizeBeforeThisColour = 0; } 
 	AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading); 
 }
 	
@@ -1198,9 +1231,9 @@ void MaybeChangeAi2(void) {
 	if (IsAnythingRandomized()) { 
 		if (gActiveUnit->ai2 == 3) { 
 			if (UNIT_CATTRIBUTES(gActiveUnit) & CA_BOSS) { return; } 
-			if (gTurn > 10) { 
+			if (gTurn > 15) { 
 				int noise[4] = { gActiveUnit->pCharacterData->number, gActiveUnit->pClassData->number, 0, 0 }; 
-				if (HashByte_Ch(gTurn, 100, noise, gTurn) < ((gTurn) * 2)) { 
+				if (HashByte_Ch(gTurn, 100, noise, gTurn) < ((gTurn - 15) * 3)) { 
 					gActiveUnit->ai2 = 0; 
 				}
 			} 
@@ -1231,7 +1264,7 @@ int GetMaxClasses(void) {
 	if (!RecruitValues->newClasses) { c = 90; } 
 	#endif 
 	#ifdef FE8 
-	if (!RecruitValues->newClasses) { c = 127; } 
+	//if (!RecruitValues->newClasses) { c = 127; } 
 	#endif 
 	for (int i = 1; i < c; i++) { 
 		if (table->number != i) { table--; break; } 
@@ -1577,10 +1610,19 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 	// 0x56 fallen warrior has axes 
 	// no playable manaketes in fe7, but otherwise units without wexp but 
 	// have monster lock could be possibility 
+	int prevName = 0; int curName = 0; 
+	int prevSMS = 0; int curSMS = 0; 
 	for (int i = 1; i <= GetMaxClasses(); i++) { 
-
-		if (IsClassInvalid(i)) { continue; } 
 		const struct ClassData* table = GetClassData(i); 
+		prevName = curName; 
+		curName = table->nameTextId; 
+		prevSMS = curSMS; 
+		curSMS = table->SMSId; 
+		if (curName && curSMS) { 
+			if ((curName == prevName) && (curSMS == prevSMS)) { continue; } // ignore duplicate classes (same name / same SMS in a row)
+		} 
+		if (IsClassInvalid(i)) { continue; } 
+		
 		attr = table->attributes; 
 		if (!promotedBitflag) { if (attr & CA_PROMOTED) { continue; } } 
 		else if (!(attr & CA_PROMOTED)) { continue; } 
@@ -1631,6 +1673,7 @@ int RandClass(int id, int noise[], struct Unit* unit) {
 } 
 
 int RandClass2(int id, u8 noise[], struct Unit* unit) {  
+	//return 0x54; 
 	if (!ShouldRandomizeClass(unit)) { return id; } 
 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	int allegiance = (unit->index)>>6;
@@ -4284,6 +4327,7 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) {
 	const struct CharacterData* table2 = GetCharacterData(1); 
 	//u32 rn[1] = {0}; 
 	int c = 0; 
+	u32 value; u32 value2; 
 	table--; 
 	for (int i = 0; i < MAX_CHAR_ID; ++i) { 
 	// remove the 0x8------- from anti-huffman uncompressed text pointer 
@@ -4293,8 +4337,12 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[]) {
 			continue; 
 		} 
 		if (c >= ListSize) { break; } 
-		list[c].find = (void*)((int)ggMsgStringTable[table->nameTextId] & 0x7FFFFFFF); 
-		list[c].replace = (void*)((int)ggMsgStringTable[table2->nameTextId] & 0x7FFFFFFF); 
+		value = (int)ggMsgStringTable[table->nameTextId];
+		value2 = (int)ggMsgStringTable[table2->nameTextId];
+		//if (((value >> 31) || (value2 >> 31))) { continue; } // text must not be huffman compressed 
+		if (!(value2 >> 31)) { continue; } // text must not be huffman compressed 
+		list[c].find = (void*)(value & 0x7FFFFFFF); 
+		list[c].replace = (void*)(value2 & 0x7FFFFFFF); 
 		c++; 
 	} 
 	//c++; 
@@ -4884,9 +4932,9 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 		
 		#ifdef FE8 
-		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions-2))) { 
+		if (proc->Option[15] && ((id + offset) == 16)) { 
 		#else 
-		if (proc->Option[15] && ((id + offset) == (SRR_TotalOptions))) { 
+		if (proc->Option[15] && ((id + offset) == 16)) { 
 		#endif 
 			if (proc->calledFromChapter) { 
 			// clear MU, refresh fog, update gfx, sms update 
@@ -5428,7 +5476,7 @@ void StatScreenSelectLoop(ProcPtr proc) {
 				page = GetStatScreenPage(); 
 			}
 			#endif 
-			Proc_Goto(proc, 0); // TODO: label name
+			Proc_Goto(proc, 0); // TODO: label name 
 			StartStatScreenHelp(page, proc);
 		}
 	if (sKeyStatusBuffer.newKeys & SELECT_BUTTON)
@@ -6006,7 +6054,7 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				return 0; break;
 			}
 			case 11: { 
-				if (!SkillSysInstalled) { 
+				if (!StrMagInstalled) { 
 					if (UnitHasMagicRank(gStatScreen.unit))
 					{
 						// mag
@@ -6270,7 +6318,7 @@ extern u16 gUiTmScratchB[]; // 0x200373C
 extern const u8 Tsa_StatScreenPage0[]; // 0x83FCA4C 
 void TmApplyTsa(u16 * tm, u8 const * tsa, u16 tileref); // 0x80C57B5 
 #endif 
-void DisplayPage0(void) 
+void NewDisplayPage0(void) 
 { 
 
 //ResetTextFont();
