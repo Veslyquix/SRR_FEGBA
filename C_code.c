@@ -2925,6 +2925,7 @@ int GetStatMaxBonus(struct Unit* unit, int stat, int avg) {
 	result += bonus; 
 	if (result < stat) { result = stat; } 
 	if (result < (avg + 1)) { result = avg+1; } 
+	if (result < 0) { result = 0; } 
 	return result; 
 } 
 

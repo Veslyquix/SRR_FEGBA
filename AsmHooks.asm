@@ -1618,7 +1618,7 @@ mov   r2, #0x80
 lsl   r2, #0x1
 swi   #0xC        @ CPUFastSet.
 bl MaybeRandomizeColours 
-bl MaybeForceHardModeFE8 
+@bl MaybeForceHardModeFE8 
 pop {r0} 
 bx r0
 
