@@ -2240,7 +2240,7 @@ int SlightlyAdjustStatForInflatedNumbers(int stat) {
 	return result; 
 }
 
-extern void PutNumberBonus(int a, u16 *b); // 8006240
+void NewPutNumberBonus(int a, u16 *b, int base); // 8006240
 extern void PutNumberOrBlank(u16 *a, int b, int c); // 80061E4
 void DrawStatBarGfx(
     int tile, int bufWidth, u16* buf, int tileBase,
@@ -2255,7 +2255,7 @@ void NewDrawStatWithBar(int num, int x, int y, int base, int total, int max)
     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y),
         (base == max) ? green : blue, base);
 
-    PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 1, y));
+    NewPutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x, y), base);
 
     if (total > globalCap)
     {
@@ -2310,7 +2310,18 @@ s16 HashWexp(int number, int noise[], int offset) {
 } 
 
 int GetGrowthModifiers(struct Unit* unit) { 
-	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
+	int result = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+	int bonus = 0; 
+	int allegiance = UNIT_FACTION(unit); 
+	if (allegiance == FACTION_RED) { 
+		bonus = GrowthValues->enemy; 
+	} 
+	else { 
+		bonus = GrowthValues->player; 
+	} 
+	bonus = bonus * 10; 
+	if (bonus > 100) { bonus = 0 - bonus; } 
+	return result + bonus; 
 } 
 extern int ClassBasedGrowths; 
 extern int CombinedGrowths; 
@@ -2347,6 +2358,8 @@ int GetClassMagGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 81);  
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 int GetUnitMagGrowth(struct Unit* unit, int modifiersBool) {
@@ -2433,6 +2446,8 @@ int GetClassHPGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 11);  
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 
@@ -2445,6 +2460,7 @@ int GetClassPowGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 21); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
 	return result; 
 }
 
@@ -2457,7 +2473,9 @@ int GetClassSklGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 31);  
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	return result; 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (result < 0) { result = 0; } 
+	return result;  
 }
 
 int GetClassSpdGrowth(struct Unit* unit, int modifiersBool) {
@@ -2469,6 +2487,8 @@ int GetClassSpdGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 41); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 
@@ -2481,6 +2501,8 @@ int GetClassDefGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 51); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 
@@ -2493,6 +2515,8 @@ int GetClassResGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 61); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 
@@ -2505,6 +2529,8 @@ int GetClassLckGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 71); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 
@@ -4314,7 +4340,7 @@ const char Option20[OPT20NUM][10] = {
 }; 
 
 
-const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM, 0 }; 
+const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM, OPT18NUM, OPT19NUM, OPT20NUM, 0, 0, 0, 0 }; 
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -4670,7 +4696,7 @@ extern int DisplayTimedHitsOption;
 const int SRR_MAXDISP = 7;
 extern const int SRR_TotalOptions;
 const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 11, 10, 11, 2, 7, 7, 6, 4};   
-const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 14, 13, 4, 7, 8, 9, 10, 4, 10, 4, 6, 11, 5, 5, 17 } ; 
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 14, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 17 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -4924,11 +4950,11 @@ enum {
 RedrawNone, RedrawSome, RedrawAll }; 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
 	if (proc->offset) {
-        DisplayUiVArrow(MENU_X+(8*8), MENU_Y+8, 0x3240, 1); // up arrow 
+        DisplayUiVArrow(MENU_X+(9*8), MENU_Y+8, 0x3240, 1); // up arrow 
     }
 	// should display down arrow? 
 	if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
-		DisplayUiVArrow(MENU_X+(8*8), MENU_Y+(16*9), 0x3240, 0);
+		DisplayUiVArrow(MENU_X+(9*8), MENU_Y+(16*9), 0x3240, 0);
 	}
 
 
@@ -4982,7 +5008,10 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflags->colours = proc->Option[10]; 
 		RandBitflags->itemDur = proc->Option[11]; 
 		RandBitflags->playerBonus = proc->Option[12]; 
+		GrowthValues->player = proc->Option[13]; 
 		RandValues->bonus = proc->Option[14];
+		GrowthValues->enemy = proc->Option[15]; 
+		RecruitValues->ai = proc->Option[17]; 
 		
 		if (DisplayRandomSkillsOption) {
 			RandValues->skills = proc->Option[20]; 
@@ -5529,27 +5558,42 @@ extern void DrawStatWithBar(int num, int x, int y, int base, int total, int max)
 extern void PutSpecialChar(u16 * tm, int color, int id); //800615C
 extern void PutNumberSmall(u16* a, int b, int c); // 8006234
 
-void PutNumberBonus(int number, u16 *tm)
+void NewPutNumberBonus(int number, u16 *tm, int base)
 {
     if (number == 0) { 
 	//PutSpecialChar(tm, blue, 0x2a); // % 
 	return; } 
+	int absNum = ABS(number); 
+	int outOfSpace = false; 
+	int offset = 1; 
+	if ((base < 100) && (number < 100)) { offset++; } 
+	if (base >= 100) { offset++; } 
+	int specCharPos = 1 + offset; 
+	if (absNum >= 10) { specCharPos = 2 + offset; }  
+	if (absNum >= 100) { 
+		specCharPos = 3 + offset; 
+		if (base >= 100) { 
+			specCharPos--; 
+			if (number > 0) { number = 99; } 
+			if (number < 0) { number = 0 - 99; } 
+		} 
+	}  
 	
 	if (number > 0) { 
-    PutSpecialChar(tm, green, 0x15); // + 
-    PutNumberSmall(tm + ((number >= 10) ? 2 : 1), green, number);
+		PutSpecialChar(tm + offset, green, 0x15); // + 
+		PutNumberSmall(tm + specCharPos, green, number);
 	} 
 	else { 
 	number = ~number + 1; // neg 
 	//void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
 	#ifndef FE6 
-    PutDrawText(0, tm, gold, 2, 1, "-"); 
+    PutDrawText(0, tm + offset, gold, specCharPos, 1, "-"); 
 	#endif 
 	#ifdef FE6 
-    PutDrawText(0, tm, gold, 2, 1, GetStringFromIndex(0xB82)); 
+    PutDrawText(0, tm + offset, gold, specCharPos, 1, GetStringFromIndex(0xB82)); 
 	#endif 
 	//PutSpecialChar(tm, gold, 0x2d); // -
-    PutNumberSmall(tm + ((number >= 10) ? 2 : 1), gold, number);
+    PutNumberSmall(tm + specCharPos, gold, number);
 	} 
 }
 
@@ -5615,9 +5659,11 @@ void StatScreenSelectLoop(ProcPtr proc) {
 void DrawGrowthWithDifference(int x, int y, int base, int modified)
 {
     int diff = modified - base;
-    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
-	
-    PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 2, y));
+	int offset = 0; 
+	if (base > 99) { offset++; } 
+	if ((base < 100) && (diff < 100)) { offset++; } 
+    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x + offset, y), blue, base);
+    NewPutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x, y), base);
 }
 
 extern int VramDest_DebugFont; 
@@ -6171,7 +6217,7 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 						#ifdef FE8 
 						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
 						#else 
-						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,"Mag"); // Mag
+						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,"Pow"); // Mag
 						#endif 
 					}
 					else
@@ -6211,7 +6257,7 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				#ifdef FE8 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
 				#else 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Luck");
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Lck");
 				#endif 
 				break;
 			}
@@ -6235,7 +6281,7 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				#ifdef FE8 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
 				#else 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mag");
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mgc");
 				#endif 
 				break;
 			}

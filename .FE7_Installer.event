@@ -158,7 +158,6 @@ WORD 0 //90
 
 
 PUSH 
-
 // checksum testing stuff 
 //ORG $9f924 
 //SHORT $4770 // bx lr 
@@ -220,7 +219,9 @@ ORG $22D94; SHORT $DD08
 ORG $21E3E; BYTE 0xC0 0x46 0xC0 0x46 // Merlinus can trade 
 ORG $23D08; BYTE 0xC0 0x46 0xC0 0x46 // Units can trade Merlinus 
 
-
+ORG $4049A0 // Don't draw "mov" 
+WORD 0 0 0 0
+//BYTE $94 $31 $00 $02 $0E $35 $00 $02 $03 $00 $00 $00 $24 $27 $CC $08
 ORG $4049F0 // Don't draw "mov" 
 BYTE $94 $31 $00 $02 $0E $35 $00 $02 $03 $00 $00 $00 $24 $27 $CC $08
 ORG $404a40; WORD 0 0 0 0

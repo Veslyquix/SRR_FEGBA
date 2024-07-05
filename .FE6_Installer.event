@@ -501,6 +501,8 @@ BYTE 0xFF 0x2E 0x2C 0xDA 0x02 0x99 0x08 0x70 0x04 0x9B 0x02 0x93
 SHORT $4667 $46c0 $46c0 // I think this is right but I'm not 100% convinced, oh well 
 
 //in 83193ec T gStatScreenPersonalInfoLabelsInfo
+ORG $3192EC
+WORD 0 0 0 0
 ORG $31943c // Don't draw "mov" 
 BYTE $90 $31 $00 $02 $0A $35 $00 $02 $03 $00 $00 $00 $58 $7E $67 $08
 ORG $31948c; WORD 0 0 0 0
