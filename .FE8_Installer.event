@@ -916,12 +916,12 @@ WORD IconOrrValue
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
 #ifdef SKILLSYS_INSTALLED 
-WORD 18
+WORD 21
 #else 
-WORD 17
+WORD 20
 #endif  
 #else 
-WORD 16 
+WORD 19 
 #endif 
 
 // if you don't have a max hp getter, these are used 
@@ -965,6 +965,8 @@ RecruitValues:
 WORD RandomizerRam+10
 AlwaysSkill:
 WORD RandomizerRam+11
+GrowthValues:
+WORD RandomizerRam+12 
 #else 
 MESSAGE IMPROVED_SOUND_MIXER is not compatible with the self randomizing rom. Please comment it out in config.event to install. 
 #endif 

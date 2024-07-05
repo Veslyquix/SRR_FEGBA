@@ -69,6 +69,7 @@ struct RecruitmentValues {
 	u8 recruitment : 3; 
 	u8 pauseNameReplace : 1; 
 	u8 newClasses : 2; 
+	u8 ai : 2; 
 }; 
 struct TimedHitsDifficultyStruct { 
 	u8 difficulty : 5; 
@@ -76,12 +77,18 @@ struct TimedHitsDifficultyStruct {
 	u8 off : 1; 
 	u8 cheats : 1; 
 }; 
+struct GrowthBonusValues { 
+	u8 player : 4; 
+	u8 enemy : 4; 
+}; 
+
 extern struct TimedHitsDifficultyStruct* TimedHitsDifficultyRam; 
 
 extern struct RecruitmentValues* RecruitValues; 
 
 extern struct RandomizerSettings* RandBitflags; 
 extern struct RandomizerValues* RandValues; 
+extern struct GrowthBonusValues* GrowthValues; 
 
 extern u8* MaxItems; 
 extern int MaxItems_Link; 
@@ -1226,9 +1233,14 @@ u32 GetSeed(void) {
 	return RandValues->seed; 
 } 
 
+int ShouldChangeAI(void) { 
+	return RecruitValues->ai; 
+
+} 
 
 void MaybeChangeAi2(void) { 
-	if (IsAnythingRandomized()) { 
+	int settings = ShouldChangeAI(); 
+	if (settings == 2) { 
 		if (gActiveUnit->ai2 == 3) { 
 			if (UNIT_CATTRIBUTES(gActiveUnit) & CA_BOSS) { return; } 
 			if (gTurn > 15) { 
@@ -1239,6 +1251,9 @@ void MaybeChangeAi2(void) {
 			} 
 		} 
 	}
+	else if (settings == 1) { 
+		gActiveUnit->ai2 = 0; 
+	} 
 } 
 
 int GetMaxItems(void) {  
@@ -3174,17 +3189,6 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
         unit->exp = UNIT_EXP_DISABLED;
 	}
 	
-	if (UNIT_FACTION(unit) != FACTION_RED) { 
-		int bonusLevels = RandBitflags->playerBonus; 
-		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
-		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 	
-	} 
-	else { 
-		int bonusLevels = RandValues->bonus; 
-		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
-		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
-	}
-	
 	if (RandomizeRecruitment) { 
 		int bonusLevels = GetAdjustedLevel(unit->pCharacterData, originalClass) - GetAdjustedLevel(character, unit->pClassData); 
 		bonusLevels += GetAdjustedLevel(character, originalClass) - GetAdjustedLevel(character, randCharOriginalClass); 
@@ -3254,6 +3258,16 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	} 
 	#endif 
 	
+	if (UNIT_FACTION(unit) != FACTION_RED) { 
+		int bonusLevels = RandBitflags->playerBonus; 
+		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
+		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 	
+	} 
+	else { 
+		int bonusLevels = RandValues->bonus; 
+		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
+		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
+	}
 	
 	UnitCheckStatCaps(unit);
 }
@@ -4164,11 +4178,38 @@ const char Option12[OPT12NUM][20] = { // players
 "-1 hidden level",
 }; 
 #endif
-#define OPT13NUM 31
+
+#define OPT13NUM 16
 #ifdef FE6 
-extern const char Option13[OPT13NUM][42]; // do align 16 before each? 
+extern const char Option13[OPT13NUM][32]; // do align 16 before each? 
 #else 
-const char Option13[OPT13NUM][20] = { // Enemies 
+const char Option13[OPT13NUM][10] = { // Enemies 
+"Vanilla",
+"+10%",
+"+20%",
+"+30%",
+"+40%",
+"+50%",
+"+60%",
+"+70%",
+"+80%",
+"+90%",
+"+100%",
+"-10%",
+"-20%",
+"-30%",
+"-40%",
+"-50%",
+}; 
+#endif
+
+
+
+#define OPT14NUM 31
+#ifdef FE6 
+extern const char Option14[OPT14NUM][42]; // do align 16 before each? 
+#else 
+const char Option14[OPT14NUM][20] = { // Enemies 
 "Vanilla",
 "+1 hidden level",
 "+2 hidden levels",
@@ -4203,34 +4244,69 @@ const char Option13[OPT13NUM][20] = { // Enemies
 }; 
 #endif
 
-#define OPT14NUM 3
+#define OPT15NUM 16
 #ifdef FE6 
-extern const char Option14[OPT14NUM][32]; // do align 16 before each? 
+extern const char Option15[OPT15NUM][32]; // do align 16 before each? 
 #else 
-const char Option14[OPT14NUM][11] = { 
+const char Option15[OPT15NUM][10] = { // Enemies 
+"Vanilla",
+"+10%",
+"+20%",
+"+30%",
+"+40%",
+"+50%",
+"+60%",
+"+70%",
+"+80%",
+"+90%",
+"+100%",
+"-10%",
+"-20%",
+"-30%",
+"-40%",
+"-50%",
+}; 
+#endif
+
+#define OPT16NUM 3
+#ifdef FE6 
+extern const char Option16[OPT16NUM][32]; // do align 16 before each? 
+#else 
+const char Option16[OPT16NUM][11] = { 
 "Vanilla",
 "Always off",
 "Always on",
 }; 
 #endif 
-#define OPT15NUM 2
+#define OPT17NUM 3
 #ifdef FE6 
-extern const char Option15[OPT15NUM][32]; // do align 16 before each? 
+extern const char Option17[OPT17NUM][64]; // do align 16 before each? 
 #else 
-const char Option15[OPT15NUM][14] = { 
+const char Option17[OPT17NUM][25] = { 
+"Vanilla",
+"Charge towards you",
+"Gradually charge",
+}; 
+#endif 
+
+#define OPT18NUM 2
+#ifdef FE6 
+extern const char Option18[OPT18NUM][32]; // do align 16 before each? 
+#else 
+const char Option18[OPT18NUM][14] = { 
 "Vanilla",
 "Press A",
 }; 
 #endif 
-#define OPT16NUM 4 
-const char Option16[OPT16NUM][10] = { 
+#define OPT19NUM 4 
+const char Option19[OPT19NUM][10] = { 
 "Off",
 "Easy",
 "Normal",
 "Hard",
 }; 
-#define OPT17NUM 4 
-const char Option17[OPT17NUM][10] = { 
+#define OPT20NUM 4 
+const char Option20[OPT20NUM][10] = { 
 "Vanilla",
 "Random",
 "Fixed",
@@ -4587,14 +4663,14 @@ char* GetCombinedString(const char* a, char* b, char* c) {
 
 extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); // 80C57BC
 #define Y_HAND 3
-#define NUMBER_X 20
+#define NUMBER_X 21
 extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
 extern int DisplayRandomSkillsOption; 
 extern int DisplayTimedHitsOption; 
 const int SRR_MAXDISP = 7;
 extern const int SRR_TotalOptions;
-const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7, 6, 4};   
-const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 14, 13, 4, 7, 8, 9, 10, 10, 6, 5, 5, 17 } ; 
+const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 11, 10, 11, 2, 7, 7, 6, 4};   
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 14, 13, 4, 7, 8, 9, 10, 4, 10, 4, 6, 11, 5, 5, 17 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -4629,49 +4705,55 @@ Max Growth: 100
 	switch (offset) { 
 	case 0: TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0); // seed first 
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-1, 3+((i)*2)), white, proc->seed); i++; 
-	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
+	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
+	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
+	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
+	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
+	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding)); i++; 
+	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding)); i++; 
+	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 	
-	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding)); i++;  
+	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
+	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding)); i++;  
+	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding)); i++;  
+	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
+	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
+	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
+	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
+	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
+	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 17: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 18: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding)); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 19: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option18[proc->Option[18]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
 	#ifdef FE8 
-	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
+	case 20: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option19[proc->Option[19]], UseHuffmanEncoding)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
 	} } 
-	case 18: { if (DisplayRandomSkillsOption) { 
-		if ((proc->Option[17] != 3) || (!IsSkill(proc->skill))) {
-		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding)); i++; 
+	case 21: { if (DisplayRandomSkillsOption) { 
+		if ((proc->Option[20] != 3) || (!IsSkill(proc->skill))) {
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding)); i++; 
 		} 
 		else { 
 		char string[30]; 
-		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option20[proc->Option[20]], GetSkillName(proc->skill), string)); i++; 
 			//DrawIcon(
 				//gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
 				//SKILL_ICON(proc->skill), TILEREF(0, 4));
@@ -4809,13 +4891,18 @@ void InitUnitDef(struct UnitDefinition* uDef, struct Unit* unit) {
 } 
 
 void ReloadAllUnits(ConfigMenuProc* proc) { 
-	if (!((proc->calledFromChapter) && (proc->reloadUnits))) { 
+	if (!((proc->calledFromChapter) && (proc->reloadPlayers || proc->reloadEnemies))) { 
 		return; 
 	}
 	struct UnitDefinition uDef; 
 	struct Unit* unit; 
 	u32 state; 
-	for (int i = 1; i<0xC0; ++i) { 
+	int i = 1; 
+	int end = 0xC0; 
+	if (!proc->reloadPlayers) { i = 0x80; } 
+	if (!proc->reloadEnemies) { end = 0x80; } 
+	
+	for (; i < end; ++i) { 
 		unit = GetUnit(i); 
 		if (!UNIT_IS_VALID(unit)) { continue; } 
 		state = unit->state; 
@@ -4854,7 +4941,9 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
 
 		// see if anything changed 
-		int reloadUnits = false; 
+		int reloadPlayers = false; 
+		int reloadEnemies = false; 
+		int reloadUnits = false; // both 
 		if (RandValues->seed != proc->seed) { reloadUnits = true; } 
 		if (RandValues->variance != proc->Option[0]) { reloadUnits = true; } 
 		if (RecruitValues->recruitment != proc->Option[1]) { reloadUnits = true; } 
@@ -4863,10 +4952,12 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		if (RandBitflags->levelups != proc->Option[4]) { reloadUnits = true; } 
 		if (RandBitflags->caps != proc->Option[5]) { reloadUnits = true; } 
 		if (RandBitflags->class != proc->Option[6]) { reloadUnits = true; } 
-		if (RandBitflags->playerBonus != proc->Option[12]) { reloadUnits = true; } 
-		if (RandValues->bonus != proc->Option[13]) { reloadUnits = true; } 
+		if (RandBitflags->playerBonus != proc->Option[12]) { reloadPlayers = true; } 
+		if (RandBitflags->playerBonus != proc->Option[13]) { reloadPlayers = true; } 
+		if (RandValues->bonus != proc->Option[14]) { reloadEnemies = true; } 
+		if (RandValues->bonus != proc->Option[15]) { reloadEnemies = true; } 
 		if (DisplayRandomSkillsOption) {
-			if (RandValues->skills != proc->Option[17]) { reloadUnits = true; } 
+			if (RandValues->skills != proc->Option[20]) { reloadUnits = true; } 
 		}
 		
 		RandValues->seed = proc->seed; 
@@ -4891,15 +4982,15 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflags->colours = proc->Option[10]; 
 		RandBitflags->itemDur = proc->Option[11]; 
 		RandBitflags->playerBonus = proc->Option[12]; 
-		RandValues->bonus = proc->Option[13];
+		RandValues->bonus = proc->Option[14];
 		
 		if (DisplayRandomSkillsOption) {
-			RandValues->skills = proc->Option[17]; 
+			RandValues->skills = proc->Option[20]; 
 			AlwaysSkill[0] = proc->skill; 
 		}
 		#ifdef FE8 
 		if (DisplayTimedHitsOption) { 
-			int timedHits = proc->Option[16];
+			int timedHits = proc->Option[19];
 			TimedHitsDifficultyRam->off = false;
 			TimedHitsDifficultyRam->alwaysA = false;
 			TimedHitsDifficultyRam->difficulty = 0; 
@@ -4910,18 +5001,18 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		}
 		#endif 
 		
-		if (RandBitflags->fog != proc->Option[14]) { 
-			if ((proc->Option[14] == 1) && proc->calledFromChapter) { 
+		if (RandBitflags->fog != proc->Option[16]) { 
+			if ((proc->Option[16] == 1) && proc->calledFromChapter) { 
 				UpdateMapViewWithFog(0); 
 			} 
-			if ((proc->Option[14] == 2) && proc->calledFromChapter) { 
+			if ((proc->Option[16] == 2) && proc->calledFromChapter) { 
 				UpdateMapViewWithFog(3); 
 			} 
-			if ((proc->Option[14] == 0) && proc->calledFromChapter) { 
+			if ((proc->Option[16] == 0) && proc->calledFromChapter) { 
 				UpdateMapViewWithFog(-1); 
 			} 
 		} 
-		RandBitflags->fog = proc->Option[14]; 
+		RandBitflags->fog = proc->Option[16]; 
 		
 		RecruitmentProc* recruitmentProc = Proc_Find(RecruitmentProcCmd1); 
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
@@ -4933,9 +5024,9 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 		
 		#ifdef FE8 
-		if (proc->Option[15] && ((id + offset) == 16)) { 
+		if (proc->Option[18] && ((id + offset) == 19)) { 
 		#else 
-		if (proc->Option[15] && ((id + offset) == 16)) { 
+		if (proc->Option[18] && ((id + offset) == 19)) { 
 		#endif 
 			if (proc->calledFromChapter) { 
 			// clear MU, refresh fog, update gfx, sms update 
@@ -4953,11 +5044,13 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		
 		// fe6 temporarily shows wrong char name sometimes without this 
 		struct Text* th = gStatScreen.text; // max 34 
-		for (int i = 0; i < 36; ++i) { 
+		for (int i = 0; i < 50; ++i) { 
 			ClearText(&th[i]);
 		}	
 		
-		if (reloadUnits) { proc->reloadUnits = true; *MaxClasses = 0; } 
+		if (reloadUnits) { reloadPlayers = true; reloadEnemies = true; } 
+		if (reloadPlayers) { proc->reloadPlayers = true; *MaxClasses = 0; } 
+		if (reloadEnemies) { proc->reloadEnemies = true; *MaxClasses = 0; } 
 		
 		Proc_Break((ProcPtr)proc);
 		return; 
@@ -5019,7 +5112,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	} 
 	//
 	
-	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
+	if (((id+offset) == 20) && (proc->Option[20] == 3) && (proc->choosingSkill)) { 
 
 		if (keys & DPAD_UP) {
 			proc->skill = GetNextAlwaysSkill(proc->skill); 
@@ -5083,7 +5176,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	}
 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	if (proc->redraw == RedrawSome) { 
-		if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3)) { proc->choosingSkill = true; } 
+		if (((id+offset) == SRR_TotalOptions) && (proc->Option[20] == 3)) { proc->choosingSkill = true; } 
 		proc->redraw = RedrawNone; 
 		DrawConfigMenu(proc); 
 	} 
@@ -5110,8 +5203,11 @@ extern const char MusicText;
 extern const char ColoursText;
 extern const char ItemDurabilityText;
 extern const char PlayerBonusText;
+extern const char PlayerGrowthBonusText;
 extern const char EnemyDiffBonusText;
+extern const char EnemyGrowthBonusText;
 extern const char FogText;
+extern const char SoftlockPreventionText;
 extern const char SkipChapterText;
 extern const char RandomizerText;
 #else 
@@ -5129,8 +5225,11 @@ const char MusicText[] = { "Music" };
 const char ColoursText[] = { "Colours" };
 const char ItemDurabilityText[] = { "Item Durability" };
 const char PlayerBonusText[] = { "Player Bonus" };
+const char PlayerGrowthBonusText[] = { "Player Growth Bonus" };
 const char EnemyDiffBonusText[] = { "Enemy Diff. Bonus" };
+const char EnemyGrowthBonusText[] = { "Enemy Growth Bonus" };
 const char FogText[] = { "Fog" };
+const char SoftlockPreventionText[] = { "Override AI" }; 
 const char SkipChapterText[] = { "Skip chapter" };
 const char SkillsText[] = { "Skills" };
 const char TimedHitsText[] = { "Timed Hits" };
@@ -5138,8 +5237,8 @@ const char RandomizerText[] = { "Randomizer" };
 #endif 
 
 void RedrawAllText(ConfigMenuProc* proc) { 
-	struct Text* th = gStatScreen.text; // max 34 
-	for (int i = 0; i < 34; ++i) { 
+	struct Text* th = gStatScreen.text; // max 34 normally 
+	for (int i = 0; i < 50; ++i) { 
 		ClearText(&th[i]);
 	}	
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0, 0), 0x1d, 0x13, 0); // all 
@@ -5178,18 +5277,24 @@ void RedrawAllText(ConfigMenuProc* proc) {
 		if (i > SRR_MAXDISP) { break; } 
 		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText, false)); i++;  // make players have bonus levels
 		if (i > SRR_MAXDISP) { break; } 
-		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels?
+		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerGrowthBonusText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
+		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels
 		if (i > SRR_MAXDISP) { break; } 
-		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
+		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyGrowthBonusText, false)); i++;  
+		if (i > SRR_MAXDISP) { break; } 
+		case 17: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
+		if (i > SRR_MAXDISP) { break; } 
+		case 18: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SoftlockPreventionText, false)); i++;  
+		if (i > SRR_MAXDISP) { break; } 
+		case 19: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
 		#ifdef FE8 
-		case 17: { if (DisplayTimedHitsOption) { 
+		case 20: { if (DisplayTimedHitsOption) { 
 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&TimedHitsText, false)); i++;  
 			if (i > SRR_MAXDISP) { break; } 
 		} } 
-		case 18: { if (DisplayRandomSkillsOption) { 
+		case 21: { if (DisplayRandomSkillsOption) { 
 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
 			if (i > SRR_MAXDISP) { break; } 
 		} } 
@@ -5309,9 +5414,10 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
 	if (proc) { 
-		for (int i = 0; i < 20; i++) { 
+		for (int i = 0; i < 22; i++) { 
 		proc->Option[i] = 0; } 
-		proc->reloadUnits = false; 
+		proc->reloadPlayers = false; 
+		proc->reloadEnemies = false; 
 		if (!DefaultConfigToVanilla) {
 		proc->Option[0] = OptionAmounts[0]-1; // start on 100% 
 		proc->Option[1] = 1; 
@@ -5337,13 +5443,13 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 		proc->digit = 0; 
 		StartGreenText(proc); 
 		
-		proc->Option[16] = 1; // timed hits 
+		proc->Option[19] = 1; // timed hits 
 		#ifdef FORCE_SPECIFIC_SEED 
 		proc->Option[2] = 0; 
 		proc->Option[3] = 0; 
 		proc->Option[5] = 0; 
 		proc->Option[6] = 0; 
-		proc->seed = 674677; 
+		proc->seed = 387508; 
 		proc->freezeSeed = true; 
 		#endif 
 	} 
@@ -5391,20 +5497,23 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	proc->Option[10] = RandBitflags->colours;		
 	proc->Option[11] = RandBitflags->itemDur;		
 	proc->Option[12] = RandBitflags->playerBonus;	
-	proc->Option[13] = RandValues->bonus;		
-	proc->Option[14] = RandBitflags->fog;
+	proc->Option[13] = GrowthValues->player; 
+	proc->Option[14] = RandValues->bonus;	
+	proc->Option[15] = GrowthValues->enemy; 	
+	proc->Option[16] = RandBitflags->fog;
+	proc->Option[17] = RecruitValues->ai;
 	
 	#ifdef FE8 
 	if (DisplayTimedHitsOption) { 
-		proc->Option[16] = 0;
-		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[16] = 1; }  
-		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[16] = 2; }  
-		if (TimedHitsDifficultyRam->difficulty == 3) { proc->Option[16] = 3; }  
+		proc->Option[19] = 0;
+		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[19] = 1; }  
+		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[19] = 2; }  
+		if (TimedHitsDifficultyRam->difficulty == 3) { proc->Option[19] = 3; }  
 	}
 	#endif 
 	
 	if (DisplayRandomSkillsOption) { 
-		proc->Option[17] = RandValues->skills;
+		proc->Option[20] = RandValues->skills;
 		proc->skill = AlwaysSkill[0];
 	}
 	

@@ -164,12 +164,18 @@ ItemDurabilityText:
 STRING "Item Durability" "FE6TR" ; BYTE 0
 PlayerBonusText:
 STRING "Player Bonus" "FE6TR" ; BYTE 0
+PlayerGrowthBonusText:
+STRING "Player Growth Bonus" "FE6TR" ; BYTE 0
 EnemyDiffBonusText: 
 STRING "Enemy Diff. Bonus" "FE6TR" ; BYTE 0
+EnemyGrowthBonusText:
+STRING "Enemy Growth Bonus" "FE6TR" ; BYTE 0
 RandomizerText: 
 STRING "Randomizer" "FE6TR" ; BYTE 0
 FogText:
 STRING "Fog" "FE6TR" ; BYTE 0
+SoftlockPreventionText:
+STRING "Override AI" "FE6TR" ; BYTE 0
 SkipChapterText:
 STRING "Skip Chapter" "FE6TR" ; BYTE 0
 
@@ -301,7 +307,7 @@ ALIGN 48; STRING "Infinite items" "FE6TR" ; BYTE 0
 
 ALIGN 42
 Option12:
-Option13:
+Option14:
 FILL(32*42)
 ORG Option12
 ALIGN 42; STRING "Vanilla" "FE6TR" ; BYTE 0
@@ -337,18 +343,50 @@ ALIGN 42; STRING "-2 hidden levels" "FE6TR" ; BYTE 0
 ALIGN 42; STRING "-1 hidden level" "FE6TR" ; BYTE 0
 BYTE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
+ALIGN 32 
+Option13:
+Option15:
+FILL(32*16)
+ORG Option13
+ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+10%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+20%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+30%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+40%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+50%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+60%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+70%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+80%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+90%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+100%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "-10%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "-20%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "-30%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "-40%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "-50%" "FE6TR" ; BYTE 0
+
 ALIGN 32
-Option14:
+Option16:
 FILL(32*3)
-ORG Option14
+ORG Option16
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Always off" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Always on" "FE6TR" ; BYTE 0
 
+ALIGN 64
+Option17:
+FILL(64*3)
+ORG Option17
+ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Charge towards you" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Gradually charge" "FE6TR" ; BYTE 0
+
+
+
 ALIGN 32
-Option15:
+Option18:
 FILL(32*2)
-ORG Option15
+ORG Option18
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Press A" "FE6TR" ; BYTE 0
 
@@ -390,6 +428,15 @@ VramDest_DebugFont:
 WORD 0xd800 // in glowy or 0x3000 ? // 0x4800 
 
 PUSH 
+
+ORG $679C91 
+BYTE $B 
+ORG $679CA1 
+BYTE $B 
+ORG $679CB1 
+BYTE $B 
+ORG $679CC1 
+BYTE $B 
 
 ORG $31740 //$37D84
 jumpToHack(MaybeChargeAtPlayer)
@@ -644,7 +691,7 @@ ALIGN 4
 IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
-WORD 16
+WORD 19
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:
@@ -681,6 +728,8 @@ RecruitValues:
 WORD 0x203D97E
 AlwaysSkill:
 WORD 0x203D97F 
+GrowthValues:
+WORD 0x203D980 
 
 ALIGN 32
 NameStrings: 

@@ -137,7 +137,7 @@ AlwaysSkillTable:
 FILL 256 
 ALIGN 4 
 SRR_TotalOptions:
-WORD 16
+WORD 19
 
 ALIGN 4 
 MaxItems_Link: 
@@ -1008,7 +1008,8 @@ RecruitValues:
 WORD 0x203eb3a
 AlwaysSkill:
 WORD 0x203eb3b
-
+GrowthValues:
+WORD 0x203eb3c 
 
 
 
