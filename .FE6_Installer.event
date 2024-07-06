@@ -501,13 +501,21 @@ BYTE 0xFF 0x2E 0x2C 0xDA 0x02 0x99 0x08 0x70 0x04 0x9B 0x02 0x93
 SHORT $4667 $46c0 $46c0 // I think this is right but I'm not 100% convinced, oh well 
 
 //in 83193ec T gStatScreenPersonalInfoLabelsInfo
-ORG $3192EC
-WORD 0 0 0 0
+//ORG $3193EC // 08677de8 
+//WORD 0 0 0 0
 ORG $31943c // Don't draw "mov" 
 BYTE $90 $31 $00 $02 $0A $35 $00 $02 $03 $00 $00 $00 $58 $7E $67 $08
 ORG $31948c; WORD 0 0 0 0
 // data at 31943c for drawing mov is usually "68 31 00 02 8A 32 00 02 03 00 00 00 18 7E 67 08" 
-
+//ORG $8171F8 // start of stat screen label names - "HP" 
+ORG $817220 
+BYTE $82 $e4 $82 $e6 0 0 0 0 // "Skl" 
+ORG $817244 
+BYTE $82 $d6 $82 $e4 0 0 // "Lck" 
+ORG $81720E 
+STRING "Pow" "FE6TR" ; BYTE 0 // Inline, so 3 characters! 
+ORG $817216 
+STRING "Pow" "FE6TR" ; BYTE 0
 
 // in 806ED34 
 ORG $6EDB2 

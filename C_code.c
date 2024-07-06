@@ -2310,7 +2310,10 @@ s16 HashWexp(int number, int noise[], int offset) {
 } 
 
 int GetGrowthModifiers(struct Unit* unit) { 
-	int result = (unit->state & US_GROWTH_BOOST) ? 5: 0;
+	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
+} 
+
+int GetBonusGrowth(struct Unit* unit) { 
 	int bonus = 0; 
 	int allegiance = UNIT_FACTION(unit); 
 	if (allegiance == FACTION_RED) { 
@@ -2320,9 +2323,10 @@ int GetGrowthModifiers(struct Unit* unit) {
 		bonus = GrowthValues->player; 
 	} 
 	bonus = bonus * 10; 
-	if (bonus > 100) { bonus = 0 - bonus; } 
-	return result + bonus; 
+	if (bonus > 100) { bonus = 100 - bonus; }  
+	return bonus; 
 } 
+
 extern int ClassBasedGrowths; 
 extern int CombinedGrowths; 
 extern int CallGet_Hp_Growth(struct Unit* unit); 
@@ -2358,7 +2362,7 @@ int GetClassMagGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 81);  
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2388,6 +2392,7 @@ int GetUnitMagGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2446,7 +2451,7 @@ int GetClassHPGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 11);  
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2460,7 +2465,7 @@ int GetClassPowGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 21); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
 	return result; 
 }
 
@@ -2473,7 +2478,7 @@ int GetClassSklGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 31);  
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
 	if (result < 0) { result = 0; } 
 	return result;  
 }
@@ -2487,7 +2492,7 @@ int GetClassSpdGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 41); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2501,7 +2506,7 @@ int GetClassDefGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 51); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2515,7 +2520,7 @@ int GetClassResGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 61); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2529,7 +2534,7 @@ int GetClassLckGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 71); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	if (modifiersBool) { result += GetGrowthModifiers(unit); } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2560,7 +2565,10 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 19); } // if really low, try to add some points 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	return result + add; 
+	result += add; 
+	result += GetBonusGrowth(unit); 
+	if (result < 0) { result = 0; } 
+	return result; 
 }
 
 int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
@@ -2588,6 +2596,7 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2617,6 +2626,7 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2646,6 +2656,7 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit);  
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2675,6 +2686,7 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2704,6 +2716,7 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2733,6 +2746,7 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -5564,7 +5578,7 @@ void NewPutNumberBonus(int number, u16 *tm, int base)
 	//PutSpecialChar(tm, blue, 0x2a); // % 
 	return; } 
 	int absNum = ABS(number); 
-	int outOfSpace = false; 
+	//int outOfSpace = false; 
 	int offset = 1; 
 	if ((base < 100) && (number < 100)) { offset++; } 
 	if (base >= 100) { offset++; } 
@@ -6214,11 +6228,11 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 					if (UnitHasMagicRank(gStatScreen.unit))
 					{
 						// mag
-						#ifdef FE8 
-						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
-						#else 
-						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,"Pow"); // Mag
-						#endif 
+						//#ifdef FE8 
+						//PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
+						//#else 
+						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,"Pow"); // Pow / Mgc / Atk / Mag
+						//#endif 
 					}
 					else
 					{
@@ -6238,11 +6252,11 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				break;
 			}
 			case 12: { 
-				#ifdef FE8 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
-				#else 
+				//#ifdef FE8 
+				//PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
+				//#else 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skl");
-				#endif 
+				//#endif 
 				break;
 			}
 			case 13: { 
@@ -6254,11 +6268,11 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				break;
 			}
 			case 14: { 
-				#ifdef FE8 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
-				#else 
+				//#ifdef FE8 
+				//PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
+				//#else 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Lck");
-				#endif 
+				//#endif 
 				break;
 			}
 			case 15: { 
@@ -6278,11 +6292,11 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				break;
 			}
 			case 17: { 
-				#ifdef FE8 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
-				#else 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mgc");
-				#endif 
+				//#ifdef FE8 
+				//PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
+				//#else 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Pow");
+				//#endif 
 				break;
 			}
 
