@@ -429,14 +429,15 @@ WORD 0xd800 // in glowy or 0x3000 ? // 0x4800
 
 PUSH 
 
-ORG $679C91 
-BYTE $B 
-ORG $679CA1 
-BYTE $B 
-ORG $679CB1 
-BYTE $B 
-ORG $679CC1 
-BYTE $B 
+// make some enemies in first ch promoted for testing 
+//ORG $679C91 
+//BYTE $B 
+//ORG $679CA1 
+//BYTE $B 
+//ORG $679CB1 
+//BYTE $B 
+//ORG $679CC1 
+//BYTE $B 
 
 ORG $31740 //$37D84
 jumpToHack(MaybeChargeAtPlayer)
@@ -457,6 +458,7 @@ ORG $6089C0
 BYTE  $4D $08 $0E $05 $66 $3C $BE $00 $00 $00 $00 $14 $26 $04 $03 $0B $02 $00 $12 $00 $00 $00 $00 $00 $00 $00 $00 $00 $64 $64 $64 $64 $64 $64 $64 $00 $00 $00 $00 $00 $00 $41 $00 $01 $00 $00 $00 $00;
 // make Idunn a promoted unit with 100% growths 
 
+// 2529C some promo something 
 
 ORG $6D0E6 // from 6D0E4
 SHORT $46C0 

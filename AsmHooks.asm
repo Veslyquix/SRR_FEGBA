@@ -1053,6 +1053,8 @@ ldr r0, [r2, #0x28]
 ldr r1, [r1, #0x24] 
 orr r0, r1 
 lsr r0, #8 
+mov r1, #1 
+and r0, r1 
 add r2, #0x23 
 add r2, r0 
 ldrb r5, [r2] 
