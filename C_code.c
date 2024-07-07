@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.5.1"
+#define VersionNumber " SRR V1.5.2"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -194,7 +194,7 @@ int RandomizeSkill(int id, struct Unit* unit) {
 } 
 
 int GetAlwaysSkill(struct Unit* unit) { 
-	//if (UNIT_FACTION(unit) == FACTION_RED) { return 0; } 
+	if (UNIT_FACTION(unit) == FACTION_RED) { return 0; } 
 	if (RandValues->skills != 3) { return 0; } 
 	return *AlwaysSkill; 
 } 
@@ -4743,7 +4743,7 @@ Max Growth: 100
 
 	i = 0; 
 	switch (offset) { 
-	case 0: TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0); // seed first 
+	case 0: TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-7, Y_HAND), 9, 2, 0); // seed first 
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-1, 3+((i)*2)), white, proc->seed); i++; 
 	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
@@ -5145,7 +5145,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 				proc->redraw = RedrawSome;
 			}
 		
-			DisplayHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y + (offset * 8), true); 	
+			DisplayHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y + (id * 8), true); 	
 			if (proc->redraw == RedrawSome) { 
 				proc->redraw = RedrawNone; 
 				DrawConfigMenu(proc); 
@@ -5155,7 +5155,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	} 
 	//
 	
-	if (((id+offset) == 20) && (proc->Option[20] == 3) && (proc->choosingSkill)) { 
+	if (((id+offset) == 21) && (proc->Option[20] == 3) && (proc->choosingSkill)) { 
 
 		if (keys & DPAD_UP) {
 			proc->skill = GetNextAlwaysSkill(proc->skill); 
@@ -5180,7 +5180,8 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 			//proc->redraw = RedrawSome; id++; id -= offset; 
 		}
 		if (proc->choosingSkill) { 
-		DisplayHand(CursorLocationTable[proc->digit].x+12, CursorLocationTable[proc->digit].y + (offset * 8) + 32, true); 
+		//DisplayHand(CursorLocationTable[0].x+12, CursorLocationTable[0].y + (id * 8) + 32, true); 
+		DisplayHand(CursorLocationTable[0].x+12, 128, true); 
 		} 	
 		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
 		proc->freezeSeed = true; 	
@@ -5219,7 +5220,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	}
 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	if (proc->redraw == RedrawSome) { 
-		if (((id+offset) == SRR_TotalOptions) && (proc->Option[20] == 3)) { proc->choosingSkill = true; } 
+		if (((id+offset) == 21) && (proc->Option[20] == 3)) { proc->choosingSkill = true; } 
 		proc->redraw = RedrawNone; 
 		DrawConfigMenu(proc); 
 	} 
@@ -5281,7 +5282,7 @@ const char RandomizerText[] = { "Randomizer" };
 
 void RedrawAllText(ConfigMenuProc* proc) { 
 	struct Text* th = gStatScreen.text; // max 34 normally 
-	for (int i = 0; i < 50; ++i) { 
+	for (int i = 0; i < (SRR_TotalOptions * 2 + 2); ++i) { 
 		ClearText(&th[i]);
 	}	
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0, 0), 0x1d, 0x13, 0); // all 
