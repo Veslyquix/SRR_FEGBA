@@ -164,12 +164,18 @@ ItemDurabilityText:
 STRING "Item Durability" "FE6TR" ; BYTE 0
 PlayerBonusText:
 STRING "Player Bonus" "FE6TR" ; BYTE 0
+PlayerGrowthBonusText:
+STRING "Player Growth Bonus" "FE6TR" ; BYTE 0
 EnemyDiffBonusText: 
 STRING "Enemy Diff. Bonus" "FE6TR" ; BYTE 0
+EnemyGrowthBonusText:
+STRING "Enemy Growth Bonus" "FE6TR" ; BYTE 0
 RandomizerText: 
 STRING "Randomizer" "FE6TR" ; BYTE 0
 FogText:
 STRING "Fog" "FE6TR" ; BYTE 0
+SoftlockPreventionText:
+STRING "Override AI" "FE6TR" ; BYTE 0
 SkipChapterText:
 STRING "Skip Chapter" "FE6TR" ; BYTE 0
 
@@ -301,7 +307,7 @@ ALIGN 48; STRING "Infinite items" "FE6TR" ; BYTE 0
 
 ALIGN 42
 Option12:
-Option13:
+Option14:
 FILL(32*42)
 ORG Option12
 ALIGN 42; STRING "Vanilla" "FE6TR" ; BYTE 0
@@ -337,18 +343,50 @@ ALIGN 42; STRING "-2 hidden levels" "FE6TR" ; BYTE 0
 ALIGN 42; STRING "-1 hidden level" "FE6TR" ; BYTE 0
 BYTE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
+ALIGN 32 
+Option13:
+Option15:
+FILL(32*16)
+ORG Option13
+ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+10%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+20%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+30%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+40%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+50%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+60%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+70%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+80%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+90%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "+100%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "-10%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "-20%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "-30%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "-40%" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "-50%" "FE6TR" ; BYTE 0
+
 ALIGN 32
-Option14:
+Option16:
 FILL(32*3)
-ORG Option14
+ORG Option16
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Always off" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Always on" "FE6TR" ; BYTE 0
 
+ALIGN 64
+Option17:
+FILL(64*3)
+ORG Option17
+ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Charge towards you" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "Gradually charge" "FE6TR" ; BYTE 0
+
+
+
 ALIGN 32
-Option15:
+Option18:
 FILL(32*2)
-ORG Option15
+ORG Option18
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Press A" "FE6TR" ; BYTE 0
 
@@ -391,6 +429,16 @@ WORD 0xd800 // in glowy or 0x3000 ? // 0x4800
 
 PUSH 
 
+// make some enemies in first ch promoted for testing 
+//ORG $679C91 
+//BYTE $B 
+//ORG $679CA1 
+//BYTE $B 
+//ORG $679CB1 
+//BYTE $B 
+//ORG $679CC1 
+//BYTE $B 
+
 ORG $31740 //$37D84
 jumpToHack(MaybeChargeAtPlayer)
 
@@ -410,6 +458,7 @@ ORG $6089C0
 BYTE  $4D $08 $0E $05 $66 $3C $BE $00 $00 $00 $00 $14 $26 $04 $03 $0B $02 $00 $12 $00 $00 $00 $00 $00 $00 $00 $00 $00 $64 $64 $64 $64 $64 $64 $64 $00 $00 $00 $00 $00 $00 $41 $00 $01 $00 $00 $00 $00;
 // make Idunn a promoted unit with 100% growths 
 
+// 2529C some promo something 
 
 ORG $6D0E6 // from 6D0E4
 SHORT $46C0 
@@ -454,11 +503,21 @@ BYTE 0xFF 0x2E 0x2C 0xDA 0x02 0x99 0x08 0x70 0x04 0x9B 0x02 0x93
 SHORT $4667 $46c0 $46c0 // I think this is right but I'm not 100% convinced, oh well 
 
 //in 83193ec T gStatScreenPersonalInfoLabelsInfo
+//ORG $3193EC // 08677de8 
+//WORD 0 0 0 0
 ORG $31943c // Don't draw "mov" 
 BYTE $90 $31 $00 $02 $0A $35 $00 $02 $03 $00 $00 $00 $58 $7E $67 $08
 ORG $31948c; WORD 0 0 0 0
 // data at 31943c for drawing mov is usually "68 31 00 02 8A 32 00 02 03 00 00 00 18 7E 67 08" 
-
+//ORG $8171F8 // start of stat screen label names - "HP" 
+ORG $817220 
+BYTE $82 $e4 $82 $e6 0 0 0 0 // "Skl" 
+ORG $817244 
+BYTE $82 $d6 $82 $e4 0 0 // "Lck" 
+ORG $81720E 
+STRING "Pow" "FE6TR" ; BYTE 0 // Inline, so 3 characters! 
+ORG $817216 
+STRING "Pow" "FE6TR" ; BYTE 0
 
 // in 806ED34 
 ORG $6EDB2 
@@ -644,7 +703,7 @@ ALIGN 4
 IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
-WORD 16
+WORD 19
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:
@@ -681,6 +740,8 @@ RecruitValues:
 WORD 0x203D97E
 AlwaysSkill:
 WORD 0x203D97F 
+GrowthValues:
+WORD 0x203D980 
 
 ALIGN 32
 NameStrings: 

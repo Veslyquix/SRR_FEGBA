@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.5.0"
+#define VersionNumber " SRR V1.5.2"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -69,6 +69,7 @@ struct RecruitmentValues {
 	u8 recruitment : 3; 
 	u8 pauseNameReplace : 1; 
 	u8 newClasses : 2; 
+	u8 ai : 2; 
 }; 
 struct TimedHitsDifficultyStruct { 
 	u8 difficulty : 5; 
@@ -76,12 +77,18 @@ struct TimedHitsDifficultyStruct {
 	u8 off : 1; 
 	u8 cheats : 1; 
 }; 
+struct GrowthBonusValues { 
+	u8 player : 4; 
+	u8 enemy : 4; 
+}; 
+
 extern struct TimedHitsDifficultyStruct* TimedHitsDifficultyRam; 
 
 extern struct RecruitmentValues* RecruitValues; 
 
 extern struct RandomizerSettings* RandBitflags; 
 extern struct RandomizerValues* RandValues; 
+extern struct GrowthBonusValues* GrowthValues; 
 
 extern u8* MaxItems; 
 extern int MaxItems_Link; 
@@ -187,7 +194,7 @@ int RandomizeSkill(int id, struct Unit* unit) {
 } 
 
 int GetAlwaysSkill(struct Unit* unit) { 
-	//if (UNIT_FACTION(unit) == FACTION_RED) { return 0; } 
+	if (UNIT_FACTION(unit) == FACTION_RED) { return 0; } 
 	if (RandValues->skills != 3) { return 0; } 
 	return *AlwaysSkill; 
 } 
@@ -1226,9 +1233,14 @@ u32 GetSeed(void) {
 	return RandValues->seed; 
 } 
 
+int ShouldChangeAI(void) { 
+	return RecruitValues->ai; 
+
+} 
 
 void MaybeChangeAi2(void) { 
-	if (IsAnythingRandomized()) { 
+	int settings = ShouldChangeAI(); 
+	if (settings == 2) { 
 		if (gActiveUnit->ai2 == 3) { 
 			if (UNIT_CATTRIBUTES(gActiveUnit) & CA_BOSS) { return; } 
 			if (gTurn > 15) { 
@@ -1239,6 +1251,9 @@ void MaybeChangeAi2(void) {
 			} 
 		} 
 	}
+	else if (settings == 1) { 
+		gActiveUnit->ai2 = 0; 
+	} 
 } 
 
 int GetMaxItems(void) {  
@@ -2225,7 +2240,7 @@ int SlightlyAdjustStatForInflatedNumbers(int stat) {
 	return result; 
 }
 
-extern void PutNumberBonus(int a, u16 *b); // 8006240
+void NewPutNumberBonus(int a, u16 *b, int base); // 8006240
 extern void PutNumberOrBlank(u16 *a, int b, int c); // 80061E4
 void DrawStatBarGfx(
     int tile, int bufWidth, u16* buf, int tileBase,
@@ -2240,7 +2255,7 @@ void NewDrawStatWithBar(int num, int x, int y, int base, int total, int max)
     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y),
         (base == max) ? green : blue, base);
 
-    PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 1, y));
+    NewPutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x, y), base);
 
     if (total > globalCap)
     {
@@ -2297,6 +2312,21 @@ s16 HashWexp(int number, int noise[], int offset) {
 int GetGrowthModifiers(struct Unit* unit) { 
 	return (unit->state & US_GROWTH_BOOST) ? 5: 0;
 } 
+
+int GetBonusGrowth(struct Unit* unit) { 
+	int bonus = 0; 
+	int allegiance = UNIT_FACTION(unit); 
+	if (allegiance == FACTION_RED) { 
+		bonus = GrowthValues->enemy; 
+	} 
+	else { 
+		bonus = GrowthValues->player; 
+	} 
+	bonus = bonus * 10; 
+	if (bonus > 100) { bonus = 100 - bonus; }  
+	return bonus; 
+} 
+
 extern int ClassBasedGrowths; 
 extern int CombinedGrowths; 
 extern int CallGet_Hp_Growth(struct Unit* unit); 
@@ -2332,6 +2362,8 @@ int GetClassMagGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 81);  
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 int GetUnitMagGrowth(struct Unit* unit, int modifiersBool) {
@@ -2360,6 +2392,7 @@ int GetUnitMagGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2418,6 +2451,8 @@ int GetClassHPGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 11);  
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 
@@ -2430,6 +2465,7 @@ int GetClassPowGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 21); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
 	return result; 
 }
 
@@ -2442,7 +2478,9 @@ int GetClassSklGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 31);  
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	return result; 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
+	if (result < 0) { result = 0; } 
+	return result;  
 }
 
 int GetClassSpdGrowth(struct Unit* unit, int modifiersBool) {
@@ -2454,6 +2492,8 @@ int GetClassSpdGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 41); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 
@@ -2466,6 +2506,8 @@ int GetClassDefGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 51); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 
@@ -2478,6 +2520,8 @@ int GetClassResGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 61); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 
@@ -2490,6 +2534,8 @@ int GetClassLckGrowth(struct Unit* unit, int modifiersBool) {
 	int result = HashByPercent(growth, noise, 71); 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
+	if (modifiersBool) { result += GetGrowthModifiers(unit); result += GetBonusGrowth(unit); } 
+	if (result < 0) { result = 0; } 
 	return result; 
 }
 
@@ -2519,7 +2565,10 @@ int GetUnitHPGrowth(struct Unit* unit, int modifiersBool) {
 	if (result < (growth/2)) { result += HashByte_Global(growth, (growth/2), noise, 19); } // if really low, try to add some points 
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
-	return result + add; 
+	result += add; 
+	result += GetBonusGrowth(unit); 
+	if (result < 0) { result = 0; } 
+	return result; 
 }
 
 int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
@@ -2547,6 +2596,7 @@ int GetUnitPowGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2576,6 +2626,7 @@ int GetUnitSklGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2605,6 +2656,7 @@ int GetUnitSpdGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit);  
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2634,6 +2686,7 @@ int GetUnitDefGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2663,6 +2716,7 @@ int GetUnitResGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2692,6 +2746,7 @@ int GetUnitLckGrowth(struct Unit* unit, int modifiersBool) {
 	if ((result-growth) > 99) { result = growth+99; } 
 	if ((growth-result) > 99) { result = growth-99; } 
 	result += add; 
+	result += GetBonusGrowth(unit); 
 	if (result < 0) { result = 0; } 
 	return result; 
 }
@@ -2925,6 +2980,7 @@ int GetStatMaxBonus(struct Unit* unit, int stat, int avg) {
 	result += bonus; 
 	if (result < stat) { result = stat; } 
 	if (result < (avg + 1)) { result = avg+1; } 
+	if (result < 0) { result = 0; } 
 	return result; 
 } 
 
@@ -3173,17 +3229,6 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
         unit->exp = UNIT_EXP_DISABLED;
 	}
 	
-	if (UNIT_FACTION(unit) != FACTION_RED) { 
-		int bonusLevels = RandBitflags->playerBonus; 
-		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
-		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 	
-	} 
-	else { 
-		int bonusLevels = RandValues->bonus; 
-		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
-		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
-	}
-	
 	if (RandomizeRecruitment) { 
 		int bonusLevels = GetAdjustedLevel(unit->pCharacterData, originalClass) - GetAdjustedLevel(character, unit->pClassData); 
 		bonusLevels += GetAdjustedLevel(character, originalClass) - GetAdjustedLevel(character, randCharOriginalClass); 
@@ -3253,6 +3298,16 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	} 
 	#endif 
 	
+	if (UNIT_FACTION(unit) != FACTION_RED) { 
+		int bonusLevels = RandBitflags->playerBonus; 
+		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
+		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 	
+	} 
+	else { 
+		int bonusLevels = RandValues->bonus; 
+		if (bonusLevels > 20) { bonusLevels = (-10) + (bonusLevels-21); }
+		if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); } 
+	}
 	
 	UnitCheckStatCaps(unit);
 }
@@ -4163,11 +4218,38 @@ const char Option12[OPT12NUM][20] = { // players
 "-1 hidden level",
 }; 
 #endif
-#define OPT13NUM 31
+
+#define OPT13NUM 16
 #ifdef FE6 
-extern const char Option13[OPT13NUM][42]; // do align 16 before each? 
+extern const char Option13[OPT13NUM][32]; // do align 16 before each? 
 #else 
-const char Option13[OPT13NUM][20] = { // Enemies 
+const char Option13[OPT13NUM][10] = { // Enemies 
+"Vanilla",
+"+10%",
+"+20%",
+"+30%",
+"+40%",
+"+50%",
+"+60%",
+"+70%",
+"+80%",
+"+90%",
+"+100%",
+"-10%",
+"-20%",
+"-30%",
+"-40%",
+"-50%",
+}; 
+#endif
+
+
+
+#define OPT14NUM 31
+#ifdef FE6 
+extern const char Option14[OPT14NUM][42]; // do align 16 before each? 
+#else 
+const char Option14[OPT14NUM][20] = { // Enemies 
 "Vanilla",
 "+1 hidden level",
 "+2 hidden levels",
@@ -4202,34 +4284,69 @@ const char Option13[OPT13NUM][20] = { // Enemies
 }; 
 #endif
 
-#define OPT14NUM 3
+#define OPT15NUM 16
 #ifdef FE6 
-extern const char Option14[OPT14NUM][32]; // do align 16 before each? 
+extern const char Option15[OPT15NUM][32]; // do align 16 before each? 
 #else 
-const char Option14[OPT14NUM][11] = { 
+const char Option15[OPT15NUM][10] = { // Enemies 
+"Vanilla",
+"+10%",
+"+20%",
+"+30%",
+"+40%",
+"+50%",
+"+60%",
+"+70%",
+"+80%",
+"+90%",
+"+100%",
+"-10%",
+"-20%",
+"-30%",
+"-40%",
+"-50%",
+}; 
+#endif
+
+#define OPT16NUM 3
+#ifdef FE6 
+extern const char Option16[OPT16NUM][32]; // do align 16 before each? 
+#else 
+const char Option16[OPT16NUM][11] = { 
 "Vanilla",
 "Always off",
 "Always on",
 }; 
 #endif 
-#define OPT15NUM 2
+#define OPT17NUM 3
 #ifdef FE6 
-extern const char Option15[OPT15NUM][32]; // do align 16 before each? 
+extern const char Option17[OPT17NUM][64]; // do align 16 before each? 
 #else 
-const char Option15[OPT15NUM][14] = { 
+const char Option17[OPT17NUM][25] = { 
+"Vanilla",
+"Charge towards you",
+"Gradually charge",
+}; 
+#endif 
+
+#define OPT18NUM 2
+#ifdef FE6 
+extern const char Option18[OPT18NUM][32]; // do align 16 before each? 
+#else 
+const char Option18[OPT18NUM][14] = { 
 "Vanilla",
 "Press A",
 }; 
 #endif 
-#define OPT16NUM 4 
-const char Option16[OPT16NUM][10] = { 
+#define OPT19NUM 4 
+const char Option19[OPT19NUM][10] = { 
 "Off",
 "Easy",
 "Normal",
 "Hard",
 }; 
-#define OPT17NUM 4 
-const char Option17[OPT17NUM][10] = { 
+#define OPT20NUM 4 
+const char Option20[OPT20NUM][10] = { 
 "Vanilla",
 "Random",
 "Fixed",
@@ -4237,7 +4354,7 @@ const char Option17[OPT17NUM][10] = {
 }; 
 
 
-const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM, 0 }; 
+const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM, OPT18NUM, OPT19NUM, OPT20NUM, 0, 0, 0, 0 }; 
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -4586,14 +4703,14 @@ char* GetCombinedString(const char* a, char* b, char* c) {
 
 extern void TileMap_FillRect(u16 *dest, int width, int height, int fillValue); // 80C57BC
 #define Y_HAND 3
-#define NUMBER_X 20
+#define NUMBER_X 21
 extern void DrawIcon(u16* BgOut, int IconIndex, int OamPalBase); 
 extern int DisplayRandomSkillsOption; 
 extern int DisplayTimedHitsOption; 
 const int SRR_MAXDISP = 7;
 extern const int SRR_TotalOptions;
-const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 10, 2, 7, 6, 4};   
-const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 14, 13, 4, 7, 8, 9, 10, 10, 6, 5, 5, 17 } ; 
+const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 11, 10, 11, 2, 7, 7, 6, 4};   
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 14, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 17 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -4626,51 +4743,57 @@ Max Growth: 100
 
 	i = 0; 
 	switch (offset) { 
-	case 0: TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-6, Y_HAND), 9, 2, 0); // seed first 
+	case 0: TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-7, Y_HAND), 9, 2, 0); // seed first 
 	PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X-1, 3+((i)*2)), white, proc->seed); i++; 
-	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
+	case 1: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
+	case 2: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
+	case 3: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
+	case 4: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
+	case 5: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding)); i++; 
+	case 6: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 
-	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding)); i++; 
+	case 7: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding)); i++; 
 	if (i > SRR_MAXDISP) { break; } 	
-	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding)); i++;  
+	case 8: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
+	case 9: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding)); i++;  
+	case 10: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding)); i++;  
+	case 11: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
+	case 12: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
+	case 13: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
+	case 14: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
+	case 15: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
-	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
+	case 16: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding)); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 17: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 18: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding)); i++;  
+	if (i > SRR_MAXDISP) { break; } 
+	case 19: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option18[proc->Option[18]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
 	#ifdef FE8 
-	case 17: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding)); i++;  
+	case 20: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option19[proc->Option[19]], UseHuffmanEncoding)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
 	} } 
-	case 18: { if (DisplayRandomSkillsOption) { 
-		if ((proc->Option[17] != 3) || (!IsSkill(proc->skill))) {
-		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding)); i++; 
+	case 21: { if (DisplayRandomSkillsOption) { 
+		if ((proc->Option[20] != 3) || (!IsSkill(proc->skill))) {
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding)); i++; 
 		} 
 		else { 
 		char string[30]; 
-		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 14, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option17[proc->Option[17]], GetSkillName(proc->skill), string)); i++; 
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option20[proc->Option[20]], GetSkillName(proc->skill), string)); i++; 
 			//DrawIcon(
 				//gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
 				//SKILL_ICON(proc->skill), TILEREF(0, 4));
@@ -4808,13 +4931,18 @@ void InitUnitDef(struct UnitDefinition* uDef, struct Unit* unit) {
 } 
 
 void ReloadAllUnits(ConfigMenuProc* proc) { 
-	if (!((proc->calledFromChapter) && (proc->reloadUnits))) { 
+	if (!((proc->calledFromChapter) && (proc->reloadPlayers || proc->reloadEnemies))) { 
 		return; 
 	}
 	struct UnitDefinition uDef; 
 	struct Unit* unit; 
 	u32 state; 
-	for (int i = 1; i<0xC0; ++i) { 
+	int i = 1; 
+	int end = 0xC0; 
+	if (!proc->reloadPlayers) { i = 0x80; } 
+	if (!proc->reloadEnemies) { end = 0x80; } 
+	
+	for (; i < end; ++i) { 
 		unit = GetUnit(i); 
 		if (!UNIT_IS_VALID(unit)) { continue; } 
 		state = unit->state; 
@@ -4836,11 +4964,11 @@ enum {
 RedrawNone, RedrawSome, RedrawAll }; 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
 	if (proc->offset) {
-        DisplayUiVArrow(MENU_X+(8*8), MENU_Y+8, 0x3240, 1); // up arrow 
+        DisplayUiVArrow(MENU_X+(9*8), MENU_Y+8, 0x3240, 1); // up arrow 
     }
 	// should display down arrow? 
 	if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP))) {
-		DisplayUiVArrow(MENU_X+(8*8), MENU_Y+(16*9), 0x3240, 0);
+		DisplayUiVArrow(MENU_X+(9*8), MENU_Y+(16*9), 0x3240, 0);
 	}
 
 
@@ -4853,7 +4981,9 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
 
 		// see if anything changed 
-		int reloadUnits = false; 
+		int reloadPlayers = false; 
+		int reloadEnemies = false; 
+		int reloadUnits = false; // both 
 		if (RandValues->seed != proc->seed) { reloadUnits = true; } 
 		if (RandValues->variance != proc->Option[0]) { reloadUnits = true; } 
 		if (RecruitValues->recruitment != proc->Option[1]) { reloadUnits = true; } 
@@ -4862,10 +4992,12 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		if (RandBitflags->levelups != proc->Option[4]) { reloadUnits = true; } 
 		if (RandBitflags->caps != proc->Option[5]) { reloadUnits = true; } 
 		if (RandBitflags->class != proc->Option[6]) { reloadUnits = true; } 
-		if (RandBitflags->playerBonus != proc->Option[12]) { reloadUnits = true; } 
-		if (RandValues->bonus != proc->Option[13]) { reloadUnits = true; } 
+		if (RandBitflags->playerBonus != proc->Option[12]) { reloadPlayers = true; } 
+		if (RandBitflags->playerBonus != proc->Option[13]) { reloadPlayers = true; } 
+		if (RandValues->bonus != proc->Option[14]) { reloadEnemies = true; } 
+		if (RandValues->bonus != proc->Option[15]) { reloadEnemies = true; } 
 		if (DisplayRandomSkillsOption) {
-			if (RandValues->skills != proc->Option[17]) { reloadUnits = true; } 
+			if (RandValues->skills != proc->Option[20]) { reloadUnits = true; } 
 		}
 		
 		RandValues->seed = proc->seed; 
@@ -4890,15 +5022,18 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflags->colours = proc->Option[10]; 
 		RandBitflags->itemDur = proc->Option[11]; 
 		RandBitflags->playerBonus = proc->Option[12]; 
-		RandValues->bonus = proc->Option[13];
+		GrowthValues->player = proc->Option[13]; 
+		RandValues->bonus = proc->Option[14];
+		GrowthValues->enemy = proc->Option[15]; 
+		RecruitValues->ai = proc->Option[17]; 
 		
 		if (DisplayRandomSkillsOption) {
-			RandValues->skills = proc->Option[17]; 
+			RandValues->skills = proc->Option[20]; 
 			AlwaysSkill[0] = proc->skill; 
 		}
 		#ifdef FE8 
 		if (DisplayTimedHitsOption) { 
-			int timedHits = proc->Option[16];
+			int timedHits = proc->Option[19];
 			TimedHitsDifficultyRam->off = false;
 			TimedHitsDifficultyRam->alwaysA = false;
 			TimedHitsDifficultyRam->difficulty = 0; 
@@ -4909,18 +5044,18 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		}
 		#endif 
 		
-		if (RandBitflags->fog != proc->Option[14]) { 
-			if ((proc->Option[14] == 1) && proc->calledFromChapter) { 
+		if (RandBitflags->fog != proc->Option[16]) { 
+			if ((proc->Option[16] == 1) && proc->calledFromChapter) { 
 				UpdateMapViewWithFog(0); 
 			} 
-			if ((proc->Option[14] == 2) && proc->calledFromChapter) { 
+			if ((proc->Option[16] == 2) && proc->calledFromChapter) { 
 				UpdateMapViewWithFog(3); 
 			} 
-			if ((proc->Option[14] == 0) && proc->calledFromChapter) { 
+			if ((proc->Option[16] == 0) && proc->calledFromChapter) { 
 				UpdateMapViewWithFog(-1); 
 			} 
 		} 
-		RandBitflags->fog = proc->Option[14]; 
+		RandBitflags->fog = proc->Option[16]; 
 		
 		RecruitmentProc* recruitmentProc = Proc_Find(RecruitmentProcCmd1); 
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
@@ -4932,9 +5067,9 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		if (recruitmentProc) { Proc_Break(recruitmentProc); } 
 		
 		#ifdef FE8 
-		if (proc->Option[15] && ((id + offset) == 16)) { 
+		if (proc->Option[18] && ((id + offset) == 19)) { 
 		#else 
-		if (proc->Option[15] && ((id + offset) == 16)) { 
+		if (proc->Option[18] && ((id + offset) == 19)) { 
 		#endif 
 			if (proc->calledFromChapter) { 
 			// clear MU, refresh fog, update gfx, sms update 
@@ -4952,11 +5087,13 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		
 		// fe6 temporarily shows wrong char name sometimes without this 
 		struct Text* th = gStatScreen.text; // max 34 
-		for (int i = 0; i < 36; ++i) { 
+		for (int i = 0; i < 50; ++i) { 
 			ClearText(&th[i]);
 		}	
 		
-		if (reloadUnits) { proc->reloadUnits = true; *MaxClasses = 0; } 
+		if (reloadUnits) { reloadPlayers = true; reloadEnemies = true; } 
+		if (reloadPlayers) { proc->reloadPlayers = true; *MaxClasses = 0; } 
+		if (reloadEnemies) { proc->reloadEnemies = true; *MaxClasses = 0; } 
 		
 		Proc_Break((ProcPtr)proc);
 		return; 
@@ -5008,7 +5145,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 				proc->redraw = RedrawSome;
 			}
 		
-			DisplayHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y + (offset * 8), true); 	
+			DisplayHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y + (id * 8), true); 	
 			if (proc->redraw == RedrawSome) { 
 				proc->redraw = RedrawNone; 
 				DrawConfigMenu(proc); 
@@ -5018,7 +5155,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	} 
 	//
 	
-	if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3) && (proc->choosingSkill)) { 
+	if (((id+offset) == 21) && (proc->Option[20] == 3) && (proc->choosingSkill)) { 
 
 		if (keys & DPAD_UP) {
 			proc->skill = GetNextAlwaysSkill(proc->skill); 
@@ -5043,7 +5180,8 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 			//proc->redraw = RedrawSome; id++; id -= offset; 
 		}
 		if (proc->choosingSkill) { 
-		DisplayHand(CursorLocationTable[proc->digit].x+12, CursorLocationTable[proc->digit].y + (offset * 8) + 32, true); 
+		//DisplayHand(CursorLocationTable[0].x+12, CursorLocationTable[0].y + (id * 8) + 32, true); 
+		DisplayHand(CursorLocationTable[0].x+12, 128, true); 
 		} 	
 		if (!proc->freezeSeed) { proc->seed = GetInitialSeed(0); proc->redraw = RedrawSome; }
 		proc->freezeSeed = true; 	
@@ -5082,7 +5220,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	}
 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	if (proc->redraw == RedrawSome) { 
-		if (((id+offset) == SRR_TotalOptions) && (proc->Option[17] == 3)) { proc->choosingSkill = true; } 
+		if (((id+offset) == 21) && (proc->Option[20] == 3)) { proc->choosingSkill = true; } 
 		proc->redraw = RedrawNone; 
 		DrawConfigMenu(proc); 
 	} 
@@ -5109,8 +5247,11 @@ extern const char MusicText;
 extern const char ColoursText;
 extern const char ItemDurabilityText;
 extern const char PlayerBonusText;
+extern const char PlayerGrowthBonusText;
 extern const char EnemyDiffBonusText;
+extern const char EnemyGrowthBonusText;
 extern const char FogText;
+extern const char SoftlockPreventionText;
 extern const char SkipChapterText;
 extern const char RandomizerText;
 #else 
@@ -5128,8 +5269,11 @@ const char MusicText[] = { "Music" };
 const char ColoursText[] = { "Colours" };
 const char ItemDurabilityText[] = { "Item Durability" };
 const char PlayerBonusText[] = { "Player Bonus" };
+const char PlayerGrowthBonusText[] = { "Player Growth Bonus" };
 const char EnemyDiffBonusText[] = { "Enemy Diff. Bonus" };
+const char EnemyGrowthBonusText[] = { "Enemy Growth Bonus" };
 const char FogText[] = { "Fog" };
+const char SoftlockPreventionText[] = { "Override AI" }; 
 const char SkipChapterText[] = { "Skip chapter" };
 const char SkillsText[] = { "Skills" };
 const char TimedHitsText[] = { "Timed Hits" };
@@ -5137,8 +5281,8 @@ const char RandomizerText[] = { "Randomizer" };
 #endif 
 
 void RedrawAllText(ConfigMenuProc* proc) { 
-	struct Text* th = gStatScreen.text; // max 34 
-	for (int i = 0; i < 34; ++i) { 
+	struct Text* th = gStatScreen.text; // max 34 normally 
+	for (int i = 0; i < (SRR_TotalOptions * 2 + 2); ++i) { 
 		ClearText(&th[i]);
 	}	
 	TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0, 0), 0x1d, 0x13, 0); // all 
@@ -5177,18 +5321,24 @@ void RedrawAllText(ConfigMenuProc* proc) {
 		if (i > SRR_MAXDISP) { break; } 
 		case 13: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerBonusText, false)); i++;  // make players have bonus levels
 		if (i > SRR_MAXDISP) { break; } 
-		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels?
+		case 14: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&PlayerGrowthBonusText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
-		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
+		case 15: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyDiffBonusText, false)); i++;  // make enemies have more bonus levels
 		if (i > SRR_MAXDISP) { break; } 
-		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
+		case 16: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&EnemyGrowthBonusText, false)); i++;  
+		if (i > SRR_MAXDISP) { break; } 
+		case 17: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&FogText, false)); i++;  
+		if (i > SRR_MAXDISP) { break; } 
+		case 18: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SoftlockPreventionText, false)); i++;  
+		if (i > SRR_MAXDISP) { break; } 
+		case 19: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
 		#ifdef FE8 
-		case 17: { if (DisplayTimedHitsOption) { 
+		case 20: { if (DisplayTimedHitsOption) { 
 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&TimedHitsText, false)); i++;  
 			if (i > SRR_MAXDISP) { break; } 
 		} } 
-		case 18: { if (DisplayRandomSkillsOption) { 
+		case 21: { if (DisplayRandomSkillsOption) { 
 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
 			if (i > SRR_MAXDISP) { break; } 
 		} } 
@@ -5308,9 +5458,10 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 	if (parent) { proc = (ConfigMenuProc*)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent); } 
 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
 	if (proc) { 
-		for (int i = 0; i < 20; i++) { 
+		for (int i = 0; i < 22; i++) { 
 		proc->Option[i] = 0; } 
-		proc->reloadUnits = false; 
+		proc->reloadPlayers = false; 
+		proc->reloadEnemies = false; 
 		if (!DefaultConfigToVanilla) {
 		proc->Option[0] = OptionAmounts[0]-1; // start on 100% 
 		proc->Option[1] = 1; 
@@ -5336,13 +5487,13 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 		proc->digit = 0; 
 		StartGreenText(proc); 
 		
-		proc->Option[16] = 1; // timed hits 
+		proc->Option[19] = 1; // timed hits 
 		#ifdef FORCE_SPECIFIC_SEED 
 		proc->Option[2] = 0; 
 		proc->Option[3] = 0; 
 		proc->Option[5] = 0; 
 		proc->Option[6] = 0; 
-		proc->seed = 674677; 
+		proc->seed = 387508; 
 		proc->freezeSeed = true; 
 		#endif 
 	} 
@@ -5390,20 +5541,23 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	proc->Option[10] = RandBitflags->colours;		
 	proc->Option[11] = RandBitflags->itemDur;		
 	proc->Option[12] = RandBitflags->playerBonus;	
-	proc->Option[13] = RandValues->bonus;		
-	proc->Option[14] = RandBitflags->fog;
+	proc->Option[13] = GrowthValues->player; 
+	proc->Option[14] = RandValues->bonus;	
+	proc->Option[15] = GrowthValues->enemy; 	
+	proc->Option[16] = RandBitflags->fog;
+	proc->Option[17] = RecruitValues->ai;
 	
 	#ifdef FE8 
 	if (DisplayTimedHitsOption) { 
-		proc->Option[16] = 0;
-		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[16] = 1; }  
-		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[16] = 2; }  
-		if (TimedHitsDifficultyRam->difficulty == 3) { proc->Option[16] = 3; }  
+		proc->Option[19] = 0;
+		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[19] = 1; }  
+		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[19] = 2; }  
+		if (TimedHitsDifficultyRam->difficulty == 3) { proc->Option[19] = 3; }  
 	}
 	#endif 
 	
 	if (DisplayRandomSkillsOption) { 
-		proc->Option[17] = RandValues->skills;
+		proc->Option[20] = RandValues->skills;
 		proc->skill = AlwaysSkill[0];
 	}
 	
@@ -5419,27 +5573,42 @@ extern void DrawStatWithBar(int num, int x, int y, int base, int total, int max)
 extern void PutSpecialChar(u16 * tm, int color, int id); //800615C
 extern void PutNumberSmall(u16* a, int b, int c); // 8006234
 
-void PutNumberBonus(int number, u16 *tm)
+void NewPutNumberBonus(int number, u16 *tm, int base)
 {
     if (number == 0) { 
 	//PutSpecialChar(tm, blue, 0x2a); // % 
 	return; } 
+	int absNum = ABS(number); 
+	//int outOfSpace = false; 
+	int offset = 1; 
+	if ((base < 100) && (number < 100)) { offset++; } 
+	if (base >= 100) { offset++; } 
+	int specCharPos = 1 + offset; 
+	if (absNum >= 10) { specCharPos = 2 + offset; }  
+	if (absNum >= 100) { 
+		specCharPos = 3 + offset; 
+		if (base >= 100) { 
+			specCharPos--; 
+			if (number > 0) { number = 99; } 
+			if (number < 0) { number = 0 - 99; } 
+		} 
+	}  
 	
 	if (number > 0) { 
-    PutSpecialChar(tm, green, 0x15); // + 
-    PutNumberSmall(tm + ((number >= 10) ? 2 : 1), green, number);
+		PutSpecialChar(tm + offset, green, 0x15); // + 
+		PutNumberSmall(tm + specCharPos, green, number);
 	} 
 	else { 
 	number = ~number + 1; // neg 
 	//void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string); // 8005AD4
 	#ifndef FE6 
-    PutDrawText(0, tm, gold, 2, 1, "-"); 
+    PutDrawText(0, tm + offset, gold, specCharPos, 1, "-"); 
 	#endif 
 	#ifdef FE6 
-    PutDrawText(0, tm, gold, 2, 1, GetStringFromIndex(0xB82)); 
+    PutDrawText(0, tm + offset, gold, specCharPos, 1, GetStringFromIndex(0xB82)); 
 	#endif 
 	//PutSpecialChar(tm, gold, 0x2d); // -
-    PutNumberSmall(tm + ((number >= 10) ? 2 : 1), gold, number);
+    PutNumberSmall(tm + specCharPos, gold, number);
 	} 
 }
 
@@ -5505,9 +5674,11 @@ void StatScreenSelectLoop(ProcPtr proc) {
 void DrawGrowthWithDifference(int x, int y, int base, int modified)
 {
     int diff = modified - base;
-    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x+1, y), blue, base);
-	
-    PutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x + 2, y));
+	int offset = 0; 
+	if (base > 99) { offset++; } 
+	if ((base < 100) && (diff < 100)) { offset++; } 
+    PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x + offset, y), blue, base);
+    NewPutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x, y), base);
 }
 
 extern int VramDest_DebugFont; 
@@ -6058,11 +6229,11 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 					if (UnitHasMagicRank(gStatScreen.unit))
 					{
 						// mag
-						#ifdef FE8 
-						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
-						#else 
-						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,"Mag"); // Mag
-						#endif 
+						//#ifdef FE8 
+						//PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag
+						//#else 
+						PutDrawText(&gStatScreen.text[STATSCREEN_TEXT_POWLABEL],gUiTmScratchA + TILEMAP_INDEX(x-4, y),gold, 0, 0,"Pow"); // Pow / Mgc / Atk / Mag
+						//#endif 
 					}
 					else
 					{
@@ -6082,11 +6253,11 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				break;
 			}
 			case 12: { 
-				#ifdef FE8 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
-				#else 
+				//#ifdef FE8 
+				//PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EC));
+				//#else 
 				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Skl");
-				#endif 
+				//#endif 
 				break;
 			}
 			case 13: { 
@@ -6098,11 +6269,11 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				break;
 			}
 			case 14: { 
-				#ifdef FE8 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
-				#else 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Luck");
-				#endif 
+				//#ifdef FE8 
+				//PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4EE));
+				//#else 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Lck");
+				//#endif 
 				break;
 			}
 			case 15: { 
@@ -6122,11 +6293,11 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit* unit, int id) {
 				break;
 			}
 			case 17: { 
-				#ifdef FE8 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
-				#else 
-				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Mag");
-				#endif 
+				//#ifdef FE8 
+				//PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, GetStringFromIndex(0x4FF));
+				//#else 
+				PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),  gold, 0, 0, "Pow");
+				//#endif 
 				break;
 			}
 

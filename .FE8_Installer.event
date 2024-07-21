@@ -353,6 +353,8 @@ jumpToHack(DroppableItemHook_FE8)
 ORG $205964 // don't draw stat labels 
 FILL(0x10 * 10) 
 
+ORG $205964
+WORD 0 0 0 0 // don't draw stat names the usual way 
 ORG $2059b4 // Don't draw "mov" 
 BYTE $84 $3C $00 $02 $FE $3F $00 $02 $03 $00 $00 $00 $A8 $11 $A0 $08
 ORG $205a04; WORD 0 0 0 0
@@ -916,12 +918,12 @@ WORD IconOrrValue
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
 #ifdef SKILLSYS_INSTALLED 
-WORD 18
+WORD 21
 #else 
-WORD 17
+WORD 20
 #endif  
 #else 
-WORD 16 
+WORD 19 
 #endif 
 
 // if you don't have a max hp getter, these are used 
@@ -965,6 +967,8 @@ RecruitValues:
 WORD RandomizerRam+10
 AlwaysSkill:
 WORD RandomizerRam+11
+GrowthValues:
+WORD RandomizerRam+12 
 #else 
 MESSAGE IMPROVED_SOUND_MIXER is not compatible with the self randomizing rom. Please comment it out in config.event to install. 
 #endif 
