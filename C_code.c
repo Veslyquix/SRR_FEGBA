@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.5.2"
+#define VersionNumber " SRR V1.5.3"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -4338,15 +4338,26 @@ const char Option18[OPT18NUM][14] = {
 "Press A",
 }; 
 #endif 
-#define OPT19NUM 4 
-const char Option19[OPT19NUM][10] = { 
+#define OPT19NUM 4
+#ifdef FE6 
+extern const char Option19[OPT19NUM][32]; // do align 16 before each? 
+#else 
+const char Option19[OPT19NUM][14] = { 
+"None",
+"All",
+"Players",
+"Enemies",
+}; 
+#endif 
+#define OPT20NUM 4 
+const char Option20[OPT20NUM][10] = { 
 "Off",
 "Easy",
 "Normal",
 "Hard",
 }; 
-#define OPT20NUM 4 
-const char Option20[OPT20NUM][10] = { 
+#define OPT21NUM 4 
+const char Option21[OPT21NUM][10] = { 
 "Vanilla",
 "Random",
 "Fixed",
@@ -4354,7 +4365,7 @@ const char Option20[OPT20NUM][10] = {
 }; 
 
 
-const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM, OPT18NUM, OPT19NUM, OPT20NUM, 0, 0, 0, 0 }; 
+const u8 OptionAmounts[] = { OPT0NUM, OPT1NUM, OPT2NUM, OPT3NUM, OPT4NUM, OPT5NUM, OPT6NUM, OPT7NUM, OPT8NUM, OPT9NUM, OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM, OPT18NUM, OPT19NUM, OPT20NUM, OPT21NUM, 0, 0, 0 }; 
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -4709,8 +4720,8 @@ extern int DisplayRandomSkillsOption;
 extern int DisplayTimedHitsOption; 
 const int SRR_MAXDISP = 7;
 extern const int SRR_TotalOptions;
-const u8 tWidths[] = { 3, 5, 7, 6, 5, 6, 6, 3, 3, 3, 3, 4, 8, 7, 11, 10, 11, 2, 7, 7, 6, 4};   
-const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 6, 14, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 17 } ; 
+const u8 tWidths[] = { 3, 5, 7, 6, 5, 5, 6, 3, 3, 3, 3, 4, 5, 7, 11, 10, 11, 2, 6, 7, 7, 6, 4};   
+const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 5, 13, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 4, 16 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
 	//BG_EnableSyncByMask(BG0_SYNC_BIT); 
@@ -4783,17 +4794,19 @@ Max Growth: 100
 	if (i > SRR_MAXDISP) { break; } 
 	case 19: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option18[proc->Option[18]], UseHuffmanEncoding)); i++;  
 	if (i > SRR_MAXDISP) { break; } 
+	case 20: PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option19[proc->Option[19]], UseHuffmanEncoding)); i++;  
+	if (i > SRR_MAXDISP) { break; } 
 	#ifdef FE8 
-	case 20: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option19[proc->Option[19]], UseHuffmanEncoding)); i++;  
+	case 21: { if (DisplayTimedHitsOption) { PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
 	} } 
-	case 21: { if (DisplayRandomSkillsOption) { 
-		if ((proc->Option[20] != 3) || (!IsSkill(proc->skill))) {
-		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding)); i++; 
+	case 22: { if (DisplayRandomSkillsOption) { 
+		if ((proc->Option[21] != 3) || (!IsSkill(proc->skill))) {
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], PutStringInBuffer(Option21[proc->Option[21]], UseHuffmanEncoding)); i++; 
 		} 
 		else { 
 		char string[30]; 
-		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option20[proc->Option[20]], GetSkillName(proc->skill), string)); i++; 
+		PutDrawText(&th[i+offset+hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3+((i)*2)), white, 0, RtWidths[i+offset], GetCombinedString(Option21[proc->Option[21]], GetSkillName(proc->skill), string)); i++; 
 			//DrawIcon(
 				//gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
 				//SKILL_ICON(proc->skill), TILEREF(0, 4));
@@ -4986,20 +4999,54 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		int reloadUnits = false; // both 
 		if (RandValues->seed != proc->seed) { reloadUnits = true; } 
 		if (RandValues->variance != proc->Option[0]) { reloadUnits = true; } 
-		if (RecruitValues->recruitment != proc->Option[1]) { reloadUnits = true; } 
+		if (RecruitValues->recruitment != proc->Option[1]) { 
+            if (proc->Option[1] == 1) { reloadPlayers = true; } 
+            if (proc->Option[1] == 2) { reloadEnemies = true; } 
+            if (proc->Option[1] >= 3) { reloadUnits = true; } 
+            if (proc->Option[1] == 0) { reloadUnits = true; } 
+        } 
 		if (RandBitflags->base != proc->Option[2]) { reloadUnits = true; } 
 		if (RandBitflags->growth != proc->Option[3]) { reloadUnits = true; } 
 		if (RandBitflags->levelups != proc->Option[4]) { reloadUnits = true; } 
 		if (RandBitflags->caps != proc->Option[5]) { reloadUnits = true; } 
-		if (RandBitflags->class != proc->Option[6]) { reloadUnits = true; } 
+		if (RandBitflags->class != proc->Option[6]) { 
+            if (proc->Option[6] == 2) { reloadPlayers = true; } 
+            if (proc->Option[6] == 3) { reloadEnemies = true; } 
+            if (proc->Option[6] == 1) { reloadUnits = true; } 
+            if (proc->Option[6] == 0) { reloadUnits = true; } 
+        } 
 		if (RandBitflags->playerBonus != proc->Option[12]) { reloadPlayers = true; } 
 		if (RandBitflags->playerBonus != proc->Option[13]) { reloadPlayers = true; } 
 		if (RandValues->bonus != proc->Option[14]) { reloadEnemies = true; } 
 		if (RandValues->bonus != proc->Option[15]) { reloadEnemies = true; } 
 		if (DisplayRandomSkillsOption) {
-			if (RandValues->skills != proc->Option[20]) { reloadUnits = true; } 
+			if (RandValues->skills != proc->Option[21]) { reloadUnits = true; } 
 		}
 		
+		if (reloadUnits) { reloadPlayers = true; reloadEnemies = true; } 
+		if (reloadPlayers) { proc->reloadPlayers = true; } 
+		if (reloadEnemies) { proc->reloadEnemies = true; } 
+		
+        if (proc->calledFromChapter) { // are you sure units should be reloaded? 
+            if ((id + offset) != 20) {
+                proc->id = 7;
+                proc->offset = 13;
+                proc->redraw = RedrawAll; 
+                proc->Option[19] = 0; 
+                if (reloadPlayers) { proc->Option[19] = 2; } 
+                if (reloadEnemies) { proc->Option[19] = 3; } 
+                if (reloadPlayers && reloadEnemies) { proc->Option[19] = 1; } 
+                DrawConfigMenu(proc);
+                return; 
+            }
+        } 
+        if (proc->Option[19] == 0) { proc->reloadPlayers = false; proc->reloadEnemies = false; } // player chooses 
+        if (proc->Option[19] == 1) { proc->reloadPlayers = true; proc->reloadEnemies = true; } 
+        if (proc->Option[19] == 2) { proc->reloadPlayers = true; proc->reloadEnemies = false; } 
+        if (proc->Option[19] == 3) { proc->reloadPlayers = false; proc->reloadEnemies = true; } 
+        
+        if (proc->reloadPlayers || proc->reloadEnemies) { *MaxClasses = 0; } // recalc this 
+        
 		RandValues->seed = proc->seed; 
 		RandValues->variance = proc->Option[0];
 		RecruitValues->recruitment = proc->Option[1]; 
@@ -5028,12 +5075,12 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RecruitValues->ai = proc->Option[17]; 
 		
 		if (DisplayRandomSkillsOption) {
-			RandValues->skills = proc->Option[20]; 
+			RandValues->skills = proc->Option[21]; 
 			AlwaysSkill[0] = proc->skill; 
 		}
 		#ifdef FE8 
 		if (DisplayTimedHitsOption) { 
-			int timedHits = proc->Option[19];
+			int timedHits = proc->Option[20];
 			TimedHitsDifficultyRam->off = false;
 			TimedHitsDifficultyRam->alwaysA = false;
 			TimedHitsDifficultyRam->difficulty = 0; 
@@ -5086,15 +5133,12 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		RandBitflags->disp = 1; 
 		
 		// fe6 temporarily shows wrong char name sometimes without this 
-		struct Text* th = gStatScreen.text; // max 34 
-		for (int i = 0; i < 50; ++i) { 
-			ClearText(&th[i]);
-		}	
-		
-		if (reloadUnits) { reloadPlayers = true; reloadEnemies = true; } 
-		if (reloadPlayers) { proc->reloadPlayers = true; *MaxClasses = 0; } 
-		if (reloadEnemies) { proc->reloadEnemies = true; *MaxClasses = 0; } 
-		
+		//struct Text* th = gStatScreen.text; // max 34 
+		//for (int i = 0; i < 50; ++i) { 
+		//	ClearText(&th[i]);
+		//}	
+ 
+        
 		Proc_Break((ProcPtr)proc);
 		return; 
 		//BG_SetPosition(BG_3, 0, 0); 
@@ -5155,7 +5199,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	} 
 	//
 	
-	if (((id+offset) == 21) && (proc->Option[20] == 3) && (proc->choosingSkill)) { 
+	if (((id+offset) == 22) && (proc->Option[21] == 3) && (proc->choosingSkill)) { 
 
 		if (keys & DPAD_UP) {
 			proc->skill = GetNextAlwaysSkill(proc->skill); 
@@ -5220,7 +5264,7 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 	}
 	DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0); 	
 	if (proc->redraw == RedrawSome) { 
-		if (((id+offset) == 21) && (proc->Option[20] == 3)) { proc->choosingSkill = true; } 
+		if (((id+offset) == 22) && (proc->Option[21] == 3)) { proc->choosingSkill = true; } 
 		proc->redraw = RedrawNone; 
 		DrawConfigMenu(proc); 
 	} 
@@ -5253,6 +5297,7 @@ extern const char EnemyGrowthBonusText;
 extern const char FogText;
 extern const char SoftlockPreventionText;
 extern const char SkipChapterText;
+extern const char ReloadUnitsText;
 extern const char RandomizerText;
 #else 
 const char SeedText[] = { "Seed" };
@@ -5267,7 +5312,7 @@ const char ItemsText[] = { "Items" };
 const char ModeText[] = { "Mode" };
 const char MusicText[] = { "Music" };
 const char ColoursText[] = { "Colours" };
-const char ItemDurabilityText[] = { "Item Durability" };
+const char ItemDurabilityText[] = { "Item Uses" };
 const char PlayerBonusText[] = { "Player Bonus" };
 const char PlayerGrowthBonusText[] = { "Player Growth Bonus" };
 const char EnemyDiffBonusText[] = { "Enemy Diff. Bonus" };
@@ -5275,6 +5320,7 @@ const char EnemyGrowthBonusText[] = { "Enemy Growth Bonus" };
 const char FogText[] = { "Fog" };
 const char SoftlockPreventionText[] = { "Override AI" }; 
 const char SkipChapterText[] = { "Skip chapter" };
+const char ReloadUnitsText[] = { "Reload units" };
 const char SkillsText[] = { "Skills" };
 const char TimedHitsText[] = { "Timed Hits" };
 const char RandomizerText[] = { "Randomizer" };
@@ -5333,12 +5379,14 @@ void RedrawAllText(ConfigMenuProc* proc) {
 		if (i > SRR_MAXDISP) { break; } 
 		case 19: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkipChapterText, false)); i++;  
 		if (i > SRR_MAXDISP) { break; } 
+		case 20: PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&ReloadUnitsText, false)); i++;  
+		if (i > SRR_MAXDISP) { break; } 
 		#ifdef FE8 
-		case 20: { if (DisplayTimedHitsOption) { 
+		case 21: { if (DisplayTimedHitsOption) { 
 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&TimedHitsText, false)); i++;  
 			if (i > SRR_MAXDISP) { break; } 
 		} } 
-		case 21: { if (DisplayRandomSkillsOption) { 
+		case 22: { if (DisplayRandomSkillsOption) { 
 			PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3+((i)*2)), gold, 0, tWidths[i+offset], PutStringInBuffer((const char*)&SkillsText, false)); i++;  
 			if (i > SRR_MAXDISP) { break; } 
 		} } 
@@ -5459,7 +5507,7 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 	else { proc = (ConfigMenuProc*)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3); } 
 	if (proc) { 
 		for (int i = 0; i < 22; i++) { 
-		proc->Option[i] = 0; } 
+            proc->Option[i] = 0; } 
 		proc->reloadPlayers = false; 
 		proc->reloadEnemies = false; 
 		if (!DefaultConfigToVanilla) {
@@ -5487,7 +5535,7 @@ ConfigMenuProc* StartConfigMenu(ProcPtr parent) {
 		proc->digit = 0; 
 		StartGreenText(proc); 
 		
-		proc->Option[19] = 1; // timed hits 
+		proc->Option[20] = 1; // timed hits 
 		#ifdef FORCE_SPECIFIC_SEED 
 		proc->Option[2] = 0; 
 		proc->Option[3] = 0; 
@@ -5549,15 +5597,15 @@ int MenuStartConfigMenu(ProcPtr parent) {
 	
 	#ifdef FE8 
 	if (DisplayTimedHitsOption) { 
-		proc->Option[19] = 0;
-		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[19] = 1; }  
-		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[19] = 2; }  
-		if (TimedHitsDifficultyRam->difficulty == 3) { proc->Option[19] = 3; }  
+		proc->Option[20] = 0;
+		if (TimedHitsDifficultyRam->alwaysA) { proc->Option[20] = 1; }  
+		if (TimedHitsDifficultyRam->difficulty == 2) { proc->Option[20] = 2; }  
+		if (TimedHitsDifficultyRam->difficulty == 3) { proc->Option[20] = 3; }  
 	}
 	#endif 
 	
 	if (DisplayRandomSkillsOption) { 
-		proc->Option[20] = RandValues->skills;
+		proc->Option[21] = RandValues->skills;
 		proc->skill = AlwaysSkill[0];
 	}
 	
