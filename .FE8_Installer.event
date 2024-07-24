@@ -4,6 +4,20 @@
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
 
+#ifndef FEBUILDER_EXTRA_ORG
+#ifndef FreeSpace 
+	#ifdef _FE8_
+		#define FreeSpace 0xF10000 //0xEFB2E0
+	#endif 
+	ORG FreeSpace 
+    FILL(0x1000000 - FreeSpace); ORG FreeSpace
+#endif 
+#endif 
+
+// efb2e0 is free up to 0xf00000 where 256 cols title is installed 
+// trying 0xf10000 
+
+
 #define RepointChMenu 
 //#define Reskin 
 
@@ -975,3 +989,5 @@ WORD RandomizerRam+12
 #else 
 MESSAGE IMPROVED_SOUND_MIXER is not compatible with the self randomizing rom. Please comment it out in config.event to install. 
 #endif 
+MESSAGE Randomizer code ends at CURRENTOFFSET 
+
