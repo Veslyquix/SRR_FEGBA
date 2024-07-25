@@ -1,0 +1,20 @@
+// https://feuniverse.us/t/fire-emblem-the-dragon-herald-103-3-complete-fe8-hack/7075
+// v103.3%
+
+#ifndef TextTable 
+    #define TextTable "0x101AE60"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+
+
+//#define MagCharTable 0x08B2C124 
+//#define MagClassTable 0x08B2C324
+//#define Skill_Getter 0x08B4ED44
+
+#include "../.FE8_Installer.event"
+//#include "../.FE8_FebuilderSkillsys2020ish.event"
+//#include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
+
