@@ -59,7 +59,12 @@ WORD 0
 #define statCap 60 
 maxStat:
 WORD statCap 
-
+AllEnemiesCanUseWepLocks:
+#ifdef NoWepLock 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 // Each shop will have one of these items at random
 RareItemTableSize:
 WORD 17 

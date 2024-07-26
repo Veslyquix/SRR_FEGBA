@@ -1688,7 +1688,7 @@ int RandClass(int id, int noise[], struct Unit* unit) {
 } 
 
 int RandClass2(int id, u8 noise[], struct Unit* unit) {  
-	//return 0x54; 
+	//return 0x52; 
 	if (!ShouldRandomizeClass(unit)) { return id; } 
 	if (ClassExceptions[id].NeverChangeFrom) { return id; } 
 	int allegiance = (unit->index)>>6;
@@ -1729,6 +1729,7 @@ int GetUsedWexpMask(struct Unit* unit) {
 } 
 
 extern int WepLockExInstalled; 
+extern int AllEnemiesCanUseWepLocks; 
 
 u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) { 
 	int wexpMask = GetUsedWexpMask(unit); // only goes up to dark wexp 
@@ -1744,7 +1745,7 @@ u8* BuildAvailableWeaponList(u8 list[], struct Unit* unit) {
 	badAttr = IA_LOCK_1|IA_LOCK_2|IA_LOCK_3|IA_LOCK_4|IA_LOCK_5|IA_LOCK_6|IA_LOCK_7|IA_UNCOUNTERABLE; 
 	#endif 
 	attr = unit->pCharacterData->attributes | unit->pClassData->attributes; 
-	if ((IsUnitAlliedOrPlayable(unit)) || (attr & CA_BOSS)) { // only player units / bosses can start with wep locked weps 
+	if ((IsUnitAlliedOrPlayable(unit)) || (attr & CA_BOSS) || AllEnemiesCanUseWepLocks) { // only player units / bosses can start with wep locked weps 
 		if (attr & CA_LOCK_1) { badAttr &= ~IA_LOCK_1; } // "wep lock 1" 
 		if (attr & CA_LOCK_2) { badAttr &= ~IA_LOCK_2; } // myrm 
 		if (attr & CA_LOCK_3) { badAttr &= ~IA_LOCK_3; } // manakete 

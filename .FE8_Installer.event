@@ -81,7 +81,17 @@ WORD 0
 CombinedGrowths: // if true, use char+class growths 
 WORD 0
 WepLockExInstalled:
+#ifdef NoWepLock
+WORD 0 
+#else 
 WORD 1 // Make this true if you use a Weapon Lock Expansion hack 
+#endif 
+AllEnemiesCanUseWepLocks:
+#ifdef NoWepLock 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 AlwaysRemoveGlowy: // stat screen 
 WORD 0 
 DefaultConfigToVanilla:
@@ -270,6 +280,12 @@ VramDest_DebugFont:
 WORD 0x4800 // in glowy 
 
 PUSH 
+
+// test 
+ ORG $9EEF50
+ //LABEL 876 
+ //LABEL 876 
+ //LABEL 876 
 
 // Make stat screen not 4 pages 
 //ORG $88690
