@@ -37,6 +37,8 @@ MESSAGE Open FE8_Installer and read / config things please
 #endif 
 #endif 
 
+#include "../ASM/EndBattleIfBroken/Installer.event" 
+
 ALIGN 4 
 DisplayTimedHitsOption:
 #ifdef VeslyBuildfile 
@@ -282,10 +284,10 @@ WORD 0x4800 // in glowy
 PUSH 
 
 // test 
- ORG $9EEF50
- //LABEL 876 
- //LABEL 876 
- //LABEL 876 
+ // ORG $9EEF50
+ // LABEL 876 
+ // LABEL 876 
+ // LABEL 876 
 
 // Make stat screen not 4 pages 
 //ORG $88690
