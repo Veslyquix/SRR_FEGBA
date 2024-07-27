@@ -12,6 +12,7 @@ CALL :BUILDFUNC "IsekaiEmblem"
 CALL :BUILDFUNC "DragonHerald"
 CALL :BUILDFUNC "TheHeroesWeDeserve"
 CALL :BUILDFUNC "ShroudedWyvern"
+CALL :BUILDFUNC "SacredEchoes"
 
 
 echo:
