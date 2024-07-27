@@ -13,6 +13,12 @@ CALL :BUILDFUNC "DragonHerald"
 CALL :BUILDFUNC "TheHeroesWeDeserve"
 CALL :BUILDFUNC "ShroudedWyvern"
 CALL :BUILDFUNC "SacredEchoes"
+CALL :BUILDFUNC "SteelWill"
+CALL :BUILDFUNC "CelestarisBk1"
+CALL :BUILDFUNC "HetjasQuest"
+CALL :BUILDFUNC "BurdenedCrown"
+CALL :BUILDFUNC "TheTalesOfLondon"
+CALL :BUILDFUNC "Spectrum"
 
 
 echo:

@@ -6,7 +6,7 @@
 #include ".FE8_Installer.event" 
 
 
-
+#ifdef DoNotUseAutoGetters
 // B66af8 - B66AfC
 prConGetter: 
 prAidGetter: 
@@ -21,6 +21,7 @@ Get_Res_Growth:
 prMagGetter: 
 Get_Mag_Growth:
 WORD 0 
+#endif 
 
 /* only for specific version of skillsys  
 PUSH 

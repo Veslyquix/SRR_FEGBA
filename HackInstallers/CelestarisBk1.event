@@ -1,0 +1,23 @@
+// https://feuniverse.us/t/fe8-fire-emblem-celestaris-book-0-v0-21-0-wip-book-ii-v1-0-3-wip-book-i-v1-2-4-complete/18745
+// v1.24
+
+#ifndef TextTable 
+    #define TextTable "0x1B06DC4"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+//#define NoWepLock
+
+#define MagCharTable 0x08B2A740 
+#define MagClassTable 0x08B2A940
+#define Skill_Getter 0x08B606A8 
+
+//#include "../.FE8_Installer.event"
+//#include "../.FE8_FebuilderSkillsys2020ish.event"
+//#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"
+#include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
+
+
+
