@@ -1281,7 +1281,7 @@ int GetMaxClasses(void) {
 	#ifdef FE8 
 	//if (!RecruitValues->newClasses) { c = 127; } 
 	#endif 
-	for (int i = 1; i < c; i++) { 
+	for (int i = 1; i <= c; i++) { 
 		if (table->number != i) { table--; break; } 
 		table++; 
 	} 
@@ -1633,7 +1633,7 @@ u8* BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance) {
 		curName = table->nameTextId; 
 		prevSMS = curSMS; 
 		curSMS = table->SMSId; 
-		if (curName && curSMS) { 
+		if (curName) { 
 			if ((curName == prevName) && (curSMS == prevSMS)) { continue; } // ignore duplicate classes (same name / same SMS in a row)
 		} 
 		if (IsClassInvalid(i)) { continue; } 

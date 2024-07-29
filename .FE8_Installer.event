@@ -38,6 +38,9 @@ MESSAGE Open FE8_Installer and read / config things please
 #endif 
 
 #include "../ASM/EndBattleIfBroken/Installer.event" 
+#ifdef VeslyBuildfile 
+//#include "../ASM/UnitExpansion/Installer.event" 
+#endif 
 
 ALIGN 4 
 DisplayTimedHitsOption:
