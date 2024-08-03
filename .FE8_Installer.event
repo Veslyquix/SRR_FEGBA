@@ -83,6 +83,8 @@ OnlyThievesCanUseLockpicks: // only applies to players. Enemies/NPCs can always 
 WORD 1 
 ClassBasedGrowths: // if true, only use class growths 
 WORD 0
+ChanceToDemote:
+WORD 80
 CombinedGrowths: // if true, use char+class growths 
 WORD 0
 WepLockExInstalled:

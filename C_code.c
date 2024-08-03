@@ -2985,6 +2985,7 @@ int GetStatMaxBonus(struct Unit* unit, int stat, int avg) {
 	return result; 
 } 
 
+extern int ChanceToDemote; 
 void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef) {
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
 	const struct CharacterData* character = unit->pCharacterData; 
@@ -3104,7 +3105,7 @@ void UnitInitFromDefinition(struct Unit* unit, const struct UnitDefinition* uDef
 	// make them the same level of promotion half the time when possible 
 	if (RandomizeRecruitment) { 
 		if ((!(originalClass->attributes & CA_PROMOTED)) && (unit->pClassData->attributes & CA_PROMOTED)) { 
-			if ((HashByte_Ch(noise[0], 5, noise, 3))) { // 20%, as HashByte never returns the max number 
+			if (((HashByte_Ch(noise[0], 100, noise, 3)) < (ChanceToDemote))) { // 80%, as HashByte never returns the max number 
 				int prepromoteClassId = unit->pClassData->promotion; 
 				if (prepromoteClassId) { 
 					#ifdef FE6 
