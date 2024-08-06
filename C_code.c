@@ -4722,7 +4722,7 @@ extern int DisplayRandomSkillsOption;
 extern int DisplayTimedHitsOption; 
 const int SRR_MAXDISP = 7;
 extern const int SRR_TotalOptions;
-const u8 tWidths[] = { 3, 5, 7, 6, 5, 5, 6, 3, 3, 3, 3, 4, 5, 7, 11, 10, 11, 2, 6, 7, 7, 6, 4};   
+const u8 tWidths[] = { 3, 5, 7, 6, 5, 5, 6, 3, 3, 3, 3, 4, 6, 7, 11, 10, 11, 2, 6, 7, 7, 6, 4};   
 const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 5, 13, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 4, 16 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
