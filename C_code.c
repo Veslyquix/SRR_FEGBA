@@ -5049,15 +5049,17 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		
         if (proc->calledFromChapter) { // are you sure units should be reloaded? 
             if ((id + offset) != 20) {
-                proc->id = 7;
-                proc->offset = 13;
-                proc->redraw = RedrawAll; 
-                proc->Option[19] = 0; 
-                if (reloadPlayers) { proc->Option[19] = 2; } 
-                if (reloadEnemies) { proc->Option[19] = 3; } 
-                if (reloadPlayers && reloadEnemies) { proc->Option[19] = 1; } 
-                DrawConfigMenu(proc);
-                return; 
+					if ((id + offset) != 19) { 
+					proc->id = 7;
+					proc->offset = 13;
+					proc->redraw = RedrawAll; 
+					proc->Option[19] = 0; 
+					if (reloadPlayers) { proc->Option[19] = 2; } 
+					if (reloadEnemies) { proc->Option[19] = 3; } 
+					if (reloadPlayers && reloadEnemies) { proc->Option[19] = 1; } 
+					DrawConfigMenu(proc);
+					return; 
+				} 
             }
         } 
         if (proc->Option[19] == 0) { proc->reloadPlayers = false; proc->reloadEnemies = false; } // player chooses 

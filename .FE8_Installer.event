@@ -1009,6 +1009,11 @@ AlwaysSkill:
 WORD RandomizerRam+11
 GrowthValues:
 WORD RandomizerRam+12 
+
+ALIGN 32 
+WORD 0 0 0 0 0 0 0 0 
+
+
 #else 
 MESSAGE IMPROVED_SOUND_MIXER is not compatible with the self randomizing rom. Please comment it out in config.event to install. 
 #endif 
