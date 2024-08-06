@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.5.3"
+#define VersionNumber " SRR V1.5.4"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -4968,6 +4968,23 @@ void ReloadAllUnits(ConfigMenuProc* proc) {
 	} 
 } 
 
+//extern void StartBgmExt(int songId, int speed, void * player); //800322C 80038AC
+extern void _RestoreBgm(int speed); 
+void PlayTitleBGM(void) { 
+	u16 titleTrack; 
+	#ifdef FE6 
+	titleTrack = 0x1; 
+	#endif 
+	#ifdef FE7 
+	titleTrack = 0x5a; 
+	#endif 
+	#ifdef FE8 
+	titleTrack = 0x43; 
+	#endif 
+	//_RestoreBgm(10); // fe7 8003B8C
+	StartBgmExt(titleTrack, 5, 0); // 809C8D8 80BE60C
+	//_RestoreBgm(10); // fe7 8003B8C
+} 
 
 extern int NumberOfSkills; 
 extern void DisplayUiVArrow(int, int, u16, int);
@@ -4978,6 +4995,7 @@ extern void UpdateMapViewWithFog(int level); //801C6C4 801DB58
 enum { 
 RedrawNone, RedrawSome, RedrawAll }; 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
+	 
 	if (proc->offset) {
         DisplayUiVArrow(MENU_X+(9*8), MENU_Y+8, 0x3240, 1); // up arrow 
     }
@@ -5405,7 +5423,9 @@ void RedrawAllText(ConfigMenuProc* proc) {
 
 
 void InitDraw(ConfigMenuProc* proc) { 
-
+	if (!proc->calledFromChapter) { 
+		PlayTitleBGM();
+	} 
 	//SetTextFontGlyphs(0);
 	//SetTextFont(0);
 	//ResetTextFont();
@@ -5500,7 +5520,8 @@ void InitDraw(ConfigMenuProc* proc) {
 	//StartGreenText(proc); 
 	BG_EnableSyncByMask(BG0_SYNC_BIT|BG1_SYNC_BIT);
 }
- 
+
+
 extern void StartGreenText(ProcPtr parent);
 ConfigMenuProc* StartConfigMenu(ProcPtr parent) { 
 	RecruitValues->pauseNameReplace = true; 

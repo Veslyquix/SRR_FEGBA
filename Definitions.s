@@ -17,6 +17,7 @@
 .endm
 
 .if FE6 == true 
+SET_FUNC StartBgmExt, 0x809C8D9
 SET_DATA getSoundRoom, 0x808b9c4
 SET_DATA getSongTable, 0x8039170
 SET_FUNC UpdateMapViewWithFog, 0x801C6C5
@@ -117,6 +118,7 @@ SET_FUNC SetupDebugFontForOBJ, 0x8005471
 SET_FUNC PrintDebugStringAsOBJ, 0x8005551
 .endif 
 .if FE7 == true 
+SET_FUNC StartBgmExt, 0x80038AD
 SET_DATA getSoundRoom, 0x80AADB0 
 SET_DATA getSongTable, 0x8040230 
 SET_FUNC SetupDebugFontForOBJ, 0x8005281
