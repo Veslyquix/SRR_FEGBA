@@ -5,14 +5,22 @@
 #define STRMAG_INSTALLED 
 #include ".FE8_Installer.event" 
 
-
-PUSH 
-//ORG $B2A740 
-//MagCharTable:
-//ORG $B2A940 
-//MagClassTable: 
-POP 
-
+#ifdef DoNotUseAutoGetters
+// B66af8 - B66AfC
+prConGetter: 
+prAidGetter: 
+prMovGetter: 
+Get_Hp_Growth: 
+Get_Str_Growth: 
+Get_Skl_Growth: 
+Get_Spd_Growth: 
+Get_Luk_Growth: 
+Get_Def_Growth: 
+Get_Res_Growth:
+prMagGetter: 
+Get_Mag_Growth:
+WORD 0 
+#endif 
 // if you do a custom build you might need to put in these addresses 
 PUSH 
 //ORG $B7E9C0

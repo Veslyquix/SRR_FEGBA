@@ -1,1 +1,26 @@
+// https://feuniverse.us/t/fe8-sacred-echoes-v1-1-complete/4523
+// v1.12
+
+#ifndef TextTable 
+    #define TextTable "0x15D48C"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+#define NoWepLock
+
+#define FreeSpace 0x144F360 
+ORG FreeSpace 
+
+//#define MagCharTable 0x08B2C124 
+//#define MagClassTable 0x08B2C324
+//#define Skill_Getter 0x8B49088 
+
 #include "../.FE8_Installer.event"
+//#include "../.FE8_FebuilderSkillsys2020ish.event"
+//#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"
+//#include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
+
+
+

@@ -1,6 +1,12 @@
 
-#define DoNotUseAutoGetters // Try uncommenting this if stat screen is crashing 
+//#define DoNotUseAutoGetters // Try uncommenting this if stat screen is crashing 
+#define SKILLSYS_INSTALLED 
+//#define STRMAG_INSTALLED 
+#define IconOrrValue 0x0 // if using a skillsys version past may 2020, make this 0x100 
+#include ".FE8_Installer.event" 
 
+
+#ifdef DoNotUseAutoGetters
 // B66af8 - B66AfC
 prConGetter: 
 prAidGetter: 
@@ -15,11 +21,7 @@ Get_Res_Growth:
 prMagGetter: 
 Get_Mag_Growth:
 WORD 0 
-
-#define SKILLSYS_INSTALLED 
-//#define STRMAG_INSTALLED 
-#define IconOrrValue 0x0 // if using a skillsys version past may 2020, make this 0x100 
-#include ".FE8_Installer.event" 
+#endif 
 
 /* only for specific version of skillsys  
 PUSH 

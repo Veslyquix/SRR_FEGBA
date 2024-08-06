@@ -56,12 +56,19 @@ OnlyThievesCanUseLockpicks:
 WORD 1 
 ClassBasedGrowths:
 WORD 0
+ChanceToDemote:
+WORD 80
 CombinedGrowths:
 WORD 0
 #define statCap 60 
 maxStat:
 WORD statCap 
-
+AllEnemiesCanUseWepLocks:
+#ifdef NoWepLock 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 // Each shop will have one of these items at random
 RareItemTableSize:
 WORD 17 
@@ -161,7 +168,7 @@ STRING "Music" "FE6TR" ; BYTE 0
 ColoursText:
 STRING "Colours" "FE6TR" ; BYTE 0
 ItemDurabilityText:
-STRING "Item Durability" "FE6TR" ; BYTE 0
+STRING "Item Uses" "FE6TR" ; BYTE 0
 PlayerBonusText:
 STRING "Player Bonus" "FE6TR" ; BYTE 0
 PlayerGrowthBonusText:
@@ -178,6 +185,8 @@ SoftlockPreventionText:
 STRING "Override AI" "FE6TR" ; BYTE 0
 SkipChapterText:
 STRING "Skip Chapter" "FE6TR" ; BYTE 0
+ReloadUnitsText:
+STRING "Reload units" "FE6TR" ; BYTE 0
 
 ALIGN 16 
 Option0:
@@ -391,6 +400,15 @@ ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Press A" "FE6TR" ; BYTE 0
 
 ALIGN 32
+Option19:
+FILL(32*4)
+ORG Option19
+ALIGN 32; STRING "None" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "All" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "Players" "FE6TR" ; BYTE 0
+ALIGN 32; STRING "Enemies" "FE6TR" ; BYTE 0
+
+ALIGN 32
 TalkText: 
 STRING "Talk" "FE6TR" ; BYTE 0
 TrvText: 
@@ -602,6 +620,9 @@ callHackNew(GetBattleLevelUpPortraitId_FE6)
 ORG $67fec 
 callHackNew(GetMapLevelUpPortraitId_FE6)
 
+ORG $60BBA7 // item table poison bow 
+BYTE 1 // make it actually poison lol 
+
 POP 
 
 ALIGN 4 
@@ -703,7 +724,7 @@ ALIGN 4
 IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
-WORD 19
+WORD 20
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:

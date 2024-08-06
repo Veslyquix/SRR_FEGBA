@@ -54,12 +54,19 @@ OnlyThievesCanUseLockpicks:
 WORD 1 
 ClassBasedGrowths:
 WORD 0
+ChanceToDemote:
+WORD 80
 CombinedGrowths:
 WORD 0
 #define statCap 60 
 maxStat:
 WORD statCap 
-
+AllEnemiesCanUseWepLocks:
+#ifdef NoWepLock 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 // Each shop will have one of these items at random
 RareItemTableSize:
 WORD 17 
@@ -137,7 +144,7 @@ AlwaysSkillTable:
 FILL 256 
 ALIGN 4 
 SRR_TotalOptions:
-WORD 19
+WORD 20
 
 ALIGN 4 
 MaxItems_Link: 

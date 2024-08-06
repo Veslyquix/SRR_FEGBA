@@ -4,6 +4,20 @@
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
 
+//#ifndef FEBUILDER_INSTALLATION
+#ifndef FreeSpace 
+	#ifdef _FE8_
+		#define FreeSpace 0xF10000 //0xEFB2E0
+	#endif 
+	ORG FreeSpace 
+    FILL(0x1000000 - FreeSpace); ORG FreeSpace
+#endif 
+//#endif 
+
+// efb2e0 is free up to 0xf00000 where 256 cols title is installed 
+// trying 0xf10000 
+
+
 #define RepointChMenu 
 //#define Reskin 
 
@@ -21,6 +35,11 @@
 MESSAGE Open FE8_Installer and read / config things please 
 //asdf // add two slashes to comment out this line 
 #endif 
+#endif 
+
+#include "../ASM/EndBattleIfBroken/Installer.event" 
+#ifdef VeslyBuildfile 
+//#include "../ASM/UnitExpansion/Installer.event" 
 #endif 
 
 ALIGN 4 
@@ -43,8 +62,11 @@ WORD 0
 #endif 
 
 #ifndef RandomizerRam 
-#define RandomizerRam 0x203EA34 // 12 bytes of unit id 0x1B (Enemy) BWL data //0x203EC24 // 8 bytes of 0x3A unit BWL data 
-//#define RandomizerRam 0x30017AC // alternative: 8 bytes of Valni records 
+#ifdef Reskin 
+#define RandomizerRam 0x203EA34 // 12 bytes of unit id 0x1B (Enemy) BWL data //0x203EC24 // 12 bytes of 0x3A unit BWL data 
+#else 
+#define RandomizerRam 0x30017AC // alternative: 12 bytes of Valni records 
+#endif 
 #endif 
 ALIGN 4
 BonusItemChance: 
@@ -61,10 +83,22 @@ OnlyThievesCanUseLockpicks: // only applies to players. Enemies/NPCs can always 
 WORD 1 
 ClassBasedGrowths: // if true, only use class growths 
 WORD 0
+ChanceToDemote:
+WORD 80
 CombinedGrowths: // if true, use char+class growths 
 WORD 0
 WepLockExInstalled:
+#ifdef NoWepLock
+WORD 0 
+#else 
 WORD 1 // Make this true if you use a Weapon Lock Expansion hack 
+#endif 
+AllEnemiesCanUseWepLocks:
+#ifdef NoWepLock 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 AlwaysRemoveGlowy: // stat screen 
 WORD 0 
 DefaultConfigToVanilla:
@@ -253,6 +287,12 @@ VramDest_DebugFont:
 WORD 0x4800 // in glowy 
 
 PUSH 
+
+// test 
+ // ORG $9EEF50
+ // LABEL 876 
+ // LABEL 876 
+ // LABEL 876 
 
 // Make stat screen not 4 pages 
 //ORG $88690
@@ -918,12 +958,12 @@ WORD IconOrrValue
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
 #ifdef SKILLSYS_INSTALLED 
-WORD 21
+WORD 22
 #else 
-WORD 20
+WORD 21
 #endif  
 #else 
-WORD 19 
+WORD 20 
 #endif 
 
 // if you don't have a max hp getter, these are used 
@@ -972,3 +1012,5 @@ WORD RandomizerRam+12
 #else 
 MESSAGE IMPROVED_SOUND_MIXER is not compatible with the self randomizing rom. Please comment it out in config.event to install. 
 #endif 
+MESSAGE Randomizer code ends at CURRENTOFFSET 
+

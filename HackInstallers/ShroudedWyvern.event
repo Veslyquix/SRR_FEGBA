@@ -1,0 +1,25 @@
+// https://feuniverse.us/t/fe8-fire-emblem-shrouded-wyvern-v1-1-anniversary-update/19979
+// v1.1
+
+#ifndef TextTable 
+    #define TextTable "0x1054E10"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+#define NoWepLock
+
+
+
+//#define MagCharTable 0x08B2C124 
+//#define MagClassTable 0x08B2C324
+//#define Skill_Getter 0x8B49088 
+
+#include "../.FE8_Installer.event"
+//#include "../.FE8_FebuilderSkillsys2020ish.event"
+//#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"
+//#include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
+
+
+

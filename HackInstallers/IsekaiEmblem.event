@@ -1,0 +1,23 @@
+// https://feuniverse.us/t/isekai-emblem-the-tales-two-complete-v1-3-1/12640
+// v1.3.1
+
+#ifndef TextTable 
+    #define TextTable "0x1000000"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+//#define NoWepLock
+
+
+#define MagCharTable 0x08B2C124 
+#define MagClassTable 0x08B2C324
+#define Skill_Getter 0x08B4ED44
+
+//#include "../.FE8_Installer.event"
+#include "../.FE8_FebuilderSkillsys2020ish.event"
+//#include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
+
+
+
