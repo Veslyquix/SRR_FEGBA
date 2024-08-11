@@ -463,7 +463,7 @@ ORG $CD6C8
 jumpToHack(GetTraineePromoPortraitId_FE8)
 
 ORG $73DBC
-jumpToHack(GetBattleLevelUpPortraitId_FE8)
+callHackNew(GetBattleLevelUpPortraitId_FE8)
 
 ORG $7F25C 
 callHackNew(GetMapLevelUpPortraitId_FE8)

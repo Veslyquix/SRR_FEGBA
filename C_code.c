@@ -2118,7 +2118,7 @@ void NewPopup_ItemGot(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2
     if (FACTION_RED == UNIT_FACTION(unit))
         unit->state |= US_DROP_ITEM;
 }
-
+ 
 #ifndef FE8 
 void NewPopup_ItemGot_NoRand(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2 instead of r0 like fe8 
 #endif 
@@ -3902,7 +3902,7 @@ void ApplyUnitPromotion(struct Unit* unit, u8 classId) {
     unit->def += promotedClass->promotionDef;
     unit->res += promotedClass->promotionRes;
 	#ifdef FE8 
-	if (SkillSysInstalled) { 
+	if (StrMagInstalled) { 
 	unit->_u3A += GetPromoMag(classId); 
 	} 
 	#endif 

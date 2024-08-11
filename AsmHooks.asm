@@ -818,7 +818,9 @@ mov r4, r0
 ldr r0, =0x87592cc
 blh 0x8005544
 pop {r3} 
-ldr r3, =0x8073dc5
+ldr r0, =0x8073E08 
+ldr r0, [r0] 
+str r0, [sp] 
 bx r3 
 .ltorg 
 
