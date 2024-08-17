@@ -38,6 +38,7 @@ MESSAGE Open FE8_Installer and read / config things please
 #endif 
 
 #include "../ASM/EndBattleIfBroken/Installer.event" 
+#include "../ASM/Debugger/Installer.event" 
 #ifdef VeslyBuildfile 
 //#include "../ASM/UnitExpansion/Installer.event" 
 #endif 
