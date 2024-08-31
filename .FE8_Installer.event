@@ -38,6 +38,7 @@ MESSAGE Open FE8_Installer and read / config things please
 #endif 
 
 #include "../ASM/EndBattleIfBroken/Installer.event" 
+#include "../ASM/Debugger/Installer.event" 
 #ifdef VeslyBuildfile 
 //#include "../ASM/UnitExpansion/Installer.event" 
 #endif 
@@ -463,7 +464,7 @@ ORG $CD6C8
 jumpToHack(GetTraineePromoPortraitId_FE8)
 
 ORG $73DBC
-jumpToHack(GetBattleLevelUpPortraitId_FE8)
+callHackNew(GetBattleLevelUpPortraitId_FE8)
 
 ORG $7F25C 
 callHackNew(GetMapLevelUpPortraitId_FE8)
@@ -1009,6 +1010,11 @@ AlwaysSkill:
 WORD RandomizerRam+11
 GrowthValues:
 WORD RandomizerRam+12 
+
+ALIGN 32 
+WORD 0 0 0 0 0 0 0 0 
+
+
 #else 
 MESSAGE IMPROVED_SOUND_MIXER is not compatible with the self randomizing rom. Please comment it out in config.event to install. 
 #endif 

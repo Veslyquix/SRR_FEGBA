@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.5.3"
+#define VersionNumber " SRR V1.5.5"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -2118,7 +2118,7 @@ void NewPopup_ItemGot(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2
     if (FACTION_RED == UNIT_FACTION(unit))
         unit->state |= US_DROP_ITEM;
 }
-
+ 
 #ifndef FE8 
 void NewPopup_ItemGot_NoRand(struct Unit *unit, u16 item, ProcPtr parent) // proc in r2 instead of r0 like fe8 
 #endif 
@@ -3902,7 +3902,7 @@ void ApplyUnitPromotion(struct Unit* unit, u8 classId) {
     unit->def += promotedClass->promotionDef;
     unit->res += promotedClass->promotionRes;
 	#ifdef FE8 
-	if (SkillSysInstalled) { 
+	if (StrMagInstalled) { 
 	unit->_u3A += GetPromoMag(classId); 
 	} 
 	#endif 
@@ -4722,7 +4722,7 @@ extern int DisplayRandomSkillsOption;
 extern int DisplayTimedHitsOption; 
 const int SRR_MAXDISP = 7;
 extern const int SRR_TotalOptions;
-const u8 tWidths[] = { 3, 5, 7, 6, 5, 5, 6, 3, 3, 3, 3, 4, 5, 7, 11, 10, 11, 2, 6, 7, 7, 6, 4};   
+const u8 tWidths[] = { 3, 5, 7, 6, 5, 5, 6, 3, 3, 3, 3, 4, 6, 7, 11, 10, 11, 2, 6, 7, 7, 6, 4};   
 const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 5, 13, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 4, 16 } ; 
 void DrawConfigMenu(ConfigMenuProc* proc) { 
 	//return;
@@ -4968,6 +4968,23 @@ void ReloadAllUnits(ConfigMenuProc* proc) {
 	} 
 } 
 
+//extern void StartBgmExt(int songId, int speed, void * player); //800322C 80038AC
+extern void _RestoreBgm(int speed); 
+void PlayTitleBGM(void) { 
+	u16 titleTrack; 
+	#ifdef FE6 
+	titleTrack = 0x1; 
+	#endif 
+	#ifdef FE7 
+	titleTrack = 0x5a; 
+	#endif 
+	#ifdef FE8 
+	titleTrack = 0x43; 
+	#endif 
+	//_RestoreBgm(10); // fe7 8003B8C
+	StartBgmExt(titleTrack, 5, 0); // 809C8D8 80BE60C
+	//_RestoreBgm(10); // fe7 8003B8C
+} 
 
 extern int NumberOfSkills; 
 extern void DisplayUiVArrow(int, int, u16, int);
@@ -4978,6 +4995,7 @@ extern void UpdateMapViewWithFog(int level); //801C6C4 801DB58
 enum { 
 RedrawNone, RedrawSome, RedrawAll }; 
 void ConfigMenuLoop(ConfigMenuProc* proc) { 
+	 
 	if (proc->offset) {
         DisplayUiVArrow(MENU_X+(9*8), MENU_Y+8, 0x3240, 1); // up arrow 
     }
@@ -5031,15 +5049,17 @@ void ConfigMenuLoop(ConfigMenuProc* proc) {
 		
         if (proc->calledFromChapter) { // are you sure units should be reloaded? 
             if ((id + offset) != 20) {
-                proc->id = 7;
-                proc->offset = 13;
-                proc->redraw = RedrawAll; 
-                proc->Option[19] = 0; 
-                if (reloadPlayers) { proc->Option[19] = 2; } 
-                if (reloadEnemies) { proc->Option[19] = 3; } 
-                if (reloadPlayers && reloadEnemies) { proc->Option[19] = 1; } 
-                DrawConfigMenu(proc);
-                return; 
+					if ((id + offset) != 19) { 
+					proc->id = 7;
+					proc->offset = 13;
+					proc->redraw = RedrawAll; 
+					proc->Option[19] = 0; 
+					if (reloadPlayers) { proc->Option[19] = 2; } 
+					if (reloadEnemies) { proc->Option[19] = 3; } 
+					if (reloadPlayers && reloadEnemies) { proc->Option[19] = 1; } 
+					DrawConfigMenu(proc);
+					return; 
+				} 
             }
         } 
         if (proc->Option[19] == 0) { proc->reloadPlayers = false; proc->reloadEnemies = false; } // player chooses 
@@ -5405,7 +5425,9 @@ void RedrawAllText(ConfigMenuProc* proc) {
 
 
 void InitDraw(ConfigMenuProc* proc) { 
-
+	if (!proc->calledFromChapter) { 
+		PlayTitleBGM();
+	} 
 	//SetTextFontGlyphs(0);
 	//SetTextFont(0);
 	//ResetTextFont();
@@ -5500,7 +5522,8 @@ void InitDraw(ConfigMenuProc* proc) {
 	//StartGreenText(proc); 
 	BG_EnableSyncByMask(BG0_SYNC_BIT|BG1_SYNC_BIT);
 }
- 
+
+
 extern void StartGreenText(ProcPtr parent);
 ConfigMenuProc* StartConfigMenu(ProcPtr parent) { 
 	RecruitValues->pauseNameReplace = true; 

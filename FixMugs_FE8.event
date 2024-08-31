@@ -10,7 +10,7 @@ BYTE $00 $B5 $02 $1C $11 $68 $08 $7A $00 $28 $03 $D0 $FE $21 $C9 $01 $40 $18 $19
 // levelup 
 ORG $7f254 // in 7F1AC
 SHORT $202E $5E29 $0088 $1840 $0080 $1880 $6800 $6800
-ORG $73DBC
+ORG $73DBC // in 73CE8 - vanilla load mug 
 SHORT $88C4 $4811 $F791 $FBC0 $4810 $9000 $2000 $1C21
 
 // restore mugs to normal 
@@ -81,7 +81,6 @@ SHORT $6800 $8800 $F76E $FC0A
 
 
 POP 
-
 
 
 
