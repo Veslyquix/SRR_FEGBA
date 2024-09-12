@@ -1,0 +1,25 @@
+// https://feuniverse.us/t/fe7-complete-elysium-ablaze-a-fe7-pme-expanded-upon-16-chapters/26595
+// v.1.6 Sept 11 2024 version 
+
+#ifndef TextTable 
+    #define TextTable "0x1A8E4FC"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+//#define NoWepLock
+
+
+#define FreeSpace 0x1BB71E8
+ORG FreeSpace 
+
+#include "../.FE7_Installer.event"
+
+
+//NeverChangeItem(0x1) // Iron Sword 
+//NeverChangeClass(0x1) // EirikaLord  
+//NeverChangeChar(0x1) // Eirika 
+
+
+

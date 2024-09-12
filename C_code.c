@@ -673,6 +673,7 @@ u16* BuildTracklist(u16 List[]) {
 	} 
 	struct Song* gST = *getSongTable;  
 	for (i = 0; i < 1000; ++i) { 
+        if (List[0] >= MaxNumberOfSongs) { break; } 
 		if (!gST[i].header) { break; } 
 		if (gST[i].ms != 1) { continue; } 
 		if (gST[i].me != 1) { continue; } 
@@ -3464,7 +3465,7 @@ int NewGetStatIncrease(int growth, int noise[], int level, int offset, int useRN
 	if ((RandBitflags->levelups == 2)) { 
 		if (level < 1) { level = 1; } 
 		// +growth so the first levelup isn't always blank in fixed growths 
-		if (Div1((growth * (level)), 100) < Div1(((growth * level+1) + growth), 100)) { 
+		if (Div1((growth * (level)), 100) < Div1(((growth * (level+1)) + growth), 100)) { 
 			result++; 
 		} 
 		return result; 
@@ -6476,7 +6477,6 @@ void PageNumCtrl_DisplayBlinkIcons(void)
         }
     }
 }
-
 
 void DrawBarsOrGrowths(void) { // in 807FDF0 fe7, 806ED34 fe6 
     // displaying str/mag stat value

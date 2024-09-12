@@ -1,0 +1,29 @@
+// https://feuniverse.us/t/complete-fe8-completed-26-chapters-and-a-mini-route-split-touhou-emblem-not-the-reskin/15134
+// 26 chapters 
+
+#ifndef TextTable 
+    #define TextTable "0xB88570"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+//#define NoWepLock
+
+#define MagCharTable 0x8B2C124
+#define MagClassTable 0x8B2C324
+#define Skill_Getter 0x8B408F8
+
+#define FreeSpace 0x15F2D38
+ORG FreeSpace 
+
+//#include "../.FE8_Installer.event"
+#include "../.FE8_FebuilderSkillsys2020ish.event"
+//#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"
+//#include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
+
+//NeverChangeItem(0x1) // Iron Sword 
+//NeverChangeClass(0x1) // EirikaLord  
+//NeverChangeChar(0x1) // Eirika 
+
+

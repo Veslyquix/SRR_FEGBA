@@ -300,7 +300,7 @@ PUSH
 //BYTE 4 //make 4 pages
 // this is needed because DisplayPage0 at 87184 is replaced with RText_Page4_ladder
 
-// Kill Improved Sound Mixer
+// Kill Improved Sound Mixer IMPROVED_SOUND_MIXER
 ORG $D01CC 
 SHORT $F54D $080C $2C60 $0300 $0100 $0400 
 ORG $CF53C 
@@ -340,9 +340,6 @@ ORG $8AF1A2; BYTE 0x9F
 ORG $8AF1A6; BYTE 0x9F
 ORG $8AF1AA; BYTE 0x9F
 
-ORG $3cc90 // $31740 $37D84
-jumpToHack(MaybeChargeAtPlayer)
-
 //Patches Speed ​​up the gray poison mist map effect when receiving poison damage. (PatchForm) Speed ​​up the gray poison mist map effect when receiving poison damage.2024-06-08 1:38:03 PM
 ORG $9A6FA0
 BYTE  $03;
@@ -368,11 +365,14 @@ ORG $9A6FC8
 BYTE  $02;
 ORG $9A6FCC
 BYTE  $02;
+#endif 
+
+ORG $3cc90 // $31740 $37D84
+jumpToHack(MaybeChargeAtPlayer)
+
 
 ORG $2523C 
 callHackNew(PreventPhantomTrading)
-
-#endif 
 
 
 ORG $A20390
@@ -384,12 +384,13 @@ SHORT $46C0
 jumpToHack(FE8_RandBattleMusicHook)
 #endif 
 
-
-ORG $205B24 
-POIN NewDisplayPage0|1
-
 ORG $115CC 
 jumpToHack(DroppableItemHook_FE8) 
+
+
+#ifndef C_SKILLSYS
+ORG $205B24 
+POIN NewDisplayPage0|1
 
 ORG $205964 // don't draw stat labels 
 FILL(0x10 * 10) 
@@ -411,6 +412,11 @@ ORG $88888
 SHORT $1C28 $1C28
 callHackNew(StatScreenSelectLoop)
 
+ORG $88588 
+callHackNew(ConditionallyRemoveGlowy)
+
+#endif 
+
 
 #ifndef JankyPalettes
 ORG $579C4
@@ -430,9 +436,6 @@ SHORT $46c0 // allow use of lockpick for any ai?
 
 ORG $37D4
 SHORT $46C0 $46C0 // don't erase bg when setting up debug font 
-
-ORG $88588 
-callHackNew(ConditionallyRemoveGlowy)
 
 ORG 0x11CC
 callHackNew(RandColoursHook)
