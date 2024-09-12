@@ -4,6 +4,8 @@
 @rem set "filename=%~1"
 @rem set "filename=SengokuOda"
 
+set "vanilla_rom=%~dp0FE8.gba"
+
 @echo off
 SETLOCAL
 CALL :BUILDFUNC "SengokuOda"
@@ -19,7 +21,25 @@ CALL :BUILDFUNC "HetjasQuest"
 CALL :BUILDFUNC "BurdenedCrown"
 CALL :BUILDFUNC "TheTalesOfLondon"
 CALL :BUILDFUNC "Spectrum"
+CALL :BUILDFUNC "C_Skillsys"
+CALL :BUILDFUNC "CotBK"
+CALL :BUILDFUNC "DarkAmulet"
+CALL :BUILDFUNC "EmulationTheory"
+CALL :BUILDFUNC "FluxsConquest"
+CALL :BUILDFUNC "Grug2"
+CALL :BUILDFUNC "JusticeAndPride"
+CALL :BUILDFUNC "ProjectJade"
+CALL :BUILDFUNC "ProphecyOfFlames"
+CALL :BUILDFUNC "RestorationArmy"
+CALL :BUILDFUNC "ShackledPower"
+CALL :BUILDFUNC "TalesoftheConquerors"
+CALL :BUILDFUNC "TMGC"
+CALL :BUILDFUNC "TouhouEmblem"
 
+
+
+set "vanilla_rom=%~dp0FE7.gba"
+CALL :BUILDFUNC "ElysiumAblaze"
 
 echo:
 echo Done!
@@ -35,7 +55,6 @@ set "base_dir=%~dp0"
 @rem defining buildfile config
 cd "..\"
 set "parent_dir=%~dp0..\"
-set "vanilla_rom=%~dp0FE8.gba"
 set "source_rom=%~dp0%filename%.gba"
 cd "%base_dir%"
 set "main_event=%~dp0%filename%.event"
@@ -78,5 +97,7 @@ ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%"
 
 
 EXIT /B 0
+
+
 
 

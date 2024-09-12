@@ -408,11 +408,13 @@ SHORT $BC08 // pop r3
 ORG $9fA50 
 jumpToHack(NewClearBWLFunction_FE7)
 
+#ifdef VeslyBuildfile
 ORG $bada4
 callHackNew(TitleScreen_FE7) 
 
 ORG $a39fc
 jumpToHack(SaveScreen_FE7) 
+#endif 
 
 // display range on page 2 
 /*

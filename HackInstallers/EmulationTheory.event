@@ -1,0 +1,33 @@
+// https://feuniverse.us/t/fire-emblem-emulation-theory/8910
+// Sept 11 2024 version 
+
+#ifndef TextTable 
+    #define TextTable "0x103B434"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+//#define NoWepLock
+
+#define MagCharTable 0x8B2C1AC
+#define MagClassTable 0x8B2C3AC
+#define Skill_Getter 0x8BAD890
+
+//#define FreeSpace 0x19C7280
+//ORG FreeSpace 
+
+//#include "../.FE8_Installer.event"
+#include "../.FE8_FebuilderSkillsys2020ish.event"
+//#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"
+//#include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
+
+
+
+
+//NeverChangeItem(0x1) // Iron Sword 
+//NeverChangeClass(0x1) // EirikaLord  
+//NeverChangeChar(0x1) // Eirika 
+
+
+

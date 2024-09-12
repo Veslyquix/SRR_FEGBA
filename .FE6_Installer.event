@@ -460,11 +460,13 @@ PUSH
 ORG $31740 //$37D84
 jumpToHack(MaybeChargeAtPlayer)
 
+#ifdef VeslyBuildfile
 ORG $9B54C
 jumpToHack(TitleScreen_FE6) 
 
 ORG $881CC
 jumpToHack(SaveScreen_FE6) 
+#endif 
 
 // roy can seize? 
 //Character Editor  (UnitFE6Form) @01 Roy2024-04-04 8:24:40 PM
