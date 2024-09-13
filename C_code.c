@@ -6419,7 +6419,10 @@ struct Vec2 GetIconCoordFromStatScreenLayout(int id) {
 	return result; 
 } 
 struct Vec2 GetTrvCoordFromStatScreenLayout() { 
-	return GetIconCoordFromStatScreenLayout(4); 
+    struct Vec2 result; 
+    result = GetIconCoordFromStatScreenLayout(4); 
+    if (result.x == (-1) || result.y == (-1)) { result = GetIconCoordFromStatScreenLayout(7); } 
+	return result; 
 } 
 struct Vec2 GetSklCoordFromStatScreenLayout() { 
 	return GetIconCoordFromStatScreenLayout(12); 
