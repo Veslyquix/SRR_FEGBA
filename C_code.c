@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.5.5"
+#define VersionNumber " SRR V1.6.0"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -664,6 +664,7 @@ struct Song
 };
 extern struct Song* getSongTable[];
 const int MaxNumberOfSongs = 99; 
+extern u8 BGMExceptions[]; 
 //#define MaxNumberOfSongs 99 
 u16* BuildTracklist(u16 List[]) { 
 	int i;
@@ -675,6 +676,7 @@ u16* BuildTracklist(u16 List[]) {
 	for (i = 0; i < 1000; ++i) { 
         if (List[0] >= MaxNumberOfSongs) { break; } 
 		if (!gST[i].header) { break; } 
+        if (BGMExceptions[i]) { continue; } 
 		if (gST[i].ms != 1) { continue; } 
 		if (gST[i].me != 1) { continue; } 
 		List[0]++; 
@@ -4413,10 +4415,12 @@ int CountBWLUnits(void) {
 	return c; 
 } 
 
+extern int sActiveMsg; 
 int DecompText(const char *a, char *b);
 extern const u8** *const ggMsgStringTable; // a2a0 is POIN TextTable
 char * GetStringFromIndexInBufferWithoutReplacing(int index, char *buffer)
 {
+    sActiveMsg = index; 
     int size = DecompText((void*)ggMsgStringTable[index], buffer);
 	buffer[size] = 0; 
 	if (size > 100) { asm("mov r11, r11"); } 
@@ -4509,10 +4513,11 @@ extern void CallARM_DecompText(const char *a, char *b);
 #ifdef FE6 
 char * PutStringInBuffer(const char * str, int huffman)
 {
+    sActiveMsg = 0; 
 	if (!huffman) { 
 		str = (const char*) ((int)str | 0x80000000); 
 	} 
-	CallARM_DecompText(str, sMsgString); // if int huffman is negative, don't use huffman encoding  
+	DecompText(str, sMsgString); // if int huffman is negative, don't use huffman encoding  
     return sMsgString;
 }
 #else 
@@ -4590,6 +4595,7 @@ int ReplaceIfMatching(int usedBufferLength[], const char* find, const char* repl
 #else 
 #define TextBufferSize 0x1000
 #endif 
+
 int DecompText(const char *a, char *b) { 
 	int length = 0; 
 	if ((int)a & 0x80000000) { // anti huffman 
@@ -4624,13 +4630,29 @@ int DecompText(const char *a, char *b) {
 
 } 
 
+char * GetStringFromIndex(int index) // so we can set sActiveMsg as the index 
+{
+    //if (index == sActiveMsg)
+        //return sMsgString.buffer1;
+    sActiveMsg = index;
+    CallARM_DecompText((void*)ggMsgStringTable[index], sMsgString);
+    #ifdef FE8 
+    SetMsgTerminator(sMsgString);
+    #endif 
+    return sMsgString;
+}
+
+extern u8 TextIDExceptionTable[];
 void CallARM_DecompText(const char *a, char *b) // 2ba4 // fe7 8004364 fe6 800384C 
 {
+    
+    
 	//asm("mov r11, r11"); 
 	int length[1] = {0}; 
 	length[0] = DecompText(a, b); 
 	if (!ShouldRandomizeRecruitment()) { return; }
 	if (RecruitValues->pauseNameReplace) { return; } 
+    if (TextIDExceptionTable[sActiveMsg]) { return; } 
 	struct ReplaceTextStruct ReplaceTextList[ListSize+1]; // +1 for terminator 
 	#ifdef SET_TEXT_USED
 	InitReplaceTextListAntiHuffman(ReplaceTextList); 

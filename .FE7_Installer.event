@@ -83,6 +83,11 @@ BYTE 0x5a 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x64 0x65 0x66 0x67 0x96 
 
 #define NeverChangeChar(id) "PUSH; ORG CharExceptions + (id * 2); BYTE 1 1; POP"
 
+#define NeverUseBGM(id) "PUSH; ORG BGMExceptions + id; BYTE 1; POP" 
+
+#define IgnoreTextID(id) "PUSH; ORG TextIDExceptionTable + (id); BYTE 1; POP" 
+#define IgnoreTextIDRange(id1, id2) "PUSH; ORG TextIDExceptionTable + (id1); FILL(id2-id1) 0x1; POP" 
+
 
 ALIGN 4 
 ItemExceptions:
@@ -93,6 +98,40 @@ FILL(256*2)
 ALIGN 4 
 CharExceptions:
 FILL(256*2) 
+ALIGN 4 
+BGMExceptions:
+FILL(0x1000) // probably not more than this many tracks 
+ALIGN 4 
+TextIDExceptionTable: 
+FILL(0x2000) // max id 0x2000
+
+ 
+
+// shops & misc 
+IgnoreTextIDRange(1, 0x58) 
+// class, stat screen descs  
+IgnoreTextIDRange(0x22B, 0x278)
+// Items, misc 
+IgnoreTextIDRange(0x279, 0x48E)
+// Class 
+IgnoreTextIDRange(0x48F, 0x4D5) 
+// names here 
+// terrain, misc 
+IgnoreTextIDRange(0x5E2, 0x663) 
+// misc 
+IgnoreTextIDRange(0x70f, 0x74D) 
+// merlinus is full 
+// misc
+IgnoreTextIDRange(0x74F, 0x75B) 
+IgnoreTextIDRange(0x75D, 0x75F) 
+IgnoreTextIDRange(0x761, 0x7A6) 
+// menu stuff 
+IgnoreTextIDRange(0x109F, 0x114A) 
+// Merlinus 
+IgnoreTextIDRange(0x114C, 0x1154) 
+IgnoreTextIDRange(0x117b, 0x1195) 
+IgnoreTextIDRange(0x1225, 0x12CD) 
+// sound room below 
 
 #ifndef TLP 
 NeverChangeIntoClass(4) // 4, 5, 6 are duplicate promoted lords 
@@ -331,7 +370,7 @@ SHORT $7918; BYTE SupplyUnitID $28;
 
 // Anti-Huffman by Hextator & ported by 7743
 //ORG 0x4364; BYTE $00 $B5 $C2 $0F $00 $2A $02 $D0 $0E $F0 $86 $FC $03 $E0 $02 $4A $12 $68 $BB $F0 $6D $FC $00 $BD $40 $39 $00 $03
-ORG 0x12C6C; BYTE $02 $49 $28 $1C $00 $F0 $14 $F8 $35 $60 $0C $E0 $B4 $A5 $02 $02 $80 $23 $1B $06 $C0 $1A $02 $78 $0A $70 $01 $31 $01 $30 $00 $2A $F9 $D1 $70 $47
+//ORG 0x12C6C; BYTE $02 $49 $28 $1C $00 $F0 $14 $F8 $35 $60 $0C $E0 $B4 $A5 $02 $02 $80 $23 $1B $06 $C0 $1A $02 $78 $0A $70 $01 $31 $01 $30 $00 $2A $F9 $D1 $70 $47
 
 // fe6: 8034BF0 // doesn't seem to check unit bitflags? can any enemy unit in fe6 use a lockpick already?
 ORG $3BB9C; SHORT $46C0 // any ai can use lockpick from 803BB40

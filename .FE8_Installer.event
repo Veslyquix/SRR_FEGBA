@@ -145,6 +145,7 @@ BYTE 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x64 0x65 0x66 0x67 0x68 0x88 
 #define NeverUseBGM(id) "PUSH; ORG BGMExceptions + id; BYTE 1; POP" 
 
 #define IgnoreTextID(id) "PUSH; ORG TextIDExceptionTable + (id); BYTE 1; POP" 
+#define IgnoreTextIDRange(id1, id2) "PUSH; ORG TextIDExceptionTable + (id1); FILL(id2-id1) 0x1; POP" 
 
 ALIGN 4 
 ItemExceptions:
@@ -160,8 +161,28 @@ BGMExceptions:
 FILL(0x1000) // probably not more than this many tracks 
 ALIGN 4 
 TextIDExceptionTable: 
-FILL 0x2000 // max id 0x2000
+FILL(0x2000) // max id 0x2000
 
+ 
+
+// Game options & misc 
+IgnoreTextIDRange(1, 0x15F) 
+// Terrain 
+IgnoreTextIDRange(0x1C5, 0x211)
+// Unit names are changed 
+
+// Classes 
+IgnoreTextIDRange(0x2BF, 0x353)
+// Items
+IgnoreTextIDRange(0x354, 0x4E4)
+// Stat screen 
+IgnoreTextIDRange(0x4E5, 0x5BF) 
+// Guide 
+IgnoreTextIDRange(0x5C0, 0x64F) // 0x60F 
+// unit menu 
+IgnoreTextIDRange(0x66E, 0x6F4) 
+// misc, shops 
+IgnoreTextIDRange(0x840, 0x8DA) 
 
 
 NeverChangeItem(0xA6) // Nightmare 

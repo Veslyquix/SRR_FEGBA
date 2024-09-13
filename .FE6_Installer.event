@@ -86,6 +86,11 @@ BYTE 0x56 0x57 0x58 0x59 0x5a 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x5f 
 
 #define NeverChangeChar(id) "PUSH; ORG CharExceptions + (id * 2); BYTE 1 1; POP" 
 
+#define NeverUseBGM(id) "PUSH; ORG BGMExceptions + id; BYTE 1; POP" 
+
+#define IgnoreTextID(id) "PUSH; ORG TextIDExceptionTable + (id); BYTE 1; POP" 
+#define IgnoreTextIDRange(id1, id2) "PUSH; ORG TextIDExceptionTable + (id1); FILL(id2-id1) 0x1; POP" 
+
 
 ALIGN 4 
 ItemExceptions:
@@ -96,6 +101,43 @@ FILL(256*2)
 ALIGN 4 
 CharExceptions:
 FILL(256*2) 
+ALIGN 4 
+BGMExceptions:
+FILL(0x1000) // probably not more than this many tracks 
+ALIGN 4 
+TextIDExceptionTable: 
+FILL(0x2000) // max id 0x2000
+
+ 
+
+// Class descs 
+IgnoreTextIDRange(0x569, 0x591) 
+// stat screen descs 
+IgnoreTextIDRange(0x592, 0x5AC) 
+// Item descs 
+IgnoreTextIDRange(0x5AD, 0x62C)
+// misc, item descs 
+IgnoreTextIDRange(0x62D, 0x6F2)
+// Misc rank
+IgnoreTextIDRange(0x716, 0x727)
+// item names 
+IgnoreTextIDRange(0x727, 0x75B) 
+// fire 
+IgnoreTextIDRange(0x75D, 0x760) 
+IgnoreTextIDRange(0x762, 0x7A8) 
+// classes 
+IgnoreTextIDRange(0x7A9, 0x7EB) 
+//names here 
+
+// options 
+IgnoreTextIDRange(0x8B6, 0x8EB)
+// bwl  
+IgnoreTextIDRange(0x9C6, 0x9C8) 
+IgnoreTextIDRange(0xB94, 0xBA1) 
+IgnoreTextIDRange(0xC0F, 0xC48) 
+// wep level 
+IgnoreTextIDRange(0xC6F, 0xC7A) 
+
 
 NeverChangeIntoClass(3)
 NeverChangeIntoClass(5)
