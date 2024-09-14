@@ -20,9 +20,102 @@
 //#include "../.FE8_FebuilderSkillsys2020ish.event"
 //#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"
 //#include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
-
-//NeverChangeItem(0x1) // Iron Sword 
-//NeverChangeClass(0x1) // EirikaLord  
-//NeverChangeChar(0x1) // Eirika 
-
-
+NeverChangeItem(0x5) // Iron Blade
+NeverChangeItem(0x6) // Steel Blade
+NeverChangeItem(0x7) // Silver Blade
+NeverChangeItem(0xB) // Brave Sword
+NeverChangeItem(0xC) // Kill Sword 2
+NeverChangeItem(0x10) // Thunder Sword 3
+NeverChangeItem(0x11) // Thunder Sword 2
+NeverChangeItem(0x12) // Armor Sword 2
+NeverChangeItem(0x18) // Knight Lance 2
+NeverChangeItem(0x19) // Brave Lance
+NeverChangeItem(0x1D) // Hand Lance 3
+NeverChangeItem(0x1E) // Knight Lance 3
+NeverChangeItem(0x21) // Silver Axe
+NeverChangeItem(0x22) // Hammer 2
+NeverChangeItem(0x23) // Brave Axe
+NeverChangeItem(0x24) // Kill Axe
+NeverChangeItem(0x29) // Hand Axe 3
+NeverChangeItem(0x2A) // Hammer 3
+NeverChangeItem(0x2B) // Poleax 2
+NeverChangeItem(0x2C) // Hand Axe 2
+NeverChangeItem(0x30) // Bowgun 2
+NeverChangeItem(0x32) // Brave Bow
+NeverChangeItem(0x41) // Poleax 3
+NeverChangeItem(0x42) // Swarm
+NeverChangeItem(0x44) // Kill Lance 2
+NeverChangeItems(0x46, 0x53) // Luna, Nos, Staves
+NeverChangeItem(0x55) // Rescue
+NeverChangeItem(0x56) // Torch
+NeverChangeItem(0x58) // Unlock
+NeverChangeItem(0x5A) // Dragon Axe
+NeverChangeItem(0x63) // Body Ring
+NeverChangeItem(0x69) // Water Sigil
+NeverChangeItem(0x6B) // Lockpick
+NeverChangeItem(0x6D) // Elixir
+NeverChangeItem(0x6F) // Antitoxin
+NeverChangeItem(0x70) // Torch
+NeverChangeItem(0x71) // Earth Orb
+NeverChangeItem(0x74) // Dragon Sword 2
+NeverChangeItem(0x75) // Dragon Sword 3
+NeverChangeItem(0x76) // Kill Sword 3
+NeverChangeItem(0x79) // Thief Key
+NeverChangeItems(0x7B, 0x87) // Orbs, Dancer Rings, Plot Weapons
+NeverChangeItem(0x8B) // Alm
+NeverChangeItem(0x8C) // Latona
+NeverChangeItem(0x8D) // Brave Bow 2
+NeverChangeItem(0x8F) // Gleipnir
+NeverChangeItem(0x90) // Dark Stone
+NeverChangeFromItem(0x92) // Orange
+NeverChangeItem(0x93) // Brave Axe 2
+NeverChangeItem(0x95) // Armor Lance
+NeverChangeItem(0x96) // Hand Lance 2
+NeverChangeItem(0x98) // Lunar Brace
+NeverChangeItem(0x99) // Solar Brace
+NeverChangeItem(0xA2) // Vulnerary
+NeverChangeItem(0xA3) // Vulnerary
+NeverChangeItem(0xA4) // Vulnerary
+NeverChangeItem(0xA5) // Dance
+NeverChangeItem(0xA6) // Barrier Stone
+NeverChangeItem(0xA8) // Black Stone
+NeverChangeItem(0xA9) // Ravager
+NeverChangeItems(0xAB, 0xB7) // Futillu, Unused Items, Emblem, Orange
+NeverChangeItem(0xBA) // Black Gem
+NeverChangeItem(0xBB) // Gold Gem
+NeverChangeClass(0x3) // Great Lord
+NeverChangeClass(0x4) // Great Lord
+NeverChangeFromClass(0xD) // Thief
+NeverChangeClass(0xE) // Manakete?
+NeverChangeClass(0x10) // F Mercenary
+NeverChangeClass(0x12) // F Hero
+NeverChangeClass(0x13) // M Myrmidon
+NeverChangeClass(0x14) // Assassin?
+NeverChangeIntoClass(0x15) // M Swordmaster
+NeverChangeClass(0x17) // Assassin?
+NeverChangeClass(0x1F) // M Wyvern Rider
+NeverChangeClass(0x20) // F Wyvern Rider
+NeverChangeIntoClass(0x21) // M Wyvern Lord
+NeverChangeClass(0x23) // M Wyvern Knight
+NeverChangeClass(0x24) // F Wyvern Knight
+NeverChangeClass(0x27) // M Sage
+NeverChangeIntoClass(0x28) // F Sage
+NeverChangeClasses(0x29, 0x2E) // Unused Mages
+NeverChangeClasses(0x32, 0x3A) // Unused Trainees
+NeverChangeClass(0x3D) // Journeyman
+NeverChangeClass(0x3E) // Pupil
+NeverChangeClass(0x41) // Brigand
+NeverChangeClass(0x46) // Bard
+NeverChangeClass(0x47) // Recruit
+NeverChangeClass(0x49) // Falcoknight
+NeverChangeIntoClass(0x4C) // F Mage
+NeverChangeIntoClass(0x4D) // Dancer
+NeverChangeClass(0x4E) // Commando
+NeverChangeClass(0x4F) // Necromancer
+NeverChangeClass(0x50) // Fleet
+NeverChangeClass(0x51) // Phantom
+NeverChangeClass(0x53) // Entombed
+NeverChangeClasses(0x56, 0x7F) // Monsters, Final Bosses
+NeverChangeChar(0x2F) // Ryddel
+NeverChangeChar(0x40) // Nedeoot
+NeverChangeChar(0x5D) // Kris

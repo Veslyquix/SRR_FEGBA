@@ -79,12 +79,15 @@ BYTE 0x56 0x57 0x58 0x59 0x5a 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x5f 
 #define NeverChangeFromItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1; POP" 
 #define NeverChangeIntoItem(id) "PUSH; ORG ItemExceptions + (id * 2) + 1; BYTE 1; POP" 
 #define NeverChangeItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
+#define NeverChangeItems(id1, id2) "PUSH; ORG ItemExceptions + (id1 * 2); FILL((id2-id1)*2) 0x1; POP" 
 
 #define NeverChangeFromClass(id) "PUSH; ORG ClassExceptions + (id * 2); BYTE 1; POP" 
 #define NeverChangeIntoClass(id) "PUSH; ORG ClassExceptions + (id * 2) + 1; BYTE 1; POP" 
 #define NeverChangeClass(id) "PUSH; ORG ClassExceptions + (id * 2); BYTE 1 1; POP" // does both of the above 
+#define NeverChangeClasses(id1, id2) "PUSH; ORG ClassExceptions + (id1 * 2); FILL((id2-id1)*2) 0x1; POP" 
 
 #define NeverChangeChar(id) "PUSH; ORG CharExceptions + (id * 2); BYTE 1 1; POP" 
+#define NeverChangeChars(id1, id2) "PUSH; ORG CharExceptions + (id1 * 2); FILL((id2-id1)*2) 0x1; POP" 
 
 #define NeverUseBGM(id) "PUSH; ORG BGMExceptions + id; BYTE 1; POP" 
 

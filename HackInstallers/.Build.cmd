@@ -35,11 +35,14 @@ CALL :BUILDFUNC "ShackledPower"
 CALL :BUILDFUNC "TalesoftheConquerors"
 CALL :BUILDFUNC "TMGC"
 CALL :BUILDFUNC "TouhouEmblem"
-
-
+CALL :BUILDFUNC "FourKings"
+CALL :BUILDFUNC "InfernalBlade"
 
 set "vanilla_rom=%~dp0FE7.gba"
 CALL :BUILDFUNC "ElysiumAblaze"
+
+set "vanilla_rom=%~dp0FE6.gba"
+CALL :BUILDFUNC "LynsBizarreAdventure"
 
 echo:
 echo Done!
