@@ -37,6 +37,7 @@ CALL :BUILDFUNC "TMGC"
 CALL :BUILDFUNC "TouhouEmblem"
 CALL :BUILDFUNC "FourKings"
 CALL :BUILDFUNC "InfernalBlade"
+CALL :BUILDFUNC "TheDeepSea"
 
 set "vanilla_rom=%~dp0FE7.gba"
 CALL :BUILDFUNC "ElysiumAblaze"
