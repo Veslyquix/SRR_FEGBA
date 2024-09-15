@@ -19,8 +19,66 @@
 //#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"
 #include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
 
-//NeverChangeItem(0x1) // Iron Sword 
-//NeverChangeClass(0x1) // EirikaLord  
+NeverChangeItem(0x35) // Ballista
+NeverChangeItem(0x36) // IronBallista
+NeverChangeItem(0x37) // KillerBallista
+NeverChangeItem(0x4C) // Mend
+NeverChangeItem(0x4D) // Recover
+NeverChangeItem(0x4F) // Fortify
+NeverChangeItem(0x54) // Warp
+NeverChangeItem(0x55) // Rescue
+NeverChangeItem(0x6A) // DoorKey
+NeverChangeItem(0x6B) // Lockpick
+NeverChangeItem(0x6C) // Vulnerary
+NeverChangeItem(0x6D) // Elixir
+NeverChangeItem(0x72) // Member Card
+NeverChangeItem(0x73) // Silver Card
+NeverChangeItem(0x74) // WhiteGem
+NeverChangeItem(0x75) // BlueGem
+NeverChangeItem(0x6A) // DoorKey
+NeverChangeItem(0x7A) // Mine
+NeverChangeItem(0x7B) // Rune
+NeverChangeItem(0xA5) // DUMMY
+NeverChangeItem(0xBD) // Phonograph
+NeverChangeItem(0xE1) // Grimoire
+NeverChangeClass(0xE) // DUMMY
+NeverChangeClass(0x34) // GorgonEgg
+NeverChangeClass(0x46) // Bard
+NeverChangeClass(0x4D) // Dancer
+NeverChangeClass(0x67) // Ballista
+NeverChangeClass(0x68) // Ballista
+NeverChangeClass(0x69) // Ballista
+NeverChangeClass(0x6A) // Ballista
+NeverChangeClass(0x6B) // Ballista
+NeverChangeClass(0x6C) // Ballista
+NeverChangeClass(0x6D) // Civilian
+NeverChangeClass(0x6E) // Civilian
+NeverChangeClass(0x6F) // Civilian
+NeverChangeClass(0x70) // Civilian
+NeverChangeClass(0x71) // Civilian
+NeverChangeClass(0x72) // Civilian
+NeverChangeClass(0x74) // King
+NeverChangeClass(0x76) // King
+NeverChangeClass(0x77) // Rune 
+NeverChangeClass(0x78) // Flame
+NeverChangeClass(0x79) // Light
+NeverChangeClass(0x7A) // Pontifex
+NeverChangeClass(0x7B) // Flame
+NeverChangeClass(0x87) // Statue
+NeverChangeClass(0x8D) // Sign
+NeverChangeClass(0xAE) // Carriage
+NeverChangeClasses(0xB3, 0xCC) // Enemy only
+NeverChangeClasses(0xCF, 0xDA) // NPC only
+NeverChangeClass(0xE7) // Dismount
+NeverChangeClass(0xE8) // Dismount
+NeverChangeClass(0xEE) // Limp Body
+NeverChangeClass(0xEF) // Limp Body
+NeverChangeChar(0x1) // Party
+NeverChangeChar(0x2) // DUMMY
 NeverChangeChar(0x17) // Hetja
+NeverChangeChar(0x18) // DUMMY
+NeverChangeChars(0x34, 0x9F) // Necessary to prevent softlocks
+NeverChangeChars(0xB3, 0xBF) // Necessary to prevent softlocks
+NeverChangeChars(0xEB, 0xFF) // Necessary to prevent softlocks
 
 
