@@ -5778,7 +5778,6 @@ void DrawGrowthWithDifference(int x, int y, int base, int modified)
 }
 
 extern int VramDest_DebugFont; 
-
 int GetUnitCon(struct Unit* unit) { return UNIT_CON(unit); } 
 int GetUnitMov(struct Unit* unit) { return UNIT_MOV(unit); } 
 int GetUnitMag(struct Unit* unit) { return unit->_u3A; } 
@@ -7012,6 +7011,11 @@ enum {
 	waterPeakMov, 
 	flierMov,
 };
+// if gActionData.tilesMoved is more than your movement, stuff could break 
+// idk how that would happen though 
+// //[203a968]!!
+//1cb8c
+//32e5c in 32e28 
 int IsUnitStuck(struct Unit* unit) { 
 	int terrainType = gBmMapTerrain[unit->yPos][unit->xPos]; 
 	if (!(unit->state & US_RESCUED)) { 
