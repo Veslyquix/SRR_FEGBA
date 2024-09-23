@@ -1041,6 +1041,7 @@ void PortraitAdjustNonSkinColours(int bank, int id, int AlwaysRandomizePastThisC
 }
 	
 extern u8 gVision; 
+extern struct ProcCmd ProcScr_ekrsubAnimeEmulator[]; 
 int MaybeRandomizeColours(void) { 
 	if (RandBitflags->fog == 1) { gVision = 0; } 
 	if (RandBitflags->fog == 2) { gVision = 3; } 
@@ -1139,6 +1140,10 @@ int MaybeRandomizeColours(void) {
 	#ifndef FE6 
 	struct PrepItemScreenProc* proc_3 = Proc_Find((struct ProcCmd*)ProcScr_PrepItemScreen);
 	if (proc_3) { 
+        #ifdef FE8 
+        struct ProcPtr* proc_5 = Proc_Find((struct ProcCmd*)ProcScr_ekrsubAnimeEmulator); 
+        if (!proc_5) { 
+        #endif 
 		#ifdef FE8 
 		palID = 3;
 		#endif 
@@ -1160,6 +1165,9 @@ int MaybeRandomizeColours(void) {
 			PortraitAdjustNonSkinColours(palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard); 
 			result = true;
 		} 
+        #ifdef FE8 
+        } 
+        #endif 
 	}
 	#endif 
 	#ifdef FE8 
