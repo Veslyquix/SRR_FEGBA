@@ -386,6 +386,15 @@ ORG $A4CFD
 GetPidStats:
 
 #ifdef VeslyBuildfile
+//Unit Placer  (EventUnitForm) 2024-09-24 9:28:32 AM
+ORG $8B42A4
+BYTE  $07 $01 $00 $00 $FF $FF $00 $00;
+//Unit Placer  (EventUnitForm) @Ross(Journeyman)  Lv:12024-09-24 9:28:32 AM
+ORG $8B4434
+BYTE  $07 $3D $00 $0A $87 $00 $00 $01 $A4 $42 $8B $08 $2C $6C $00 $00 $00 $0A $00 $00;
+
+
+
 ORG $28620
 BYTE 30 // Support range 
 

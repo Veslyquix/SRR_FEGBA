@@ -135,11 +135,15 @@ WORD 0 // If 0, it'll read through your class editor and count
 WORD 0 //127
 // until it finds a class with an ID that does not match (eg. says 0) 
 
-// Each shop will have one of these items at random
+// Each shop will usually have one of these items at random
 RareItemTableSize:
+#ifdef VeslyBuildfile 
+WORD 20 // skillscroll 
+#else 
 WORD 19 // make this 0 if you don't want every shop to have one of these items 
+#endif 
 RareItemTable: // stat boosters / promo items 
-BYTE 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x64 0x65 0x66 0x67 0x68 0x88 0x97 0x98 0xB7 0x99 // 0xB7 JunaFruit / Heart Seal 
+BYTE 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x64 0x65 0x66 0x67 0x68 0x88 0x97 0x98 0xB7 0x99 0xBC // 0xB7 JunaFruit / Heart Seal, 0xBC skillscroll 
 
 #define NeverChangeFromItem(id) "PUSH; ORG ItemExceptions + (id * 2); BYTE 1; POP" 
 #define NeverChangeIntoItem(id) "PUSH; ORG ItemExceptions + (id * 2) + 1; BYTE 1; POP" 
@@ -1015,7 +1019,7 @@ WORD 80
 EnemyMaxHP:
 WORD 60  
 NumberOfSkills:
-WORD 0xE3
+WORD 0xDE
 DisplayRandomSkillsOption:
 #ifdef VeslyBuildfile 
 	#ifdef SKILLSYS_INSTALLED 

@@ -1,6 +1,6 @@
 
 //#define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.6.2"
+#define VersionNumber " SRR V1.6.3"
 
 #ifdef FE8 
 #include "headers/prelude.h"
@@ -2007,6 +2007,18 @@ int RandRareItem(int item, int noise[], int offset, int costReq, int varyByCh) {
 		c = HashByte_Global(item, RareItemTableSize, noise, offset); 
 	} 
 	item = RareItemTable[c]; 
+    #ifdef FE8 
+    if (GetItemData(item)->nameTextId == 0xFFFF) { // skill scrolls 
+		if (varyByCh) { 
+			c = HashByte_Ch(item, NumberOfSkills, noise, offset); 
+		} 
+		else { 
+			c = HashByte_Global(item, NumberOfSkills, noise, offset); 
+		} 
+		if (!c) { c = 1; } // never 0  
+        return item | (c << 8); // random durability  
+    } 
+    #endif 
 	return MakeNewItem(item); 
 } 
 
@@ -2028,6 +2040,18 @@ int RandNewItem(int item, int noise[], int offset, int costReq, int varyByCh, in
 		if (!c) { c = 1; } // never 0  
 		item = list[c]; 
 	} 
+    #ifdef FE8 
+    if (GetItemData(item)->nameTextId == 0xFFFF) { // skill scrolls 
+		if (varyByCh) { 
+			c = HashByte_Ch(item, NumberOfSkills, noise, offset); 
+		} 
+		else { 
+			c = HashByte_Global(item, NumberOfSkills, noise, offset); 
+		} 
+		if (!c) { c = 1; } // never 0  
+        return item | (c << 8); // random durability  
+    } 
+    #endif 
 	return MakeNewItem(item); 
 } 
 
