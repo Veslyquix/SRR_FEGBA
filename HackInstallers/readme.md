@@ -25,6 +25,7 @@ then uncomment `#define NoWepLock`
 
 
 Testing it 
+-
     - If status screen page 1 crashes, try `#include "../.FE8_FebuilderSkillsys2020ish.event"` instead 
     - Test a round of combat, enemy phase, and status screen. If any fail, then the hack 
     may be incompatible or require further investigation 
