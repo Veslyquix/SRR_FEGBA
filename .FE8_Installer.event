@@ -86,7 +86,11 @@ WORD 0xB0
 RandomizePrepShop:
 WORD 0 // If true, randomize prep shop if player randomizes found items 
 MinClassBase:
+#ifdef VeslyBuildfile 
 WORD 0 // If true, stats won't go lower than class bases 
+#else 
+WORD 1 
+#endif 
 RandomizeMovConBonus:
 WORD 1 
 OnlyThievesCanUseLockpicks: // only applies to players. Enemies/NPCs can always use lockpicks 
