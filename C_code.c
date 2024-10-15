@@ -23,6 +23,23 @@ int GetGlobalStatCap(void);
 #include "headers/gbafe.h"
 #define PUREFUNC __attribute__((pure))
 #define ARMFUNC __attribute__((target("arm")))
+typedef struct
+{
+    /* 00 */ PROC_HEADER;
+    /* 2c */ int seed;
+    s8 id; // menu id
+    u8 offset;
+    u8 redraw;
+    s8 digit;
+    u8 freezeSeed;
+    u8 calledFromChapter;
+    u8 reloadPlayers;
+    u8 reloadEnemies;
+    u8 skill;
+    u8 choosingSkill;
+    s8 Option[23];
+} ConfigMenuProc;
+void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
 int Div1(int a, int b) PUREFUNC;
 int Mod(int a, int b) PUREFUNC;
@@ -3076,7 +3093,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         /* 54 */ struct Unit * unit;
         /* 58 */ int item;
     };
-#define PROC_TREE_7 ((ProcPtr)7)
+// #define PROC_TREE_7 ((ProcPtr)7)
 #define PROC_IS_ROOT(aProc) ((uintptr_t)aProc <= (u32)PROC_TREE_7)
     extern struct ProcCmd ProcScr_GotItem[]; // 8B91DC4
 
@@ -6500,15 +6517,20 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         "Enemies",
     };
 #endif
-#define OPT20NUM 4
-    const char Option20[OPT20NUM][10] = {
+#define OPT20NUM 2
+    const char Option20[OPT20NUM][20] = {
+        "Disabled",
+        "Press B on unit",
+    };
+#define OPT21NUM 4
+    const char Option21[OPT21NUM][10] = {
         "Off",
         "Easy",
         "Normal",
         "Hard",
     };
-#define OPT21NUM 4
-    const char Option21[OPT21NUM][10] = {
+#define OPT22NUM 4
+    const char Option22[OPT22NUM][10] = {
         "Vanilla",
         "Random",
         "Fixed",
@@ -6518,7 +6540,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
     const u8 OptionAmounts[] = { OPT0NUM,  OPT1NUM,  OPT2NUM,  OPT3NUM,  OPT4NUM,  OPT5NUM,  OPT6NUM,
                                  OPT7NUM,  OPT8NUM,  OPT9NUM,  OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM,
                                  OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM, OPT18NUM, OPT19NUM, OPT20NUM,
-                                 OPT21NUM, 0,        0,        0 };
+                                 OPT21NUM, OPT22NUM, 0,        0,        0 };
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -6964,8 +6986,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
     extern int DisplayTimedHitsOption;
     const int SRR_MAXDISP = 7;
     extern const int SRR_TotalOptions;
-    const u8 tWidths[] = { 3, 5, 7, 6, 5, 5, 6, 3, 3, 3, 3, 4, 6, 7, 11, 10, 11, 2, 6, 7, 7, 6, 4 };
-    const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 5, 13, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 4, 16 };
+    const u8 tWidths[] = { 3, 5, 7, 6, 5, 5, 6, 3, 3, 3, 3, 4, 6, 7, 11, 10, 11, 2, 6, 7, 7, 5, 6, 4 };
+    const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 5, 13, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 8, 4, 16 };
     void DrawConfigMenu(ConfigMenuProc * proc)
     {
         // return;
@@ -6978,7 +7000,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         // GetStringFromIndex(unit->pClassData->nameTextId)
         struct Text * th = gStatScreen.text; // max 34
         int i = 0;
-        int offset = proc->offset;
+        int offset2 = proc->offset;
+        int offset = 0;
         int hOff = sizeof(tWidths); // handle offset
         ClearText(&th[hOff + offset + proc->id]);
 
@@ -6998,7 +7021,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         */
 
         i = 0;
-        switch (offset)
+        switch (offset2)
         {
             case 0:
                 TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 7, Y_HAND), 9, 2, 0); // seed first
@@ -7187,11 +7210,22 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
 #ifdef FE8
             case 21:
             {
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
+                    RtWidths[i + offset], PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            }
+            case 22:
+            {
                 if (DisplayTimedHitsOption)
                 {
                     PutDrawText(
                         &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                        RtWidths[i + offset], PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding));
+                        RtWidths[i + offset], PutStringInBuffer(Option21[proc->Option[21]], UseHuffmanEncoding));
                     i++;
                     if (i > SRR_MAXDISP)
                     {
@@ -7199,15 +7233,15 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                     }
                 }
             }
-            case 22:
+            case 23:
             {
                 if (DisplayRandomSkillsOption)
                 {
-                    if ((proc->Option[21] != 3) || (!IsSkill(proc->skill)))
+                    if ((proc->Option[22] != 3) || (!IsSkill(proc->skill)))
                     {
                         PutDrawText(
                             &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                            RtWidths[i + offset], PutStringInBuffer(Option21[proc->Option[21]], UseHuffmanEncoding));
+                            RtWidths[i + offset], PutStringInBuffer(Option22[proc->Option[22]], UseHuffmanEncoding));
                         i++;
                     }
                     else
@@ -7216,7 +7250,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                         PutDrawText(
                             &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
                             RtWidths[i + offset],
-                            GetCombinedString(Option21[proc->Option[21]], GetSkillName(proc->skill), string));
+                            GetCombinedString(Option22[proc->Option[22]], GetSkillName(proc->skill), string));
                         i++;
                         // DrawIcon(
                         // gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
@@ -7426,6 +7460,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         RedrawSome,
         RedrawAll
     };
+    extern int DebuggerTurnedOff_Flag;
     void ConfigMenuLoop(ConfigMenuProc * proc)
     {
 
@@ -7535,7 +7570,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             }
             if (DisplayRandomSkillsOption)
             {
-                if (RandValues->skills != proc->Option[21])
+                if (RandValues->skills != proc->Option[22])
                 {
                     reloadUnits = true;
                 }
@@ -7651,15 +7686,24 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             GrowthValues->enemy = proc->Option[15];
             RecruitValues->ai = proc->Option[17];
 
+            if (proc->Option[20] == 0)
+            {
+                SetFlag(DebuggerTurnedOff_Flag);
+            }
+            else
+            {
+                UnsetFlag(DebuggerTurnedOff_Flag);
+            }
+
             if (DisplayRandomSkillsOption)
             {
-                RandValues->skills = proc->Option[21];
+                RandValues->skills = proc->Option[22];
                 AlwaysSkill[0] = proc->skill;
             }
 #ifdef FE8
             if (DisplayTimedHitsOption)
             {
-                int timedHits = proc->Option[20];
+                int timedHits = proc->Option[21];
                 TimedHitsDifficultyRam->off = false;
                 TimedHitsDifficultyRam->alwaysA = false;
                 TimedHitsDifficultyRam->difficulty = 0;
@@ -7847,7 +7891,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         }
         //
 
-        if (((id + offset) == 22) && (proc->Option[21] == 3) && (proc->choosingSkill))
+        if (((id + offset) == 23) && (proc->Option[22] == 3) && (proc->choosingSkill))
         {
 
             if (keys & DPAD_UP)
@@ -7969,7 +8013,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0);
         if (proc->redraw == RedrawSome)
         {
-            if (((id + offset) == 22) && (proc->Option[21] == 3))
+            if (((id + offset) == 23) && (proc->Option[22] == 3))
             {
                 proc->choosingSkill = true;
             }
@@ -8028,6 +8072,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
     const char SoftlockPreventionText[] = { "Override AI" };
     const char SkipChapterText[] = { "Skip chapter" };
     const char ReloadUnitsText[] = { "Reload units" };
+    const char DebuggerText[] = { "Debugger" };
     const char SkillsText[] = { "Skills" };
     const char TimedHitsText[] = { "Timed Hits" };
     const char RandomizerText[] = { "Randomizer" };
@@ -8241,6 +8286,16 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
 #ifdef FE8
             case 21:
+                PutDrawText(
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    PutStringInBuffer((const char *)&DebuggerText, false));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+
+            case 22:
             {
                 if (DisplayTimedHitsOption)
                 {
@@ -8254,7 +8309,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                     }
                 }
             }
-            case 22:
+            case 23:
             {
                 if (DisplayRandomSkillsOption)
                 {
@@ -8277,7 +8332,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             &th[sizeof(tWidths) + sizeof(RtWidths)], TILEMAP_LOCATED(gBG0TilemapBuffer, 9, 0), green, 0, 6,
             PutStringInBuffer((const char *)&RandomizerText, false));
 
-        BG_EnableSyncByMask(BG0_SYNC_BIT);
+        // BG_EnableSyncByMask(BG0_SYNC_BIT);
     }
 
     void InitDraw(ConfigMenuProc * proc)
@@ -8397,7 +8452,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         }
         if (proc)
         {
-            for (int i = 0; i < 22; i++)
+            for (int i = 0; i < 23; i++)
             {
                 proc->Option[i] = 0;
             }
@@ -8431,8 +8486,9 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             proc->seed = GetInitialSeed(2);
             proc->digit = 0;
             StartGreenText(proc);
+            proc->Option[20] = 1;
 
-            proc->Option[20] = 1; // timed hits
+            proc->Option[21] = 1; // timed hits
 #ifdef FORCE_SPECIFIC_SEED
             proc->Option[2] = 0;
             proc->Option[3] = 0;
@@ -8507,28 +8563,30 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         proc->Option[16] = RandBitflags->fog;
         proc->Option[17] = RecruitValues->ai;
 
+        proc->Option[20] = !CheckFlag(DebuggerTurnedOff_Flag);
+
 #ifdef FE8
         if (DisplayTimedHitsOption)
         {
-            proc->Option[20] = 0;
+            proc->Option[21] = 0;
             if (TimedHitsDifficultyRam->alwaysA)
             {
-                proc->Option[20] = 1;
+                proc->Option[21] = 1;
             }
             if (TimedHitsDifficultyRam->difficulty == 2)
             {
-                proc->Option[20] = 2;
+                proc->Option[21] = 2;
             }
             if (TimedHitsDifficultyRam->difficulty == 3)
             {
-                proc->Option[20] = 3;
+                proc->Option[21] = 3;
             }
         }
 #endif
 
         if (DisplayRandomSkillsOption)
         {
-            proc->Option[21] = RandValues->skills;
+            proc->Option[22] = RandValues->skills;
             proc->skill = AlwaysSkill[0];
         }
 

@@ -283,22 +283,7 @@ struct StatScreenSt
 extern struct StatScreenSt gStatScreen; //0x200310C
 
 
-typedef struct {
-    /* 00 */ PROC_HEADER;
-	/* 2c */ int seed; 
-	s8 id; // menu id 
-	u8 offset; 
-	u8 redraw; 
-	s8 digit; 
-	u8 freezeSeed; 
-	u8 calledFromChapter; 
-	u8 reloadPlayers; 
-	u8 reloadEnemies;
-	u8 skill; 
-	u8 choosingSkill; 
-	s8 Option[22];
-} ConfigMenuProc;
-void ReloadAllUnits(ConfigMenuProc*); 
+
 struct DispCnt {
     /* bit  0 */ u16 mode : 3;
     /* bit  3 */ u16 cgbMode : 1; // reserved, do not use
