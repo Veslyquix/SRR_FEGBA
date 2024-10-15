@@ -37,6 +37,7 @@ typedef struct
     u8 reloadEnemies;
     u8 skill;
     u8 choosingSkill;
+    u8 clear;
     s8 Option[23];
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
@@ -6985,9 +6986,15 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
     extern int DisplayRandomSkillsOption;
     extern int DisplayTimedHitsOption;
     const int SRR_MAXDISP = 7;
+    const int SRR_NUMBERDISP = 8;
     extern const int SRR_TotalOptions;
+#define MaxTW 11
+#define MaxRTW 16
     const u8 tWidths[] = { 3, 5, 7, 6, 5, 5, 6, 3, 3, 3, 3, 4, 6, 7, 11, 10, 11, 2, 6, 7, 7, 5, 6, 4 };
-    const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 5, 13, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 8, 4, 16 };
+    // const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 5, 13, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 8, 4, 16 };
+    const u8 RtWidths[] = {
+        16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16
+    };
     void DrawConfigMenu(ConfigMenuProc * proc)
     {
         // return;
@@ -7002,8 +7009,13 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         int i = 0;
         int offset2 = proc->offset;
         int offset = 0;
-        int hOff = sizeof(tWidths); // handle offset
-        ClearText(&th[hOff + offset + proc->id]);
+        // int hOff = sizeof(tWidths); // handle offset
+        int hOff = SRR_NUMBERDISP;
+        if (proc->clear)
+        {
+            ClearText(&th[hOff + offset + proc->id]);
+            proc->clear = false;
+        }
 
         /* What Circles did:
         % variation (0 - 100%)
@@ -7029,8 +7041,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 i++;
             case 1:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7038,8 +7050,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 2:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7047,8 +7059,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 3:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7056,8 +7068,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 4:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7065,8 +7077,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 5:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7074,8 +7086,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 6:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7083,8 +7095,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 7:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7092,8 +7104,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 8:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7101,8 +7113,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 9:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7110,8 +7122,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 10:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7119,8 +7131,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 11:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7128,8 +7140,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 12:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7137,8 +7149,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 13:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7146,8 +7158,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 14:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7155,8 +7167,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 15:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7164,8 +7176,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 16:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7173,8 +7185,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 17:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7182,8 +7194,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 18:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7191,8 +7203,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 19:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option18[proc->Option[18]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option18[proc->Option[18]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7200,8 +7212,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 20:
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option19[proc->Option[19]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option19[proc->Option[19]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7211,8 +7223,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             case 21:
             {
                 PutDrawText(
-                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                    RtWidths[i + offset], PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding));
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7224,8 +7236,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 if (DisplayTimedHitsOption)
                 {
                     PutDrawText(
-                        &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                        RtWidths[i + offset], PutStringInBuffer(Option21[proc->Option[21]], UseHuffmanEncoding));
+                        &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                        PutStringInBuffer(Option21[proc->Option[21]], UseHuffmanEncoding));
                     i++;
                     if (i > SRR_MAXDISP)
                     {
@@ -7241,7 +7253,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                     {
                         PutDrawText(
                             &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                            RtWidths[i + offset], PutStringInBuffer(Option22[proc->Option[22]], UseHuffmanEncoding));
+                            MaxRTW, PutStringInBuffer(Option22[proc->Option[22]], UseHuffmanEncoding));
                         i++;
                     }
                     else
@@ -7249,8 +7261,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                         char string[30];
                         PutDrawText(
                             &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
-                            RtWidths[i + offset],
-                            GetCombinedString(Option22[proc->Option[22]], GetSkillName(proc->skill), string));
+                            MaxRTW, GetCombinedString(Option22[proc->Option[22]], GetSkillName(proc->skill), string));
                         i++;
                         // DrawIcon(
                         // gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
@@ -7460,7 +7471,9 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         RedrawSome,
         RedrawAll
     };
+#ifdef FE8
     extern int DebuggerTurnedOff_Flag;
+#endif
     void ConfigMenuLoop(ConfigMenuProc * proc)
     {
 
@@ -7556,7 +7569,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             {
                 reloadPlayers = true;
             }
-            if (RandBitflags->playerBonus != proc->Option[13])
+            if (GrowthValues->player != proc->Option[13])
             {
                 reloadPlayers = true;
             }
@@ -7564,7 +7577,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             {
                 reloadEnemies = true;
             }
-            if (RandValues->bonus != proc->Option[15])
+            if (GrowthValues->enemy != proc->Option[15])
             {
                 reloadEnemies = true;
             }
@@ -7686,6 +7699,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             GrowthValues->enemy = proc->Option[15];
             RecruitValues->ai = proc->Option[17];
 
+#ifdef FE8
             if (proc->Option[20] == 0)
             {
                 SetFlag(DebuggerTurnedOff_Flag);
@@ -7700,7 +7714,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 RandValues->skills = proc->Option[22];
                 AlwaysSkill[0] = proc->skill;
             }
-#ifdef FE8
+
             if (DisplayTimedHitsOption)
             {
                 int timedHits = proc->Option[21];
@@ -7898,11 +7912,13 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             {
                 proc->skill = GetNextAlwaysSkill(proc->skill);
                 proc->redraw = RedrawSome;
+                proc->clear = true;
             }
             else if (keys & DPAD_DOWN)
             {
                 proc->skill = GetPreviousAlwaysSkill(proc->skill);
                 proc->redraw = RedrawSome;
+                proc->clear = true;
             }
             else if (keys & DPAD_RIGHT)
             {
@@ -7991,6 +8007,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 proc->Option[id] = 0;
             }
             proc->redraw = RedrawSome;
+            proc->clear = true;
             id++;
             id -= offset;
         }
@@ -8007,6 +8024,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 proc->Option[id] = OptionAmounts[id] - 1;
             }
             proc->redraw = RedrawSome;
+            proc->clear = true;
             id++;
             id -= offset;
         }
@@ -8081,23 +8099,24 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
     void RedrawAllText(ConfigMenuProc * proc)
     {
         struct Text * th = gStatScreen.text; // max 34 normally
-        for (int i = 0; i < (SRR_TotalOptions * 2 + 2); ++i)
+        for (int i = 0; i < ((SRR_NUMBERDISP * 2) + 1); ++i)
         {
             ClearText(&th[i]);
         }
         TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0, 0), 0x1d, 0x13, 0); // all
         int i = 0;
-        int offset = proc->offset;
+        int offset2 = proc->offset;
+        int offset = 0;
 
         // PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Variance"); i++;
         // PutDrawText(&th[0], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3), gold, 0, tWidths[0],
         // PutStringInBuffer(&VarianceText, 0));
         i = 0;
-        switch (offset)
+        switch (offset2)
         {
             case 0:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&SeedText, false));
                 i++; // Classic/Casual
                 if (i > SRR_MAXDISP)
@@ -8106,7 +8125,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 1:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&VarianceText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8115,7 +8134,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 2:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&CharactersText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8124,7 +8143,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 3:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&BaseStatsText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8133,7 +8152,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 4:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&GrowthsText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8142,7 +8161,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 5:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&LevelupsText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8151,7 +8170,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 6:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&StatCapsText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8160,7 +8179,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 7:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&ClassText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8169,7 +8188,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 8:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&ItemsText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8178,7 +8197,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 9:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&ModeText, false));
                 i++; // Classic/Casual
                 if (i > SRR_MAXDISP)
@@ -8187,7 +8206,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 10:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&MusicText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8196,7 +8215,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 11:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&ColoursText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8205,7 +8224,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 12:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&ItemDurabilityText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8214,7 +8233,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 13:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&PlayerBonusText, false));
                 i++; // make players have bonus levels
                 if (i > SRR_MAXDISP)
@@ -8223,7 +8242,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 14:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&PlayerGrowthBonusText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8232,7 +8251,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 15:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&EnemyDiffBonusText, false));
                 i++; // make enemies have more bonus levels
                 if (i > SRR_MAXDISP)
@@ -8241,7 +8260,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 16:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&EnemyGrowthBonusText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8250,7 +8269,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 17:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&FogText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8259,7 +8278,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 18:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&SoftlockPreventionText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8268,7 +8287,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 19:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&SkipChapterText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8277,7 +8296,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 }
             case 20:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&ReloadUnitsText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8287,7 +8306,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
 #ifdef FE8
             case 21:
                 PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, tWidths[i + offset],
+                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                     PutStringInBuffer((const char *)&DebuggerText, false));
                 i++;
                 if (i > SRR_MAXDISP)
@@ -8300,8 +8319,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 if (DisplayTimedHitsOption)
                 {
                     PutDrawText(
-                        &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0,
-                        tWidths[i + offset], PutStringInBuffer((const char *)&TimedHitsText, false));
+                        &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
+                        PutStringInBuffer((const char *)&TimedHitsText, false));
                     i++;
                     if (i > SRR_MAXDISP)
                     {
@@ -8314,8 +8333,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                 if (DisplayRandomSkillsOption)
                 {
                     PutDrawText(
-                        &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0,
-                        tWidths[i + offset], PutStringInBuffer((const char *)&SkillsText, false));
+                        &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
+                        PutStringInBuffer((const char *)&SkillsText, false));
                     i++;
                     if (i > SRR_MAXDISP)
                     {
@@ -8329,7 +8348,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
 
         DrawConfigMenu(proc);
         PutDrawText(
-            &th[sizeof(tWidths) + sizeof(RtWidths)], TILEMAP_LOCATED(gBG0TilemapBuffer, 9, 0), green, 0, 6,
+            &th[SRR_NUMBERDISP * 2], TILEMAP_LOCATED(gBG0TilemapBuffer, 9, 0), green, 0, 6,
             PutStringInBuffer((const char *)&RandomizerText, false));
 
         // BG_EnableSyncByMask(BG0_SYNC_BIT);
@@ -8384,16 +8403,17 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         // return;
         //  [2000444+0xC]!!
         struct Text * th = gStatScreen.text; // max 34
-        for (int i = 0; i < sizeof(tWidths); ++i)
+        for (int i = 0; i < SRR_NUMBERDISP; ++i)
         {
-            InitText(&th[i], tWidths[i]);
+            InitText(&th[i], MaxTW);
         }
-        int hOff = sizeof(tWidths); // handle offset
-        for (int i = 0; i < sizeof(RtWidths); ++i)
+        // int hOff = sizeof(tWidths); // handle offset
+        int hOff = SRR_NUMBERDISP;
+        for (int i = 0; i < SRR_NUMBERDISP; ++i)
         {
-            InitText(&th[i + hOff], RtWidths[i]);
+            InitText(&th[i + hOff], MaxRTW);
         }
-        InitText(&th[sizeof(tWidths) + sizeof(RtWidths)], 6); // "Randomizer" title
+        InitText(&th[SRR_NUMBERDISP * 2], 6); // "Randomizer" title
 
         // LoadUiFrameGraphics();
         LoadObjUIGfx();
@@ -8476,6 +8496,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             proc->calledFromChapter = false;
             proc->offset = 0;
             proc->redraw = 0;
+            proc->clear = false;
             proc->skill = GetNextAlwaysSkill(0);
             proc->choosingSkill = 0;
             proc->freezeSeed = false;
@@ -8563,9 +8584,8 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         proc->Option[16] = RandBitflags->fog;
         proc->Option[17] = RecruitValues->ai;
 
-        proc->Option[20] = !CheckFlag(DebuggerTurnedOff_Flag);
-
 #ifdef FE8
+        proc->Option[20] = !CheckFlag(DebuggerTurnedOff_Flag);
         if (DisplayTimedHitsOption)
         {
             proc->Option[21] = 0;
