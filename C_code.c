@@ -324,6 +324,18 @@ int GetPreviousAlwaysSkill(int id)
 #define ListSize MAX_CHAR_ID // 0x3f // 0x44 but max is 0x3f atm?
 #define PlayerPortraitSize 0x35
 #endif
+extern const struct CharacterData gCharacterData[];
+extern const struct CharacterData gCharacterData2[];
+const struct CharacterData * const cData[] = { gCharacterData, gCharacterData2 };
+const struct CharacterData * NewGetCharacterData(int charId, int tableID)
+{
+    if (charId < 1)
+        return NULL;
+
+    // asm("mov r11, r11");
+    return cData[tableID] + (charId - 1);
+}
+
 extern u8 ReplacePortraitTable[];
 int GetUnitIdOfPortrait(int portraitID)
 {
@@ -358,6 +370,7 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     {
         return GetCharacterData(id);
     }
+    int tableID = 1;
 
     int procID = id >> 6; // 0, 1, 2, or 3
 
@@ -396,7 +409,7 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     {
         unitID = id;
     }
-    return GetCharacterData(unitID);
+    return NewGetCharacterData(unitID, tableID);
 }
 
 const struct CharacterData * GetReorderedUnit(struct Unit * unit)
@@ -409,12 +422,13 @@ int GetReorderedUnitID(struct Unit * unit)
 }
 int GetReorderedCharacterPortraitByPortrait(int portraitID)
 {
+    int tableID = 1;
     int result = GetUnitIdOfPortrait(portraitID);
     if (!result)
     {
         return portraitID;
     }
-    return GetReorderedCharacter(GetCharacterData(result))->portraitId;
+    return GetReorderedCharacter(NewGetCharacterData(result, tableID))->portraitId;
 }
 
 int GetRandomizedPortrait(int portraitID, int seed)
@@ -864,42 +878,38 @@ void HbPopulate_SSCharacter(struct HelpBoxProc * proc) // fe7 0x80816FC fe6 0x80
         }
         else
         {
-#ifdef FE8 // +0x4C
-            proc->mid = 0x6BE;
-        } // TODO: mid constants
+#ifdef FE8                     // +0x4C
+            proc->mid = 0x6BE; // TODO: mid constants
 #endif
-#ifdef FE7 // +0x4C
-        proc->mid = 0x396;
-    } // TODO: mid constants
+#ifdef FE7                     // +0x4C
+            proc->mid = 0x396; // TODO: mid constants
 #endif
-#ifdef FE6 // +0x4C
-    proc->mid = 0x66d;
-} // TODO: mid constants
+#ifdef FE6                     // +0x4C
+            proc->mid = 0x66d; // TODO: mid constants
 #endif
-return;
-}
+        }
+        return;
+    }
 
-int midDesc = gStatScreen.unit->pCharacterData->descTextId;
+    int midDesc = gStatScreen.unit->pCharacterData->descTextId;
 
-if (midDesc)
-{
-    proc->mid = midDesc;
-}
-else
-{
-#ifdef FE8 // +0x4C
-    proc->mid = 0x6BE;
-} // TODO: mid constants
+    if (midDesc)
+    {
+        proc->mid = midDesc;
+    }
+    else
+    {
+#ifdef FE8                 // +0x4C
+        proc->mid = 0x6BE; // TODO: mid constants
 #endif
-#ifdef FE7 // +0x4C
-proc->mid = 0x396;
-} // TODO: mid constants
+#ifdef FE7                 // +0x4C
+        proc->mid = 0x396; // TODO: mid constants
 #endif
-#ifdef FE6 // +0x4C
-proc->mid = 0x66d;
-} // TODO: mid constants
+#ifdef FE6                 // +0x4C
+        proc->mid = 0x66d; // TODO: mid constants
 #endif
-return;
+    }
+    return;
 }
 
 int ShouldDoJankyPalettes(void)
@@ -1189,10 +1199,10 @@ int UnitHasStealableItem(struct Unit * unit)
             return true;
         }
 #else
-                if (IsItemStealable(unit->items[i]))
-                {
-                    return true;
-                }
+        if (IsItemStealable(unit->items[i]))
+        {
+            return true;
+        }
 #endif
     }
     return false;
@@ -1274,7 +1284,7 @@ struct PlayerInterfaceProc
 #ifndef FE6
     struct Text unk_2c[2];
 #else
-            struct Text unk_2c[1];
+    struct Text unk_2c[1];
 #endif
 
     s8 unk_3c;
@@ -1433,17 +1443,17 @@ struct SupportScreenProc
 #ifndef FE6
 struct Unit * GetUnitFromPrepList(int index); // fe7 808DD18
 #else
-        struct PrepUnitList
-        {
-            struct Unit * units[0x40];
-            int max_num;    /* A counter maybe related to the amount of units in team */
-            int latest_pid; /* Last unit char-id when you leave the prep-unit-screen */
-        };
-        extern struct PrepUnitList gPrepUnitList;
-        struct Unit * GetUnitFromPrepList(int index)
-        {
-            return gPrepUnitList.units[index]; // 200CC38
-        }
+struct PrepUnitList
+{
+    struct Unit * units[0x40];
+    int max_num;    /* A counter maybe related to the amount of units in team */
+    int latest_pid; /* Last unit char-id when you leave the prep-unit-screen */
+};
+extern struct PrepUnitList gPrepUnitList;
+struct Unit * GetUnitFromPrepList(int index)
+{
+    return gPrepUnitList.units[index]; // 200CC38
+}
 #endif
 extern struct ProcCmd const ProcScr_PalFade[];   // 85C4D7C 8B92914
 extern struct ProcCmd const ProcScr_FadeCore[];  // 85C4E14 8B929AC
@@ -1528,8 +1538,8 @@ int MaybeRandomizeColours(void)
             PortraitAdjustNonSkinColours(
                 13, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
 #else
-                    PortraitAdjustNonSkinColours(
-                        11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
+            PortraitAdjustNonSkinColours(
+                11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
 #endif
             return true; // so we don't alter prep palettes during stat screen
         }
@@ -1599,9 +1609,8 @@ int MaybeRandomizeColours(void)
             sFaceConfig[i].paletteId + 16, gFaces[i]->faceSlot, PortraitColoursPastThisAreNotSkin, 0, fading,
             classCard);
 #else
-                PortraitAdjustNonSkinColours(
-                    sFaceConfig[i].paletteId + 16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading,
-                    classCard);
+        PortraitAdjustNonSkinColours(
+            sFaceConfig[i].paletteId + 16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
 #endif
         result = true;
     }
@@ -1621,7 +1630,7 @@ int MaybeRandomizeColours(void)
         }
 // else if ((int)proc_2->proc_scrCur == 0x8678E98) { palID = 3; }
 #else
-                id = proc_2->id;
+        id = proc_2->id;
 #endif
         unit = GetUnitFromPrepList(id);
 #ifdef FE6
@@ -4689,17 +4698,17 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
             unit->_u3A += GetAutoleveledStatIncrease(GetUnitMagGrowth(unit, true), levelCount);
         }
 #else
-                unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit, true), levelCount);
-                unit->pow += GetAutoleveledStatIncrease(GetClassPowGrowth(unit, true), levelCount);
-                unit->skl += GetAutoleveledStatIncrease(GetClassSklGrowth(unit, true), levelCount);
-                unit->spd += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit, true), levelCount);
-                unit->def += GetAutoleveledStatIncrease(GetClassDefGrowth(unit, true), levelCount);
-                unit->res += GetAutoleveledStatIncrease(GetClassResGrowth(unit, true), levelCount);
-                unit->lck += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
-                if (StrMagInstalled)
-                {
-                    unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
-                }
+        unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit, true), levelCount);
+        unit->pow += GetAutoleveledStatIncrease(GetClassPowGrowth(unit, true), levelCount);
+        unit->skl += GetAutoleveledStatIncrease(GetClassSklGrowth(unit, true), levelCount);
+        unit->spd += GetAutoleveledStatIncrease(GetClassSpdGrowth(unit, true), levelCount);
+        unit->def += GetAutoleveledStatIncrease(GetClassDefGrowth(unit, true), levelCount);
+        unit->res += GetAutoleveledStatIncrease(GetClassResGrowth(unit, true), levelCount);
+        unit->lck += GetAutoleveledStatIncrease(GetClassLckGrowth(unit, true), levelCount);
+        if (StrMagInstalled)
+        {
+            unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
+        }
 #endif
     }
     if (levelCount < 0)
@@ -4707,7 +4716,7 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
 #ifdef USECHARGROWTHS
         unit->maxHP = GetAutoleveledStatDecrease(GetUnitHPGrowth(unit, true), levelCount, unit->maxHP);
 #else
-                unit->maxHP = GetAutoleveledStatDecrease(GetClassHPGrowth(unit, true), levelCount, unit->maxHP);
+        unit->maxHP = GetAutoleveledStatDecrease(GetClassHPGrowth(unit, true), levelCount, unit->maxHP);
 #endif
         if (IsUnitAlliedOrPlayable(unit))
         {
@@ -4735,44 +4744,44 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
             unit->_u3A = GetAutoleveledStatDecrease(GetUnitMagGrowth(unit, true), levelCount, unit->_u3A);
         }
 #else
-                int i = 0;
-                int avg = 0;
-                avg += GetClassPowGrowth(unit, false);
-                i++;
-                avg += GetClassSklGrowth(unit, false);
-                i++;
-                avg += GetClassSpdGrowth(unit, false);
-                i++;
-                avg += GetClassDefGrowth(unit, false);
-                i++;
-                avg += GetClassResGrowth(unit, false);
-                i++;
-                avg += GetClassLckGrowth(unit, false);
-                i++;
-                if (StrMagInstalled)
-                {
-                    avg += GetClassMagGrowth(unit, false);
-                    i++;
-                }
-                avg = avg / i;
-                // avg += 5;
-                unit->pow = GetAutoleveledStatDecrease(
-                    AdjustGrowthForLosingLevels(GetClassPowGrowth(unit, false), avg), levelCount, unit->pow);
-                unit->skl = GetAutoleveledStatDecrease(
-                    AdjustGrowthForLosingLevels(GetClassSklGrowth(unit, false), avg), levelCount, unit->skl);
-                unit->spd = GetAutoleveledStatDecrease(
-                    AdjustGrowthForLosingLevels(GetClassSpdGrowth(unit, false), avg), levelCount, unit->spd);
-                unit->def = GetAutoleveledStatDecrease(
-                    AdjustGrowthForLosingLevels(GetClassDefGrowth(unit, false), avg), levelCount, unit->def);
-                unit->res = GetAutoleveledStatDecrease(
-                    AdjustGrowthForLosingLevels(GetClassResGrowth(unit, false), avg), levelCount, unit->res);
-                unit->lck = GetAutoleveledStatDecrease(
-                    AdjustGrowthForLosingLevels(GetClassLckGrowth(unit, false), avg), levelCount, unit->lck);
-                if (StrMagInstalled)
-                {
-                    unit->_u3A = GetAutoleveledStatDecrease(
-                        AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u3A);
-                }
+        int i = 0;
+        int avg = 0;
+        avg += GetClassPowGrowth(unit, false);
+        i++;
+        avg += GetClassSklGrowth(unit, false);
+        i++;
+        avg += GetClassSpdGrowth(unit, false);
+        i++;
+        avg += GetClassDefGrowth(unit, false);
+        i++;
+        avg += GetClassResGrowth(unit, false);
+        i++;
+        avg += GetClassLckGrowth(unit, false);
+        i++;
+        if (StrMagInstalled)
+        {
+            avg += GetClassMagGrowth(unit, false);
+            i++;
+        }
+        avg = avg / i;
+        // avg += 5;
+        unit->pow = GetAutoleveledStatDecrease(
+            AdjustGrowthForLosingLevels(GetClassPowGrowth(unit, false), avg), levelCount, unit->pow);
+        unit->skl = GetAutoleveledStatDecrease(
+            AdjustGrowthForLosingLevels(GetClassSklGrowth(unit, false), avg), levelCount, unit->skl);
+        unit->spd = GetAutoleveledStatDecrease(
+            AdjustGrowthForLosingLevels(GetClassSpdGrowth(unit, false), avg), levelCount, unit->spd);
+        unit->def = GetAutoleveledStatDecrease(
+            AdjustGrowthForLosingLevels(GetClassDefGrowth(unit, false), avg), levelCount, unit->def);
+        unit->res = GetAutoleveledStatDecrease(
+            AdjustGrowthForLosingLevels(GetClassResGrowth(unit, false), avg), levelCount, unit->res);
+        unit->lck = GetAutoleveledStatDecrease(
+            AdjustGrowthForLosingLevels(GetClassLckGrowth(unit, false), avg), levelCount, unit->lck);
+        if (StrMagInstalled)
+        {
+            unit->_u3A = GetAutoleveledStatDecrease(
+                AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u3A);
+        }
 #endif
     }
     UnitCheckStatMins(unit);
@@ -4948,8 +4957,8 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         character->growthSpd + character->growthDef + character->growthRes + character->growthLck;
 
 #else
-            noise[0] = character->number + character->baseLevel + character->baseHP;
-            noise[1] = unit->index + character->portraitId;
+    noise[0] = character->number + character->baseLevel + character->baseHP;
+    noise[1] = unit->index + character->portraitId;
 
 #endif
 
@@ -4988,7 +4997,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 #ifdef UseRandClass2
         unit->pClassData = GetClassData(RandClass2(character->defaultClass, noise2, unit));
 #else
-                unit->pClassData = GetClassData(RandClass(character->defaultClass, noise, unit));
+        unit->pClassData = GetClassData(RandClass(character->defaultClass, noise, unit));
 #endif
     }
     else
@@ -4996,7 +5005,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 #ifdef UseRandClass2
         unit->pClassData = GetClassData(RandClass2(uDef->classIndex, noise2, unit));
 #else
-                unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise, unit));
+        unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise, unit));
 #endif
     }
 
@@ -5019,7 +5028,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 #ifdef UseRandClass2
                         unit->pClassData = GetClassData(RandClass2(prepromoteClassId, noise2, unit));
 #else
-                            unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise, unit));
+                    unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise, unit));
 #endif
 
 #ifdef FE6
@@ -6303,220 +6312,220 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
 #ifdef FE6
 extern const char Option0[OPT0NUM][16]; // do align 16 before each?
 #else
-        const char Option0[OPT0NUM][5] = {
-            // 2nd number is max number of characters for the text (+1)
-            "0%",  "5%",  "10%", "15%", "20%", "25%", "30%", "35%", "40%", "45%",  "50%",
-            "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%",
-        };
+const char Option0[OPT0NUM][5] = {
+    // 2nd number is max number of characters for the text (+1)
+    "0%",  "5%",  "10%", "15%", "20%", "25%", "30%", "35%", "40%", "45%",  "50%",
+    "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%",
+};
 #endif
 
 #define OPT1NUM 6
 #ifdef FE6
 extern const char Option1[OPT1NUM][64]; // do align 16 before each?
 #else
-        const char Option1[OPT1NUM][32] = {
-            // Characters
-            "Vanilla", "Players reordered", "Bosses reordered", "Players & Bosses reordered", "Players and Bosses swap",
-            "Random",
-        };
+const char Option1[OPT1NUM][32] = {
+    // Characters
+    "Vanilla", "Players reordered", "Bosses reordered", "Players & Bosses reordered", "Players and Bosses swap",
+    "Random",
+};
 #endif
 
 #define OPT2NUM 2
 #ifdef FE6
 extern const char Option2[OPT2NUM][32]; // do align 16 before each?
 #else
-        const char Option2[OPT2NUM][8] = {
-            // Base Stats
-            "Vanilla",
-            "Random",
-        };
+const char Option2[OPT2NUM][8] = {
+    // Base Stats
+    "Vanilla",
+    "Random",
+};
 #endif
 #define OPT3NUM 5
 #ifdef FE6
 extern const char Option3[OPT3NUM][32]; // do align 16 before each?
 #else
-        const char Option3[OPT3NUM][15] = {
-            // Growths
-            "Vanilla", "Random", "0%", "100%", "50%",
-        };
+const char Option3[OPT3NUM][15] = {
+    // Growths
+    "Vanilla", "Random", "0%", "100%", "50%",
+};
 #endif
 #define OPT4NUM 3
 #ifdef FE6
 extern const char Option4[OPT4NUM][32]; // do align 16 before each?
 #else
-        const char Option4[OPT4NUM][15] = {
-            // Levelups
-            "Vanilla",
-            "Based on seed", // Seeded if randomizer is on, vanilla otherwise
-            "Fixed",
-        };
+const char Option4[OPT4NUM][15] = {
+    // Levelups
+    "Vanilla",
+    "Based on seed", // Seeded if randomizer is on, vanilla otherwise
+    "Fixed",
+};
 #endif
 #define OPT5NUM 7
 #ifdef FE6
 extern const char Option5[OPT5NUM][32]; // do align 16 before each?
 #else
-        const char Option5[OPT5NUM][10] = {
-            // Stat Caps
-            "Vanilla", "Random", "0", "15", "30", "45", "60",
-        };
+const char Option5[OPT5NUM][10] = {
+    // Stat Caps
+    "Vanilla", "Random", "0", "15", "30", "45", "60",
+};
 #endif
 #define OPT6NUM 4
 #ifdef FE6
 extern const char Option6[5][64]; // do align 16 before each?
 #else
-        const char Option6[5][26] = {
-            // Class
-            "Vanilla", "Random vanilla classes", "Random for players", "Random for enemies", "Random with new classes",
-            //"Enemies",
-        };
+const char Option6[5][26] = {
+    // Class
+    "Vanilla", "Random vanilla classes", "Random for players", "Random for enemies", "Random with new classes",
+    //"Enemies",
+};
 #endif
 #define OPT7NUM 4
 #ifdef FE6
 extern const char Option7[OPT7NUM][64]; // do align 16 before each?
 #else
-        const char Option7[OPT7NUM][25] = {
-            // Items
-            "Vanilla",
-            "Random",
-            "Random found items only",
-            "Random item stats only",
-        };
+const char Option7[OPT7NUM][25] = {
+    // Items
+    "Vanilla",
+    "Random",
+    "Random found items only",
+    "Random item stats only",
+};
 #endif
 
 #define OPT8NUM 2
 #ifdef FE6
 extern const char Option8[OPT8NUM][32]; // do align 16 before each?
 #else
-        const char Option8[OPT8NUM][10] = {
-            "Classic",
-            "Casual",
-        };
+const char Option8[OPT8NUM][10] = {
+    "Classic",
+    "Casual",
+};
 #endif
 #define OPT9NUM 2
 #ifdef FE6
 extern const char Option9[OPT9NUM][32]; // do align 16 before each?
 #else
-        const char Option9[OPT9NUM][22] = {
-            "Vanilla BGM",
-            "Random BGM",
-        };
+const char Option9[OPT9NUM][22] = {
+    "Vanilla BGM",
+    "Random BGM",
+};
 #endif
 #define OPT10NUM 4
 #ifdef FE6
 extern const char Option10[OPT10NUM][32]; // do align 16 before each?
 #else
-        const char Option10[OPT10NUM][22] = {
-            "Vanilla Colours",
-            "Random",
-            "Janky",
-            "Portraits only",
-        };
+const char Option10[OPT10NUM][22] = {
+    "Vanilla Colours",
+    "Random",
+    "Janky",
+    "Portraits only",
+};
 #endif
 #define OPT11NUM 3
 #ifdef FE6
 extern const char Option11[OPT11NUM][48]; // do align 16 before each?
 #else
-        const char Option11[OPT11NUM][20] = {
-            // Item durability
-            "Vanilla",
-            "Infinite weapons",
-            "Infinite items",
-        };
+const char Option11[OPT11NUM][20] = {
+    // Item durability
+    "Vanilla",
+    "Infinite weapons",
+    "Infinite items",
+};
 #endif
 #define OPT12NUM 31
 #ifdef FE6
 extern const char Option12[OPT12NUM][42]; // do align 16 before each?
 #else
-        const char Option12[OPT12NUM][20] = {
-            // players
-            "Vanilla",           "+1 hidden level",   "+2 hidden levels",  "+3 hidden levels",  "+4 hidden levels",
-            "+5 hidden levels",  "+6 hidden levels",  "+7 hidden levels",  "+8 hidden levels",  "+9 hidden levels",
-            "+10 hidden levels", "+11 hidden levels", "+12 hidden levels", "+13 hidden levels", "+14 hidden levels",
-            "+15 hidden levels", "+16 hidden levels", "+17 hidden levels", "+18 hidden levels", "+19 hidden levels",
-            "+20 hidden levels", "-10 hidden levels", "-9 hidden levels",  "-8 hidden levels",  "-7 hidden levels",
-            "-6 hidden levels",  "-5 hidden levels",  "-4 hidden levels",  "-3 hidden levels",  "-2 hidden levels",
-            "-1 hidden level",
-        };
+const char Option12[OPT12NUM][20] = {
+    // players
+    "Vanilla",           "+1 hidden level",   "+2 hidden levels",  "+3 hidden levels",  "+4 hidden levels",
+    "+5 hidden levels",  "+6 hidden levels",  "+7 hidden levels",  "+8 hidden levels",  "+9 hidden levels",
+    "+10 hidden levels", "+11 hidden levels", "+12 hidden levels", "+13 hidden levels", "+14 hidden levels",
+    "+15 hidden levels", "+16 hidden levels", "+17 hidden levels", "+18 hidden levels", "+19 hidden levels",
+    "+20 hidden levels", "-10 hidden levels", "-9 hidden levels",  "-8 hidden levels",  "-7 hidden levels",
+    "-6 hidden levels",  "-5 hidden levels",  "-4 hidden levels",  "-3 hidden levels",  "-2 hidden levels",
+    "-1 hidden level",
+};
 #endif
 
 #define OPT13NUM 16
 #ifdef FE6
 extern const char Option13[OPT13NUM][32]; // do align 16 before each?
 #else
-        const char Option13[OPT13NUM][10] = {
-            // Enemies
-            "Vanilla", "+10%", "+20%",  "+30%", "+40%", "+50%", "+60%", "+70%",
-            "+80%",    "+90%", "+100%", "-10%", "-20%", "-30%", "-40%", "-50%",
-        };
+const char Option13[OPT13NUM][10] = {
+    // Enemies
+    "Vanilla", "+10%", "+20%",  "+30%", "+40%", "+50%", "+60%", "+70%",
+    "+80%",    "+90%", "+100%", "-10%", "-20%", "-30%", "-40%", "-50%",
+};
 #endif
 
 #define OPT14NUM 31
 #ifdef FE6
 extern const char Option14[OPT14NUM][42]; // do align 16 before each?
 #else
-        const char Option14[OPT14NUM][20] = {
-            // Enemies
-            "Vanilla",           "+1 hidden level",   "+2 hidden levels",  "+3 hidden levels",  "+4 hidden levels",
-            "+5 hidden levels",  "+6 hidden levels",  "+7 hidden levels",  "+8 hidden levels",  "+9 hidden levels",
-            "+10 hidden levels", "+11 hidden levels", "+12 hidden levels", "+13 hidden levels", "+14 hidden levels",
-            "+15 hidden levels", "+16 hidden levels", "+17 hidden levels", "+18 hidden levels", "+19 hidden levels",
-            "+20 hidden levels", "-10 hidden levels", "-9 hidden levels",  "-8 hidden levels",  "-7 hidden levels",
-            "-6 hidden levels",  "-5 hidden levels",  "-4 hidden levels",  "-3 hidden levels",  "-2 hidden levels",
-            "-1 hidden level",
-        };
+const char Option14[OPT14NUM][20] = {
+    // Enemies
+    "Vanilla",           "+1 hidden level",   "+2 hidden levels",  "+3 hidden levels",  "+4 hidden levels",
+    "+5 hidden levels",  "+6 hidden levels",  "+7 hidden levels",  "+8 hidden levels",  "+9 hidden levels",
+    "+10 hidden levels", "+11 hidden levels", "+12 hidden levels", "+13 hidden levels", "+14 hidden levels",
+    "+15 hidden levels", "+16 hidden levels", "+17 hidden levels", "+18 hidden levels", "+19 hidden levels",
+    "+20 hidden levels", "-10 hidden levels", "-9 hidden levels",  "-8 hidden levels",  "-7 hidden levels",
+    "-6 hidden levels",  "-5 hidden levels",  "-4 hidden levels",  "-3 hidden levels",  "-2 hidden levels",
+    "-1 hidden level",
+};
 #endif
 
 #define OPT15NUM 16
 #ifdef FE6
 extern const char Option15[OPT15NUM][32]; // do align 16 before each?
 #else
-        const char Option15[OPT15NUM][10] = {
-            // Enemies
-            "Vanilla", "+10%", "+20%",  "+30%", "+40%", "+50%", "+60%", "+70%",
-            "+80%",    "+90%", "+100%", "-10%", "-20%", "-30%", "-40%", "-50%",
-        };
+const char Option15[OPT15NUM][10] = {
+    // Enemies
+    "Vanilla", "+10%", "+20%",  "+30%", "+40%", "+50%", "+60%", "+70%",
+    "+80%",    "+90%", "+100%", "-10%", "-20%", "-30%", "-40%", "-50%",
+};
 #endif
 
 #define OPT16NUM 3
 #ifdef FE6
 extern const char Option16[OPT16NUM][32]; // do align 16 before each?
 #else
-        const char Option16[OPT16NUM][11] = {
-            "Vanilla",
-            "Always off",
-            "Always on",
-        };
+const char Option16[OPT16NUM][11] = {
+    "Vanilla",
+    "Always off",
+    "Always on",
+};
 #endif
 #define OPT17NUM 3
 #ifdef FE6
 extern const char Option17[OPT17NUM][64]; // do align 16 before each?
 #else
-        const char Option17[OPT17NUM][25] = {
-            "Vanilla",
-            "Charge towards you",
-            "Gradually charge",
-        };
+const char Option17[OPT17NUM][25] = {
+    "Vanilla",
+    "Charge towards you",
+    "Gradually charge",
+};
 #endif
 
 #define OPT18NUM 2
 #ifdef FE6
 extern const char Option18[OPT18NUM][32]; // do align 16 before each?
 #else
-        const char Option18[OPT18NUM][14] = {
-            "Vanilla",
-            "Press A",
-        };
+const char Option18[OPT18NUM][14] = {
+    "Vanilla",
+    "Press A",
+};
 #endif
 #define OPT19NUM 4
 #ifdef FE6
 extern const char Option19[OPT19NUM][32]; // do align 16 before each?
 #else
-        const char Option19[OPT19NUM][14] = {
-            "None",
-            "All",
-            "Players",
-            "Enemies",
-        };
+const char Option19[OPT19NUM][14] = {
+    "None",
+    "All",
+    "Players",
+    "Enemies",
+};
 #endif
 #define OPT20NUM 2
 const char Option20[OPT20NUM][20] = {
@@ -6637,7 +6646,7 @@ void InitReplaceTextListRom(struct ReplaceTextStruct list[]) {
 void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
 {
     const struct CharacterData * table = GetCharacterData(1);
-    const struct CharacterData * table2 = GetCharacterData(1);
+    const struct CharacterData * table2 = NewGetCharacterData(1, 1);
     // u32 rn[1] = {0};
     int c = 0;
     u32 value;
@@ -6716,10 +6725,10 @@ char * PutStringInBuffer(const char * str, int huffman)
     return sMsgString;
 }
 #else
-        const char * PutStringInBuffer(const char * str, int huffman)
-        {
-            return str;
-        }
+const char * PutStringInBuffer(const char * str, int huffman)
+{
+    return str;
+}
 #endif
 
 int GetStringLength(const char * str)
@@ -7779,8 +7788,8 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         if (proc->Option[18] && ((id + offset) == 19))
         {
 #else
-                if (proc->Option[18] && ((id + offset) == 19))
-                {
+        if (proc->Option[18] && ((id + offset) == 19))
+        {
 #endif
             if (proc->calledFromChapter)
             {
@@ -7789,7 +7798,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 #ifdef FE6
                 CallEndEvent_FE6();
 #else
-                        CallEndEvent();
+                CallEndEvent();
 #endif
             }
         } // win chapter
@@ -8066,31 +8075,31 @@ extern const char SkipChapterText;
 extern const char ReloadUnitsText;
 extern const char RandomizerText;
 #else
-        const char SeedText[] = { "Seed" };
-        const char VarianceText[] = { "Variance" };
-        const char CharactersText[] = { "Characters" };
-        const char BaseStatsText[] = { "Base Stats" };
-        const char GrowthsText[] = { "Growths" };
-        const char LevelupsText[] = { "Levelups" };
-        const char StatCapsText[] = { "Stat Caps" };
-        const char ClassText[] = { "Class" };
-        const char ItemsText[] = { "Items" };
-        const char ModeText[] = { "Mode" };
-        const char MusicText[] = { "Music" };
-        const char ColoursText[] = { "Colours" };
-        const char ItemDurabilityText[] = { "Item Uses" };
-        const char PlayerBonusText[] = { "Player Bonus" };
-        const char PlayerGrowthBonusText[] = { "Player Growth Bonus" };
-        const char EnemyDiffBonusText[] = { "Enemy Diff. Bonus" };
-        const char EnemyGrowthBonusText[] = { "Enemy Growth Bonus" };
-        const char FogText[] = { "Fog" };
-        const char SoftlockPreventionText[] = { "Override AI" };
-        const char SkipChapterText[] = { "Skip chapter" };
-        const char ReloadUnitsText[] = { "Reload units" };
-        const char DebuggerText[] = { "Debugger" };
-        const char SkillsText[] = { "Skills" };
-        const char TimedHitsText[] = { "Timed Hits" };
-        const char RandomizerText[] = { "Randomizer" };
+const char SeedText[] = { "Seed" };
+const char VarianceText[] = { "Variance" };
+const char CharactersText[] = { "Characters" };
+const char BaseStatsText[] = { "Base Stats" };
+const char GrowthsText[] = { "Growths" };
+const char LevelupsText[] = { "Levelups" };
+const char StatCapsText[] = { "Stat Caps" };
+const char ClassText[] = { "Class" };
+const char ItemsText[] = { "Items" };
+const char ModeText[] = { "Mode" };
+const char MusicText[] = { "Music" };
+const char ColoursText[] = { "Colours" };
+const char ItemDurabilityText[] = { "Item Uses" };
+const char PlayerBonusText[] = { "Player Bonus" };
+const char PlayerGrowthBonusText[] = { "Player Growth Bonus" };
+const char EnemyDiffBonusText[] = { "Enemy Diff. Bonus" };
+const char EnemyGrowthBonusText[] = { "Enemy Growth Bonus" };
+const char FogText[] = { "Fog" };
+const char SoftlockPreventionText[] = { "Override AI" };
+const char SkipChapterText[] = { "Skip chapter" };
+const char ReloadUnitsText[] = { "Reload units" };
+const char DebuggerText[] = { "Debugger" };
+const char SkillsText[] = { "Skills" };
+const char TimedHitsText[] = { "Timed Hits" };
+const char RandomizerText[] = { "Randomizer" };
 #endif
 
 void RedrawAllText(ConfigMenuProc * proc)
@@ -9097,7 +9106,7 @@ void DrawVersionNumber(int addr)
 #ifdef FE8
     SetupDebugFontForOBJ(0x5000, 5);
 #else
-            SetupDebugFontForOBJ(0x5000, 15);
+    SetupDebugFontForOBJ(0x5000, 15);
 #endif
 
     int y = 8 * 0x12;
