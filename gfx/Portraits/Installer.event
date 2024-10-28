@@ -1,0 +1,30 @@
+
+
+#define FirstMugID 25 
+
+
+
+
+ALIGN 4 
+NewPortraitTable: 
+#undef PortraitTable 
+#define PortraitTable NewPortraitTable 
+FILL(0x1C*0x400) 0 
+ORG NewPortraitTable 
+#include "VanillaData.event" 
+#include "VanillaData.event" 
+#include "VanillaData.event" 
+
+
+
+#include "Generated.event" 
+
+
+PUSH 
+#ifdef _FE8_
+ORG $5524 
+#endif 
+POIN NewPortraitTable
+POP 
+
+

@@ -48,6 +48,10 @@ MESSAGE Open FE8_Installer and read / config things please
 //#include "../ASM/UnitExpansion/Installer.event" 
 //#endif 
 
+#ifdef VeslyBuildfile 
+#include "gfx/Portraits/Installer.event" 
+#endif 
+
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 

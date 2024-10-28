@@ -431,6 +431,7 @@ int GetReorderedCharacterPortraitByPortrait(int portraitID)
     return GetReorderedCharacter(NewGetCharacterData(result, tableID))->portraitId;
 }
 
+// also GetAdjustedPortraitId exists
 int GetRandomizedPortrait(int portraitID, int seed)
 {
     if (portraitID < 0)
@@ -467,7 +468,7 @@ int GetRandomizedPortrait(int portraitID, int seed)
     }
 #endif
     //
-    return result;
+    return result + 0x110;
 }
 
 int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed)
@@ -1336,7 +1337,7 @@ int GetAdjustedPortraitId(struct Unit * unit)
         portraitID += unit->index;
         portraitID += unit->pCharacterData->number;
     }
-    portraitID &= 0xFF;
+    // portraitID &= 0xFF;
     if (!portraitID)
     {
         portraitID = 1;

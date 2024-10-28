@@ -1,0 +1,35 @@
+//Generated! Do not edit!
+
+ALIGN 4
+EliwoodMugData:
+#incbin "Dmp/Eliwood_mug.dmp"
+#incbin "Dmp/Eliwood_frames.dmp"
+#incbin "Dmp/Eliwood_palette.dmp"
+#incbin "Dmp/Eliwood_minimug.dmp"
+#ifndef EliwoodMug
+  #define EliwoodMug (FirstMugID+1)
+#endif
+setMugEntry(EliwoodMug, EliwoodMugData, 2, 5, 3, 3)
+
+ALIGN 4
+HectorMugData:
+#incbin "Dmp/Hector_mug.dmp"
+#incbin "Dmp/Hector_frames.dmp"
+#incbin "Dmp/Hector_palette.dmp"
+#incbin "Dmp/Hector_minimug.dmp"
+#ifndef HectorMug
+  #define HectorMug (FirstMugID+2)
+#endif
+setMugEntry(HectorMug, HectorMugData, 2, 4, 3, 2)
+
+ALIGN 4
+LynMugData:
+#incbin "Dmp/Lyn_mug.dmp"
+#incbin "Dmp/Lyn_frames.dmp"
+#incbin "Dmp/Lyn_palette.dmp"
+#incbin "Dmp/Lyn_minimug.dmp"
+#ifndef LynMug
+  #define LynMug (FirstMugID+3)
+#endif
+setMugEntry(LynMug, LynMugData, 2, 6, 3, 4)
+
