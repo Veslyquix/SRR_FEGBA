@@ -102,6 +102,9 @@ struct GrowthBonusValues
 {
     u8 player : 4;
     u8 enemy : 4;
+    u8 RandCharTable : 1;
+    u8 ForcedCharTable : 5;
+    u8 pad : 2;
 };
 
 extern struct TimedHitsDifficultyStruct * TimedHitsDifficultyRam;
@@ -327,34 +330,71 @@ int GetPreviousAlwaysSkill(int id)
 extern const struct CharacterData gCharacterData[];
 extern const struct CharacterData gCharacterData2[];
 const struct CharacterData * const cData[] = { gCharacterData, gCharacterData2 };
+const int NumberOfCharTables = 2;
+int ShouldRandomizeUsedCharTable(void)
+{
+    return GrowthValues->RandCharTable + 1;
+}
+
+int GetForcedCharTable(void)
+{
+    return GrowthValues->ForcedCharTable - 1;
+}
+
+int GetCharTableID(int portraitID)
+{
+    if (!ShouldRandomizeUsedCharTable())
+    {
+        return 0;
+    } // vanilla table only
+    int result = GetForcedCharTable();
+    if (result >= 0)
+    {
+        return result;
+    }
+    int noise[4] = { portraitID, portraitID, portraitID, portraitID };
+    result = HashByte_Global(portraitID, NumberOfCharTables, noise, 19);
+    // randomize
+    return result;
+}
+
 const struct CharacterData * NewGetCharacterData(int charId, int tableID)
 {
     if (charId < 1)
         return NULL;
 
-    // asm("mov r11, r11");
+    if (!((cData[tableID] + (charId - 1))->number))
+        return NULL;
+
     return cData[tableID] + (charId - 1);
 }
 
 extern u8 ReplacePortraitTable[];
 int GetUnitIdOfPortrait(int portraitID)
 {
-    if (portraitID < 0x100)
+    if (portraitID < 0x100) // vanilla closed eyes etc portraits to replace
     {
         if (ReplacePortraitTable[portraitID])
         {
             portraitID = ReplacePortraitTable[portraitID];
         }
     }
-    const struct CharacterData * table = GetCharacterData(1);
+    const struct CharacterData * table; // = GetCharacterData(1);
+    int bankID = 0;
+    // while (bankID < NumberOfCharTables)
+    // {
     for (int i = 1; i <= MAX_CHAR_ID; i++)
     {
+        table = NewGetCharacterData(i, bankID);
         if (table->portraitId == portraitID)
         {
             return table->number;
         }
         table++;
     }
+    // bankID++;
+    // }
+
     return 0;
 }
 
@@ -370,7 +410,7 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     {
         return GetCharacterData(id);
     }
-    int tableID = 1;
+    int tableID = GetCharTableID(table->portraitId);
 
     int procID = id >> 6; // 0, 1, 2, or 3
 
@@ -411,7 +451,8 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     }
     return NewGetCharacterData(unitID, tableID);
 }
-
+// each vanilla portrait is assigned to a new portrait from any char table
+// text replace must search all tables
 const struct CharacterData * GetReorderedUnit(struct Unit * unit)
 {
     return GetReorderedCharacter(unit->pCharacterData);
@@ -422,13 +463,13 @@ int GetReorderedUnitID(struct Unit * unit)
 }
 int GetReorderedCharacterPortraitByPortrait(int portraitID)
 {
-    int tableID = 1;
+    // int tableID = GetCharTableID(portraitID);
     int result = GetUnitIdOfPortrait(portraitID);
     if (!result)
     {
         return portraitID;
     }
-    return GetReorderedCharacter(NewGetCharacterData(result, tableID))->portraitId;
+    return GetReorderedCharacter(GetCharacterData(result))->portraitId;
 }
 
 // also GetAdjustedPortraitId exists
@@ -468,22 +509,29 @@ int GetRandomizedPortrait(int portraitID, int seed)
     }
 #endif
     //
-    return result + 0x110;
+    return result;
 }
 
 int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed)
 {
     portraitID = GetRandomizedPortrait(portraitID, seed);
-    const struct CharacterData * table = GetCharacterData(1);
-    for (int i = 1; i <= 0xFF; i++)
+
+    const struct CharacterData * table; // = GetCharacterData(1);
+    int bankID = 0;
+    while (bankID < NumberOfCharTables)
     {
-        if (table->portraitId == portraitID)
+        for (int i = 1; i <= MAX_CHAR_ID; i++)
         {
-            return table->nameTextId;
+            table = NewGetCharacterData(i, bankID);
+            if (table->portraitId == portraitID)
+            {
+                return table->nameTextId;
+            }
+            table++;
         }
-        // asm("mov r11, r11");
-        table++;
+        bankID++;
     }
+
     return 1; // "Yes"
 }
 
@@ -635,7 +683,6 @@ int GetUnitListToUse(const struct CharacterData * table, int boss, int excludeNo
         result = 1;
     }
     // if (!boss && (MustCharacterBecomeBoss(table))) { result = false; }
-    // asm("mov r11, r11");
     return result;
 }
 
@@ -787,7 +834,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             default:
         }
     }
-    // asm("mov r11, r11");
 
     // #ifndef FE8 // breaks with skillsys atm
     proc = proc4;
@@ -1336,8 +1382,8 @@ int GetAdjustedPortraitId(struct Unit * unit)
     {
         portraitID += unit->index;
         portraitID += unit->pCharacterData->number;
+        portraitID &= 0xFF;
     }
-    // portraitID &= 0xFF;
     if (!portraitID)
     {
         portraitID = 1;
@@ -1367,6 +1413,11 @@ extern bool FadeExists(void); // 80145d0  8013EB8
 void AdjustNonSkinColours(
     int bank, int id, int AlwaysRandomizePastThisColour, int NeverRandomizeBeforeThisColour, int fading)
 {
+    if (id > 0xFF) // other games use different palette order
+    {
+        AlwaysRandomizePastThisColour = 99;
+        NeverRandomizeBeforeThisColour = 0;
+    }
     id = GetRNByID(id);
     int r, g, b, col;
     u16 * buffer = &gPaletteBuffer[(bank * 16)];
@@ -1402,7 +1453,6 @@ void AdjustNonSkinColours(
         }
         RandColours(bank, i, 1, id);
     }
-    // asm("mov r11, r11");
 }
 
 extern struct ProcCmd const ProcScr_PrepUnitScreen[]; // 0x8A18E8C bgp 2 8CC4854 fe6 8678E38
@@ -2054,7 +2104,6 @@ int GetInitialSeed(int rate)
 
 u16 HashByte_Class(int n, int max, u8 noise[], int offset)
 {
-    // asm("mov r11, r11");
     int c;
     while ((c = *noise++))
     {
@@ -2068,7 +2117,6 @@ u16 HashByte_Class(int n, int max, u8 noise[], int offset)
 
 u16 HashByte_Global(int number, int max, int noise[], int offset)
 {
-    // asm("mov r11, r11");
     offset += noise[0] + noise[1] + noise[2] + noise[3] + number;
     // offset &= 0xFF; // GetNthRN_Simple does this anyway
     int currentRN = 0;
@@ -2086,7 +2134,6 @@ u16 HashByte_Global(int number, int max, int noise[], int offset)
         }
     }
 
-    // asm("mov r11, r11");
     return Mod((currentRN & 0x2FFFFFFF), max);
 }
 
@@ -3090,7 +3137,6 @@ int RandNewWeapon(struct Unit * unit, int item, int noise[], int offset, u8 list
         return MakeNewItem(item);
 #endif
     }
-    // asm("mov r11, r11");
     if (list[0])
     {
         c = HashByte_Ch(item, list[0] + 1, noise, offset);
@@ -6639,7 +6685,6 @@ void InitReplaceTextListRom(struct ReplaceTextStruct list[]) {
                 //table++;
         }
         list[ListSize].find = NULL;
-        //asm("mov r11, r11");
         //list[ListSize].replace = NULL;
 }
 */
@@ -6647,7 +6692,7 @@ void InitReplaceTextListRom(struct ReplaceTextStruct list[]) {
 void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
 {
     const struct CharacterData * table = GetCharacterData(1);
-    const struct CharacterData * table2 = NewGetCharacterData(1, 1);
+    const struct CharacterData * table2; // = GetCharacterData(1);
     // u32 rn[1] = {0};
     int c = 0;
     u32 value;
@@ -6877,7 +6922,6 @@ extern u8 TextIDExceptionTable[];
 void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800384C
 {
 
-    // asm("mov r11, r11");
     int length[1] = { 0 };
     length[0] = DecompText(a, b);
     if (!ShouldRandomizeRecruitment())
@@ -7006,7 +7050,6 @@ void DrawConfigMenu(ConfigMenuProc * proc)
 {
     // return;
     // BG_EnableSyncByMask(BG0_SYNC_BIT);
-    // asm("mov r11, r11");
     // ResetText();
     // DrawStuffs(proc);
 
@@ -7292,7 +7335,6 @@ void DrawConfigMenu(ConfigMenuProc * proc)
 void DisplayVertUiHand(int x, int y);
 void DisplayHand(int x, int y, int type)
 {
-    // asm("mov r11, r11");
     //  type is 0 (horizontal) or 1 (vertical) if I make it
     if (type)
     {
@@ -9936,7 +9978,6 @@ void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr p
         for (i = 0; i < 20; i++)
         {
             u16 itemId = *shopItems++;
-            // asm("mov r11, r11");
             if ((!itemId) && (i < 5))
             {
                 term = true;
@@ -10205,7 +10246,6 @@ int IsUnitTrapped(struct Unit * unit)
         {
             continue;
         }
-        // asm("mov r11, r11");
         return false;
     }
 
@@ -10247,14 +10287,12 @@ int IsUnitStuck(struct Unit * unit)
 // no fe6
 const s8 * GetUnitMovementCost(struct Unit * unit)
 { // 80187d4
-// asm("mov r11, r11");
 #ifndef FE6
     if (unit->state & US_IN_BALLISTA)
     {
         return Ballista_TerrainTable;
     } // fe8 is 80BC18
 #endif
-    // asm("mov r11, r11");
     if (ShouldRandomizeClass(unit))
     {
         // if (UNIT_FACTION != FACTION_BLUE) {
