@@ -1011,12 +1011,12 @@ WORD IconOrrValue
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
     #ifdef SKILLSYS_INSTALLED 
-    WORD 23
+    WORD 24
     #else 
-    WORD 22
+    WORD 23
     #endif  
 #else 
-WORD 21
+WORD 22
 #endif 
 
 // if you don't have a max hp getter, these are used 

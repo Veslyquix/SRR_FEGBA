@@ -38,7 +38,7 @@ typedef struct
     u8 skill;
     u8 choosingSkill;
     u8 clear;
-    s8 Option[23];
+    s8 Option[24];
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -102,9 +102,8 @@ struct GrowthBonusValues
 {
     u8 player : 4;
     u8 enemy : 4;
-    u8 RandCharTable : 1;
     u8 ForcedCharTable : 5;
-    u8 pad : 2;
+    u8 pad : 3;
 };
 
 extern struct TimedHitsDifficultyStruct * TimedHitsDifficultyRam;
@@ -333,12 +332,12 @@ const struct CharacterData * const cData[] = { gCharacterData, gCharacterData2 }
 const int NumberOfCharTables = 2;
 int ShouldRandomizeUsedCharTable(void)
 {
-    return GrowthValues->RandCharTable + 1;
+    return (GrowthValues->ForcedCharTable < NumberOfCharTables);
 }
 
 int GetForcedCharTable(void)
 {
-    return GrowthValues->ForcedCharTable - 1;
+    return GrowthValues->ForcedCharTable;
 }
 
 int GetCharTableID(int portraitID)
@@ -348,11 +347,11 @@ int GetCharTableID(int portraitID)
         return 0;
     } // vanilla table only
     int result = GetForcedCharTable();
-    if (result >= 0)
+    if (result < NumberOfCharTables)
     {
         return result;
     }
-    int noise[4] = { portraitID, portraitID, portraitID, portraitID };
+    int noise[4] = { 5, 7, 9, 11 };
     result = HashByte_Global(portraitID, NumberOfCharTables, noise, 19);
     // randomize
     return result;
@@ -6377,60 +6376,78 @@ const char Option1[OPT1NUM][32] = {
 };
 #endif
 
-#define OPT2NUM 2
+#define OPT2NUM 3
 #ifdef FE6
-extern const char Option2[OPT2NUM][32]; // do align 16 before each?
+extern const char Option2[OPT2NUM][64]; // do align 16 before each?
 #else
-const char Option2[OPT2NUM][8] = {
+const char Option2[OPT2NUM][32] = {
+#ifdef FE8
+    "FE8",    "FE7",
+#endif
+#ifdef FE7
+    "FE7",    "FE8",
+#endif
+#ifdef FE6
+    "FE6",    "FE7",
+#endif
+    "Random",
+};
+#endif
+
+#define OPT3NUM 2
+#ifdef FE6
+extern const char Option3[OPT3NUM][32]; // do align 16 before each?
+#else
+const char Option3[OPT3NUM][8] = {
     // Base Stats
     "Vanilla",
     "Random",
 };
 #endif
-#define OPT3NUM 5
-#ifdef FE6
-extern const char Option3[OPT3NUM][32]; // do align 16 before each?
-#else
-const char Option3[OPT3NUM][15] = {
-    // Growths
-    "Vanilla", "Random", "0%", "100%", "50%",
-};
-#endif
-#define OPT4NUM 3
+#define OPT4NUM 5
 #ifdef FE6
 extern const char Option4[OPT4NUM][32]; // do align 16 before each?
 #else
 const char Option4[OPT4NUM][15] = {
+    // Growths
+    "Vanilla", "Random", "0%", "100%", "50%",
+};
+#endif
+#define OPT5NUM 3
+#ifdef FE6
+extern const char Option5[OPT5NUM][32]; // do align 16 before each?
+#else
+const char Option5[OPT5NUM][15] = {
     // Levelups
     "Vanilla",
     "Based on seed", // Seeded if randomizer is on, vanilla otherwise
     "Fixed",
 };
 #endif
-#define OPT5NUM 7
+#define OPT6NUM 7
 #ifdef FE6
-extern const char Option5[OPT5NUM][32]; // do align 16 before each?
+extern const char Option6[OPT6NUM][32]; // do align 16 before each?
 #else
-const char Option5[OPT5NUM][10] = {
+const char Option6[OPT6NUM][10] = {
     // Stat Caps
     "Vanilla", "Random", "0", "15", "30", "45", "60",
 };
 #endif
-#define OPT6NUM 4
+#define OPT7NUM 5
 #ifdef FE6
-extern const char Option6[5][64]; // do align 16 before each?
+extern const char Option7[OPT7NUM][64]; // do align 16 before each?
 #else
-const char Option6[5][26] = {
+const char Option7[OPT7NUM][26] = {
     // Class
     "Vanilla", "Random vanilla classes", "Random for players", "Random for enemies", "Random with new classes",
     //"Enemies",
 };
 #endif
-#define OPT7NUM 4
+#define OPT8NUM 4
 #ifdef FE6
-extern const char Option7[OPT7NUM][64]; // do align 16 before each?
+extern const char Option8[OPT8NUM][64]; // do align 16 before each?
 #else
-const char Option7[OPT7NUM][25] = {
+const char Option8[OPT8NUM][25] = {
     // Items
     "Vanilla",
     "Random",
@@ -6439,51 +6456,51 @@ const char Option7[OPT7NUM][25] = {
 };
 #endif
 
-#define OPT8NUM 2
-#ifdef FE6
-extern const char Option8[OPT8NUM][32]; // do align 16 before each?
-#else
-const char Option8[OPT8NUM][10] = {
-    "Classic",
-    "Casual",
-};
-#endif
 #define OPT9NUM 2
 #ifdef FE6
 extern const char Option9[OPT9NUM][32]; // do align 16 before each?
 #else
-const char Option9[OPT9NUM][22] = {
-    "Vanilla BGM",
-    "Random BGM",
+const char Option9[OPT9NUM][10] = {
+    "Classic",
+    "Casual",
 };
 #endif
-#define OPT10NUM 4
+#define OPT10NUM 2
 #ifdef FE6
 extern const char Option10[OPT10NUM][32]; // do align 16 before each?
 #else
 const char Option10[OPT10NUM][22] = {
+    "Vanilla BGM",
+    "Random BGM",
+};
+#endif
+#define OPT11NUM 4
+#ifdef FE6
+extern const char Option11[OPT11NUM][32]; // do align 16 before each?
+#else
+const char Option11[OPT11NUM][22] = {
     "Vanilla Colours",
     "Random",
     "Janky",
     "Portraits only",
 };
 #endif
-#define OPT11NUM 3
+#define OPT12NUM 3
 #ifdef FE6
-extern const char Option11[OPT11NUM][48]; // do align 16 before each?
+extern const char Option12[OPT12NUM][48]; // do align 16 before each?
 #else
-const char Option11[OPT11NUM][20] = {
+const char Option12[OPT12NUM][20] = {
     // Item durability
     "Vanilla",
     "Infinite weapons",
     "Infinite items",
 };
 #endif
-#define OPT12NUM 31
+#define OPT13NUM 31
 #ifdef FE6
-extern const char Option12[OPT12NUM][42]; // do align 16 before each?
+extern const char Option13[OPT13NUM][42]; // do align 16 before each?
 #else
-const char Option12[OPT12NUM][20] = {
+const char Option13[OPT13NUM][20] = {
     // players
     "Vanilla",           "+1 hidden level",   "+2 hidden levels",  "+3 hidden levels",  "+4 hidden levels",
     "+5 hidden levels",  "+6 hidden levels",  "+7 hidden levels",  "+8 hidden levels",  "+9 hidden levels",
@@ -6495,22 +6512,22 @@ const char Option12[OPT12NUM][20] = {
 };
 #endif
 
-#define OPT13NUM 16
+#define OPT14NUM 16
 #ifdef FE6
-extern const char Option13[OPT13NUM][32]; // do align 16 before each?
+extern const char Option14[OPT14NUM][32]; // do align 16 before each?
 #else
-const char Option13[OPT13NUM][10] = {
+const char Option14[OPT14NUM][10] = {
     // Enemies
     "Vanilla", "+10%", "+20%",  "+30%", "+40%", "+50%", "+60%", "+70%",
     "+80%",    "+90%", "+100%", "-10%", "-20%", "-30%", "-40%", "-50%",
 };
 #endif
 
-#define OPT14NUM 31
+#define OPT15NUM 31
 #ifdef FE6
-extern const char Option14[OPT14NUM][42]; // do align 16 before each?
+extern const char Option15[OPT15NUM][42]; // do align 16 before each?
 #else
-const char Option14[OPT14NUM][20] = {
+const char Option15[OPT15NUM][20] = {
     // Enemies
     "Vanilla",           "+1 hidden level",   "+2 hidden levels",  "+3 hidden levels",  "+4 hidden levels",
     "+5 hidden levels",  "+6 hidden levels",  "+7 hidden levels",  "+8 hidden levels",  "+9 hidden levels",
@@ -6522,72 +6539,72 @@ const char Option14[OPT14NUM][20] = {
 };
 #endif
 
-#define OPT15NUM 16
+#define OPT16NUM 16
 #ifdef FE6
-extern const char Option15[OPT15NUM][32]; // do align 16 before each?
+extern const char Option16[OPT16NUM][32]; // do align 16 before each?
 #else
-const char Option15[OPT15NUM][10] = {
+const char Option16[OPT16NUM][10] = {
     // Enemies
     "Vanilla", "+10%", "+20%",  "+30%", "+40%", "+50%", "+60%", "+70%",
     "+80%",    "+90%", "+100%", "-10%", "-20%", "-30%", "-40%", "-50%",
 };
 #endif
 
-#define OPT16NUM 3
+#define OPT17NUM 3
 #ifdef FE6
-extern const char Option16[OPT16NUM][32]; // do align 16 before each?
+extern const char Option17[OPT17NUM][32]; // do align 16 before each?
 #else
-const char Option16[OPT16NUM][11] = {
+const char Option17[OPT17NUM][11] = {
     "Vanilla",
     "Always off",
     "Always on",
 };
 #endif
-#define OPT17NUM 3
+#define OPT18NUM 3
 #ifdef FE6
-extern const char Option17[OPT17NUM][64]; // do align 16 before each?
+extern const char Option18[OPT18NUM][64]; // do align 16 before each?
 #else
-const char Option17[OPT17NUM][25] = {
+const char Option18[OPT18NUM][25] = {
     "Vanilla",
     "Charge towards you",
     "Gradually charge",
 };
 #endif
 
-#define OPT18NUM 2
-#ifdef FE6
-extern const char Option18[OPT18NUM][32]; // do align 16 before each?
-#else
-const char Option18[OPT18NUM][14] = {
-    "Vanilla",
-    "Press A",
-};
-#endif
-#define OPT19NUM 4
+#define OPT19NUM 2
 #ifdef FE6
 extern const char Option19[OPT19NUM][32]; // do align 16 before each?
 #else
 const char Option19[OPT19NUM][14] = {
+    "Vanilla",
+    "Press A",
+};
+#endif
+#define OPT20NUM 4
+#ifdef FE6
+extern const char Option20[OPT20NUM][32]; // do align 16 before each?
+#else
+const char Option20[OPT20NUM][14] = {
     "None",
     "All",
     "Players",
     "Enemies",
 };
 #endif
-#define OPT20NUM 2
-const char Option20[OPT20NUM][20] = {
+#define OPT21NUM 2
+const char Option21[OPT21NUM][20] = {
     "Disabled",
     "Press B on unit",
 };
-#define OPT21NUM 4
-const char Option21[OPT21NUM][10] = {
+#define OPT22NUM 4
+const char Option22[OPT22NUM][10] = {
     "Off",
     "Easy",
     "Normal",
     "Hard",
 };
-#define OPT22NUM 4
-const char Option22[OPT22NUM][10] = {
+#define OPT23NUM 4
+const char Option23[OPT23NUM][10] = {
     "Vanilla",
     "Random",
     "Fixed",
@@ -6596,7 +6613,7 @@ const char Option22[OPT22NUM][10] = {
 
 const u8 OptionAmounts[] = { OPT0NUM,  OPT1NUM,  OPT2NUM,  OPT3NUM,  OPT4NUM,  OPT5NUM,  OPT6NUM,  OPT7NUM,  OPT8NUM,
                              OPT9NUM,  OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM,
-                             OPT18NUM, OPT19NUM, OPT20NUM, OPT21NUM, OPT22NUM, 0,        0,        0 };
+                             OPT18NUM, OPT19NUM, OPT20NUM, OPT21NUM, OPT22NUM, OPT23NUM, 0,        0 };
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -7043,9 +7060,11 @@ const int SRR_NUMBERDISP = 8;
 extern const int SRR_TotalOptions;
 #define MaxTW 11
 #define MaxRTW 16
-const u8 tWidths[] = { 3, 5, 7, 6, 5, 5, 6, 3, 3, 3, 3, 4, 6, 7, 11, 10, 11, 2, 6, 7, 7, 5, 6, 4 };
+const u8 tWidths[] = { 3, 5, 7, 4, 6, 5, 5, 6, 3, 3, 3, 3, 4, 6, 7, 11, 10, 11, 2, 6, 7, 7, 5, 6, 4 };
 // const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 5, 13, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 8, 4, 16 };
-const u8 RtWidths[] = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
+const u8 RtWidths[] = {
+    16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16
+};
 void DrawConfigMenu(ConfigMenuProc * proc)
 {
     // return;
@@ -7269,9 +7288,7 @@ void DrawConfigMenu(ConfigMenuProc * proc)
             {
                 break;
             }
-#ifdef FE8
         case 21:
-        {
             PutDrawText(
                 &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
                 PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding));
@@ -7280,14 +7297,25 @@ void DrawConfigMenu(ConfigMenuProc * proc)
             {
                 break;
             }
-        }
+#ifdef FE8
         case 22:
+        {
+            PutDrawText(
+                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                PutStringInBuffer(Option21[proc->Option[21]], UseHuffmanEncoding));
+            i++;
+            if (i > SRR_MAXDISP)
+            {
+                break;
+            }
+        }
+        case 23:
         {
             if (DisplayTimedHitsOption)
             {
                 PutDrawText(
                     &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                    PutStringInBuffer(Option21[proc->Option[21]], UseHuffmanEncoding));
+                    PutStringInBuffer(Option22[proc->Option[22]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -7295,15 +7323,15 @@ void DrawConfigMenu(ConfigMenuProc * proc)
                 }
             }
         }
-        case 23:
+        case 24:
         {
             if (DisplayRandomSkillsOption)
             {
-                if ((proc->Option[22] != 3) || (!IsSkill(proc->skill)))
+                if ((proc->Option[23] != 3) || (!IsSkill(proc->skill)))
                 {
                     PutDrawText(
                         &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                        PutStringInBuffer(Option22[proc->Option[22]], UseHuffmanEncoding));
+                        PutStringInBuffer(Option23[proc->Option[23]], UseHuffmanEncoding));
                     i++;
                 }
                 else
@@ -7311,7 +7339,7 @@ void DrawConfigMenu(ConfigMenuProc * proc)
                     char string[30];
                     PutDrawText(
                         &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                        GetCombinedString(Option22[proc->Option[22]], GetSkillName(proc->skill), string));
+                        GetCombinedString(Option23[proc->Option[23]], GetSkillName(proc->skill), string));
                     i++;
                     // DrawIcon(
                     // gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
@@ -7579,60 +7607,65 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
                 reloadUnits = true;
             }
         }
-        if (RandBitflags->base != proc->Option[2])
+        if (GrowthValues->ForcedCharTable != proc->Option[2])
         {
             reloadUnits = true;
         }
-        if (RandBitflags->growth != proc->Option[3])
+
+        if (RandBitflags->base != proc->Option[3])
         {
             reloadUnits = true;
         }
-        if (RandBitflags->levelups != proc->Option[4])
+        if (RandBitflags->growth != proc->Option[4])
         {
             reloadUnits = true;
         }
-        if (RandBitflags->caps != proc->Option[5])
+        if (RandBitflags->levelups != proc->Option[5])
         {
             reloadUnits = true;
         }
-        if (RandBitflags->class != proc->Option[6])
+        if (RandBitflags->caps != proc->Option[6])
         {
-            if (proc->Option[6] == 2)
+            reloadUnits = true;
+        }
+        if (RandBitflags->class != proc->Option[7])
+        {
+            if (proc->Option[7] == 2)
             {
                 reloadPlayers = true;
             }
-            if (proc->Option[6] == 3)
+            if (proc->Option[7] == 3)
             {
                 reloadEnemies = true;
             }
-            if (proc->Option[6] == 1)
+            if (proc->Option[7] == 1)
             {
                 reloadUnits = true;
             }
-            if (proc->Option[6] == 0)
+            if (proc->Option[7] == 0)
             {
                 reloadUnits = true;
             }
         }
-        if (RandBitflags->playerBonus != proc->Option[12])
+        if (RandBitflags->playerBonus != proc->Option[13])
         {
             reloadPlayers = true;
         }
-        if (GrowthValues->player != proc->Option[13])
+        if (GrowthValues->player != proc->Option[14])
         {
             reloadPlayers = true;
         }
-        if (RandValues->bonus != proc->Option[14])
+        if (RandValues->bonus != proc->Option[15])
         {
             reloadEnemies = true;
         }
-        if (GrowthValues->enemy != proc->Option[15])
+        if (GrowthValues->enemy != proc->Option[16])
         {
             reloadEnemies = true;
         }
         if (DisplayRandomSkillsOption)
         {
-            if (RandValues->skills != proc->Option[22])
+            if (RandValues->skills != proc->Option[23])
             {
                 reloadUnits = true;
             }
@@ -7654,47 +7687,47 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
         if (proc->calledFromChapter)
         { // are you sure units should be reloaded?
-            if ((id + offset) != 20)
+            if ((id + offset) != 21)
             {
-                if ((id + offset) != 19)
+                if ((id + offset) != 20)
                 {
                     proc->id = 7;
-                    proc->offset = 13;
+                    proc->offset = 14;
                     proc->redraw = RedrawAll;
-                    proc->Option[19] = 0;
+                    proc->Option[20] = 0;
                     if (reloadPlayers)
                     {
-                        proc->Option[19] = 2;
+                        proc->Option[20] = 2;
                     }
                     if (reloadEnemies)
                     {
-                        proc->Option[19] = 3;
+                        proc->Option[20] = 3;
                     }
                     if (reloadPlayers && reloadEnemies)
                     {
-                        proc->Option[19] = 1;
+                        proc->Option[20] = 1;
                     }
                     DrawConfigMenu(proc);
                     return;
                 }
             }
         }
-        if (proc->Option[19] == 0)
+        if (proc->Option[20] == 0)
         {
             proc->reloadPlayers = false;
             proc->reloadEnemies = false;
         } // player chooses
-        if (proc->Option[19] == 1)
+        if (proc->Option[20] == 1)
         {
             proc->reloadPlayers = true;
             proc->reloadEnemies = true;
         }
-        if (proc->Option[19] == 2)
+        if (proc->Option[20] == 2)
         {
             proc->reloadPlayers = true;
             proc->reloadEnemies = false;
         }
-        if (proc->Option[19] == 3)
+        if (proc->Option[20] == 3)
         {
             proc->reloadPlayers = false;
             proc->reloadEnemies = true;
@@ -7708,10 +7741,11 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         RandValues->seed = proc->seed;
         RandValues->variance = proc->Option[0];
         RecruitValues->recruitment = proc->Option[1];
+        GrowthValues->ForcedCharTable = proc->Option[2];
         RecruitValues->pauseNameReplace = false;
-        RandBitflags->base = proc->Option[2];
-        RandBitflags->growth = proc->Option[3];
-        if (proc->Option[3] > 3)
+        RandBitflags->base = proc->Option[3];
+        RandBitflags->growth = proc->Option[4];
+        if (proc->Option[4] > 3)
         {
             RandBitflags->grow50 = true;
         }
@@ -7719,18 +7753,18 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             RandBitflags->grow50 = false;
         }
-        RandBitflags->levelups = proc->Option[4];
-        RandBitflags->caps = proc->Option[5];
-        RandBitflags->class = proc->Option[6];
-        if (proc->Option[6] == 4)
+        RandBitflags->levelups = proc->Option[5];
+        RandBitflags->caps = proc->Option[6];
+        RandBitflags->class = proc->Option[7];
+        if (proc->Option[7] == 4)
         {
             RandBitflags->class = 1;
             RecruitValues->newClasses = 1;
         }
-        RandBitflags->itemStats = ((proc->Option[7] == 1) || (proc->Option[7] == 3));
-        RandBitflags->foundItems = ((proc->Option[7] == 1) || (proc->Option[7] == 2));
-        RandBitflags->shopItems = ((proc->Option[7] == 1) || (proc->Option[7] == 2));
-        if (proc->Option[8] == 1)
+        RandBitflags->itemStats = ((proc->Option[8] == 1) || (proc->Option[8] == 3));
+        RandBitflags->foundItems = ((proc->Option[8] == 1) || (proc->Option[8] == 2));
+        RandBitflags->shopItems = ((proc->Option[8] == 1) || (proc->Option[8] == 2));
+        if (proc->Option[9] == 1)
         {
             SetFlag(CasualModeFlag);
         }
@@ -7739,17 +7773,17 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             UnsetFlag(CasualModeFlag);
         }
 
-        RandBitflags->randMusic = proc->Option[9];
-        RandBitflags->colours = proc->Option[10];
-        RandBitflags->itemDur = proc->Option[11];
-        RandBitflags->playerBonus = proc->Option[12];
-        GrowthValues->player = proc->Option[13];
-        RandValues->bonus = proc->Option[14];
-        GrowthValues->enemy = proc->Option[15];
-        RecruitValues->ai = proc->Option[17];
+        RandBitflags->randMusic = proc->Option[10];
+        RandBitflags->colours = proc->Option[11];
+        RandBitflags->itemDur = proc->Option[12];
+        RandBitflags->playerBonus = proc->Option[13];
+        GrowthValues->player = proc->Option[14];
+        RandValues->bonus = proc->Option[15];
+        GrowthValues->enemy = proc->Option[16];
+        RecruitValues->ai = proc->Option[18];
 
 #ifdef FE8
-        if (proc->Option[20] == 0)
+        if (proc->Option[21] == 0)
         {
             SetFlag(DebuggerTurnedOff_Flag);
         }
@@ -7760,13 +7794,13 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
         if (DisplayRandomSkillsOption)
         {
-            RandValues->skills = proc->Option[22];
+            RandValues->skills = proc->Option[23];
             AlwaysSkill[0] = proc->skill;
         }
 
         if (DisplayTimedHitsOption)
         {
-            int timedHits = proc->Option[21];
+            int timedHits = proc->Option[22];
             TimedHitsDifficultyRam->off = false;
             TimedHitsDifficultyRam->alwaysA = false;
             TimedHitsDifficultyRam->difficulty = 0;
@@ -7789,22 +7823,22 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
 #endif
 
-        if (RandBitflags->fog != proc->Option[16])
+        if (RandBitflags->fog != proc->Option[17])
         {
-            if ((proc->Option[16] == 1) && proc->calledFromChapter)
+            if ((proc->Option[17] == 1) && proc->calledFromChapter)
             {
                 UpdateMapViewWithFog(0);
             }
-            if ((proc->Option[16] == 2) && proc->calledFromChapter)
+            if ((proc->Option[17] == 2) && proc->calledFromChapter)
             {
                 UpdateMapViewWithFog(3);
             }
-            if ((proc->Option[16] == 0) && proc->calledFromChapter)
+            if ((proc->Option[17] == 0) && proc->calledFromChapter)
             {
                 UpdateMapViewWithFog(-1);
             }
         }
-        RandBitflags->fog = proc->Option[16];
+        RandBitflags->fog = proc->Option[17];
 
         RecruitmentProc * recruitmentProc = Proc_Find(RecruitmentProcCmd1);
         if (recruitmentProc)
@@ -7828,10 +7862,10 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
 
 #ifdef FE8
-        if (proc->Option[18] && ((id + offset) == 19))
+        if (proc->Option[19] && ((id + offset) == 20))
         {
 #else
-        if (proc->Option[18] && ((id + offset) == 19))
+        if (proc->Option[19] && ((id + offset) == 20))
         {
 #endif
             if (proc->calledFromChapter)
@@ -7954,7 +7988,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     //
 
-    if (((id + offset) == 23) && (proc->Option[22] == 3) && (proc->choosingSkill))
+    if (((id + offset) == 24) && (proc->Option[23] == 3) && (proc->choosingSkill))
     {
 
         if (keys & DPAD_UP)
@@ -8080,7 +8114,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0);
     if (proc->redraw == RedrawSome)
     {
-        if (((id + offset) == 23) && (proc->Option[22] == 3))
+        if (((id + offset) == 24) && (proc->Option[23] == 3))
         {
             proc->choosingSkill = true;
         }
@@ -8098,6 +8132,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 extern const char SeedText;
 extern const char VarianceText;
 extern const char CharactersText;
+extern const char GameText;
 extern const char BaseStatsText;
 extern const char GrowthsText;
 extern const char LevelupsText;
@@ -8121,6 +8156,7 @@ extern const char RandomizerText;
 const char SeedText[] = { "Seed" };
 const char VarianceText[] = { "Variance" };
 const char CharactersText[] = { "Characters" };
+const char GameText[] = { "From Game" };
 const char BaseStatsText[] = { "Base Stats" };
 const char GrowthsText[] = { "Growths" };
 const char LevelupsText[] = { "Levelups" };
@@ -8193,7 +8229,7 @@ void RedrawAllText(ConfigMenuProc * proc)
         case 3:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&BaseStatsText, false));
+                PutStringInBuffer((const char *)&GameText, false));
             i++;
             if (i > SRR_MAXDISP)
             {
@@ -8202,7 +8238,7 @@ void RedrawAllText(ConfigMenuProc * proc)
         case 4:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&GrowthsText, false));
+                PutStringInBuffer((const char *)&BaseStatsText, false));
             i++;
             if (i > SRR_MAXDISP)
             {
@@ -8211,7 +8247,7 @@ void RedrawAllText(ConfigMenuProc * proc)
         case 5:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&LevelupsText, false));
+                PutStringInBuffer((const char *)&GrowthsText, false));
             i++;
             if (i > SRR_MAXDISP)
             {
@@ -8220,7 +8256,7 @@ void RedrawAllText(ConfigMenuProc * proc)
         case 6:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&StatCapsText, false));
+                PutStringInBuffer((const char *)&LevelupsText, false));
             i++;
             if (i > SRR_MAXDISP)
             {
@@ -8229,7 +8265,7 @@ void RedrawAllText(ConfigMenuProc * proc)
         case 7:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&ClassText, false));
+                PutStringInBuffer((const char *)&StatCapsText, false));
             i++;
             if (i > SRR_MAXDISP)
             {
@@ -8238,7 +8274,7 @@ void RedrawAllText(ConfigMenuProc * proc)
         case 8:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&ItemsText, false));
+                PutStringInBuffer((const char *)&ClassText, false));
             i++;
             if (i > SRR_MAXDISP)
             {
@@ -8247,13 +8283,22 @@ void RedrawAllText(ConfigMenuProc * proc)
         case 9:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
+                PutStringInBuffer((const char *)&ItemsText, false));
+            i++;
+            if (i > SRR_MAXDISP)
+            {
+                break;
+            }
+        case 10:
+            PutDrawText(
+                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&ModeText, false));
             i++; // Classic/Casual
             if (i > SRR_MAXDISP)
             {
                 break;
             }
-        case 10:
+        case 11:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&MusicText, false));
@@ -8262,7 +8307,7 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-        case 11:
+        case 12:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&ColoursText, false));
@@ -8271,7 +8316,7 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-        case 12:
+        case 13:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&ItemDurabilityText, false));
@@ -8280,7 +8325,7 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-        case 13:
+        case 14:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&PlayerBonusText, false));
@@ -8289,7 +8334,7 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-        case 14:
+        case 15:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&PlayerGrowthBonusText, false));
@@ -8298,7 +8343,7 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-        case 15:
+        case 16:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&EnemyDiffBonusText, false));
@@ -8307,7 +8352,7 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-        case 16:
+        case 17:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&EnemyGrowthBonusText, false));
@@ -8316,7 +8361,7 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-        case 17:
+        case 18:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&FogText, false));
@@ -8325,7 +8370,7 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-        case 18:
+        case 19:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&SoftlockPreventionText, false));
@@ -8334,7 +8379,7 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-        case 19:
+        case 20:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&SkipChapterText, false));
@@ -8343,7 +8388,7 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-        case 20:
+        case 21:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&ReloadUnitsText, false));
@@ -8353,7 +8398,7 @@ void RedrawAllText(ConfigMenuProc * proc)
                 break;
             }
 #ifdef FE8
-        case 21:
+        case 22:
             PutDrawText(
                 &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
                 PutStringInBuffer((const char *)&DebuggerText, false));
@@ -8363,7 +8408,7 @@ void RedrawAllText(ConfigMenuProc * proc)
                 break;
             }
 
-        case 22:
+        case 23:
         {
             if (DisplayTimedHitsOption)
             {
@@ -8377,7 +8422,7 @@ void RedrawAllText(ConfigMenuProc * proc)
                 }
             }
         }
-        case 23:
+        case 24:
         {
             if (DisplayRandomSkillsOption)
             {
@@ -8531,15 +8576,16 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         {
             proc->Option[0] = OptionAmounts[0] - 1; // start on 100%
             proc->Option[1] = 1;
-            proc->Option[2] = 1;
+            proc->Option[2] = 0; // Fe8 game
             proc->Option[3] = 1;
             proc->Option[4] = 1;
             proc->Option[5] = 1;
             proc->Option[6] = 1;
             proc->Option[7] = 1;
-            // proc->Option[8] = 0; // Classic
-            proc->Option[9] = 1;  // Random BGM
-            proc->Option[10] = 1; // Random Colours
+            proc->Option[8] = 1;
+            proc->Option[9] = 0;  // Classic
+            proc->Option[10] = 1; // Random BGM
+            proc->Option[11] = 1; // Random Colours
         }
         proc->id = 1;
         proc->calledFromChapter = false;
@@ -8556,14 +8602,14 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         proc->seed = GetInitialSeed(2);
         proc->digit = 0;
         StartGreenText(proc);
-        proc->Option[20] = 1;
+        proc->Option[21] = 1;
 
-        proc->Option[21] = 1; // timed hits
+        proc->Option[22] = 1; // timed hits
 #ifdef FORCE_SPECIFIC_SEED
-        proc->Option[2] = 0;
         proc->Option[3] = 0;
-        proc->Option[5] = 0;
+        proc->Option[4] = 0;
         proc->Option[6] = 0;
+        proc->Option[7] = 0;
         proc->seed = 387508;
         proc->freezeSeed = true;
 #endif
@@ -8597,65 +8643,67 @@ int MenuStartConfigMenu(ProcPtr parent)
     // pull up your previously saved options
     proc->Option[0] = RandValues->variance;
     proc->Option[1] = RecruitValues->recruitment;
-    proc->Option[2] = RandBitflags->base;
-    proc->Option[3] = RandBitflags->growth + (RandBitflags->grow50 * 4);
-    proc->Option[4] = RandBitflags->levelups;
-    proc->Option[5] = RandBitflags->caps;
-    proc->Option[6] = RandBitflags->class;
+    proc->Option[2] = GrowthValues->ForcedCharTable;
+
+    proc->Option[3] = RandBitflags->base;
+    proc->Option[4] = RandBitflags->growth + (RandBitflags->grow50 * 4);
+    proc->Option[5] = RandBitflags->levelups;
+    proc->Option[6] = RandBitflags->caps;
+    proc->Option[7] = RandBitflags->class;
     if (RecruitValues->newClasses)
     {
-        proc->Option[6] = 4;
+        proc->Option[7] = 4;
     }
     if (RandBitflags->itemStats && RandBitflags->foundItems)
     {
-        proc->Option[7] = 1;
+        proc->Option[8] = 1;
     }
     else if (RandBitflags->itemStats)
     {
-        proc->Option[7] = 3;
+        proc->Option[8] = 3;
     }
     else if (RandBitflags->foundItems)
     {
-        proc->Option[7] = 2;
+        proc->Option[8] = 2;
     }
     else
     {
-        proc->Option[7] = 0;
+        proc->Option[8] = 0;
     }
-    proc->Option[8] = CheckFlag(CasualModeFlag);
-    proc->Option[9] = RandBitflags->randMusic;
-    proc->Option[10] = RandBitflags->colours;
-    proc->Option[11] = RandBitflags->itemDur;
-    proc->Option[12] = RandBitflags->playerBonus;
-    proc->Option[13] = GrowthValues->player;
-    proc->Option[14] = RandValues->bonus;
-    proc->Option[15] = GrowthValues->enemy;
-    proc->Option[16] = RandBitflags->fog;
-    proc->Option[17] = RecruitValues->ai;
+    proc->Option[9] = CheckFlag(CasualModeFlag);
+    proc->Option[10] = RandBitflags->randMusic;
+    proc->Option[11] = RandBitflags->colours;
+    proc->Option[12] = RandBitflags->itemDur;
+    proc->Option[13] = RandBitflags->playerBonus;
+    proc->Option[14] = GrowthValues->player;
+    proc->Option[15] = RandValues->bonus;
+    proc->Option[16] = GrowthValues->enemy;
+    proc->Option[17] = RandBitflags->fog;
+    proc->Option[18] = RecruitValues->ai;
 
 #ifdef FE8
-    proc->Option[20] = !CheckFlag(DebuggerTurnedOff_Flag);
+    proc->Option[21] = !CheckFlag(DebuggerTurnedOff_Flag);
     if (DisplayTimedHitsOption)
     {
-        proc->Option[21] = 0;
+        proc->Option[22] = 0;
         if (TimedHitsDifficultyRam->alwaysA)
         {
-            proc->Option[21] = 1;
+            proc->Option[22] = 1;
         }
         if (TimedHitsDifficultyRam->difficulty == 2)
         {
-            proc->Option[21] = 2;
+            proc->Option[22] = 2;
         }
         if (TimedHitsDifficultyRam->difficulty == 3)
         {
-            proc->Option[21] = 3;
+            proc->Option[22] = 3;
         }
     }
 #endif
 
     if (DisplayRandomSkillsOption)
     {
-        proc->Option[22] = RandValues->skills;
+        proc->Option[23] = RandValues->skills;
         proc->skill = AlwaysSkill[0];
     }
 
