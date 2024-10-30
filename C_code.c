@@ -327,9 +327,10 @@ int GetPreviousAlwaysSkill(int id)
 #define PlayerPortraitSize 0x35
 #endif
 extern const struct CharacterData gCharacterData[];
-extern const struct CharacterData gCharacterData2[];
-const struct CharacterData * const cData[] = { gCharacterData, gCharacterData2 };
-const int NumberOfCharTables = 2;
+extern const struct CharacterData gCharacterDataFE7[];
+extern const struct CharacterData gCharacterDataFE6[];
+const struct CharacterData * const cData[] = { gCharacterData, gCharacterDataFE7, gCharacterDataFE6 };
+const int NumberOfCharTables = 3;
 int ShouldRandomizeUsedCharTable(void)
 {
     return (GrowthValues->ForcedCharTable < NumberOfCharTables);
@@ -342,17 +343,17 @@ int GetForcedCharTable(void)
 
 int GetCharTableID(int portraitID)
 {
-    if (!ShouldRandomizeUsedCharTable())
-    {
-        return 0;
-    } // vanilla table only
+    // if (!ShouldRandomizeUsedCharTable())
+    // {
+    // return 0;
+    // } // vanilla table only
     int result = GetForcedCharTable();
     if (result < NumberOfCharTables)
     {
         return result;
     }
     int noise[4] = { 5, 7, 9, 11 };
-    result = HashByte_Global(portraitID, NumberOfCharTables, noise, 19);
+    result = HashByte_Global(portraitID, NumberOfCharTables, noise, portraitID);
     // randomize
     return result;
 }
@@ -6376,19 +6377,19 @@ const char Option1[OPT1NUM][32] = {
 };
 #endif
 
-#define OPT2NUM 3
+#define OPT2NUM 4
 #ifdef FE6
 extern const char Option2[OPT2NUM][64]; // do align 16 before each?
 #else
 const char Option2[OPT2NUM][32] = {
 #ifdef FE8
-    "FE8",    "FE7",
+    "FE8",    "FE7", "FE6",
 #endif
 #ifdef FE7
-    "FE7",    "FE8",
+    "FE7",    "FE8", "FE6",
 #endif
 #ifdef FE6
-    "FE6",    "FE7",
+    "FE6",    "FE7", "FE8",
 #endif
     "Random",
 };

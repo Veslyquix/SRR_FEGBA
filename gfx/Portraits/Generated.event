@@ -298,26 +298,26 @@ FlaerMugData:
 setMugEntry(FlaerMug, FlaerMugData, 2, 5, 3, 3)
 
 ALIGN 4
-GaleMugData:
-#incbin "Dmp/Gale_mug.dmp"
-#incbin "Dmp/Gale_frames.dmp"
-#incbin "Dmp/Gale_palette.dmp"
-#incbin "Dmp/Gale_minimug.dmp"
-#ifndef GaleMug
-  #define GaleMug (FirstMugID+28)
+GalleMugData:
+#incbin "Dmp/Galle_mug.dmp"
+#incbin "Dmp/Galle_frames.dmp"
+#incbin "Dmp/Galle_palette.dmp"
+#incbin "Dmp/Galle_minimug.dmp"
+#ifndef GalleMug
+  #define GalleMug (FirstMugID+28)
 #endif
-setMugEntry(GaleMug, GaleMugData, 2, 5, 3, 3)
+setMugEntry(GalleMug, GalleMugData, 2, 5, 3, 3)
 
 ALIGN 4
-GarretMugData:
-#incbin "Dmp/Garret_mug.dmp"
-#incbin "Dmp/Garret_frames.dmp"
-#incbin "Dmp/Garret_palette.dmp"
-#incbin "Dmp/Garret_minimug.dmp"
-#ifndef GarretMug
-  #define GarretMug (FirstMugID+29)
+GarrettMugData:
+#incbin "Dmp/Garrett_mug.dmp"
+#incbin "Dmp/Garrett_frames.dmp"
+#incbin "Dmp/Garrett_palette.dmp"
+#incbin "Dmp/Garrett_minimug.dmp"
+#ifndef GarrettMug
+  #define GarrettMug (FirstMugID+29)
 #endif
-setMugEntry(GarretMug, GarretMugData, 2, 4, 3, 2)
+setMugEntry(GarrettMug, GarrettMugData, 2, 4, 3, 2)
 
 ALIGN 4
 GeeseMugData:
@@ -353,15 +353,15 @@ GuerreroMugData:
 setMugEntry(GuerreroMug, GuerreroMugData, 2, 5, 3, 3)
 
 ALIGN 4
-GuinevereMugData:
-#incbin "Dmp/Guinevere_mug.dmp"
-#incbin "Dmp/Guinevere_frames.dmp"
-#incbin "Dmp/Guinevere_palette.dmp"
-#incbin "Dmp/Guinevere_minimug.dmp"
-#ifndef GuinevereMug
-  #define GuinevereMug (FirstMugID+33)
+GuinivereMugData:
+#incbin "Dmp/Guinivere_mug.dmp"
+#incbin "Dmp/Guinivere_frames.dmp"
+#incbin "Dmp/Guinivere_palette.dmp"
+#incbin "Dmp/Guinivere_minimug.dmp"
+#ifndef GuinivereMug
+  #define GuinivereMug (FirstMugID+33)
 #endif
-setMugEntry(GuinevereMug, GuinevereMugData, 3, 6, 3, 4)
+setMugEntry(GuinivereMug, GuinivereMugData, 3, 6, 3, 4)
 
 ALIGN 4
 GwendolynMugData:
@@ -738,15 +738,15 @@ OrloMugData:
 setMugEntry(OrloMug, OrloMugData, 3, 5, 3, 3)
 
 ALIGN 4
-PercivalMugData:
-#incbin "Dmp/Percival_mug.dmp"
-#incbin "Dmp/Percival_frames.dmp"
-#incbin "Dmp/Percival_palette.dmp"
-#incbin "Dmp/Percival_minimug.dmp"
-#ifndef PercivalMug
-  #define PercivalMug (FirstMugID+68)
+PercevalMugData:
+#incbin "Dmp/Perceval_mug.dmp"
+#incbin "Dmp/Perceval_frames.dmp"
+#incbin "Dmp/Perceval_palette.dmp"
+#incbin "Dmp/Perceval_minimug.dmp"
+#ifndef PercevalMug
+  #define PercevalMug (FirstMugID+68)
 #endif
-setMugEntry(PercivalMug, PercivalMugData, 2, 5, 2, 3)
+setMugEntry(PercevalMug, PercevalMugData, 2, 5, 2, 3)
 
 ALIGN 4
 PeresMugData:
@@ -969,26 +969,26 @@ TrecMugData:
 setMugEntry(TrecMug, TrecMugData, 2, 5, 3, 3)
 
 ALIGN 4
-WadeMugData:
-#incbin "Dmp/Wade_mug.dmp"
-#incbin "Dmp/Wade_frames.dmp"
-#incbin "Dmp/Wade_palette.dmp"
-#incbin "Dmp/Wade_minimug.dmp"
-#ifndef WadeMug
-  #define WadeMug (FirstMugID+89)
-#endif
-setMugEntry(WadeMug, WadeMugData, 2, 5, 2, 3)
-
-ALIGN 4
 WagnerMugData:
 #incbin "Dmp/Wagner_mug.dmp"
 #incbin "Dmp/Wagner_frames.dmp"
 #incbin "Dmp/Wagner_palette.dmp"
 #incbin "Dmp/Wagner_minimug.dmp"
 #ifndef WagnerMug
-  #define WagnerMug (FirstMugID+90)
+  #define WagnerMug (FirstMugID+89)
 #endif
 setMugEntry(WagnerMug, WagnerMugData, 2, 6, 3, 4)
+
+ALIGN 4
+WardMugData:
+#incbin "Dmp/Ward_mug.dmp"
+#incbin "Dmp/Ward_frames.dmp"
+#incbin "Dmp/Ward_palette.dmp"
+#incbin "Dmp/Ward_minimug.dmp"
+#ifndef WardMug
+  #define WardMug (FirstMugID+90)
+#endif
+setMugEntry(WardMug, WardMugData, 2, 5, 2, 3)
 
 ALIGN 4
 WilliamMugData:
