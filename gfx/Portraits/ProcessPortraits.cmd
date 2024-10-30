@@ -4,8 +4,8 @@
 
 @cd %~dp0/Png
 
-@dir *.png /b > png.txt
-
+@dir *.png /b/s > png.txt
+@echo Using Portrait Formatter.exe 
 @for /f "tokens=*" %%m in (png.txt) do ("%PortraitFormatter%" "%%m")
 
 @cd %~dp0
@@ -16,9 +16,11 @@
 
 @cd %~dp0
 
-@copy "%~dp0Png\*.dmp" "%~dp0Dmp" > nul
-
-@del "%~dp0Png\*.dmp"
+@echo Moving .dmp files into folder 
+for /r %%a in (*.dmp) do ( 
+@copy "%%a" "%~dp0Dmp" > nul
+@del "%%a" 
+)
 
 echo Done!
 
