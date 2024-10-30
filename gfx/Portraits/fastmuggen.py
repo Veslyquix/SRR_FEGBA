@@ -1,4 +1,5 @@
 from PIL import Image
+from pathlib import Path
 import numpy
 import os
 import struct
@@ -38,6 +39,7 @@ installer.write("//Generated! Do not edit!\n\n")
 while line:
     #grab the mug name
     mug = line.split(".")
+    mug[0] = Path(mug[0]).stem
     #write labels and incbins now that we know the name
     print(mug[0])
     installer.write("ALIGN 4\n")
@@ -48,7 +50,7 @@ while line:
     installer.write("#incbin \"Dmp/" + mug[0] + "_minimug.dmp\"\n")
     
     installer.write("#ifndef "+mug[0]+"Mug\n  #define "+mug[0]+"Mug (FirstMugID+"+str(c)+")\n#endif\n") 
-    image = Image.open(line.strip())
+    image = Image.open(line.strip()).quantize(16)
     arr = numpy.array(image.getdata(), dtype='<u1').reshape((112, 128))
     x1, y1, x2, y2 = cv_locate_eye_mouse_pos(arr)
     installer.write("setMugEntry("+mug[0]+"Mug, "+mug[0]+"MugData, "+str(x1)+", "+str(y1)+", "+str(x2)+", "+str(y2)+")\n\n")

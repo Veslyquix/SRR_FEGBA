@@ -1,5 +1,5 @@
 @echo off
-
+@fixfilenames.py 
 @set "PortraitFormatter=%~dp0/../../EventAssembler/Tools/PortraitFormatter.exe"
 
 @cd %~dp0/Png
@@ -12,7 +12,7 @@
 @fastmuggen.py
 
 @cd %~dp0/Png
-@rem @del png.txt
+@del png.txt
 
 @cd %~dp0
 
