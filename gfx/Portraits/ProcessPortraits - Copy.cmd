@@ -11,7 +11,7 @@
 @rem for /f "tokens=*" %%m in (png.txt) do ("%PortraitFormatter%" "%%m")
 
 @cd %~dp0
-@rem @fastmuggen.py
+@fastmuggen.py
 
 @cd %~dp0/Png
 @rem @del png.txt
