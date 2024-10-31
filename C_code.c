@@ -333,7 +333,7 @@ const struct CharacterData * const cData[] = { gCharacterData, gCharacterDataFE7
 const int NumberOfCharTables = 3;
 int ShouldRandomizeUsedCharTable(void)
 {
-    return (GrowthValues->ForcedCharTable < NumberOfCharTables);
+    return (GrowthValues->ForcedCharTable <= NumberOfCharTables);
 }
 
 int GetForcedCharTable(void)
