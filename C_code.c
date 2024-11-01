@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.6.3"
+#define VersionNumber " SRR V1.7.0"
 
 #ifdef FE8
 #include "headers/prelude.h"
@@ -6385,15 +6385,15 @@ extern const char Option2[OPT2NUM][64]; // do align 16 before each?
 #else
 const char Option2[OPT2NUM][32] = {
 #ifdef FE8
-    "FE8", "FE7",    "FE6",
+    "FE8",      "FE7",    "FE6",
 #endif
 #ifdef FE7
-    "FE7", "FE8",    "FE6",
+    "FE7",      "FE8",    "FE6",
 #endif
 #ifdef FE6
-    "FE6", "FE7",    "FE8",
+    "FE6",      "FE7",    "FE8",
 #endif
-    "FE9", "Random",
+    "FE9/FE10", "Random",
 };
 #endif
 
