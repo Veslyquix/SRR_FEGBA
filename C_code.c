@@ -330,9 +330,10 @@ extern const struct CharacterData gCharacterData[];
 extern const struct CharacterData gCharacterDataFE7[];
 extern const struct CharacterData gCharacterDataFE6[];
 extern const struct CharacterData gCharacterDataFE9[];
-const struct CharacterData * const cData[] = { gCharacterData, gCharacterDataFE7, gCharacterDataFE6,
-                                               gCharacterDataFE9 };
-const int NumberOfCharTables = 4;
+extern const struct CharacterData gCharacterDataFE1[];
+const struct CharacterData * const cData[] = { gCharacterData, gCharacterDataFE7, gCharacterDataFE6, gCharacterDataFE9,
+                                               gCharacterDataFE1 };
+const int NumberOfCharTables = 5;
 int ShouldRandomizeUsedCharTable(void)
 {
     return (GrowthValues->ForcedCharTable <= NumberOfCharTables);
@@ -6379,21 +6380,22 @@ const char Option1[OPT1NUM][32] = {
 };
 #endif
 
-#define OPT2NUM 5
+#define OPT2NUM 6
 #ifdef FE6
 extern const char Option2[OPT2NUM][64]; // do align 16 before each?
 #else
 const char Option2[OPT2NUM][32] = {
+
 #ifdef FE8
-    "FE8",      "FE7",    "FE6",
+    "FE8",      "FE7",      "FE6",
 #endif
 #ifdef FE7
-    "FE7",      "FE8",    "FE6",
+    "FE7",      "FE8",      "FE6",
 #endif
 #ifdef FE6
-    "FE6",      "FE7",    "FE8",
+    "FE6",      "FE7",      "FE8",
 #endif
-    "FE9/FE10", "Random",
+    "FE9/FE10", "FE1/3/11", "Random",
 };
 #endif
 
