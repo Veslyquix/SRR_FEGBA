@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.7.0"
+#define VersionNumber " SRR V1.7.1"
 
 #ifdef FE8
 #include "headers/prelude.h"
@@ -8590,7 +8590,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
             proc->Option[8] = 1;
             proc->Option[9] = 0;  // Classic
             proc->Option[10] = 1; // Random BGM
-            proc->Option[11] = 1; // Random Colours
+            proc->Option[11] = 0; // Random Colours off by default now
         }
         proc->id = 1;
         proc->calledFromChapter = false;
