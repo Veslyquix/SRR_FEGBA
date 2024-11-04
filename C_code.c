@@ -327,13 +327,19 @@ int GetPreviousAlwaysSkill(int id)
 #define PlayerPortraitSize 0x35
 #endif
 extern const struct CharacterData gCharacterData[];
-extern const struct CharacterData gCharacterDataFE7[];
-extern const struct CharacterData gCharacterDataFE6[];
-extern const struct CharacterData gCharacterDataFE9[];
 extern const struct CharacterData gCharacterDataFE1[];
-const struct CharacterData * const cData[] = { gCharacterData, gCharacterDataFE7, gCharacterDataFE6, gCharacterDataFE9,
-                                               gCharacterDataFE1 };
-const int NumberOfCharTables = 5;
+extern const struct CharacterData gCharacterDataFE4[];
+extern const struct CharacterData gCharacterDataFE5[];
+extern const struct CharacterData gCharacterDataFE6[];
+extern const struct CharacterData gCharacterDataFE7[];
+
+extern const struct CharacterData gCharacterDataFE10[];
+
+const struct CharacterData * const cData[] = {
+    gCharacterData,    gCharacterDataFE1, gCharacterDataFE4,  gCharacterDataFE5,
+    gCharacterDataFE6, gCharacterDataFE7, gCharacterDataFE10,
+};
+const int NumberOfCharTables = 7;
 int ShouldRandomizeUsedCharTable(void)
 {
     return (GrowthValues->ForcedCharTable <= NumberOfCharTables);
@@ -674,7 +680,20 @@ int GetUnitListToUse(const struct CharacterData * table, int boss, int excludeNo
             }
 #endif
 #ifdef FE8
-            if (table->number > 0x2c)
+            if (table->number == 0x54) // multi game chars $66 67 54
+            {
+                return 0;
+            }
+            if (table->number == 0x66) // multi game chars $66 67 54
+            {
+                return 0;
+            }
+            if (table->number == 0x67) // multi game chars $66 67 54
+            {
+                return 0;
+            }
+
+            if (table->number > 0x7f) // multi game chars $66 67 54
             {
                 return 0;
             }
@@ -6380,22 +6399,22 @@ const char Option1[OPT1NUM][32] = {
 };
 #endif
 
-#define OPT2NUM 6
+#define OPT2NUM 8
 #ifdef FE6
 extern const char Option2[OPT2NUM][64]; // do align 16 before each?
 #else
 const char Option2[OPT2NUM][32] = {
-
+    "Vanilla",  "FE1/3/11/12", "FE4", "FE5",
 #ifdef FE8
-    "FE8",      "FE7",      "FE6",
+    "FE6",      "FE7",
 #endif
 #ifdef FE7
-    "FE7",      "FE8",      "FE6",
+    "FE6",      "FE8",
 #endif
 #ifdef FE6
-    "FE6",      "FE7",      "FE8",
+    "FE7",      "FE8",
 #endif
-    "FE9/FE10", "FE1/3/11", "Random",
+    "FE9/FE10", "Random",
 };
 #endif
 
