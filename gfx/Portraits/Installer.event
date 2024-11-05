@@ -17,7 +17,8 @@ ORG NewPortraitTable
 #include "VanillaData.event" 
 
 
-
+ORG NewPortraitTable + (0x1C*0x400)
+ALIGN 4 
 #include "Generated.event" 
 
 
