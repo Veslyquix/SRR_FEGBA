@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.7.1"
+#define VersionNumber " SRR V1.7.2"
 
 #ifdef FE8
 #include "headers/prelude.h"
@@ -332,14 +332,14 @@ extern const struct CharacterData gCharacterDataFE4[];
 extern const struct CharacterData gCharacterDataFE5[];
 extern const struct CharacterData gCharacterDataFE6[];
 extern const struct CharacterData gCharacterDataFE7[];
-
 extern const struct CharacterData gCharacterDataFE10[];
+extern const struct CharacterData gCharacterDataFE13[];
 
 const struct CharacterData * const cData[] = {
     gCharacterData,    gCharacterDataFE1, gCharacterDataFE4,  gCharacterDataFE5,
-    gCharacterDataFE6, gCharacterDataFE7, gCharacterDataFE10,
+    gCharacterDataFE6, gCharacterDataFE7, gCharacterDataFE10, gCharacterDataFE13,
 };
-const int NumberOfCharTables = 7;
+const int NumberOfCharTables = 8;
 int ShouldRandomizeUsedCharTable(void)
 {
     return (GrowthValues->ForcedCharTable <= NumberOfCharTables);
@@ -6399,22 +6399,30 @@ const char Option1[OPT1NUM][32] = {
 };
 #endif
 
-#define OPT2NUM 8
+#define OPT2NUM 9
 #ifdef FE6
 extern const char Option2[OPT2NUM][64]; // do align 16 before each?
 #else
 const char Option2[OPT2NUM][32] = {
-    "Vanilla",  "FE1/3/11/12", "FE4", "FE5",
+    "Vanilla",
+    "FE1/3: Shadow Dragon", // 11/12
+    "FE4: Genealogy/Holy War",
+    "FE5: Thracia 776",
 #ifdef FE8
-    "FE6",      "FE7",
+    "FE6: The Binding Blade",
+    "FE7: The Blazing Blade",
 #endif
 #ifdef FE7
-    "FE6",      "FE8",
+    "FE6: The Binding Blade",
+    "FE8: Sacred Stones",
 #endif
 #ifdef FE6
-    "FE7",      "FE8",
+    "FE7: The Blazing Blade",
+    "FE8: Sacred Stones",
 #endif
-    "FE9/FE10", "Random",
+    "FE9/FE10: Radiant Dawn",
+    "FE13: Awakening",
+    "Random",
 };
 #endif
 
