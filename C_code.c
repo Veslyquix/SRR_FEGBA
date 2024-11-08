@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.7.3"
+#define VersionNumber " SRR V1.8.0"
 
 #ifdef FE8
 #include "headers/prelude.h"
@@ -335,12 +335,16 @@ extern const struct CharacterData gCharacterDataFE7[];
 extern const struct CharacterData gCharacterDataFE10[];
 extern const struct CharacterData gCharacterDataFE13[];
 extern const struct CharacterData gCharacterDataFE14[];
+extern const struct CharacterData gCharacterDataFE15[];
+extern const struct CharacterData gCharacterDataFE16[];
+extern const struct CharacterData gCharacterDataFE17[];
 
 const struct CharacterData * const cData[] = {
-    gCharacterData,    gCharacterDataFE1,  gCharacterDataFE4,  gCharacterDataFE5,  gCharacterDataFE6,
-    gCharacterDataFE7, gCharacterDataFE10, gCharacterDataFE13, gCharacterDataFE14,
+    gCharacterData,     gCharacterDataFE1,  gCharacterDataFE4,  gCharacterDataFE5,
+    gCharacterDataFE6,  gCharacterDataFE7,  gCharacterDataFE10, gCharacterDataFE13,
+    gCharacterDataFE14, gCharacterDataFE15, gCharacterDataFE16, gCharacterDataFE17,
 };
-const int NumberOfCharTables = 9;
+const int NumberOfCharTables = 12;
 int ShouldRandomizeUsedCharTable(void)
 {
     return (GrowthValues->ForcedCharTable <= NumberOfCharTables);
@@ -6400,7 +6404,7 @@ const char Option1[OPT1NUM][32] = {
 };
 #endif
 
-#define OPT2NUM 10
+#define OPT2NUM 13
 #ifdef FE6
 extern const char Option2[OPT2NUM][64]; // do align 16 before each?
 #else
@@ -6424,6 +6428,9 @@ const char Option2[OPT2NUM][32] = {
     "FE9/FE10: Radiant Dawn",
     "FE13: Awakening",
     "FE14: Fates",
+    "FE2/15: Echoes",
+    "FE16: Three Houses",
+    "FE17: Engage",
     "Random",
 };
 #endif
