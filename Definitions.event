@@ -91,6 +91,9 @@
 #ifdef _FE7_ 
 #define gCharacterData 0x8BDCE4C
 #endif 
+#ifdef _FE6_ 
+#define gCharacterData 0x86076D0
+#endif 
 
 
 
@@ -213,16 +216,6 @@
 
 
 
-#ifdef _FE7_ 
-#define Priest Monk
-#define Manakete_2_F FireDragon
-#define EphraimLord EliwoodLord
-#define WyvernRider WyvernKnight
-#define EirikaLord LynLord
-#define Rogue Assassin 
-#define GreatKnight Paladin 
-#endif 
-
 
 // #define FireAffinity 1
 // #define ThunderAffinity 2
@@ -239,11 +232,112 @@
 #define HeavenAffinity 6 //LightAffinity
 #define LightningAffinity 2 // ThunderAffinity
 
+
+#define defr(name, value) "#define name value" 
+
+#ifndef _FE6_
+defr(RoyLord, Mercenary) 
+defr(Mamkute_F, Manakete_2_F)
+#endif 
+
+#ifdef _FE6_ 
+// RoyMasterLord 
+#define Knight ArmourKnight
+#define Knight_F ArmourKnight
+#define Fighter Axefighter
+#define Cleric Priest 
+#define Monk Priest 
+#define Manakete_2_F Mamkute 
+#define WyvernRider Mamkute 
+#define WyvernRider_F Mamkute
+#define WyvernLord Mamkute 
+#define WyvernLord_F Mamkute 
+#define WyvernKnight Mamkute
+#define EphraimLord RoyLord 
+#define EirikaLord RoyLord 
+#define Myrmidon_F Swordfighter_F 
+#define Myrmidon Swordfighter
+#define Rogue Thief 
+#define Assassin Thief 
+#define Brigand MountainThief 
+#define FalcoKnight FalconKnight 
+
+#define Ranger Nomad 
+#define MageKnight Valkyrie
+
+#define MageKnight_F Valkyrie 
+
+
+#define GreatKnight Paladin 
+
+#define EliwoodLord Mercenary
+#define LynLord Myrmidon
+#define HectorLord Knight
+#define KnightLord Mercenary
+#define BladeLord Myrmidon
+#define GreatLord Knight
+
+
+#define Peer_F Paladin_F
+#define Transporter Knight
+#define Archsage Sage
+
+#endif 
+
+
+
+#ifdef _FE7_ 
+#define Priest Monk
+#define Manakete_2_F FireDragon
+#define EphraimLord EliwoodLord
+#define WyvernRider WyvernKnight
+#define EirikaLord LynLord
+#define Rogue Assassin 
+#define GreatKnight Paladin 
+#define Ranger Nomad 
+#define MageKnight Valkyrie
+
+#define MageKnight_F Valkyrie 
+#define WyvernRider_F WyvernKnight_F
+#endif 
+
+
+#ifdef _FE8_ 
+defr(Nomad, Archer )
+defr(Nomad_F, Archer_F )
+defr(NomadTrooper, Ranger )
+defr(NomadTrooper_F, Ranger )
+
+defr(EliwoodLord, Mercenary)
+defr(LynLord, Myrmidon)
+defr(HectorLord, Knight)
+
+defr(KnightLord, Mercenary)
+defr(BladeLord, Myrmidon)
+defr(GreatLord, Knight)
+
+
+defr(Thief_F, Thief )
+defr(Peer_F, Paladin_F)
+defr(Transporter, Knight )
+defr(Archsage, Sage )
+
+#endif 
+
+
+
+
+defr(Villager, Myrmidon )
+
+
+
 // fe1 
 #define MarthLord Mercenary 
 #define Hunter Thief 
 #define Horseman Cavalier 
-#define Mamkute Manakete_2_F 
+#ifndef _FE6_
+    #define Mamkute Manakete_2_F 
+#endif 
 #define Ballistician Archer 
 #define Freelancer EphraimLord 
 #define Sorcerer Sage 
@@ -256,18 +350,26 @@
 #define FreeKnight Cavalier 
 #define DukeKnight Cavalier 
 #define ForrestKnight Cavalier 
-#define DragonKnight WyvernKnight 
+#ifndef _FE6_ 
+    #define DragonKnight WyvernKnight 
+#endif 
 #define DragonRider WyvernRider 
 #define ArchKnight Cavalier 
 #define BowFighter Archer 
 #define AxeFighter Fighter 
-#define Swordfighter Myrmidon 
+#ifndef _FE6_ 
+    #define Swordfighter Myrmidon 
+#endif 
 #define Princess Priest 
-#define Sister Priest 
+#ifndef _FE6_ 
+    #define Sister Priest 
+#endif 
 #define HighPriest Sage 
 #define WindMage Mage 
 #define ThunderMage Mage 
-#define MountainThief Brigand 
+#ifndef _FE6_ 
+    #define MountainThief Brigand 
+#endif 
 #define ThiefFighter Thief 
 #define PegasusRider PegasusKnight 
 #define AxeArmour Knight 
@@ -288,7 +390,9 @@
 #define SwordKnight Cavalier
 #define SwordArmour Cavalier
 #define Halberdier Knight 
-#define FalconKnight WyvernRider
+#ifndef _FE6_ 
+    #define FalconKnight WyvernRider
+#endif 
 #define Heron Priest
 #define PrincessCrimea EirikaLord
 #define RedDragon Berserker 
@@ -354,50 +458,7 @@
 #define WingTamer PegasusKnight 
 #define FellChild Manakete_2_F
 
-#define defr(name, value) "#define name value" 
 
-defr(RoyLord, Mercenary) 
-// defr(RoyLord, Mercenary) 
-// defr(Manakete_2_F, Mamkute_F)
-defr(Mamkute_F, Manakete_2_F)
-
-
-
-
-#ifdef _FE8_ 
-defr(Nomad, Archer )
-defr(Nomad_F, Archer_F )
-defr(NomadTrooper, Ranger )
-defr(NomadTrooper_F, Ranger )
-
-defr(EliwoodLord, Mercenary)
-defr(LynLord, Myrmidon)
-defr(HectorLord, Knight)
-
-defr(KnightLord, Mercenary)
-defr(BladeLord, Myrmidon)
-defr(GreatLord, Knight)
-
-
-defr(Thief_F, Thief )
-defr(Peer_F, Paladin_F)
-defr(Transporter, Knight )
-defr(Archsage, Sage )
-
-#endif 
-
-
-#ifndef _FE8_ 
-#define MageKnight Valkyrie
-#define Ranger Nomad 
-#define MageKnight_F Valkyrie 
-#define WyvernRider_F WyvernKnight_F
-
-#endif 
-
-
-
-defr(Villager, Myrmidon )
 
 
 

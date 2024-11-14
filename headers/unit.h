@@ -52,7 +52,49 @@ struct CharacterData
     /* 31 */ u8 _pad_[0x34 - 0x31];
 	#endif 
 };
+struct FE8CharacterData
+{
+    /* 00 */ u16 nameTextId;
+    /* 02 */ u16 descTextId;
+    /* 04 */ u8 number;
+    /* 05 */ u8 defaultClass;
+    /* 06 */ u16 portraitId;
+    /* 08 */ u8 miniPortrait;
+    /* 09 */ u8 affinity;
+    /* 0A */ u8 sort_order;
 
+    /* 0B */ s8 baseLevel;
+    /* 0C */ s8 baseHP;
+    /* 0D */ s8 basePow;
+    /* 0E */ s8 baseSkl;
+    /* 0F */ s8 baseSpd;
+    /* 10 */ s8 baseDef;
+    /* 11 */ s8 baseRes;
+    /* 12 */ s8 baseLck;
+    /* 13 */ s8 baseCon;
+
+    /* 14 */ u8 baseRanks[8];
+
+    /* 1C */ u8 growthHP;
+    /* 1D */ u8 growthPow;
+    /* 1E */ u8 growthSkl;
+    /* 1F */ u8 growthSpd;
+    /* 20 */ u8 growthDef;
+    /* 21 */ u8 growthRes;
+    /* 22 */ u8 growthLck;
+
+    /* 23 */ u8 _u23;
+    /* 24 */ u8 _u24;
+    /* 25 */ u8 _u25[2]; // Unique animation IDs in FE7
+    /* 27 */ u8 _u27;
+
+    /* 28 */ u32 attributes;
+
+    /* 2C */ u32 pSupportData;
+    /* 30 */ u8 visit_group;
+
+    /* 31 */ u8 _pad_[0x34 - 0x31];
+};
 
 struct ClassData
 {

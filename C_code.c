@@ -327,6 +327,23 @@ int GetPreviousAlwaysSkill(int id)
 #define PlayerPortraitSize 0x35
 #endif
 extern const struct CharacterData gCharacterData[];
+
+#ifdef FE6
+extern const struct FE8CharacterData gCharacterDataFE1[];
+extern const struct FE8CharacterData gCharacterDataFE4[];
+extern const struct FE8CharacterData gCharacterDataFE5[];
+extern const struct FE8CharacterData gCharacterDataFE6[];
+extern const struct FE8CharacterData gCharacterDataFE7[];
+extern const struct FE8CharacterData gCharacterDataFE8[];
+extern const struct FE8CharacterData gCharacterDataFE10[];
+extern const struct FE8CharacterData gCharacterDataFE13[];
+extern const struct FE8CharacterData gCharacterDataFE14[];
+extern const struct FE8CharacterData gCharacterDataFE15[];
+extern const struct FE8CharacterData gCharacterDataFE16[];
+extern const struct FE8CharacterData gCharacterDataFE17[];
+#endif
+
+#ifndef FE6
 extern const struct CharacterData gCharacterDataFE1[];
 extern const struct CharacterData gCharacterDataFE4[];
 extern const struct CharacterData gCharacterDataFE5[];
@@ -340,20 +357,33 @@ extern const struct CharacterData gCharacterDataFE15[];
 extern const struct CharacterData gCharacterDataFE16[];
 extern const struct CharacterData gCharacterDataFE17[];
 
-const struct CharacterData * const cData[] = {
-    gCharacterData,     gCharacterDataFE1,  gCharacterDataFE4,  gCharacterDataFE5,
+#endif
+
+#ifdef FE6
+const struct FE8CharacterData
+#endif
+#ifndef FE6
+    const struct CharacterData
+#endif
+        * const cData[] = {
+#ifdef FE6
+            gCharacterDataFE6,
+#else
+    gCharacterData,
+#endif
+            gCharacterDataFE1,  gCharacterDataFE4,  gCharacterDataFE5,
 #ifdef FE8
-    gCharacterDataFE6,  gCharacterDataFE7,
+            gCharacterDataFE6,  gCharacterDataFE7,
 #endif
 #ifdef FE7
-    gCharacterDataFE6,  gCharacterDataFE8,
+            gCharacterDataFE6,  gCharacterDataFE8,
 #endif
 #ifdef FE6
-    gCharacterDataFE7,  gCharacterDataFE8,
+            gCharacterDataFE7,  gCharacterDataFE8,
 #endif
-    gCharacterDataFE10, gCharacterDataFE13, gCharacterDataFE14, gCharacterDataFE15,
-    gCharacterDataFE16, gCharacterDataFE17,
-};
+            gCharacterDataFE10, gCharacterDataFE13, gCharacterDataFE14,
+            gCharacterDataFE15, gCharacterDataFE16, gCharacterDataFE17,
+        };
 const int NumberOfCharTables = 12;
 int ShouldRandomizeUsedCharTable(void)
 {
@@ -381,11 +411,22 @@ int GetCharTableID(int portraitID)
     // randomize
     return result;
 }
-
-const struct CharacterData * NewGetCharacterData(int charId, int tableID)
+#ifdef FE6
+const struct FE8CharacterData *
+#endif
+#ifndef FE6
+    const struct CharacterData *
+#endif
+    NewGetCharacterData(int charId, int tableID)
 {
     if (charId < 1)
         return NULL;
+
+#ifdef FE7
+    if (charId > 0x3a)
+        return cData[0] + (charId - 1);
+
+#endif
 
     if (!((cData[tableID] + (charId - 1))->number))
         return NULL;
@@ -404,12 +445,12 @@ int GetUnitIdOfPortrait(int portraitID)
         }
     }
     const struct CharacterData * table; // = GetCharacterData(1);
-    int bankID = 0;
+    // int bankID = 0;
     // while (bankID < NumberOfCharTables)
     // {
     for (int i = 1; i <= MAX_CHAR_ID; i++)
     {
-        table = NewGetCharacterData(i, bankID);
+        table = GetCharacterData(i);
         if (table->portraitId == portraitID)
         {
             return table->number;
@@ -473,7 +514,7 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     {
         unitID = id;
     }
-    return NewGetCharacterData(unitID, tableID);
+    return (struct CharacterData *)NewGetCharacterData(unitID, tableID);
 }
 // each vanilla portrait is assigned to a new portrait from any char table
 // text replace must search all tables
@@ -540,7 +581,12 @@ int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed)
 {
     portraitID = GetRandomizedPortrait(portraitID, seed);
 
+#ifdef FE6
+    const struct FE8CharacterData * table; // = GetCharacterData(1);
+#endif
+#ifndef FE6
     const struct CharacterData * table; // = GetCharacterData(1);
+#endif
     int bankID = 0;
     while (bankID < NumberOfCharTables)
     {
@@ -551,7 +597,7 @@ int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed)
             {
                 return table->nameTextId;
             }
-            table++;
+            // table++;
         }
         bankID++;
     }

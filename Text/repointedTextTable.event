@@ -9,8 +9,8 @@ TextTable:
 #ifdef _FE7_ 
   #incbin "FE7TextTable.dmp"
   #endif 
-  #ifdef _FE6 
-    #incbin "FE6TextTable.dmp"
+  #ifdef _FE6_
+    #incbin "FE6TranslationTextTable.dmp"
   #endif 
   ORG TextTable + (MaxTextEntries) * 4
 
@@ -21,6 +21,12 @@ ORG 0x12C88
 POIN TextTable
 ORG 0x12CB8 
 POIN TextTable
+#endif 
+
+#ifdef _FE6_ 
+ORG $13B10 
+POIN TextTable 
+
 #endif 
 
 POP
