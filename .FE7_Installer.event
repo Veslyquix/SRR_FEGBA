@@ -3,11 +3,13 @@
 #endif 
 //#define SKILLSYS_INSTALLED 
 //#define STRMAG_INSTALLED 
+#include "EAstdlib.event" 
 #include "Extensions/Hack Installation.txt" 
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
 
+#include "Definitions.event" 
 #include "Text/repointedTextTable.event"
 #include "gfx/Installer.event"
 #include "Tables/TableInstaller.event" 
@@ -24,14 +26,16 @@
 #ifndef TextTable 
 	#define TextTable 0xB808AC 
 #endif 
-#define setText(textID, offset) "PUSH; ORG (TextTable+(4*textID)); POIN (offset|0x80000000); POP"
+#ifndef SetText 
+#define SetText(textID, offset) "PUSH; ORG (TextTable+(4*textID)); POIN (offset|0x80000000); POP"
+#endif 
 ConfigText:
 String("Config") ; BYTE 0 
 ConfigDescText:
 String("Reconfigure the randomizer.") ; BYTE 0 
 
-setText(0x119f, ConfigText)
-setText(0x11a0, ConfigDescText)
+SetText(0x119f, ConfigText)
+SetText(0x11a0, ConfigDescText)
 
 ALIGN 4
 BonusItemChance: 
@@ -171,7 +175,7 @@ NeverChangeChar(0xFB) // arena enemy randomized breaks things
 ALIGN 4 
 ShopText:
 String("Shop"); BYTE 0 
-setText(0x1260, ShopText) 
+SetText(0x1260, ShopText) 
 
 ALIGN 4 
 SkillExceptions:
@@ -499,7 +503,7 @@ ReplaceTextList:
 //SHORT 0; BYTE 0xff 0; POIN TextE TextF 
 WORD 0 0 0// terminator 
 #ifdef VeslyBuildfile
-	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+	#define SetName(id) "{ addr: ; SetText(id, addr) ; }"
 #else 
 	#define SetName(id) "ALIGN 16"
 #endif 
