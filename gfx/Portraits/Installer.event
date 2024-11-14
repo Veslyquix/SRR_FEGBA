@@ -14,7 +14,7 @@ FILL(0x1C*0x400) 0
 ORG NewPortraitTable 
 #include "VanillaData.event" 
 #include "VanillaData.event" 
-#include "VanillaData.event" 
+
 
 
 ORG NewPortraitTable + (0x1C*0x400)
@@ -26,6 +26,13 @@ PUSH
 #ifdef _FE8_
 ORG $5524 
 #endif 
+#ifdef _FE7_
+ORG $6B30 
+#endif 
+#ifdef _FE6_
+ORG $7FD8  
+#endif 
+
 POIN NewPortraitTable
 POP 
 
