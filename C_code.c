@@ -332,6 +332,7 @@ extern const struct CharacterData gCharacterDataFE4[];
 extern const struct CharacterData gCharacterDataFE5[];
 extern const struct CharacterData gCharacterDataFE6[];
 extern const struct CharacterData gCharacterDataFE7[];
+extern const struct CharacterData gCharacterDataFE8[];
 extern const struct CharacterData gCharacterDataFE10[];
 extern const struct CharacterData gCharacterDataFE13[];
 extern const struct CharacterData gCharacterDataFE14[];
@@ -341,8 +342,17 @@ extern const struct CharacterData gCharacterDataFE17[];
 
 const struct CharacterData * const cData[] = {
     gCharacterData,     gCharacterDataFE1,  gCharacterDataFE4,  gCharacterDataFE5,
-    gCharacterDataFE6,  gCharacterDataFE7,  gCharacterDataFE10, gCharacterDataFE13,
-    gCharacterDataFE14, gCharacterDataFE15, gCharacterDataFE16, gCharacterDataFE17,
+#ifdef FE8
+    gCharacterDataFE6,  gCharacterDataFE7,
+#endif
+#ifdef FE7
+    gCharacterDataFE6,  gCharacterDataFE8,
+#endif
+#ifdef FE6
+    gCharacterDataFE7,  gCharacterDataFE8,
+#endif
+    gCharacterDataFE10, gCharacterDataFE13, gCharacterDataFE14, gCharacterDataFE15,
+    gCharacterDataFE16, gCharacterDataFE17,
 };
 const int NumberOfCharTables = 12;
 int ShouldRandomizeUsedCharTable(void)

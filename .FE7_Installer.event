@@ -8,6 +8,9 @@
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
 
+#include "Text/repointedTextTable.event"
+#include "gfx/Installer.event"
+#include "Tables/TableInstaller.event" 
 #include "Patches/FE7.lyn.event" 
 #include "Patches/FE7_AsmHooks.lyn.event" 
 
