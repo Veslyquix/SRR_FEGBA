@@ -9,7 +9,8 @@
 #endif 
 
 #include "Definitions.event" 
-#include "Text/repointedTextTable.event"
+// #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
+#include "TextFE6/repointedTextTable.event"
 #include "gfx/Installer.event"
 #include "Tables/TableInstaller.event" 
 #include "Patches/FE6.lyn.event" 
@@ -25,6 +26,9 @@
 #endif 
 
 #inctbl "FE6TR" "EventAssembler/fe6_tr.tbl"
+
+TestTestText:
+STRING "Abel" "FE6TR" ; BYTE 0
 
 //#define JankyPalettes // Uncomment if you want to always use char palettes, even with classes randomized 
 
@@ -282,6 +286,7 @@ ALIGN 64; STRING "Random" "FE6TR" ; BYTE 0
 ALIGN 64
 Option2:
 FILL(64*13)
+ORG Option2
 ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0 
 ALIGN 64; STRING "FE1/3: Shadow Dragon" "FE6TR" ; BYTE 0 
 ALIGN 64; STRING "FE4: Genealogy/Holy War" "FE6TR" ; BYTE 0 
@@ -511,6 +516,9 @@ ALIGN 4
 SetTextWithHuffman(0xB80, MovText)
 SetTextWithHuffman(0xB81, HpText)
 SetTextWithHuffman(0xB82, MinusText)
+setText(0x7ec, TestTestText)
+
+
 
 ALIGN 4 
 VramDest_DebugFont: 
