@@ -2,12 +2,12 @@
 
 #ifdef _FE6_ 
 // #define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE mouthX mouthY eyeX eyeY; POP"
-#define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; BYTE mouthX mouthY eyeX eyeY; POP"
-// #define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1404; POIN mugLocation+0x1604; BYTE mouthX mouthY eyeX eyeY; POP"
+// #define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; BYTE mouthX mouthY eyeX eyeY; POP"
+#define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1404; POIN mugLocation+0x1604; BYTE mouthX mouthY 0 1; POP"
 #endif 
 
 // #define FirstMugID 0xAC
-#define FirstMugID 0x1
+#define FirstMugID 0x100
 
 
 
