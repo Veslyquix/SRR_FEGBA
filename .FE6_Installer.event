@@ -687,6 +687,18 @@ callHackNew(HookLoadFace_FE6)
 ORG $1102C
 callHackNew(HookWMStartFace_FE6)
 
+
+// struct FaceProc+0x40 faceID is a u8 in fe6, but u16 in fe8 
+// fe6: StartFaceFadeIn 8d04 called by TalkLoadFace a4f4 makes portrait only 1 byte for palette 
+// https://github.com/FireEmblemUniverse/fireemblem6j/blob/b158d46dfc4d6590d783b0072fed90cf0227edf7/include/face.h#L46
+// [20240d0]!!?
+ORG $853C
+SHORT $800A // strh r2, [r1] @ store faceID as short, not byte 
+ORG $8d12 
+SHORT $880A // ldrh r2, [r1] 
+ORG $8d7a 
+SHORT $880A // ldrh r2, [r1] 
+
 ORG $184F0
 jumpToHack(GetUnitPortraitId_FE7)  // same code 
 // 80192F4	GetUnitChibiId // fe7 8018BF4 fe6 8018500
