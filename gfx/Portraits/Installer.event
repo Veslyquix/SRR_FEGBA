@@ -9,7 +9,20 @@
 // #define FirstMugID 0xAC
 #define FirstMugID 0x100
 
-
+/* 
+ALIGN 4
+Elice_TAS20XXMugData:
+#incbin "Dmp/Elice_TAS20XX_mug.dmp"
+ORG Elice_TAS20XXMugData + 0x800
+#incbin "Dmp/Elice_TAS20XX_frames.dmp"
+ORG Elice_TAS20XXMugData + 0x1604
+#incbin "Dmp/Elice_TAS20XX_palette.dmp"
+#incbin "Dmp/Elice_TAS20XX_minimug.dmp"
+#ifndef EliceMug
+  #define EliceMug (FirstMugID+143)
+#endif
+setMugEntry(EliceMug, Elice_TAS20XXMugData, 3, 5, 3, 3)
+*/
 
 
 ALIGN 4 
