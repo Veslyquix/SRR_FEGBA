@@ -699,9 +699,9 @@ SHORT $880A // ldrh r2, [r1]
 ORG $8d7a 
 SHORT $880A // ldrh r2, [r1] 
 
-// TEMPORARY 
+// TEMPORARY (hopefully...)
 // kill UpdateFaceTalk (called from Face_OnIdle) 
-// so no mouth frames appear 
+// so no mouth frames appear for portraits > 0x100 
 ORG $82B8
 callHackNew(DisableMouthFrames_FE6) 
 SHORT $46c0 
