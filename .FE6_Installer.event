@@ -708,8 +708,15 @@ ORG $82B8
 callHackNew(DisableMouthFrames_FE6) 
 SHORT $46c0 
 
-
-
+// make supports appear in febuilder 
+ORG $6afDE 
+SHORT $e014 // b 0x806b00A 
+POIN 0x666cf8 
+ORG $6B00A 
+SHORT $1c0d // mov r5, r1 
+SHORT $3510 // add r5, #0x10 
+SHORT $B0A9 // sub sp, #0xA4 
+SHORT $e7e8 // b 0x806AFE4 
 
 ORG $184F0
 jumpToHack(GetUnitPortraitId_FE7)  // same code 
