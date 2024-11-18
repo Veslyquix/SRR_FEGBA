@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.8.0"
+#define VersionNumber " SRR V1.8.2"
 
 #ifdef FE8
 #include "headers/prelude.h"
@@ -422,6 +422,15 @@ const struct FE8CharacterData *
     if (charId < 1)
         return NULL;
 
+    if (!tableID)
+    {
+#ifdef FE6
+        return (const struct FE8CharacterData *)GetCharacterData(charId);
+#else
+        return GetCharacterData(charId);
+#endif
+    }
+
 // 1 - 3a, 6e - 7f, 95 - a6: use new char tables
 // otherwise, use vanilla one
 #ifdef FE7
@@ -433,7 +442,7 @@ const struct FE8CharacterData *
 #ifdef FE6
     if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
     {
-        return cData[0] + (charId - 1);
+        return (const struct FE8CharacterData *)GetCharacterData(charId);
     }
 #endif
 
