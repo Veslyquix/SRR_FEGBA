@@ -699,6 +699,16 @@ SHORT $880A // ldrh r2, [r1]
 ORG $8d7a 
 SHORT $880A // ldrh r2, [r1] 
 
+// TEMPORARY 
+// kill UpdateFaceTalk (called from Face_OnIdle) 
+// so no mouth frames appear 
+ORG $82B8
+callHackNew(DisableMouthFrames_FE6) 
+SHORT $46c0 
+
+
+
+
 ORG $184F0
 jumpToHack(GetUnitPortraitId_FE7)  // same code 
 // 80192F4	GetUnitChibiId // fe7 8018BF4 fe6 8018500
