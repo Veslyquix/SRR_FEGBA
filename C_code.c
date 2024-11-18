@@ -425,12 +425,16 @@ const struct FE8CharacterData *
 // 1 - 3a, 6e - 7f, 95 - a6: use new char tables
 // otherwise, use vanilla one
 #ifdef FE7
-    if (charId > 0x3a)
+    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
+    {
         return cData[0] + (charId - 1);
+    }
 #endif
 #ifdef FE6
-    if (charId > 0x3a)
+    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
+    {
         return cData[0] + (charId - 1);
+    }
 #endif
 
     if (!((cData[tableID] + (charId - 1))->number))
@@ -519,7 +523,12 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     {
         unitID = id;
     }
-    return (struct CharacterData *)NewGetCharacterData(unitID, tableID);
+    const struct CharacterData * result = (struct CharacterData *)NewGetCharacterData(unitID, tableID);
+    if (!result->portraitId)
+    {
+        result = table;
+    }
+    return result;
 }
 // each vanilla portrait is assigned to a new portrait from any char table
 // text replace must search all tables
@@ -637,8 +646,9 @@ int MustCharacterBecomeBoss(const struct CharacterData * table)
     {
         return false;
     }
-    // if ((!boss) && (RecruitValues->recruitment == 4)) { return true; } // players become bosses and vice versa
-    // if ((boss) && (RecruitValues->recruitment == 4)) { return false; } // players become bosses and vice versa
+    // if ((!boss) && (RecruitValues->recruitment == 4)) { return true; } // players become bosses and vice
+    // versa if ((boss) && (RecruitValues->recruitment == 4)) { return false; } // players become bosses and
+    // vice versa
     if (boss)
     {
         return true;
@@ -3351,7 +3361,8 @@ void NewPopup_GoldGot(int value, ProcPtr parent) // fe6 120D0
 #endif
 #ifdef FE8
     void NewPopup_GoldGot(
-        ProcPtr parent, struct Unit * unit, int value) // fe8 and fe6/fe7 have slightly different parameters / order
+        ProcPtr parent, struct Unit * unit,
+        int value) // fe8 and fe6/fe7 have slightly different parameters / order
 #endif
 {
 #ifndef FE8
@@ -4790,8 +4801,8 @@ int NewGetStatDecrease(int growth)
 int GetAutoleveledStatDecrease(int growth, int levelCount, int stat)
 {
     levelCount = ABS(levelCount);
-    // int result = stat - NewGetStatDecrease((((growth * posLevel) + (NextRN_N(growth * posLevel) / 4)) - (growth *
-    // posLevel)) / 8);
+    // int result = stat - NewGetStatDecrease((((growth * posLevel) + (NextRN_N(growth * posLevel) / 4)) -
+    // (growth * posLevel)) / 8);
     int result = stat -
         NewGetStatDecrease((growth * levelCount) + (NextRN_N((growth * levelCount) / 4) - (growth * levelCount) / 8));
     // int result = stat - NewGetStatDecrease(growth * levelCount);
@@ -6891,7 +6902,7 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
 }
 
 // would need to be buffered: it's too slow
-void InitReplaceTextList(
+void InitReplaceTextList( // unused
     struct ReplaceTextStruct list[], char buffer[][TempTextBufferSize], char buffer2[][TempTextBufferSize])
 {
     // int size = CountBWLUnits();
@@ -7105,7 +7116,7 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
 #endif
 
 #ifdef STRINGS_IN_ROM
-    InitReplaceTextListRom(ReplaceTextList);
+    // InitReplaceTextListRom(ReplaceTextList);
 #endif
 #ifndef SET_TEXT_USED
 #ifndef STRINGS_IN_ROM
@@ -9705,8 +9716,8 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit * unit, int id)
                         // TILEMAP_INDEX(x-4, y),gold, 0, 0,GetStringFromIndex(0x4FF)); // Mag #else
                         PutDrawText(
                             &gStatScreen.text[STATSCREEN_TEXT_POWLABEL], gUiTmScratchA + TILEMAP_INDEX(x - 4, y), gold,
-                            0, 0, "Pow"); // Pow / Mgc / Atk / Mag
-                                          // #endif
+                            0, 0, "Pow"); // Pow / Mgc / Atk /
+                                          // Mag #endif
                     }
                     else
                     {
@@ -9714,7 +9725,8 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit * unit, int id)
 #ifdef FE8
                         PutDrawText(
                             &gStatScreen.text[STATSCREEN_TEXT_POWLABEL], gUiTmScratchA + TILEMAP_INDEX(x - 4, y), gold,
-                            0, 0, GetStringFromIndex(0x4FE)); // Str
+                            0, 0,
+                            GetStringFromIndex(0x4FE)); // Str
 #else
                         PutDrawText(
                             &gStatScreen.text[STATSCREEN_TEXT_POWLABEL], gUiTmScratchA + TILEMAP_INDEX(x - 4, y), gold,
@@ -9742,8 +9754,8 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit * unit, int id)
             case 12:
             {
                 // #ifdef FE8
-                // PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),
-                // gold, 0, 0, GetStringFromIndex(0x4EC)); #else
+                // PutDrawText(gStatScreen.text + STATSCREEN_TEXT_SKLLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4,
+                // y), gold, 0, 0, GetStringFromIndex(0x4EC)); #else
                 PutDrawText(
                     gStatScreen.text + STATSCREEN_TEXT_SKLLABEL, gUiTmScratchA + TILEMAP_INDEX(x - 4, y), gold, 0, 0,
                     "Skl");
@@ -9766,8 +9778,8 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit * unit, int id)
             case 14:
             {
                 // #ifdef FE8
-                // PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),
-                // gold, 0, 0, GetStringFromIndex(0x4EE)); #else
+                // PutDrawText(gStatScreen.text + STATSCREEN_TEXT_LCKLABEL,   gUiTmScratchA + TILEMAP_INDEX(x-4,
+                // y), gold, 0, 0, GetStringFromIndex(0x4EE)); #else
                 PutDrawText(
                     gStatScreen.text + STATSCREEN_TEXT_LCKLABEL, gUiTmScratchA + TILEMAP_INDEX(x - 4, y), gold, 0, 0,
                     "Lck");
@@ -9803,8 +9815,8 @@ int DrawStatByID(int barID, int x, int y, int disp, struct Unit * unit, int id)
             case 17:
             {
                 // #ifdef FE8
-                // PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4, y),
-                // gold, 0, 0, GetStringFromIndex(0x4FF)); #else
+                // PutDrawText(gStatScreen.text + STATSCREEN_TEXT_UNUSUED,   gUiTmScratchA + TILEMAP_INDEX(x-4,
+                // y), gold, 0, 0, GetStringFromIndex(0x4FF)); #else
                 PutDrawText(
                     gStatScreen.text + STATSCREEN_TEXT_UNUSUED, gUiTmScratchA + TILEMAP_INDEX(x - 4, y), gold, 0, 0,
                     "Pow");
