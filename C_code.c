@@ -139,7 +139,7 @@ extern int DefaultConfigToVanilla;
 typedef struct
 {
     /* 00 */ PROC_HEADER;
-    u8 count;
+    u16 count;
     u8 id[0x40];
 } RecruitmentProc;
 RecruitmentProc * InitRandomRecruitmentProc(int procID);
@@ -788,7 +788,7 @@ int CallGetUnitListToUse(const struct CharacterData * table, int boss, int exclu
     }
     return result;
 }
-#define REVERSE_ORDER
+// #define REVERSE_ORDER
 RecruitmentProc * InitRandomRecruitmentProc(int procID)
 {
     u8 unit[80];
@@ -804,10 +804,14 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     RecruitmentProc * proc4 = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3);
     RecruitmentProc * proc = proc1;
     int boss;
-    table--;
-    for (int i = 0; i <= MAX_CHAR_ID; ++i)
+    proc->id[0] = 0;
+    // table--;
+    for (int i = 1; i <= MAX_CHAR_ID; ++i)
     { // all available units
-        table++;
+        table = GetCharacterData(i);
+        table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
+
+        // table++;
         if (i == 0x40)
         {
             proc = proc2;
@@ -830,20 +834,20 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         boss = table->attributes & (CA_BOSS);
         switch (GetUnitListToUse(table, boss, true))
         {
-            case 0:
+            case 0: // eg no portrait
             {
                 continue;
                 break;
             }
             case 1:
             {
-                unit[c] = i + 1;
+                unit[c] = i;
                 c++;
                 break;
             }
             case 2:
             {
-                bosses[b] = i + 1;
+                bosses[b] = i;
                 b++;
                 break;
             }
@@ -852,7 +856,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     }
     // proc->count = c;
 
-    int c_max = c;
+    int c_max = c; // count of characters to randomize from
     int b_max = b;
     int num;
     u32 rn = 0;
@@ -899,7 +903,8 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             continue;
         } // Morphs
 #endif
-        table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
+        // table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
+        // don't use NewGetCharacterData - just replace vanilla chars now
         boss = table->attributes & (CA_BOSS);
 
         switch (CallGetUnitListToUse(table, boss, true))
@@ -918,8 +923,8 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     c = c_max - 1;
                 }
                 num = HashByte_Simple(rn, c);
-                proc->id[(i & 0x3F) - 1] = unit[num];
-                unit[num] = unit[c]; // move last entry to one we just used
+                proc->id[(i & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                unit[num] = unit[c];                  // move last entry to one we just used
                 unit[c] = proc->id[(i & 0x3F) - 1];
                 break;
             }
@@ -977,7 +982,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             proc = proc4;
         }
 #endif
-        table = GetCharacterData(i);
+        table = GetCharacterData(i); // check for morphs and duplicates in vanilla table
         boss = table->attributes & (CA_BOSS);
         // if (GetUnitListToUse(table, boss, false)) {
         num = GetAdjustedCharacterID(table);

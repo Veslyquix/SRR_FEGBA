@@ -306,13 +306,16 @@ defr(Mamkute_F, Manakete_2_F)
 #define GreatKnight Paladin 
 #define Ranger Nomad 
 #define MageKnight Valkyrie
-
+#define Dracoknight WyvernKnight  
+#define Manakete_F Manakete_2_F 
 #define MageKnight_F Valkyrie 
 #define WyvernRider_F WyvernKnight_F
 #endif 
 
 
 #ifdef _FE8_ 
+#define Dracoknight WyvernRider 
+#define Manakete_F Manakete_2_F 
 defr(Nomad, Archer )
 defr(Nomad_F, Archer_F )
 defr(NomadTrooper, Ranger )
