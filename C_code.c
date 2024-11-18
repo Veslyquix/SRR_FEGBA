@@ -425,7 +425,10 @@ const struct FE8CharacterData *
 #ifdef FE7
     if (charId > 0x3a)
         return cData[0] + (charId - 1);
-
+#endif
+#ifdef FE6
+    if (charId > 0x3a)
+        return cData[0] + (charId - 1);
 #endif
 
     if (!((cData[tableID] + (charId - 1))->number))
@@ -785,7 +788,7 @@ int CallGetUnitListToUse(const struct CharacterData * table, int boss, int exclu
     }
     return result;
 }
-
+#define REVERSE_ORDER
 RecruitmentProc * InitRandomRecruitmentProc(int procID)
 {
     u8 unit[80];
@@ -848,11 +851,13 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         }
     }
     // proc->count = c;
-    proc = proc4;
+
     int c_max = c;
     int b_max = b;
     int num;
     u32 rn = 0;
+#ifdef REVERSE_ORDER
+    proc = proc4;
     // table = GetCharacterData(MAX_CHAR_ID);
     for (int i = MAX_CHAR_ID; i > 0; --i)
     { // reordered at random
@@ -869,6 +874,24 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         {
             proc = proc1;
         }
+#else
+    proc = proc1;
+    for (int i = 1; i < MAX_CHAR_ID; ++i)
+    {
+        if (i >= 0x40)
+        {
+            proc = proc2;
+        }
+        if (i >= 0x80)
+        {
+            proc = proc3;
+        }
+        if (i >= 0xC0)
+        {
+            proc = proc4;
+        }
+
+#endif
         table = GetCharacterData(i);
 #ifdef FE7
         if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
@@ -876,6 +899,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             continue;
         } // Morphs
 #endif
+        table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
         boss = table->attributes & (CA_BOSS);
 
         switch (CallGetUnitListToUse(table, boss, true))
@@ -918,7 +942,8 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         }
     }
 
-    // #ifndef FE8 // breaks with skillsys atm
+// #ifndef FE8 // breaks with skillsys atm
+#ifdef REVERSE_ORDER
     proc = proc4;
     for (int i = MAX_CHAR_ID; i > 0; --i)
     {
@@ -935,6 +960,23 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         {
             proc = proc1;
         }
+#else
+    proc = proc1;
+    for (int i = 1; i < MAX_CHAR_ID; ++i)
+    {
+        if (i >= 0x40)
+        {
+            proc = proc2;
+        }
+        if (i >= 0x80)
+        {
+            proc = proc3;
+        }
+        if (i >= 0xC0)
+        {
+            proc = proc4;
+        }
+#endif
         table = GetCharacterData(i);
         boss = table->attributes & (CA_BOSS);
         // if (GetUnitListToUse(table, boss, false)) {
