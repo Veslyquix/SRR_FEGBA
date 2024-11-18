@@ -422,6 +422,8 @@ const struct FE8CharacterData *
     if (charId < 1)
         return NULL;
 
+// 1 - 3a, 6e - 7f, 95 - a6: use new char tables
+// otherwise, use vanilla one
 #ifdef FE7
     if (charId > 0x3a)
         return cData[0] + (charId - 1);
