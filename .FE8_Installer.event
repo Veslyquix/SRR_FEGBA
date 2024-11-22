@@ -191,7 +191,7 @@ FILL(0x2000) // max id 0x2000
  
 
 // Game options & misc 
-IgnoreTextIDRange(1, 0x15F) 
+IgnoreTextIDRange(0, 0x15F) 
 // Terrain 
 IgnoreTextIDRange(0x1C5, 0x211)
 // Unit names are changed 

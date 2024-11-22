@@ -411,6 +411,7 @@ int GetCharTableID(int portraitID)
     // randomize
     return result;
 }
+int ShouldPauseNameReplace(void);
 #ifdef FE6
 const struct FE8CharacterData *
 #endif
@@ -421,6 +422,11 @@ const struct FE8CharacterData *
 {
     if (charId < 1)
         return NULL;
+
+    // if (ShouldPauseNameReplace())
+    // {
+    // tableID = 0;
+    // }
 
     if (!tableID)
     {
@@ -439,6 +445,7 @@ const struct FE8CharacterData *
 #ifdef FE7 // use vanilla table for non-playables eg. bosses
     if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
     {
+        // return GetCharacterData(charId);
         return cData[0] + (charId - 1);
     }
 #endif
@@ -7104,6 +7111,25 @@ char * GetStringFromIndex(int index) // so we can set sActiveMsg as the index
     return sMsgString;
 }
 
+int ShouldPauseNameReplace(void)
+{
+    int result = RecruitValues->pauseNameReplace;
+    if (gCursorX)
+    {
+        result = false;
+    }
+    return result;
+}
+
+void PauseNameReplaceFunc(void)
+{
+    RecruitValues->pauseNameReplace = true;
+}
+void UnpauseNameReplaceFunc(void)
+{
+    RecruitValues->pauseNameReplace = false;
+}
+
 extern u8 TextIDExceptionTable[];
 void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800384C
 {
@@ -7116,7 +7142,14 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
     }
     if (RecruitValues->pauseNameReplace)
     {
-        return;
+        if (gCursorX)
+        {
+            UnpauseNameReplaceFunc();
+        }
+        else
+        {
+            return;
+        }
     }
     if (TextIDExceptionTable[sActiveMsg])
     {

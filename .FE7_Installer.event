@@ -3,14 +3,15 @@
 #endif 
 //#define SKILLSYS_INSTALLED 
 //#define STRMAG_INSTALLED 
+#include "Text/repointedTextTable.event"
+#include "Definitions.event" 
 #include "EAstdlib.event" 
 #include "Extensions/Hack Installation.txt" 
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
 
-#include "Definitions.event" 
-#include "Text/repointedTextTable.event"
+
 #include "gfx/Installer.event"
 #include "Tables/TableInstaller.event" 
 #include "Patches/FE7.lyn.event" 
@@ -116,9 +117,9 @@ TextIDExceptionTable:
 FILL(0x2000) // max id 0x2000
 
  
-
+IgnoreTextIDRange(0x813, 0x814) // uses SetName idk 
 // shops & misc 
-IgnoreTextIDRange(1, 0x58) 
+IgnoreTextIDRange(0, 0x58) 
 // class, stat screen descs  
 IgnoreTextIDRange(0x22B, 0x278)
 // Items, misc 
@@ -248,6 +249,15 @@ ORG $9E9FC // Select any mode on new game
 // by Doesnt 
 BYTE $1F $20 $70 $47 
 #endif 
+
+ORG $A68C8 
+callHackNew(CallPauseNameReplace) 
+
+// ORG $82310 
+// callHackNew(CallUnpauseNameReplace) 
+
+ORG $B924
+callHackNew(CallUnpauseNameReplace) 
 
 //ORG $A06E2 
 //SHORT $46c0 $46c0 // don't reset game time on new game 
