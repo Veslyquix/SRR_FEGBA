@@ -63,51 +63,6 @@ pop {r3}
 bx r3 
 .ltorg 
 
-.global CallPauseNameReplace @ fe7 during tact screen 
-.type CallPauseNameReplace, %function 
-CallPauseNameReplace: 
-push {lr} 
-add r1, #0x2C 
-mov r0, #2 
-neg r0, r0 
-ldrb r2, [r1] 
-and r0, r2 
-strb r0, [r1] 
-bl PauseNameReplaceFunc 
-pop {r0} 
-bx r0 
-.ltorg 
-@.global CallUnpauseNameReplace
-@.type CallUnpauseNameReplace, %function 
-@CallUnpauseNameReplace: 
-@push {lr} 
-@@ blh 0x80A05F4 
-@@ blh 0x80A0810 @ save 
-@mov r4, r0 
-@mov r0, r1 
-@blh 0x80822a4 
-@mov r7, r0 
-@bl UnpauseNameReplaceFunc 
-@lsl r0, r4, #5 
-@pop {r1} 
-@bx r1 
-@.ltorg 
-
-.global CallUnpauseNameReplace @ when a convo starts 
-.type CallUnpauseNameReplace, %function 
-CallUnpauseNameReplace: 
-push {lr} 
-bl UnpauseNameReplaceFunc 
-add r4, #0x5e 
-mov r7, #0x80 
-lsl r7, #1 
-mov r0, r7 
-ldrh r1, [r4] 
-and r0, r1 
-pop {r1} 
-bx r1 
-.ltorg 
-
 .global MaybeChargeAtPlayer
 .type MaybeChargeAtPlayer, %function 
 MaybeChargeAtPlayer: 

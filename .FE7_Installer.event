@@ -250,15 +250,6 @@ ORG $9E9FC // Select any mode on new game
 BYTE $1F $20 $70 $47 
 #endif 
 
-ORG $A68C8 
-callHackNew(CallPauseNameReplace) 
-
-// ORG $82310 
-// callHackNew(CallUnpauseNameReplace) 
-
-ORG $B924
-callHackNew(CallUnpauseNameReplace) 
-
 //ORG $A06E2 
 //SHORT $46c0 $46c0 // don't reset game time on new game 
 
