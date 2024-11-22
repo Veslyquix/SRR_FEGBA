@@ -483,6 +483,19 @@ SHORT $46c0 $46c0 $46c0 $46c0 $46c0
 //SHORT $2100 // always use generic palette (by Vesly) 
 #endif 
 
+#define callHackNewr7(offset) 		"BYTE $01 $4F $BE $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+ORG $57430 
+callHackNewr7(MaybeUseJankyPalette_FE8) 
+
+// ORG $95eea5 // Eirika palette test 
+// BYTE 0x3C 
+// ORG $95e0a5 // Fighter class 
+// BYTE 0x3F 
+
+ORG $57470 
+callHackNewr7(MaybeUseJankyPalette2_FE8) 
+
+
 // in BuildBestMovementScript 
 // Fix REDA / MOVE from crashing on impassible terrain 
 ORG 0x01A77E; // fe8 version 
