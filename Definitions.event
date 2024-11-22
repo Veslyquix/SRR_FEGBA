@@ -111,7 +111,6 @@
 #define ChloeMug BlankMug
 #define LouisMug BlankMug
 #define AlcrystMug BlankMug
-#define LapisMug BlankMug
 #define DiamantMug BlankMug
 #define ZelkovMug BlankMug
 #define FogadoMug BlankMug
@@ -171,7 +170,6 @@
 #define SaizoMug BlankMug 
 #define OrochiMug BlankMug 
 #define AzamaMug BlankMug 
-#define SetsunaMug BlankMug 
 #define HayatoMug BlankMug 
 #define ReinaMug BlankMug 
 #define NilesMug BlankMug 
@@ -204,12 +202,9 @@
 #define SaraMug BlankMug 
 
 // fe3 
-#define CecilMug BlankMug
 #define RoderickMug BlankMug 
 #define LukeMug BlankMug
 #define RyanMug BlankMug
-#define WarrenMug BlankMug
-#define YuliyaMug BlankMug
 
 // bsfe / fe12 
 #define ReidenMug BlankMug
@@ -242,6 +237,14 @@ defr(Mamkute_F, Manakete_2_F)
 #endif 
 
 #ifdef _FE6_ 
+
+#undef Socialknight_F 
+#define Socialknight_F Cavalier 
+#undef Paladin_F 
+#define Paladin_F Paladin 
+#undef Mercenary_F 
+#define Mercenary_F Mercenary 
+
 // RoyMasterLord 
 #define Knight ArmourKnight
 #define Knight_F ArmourKnight
@@ -294,6 +297,10 @@ defr(Mamkute_F, Manakete_2_F)
 
 
 #ifdef _FE7_ 
+
+#undef Mercenary_F 
+#define Mercenary_F Mercenary 
+
 #define Priest Monk
 #define Journeyman_1 Pirate 
 #define Pupil_1 Shaman 
@@ -361,7 +368,7 @@ defr(Villager, Myrmidon )
 
 // fe4/5 
 #define Lord Mercenary 
-#define LordKnight Mercenary 
+#define LordKnight Cavalier 
 #define SocialKnight Cavalier 
 #define FreeKnight Cavalier 
 #define DukeKnight Cavalier 

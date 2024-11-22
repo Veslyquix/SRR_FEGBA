@@ -4,7 +4,7 @@ import numpy
 import os
 import struct
 
-SEARCH_RANGE = 1, 7
+SEARCH_RANGE = 0, 7
 def cv_locate_eye_mouse_pos(arr):
     eye = arr[48: 64, 96: 128]
     mouth = arr[80: 96, 96: 128]
@@ -56,6 +56,8 @@ while line:
     x1, y1, x2, y2 = cv_locate_eye_mouse_pos(arr)
     installer.write("setMugEntry("+name[0]+"Mug, "+mug[0]+"MugData, "+str(x1)+", "+str(y1)+", "+str(x2)+", "+str(y2)+")\n\n")
     c+=1
+    if ((c % 256) == 0): #avoid 0x100, 0x200, 0x300 etc 
+        c+=1
     line = mugs.readline()
   
 

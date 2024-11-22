@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.8.2"
+#define VersionNumber " SRR V1.8.3"
 
 #ifdef FE8
 #include "headers/prelude.h"

@@ -4,8 +4,8 @@
 //#define SKILLSYS_INSTALLED 
 //#define STRMAG_INSTALLED 
 #include "Text/repointedTextTable.event"
-#include "Definitions.event" 
 #include "EAstdlib.event" 
+#include "Definitions.event" 
 #include "Extensions/Hack Installation.txt" 
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"

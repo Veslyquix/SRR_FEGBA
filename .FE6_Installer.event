@@ -3,11 +3,9 @@
 #endif 
 
 #include "TextFE6/repointedTextTable.event"
-#include "Definitions.event" 
 // #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
-
-
 #include "EAstdlib.event" 
+#include "Definitions.event" 
 #include "Extensions/Hack Installation.txt" 
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
