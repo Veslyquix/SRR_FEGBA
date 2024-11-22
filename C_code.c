@@ -433,14 +433,17 @@ const struct FE8CharacterData *
 
 // 1 - 3a, 6e - 7f, 95 - a6: use new char tables
 // otherwise, use vanilla one
-#ifdef FE7
+// fe6: 1-0x44 because vanilla playables go up to 0x44, otherwise
+// it wants to randomize into 0x3b - 0x44 which are non-playables
+// in our new char tables
+#ifdef FE7 // use vanilla table for non-playables eg. bosses
     if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
     {
         return cData[0] + (charId - 1);
     }
 #endif
-#ifdef FE6
-    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
+#ifdef FE6 // use vanilla table for non-playables eg. bosses
+    if ((charId > 0x44 && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
     {
         return (const struct FE8CharacterData *)GetCharacterData(charId);
     }
@@ -749,40 +752,40 @@ int GetUnitListToUse(const struct CharacterData * table, int boss, int excludeNo
     }
     if (RecruitValues->recruitment < 4)
     {
-        if (result == 1)
+        if (result == 1) // players reordered
         {
-#ifdef FE6
-            if (table->number > 0x44)
+            // there are some non-bosses with portraits below
+            // these need to be manually excluded
+            // these IDs would be excluded automatically in certain games
+            // so it's okay to manually exclude them in all the games
+            // issue: copy fe8 stuff to fix
+            if (table->number == 0x65) // Idunn, also 0x66
             {
                 return 0;
             }
-#endif
+            if (table->number == 0x5a) // Maxime fe7
+            {
+                return 0;
+            }
+            // 0x7A Zephiel, 0x7B Elbert, 0x9E Natalie are now valid in fe7 *shrugs*
 
-#ifdef FE7
-            if (table->number > 0x3A)
+            if (table->number == 0x54) // Pablo fe8
             {
                 return 0;
             }
-#endif
-#ifdef FE8
-            if (table->number == 0x54) // multi game chars $66 67 54
+            if (table->number == 0x66) // bandit with portrait / Idunn
             {
                 return 0;
             }
-            if (table->number == 0x66) // multi game chars $66 67 54
-            {
-                return 0;
-            }
-            if (table->number == 0x67) // multi game chars $66 67 54
+            if (table->number == 0x67) // bandit with portrait
             {
                 return 0;
             }
 
-            if (table->number > 0x7f) // multi game chars $66 67 54
+            if (table->number > 0xA6) // playables are below 0xA6 unit ID
             {
                 return 0;
             }
-#endif
         }
     }
     if (RecruitValues->recruitment == 5)
