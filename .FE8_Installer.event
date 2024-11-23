@@ -30,7 +30,22 @@
 
 #include "Extensions/Hack Installation.txt" 
 
-#include "Tables/TableInstaller.event" 
+#ifdef VeslyBuildfile 
+    #include "Tables/TableInstaller.event" 
+#else 
+#define gCharacterDataFE1 0x8803D64 
+#define gCharacterDataFE4 0x8803D64 
+#define gCharacterDataFE5 0x8803D64 
+#define gCharacterDataFE6 0x8803D64 
+#define gCharacterDataFE7 0x8803D64 
+#define gCharacterDataFE8 0x8803D64 
+#define gCharacterDataFE10 0x8803D64 
+#define gCharacterDataFE13 0x8803D64 
+#define gCharacterDataFE14 0x8803D64 
+#define gCharacterDataFE15 0x8803D64 
+#define gCharacterDataFE16 0x8803D64 
+#define gCharacterDataFE17 0x8803D64 
+#endif 
 #include "FixMugs_FE8.event" 
 #include "Patches/FE8.lyn.event" 
 #include "Patches/FE8_AsmHooks.lyn.event" 
