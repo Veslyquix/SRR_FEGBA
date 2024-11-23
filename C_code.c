@@ -2052,12 +2052,12 @@ int GetMaxItems(void)
     {
         return MaxItems_Link;
     }
-    if (*MaxItems)
+    if (*MaxItems > 1)
     {
         return *MaxItems;
     }
     const struct ItemData * table = GetItemData(1);
-    for (int i = 1; i <= 255; i++)
+    for (int i = 1; i <= 256; i++)
     {
         if (table->number != i)
         {
@@ -2084,12 +2084,12 @@ int GetMaxClasses(void)
     {
         return MaxClasses_Link;
     }
-    if (*MaxClasses)
+    if (*MaxClasses > 1)
     {
         return *MaxClasses;
     }
     const struct ClassData * table = GetClassData(1);
-    int c = 255;
+    int c = 256;
 #ifdef FE6
     if (!RecruitValues->newClasses)
     {

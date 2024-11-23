@@ -2,7 +2,9 @@
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
 
+#ifdef VeslyBuildfile 
 #include "TextFE6/repointedTextTable.event"
+#endif 
 // #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
 #include "EAstdlib.event" 
 #include "Definitions.event" 
@@ -11,9 +13,26 @@
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
 
-
-#include "gfx/Installer.event"
-#include "Tables/TableInstaller.event" 
+#ifndef gCharacterData 
+#define gCharacterData 0x86076D0
+#endif 
+#ifdef VeslyBuildfile 
+    #include "gfx/Installer.event"
+    #include "Tables/TableInstaller.event" 
+#else 
+#define gCharacterDataFE1 0x86076D0 
+#define gCharacterDataFE4 0x86076D0 
+#define gCharacterDataFE5 0x86076D0 
+#define gCharacterDataFE6 0x86076D0 
+#define gCharacterDataFE7 0x86076D0 
+#define gCharacterDataFE8 0x86076D0 
+#define gCharacterDataFE10 0x86076D0 
+#define gCharacterDataFE13 0x86076D0 
+#define gCharacterDataFE14 0x86076D0 
+#define gCharacterDataFE15 0x86076D0 
+#define gCharacterDataFE16 0x86076D0 
+#define gCharacterDataFE17 0x86076D0 
+#endif 
 #include "Patches/FE6.lyn.event" 
 #include "Patches/FE6_AsmHooks.lyn.event" 
 
