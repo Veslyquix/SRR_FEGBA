@@ -3,12 +3,27 @@
 #endif 
 //#define SKILLSYS_INSTALLED 
 //#define STRMAG_INSTALLED 
+
+
+
 #ifdef VeslyBuildfile 
+SomeLabelHere:
 #include "Text/repointedTextTable.event"
+ALIGN 4 
+EndOfText: 
 #endif 
+
 #include "EAstdlib.event" 
 #include "Definitions.event" 
 #include "Extensions/Hack Installation.txt" 
+
+
+#ifdef VeslyBuildfile 
+#include "gfx/Installer.event"
+MESSAGE Graphics end at currentoffset 
+#endif 
+
+
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
@@ -17,7 +32,6 @@
 #define gCharacterData 0x8BDCE4C 
 #endif 
 #ifdef VeslyBuildfile 
-    #include "gfx/Installer.event"
     #include "Tables/TableInstaller.event" 
 #else 
 #define gCharacterDataFE1 0x8BDCE4C 

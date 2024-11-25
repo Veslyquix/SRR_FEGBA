@@ -1,5 +1,18 @@
 
+
+
+// #define MAKE_CACHE_ROM
+MESSAGE CURRENTOFFSET 
+MESSAGE "Installing Animations"
+#ifdef MAKE_CACHE_ROM
 #include "Internals.event" 
+#include "GeneratedInstaller.event" 
+#else 
+ORG $600000 + CURRENTOFFSET
+#endif 
+MESSAGE CURRENTOFFSET 
+
+
 
 #define WepTypeAnim(Animation, typeID) "{ Label: ; ORG Label + (typeID * 4); BYTE typeID 0x01 ; SHORT Animation; ORG Label; }"
 #define ItemAnim(Animation, itemID) "{ Label: ; ORG Label + (14 * 4); BYTE itemID 0 ; SHORT Animation; ORG Label; }"
@@ -42,9 +55,6 @@ weaponAnimEnd
 
 
 
-
-MESSAGE "Installing Animations"
-//#include "GeneratedInstaller.event" 
 
 
 

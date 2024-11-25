@@ -7,6 +7,13 @@
 // 0x1104, 0x1404 mouth 
 #endif 
 
+#ifndef _FE6_ 
+#ifdef SetMugEntry 
+	#undef SetMugEntry
+#endif 	
+#define SetMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY)"PUSH; ORG NewPortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE 0 0 0 0; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; POP"
+#endif 
+
 // #define FirstMugID 0xAC
 #define FirstMugID 0x100
 

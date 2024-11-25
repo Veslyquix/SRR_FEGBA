@@ -6,13 +6,12 @@
 
 @rem defining buildfile config
 
-set "source_rom=%~dp0fe7cache.gba"
+set "source_rom=%~dp0fe7.gba"
 
-set "main_event=%~dp0RomBuildfile.event"
+set "main_event=%~dp0RomBuildfileCache.event"
 
-set "target_rom=%~dp0fe7srr.gba"
-set "target_ups=%~dp0fe7srr.ups"
-set "target_sym=%~dp0fe7srr.sym"
+set "target_rom=%~dp0fe7cache.gba"
+set "target_sym=%~dp0fe7cache.sym"
 
 @rem defining tools
 
@@ -38,13 +37,6 @@ echo Assembling
 
 cd "%base_dir%EventAssembler"
 ColorzCore A FE7 "-output:%target_rom%" "-input:%main_event%" --nocash-sym
-
-
-  echo:
-  echo Generating patch
-
-  cd "%base_dir%"
-  "%ups%" diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
 
 
 echo:

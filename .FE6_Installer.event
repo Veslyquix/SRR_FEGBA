@@ -1,14 +1,15 @@
 #ifndef callHackNew 
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
-
-#ifdef VeslyBuildfile 
-#include "TextFE6/repointedTextTable.event"
-#endif 
-// #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
 #include "EAstdlib.event" 
 #include "Definitions.event" 
 #include "Extensions/Hack Installation.txt" 
+#ifdef VeslyBuildfile 
+#include "gfx/Installer.event"
+#include "TextFE6/repointedTextTable.event"
+#endif 
+// #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
+
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
