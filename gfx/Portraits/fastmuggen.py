@@ -26,44 +26,53 @@ def cv_locate_eye_mouse_pos(arr):
                 min_mouth_diff = mouth_diff
     return min_mouth[0], min_mouth[1], min_eye[0], min_eye[1]
 
+# Setting up output file
+installer = open("Generated.event", "w")
 
+# Writing header for the installer
+installer.write("//Generated! Do not edit!\n\n")
 
-#setting up files
-mugs = open("Png/png.txt","r")
-installer = open("Generated.event","w")
-#going through each line of png.txt to generate installer
-line = mugs.readline()
-c = 1 
-installer.write("//Generated! Do not edit!\n\n") 
+# Find all .png files recursively in the `png` folder
+png_files = list(Path("png").rglob("*.png"))
 
-while line:
-    #grab the mug name
-    mug = line.split(".")
-    mug[0] = Path(mug[0]).stem
-    name = mug[0].split("_") 
-    #write labels and incbins now that we know the name
-    print(name[0])
+# Initialize counter
+c = 1
+
+for png_file in png_files:
+    # Extract file path and name information
+    mug_path = png_file
+    mug_name = mug_path.stem
+    base_name = mug_name.split("_")[0]  # Get the first part before the first `_`
+    relative_path = mug_path.parent
+
+    # Normalize paths to use forward slashes
+    normalized_relative_path = relative_path.as_posix()
+
+    # Write labels and #incbin directives using the base name
     installer.write("ALIGN 4\n")
-    installer.write(mug[0] + "MugData:\n")
-    installer.write("#incbin \"Dmp/" + mug[0] + "_mug.dmp\"\n")
-    installer.write("#incbin \"Dmp/" + mug[0] + "_frames.dmp\"\n")
-    installer.write("#incbin \"Dmp/" + mug[0] + "_palette.dmp\"\n")
-    installer.write("#incbin \"Dmp/" + mug[0] + "_minimug.dmp\"\n")
-    
-    installer.write("#ifndef "+name[0]+"Mug\n  #define "+name[0]+"Mug (FirstMugID+"+str(c)+")\n#endif\n") 
-    image = Image.open(line.strip()).quantize(16)
-    arr = numpy.array(image.getdata(), dtype='<u1').reshape((112, 128))
-    x1, y1, x2, y2 = cv_locate_eye_mouse_pos(arr)
-    installer.write("setMugEntry("+name[0]+"Mug, "+mug[0]+"MugData, "+str(x1)+", "+str(y1)+", "+str(x2)+", "+str(y2)+")\n\n")
-    c+=1
-    if ((c % 256) == 0): #avoid 0x100, 0x200, 0x300 etc 
-        c+=1
-    line = mugs.readline()
-  
+    installer.write(f"{base_name}MugData:\n")
+    installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_mug.dmp\"\n")
+    installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_frames.dmp\"\n")
+    installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_palette.dmp\"\n")
+    installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_minimug.dmp\"\n")
 
-#closing files
-mugs.close()
+    # Define mug ID if not already defined
+    installer.write(f"#ifndef {base_name}Mug\n  #define {base_name}Mug (FirstMugID+{c})\n#endif\n")
+
+    # Process the image to locate the eye and mouse positions
+    image = Image.open(mug_path).quantize(16)
+    arr = numpy.array(image.getdata(), dtype="<u1").reshape((112, 128))
+    x1, y1, x2, y2 = cv_locate_eye_mouse_pos(arr)
+    installer.write(f"setMugEntry({base_name}Mug, {base_name}MugData, {x1}, {y1}, {x2}, {y2})\n\n")
+
+    # Increment the counter and handle cases where `c` is a multiple of 256
+    c += 1
+    if c % 256 == 0:
+        c += 1
+
+# Closing the installer file
 installer.close()
+
 
 
 

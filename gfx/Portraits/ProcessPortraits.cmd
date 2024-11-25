@@ -1,26 +1,12 @@
 @echo off
 @fixfilenames.py 
-@set "PortraitFormatter=%~dp0/../../EventAssembler/Tools/PortraitFormatter.exe"
+@echo making stuff 
+make
 
-@cd %~dp0/Png
 
-@dir *.png /b/s > png.txt
-@echo Using Portrait Formatter.exe 
-@for /f "tokens=*" %%m in (png.txt) do ("%PortraitFormatter%" "%%m")
-
-@cd %~dp0
+@echo generating installer 
 @fastmuggen.py
 
-@cd %~dp0/Png
-@del png.txt
-
-@cd %~dp0
-
-@echo Moving .dmp files into folder 
-for /r %%a in (*.dmp) do ( 
-@copy "%%a" "%~dp0Dmp" > nul
-@del "%%a" 
-)
 
 echo Done!
 
