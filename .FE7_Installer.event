@@ -19,6 +19,7 @@ EndOfText:
 
 
 #ifdef VeslyBuildfile 
+ORG 0x1030000
 #include "gfx/Installer.event"
 MESSAGE Graphics end at currentoffset 
 #endif 

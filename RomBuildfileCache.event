@@ -19,6 +19,7 @@
 #define MAKE_CACHE_ROM 
 #ifdef VeslyBuildfile 
     ORG CURRENTOFFSET + 0x30000 // 0.2mb for text 
+    // ORG 0 
     #include "gfx/Anims/Installer.event"
 #endif 
 
@@ -29,8 +30,8 @@
 
 
 
-ALIGN 32 
-WORD 0 0 0 0 0 0 0 0 
+// ALIGN 32 
+// WORD 0 0 0 0 0 0 0 0 
 
 
 

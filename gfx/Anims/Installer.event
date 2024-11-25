@@ -2,16 +2,64 @@
 
 
 // #define MAKE_CACHE_ROM
-MESSAGE CURRENTOFFSET 
+
 MESSAGE "Installing Animations"
+ALIGN 0x10000 
+NewAnimTable: 
+MESSAGE CURRENTOFFSET 
 #ifdef MAKE_CACHE_ROM
 #include "Internals.event" 
 #include "GeneratedInstaller.event" 
 #else 
-ORG $600000 + CURRENTOFFSET
+// ORG $600000 + CURRENTOFFSET
+#incbin "../../animscache.dmp" 
 #endif 
 MESSAGE CURRENTOFFSET 
 
+#ifndef MAKE_CACHE_ROM
+
+
+PUSH 
+
+#ifdef _FE6_ 
+ORG $4B0F8 
+POIN NewAnimTable
+ORG $4BB4C 
+POIN NewAnimTable
+ORG $4BBD8 
+POIN NewAnimTable
+ORG $4BD38 
+POIN NewAnimTable
+#endif 
+
+#ifdef _FE7_ 
+ORG $541F4 
+POIN NewAnimTable
+ORG $54AE8
+POIN NewAnimTable
+ORG $54B78
+POIN NewAnimTable
+ORG $54D00 
+POIN NewAnimTable
+#endif 
+
+#ifdef _FE8_ 
+ORG $59BD8 
+POIN NewAnimTable
+ORG $5A600
+POIN NewAnimTable
+ORG $5A694
+POIN NewAnimTable
+ORG $5A82C
+POIN NewAnimTable
+ORG $6F6A8
+POIN NewAnimTable
+ORG $70940
+POIN NewAnimTable
+ORG $70A60
+POIN NewAnimTable
+#endif // fe8 
+POP 
 
 
 #define WepTypeAnim(Animation, typeID) "{ Label: ; ORG Label + (typeID * 4); BYTE typeID 0x01 ; SHORT Animation; ORG Label; }"
@@ -59,4 +107,4 @@ weaponAnimEnd
 
 
 
-
+#endif 

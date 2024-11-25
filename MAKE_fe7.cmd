@@ -6,7 +6,7 @@
 
 @rem defining buildfile config
 
-set "source_rom=%~dp0fe7cache.gba"
+set "source_rom=%~dp0fe7.gba"
 
 set "main_event=%~dp0RomBuildfile.event"
 

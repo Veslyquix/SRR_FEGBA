@@ -5,49 +5,6 @@
 #define AnimTableSize 512
 
 
-PUSH 
-
-#ifdef _FE6_ 
-ORG $4B0F8 
-POIN NewAnimTable
-ORG $4BB4C 
-POIN NewAnimTable
-ORG $4BBD8 
-POIN NewAnimTable
-ORG $4BD38 
-POIN NewAnimTable
-#endif 
-
-#ifdef _FE7_ 
-ORG $541F4 
-POIN NewAnimTable
-ORG $54AE8
-POIN NewAnimTable
-ORG $54B78
-POIN NewAnimTable
-ORG $54D00 
-POIN NewAnimTable
-#endif 
-
-#ifdef _FE8_ 
-ORG $59BD8 
-POIN NewAnimTable
-ORG $5A600
-POIN NewAnimTable
-ORG $5A694
-POIN NewAnimTable
-ORG $5A82C
-POIN NewAnimTable
-ORG $6F6A8
-POIN NewAnimTable
-ORG $70940
-POIN NewAnimTable
-ORG $70A60
-POIN NewAnimTable
-#endif // fe8 
-
-POP 
-
 #ifdef _FE6_ 
 #define DefaultAnimEntry "BYTE 0x61 0x72 0x6D 0x6D 0x5F 0x73 0x70 0x31 0x00 0x00 0x00 0x00;POIN 0x6A5074 0x6A4D84 0x6A47F4 0x6A424C 0x6A41E8; "
 #endif // fe6 
@@ -65,8 +22,7 @@ POP
 #define DefAnim512 "DefAnim256 DefAnim256"
 
 
-ALIGN 4 
-NewAnimTable: 
+
 DefAnim512
 ORG NewAnimTable 
 
