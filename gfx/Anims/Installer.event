@@ -12,7 +12,15 @@ MESSAGE CURRENTOFFSET
 #include "GeneratedInstaller.event" 
 #else 
 // ORG $600000 + CURRENTOFFSET
-#incbin "../../animscache.dmp" 
+#ifdef _FE6_ 
+#incbin "../../animsfe6cache.dmp" 
+#endif 
+#ifdef _FE7_ 
+#incbin "../../animsfe7cache.dmp" 
+#endif 
+#ifdef _FE8_ 
+#incbin "../../animsfe8cache.dmp" 
+#endif 
 #endif 
 MESSAGE CURRENTOFFSET 
 

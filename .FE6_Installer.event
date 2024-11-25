@@ -5,8 +5,10 @@
 #include "Definitions.event" 
 #include "Extensions/Hack Installation.txt" 
 #ifdef VeslyBuildfile 
-#include "gfx/Installer.event"
 #include "TextFE6/repointedTextTable.event"
+ORG 0x1030000
+#include "gfx/Installer.event"
+
 #endif 
 // #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
 
@@ -18,7 +20,6 @@
 #define gCharacterData 0x86076D0
 #endif 
 #ifdef VeslyBuildfile 
-    #include "gfx/Installer.event"
     #include "Tables/TableInstaller.event" 
 #else 
 #define gCharacterDataFE1 0x86076D0 

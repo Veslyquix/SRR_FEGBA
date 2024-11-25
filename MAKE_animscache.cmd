@@ -6,12 +6,11 @@
 
 @rem defining buildfile config
 
-set "source_rom=%~dp0norom.gba"
+set "source_rom=%~dp0norom.dmp"
 
 set "main_event=%~dp0RomBuildfileCache.event"
 
-set "target_rom=%~dp0anims.dmp"
-set "target_sym=%~dp0fe7cache.sym"
+set "target_rom=%~dp0animsfe6.dmp"
 
 @rem defining tools
 
@@ -36,7 +35,11 @@ echo:
 echo Assembling
 
 cd "%base_dir%EventAssembler"
-ColorzCore A FE7 "-output:%target_rom%" "-input:%main_event%" --nocash-sym
+ColorzCore A FE6 "-output:%target_rom%" "-input:%main_event%"
+set "target_rom=%~dp0animsfe7.dmp"
+ColorzCore A FE7 "-output:%target_rom%" "-input:%main_event%"
+set "target_rom=%~dp0animsfe8.dmp"
+ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%"
 
 @rem call "MAKE_copyintoanimscache.cmd" noPause 
 
