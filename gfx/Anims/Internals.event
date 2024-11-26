@@ -1,6 +1,6 @@
 
 #define ClassAnimTable NewAnimTable
-#define AnimTableEntry(index) "ORG NewAnimTable + (index * 0x20)"
+#define AnimTableEntry(index) "ORG NewAnimTable + ((index-1) * 0x20)"
 
 #define AnimTableSize 512
 

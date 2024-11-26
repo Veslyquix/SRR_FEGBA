@@ -2557,6 +2557,10 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
                 continue;
             } // ignore duplicate classes (same name / same SMS in a row)
         }
+        else
+        { // skip classes that have no name
+            continue;
+        }
         if (IsClassInvalid(i))
         {
             continue;

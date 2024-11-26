@@ -25,7 +25,7 @@ primary_keywords = ["Egyptian", "Cantor_by", "Cantor_Jedah", "Arcanist_by_Nuramo
     "Phantom_by_TBA", "Slime", "Warbird", "Adventurer"]
 
 # List of weapon types to append to the primary keyword
-weapon_keywords = ["Unarmed", "Knife", "Handaxe", "Magic", "Sword",  "Axe", "Bow", "Lance",  "Ranged", "Staff", "Refresh"]
+weapon_keywords = ["Unarmed", "Knife", "Handaxe", "Magic", "Sword",  "Axe", "Bow", "Lance",  "Ranged", "Staff", "Refresh", "Monster"]
 
 anim_offset = 0  # Offset for StartingAnimID
 
@@ -44,6 +44,10 @@ with open(definitions_file, 'w') as definitions:
 
         # Check if it's a file and ends with .event
         if os.path.isfile(file_path) and filename.endswith(".event"):
+            # Clean the filename of special characters
+            scrubbed_filename = re.sub(r'[^\w\s]', '', filename)  # Removes all non-alphanumeric, non-space characters
+            scrubbed_filename = scrubbed_filename.replace(" ", "_")  # Replace spaces with underscores
+            
             # Read the content of the file
             try:
                 with open(file_path, 'r') as file:
@@ -59,18 +63,18 @@ with open(definitions_file, 'w') as definitions:
             # Find a primary keyword in the filename
             primary_keyword = None
             for keyword in primary_keywords:
-                if keyword.lower() in filename.lower():
+                if keyword.lower() in scrubbed_filename.lower():
                     primary_keyword = keyword
                     break
 
             # Fallback: Use scrubbed filename if no primary keyword is found
             if not primary_keyword:
-                scrubbed_filename = re.sub(r'[%_\[\]\s]\'', '', os.path.splitext(filename)[0])
-                primary_keyword = scrubbed_filename
+                scrubbed_filename2 = re.sub(r'[%_\[\]\s]\'', '', os.path.splitext(filename)[0])
+                primary_keyword = scrubbed_filename2
 
             # Find the most specific weapon keyword in the filename by searching in reverse
             weapon_keyword = None
-            reversed_filename = filename[::-1].lower()  # Reverse the filename for reverse searching
+            reversed_filename = scrubbed_filename[::-1].lower()  # Reverse the filename for reverse searching
             best_match_index = float('inf')  # Initialize with a large value to track the closest match
 
             for weapon in weapon_keywords:
@@ -86,7 +90,7 @@ with open(definitions_file, 'w') as definitions:
             if weapon_keyword:
                 combined_keyword = f"{primary_keyword}{weapon_keyword}"
             else:
-                combined_keyword = primary_keyword
+                combined_keyword = f"{primary_keyword}Monster"
 
             # Replace AnimTableEntry in the file content
             updated_file_data = file_data
