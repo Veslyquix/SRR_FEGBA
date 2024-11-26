@@ -1,9 +1,11 @@
 
-#define StartingAnimID 201 
+#undef SentinelLance
+#define StartingAnimID 201
+#include "definitions.event" 
 
 // #define MAKE_CACHE_ROM
 
-MESSAGE "Installing Animations"
+MESSAGE CURRENTOFFSET "Installing Animations"
 ALIGN 0x10000 
 NewAnimTable: 
 MESSAGE CURRENTOFFSET 
@@ -98,15 +100,7 @@ POP
 // This sets a default animation for all weapon types and for handaxes 
 // with the handaxe as default thrown axe patch, there is no need to repeatedly set anims for other axes 
 
-
-ALIGN 4 
-EphraimT1_Anim: // class POINs here 
-animEntry(1) // default animation id 
-LanceAnim(0xCA) // animation id 
-weaponAnimEnd(1) // 1 weapon type 
-
-
-
+#include "Animations.event" 
 
 
 // if you want more weapons to have unique animations: 

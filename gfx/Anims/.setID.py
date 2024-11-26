@@ -8,7 +8,7 @@ directory = 'event'
 definitions_file = 'definitions.event'
 
 # List of primary keywords to search for in filenames
-primary_keywords = ["Egyptian", "Cantor", "Arcanist_by_Nuramon", "Halberdier", "Miko", 
+primary_keywords = ["Egyptian", "Cantor_by", "Cantor_Jedah", "Arcanist_by_Nuramon", "Halberdier", "Miko", 
     "War_Cleric", "Witch", "Kishuna", "Angel", "Brighid", "Arcanist_by_Devisian_Nights", 
     "Magician", "Occultist", "Parson", "Seliph", "Leif_Lord", "Marth_Slash", "Harbinger", 
     "Heavy_Infantry", "Flail_Knight", "Ike_Lord", "Ike_Ranger", "Vanguard", "Alm_T1", 
@@ -25,7 +25,7 @@ primary_keywords = ["Egyptian", "Cantor", "Arcanist_by_Nuramon", "Halberdier", "
     "Phantom_by_TBA", "Slime", "Warbird", "Adventurer"]
 
 # List of weapon types to append to the primary keyword
-weapon_keywords = ["Handaxe", "Sword", "Lance", "Axe", "Bow", "Magic", "Ranged", "Unarmed", "Staff", "Refresh"]
+weapon_keywords = ["Unarmed", "Knife", "Handaxe", "Magic", "Sword",  "Axe", "Bow", "Lance",  "Ranged", "Staff", "Refresh"]
 
 anim_offset = 0  # Offset for StartingAnimID
 
@@ -65,15 +65,22 @@ with open(definitions_file, 'w') as definitions:
 
             # Fallback: Use scrubbed filename if no primary keyword is found
             if not primary_keyword:
-                scrubbed_filename = re.sub(r'[%_\[\]\s]', '', os.path.splitext(filename)[0])
+                scrubbed_filename = re.sub(r'[%_\[\]\s]\'', '', os.path.splitext(filename)[0])
                 primary_keyword = scrubbed_filename
 
-            # Find the most specific weapon keyword in the filename
+            # Find the most specific weapon keyword in the filename by searching in reverse
             weapon_keyword = None
-            for weapon in sorted(weapon_keywords, key=len, reverse=True):  # Longest match first
-                if weapon.lower() in filename.lower():
+            reversed_filename = filename[::-1].lower()  # Reverse the filename for reverse searching
+            best_match_index = float('inf')  # Initialize with a large value to track the closest match
+
+            for weapon in weapon_keywords:
+                reversed_weapon = weapon[::-1].lower()  # Reverse the weapon keyword
+                match_index = reversed_filename.find(reversed_weapon)  # Find the position of the reversed match
+                if match_index != -1 and match_index < best_match_index:  # Match found closer to the end
                     weapon_keyword = weapon
-                    break
+                    best_match_index = match_index  # Update with the closest match
+
+
 
             # Combine the primary keyword and weapon keyword
             if weapon_keyword:
@@ -93,9 +100,12 @@ with open(definitions_file, 'w') as definitions:
                         count=1
                     )
                 # Write the definition to the definitions file
-                definition_line = f"#define {combined_keyword} StartingAnimID+{anim_offset}\n"
+                definition_line = f"#define {combined_keyword} (StartingAnimID+{anim_offset})\n"
                 definitions.write(definition_line)
                 anim_offset += 1
+            else:
+                print(filename+" failed") 
+            
 
             # Save the updated content back to the .event file
             try:

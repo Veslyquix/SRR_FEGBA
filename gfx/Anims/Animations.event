@@ -1,0 +1,20 @@
+
+
+
+ALIGN 4 
+EphraimT1_Anim: // class POINs here 
+animEntry(1) // default animation id 
+LanceAnim(0xCA) // animation id 
+weaponAnimEnd(1) // 1 weapon type 
+
+Oni_Chieftain_Anim:
+animEntry(Oni_ChieftainAxe) // default 
+AxeAnim(Oni_ChieftainAxe) 
+HandAxeAnim(Oni_ChieftainHandaxe) 
+AnimaAnim(Oni_ChieftainMagic) 
+LightAnim(Oni_ChieftainMagic) 
+DarkAnim(Oni_ChieftainMagic) 
+weaponAnimEnd(5) // 3 entries 
+
+
+
