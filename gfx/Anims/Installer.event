@@ -1,5 +1,5 @@
 
-
+#define StartingAnimID 201 
 
 // #define MAKE_CACHE_ROM
 
@@ -93,7 +93,8 @@ POP
 
 // for all weapon types 
 #define animEntry(ID) "{ Label: ; wTA(0, ID); wTA(1, ID); wTA(2, ID); wTA(3, ID); wTA(4, ID); wTA(5, ID); wTA(6, ID); wTA(7, ID); wTA(8, ID); wTA(9, ID); wTA(10, ID); wTA(11, ID); wTA(12, ID); wTA(13, ID); wA(HandAxe, ID); ORG Label; } " 
-#define weaponAnimEnd "{ Label: ; ORG Label + (15 * 4); WORD 0; }"
+#define weaponAnimEnd "{ Label: ; ORG Label + (15 * 4); WORD 0; }" // class with 1 wep 
+#define weaponAnimEnd(NumberOfWeps) "{ Label: ; ORG Label + ((14 + NumberOfWeps) * 4); WORD 0; }"
 // This sets a default animation for all weapon types and for handaxes 
 // with the handaxe as default thrown axe patch, there is no need to repeatedly set anims for other axes 
 
@@ -102,7 +103,12 @@ ALIGN 4
 EphraimT1_Anim: // class POINs here 
 animEntry(1) // default animation id 
 LanceAnim(0xCA) // animation id 
-weaponAnimEnd
+weaponAnimEnd(1) // 1 weapon type 
+
+
+
+
+
 // if you want more weapons to have unique animations: 
 //ORG EirikaT1_Anim + (15 * 4)
 //wA(Tomahawk, 3) 

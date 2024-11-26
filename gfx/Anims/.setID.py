@@ -1,31 +1,106 @@
-
-
-# import required module
 import os
-# assign directory
+import re
+
+# Directory containing the .event files
 directory = 'event'
-count = 201
-# iterate over files in
-# that directory
-for filename in os.listdir(directory):
-    f = os.path.join(directory, filename)
-    # checking if it is a file
-    if os.path.isfile(f):
-        if f.endswith(".event"):
-            # Read in the file
-            with open(f, 'r') as file:
-              filedata = file.read()
 
-            # Replace the target string
-            data = {"0x0": count}
-            string = 'AnimTableEntry(0x0)'
-            newString = 'AnimTableEntry('+str(count)+')'
-            ##filedata = filedata.replace(string, string.format_map(data))
-            filedata = filedata.replace(string, newString)
-            count += 1
+# Output definitions file
+definitions_file = 'definitions.event'
 
-            # Write the file out again
-            with open(f, 'w') as file:
-              file.write(filedata)
-d = {"publication": "article", "author": "Me"}
-template = f"This {d['publication']} was written by {d['author']}, who is solely responsible for its content."
+# List of primary keywords to search for in filenames
+primary_keywords = ["Egyptian", "Cantor", "Arcanist_by_Nuramon", "Halberdier", "Miko", 
+    "War_Cleric", "Witch", "Kishuna", "Angel", "Brighid", "Arcanist_by_Devisian_Nights", 
+    "Magician", "Occultist", "Parson", "Seliph", "Leif_Lord", "Marth_Slash", "Harbinger", 
+    "Heavy_Infantry", "Flail_Knight", "Ike_Lord", "Ike_Ranger", "Vanguard", "Alm_T1", 
+    "Alm_T2", "Baron", "ShieldGeneral", "FE10Knight", "HelmetlessKnight", 
+    "Mercenary_by_SALVAGED", "Skeleton_Rider", "Skirt_Pupil", "Mia_by_Redbean", 
+    "PupilReskin", "Samurai", "Gaiden_Priestess", "Red_Mage_by_Reyk", "Katarina_Fencer", 
+    "Ninja", "Thug", "Dread_Fighter", "Fir_by_Redbean", "Trueblade", "Dark_Prince", 
+    "Red_mage_by_Mycahel", "Executioner", "Moloch_Sorcerer", "Archsage_Athos", "Tactician", 
+    "F_Trickster", "M_Trickster", "F_Villager", "M_Villager", "Legion_King", "Fletchling", 
+    "Oni_Chieftain", "Elffin_Fancy", "Mounted_Marauder", "Mechanist", "Dragoon", 
+    "Lancer_by_SALVAGED", "Militia", "Sentinel", "Tethys_Repalette", "FE8_Tethys", 
+    "T1_Lancer", "Gladiator", "Hunter", "Chicken", "SupplierAnna", "Merlinus_Transport", 
+    "Sandworm", "Cursed_Sword", "Tomes", "Mimic_Chest", "Mosquito", 
+    "Phantom_by_TBA", "Slime", "Warbird", "Adventurer"]
+
+# List of weapon types to append to the primary keyword
+weapon_keywords = ["Handaxe", "Sword", "Lance", "Axe", "Bow", "Magic", "Ranged", "Unarmed", "Staff", "Refresh"]
+
+anim_offset = 0  # Offset for StartingAnimID
+
+# Ensure the directory exists
+if not os.path.exists(directory):
+    print(f"Directory '{directory}' does not exist.")
+    exit()
+
+# Open the definitions file for writing
+with open(definitions_file, 'w') as definitions:
+    definitions.write("// Definitions for AnimTableEntries\n\n")
+
+    # Iterate over all files in the directory
+    for filename in os.listdir(directory):
+        file_path = os.path.join(directory, filename)
+
+        # Check if it's a file and ends with .event
+        if os.path.isfile(file_path) and filename.endswith(".event"):
+            # Read the content of the file
+            try:
+                with open(file_path, 'r') as file:
+                    file_data = file.read()
+            except Exception as e:
+                print(f"Error reading file {filename}: {e}")
+                continue
+
+            # Define the pattern to search for (match decimal or hexadecimal numbers)
+            pattern = r'AnimTableEntry\((0x[\da-fA-F]+|\d+|[a-zA-Z_][\w]*)\)'
+            matches = re.findall(pattern, file_data)
+
+            # Find a primary keyword in the filename
+            primary_keyword = None
+            for keyword in primary_keywords:
+                if keyword.lower() in filename.lower():
+                    primary_keyword = keyword
+                    break
+
+            # Fallback: Use scrubbed filename if no primary keyword is found
+            if not primary_keyword:
+                scrubbed_filename = re.sub(r'[%_\[\]\s]', '', os.path.splitext(filename)[0])
+                primary_keyword = scrubbed_filename
+
+            # Find the most specific weapon keyword in the filename
+            weapon_keyword = None
+            for weapon in sorted(weapon_keywords, key=len, reverse=True):  # Longest match first
+                if weapon.lower() in filename.lower():
+                    weapon_keyword = weapon
+                    break
+
+            # Combine the primary keyword and weapon keyword
+            if weapon_keyword:
+                combined_keyword = f"{primary_keyword}{weapon_keyword}"
+            else:
+                combined_keyword = primary_keyword
+
+            # Replace AnimTableEntry in the file content
+            updated_file_data = file_data
+            if matches:
+                print(f"{combined_keyword}")
+                for match in matches:
+                    updated_file_data = re.sub(
+                        pattern,
+                        f'AnimTableEntry({combined_keyword})',
+                        updated_file_data,
+                        count=1
+                    )
+                # Write the definition to the definitions file
+                definition_line = f"#define {combined_keyword} StartingAnimID+{anim_offset}\n"
+                definitions.write(definition_line)
+                anim_offset += 1
+
+            # Save the updated content back to the .event file
+            try:
+                with open(file_path, 'w') as file:
+                    file.write(updated_file_data)
+            except Exception as e:
+                print(f"Error writing to file {filename}: {e}")
+                continue
