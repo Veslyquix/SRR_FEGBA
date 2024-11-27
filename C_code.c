@@ -10743,3 +10743,25 @@ s8 ArenaIsUnitAllowed(struct Unit * unit)
 
     return 1;
 }
+
+/*
+extern int GetUnitEquippedWeapon(struct Unit * unit);
+s8 UnitHasMagicRank(struct Unit * unit) // fe6 18188 fe7 184dc
+{
+    int combinedRanks = 0;
+
+    int wep = GetUnitEquippedWeapon(unit);
+    if (wep)
+    {
+        u32 attr = GetItemAttributes(wep);
+        return attr & 2; // magic bitflag on weapon
+    }
+
+    combinedRanks |= unit->ranks[4];
+    combinedRanks |= unit->ranks[5];
+    combinedRanks |= unit->ranks[6];
+    combinedRanks |= unit->ranks[7];
+
+    return combinedRanks ? TRUE : FALSE;
+}
+*/

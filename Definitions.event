@@ -1,93 +1,5 @@
 
 
-// #define qwer\
-    // "MESSAGE 123; \
-    // MESSAGE 456"
-    
-// qwer 
-
-// For classes that don't exist in FE8 
-// #define IsSymbolDefined(name) "(((name) || 1) ?? 0)"
-// #define IsSymbolDefined(name) "!(((name) || 1) ?? 0)"
-// #define NotDef(name) "!(((name) || 1) ?? 0)"
-// #define nd(name) "!(((name) || 1) ?? 0)"
-// #ifndef NotDef 
-    // #define NotDef(name) "(((name) || 0) ?? 1)"
-    // #define NotDef(name) "((((name) && 0) ?? 1))"
-    // #define nd(name) "(((name) && 0) ?? 1)"
-// #endif 
-// #ifndef defr 
-    // #define defr(name, value) "#if NotDef(name); #define name value; #endif"
-    // #define defr(name, value) \
-    // "#if NotDef(name);\
-    // MESSAGE 1;\
-    // #define name value;\
-    // #endif"
-    //MESSAGE 2"
-    //#endif"
-    // #define defr(name, value) "#if IsSymbolDefined(name); MESSAGE; #else; MESSAGE 2; #endif"
-// #endif 
-
-// #define RoyLord 1
-// #if IsSymbolDefined(RoyLord)
-// #if (((RoyLord) || 1) ?? 0)
-// #if NotDef(RoyLord)
-// #define RoyLord 3 
-// #endif 
-
-// #if NotDef(RoyLord)
-// #define RoyLord 3 
-// #endif 
-
-// #if NotDef(RoyLord)
-// #define RoyLord 3 
-// #endif 
-
-
-// #define RoyLord 3
-
-
-// #if NotDef(RoyLord)
-// #define RoyLord 3 
-// #endif 
-
-
-// #define defr(name) "!(((name) || 1) ?? 0)"
-// #if defr(RoyLord) 
-// #define RoyLord 12; #endif
-
-// #if defr(RoyLord) 
-// #define RoyLord 12; #endif
-
-
-
-// #if IsSymbolDefined(RoyLord); MESSAGE 1; #else; #define RoyLord "12"; #endif 
-// #if IsSymbolDefined(RoyLord); MESSAGE 1; #else; #define RoyLord "12"; #endif 
-// #if IsSymbolDefined(RoyLord); MESSAGE 1; #else; #define RoyLord "12"; #endif 
-
-// #ifndef RoyLord
-// #define RoyLord 12
-// #endif 
-
-
-// #if NotDef(RoyLord)
-// #define RoyLord 12
-// #endif
-// #if NotDef(RoyLord)
-// #define RoyLord 12
-// #endif
-// #if NotDef(RoyLord); MESSAGE 3; #define RoyLord 12; #endif 
-
-
-// defr(RoyLord, Mercenary) 
-// defr(RoyLord, Mercenary) 
-
-// "undefined-coalescing" operator '??' ('L ?? R' evaluates to L if L does not contain undefined symbols, R otherwise)
-//#if IsSymbolDefined(RoyLord); #else; MESSAGE 2; #endif 
-// #define RoyLord Mercenary
-
-
-
 #ifdef _FE7_ 
 #define gCharacterData 0x8BDCE4C
 #endif 
@@ -228,11 +140,9 @@
 #define LightningAffinity 2 // ThunderAffinity
 
 
-#define defr(name, value) "#define name value" 
-
 #ifndef _FE6_
-defr(RoyLord, Mercenary) 
-defr(Mamkute_F, Manakete_2_F)
+#define RoyLord Mercenary
+#define Mamkute_F Manakete_2_F
 #endif 
 
 #ifdef _FE6_ 
@@ -325,31 +235,31 @@ defr(Mamkute_F, Manakete_2_F)
 #ifdef _FE8_ 
 #define Dracoknight WyvernRider 
 #define Manakete_F Manakete_2_F 
-defr(Nomad, Archer )
-defr(Nomad_F, Archer_F )
-defr(NomadTrooper, Ranger )
-defr(NomadTrooper_F, Ranger )
+#define FireDragon Manakete_2_F 
+#define Nomad Archer 
+#define Nomad_F Archer_F 
+#define NomadTrooper Ranger 
+#define NomadTrooper_F Ranger 
 
-defr(EliwoodLord, Mercenary)
-defr(LynLord, Myrmidon)
-defr(HectorLord, Knight)
+#define EliwoodLord Mercenary
+#define LynLord Myrmidon
+#define HectorLord Knight
 
-defr(KnightLord, Mercenary)
-defr(BladeLord, Myrmidon)
-defr(GreatLord, Knight)
+#define KnightLord Mercenary
+#define BladeLord Myrmidon
+#define GreatLord Knight
 
-
-defr(Thief_F, Thief )
-defr(Peer_F, Paladin_F)
-defr(Transporter, Knight )
-defr(Archsage, Sage )
+#define Thief_F Thief 
+#define Peer_F Paladin_F
+#define Transporter Knight 
+#define Archsage Sage 
 
 #endif 
 
 
 
 
-defr(Villager, Myrmidon )
+#define Villager Myrmidon 
 
 
 

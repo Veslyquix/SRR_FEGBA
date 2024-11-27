@@ -361,6 +361,12 @@ WORD 0x4800 // in glowy
 
 PUSH 
 
+// from $2a730 SetBattleUnitWeapon 
+ORG $2A7DE // Melee & magic arena fix 
+BYTE $11 $80 $e9 $83 $49 $46 $08 $70 $32 $e0 
+ORG $18a58
+BYTE $10 $B5 $04 $1C $FE $F7 $64 $F8 $00 $28 $04 $D1 $E0 $6A $00 $28 $06 $D0 $01 $20 $04 $E0 $FE $F7 $7D $FD $02 $21 $08 $40 $40 $08 $10 $BD
+
 // test 
  // ORG $9EEF50
  // LABEL 876 

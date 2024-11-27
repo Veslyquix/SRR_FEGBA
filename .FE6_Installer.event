@@ -547,6 +547,10 @@ WORD 0xd800 // in glowy or 0x3000 ? // 0x4800
 
 PUSH 
 
+// Melee and magic fix fe6 
+ORG 0x18188
+BYTE $00 $B5 $FE $F7 $E5 $FB $FE $F7 $FF $FF $02 $21 $08 $40 $40 $08 $02 $BC $08 $47
+
 // make some enemies in first ch promoted for testing 
 //ORG $679C91 
 //BYTE $B 
