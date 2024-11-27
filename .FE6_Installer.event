@@ -1,14 +1,20 @@
 #ifndef callHackNew 
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
+
+#ifdef VeslyBuildfile 
+#include "TextFE6/repointedTextTable.event"
+#endif 
+
 #include "EAstdlib.event" 
 #include "Definitions.event" 
 #include "Extensions/Hack Installation.txt" 
+
+
 #ifdef VeslyBuildfile 
-#include "TextFE6/repointedTextTable.event"
 ORG 0x1030000
 #include "gfx/Installer.event"
-
+MESSAGE Graphics end at currentoffset 
 #endif 
 // #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
 

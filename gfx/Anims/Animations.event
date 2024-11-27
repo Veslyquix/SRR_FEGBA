@@ -188,13 +188,13 @@ UnarmedAnim(MilitiaUnarmed)
 weaponAnimEnd(2)
 
 Sentinel_Anim:
-animEntry(SentinelLance)
-// AxeAnim(SentinelAxe)
-// HandAxeAnim(SentinelHandaxe)
+animEntry(SentinelAxe)
+AxeAnim(SentinelAxe)
+HandAxeAnim(SentinelHandaxe)
 LanceAnim(SentinelLance)
 SwordAnim(SentinelSword)
 UnarmedAnim(SentinelUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 
 FE8_Tethys_Anim:
 animEntry(FE8_TethysMagic)
