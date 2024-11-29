@@ -6,6 +6,18 @@
 #endif 
 
 #ifdef _FE7_ 
+
+#define LordMovCost 0x8BE3888
+#define LordRainMovCost 0x8BE3CD9 
+#define CavMovCost 0x8BE3B12
+#define DefMovCost 0x8BE38C9
+#define FighterMovCost 0x8BE394B
+#define MageMovCost 0x8BE3A90
+#define FlierMovCost 0x8BE3C16
+#define KnightMovCost 0x8BE390A
+#define ThiefMovCost 0x8BE3A4F
+#define TransporterMovCost 0x8BE3AD1
+
 #define gCharacterData 0x8BDCE4C
 #endif 
 #ifdef _FE6_ 
