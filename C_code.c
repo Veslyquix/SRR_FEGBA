@@ -7929,11 +7929,13 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         RandBitflags->levelups = proc->Option[5];
         RandBitflags->caps = proc->Option[6];
         RandBitflags->class = proc->Option[7];
+        RecruitValues->newClasses = 0;
         if (proc->Option[7] == 4)
         {
             RandBitflags->class = 1;
             RecruitValues->newClasses = 1;
         }
+
         RandBitflags->itemStats = ((proc->Option[8] == 1) || (proc->Option[8] == 3));
         RandBitflags->foundItems = ((proc->Option[8] == 1) || (proc->Option[8] == 2));
         RandBitflags->shopItems = ((proc->Option[8] == 1) || (proc->Option[8] == 2));
