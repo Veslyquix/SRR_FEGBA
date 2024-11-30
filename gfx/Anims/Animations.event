@@ -36,19 +36,22 @@ weaponAnimEnd(6) // 6 entries after "animEntry()", so "6" goes in "weaponAnimEnd
 
 
 // Data to format: 
-#define FletchlingBow (StartingAnimID+0)
-#define FletchlingUnarmed (StartingAnimID+1)
-#define Oni_ChieftainAxe (StartingAnimID+2)
-#define Oni_ChieftainHandaxe (StartingAnimID+3)
-#define Oni_ChieftainMagic (StartingAnimID+4)
-#define Elffin_FancyMagic (StartingAnimID+5)
-#define Elffin_FancyRefresh (StartingAnimID+6)
-#define Mounted_MarauderAxe (StartingAnimID+7)
-#define Mounted_MarauderBow (StartingAnimID+8)
-#define Mounted_MarauderHandaxe (StartingAnimID+9)
-#define Mounted_MarauderUnarmed (StartingAnimID+10)
-#define MechanistBow (StartingAnimID+11)
-#define MechanistUnarmed (StartingAnimID+12)
+#define Grand_MahoutBow (StartingAnimID+62)
+#define Grand_MahoutLance (StartingAnimID+63)
+#define Grand_MahoutMonster (StartingAnimID+64)
+#define BrawlerMelee (StartingAnimID+61)
+#define EnchanterKnife (StartingAnimID+100)
+#define EnchanterMelee (StartingAnimID+101)
+#define Black_DragonMonster (StartingAnimID+162)
+#define Black_DragonUnarmed (StartingAnimID+163)
+#define DjinnMagic (StartingAnimID+171)
+#define DjinnSupply (StartingAnimID+172)
+#define DjinnSword (StartingAnimID+173)
+#define Living_ArmorAxe (StartingAnimID+174)
+#define Living_ArmorHandaxe (StartingAnimID+175)
+#define Living_ArmorSword (StartingAnimID+176)
+#define Living_ArmorUnarmed (StartingAnimID+177)
+#define FellbeastMonster (StartingAnimID+178)
 */ 
 
 /* Classes (53) 
@@ -780,5 +783,52 @@ UnarmedAnim(Legion_KingMagic)
 SwordAnim(Legion_KingSword)
 UnarmedAnim(Legion_KingUnarmed)
 weaponAnimEnd(9)
+
+Grand_Mahout_Anim:
+animEntry(Grand_MahoutBow)
+BowAnim(Grand_MahoutBow)
+LanceAnim(Grand_MahoutLance)
+MonsterAnim(Grand_MahoutMonster)
+weaponAnimEnd(3)
+
+Brawler_Anim:
+animEntry(BrawlerMelee)
+UnarmedAnim(BrawlerMelee)
+weaponAnimEnd(1)
+
+Enchanter_Anim:
+animEntry(EnchanterKnife)
+KnifeAnim(EnchanterKnife)
+UnarmedAnim(EnchanterMelee)
+weaponAnimEnd(2)
+
+Black_Dragon_Anim:
+animEntry(Black_DragonMonster)
+MonsterAnim(Black_DragonMonster)
+UnarmedAnim(Black_DragonUnarmed)
+weaponAnimEnd(2)
+
+Djinn_Anim:
+animEntry(DjinnMagic)
+AnimaAnim(DjinnMagic)
+LightAnim(DjinnMagic)
+DarkAnim(DjinnMagic)
+UnarmedAnim(DjinnMagic)
+SwordAnim(DjinnSword)
+weaponAnimEnd(5)
+
+Living_Armor_Anim:
+animEntry(Living_ArmorAxe)
+AxeAnim(Living_ArmorAxe)
+HandAxeAnim(Living_ArmorHandaxe)
+SwordAnim(Living_ArmorSword)
+UnarmedAnim(Living_ArmorUnarmed)
+weaponAnimEnd(4)
+
+Fellbeast_Anim:
+animEntry(FellbeastMonster)
+MonsterAnim(FellbeastMonster)
+weaponAnimEnd(1)
+
 
 
