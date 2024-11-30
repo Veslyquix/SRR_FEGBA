@@ -1990,7 +1990,15 @@ int ShouldRandomizeClass(struct Unit * unit)
     }
     if ((config == 2) && (UNIT_FACTION(unit) == FACTION_RED))
     {
-        return false;
+#ifdef FE6
+        if (unit->pCharacterData->number > 0x44) // recruitable BWL units as players
+#endif
+#ifndef FE6
+            if (unit->pCharacterData->number > 0x3a) // recruitable BWL units as players
+#endif
+            {
+                return false;
+            }
     }
     // if (Proc_Find(gProcScr_ArenaUiMain)) { return false; }
     return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom;
@@ -6606,13 +6614,19 @@ const char Option6[OPT6NUM][10] = {
     "Vanilla", "Random", "0", "15", "30", "45", "60",
 };
 #endif
-#define OPT7NUM 5
+#define OPT7NUM 7
 #ifdef FE6
 extern const char Option7[OPT7NUM][64]; // do align 16 before each?
 #else
 const char Option7[OPT7NUM][26] = {
     // Class
-    "Vanilla", "Random vanilla classes", "Random for players", "Random for enemies", "Random with new classes",
+    "Vanilla",
+    "Random vanilla classes",
+    "Random for players",
+    "Random for enemies",
+    "Random with new classes",
+    "New rand player classes",
+    "New rand enemy classes",
     //"Enemies",
 };
 #endif
@@ -7930,9 +7944,9 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         RandBitflags->caps = proc->Option[6];
         RandBitflags->class = proc->Option[7];
         RecruitValues->newClasses = 0;
-        if (proc->Option[7] == 4)
+        if (proc->Option[7] >= 4)
         {
-            RandBitflags->class = 1;
+            RandBitflags->class = proc->Option[7] - 3;
             RecruitValues->newClasses = 1;
         }
 
@@ -8827,7 +8841,7 @@ int MenuStartConfigMenu(ProcPtr parent)
     proc->Option[7] = RandBitflags->class;
     if (RecruitValues->newClasses)
     {
-        proc->Option[7] = 4;
+        proc->Option[7] += 3;
     }
     if (RandBitflags->itemStats && RandBitflags->foundItems)
     {
