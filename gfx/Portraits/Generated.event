@@ -3026,13 +3026,24 @@ GalzusMugData:
 setMugEntry(GalzusMug, GalzusMugData, 3, 5, 3, 3)
 
 ALIGN 4
+GladeMugData:
+#incbin "png/FE4FE5/Glade_squidaccus_mug.dmp"
+#incbin "png/FE4FE5/Glade_squidaccus_frames.dmp"
+#incbin "png/FE4FE5/Glade_squidaccus_palette.dmp"
+#incbin "png/FE4FE5/Glade_squidaccus_minimug.dmp"
+#ifndef GladeMug
+  #define GladeMug (FirstMugID+277)
+#endif
+setMugEntry(GladeMug, GladeMugData, 3, 5, 3, 3)
+
+ALIGN 4
 HalvanMugData:
 #incbin "png/FE4FE5/Halvan_Version_2_Sterling_Glovner_mug.dmp"
 #incbin "png/FE4FE5/Halvan_Version_2_Sterling_Glovner_frames.dmp"
 #incbin "png/FE4FE5/Halvan_Version_2_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Halvan_Version_2_Sterling_Glovner_minimug.dmp"
 #ifndef HalvanMug
-  #define HalvanMug (FirstMugID+277)
+  #define HalvanMug (FirstMugID+278)
 #endif
 setMugEntry(HalvanMug, HalvanMugData, 2, 5, 2, 3)
 
@@ -3043,7 +3054,7 @@ HannibalMugData:
 #incbin "png/FE4FE5/Hannibal_Melia_palette.dmp"
 #incbin "png/FE4FE5/Hannibal_Melia_minimug.dmp"
 #ifndef HannibalMug
-  #define HannibalMug (FirstMugID+278)
+  #define HannibalMug (FirstMugID+279)
 #endif
 setMugEntry(HannibalMug, HannibalMugData, 2, 5, 2, 3)
 
@@ -3054,7 +3065,7 @@ HaroldMugData:
 #incbin "png/FE4FE5/Harold_UltraxBlade_palette.dmp"
 #incbin "png/FE4FE5/Harold_UltraxBlade_minimug.dmp"
 #ifndef HaroldMug
-  #define HaroldMug (FirstMugID+279)
+  #define HaroldMug (FirstMugID+280)
 #endif
 setMugEntry(HaroldMug, HaroldMugData, 2, 5, 2, 3)
 
@@ -3065,7 +3076,7 @@ HawkMugData:
 #incbin "png/FE4FE5/Hawk_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Hawk_Sterling_Glovner_minimug.dmp"
 #ifndef HawkMug
-  #define HawkMug (FirstMugID+280)
+  #define HawkMug (FirstMugID+281)
 #endif
 setMugEntry(HawkMug, HawkMugData, 3, 5, 3, 3)
 
@@ -3076,7 +3087,7 @@ HicksMugData:
 #incbin "png/FE4FE5/Hicks_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Hicks_Sterling_Glovner_minimug.dmp"
 #ifndef HicksMug
-  #define HicksMug (FirstMugID+281)
+  #define HicksMug (FirstMugID+282)
 #endif
 setMugEntry(HicksMug, HicksMugData, 3, 5, 3, 3)
 
@@ -3087,7 +3098,7 @@ HildaMugData:
 #incbin "png/FE4FE5/Hilda_Older_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Hilda_Older_Sterling_Glovner_minimug.dmp"
 #ifndef HildaMug
-  #define HildaMug (FirstMugID+282)
+  #define HildaMug (FirstMugID+283)
 #endif
 setMugEntry(HildaMug, HildaMugData, 3, 5, 3, 3)
 
@@ -3098,7 +3109,7 @@ HolynMugData:
 #incbin "png/FE4FE5/Holyn_Version_2_Atey_Melia_Renoud_palette.dmp"
 #incbin "png/FE4FE5/Holyn_Version_2_Atey_Melia_Renoud_minimug.dmp"
 #ifndef HolynMug
-  #define HolynMug (FirstMugID+283)
+  #define HolynMug (FirstMugID+284)
 #endif
 setMugEntry(HolynMug, HolynMugData, 3, 5, 3, 3)
 
@@ -3109,7 +3120,7 @@ HomerMugData:
 #incbin "png/FE4FE5/Homer_Wasdye_palette.dmp"
 #incbin "png/FE4FE5/Homer_Wasdye_minimug.dmp"
 #ifndef HomerMug
-  #define HomerMug (FirstMugID+284)
+  #define HomerMug (FirstMugID+285)
 #endif
 setMugEntry(HomerMug, HomerMugData, 3, 6, 3, 4)
 
@@ -3120,7 +3131,7 @@ IliosMugData:
 #incbin "png/FE4FE5/Ilios_Obsidian_Daddy_palette.dmp"
 #incbin "png/FE4FE5/Ilios_Obsidian_Daddy_minimug.dmp"
 #ifndef IliosMug
-  #define IliosMug (FirstMugID+285)
+  #define IliosMug (FirstMugID+286)
 #endif
 setMugEntry(IliosMug, IliosMugData, 3, 5, 3, 3)
 
@@ -3131,7 +3142,7 @@ IshtarMugData:
 #incbin "png/FE4FE5/Ishtar_Blade_palette.dmp"
 #incbin "png/FE4FE5/Ishtar_Blade_minimug.dmp"
 #ifndef IshtarMug
-  #define IshtarMug (FirstMugID+286)
+  #define IshtarMug (FirstMugID+287)
 #endif
 setMugEntry(IshtarMug, IshtarMugData, 3, 6, 3, 4)
 
@@ -3142,7 +3153,7 @@ IshtoreMugData:
 #incbin "png/FE4FE5/Ishtore_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Ishtore_Sterling_Glovner_minimug.dmp"
 #ifndef IshtoreMug
-  #define IshtoreMug (FirstMugID+287)
+  #define IshtoreMug (FirstMugID+288)
 #endif
 setMugEntry(IshtoreMug, IshtoreMugData, 4, 5, 4, 3)
 
@@ -3153,7 +3164,7 @@ IucharbaMugData:
 #incbin "png/FE4FE5/Iucharba_New_version_Melia_palette.dmp"
 #incbin "png/FE4FE5/Iucharba_New_version_Melia_minimug.dmp"
 #ifndef IucharbaMug
-  #define IucharbaMug (FirstMugID+288)
+  #define IucharbaMug (FirstMugID+289)
 #endif
 setMugEntry(IucharbaMug, IucharbaMugData, 2, 5, 3, 3)
 
@@ -3164,7 +3175,7 @@ IucharMugData:
 #incbin "png/FE4FE5/Iuchar_New_version_Melia_palette.dmp"
 #incbin "png/FE4FE5/Iuchar_New_version_Melia_minimug.dmp"
 #ifndef IucharMug
-  #define IucharMug (FirstMugID+289)
+  #define IucharMug (FirstMugID+290)
 #endif
 setMugEntry(IucharMug, IucharMugData, 3, 5, 3, 3)
 
@@ -3175,7 +3186,7 @@ JamkaMugData:
 #incbin "png/FE4FE5/Jamka_Nobody_palette.dmp"
 #incbin "png/FE4FE5/Jamka_Nobody_minimug.dmp"
 #ifndef JamkaMug
-  #define JamkaMug (FirstMugID+290)
+  #define JamkaMug (FirstMugID+291)
 #endif
 setMugEntry(JamkaMug, JamkaMugData, 3, 5, 3, 3)
 
@@ -3186,7 +3197,7 @@ JeanneMugData:
 #incbin "png/FE4FE5/Jeanne_Melia_palette.dmp"
 #incbin "png/FE4FE5/Jeanne_Melia_minimug.dmp"
 #ifndef JeanneMug
-  #define JeanneMug (FirstMugID+291)
+  #define JeanneMug (FirstMugID+292)
 #endif
 setMugEntry(JeanneMug, JeanneMugData, 2, 6, 3, 4)
 
@@ -3197,7 +3208,7 @@ JohalvaMugData:
 #incbin "png/FE4FE5/Johalva_Melia_palette.dmp"
 #incbin "png/FE4FE5/Johalva_Melia_minimug.dmp"
 #ifndef JohalvaMug
-  #define JohalvaMug (FirstMugID+292)
+  #define JohalvaMug (FirstMugID+293)
 #endif
 setMugEntry(JohalvaMug, JohalvaMugData, 2, 5, 3, 3)
 
@@ -3208,7 +3219,7 @@ JohanMugData:
 #incbin "png/FE4FE5/Johan_Melia_palette.dmp"
 #incbin "png/FE4FE5/Johan_Melia_minimug.dmp"
 #ifndef JohanMug
-  #define JohanMug (FirstMugID+293)
+  #define JohanMug (FirstMugID+294)
 #endif
 setMugEntry(JohanMug, JohanMugData, 3, 5, 3, 3)
 
@@ -3219,7 +3230,7 @@ JuliaMugData:
 #incbin "png/FE4FE5/Julia_Atey_palette.dmp"
 #incbin "png/FE4FE5/Julia_Atey_minimug.dmp"
 #ifndef JuliaMug
-  #define JuliaMug (FirstMugID+294)
+  #define JuliaMug (FirstMugID+295)
 #endif
 setMugEntry(JuliaMug, JuliaMugData, 3, 6, 3, 4)
 
@@ -3230,7 +3241,7 @@ JuliusMugData:
 #incbin "png/FE4FE5/Julius_canigetfrozen_palette.dmp"
 #incbin "png/FE4FE5/Julius_canigetfrozen_minimug.dmp"
 #ifndef JuliusMug
-  #define JuliusMug (FirstMugID+295)
+  #define JuliusMug (FirstMugID+296)
 #endif
 setMugEntry(JuliusMug, JuliusMugData, 3, 5, 3, 3)
 
@@ -3241,7 +3252,7 @@ KarinMugData:
 #incbin "png/FE4FE5/Karin_Melia_palette.dmp"
 #incbin "png/FE4FE5/Karin_Melia_minimug.dmp"
 #ifndef KarinMug
-  #define KarinMug (FirstMugID+296)
+  #define KarinMug (FirstMugID+297)
 #endif
 setMugEntry(KarinMug, KarinMugData, 2, 6, 3, 4)
 
@@ -3252,7 +3263,7 @@ KempfMugData:
 #incbin "png/FE4FE5/Kempf_Obsidian_Daddy_palette.dmp"
 #incbin "png/FE4FE5/Kempf_Obsidian_Daddy_minimug.dmp"
 #ifndef KempfMug
-  #define KempfMug (FirstMugID+297)
+  #define KempfMug (FirstMugID+298)
 #endif
 setMugEntry(KempfMug, KempfMugData, 3, 5, 3, 3)
 
@@ -3263,7 +3274,7 @@ KurthMugData:
 #incbin "png/FE4FE5/Kurth_Brown_Hair_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Kurth_Brown_Hair_Sterling_Glovner_minimug.dmp"
 #ifndef KurthMug
-  #define KurthMug (FirstMugID+298)
+  #define KurthMug (FirstMugID+299)
 #endif
 setMugEntry(KurthMug, KurthMugData, 3, 5, 3, 3)
 
@@ -3274,7 +3285,7 @@ LachesisMugData:
 #incbin "png/FE4FE5/Lachesis_Version_5_Obsidian_Daddy_palette.dmp"
 #incbin "png/FE4FE5/Lachesis_Version_5_Obsidian_Daddy_minimug.dmp"
 #ifndef LachesisMug
-  #define LachesisMug (FirstMugID+299)
+  #define LachesisMug (FirstMugID+300)
 #endif
 setMugEntry(LachesisMug, LachesisMugData, 4, 6, 3, 4)
 
@@ -3285,7 +3296,7 @@ LamiaMugData:
 #incbin "png/FE4FE5/Lamia_SaintRubenio_palette.dmp"
 #incbin "png/FE4FE5/Lamia_SaintRubenio_minimug.dmp"
 #ifndef LamiaMug
-  #define LamiaMug (FirstMugID+300)
+  #define LamiaMug (FirstMugID+301)
 #endif
 setMugEntry(LamiaMug, LamiaMugData, 2, 4, 2, 2)
 
@@ -3296,7 +3307,7 @@ LanaMugData:
 #incbin "png/FE4FE5/Lana_Melia_palette.dmp"
 #incbin "png/FE4FE5/Lana_Melia_minimug.dmp"
 #ifndef LanaMug
-  #define LanaMug (FirstMugID+301)
+  #define LanaMug (FirstMugID+302)
 #endif
 setMugEntry(LanaMug, LanaMugData, 4, 6, 4, 4)
 
@@ -3307,7 +3318,7 @@ LaraMugData:
 #incbin "png/FE4FE5/Lara_Melia_palette.dmp"
 #incbin "png/FE4FE5/Lara_Melia_minimug.dmp"
 #ifndef LaraMug
-  #define LaraMug (FirstMugID+302)
+  #define LaraMug (FirstMugID+303)
 #endif
 setMugEntry(LaraMug, LaraMugData, 2, 6, 2, 4)
 
@@ -3318,7 +3329,7 @@ LarceiMugData:
 #incbin "png/FE4FE5/Larcei_New_version_Melia_palette.dmp"
 #incbin "png/FE4FE5/Larcei_New_version_Melia_minimug.dmp"
 #ifndef LarceiMug
-  #define LarceiMug (FirstMugID+303)
+  #define LarceiMug (FirstMugID+304)
 #endif
 setMugEntry(LarceiMug, LarceiMugData, 3, 6, 3, 4)
 
@@ -3329,7 +3340,7 @@ LayleaMugData:
 #incbin "png/FE4FE5/Laylea_Melia_palette.dmp"
 #incbin "png/FE4FE5/Laylea_Melia_minimug.dmp"
 #ifndef LayleaMug
-  #define LayleaMug (FirstMugID+304)
+  #define LayleaMug (FirstMugID+305)
 #endif
 setMugEntry(LayleaMug, LayleaMugData, 3, 6, 3, 4)
 
@@ -3340,7 +3351,7 @@ LeifMugData:
 #incbin "png/FE4FE5/Leif_New_version_Melia_palette.dmp"
 #incbin "png/FE4FE5/Leif_New_version_Melia_minimug.dmp"
 #ifndef LeifMug
-  #define LeifMug (FirstMugID+305)
+  #define LeifMug (FirstMugID+306)
 #endif
 setMugEntry(LeifMug, LeifMugData, 3, 6, 3, 4)
 
@@ -3351,7 +3362,7 @@ LeneMugData:
 #incbin "png/FE4FE5/Lene_New_version_Melia_palette.dmp"
 #incbin "png/FE4FE5/Lene_New_version_Melia_minimug.dmp"
 #ifndef LeneMug
-  #define LeneMug (FirstMugID+306)
+  #define LeneMug (FirstMugID+307)
 #endif
 setMugEntry(LeneMug, LeneMugData, 3, 6, 3, 4)
 
@@ -3362,7 +3373,7 @@ LesterMugData:
 #incbin "png/FE4FE5/Lester_New_version_Melia_palette.dmp"
 #incbin "png/FE4FE5/Lester_New_version_Melia_minimug.dmp"
 #ifndef LesterMug
-  #define LesterMug (FirstMugID+307)
+  #define LesterMug (FirstMugID+308)
 #endif
 setMugEntry(LesterMug, LesterMugData, 2, 5, 2, 3)
 
@@ -3373,7 +3384,7 @@ LevinMugData:
 #incbin "png/FE4FE5/Levin_Atey_palette.dmp"
 #incbin "png/FE4FE5/Levin_Atey_minimug.dmp"
 #ifndef LevinMug
-  #define LevinMug (FirstMugID+308)
+  #define LevinMug (FirstMugID+309)
 #endif
 setMugEntry(LevinMug, LevinMugData, 3, 5, 3, 3)
 
@@ -3384,7 +3395,7 @@ LexMugData:
 #incbin "png/FE4FE5/Lex_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Lex_Sterling_Glovner_minimug.dmp"
 #ifndef LexMug
-  #define LexMug (FirstMugID+309)
+  #define LexMug (FirstMugID+310)
 #endif
 setMugEntry(LexMug, LexMugData, 3, 5, 3, 3)
 
@@ -3395,7 +3406,7 @@ LifisMugData:
 #incbin "png/FE4FE5/Lifis_Melia_palette.dmp"
 #incbin "png/FE4FE5/Lifis_Melia_minimug.dmp"
 #ifndef LifisMug
-  #define LifisMug (FirstMugID+310)
+  #define LifisMug (FirstMugID+311)
 #endif
 setMugEntry(LifisMug, LifisMugData, 2, 6, 3, 4)
 
@@ -3406,7 +3417,7 @@ LindaMugData:
 #incbin "png/FE4FE5/Linda_Gator_palette.dmp"
 #incbin "png/FE4FE5/Linda_Gator_minimug.dmp"
 #ifndef LindaMug
-  #define LindaMug (FirstMugID+311)
+  #define LindaMug (FirstMugID+312)
 #endif
 setMugEntry(LindaMug, LindaMugData, 2, 6, 3, 4)
 
@@ -3417,7 +3428,7 @@ LinoanMugData:
 #incbin "png/FE4FE5/Linoan_Atey_palette.dmp"
 #incbin "png/FE4FE5/Linoan_Atey_minimug.dmp"
 #ifndef LinoanMug
-  #define LinoanMug (FirstMugID+312)
+  #define LinoanMug (FirstMugID+313)
 #endif
 setMugEntry(LinoanMug, LinoanMugData, 3, 6, 3, 4)
 
@@ -3428,7 +3439,7 @@ LithisMugData:
 #incbin "png/FE4FE5/Lithis_Levin64_CranJam_palette.dmp"
 #incbin "png/FE4FE5/Lithis_Levin64_CranJam_minimug.dmp"
 #ifndef LithisMug
-  #define LithisMug (FirstMugID+313)
+  #define LithisMug (FirstMugID+314)
 #endif
 setMugEntry(LithisMug, LithisMugData, 3, 5, 3, 3)
 
@@ -3439,7 +3450,7 @@ LizaMugData:
 #incbin "png/FE4FE5/Liza_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Liza_Sterling_Glovner_minimug.dmp"
 #ifndef LizaMug
-  #define LizaMug (FirstMugID+314)
+  #define LizaMug (FirstMugID+315)
 #endif
 setMugEntry(LizaMug, LizaMugData, 3, 5, 3, 3)
 
@@ -3450,7 +3461,7 @@ LoptyrMugData:
 #incbin "png/FE4FE5/Loptyr_Manakete_form_JeyTheCount_F2E_palette.dmp"
 #incbin "png/FE4FE5/Loptyr_Manakete_form_JeyTheCount_F2E_minimug.dmp"
 #ifndef LoptyrMug
-  #define LoptyrMug (FirstMugID+315)
+  #define LoptyrMug (FirstMugID+316)
 #endif
 setMugEntry(LoptyrMug, LoptyrMugData, 2, 4, 2, 2)
 
@@ -3461,7 +3472,7 @@ MachyuaMugData:
 #incbin "png/FE4FE5/Machyua_Melia_palette.dmp"
 #incbin "png/FE4FE5/Machyua_Melia_minimug.dmp"
 #ifndef MachyuaMug
-  #define MachyuaMug (FirstMugID+316)
+  #define MachyuaMug (FirstMugID+317)
 #endif
 setMugEntry(MachyuaMug, MachyuaMugData, 3, 5, 3, 3)
 
@@ -3472,7 +3483,7 @@ MagornMugData:
 #incbin "png/FE4FE5/Magorn_UltraxBlade_palette.dmp"
 #incbin "png/FE4FE5/Magorn_UltraxBlade_minimug.dmp"
 #ifndef MagornMug
-  #define MagornMug (FirstMugID+317)
+  #define MagornMug (FirstMugID+318)
 #endif
 setMugEntry(MagornMug, MagornMugData, 2, 5, 2, 3)
 
@@ -3483,7 +3494,7 @@ ManaMugData:
 #incbin "png/FE4FE5/Mana_Melia_palette.dmp"
 #incbin "png/FE4FE5/Mana_Melia_minimug.dmp"
 #ifndef ManaMug
-  #define ManaMug (FirstMugID+318)
+  #define ManaMug (FirstMugID+319)
 #endif
 setMugEntry(ManaMug, ManaMugData, 4, 6, 4, 4)
 
@@ -3494,7 +3505,7 @@ ManfroyMugData:
 #incbin "png/FE4FE5/Manfroy_Melia_palette.dmp"
 #incbin "png/FE4FE5/Manfroy_Melia_minimug.dmp"
 #ifndef ManfroyMug
-  #define ManfroyMug (FirstMugID+319)
+  #define ManfroyMug (FirstMugID+320)
 #endif
 setMugEntry(ManfroyMug, ManfroyMugData, 3, 5, 3, 3)
 
@@ -3505,7 +3516,7 @@ MareetaMugData:
 #incbin "png/FE4FE5/Mareeta_CavalryUnits_F2E_palette.dmp"
 #incbin "png/FE4FE5/Mareeta_CavalryUnits_F2E_minimug.dmp"
 #ifndef MareetaMug
-  #define MareetaMug (FirstMugID+320)
+  #define MareetaMug (FirstMugID+321)
 #endif
 setMugEntry(MareetaMug, MareetaMugData, 3, 5, 3, 3)
 
@@ -3516,7 +3527,7 @@ MartyMugData:
 #incbin "png/FE4FE5/Marty_FE8_colours_Vilkalizer_palette.dmp"
 #incbin "png/FE4FE5/Marty_FE8_colours_Vilkalizer_minimug.dmp"
 #ifndef MartyMug
-  #define MartyMug (FirstMugID+321)
+  #define MartyMug (FirstMugID+322)
 #endif
 setMugEntry(MartyMug, MartyMugData, 2, 5, 3, 2)
 
@@ -3527,7 +3538,7 @@ MidayleMugData:
 #incbin "png/FE4FE5/Midayle_Zoisite_palette.dmp"
 #incbin "png/FE4FE5/Midayle_Zoisite_minimug.dmp"
 #ifndef MidayleMug
-  #define MidayleMug (FirstMugID+322)
+  #define MidayleMug (FirstMugID+323)
 #endif
 setMugEntry(MidayleMug, MidayleMugData, 3, 6, 3, 4)
 
@@ -3538,7 +3549,7 @@ MirandaMugData:
 #incbin "png/FE4FE5/Miranda_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Miranda_Sterling_Glovner_minimug.dmp"
 #ifndef MirandaMug
-  #define MirandaMug (FirstMugID+323)
+  #define MirandaMug (FirstMugID+324)
 #endif
 setMugEntry(MirandaMug, MirandaMugData, 3, 6, 3, 4)
 
@@ -3549,7 +3560,7 @@ MishaMugData:
 #incbin "png/FE4FE5/Misha_claire45_palette.dmp"
 #incbin "png/FE4FE5/Misha_claire45_minimug.dmp"
 #ifndef MishaMug
-  #define MishaMug (FirstMugID+324)
+  #define MishaMug (FirstMugID+325)
 #endif
 setMugEntry(MishaMug, MishaMugData, 3, 5, 3, 3)
 
@@ -3560,7 +3571,7 @@ MuellerMugData:
 #incbin "png/FE4FE5/Mueller_CanDy_palette.dmp"
 #incbin "png/FE4FE5/Mueller_CanDy_minimug.dmp"
 #ifndef MuellerMug
-  #define MuellerMug (FirstMugID+325)
+  #define MuellerMug (FirstMugID+326)
 #endif
 setMugEntry(MuellerMug, MuellerMugData, 3, 5, 3, 3)
 
@@ -3571,7 +3582,7 @@ MuirneMugData:
 #incbin "png/FE4FE5/Muirne_Melia_palette.dmp"
 #incbin "png/FE4FE5/Muirne_Melia_minimug.dmp"
 #ifndef MuirneMug
-  #define MuirneMug (FirstMugID+326)
+  #define MuirneMug (FirstMugID+327)
 #endif
 setMugEntry(MuirneMug, MuirneMugData, 4, 6, 4, 4)
 
@@ -3582,7 +3593,7 @@ MunnirMugData:
 #incbin "png/FE4FE5/Munnir_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Munnir_Sterling_Glovner_minimug.dmp"
 #ifndef MunnirMug
-  #define MunnirMug (FirstMugID+327)
+  #define MunnirMug (FirstMugID+328)
 #endif
 setMugEntry(MunnirMug, MunnirMugData, 3, 4, 3, 2)
 
@@ -3593,7 +3604,7 @@ MusarMugData:
 #incbin "png/FE4FE5/Musar_UltraxBlade_palette.dmp"
 #incbin "png/FE4FE5/Musar_UltraxBlade_minimug.dmp"
 #ifndef MusarMug
-  #define MusarMug (FirstMugID+328)
+  #define MusarMug (FirstMugID+329)
 #endif
 setMugEntry(MusarMug, MusarMugData, 2, 5, 2, 3)
 
@@ -3604,7 +3615,7 @@ NannaMugData:
 #incbin "png/FE4FE5/Nanna_Zelkami_palette.dmp"
 #incbin "png/FE4FE5/Nanna_Zelkami_minimug.dmp"
 #ifndef NannaMug
-  #define NannaMug (FirstMugID+329)
+  #define NannaMug (FirstMugID+330)
 #endif
 setMugEntry(NannaMug, NannaMugData, 4, 6, 4, 4)
 
@@ -3615,7 +3626,7 @@ NaoiseMugData:
 #incbin "png/FE4FE5/Naoise_Obsidian_Daddy_palette.dmp"
 #incbin "png/FE4FE5/Naoise_Obsidian_Daddy_minimug.dmp"
 #ifndef NaoiseMug
-  #define NaoiseMug (FirstMugID+330)
+  #define NaoiseMug (FirstMugID+331)
 #endif
 setMugEntry(NaoiseMug, NaoiseMugData, 3, 5, 3, 3)
 
@@ -3626,7 +3637,7 @@ OifeyMugData:
 #incbin "png/FE4FE5/Oifey_New_version_Melia_palette.dmp"
 #incbin "png/FE4FE5/Oifey_New_version_Melia_minimug.dmp"
 #ifndef OifeyMug
-  #define OifeyMug (FirstMugID+331)
+  #define OifeyMug (FirstMugID+332)
 #endif
 setMugEntry(OifeyMug, OifeyMugData, 3, 5, 3, 3)
 
@@ -3637,7 +3648,7 @@ OlthoffMugData:
 #incbin "png/FE4FE5/Olthoff_SaintRubenio_palette.dmp"
 #incbin "png/FE4FE5/Olthoff_SaintRubenio_minimug.dmp"
 #ifndef OlthoffMug
-  #define OlthoffMug (FirstMugID+332)
+  #define OlthoffMug (FirstMugID+333)
 #endif
 setMugEntry(OlthoffMug, OlthoffMugData, 2, 6, 2, 4)
 
@@ -3648,7 +3659,7 @@ OlwenMugData:
 #incbin "png/FE4FE5/Olwen_Garytop_F2E_palette.dmp"
 #incbin "png/FE4FE5/Olwen_Garytop_F2E_minimug.dmp"
 #ifndef OlwenMug
-  #define OlwenMug (FirstMugID+333)
+  #define OlwenMug (FirstMugID+334)
 #endif
 setMugEntry(OlwenMug, OlwenMugData, 4, 6, 4, 4)
 
@@ -3659,7 +3670,7 @@ OsianMugData:
 #incbin "png/FE4FE5/Osian_Sterling_Clovner_palette.dmp"
 #incbin "png/FE4FE5/Osian_Sterling_Clovner_minimug.dmp"
 #ifndef OsianMug
-  #define OsianMug (FirstMugID+334)
+  #define OsianMug (FirstMugID+335)
 #endif
 setMugEntry(OsianMug, OsianMugData, 3, 5, 3, 3)
 
@@ -3670,7 +3681,7 @@ PapilioMugData:
 #incbin "png/FE4FE5/Papilio_UltraxBlade_palette.dmp"
 #incbin "png/FE4FE5/Papilio_UltraxBlade_minimug.dmp"
 #ifndef PapilioMug
-  #define PapilioMug (FirstMugID+335)
+  #define PapilioMug (FirstMugID+336)
 #endif
 setMugEntry(PapilioMug, PapilioMugData, 2, 5, 2, 3)
 
@@ -3681,7 +3692,7 @@ PattyMugData:
 #incbin "png/FE4FE5/Patty_Melia_palette.dmp"
 #incbin "png/FE4FE5/Patty_Melia_minimug.dmp"
 #ifndef PattyMug
-  #define PattyMug (FirstMugID+336)
+  #define PattyMug (FirstMugID+337)
 #endif
 setMugEntry(PattyMug, PattyMugData, 3, 6, 3, 4)
 
@@ -3692,7 +3703,7 @@ PerneMugData:
 #incbin "png/FE4FE5/Perne_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Perne_Sterling_Glovner_minimug.dmp"
 #ifndef PerneMug
-  #define PerneMug (FirstMugID+337)
+  #define PerneMug (FirstMugID+338)
 #endif
 setMugEntry(PerneMug, PerneMugData, 3, 5, 3, 3)
 
@@ -3703,7 +3714,7 @@ QuanMugData:
 #incbin "png/FE4FE5/Quan_Garytop_F2E_palette.dmp"
 #incbin "png/FE4FE5/Quan_Garytop_F2E_minimug.dmp"
 #ifndef QuanMug
-  #define QuanMug (FirstMugID+338)
+  #define QuanMug (FirstMugID+339)
 #endif
 setMugEntry(QuanMug, QuanMugData, 3, 5, 3, 3)
 
@@ -3714,7 +3725,7 @@ RalphMugData:
 #incbin "png/FE4FE5/Ralph_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Ralph_Sterling_Glovner_minimug.dmp"
 #ifndef RalphMug
-  #define RalphMug (FirstMugID+339)
+  #define RalphMug (FirstMugID+340)
 #endif
 setMugEntry(RalphMug, RalphMugData, 3, 5, 3, 3)
 
@@ -3725,7 +3736,7 @@ RaydrickMugData:
 #incbin "png/FE4FE5/Raydrick_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Raydrick_Sterling_Glovner_minimug.dmp"
 #ifndef RaydrickMug
-  #define RaydrickMug (FirstMugID+340)
+  #define RaydrickMug (FirstMugID+341)
 #endif
 setMugEntry(RaydrickMug, RaydrickMugData, 3, 5, 3, 3)
 
@@ -3736,7 +3747,7 @@ ReinhardtMugData:
 #incbin "png/FE4FE5/Reinhardt__HyperGammaSpaces_Arcth_palette.dmp"
 #incbin "png/FE4FE5/Reinhardt__HyperGammaSpaces_Arcth_minimug.dmp"
 #ifndef ReinhardtMug
-  #define ReinhardtMug (FirstMugID+341)
+  #define ReinhardtMug (FirstMugID+342)
 #endif
 setMugEntry(ReinhardtMug, ReinhardtMugData, 3, 5, 3, 3)
 
@@ -3747,7 +3758,7 @@ RidaleMugData:
 #incbin "png/FE4FE5/Ridale_UltraxBlade_palette.dmp"
 #incbin "png/FE4FE5/Ridale_UltraxBlade_minimug.dmp"
 #ifndef RidaleMug
-  #define RidaleMug (FirstMugID+342)
+  #define RidaleMug (FirstMugID+343)
 #endif
 setMugEntry(RidaleMug, RidaleMugData, 2, 5, 2, 3)
 
@@ -3758,7 +3769,7 @@ RobertMugData:
 #incbin "png/FE4FE5/Robert_Dongus_palette.dmp"
 #incbin "png/FE4FE5/Robert_Dongus_minimug.dmp"
 #ifndef RobertMug
-  #define RobertMug (FirstMugID+343)
+  #define RobertMug (FirstMugID+344)
 #endif
 setMugEntry(RobertMug, RobertMugData, 4, 5, 4, 3)
 
@@ -3769,7 +3780,7 @@ RoddlevanMugData:
 #incbin "png/FE4FE5/Roddlevan_Melia_palette.dmp"
 #incbin "png/FE4FE5/Roddlevan_Melia_minimug.dmp"
 #ifndef RoddlevanMug
-  #define RoddlevanMug (FirstMugID+344)
+  #define RoddlevanMug (FirstMugID+345)
 #endif
 setMugEntry(RoddlevanMug, RoddlevanMugData, 3, 5, 3, 3)
 
@@ -3780,7 +3791,7 @@ RonanMugData:
 #incbin "png/FE4FE5/Ronan_Miguel_Rojo_palette.dmp"
 #incbin "png/FE4FE5/Ronan_Miguel_Rojo_minimug.dmp"
 #ifndef RonanMug
-  #define RonanMug (FirstMugID+345)
+  #define RonanMug (FirstMugID+346)
 #endif
 setMugEntry(RonanMug, RonanMugData, 2, 5, 3, 3)
 
@@ -3791,7 +3802,7 @@ RumeiMugData:
 #incbin "png/FE4FE5/Rumei_CanDy_palette.dmp"
 #incbin "png/FE4FE5/Rumei_CanDy_minimug.dmp"
 #ifndef RumeiMug
-  #define RumeiMug (FirstMugID+346)
+  #define RumeiMug (FirstMugID+347)
 #endif
 setMugEntry(RumeiMug, RumeiMugData, 3, 5, 3, 3)
 
@@ -3802,7 +3813,7 @@ SafyMugData:
 #incbin "png/FE4FE5/Safy_Melia_palette.dmp"
 #incbin "png/FE4FE5/Safy_Melia_minimug.dmp"
 #ifndef SafyMug
-  #define SafyMug (FirstMugID+347)
+  #define SafyMug (FirstMugID+348)
 #endif
 setMugEntry(SafyMug, SafyMugData, 3, 6, 3, 4)
 
@@ -3813,7 +3824,7 @@ SalasMugData:
 #incbin "png/FE4FE5/Salas_Atey_Arcth_palette.dmp"
 #incbin "png/FE4FE5/Salas_Atey_Arcth_minimug.dmp"
 #ifndef SalasMug
-  #define SalasMug (FirstMugID+348)
+  #define SalasMug (FirstMugID+349)
 #endif
 setMugEntry(SalasMug, SalasMugData, 3, 5, 3, 3)
 
@@ -3824,7 +3835,7 @@ ScathachMugData:
 #incbin "png/FE4FE5/Scathach_New_version_Melia_palette.dmp"
 #incbin "png/FE4FE5/Scathach_New_version_Melia_minimug.dmp"
 #ifndef ScathachMug
-  #define ScathachMug (FirstMugID+349)
+  #define ScathachMug (FirstMugID+350)
 #endif
 setMugEntry(ScathachMug, ScathachMugData, 2, 6, 3, 4)
 
@@ -3835,7 +3846,7 @@ SeimtoMugData:
 #incbin "png/FE4FE5/Seimto_CanDy_palette.dmp"
 #incbin "png/FE4FE5/Seimto_CanDy_minimug.dmp"
 #ifndef SeimtoMug
-  #define SeimtoMug (FirstMugID+350)
+  #define SeimtoMug (FirstMugID+351)
 #endif
 setMugEntry(SeimtoMug, SeimtoMugData, 3, 5, 3, 3)
 
@@ -3846,7 +3857,7 @@ SelphinaMugData:
 #incbin "png/FE4FE5/Selphina_Melia_palette.dmp"
 #incbin "png/FE4FE5/Selphina_Melia_minimug.dmp"
 #ifndef SelphinaMug
-  #define SelphinaMug (FirstMugID+351)
+  #define SelphinaMug (FirstMugID+352)
 #endif
 setMugEntry(SelphinaMug, SelphinaMugData, 2, 5, 2, 3)
 
@@ -3857,7 +3868,7 @@ ShananMugData:
 #incbin "png/FE4FE5/Shanan_Melia_palette.dmp"
 #incbin "png/FE4FE5/Shanan_Melia_minimug.dmp"
 #ifndef ShananMug
-  #define ShananMug (FirstMugID+352)
+  #define ShananMug (FirstMugID+353)
 #endif
 setMugEntry(ShananMug, ShananMugData, 2, 5, 2, 3)
 
@@ -3868,7 +3879,7 @@ ShannamMugData:
 #incbin "png/FE4FE5/Shannam_Melia_palette.dmp"
 #incbin "png/FE4FE5/Shannam_Melia_minimug.dmp"
 #ifndef ShannamMug
-  #define ShannamMug (FirstMugID+353)
+  #define ShannamMug (FirstMugID+354)
 #endif
 setMugEntry(ShannamMug, ShannamMugData, 2, 5, 2, 3)
 
@@ -3879,7 +3890,7 @@ SharlowMugData:
 #incbin "png/FE4FE5/Sharlow_Melia_palette.dmp"
 #incbin "png/FE4FE5/Sharlow_Melia_minimug.dmp"
 #ifndef SharlowMug
-  #define SharlowMug (FirstMugID+354)
+  #define SharlowMug (FirstMugID+355)
 #endif
 setMugEntry(SharlowMug, SharlowMugData, 3, 6, 3, 4)
 
@@ -3890,7 +3901,7 @@ ShivaMugData:
 #incbin "png/FE4FE5/Shiva_Atey_Renoud_palette.dmp"
 #incbin "png/FE4FE5/Shiva_Atey_Renoud_minimug.dmp"
 #ifndef ShivaMug
-  #define ShivaMug (FirstMugID+355)
+  #define ShivaMug (FirstMugID+356)
 #endif
 setMugEntry(ShivaMug, ShivaMugData, 3, 5, 3, 3)
 
@@ -3901,7 +3912,7 @@ SigurdMugData:
 #incbin "png/FE4FE5/Sigurd_Atey_palette.dmp"
 #incbin "png/FE4FE5/Sigurd_Atey_minimug.dmp"
 #ifndef SigurdMug
-  #define SigurdMug (FirstMugID+356)
+  #define SigurdMug (FirstMugID+357)
 #endif
 setMugEntry(SigurdMug, SigurdMugData, 3, 5, 3, 3)
 
@@ -3912,7 +3923,7 @@ SylviaMugData:
 #incbin "png/FE4FE5/Sylvia_TAS20xx_Fenriel_palette.dmp"
 #incbin "png/FE4FE5/Sylvia_TAS20xx_Fenriel_minimug.dmp"
 #ifndef SylviaMug
-  #define SylviaMug (FirstMugID+357)
+  #define SylviaMug (FirstMugID+358)
 #endif
 setMugEntry(SylviaMug, SylviaMugData, 4, 5, 4, 3)
 
@@ -3923,7 +3934,7 @@ TailtiuMugData:
 #incbin "png/FE4FE5/Tailtiu_Blade_palette.dmp"
 #incbin "png/FE4FE5/Tailtiu_Blade_minimug.dmp"
 #ifndef TailtiuMug
-  #define TailtiuMug (FirstMugID+358)
+  #define TailtiuMug (FirstMugID+359)
 #endif
 setMugEntry(TailtiuMug, TailtiuMugData, 3, 6, 3, 4)
 
@@ -3934,7 +3945,7 @@ TanyaMugData:
 #incbin "png/FE4FE5/Tanya_Version_2_Wasdye_palette.dmp"
 #incbin "png/FE4FE5/Tanya_Version_2_Wasdye_minimug.dmp"
 #ifndef TanyaMug
-  #define TanyaMug (FirstMugID+359)
+  #define TanyaMug (FirstMugID+360)
 #endif
 setMugEntry(TanyaMug, TanyaMugData, 4, 6, 4, 4)
 
@@ -3945,7 +3956,7 @@ ThrudMugData:
 #incbin "png/FE4FE5/Thrud_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Thrud_Sterling_Glovner_minimug.dmp"
 #ifndef ThrudMug
-  #define ThrudMug (FirstMugID+360)
+  #define ThrudMug (FirstMugID+361)
 #endif
 setMugEntry(ThrudMug, ThrudMugData, 3, 5, 3, 3)
 
@@ -3956,7 +3967,7 @@ TiltyuMugData:
 #incbin "png/FE4FE5/Tiltyu_Atey_palette.dmp"
 #incbin "png/FE4FE5/Tiltyu_Atey_minimug.dmp"
 #ifndef TiltyuMug
-  #define TiltyuMug (FirstMugID+361)
+  #define TiltyuMug (FirstMugID+362)
 #endif
 setMugEntry(TiltyuMug, TiltyuMugData, 3, 7, 3, 5)
 
@@ -3967,7 +3978,7 @@ TravantMugData:
 #incbin "png/FE4FE5/Travant_Atey_palette.dmp"
 #incbin "png/FE4FE5/Travant_Atey_minimug.dmp"
 #ifndef TravantMug
-  #define TravantMug (FirstMugID+362)
+  #define TravantMug (FirstMugID+363)
 #endif
 setMugEntry(TravantMug, TravantMugData, 2, 4, 2, 2)
 
@@ -3978,7 +3989,7 @@ TristanMugData:
 #incbin "png/FE4FE5/Tristan_Melia_palette.dmp"
 #incbin "png/FE4FE5/Tristan_Melia_minimug.dmp"
 #ifndef TristanMug
-  #define TristanMug (FirstMugID+363)
+  #define TristanMug (FirstMugID+364)
 #endif
 setMugEntry(TristanMug, TristanMugData, 2, 5, 2, 3)
 
@@ -3989,7 +4000,7 @@ TroudeMugData:
 #incbin "png/FE4FE5/Troude_Version_2_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Troude_Version_2_Sterling_Glovner_minimug.dmp"
 #ifndef TroudeMug
-  #define TroudeMug (FirstMugID+364)
+  #define TroudeMug (FirstMugID+365)
 #endif
 setMugEntry(TroudeMug, TroudeMugData, 3, 5, 3, 3)
 
@@ -4000,7 +4011,7 @@ VajaMugData:
 #incbin "png/FE4FE5/Vaja_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Vaja_Sterling_Glovner_minimug.dmp"
 #ifndef VajaMug
-  #define VajaMug (FirstMugID+365)
+  #define VajaMug (FirstMugID+366)
 #endif
 setMugEntry(VajaMug, VajaMugData, 3, 5, 3, 3)
 
@@ -4011,7 +4022,7 @@ WeismannMugData:
 #incbin "png/FE4FE5/Weismann_Version_2_Sterling_Glovner_palette.dmp"
 #incbin "png/FE4FE5/Weismann_Version_2_Sterling_Glovner_minimug.dmp"
 #ifndef WeismannMug
-  #define WeismannMug (FirstMugID+366)
+  #define WeismannMug (FirstMugID+367)
 #endif
 setMugEntry(WeismannMug, WeismannMugData, 3, 5, 3, 3)
 
@@ -4022,7 +4033,7 @@ XavierMugData:
 #incbin "png/FE4FE5/Xavier_TheGreatNothing_palette.dmp"
 #incbin "png/FE4FE5/Xavier_TheGreatNothing_minimug.dmp"
 #ifndef XavierMug
-  #define XavierMug (FirstMugID+367)
+  #define XavierMug (FirstMugID+368)
 #endif
 setMugEntry(XavierMug, XavierMugData, 3, 4, 3, 2)
 
@@ -4033,7 +4044,7 @@ ZaneMugData:
 #incbin "png/FE4FE5/Zane_WAve_palette.dmp"
 #incbin "png/FE4FE5/Zane_WAve_minimug.dmp"
 #ifndef ZaneMug
-  #define ZaneMug (FirstMugID+368)
+  #define ZaneMug (FirstMugID+369)
 #endif
 setMugEntry(ZaneMug, ZaneMugData, 3, 5, 3, 3)
 
@@ -4044,7 +4055,7 @@ AlenMugData:
 #incbin "png/FE6/Alen_palette.dmp"
 #incbin "png/FE6/Alen_minimug.dmp"
 #ifndef AlenMug
-  #define AlenMug (FirstMugID+369)
+  #define AlenMug (FirstMugID+370)
 #endif
 setMugEntry(AlenMug, AlenMugData, 2, 5, 3, 3)
 
@@ -4055,7 +4066,7 @@ AnnaMugData:
 #incbin "png/FE6/Anna_palette.dmp"
 #incbin "png/FE6/Anna_minimug.dmp"
 #ifndef AnnaMug
-  #define AnnaMug (FirstMugID+370)
+  #define AnnaMug (FirstMugID+371)
 #endif
 setMugEntry(AnnaMug, AnnaMugData, 2, 5, 3, 3)
 
@@ -4066,7 +4077,7 @@ ArcardoMugData:
 #incbin "png/FE6/Arcardo_palette.dmp"
 #incbin "png/FE6/Arcardo_minimug.dmp"
 #ifndef ArcardoMug
-  #define ArcardoMug (FirstMugID+371)
+  #define ArcardoMug (FirstMugID+372)
 #endif
 setMugEntry(ArcardoMug, ArcardoMugData, 2, 5, 3, 3)
 
@@ -4077,7 +4088,7 @@ AstolfoMugData:
 #incbin "png/FE6/Astolfo_palette.dmp"
 #incbin "png/FE6/Astolfo_minimug.dmp"
 #ifndef AstolfoMug
-  #define AstolfoMug (FirstMugID+372)
+  #define AstolfoMug (FirstMugID+373)
 #endif
 setMugEntry(AstolfoMug, AstolfoMugData, 2, 5, 2, 3)
 
@@ -4088,7 +4099,7 @@ BartheMugData:
 #incbin "png/FE6/Barthe_palette.dmp"
 #incbin "png/FE6/Barthe_minimug.dmp"
 #ifndef BartheMug
-  #define BartheMug (FirstMugID+373)
+  #define BartheMug (FirstMugID+374)
 #endif
 setMugEntry(BartheMug, BartheMugData, 2, 4, 2, 2)
 
@@ -4099,7 +4110,7 @@ BartreMugData:
 #incbin "png/FE6/Bartre_palette.dmp"
 #incbin "png/FE6/Bartre_minimug.dmp"
 #ifndef BartreMug
-  #define BartreMug (FirstMugID+374)
+  #define BartreMug (FirstMugID+375)
 #endif
 setMugEntry(BartreMug, BartreMugData, 2, 5, 2, 2)
 
@@ -4110,7 +4121,7 @@ BorsMugData:
 #incbin "png/FE6/Bors_palette.dmp"
 #incbin "png/FE6/Bors_minimug.dmp"
 #ifndef BorsMug
-  #define BorsMug (FirstMugID+375)
+  #define BorsMug (FirstMugID+376)
 #endif
 setMugEntry(BorsMug, BorsMugData, 2, 4, 3, 2)
 
@@ -4121,7 +4132,7 @@ BrunnyaMugData:
 #incbin "png/FE6/Brunnya_palette.dmp"
 #incbin "png/FE6/Brunnya_minimug.dmp"
 #ifndef BrunnyaMug
-  #define BrunnyaMug (FirstMugID+376)
+  #define BrunnyaMug (FirstMugID+377)
 #endif
 setMugEntry(BrunnyaMug, BrunnyaMugData, 2, 5, 3, 3)
 
@@ -4132,7 +4143,7 @@ CathMugData:
 #incbin "png/FE6/Cath_palette.dmp"
 #incbin "png/FE6/Cath_minimug.dmp"
 #ifndef CathMug
-  #define CathMug (FirstMugID+377)
+  #define CathMug (FirstMugID+378)
 #endif
 setMugEntry(CathMug, CathMugData, 2, 6, 3, 4)
 
@@ -4143,7 +4154,7 @@ CeciliaMugData:
 #incbin "png/FE6/Cecilia_palette.dmp"
 #incbin "png/FE6/Cecilia_minimug.dmp"
 #ifndef CeciliaMug
-  #define CeciliaMug (FirstMugID+378)
+  #define CeciliaMug (FirstMugID+379)
 #endif
 setMugEntry(CeciliaMug, CeciliaMugData, 2, 5, 3, 3)
 
@@ -4154,7 +4165,7 @@ ChadMugData:
 #incbin "png/FE6/Chad_palette.dmp"
 #incbin "png/FE6/Chad_minimug.dmp"
 #ifndef ChadMug
-  #define ChadMug (FirstMugID+379)
+  #define ChadMug (FirstMugID+380)
 #endif
 setMugEntry(ChadMug, ChadMugData, 2, 6, 3, 4)
 
@@ -4165,7 +4176,7 @@ ClarineMugData:
 #incbin "png/FE6/Clarine_palette.dmp"
 #incbin "png/FE6/Clarine_minimug.dmp"
 #ifndef ClarineMug
-  #define ClarineMug (FirstMugID+380)
+  #define ClarineMug (FirstMugID+381)
 #endif
 setMugEntry(ClarineMug, ClarineMugData, 2, 6, 3, 4)
 
@@ -4176,7 +4187,7 @@ DamasMugData:
 #incbin "png/FE6/Damas_palette.dmp"
 #incbin "png/FE6/Damas_minimug.dmp"
 #ifndef DamasMug
-  #define DamasMug (FirstMugID+381)
+  #define DamasMug (FirstMugID+382)
 #endif
 setMugEntry(DamasMug, DamasMugData, 2, 5, 2, 3)
 
@@ -4187,7 +4198,7 @@ DayanMugData:
 #incbin "png/FE6/Dayan_palette.dmp"
 #incbin "png/FE6/Dayan_minimug.dmp"
 #ifndef DayanMug
-  #define DayanMug (FirstMugID+382)
+  #define DayanMug (FirstMugID+383)
 #endif
 setMugEntry(DayanMug, DayanMugData, 2, 5, 3, 3)
 
@@ -4198,7 +4209,7 @@ DebiasMugData:
 #incbin "png/FE6/Debias_palette.dmp"
 #incbin "png/FE6/Debias_minimug.dmp"
 #ifndef DebiasMug
-  #define DebiasMug (FirstMugID+383)
+  #define DebiasMug (FirstMugID+384)
 #endif
 setMugEntry(DebiasMug, DebiasMugData, 2, 5, 2, 3)
 
@@ -4209,7 +4220,7 @@ DieckMugData:
 #incbin "png/FE6/Dieck_palette.dmp"
 #incbin "png/FE6/Dieck_minimug.dmp"
 #ifndef DieckMug
-  #define DieckMug (FirstMugID+384)
+  #define DieckMug (FirstMugID+385)
 #endif
 setMugEntry(DieckMug, DieckMugData, 2, 5, 2, 3)
 
@@ -4220,7 +4231,7 @@ DorothyMugData:
 #incbin "png/FE6/Dorothy_palette.dmp"
 #incbin "png/FE6/Dorothy_minimug.dmp"
 #ifndef DorothyMug
-  #define DorothyMug (FirstMugID+385)
+  #define DorothyMug (FirstMugID+386)
 #endif
 setMugEntry(DorothyMug, DorothyMugData, 2, 5, 3, 3)
 
@@ -4231,7 +4242,7 @@ DoryMugData:
 #incbin "png/FE6/Dory_palette.dmp"
 #incbin "png/FE6/Dory_minimug.dmp"
 #ifndef DoryMug
-  #define DoryMug (FirstMugID+386)
+  #define DoryMug (FirstMugID+387)
 #endif
 setMugEntry(DoryMug, DoryMugData, 2, 5, 3, 3)
 
@@ -4242,7 +4253,7 @@ DouglasMugData:
 #incbin "png/FE6/Douglas_palette.dmp"
 #incbin "png/FE6/Douglas_minimug.dmp"
 #ifndef DouglasMug
-  #define DouglasMug (FirstMugID+387)
+  #define DouglasMug (FirstMugID+388)
 #endif
 setMugEntry(DouglasMug, DouglasMugData, 2, 5, 3, 3)
 
@@ -4253,7 +4264,7 @@ EchidnaMugData:
 #incbin "png/FE6/Echidna_palette.dmp"
 #incbin "png/FE6/Echidna_minimug.dmp"
 #ifndef EchidnaMug
-  #define EchidnaMug (FirstMugID+388)
+  #define EchidnaMug (FirstMugID+389)
 #endif
 setMugEntry(EchidnaMug, EchidnaMugData, 2, 5, 3, 3)
 
@@ -4264,7 +4275,7 @@ EinMugData:
 #incbin "png/FE6/Ein_palette.dmp"
 #incbin "png/FE6/Ein_minimug.dmp"
 #ifndef EinMug
-  #define EinMug (FirstMugID+389)
+  #define EinMug (FirstMugID+390)
 #endif
 setMugEntry(EinMug, EinMugData, 2, 5, 3, 3)
 
@@ -4275,7 +4286,7 @@ ElenMugData:
 #incbin "png/FE6/Elen_palette.dmp"
 #incbin "png/FE6/Elen_minimug.dmp"
 #ifndef ElenMug
-  #define ElenMug (FirstMugID+390)
+  #define ElenMug (FirstMugID+391)
 #endif
 setMugEntry(ElenMug, ElenMugData, 2, 6, 3, 4)
 
@@ -4286,7 +4297,7 @@ ElffinMugData:
 #incbin "png/FE6/Elffin_palette.dmp"
 #incbin "png/FE6/Elffin_minimug.dmp"
 #ifndef ElffinMug
-  #define ElffinMug (FirstMugID+391)
+  #define ElffinMug (FirstMugID+392)
 #endif
 setMugEntry(ElffinMug, ElffinMugData, 2, 5, 2, 3)
 
@@ -4297,7 +4308,7 @@ EliwoodFE6MugData:
 #incbin "png/FE6/EliwoodFE6_palette.dmp"
 #incbin "png/FE6/EliwoodFE6_minimug.dmp"
 #ifndef EliwoodFE6Mug
-  #define EliwoodFE6Mug (FirstMugID+392)
+  #define EliwoodFE6Mug (FirstMugID+393)
 #endif
 setMugEntry(EliwoodFE6Mug, EliwoodFE6MugData, 2, 5, 3, 3)
 
@@ -4308,7 +4319,7 @@ ErikMugData:
 #incbin "png/FE6/Erik_palette.dmp"
 #incbin "png/FE6/Erik_minimug.dmp"
 #ifndef ErikMug
-  #define ErikMug (FirstMugID+393)
+  #define ErikMug (FirstMugID+394)
 #endif
 setMugEntry(ErikMug, ErikMugData, 2, 5, 3, 3)
 
@@ -4319,7 +4330,7 @@ FaeMugData:
 #incbin "png/FE6/Fae_palette.dmp"
 #incbin "png/FE6/Fae_minimug.dmp"
 #ifndef FaeMug
-  #define FaeMug (FirstMugID+394)
+  #define FaeMug (FirstMugID+395)
 #endif
 setMugEntry(FaeMug, FaeMugData, 3, 7, 3, 5)
 
@@ -4330,7 +4341,7 @@ FirMugData:
 #incbin "png/FE6/Fir_palette.dmp"
 #incbin "png/FE6/Fir_minimug.dmp"
 #ifndef FirMug
-  #define FirMug (FirstMugID+395)
+  #define FirMug (FirstMugID+396)
 #endif
 setMugEntry(FirMug, FirMugData, 2, 6, 3, 4)
 
@@ -4341,7 +4352,7 @@ FlaerMugData:
 #incbin "png/FE6/Flaer_palette.dmp"
 #incbin "png/FE6/Flaer_minimug.dmp"
 #ifndef FlaerMug
-  #define FlaerMug (FirstMugID+396)
+  #define FlaerMug (FirstMugID+397)
 #endif
 setMugEntry(FlaerMug, FlaerMugData, 2, 5, 3, 3)
 
@@ -4352,7 +4363,7 @@ GalleMugData:
 #incbin "png/FE6/Galle_palette.dmp"
 #incbin "png/FE6/Galle_minimug.dmp"
 #ifndef GalleMug
-  #define GalleMug (FirstMugID+397)
+  #define GalleMug (FirstMugID+398)
 #endif
 setMugEntry(GalleMug, GalleMugData, 2, 5, 3, 3)
 
@@ -4363,7 +4374,7 @@ GarrettMugData:
 #incbin "png/FE6/Garrett_palette.dmp"
 #incbin "png/FE6/Garrett_minimug.dmp"
 #ifndef GarrettMug
-  #define GarrettMug (FirstMugID+398)
+  #define GarrettMug (FirstMugID+399)
 #endif
 setMugEntry(GarrettMug, GarrettMugData, 2, 4, 3, 2)
 
@@ -4374,7 +4385,7 @@ GeeseMugData:
 #incbin "png/FE6/Geese_palette.dmp"
 #incbin "png/FE6/Geese_minimug.dmp"
 #ifndef GeeseMug
-  #define GeeseMug (FirstMugID+399)
+  #define GeeseMug (FirstMugID+400)
 #endif
 setMugEntry(GeeseMug, GeeseMugData, 2, 5, 3, 3)
 
@@ -4385,7 +4396,7 @@ GonzalezMugData:
 #incbin "png/FE6/Gonzalez_palette.dmp"
 #incbin "png/FE6/Gonzalez_minimug.dmp"
 #ifndef GonzalezMug
-  #define GonzalezMug (FirstMugID+400)
+  #define GonzalezMug (FirstMugID+401)
 #endif
 setMugEntry(GonzalezMug, GonzalezMugData, 2, 5, 2, 3)
 
@@ -4396,7 +4407,7 @@ GuerreroMugData:
 #incbin "png/FE6/Guerrero_palette.dmp"
 #incbin "png/FE6/Guerrero_minimug.dmp"
 #ifndef GuerreroMug
-  #define GuerreroMug (FirstMugID+401)
+  #define GuerreroMug (FirstMugID+402)
 #endif
 setMugEntry(GuerreroMug, GuerreroMugData, 2, 5, 3, 3)
 
@@ -4407,7 +4418,7 @@ GuinivereMugData:
 #incbin "png/FE6/Guinivere_palette.dmp"
 #incbin "png/FE6/Guinivere_minimug.dmp"
 #ifndef GuinivereMug
-  #define GuinivereMug (FirstMugID+402)
+  #define GuinivereMug (FirstMugID+403)
 #endif
 setMugEntry(GuinivereMug, GuinivereMugData, 3, 6, 3, 4)
 
@@ -4418,7 +4429,7 @@ GwendolynMugData:
 #incbin "png/FE6/Gwendolyn_palette.dmp"
 #incbin "png/FE6/Gwendolyn_minimug.dmp"
 #ifndef GwendolynMug
-  #define GwendolynMug (FirstMugID+403)
+  #define GwendolynMug (FirstMugID+404)
 #endif
 setMugEntry(GwendolynMug, GwendolynMugData, 2, 6, 3, 4)
 
@@ -4429,7 +4440,7 @@ GwynevreMugData:
 #incbin "png/FE6/Gwynevre_palette.dmp"
 #incbin "png/FE6/Gwynevre_minimug.dmp"
 #ifndef GwynevreMug
-  #define GwynevreMug (FirstMugID+404)
+  #define GwynevreMug (FirstMugID+405)
 #endif
 setMugEntry(GwynevreMug, GwynevreMugData, 2, 6, 3, 4)
 
@@ -4440,7 +4451,7 @@ HectorFE6MugData:
 #incbin "png/FE6/HectorFE6_palette.dmp"
 #incbin "png/FE6/HectorFE6_minimug.dmp"
 #ifndef HectorFE6Mug
-  #define HectorFE6Mug (FirstMugID+405)
+  #define HectorFE6Mug (FirstMugID+406)
 #endif
 setMugEntry(HectorFE6Mug, HectorFE6MugData, 2, 5, 3, 2)
 
@@ -4451,7 +4462,7 @@ HenningMugData:
 #incbin "png/FE6/Henning_palette.dmp"
 #incbin "png/FE6/Henning_minimug.dmp"
 #ifndef HenningMug
-  #define HenningMug (FirstMugID+406)
+  #define HenningMug (FirstMugID+407)
 #endif
 setMugEntry(HenningMug, HenningMugData, 2, 5, 3, 3)
 
@@ -4462,7 +4473,7 @@ HughMugData:
 #incbin "png/FE6/Hugh_palette.dmp"
 #incbin "png/FE6/Hugh_minimug.dmp"
 #ifndef HughMug
-  #define HughMug (FirstMugID+407)
+  #define HughMug (FirstMugID+408)
 #endif
 setMugEntry(HughMug, HughMugData, 2, 5, 3, 3)
 
@@ -4473,7 +4484,7 @@ IdunnMugData:
 #incbin "png/FE6/Idunn_palette.dmp"
 #incbin "png/FE6/Idunn_minimug.dmp"
 #ifndef IdunnMug
-  #define IdunnMug (FirstMugID+408)
+  #define IdunnMug (FirstMugID+409)
 #endif
 setMugEntry(IdunnMug, IdunnMugData, 2, 6, 3, 4)
 
@@ -4484,7 +4495,7 @@ IdunnDragonMugData:
 #incbin "png/FE6/IdunnDragon_palette.dmp"
 #incbin "png/FE6/IdunnDragon_minimug.dmp"
 #ifndef IdunnDragonMug
-  #define IdunnDragonMug (FirstMugID+409)
+  #define IdunnDragonMug (FirstMugID+410)
 #endif
 setMugEntry(IdunnDragonMug, IdunnDragonMugData, 2, 6, 3, 4)
 
@@ -4495,7 +4506,7 @@ IdunnHoodMugData:
 #incbin "png/FE6/IdunnHood_palette.dmp"
 #incbin "png/FE6/IdunnHood_minimug.dmp"
 #ifndef IdunnHoodMug
-  #define IdunnHoodMug (FirstMugID+410)
+  #define IdunnHoodMug (FirstMugID+411)
 #endif
 setMugEntry(IdunnHoodMug, IdunnHoodMugData, 2, 6, 3, 4)
 
@@ -4506,7 +4517,7 @@ IgreneMugData:
 #incbin "png/FE6/Igrene_palette.dmp"
 #incbin "png/FE6/Igrene_minimug.dmp"
 #ifndef IgreneMug
-  #define IgreneMug (FirstMugID+411)
+  #define IgreneMug (FirstMugID+412)
 #endif
 setMugEntry(IgreneMug, IgreneMugData, 2, 5, 3, 3)
 
@@ -4517,7 +4528,7 @@ JahnMugData:
 #incbin "png/FE6/Jahn_palette.dmp"
 #incbin "png/FE6/Jahn_minimug.dmp"
 #ifndef JahnMug
-  #define JahnMug (FirstMugID+412)
+  #define JahnMug (FirstMugID+413)
 #endif
 setMugEntry(JahnMug, JahnMugData, 3, 5, 3, 3)
 
@@ -4528,7 +4539,7 @@ JunoMugData:
 #incbin "png/FE6/Juno_palette.dmp"
 #incbin "png/FE6/Juno_minimug.dmp"
 #ifndef JunoMug
-  #define JunoMug (FirstMugID+413)
+  #define JunoMug (FirstMugID+414)
 #endif
 setMugEntry(JunoMug, JunoMugData, 2, 5, 3, 3)
 
@@ -4539,7 +4550,7 @@ KarelMugData:
 #incbin "png/FE6/Karel_palette.dmp"
 #incbin "png/FE6/Karel_minimug.dmp"
 #ifndef KarelMug
-  #define KarelMug (FirstMugID+414)
+  #define KarelMug (FirstMugID+415)
 #endif
 setMugEntry(KarelMug, KarelMugData, 2, 5, 3, 3)
 
@@ -4550,7 +4561,7 @@ KelMugData:
 #incbin "png/FE6/Kel_palette.dmp"
 #incbin "png/FE6/Kel_minimug.dmp"
 #ifndef KelMug
-  #define KelMug (FirstMugID+415)
+  #define KelMug (FirstMugID+416)
 #endif
 setMugEntry(KelMug, KelMugData, 2, 5, 3, 3)
 
@@ -4561,7 +4572,7 @@ KleinMugData:
 #incbin "png/FE6/Klein_palette.dmp"
 #incbin "png/FE6/Klein_minimug.dmp"
 #ifndef KleinMug
-  #define KleinMug (FirstMugID+416)
+  #define KleinMug (FirstMugID+417)
 #endif
 setMugEntry(KleinMug, KleinMugData, 2, 5, 3, 3)
 
@@ -4572,7 +4583,7 @@ LanceMugData:
 #incbin "png/FE6/Lance_palette.dmp"
 #incbin "png/FE6/Lance_minimug.dmp"
 #ifndef LanceMug
-  #define LanceMug (FirstMugID+417)
+  #define LanceMug (FirstMugID+418)
 #endif
 setMugEntry(LanceMug, LanceMugData, 2, 5, 3, 3)
 
@@ -4583,7 +4594,7 @@ LarumMugData:
 #incbin "png/FE6/Larum_palette.dmp"
 #incbin "png/FE6/Larum_minimug.dmp"
 #ifndef LarumMug
-  #define LarumMug (FirstMugID+418)
+  #define LarumMug (FirstMugID+419)
 #endif
 setMugEntry(LarumMug, LarumMugData, 2, 6, 3, 4)
 
@@ -4594,7 +4605,7 @@ LeganceMugData:
 #incbin "png/FE6/Legance_palette.dmp"
 #incbin "png/FE6/Legance_minimug.dmp"
 #ifndef LeganceMug
-  #define LeganceMug (FirstMugID+419)
+  #define LeganceMug (FirstMugID+420)
 #endif
 setMugEntry(LeganceMug, LeganceMugData, 2, 5, 2, 3)
 
@@ -4605,7 +4616,7 @@ LilinaMugData:
 #incbin "png/FE6/Lilina_palette.dmp"
 #incbin "png/FE6/Lilina_minimug.dmp"
 #ifndef LilinaMug
-  #define LilinaMug (FirstMugID+420)
+  #define LilinaMug (FirstMugID+421)
 #endif
 setMugEntry(LilinaMug, LilinaMugData, 2, 6, 3, 4)
 
@@ -4616,7 +4627,7 @@ LotMugData:
 #incbin "png/FE6/Lot_palette.dmp"
 #incbin "png/FE6/Lot_minimug.dmp"
 #ifndef LotMug
-  #define LotMug (FirstMugID+421)
+  #define LotMug (FirstMugID+422)
 #endif
 setMugEntry(LotMug, LotMugData, 2, 5, 3, 3)
 
@@ -4627,7 +4638,7 @@ LughMugData:
 #incbin "png/FE6/Lugh_palette.dmp"
 #incbin "png/FE6/Lugh_minimug.dmp"
 #ifndef LughMug
-  #define LughMug (FirstMugID+422)
+  #define LughMug (FirstMugID+423)
 #endif
 setMugEntry(LughMug, LughMugData, 2, 6, 3, 4)
 
@@ -4638,7 +4649,7 @@ MaggieMugData:
 #incbin "png/FE6/Maggie_palette.dmp"
 #incbin "png/FE6/Maggie_minimug.dmp"
 #ifndef MaggieMug
-  #define MaggieMug (FirstMugID+423)
+  #define MaggieMug (FirstMugID+424)
 #endif
 setMugEntry(MaggieMug, MaggieMugData, 2, 5, 3, 3)
 
@@ -4649,7 +4660,7 @@ MarcusMugData:
 #incbin "png/FE6/Marcus_palette.dmp"
 #incbin "png/FE6/Marcus_minimug.dmp"
 #ifndef MarcusMug
-  #define MarcusMug (FirstMugID+424)
+  #define MarcusMug (FirstMugID+425)
 #endif
 setMugEntry(MarcusMug, MarcusMugData, 2, 5, 2, 3)
 
@@ -4660,7 +4671,7 @@ MartelMugData:
 #incbin "png/FE6/Martel_palette.dmp"
 #incbin "png/FE6/Martel_minimug.dmp"
 #ifndef MartelMug
-  #define MartelMug (FirstMugID+425)
+  #define MartelMug (FirstMugID+426)
 #endif
 setMugEntry(MartelMug, MartelMugData, 3, 5, 3, 3)
 
@@ -4671,7 +4682,7 @@ MeladyMugData:
 #incbin "png/FE6/Melady_palette.dmp"
 #incbin "png/FE6/Melady_minimug.dmp"
 #ifndef MeladyMug
-  #define MeladyMug (FirstMugID+426)
+  #define MeladyMug (FirstMugID+427)
 #endif
 setMugEntry(MeladyMug, MeladyMugData, 2, 5, 4, 3)
 
@@ -4682,7 +4693,7 @@ MerlinusMugData:
 #incbin "png/FE6/Merlinus_palette.dmp"
 #incbin "png/FE6/Merlinus_minimug.dmp"
 #ifndef MerlinusMug
-  #define MerlinusMug (FirstMugID+427)
+  #define MerlinusMug (FirstMugID+428)
 #endif
 setMugEntry(MerlinusMug, MerlinusMugData, 2, 5, 2, 3)
 
@@ -4693,7 +4704,7 @@ MessengerMugData:
 #incbin "png/FE6/Messenger_palette.dmp"
 #incbin "png/FE6/Messenger_minimug.dmp"
 #ifndef MessengerMug
-  #define MessengerMug (FirstMugID+428)
+  #define MessengerMug (FirstMugID+429)
 #endif
 setMugEntry(MessengerMug, MessengerMugData, 2, 6, 3, 4)
 
@@ -4704,7 +4715,7 @@ MonkeMugData:
 #incbin "png/FE6/Monke_palette.dmp"
 #incbin "png/FE6/Monke_minimug.dmp"
 #ifndef MonkeMug
-  #define MonkeMug (FirstMugID+429)
+  #define MonkeMug (FirstMugID+430)
 #endif
 setMugEntry(MonkeMug, MonkeMugData, 2, 5, 3, 3)
 
@@ -4715,7 +4726,7 @@ MordredMugData:
 #incbin "png/FE6/Mordred_palette.dmp"
 #incbin "png/FE6/Mordred_minimug.dmp"
 #ifndef MordredMug
-  #define MordredMug (FirstMugID+430)
+  #define MordredMug (FirstMugID+431)
 #endif
 setMugEntry(MordredMug, MordredMugData, 3, 6, 4, 4)
 
@@ -4726,7 +4737,7 @@ MurdockMugData:
 #incbin "png/FE6/Murdock_palette.dmp"
 #incbin "png/FE6/Murdock_minimug.dmp"
 #ifndef MurdockMug
-  #define MurdockMug (FirstMugID+431)
+  #define MurdockMug (FirstMugID+432)
 #endif
 setMugEntry(MurdockMug, MurdockMugData, 2, 4, 3, 2)
 
@@ -4737,7 +4748,7 @@ NarcianMugData:
 #incbin "png/FE6/Narcian_palette.dmp"
 #incbin "png/FE6/Narcian_minimug.dmp"
 #ifndef NarcianMug
-  #define NarcianMug (FirstMugID+432)
+  #define NarcianMug (FirstMugID+433)
 #endif
 setMugEntry(NarcianMug, NarcianMugData, 2, 5, 3, 3)
 
@@ -4748,7 +4759,7 @@ NiimeMugData:
 #incbin "png/FE6/Niime_palette.dmp"
 #incbin "png/FE6/Niime_minimug.dmp"
 #ifndef NiimeMug
-  #define NiimeMug (FirstMugID+433)
+  #define NiimeMug (FirstMugID+434)
 #endif
 setMugEntry(NiimeMug, NiimeMugData, 2, 6, 2, 4)
 
@@ -4759,7 +4770,7 @@ NoahMugData:
 #incbin "png/FE6/Noah_palette.dmp"
 #incbin "png/FE6/Noah_minimug.dmp"
 #ifndef NoahMug
-  #define NoahMug (FirstMugID+434)
+  #define NoahMug (FirstMugID+435)
 #endif
 setMugEntry(NoahMug, NoahMugData, 2, 5, 3, 3)
 
@@ -4770,7 +4781,7 @@ NordMugData:
 #incbin "png/FE6/Nord_palette.dmp"
 #incbin "png/FE6/Nord_minimug.dmp"
 #ifndef NordMug
-  #define NordMug (FirstMugID+435)
+  #define NordMug (FirstMugID+436)
 #endif
 setMugEntry(NordMug, NordMugData, 2, 6, 3, 4)
 
@@ -4781,7 +4792,7 @@ OatesMugData:
 #incbin "png/FE6/Oates_palette.dmp"
 #incbin "png/FE6/Oates_minimug.dmp"
 #ifndef OatesMug
-  #define OatesMug (FirstMugID+436)
+  #define OatesMug (FirstMugID+437)
 #endif
 setMugEntry(OatesMug, OatesMugData, 2, 6, 2, 4)
 
@@ -4792,7 +4803,7 @@ OgierMugData:
 #incbin "png/FE6/Ogier_palette.dmp"
 #incbin "png/FE6/Ogier_minimug.dmp"
 #ifndef OgierMug
-  #define OgierMug (FirstMugID+437)
+  #define OgierMug (FirstMugID+438)
 #endif
 setMugEntry(OgierMug, OgierMugData, 2, 6, 3, 4)
 
@@ -4803,7 +4814,7 @@ OrloMugData:
 #incbin "png/FE6/Orlo_palette.dmp"
 #incbin "png/FE6/Orlo_minimug.dmp"
 #ifndef OrloMug
-  #define OrloMug (FirstMugID+438)
+  #define OrloMug (FirstMugID+439)
 #endif
 setMugEntry(OrloMug, OrloMugData, 3, 5, 3, 3)
 
@@ -4814,7 +4825,7 @@ PercevalMugData:
 #incbin "png/FE6/Perceval_palette.dmp"
 #incbin "png/FE6/Perceval_minimug.dmp"
 #ifndef PercevalMug
-  #define PercevalMug (FirstMugID+439)
+  #define PercevalMug (FirstMugID+440)
 #endif
 setMugEntry(PercevalMug, PercevalMugData, 2, 5, 2, 3)
 
@@ -4825,7 +4836,7 @@ PeresMugData:
 #incbin "png/FE6/Peres_palette.dmp"
 #incbin "png/FE6/Peres_minimug.dmp"
 #ifndef PeresMug
-  #define PeresMug (FirstMugID+440)
+  #define PeresMug (FirstMugID+441)
 #endif
 setMugEntry(PeresMug, PeresMugData, 2, 6, 2, 4)
 
@@ -4836,7 +4847,7 @@ PriestMugData:
 #incbin "png/FE6/Priest_palette.dmp"
 #incbin "png/FE6/Priest_minimug.dmp"
 #ifndef PriestMug
-  #define PriestMug (FirstMugID+441)
+  #define PriestMug (FirstMugID+442)
 #endif
 setMugEntry(PriestMug, PriestMugData, 2, 5, 2, 3)
 
@@ -4847,7 +4858,7 @@ RaighMugData:
 #incbin "png/FE6/Raigh_palette.dmp"
 #incbin "png/FE6/Raigh_minimug.dmp"
 #ifndef RaighMug
-  #define RaighMug (FirstMugID+442)
+  #define RaighMug (FirstMugID+443)
 #endif
 setMugEntry(RaighMug, RaighMugData, 2, 6, 3, 4)
 
@@ -4858,7 +4869,7 @@ RaithMugData:
 #incbin "png/FE6/Raith_palette.dmp"
 #incbin "png/FE6/Raith_minimug.dmp"
 #ifndef RaithMug
-  #define RaithMug (FirstMugID+443)
+  #define RaithMug (FirstMugID+444)
 #endif
 setMugEntry(RaithMug, RaithMugData, 2, 5, 3, 3)
 
@@ -4869,7 +4880,7 @@ RandyMugData:
 #incbin "png/FE6/Randy_palette.dmp"
 #incbin "png/FE6/Randy_minimug.dmp"
 #ifndef RandyMug
-  #define RandyMug (FirstMugID+444)
+  #define RandyMug (FirstMugID+445)
 #endif
 setMugEntry(RandyMug, RandyMugData, 2, 5, 3, 3)
 
@@ -4880,7 +4891,7 @@ RoartzMugData:
 #incbin "png/FE6/Roartz_palette.dmp"
 #incbin "png/FE6/Roartz_minimug.dmp"
 #ifndef RoartzMug
-  #define RoartzMug (FirstMugID+445)
+  #define RoartzMug (FirstMugID+446)
 #endif
 setMugEntry(RoartzMug, RoartzMugData, 2, 5, 2, 3)
 
@@ -4891,7 +4902,7 @@ RoseMugData:
 #incbin "png/FE6/Rose_palette.dmp"
 #incbin "png/FE6/Rose_minimug.dmp"
 #ifndef RoseMug
-  #define RoseMug (FirstMugID+446)
+  #define RoseMug (FirstMugID+447)
 #endif
 setMugEntry(RoseMug, RoseMugData, 2, 5, 3, 3)
 
@@ -4902,7 +4913,7 @@ RoyMugData:
 #incbin "png/FE6/Roy_palette.dmp"
 #incbin "png/FE6/Roy_minimug.dmp"
 #ifndef RoyMug
-  #define RoyMug (FirstMugID+447)
+  #define RoyMug (FirstMugID+448)
 #endif
 setMugEntry(RoyMug, RoyMugData, 2, 6, 3, 4)
 
@@ -4913,7 +4924,7 @@ RutgerMugData:
 #incbin "png/FE6/Rutger_palette.dmp"
 #incbin "png/FE6/Rutger_minimug.dmp"
 #ifndef RutgerMug
-  #define RutgerMug (FirstMugID+448)
+  #define RutgerMug (FirstMugID+449)
 #endif
 setMugEntry(RutgerMug, RutgerMugData, 2, 5, 2, 3)
 
@@ -4924,7 +4935,7 @@ RuudMugData:
 #incbin "png/FE6/Ruud_palette.dmp"
 #incbin "png/FE6/Ruud_minimug.dmp"
 #ifndef RuudMug
-  #define RuudMug (FirstMugID+449)
+  #define RuudMug (FirstMugID+450)
 #endif
 setMugEntry(RuudMug, RuudMugData, 3, 5, 4, 3)
 
@@ -4935,7 +4946,7 @@ SaulMugData:
 #incbin "png/FE6/Saul_palette.dmp"
 #incbin "png/FE6/Saul_minimug.dmp"
 #ifndef SaulMug
-  #define SaulMug (FirstMugID+450)
+  #define SaulMug (FirstMugID+451)
 #endif
 setMugEntry(SaulMug, SaulMugData, 2, 5, 3, 3)
 
@@ -4946,7 +4957,7 @@ ScottMugData:
 #incbin "png/FE6/Scott_palette.dmp"
 #incbin "png/FE6/Scott_minimug.dmp"
 #ifndef ScottMug
-  #define ScottMug (FirstMugID+451)
+  #define ScottMug (FirstMugID+452)
 #endif
 setMugEntry(ScottMug, ScottMugData, 2, 5, 3, 3)
 
@@ -4957,7 +4968,7 @@ ShannaMugData:
 #incbin "png/FE6/Shanna_palette.dmp"
 #incbin "png/FE6/Shanna_minimug.dmp"
 #ifndef ShannaMug
-  #define ShannaMug (FirstMugID+452)
+  #define ShannaMug (FirstMugID+453)
 #endif
 setMugEntry(ShannaMug, ShannaMugData, 2, 6, 3, 4)
 
@@ -4968,7 +4979,7 @@ SiguneMugData:
 #incbin "png/FE6/Sigune_palette.dmp"
 #incbin "png/FE6/Sigune_minimug.dmp"
 #ifndef SiguneMug
-  #define SiguneMug (FirstMugID+453)
+  #define SiguneMug (FirstMugID+454)
 #endif
 setMugEntry(SiguneMug, SiguneMugData, 2, 5, 3, 3)
 
@@ -4979,7 +4990,7 @@ SinMugData:
 #incbin "png/FE6/Sin_palette.dmp"
 #incbin "png/FE6/Sin_minimug.dmp"
 #ifndef SinMug
-  #define SinMug (FirstMugID+454)
+  #define SinMug (FirstMugID+455)
 #endif
 setMugEntry(SinMug, SinMugData, 2, 5, 3, 3)
 
@@ -4990,7 +5001,7 @@ SophiaMugData:
 #incbin "png/FE6/Sophia_palette.dmp"
 #incbin "png/FE6/Sophia_minimug.dmp"
 #ifndef SophiaMug
-  #define SophiaMug (FirstMugID+455)
+  #define SophiaMug (FirstMugID+456)
 #endif
 setMugEntry(SophiaMug, SophiaMugData, 2, 6, 3, 4)
 
@@ -5001,7 +5012,7 @@ SueMugData:
 #incbin "png/FE6/Sue_palette.dmp"
 #incbin "png/FE6/Sue_minimug.dmp"
 #ifndef SueMug
-  #define SueMug (FirstMugID+456)
+  #define SueMug (FirstMugID+457)
 #endif
 setMugEntry(SueMug, SueMugData, 2, 5, 3, 3)
 
@@ -5012,7 +5023,7 @@ TheaMugData:
 #incbin "png/FE6/Thea_palette.dmp"
 #incbin "png/FE6/Thea_minimug.dmp"
 #ifndef TheaMug
-  #define TheaMug (FirstMugID+457)
+  #define TheaMug (FirstMugID+458)
 #endif
 setMugEntry(TheaMug, TheaMugData, 3, 6, 3, 4)
 
@@ -5023,7 +5034,7 @@ TickMugData:
 #incbin "png/FE6/Tick_palette.dmp"
 #incbin "png/FE6/Tick_minimug.dmp"
 #ifndef TickMug
-  #define TickMug (FirstMugID+458)
+  #define TickMug (FirstMugID+459)
 #endif
 setMugEntry(TickMug, TickMugData, 2, 5, 3, 3)
 
@@ -5034,7 +5045,7 @@ TrecMugData:
 #incbin "png/FE6/Trec_palette.dmp"
 #incbin "png/FE6/Trec_minimug.dmp"
 #ifndef TrecMug
-  #define TrecMug (FirstMugID+459)
+  #define TrecMug (FirstMugID+460)
 #endif
 setMugEntry(TrecMug, TrecMugData, 2, 5, 3, 3)
 
@@ -5045,7 +5056,7 @@ WagnerMugData:
 #incbin "png/FE6/Wagner_palette.dmp"
 #incbin "png/FE6/Wagner_minimug.dmp"
 #ifndef WagnerMug
-  #define WagnerMug (FirstMugID+460)
+  #define WagnerMug (FirstMugID+461)
 #endif
 setMugEntry(WagnerMug, WagnerMugData, 2, 6, 3, 4)
 
@@ -5056,7 +5067,7 @@ WardMugData:
 #incbin "png/FE6/Ward_palette.dmp"
 #incbin "png/FE6/Ward_minimug.dmp"
 #ifndef WardMug
-  #define WardMug (FirstMugID+461)
+  #define WardMug (FirstMugID+462)
 #endif
 setMugEntry(WardMug, WardMugData, 2, 5, 2, 3)
 
@@ -5067,7 +5078,7 @@ WilliamMugData:
 #incbin "png/FE6/William_palette.dmp"
 #incbin "png/FE6/William_minimug.dmp"
 #ifndef WilliamMug
-  #define WilliamMug (FirstMugID+462)
+  #define WilliamMug (FirstMugID+463)
 #endif
 setMugEntry(WilliamMug, WilliamMugData, 2, 6, 3, 3)
 
@@ -5078,7 +5089,7 @@ WindhamMugData:
 #incbin "png/FE6/Windham_palette.dmp"
 #incbin "png/FE6/Windham_minimug.dmp"
 #ifndef WindhamMug
-  #define WindhamMug (FirstMugID+463)
+  #define WindhamMug (FirstMugID+464)
 #endif
 setMugEntry(WindhamMug, WindhamMugData, 3, 5, 3, 3)
 
@@ -5089,7 +5100,7 @@ WoltMugData:
 #incbin "png/FE6/Wolt_palette.dmp"
 #incbin "png/FE6/Wolt_minimug.dmp"
 #ifndef WoltMug
-  #define WoltMug (FirstMugID+464)
+  #define WoltMug (FirstMugID+465)
 #endif
 setMugEntry(WoltMug, WoltMugData, 2, 6, 3, 4)
 
@@ -5100,7 +5111,7 @@ YoderMugData:
 #incbin "png/FE6/Yoder_palette.dmp"
 #incbin "png/FE6/Yoder_minimug.dmp"
 #ifndef YoderMug
-  #define YoderMug (FirstMugID+465)
+  #define YoderMug (FirstMugID+466)
 #endif
 setMugEntry(YoderMug, YoderMugData, 2, 5, 3, 3)
 
@@ -5111,7 +5122,7 @@ ZeissMugData:
 #incbin "png/FE6/Zeiss_palette.dmp"
 #incbin "png/FE6/Zeiss_minimug.dmp"
 #ifndef ZeissMug
-  #define ZeissMug (FirstMugID+466)
+  #define ZeissMug (FirstMugID+467)
 #endif
 setMugEntry(ZeissMug, ZeissMugData, 2, 5, 2, 3)
 
@@ -5122,7 +5133,7 @@ ZelotMugData:
 #incbin "png/FE6/Zelot_palette.dmp"
 #incbin "png/FE6/Zelot_minimug.dmp"
 #ifndef ZelotMug
-  #define ZelotMug (FirstMugID+467)
+  #define ZelotMug (FirstMugID+468)
 #endif
 setMugEntry(ZelotMug, ZelotMugData, 2, 5, 3, 3)
 
@@ -5133,7 +5144,7 @@ ZephielMugData:
 #incbin "png/FE6/Zephiel_palette.dmp"
 #incbin "png/FE6/Zephiel_minimug.dmp"
 #ifndef ZephielMug
-  #define ZephielMug (FirstMugID+468)
+  #define ZephielMug (FirstMugID+469)
 #endif
 setMugEntry(ZephielMug, ZephielMugData, 4, 4, 4, 2)
 
@@ -5144,7 +5155,7 @@ ZinqueMugData:
 #incbin "png/FE6/Zinque_palette.dmp"
 #incbin "png/FE6/Zinque_minimug.dmp"
 #ifndef ZinqueMug
-  #define ZinqueMug (FirstMugID+469)
+  #define ZinqueMug (FirstMugID+470)
 #endif
 setMugEntry(ZinqueMug, ZinqueMugData, 2, 5, 3, 3)
 
@@ -5155,7 +5166,7 @@ AthosMugData:
 #incbin "png/FE7/Athos_palette.dmp"
 #incbin "png/FE7/Athos_minimug.dmp"
 #ifndef AthosMug
-  #define AthosMug (FirstMugID+470)
+  #define AthosMug (FirstMugID+471)
 #endif
 setMugEntry(AthosMug, AthosMugData, 2, 4, 3, 2)
 
@@ -5166,7 +5177,7 @@ Bartre2MugData:
 #incbin "png/FE7/Bartre2_palette.dmp"
 #incbin "png/FE7/Bartre2_minimug.dmp"
 #ifndef Bartre2Mug
-  #define Bartre2Mug (FirstMugID+471)
+  #define Bartre2Mug (FirstMugID+472)
 #endif
 setMugEntry(Bartre2Mug, Bartre2MugData, 2, 5, 2, 3)
 
@@ -5177,7 +5188,7 @@ BramimondMugData:
 #incbin "png/FE7/Bramimond_palette.dmp"
 #incbin "png/FE7/Bramimond_minimug.dmp"
 #ifndef BramimondMug
-  #define BramimondMug (FirstMugID+472)
+  #define BramimondMug (FirstMugID+473)
 #endif
 setMugEntry(BramimondMug, BramimondMugData, 2, 6, 3, 3)
 
@@ -5188,7 +5199,7 @@ CanasMugData:
 #incbin "png/FE7/Canas_palette.dmp"
 #incbin "png/FE7/Canas_minimug.dmp"
 #ifndef CanasMug
-  #define CanasMug (FirstMugID+473)
+  #define CanasMug (FirstMugID+474)
 #endif
 setMugEntry(CanasMug, CanasMugData, 2, 5, 3, 3)
 
@@ -5199,7 +5210,7 @@ DartMugData:
 #incbin "png/FE7/Dart_palette.dmp"
 #incbin "png/FE7/Dart_minimug.dmp"
 #ifndef DartMug
-  #define DartMug (FirstMugID+474)
+  #define DartMug (FirstMugID+475)
 #endif
 setMugEntry(DartMug, DartMugData, 3, 5, 3, 3)
 
@@ -5210,7 +5221,7 @@ DorcasMugData:
 #incbin "png/FE7/Dorcas_palette.dmp"
 #incbin "png/FE7/Dorcas_minimug.dmp"
 #ifndef DorcasMug
-  #define DorcasMug (FirstMugID+475)
+  #define DorcasMug (FirstMugID+476)
 #endif
 setMugEntry(DorcasMug, DorcasMugData, 2, 4, 3, 2)
 
@@ -5221,7 +5232,7 @@ ElbertMugData:
 #incbin "png/FE7/Elbert_palette.dmp"
 #incbin "png/FE7/Elbert_minimug.dmp"
 #ifndef ElbertMug
-  #define ElbertMug (FirstMugID+476)
+  #define ElbertMug (FirstMugID+477)
 #endif
 setMugEntry(ElbertMug, ElbertMugData, 2, 5, 3, 3)
 
@@ -5232,7 +5243,7 @@ EleanoraMugData:
 #incbin "png/FE7/Eleanora_palette.dmp"
 #incbin "png/FE7/Eleanora_minimug.dmp"
 #ifndef EleanoraMug
-  #define EleanoraMug (FirstMugID+477)
+  #define EleanoraMug (FirstMugID+478)
 #endif
 setMugEntry(EleanoraMug, EleanoraMugData, 1, 5, 2, 3)
 
@@ -5243,7 +5254,7 @@ EliwoodMugData:
 #incbin "png/FE7/Eliwood_palette.dmp"
 #incbin "png/FE7/Eliwood_minimug.dmp"
 #ifndef EliwoodMug
-  #define EliwoodMug (FirstMugID+478)
+  #define EliwoodMug (FirstMugID+479)
 #endif
 setMugEntry(EliwoodMug, EliwoodMugData, 2, 5, 3, 3)
 
@@ -5254,7 +5265,7 @@ ErkMugData:
 #incbin "png/FE7/Erk_palette.dmp"
 #incbin "png/FE7/Erk_minimug.dmp"
 #ifndef ErkMug
-  #define ErkMug (FirstMugID+479)
+  #define ErkMug (FirstMugID+480)
 #endif
 setMugEntry(ErkMug, ErkMugData, 2, 6, 3, 4)
 
@@ -5265,7 +5276,7 @@ FargusMugData:
 #incbin "png/FE7/Fargus_palette.dmp"
 #incbin "png/FE7/Fargus_minimug.dmp"
 #ifndef FargusMug
-  #define FargusMug (FirstMugID+480)
+  #define FargusMug (FirstMugID+481)
 #endif
 setMugEntry(FargusMug, FargusMugData, 2, 5, 3, 3)
 
@@ -5276,7 +5287,7 @@ FarinaMugData:
 #incbin "png/FE7/Farina_palette.dmp"
 #incbin "png/FE7/Farina_minimug.dmp"
 #ifndef FarinaMug
-  #define FarinaMug (FirstMugID+481)
+  #define FarinaMug (FirstMugID+482)
 #endif
 setMugEntry(FarinaMug, FarinaMugData, 2, 5, 3, 3)
 
@@ -5287,7 +5298,7 @@ FioraMugData:
 #incbin "png/FE7/Fiora_palette.dmp"
 #incbin "png/FE7/Fiora_minimug.dmp"
 #ifndef FioraMug
-  #define FioraMug (FirstMugID+482)
+  #define FioraMug (FirstMugID+483)
 #endif
 setMugEntry(FioraMug, FioraMugData, 2, 5, 3, 3)
 
@@ -5298,7 +5309,7 @@ FlorinaMugData:
 #incbin "png/FE7/Florina_palette.dmp"
 #incbin "png/FE7/Florina_minimug.dmp"
 #ifndef FlorinaMug
-  #define FlorinaMug (FirstMugID+483)
+  #define FlorinaMug (FirstMugID+484)
 #endif
 setMugEntry(FlorinaMug, FlorinaMugData, 2, 7, 3, 5)
 
@@ -5309,7 +5320,7 @@ GeitzMugData:
 #incbin "png/FE7/Geitz_palette.dmp"
 #incbin "png/FE7/Geitz_minimug.dmp"
 #ifndef GeitzMug
-  #define GeitzMug (FirstMugID+484)
+  #define GeitzMug (FirstMugID+485)
 #endif
 setMugEntry(GeitzMug, GeitzMugData, 2, 5, 3, 3)
 
@@ -5320,7 +5331,7 @@ GuyMugData:
 #incbin "png/FE7/Guy_palette.dmp"
 #incbin "png/FE7/Guy_minimug.dmp"
 #ifndef GuyMug
-  #define GuyMug (FirstMugID+485)
+  #define GuyMug (FirstMugID+486)
 #endif
 setMugEntry(GuyMug, GuyMugData, 2, 6, 3, 4)
 
@@ -5331,7 +5342,7 @@ HarkenMugData:
 #incbin "png/FE7/Harken_palette.dmp"
 #incbin "png/FE7/Harken_minimug.dmp"
 #ifndef HarkenMug
-  #define HarkenMug (FirstMugID+486)
+  #define HarkenMug (FirstMugID+487)
 #endif
 setMugEntry(HarkenMug, HarkenMugData, 2, 5, 3, 3)
 
@@ -5342,7 +5353,7 @@ HawkeyeMugData:
 #incbin "png/FE7/Hawkeye_palette.dmp"
 #incbin "png/FE7/Hawkeye_minimug.dmp"
 #ifndef HawkeyeMug
-  #define HawkeyeMug (FirstMugID+487)
+  #define HawkeyeMug (FirstMugID+488)
 #endif
 setMugEntry(HawkeyeMug, HawkeyeMugData, 2, 4, 2, 2)
 
@@ -5353,7 +5364,7 @@ HeathMugData:
 #incbin "png/FE7/Heath_palette.dmp"
 #incbin "png/FE7/Heath_minimug.dmp"
 #ifndef HeathMug
-  #define HeathMug (FirstMugID+488)
+  #define HeathMug (FirstMugID+489)
 #endif
 setMugEntry(HeathMug, HeathMugData, 3, 5, 3, 3)
 
@@ -5364,7 +5375,7 @@ HectorMugData:
 #incbin "png/FE7/Hector_palette.dmp"
 #incbin "png/FE7/Hector_minimug.dmp"
 #ifndef HectorMug
-  #define HectorMug (FirstMugID+489)
+  #define HectorMug (FirstMugID+490)
 #endif
 setMugEntry(HectorMug, HectorMugData, 2, 4, 3, 2)
 
@@ -5375,7 +5386,7 @@ IsadoraMugData:
 #incbin "png/FE7/Isadora_palette.dmp"
 #incbin "png/FE7/Isadora_minimug.dmp"
 #ifndef IsadoraMug
-  #define IsadoraMug (FirstMugID+490)
+  #define IsadoraMug (FirstMugID+491)
 #endif
 setMugEntry(IsadoraMug, IsadoraMugData, 2, 6, 3, 4)
 
@@ -5386,7 +5397,7 @@ JaffarMugData:
 #incbin "png/FE7/Jaffar_palette.dmp"
 #incbin "png/FE7/Jaffar_minimug.dmp"
 #ifndef JaffarMug
-  #define JaffarMug (FirstMugID+491)
+  #define JaffarMug (FirstMugID+492)
 #endif
 setMugEntry(JaffarMug, JaffarMugData, 2, 5, 2, 3)
 
@@ -5397,7 +5408,7 @@ Karel2MugData:
 #incbin "png/FE7/Karel2_palette.dmp"
 #incbin "png/FE7/Karel2_minimug.dmp"
 #ifndef Karel2Mug
-  #define Karel2Mug (FirstMugID+492)
+  #define Karel2Mug (FirstMugID+493)
 #endif
 setMugEntry(Karel2Mug, Karel2MugData, 2, 5, 3, 3)
 
@@ -5408,7 +5419,7 @@ KarlaMugData:
 #incbin "png/FE7/Karla_palette.dmp"
 #incbin "png/FE7/Karla_minimug.dmp"
 #ifndef KarlaMug
-  #define KarlaMug (FirstMugID+493)
+  #define KarlaMug (FirstMugID+494)
 #endif
 setMugEntry(KarlaMug, KarlaMugData, 2, 5, 3, 3)
 
@@ -5419,7 +5430,7 @@ KentMugData:
 #incbin "png/FE7/Kent_palette.dmp"
 #incbin "png/FE7/Kent_minimug.dmp"
 #ifndef KentMug
-  #define KentMug (FirstMugID+494)
+  #define KentMug (FirstMugID+495)
 #endif
 setMugEntry(KentMug, KentMugData, 2, 5, 3, 3)
 
@@ -5430,7 +5441,7 @@ LegaultMugData:
 #incbin "png/FE7/Legault_palette.dmp"
 #incbin "png/FE7/Legault_minimug.dmp"
 #ifndef LegaultMug
-  #define LegaultMug (FirstMugID+495)
+  #define LegaultMug (FirstMugID+496)
 #endif
 setMugEntry(LegaultMug, LegaultMugData, 2, 4, 3, 2)
 
@@ -5441,7 +5452,7 @@ LeilaMugData:
 #incbin "png/FE7/Leila_palette.dmp"
 #incbin "png/FE7/Leila_minimug.dmp"
 #ifndef LeilaMug
-  #define LeilaMug (FirstMugID+496)
+  #define LeilaMug (FirstMugID+497)
 #endif
 setMugEntry(LeilaMug, LeilaMugData, 2, 6, 3, 4)
 
@@ -5452,7 +5463,7 @@ LouiseMugData:
 #incbin "png/FE7/Louise_palette.dmp"
 #incbin "png/FE7/Louise_minimug.dmp"
 #ifndef LouiseMug
-  #define LouiseMug (FirstMugID+497)
+  #define LouiseMug (FirstMugID+498)
 #endif
 setMugEntry(LouiseMug, LouiseMugData, 2, 6, 3, 4)
 
@@ -5463,7 +5474,7 @@ LowenMugData:
 #incbin "png/FE7/Lowen_palette.dmp"
 #incbin "png/FE7/Lowen_minimug.dmp"
 #ifndef LowenMug
-  #define LowenMug (FirstMugID+498)
+  #define LowenMug (FirstMugID+499)
 #endif
 setMugEntry(LowenMug, LowenMugData, 2, 5, 3, 3)
 
@@ -5474,7 +5485,7 @@ LuciusMugData:
 #incbin "png/FE7/Lucius_palette.dmp"
 #incbin "png/FE7/Lucius_minimug.dmp"
 #ifndef LuciusMug
-  #define LuciusMug (FirstMugID+499)
+  #define LuciusMug (FirstMugID+500)
 #endif
 setMugEntry(LuciusMug, LuciusMugData, 2, 5, 3, 3)
 
@@ -5485,7 +5496,7 @@ LynMugData:
 #incbin "png/FE7/Lyn_palette.dmp"
 #incbin "png/FE7/Lyn_minimug.dmp"
 #ifndef LynMug
-  #define LynMug (FirstMugID+500)
+  #define LynMug (FirstMugID+501)
 #endif
 setMugEntry(LynMug, LynMugData, 2, 6, 3, 4)
 
@@ -5496,7 +5507,7 @@ Marcus2MugData:
 #incbin "png/FE7/Marcus2_palette.dmp"
 #incbin "png/FE7/Marcus2_minimug.dmp"
 #ifndef Marcus2Mug
-  #define Marcus2Mug (FirstMugID+501)
+  #define Marcus2Mug (FirstMugID+502)
 #endif
 setMugEntry(Marcus2Mug, Marcus2MugData, 2, 5, 3, 3)
 
@@ -5507,7 +5518,7 @@ MatthewMugData:
 #incbin "png/FE7/Matthew_palette.dmp"
 #incbin "png/FE7/Matthew_minimug.dmp"
 #ifndef MatthewMug
-  #define MatthewMug (FirstMugID+502)
+  #define MatthewMug (FirstMugID+503)
 #endif
 setMugEntry(MatthewMug, MatthewMugData, 2, 5, 3, 3)
 
@@ -5518,7 +5529,7 @@ Merlinus2MugData:
 #incbin "png/FE7/Merlinus2_palette.dmp"
 #incbin "png/FE7/Merlinus2_minimug.dmp"
 #ifndef Merlinus2Mug
-  #define Merlinus2Mug (FirstMugID+503)
+  #define Merlinus2Mug (FirstMugID+504)
 #endif
 setMugEntry(Merlinus2Mug, Merlinus2MugData, 2, 5, 2, 3)
 
@@ -5529,7 +5540,7 @@ NatalieMugData:
 #incbin "png/FE7/Natalie_palette.dmp"
 #incbin "png/FE7/Natalie_minimug.dmp"
 #ifndef NatalieMug
-  #define NatalieMug (FirstMugID+504)
+  #define NatalieMug (FirstMugID+505)
 #endif
 setMugEntry(NatalieMug, NatalieMugData, 2, 6, 3, 4)
 
@@ -5540,7 +5551,7 @@ NergalMugData:
 #incbin "png/FE7/Nergal_palette.dmp"
 #incbin "png/FE7/Nergal_minimug.dmp"
 #ifndef NergalMug
-  #define NergalMug (FirstMugID+505)
+  #define NergalMug (FirstMugID+506)
 #endif
 setMugEntry(NergalMug, NergalMugData, 3, 4, 3, 2)
 
@@ -5551,7 +5562,7 @@ NilsMugData:
 #incbin "png/FE7/Nils_palette.dmp"
 #incbin "png/FE7/Nils_minimug.dmp"
 #ifndef NilsMug
-  #define NilsMug (FirstMugID+506)
+  #define NilsMug (FirstMugID+507)
 #endif
 setMugEntry(NilsMug, NilsMugData, 2, 7, 3, 5)
 
@@ -5562,7 +5573,7 @@ NinianMugData:
 #incbin "png/FE7/Ninian_palette.dmp"
 #incbin "png/FE7/Ninian_minimug.dmp"
 #ifndef NinianMug
-  #define NinianMug (FirstMugID+507)
+  #define NinianMug (FirstMugID+508)
 #endif
 setMugEntry(NinianMug, NinianMugData, 3, 6, 4, 4)
 
@@ -5573,7 +5584,7 @@ NinoMugData:
 #incbin "png/FE7/Nino_palette.dmp"
 #incbin "png/FE7/Nino_minimug.dmp"
 #ifndef NinoMug
-  #define NinoMug (FirstMugID+508)
+  #define NinoMug (FirstMugID+509)
 #endif
 setMugEntry(NinoMug, NinoMugData, 2, 6, 3, 4)
 
@@ -5584,7 +5595,7 @@ OswinMugData:
 #incbin "png/FE7/Oswin_palette.dmp"
 #incbin "png/FE7/Oswin_minimug.dmp"
 #ifndef OswinMug
-  #define OswinMug (FirstMugID+509)
+  #define OswinMug (FirstMugID+510)
 #endif
 setMugEntry(OswinMug, OswinMugData, 2, 4, 3, 2)
 
@@ -5595,7 +5606,7 @@ PentMugData:
 #incbin "png/FE7/Pent_palette.dmp"
 #incbin "png/FE7/Pent_minimug.dmp"
 #ifndef PentMug
-  #define PentMug (FirstMugID+510)
+  #define PentMug (FirstMugID+511)
 #endif
 setMugEntry(PentMug, PentMugData, 3, 5, 4, 3)
 
@@ -5606,7 +5617,7 @@ PriscillaMugData:
 #incbin "png/FE7/Priscilla_palette.dmp"
 #incbin "png/FE7/Priscilla_minimug.dmp"
 #ifndef PriscillaMug
-  #define PriscillaMug (FirstMugID+511)
+  #define PriscillaMug (FirstMugID+513)
 #endif
 setMugEntry(PriscillaMug, PriscillaMugData, 2, 6, 3, 4)
 
@@ -5617,7 +5628,7 @@ RathMugData:
 #incbin "png/FE7/Rath_palette.dmp"
 #incbin "png/FE7/Rath_minimug.dmp"
 #ifndef RathMug
-  #define RathMug (FirstMugID+513)
+  #define RathMug (FirstMugID+514)
 #endif
 setMugEntry(RathMug, RathMugData, 2, 5, 3, 3)
 
@@ -5628,7 +5639,7 @@ RavenMugData:
 #incbin "png/FE7/Raven_palette.dmp"
 #incbin "png/FE7/Raven_minimug.dmp"
 #ifndef RavenMug
-  #define RavenMug (FirstMugID+514)
+  #define RavenMug (FirstMugID+515)
 #endif
 setMugEntry(RavenMug, RavenMugData, 2, 5, 3, 3)
 
@@ -5639,7 +5650,7 @@ RebeccaMugData:
 #incbin "png/FE7/Rebecca_palette.dmp"
 #incbin "png/FE7/Rebecca_minimug.dmp"
 #ifndef RebeccaMug
-  #define RebeccaMug (FirstMugID+515)
+  #define RebeccaMug (FirstMugID+516)
 #endif
 setMugEntry(RebeccaMug, RebeccaMugData, 2, 6, 3, 4)
 
@@ -5650,7 +5661,7 @@ RenaultMugData:
 #incbin "png/FE7/Renault_palette.dmp"
 #incbin "png/FE7/Renault_minimug.dmp"
 #ifndef RenaultMug
-  #define RenaultMug (FirstMugID+516)
+  #define RenaultMug (FirstMugID+517)
 #endif
 setMugEntry(RenaultMug, RenaultMugData, 2, 5, 3, 3)
 
@@ -5661,7 +5672,7 @@ SainMugData:
 #incbin "png/FE7/Sain_palette.dmp"
 #incbin "png/FE7/Sain_minimug.dmp"
 #ifndef SainMug
-  #define SainMug (FirstMugID+517)
+  #define SainMug (FirstMugID+518)
 #endif
 setMugEntry(SainMug, SainMugData, 2, 5, 3, 3)
 
@@ -5672,7 +5683,7 @@ SerraMugData:
 #incbin "png/FE7/Serra_palette.dmp"
 #incbin "png/FE7/Serra_minimug.dmp"
 #ifndef SerraMug
-  #define SerraMug (FirstMugID+518)
+  #define SerraMug (FirstMugID+519)
 #endif
 setMugEntry(SerraMug, SerraMugData, 2, 6, 3, 4)
 
@@ -5683,7 +5694,7 @@ UtherMugData:
 #incbin "png/FE7/Uther_palette.dmp"
 #incbin "png/FE7/Uther_minimug.dmp"
 #ifndef UtherMug
-  #define UtherMug (FirstMugID+519)
+  #define UtherMug (FirstMugID+520)
 #endif
 setMugEntry(UtherMug, UtherMugData, 3, 4, 4, 2)
 
@@ -5694,7 +5705,7 @@ VaidaMugData:
 #incbin "png/FE7/Vaida_palette.dmp"
 #incbin "png/FE7/Vaida_minimug.dmp"
 #ifndef VaidaMug
-  #define VaidaMug (FirstMugID+520)
+  #define VaidaMug (FirstMugID+521)
 #endif
 setMugEntry(VaidaMug, VaidaMugData, 2, 5, 3, 3)
 
@@ -5705,7 +5716,7 @@ VillagerMugData:
 #incbin "png/FE7/Villager_palette.dmp"
 #incbin "png/FE7/Villager_minimug.dmp"
 #ifndef VillagerMug
-  #define VillagerMug (FirstMugID+521)
+  #define VillagerMug (FirstMugID+522)
 #endif
 setMugEntry(VillagerMug, VillagerMugData, 2, 6, 3, 4)
 
@@ -5716,7 +5727,7 @@ WallaceMugData:
 #incbin "png/FE7/Wallace_palette.dmp"
 #incbin "png/FE7/Wallace_minimug.dmp"
 #ifndef WallaceMug
-  #define WallaceMug (FirstMugID+522)
+  #define WallaceMug (FirstMugID+523)
 #endif
 setMugEntry(WallaceMug, WallaceMugData, 2, 4, 2, 2)
 
@@ -5727,7 +5738,7 @@ WilMugData:
 #incbin "png/FE7/Wil_palette.dmp"
 #incbin "png/FE7/Wil_minimug.dmp"
 #ifndef WilMug
-  #define WilMug (FirstMugID+523)
+  #define WilMug (FirstMugID+524)
 #endif
 setMugEntry(WilMug, WilMugData, 2, 5, 3, 3)
 
@@ -5738,7 +5749,7 @@ ZephielFE7MugData:
 #incbin "png/FE7/ZephielFE7_palette.dmp"
 #incbin "png/FE7/ZephielFE7_minimug.dmp"
 #ifndef ZephielFE7Mug
-  #define ZephielFE7Mug (FirstMugID+524)
+  #define ZephielFE7Mug (FirstMugID+525)
 #endif
 setMugEntry(ZephielFE7Mug, ZephielFE7MugData, 2, 6, 3, 4)
 
@@ -5749,7 +5760,7 @@ AmeliaMugData:
 #incbin "png/FE8/Amelia_palette.dmp"
 #incbin "png/FE8/Amelia_minimug.dmp"
 #ifndef AmeliaMug
-  #define AmeliaMug (FirstMugID+525)
+  #define AmeliaMug (FirstMugID+526)
 #endif
 setMugEntry(AmeliaMug, AmeliaMugData, 2, 6, 3, 4)
 
@@ -5760,7 +5771,7 @@ ArturMugData:
 #incbin "png/FE8/Artur_palette.dmp"
 #incbin "png/FE8/Artur_minimug.dmp"
 #ifndef ArturMug
-  #define ArturMug (FirstMugID+526)
+  #define ArturMug (FirstMugID+527)
 #endif
 setMugEntry(ArturMug, ArturMugData, 2, 5, 3, 3)
 
@@ -5771,7 +5782,7 @@ CaellachMugData:
 #incbin "png/FE8/Caellach_palette.dmp"
 #incbin "png/FE8/Caellach_minimug.dmp"
 #ifndef CaellachMug
-  #define CaellachMug (FirstMugID+527)
+  #define CaellachMug (FirstMugID+528)
 #endif
 setMugEntry(CaellachMug, CaellachMugData, 2, 5, 3, 3)
 
@@ -5782,7 +5793,7 @@ ColmMugData:
 #incbin "png/FE8/Colm_palette.dmp"
 #incbin "png/FE8/Colm_minimug.dmp"
 #ifndef ColmMug
-  #define ColmMug (FirstMugID+528)
+  #define ColmMug (FirstMugID+529)
 #endif
 setMugEntry(ColmMug, ColmMugData, 3, 5, 3, 3)
 
@@ -5793,7 +5804,7 @@ CormagMugData:
 #incbin "png/FE8/Cormag_palette.dmp"
 #incbin "png/FE8/Cormag_minimug.dmp"
 #ifndef CormagMug
-  #define CormagMug (FirstMugID+529)
+  #define CormagMug (FirstMugID+530)
 #endif
 setMugEntry(CormagMug, CormagMugData, 2, 5, 3, 3)
 
@@ -5804,7 +5815,7 @@ DozlaMugData:
 #incbin "png/FE8/Dozla_palette.dmp"
 #incbin "png/FE8/Dozla_minimug.dmp"
 #ifndef DozlaMug
-  #define DozlaMug (FirstMugID+530)
+  #define DozlaMug (FirstMugID+531)
 #endif
 setMugEntry(DozlaMug, DozlaMugData, 2, 6, 3, 4)
 
@@ -5815,7 +5826,7 @@ DuesselMugData:
 #incbin "png/FE8/Duessel_palette.dmp"
 #incbin "png/FE8/Duessel_minimug.dmp"
 #ifndef DuesselMug
-  #define DuesselMug (FirstMugID+531)
+  #define DuesselMug (FirstMugID+532)
 #endif
 setMugEntry(DuesselMug, DuesselMugData, 2, 5, 3, 3)
 
@@ -5826,7 +5837,7 @@ EirikaMugData:
 #incbin "png/FE8/Eirika_palette.dmp"
 #incbin "png/FE8/Eirika_minimug.dmp"
 #ifndef EirikaMug
-  #define EirikaMug (FirstMugID+532)
+  #define EirikaMug (FirstMugID+533)
 #endif
 setMugEntry(EirikaMug, EirikaMugData, 2, 6, 3, 4)
 
@@ -5837,7 +5848,7 @@ EphraimMugData:
 #incbin "png/FE8/Ephraim_palette.dmp"
 #incbin "png/FE8/Ephraim_minimug.dmp"
 #ifndef EphraimMug
-  #define EphraimMug (FirstMugID+533)
+  #define EphraimMug (FirstMugID+534)
 #endif
 setMugEntry(EphraimMug, EphraimMugData, 2, 5, 3, 3)
 
@@ -5848,7 +5859,7 @@ EwanMugData:
 #incbin "png/FE8/Ewan_palette.dmp"
 #incbin "png/FE8/Ewan_minimug.dmp"
 #ifndef EwanMug
-  #define EwanMug (FirstMugID+534)
+  #define EwanMug (FirstMugID+535)
 #endif
 setMugEntry(EwanMug, EwanMugData, 3, 7, 3, 5)
 
@@ -5859,7 +5870,7 @@ FadoMugData:
 #incbin "png/FE8/Fado_palette.dmp"
 #incbin "png/FE8/Fado_minimug.dmp"
 #ifndef FadoMug
-  #define FadoMug (FirstMugID+535)
+  #define FadoMug (FirstMugID+536)
 #endif
 setMugEntry(FadoMug, FadoMugData, 2, 5, 3, 3)
 
@@ -5870,7 +5881,7 @@ FordeMugData:
 #incbin "png/FE8/Forde_palette.dmp"
 #incbin "png/FE8/Forde_minimug.dmp"
 #ifndef FordeMug
-  #define FordeMug (FirstMugID+536)
+  #define FordeMug (FirstMugID+537)
 #endif
 setMugEntry(FordeMug, FordeMugData, 2, 5, 3, 3)
 
@@ -5881,7 +5892,7 @@ FranzMugData:
 #incbin "png/FE8/Franz_palette.dmp"
 #incbin "png/FE8/Franz_minimug.dmp"
 #ifndef FranzMug
-  #define FranzMug (FirstMugID+537)
+  #define FranzMug (FirstMugID+538)
 #endif
 setMugEntry(FranzMug, FranzMugData, 2, 6, 3, 4)
 
@@ -5892,7 +5903,7 @@ GarciaMugData:
 #incbin "png/FE8/Garcia_palette.dmp"
 #incbin "png/FE8/Garcia_minimug.dmp"
 #ifndef GarciaMug
-  #define GarciaMug (FirstMugID+538)
+  #define GarciaMug (FirstMugID+539)
 #endif
 setMugEntry(GarciaMug, GarciaMugData, 2, 5, 3, 3)
 
@@ -5903,7 +5914,7 @@ GerikMugData:
 #incbin "png/FE8/Gerik_palette.dmp"
 #incbin "png/FE8/Gerik_minimug.dmp"
 #ifndef GerikMug
-  #define GerikMug (FirstMugID+539)
+  #define GerikMug (FirstMugID+540)
 #endif
 setMugEntry(GerikMug, GerikMugData, 2, 4, 3, 2)
 
@@ -5914,7 +5925,7 @@ GilliamMugData:
 #incbin "png/FE8/Gilliam_palette.dmp"
 #incbin "png/FE8/Gilliam_minimug.dmp"
 #ifndef GilliamMug
-  #define GilliamMug (FirstMugID+540)
+  #define GilliamMug (FirstMugID+541)
 #endif
 setMugEntry(GilliamMug, GilliamMugData, 2, 5, 3, 3)
 
@@ -5925,7 +5936,7 @@ GlenMugData:
 #incbin "png/FE8/Glen_palette.dmp"
 #incbin "png/FE8/Glen_minimug.dmp"
 #ifndef GlenMug
-  #define GlenMug (FirstMugID+541)
+  #define GlenMug (FirstMugID+542)
 #endif
 setMugEntry(GlenMug, GlenMugData, 2, 5, 3, 3)
 
@@ -5936,7 +5947,7 @@ HaydenMugData:
 #incbin "png/FE8/Hayden_palette.dmp"
 #incbin "png/FE8/Hayden_minimug.dmp"
 #ifndef HaydenMug
-  #define HaydenMug (FirstMugID+542)
+  #define HaydenMug (FirstMugID+543)
 #endif
 setMugEntry(HaydenMug, HaydenMugData, 2, 5, 3, 3)
 
@@ -5947,7 +5958,7 @@ InnesMugData:
 #incbin "png/FE8/Innes_palette.dmp"
 #incbin "png/FE8/Innes_minimug.dmp"
 #ifndef InnesMug
-  #define InnesMug (FirstMugID+543)
+  #define InnesMug (FirstMugID+544)
 #endif
 setMugEntry(InnesMug, InnesMugData, 2, 5, 3, 3)
 
@@ -5958,7 +5969,7 @@ IsmaireMugData:
 #incbin "png/FE8/Ismaire_palette.dmp"
 #incbin "png/FE8/Ismaire_minimug.dmp"
 #ifndef IsmaireMug
-  #define IsmaireMug (FirstMugID+544)
+  #define IsmaireMug (FirstMugID+545)
 #endif
 setMugEntry(IsmaireMug, IsmaireMugData, 2, 6, 3, 4)
 
@@ -5969,7 +5980,7 @@ JoshuaMugData:
 #incbin "png/FE8/Joshua_palette.dmp"
 #incbin "png/FE8/Joshua_minimug.dmp"
 #ifndef JoshuaMug
-  #define JoshuaMug (FirstMugID+545)
+  #define JoshuaMug (FirstMugID+546)
 #endif
 setMugEntry(JoshuaMug, JoshuaMugData, 2, 5, 3, 3)
 
@@ -5980,7 +5991,7 @@ KnollMugData:
 #incbin "png/FE8/Knoll_palette.dmp"
 #incbin "png/FE8/Knoll_minimug.dmp"
 #ifndef KnollMug
-  #define KnollMug (FirstMugID+546)
+  #define KnollMug (FirstMugID+547)
 #endif
 setMugEntry(KnollMug, KnollMugData, 2, 5, 3, 3)
 
@@ -5991,7 +6002,7 @@ KyleMugData:
 #incbin "png/FE8/Kyle_palette.dmp"
 #incbin "png/FE8/Kyle_minimug.dmp"
 #ifndef KyleMug
-  #define KyleMug (FirstMugID+547)
+  #define KyleMug (FirstMugID+548)
 #endif
 setMugEntry(KyleMug, KyleMugData, 2, 5, 3, 3)
 
@@ -6002,7 +6013,7 @@ LarachelMugData:
 #incbin "png/FE8/Larachel_palette.dmp"
 #incbin "png/FE8/Larachel_minimug.dmp"
 #ifndef LarachelMug
-  #define LarachelMug (FirstMugID+548)
+  #define LarachelMug (FirstMugID+549)
 #endif
 setMugEntry(LarachelMug, LarachelMugData, 2, 6, 3, 4)
 
@@ -6013,7 +6024,7 @@ LuteMugData:
 #incbin "png/FE8/Lute_palette.dmp"
 #incbin "png/FE8/Lute_minimug.dmp"
 #ifndef LuteMug
-  #define LuteMug (FirstMugID+549)
+  #define LuteMug (FirstMugID+550)
 #endif
 setMugEntry(LuteMug, LuteMugData, 2, 6, 3, 4)
 
@@ -6024,7 +6035,7 @@ LyonMugData:
 #incbin "png/FE8/Lyon_palette.dmp"
 #incbin "png/FE8/Lyon_minimug.dmp"
 #ifndef LyonMug
-  #define LyonMug (FirstMugID+550)
+  #define LyonMug (FirstMugID+551)
 #endif
 setMugEntry(LyonMug, LyonMugData, 2, 5, 3, 3)
 
@@ -6035,7 +6046,7 @@ MarisaMugData:
 #incbin "png/FE8/Marisa_palette.dmp"
 #incbin "png/FE8/Marisa_minimug.dmp"
 #ifndef MarisaMug
-  #define MarisaMug (FirstMugID+551)
+  #define MarisaMug (FirstMugID+552)
 #endif
 setMugEntry(MarisaMug, MarisaMugData, 2, 6, 3, 4)
 
@@ -6046,7 +6057,7 @@ MoulderMugData:
 #incbin "png/FE8/Moulder_palette.dmp"
 #incbin "png/FE8/Moulder_minimug.dmp"
 #ifndef MoulderMug
-  #define MoulderMug (FirstMugID+552)
+  #define MoulderMug (FirstMugID+553)
 #endif
 setMugEntry(MoulderMug, MoulderMugData, 2, 5, 3, 3)
 
@@ -6057,7 +6068,7 @@ MyrrhMugData:
 #incbin "png/FE8/Myrrh_palette.dmp"
 #incbin "png/FE8/Myrrh_minimug.dmp"
 #ifndef MyrrhMug
-  #define MyrrhMug (FirstMugID+553)
+  #define MyrrhMug (FirstMugID+554)
 #endif
 setMugEntry(MyrrhMug, MyrrhMugData, 2, 7, 3, 5)
 
@@ -6068,7 +6079,7 @@ NatashaMugData:
 #incbin "png/FE8/Natasha_palette.dmp"
 #incbin "png/FE8/Natasha_minimug.dmp"
 #ifndef NatashaMug
-  #define NatashaMug (FirstMugID+554)
+  #define NatashaMug (FirstMugID+555)
 #endif
 setMugEntry(NatashaMug, NatashaMugData, 2, 6, 3, 4)
 
@@ -6079,7 +6090,7 @@ NeimiMugData:
 #incbin "png/FE8/Neimi_palette.dmp"
 #incbin "png/FE8/Neimi_minimug.dmp"
 #ifndef NeimiMug
-  #define NeimiMug (FirstMugID+555)
+  #define NeimiMug (FirstMugID+556)
 #endif
 setMugEntry(NeimiMug, NeimiMugData, 2, 6, 3, 4)
 
@@ -6090,7 +6101,7 @@ OrsonMugData:
 #incbin "png/FE8/Orson_palette.dmp"
 #incbin "png/FE8/Orson_minimug.dmp"
 #ifndef OrsonMug
-  #define OrsonMug (FirstMugID+556)
+  #define OrsonMug (FirstMugID+557)
 #endif
 setMugEntry(OrsonMug, OrsonMugData, 2, 5, 3, 3)
 
@@ -6101,7 +6112,7 @@ RennacMugData:
 #incbin "png/FE8/Rennac_palette.dmp"
 #incbin "png/FE8/Rennac_minimug.dmp"
 #ifndef RennacMug
-  #define RennacMug (FirstMugID+557)
+  #define RennacMug (FirstMugID+558)
 #endif
 setMugEntry(RennacMug, RennacMugData, 2, 5, 3, 3)
 
@@ -6112,7 +6123,7 @@ RievMugData:
 #incbin "png/FE8/Riev_palette.dmp"
 #incbin "png/FE8/Riev_minimug.dmp"
 #ifndef RievMug
-  #define RievMug (FirstMugID+558)
+  #define RievMug (FirstMugID+559)
 #endif
 setMugEntry(RievMug, RievMugData, 2, 7, 2, 5)
 
@@ -6123,7 +6134,7 @@ RossMugData:
 #incbin "png/FE8/Ross_palette.dmp"
 #incbin "png/FE8/Ross_minimug.dmp"
 #ifndef RossMug
-  #define RossMug (FirstMugID+559)
+  #define RossMug (FirstMugID+560)
 #endif
 setMugEntry(RossMug, RossMugData, 3, 6, 3, 4)
 
@@ -6134,7 +6145,7 @@ SalehMugData:
 #incbin "png/FE8/Saleh_palette.dmp"
 #incbin "png/FE8/Saleh_minimug.dmp"
 #ifndef SalehMug
-  #define SalehMug (FirstMugID+560)
+  #define SalehMug (FirstMugID+561)
 #endif
 setMugEntry(SalehMug, SalehMugData, 2, 5, 3, 3)
 
@@ -6145,7 +6156,7 @@ SelenaMugData:
 #incbin "png/FE8/Selena_palette.dmp"
 #incbin "png/FE8/Selena_minimug.dmp"
 #ifndef SelenaMug
-  #define SelenaMug (FirstMugID+561)
+  #define SelenaMug (FirstMugID+562)
 #endif
 setMugEntry(SelenaMug, SelenaMugData, 2, 5, 3, 3)
 
@@ -6156,7 +6167,7 @@ SethMugData:
 #incbin "png/FE8/Seth_palette.dmp"
 #incbin "png/FE8/Seth_minimug.dmp"
 #ifndef SethMug
-  #define SethMug (FirstMugID+562)
+  #define SethMug (FirstMugID+563)
 #endif
 setMugEntry(SethMug, SethMugData, 2, 5, 3, 3)
 
@@ -6167,7 +6178,7 @@ SyreneMugData:
 #incbin "png/FE8/Syrene_palette.dmp"
 #incbin "png/FE8/Syrene_minimug.dmp"
 #ifndef SyreneMug
-  #define SyreneMug (FirstMugID+563)
+  #define SyreneMug (FirstMugID+564)
 #endif
 setMugEntry(SyreneMug, SyreneMugData, 2, 5, 3, 3)
 
@@ -6178,7 +6189,7 @@ TanaMugData:
 #incbin "png/FE8/Tana_palette.dmp"
 #incbin "png/FE8/Tana_minimug.dmp"
 #ifndef TanaMug
-  #define TanaMug (FirstMugID+564)
+  #define TanaMug (FirstMugID+565)
 #endif
 setMugEntry(TanaMug, TanaMugData, 2, 6, 3, 4)
 
@@ -6189,7 +6200,7 @@ TethysMugData:
 #incbin "png/FE8/Tethys_palette.dmp"
 #incbin "png/FE8/Tethys_minimug.dmp"
 #ifndef TethysMug
-  #define TethysMug (FirstMugID+565)
+  #define TethysMug (FirstMugID+566)
 #endif
 setMugEntry(TethysMug, TethysMugData, 2, 6, 3, 4)
 
@@ -6200,7 +6211,7 @@ ValterMugData:
 #incbin "png/FE8/Valter_palette.dmp"
 #incbin "png/FE8/Valter_minimug.dmp"
 #ifndef ValterMug
-  #define ValterMug (FirstMugID+566)
+  #define ValterMug (FirstMugID+567)
 #endif
 setMugEntry(ValterMug, ValterMugData, 2, 4, 3, 2)
 
@@ -6211,7 +6222,7 @@ VanessaMugData:
 #incbin "png/FE8/Vanessa_palette.dmp"
 #incbin "png/FE8/Vanessa_minimug.dmp"
 #ifndef VanessaMug
-  #define VanessaMug (FirstMugID+567)
+  #define VanessaMug (FirstMugID+568)
 #endif
 setMugEntry(VanessaMug, VanessaMugData, 2, 6, 3, 4)
 
@@ -6222,7 +6233,7 @@ AranMugData:
 #incbin "png/FE9FE10/Aran_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Aran_NickT_Stitch_minimug.dmp"
 #ifndef AranMug
-  #define AranMug (FirstMugID+568)
+  #define AranMug (FirstMugID+569)
 #endif
 setMugEntry(AranMug, AranMugData, 3, 6, 3, 3)
 
@@ -6233,7 +6244,7 @@ AstridMugData:
 #incbin "png/FE9FE10/Astrid_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Astrid_NickT_Stitch_minimug.dmp"
 #ifndef AstridMug
-  #define AstridMug (FirstMugID+569)
+  #define AstridMug (FirstMugID+570)
 #endif
 setMugEntry(AstridMug, AstridMugData, 3, 5, 3, 3)
 
@@ -6244,7 +6255,7 @@ BastianMugData:
 #incbin "png/FE9FE10/Bastian_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Bastian_NickT_Stitch_minimug.dmp"
 #ifndef BastianMug
-  #define BastianMug (FirstMugID+570)
+  #define BastianMug (FirstMugID+571)
 #endif
 setMugEntry(BastianMug, BastianMugData, 3, 4, 3, 2)
 
@@ -6255,7 +6266,7 @@ BoydMugData:
 #incbin "png/FE9FE10/Boyd_Younger_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Boyd_Younger_NickT_Stitch_minimug.dmp"
 #ifndef BoydMug
-  #define BoydMug (FirstMugID+571)
+  #define BoydMug (FirstMugID+572)
 #endif
 setMugEntry(BoydMug, BoydMugData, 3, 5, 3, 3)
 
@@ -6266,7 +6277,7 @@ BromMugData:
 #incbin "png/FE9FE10/Brom_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Brom_NickT_Stitch_minimug.dmp"
 #ifndef BromMug
-  #define BromMug (FirstMugID+572)
+  #define BromMug (FirstMugID+573)
 #endif
 setMugEntry(BromMug, BromMugData, 3, 4, 2, 2)
 
@@ -6277,7 +6288,7 @@ CaineghisMugData:
 #incbin "png/FE9FE10/Caineghis_Part_1_NickTStitch_palette.dmp"
 #incbin "png/FE9FE10/Caineghis_Part_1_NickTStitch_minimug.dmp"
 #ifndef CaineghisMug
-  #define CaineghisMug (FirstMugID+573)
+  #define CaineghisMug (FirstMugID+574)
 #endif
 setMugEntry(CaineghisMug, CaineghisMugData, 4, 5, 4, 3)
 
@@ -6288,7 +6299,7 @@ CalillMugData:
 #incbin "png/FE9FE10/Calill_No_eyeshadow_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Calill_No_eyeshadow_NickT_Stitch_minimug.dmp"
 #ifndef CalillMug
-  #define CalillMug (FirstMugID+574)
+  #define CalillMug (FirstMugID+575)
 #endif
 setMugEntry(CalillMug, CalillMugData, 3, 5, 3, 3)
 
@@ -6299,7 +6310,7 @@ DevdanMugData:
 #incbin "png/FE9FE10/Devdan_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Devdan_NickT_Stitch_minimug.dmp"
 #ifndef DevdanMug
-  #define DevdanMug (FirstMugID+575)
+  #define DevdanMug (FirstMugID+576)
 #endif
 setMugEntry(DevdanMug, DevdanMugData, 3, 4, 3, 2)
 
@@ -6310,7 +6321,7 @@ EdwardMugData:
 #incbin "png/FE9FE10/Edward_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Edward_NickT_Stitch_minimug.dmp"
 #ifndef EdwardMug
-  #define EdwardMug (FirstMugID+576)
+  #define EdwardMug (FirstMugID+577)
 #endif
 setMugEntry(EdwardMug, EdwardMugData, 4, 6, 4, 4)
 
@@ -6321,7 +6332,7 @@ ElinciaMugData:
 #incbin "png/FE9FE10/Elincia_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Elincia_NickT_Stitch_minimug.dmp"
 #ifndef ElinciaMug
-  #define ElinciaMug (FirstMugID+577)
+  #define ElinciaMug (FirstMugID+578)
 #endif
 setMugEntry(ElinciaMug, ElinciaMugData, 3, 5, 3, 3)
 
@@ -6332,7 +6343,7 @@ EnaMugData:
 #incbin "png/FE9FE10/Ena_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Ena_NickT_Stitch_minimug.dmp"
 #ifndef EnaMug
-  #define EnaMug (FirstMugID+578)
+  #define EnaMug (FirstMugID+579)
 #endif
 setMugEntry(EnaMug, EnaMugData, 4, 5, 3, 3)
 
@@ -6343,7 +6354,7 @@ FionaMugData:
 #incbin "png/FE9FE10/Fiona_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Fiona_NickT_Stitch_minimug.dmp"
 #ifndef FionaMug
-  #define FionaMug (FirstMugID+579)
+  #define FionaMug (FirstMugID+580)
 #endif
 setMugEntry(FionaMug, FionaMugData, 3, 5, 3, 3)
 
@@ -6354,7 +6365,7 @@ GarethMugData:
 #incbin "png/FE9FE10/Gareth_Part_1_NickTStitch_palette.dmp"
 #incbin "png/FE9FE10/Gareth_Part_1_NickTStitch_minimug.dmp"
 #ifndef GarethMug
-  #define GarethMug (FirstMugID+580)
+  #define GarethMug (FirstMugID+581)
 #endif
 setMugEntry(GarethMug, GarethMugData, 5, 5, 5, 3)
 
@@ -6365,7 +6376,7 @@ GatrieMugData:
 #incbin "png/FE9FE10/Gatrie_Quotedotlass_Electric_Serge_Trybel_palette.dmp"
 #incbin "png/FE9FE10/Gatrie_Quotedotlass_Electric_Serge_Trybel_minimug.dmp"
 #ifndef GatrieMug
-  #define GatrieMug (FirstMugID+581)
+  #define GatrieMug (FirstMugID+582)
 #endif
 setMugEntry(GatrieMug, GatrieMugData, 3, 5, 3, 3)
 
@@ -6376,7 +6387,7 @@ GeoffreyMugData:
 #incbin "png/FE9FE10/Geoffrey_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Geoffrey_NickT_Stitch_minimug.dmp"
 #ifndef GeoffreyMug
-  #define GeoffreyMug (FirstMugID+582)
+  #define GeoffreyMug (FirstMugID+583)
 #endif
 setMugEntry(GeoffreyMug, GeoffreyMugData, 3, 5, 3, 3)
 
@@ -6387,7 +6398,7 @@ GiffcaMugData:
 #incbin "png/FE9FE10/Giffca_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Giffca_NickT_Stitch_minimug.dmp"
 #ifndef GiffcaMug
-  #define GiffcaMug (FirstMugID+583)
+  #define GiffcaMug (FirstMugID+584)
 #endif
 setMugEntry(GiffcaMug, GiffcaMugData, 3, 4, 3, 2)
 
@@ -6398,7 +6409,7 @@ HaarMugData:
 #incbin "png/FE9FE10/Haar_Version_2_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Haar_Version_2_NickT_Stitch_minimug.dmp"
 #ifndef HaarMug
-  #define HaarMug (FirstMugID+584)
+  #define HaarMug (FirstMugID+585)
 #endif
 setMugEntry(HaarMug, HaarMugData, 3, 5, 3, 3)
 
@@ -6409,7 +6420,7 @@ HeatherMugData:
 #incbin "png/FE9FE10/Heather_Alex_the_Retrogamer_palette.dmp"
 #incbin "png/FE9FE10/Heather_Alex_the_Retrogamer_minimug.dmp"
 #ifndef HeatherMug
-  #define HeatherMug (FirstMugID+585)
+  #define HeatherMug (FirstMugID+586)
 #endif
 setMugEntry(HeatherMug, HeatherMugData, 2, 6, 3, 4)
 
@@ -6420,7 +6431,7 @@ IkeMugData:
 #incbin "png/FE9FE10/Ike_Hero_Caringcarrot_palette.dmp"
 #incbin "png/FE9FE10/Ike_Hero_Caringcarrot_minimug.dmp"
 #ifndef IkeMug
-  #define IkeMug (FirstMugID+586)
+  #define IkeMug (FirstMugID+587)
 #endif
 setMugEntry(IkeMug, IkeMugData, 3, 5, 3, 3)
 
@@ -6431,7 +6442,7 @@ IlyanaMugData:
 #incbin "png/FE9FE10/Ilyana_Older_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Ilyana_Older_NickT_Stitch_minimug.dmp"
 #ifndef IlyanaMug
-  #define IlyanaMug (FirstMugID+587)
+  #define IlyanaMug (FirstMugID+588)
 #endif
 setMugEntry(IlyanaMug, IlyanaMugData, 3, 5, 3, 3)
 
@@ -6442,7 +6453,7 @@ JanaffMugData:
 #incbin "png/FE9FE10/Janaff_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Janaff_NickT_Stitch_minimug.dmp"
 #ifndef JanaffMug
-  #define JanaffMug (FirstMugID+588)
+  #define JanaffMug (FirstMugID+589)
 #endif
 setMugEntry(JanaffMug, JanaffMugData, 3, 5, 3, 3)
 
@@ -6453,7 +6464,7 @@ JillMugData:
 #incbin "png/FE9FE10/Jill_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Jill_NickT_Stitch_minimug.dmp"
 #ifndef JillMug
-  #define JillMug (FirstMugID+589)
+  #define JillMug (FirstMugID+590)
 #endif
 setMugEntry(JillMug, JillMugData, 3, 6, 2, 4)
 
@@ -6464,7 +6475,7 @@ KieranMugData:
 #incbin "png/FE9FE10/Kieran_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Kieran_NickT_Stitch_minimug.dmp"
 #ifndef KieranMug
-  #define KieranMug (FirstMugID+590)
+  #define KieranMug (FirstMugID+591)
 #endif
 setMugEntry(KieranMug, KieranMugData, 4, 5, 3, 3)
 
@@ -6475,7 +6486,7 @@ KurthnagaMugData:
 #incbin "png/FE9FE10/Kurthnaga_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Kurthnaga_NickT_Stitch_minimug.dmp"
 #ifndef KurthnagaMug
-  #define KurthnagaMug (FirstMugID+591)
+  #define KurthnagaMug (FirstMugID+592)
 #endif
 setMugEntry(KurthnagaMug, KurthnagaMugData, 4, 6, 3, 4)
 
@@ -6486,7 +6497,7 @@ KyzaMugData:
 #incbin "png/FE9FE10/Kyza_Quotedotlass_palette.dmp"
 #incbin "png/FE9FE10/Kyza_Quotedotlass_minimug.dmp"
 #ifndef KyzaMug
-  #define KyzaMug (FirstMugID+592)
+  #define KyzaMug (FirstMugID+593)
 #endif
 setMugEntry(KyzaMug, KyzaMugData, 4, 5, 4, 3)
 
@@ -6497,7 +6508,7 @@ LargoMugData:
 #incbin "png/FE9FE10/Largo_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Largo_NickT_Stitch_minimug.dmp"
 #ifndef LargoMug
-  #define LargoMug (FirstMugID+593)
+  #define LargoMug (FirstMugID+594)
 #endif
 setMugEntry(LargoMug, LargoMugData, 3, 4, 3, 2)
 
@@ -6508,7 +6519,7 @@ LauraMugData:
 #incbin "png/FE9FE10/Laura_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Laura_NickT_Stitch_minimug.dmp"
 #ifndef LauraMug
-  #define LauraMug (FirstMugID+594)
+  #define LauraMug (FirstMugID+595)
 #endif
 setMugEntry(LauraMug, LauraMugData, 4, 6, 3, 4)
 
@@ -6519,7 +6530,7 @@ LeanneMugData:
 #incbin "png/FE9FE10/Leanne_Quotedotlass_Electric_Serge_palette.dmp"
 #incbin "png/FE9FE10/Leanne_Quotedotlass_Electric_Serge_minimug.dmp"
 #ifndef LeanneMug
-  #define LeanneMug (FirstMugID+595)
+  #define LeanneMug (FirstMugID+596)
 #endif
 setMugEntry(LeanneMug, LeanneMugData, 3, 6, 3, 4)
 
@@ -6530,7 +6541,7 @@ LeonardoMugData:
 #incbin "png/FE9FE10/Leonardo_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Leonardo_NickT_Stitch_minimug.dmp"
 #ifndef LeonardoMug
-  #define LeonardoMug (FirstMugID+596)
+  #define LeonardoMug (FirstMugID+597)
 #endif
 setMugEntry(LeonardoMug, LeonardoMugData, 3, 5, 3, 3)
 
@@ -6541,7 +6552,7 @@ LetheMugData:
 #incbin "png/FE9FE10/Lethe_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Lethe_NickT_Stitch_minimug.dmp"
 #ifndef LetheMug
-  #define LetheMug (FirstMugID+597)
+  #define LetheMug (FirstMugID+598)
 #endif
 setMugEntry(LetheMug, LetheMugData, 3, 5, 3, 3)
 
@@ -6552,7 +6563,7 @@ LuciaMugData:
 #incbin "png/FE9FE10/Lucia_Quotedotlass_Electric_Serge_palette.dmp"
 #incbin "png/FE9FE10/Lucia_Quotedotlass_Electric_Serge_minimug.dmp"
 #ifndef LuciaMug
-  #define LuciaMug (FirstMugID+598)
+  #define LuciaMug (FirstMugID+599)
 #endif
 setMugEntry(LuciaMug, LuciaMugData, 3, 6, 3, 4)
 
@@ -6563,7 +6574,7 @@ LyreMugData:
 #incbin "png/FE9FE10/Lyre_Quotedotlass_palette.dmp"
 #incbin "png/FE9FE10/Lyre_Quotedotlass_minimug.dmp"
 #ifndef LyreMug
-  #define LyreMug (FirstMugID+599)
+  #define LyreMug (FirstMugID+600)
 #endif
 setMugEntry(LyreMug, LyreMugData, 3, 6, 3, 4)
 
@@ -6574,7 +6585,7 @@ MakalovMugData:
 #incbin "png/FE9FE10/Makalov_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Makalov_NickT_Stitch_minimug.dmp"
 #ifndef MakalovMug
-  #define MakalovMug (FirstMugID+600)
+  #define MakalovMug (FirstMugID+601)
 #endif
 setMugEntry(MakalovMug, MakalovMugData, 3, 5, 3, 3)
 
@@ -6585,7 +6596,7 @@ MarciaMugData:
 #incbin "png/FE9FE10/Marcia_Older_Quotedotlass_palette.dmp"
 #incbin "png/FE9FE10/Marcia_Older_Quotedotlass_minimug.dmp"
 #ifndef MarciaMug
-  #define MarciaMug (FirstMugID+601)
+  #define MarciaMug (FirstMugID+602)
 #endif
 setMugEntry(MarciaMug, MarciaMugData, 3, 5, 3, 3)
 
@@ -6596,7 +6607,7 @@ MegMugData:
 #incbin "png/FE9FE10/Meg_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Meg_NickT_Stitch_minimug.dmp"
 #ifndef MegMug
-  #define MegMug (FirstMugID+602)
+  #define MegMug (FirstMugID+603)
 #endif
 setMugEntry(MegMug, MegMugData, 3, 6, 3, 4)
 
@@ -6607,7 +6618,7 @@ MiaMugData:
 #incbin "png/FE9FE10/Mia_FE_10_DesignQuotedotlass_Electric_Serge_palette.dmp"
 #incbin "png/FE9FE10/Mia_FE_10_DesignQuotedotlass_Electric_Serge_minimug.dmp"
 #ifndef MiaMug
-  #define MiaMug (FirstMugID+603)
+  #define MiaMug (FirstMugID+604)
 #endif
 setMugEntry(MiaMug, MiaMugData, 3, 5, 3, 3)
 
@@ -6618,7 +6629,7 @@ MicaiahMugData:
 #incbin "png/FE9FE10/Micaiah_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Micaiah_NickT_Stitch_minimug.dmp"
 #ifndef MicaiahMug
-  #define MicaiahMug (FirstMugID+604)
+  #define MicaiahMug (FirstMugID+605)
 #endif
 setMugEntry(MicaiahMug, MicaiahMugData, 3, 6, 3, 4)
 
@@ -6629,7 +6640,7 @@ MistMugData:
 #incbin "png/FE9FE10/Mist_FE10_design_Quotedotlass_Electric_Serge_palette.dmp"
 #incbin "png/FE9FE10/Mist_FE10_design_Quotedotlass_Electric_Serge_minimug.dmp"
 #ifndef MistMug
-  #define MistMug (FirstMugID+605)
+  #define MistMug (FirstMugID+606)
 #endif
 setMugEntry(MistMug, MistMugData, 3, 6, 3, 4)
 
@@ -6640,7 +6651,7 @@ MordecaiMugData:
 #incbin "png/FE9FE10/Mordecai_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Mordecai_NickT_Stitch_minimug.dmp"
 #ifndef MordecaiMug
-  #define MordecaiMug (FirstMugID+606)
+  #define MordecaiMug (FirstMugID+607)
 #endif
 setMugEntry(MordecaiMug, MordecaiMugData, 3, 5, 3, 2)
 
@@ -6651,7 +6662,7 @@ MuarimMugData:
 #incbin "png/FE9FE10/Muarim_Version_2_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Muarim_Version_2_NickT_Stitch_minimug.dmp"
 #ifndef MuarimMug
-  #define MuarimMug (FirstMugID+607)
+  #define MuarimMug (FirstMugID+608)
 #endif
 setMugEntry(MuarimMug, MuarimMugData, 2, 5, 2, 2)
 
@@ -6662,7 +6673,7 @@ NaesalaMugData:
 #incbin "png/FE9FE10/Naesala_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Naesala_NickT_Stitch_minimug.dmp"
 #ifndef NaesalaMug
-  #define NaesalaMug (FirstMugID+608)
+  #define NaesalaMug (FirstMugID+609)
 #endif
 setMugEntry(NaesalaMug, NaesalaMugData, 2, 4, 2, 2)
 
@@ -6673,7 +6684,7 @@ NailahMugData:
 #incbin "png/FE9FE10/Nailah_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Nailah_NickT_Stitch_minimug.dmp"
 #ifndef NailahMug
-  #define NailahMug (FirstMugID+609)
+  #define NailahMug (FirstMugID+610)
 #endif
 setMugEntry(NailahMug, NailahMugData, 4, 5, 4, 3)
 
@@ -6684,7 +6695,7 @@ NasirMugData:
 #incbin "png/FE9FE10/Nasir_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Nasir_NickT_Stitch_minimug.dmp"
 #ifndef NasirMug
-  #define NasirMug (FirstMugID+610)
+  #define NasirMug (FirstMugID+611)
 #endif
 setMugEntry(NasirMug, NasirMugData, 4, 4, 3, 2)
 
@@ -6695,7 +6706,7 @@ NepheneeMugData:
 #incbin "png/FE9FE10/Nephenee_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Nephenee_NickT_Stitch_minimug.dmp"
 #ifndef NepheneeMug
-  #define NepheneeMug (FirstMugID+611)
+  #define NepheneeMug (FirstMugID+612)
 #endif
 setMugEntry(NepheneeMug, NepheneeMugData, 3, 6, 3, 4)
 
@@ -6706,7 +6717,7 @@ NolanMugData:
 #incbin "png/FE9FE10/Nolan_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Nolan_NickT_Stitch_minimug.dmp"
 #ifndef NolanMug
-  #define NolanMug (FirstMugID+612)
+  #define NolanMug (FirstMugID+613)
 #endif
 setMugEntry(NolanMug, NolanMugData, 3, 4, 3, 2)
 
@@ -6717,7 +6728,7 @@ OscarMugData:
 #incbin "png/FE9FE10/Oscar_Version_2_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Oscar_Version_2_NickT_Stitch_minimug.dmp"
 #ifndef OscarMug
-  #define OscarMug (FirstMugID+613)
+  #define OscarMug (FirstMugID+614)
 #endif
 setMugEntry(OscarMug, OscarMugData, 3, 5, 3, 3)
 
@@ -6728,7 +6739,7 @@ PelleasMugData:
 #incbin "png/FE9FE10/Pelleas_Quotedotlass_Electric_Serge_palette.dmp"
 #incbin "png/FE9FE10/Pelleas_Quotedotlass_Electric_Serge_minimug.dmp"
 #ifndef PelleasMug
-  #define PelleasMug (FirstMugID+614)
+  #define PelleasMug (FirstMugID+615)
 #endif
 setMugEntry(PelleasMug, PelleasMugData, 4, 5, 4, 3)
 
@@ -6739,7 +6750,7 @@ RafielMugData:
 #incbin "png/FE9FE10/Rafiel_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Rafiel_NickT_Stitch_minimug.dmp"
 #ifndef RafielMug
-  #define RafielMug (FirstMugID+615)
+  #define RafielMug (FirstMugID+616)
 #endif
 setMugEntry(RafielMug, RafielMugData, 3, 6, 2, 4)
 
@@ -6750,7 +6761,7 @@ RanulfMugData:
 #incbin "png/FE9FE10/Ranulf_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Ranulf_NickT_Stitch_minimug.dmp"
 #ifndef RanulfMug
-  #define RanulfMug (FirstMugID+616)
+  #define RanulfMug (FirstMugID+617)
 #endif
 setMugEntry(RanulfMug, RanulfMugData, 3, 5, 2, 3)
 
@@ -6761,7 +6772,7 @@ ReysonMugData:
 #incbin "png/FE9FE10/Reyson_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Reyson_NickT_Stitch_minimug.dmp"
 #ifndef ReysonMug
-  #define ReysonMug (FirstMugID+617)
+  #define ReysonMug (FirstMugID+618)
 #endif
 setMugEntry(ReysonMug, ReysonMugData, 3, 5, 3, 3)
 
@@ -6772,7 +6783,7 @@ RhysMugData:
 #incbin "png/FE9FE10/Rhys_Version_1_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Rhys_Version_1_NickT_Stitch_minimug.dmp"
 #ifndef RhysMug
-  #define RhysMug (FirstMugID+618)
+  #define RhysMug (FirstMugID+619)
 #endif
 setMugEntry(RhysMug, RhysMugData, 3, 5, 3, 3)
 
@@ -6783,7 +6794,7 @@ RolfMugData:
 #incbin "png/FE9FE10/Rolf_Quotedotlass_Electric_Serge_palette.dmp"
 #incbin "png/FE9FE10/Rolf_Quotedotlass_Electric_Serge_minimug.dmp"
 #ifndef RolfMug
-  #define RolfMug (FirstMugID+619)
+  #define RolfMug (FirstMugID+620)
 #endif
 setMugEntry(RolfMug, RolfMugData, 3, 6, 3, 4)
 
@@ -6794,7 +6805,7 @@ ShinonMugData:
 #incbin "png/FE9FE10/Shinon_Version_1_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Shinon_Version_1_NickT_Stitch_minimug.dmp"
 #ifndef ShinonMug
-  #define ShinonMug (FirstMugID+620)
+  #define ShinonMug (FirstMugID+621)
 #endif
 setMugEntry(ShinonMug, ShinonMugData, 5, 6, 6, 4)
 
@@ -6805,7 +6816,7 @@ SorenMugData:
 #incbin "png/FE9FE10/Soren_FE10_design_Quotedotlass_Electric_Serge_palette.dmp"
 #incbin "png/FE9FE10/Soren_FE10_design_Quotedotlass_Electric_Serge_minimug.dmp"
 #ifndef SorenMug
-  #define SorenMug (FirstMugID+621)
+  #define SorenMug (FirstMugID+622)
 #endif
 setMugEntry(SorenMug, SorenMugData, 4, 5, 4, 3)
 
@@ -6816,7 +6827,7 @@ SotheMugData:
 #incbin "png/FE9FE10/Sothe_Older_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Sothe_Older_NickT_Stitch_minimug.dmp"
 #ifndef SotheMug
-  #define SotheMug (FirstMugID+622)
+  #define SotheMug (FirstMugID+623)
 #endif
 setMugEntry(SotheMug, SotheMugData, 4, 5, 3, 3)
 
@@ -6827,7 +6838,7 @@ StefanMugData:
 #incbin "png/FE9FE10/Stefan_QuoteDotLass_Mattiator_palette.dmp"
 #incbin "png/FE9FE10/Stefan_QuoteDotLass_Mattiator_minimug.dmp"
 #ifndef StefanMug
-  #define StefanMug (FirstMugID+623)
+  #define StefanMug (FirstMugID+624)
 #endif
 setMugEntry(StefanMug, StefanMugData, 3, 5, 3, 3)
 
@@ -6838,7 +6849,7 @@ TanithMugData:
 #incbin "png/FE9FE10/Tanith_NickT_Ghostblade_palette.dmp"
 #incbin "png/FE9FE10/Tanith_NickT_Ghostblade_minimug.dmp"
 #ifndef TanithMug
-  #define TanithMug (FirstMugID+624)
+  #define TanithMug (FirstMugID+625)
 #endif
 setMugEntry(TanithMug, TanithMugData, 2, 5, 2, 3)
 
@@ -6849,7 +6860,7 @@ TauroneoMugData:
 #incbin "png/FE9FE10/Tauroneo_Version_2_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Tauroneo_Version_2_NickT_Stitch_minimug.dmp"
 #ifndef TauroneoMug
-  #define TauroneoMug (FirstMugID+625)
+  #define TauroneoMug (FirstMugID+626)
 #endif
 setMugEntry(TauroneoMug, TauroneoMugData, 3, 5, 3, 2)
 
@@ -6860,7 +6871,7 @@ TibarnMugData:
 #incbin "png/FE9FE10/Tibarn_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Tibarn_NickT_Stitch_minimug.dmp"
 #ifndef TibarnMug
-  #define TibarnMug (FirstMugID+626)
+  #define TibarnMug (FirstMugID+627)
 #endif
 setMugEntry(TibarnMug, TibarnMugData, 4, 5, 4, 3)
 
@@ -6871,7 +6882,7 @@ TitaniaMugData:
 #incbin "png/FE9FE10/Titania_Version_2_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Titania_Version_2_NickT_Stitch_minimug.dmp"
 #ifndef TitaniaMug
-  #define TitaniaMug (FirstMugID+627)
+  #define TitaniaMug (FirstMugID+628)
 #endif
 setMugEntry(TitaniaMug, TitaniaMugData, 3, 5, 3, 3)
 
@@ -6882,7 +6893,7 @@ TormodMugData:
 #incbin "png/FE9FE10/Tormod_Older_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Tormod_Older_NickT_Stitch_minimug.dmp"
 #ifndef TormodMug
-  #define TormodMug (FirstMugID+628)
+  #define TormodMug (FirstMugID+629)
 #endif
 setMugEntry(TormodMug, TormodMugData, 4, 5, 3, 3)
 
@@ -6893,7 +6904,7 @@ UlkiMugData:
 #incbin "png/FE9FE10/Ulki_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Ulki_NickT_Stitch_minimug.dmp"
 #ifndef UlkiMug
-  #define UlkiMug (FirstMugID+629)
+  #define UlkiMug (FirstMugID+630)
 #endif
 setMugEntry(UlkiMug, UlkiMugData, 2, 5, 2, 3)
 
@@ -6904,7 +6915,7 @@ VikaMugData:
 #incbin "png/FE9FE10/Vika_Quotedotlass_Ghostblade_F2E_palette.dmp"
 #incbin "png/FE9FE10/Vika_Quotedotlass_Ghostblade_F2E_minimug.dmp"
 #ifndef VikaMug
-  #define VikaMug (FirstMugID+630)
+  #define VikaMug (FirstMugID+631)
 #endif
 setMugEntry(VikaMug, VikaMugData, 2, 6, 3, 4)
 
@@ -6915,7 +6926,7 @@ VolkeMugData:
 #incbin "png/FE9FE10/Volke_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Volke_NickT_Stitch_minimug.dmp"
 #ifndef VolkeMug
-  #define VolkeMug (FirstMugID+631)
+  #define VolkeMug (FirstMugID+632)
 #endif
 setMugEntry(VolkeMug, VolkeMugData, 3, 5, 3, 3)
 
@@ -6926,7 +6937,7 @@ VolugMugData:
 #incbin "png/FE9FE10/Volug_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Volug_NickT_Stitch_minimug.dmp"
 #ifndef VolugMug
-  #define VolugMug (FirstMugID+632)
+  #define VolugMug (FirstMugID+633)
 #endif
 setMugEntry(VolugMug, VolugMugData, 3, 5, 3, 3)
 
@@ -6937,7 +6948,7 @@ ZiharkMugData:
 #incbin "png/FE9FE10/Zihark_Version_2_NickT_Stitch_palette.dmp"
 #incbin "png/FE9FE10/Zihark_Version_2_NickT_Stitch_minimug.dmp"
 #ifndef ZiharkMug
-  #define ZiharkMug (FirstMugID+633)
+  #define ZiharkMug (FirstMugID+634)
 #endif
 setMugEntry(ZiharkMug, ZiharkMugData, 3, 5, 3, 3)
 
