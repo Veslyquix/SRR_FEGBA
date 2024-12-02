@@ -61,7 +61,7 @@
 #endif 
 
 #ifdef _FE7_ 
-
+#define UseMonsterWeapons 0x4 
 #define LordMovCost 0x8BE3888
 #define LordRainMovCost 0x8BE3CD9
 #define LordSnowMovCost 0x8BE40E9
@@ -121,6 +121,7 @@
 #define gCharacterData 0x8BDCE4C
 #endif 
 #ifdef _FE6_ 
+#define UseMonsterWeapons 0x4 
 #define LordMovCost 0x860C648
 #define DefaultMovCost 0x860C67B
 #define FighterMovCost 0x860C6E1
@@ -324,6 +325,11 @@
 #define Brigand MountainThief 
 #define FalcoKnight FalconKnight 
 
+
+#define Prince Lord 
+#define MagicSeal Mage 
+#define TransporterHorse Storage
+
 #define Ranger Nomad 
 #define MageKnight Valkyrie
 
@@ -401,6 +407,9 @@
 #define Peer_F Paladin_F
 #define Transporter Knight 
 #define Archsage Sage 
+
+#define MagicSeal Mage 
+#define TransporterHorse Tent
 
 #endif 
 
