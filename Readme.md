@@ -8,13 +8,41 @@ Credits
 By Vesly
 - 
 
-Special thanks: Norikins, Mimikyudis, GeorgeCalibur 
+Special thanks: 
+-
 
+Norikins, Mimikyudis, GeorgeCalibur
+Circles for the 2018 FE8 Self Randomizer as a reference.
+FE8U Decomp Contributors, as many functions were copied from the decomp.
+Gringe: FE6 translation used with permission (FE6 only).
+
+Patches:
+-
+
+Casual Mode: Circles, 7743
+Danger Zone: Circles 
+Unlock Mode Select: Doesnt 
+Tutorial Disabler: 7743 
+Fix REDAs: 7743
+BattleStatsAnimsOff: Tequila
+HP Bars: Circles, Tequila
+Show Heal Amount: Tequila 
+Hard Mode Unlock: 7743 
+Skip Intro: Gryz 
+L Button Cycling: Aurawolf 
+Colour Hue Function: Huichelaar
+Minimug Palette Fix: Huichelaar 
+Handaxe Wildcard: 7743 
+Droppable Item Icon GFX: Scraiza
+Animation Numbers: Huichelaar 
+MMB: Zane (FE8 only)
+Support Hearts: Vesly, Gamma, 7743 (FE8 only)
 
 
 
 Battle animations: 
 - 
+
 
 Alm_T1 animation by Nuramon, HyperGammaSpaces
 Alm_T2 animation by Nuramon
