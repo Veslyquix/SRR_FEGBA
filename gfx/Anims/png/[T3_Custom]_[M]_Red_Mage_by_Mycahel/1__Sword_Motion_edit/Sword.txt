@@ -7,7 +7,7 @@
 C03                               #Start attack animation; need 07 right after this.
 C07                               #Start attack animation; need 03 right before this.
 1 p- Sword_000.png
-S0262                               #Sound 610 SE:@C85_3C Play sword "whooshing" SFE (done by Nomads; sounds like wing flap)
+//S0262                               #Sound 610 SE:@C85_3C Play sword "whooshing" SFE (done by Nomads; sounds like wing flap)
 2 p- Sword_001.png
 3 p- Sword_002.png
 C31                               #Show small dirt wave moving forward animation
@@ -15,11 +15,11 @@ C31                               #Show small dirt wave moving forward animation
 2 p- Sword_004.png
 2 p- Sword_005.png
 2 p- Sword_006.png
-S0262                               #Sound 610 SE:@C85_3C Play sword "whooshing" SFE (done by Nomads; sounds like wing flap)
+//S0262                               #Sound 610 SE:@C85_3C Play sword "whooshing" SFE (done by Nomads; sounds like wing flap)
 3 p- Sword_007.png
 2 p- Sword_008.png
 2 p- Sword_007.png
-SCE                               #Sound 206 SE:Sword unsheathing @C85_36
+//SCE                               #Sound 206 SE:Sword unsheathing @C85_36
 3 p- Sword_009.png
 3 p- Sword_010.png
 C1F                               #Play hit SFE (sounds like Eliwood with sword's hit)
@@ -29,7 +29,7 @@ C14                               #Heavy vibration of screen
 3 p- Sword_012.png
 3 p- Sword_013.png
 2 p- Sword_014.png
-SF6                               #Sound 246 SE:Shaman charging @C85_28
+//SF6                               #Sound 246 SE:Shaman charging @C85_28
 C15                               #Slight vibration of screen
 2 p- Sword_015.png
 3 p- Sword_016.png
@@ -37,7 +37,7 @@ C15                               #Slight vibration of screen
 2 p- Sword_018.png
 C51                               #Show brief white flash animation
 2 p- Sword_019.png
-SF5                               #Sound 245 SE:Bolting strike
+//SF5                               #Sound 245 SE:Bolting strike
 3 p- Sword_020.png
 C04                               #Prepare HP depletion routine; needed to animate return to standing frame after hit; Magic only.
 C1A                               #Normal hit
@@ -61,7 +61,7 @@ C0D                               #End of dodge animation. preceeded by 0x06
 C03                               #Start attack animation; need 07 right after this.
 C07                               #Start attack animation; need 03 right before this.
 1 p- Sword_000.png
-S0135                               #Sound 309 SE:Sage/Lyon magical rune @C85_49
+//S0135                               #Sound 309 SE:Sage/Lyon magical rune @C85_49
 C2E                               #Show sage's normal magic rune drawing animation
 12 p- Sword_000.png
 12 p- Sword_030.png
@@ -74,14 +74,14 @@ C31                               #Show small dirt wave moving forward animation
 2 p- Sword_006.png
 C22                               #Play short sword swinging SFE
 4 p- Sword_031.png
-SFE                               #Sound 254 SE:Purge flash
+//SFE                               #Sound 254 SE:Purge flash
 3 p- Sword_032.png
 C1F                               #Play hit SFE (sounds like Eliwood with sword's hit)
 C14                               #Heavy vibration of screen
 3 p- Sword_033.png
 4 p- Sword_034.png
 4 p- Sword_035.png
-SFE                               #Sound 254 SE:Purge flash
+//SFE                               #Sound 254 SE:Purge flash
 3 p- Sword_036.png
 C1F                               #Play hit SFE (sounds like Eliwood with sword's hit)
 C14                               #Heavy vibration of screen
@@ -97,11 +97,11 @@ C51                               #Show brief white flash animation
 4 p- Sword_043.png
 4 p- Sword_044.png
 3 p- Sword_045.png
-SF2                               #Sound 242 SE:Fire shoot
+//SF2                               #Sound 242 SE:Fire shoot
 4 p- Sword_046.png
 3 p- Sword_047.png
 4 p- Sword_048.png
-SF8                               #Sound 248 SE:Elfire spell hitting
+//SF8                               #Sound 248 SE:Elfire spell hitting
 4 p- Sword_049.png
 C1F                               #Play hit SFE (sounds like Eliwood with sword's hit)
 C14                               #Heavy vibration of screen
@@ -116,7 +116,7 @@ C14                               #Heavy vibration of screen
 2 p- Sword_058.png
 3 p- Sword_059.png
 C04                               #Prepare HP depletion routine; needed to animate return to standing frame after hit; Magic only.
-S0123                               #Sound 291 SE:Fimbulvetr ice
+//S0123                               #Sound 291 SE:Fimbulvetr ice
 C20                               #Play hit SFE (sounds like Knight Lord with Durandal's hit)
 C08                               #Critical hit
 3 p- Sword_060.png
@@ -148,17 +148,17 @@ C37                               #Play sword clicking SFE
 2 p- Sword_069.png
 3 p- Sword_070.png
 2 p- Sword_071.png
-S02D8                               #Sound 728 SE:Weird charging sound
+//S02D8                               #Sound 728 SE:Weird charging sound
 4 p- Sword_072.png
 C15                               #Slight vibration of screen
 4 p- Sword_073.png
-S02D8                               #Sound 728 SE:Weird charging sound
+//S02D8                               #Sound 728 SE:Weird charging sound
 4 p- Sword_074.png
 4 p- Sword_075.png
-S02D8                               #Sound 728 SE:Weird charging sound
+//S02D8                               #Sound 728 SE:Weird charging sound
 4 p- Sword_076.png
 4 p- Sword_077.png
-S02CD                               #Sound 717 SE:Level up Sparkle
+//S02CD                               #Sound 717 SE:Level up Sparkle
 3 p- Sword_078.png
 C05                               #Call spell associated with equipped weapon
 3 p- Sword_079.png
@@ -179,14 +179,14 @@ C37                               #Play sword clicking SFE
 2 p- Sword_069.png
 3 p- Sword_070.png
 2 p- Sword_071.png
-S02D8                               #Sound 728 SE:Weird charging sound
+//S02D8                               #Sound 728 SE:Weird charging sound
 6 p- Sword_072.png
 C15                               #Slight vibration of screen
 6 p- Sword_073.png
-S02D8                               #Sound 728 SE:Weird charging sound
+//S02D8                               #Sound 728 SE:Weird charging sound
 6 p- Sword_074.png
 6 p- Sword_075.png
-S02D8                               #Sound 728 SE:Weird charging sound
+//S02D8                               #Sound 728 SE:Weird charging sound
 6 p- Sword_076.png
 4 p- Sword_077.png
 3 p- Sword_078.png
@@ -259,7 +259,7 @@ C01                               #NOP
 C03                               #Start attack animation; need 07 right after this.
 C07                               #Start attack animation; need 03 right before this.
 1 p- Sword_000.png
-S0262                               #Sound 610 SE:@C85_3C Play sword "whooshing" SFE (done by Nomads; sounds like wing flap)
+//S0262                               #Sound 610 SE:@C85_3C Play sword "whooshing" SFE (done by Nomads; sounds like wing flap)
 2 p- Sword_001.png
 3 p- Sword_002.png
 C31                               #Show small dirt wave moving forward animation
@@ -267,11 +267,11 @@ C31                               #Show small dirt wave moving forward animation
 2 p- Sword_004.png
 2 p- Sword_005.png
 2 p- Sword_006.png
-S0262                               #Sound 610 SE:@C85_3C Play sword "whooshing" SFE (done by Nomads; sounds like wing flap)
+//S0262                               #Sound 610 SE:@C85_3C Play sword "whooshing" SFE (done by Nomads; sounds like wing flap)
 3 p- Sword_007.png
 2 p- Sword_008.png
 2 p- Sword_007.png
-SCE                               #Sound 206 SE:Sword unsheathing @C85_36
+//SCE                               #Sound 206 SE:Sword unsheathing @C85_36
 3 p- Sword_009.png
 3 p- Sword_010.png
 C1F                               #Play hit SFE (sounds like Eliwood with sword's hit)
@@ -281,7 +281,7 @@ C14                               #Heavy vibration of screen
 3 p- Sword_012.png
 3 p- Sword_013.png
 2 p- Sword_014.png
-SF6                               #Sound 246 SE:Shaman charging @C85_28
+//SF6                               #Sound 246 SE:Shaman charging @C85_28
 C15                               #Slight vibration of screen
 2 p- Sword_015.png
 3 p- Sword_016.png
@@ -289,7 +289,7 @@ C15                               #Slight vibration of screen
 2 p- Sword_018.png
 C51                               #Show brief white flash animation
 2 p- Sword_019.png
-SF5                               #Sound 245 SE:Bolting strike
+//SF5                               #Sound 245 SE:Bolting strike
 3 p- Sword_020.png
 C04                               #Prepare HP depletion routine; needed to animate return to standing frame after hit; Magic only.
 C1A                               #Normal hit
