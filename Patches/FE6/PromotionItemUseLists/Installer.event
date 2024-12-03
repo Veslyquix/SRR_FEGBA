@@ -1,0 +1,65 @@
+
+PUSH 
+ORG $237B0 
+POIN HeroCrestList
+ORG $237B8 
+POIN KnightCrestList
+ORG $237C0 
+POIN OrionsBoltList
+ORG $237C8 
+POIN ElysianWhipList
+ORG $237F0 
+POIN GuidingRingList
+POP 
+
+// fe6
+HeroCrestList:
+BYTE Mercenary
+BYTE Mercenary_F
+BYTE Myrmidon
+BYTE Myrmidon_F
+BYTE Fighter
+BYTE MountainThief
+BYTE Pirate
+BYTE 0 
+
+KnightCrestList:
+BYTE Cavalier
+BYTE Cavalier_F
+BYTE Knight 
+BYTE Knight_F 
+BYTE 0 
+
+OrionsBoltList: 
+BYTE Archer
+BYTE Archer_F 
+BYTE Nomad
+BYTE Nomad_F
+BYTE 0 
+
+ElysianWhipList: 
+BYTE PegasusKnight
+BYTE WyvernRider 
+BYTE WyvernRider_F
+BYTE 0 
+
+GuidingRingList: 
+BYTE Priest
+BYTE Cleric
+BYTE Mage
+BYTE Mage_F 
+// BYTE Monk 
+BYTE Shaman 
+BYTE Shaman_F 
+BYTE Troubadour 
+BYTE 0 
+
+
+
+
+
+
+
+
+
+
