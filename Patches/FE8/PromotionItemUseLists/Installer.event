@@ -1,4 +1,7 @@
 
+#define AddedClasses 
+
+
 
 // fe8 
 HeroCrestList:
@@ -8,6 +11,16 @@ BYTE Myrmidon
 BYTE Myrmidon_F
 BYTE Fighter
 BYTE Journeyman_2
+#ifdef AddedClasses 
+BYTE Journeyman_1
+BYTE Fencer
+BYTE Brighid
+BYTE FlailKnight
+BYTE Gladiator
+BYTE Mercenary2
+BYTE Phantom 
+BYTE Boxer 
+#endif 
 BYTE 0 
 
 KnightCrestList:
@@ -16,17 +29,52 @@ BYTE Cavalier_F
 BYTE Knight 
 BYTE Knight_F 
 BYTE Recruit_2
+#ifdef AddedClasses 
+BYTE Soldier
+BYTE Recruit_1
+
+BYTE Lancer
+BYTE Lancer2
+BYTE Militia
+BYTE SupplierAnna
+#endif 
 BYTE 0 
 
 OrionsBoltList: 
 BYTE Archer
 BYTE Archer_F 
+#ifdef AddedClasses 
+BYTE Fletchling
+BYTE Hunter
+BYTE SkeletonRider
+
+#endif 
 BYTE 0 
 
 ElysianWhipList: 
 BYTE PegasusKnight
 BYTE WyvernRider 
 BYTE WyvernRider_F
+#ifdef AddedClasses 
+BYTE Revenant 
+BYTE Bonewalker 
+BYTE Bonewalker_Bow 
+BYTE Bael 
+BYTE Mauthedoog 
+BYTE Tarvos 
+BYTE Mogall 
+BYTE Gargoyle 
+
+//Bard2
+// Chicken 
+BYTE Mosquito // itself 
+BYTE Sandworm // itself 
+// BYTE Slime // seal? ??  
+BYTE CursedSword // itself 
+BYTE Djinn // Monk ?? 
+BYTE LivingArmor // Harbinger? 
+
+#endif 
 BYTE 0 
 
 GuidingRingList: 
@@ -39,11 +87,28 @@ BYTE Shaman
 BYTE Shaman_F 
 BYTE Troubadour 
 BYTE Pupil_2
+#ifdef AddedClasses 
+BYTE Pupil_1
+BYTE SkeletonRider
+BYTE Arcanist
+BYTE Magician
+BYTE Occultist
+BYTE Parson
+BYTE Pupil2
+BYTE Tactician2
+BYTE Tome //promoting into itself ?? 
+BYTE Cleric2
+#endif 
 BYTE 0 
 
 HeavenSealList: 
 BYTE EphraimLord
 BYTE EirikaLord
+#ifdef AddedClasses 
+BYTE AlmT1
+BYTE IkeRanger
+
+#endif 
 BYTE 0 
 
 MasterSealList: 
@@ -78,20 +143,82 @@ BYTE Journeyman_2
 BYTE Pupil_2
 BYTE Recruit_2
 BYTE Monk
+#ifdef AddedClasses 
+BYTE Soldier
+BYTE Revenant 
+BYTE Bonewalker 
+BYTE Bonewalker_Bow 
+BYTE Bael 
+BYTE Mauthedoog 
+BYTE Tarvos 
+BYTE Mogall 
+BYTE Gargoyle 
+
+// unpromoted classes 
+BYTE AlmT1
+BYTE IkeRanger
+BYTE Fencer
+BYTE Lancer
+BYTE Lancer2
+BYTE Militia
+BYTE SupplierAnna
+BYTE Brighid
+BYTE FlailKnight
+BYTE Gladiator
+BYTE Mercenary2
+BYTE Phantom // vanilla is GhostFighter def fsr 
+BYTE Fletchling
+BYTE Hunter
+BYTE SkeletonRider
+//Dancer2 (promoting into regular dancer is a downgrade) 
+//MagicSeal2 same 
+BYTE Arcanist
+BYTE Magician
+BYTE Occultist
+BYTE Parson
+BYTE Pupil2
+BYTE Tactician2
+BYTE Tome //promoting into itself ?? 
+BYTE Cleric2
+//Bard2
+// Chicken 
+BYTE Mosquito // itself 
+BYTE Sandworm // itself 
+// BYTE Slime // seal? ??  
+BYTE CursedSword // itself 
+BYTE Djinn // Monk ?? 
+BYTE LivingArmor // Harbinger? 
+BYTE Boxer 
+
+#endif 
 BYTE 0 
 
 OceanSealList: 
 BYTE Brigand
 BYTE Pirate
 BYTE Thief
+#ifdef AddedClasses 
+
+
+#endif 
 BYTE 0 
 
 LunarBraceList: 
 BYTE EirikaLord 
+#ifdef AddedClasses 
+BYTE AlmT1
+BYTE IkeRanger
+
+#endif 
 BYTE 0 
 
 SolarBraceList: 
 BYTE EphraimLord 
+#ifdef AddedClasses 
+BYTE AlmT1
+BYTE IkeRanger
+
+#endif 
 BYTE 0 
 
 

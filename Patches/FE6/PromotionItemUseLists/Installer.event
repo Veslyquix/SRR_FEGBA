@@ -1,4 +1,4 @@
-
+#define AddedClasses 
 PUSH 
 ORG $237B0 
 POIN HeroCrestList
@@ -21,6 +21,17 @@ BYTE Myrmidon_F
 BYTE Fighter
 BYTE MountainThief
 BYTE Pirate
+#ifdef AddedClasses 
+BYTE AlmT1
+BYTE IkeRanger
+BYTE Fencer
+BYTE Brighid
+BYTE FlailKnight
+BYTE Gladiator
+BYTE Mercenary2
+BYTE Phantom 
+BYTE Boxer 
+#endif 
 BYTE 0 
 
 KnightCrestList:
@@ -28,6 +39,13 @@ BYTE Cavalier
 BYTE Cavalier_F
 BYTE Knight 
 BYTE Knight_F 
+#ifdef AddedClasses 
+BYTE Soldier
+BYTE Lancer
+BYTE Lancer2
+BYTE Militia
+BYTE SupplierAnna
+#endif 
 BYTE 0 
 
 OrionsBoltList: 
@@ -35,12 +53,29 @@ BYTE Archer
 BYTE Archer_F 
 BYTE Nomad
 BYTE Nomad_F
+#ifdef AddedClasses 
+BYTE Fletchling
+BYTE Hunter
+BYTE SkeletonRider
+
+#endif 
 BYTE 0 
 
 ElysianWhipList: 
 BYTE PegasusKnight
 BYTE WyvernRider 
 BYTE WyvernRider_F
+#ifdef AddedClasses 
+//Bard2
+// Chicken 
+BYTE Mosquito // itself 
+BYTE Sandworm // itself 
+// BYTE Slime // seal? ??  
+BYTE CursedSword // itself 
+BYTE Djinn // Monk ?? 
+BYTE LivingArmor // Harbinger? 
+
+#endif 
 BYTE 0 
 
 GuidingRingList: 
@@ -52,6 +87,18 @@ BYTE Mage_F
 BYTE Shaman 
 BYTE Shaman_F 
 BYTE Troubadour 
+#ifdef AddedClasses 
+BYTE SkeletonRider
+BYTE Arcanist
+BYTE Magician
+BYTE Occultist
+BYTE Parson
+BYTE Pupil2
+BYTE Tactician2
+BYTE Tome //promoting into itself ?? 
+BYTE Cleric2
+
+#endif 
 BYTE 0 
 
 
