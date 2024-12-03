@@ -1,0 +1,40 @@
+
+#define VeslyBuildfile
+#define Reskin 
+//#define RepointChMenu
+#ifndef FreeSpace 
+	#ifdef _FE6_
+		#define FreeSpace 0x840000
+	#endif
+	#ifdef _FE7_
+		#define FreeSpace 0x1000000
+	#endif
+	#ifdef _FE8_
+		#define FreeSpace 0x1000000
+	#endif 
+	ORG FreeSpace 
+#endif 
+#include "EAstdlib.event" 
+#include "Definitions.event" 
+#define MAKE_CACHE_ROM 
+#ifdef VeslyBuildfile 
+    // ORG CURRENTOFFSET + 0x30000 // 0.2mb for text 
+    ORG 0x1030000 // 0.2mb for text 
+    // ORG 0 
+    #include "gfx/Anims/Installer.event"
+#endif 
+
+
+
+
+
+
+
+
+// ALIGN 32 
+// WORD 0 0 0 0 0 0 0 0 
+
+
+
+
+

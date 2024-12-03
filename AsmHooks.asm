@@ -43,6 +43,26 @@ mov r11, r11
 bx lr 
 .ltorg 
 
+.global DisableMouthFrames_FE6
+.type DisableMouthFrames_FE6, %function 
+DisableMouthFrames_FE6: 
+push {r4, lr} 
+ldr r3, [r4, #0x3C] 
+ldrh r5, [r4, #0x38] 
+str r5, [sp] 
+blh 0x8007DE0, r4 
+ldr r0, [r7] 
+mov r1, #0x40 
+ldrh r1, [r0, r1] 
+cmp r1, #0xFF 
+bgt NoMouthFrames
+blh 0x80080EC @ UpdateFaceTalk
+NoMouthFrames: 
+pop {r4} 
+pop {r3} 
+bx r3 
+.ltorg 
+
 .global MaybeChargeAtPlayer
 .type MaybeChargeAtPlayer, %function 
 MaybeChargeAtPlayer: 
@@ -1110,6 +1130,73 @@ pop {r4-r5}
 pop {r3} 
 bx r3 
 .ltorg 
+
+.global MaybeUseJankyPalette_FE8 
+.type MaybeUseJankyPalette_FE8, %function 
+MaybeUseJankyPalette_FE8: 
+push {lr} 
+ldr r7, =0x80575B4 
+ldr r7, [r7] 
+sub r6, r0, r2 
+add r2, r1, r6 
+add r0, r2, r7 
+ldrb r0, [r0] 
+cmp r0, #0 
+beq NoJanky_FE8
+cmp r0, r4 
+beq UseJankyPalette_FE8
+push {r0-r3} 
+bl ShouldDoJankyPalettes 
+mov r7, r0 
+pop {r0-r3} 
+cmp r7, #0 
+beq NoJanky_FE8 
+UseJankyPalette_FE8: 
+cmp r3, #0 
+b ExitJanky_FE8 
+NoJanky_FE8: 
+mov r0, #1 
+cmp r0, #0 
+
+ExitJanky_FE8: 
+pop {r7} 
+bx r7 
+.ltorg 
+
+.global MaybeUseJankyPalette2_FE8 
+.type MaybeUseJankyPalette2_FE8, %function 
+MaybeUseJankyPalette2_FE8: 
+push {lr} 
+ldr r7, =0x80575B4 
+ldr r7, [r7] 
+add r0, r2, r7 
+ldrb r0, [r0] 
+cmp r0, #0 
+beq NoJanky2_FE8
+cmp r0, r4 
+beq UseJankyPalette2_FE8
+
+push {r0-r3} 
+bl ShouldDoJankyPalettes 
+mov r7, r0 
+pop {r0-r3} 
+cmp r7, #0 
+beq NoJanky2_FE8 
+
+UseJankyPalette2_FE8: 
+cmp r3, #0 
+bne JankyAltExit 
+NoJanky2_FE8: 
+pop {r7} 
+bx r7 
+.ltorg 
+
+JankyAltExit: 
+pop {r7} 
+ldr r7, =0x8057399 
+bx r7 
+.ltorg 
+
 
 .global MaybeUseGenericPalette_FE8
 .type MaybeUseGenericPalette_FE8, %function 

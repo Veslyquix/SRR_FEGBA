@@ -2,11 +2,45 @@
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
 
+#ifdef VeslyBuildfile 
+#include "TextFE6/repointedTextTable.event"
+#endif 
+
+#include "EAstdlib.event" 
+#include "Definitions.event" 
 #include "Extensions/Hack Installation.txt" 
+
+
+#ifdef VeslyBuildfile 
+ORG 0x1030000
+#include "gfx/Installer.event"
+MESSAGE Graphics end at currentoffset 
+#endif 
+// #define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
+
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
 
+#ifndef gCharacterData 
+#define gCharacterData 0x86076D0
+#endif 
+#ifdef VeslyBuildfile 
+    #include "Tables/TableInstaller.event" 
+#else 
+#define gCharacterDataFE1 0x86076D0 
+#define gCharacterDataFE4 0x86076D0 
+#define gCharacterDataFE5 0x86076D0 
+#define gCharacterDataFE6 0x86076D0 
+#define gCharacterDataFE7 0x86076D0 
+#define gCharacterDataFE8 0x86076D0 
+#define gCharacterDataFE10 0x86076D0 
+#define gCharacterDataFE13 0x86076D0 
+#define gCharacterDataFE14 0x86076D0 
+#define gCharacterDataFE15 0x86076D0 
+#define gCharacterDataFE16 0x86076D0 
+#define gCharacterDataFE17 0x86076D0 
+#endif 
 #include "Patches/FE6.lyn.event" 
 #include "Patches/FE6_AsmHooks.lyn.event" 
 
@@ -20,6 +54,9 @@
 #endif 
 
 #inctbl "FE6TR" "EventAssembler/fe6_tr.tbl"
+
+TestTestText:
+STRING "Abel" "FE6TR" ; BYTE 0
 
 //#define JankyPalettes // Uncomment if you want to always use char palettes, even with classes randomized 
 
@@ -112,7 +149,7 @@ TextIDExceptionTable:
 FILL(0x2000) // max id 0x2000
 
  
-
+IgnoreTextID(0)
 // Class descs 
 IgnoreTextIDRange(0x569, 0x591) 
 // stat screen descs 
@@ -181,7 +218,7 @@ NeverChangeIntoItem(0x70) // crashes animations
 NeverChangeChar(0xE1) // arena enemy randomized breaks things 
 
 #ifdef VeslyBuildfile
-	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+	#define SetName(id) "{ addr: ; SetText(id, addr) ; }"
 #else 
 	#define SetName(id) "ALIGN 32"
 #endif 
@@ -194,6 +231,8 @@ VarianceText:
 STRING "Variance" "FE6TR" ; BYTE 0
 CharactersText: 
 STRING "Characters" "FE6TR" ; BYTE 0 0 
+GameText: 
+STRING "From Game" "FE6TR" ; BYTE 0 0 
 BaseStatsText: 
 STRING "Base Stats" "FE6TR" ; BYTE 0
 GrowthsText: 
@@ -274,15 +313,35 @@ ALIGN 64; STRING "Random" "FE6TR" ; BYTE 0
 
 ALIGN 64
 Option2:
-FILL(32*2)
+FILL(64*13)
 ORG Option2
+ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE1/3: Shadow Dragon" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE4: Genealogy/Holy War" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE5: Thracia 776" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE7: The Blazing Blade" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE8: Sacred Stones" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE9/FE10: Radiant Dawn" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE13: Awakening" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE14: Fates" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE2/15: Echoes" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE16: Three Houses" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "FE17: Engage" "FE6TR" ; BYTE 0 
+ALIGN 64; STRING "Random" "FE6TR" ; BYTE 0 
+
+
+
+ALIGN 64
+Option3:
+FILL(32*2)
+ORG Option3
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Random" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option3:
+Option4:
 FILL(32*5)
-ORG Option3
+ORG Option4
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Random" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "0%" "FE6TR" ; BYTE 0
@@ -290,16 +349,16 @@ ALIGN 32; STRING "100%" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "50%" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option4:
+Option5:
 FILL(32*3)
-ORG Option4
+ORG Option5
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Based on seed" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Fixed" "FE6TR" ; BYTE 0
 ALIGN 32
-Option5:
+Option6:
 FILL(32*3)
-ORG Option5
+ORG Option6
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Random" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "0" "FE6TR" ; BYTE 0
@@ -310,60 +369,62 @@ ALIGN 32; STRING "60" "FE6TR" ; BYTE 0
 
 
 ALIGN 64
-Option6:
-FILL(64*5)
-ORG Option6
+Option7:
+FILL(64*7)
+ORG Option7
 ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Random vanilla classes" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Random for players" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Random for enemies" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Random with new classes" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "New rand player classes" "FE6TR" ; BYTE 0
+ALIGN 64; STRING "New rand enemy classes" "FE6TR" ; BYTE 0
 
 ALIGN 64
-Option7:
+Option8:
 FILL(64*4)
-ORG Option7
+ORG Option8
 ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Random" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Found items only" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Item stats only" "FE6TR" ; BYTE 0
 
 ALIGN 64
-Option8:
+Option9:
 FILL(32*2)
-ORG Option8
+ORG Option9
 ALIGN 32; STRING "Classic" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Casual" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option9:
+Option10:
 FILL(32*2)
-ORG Option9
+ORG Option10
 ALIGN 32; STRING "Vanilla BGM" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Random BGM" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option10:
+Option11:
 FILL(32*4)
-ORG Option10
+ORG Option11
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Random" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Janky" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Portraits only" "FE6TR" ; BYTE 0
 
 ALIGN 48
-Option11:
+Option12:
 FILL(48*3)
-ORG Option11
+ORG Option12
 ALIGN 48; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 48; STRING "Infinite weapons" "FE6TR" ; BYTE 0
 ALIGN 48; STRING "Infinite items" "FE6TR" ; BYTE 0
 
 ALIGN 42
-Option12:
-Option14:
+Option13:
+Option15:
 FILL(32*42)
-ORG Option12
+ORG Option13
 ALIGN 42; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 42; STRING "+1 hidden level" "FE6TR" ; BYTE 0
 ALIGN 42; STRING "+2 hidden levels" "FE6TR" ; BYTE 0
@@ -398,10 +459,10 @@ ALIGN 42; STRING "-1 hidden level" "FE6TR" ; BYTE 0
 BYTE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
 ALIGN 32 
-Option13:
-Option15:
+Option14:
+Option16:
 FILL(32*16)
-ORG Option13
+ORG Option14
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "+10%" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "+20%" "FE6TR" ; BYTE 0
@@ -420,17 +481,17 @@ ALIGN 32; STRING "-40%" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "-50%" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option16:
+Option17:
 FILL(32*3)
-ORG Option16
+ORG Option17
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Always off" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Always on" "FE6TR" ; BYTE 0
 
 ALIGN 64
-Option17:
+Option18:
 FILL(64*3)
-ORG Option17
+ORG Option18
 ALIGN 64; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Charge towards you" "FE6TR" ; BYTE 0
 ALIGN 64; STRING "Gradually charge" "FE6TR" ; BYTE 0
@@ -438,16 +499,16 @@ ALIGN 64; STRING "Gradually charge" "FE6TR" ; BYTE 0
 
 
 ALIGN 32
-Option18:
+Option19:
 FILL(32*2)
-ORG Option18
+ORG Option19
 ALIGN 32; STRING "Vanilla" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Press A" "FE6TR" ; BYTE 0
 
 ALIGN 32
-Option19:
+Option20:
 FILL(32*4)
-ORG Option19
+ORG Option20
 ALIGN 32; STRING "None" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "All" "FE6TR" ; BYTE 0
 ALIGN 32; STRING "Players" "FE6TR" ; BYTE 0
@@ -478,19 +539,25 @@ RandomizerDescText:
 BYTE $FD $3D $A3 $48 $EC $8A $9F $8F $8F $CF $11 $84 $5A $EF $FE $FB $73 $7B $01 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
 
 
-#define setText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
-#define setTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
+#define SetText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
+#define SetTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
 ALIGN 4 
-//setTextWithHuffman(0xB6E, VarianceText) // no longer necessary 
-setTextWithHuffman(0xB80, MovText)
-setTextWithHuffman(0xB81, HpText)
-setTextWithHuffman(0xB82, MinusText)
+//SetTextWithHuffman(0xB6E, VarianceText) // no longer necessary 
+SetTextWithHuffman(0xB80, MovText)
+SetTextWithHuffman(0xB81, HpText)
+SetTextWithHuffman(0xB82, MinusText)
+
+
 
 ALIGN 4 
 VramDest_DebugFont: 
 WORD 0xd800 // in glowy or 0x3000 ? // 0x4800 
 
 PUSH 
+
+// Melee and magic fix fe6 
+ORG 0x18188
+BYTE $00 $B5 $FE $F7 $E5 $FB $FE $F7 $FF $FF $02 $21 $08 $40 $40 $08 $02 $BC $08 $47
 
 // make some enemies in first ch promoted for testing 
 //ORG $679C91 
@@ -653,6 +720,35 @@ callHackNew(HookLoadFace_FE6)
 ORG $1102C
 callHackNew(HookWMStartFace_FE6)
 
+
+// struct FaceProc+0x40 faceID is a u8 in fe6, but u16 in fe8 
+// fe6: StartFaceFadeIn 8d04 called by TalkLoadFace a4f4 makes portrait only 1 byte for palette 
+// https://github.com/FireEmblemUniverse/fireemblem6j/blob/b158d46dfc4d6590d783b0072fed90cf0227edf7/include/face.h#L46
+// [20240d0]!!?
+ORG $853C
+SHORT $800A // strh r2, [r1] @ store faceID as short, not byte 
+ORG $8d12 
+SHORT $880A // ldrh r2, [r1] 
+ORG $8d7a 
+SHORT $880A // ldrh r2, [r1] 
+
+// TEMPORARY (hopefully...)
+// kill UpdateFaceTalk (called from Face_OnIdle) 
+// so no mouth frames appear for portraits > 0x100 
+ORG $82B8
+callHackNew(DisableMouthFrames_FE6) 
+SHORT $46c0 
+
+// make supports appear in febuilder 
+ORG $6afDE 
+SHORT $e014 // b 0x806b00A 
+POIN 0x666cf8 
+ORG $6B00A 
+SHORT $1c0d // mov r5, r1 
+SHORT $3510 // add r5, #0x10 
+SHORT $B0A9 // sub sp, #0xA4 
+SHORT $e7e8 // b 0x806AFE4 
+
 ORG $184F0
 jumpToHack(GetUnitPortraitId_FE7)  // same code 
 // 80192F4	GetUnitChibiId // fe7 8018BF4 fe6 8018500
@@ -771,7 +867,7 @@ ALIGN 4
 IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
-WORD 20
+WORD 21
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:

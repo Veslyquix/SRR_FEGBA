@@ -1,0 +1,69 @@
+
+
+#ifdef _FE6_ 
+// #define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE mouthX mouthY eyeX eyeY; POP"
+// #define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; BYTE mouthX mouthY eyeX eyeY; POP"
+#define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1404; POIN mugLocation+0x1604; BYTE mouthX mouthY 0 1; POP"
+// 0x1104, 0x1404 mouth 
+#endif 
+
+#ifndef _FE6_ 
+#ifdef SetMugEntry 
+	#undef SetMugEntry
+#endif 	
+#define SetMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY)"PUSH; ORG NewPortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE 0 0 0 0; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; POP"
+#endif 
+
+// #define FirstMugID 0xAC
+#define FirstMugID 0x100
+
+/* 
+ALIGN 4
+Elice_ThornMugData:
+
+ORG Elice_ThornMugData + 0x800
+#incbin "Dmp/Elice_Thorn_frames.dmp"
+ORG Elice_ThornMugData
+#incbin "Dmp/Elice_Thorn_mug.dmp"
+
+ORG Elice_ThornMugData + 0x1604
+#incbin "Dmp/Elice_Thorn_palette.dmp"
+#incbin "Dmp/Elice_Thorn_minimug.dmp"
+#ifndef EliceMug
+  #define EliceMug (FirstMugID+149)
+#endif
+setMugEntry(EliceMug, Elice_ThornMugData, 2, 6, 2, 4)
+*/
+
+
+ALIGN 4 
+NewPortraitTable: 
+#undef PortraitTable 
+#define PortraitTable NewPortraitTable 
+FILL(0x1C*0x400) 0 
+ORG NewPortraitTable 
+#include "VanillaData.event" 
+#include "VanillaData.event" 
+
+
+
+ORG NewPortraitTable + (0x1C*0x400)
+ALIGN 4 
+#include "Generated.event" 
+
+
+PUSH 
+#ifdef _FE8_
+ORG $5524 
+#endif 
+#ifdef _FE7_
+ORG $6B30 
+#endif 
+#ifdef _FE6_
+ORG $7FD8  
+#endif 
+
+POIN NewPortraitTable
+POP 
+
+

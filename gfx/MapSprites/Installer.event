@@ -1,0 +1,725 @@
+
+
+#include "Internals.event"
+#include "GeneratedInstaller.event"
+
+/* 
+Alm_T1SMS
+Alm_T2SMS
+Ike_LordSMS
+Ike_RangerSMS
+Leif_LordSMS
+Marth_SlashSMS
+SeliphSMS
+T1_LancerSMS
+TruebladeSMS
+Katarina_FencerSMS
+DragoonSMS
+Lancer_by_SALVAGEDSMS
+MilitiaSMS
+HalberdierSMS
+Mounted_MarauderSMS
+SentinelSMS
+WarbirdSMS
+Supplier_AnnaSMS
+BaronSMS
+BrighidSMS
+Flail_KnightSMS
+GladiatorSMS
+HarbingerSMS
+Heavy_InfantrySMS
+Legion_KingSMS
+Mercenary_by_SALVAGEDSMS
+Phantom_by_TBASMS
+War_ClericSMS
+AdventurerSMS
+FletchlingSMS
+HunterSMS
+Merlinus_TransportSMS
+MikoSMS
+Skeleton_RiderSMS
+AngelSMS
+Arcanist_by_Devisian_NightsSMS
+Arcanist_by_NuramonSMS
+Cantor_JedahSMS
+Cantor_bySMS
+Dark_PrinceSMS
+Dread_FighterSMS
+ExecutionerSMS
+FE8_TethysSMS
+Gaiden_PriestessSMS
+KishunaSMS
+MagicianSMS
+OccultistSMS
+ParsonSMS
+PupilReskinSMS
+Red_Mage_by_ReykSMS
+Red_mage_by_MycahelSMS
+TacticianSMS
+TomesSMS
+WitchSMS
+EgyptianSMS
+Elffin_FancySMS
+Tethys_RepaletteSMS
+ChickenSMS
+MosquitoSMS
+SandwormSMS
+SlimeSMS
+Cursed_SwordSMS
+
+Alm_T1MMS
+Alm_T2MMS
+Ike_LordMMS
+Ike_RangerMMS
+Leif_LordMMS
+Marth_SlashMMS
+SeliphMMS
+T1_LancerMMS
+TruebladeMMS
+Katarina_FencerMMS
+DragoonMMS
+Lancer_by_SALVAGEDMMS
+MilitiaMMS
+HalberdierMMS
+Mounted_MarauderMMS
+SentinelMMS
+WarbirdMMS
+Supplier_AnnaMMS
+BaronMMS
+BrighidMMS
+Flail_KnightMMS
+GladiatorMMS
+HarbingerMMS
+Heavy_InfantryMMS
+Legion_KingMMS
+Mercenary_by_SALVAGEDMMS
+Phantom_by_TBAMMS
+War_ClericMMS
+AdventurerMMS
+FletchlingMMS
+HunterMMS
+Merlinus_TransportMMS
+MikoMMS
+Skeleton_RiderMMS
+AngelMMS
+Arcanist_by_Devisian_NightsMMS
+Arcanist_by_NuramonMMS
+Cantor_JedahMMS
+Cantor_byMMS
+Dark_PrinceMMS
+Dread_FighterMMS
+ExecutionerMMS
+FE8_TethysMMS
+Gaiden_PriestessMMS
+KishunaMMS
+MagicianMMS
+OccultistMMS
+ParsonMMS
+PupilReskinMMS
+Red_Mage_by_ReykMMS
+Red_mage_by_MycahelMMS
+TacticianMMS
+TomesMMS
+WitchMMS
+EgyptianMMS
+Elffin_FancyMMS
+Tethys_RepaletteMMS
+ChickenMMS
+MosquitoMMS
+SandwormMMS
+SlimeMMS
+Cursed_SwordMMS
+
+
+*/ 
+
+// dark prince sms / mms don't match in palette atm 
+
+//First free SMS is 107
+// in fe7, 89 
+// in fe6, 
+
+//First free SMS is 107
+#define Angel_F_Unknownstand 128 
+#define Arcanist_U_Unfinished_Norikinsstand 129 
+#define Bard_M_Elffin_ISstand 130 
+#define Baron_U_Lance_Topazlight_Nuramon_Its_Just_Jaystand 131 
+#define BlackDragon_U_Magic_L95stand 132 
+#define Blade_Lord_F_Lyn_Sword_ISstand 133 
+#define Bonewalker_U_Cantor_GaidenStyle_Rynstand 134 
+#define Boxer_M_Bald_ShadowAllyXstand 135 
+#define Brighid_Hector_Axe_Shin19stand 136 
+#define Cantor2_Norikins_stand 137 
+#define Chicken_Pikmin1211_stand 138 
+#define Cleric_ISstand 139 
+#define Cursed_Sword_U_Derstand 140 
+#define Dancer_F_Larum_ISstand 141 
+#define Dancer_ISstand 142 
+#define Dark_Prince_M_Stephano_Zanestand 143 
+#define Djinn_M_Alexsplodestand 144 
+#define Dragoon_M_v2_Lance_Pikmin_Unknownstand 145 
+#define Dread_Fighter_M_Nuramonstand 146 
+#define Enchanter_Ninja_Derstand 147 
+#define Executioner_U_Huichelaar_IS_Lexoustand 148 
+#define FE15Myrmidon_U_Sword_Nuramonstand 149 
+#define Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand 150 
+#define Fencer_Blade_LordAnnoyingAnonstand 151 
+#define Fighter_M_Flail_Knight_L95_Stephanostand 152 
+#define Fletchling_Hunter_M_FE13_knabepicer_NightBloodKTstand 153 
+#define Gladiator_M_Sword_Pikmin_L95_Pushwallstand 154 
+#define GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datstand 155 
+#define Great_Lord_F_Eirika_Sword_ISstand 156 
+#define Great_Lord_M_Ephraim_Lance_ISstand 157 
+#define Great_Lord_M_HectorHarbinger_SD9Kstand 158 
+#define Great_Lord_M_Hector_ISstand 159 
+#define Halberdier_M_2_0_TBAstand 160 
+#define HeavyInfantry_Ephraim_Snewpingstand 161 
+#define Hunter_M_MeatOfJusticestyle_knabepicerstand 162 
+#define Ike_Vanguard_M_Unknownstand 163 
+#define Knight_Lord_M_Eliwood_Sword_ISstand 164 
+#define LancerF_Red_Hair_SALVAGEDstand 165 
+#define Lancer_M_Brown_Hair_SALVAGEDstand 166 
+#define LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarstand 167 
+#define LivingArmor_Red_Flame_Sphealnuke_topazlightstand 168 
+#define Lord_F_Eirika_Sword_ISstand 169 
+#define Lord_F_Lyn_Sword_ISstand 170 
+#define Lord_Knight_Seliph_M_Stephano_Zanestand 171 
+#define Lord_M_Eliwood_Sword_16x16_ISstand 172 
+#define Lord_M_Ephraim_Lance_ISstand 173 
+#define Lord_M_Hector_Axe_ISstand 174 
+#define Lord_M_Marth_Dominus_Vobiscum_Snewpingstand 175 
+#define Lord_M_Roy_T1_ISstand 176 
+#define Lord_M_Roy_T2_ISstand 177 
+#define Lord_M_Sword_Generic_16x16_Leifstand 178 
+#define Mage_F_Awakening_bloodstand 179 
+#define Mage_F_GaidenStyle_16x16_TAS20XXstand 180 
+#define Magician_Eliwood_16x16_TyTheBubstand 181 
+#define Magic_Seal_M_Standing_IS 182 
+#define Marauder_M_Basic_Axe_Blademasterstand 183 
+#define Mercenary_M_Sword_Improved_Flasubanstand 184 
+#define Miko_Diviner_F_Orochi_Sphealnukestand 185 
+#define Militia_M_Deserter_Lance_Alusqstand 186 
+#define Mogall_U_Jockey_Bow_Haifriedstand 187 
+#define Mosquito_U_Dutch_Introvertstand 188 
+#define Noble_F_Blue_Edelgard_Redbeanstand 189 
+#define Parson_Priest_M_Caped_Staff_topazlightstand 190 
+#define Phantom_U_IS_Pushwallstand 191 
+#define Pupil_M_Evil_ArcherBiasstand 192 
+#define RedMage2_Sage_Hat_TopazlightUnknownstand 193 
+#define Sage_F_Magician_BBHood217stand 194 
+#define Sandworm_Norikins_stand 195 
+#define Sentinel_Halberdier_Aruka_Kenpuhustand 196 
+#define Shaman_M_Occultist_Devisian_Nights_Pikminstand 197 
+#define Slime_U_Yellowtoadstand 198 
+#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand 199 
+#define Tactician_U_SALVAGEDstand 200 
+#define Tome_U_Anima_N426stand 201 
+#define Transporter_Wagon_Standing_IS 202 
+#define Warbird_F_Unknown_Alexsplodestand 203 
+#define WarCleric_F_Staff_SkidMarc25stand 204 
+#define Witch_F_Aruka_Kenpuhustand 205 
+
+
+/* 
+Fencer, Sentinel, Brighid, Heavy Infantry, Legion King, 
+Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm, 
+*/ 
+
+/*
+//First free MMS is 127 and will show up if you've expanded classes.
+#define Arcanist_U_Unfinished_Norikinswalk 127 
+#define Bard_M_Elffin_ISwalk 128 
+#define Baron_U_Cape_Nuramon_Jay_Rynwalk 129 
+#define Blade_Lord_F_Lyn_Sword_ISwalk 130 
+#define Bonewalker_U_Cantor_GaidenStyle_Ryn_N426walk 131 
+#define Cursed_Sword_U_Derwalk 132 
+#define Dancer_F_Larum_ISwalk 133 
+#define Dark_Prince_M_Stephano_Zanewalk 134 
+#define Dragoon_M_v2_Lance_Pikmin_Unknownwalk 135 
+#define Dread_Fighter_M_Nuramonwalk 136 
+#define Executioner_U_Huichelaar_IS_Lexouwalk 137 
+#define FE15Myrmidon_U_Sword_Nuramonwalk 138 
+#define Fighter_M_Flail_Knight_L95_Stephanowalk 139 
+#define Gladiator_M_Sword_Pikmin_L95_Pushwallwalk 140 
+#define Great_Lord_F_Eirika_Sword_ISwalk 141 
+#define Great_Lord_M_Ephraim_Lance_ISwalk 142 
+#define Great_Lord_M_HectorHarbinger_SD9Kwalk 143 
+#define Great_Lord_M_Hector_ISwalk 144 
+#define Halberdier_M_2_0_TBAwalk 145 
+#define Hunter_M_MeatOfJusticestyle_knabepicerwalk 146 
+#define Knight_Lord_M_Eliwood_Sword_ISwalk 147 
+#define Lancer_M_Brown_Hair_SALVAGEDwalk 148 
+#define Lord_F_Eirika_Sword_ISwalk 149 
+#define Lord_F_Lyn_Sword_ISwalk 150 
+#define Lord_M_Eliwood_Sword_ISwalk 151 
+#define Lord_M_Ephraim_Lance_ISwalk 152 
+#define Lord_M_Hector_Axe_ISwalk 153 
+#define Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk 154 
+#define Lord_M_Roy_T1_ISwalk 155 
+#define Lord_M_Roy_T2_ISwalk 156 
+#define Mage_F_GaidenStyle_TAS20XXwalk 157 
+#define Magic_Seal_M_Moving_IS 158 
+#define Marauder_M_Basic_Axe_Blademasterwalk 159 
+#define Militia_M_Deserter_Lance_Alusqwalk 160 
+#define Mogall_U_Jockey_Bow_Haifriedwalk 161 
+#define Mosquito_U_Dutch_Introvertwalk 162 
+#define Noble_F_Blue_Edelgard_Redbeanwalk 163 
+#define Pupil_M_Evil_ArcherBiaswalk 164 
+#define Sage_F_Magician_BBHood217walk 165 
+#define Shaman_M_Occultist_Devisian_Nights_Pikminwalk 166 
+#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk 167 
+#define Tactician_U_SALVAGEDwalk 168 
+#define Tome_U_Anima_N426walk 169 
+#define Transporter_Wagon_Moving_IS 170 
+#define US_Infantry_Amydwalk_1 171 
+#define Warbird_F_Unknown_Alexsplodewalk 172 
+#define War_Monk_M_Axe_Derwalk 173 
+#define Witch_F_Aruka_Kenpuhuwalk 174 
+*/ 
+
+// Reordered by chatgpt to try and match classes 
+
+#define Lord_M_Roy_T1_ISwalk 127
+#define Lord_M_Roy_T2_ISwalk 128
+#define Ike_Vanguard_M_Unknownwalk 129
+#define Ike_Vanguard_M_Unknownwalk2 130
+#define Lord_M_Sword_Generic_Leifwalk 131
+#define Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk 132
+#define Lord_Knight_Seliph_M_Stephano_Zanewalk 133
+#define LancerF__Red_Hair_SALVAGEDwalk 134
+#define FE15Myrmidon_U_Sword_Nuramonwalk 135
+    #define Fencer_Blade_LordAnnoyingAnonwalk 136
+#define Dragoon_M_v2_Lance_Pikmin_Unknownwalk 137
+#define Lancer_M_Brown_Hair_SALVAGEDwalk 138
+#define Militia_M_Deserter_Lance_Alusqwalk 139
+#define Halberdier_M_2_0_TBAwalk 140
+#define Marauder_M_Basic_Axe_Blademasterwalk 141
+    #define Sentinel_Halberdier_Aruka_Kenpuhuwalk 142
+#define Warbird_F_Unknown_Alexsplodewalk 143
+#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk 144
+#define Baron_U_Cape_Nuramon_Jay_Rynwalk 145
+    #define Brighid_Hector_Axe_Shin19walk 146
+#define Fighter_M_Flail_Knight_L95_Stephanowalk 147
+#define Gladiator_M_Sword_Pikmin_L95_Pushwallwalk 148
+#define Great_Lord_M_HectorHarbinger_SD9Kwalk 149
+    #define HeavyInfantry_EphraimSnewpingwalk 150
+    #define LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarwalk 151
+#define Mercenary_M_Sword_Improved_Flasubanwalk 152
+#define Phantom_U_ISwalk 153
+    #define WarCleric_F_Staff_SkidMarc25walk 154
+#define Noble_F_Blue_Edelgard_Redbeanwalk 155
+#define Fletchling_Hunter_M_MeatOfJusticewalk 156
+#define Hunter_M_MeatOfJusticestyle_knabepicerwalk 157
+#define Transporter_Wagon_Moving_IS 158
+#define Miko_Diviner_F_Orochi_Sphealnukewalk 159
+#define Mogall_U_Jockey_Bow_Haifriedwalk 160
+#define Angel_F_Unknownwalk 161
+#define Arcanist_U_Unfinished_Norikinswalk 162
+#define Mage_F_GaidenStyle_TAS20XXwalk 163
+#define Bonewalker_U_Cantor_GaidenStyle_Ryn_N426walk 164
+    #define Cantor2_Norikins_move 165
+#define Dark_Prince_M_Stephano_Zanewalk 166
+#define Dread_Fighter_M_Nuramonwalk 167
+#define Executioner_U_Huichelaar_IS_Lexouwalk 168
+#define Dancer_ISwalk 169
+#define Sage_F_Magician_BBHood217walk 170
+#define Magic_Seal_M_Moving_IS 171
+    #define Magician_EliwoodTyTheBubwalk 172
+#define Shaman_M_Occultist_Devisian_Nights_Pikminwalk 173
+    #define Parson_Priest_M_Caped_Staff_topazlightwalk 174
+#define Pupil_M_Evil_ArcherBiaswalk 175
+#define Mage_F_Awakening_bloodwalk 176
+    #define RedMage2_Sage_Hat_TopazlightUnknownwalk 177
+#define Tactician_U_SALVAGEDwalk 178
+#define Tome_U_Anima_N426walk 179
+#define Witch_F_Aruka_Kenpuhuwalk 180
+#define Cleric_ISwalk 181 // Egyptian ??  
+#define Bard_M_Elffin_ISwalk 182
+    #define Chicken_Pikmin1211_walk 183
+#define Mosquito_U_Dutch_Introvertwalk 184
+    #define Sandworm_Norikins_move 185
+#define Slime_U_Yellowtoadwalk 186
+#define Cursed_Sword_U_Derwalk 187
+
+
+
+#define Fellbeast_Wyvern_Wild_U_Faeriefruitwalk 188 // FellbeastMMS 
+#define BlackDragon_U_Magic_L95walk 189 // BlackDragonMMS
+#define GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datwalk 190 // GrandMahoutMMS
+#define Djinn_M_Alexsplodewalk 191 // DjinnMMS
+#define LivingArmor_Red_Flame_Sphealnuke_topazlightwalk 192 // LivingArmorMMS
+#define Boxer_M_Bald_ShadowAllyXwalk 193 // BoxerMMS
+#define Enchanter_Ninja_Derwalk 194 // EnchanterMMS
+
+
+
+
+
+	// #define  189
+	// #define  190
+#define Lord_F_Eirika_Sword_ISwalk 201
+#define Lord_F_Lyn_Sword_ISwalk 202
+    #define Great_Lord_F_Eirika_Sword_ISwalk 203
+    #define Blade_Lord_F_Lyn_Sword_ISwalk 204
+#define Lord_M_Ephraim_Lance_ISwalk 205
+#define Great_Lord_M_Ephraim_Lance_ISwalk 206
+#define Lord_M_Eliwood_Sword_ISwalk 207 
+    #define Knight_Lord_M_Eliwood_Sword_ISwalk 208 
+#define Lord_M_Hector_Axe_ISwalk 209
+    #define Great_Lord_M_Hector_ISwalk 210
+
+
+#define AlmT1 Lord_M_Roy_T1_ISwalk+1
+#define AlmT2 Lord_M_Roy_T2_ISwalk+1
+#define IkeLord Ike_Vanguard_M_Unknownwalk+1
+#define IkeRanger Ike_Vanguard_M_Unknownwalk2+1
+#define LeifLord Lord_M_Sword_Generic_Leifwalk+1
+#define MarthLord Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk+1
+#define SeliphLord Lord_Knight_Seliph_M_Stephano_Zanewalk+1
+#define Lancer LancerF__Red_Hair_SALVAGEDwalk+1
+#define Trueblade FE15Myrmidon_U_Sword_Nuramonwalk+1
+#define Fencer Fencer_Blade_LordAnnoyingAnonwalk+1
+#define Dragoon Dragoon_M_v2_Lance_Pikmin_Unknownwalk+1
+#define Lancer2 Lancer_M_Brown_Hair_SALVAGEDwalk+1
+#define Militia Militia_M_Deserter_Lance_Alusqwalk+1
+#define Halberdier Halberdier_M_2_0_TBAwalk+1
+#define Marauder Marauder_M_Basic_Axe_Blademasterwalk+1
+#define Sentinel Sentinel_Halberdier_Aruka_Kenpuhuwalk+1
+#define Warbird Warbird_F_Unknown_Alexsplodewalk+1
+#define SupplierAnna Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk+1
+#define Baron Baron_U_Cape_Nuramon_Jay_Rynwalk+1
+#define Brighid Brighid_Hector_Axe_Shin19walk+1
+#define FlailKnight Fighter_M_Flail_Knight_L95_Stephanowalk+1
+#define Gladiator Gladiator_M_Sword_Pikmin_L95_Pushwallwalk+1
+#define Harbinger Great_Lord_M_HectorHarbinger_SD9Kwalk+1
+#define HeavyInfantry HeavyInfantry_EphraimSnewpingwalk+1
+#define LegionKing LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarwalk+1
+#define Mercenary2 Mercenary_M_Sword_Improved_Flasubanwalk+1
+#define Phantom Phantom_U_ISwalk+1
+#define WarCleric WarCleric_F_Staff_SkidMarc25walk+1
+#define Adventurer Noble_F_Blue_Edelgard_Redbeanwalk+1
+#define Fletchling Fletchling_Hunter_M_MeatOfJusticewalk+1
+#define Hunter Hunter_M_MeatOfJusticestyle_knabepicerwalk+1
+#define MerlinusTransport Transporter_Wagon_Moving_IS+1
+#define Miko Miko_Diviner_F_Orochi_Sphealnukewalk+1
+#define SkeletonRider Mogall_U_Jockey_Bow_Haifriedwalk+1
+#define Angel Angel_F_Unknownwalk+1
+#define Arcanist Arcanist_U_Unfinished_Norikinswalk+1
+#define Arcanist2 Mage_F_GaidenStyle_TAS20XXwalk+1
+#define Cantor Bonewalker_U_Cantor_GaidenStyle_Ryn_N426walk+1
+#define Cantor2 Cantor2_Norikins_move+1
+#define DarkPrince Dark_Prince_M_Stephano_Zanewalk+1
+#define DreadFighter Dread_Fighter_M_Nuramonwalk+1
+#define Executioner Executioner_U_Huichelaar_IS_Lexouwalk+1
+#define Dancer2 Dancer_ISwalk+1
+#define GaidenPriestess Sage_F_Magician_BBHood217walk+1
+#define MagicSeal2 Magic_Seal_M_Moving_IS+1
+#define Magician Magician_EliwoodTyTheBubwalk+1
+#define Occultist Shaman_M_Occultist_Devisian_Nights_Pikminwalk+1
+#define Parson Parson_Priest_M_Caped_Staff_topazlightwalk+1
+#define Pupil2 Pupil_M_Evil_ArcherBiaswalk+1
+#define RedMage Mage_F_Awakening_bloodwalk+1
+#define RedMage2 RedMage2_Sage_Hat_TopazlightUnknownwalk+1
+#define Tactician2 Tactician_U_SALVAGEDwalk+1
+#define Tome Tome_U_Anima_N426walk+1
+#define Witch Witch_F_Aruka_Kenpuhuwalk+1
+#define Cleric2 Cleric_ISwalk+1
+#define Bard2 Bard_M_Elffin_ISwalk+1
+#define Chicken Chicken_Pikmin1211_walk+1
+#define Mosquito Mosquito_U_Dutch_Introvertwalk+1
+#define Sandworm Sandworm_Norikins_move+1
+#define Slime Slime_U_Yellowtoadwalk+1
+#define CursedSword Cursed_Sword_U_Derwalk+1
+#define Fellbeast Fellbeast_Wyvern_Wild_U_Faeriefruitwalk+1
+#define BlackDragon BlackDragon_U_Magic_L95walk+1
+#define GrandMahout GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datwalk+1
+#define Djinn Djinn_M_Alexsplodewalk+1
+#define LivingArmor LivingArmor_Red_Flame_Sphealnuke_topazlightwalk+1
+#define Boxer Boxer_M_Bald_ShadowAllyXwalk+1
+#define Enchanter Enchanter_Ninja_Derwalk+1
+
+
+// #define Ike_Lord IkeLord
+// #define Alm_T2 AlmT2
+// #define Seliph SeliphLord
+// #define Mounted_Marauder Marauder
+// #define Heavy_Infantry HeavyInfantry
+// #define Arcanist_by_Devisian_Nights Arcanist
+// #define Arcanist_by_Nuramon Arcanist2 
+// #define Red_Mage_by_Reyk RedMage 
+// #define Red_mage_by_Mycahel RedMage2 
+// #define Dark_Prince DarkPrince 
+// #define Gaiden_Priestess GaidenPriestess
+
+
+
+
+
+#define Alm_T1SMS Lord_M_Roy_T1_ISstand
+#define Alm_T2SMS Lord_M_Roy_T2_ISstand
+#define Ike_LordSMS Ike_Vanguard_M_Unknownstand
+#define Ike_RangerSMS Ike_Vanguard_M_Unknownstand
+#define Leif_LordSMS Lord_M_Sword_Generic_16x16_Leifstand
+#define Marth_SlashSMS Lord_M_Marth_Dominus_Vobiscum_Snewpingstand
+#define SeliphSMS Lord_Knight_Seliph_M_Stephano_Zanestand
+#define T1_LancerSMS LancerF_Red_Hair_SALVAGEDstand
+#define TruebladeSMS FE15Myrmidon_U_Sword_Nuramonstand
+    #define Katarina_FencerSMS Fencer_Blade_LordAnnoyingAnonstand
+#define DragoonSMS Dragoon_M_v2_Lance_Pikmin_Unknownstand
+#define Lancer_by_SALVAGEDSMS Lancer_M_Brown_Hair_SALVAGEDstand
+#define MilitiaSMS Militia_M_Deserter_Lance_Alusqstand
+#define HalberdierSMS Halberdier_M_2_0_TBAstand
+#define Mounted_MarauderSMS Marauder_M_Basic_Axe_Blademasterstand
+    #define SentinelSMS Sentinel_Halberdier_Aruka_Kenpuhustand
+#define WarbirdSMS Warbird_F_Unknown_Alexsplodestand
+#define Supplier_AnnaSMS Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand
+#define BaronSMS Baron_U_Lance_Topazlight_Nuramon_Its_Just_Jaystand
+    #define BrighidSMS Brighid_Hector_Axe_Shin19stand
+#define Flail_KnightSMS Fighter_M_Flail_Knight_L95_Stephanostand
+#define GladiatorSMS Gladiator_M_Sword_Pikmin_L95_Pushwallstand
+#define HarbingerSMS Great_Lord_M_HectorHarbinger_SD9Kstand
+#define Heavy_InfantrySMS HeavyInfantry_Ephraim_Snewpingstand
+    #define Legion_KingSMS LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarstand
+#define Mercenary_by_SALVAGEDSMS Mercenary_M_Sword_Improved_Flasubanstand
+#define Phantom_by_TBASMS Phantom_U_IS_Pushwallstand
+#define War_ClericSMS WarCleric_F_Staff_SkidMarc25stand
+#define AdventurerSMS Noble_F_Blue_Edelgard_Redbeanstand
+#define FletchlingSMS Fletchling_Hunter_M_FE13_knabepicer_NightBloodKTstand
+#define HunterSMS Hunter_M_MeatOfJusticestyle_knabepicerstand
+#define Merlinus_TransportSMS Transporter_Wagon_Standing_IS
+#define MikoSMS Miko_Diviner_F_Orochi_Sphealnukestand
+#define Skeleton_RiderSMS Mogall_U_Jockey_Bow_Haifriedstand
+#define AngelSMS Angel_F_Unknownstand
+#define Arcanist_by_Devisian_NightsSMS Shaman_M_Occultist_Devisian_Nights_Pikminstand
+#define Arcanist_by_NuramonSMS Mage_F_GaidenStyle_16x16_TAS20XXstand
+    #define Cantor_JedahSMS Cantor2_Norikins_stand
+#define Cantor_bySMS Bonewalker_U_Cantor_GaidenStyle_Rynstand
+#define Dark_PrinceSMS Dark_Prince_M_Stephano_Zanestand
+#define Dread_FighterSMS Dread_Fighter_M_Nuramonstand
+#define ExecutionerSMS Executioner_U_Huichelaar_IS_Lexoustand
+#define FE8_TethysSMS Dancer_ISstand
+#define Gaiden_PriestessSMS Sage_F_Magician_BBHood217stand
+#define KishunaSMS Magic_Seal_M_Standing_IS
+    #define MagicianSMS Magician_Eliwood_16x16_TyTheBubstand
+#define OccultistSMS Shaman_M_Occultist_Devisian_Nights_Pikminstand
+    #define ParsonSMS Parson_Priest_M_Caped_Staff_topazlightstand
+#define PupilReskinSMS Pupil_M_Evil_ArcherBiasstand
+#define Red_Mage_by_ReykSMS Mage_F_Awakening_bloodstand
+    #define Red_mage_by_MycahelSMS RedMage2_Sage_Hat_TopazlightUnknownstand
+#define TacticianSMS Tactician_U_SALVAGEDstand
+#define TomesSMS Tome_U_Anima_N426stand
+#define WitchSMS Witch_F_Aruka_Kenpuhustand
+#define EgyptianSMS Cleric_ISstand
+#define Elffin_FancySMS Bard_M_Elffin_ISstand
+#define Tethys_RepaletteSMS Dancer_F_Larum_ISstand
+    #define ChickenSMS Chicken_Pikmin1211_stand
+#define MosquitoSMS Mosquito_U_Dutch_Introvertstand
+    #define SandwormSMS Sandworm_Norikins_stand
+#define SlimeSMS Slime_U_Yellowtoadstand
+#define Cursed_SwordSMS Cursed_Sword_U_Derstand
+#define FellbeastSMS Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand
+#define BlackDragonSMS BlackDragon_U_Magic_L95stand
+#define GrandMahoutSMS GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datstand
+#define DjinnSMS Djinn_M_Alexsplodestand
+#define LivingArmorSMS LivingArmor_Red_Flame_Sphealnuke_topazlightstand
+#define BoxerSMS Boxer_M_Bald_ShadowAllyXstand
+#define EnchanterSMS Enchanter_Ninja_Derstand
+
+
+// #define Brighid_Hector_Axe_Shin19walk 
+// #define Cantor2_Norikins_move 
+// #define Chicken_Pikmin1211_walk 
+// #define Fencer_Blade_LordAnnoyingAnonwalk 
+// #define HeavyInfantry_EphraimSnewpingwalk 
+// #define LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarwalk 
+// #define Magician_EliwoodTyTheBubwalk 
+// #define Parson_Priest_M_Caped_Staff_topazlightwalk 
+// #define RedMage2_Sage_Hat_TopazlightUnknownwalk 
+// #define Sandworm_Norikins_move 
+// #define Sentinel_Halberdier_Aruka_Kenpuhuwalk 
+// #define WarCleric_F_Staff_SkidMarc25walk 
+
+
+
+
+
+//Copy from here 
+PUSH 
+
+SetSMS(Brighid_Hector_Axe_Shin19stand, 1, Brighid_Hector_Axe_Shin19stand_Data) 
+SetSMS(Cantor2_Norikins_stand, 0, Cantor2_Norikins_stand_Data) 
+SetSMS(Chicken_Pikmin1211_stand, 0, Chicken_Pikmin1211_stand_Data) 
+SetSMS(Fencer_Blade_LordAnnoyingAnonstand, 0, Fencer_Blade_LordAnnoyingAnonstand_Data) 
+SetSMS(HeavyInfantry_Ephraim_Snewpingstand, 1, HeavyInfantry_Ephraim_Snewpingstand_Data) 
+SetSMS(LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarstand, 1, LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarstand_Data) 
+SetSMS(Magician_Eliwood_16x16_TyTheBubstand, 0, Magician_Eliwood_16x16_TyTheBubstand_Data) 
+SetSMS(Parson_Priest_M_Caped_Staff_topazlightstand, 0, Parson_Priest_M_Caped_Staff_topazlightstand_Data) 
+SetSMS(RedMage2_Sage_Hat_TopazlightUnknownstand, 0, RedMage2_Sage_Hat_TopazlightUnknownstand_Data) 
+SetSMS(Sandworm_Norikins_stand, 0, Sandworm_Norikins_stand_Data) 
+SetSMS(Sentinel_Halberdier_Aruka_Kenpuhustand, 1, Sentinel_Halberdier_Aruka_Kenpuhustand_Data) 
+SetSMS(WarCleric_F_Staff_SkidMarc25stand, 0, WarCleric_F_Staff_SkidMarc25stand_Data) 
+
+SetSMS(BlackDragon_U_Magic_L95stand, 1, BlackDragon_U_Magic_L95stand_Data) 
+SetSMS(Boxer_M_Bald_ShadowAllyXstand, 0, Boxer_M_Bald_ShadowAllyXstand_Data) 
+SetSMS(Djinn_M_Alexsplodestand, 1, Djinn_M_Alexsplodestand_Data) 
+SetSMS(Enchanter_Ninja_Derstand, 0, Enchanter_Ninja_Derstand_Data) 
+SetSMS(Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand, 0, Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand_Data) 
+SetSMS(GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datstand, 1, GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datstand_Data) 
+SetSMS(LivingArmor_Red_Flame_Sphealnuke_topazlightstand, 1, LivingArmor_Red_Flame_Sphealnuke_topazlightstand_Data) 
+
+
+SetSMS(Cleric_ISstand, 0, Cleric_ISstand_Data) 
+SetSMS(Dancer_ISstand, 0, Dancer_ISstand_Data) 
+SetSMS(Angel_F_Unknownstand, 2, Angel_F_Unknownstand_Data) 
+SetSMS(Fletchling_Hunter_M_FE13_knabepicer_NightBloodKTstand, 0, Fletchling_Hunter_M_FE13_knabepicer_NightBloodKTstand_Data) 
+SetSMS(Mercenary_M_Sword_Improved_Flasubanstand, 0, Mercenary_M_Sword_Improved_Flasubanstand_Data) 
+SetSMS(Miko_Diviner_F_Orochi_Sphealnukestand, 1, Miko_Diviner_F_Orochi_Sphealnukestand_Data) 
+SetSMS(Phantom_U_IS_Pushwallstand, 0, Phantom_U_IS_Pushwallstand_Data) 
+
+
+SetSMS(Mage_F_Awakening_bloodstand, 1, Mage_F_Awakening_bloodstand_Data) 
+SetSMS(LancerF_Red_Hair_SALVAGEDstand, 0, LancerF_Red_Hair_SALVAGEDstand_Data) 
+SetSMS(Ike_Vanguard_M_Unknownstand, 1, Ike_Vanguard_M_Unknownstand_Data) 
+SetSMS(Lord_Knight_Seliph_M_Stephano_Zanestand, 1, Lord_Knight_Seliph_M_Stephano_Zanestand_Data) 
+SetSMS(Slime_U_Yellowtoadstand, 0, Slime_U_Yellowtoadstand_Data) 
+SetSMS(Lord_M_Sword_Generic_16x16_Leifstand, 0, Lord_M_Sword_Generic_16x16_Leifstand_Data) 
+SetSMS(Arcanist_U_Unfinished_Norikinsstand, 0, Arcanist_U_Unfinished_Norikinsstand_Data) 
+SetSMS(Bard_M_Elffin_ISstand, 0, Bard_M_Elffin_ISstand_Data) 
+SetSMS(Baron_U_Lance_Topazlight_Nuramon_Its_Just_Jaystand, 1, Baron_U_Lance_Topazlight_Nuramon_Its_Just_Jaystand_Data) 
+SetSMS(Blade_Lord_F_Lyn_Sword_ISstand, 0, Blade_Lord_F_Lyn_Sword_ISstand_Data) 
+SetSMS(Bonewalker_U_Cantor_GaidenStyle_Rynstand, 1, Bonewalker_U_Cantor_GaidenStyle_Rynstand_Data) 
+SetSMS(Cursed_Sword_U_Derstand, 1, Cursed_Sword_U_Derstand_Data) 
+SetSMS(Dancer_F_Larum_ISstand, 0, Dancer_F_Larum_ISstand_Data) 
+SetSMS(Dark_Prince_M_Stephano_Zanestand, 0, Dark_Prince_M_Stephano_Zanestand_Data) 
+SetSMS(Dragoon_M_v2_Lance_Pikmin_Unknownstand, 1, Dragoon_M_v2_Lance_Pikmin_Unknownstand_Data) 
+SetSMS(Dread_Fighter_M_Nuramonstand, 0, Dread_Fighter_M_Nuramonstand_Data) 
+SetSMS(Executioner_U_Huichelaar_IS_Lexoustand, 0, Executioner_U_Huichelaar_IS_Lexoustand_Data) 
+SetSMS(FE15Myrmidon_U_Sword_Nuramonstand, 0, FE15Myrmidon_U_Sword_Nuramonstand_Data) 
+SetSMS(Fighter_M_Flail_Knight_L95_Stephanostand, 1, Fighter_M_Flail_Knight_L95_Stephanostand_Data) 
+SetSMS(Gladiator_M_Sword_Pikmin_L95_Pushwallstand, 0, Gladiator_M_Sword_Pikmin_L95_Pushwallstand_Data) 
+SetSMS(Great_Lord_F_Eirika_Sword_ISstand, 1, Great_Lord_F_Eirika_Sword_ISstand_Data) 
+SetSMS(Great_Lord_M_Ephraim_Lance_ISstand, 1, Great_Lord_M_Ephraim_Lance_ISstand_Data) 
+SetSMS(Great_Lord_M_HectorHarbinger_SD9Kstand, 1, Great_Lord_M_HectorHarbinger_SD9Kstand_Data) 
+SetSMS(Great_Lord_M_Hector_ISstand, 1, Great_Lord_M_Hector_ISstand_Data) 
+SetSMS(Halberdier_M_2_0_TBAstand, 0, Halberdier_M_2_0_TBAstand_Data) 
+SetSMS(Hunter_M_MeatOfJusticestyle_knabepicerstand, 0, Hunter_M_MeatOfJusticestyle_knabepicerstand_Data) 
+SetSMS(Knight_Lord_M_Eliwood_Sword_ISstand, 1, Knight_Lord_M_Eliwood_Sword_ISstand_Data) 
+SetSMS(Lancer_M_Brown_Hair_SALVAGEDstand, 0, Lancer_M_Brown_Hair_SALVAGEDstand_Data) 
+SetSMS(Lord_F_Eirika_Sword_ISstand, 0, Lord_F_Eirika_Sword_ISstand_Data) 
+SetSMS(Lord_F_Lyn_Sword_ISstand, 0, Lord_F_Lyn_Sword_ISstand_Data) 
+SetSMS(Lord_M_Eliwood_Sword_16x16_ISstand, 0, Lord_M_Eliwood_Sword_16x16_ISstand_Data) 
+SetSMS(Lord_M_Ephraim_Lance_ISstand, 1, Lord_M_Ephraim_Lance_ISstand_Data) 
+SetSMS(Lord_M_Hector_Axe_ISstand, 1, Lord_M_Hector_Axe_ISstand_Data) 
+SetSMS(Lord_M_Marth_Dominus_Vobiscum_Snewpingstand, 1, Lord_M_Marth_Dominus_Vobiscum_Snewpingstand_Data) 
+SetSMS(Lord_M_Roy_T1_ISstand, 0, Lord_M_Roy_T1_ISstand_Data) 
+SetSMS(Lord_M_Roy_T2_ISstand, 1, Lord_M_Roy_T2_ISstand_Data) 
+SetSMS(Mage_F_GaidenStyle_16x16_TAS20XXstand, 0, Mage_F_GaidenStyle_16x16_TAS20XXstand_Data) 
+SetSMS(Magic_Seal_M_Standing_IS, 0, Magic_Seal_M_Standing_IS_Data) 
+SetSMS(Marauder_M_Basic_Axe_Blademasterstand, 2, Marauder_M_Basic_Axe_Blademasterstand_Data) 
+SetSMS(Militia_M_Deserter_Lance_Alusqstand, 0, Militia_M_Deserter_Lance_Alusqstand_Data) 
+SetSMS(Mogall_U_Jockey_Bow_Haifriedstand, 1, Mogall_U_Jockey_Bow_Haifriedstand_Data) 
+SetSMS(Mosquito_U_Dutch_Introvertstand, 1, Mosquito_U_Dutch_Introvertstand_Data) 
+SetSMS(Noble_F_Blue_Edelgard_Redbeanstand, 0, Noble_F_Blue_Edelgard_Redbeanstand_Data) 
+SetSMS(Pupil_M_Evil_ArcherBiasstand, 0, Pupil_M_Evil_ArcherBiasstand_Data) 
+SetSMS(Sage_F_Magician_BBHood217stand, 0, Sage_F_Magician_BBHood217stand_Data) 
+SetSMS(Shaman_M_Occultist_Devisian_Nights_Pikminstand, 0, Shaman_M_Occultist_Devisian_Nights_Pikminstand_Data) 
+SetSMS(Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand, 0, Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand_Data) 
+SetSMS(Tactician_U_SALVAGEDstand, 0, Tactician_U_SALVAGEDstand_Data) 
+SetSMS(Tome_U_Anima_N426stand, 0, Tome_U_Anima_N426stand_Data) 
+SetSMS(Transporter_Wagon_Standing_IS, 1, Transporter_Wagon_Standing_IS_Data) 
+SetSMS(Warbird_F_Unknown_Alexsplodestand, 2, Warbird_F_Unknown_Alexsplodestand_Data) 
+// SetSMS(War_Monk_M_Axe_Derstand, 1, War_Monk_M_Axe_Derstand_Data) 
+SetSMS(Witch_F_Aruka_Kenpuhustand, 1, Witch_F_Aruka_Kenpuhustand_Data) 
+
+
+
+SetMMS(Brighid_Hector_Axe_Shin19walk, Brighid_Hector_Axe_Shin19walk_Data, DemonKingAP) 
+SetMMS(Cantor2_Norikins_move, Cantor2_Norikins_move_Data, DemonKingAP) 
+SetMMS(Chicken_Pikmin1211_walk, Chicken_Pikmin1211_walk_Data, DemonKingAP) 
+SetMMS(Fencer_Blade_LordAnnoyingAnonwalk, Fencer_Blade_LordAnnoyingAnonwalk_Data, DemonKingAP) 
+SetMMS(HeavyInfantry_EphraimSnewpingwalk, HeavyInfantry_EphraimSnewpingwalk_Data, DemonKingAP) 
+SetMMS(LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarwalk, LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarwalk_Data, DemonKingAP) 
+SetMMS(Magician_EliwoodTyTheBubwalk, Magician_EliwoodTyTheBubwalk_Data, DemonKingAP) 
+SetMMS(Parson_Priest_M_Caped_Staff_topazlightwalk, Parson_Priest_M_Caped_Staff_topazlightwalk_Data, DemonKingAP) 
+SetMMS(RedMage2_Sage_Hat_TopazlightUnknownwalk, RedMage2_Sage_Hat_TopazlightUnknownwalk_Data, DemonKingAP) 
+SetMMS(Sandworm_Norikins_move, Sandworm_Norikins_move_Data, DemonKingAP) 
+SetMMS(Sentinel_Halberdier_Aruka_Kenpuhuwalk, Sentinel_Halberdier_Aruka_Kenpuhuwalk_Data, DemonKingAP) 
+SetMMS(WarCleric_F_Staff_SkidMarc25walk, WarCleric_F_Staff_SkidMarc25walk_Data, DemonKingAP) 
+
+SetMMS(BlackDragon_U_Magic_L95walk, BlackDragon_U_Magic_L95walk_Data, DemonKingAP) 
+SetMMS(Boxer_M_Bald_ShadowAllyXwalk, Boxer_M_Bald_ShadowAllyXwalk_Data, DemonKingAP) 
+SetMMS(Djinn_M_Alexsplodewalk, Djinn_M_Alexsplodewalk_Data, DemonKingAP) 
+SetMMS(Enchanter_Ninja_Derwalk, Enchanter_Ninja_Derwalk_Data, DemonKingAP) 
+SetMMS(Fellbeast_Wyvern_Wild_U_Faeriefruitwalk, Fellbeast_Wyvern_Wild_U_Faeriefruitwalk_Data, DemonKingAP) 
+SetMMS(GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datwalk, GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datwalk_Data, DemonKingAP) 
+SetMMS(LivingArmor_Red_Flame_Sphealnuke_topazlightwalk, LivingArmor_Red_Flame_Sphealnuke_topazlightwalk_Data, DemonKingAP) 
+
+SetMMS(Cleric_ISwalk, Cleric_ISwalk_Data, DemonKingAP) 
+SetMMS(Dancer_ISwalk, Dancer_ISwalk_Data, DemonKingAP) 
+SetMMS(Angel_F_Unknownwalk, Angel_F_Unknownwalk_Data, DemonKingAP) 
+SetMMS(Fletchling_Hunter_M_MeatOfJusticewalk, Fletchling_Hunter_M_MeatOfJusticewalk_Data, DemonKingAP) 
+SetMMS(Mercenary_M_Sword_Improved_Flasubanwalk, Mercenary_M_Sword_Improved_Flasubanwalk_Data, DemonKingAP) 
+SetMMS(Miko_Diviner_F_Orochi_Sphealnukewalk, Miko_Diviner_F_Orochi_Sphealnukewalk_Data, DemonKingAP) 
+SetMMS(Phantom_U_ISwalk, Phantom_U_ISwalk_Data, DemonKingAP) 
+SetMMS(LancerF__Red_Hair_SALVAGEDwalk, LancerF__Red_Hair_SALVAGEDwalk_Data, DemonKingAP) 
+SetMMS(Mage_F_Awakening_bloodwalk, Mage_F_Awakening_bloodwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Sword_Generic_Leifwalk, Lord_M_Sword_Generic_Leifwalk_Data, DemonKingAP) 
+SetMMS(Lord_Knight_Seliph_M_Stephano_Zanewalk, Lord_Knight_Seliph_M_Stephano_Zanewalk_Data, DemonKingAP) 
+SetMMS(Ike_Vanguard_M_Unknownwalk, Ike_Vanguard_M_Unknownwalk_Data, DemonKingAP) 
+SetMMS(Ike_Vanguard_M_Unknownwalk2, Ike_Vanguard_M_Unknownwalk_Data, DemonKingAP) 
+SetMMS(Slime_U_Yellowtoadwalk, Slime_U_Yellowtoadwalk_Data, DemonKingAP) 
+
+SetMMS(Arcanist_U_Unfinished_Norikinswalk, Arcanist_U_Unfinished_Norikinswalk_Data, DemonKingAP) 
+SetMMS(Bard_M_Elffin_ISwalk, Bard_M_Elffin_ISwalk_Data, DemonKingAP) 
+SetMMS(Baron_U_Cape_Nuramon_Jay_Rynwalk, Baron_U_Cape_Nuramon_Jay_Rynwalk_Data, DemonKingAP) 
+SetMMS(Blade_Lord_F_Lyn_Sword_ISwalk, Blade_Lord_F_Lyn_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Bonewalker_U_Cantor_GaidenStyle_Ryn_N426walk, Bonewalker_U_Cantor_GaidenStyle_Ryn_N426walk_Data, DemonKingAP) 
+SetMMS(Cursed_Sword_U_Derwalk, Cursed_Sword_U_Derwalk_Data, DemonKingAP) 
+
+SetMMS(Dark_Prince_M_Stephano_Zanewalk, Dark_Prince_M_Stephano_Zanewalk_Data, DemonKingAP) 
+SetMMS(Dragoon_M_v2_Lance_Pikmin_Unknownwalk, Dragoon_M_v2_Lance_Pikmin_Unknownwalk_Data, DemonKingAP) 
+SetMMS(Dread_Fighter_M_Nuramonwalk, Dread_Fighter_M_Nuramonwalk_Data, DemonKingAP) 
+SetMMS(Executioner_U_Huichelaar_IS_Lexouwalk, Executioner_U_Huichelaar_IS_Lexouwalk_Data, DemonKingAP) 
+SetMMS(FE15Myrmidon_U_Sword_Nuramonwalk, FE15Myrmidon_U_Sword_Nuramonwalk_Data, DemonKingAP) 
+SetMMS(Fighter_M_Flail_Knight_L95_Stephanowalk, Fighter_M_Flail_Knight_L95_Stephanowalk_Data, DemonKingAP) 
+SetMMS(Gladiator_M_Sword_Pikmin_L95_Pushwallwalk, Gladiator_M_Sword_Pikmin_L95_Pushwallwalk_Data, DemonKingAP) 
+SetMMS(Great_Lord_F_Eirika_Sword_ISwalk, Great_Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Great_Lord_M_Ephraim_Lance_ISwalk, Great_Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
+SetMMS(Great_Lord_M_HectorHarbinger_SD9Kwalk, Great_Lord_M_HectorHarbinger_SD9Kwalk_Data, DemonKingAP) 
+SetMMS(Great_Lord_M_Hector_ISwalk, Great_Lord_M_Hector_ISwalk_Data, DemonKingAP) 
+SetMMS(Halberdier_M_2_0_TBAwalk, Halberdier_M_2_0_TBAwalk_Data, DemonKingAP) 
+SetMMS(Hunter_M_MeatOfJusticestyle_knabepicerwalk, Hunter_M_MeatOfJusticestyle_knabepicerwalk_Data, DemonKingAP) 
+SetMMS(Knight_Lord_M_Eliwood_Sword_ISwalk, Knight_Lord_M_Eliwood_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Lancer_M_Brown_Hair_SALVAGEDwalk, Lancer_M_Brown_Hair_SALVAGEDwalk_Data, DemonKingAP) 
+SetMMS(Lord_F_Eirika_Sword_ISwalk, Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_F_Lyn_Sword_ISwalk, Lord_F_Lyn_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Eliwood_Sword_ISwalk, Lord_M_Eliwood_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Ephraim_Lance_ISwalk, Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Hector_Axe_ISwalk, Lord_M_Hector_Axe_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk, Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Roy_T1_ISwalk, Lord_M_Roy_T1_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Roy_T2_ISwalk, Lord_M_Roy_T2_ISwalk_Data, DemonKingAP) 
+SetMMS(Mage_F_GaidenStyle_TAS20XXwalk, Mage_F_GaidenStyle_TAS20XXwalk_Data, DemonKingAP) 
+SetMMS(Magic_Seal_M_Moving_IS, Magic_Seal_M_Moving_IS_Data, DemonKingAP) 
+SetMMS(Marauder_M_Basic_Axe_Blademasterwalk, Marauder_M_Basic_Axe_Blademasterwalk_Data, DemonKingAP) 
+SetMMS(Militia_M_Deserter_Lance_Alusqwalk, Militia_M_Deserter_Lance_Alusqwalk_Data, DemonKingAP) 
+SetMMS(Mogall_U_Jockey_Bow_Haifriedwalk, Mogall_U_Jockey_Bow_Haifriedwalk_Data, DemonKingAP) 
+SetMMS(Mosquito_U_Dutch_Introvertwalk, Mosquito_U_Dutch_Introvertwalk_Data, DemonKingAP) 
+SetMMS(Noble_F_Blue_Edelgard_Redbeanwalk, Noble_F_Blue_Edelgard_Redbeanwalk_Data, DemonKingAP) 
+SetMMS(Pupil_M_Evil_ArcherBiaswalk, Pupil_M_Evil_ArcherBiaswalk_Data, DemonKingAP) 
+SetMMS(Sage_F_Magician_BBHood217walk, Sage_F_Magician_BBHood217walk_Data, DemonKingAP) 
+SetMMS(Shaman_M_Occultist_Devisian_Nights_Pikminwalk, Shaman_M_Occultist_Devisian_Nights_Pikminwalk_Data, DemonKingAP) 
+SetMMS(Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk, Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk_Data, DemonKingAP) 
+SetMMS(Tactician_U_SALVAGEDwalk, Tactician_U_SALVAGEDwalk_Data, DemonKingAP) 
+SetMMS(Tome_U_Anima_N426walk, Tome_U_Anima_N426walk_Data, DemonKingAP) 
+SetMMS(Transporter_Wagon_Moving_IS, Transporter_Wagon_Moving_IS_Data, DemonKingAP) 
+SetMMS(Warbird_F_Unknown_Alexsplodewalk, Warbird_F_Unknown_Alexsplodewalk_Data, DemonKingAP) 
+// SetMMS(War_Monk_M_Axe_Derwalk, War_Monk_M_Axe_Derwalk_Data, DemonKingAP) 
+SetMMS(Witch_F_Aruka_Kenpuhuwalk, Witch_F_Aruka_Kenpuhuwalk_Data, DemonKingAP) 
+ 
+POP 
+//Copy until here 
+
+
+
+

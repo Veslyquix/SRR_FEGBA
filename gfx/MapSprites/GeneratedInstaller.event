@@ -1,0 +1,971 @@
+//Generated - do not edit
+//Copy paste the /* */ section into your definitions if desired.
+//Please copy the SetSMS and SetMMS section to change SMS size and MMS AP. 
+ 
+ 
+ 
+/* 
+//First free SMS is 107
+#define Angel_F_Unknownstand 128 
+#define Arcanist_U_Unfinished_Norikinsstand 129 
+#define Bard_M_Elffin_ISstand 130 
+#define Baron_U_Lance_Topazlight_Nuramon_Its_Just_Jaystand 131 
+#define BlackDragon_U_Magic_L95stand 132 
+#define Blade_Lord_F_Lyn_Sword_ISstand 133 
+#define Bonewalker_U_Cantor_GaidenStyle_Rynstand 134 
+#define Boxer_M_Bald_ShadowAllyXstand 135 
+#define Brighid_Hector_Axe_Shin19stand 136 
+#define Cantor2_Norikins_stand 137 
+#define Chicken_Pikmin1211_stand 138 
+#define Cleric_ISstand 139 
+#define Cursed_Sword_U_Derstand 140 
+#define Dancer_F_Larum_ISstand 141 
+#define Dancer_ISstand 142 
+#define Dark_Prince_M_Stephano_Zanestand 143 
+#define Djinn_M_Alexsplodestand 144 
+#define Dragoon_M_v2_Lance_Pikmin_Unknownstand 145 
+#define Dread_Fighter_M_Nuramonstand 146 
+#define Enchanter_Ninja_Derstand 147 
+#define Executioner_U_Huichelaar_IS_Lexoustand 148 
+#define FE15Myrmidon_U_Sword_Nuramonstand 149 
+#define Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand 150 
+#define Fencer_Blade_LordAnnoyingAnonstand 151 
+#define Fighter_M_Flail_Knight_L95_Stephanostand 152 
+#define Fletchling_Hunter_M_FE13_knabepicer_NightBloodKTstand 153 
+#define Gladiator_M_Sword_Pikmin_L95_Pushwallstand 154 
+#define GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datstand 155 
+#define Great_Lord_F_Eirika_Sword_ISstand 156 
+#define Great_Lord_M_Ephraim_Lance_ISstand 157 
+#define Great_Lord_M_HectorHarbinger_SD9Kstand 158 
+#define Great_Lord_M_Hector_ISstand 159 
+#define Halberdier_M_2_0_TBAstand 160 
+#define HeavyInfantry_Ephraim_Snewpingstand 161 
+#define Hunter_M_MeatOfJusticestyle_knabepicerstand 162 
+#define Ike_Vanguard_M_Unknownstand 163 
+#define Knight_Lord_M_Eliwood_Sword_ISstand 164 
+#define LancerF_Red_Hair_SALVAGEDstand 165 
+#define Lancer_M_Brown_Hair_SALVAGEDstand 166 
+#define LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarstand 167 
+#define LivingArmor_Red_Flame_Sphealnuke_topazlightstand 168 
+#define Lord_F_Eirika_Sword_ISstand 169 
+#define Lord_F_Lyn_Sword_ISstand 170 
+#define Lord_Knight_Seliph_M_Stephano_Zanestand 171 
+#define Lord_M_Eliwood_Sword_16x16_ISstand 172 
+#define Lord_M_Ephraim_Lance_ISstand 173 
+#define Lord_M_Hector_Axe_ISstand 174 
+#define Lord_M_Marth_Dominus_Vobiscum_Snewpingstand 175 
+#define Lord_M_Roy_T1_ISstand 176 
+#define Lord_M_Roy_T2_ISstand 177 
+#define Lord_M_Sword_Generic_16x16_Leifstand 178 
+#define Mage_F_Awakening_bloodstand 179 
+#define Mage_F_GaidenStyle_16x16_TAS20XXstand 180 
+#define Magician_Eliwood_16x16_TyTheBubstand 181 
+#define Magic_Seal_M_Standing_IS 182 
+#define Marauder_M_Basic_Axe_Blademasterstand 183 
+#define Mercenary_M_Sword_Improved_Flasubanstand 184 
+#define Miko_Diviner_F_Orochi_Sphealnukestand 185 
+#define Militia_M_Deserter_Lance_Alusqstand 186 
+#define Mogall_U_Jockey_Bow_Haifriedstand 187 
+#define Mosquito_U_Dutch_Introvertstand 188 
+#define Noble_F_Blue_Edelgard_Redbeanstand 189 
+#define Parson_Priest_M_Caped_Staff_topazlightstand 190 
+#define Phantom_U_IS_Pushwallstand 191 
+#define Pupil_M_Evil_ArcherBiasstand 192 
+#define RedMage2_Sage_Hat_TopazlightUnknownstand 193 
+#define Sage_F_Magician_BBHood217stand 194 
+#define Sandworm_Norikins_stand 195 
+#define Sentinel_Halberdier_Aruka_Kenpuhustand 196 
+#define Shaman_M_Occultist_Devisian_Nights_Pikminstand 197 
+#define Slime_U_Yellowtoadstand 198 
+#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand 199 
+#define Tactician_U_SALVAGEDstand 200 
+#define Tome_U_Anima_N426stand 201 
+#define Transporter_Wagon_Standing_IS 202 
+#define Warbird_F_Unknown_Alexsplodestand 203 
+#define WarCleric_F_Staff_SkidMarc25stand 204 
+#define Witch_F_Aruka_Kenpuhustand 205 
+ 
+ 
+//First free MMS is 127 and will show up if you've expanded classes.
+#define Angel_F_Unknownwalk 127 
+#define Arcanist_U_Unfinished_Norikinswalk 128 
+#define Bard_M_Elffin_ISwalk 129 
+#define Baron_U_Cape_Nuramon_Jay_Rynwalk 130 
+#define BlackDragon_U_Magic_L95walk 131 
+#define Blade_Lord_F_Lyn_Sword_ISwalk 132 
+#define Bonewalker_U_Cantor_GaidenStyle_Ryn_N426walk 133 
+#define Boxer_M_Bald_ShadowAllyXwalk 134 
+#define Brighid_Hector_Axe_Shin19walk 135 
+#define Cantor2_Norikins_move 136 
+#define Chicken_Pikmin1211_walk 137 
+#define Cleric_ISwalk 138 
+#define Cursed_Sword_U_Derwalk 139 
+#define Dancer_F_Larum_ISwalk 140 
+#define Dancer_ISwalk 141 
+#define Dark_Prince_M_Stephano_Zanewalk 142 
+#define Djinn_M_Alexsplodewalk 143 
+#define Dragoon_M_v2_Lance_Pikmin_Unknownwalk 144 
+#define Dread_Fighter_M_Nuramonwalk 145 
+#define Enchanter_Ninja_Derwalk 146 
+#define Executioner_U_Huichelaar_IS_Lexouwalk 147 
+#define FE15Myrmidon_U_Sword_Nuramonwalk 148 
+#define Fellbeast_Wyvern_Wild_U_Faeriefruitwalk 149 
+#define Fencer_Blade_LordAnnoyingAnonwalk 150 
+#define Fighter_M_Flail_Knight_L95_Stephanowalk 151 
+#define Fletchling_Hunter_M_MeatOfJusticewalk 152 
+#define Gladiator_M_Sword_Pikmin_L95_Pushwallwalk 153 
+#define GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datwalk 154 
+#define Great_Lord_F_Eirika_Sword_ISwalk 155 
+#define Great_Lord_M_Ephraim_Lance_ISwalk 156 
+#define Great_Lord_M_HectorHarbinger_SD9Kwalk 157 
+#define Great_Lord_M_Hector_ISwalk 158 
+#define Halberdier_M_2_0_TBAwalk 159 
+#define HeavyInfantry_EphraimSnewpingwalk 160 
+#define Hunter_M_MeatOfJusticestyle_knabepicerwalk 161 
+#define Ike_Vanguard_M_Unknownwalk 162 
+#define Knight_Lord_M_Eliwood_Sword_ISwalk 163 
+#define LancerF__Red_Hair_SALVAGEDwalk 164 
+#define Lancer_M_Brown_Hair_SALVAGEDwalk 165 
+#define LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarwalk 166 
+#define LivingArmor_Red_Flame_Sphealnuke_topazlightwalk 167 
+#define Lord_F_Eirika_Sword_ISwalk 168 
+#define Lord_F_Lyn_Sword_ISwalk 169 
+#define Lord_Knight_Seliph_M_Stephano_Zanewalk 170 
+#define Lord_M_Eliwood_Sword_ISwalk 171 
+#define Lord_M_Ephraim_Lance_ISwalk 172 
+#define Lord_M_Hector_Axe_ISwalk 173 
+#define Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk 174 
+#define Lord_M_Roy_T1_ISwalk 175 
+#define Lord_M_Roy_T2_ISwalk 176 
+#define Lord_M_Sword_Generic_Leifwalk 177 
+#define Mage_F_Awakening_bloodwalk 178 
+#define Mage_F_GaidenStyle_TAS20XXwalk 179 
+#define Magician_EliwoodTyTheBubwalk 180 
+#define Magic_Seal_M_Moving_IS 181 
+#define Marauder_M_Basic_Axe_Blademasterwalk 182 
+#define Mercenary_M_Sword_Improved_Flasubanwalk 183 
+#define Miko_Diviner_F_Orochi_Sphealnukewalk 184 
+#define Militia_M_Deserter_Lance_Alusqwalk 185 
+#define Mogall_U_Jockey_Bow_Haifriedwalk 186 
+#define Mosquito_U_Dutch_Introvertwalk 187 
+#define Noble_F_Blue_Edelgard_Redbeanwalk 188 
+#define Parson_Priest_M_Caped_Staff_topazlightwalk 189 
+#define Phantom_U_ISwalk 190 
+#define Pupil_M_Evil_ArcherBiaswalk 191 
+#define RedMage2_Sage_Hat_TopazlightUnknownwalk 192 
+#define Sage_F_Magician_BBHood217walk 193 
+#define Sandworm_Norikins_move 194 
+#define Sentinel_Halberdier_Aruka_Kenpuhuwalk 195 
+#define Shaman_M_Occultist_Devisian_Nights_Pikminwalk 196 
+#define Slime_U_Yellowtoadwalk 197 
+#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk 198 
+#define Tactician_U_SALVAGEDwalk 199 
+#define Tome_U_Anima_N426walk 200 
+#define Transporter_Wagon_Moving_IS 201 
+#define Warbird_F_Unknown_Alexsplodewalk 202 
+#define WarCleric_F_Staff_SkidMarc25walk 203 
+#define Witch_F_Aruka_Kenpuhuwalk 204 
+ 
+*/ 
+ 
+ 
+ 
+/* 
+//Copy from here 
+PUSH 
+ 
+SetSMS(Angel_F_Unknownstand, 1, Angel_F_Unknownstand_Data) 
+SetSMS(Arcanist_U_Unfinished_Norikinsstand, 1, Arcanist_U_Unfinished_Norikinsstand_Data) 
+SetSMS(Bard_M_Elffin_ISstand, 1, Bard_M_Elffin_ISstand_Data) 
+SetSMS(Baron_U_Lance_Topazlight_Nuramon_Its_Just_Jaystand, 1, Baron_U_Lance_Topazlight_Nuramon_Its_Just_Jaystand_Data) 
+SetSMS(BlackDragon_U_Magic_L95stand, 1, BlackDragon_U_Magic_L95stand_Data) 
+SetSMS(Blade_Lord_F_Lyn_Sword_ISstand, 1, Blade_Lord_F_Lyn_Sword_ISstand_Data) 
+SetSMS(Bonewalker_U_Cantor_GaidenStyle_Rynstand, 1, Bonewalker_U_Cantor_GaidenStyle_Rynstand_Data) 
+SetSMS(Boxer_M_Bald_ShadowAllyXstand, 1, Boxer_M_Bald_ShadowAllyXstand_Data) 
+SetSMS(Brighid_Hector_Axe_Shin19stand, 1, Brighid_Hector_Axe_Shin19stand_Data) 
+SetSMS(Cantor2_Norikins_stand, 1, Cantor2_Norikins_stand_Data) 
+SetSMS(Chicken_Pikmin1211_stand, 1, Chicken_Pikmin1211_stand_Data) 
+SetSMS(Cleric_ISstand, 1, Cleric_ISstand_Data) 
+SetSMS(Cursed_Sword_U_Derstand, 1, Cursed_Sword_U_Derstand_Data) 
+SetSMS(Dancer_F_Larum_ISstand, 1, Dancer_F_Larum_ISstand_Data) 
+SetSMS(Dancer_ISstand, 1, Dancer_ISstand_Data) 
+SetSMS(Dark_Prince_M_Stephano_Zanestand, 1, Dark_Prince_M_Stephano_Zanestand_Data) 
+SetSMS(Djinn_M_Alexsplodestand, 1, Djinn_M_Alexsplodestand_Data) 
+SetSMS(Dragoon_M_v2_Lance_Pikmin_Unknownstand, 1, Dragoon_M_v2_Lance_Pikmin_Unknownstand_Data) 
+SetSMS(Dread_Fighter_M_Nuramonstand, 1, Dread_Fighter_M_Nuramonstand_Data) 
+SetSMS(Enchanter_Ninja_Derstand, 1, Enchanter_Ninja_Derstand_Data) 
+SetSMS(Executioner_U_Huichelaar_IS_Lexoustand, 1, Executioner_U_Huichelaar_IS_Lexoustand_Data) 
+SetSMS(FE15Myrmidon_U_Sword_Nuramonstand, 1, FE15Myrmidon_U_Sword_Nuramonstand_Data) 
+SetSMS(Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand, 1, Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand_Data) 
+SetSMS(Fencer_Blade_LordAnnoyingAnonstand, 1, Fencer_Blade_LordAnnoyingAnonstand_Data) 
+SetSMS(Fighter_M_Flail_Knight_L95_Stephanostand, 1, Fighter_M_Flail_Knight_L95_Stephanostand_Data) 
+SetSMS(Fletchling_Hunter_M_FE13_knabepicer_NightBloodKTstand, 1, Fletchling_Hunter_M_FE13_knabepicer_NightBloodKTstand_Data) 
+SetSMS(Gladiator_M_Sword_Pikmin_L95_Pushwallstand, 1, Gladiator_M_Sword_Pikmin_L95_Pushwallstand_Data) 
+SetSMS(GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datstand, 1, GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datstand_Data) 
+SetSMS(Great_Lord_F_Eirika_Sword_ISstand, 1, Great_Lord_F_Eirika_Sword_ISstand_Data) 
+SetSMS(Great_Lord_M_Ephraim_Lance_ISstand, 1, Great_Lord_M_Ephraim_Lance_ISstand_Data) 
+SetSMS(Great_Lord_M_HectorHarbinger_SD9Kstand, 1, Great_Lord_M_HectorHarbinger_SD9Kstand_Data) 
+SetSMS(Great_Lord_M_Hector_ISstand, 1, Great_Lord_M_Hector_ISstand_Data) 
+SetSMS(Halberdier_M_2_0_TBAstand, 1, Halberdier_M_2_0_TBAstand_Data) 
+SetSMS(HeavyInfantry_Ephraim_Snewpingstand, 1, HeavyInfantry_Ephraim_Snewpingstand_Data) 
+SetSMS(Hunter_M_MeatOfJusticestyle_knabepicerstand, 1, Hunter_M_MeatOfJusticestyle_knabepicerstand_Data) 
+SetSMS(Ike_Vanguard_M_Unknownstand, 1, Ike_Vanguard_M_Unknownstand_Data) 
+SetSMS(Knight_Lord_M_Eliwood_Sword_ISstand, 1, Knight_Lord_M_Eliwood_Sword_ISstand_Data) 
+SetSMS(LancerF_Red_Hair_SALVAGEDstand, 1, LancerF_Red_Hair_SALVAGEDstand_Data) 
+SetSMS(Lancer_M_Brown_Hair_SALVAGEDstand, 1, Lancer_M_Brown_Hair_SALVAGEDstand_Data) 
+SetSMS(LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarstand, 1, LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarstand_Data) 
+SetSMS(LivingArmor_Red_Flame_Sphealnuke_topazlightstand, 1, LivingArmor_Red_Flame_Sphealnuke_topazlightstand_Data) 
+SetSMS(Lord_F_Eirika_Sword_ISstand, 1, Lord_F_Eirika_Sword_ISstand_Data) 
+SetSMS(Lord_F_Lyn_Sword_ISstand, 1, Lord_F_Lyn_Sword_ISstand_Data) 
+SetSMS(Lord_Knight_Seliph_M_Stephano_Zanestand, 1, Lord_Knight_Seliph_M_Stephano_Zanestand_Data) 
+SetSMS(Lord_M_Eliwood_Sword_16x16_ISstand, 1, Lord_M_Eliwood_Sword_16x16_ISstand_Data) 
+SetSMS(Lord_M_Ephraim_Lance_ISstand, 1, Lord_M_Ephraim_Lance_ISstand_Data) 
+SetSMS(Lord_M_Hector_Axe_ISstand, 1, Lord_M_Hector_Axe_ISstand_Data) 
+SetSMS(Lord_M_Marth_Dominus_Vobiscum_Snewpingstand, 1, Lord_M_Marth_Dominus_Vobiscum_Snewpingstand_Data) 
+SetSMS(Lord_M_Roy_T1_ISstand, 1, Lord_M_Roy_T1_ISstand_Data) 
+SetSMS(Lord_M_Roy_T2_ISstand, 1, Lord_M_Roy_T2_ISstand_Data) 
+SetSMS(Lord_M_Sword_Generic_16x16_Leifstand, 1, Lord_M_Sword_Generic_16x16_Leifstand_Data) 
+SetSMS(Mage_F_Awakening_bloodstand, 1, Mage_F_Awakening_bloodstand_Data) 
+SetSMS(Mage_F_GaidenStyle_16x16_TAS20XXstand, 1, Mage_F_GaidenStyle_16x16_TAS20XXstand_Data) 
+SetSMS(Magician_Eliwood_16x16_TyTheBubstand, 1, Magician_Eliwood_16x16_TyTheBubstand_Data) 
+SetSMS(Magic_Seal_M_Standing_IS, 1, Magic_Seal_M_Standing_IS_Data) 
+SetSMS(Marauder_M_Basic_Axe_Blademasterstand, 1, Marauder_M_Basic_Axe_Blademasterstand_Data) 
+SetSMS(Mercenary_M_Sword_Improved_Flasubanstand, 1, Mercenary_M_Sword_Improved_Flasubanstand_Data) 
+SetSMS(Miko_Diviner_F_Orochi_Sphealnukestand, 1, Miko_Diviner_F_Orochi_Sphealnukestand_Data) 
+SetSMS(Militia_M_Deserter_Lance_Alusqstand, 1, Militia_M_Deserter_Lance_Alusqstand_Data) 
+SetSMS(Mogall_U_Jockey_Bow_Haifriedstand, 1, Mogall_U_Jockey_Bow_Haifriedstand_Data) 
+SetSMS(Mosquito_U_Dutch_Introvertstand, 1, Mosquito_U_Dutch_Introvertstand_Data) 
+SetSMS(Noble_F_Blue_Edelgard_Redbeanstand, 1, Noble_F_Blue_Edelgard_Redbeanstand_Data) 
+SetSMS(Parson_Priest_M_Caped_Staff_topazlightstand, 1, Parson_Priest_M_Caped_Staff_topazlightstand_Data) 
+SetSMS(Phantom_U_IS_Pushwallstand, 1, Phantom_U_IS_Pushwallstand_Data) 
+SetSMS(Pupil_M_Evil_ArcherBiasstand, 1, Pupil_M_Evil_ArcherBiasstand_Data) 
+SetSMS(RedMage2_Sage_Hat_TopazlightUnknownstand, 1, RedMage2_Sage_Hat_TopazlightUnknownstand_Data) 
+SetSMS(Sage_F_Magician_BBHood217stand, 1, Sage_F_Magician_BBHood217stand_Data) 
+SetSMS(Sandworm_Norikins_stand, 1, Sandworm_Norikins_stand_Data) 
+SetSMS(Sentinel_Halberdier_Aruka_Kenpuhustand, 1, Sentinel_Halberdier_Aruka_Kenpuhustand_Data) 
+SetSMS(Shaman_M_Occultist_Devisian_Nights_Pikminstand, 1, Shaman_M_Occultist_Devisian_Nights_Pikminstand_Data) 
+SetSMS(Slime_U_Yellowtoadstand, 1, Slime_U_Yellowtoadstand_Data) 
+SetSMS(Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand, 1, Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand_Data) 
+SetSMS(Tactician_U_SALVAGEDstand, 1, Tactician_U_SALVAGEDstand_Data) 
+SetSMS(Tome_U_Anima_N426stand, 1, Tome_U_Anima_N426stand_Data) 
+SetSMS(Transporter_Wagon_Standing_IS, 1, Transporter_Wagon_Standing_IS_Data) 
+SetSMS(Warbird_F_Unknown_Alexsplodestand, 1, Warbird_F_Unknown_Alexsplodestand_Data) 
+SetSMS(WarCleric_F_Staff_SkidMarc25stand, 1, WarCleric_F_Staff_SkidMarc25stand_Data) 
+SetSMS(Witch_F_Aruka_Kenpuhustand, 1, Witch_F_Aruka_Kenpuhustand_Data) 
+ 
+ 
+SetMMS(Angel_F_Unknownwalk, Angel_F_Unknownwalk_Data, DemonKingAP) 
+SetMMS(Arcanist_U_Unfinished_Norikinswalk, Arcanist_U_Unfinished_Norikinswalk_Data, DemonKingAP) 
+SetMMS(Bard_M_Elffin_ISwalk, Bard_M_Elffin_ISwalk_Data, DemonKingAP) 
+SetMMS(Baron_U_Cape_Nuramon_Jay_Rynwalk, Baron_U_Cape_Nuramon_Jay_Rynwalk_Data, DemonKingAP) 
+SetMMS(BlackDragon_U_Magic_L95walk, BlackDragon_U_Magic_L95walk_Data, DemonKingAP) 
+SetMMS(Blade_Lord_F_Lyn_Sword_ISwalk, Blade_Lord_F_Lyn_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Bonewalker_U_Cantor_GaidenStyle_Ryn_N426walk, Bonewalker_U_Cantor_GaidenStyle_Ryn_N426walk_Data, DemonKingAP) 
+SetMMS(Boxer_M_Bald_ShadowAllyXwalk, Boxer_M_Bald_ShadowAllyXwalk_Data, DemonKingAP) 
+SetMMS(Brighid_Hector_Axe_Shin19walk, Brighid_Hector_Axe_Shin19walk_Data, DemonKingAP) 
+SetMMS(Cantor2_Norikins_move, Cantor2_Norikins_move_Data, DemonKingAP) 
+SetMMS(Chicken_Pikmin1211_walk, Chicken_Pikmin1211_walk_Data, DemonKingAP) 
+SetMMS(Cleric_ISwalk, Cleric_ISwalk_Data, DemonKingAP) 
+SetMMS(Cursed_Sword_U_Derwalk, Cursed_Sword_U_Derwalk_Data, DemonKingAP) 
+SetMMS(Dancer_F_Larum_ISwalk, Dancer_F_Larum_ISwalk_Data, DemonKingAP) 
+SetMMS(Dancer_ISwalk, Dancer_ISwalk_Data, DemonKingAP) 
+SetMMS(Dark_Prince_M_Stephano_Zanewalk, Dark_Prince_M_Stephano_Zanewalk_Data, DemonKingAP) 
+SetMMS(Djinn_M_Alexsplodewalk, Djinn_M_Alexsplodewalk_Data, DemonKingAP) 
+SetMMS(Dragoon_M_v2_Lance_Pikmin_Unknownwalk, Dragoon_M_v2_Lance_Pikmin_Unknownwalk_Data, DemonKingAP) 
+SetMMS(Dread_Fighter_M_Nuramonwalk, Dread_Fighter_M_Nuramonwalk_Data, DemonKingAP) 
+SetMMS(Enchanter_Ninja_Derwalk, Enchanter_Ninja_Derwalk_Data, DemonKingAP) 
+SetMMS(Executioner_U_Huichelaar_IS_Lexouwalk, Executioner_U_Huichelaar_IS_Lexouwalk_Data, DemonKingAP) 
+SetMMS(FE15Myrmidon_U_Sword_Nuramonwalk, FE15Myrmidon_U_Sword_Nuramonwalk_Data, DemonKingAP) 
+SetMMS(Fellbeast_Wyvern_Wild_U_Faeriefruitwalk, Fellbeast_Wyvern_Wild_U_Faeriefruitwalk_Data, DemonKingAP) 
+SetMMS(Fencer_Blade_LordAnnoyingAnonwalk, Fencer_Blade_LordAnnoyingAnonwalk_Data, DemonKingAP) 
+SetMMS(Fighter_M_Flail_Knight_L95_Stephanowalk, Fighter_M_Flail_Knight_L95_Stephanowalk_Data, DemonKingAP) 
+SetMMS(Fletchling_Hunter_M_MeatOfJusticewalk, Fletchling_Hunter_M_MeatOfJusticewalk_Data, DemonKingAP) 
+SetMMS(Gladiator_M_Sword_Pikmin_L95_Pushwallwalk, Gladiator_M_Sword_Pikmin_L95_Pushwallwalk_Data, DemonKingAP) 
+SetMMS(GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datwalk, GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datwalk_Data, DemonKingAP) 
+SetMMS(Great_Lord_F_Eirika_Sword_ISwalk, Great_Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Great_Lord_M_Ephraim_Lance_ISwalk, Great_Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
+SetMMS(Great_Lord_M_HectorHarbinger_SD9Kwalk, Great_Lord_M_HectorHarbinger_SD9Kwalk_Data, DemonKingAP) 
+SetMMS(Great_Lord_M_Hector_ISwalk, Great_Lord_M_Hector_ISwalk_Data, DemonKingAP) 
+SetMMS(Halberdier_M_2_0_TBAwalk, Halberdier_M_2_0_TBAwalk_Data, DemonKingAP) 
+SetMMS(HeavyInfantry_EphraimSnewpingwalk, HeavyInfantry_EphraimSnewpingwalk_Data, DemonKingAP) 
+SetMMS(Hunter_M_MeatOfJusticestyle_knabepicerwalk, Hunter_M_MeatOfJusticestyle_knabepicerwalk_Data, DemonKingAP) 
+SetMMS(Ike_Vanguard_M_Unknownwalk, Ike_Vanguard_M_Unknownwalk_Data, DemonKingAP) 
+SetMMS(Knight_Lord_M_Eliwood_Sword_ISwalk, Knight_Lord_M_Eliwood_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(LancerF__Red_Hair_SALVAGEDwalk, LancerF__Red_Hair_SALVAGEDwalk_Data, DemonKingAP) 
+SetMMS(Lancer_M_Brown_Hair_SALVAGEDwalk, Lancer_M_Brown_Hair_SALVAGEDwalk_Data, DemonKingAP) 
+SetMMS(LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarwalk, LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarwalk_Data, DemonKingAP) 
+SetMMS(LivingArmor_Red_Flame_Sphealnuke_topazlightwalk, LivingArmor_Red_Flame_Sphealnuke_topazlightwalk_Data, DemonKingAP) 
+SetMMS(Lord_F_Eirika_Sword_ISwalk, Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_F_Lyn_Sword_ISwalk, Lord_F_Lyn_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_Knight_Seliph_M_Stephano_Zanewalk, Lord_Knight_Seliph_M_Stephano_Zanewalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Eliwood_Sword_ISwalk, Lord_M_Eliwood_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Ephraim_Lance_ISwalk, Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Hector_Axe_ISwalk, Lord_M_Hector_Axe_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk, Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Roy_T1_ISwalk, Lord_M_Roy_T1_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Roy_T2_ISwalk, Lord_M_Roy_T2_ISwalk_Data, DemonKingAP) 
+SetMMS(Lord_M_Sword_Generic_Leifwalk, Lord_M_Sword_Generic_Leifwalk_Data, DemonKingAP) 
+SetMMS(Mage_F_Awakening_bloodwalk, Mage_F_Awakening_bloodwalk_Data, DemonKingAP) 
+SetMMS(Mage_F_GaidenStyle_TAS20XXwalk, Mage_F_GaidenStyle_TAS20XXwalk_Data, DemonKingAP) 
+SetMMS(Magician_EliwoodTyTheBubwalk, Magician_EliwoodTyTheBubwalk_Data, DemonKingAP) 
+SetMMS(Magic_Seal_M_Moving_IS, Magic_Seal_M_Moving_IS_Data, DemonKingAP) 
+SetMMS(Marauder_M_Basic_Axe_Blademasterwalk, Marauder_M_Basic_Axe_Blademasterwalk_Data, DemonKingAP) 
+SetMMS(Mercenary_M_Sword_Improved_Flasubanwalk, Mercenary_M_Sword_Improved_Flasubanwalk_Data, DemonKingAP) 
+SetMMS(Miko_Diviner_F_Orochi_Sphealnukewalk, Miko_Diviner_F_Orochi_Sphealnukewalk_Data, DemonKingAP) 
+SetMMS(Militia_M_Deserter_Lance_Alusqwalk, Militia_M_Deserter_Lance_Alusqwalk_Data, DemonKingAP) 
+SetMMS(Mogall_U_Jockey_Bow_Haifriedwalk, Mogall_U_Jockey_Bow_Haifriedwalk_Data, DemonKingAP) 
+SetMMS(Mosquito_U_Dutch_Introvertwalk, Mosquito_U_Dutch_Introvertwalk_Data, DemonKingAP) 
+SetMMS(Noble_F_Blue_Edelgard_Redbeanwalk, Noble_F_Blue_Edelgard_Redbeanwalk_Data, DemonKingAP) 
+SetMMS(Parson_Priest_M_Caped_Staff_topazlightwalk, Parson_Priest_M_Caped_Staff_topazlightwalk_Data, DemonKingAP) 
+SetMMS(Phantom_U_ISwalk, Phantom_U_ISwalk_Data, DemonKingAP) 
+SetMMS(Pupil_M_Evil_ArcherBiaswalk, Pupil_M_Evil_ArcherBiaswalk_Data, DemonKingAP) 
+SetMMS(RedMage2_Sage_Hat_TopazlightUnknownwalk, RedMage2_Sage_Hat_TopazlightUnknownwalk_Data, DemonKingAP) 
+SetMMS(Sage_F_Magician_BBHood217walk, Sage_F_Magician_BBHood217walk_Data, DemonKingAP) 
+SetMMS(Sandworm_Norikins_move, Sandworm_Norikins_move_Data, DemonKingAP) 
+SetMMS(Sentinel_Halberdier_Aruka_Kenpuhuwalk, Sentinel_Halberdier_Aruka_Kenpuhuwalk_Data, DemonKingAP) 
+SetMMS(Shaman_M_Occultist_Devisian_Nights_Pikminwalk, Shaman_M_Occultist_Devisian_Nights_Pikminwalk_Data, DemonKingAP) 
+SetMMS(Slime_U_Yellowtoadwalk, Slime_U_Yellowtoadwalk_Data, DemonKingAP) 
+SetMMS(Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk, Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk_Data, DemonKingAP) 
+SetMMS(Tactician_U_SALVAGEDwalk, Tactician_U_SALVAGEDwalk_Data, DemonKingAP) 
+SetMMS(Tome_U_Anima_N426walk, Tome_U_Anima_N426walk_Data, DemonKingAP) 
+SetMMS(Transporter_Wagon_Moving_IS, Transporter_Wagon_Moving_IS_Data, DemonKingAP) 
+SetMMS(Warbird_F_Unknown_Alexsplodewalk, Warbird_F_Unknown_Alexsplodewalk_Data, DemonKingAP) 
+SetMMS(WarCleric_F_Staff_SkidMarc25walk, WarCleric_F_Staff_SkidMarc25walk_Data, DemonKingAP) 
+SetMMS(Witch_F_Aruka_Kenpuhuwalk, Witch_F_Aruka_Kenpuhuwalk_Data, DemonKingAP) 
+ 
+POP 
+//Copy until here 
+*/ 
+ 
+ 
+//SMS Image Data 
+ 
+ALIGN 4 
+Angel_F_Unknownstand_Data: 
+#incbin "dmp/Angel_F_Unknownstand.dmp" 
+ 
+ALIGN 4 
+Arcanist_U_Unfinished_Norikinsstand_Data: 
+#incbin "dmp/Arcanist_U_Unfinished_Norikinsstand.dmp" 
+ 
+ALIGN 4 
+Bard_M_Elffin_ISstand_Data: 
+#incbin "dmp/Bard_M_Elffin_ISstand.dmp" 
+ 
+ALIGN 4 
+Baron_U_Lance_Topazlight_Nuramon_Its_Just_Jaystand_Data: 
+#incbin "dmp/Baron_U_Lance_Topazlight_Nuramon_Its_Just_Jaystand.dmp" 
+ 
+ALIGN 4 
+BlackDragon_U_Magic_L95stand_Data: 
+#incbin "dmp/BlackDragon_U_Magic_L95stand.dmp" 
+ 
+ALIGN 4 
+Blade_Lord_F_Lyn_Sword_ISstand_Data: 
+#incbin "dmp/Blade_Lord_F_Lyn_Sword_ISstand.dmp" 
+ 
+ALIGN 4 
+Bonewalker_U_Cantor_GaidenStyle_Rynstand_Data: 
+#incbin "dmp/Bonewalker_U_Cantor_GaidenStyle_Rynstand.dmp" 
+ 
+ALIGN 4 
+Boxer_M_Bald_ShadowAllyXstand_Data: 
+#incbin "dmp/Boxer_M_Bald_ShadowAllyXstand.dmp" 
+ 
+ALIGN 4 
+Brighid_Hector_Axe_Shin19stand_Data: 
+#incbin "dmp/Brighid_Hector_Axe_Shin19stand.dmp" 
+ 
+ALIGN 4 
+Cantor2_Norikins_stand_Data: 
+#incbin "dmp/Cantor2_Norikins_stand.dmp" 
+ 
+ALIGN 4 
+Chicken_Pikmin1211_stand_Data: 
+#incbin "dmp/Chicken_Pikmin1211_stand.dmp" 
+ 
+ALIGN 4 
+Cleric_ISstand_Data: 
+#incbin "dmp/Cleric_ISstand.dmp" 
+ 
+ALIGN 4 
+Cursed_Sword_U_Derstand_Data: 
+#incbin "dmp/Cursed_Sword_U_Derstand.dmp" 
+ 
+ALIGN 4 
+Dancer_F_Larum_ISstand_Data: 
+#incbin "dmp/Dancer_F_Larum_ISstand.dmp" 
+ 
+ALIGN 4 
+Dancer_ISstand_Data: 
+#incbin "dmp/Dancer_ISstand.dmp" 
+ 
+ALIGN 4 
+Dark_Prince_M_Stephano_Zanestand_Data: 
+#incbin "dmp/Dark_Prince_M_Stephano_Zanestand.dmp" 
+ 
+ALIGN 4 
+Djinn_M_Alexsplodestand_Data: 
+#incbin "dmp/Djinn_M_Alexsplodestand.dmp" 
+ 
+ALIGN 4 
+Dragoon_M_v2_Lance_Pikmin_Unknownstand_Data: 
+#incbin "dmp/Dragoon_M_v2_Lance_Pikmin_Unknownstand.dmp" 
+ 
+ALIGN 4 
+Dread_Fighter_M_Nuramonstand_Data: 
+#incbin "dmp/Dread_Fighter_M_Nuramonstand.dmp" 
+ 
+ALIGN 4 
+Enchanter_Ninja_Derstand_Data: 
+#incbin "dmp/Enchanter_Ninja_Derstand.dmp" 
+ 
+ALIGN 4 
+Executioner_U_Huichelaar_IS_Lexoustand_Data: 
+#incbin "dmp/Executioner_U_Huichelaar_IS_Lexoustand.dmp" 
+ 
+ALIGN 4 
+FE15Myrmidon_U_Sword_Nuramonstand_Data: 
+#incbin "dmp/FE15Myrmidon_U_Sword_Nuramonstand.dmp" 
+ 
+ALIGN 4 
+Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand_Data: 
+#incbin "dmp/Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand.dmp" 
+ 
+ALIGN 4 
+Fencer_Blade_LordAnnoyingAnonstand_Data: 
+#incbin "dmp/Fencer_Blade_LordAnnoyingAnonstand.dmp" 
+ 
+ALIGN 4 
+Fighter_M_Flail_Knight_L95_Stephanostand_Data: 
+#incbin "dmp/Fighter_M_Flail_Knight_L95_Stephanostand.dmp" 
+ 
+ALIGN 4 
+Fletchling_Hunter_M_FE13_knabepicer_NightBloodKTstand_Data: 
+#incbin "dmp/Fletchling_Hunter_M_FE13_knabepicer_NightBloodKTstand.dmp" 
+ 
+ALIGN 4 
+Gladiator_M_Sword_Pikmin_L95_Pushwallstand_Data: 
+#incbin "dmp/Gladiator_M_Sword_Pikmin_L95_Pushwallstand.dmp" 
+ 
+ALIGN 4 
+GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datstand_Data: 
+#incbin "dmp/GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datstand.dmp" 
+ 
+ALIGN 4 
+Great_Lord_F_Eirika_Sword_ISstand_Data: 
+#incbin "dmp/Great_Lord_F_Eirika_Sword_ISstand.dmp" 
+ 
+ALIGN 4 
+Great_Lord_M_Ephraim_Lance_ISstand_Data: 
+#incbin "dmp/Great_Lord_M_Ephraim_Lance_ISstand.dmp" 
+ 
+ALIGN 4 
+Great_Lord_M_HectorHarbinger_SD9Kstand_Data: 
+#incbin "dmp/Great_Lord_M_HectorHarbinger_SD9Kstand.dmp" 
+ 
+ALIGN 4 
+Great_Lord_M_Hector_ISstand_Data: 
+#incbin "dmp/Great_Lord_M_Hector_ISstand.dmp" 
+ 
+ALIGN 4 
+Halberdier_M_2_0_TBAstand_Data: 
+#incbin "dmp/Halberdier_M_2_0_TBAstand.dmp" 
+ 
+ALIGN 4 
+HeavyInfantry_Ephraim_Snewpingstand_Data: 
+#incbin "dmp/HeavyInfantry_Ephraim_Snewpingstand.dmp" 
+ 
+ALIGN 4 
+Hunter_M_MeatOfJusticestyle_knabepicerstand_Data: 
+#incbin "dmp/Hunter_M_MeatOfJusticestyle_knabepicerstand.dmp" 
+ 
+ALIGN 4 
+Ike_Vanguard_M_Unknownstand_Data: 
+#incbin "dmp/Ike_Vanguard_M_Unknownstand.dmp" 
+ 
+ALIGN 4 
+Knight_Lord_M_Eliwood_Sword_ISstand_Data: 
+#incbin "dmp/Knight_Lord_M_Eliwood_Sword_ISstand.dmp" 
+ 
+ALIGN 4 
+LancerF_Red_Hair_SALVAGEDstand_Data: 
+#incbin "dmp/LancerF_Red_Hair_SALVAGEDstand.dmp" 
+ 
+ALIGN 4 
+Lancer_M_Brown_Hair_SALVAGEDstand_Data: 
+#incbin "dmp/Lancer_M_Brown_Hair_SALVAGEDstand.dmp" 
+ 
+ALIGN 4 
+LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarstand_Data: 
+#incbin "dmp/LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarstand.dmp" 
+ 
+ALIGN 4 
+LivingArmor_Red_Flame_Sphealnuke_topazlightstand_Data: 
+#incbin "dmp/LivingArmor_Red_Flame_Sphealnuke_topazlightstand.dmp" 
+ 
+ALIGN 4 
+Lord_F_Eirika_Sword_ISstand_Data: 
+#incbin "dmp/Lord_F_Eirika_Sword_ISstand.dmp" 
+ 
+ALIGN 4 
+Lord_F_Lyn_Sword_ISstand_Data: 
+#incbin "dmp/Lord_F_Lyn_Sword_ISstand.dmp" 
+ 
+ALIGN 4 
+Lord_Knight_Seliph_M_Stephano_Zanestand_Data: 
+#incbin "dmp/Lord_Knight_Seliph_M_Stephano_Zanestand.dmp" 
+ 
+ALIGN 4 
+Lord_M_Eliwood_Sword_16x16_ISstand_Data: 
+#incbin "dmp/Lord_M_Eliwood_Sword_16x16_ISstand.dmp" 
+ 
+ALIGN 4 
+Lord_M_Ephraim_Lance_ISstand_Data: 
+#incbin "dmp/Lord_M_Ephraim_Lance_ISstand.dmp" 
+ 
+ALIGN 4 
+Lord_M_Hector_Axe_ISstand_Data: 
+#incbin "dmp/Lord_M_Hector_Axe_ISstand.dmp" 
+ 
+ALIGN 4 
+Lord_M_Marth_Dominus_Vobiscum_Snewpingstand_Data: 
+#incbin "dmp/Lord_M_Marth_Dominus_Vobiscum_Snewpingstand.dmp" 
+ 
+ALIGN 4 
+Lord_M_Roy_T1_ISstand_Data: 
+#incbin "dmp/Lord_M_Roy_T1_ISstand.dmp" 
+ 
+ALIGN 4 
+Lord_M_Roy_T2_ISstand_Data: 
+#incbin "dmp/Lord_M_Roy_T2_ISstand.dmp" 
+ 
+ALIGN 4 
+Lord_M_Sword_Generic_16x16_Leifstand_Data: 
+#incbin "dmp/Lord_M_Sword_Generic_16x16_Leifstand.dmp" 
+ 
+ALIGN 4 
+Mage_F_Awakening_bloodstand_Data: 
+#incbin "dmp/Mage_F_Awakening_bloodstand.dmp" 
+ 
+ALIGN 4 
+Mage_F_GaidenStyle_16x16_TAS20XXstand_Data: 
+#incbin "dmp/Mage_F_GaidenStyle_16x16_TAS20XXstand.dmp" 
+ 
+ALIGN 4 
+Magician_Eliwood_16x16_TyTheBubstand_Data: 
+#incbin "dmp/Magician_Eliwood_16x16_TyTheBubstand.dmp" 
+ 
+ALIGN 4 
+Magic_Seal_M_Standing_IS_Data: 
+#incbin "dmp/Magic_Seal_M_Standing_IS.dmp" 
+ 
+ALIGN 4 
+Marauder_M_Basic_Axe_Blademasterstand_Data: 
+#incbin "dmp/Marauder_M_Basic_Axe_Blademasterstand.dmp" 
+ 
+ALIGN 4 
+Mercenary_M_Sword_Improved_Flasubanstand_Data: 
+#incbin "dmp/Mercenary_M_Sword_Improved_Flasubanstand.dmp" 
+ 
+ALIGN 4 
+Miko_Diviner_F_Orochi_Sphealnukestand_Data: 
+#incbin "dmp/Miko_Diviner_F_Orochi_Sphealnukestand.dmp" 
+ 
+ALIGN 4 
+Militia_M_Deserter_Lance_Alusqstand_Data: 
+#incbin "dmp/Militia_M_Deserter_Lance_Alusqstand.dmp" 
+ 
+ALIGN 4 
+Mogall_U_Jockey_Bow_Haifriedstand_Data: 
+#incbin "dmp/Mogall_U_Jockey_Bow_Haifriedstand.dmp" 
+ 
+ALIGN 4 
+Mosquito_U_Dutch_Introvertstand_Data: 
+#incbin "dmp/Mosquito_U_Dutch_Introvertstand.dmp" 
+ 
+ALIGN 4 
+Noble_F_Blue_Edelgard_Redbeanstand_Data: 
+#incbin "dmp/Noble_F_Blue_Edelgard_Redbeanstand.dmp" 
+ 
+ALIGN 4 
+Parson_Priest_M_Caped_Staff_topazlightstand_Data: 
+#incbin "dmp/Parson_Priest_M_Caped_Staff_topazlightstand.dmp" 
+ 
+ALIGN 4 
+Phantom_U_IS_Pushwallstand_Data: 
+#incbin "dmp/Phantom_U_IS_Pushwallstand.dmp" 
+ 
+ALIGN 4 
+Pupil_M_Evil_ArcherBiasstand_Data: 
+#incbin "dmp/Pupil_M_Evil_ArcherBiasstand.dmp" 
+ 
+ALIGN 4 
+RedMage2_Sage_Hat_TopazlightUnknownstand_Data: 
+#incbin "dmp/RedMage2_Sage_Hat_TopazlightUnknownstand.dmp" 
+ 
+ALIGN 4 
+Sage_F_Magician_BBHood217stand_Data: 
+#incbin "dmp/Sage_F_Magician_BBHood217stand.dmp" 
+ 
+ALIGN 4 
+Sandworm_Norikins_stand_Data: 
+#incbin "dmp/Sandworm_Norikins_stand.dmp" 
+ 
+ALIGN 4 
+Sentinel_Halberdier_Aruka_Kenpuhustand_Data: 
+#incbin "dmp/Sentinel_Halberdier_Aruka_Kenpuhustand.dmp" 
+ 
+ALIGN 4 
+Shaman_M_Occultist_Devisian_Nights_Pikminstand_Data: 
+#incbin "dmp/Shaman_M_Occultist_Devisian_Nights_Pikminstand.dmp" 
+ 
+ALIGN 4 
+Slime_U_Yellowtoadstand_Data: 
+#incbin "dmp/Slime_U_Yellowtoadstand.dmp" 
+ 
+ALIGN 4 
+Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand_Data: 
+#incbin "dmp/Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand.dmp" 
+ 
+ALIGN 4 
+Tactician_U_SALVAGEDstand_Data: 
+#incbin "dmp/Tactician_U_SALVAGEDstand.dmp" 
+ 
+ALIGN 4 
+Tome_U_Anima_N426stand_Data: 
+#incbin "dmp/Tome_U_Anima_N426stand.dmp" 
+ 
+ALIGN 4 
+Transporter_Wagon_Standing_IS_Data: 
+#incbin "dmp/Transporter_Wagon_Standing_IS.dmp" 
+ 
+ALIGN 4 
+Warbird_F_Unknown_Alexsplodestand_Data: 
+#incbin "dmp/Warbird_F_Unknown_Alexsplodestand.dmp" 
+ 
+ALIGN 4 
+WarCleric_F_Staff_SkidMarc25stand_Data: 
+#incbin "dmp/WarCleric_F_Staff_SkidMarc25stand.dmp" 
+ 
+ALIGN 4 
+Witch_F_Aruka_Kenpuhustand_Data: 
+#incbin "dmp/Witch_F_Aruka_Kenpuhustand.dmp" 
+ 
+ 
+ 
+ 
+//MMS Image Data 
+ 
+ALIGN 4 
+Angel_F_Unknownwalk_Data: 
+#incbin "dmp/Angel_F_Unknownwalk.dmp" 
+ 
+ALIGN 4 
+Arcanist_U_Unfinished_Norikinswalk_Data: 
+#incbin "dmp/Arcanist_U_Unfinished_Norikinswalk.dmp" 
+ 
+ALIGN 4 
+Bard_M_Elffin_ISwalk_Data: 
+#incbin "dmp/Bard_M_Elffin_ISwalk.dmp" 
+ 
+ALIGN 4 
+Baron_U_Cape_Nuramon_Jay_Rynwalk_Data: 
+#incbin "dmp/Baron_U_Cape_Nuramon_Jay_Rynwalk.dmp" 
+ 
+ALIGN 4 
+BlackDragon_U_Magic_L95walk_Data: 
+#incbin "dmp/BlackDragon_U_Magic_L95walk.dmp" 
+ 
+ALIGN 4 
+Blade_Lord_F_Lyn_Sword_ISwalk_Data: 
+#incbin "dmp/Blade_Lord_F_Lyn_Sword_ISwalk.dmp" 
+ 
+ALIGN 4 
+Bonewalker_U_Cantor_GaidenStyle_Ryn_N426walk_Data: 
+#incbin "dmp/Bonewalker_U_Cantor_GaidenStyle_Ryn_N426walk.dmp" 
+ 
+ALIGN 4 
+Boxer_M_Bald_ShadowAllyXwalk_Data: 
+#incbin "dmp/Boxer_M_Bald_ShadowAllyXwalk.dmp" 
+ 
+ALIGN 4 
+Brighid_Hector_Axe_Shin19walk_Data: 
+#incbin "dmp/Brighid_Hector_Axe_Shin19walk.dmp" 
+ 
+ALIGN 4 
+Cantor2_Norikins_move_Data: 
+#incbin "dmp/Cantor2_Norikins_move.dmp" 
+ 
+ALIGN 4 
+Chicken_Pikmin1211_walk_Data: 
+#incbin "dmp/Chicken_Pikmin1211_walk.dmp" 
+ 
+ALIGN 4 
+Cleric_ISwalk_Data: 
+#incbin "dmp/Cleric_ISwalk.dmp" 
+ 
+ALIGN 4 
+Cursed_Sword_U_Derwalk_Data: 
+#incbin "dmp/Cursed_Sword_U_Derwalk.dmp" 
+ 
+ALIGN 4 
+Dancer_F_Larum_ISwalk_Data: 
+#incbin "dmp/Dancer_F_Larum_ISwalk.dmp" 
+ 
+ALIGN 4 
+Dancer_ISwalk_Data: 
+#incbin "dmp/Dancer_ISwalk.dmp" 
+ 
+ALIGN 4 
+Dark_Prince_M_Stephano_Zanewalk_Data: 
+#incbin "dmp/Dark_Prince_M_Stephano_Zanewalk.dmp" 
+ 
+ALIGN 4 
+Djinn_M_Alexsplodewalk_Data: 
+#incbin "dmp/Djinn_M_Alexsplodewalk.dmp" 
+ 
+ALIGN 4 
+Dragoon_M_v2_Lance_Pikmin_Unknownwalk_Data: 
+#incbin "dmp/Dragoon_M_v2_Lance_Pikmin_Unknownwalk.dmp" 
+ 
+ALIGN 4 
+Dread_Fighter_M_Nuramonwalk_Data: 
+#incbin "dmp/Dread_Fighter_M_Nuramonwalk.dmp" 
+ 
+ALIGN 4 
+Enchanter_Ninja_Derwalk_Data: 
+#incbin "dmp/Enchanter_Ninja_Derwalk.dmp" 
+ 
+ALIGN 4 
+Executioner_U_Huichelaar_IS_Lexouwalk_Data: 
+#incbin "dmp/Executioner_U_Huichelaar_IS_Lexouwalk.dmp" 
+ 
+ALIGN 4 
+FE15Myrmidon_U_Sword_Nuramonwalk_Data: 
+#incbin "dmp/FE15Myrmidon_U_Sword_Nuramonwalk.dmp" 
+ 
+ALIGN 4 
+Fellbeast_Wyvern_Wild_U_Faeriefruitwalk_Data: 
+#incbin "dmp/Fellbeast_Wyvern_Wild_U_Faeriefruitwalk.dmp" 
+ 
+ALIGN 4 
+Fencer_Blade_LordAnnoyingAnonwalk_Data: 
+#incbin "dmp/Fencer_Blade_LordAnnoyingAnonwalk.dmp" 
+ 
+ALIGN 4 
+Fighter_M_Flail_Knight_L95_Stephanowalk_Data: 
+#incbin "dmp/Fighter_M_Flail_Knight_L95_Stephanowalk.dmp" 
+ 
+ALIGN 4 
+Fletchling_Hunter_M_MeatOfJusticewalk_Data: 
+#incbin "dmp/Fletchling_Hunter_M_MeatOfJusticewalk.dmp" 
+ 
+ALIGN 4 
+Gladiator_M_Sword_Pikmin_L95_Pushwallwalk_Data: 
+#incbin "dmp/Gladiator_M_Sword_Pikmin_L95_Pushwallwalk.dmp" 
+ 
+ALIGN 4 
+GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datwalk_Data: 
+#incbin "dmp/GrandMahout_CamusZekeSirius_SHYUTERz_Orihara_Datwalk.dmp" 
+ 
+ALIGN 4 
+Great_Lord_F_Eirika_Sword_ISwalk_Data: 
+#incbin "dmp/Great_Lord_F_Eirika_Sword_ISwalk.dmp" 
+ 
+ALIGN 4 
+Great_Lord_M_Ephraim_Lance_ISwalk_Data: 
+#incbin "dmp/Great_Lord_M_Ephraim_Lance_ISwalk.dmp" 
+ 
+ALIGN 4 
+Great_Lord_M_HectorHarbinger_SD9Kwalk_Data: 
+#incbin "dmp/Great_Lord_M_HectorHarbinger_SD9Kwalk.dmp" 
+ 
+ALIGN 4 
+Great_Lord_M_Hector_ISwalk_Data: 
+#incbin "dmp/Great_Lord_M_Hector_ISwalk.dmp" 
+ 
+ALIGN 4 
+Halberdier_M_2_0_TBAwalk_Data: 
+#incbin "dmp/Halberdier_M_2_0_TBAwalk.dmp" 
+ 
+ALIGN 4 
+HeavyInfantry_EphraimSnewpingwalk_Data: 
+#incbin "dmp/HeavyInfantry_EphraimSnewpingwalk.dmp" 
+ 
+ALIGN 4 
+Hunter_M_MeatOfJusticestyle_knabepicerwalk_Data: 
+#incbin "dmp/Hunter_M_MeatOfJusticestyle_knabepicerwalk.dmp" 
+ 
+ALIGN 4 
+Ike_Vanguard_M_Unknownwalk_Data: 
+#incbin "dmp/Ike_Vanguard_M_Unknownwalk.dmp" 
+ 
+ALIGN 4 
+Knight_Lord_M_Eliwood_Sword_ISwalk_Data: 
+#incbin "dmp/Knight_Lord_M_Eliwood_Sword_ISwalk.dmp" 
+ 
+ALIGN 4 
+LancerF__Red_Hair_SALVAGEDwalk_Data: 
+#incbin "dmp/LancerF__Red_Hair_SALVAGEDwalk.dmp" 
+ 
+ALIGN 4 
+Lancer_M_Brown_Hair_SALVAGEDwalk_Data: 
+#incbin "dmp/Lancer_M_Brown_Hair_SALVAGEDwalk.dmp" 
+ 
+ALIGN 4 
+LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarwalk_Data: 
+#incbin "dmp/LegionKing_Lance_EN_L95_Pikmin_Der_Huichelaarwalk.dmp" 
+ 
+ALIGN 4 
+LivingArmor_Red_Flame_Sphealnuke_topazlightwalk_Data: 
+#incbin "dmp/LivingArmor_Red_Flame_Sphealnuke_topazlightwalk.dmp" 
+ 
+ALIGN 4 
+Lord_F_Eirika_Sword_ISwalk_Data: 
+#incbin "dmp/Lord_F_Eirika_Sword_ISwalk.dmp" 
+ 
+ALIGN 4 
+Lord_F_Lyn_Sword_ISwalk_Data: 
+#incbin "dmp/Lord_F_Lyn_Sword_ISwalk.dmp" 
+ 
+ALIGN 4 
+Lord_Knight_Seliph_M_Stephano_Zanewalk_Data: 
+#incbin "dmp/Lord_Knight_Seliph_M_Stephano_Zanewalk.dmp" 
+ 
+ALIGN 4 
+Lord_M_Eliwood_Sword_ISwalk_Data: 
+#incbin "dmp/Lord_M_Eliwood_Sword_ISwalk.dmp" 
+ 
+ALIGN 4 
+Lord_M_Ephraim_Lance_ISwalk_Data: 
+#incbin "dmp/Lord_M_Ephraim_Lance_ISwalk.dmp" 
+ 
+ALIGN 4 
+Lord_M_Hector_Axe_ISwalk_Data: 
+#incbin "dmp/Lord_M_Hector_Axe_ISwalk.dmp" 
+ 
+ALIGN 4 
+Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk_Data: 
+#incbin "dmp/Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk.dmp" 
+ 
+ALIGN 4 
+Lord_M_Roy_T1_ISwalk_Data: 
+#incbin "dmp/Lord_M_Roy_T1_ISwalk.dmp" 
+ 
+ALIGN 4 
+Lord_M_Roy_T2_ISwalk_Data: 
+#incbin "dmp/Lord_M_Roy_T2_ISwalk.dmp" 
+ 
+ALIGN 4 
+Lord_M_Sword_Generic_Leifwalk_Data: 
+#incbin "dmp/Lord_M_Sword_Generic_Leifwalk.dmp" 
+ 
+ALIGN 4 
+Mage_F_Awakening_bloodwalk_Data: 
+#incbin "dmp/Mage_F_Awakening_bloodwalk.dmp" 
+ 
+ALIGN 4 
+Mage_F_GaidenStyle_TAS20XXwalk_Data: 
+#incbin "dmp/Mage_F_GaidenStyle_TAS20XXwalk.dmp" 
+ 
+ALIGN 4 
+Magician_EliwoodTyTheBubwalk_Data: 
+#incbin "dmp/Magician_EliwoodTyTheBubwalk.dmp" 
+ 
+ALIGN 4 
+Magic_Seal_M_Moving_IS_Data: 
+#incbin "dmp/Magic_Seal_M_Moving_IS.dmp" 
+ 
+ALIGN 4 
+Marauder_M_Basic_Axe_Blademasterwalk_Data: 
+#incbin "dmp/Marauder_M_Basic_Axe_Blademasterwalk.dmp" 
+ 
+ALIGN 4 
+Mercenary_M_Sword_Improved_Flasubanwalk_Data: 
+#incbin "dmp/Mercenary_M_Sword_Improved_Flasubanwalk.dmp" 
+ 
+ALIGN 4 
+Miko_Diviner_F_Orochi_Sphealnukewalk_Data: 
+#incbin "dmp/Miko_Diviner_F_Orochi_Sphealnukewalk.dmp" 
+ 
+ALIGN 4 
+Militia_M_Deserter_Lance_Alusqwalk_Data: 
+#incbin "dmp/Militia_M_Deserter_Lance_Alusqwalk.dmp" 
+ 
+ALIGN 4 
+Mogall_U_Jockey_Bow_Haifriedwalk_Data: 
+#incbin "dmp/Mogall_U_Jockey_Bow_Haifriedwalk.dmp" 
+ 
+ALIGN 4 
+Mosquito_U_Dutch_Introvertwalk_Data: 
+#incbin "dmp/Mosquito_U_Dutch_Introvertwalk.dmp" 
+ 
+ALIGN 4 
+Noble_F_Blue_Edelgard_Redbeanwalk_Data: 
+#incbin "dmp/Noble_F_Blue_Edelgard_Redbeanwalk.dmp" 
+ 
+ALIGN 4 
+Parson_Priest_M_Caped_Staff_topazlightwalk_Data: 
+#incbin "dmp/Parson_Priest_M_Caped_Staff_topazlightwalk.dmp" 
+ 
+ALIGN 4 
+Phantom_U_ISwalk_Data: 
+#incbin "dmp/Phantom_U_ISwalk.dmp" 
+ 
+ALIGN 4 
+Pupil_M_Evil_ArcherBiaswalk_Data: 
+#incbin "dmp/Pupil_M_Evil_ArcherBiaswalk.dmp" 
+ 
+ALIGN 4 
+RedMage2_Sage_Hat_TopazlightUnknownwalk_Data: 
+#incbin "dmp/RedMage2_Sage_Hat_TopazlightUnknownwalk.dmp" 
+ 
+ALIGN 4 
+Sage_F_Magician_BBHood217walk_Data: 
+#incbin "dmp/Sage_F_Magician_BBHood217walk.dmp" 
+ 
+ALIGN 4 
+Sandworm_Norikins_move_Data: 
+#incbin "dmp/Sandworm_Norikins_move.dmp" 
+ 
+ALIGN 4 
+Sentinel_Halberdier_Aruka_Kenpuhuwalk_Data: 
+#incbin "dmp/Sentinel_Halberdier_Aruka_Kenpuhuwalk.dmp" 
+ 
+ALIGN 4 
+Shaman_M_Occultist_Devisian_Nights_Pikminwalk_Data: 
+#incbin "dmp/Shaman_M_Occultist_Devisian_Nights_Pikminwalk.dmp" 
+ 
+ALIGN 4 
+Slime_U_Yellowtoadwalk_Data: 
+#incbin "dmp/Slime_U_Yellowtoadwalk.dmp" 
+ 
+ALIGN 4 
+Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk_Data: 
+#incbin "dmp/Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk.dmp" 
+ 
+ALIGN 4 
+Tactician_U_SALVAGEDwalk_Data: 
+#incbin "dmp/Tactician_U_SALVAGEDwalk.dmp" 
+ 
+ALIGN 4 
+Tome_U_Anima_N426walk_Data: 
+#incbin "dmp/Tome_U_Anima_N426walk.dmp" 
+ 
+ALIGN 4 
+Transporter_Wagon_Moving_IS_Data: 
+#incbin "dmp/Transporter_Wagon_Moving_IS.dmp" 
+ 
+ALIGN 4 
+Warbird_F_Unknown_Alexsplodewalk_Data: 
+#incbin "dmp/Warbird_F_Unknown_Alexsplodewalk.dmp" 
+ 
+ALIGN 4 
+WarCleric_F_Staff_SkidMarc25walk_Data: 
+#incbin "dmp/WarCleric_F_Staff_SkidMarc25walk.dmp" 
+ 
+ALIGN 4 
+Witch_F_Aruka_Kenpuhuwalk_Data: 
+#incbin "dmp/Witch_F_Aruka_Kenpuhuwalk.dmp" 
+ 

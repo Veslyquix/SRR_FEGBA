@@ -316,7 +316,7 @@ SET_FUNC PutNumberBonus, 0x8007001
 SET_FUNC PutSpecialChar, 0x8006E75
 SET_FUNC PutNumberSmall, 0x8006FE1
 SET_FUNC StartStatScreenHelp, 0x807030d
-
+SET_FUNC UnitHasMagicRank, 0x8018189
 
 
 @SET_FUNC UnitLoadItemsFromDefinition, @ unused 

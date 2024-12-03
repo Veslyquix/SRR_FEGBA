@@ -30,6 +30,22 @@
 
 #include "Extensions/Hack Installation.txt" 
 
+#ifdef VeslyBuildfile 
+    #include "Tables/TableInstaller.event" 
+#else 
+#define gCharacterDataFE1 0x8803D64 
+#define gCharacterDataFE4 0x8803D64 
+#define gCharacterDataFE5 0x8803D64 
+#define gCharacterDataFE6 0x8803D64 
+#define gCharacterDataFE7 0x8803D64 
+#define gCharacterDataFE8 0x8803D64 
+#define gCharacterDataFE10 0x8803D64 
+#define gCharacterDataFE13 0x8803D64 
+#define gCharacterDataFE14 0x8803D64 
+#define gCharacterDataFE15 0x8803D64 
+#define gCharacterDataFE16 0x8803D64 
+#define gCharacterDataFE17 0x8803D64 
+#endif 
 #include "FixMugs_FE8.event" 
 #include "Patches/FE8.lyn.event" 
 #include "Patches/FE8_AsmHooks.lyn.event" 
@@ -47,6 +63,10 @@ MESSAGE Open FE8_Installer and read / config things please
 #include "../ASM/Reclass/Installer.event" 
 //#include "../ASM/UnitExpansion/Installer.event" 
 //#endif 
+
+#ifdef VeslyBuildfile 
+// #include "gfx/Portraits/Installer.event" 
+#endif 
 
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
@@ -186,7 +206,7 @@ FILL(0x2000) // max id 0x2000
  
 
 // Game options & misc 
-IgnoreTextIDRange(1, 0x15F) 
+IgnoreTextIDRange(0, 0x15F) 
 // Terrain 
 IgnoreTextIDRange(0x1C5, 0x211)
 // Unit names are changed 
@@ -340,6 +360,14 @@ VramDest_DebugFont:
 WORD 0x4800 // in glowy 
 
 PUSH 
+// 48752 5 
+// handaxes 588C0 
+// from $2a730 SetBattleUnitWeapon 
+ORG $2A7DE // Melee & magic arena fix 
+BYTE $11 $80 $e9 $83 $49 $46 $08 $70 $2e $e0 
+
+ORG $18a58
+BYTE $10 $B5 $04 $1C $FE $F7 $64 $F8 $00 $28 $04 $D1 $E0 $6A $00 $28 $06 $D0 $01 $20 $04 $E0 $FE $F7 $7D $FD $02 $21 $08 $40 $40 $08 $10 $BD
 
 // test 
  // ORG $9EEF50
@@ -477,6 +505,19 @@ SHORT $46c0 $46c0 $46c0 $46c0 $46c0
 //ORG $5739E 
 //SHORT $2100 // always use generic palette (by Vesly) 
 #endif 
+
+#define callHackNewr7(offset) 		"BYTE $01 $4F $BE $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+ORG $57430 
+callHackNewr7(MaybeUseJankyPalette_FE8) 
+
+// ORG $95eea5 // Eirika palette test 
+// BYTE 0x3C 
+// ORG $95e0a5 // Fighter class 
+// BYTE 0x3F 
+
+ORG $57470 
+callHackNewr7(MaybeUseJankyPalette2_FE8) 
+
 
 // in BuildBestMovementScript 
 // Fix REDA / MOVE from crashing on impassible terrain 
@@ -1007,12 +1048,12 @@ WORD IconOrrValue
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
     #ifdef SKILLSYS_INSTALLED 
-    WORD 23
+    WORD 24
     #else 
-    WORD 22
+    WORD 23
     #endif  
 #else 
-WORD 21
+WORD 22
 #endif 
 
 // if you don't have a max hp getter, these are used 

@@ -1,0 +1,35 @@
+
+// Include this in *before* text (and *before* Tool Helpers)
+
+#define TextTable NewTextTable // define to not conflict with Tool Helpers
+#define MaxTextEntries 0x2000
+
+ALIGN 4
+TextTable:
+#ifdef _FE7_ 
+  #incbin "FE7TextTable.dmp"
+  #endif 
+  #ifdef _FE6_
+    #incbin "FE6TranslationTextTable.dmp"
+  #endif 
+  ORG TextTable + (MaxTextEntries) * 4
+
+PUSH
+
+#ifdef _FE7_ 
+ORG 0x12C88
+POIN TextTable
+ORG 0x12CB8 
+POIN TextTable
+#endif 
+
+#ifdef _FE6_ 
+ORG $13B10 
+POIN TextTable 
+
+#endif 
+
+POP
+
+#include "InstallTextData.event"
+

@@ -3,11 +3,48 @@
 #endif 
 //#define SKILLSYS_INSTALLED 
 //#define STRMAG_INSTALLED 
+
+
+
+#ifdef VeslyBuildfile 
+#include "Text/repointedTextTable.event"
+#endif 
+
+#include "EAstdlib.event" 
+#include "Definitions.event" 
 #include "Extensions/Hack Installation.txt" 
+
+
+#ifdef VeslyBuildfile 
+ORG 0x1030000
+#include "gfx/Installer.event"
+MESSAGE Graphics end at currentoffset 
+#endif 
+
+
 #ifndef PROC_CALL_ROUTINE_2
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
 
+#ifndef gCharacterData 
+#define gCharacterData 0x8BDCE4C 
+#endif 
+#ifdef VeslyBuildfile 
+    #include "Tables/TableInstaller.event" 
+#else 
+#define gCharacterDataFE1 0x8BDCE4C 
+#define gCharacterDataFE4 0x8BDCE4C 
+#define gCharacterDataFE5 0x8BDCE4C 
+#define gCharacterDataFE6 0x8BDCE4C 
+#define gCharacterDataFE7 0x8BDCE4C 
+#define gCharacterDataFE8 0x8BDCE4C 
+#define gCharacterDataFE10 0x8BDCE4C 
+#define gCharacterDataFE13 0x8BDCE4C 
+#define gCharacterDataFE14 0x8BDCE4C 
+#define gCharacterDataFE15 0x8BDCE4C 
+#define gCharacterDataFE16 0x8BDCE4C 
+#define gCharacterDataFE17 0x8BDCE4C 
+#endif 
 #include "Patches/FE7.lyn.event" 
 #include "Patches/FE7_AsmHooks.lyn.event" 
 
@@ -21,14 +58,16 @@
 #ifndef TextTable 
 	#define TextTable 0xB808AC 
 #endif 
-#define setText(textID, offset) "PUSH; ORG (TextTable+(4*textID)); POIN (offset|0x80000000); POP"
+#ifndef SetText 
+#define SetText(textID, offset) "PUSH; ORG (TextTable+(4*textID)); POIN (offset|0x80000000); POP"
+#endif 
 ConfigText:
 String("Config") ; BYTE 0 
 ConfigDescText:
 String("Reconfigure the randomizer.") ; BYTE 0 
 
-setText(0x119f, ConfigText)
-setText(0x11a0, ConfigDescText)
+SetText(0x119f, ConfigText)
+SetText(0x11a0, ConfigDescText)
 
 ALIGN 4
 BonusItemChance: 
@@ -109,9 +148,9 @@ TextIDExceptionTable:
 FILL(0x2000) // max id 0x2000
 
  
-
+IgnoreTextIDRange(0x813, 0x814) // uses SetName idk 
 // shops & misc 
-IgnoreTextIDRange(1, 0x58) 
+IgnoreTextIDRange(0, 0x58) 
 // class, stat screen descs  
 IgnoreTextIDRange(0x22B, 0x278)
 // Items, misc 
@@ -168,7 +207,7 @@ NeverChangeChar(0xFB) // arena enemy randomized breaks things
 ALIGN 4 
 ShopText:
 String("Shop"); BYTE 0 
-setText(0x1260, ShopText) 
+SetText(0x1260, ShopText) 
 
 ALIGN 4 
 SkillExceptions:
@@ -186,7 +225,7 @@ AlwaysSkillTable:
 FILL 256 
 ALIGN 4 
 SRR_TotalOptions:
-WORD 20
+WORD 21
 
 ALIGN 4 
 MaxItems_Link: 
@@ -219,6 +258,11 @@ PUSH
 //ORG $ad2
 //SHORT $46c0 $46c0 
 // 80130B4 
+
+ORG $28842 // Melee & magic arena fix fe7
+BYTE $11 $80 $00 $00 $49 $46 $08 $70 $2E $E0
+ORG $184dc
+BYTE $10 $B5 $04 $1C $FE $F7 $40 $F9 $00 $28 $04 $D1 $E0 $6A $00 $28 $06 $D0 $01 $20 $04 $E0 $FE $F7 $C3 $FE $02 $21 $08 $40 $40 $08 $10 $BD
 
 ORG $2cc88
 replaceWithHack(FE7PromoHook)
@@ -496,7 +540,7 @@ ReplaceTextList:
 //SHORT 0; BYTE 0xff 0; POIN TextE TextF 
 WORD 0 0 0// terminator 
 #ifdef VeslyBuildfile
-	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+	#define SetName(id) "{ addr: ; SetText(id, addr) ; }"
 #else 
 	#define SetName(id) "ALIGN 16"
 #endif 

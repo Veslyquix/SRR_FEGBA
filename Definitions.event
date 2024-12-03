@@ -1,0 +1,638 @@
+
+// New classes 
+// (Defined in Gfx/MapSprites/Installer.event) 
+/* 
+
+AlmT1
+AlmT2
+IkeLord
+IkeRanger
+LeifLord
+MarthLord
+SeliphLord
+Lancer
+Trueblade
+Fencer
+Dragoon
+Lancer2
+Militia
+Halberdier
+Marauder
+Sentinel
+Warbird
+SupplierAnna
+Baron
+Brighid
+FlailKnight
+Gladiator
+Harbinger
+HeavyInfantry
+LegionKing
+Mercenary2
+Phantom
+WarCleric
+Adventurer
+Fletchling
+Hunter
+MerlinusTransport
+Miko
+SkeletonRider
+Angel
+Arcanist
+Arcanist2
+Cantor
+Cantor2
+DarkPrince
+DreadFighter
+Executioner
+Dancer2
+GaidenPriestess
+MagicSeal2
+Magician
+Occultist
+Parson
+Pupil2
+RedMage
+RedMage2
+Tactician2
+Tome
+Witch
+Cleric2
+Bard2
+Chicken
+Mosquito
+Sandworm
+Slime
+CursedSword
+Fellbeast
+BlackDragon
+GrandMahout
+Djinn
+LivingArmor
+Boxer
+Enchanter
+
+*/ 
+
+
+
+
+#ifdef _FE8_ 
+// Thanks, Norikins!
+#define UseMonsterWeapons 0x4 
+#define LordMovCost 0x880B808
+#define LordRainMovCost 0x880BC59
+#define LordSnowMovCost 0x880C069
+#define PaladinMovCost 0x880BAD3
+#define PaladinRainMovCost 0x880BF24
+#define PaladinSnowMovCost 0x880C334
+#define CavMovCost 0x880BA92
+#define CavRainMovCost 0x880BEE3
+#define CavSnowMovCost 0x880C2F3
+#define KnightMovCost 0x880B88A
+#define KnightRainMovCost 0x880BCDB
+#define KnightSnowMovCost 0x880C0EB
+#define ThiefMovCost 0x880B9CF
+#define ThiefRainMovCost 0x880BE20
+#define ThiefSnowMovCost 0x880C230
+#define FlierMovCost 0x880BB96
+#define FlierRainCost 0x880BFE7
+#define FlierSnowCost 0x880C3F7
+#define DefaultMovCost 0x880B849
+#define DefaultRainMovCost 0x880BC9A
+#define DefaultSnowMovCost 0x880C0AA
+#define RangerMovCost 0x880BB55
+#define RangerRainMovCost 0x880BFA6
+#define RangerSnowMovCost 0x880C3B6
+#define MageMovCost 0x880BA10
+#define MageRainMovCost 0x880BE61
+#define MageSnowMovCost 0x880C271
+#define FighterMovCost 0x880B8CB
+#define FighterRainMovCost 0x880BD1C
+#define FighterSnowMovCost 0x880C12C
+#define BrigandMovCost 0x880B94D
+#define BrigandRainMovCost 0x880BD9E
+#define BrigandSnowMovCost 0x880C1AE
+#define PirateMovCost 0x880B98E
+#define PirateRainMovCost 0x880BDDF
+#define PirateSnowMovCost 0x880C1EF
+#define BerserkerMovCost 0x880B90C
+#define BerserkerRainMovCost 0x880BD5D
+#define BerserkerSnowMovCost 0x880C16D
+#define MautheDoogMovCost 0x880BB14
+#define MautheDoogRainMovCost 0x880BF65
+#define MautheDoogSnowMovCost 0x880C375
+#define DemonKingMovCost 0x880BBD7
+// #define DemonKingRainMovCost 0x880BBD7
+// #define DemonKingSnowMovCost 0x880BBD7
+#define TransporterMovCost 0x880BA51
+#define TransporterRainMovCost 0x880BEA2
+#define TransporterSnowMovCost 0x880C2B2
+
+#define DefaultAvoid 0x880C479
+#define DefaultDef 0x880C4BA
+#define DefaultRes 0x880C4FB
+#define FlierAvoid 0x880C53C
+#define FlierDef 0x880C57D
+#define FlierRes 0x880C5BE
+
+#endif 
+
+#ifdef _FE7_ 
+#define UseMonsterWeapons 0x4 
+#define LordMovCost 0x8BE3888
+#define LordRainMovCost 0x8BE3CD9
+#define LordSnowMovCost 0x8BE40E9
+#define PaladinMovCost 0x8BE3B53
+#define PaladinRainMovCost 0x8BE3FA4
+#define PaladinSnowMovCost 0x8BE43B4
+#define CavMovCost 0x8BE3B12
+#define CavRainMovCost 0x8BE3F63
+#define CavSnowMovCost 0x8BE4373
+#define KnightMovCost 0x8BE390A
+#define KnightRainMovCost 0x8BE3D5B
+#define KnightSnowMovCost 0x8BE416B
+#define ThiefMovCost 0x8BE3A4F
+#define ThiefRainMovCost 0x8BE3EA0
+#define ThiefSnowMovCost 0x8BE42B0
+#define FlierMovCost 0x8BE3C16
+#define FlierRainCost 0x8BE4067
+#define FlierSnowCost 0x8BE4477
+#define DefaultMovCost 0x8BE38C9
+#define DefaultRainMovCost 0x8BE3D1A
+#define DefaultSnowMovCost 0x8BE412A
+#define NmdTrooperMovCost 0x8BE3BD5
+#define NmdTrooperRainMovCost 0x8BE4026
+#define NmdTrooperSnowMovCost 0x8BE4436
+#define MageMovCost 0x8BE3A90
+#define MageRainMovCost 0x8BE3EE1
+#define MageSnowMovCost 0x8BE42F1
+#define FighterMovCost 0x8BE394B
+#define FighterRainMovCost 0x8BE3D9C
+#define FighterSnowMovCost 0x8BE41AC
+#define BrigandMovCost 0x8BE39CD
+#define BrigandRainMovCost 0x8BE3E1E
+#define BrigandSnowMovCost 0x8BE422E
+#define PirateMovCost 0x8BE3A0E
+#define PirateRainMovCost 0x8BE3E5F
+#define PirateSnowMovCost 0x8BE426F
+#define BerserkerMovCost 0x8BE398C
+#define BerserkerRainMovCost 0x8BE3DDD
+#define BerserkerSnowMovCost 0x8BE41ED
+#define NomadMovCost 0x8BE3B94
+#define NomadRainMovCost 0x8BE3FE5
+#define NomadSnowMovCost 0x8BE43F5
+#define FireDragonMovCost 0x8BE3C57
+// #define FireDragonRainMovCost 0x8BE3C57
+// #define FireDragonSnowMovCost 0x8BE3C57
+#define TransporterMovCost 0x8BE3AD1
+#define TransporterRainMovCost 0x8BE3F22
+#define TransporterSnowMovCost 0x8BE4332
+
+#define DefaultAvoid 0x8BE44F9
+#define DefaultDef 0x8BE453A
+#define DefaultRes 0x8BE457B
+#define FlierAvoid 0x8BE45BC
+#define FlierDef 0x8BE45FD
+#define FlierRes 0x8BE463E
+
+#define gCharacterData 0x8BDCE4C
+#endif 
+#ifdef _FE6_ 
+#define UseMonsterWeapons 0x4 
+#define LordMovCost 0x860C648
+#define DefaultMovCost 0x860C67B
+#define FighterMovCost 0x860C6E1
+#define KnightMovCost 0x860C6AE
+#define MageMovCost 0x860C7E0
+#define CavMovCost 0x860C846
+#define PaladinMovCost 0x860C879
+#define NomadMovCost 0x860C8AC
+#define NmdTrooperMovCost 0x860C8DF
+#define FlierMovCost 0x860C912
+#define BrigandMovCost 0x860C912
+#define PirateMovCost 0x860C77A
+#define BerserkerMovCost 0x860C714
+#define ThiefMovCost 0x860C7AD
+#define ManaketeMovCost 0x860C945
+#define TransporterMovCost 0x860C813
+
+#define DefaultAvoid 0x860C978
+#define DefaultDef 0x860C9AB
+#define DefaultRes 0x860C9DE
+#define FlierAvoid 0x860CA11
+#define FlierDef 0x860CA44
+#define FlierRes 0x860CA77
+
+
+#define gCharacterData 0x86076D0
+#endif 
+
+
+
+#define BlankMug 0
+
+
+#define Lyon2Mug 0
+#define Orson2Mug 0
+#define Valter2Mug 0
+#define Selena2Mug 0
+
+
+
+
+// fe17 
+#define VanderMug BlankMug
+#define ClanneMug BlankMug
+#define FrammeMug BlankMug
+#define AlfredMug BlankMug
+#define BoucheronMug BlankMug
+#define CelineMug BlankMug
+#define ChloeMug BlankMug
+#define LouisMug BlankMug
+#define AlcrystMug BlankMug
+#define DiamantMug BlankMug
+#define ZelkovMug BlankMug
+#define FogadoMug BlankMug
+#define PandreoMug BlankMug
+#define BunetMug BlankMug
+#define TimerraMug BlankMug
+#define PanetteMug BlankMug
+#define HortensiaMug BlankMug
+#define SeadallMug BlankMug
+#define RosadoMug BlankMug
+#define MauvierMug BlankMug
+#define JeanMug BlankMug
+#define NelMug BlankMug
+#define RafalMug BlankMug
+#define ZelestiaMug BlankMug
+#define GregoryMug BlankMug
+#define MadelineMug BlankMug
+
+// fe16 
+#define BylethFMug BlankMug
+#define CasparMug BlankMug
+#define DorotheaMug BlankMug
+#define PetraMug BlankMug
+#define DedueMug BlankMug
+#define AsheMug BlankMug
+#define IngridMug BlankMug
+#define IgnatzMug BlankMug
+#define SetethMug BlankMug
+#define HannemanMug BlankMug
+#define GilbertMug BlankMug
+#define CyrilMug BlankMug
+
+// fe15 
+#define ClairMug BlankMug
+#define CliveMug BlankMug
+#define ForsythMug BlankMug
+#define LuthierMug BlankMug
+#define TatianaMug BlankMug
+#define MycenMug BlankMug
+#define FayeMug BlankMug
+#define MaeMug BlankMug
+#define BoeyMug BlankMug
+#define ValbarMug BlankMug
+#define KamuiMug BlankMug
+#define LeonMug BlankMug
+#define PallaFe15Mug BlankMug
+#define CatriaFe15Mug BlankMug
+#define AtlasMug BlankMug
+#define JesseMug BlankMug
+#define DeenFe15Mug BlankMug
+#define NomahMug BlankMug
+#define ConradMug BlankMug
+
+// fe14 
+#define KazeMug BlankMug 
+#define SaizoMug BlankMug 
+#define OrochiMug BlankMug 
+#define AzamaMug BlankMug 
+#define HayatoMug BlankMug 
+#define ReinaMug BlankMug 
+#define NilesMug BlankMug 
+#define SelenaFE14Mug BlankMug 
+#define BerukaMug BlankMug 
+#define CharlotteMug BlankMug 
+#define KeatonMug BlankMug 
+#define IzanaMug BlankMug 
+#define YukimuraMug BlankMug 
+#define FloraMug BlankMug 
+#define KanaMMug BlankMug 
+#define DwyerMug BlankMug 
+#define ShiroMug BlankMug 
+#define AsugiMug BlankMug 
+#define CaeldoriMug BlankMug 
+#define RhajatMug BlankMug 
+#define SiegbertMug BlankMug 
+#define ForrestMug BlankMug 
+#define VelouriaMug BlankMug 
+#define PercyMug BlankMug 
+#define OpheliaMug BlankMug 
+#define OdinMug BlankMug 
+
+// fe4/5 
+#define DewMug BlankMug 
+#define SalemMug BlankMug 
+#define TinaMug BlankMug 
+#define SleufMug BlankMug 
+#define SaraMug BlankMug 
+
+// fe3 
+#define RoderickMug BlankMug 
+#define LukeMug BlankMug
+#define RyanMug BlankMug
+
+// bsfe / fe12 
+#define ReidenMug BlankMug
+#define BelfMug BlankMug
+#define RobertoMug BlankMug
+
+
+
+// #define FireAffinity 1
+// #define ThunderAffinity 2
+// #define WindAffinity 3
+// #define IceAffinity 4
+// #define DarkAffinity 5
+// #define LightAffinity 6
+// #define AnimaAffinity 7
+
+
+#define EarthAffinity 7 //AnimaAffinity
+// #define Wind 2 
+#define WaterAffinity 4 //IceAffinity
+#define HeavenAffinity 6 //LightAffinity
+#define LightningAffinity 2 // ThunderAffinity
+
+
+#ifndef _FE6_
+#define RoyLord Mercenary
+#define Mamkute_F Manakete_2_F
+#endif 
+
+#ifdef _FE6_ 
+
+#undef Socialknight_F 
+#define Socialknight_F Cavalier 
+#undef Paladin_F 
+#define Paladin_F Paladin 
+#undef Mercenary_F 
+#define Mercenary_F Mercenary 
+
+// RoyMasterLord 
+#define Knight ArmourKnight
+#define Knight_F ArmourKnight
+#define Fighter Axefighter
+#define Cleric Priest 
+#define Monk Priest 
+#define Manakete_2_F Mamkute 
+#define WyvernRider Mamkute 
+#define Dracoknight Mamkute 
+#define WyvernRider_F Mamkute
+#define WyvernLord Mamkute 
+#define WyvernLord_F Mamkute 
+#define WyvernKnight Mamkute
+#define EphraimLord RoyLord 
+#define EirikaLord RoyLord 
+#define Myrmidon_F Swordfighter_F 
+#define Myrmidon Swordfighter
+#define Rogue Thief 
+#define Assassin Thief 
+#define Brigand MountainThief 
+#define FalcoKnight FalconKnight 
+
+
+#define Prince Lord 
+#define MagicSeal Mage 
+#define TransporterHorse Storage
+
+#define Ranger Nomad 
+#define MageKnight Valkyrie
+
+#define MageKnight_F Valkyrie 
+
+
+#define GreatKnight Paladin 
+
+#define EliwoodLord Mercenary
+#define LynLord Myrmidon
+#define HectorLord Knight
+#define KnightLord Mercenary
+#define BladeLord Myrmidon
+#define GreatLord Knight
+#define Journeyman_1 Pirate 
+#define Pupil_1 Shaman 
+#define Recruit_1 Knight 
+#define Manakete Mamkute 
+#define Manakete_F Mamkute 
+#define Manakete_2 Mamkute 
+#define Necromancer Druid 
+#define Peer_F Paladin_F
+#define Transporter Knight
+#define Archsage Sage
+// #define FireDragon Mamkute 
+#endif 
+
+
+
+#ifdef _FE7_ 
+
+#undef Mercenary_F 
+#define Mercenary_F Mercenary 
+
+#define Priest Monk
+#define Journeyman_1 Pirate 
+#define Pupil_1 Shaman 
+#define Recruit_1 Knight 
+#define Manakete FireDragon 
+#define Manakete_2_F FireDragon
+#define EphraimLord EliwoodLord
+#define WyvernRider WyvernKnight
+#define EirikaLord LynLord
+#define Rogue Assassin 
+#define GreatKnight Paladin 
+#define Ranger Nomad 
+#define MageKnight Valkyrie
+#define Dracoknight WyvernKnight  
+#define Manakete_F Manakete_2_F 
+#define Manakete_2 Manakete_2_F 
+#define MageKnight_F Valkyrie 
+#define WyvernRider_F WyvernKnight_F
+#define Necromancer Druid 
+#endif 
+
+
+#ifdef _FE8_ 
+#define Dracoknight WyvernRider 
+#define Manakete_F Manakete_2_F 
+#define FireDragon Manakete_2_F 
+#define Nomad Archer 
+#define Nomad_F Archer_F 
+#define NomadTrooper Ranger 
+#define NomadTrooper_F Ranger 
+
+#define EliwoodLord Mercenary
+#define LynLord Myrmidon
+#define HectorLord Knight
+
+#define KnightLord Mercenary
+#define BladeLord Myrmidon
+#define GreatLord Knight
+
+#define Thief_F Thief 
+#define Peer_F Paladin_F
+#define Transporter Knight 
+#define Archsage Sage 
+
+#define MagicSeal Mage 
+#define TransporterHorse Tent
+
+#endif 
+
+
+
+
+#define Villager Myrmidon 
+
+
+
+// fe1 
+// #define MarthLord Mercenary 
+// #define Hunter Thief 
+#define Horseman Cavalier 
+#ifndef _FE6_
+    #define Mamkute Manakete_2_F 
+#endif 
+#define Ballistician Archer 
+#define Freelancer EphraimLord 
+#define Sorcerer Sage 
+
+
+// fe4/5 
+#define Lord Mercenary 
+#define LordKnight Cavalier 
+#define SocialKnight Cavalier 
+#define FreeKnight Cavalier 
+#define DukeKnight Cavalier 
+#define ForrestKnight Cavalier 
+#ifndef _FE6_ 
+    #define DragonKnight WyvernKnight 
+#endif 
+#define DragonRider WyvernRider 
+#define ArchKnight Cavalier 
+#define BowFighter Archer 
+#define AxeFighter Fighter 
+#ifndef _FE6_ 
+    #define Swordfighter Myrmidon 
+#endif 
+#define Princess Priest 
+#ifndef _FE6_ 
+    #define Sister Priest 
+#endif 
+#define HighPriest Sage 
+#define WindMage Mage 
+#define ThunderMage Mage 
+#ifndef _FE6_ 
+    #define MountainThief Brigand 
+#endif 
+#define ThiefFighter Thief 
+#define PegasusRider PegasusKnight 
+#define AxeArmour Knight 
+#define LoputoMage Shaman 
+
+
+
+
+
+// fe10 
+// #define IkeLord Mercenary 
+
+#define LanceKnight Cavalier 
+#define Cat Myrmidon
+#define Tiger Fighter 
+#define AxeKnight Pirate
+#define BowKnight Archer
+#define SwordKnight Cavalier
+#define SwordArmour Cavalier
+// #define Halberdier Knight 
+#ifndef _FE6_ 
+    #define FalconKnight WyvernRider
+#endif 
+#define Heron Priest
+#define PrincessCrimea EirikaLord
+#define RedDragon Berserker 
+#define WhiteDragon General 
+#define Hawk Hero
+#define RavenClass Swordmaster
+#define Lion General 
+
+// fe13 
+#ifndef _FE7_ 
+#define Tactician Mage 
+#endif 
+#define Taguel Mercenary 
+#define Merchant Cavalier 
+#define DarkMage Shaman 
+#define Trickster Assassin 
+#define Conqueror General 
+#define DarkFlier WyvernLord  
+
+
+// fe14 
+
+#define Maid Cleric 
+#define Butler Priest
+#define OniSavage Fighter 
+#define Ninja Thief 
+#define ShrineMaiden Cleric 
+#define Songstress Dancer 
+#define Samurai Swordmaster 
+#define Diviner Monk 
+#define SpearFighter Knight 
+#define Outlaw Thief 
+#define DarkKnight Druid 
+#define Wolfskin Mercenary 
+#define MasterNinja Assassin 
+#define SkyKnight PegasusKnight 
+// #define Adventurer Rogue 
+
+// fe15 
+#define GoldKnight Paladin 
+
+// fe16 
+#define Noble Lord 
+#define Commoner Myrmidon 
+#define LanceArmor Knight  
+#define LanceCavalier Cavalier 
+#define SwordFighter Myrmidon 
+#define SentinelBow Archer 
+#define SentinelLance Knight 
+#define WolfKnight Cavalier 
+#define WindTamer Mage 
+#define RoyalKnight Paladin 
+
+
+// fe17 
+
+#define Priestess Cleric 
+#define FortressKnight General 
+#define DragonChild Manakete_2_F 
+#define MartialMonk Fighter 
+#define LanceFlier PegasusKnight 
+#define AxeArmor Knight 
+#define WingTamer PegasusKnight 
+#define FellChild Manakete_2_F
+
+
+
+
+
+
+
+
+
+
+
+
