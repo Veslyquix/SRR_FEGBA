@@ -2111,7 +2111,10 @@ int GetMaxClasses(void)
     }
 #endif
 #ifdef FE8
-// if (!RecruitValues->newClasses) { c = 127; }
+    if (!RecruitValues->newClasses)
+    {
+        c = 127;
+    }
 #endif
     for (int i = 1; i <= c; i++)
     {
