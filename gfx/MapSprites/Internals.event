@@ -18,7 +18,9 @@
 	#define DefaultMMSEntry "POIN 0x3B8CAC 0x3DCF00 ; " // Lord can dance 
 #endif 
 #ifdef _FE8_ 
-	#define DemonKingAP 0x81fd028
+    #define DancerAP 0x81E8840 
+	#define DemonKingAP DancerAP
+	// #define DemonKingAP 0x81fd028
 	#define DefaultSMSEntry "SHORT 0x02	0x01 ; POIN	0x81B7828 ; " //00
 	#define DefaultMMSEntry "POIN 0x81C33CC	0x81E8840 ; " // Lord can dance 
 #endif 
