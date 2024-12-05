@@ -11,7 +11,7 @@ By Vesly
 Special thanks:   
 -  
   
-Norikins, Mimikyudis, GeorgeCalibu, AthenaBaer
+Norikins, Mimikyudis, GeorgeCalibur, AthenaBaer  
 Circles for the 2018 FE8 Self Randomizer as a reference.  
 FE8U Decomp Contributors, as many functions were copied from the decomp.  
 Gringe: FE6 translation used with permission (FE6 only).  
