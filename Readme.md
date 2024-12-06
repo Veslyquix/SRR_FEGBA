@@ -129,7 +129,7 @@ BrighidSMS by Shin19
 Cantor2SMS by Norikins    
 ChickenSMS by Pikmin1211    
 CursedSwordSMS by Der    
-DarkPrinceSMS by Stephano, Zane    
+DarkPrinceSMS by Stephano, Zane, Norikins
 DjinnSMS by Alexsplode    
 DragoonSMS by Pikmin, Unknown    
 DreadFighterSMS by Nuramon    
@@ -150,7 +150,7 @@ IkeSMS by Vanguard, Unknown
 LancerSMS by SALVAGED    
 LegionKingSMS by L95, Pikmin, Der, Huichelaar    
 LivingArmorSMS by Sphealnuke, Topazlight    
-SeliphLordSMS by Stephano, Zane    
+SeliphLordSMS by Stephano, Zane, Norikins   
 MarthLordSMS by DominusVobiscum, Snewping    
 GenericLordSMS by Leif    
 AwakeningMageSMS by Blood    
