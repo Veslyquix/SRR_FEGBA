@@ -50,7 +50,6 @@ ORG NewPortraitTable
 ORG NewPortraitTable + (0x1C*0x400)
 ALIGN 4 
 #include "Generated.event" 
-setMugEntry(TheaMug, TheaMugData, 3, 5, 3, 4) // this one always fails fsr 
 
 PUSH 
 #ifdef _FE8_

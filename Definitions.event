@@ -383,17 +383,16 @@ Enchanter
 
 // RoyMasterLord 
 #define Knight ArmourKnight
-#define Knight_F ArmourKnight
+#define Knight_F ArmourKnight_F
 #define Fighter Axefighter
-#define Cleric Priest 
-#define Monk Priest 
-#define Manakete_2_F Mamkute 
-#define WyvernRider Mamkute 
-#define Dracoknight Mamkute 
-#define WyvernRider_F Mamkute
-#define WyvernLord Mamkute 
-#define WyvernLord_F Mamkute 
-#define WyvernKnight Mamkute
+#define Cleric Sister 
+#define Monk Parson
+#define WyvernRider DragonKnight 
+#define Dracoknight DragonMaster 
+#define WyvernRider_F DragonKnight_F
+#define WyvernLord DragonMaster 
+#define WyvernLord_F DragonMaster_F
+#define WyvernKnight DragonMaster
 #define EphraimLord RoyLord 
 #define EirikaLord RoyLord 
 #define Myrmidon_F Swordfighter_F 
@@ -405,10 +404,10 @@ Enchanter
 
 
 #define Prince Lord 
-#define MagicSeal Mage 
+#define MagicSeal MagicSeal2
 #define TransporterHorse Storage
 
-#define Ranger Nomad 
+#define Ranger NomadTrooper
 #define MageKnight Valkyrie
 
 #define MageKnight_F Valkyrie 
@@ -417,20 +416,21 @@ Enchanter
 #define GreatKnight Paladin 
 
 #define EliwoodLord Mercenary
-#define LynLord Myrmidon
+#define LynLord Myrmidon_F
 #define HectorLord Knight
 #define KnightLord Mercenary
-#define BladeLord Myrmidon
+#define BladeLord Myrmidon_F
 #define GreatLord Knight
 #define Journeyman_1 Pirate 
 #define Pupil_1 Shaman 
 #define Recruit_1 Knight 
 #define Manakete Mamkute 
-#define Manakete_F Mamkute 
+#define Manakete_2_F Mamkute_F
+#define Manakete_F Mamkute_F
 #define Manakete_2 Mamkute 
-#define Necromancer Druid 
+#define Necromancer DarkPrince 
 #define Peer_F Paladin_F
-#define Transporter Knight
+#define Transporter Storage
 #define Archsage Sage
 // #define FireDragon Mamkute 
 #endif 
@@ -442,7 +442,7 @@ Enchanter
 #undef Mercenary_F 
 #define Mercenary_F Mercenary 
 
-#define Priest Monk
+#define Priest Parson
 #define Journeyman_1 Pirate 
 #define Pupil_1 Shaman 
 #define Recruit_1 Knight 
@@ -453,41 +453,43 @@ Enchanter
 #define EirikaLord LynLord
 #define Rogue Assassin 
 #define GreatKnight Paladin 
-#define Ranger Nomad 
+#define Ranger NomadTrooper 
 #define MageKnight Valkyrie
 #define Dracoknight WyvernKnight  
 #define Manakete_F Manakete_2_F 
 #define Manakete_2 Manakete_2_F 
 #define MageKnight_F Valkyrie 
 #define WyvernRider_F WyvernKnight_F
-#define Necromancer Druid 
+#define Necromancer DarkPrince 
+#define FalconKnight FalcoKnight 
 #endif 
 
 
 #ifdef _FE8_ 
-#define Dracoknight WyvernRider 
+#define Dracoknight WyvernKnight 
 #define Manakete_F Manakete_2_F 
 #define FireDragon Manakete_2_F 
-#define Nomad Archer 
-#define Nomad_F Archer_F 
+#define Nomad Hunter 
+#define Nomad_F Hunter 
 #define NomadTrooper Ranger 
-#define NomadTrooper_F Ranger 
+#define NomadTrooper_F Ranger_F
 
 #define EliwoodLord Mercenary
-#define LynLord Myrmidon
+#define LynLord Myrmidon_F
 #define HectorLord Knight
 
 #define KnightLord Mercenary
-#define BladeLord Myrmidon
+#define BladeLord Myrmidon_F
 #define GreatLord Knight
 
 #define Thief_F Thief 
 #define Peer_F Paladin_F
-#define Transporter Knight 
+#define Transporter Tent
 #define Archsage Sage 
+#define FalconKnight FalcoKnight 
 
-#define MagicSeal Mage 
-#define TransporterHorse Tent
+#define MagicSeal MagicSeal2 
+#define TransporterHorse MerlinusTransport
 
 #endif 
 
@@ -501,7 +503,12 @@ Enchanter
 // fe1 
 // #define MarthLord Mercenary 
 // #define Hunter Thief 
-#define Horseman Cavalier 
+#ifdef _FE8_
+    #define Horseman Ranger
+#else
+    #define Horseman NomadTrooper
+#endif 
+
 #ifndef _FE6_
     #define Mamkute Manakete_2_F 
 #endif 
@@ -512,35 +519,64 @@ Enchanter
 
 // fe4/5 
 #define Lord Mercenary 
-#define LordKnight Cavalier 
+#define LordKnight SeliphLord
 #define SocialKnight Cavalier 
 #define FreeKnight Cavalier 
-#define DukeKnight Cavalier 
-#define ForrestKnight Cavalier 
+#define DukeKnight Paladin
+#ifdef _FE8_
+    #define ForrestKnight Ranger
+#else
+    #define ForrestKnight NomadTrooper
+#endif
 #ifndef _FE6_ 
     #define DragonKnight WyvernKnight 
+    #define DragonKnight_F WyvernKnight_F
 #endif 
 #define DragonRider WyvernRider 
-#define ArchKnight Cavalier 
+#ifdef _FE8_
+    #define ArchKnight Cavalier
+#else
+    #define ArchKnight Nomad
+#endif
+#ifdef _FE8_
+    #define ArchKnight_F Cavalier_F
+#else
+    #define ArchKnight_F Nomad_F
+#endif
 #define BowFighter Archer 
+#define BowFighter_F Archer_F 
 #define AxeFighter Fighter 
 #ifndef _FE6_ 
     #define Swordfighter Myrmidon 
+    #define Swordfighter_F Myrmidon_F
 #endif 
-#define Princess Priest 
+#ifndef _FE8_
+    #define Princess Cleric2 
+#else
+    #define Princess EirikaLord 
+#endif 
 #ifndef _FE6_ 
-    #define Sister Priest 
+    #define Sister Cleric
 #endif 
 #define HighPriest Sage 
-#define WindMage Mage 
+#define WindMage Magician 
 #define ThunderMage Mage 
+#define ThunderMage_F Mage_F
 #ifndef _FE6_ 
     #define MountainThief Brigand 
 #endif 
-#define ThiefFighter Thief 
+#ifdef _FE6_
+    #define ThiefFighter Thief
+#endif
+#ifdef _FE7_
+    #define ThiefFighter Assassin
+#endif
+#ifdef _FE8_
+    #define ThiefFighter Rogue
+#endif
 #define PegasusRider PegasusKnight 
 #define AxeArmour Knight 
-#define LoputoMage Shaman 
+#define LoputoMage Shaman
 
 
 
@@ -551,22 +587,46 @@ Enchanter
 
 #define LanceKnight Cavalier 
 #define Cat Myrmidon
+#define Cat_F Myrmidon_F
 #define Tiger Fighter 
-#define AxeKnight Pirate
-#define BowKnight Archer
+#define AxeKnight Cavalier
+#ifdef _FE8_
+    #define BowKnight Cavalier
+#else
+    #define BowKnight Nomad
+#endif
+#ifdef _FE8_
+    #define BowKnight_F Cavalier_F
+#else
+    #define BowKnight_F Nomad_F
+#endif
 #define SwordKnight Cavalier
-#define SwordArmour Cavalier
+#define SwordArmour Knight
+#define SwordArmour_F Knight_F
 // #define Halberdier Knight 
-#ifndef _FE6_ 
-    #define FalconKnight WyvernRider
-#endif 
-#define Heron Priest
-#define PrincessCrimea EirikaLord
+#define Heron Bard
+#define Heron_F Dancer
+#define PrincessCrimea FalcoKnight
 #define RedDragon Berserker 
 #define WhiteDragon General 
 #define Hawk Hero
 #define RavenClass Swordmaster
+#define RavenClass_F Swordmaster_F
 #define Lion General 
+#define DarkSage DarkPrince
+#ifdef _FE8_
+    #define WolfClass Mauthedoog
+#else
+    #define WolfClass Nomad
+#endif
+#ifdef _FE8_
+    #define WolfQueen Gwyllgi
+#else
+    #define WolfQueen NomadTrooper_F
+#endif
+#define Empress Sage_F
+#define Saint Bishop
+#define BlackKnight General
 
 // fe13 
 #ifndef _FE7_ 
