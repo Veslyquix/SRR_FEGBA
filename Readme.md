@@ -245,15 +245,15 @@ Portraits
 -  
   
 // fe1 / fe3 / remakes   
-Marth portrait by BatimaTheBat    
+Marth portrait by Lenh    
 Jagen portrait by Thorn    
 Caeda portrait by Nickt, Blueyguy    
 Cain portrait by Xenith, Nickt, Blaze    
 Abel portrait by LuminescentBlade    
 Draug portrait by Thorn    
 Gordin portrait by Thorn    
-Wrys portrait by Blueyguy    
-Ogma portrait by CirclesEverywhere, Nickt    
+Wrys portrait by Thorn    
+Ogma portrait by Thorn    
 Barst portrait by Thorn    
 Bord (no art credited)    
 Cord portrait by Frigid, Nickt, Glaceo    
@@ -265,33 +265,33 @@ Navarre portrait by BuskHusker
 Matthis portrait by Thorn    
 Merric portrait by Thorn    
 Hardin portrait by Thorn    
-Wolf portrait by DerTheVaporeon, Nickt    
-Sedgar portrait by DerTheVaporeon    
-Roshea portrait by Alusq, DerTheVaporeon    
+Wolf portrait by Thorn   
+Sedgar portrait by Thorn, AlemOwl    
+Roshea portrait by Thorn    
 Vyland portrait by Zmr, Peer, Blueey, Nickt    
 Wendell portrait by Thorn    
 Rickard portrait by Thorn    
 Bantu portrait by Thorn    
 Caesar portrait by Thorn    
-Radd portrait by Zorua    
+Radd portrait by Thorn    
 Roger portrait by Thorn    
 Jeorge portrait by Thorn    
-Maria portrait by RedBean    
-Minerva portrait by Wasdye    
+Maria portrait by BuskHusker    
+Minerva portrait by BuskHusker    
 Linde portrait by MK404    
 Jake portrait by Thorn    
 Boah portrait by Thorn    
 Tomas portrait by Thorn    
 Dolph portrait by Thorn    
 Macellan portrait by Thorn    
-Midia portrait by Vilk    
+Midia portrait by Thorn    
 Beck portrait by Thorn    
 Astram portrait by GratedShtick, Cardcafe, Nickt, CranJam    
-Palla portrait by Obsidian_Daddy    
+Palla portrait by RedBean    
 Catria portrait by RedBean    
 Samson portrait by Thorn    
 Arran portrait by Thorn    
-Xane portrait by ShadowFlygon    
+Xane portrait by Thorn    
 Est portrait by RedBean    
 Tiki portrait by BatimaTheBat    
 Lorenz portrait by Sterling_Glovner    
@@ -300,12 +300,12 @@ Gotoh portrait by Thorn
 Frey portrait by Thorn    
 Norne portrait by MK404    
 Athena portrait by Redbean    
-Horace portrait by Thorn    
+Horace portrait by Garytop    
 Etzel portrait by Thorn    
 Ymir portrait by Thorn    
 Nagi portrait by Thorn    
 Cecil portrait by Obsidian_Daddy    
-Marisha portrait by Garytop    
+Marisha portrait by RedBean    
 Warren portrait by Thorn, AthenaBaer    
 Yuliya portrait by DonkinDo    
 Jubelo portrait by Rohan    
@@ -321,6 +321,8 @@ Camus portrait by Garytop
 Kris portrait by Atey, Arcth    
 Katarina portrait by Obsidian_Daddy    
 Michalis portrait by BuskHusker    
+Nyna portrait by Thorn  
+
   
 // fe4   
 Sigurd portrait by Atey   

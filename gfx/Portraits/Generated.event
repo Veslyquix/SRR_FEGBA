@@ -1795,10 +1795,10 @@ setMugEntry(HardinMug, HardinMugData, 2, 5, 2, 3)
 
 ALIGN 4
 HoraceMugData:
-#incbin "Png/FE1FE3FE11FE12/Horace_Thorn_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Horace_Thorn_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Horace_Thorn_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Horace_Thorn_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Horace_Garytop_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Horace_Garytop_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Horace_Garytop_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Horace_Garytop_minimug.dmp"
 #ifndef HoraceMug
   #define HoraceMug (FirstMugID+164)
 #endif
@@ -1938,36 +1938,36 @@ setMugEntry(MaliceMug, MaliceMugData, 4, 4, 4, 2)
 
 ALIGN 4
 MariaMugData:
-#incbin "Png/FE1FE3FE11FE12/Maria_RedBean_F2E_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Maria_RedBean_F2E_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Maria_RedBean_F2E_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Maria_RedBean_F2E_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Maria_BuskHusker_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Maria_BuskHusker_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Maria_BuskHusker_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Maria_BuskHusker_minimug.dmp"
 #ifndef MariaMug
   #define MariaMug (FirstMugID+177)
 #endif
-setMugEntry(MariaMug, MariaMugData, 2, 7, 3, 5)
+setMugEntry(MariaMug, MariaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MarishaMugData:
-#incbin "Png/FE1FE3FE11FE12/Marisha_Garytop_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Marisha_Garytop_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Marisha_Garytop_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Marisha_Garytop_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Marisha_Redbean_F2E_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Marisha_Redbean_F2E_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Marisha_Redbean_F2E_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Marisha_Redbean_F2E_minimug.dmp"
 #ifndef MarishaMug
   #define MarishaMug (FirstMugID+178)
 #endif
-setMugEntry(MarishaMug, MarishaMugData, 3, 6, 3, 4)
+setMugEntry(MarishaMug, MarishaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 MarthMugData:
-#incbin "Png/FE1FE3FE11FE12/Marth_BatimaTheBat_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Marth_BatimaTheBat_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Marth_BatimaTheBat_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Marth_BatimaTheBat_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Marth_Lenh_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Marth_Lenh_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Marth_Lenh_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Marth_Lenh_minimug.dmp"
 #ifndef MarthMug
   #define MarthMug (FirstMugID+179)
 #endif
-setMugEntry(MarthMug, MarthMugData, 2, 5, 3, 3)
+setMugEntry(MarthMug, MarthMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MatthisMugData:
@@ -1993,10 +1993,10 @@ setMugEntry(MerricMug, MerricMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MichalisMugData:
-#incbin "Png/FE1FE3FE11FE12/Michalis_Version_2_BuskHusker_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Michalis_Version_2_BuskHusker_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Michalis_Version_2_BuskHusker_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Michalis_Version_2_BuskHusker_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Michalis_BuskHusker_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Michalis_BuskHusker_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Michalis_BuskHusker_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Michalis_BuskHusker_minimug.dmp"
 #ifndef MichalisMug
   #define MichalisMug (FirstMugID+182)
 #endif
@@ -2004,25 +2004,25 @@ setMugEntry(MichalisMug, MichalisMugData, 3, 4, 3, 2)
 
 ALIGN 4
 MidiaMugData:
-#incbin "Png/FE1FE3FE11FE12/Midia_Vilk_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Midia_Vilk_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Midia_Vilk_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Midia_Vilk_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Midia_Thorn_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Midia_Thorn_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Midia_Thorn_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Midia_Thorn_minimug.dmp"
 #ifndef MidiaMug
   #define MidiaMug (FirstMugID+183)
 #endif
-setMugEntry(MidiaMug, MidiaMugData, 2, 6, 3, 4)
+setMugEntry(MidiaMug, MidiaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MinervaMugData:
-#incbin "Png/FE1FE3FE11FE12/Minerva_Wasdye_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Minerva_Wasdye_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Minerva_Wasdye_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Minerva_Wasdye_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Minerva_Version_2_BuskHusker_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Minerva_Version_2_BuskHusker_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Minerva_Version_2_BuskHusker_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Minerva_Version_2_BuskHusker_minimug.dmp"
 #ifndef MinervaMug
   #define MinervaMug (FirstMugID+184)
 #endif
-setMugEntry(MinervaMug, MinervaMugData, 3, 5, 3, 3)
+setMugEntry(MinervaMug, MinervaMugData, 5, 5, 5, 3)
 
 ALIGN 4
 NagiMugData:
@@ -2059,36 +2059,36 @@ setMugEntry(NorneMug, NorneMugData, 2, 5, 2, 3)
 
 ALIGN 4
 NynaMugData:
-#incbin "Png/FE1FE3FE11FE12/Nyna_Squidorsky_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Nyna_Squidorsky_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Nyna_Squidorsky_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Nyna_Squidorsky_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Nyna_Thorn_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Nyna_Thorn_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Nyna_Thorn_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Nyna_Thorn_minimug.dmp"
 #ifndef NynaMug
   #define NynaMug (FirstMugID+188)
 #endif
-setMugEntry(NynaMug, NynaMugData, 3, 6, 3, 4)
+setMugEntry(NynaMug, NynaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 OgmaMugData:
-#incbin "Png/FE1FE3FE11FE12/Ogma_CircleEverywhere_Nickt_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Ogma_CircleEverywhere_Nickt_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Ogma_CircleEverywhere_Nickt_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Ogma_CircleEverywhere_Nickt_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Ogma_Thorn_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Ogma_Thorn_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Ogma_Thorn_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Ogma_Thorn_minimug.dmp"
 #ifndef OgmaMug
   #define OgmaMug (FirstMugID+189)
 #endif
-setMugEntry(OgmaMug, OgmaMugData, 2, 5, 2, 3)
+setMugEntry(OgmaMug, OgmaMugData, 2, 4, 2, 2)
 
 ALIGN 4
 PallaMugData:
-#incbin "Png/FE1FE3FE11FE12/Palla_Obsidian_Daddy_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Palla_Obsidian_Daddy_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Palla_Obsidian_Daddy_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Palla_Obsidian_Daddy_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Palla_RedBean_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Palla_RedBean_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Palla_RedBean_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Palla_RedBean_minimug.dmp"
 #ifndef PallaMug
   #define PallaMug (FirstMugID+190)
 #endif
-setMugEntry(PallaMug, PallaMugData, 2, 5, 3, 4)
+setMugEntry(PallaMug, PallaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 PhinaMugData:
@@ -2103,14 +2103,14 @@ setMugEntry(PhinaMug, PhinaMugData, 2, 6, 2, 4)
 
 ALIGN 4
 RaddMugData:
-#incbin "Png/FE1FE3FE11FE12/Radd_version_1_Zorua_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Radd_version_1_Zorua_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Radd_version_1_Zorua_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Radd_version_1_Zorua_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Radd_Thorn_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Radd_Thorn_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Radd_Thorn_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Radd_Thorn_minimug.dmp"
 #ifndef RaddMug
   #define RaddMug (FirstMugID+192)
 #endif
-setMugEntry(RaddMug, RaddMugData, 2, 6, 3, 4)
+setMugEntry(RaddMug, RaddMugData, 4, 6, 4, 4)
 
 ALIGN 4
 RickardMugData:
@@ -2136,14 +2136,14 @@ setMugEntry(RogerMug, RogerMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RosheaMugData:
-#incbin "Png/FE1FE3FE11FE12/Roshea_Alusq_DerTheVaporeon_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Roshea_Alusq_DerTheVaporeon_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Roshea_Alusq_DerTheVaporeon_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Roshea_Alusq_DerTheVaporeon_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Roshea_Thorn_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Roshea_Thorn_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Roshea_Thorn_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Roshea_Thorn_minimug.dmp"
 #ifndef RosheaMug
   #define RosheaMug (FirstMugID+195)
 #endif
-setMugEntry(RosheaMug, RosheaMugData, 2, 5, 2, 3)
+setMugEntry(RosheaMug, RosheaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SamsonMugData:
@@ -2169,14 +2169,14 @@ setMugEntry(SamuelMug, SamuelMugData, 4, 5, 4, 3)
 
 ALIGN 4
 SedgarMugData:
-#incbin "Png/FE1FE3FE11FE12/Sedgar_DerTheVaporeon_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Sedgar_DerTheVaporeon_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Sedgar_DerTheVaporeon_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Sedgar_DerTheVaporeon_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Sedgar_Thorn_AlemOwl_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Sedgar_Thorn_AlemOwl_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Sedgar_Thorn_AlemOwl_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Sedgar_Thorn_AlemOwl_minimug.dmp"
 #ifndef SedgarMug
   #define SedgarMug (FirstMugID+198)
 #endif
-setMugEntry(SedgarMug, SedgarMugData, 2, 5, 3, 3)
+setMugEntry(SedgarMug, SedgarMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SheenaMugData:
@@ -2202,10 +2202,10 @@ setMugEntry(SiriusMug, SiriusMugData, 4, 6, 4, 4)
 
 ALIGN 4
 TikiMugData:
-#incbin "Png/FE1FE3FE11FE12/Tiki_version_2_BatimaTheBat_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Tiki_version_2_BatimaTheBat_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Tiki_version_2_BatimaTheBat_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Tiki_version_2_BatimaTheBat_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Tiki_version_1_BatimaTheBat_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Tiki_version_1_BatimaTheBat_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Tiki_version_1_BatimaTheBat_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Tiki_version_1_BatimaTheBat_minimug.dmp"
 #ifndef TikiMug
   #define TikiMug (FirstMugID+201)
 #endif
@@ -2257,36 +2257,36 @@ setMugEntry(WendellMug, WendellMugData, 4, 6, 4, 4)
 
 ALIGN 4
 WolfMugData:
-#incbin "Png/FE1FE3FE11FE12/Wolf_DerTheVaporeon_Nickt_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Wolf_DerTheVaporeon_Nickt_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Wolf_DerTheVaporeon_Nickt_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Wolf_DerTheVaporeon_Nickt_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Wolf_Thorn_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Wolf_Thorn_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Wolf_Thorn_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Wolf_Thorn_minimug.dmp"
 #ifndef WolfMug
   #define WolfMug (FirstMugID+206)
 #endif
-setMugEntry(WolfMug, WolfMugData, 3, 5, 3, 3)
+setMugEntry(WolfMug, WolfMugData, 4, 5, 4, 3)
 
 ALIGN 4
 WrysMugData:
-#incbin "Png/FE1FE3FE11FE12/Wrys_Blueyguy_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Wrys_Blueyguy_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Wrys_Blueyguy_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Wrys_Blueyguy_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Wrys_Thorn_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Wrys_Thorn_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Wrys_Thorn_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Wrys_Thorn_minimug.dmp"
 #ifndef WrysMug
   #define WrysMug (FirstMugID+207)
 #endif
-setMugEntry(WrysMug, WrysMugData, 2, 5, 2, 3)
+setMugEntry(WrysMug, WrysMugData, 2, 6, 2, 4)
 
 ALIGN 4
 XaneMugData:
-#incbin "Png/FE1FE3FE11FE12/Xane_ShadowFlygon_mug.dmp"
-#incbin "Png/FE1FE3FE11FE12/Xane_ShadowFlygon_frames.dmp"
-#incbin "Png/FE1FE3FE11FE12/Xane_ShadowFlygon_palette.dmp"
-#incbin "Png/FE1FE3FE11FE12/Xane_ShadowFlygon_minimug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Xane_Thorn_mug.dmp"
+#incbin "Png/FE1FE3FE11FE12/Xane_Thorn_frames.dmp"
+#incbin "Png/FE1FE3FE11FE12/Xane_Thorn_palette.dmp"
+#incbin "Png/FE1FE3FE11FE12/Xane_Thorn_minimug.dmp"
 #ifndef XaneMug
   #define XaneMug (FirstMugID+208)
 #endif
-setMugEntry(XaneMug, XaneMugData, 4, 6, 3, 4)
+setMugEntry(XaneMug, XaneMugData, 3, 5, 3, 3)
 
 ALIGN 4
 YmirMugData:
