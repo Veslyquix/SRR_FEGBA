@@ -351,6 +351,27 @@ Enchanter
 
 
 
+
+#define ArthurFE4Mug BlankMug
+#define BlackKnightMug BlankMug
+#define DanvedMug BlankMug
+#define EmmaMug BlankMug
+#define HerminaMug BlankMug
+#define NealuchiMug BlankMug
+#define OliverMug BlankMug
+#define RandalMug BlankMug
+#define RenningMug BlankMug
+#define SanakiMug BlankMug
+#define SeliphMug BlankMug
+#define SephiranMug BlankMug
+#define ShadeMug BlankMug
+#define SigrunMug BlankMug
+#define SkrimirMug BlankMug
+#define TineMug BlankMug
+#define YuzuMug BlankMug
+
+
+
 // #define FireAffinity 1
 // #define ThunderAffinity 2
 // #define WindAffinity 3
@@ -412,7 +433,7 @@ Enchanter
 
 #define MageKnight_F Valkyrie 
 
-
+#define Summoner Druid 
 #define GreatKnight Paladin 
 
 #define EliwoodLord Mercenary
@@ -460,6 +481,7 @@ Enchanter
 #define Manakete_2 Manakete_2_F 
 #define MageKnight_F Valkyrie 
 #define WyvernRider_F WyvernKnight_F
+#define Summoner Druid 
 #define Necromancer DarkPrince 
 #define FalconKnight FalcoKnight 
 #endif 
@@ -533,6 +555,7 @@ Enchanter
     #define DragonKnight_F WyvernKnight_F
 #endif 
 #define DragonRider WyvernRider 
+#define DragonRider_F WyvernRider_F
 #ifdef _FE8_
     #define ArchKnight Cavalier
 #else

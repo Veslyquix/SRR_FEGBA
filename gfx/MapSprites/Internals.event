@@ -6,20 +6,23 @@
 #define MMS_TableEntrySize 8 
 
 #ifdef _FE6_ 
-	#define DancerAP 0x829BF68
-	#define DemonKingAP DancerAP
+	#define DancerAP 0x829CC88
+	#define BardAP 0x829BF68
+	#define DemonKingAP BardAP
 	#define DefaultSMSEntry "SHORT 0x02 0x00;POIN 0x2504B4 ; " 
 	#define DefaultMMSEntry "POIN 0x27B188 0x29BF68 ; " // Lord can dance 
 #endif 
 #ifdef _FE7_ 
-	#define DancerAP 0x83DCF00
-	#define DemonKingAP DancerAP
+	#define DancerAP 0x83DC578
+	#define BardAP 0x83DCF00
+	#define DemonKingAP BardAP
 	#define DefaultSMSEntry "SHORT 0x02 0x01 ; POIN 0x3728F0 ; " //00
 	#define DefaultMMSEntry "POIN 0x3B8CAC 0x3DCF00 ; " // Lord can dance 
 #endif 
 #ifdef _FE8_ 
-    #define DancerAP 0x81E8840 
-	#define DemonKingAP DancerAP
+    #define DancerAP 0x81ED1C8 
+    #define BardAP 0x81E8840
+    #define DemonKingAP BardAP 
 	// #define DemonKingAP 0x81fd028
 	#define DefaultSMSEntry "SHORT 0x02	0x01 ; POIN	0x81B7828 ; " //00
 	#define DefaultMMSEntry "POIN 0x81C33CC	0x81E8840 ; " // Lord can dance 
