@@ -5820,8 +5820,8 @@ int NewGetStatIncrease(int growth, int noise[], int level, int offset, int useRN
         {
             level = 1;
         }
-        // +growth so the first levelup isn't always blank in fixed growths
-        if (Div1((growth * (level)), 100) < Div1(((growth * (level + 1)) + growth), 100))
+        // +2/+1 level so the first levelup isn't always blank in fixed growths
+        if (Div1((growth * (level + 1)), 100) < Div1((growth * (level + 2)), 100))
         {
             result++;
         }
