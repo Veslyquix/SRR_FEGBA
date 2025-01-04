@@ -1,0 +1,58 @@
+// https://feuniverse.us/t/fe8-complete-blessed-heart-v1-1-1-22-2023-reverse-recruitment-patch-released/12271
+// v1.1
+
+#ifndef TextTable 
+    #define TextTable "0x128F1CC"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+//#define NoWepLock
+
+#define MagCharTable 0x8B2C124
+#define MagClassTable 0x8B2C324
+#define Skill_Getter 0x8B4ED44
+
+//#define FreeSpace 0x15F2D38
+//ORG FreeSpace 
+
+//#include "../.FE8_Installer.event"
+#include "../.FE8_FebuilderSkillsys2020ish.event"
+//#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"
+// #include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
+
+//NeverChangeItem(0x1) // Iron Sword 
+//NeverChangeClass(0x1) // EirikaLord  
+//NeverChangeChar(0x1) // Eirika 
+
+NeverChangeChar(0x7) // Leonidas
+NeverChangeChar(0x0F) // Ephraim
+NeverChangeChar(0x24) // Anna
+NeverChangeChars(0x2D, 0x34) // Cutscene Characters
+NeverChangeChar(0x44) // Hypnos
+
+NeverChangeClass(0x1) // Ephraim Lord
+NeverChangeClass(0x4) // Ephraim Great Lord
+NeverChangeClass(0x34) // Dummy
+NeverChangeClass(0x38) // Dummy
+NeverChangeClass(0x39) // Trainee
+NeverChangeClass(0x3A) // Trainee
+NeverChangeClass(0x3B) // Manakete
+NeverChangeClass(0x3C) // Manakete
+NeverChangeClass(0x3D) // Dummy
+NeverChangeClass(0x3E) // Trainee
+NeverChangeClass(0x47) // Trainee
+NeverChangeClass(0x4F) // Vessel
+NeverChangeClass(0x50) // Fleet?
+NeverChangeClasses(0x51, 0x6C) // Phantom, Monsters, Ballistae
+NeverChangeClasses(0x6E, 0x72) // Civilians
+NeverChangeClass(0x74) // King
+NeverChangeClass(0x76) // Civilian
+NeverChangeClass(0x78) // Civilian
+NeverChangeClass(0x7A) // Civilian
+NeverChangeClass(0x7B) // Civilian
+NeverChangeClass(0x7C) // Monster
+NeverChangeClass(0x7D) // Monster
+NeverChangeClass(0x7F) // Unused F Monk
+
