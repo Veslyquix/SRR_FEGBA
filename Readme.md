@@ -322,6 +322,12 @@ Kris portrait by Atey, Arcth
 Katarina portrait by Obsidian_Daddy    
 Michalis portrait by BuskHusker    
 Nyna portrait by Thorn  
+Belf portrait by HunterAurzo
+Luke portrait by HunterAurzo
+Reiden portrait by HunterAurzo
+Roberto portrait by HunterAurzo
+Roderick portrait by HunterAurzo
+Ryan portrait by HunterAurzo
 
   
 // fe4   
@@ -403,7 +409,7 @@ Olwen portrait by Garytop
 Mareeta portrait by CavalryUnits    
 Salem portrait by [Unknown Artist]    
 Perne portrait by Sterling Glovner    
-Tina portrait by [Unknown Artist]    
+Tina Tina portrait by WiiSportsRemote  
 Troude portrait by Sterling Glovner    
 Glade portrait by squidaccus    
 Deen portrait by Atey    
@@ -558,23 +564,23 @@ Gunter portrait by Sterling_Glovner
 Felicia portrait by JeyTheCount    
 Jakob portrait by JeyTheCount    
 Rinkah portrait by JeyTheCount    
-Kaze (no art credited)    
+Kaze portrait by Garytop     
 Sakura portrait by Fenriel    
 Azura portrait by BatimaTheBat    
 Hana portrait by JeyTheCount    
 Subaki portrait by Blade    
 Silas portrait by JeyTheCount    
-Saizo (no art credited)    
-Orochi (no art credited)    
+Saizo portrait by Garytop     
+Orochi portrait by Garytop    
 Hinoka portrait by Garytop    
-Azama (no art credited)    
+Azama portrait by Garytop   
 Setsuna portrait by ThePontusAndersson    
-Hayato (no art credited)    
+Hayato portrait by Garytop    
 Oboro portrait by Atey    
 Hinata portrait by Sterling_Glovner    
 Takumi portrait by Fenriel    
 Kagero portrait by Nobody    
-Reina (no art credited)    
+Reina portrait by Garytop    
 Kaden portrait by VelvetKitsune    
 Ryoma portrait by Garytop    
 Scarlet portrait by JeyTheCount    
@@ -583,22 +589,22 @@ Elise portrait by JeyTheCount
 Arthur portrait by SatoshiKura    
 Effie portrait by JeyTheCount    
 Odin (no art credited)    
-Niles (no art credited)    
+Niles portrait by Garytop     
 Nyx portrait by Nobody    
 Camilla portrait by JeyTheCount    
 Selena (no art credited)    
-Beruka (no art credited)    
+Beruka portrait by Garytop     
 Laslow portrait by BatimaTheBat    
 Peri portrait by JeyTheCount    
 Benny portrait by JeyTheCount    
-Charlotte (no art credited)    
+Charlotte portrait by Garytop    
 Leo portrait by Glaceo    
-Keaton (no art credited)    
+Keaton portrait by Garytop     
 Xander portrait by Garytop    
-Izana (no art credited)    
+Izana portrait by Garytop    
 Fuga portrait by Renoud    
 Yukimura (no art credited)    
-Flora (no art credited)    
+Flora portrait by Garytop  
 Mozu portrait by Nobody    
 Kana_M (no art credited)    
 Kana_F portrait by Sterling_Glovner   
@@ -663,36 +669,36 @@ Conrad (no art credited)
 // fe16   
   
 Byleth_M portrait by Sterling_Glovner   
-Byleth_F portrait by (no art credited)   
+Byleth_F portrait by Glaciemnox   
 Edelgard portrait by Redbean    
 Dimitri portrait by Melia    
 Claude portrait by Melia, CranJam    
 Hubert portrait by Raymond    
 Ferdinand portrait by MeatOfJustice    
 Linhardt portrait by HyperGammaSpaces    
-Caspar (no art credited)    
+Caspar portrait by Glaciemnox  
 Bernadetta portrait by Garytop    
-Dorothea (no art credited)    
-Petra (no art credited)    
-Dedue (no art credited)    
+Dorothea portrait by Glaciemnox   
+Petra portrait by Glaciemnox   
+Dedue portrait by Glaciemnox  
 Felix portrait by Melia, Renoud    
-Ashe (no art credited)    
+Ashe portrait by Glaciemnox    
 Sylvain portrait by CavalryUnits    
 Mercedes portrait by Blade    
 Annette portrait by Yasako    
 Ingrid (no art credited)    
 Lorenz (FE16) portrait by Tobiki    
 Raphael portrait by Stitch    
-Ignatz (no art credited)    
+Ignatz portrait by Glaciemnox 
 Lysithea portrait by RedBean    
 Marianne portrait by Garytop    
 Hilda (FE16) portrait by Garytop    
 Leonie portrait by Tobiki    
-Seteth (no art credited)    
+Seteth portrait by Glaciemnox    
 Flayn portrait by Redbean    
-Hanneman (no art credited)    
+Hanneman portrait by Glaciemnox  
 Manuela portrait by Garytop    
-Gilbert (no art credited)    
+Gilbert portrait by Glaciemnox     
 Alois portrait by UltraxBlade    
 Catherine portrait by Garytop    
 Shamir portrait by Wasdye    
