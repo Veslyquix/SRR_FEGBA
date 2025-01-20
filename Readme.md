@@ -39,6 +39,9 @@ MMB: Zane (FE8 only)
 Support Hearts: Vesly, Gamma, 7743 (FE8 only)  
   
   
+UI:
+Vesly, Hypergammaspaces, Sokaballa, Pikmin1211, Stephano, Fenreir, Eretein    
+  
   
 Battle animations:   
 -   
@@ -322,12 +325,12 @@ Kris portrait by Atey, Arcth
 Katarina portrait by Obsidian_Daddy    
 Michalis portrait by BuskHusker    
 Nyna portrait by Thorn  
-Belf portrait by HunterAurzo
-Luke portrait by HunterAurzo
-Reiden portrait by HunterAurzo
-Roberto portrait by HunterAurzo
-Roderick portrait by HunterAurzo
-Ryan portrait by HunterAurzo
+Belf portrait by HunterAurzo  
+Luke portrait by HunterAurzo  
+Reiden portrait by HunterAurzo  
+Roberto portrait by HunterAurzo  
+Roderick portrait by HunterAurzo  
+Ryan portrait by HunterAurzo  
 
   
 // fe4   
@@ -409,7 +412,7 @@ Olwen portrait by Garytop
 Mareeta portrait by CavalryUnits    
 Salem portrait by [Unknown Artist]    
 Perne portrait by Sterling Glovner    
-Tina Tina portrait by WiiSportsRemote  
+Tina portrait by WiiSportsRemote    
 Troude portrait by Sterling Glovner    
 Glade portrait by squidaccus    
 Deen portrait by Atey    
@@ -676,11 +679,11 @@ Claude portrait by Melia, CranJam
 Hubert portrait by Raymond    
 Ferdinand portrait by MeatOfJustice    
 Linhardt portrait by HyperGammaSpaces    
-Caspar portrait by Glaciemnox  
+Caspar portrait by Glaciemnox   
 Bernadetta portrait by Garytop    
 Dorothea portrait by Glaciemnox   
 Petra portrait by Glaciemnox   
-Dedue portrait by Glaciemnox  
+Dedue portrait by Glaciemnox   
 Felix portrait by Melia, Renoud    
 Ashe portrait by Glaciemnox    
 Sylvain portrait by CavalryUnits    
@@ -689,14 +692,14 @@ Annette portrait by Yasako
 Ingrid (no art credited)    
 Lorenz (FE16) portrait by Tobiki    
 Raphael portrait by Stitch    
-Ignatz portrait by Glaciemnox 
+Ignatz portrait by Glaciemnox   
 Lysithea portrait by RedBean    
 Marianne portrait by Garytop    
 Hilda (FE16) portrait by Garytop    
 Leonie portrait by Tobiki    
 Seteth portrait by Glaciemnox    
 Flayn portrait by Redbean    
-Hanneman portrait by Glaciemnox  
+Hanneman portrait by Glaciemnox    
 Manuela portrait by Garytop    
 Gilbert portrait by Glaciemnox     
 Alois portrait by UltraxBlade    
