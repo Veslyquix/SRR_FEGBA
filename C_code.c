@@ -5431,6 +5431,14 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         bonusLevels += GetAdjustedLevel(character, originalClass) - GetAdjustedLevel(character, randCharOriginalClass);
         if (bonusLevels)
         {
+            if (bonusLevels > 8)
+            {
+                bonusLevels = 8;
+            }
+            if (bonusLevels < (-8))
+            {
+                bonusLevels = (-8);
+            }
             UnitAutolevelCore_Char(unit, unit->pClassData->number, bonusLevels);
         }
         // if (bonusLevels) { UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels); }
