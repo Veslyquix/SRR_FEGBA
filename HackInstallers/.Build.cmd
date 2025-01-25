@@ -9,6 +9,7 @@ set "vanilla_rom=%~dp0FE8.gba"
 @echo off
 SETLOCAL
 CALL :BUILDFUNC "SengokuOda"
+CALL :BUILDFUNC "FracturedPowers"
 CALL :BUILDFUNC "FrenEmblem"
 CALL :BUILDFUNC "IsekaiEmblem"
 CALL :BUILDFUNC "DragonHerald"
