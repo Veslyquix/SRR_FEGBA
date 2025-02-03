@@ -13,7 +13,10 @@
 	#define DefaultMMSEntry "POIN 0x27B188 0x29BF68 ; " // Lord can dance 
 #endif 
 #ifdef _FE7_ 
-	#define DancerAP 0x83DC578
+	// #define DancerAP 0x83DC578
+    ALIGN 4 
+    DancerAP:
+    #incbin "AP/dancer.romtcs.ap.bin" 
 	#define BardAP 0x83DCF00
 	#define DemonKingAP BardAP
 	#define DefaultSMSEntry "SHORT 0x02 0x01 ; POIN 0x3728F0 ; " //00

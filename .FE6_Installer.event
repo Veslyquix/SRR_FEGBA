@@ -634,6 +634,12 @@ ORG 0x19738 // fe6
 BYTE 0xFF 0x2E 0x2C 0xDA 0x02 0x99 0x08 0x70 0x04 0x9B 0x02 0x93
 SHORT $4667 $46c0 $46c0 // I think this is right but I'm not 100% convinced, oh well 
 
+ORG 0x60C759 
+BYTE 3 // Peak brigand movement cost from 4 to 3 because of some bug in the following: 
+// 802e914 AiDecide_NextUnit unit 0x85 getting stuck
+// 38f8 MapFloodCore
+
+
 //in 83193ec T gStatScreenPersonalInfoLabelsInfo
 //ORG $3193EC // 08677de8 
 //WORD 0 0 0 0

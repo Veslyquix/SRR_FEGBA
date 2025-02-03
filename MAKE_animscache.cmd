@@ -35,11 +35,11 @@ echo:
 echo Assembling
 
 cd "%base_dir%EventAssembler"
-ColorzCore A FE6 "-output:%target_rom%" "-input:%main_event%"
+ColorzCore A FE6 "-output:%target_rom%" "-input:%main_event%" "--build-times"
 set "target_rom=%~dp0animsfe7.dmp"
-ColorzCore A FE7 "-output:%target_rom%" "-input:%main_event%"
+ColorzCore A FE7 "-output:%target_rom%" "-input:%main_event%" "--build-times"
 set "target_rom=%~dp0animsfe8.dmp"
-ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%"
+ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" "--build-times"
 
 @rem call "MAKE_copyintoanimscache.cmd" noPause 
 
