@@ -17,6 +17,7 @@
 .endm
 
 .if FE6 == true 
+SET_FUNC ReadGlobalSaveInfo, 0x80842E9
 SET_FUNC StartBgmExt, 0x809C8D9
 SET_DATA getSoundRoom, 0x808b9c4
 SET_DATA getSongTable, 0x8039170
@@ -120,6 +121,7 @@ SET_FUNC SetupDebugFontForOBJ, 0x8005471
 SET_FUNC PrintDebugStringAsOBJ, 0x8005551
 .endif 
 .if FE7 == true 
+SET_FUNC ReadGlobalSaveInfo, 0x809E4F1
 SET_FUNC StartBgmExt, 0x80038AD
 SET_DATA getSoundRoom, 0x80AADB0 
 SET_DATA getSongTable, 0x8040230 

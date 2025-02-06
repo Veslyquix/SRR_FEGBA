@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.8.8"
+#define VersionNumber " SRR V1.8.9"
 
 #ifdef FE8
 #include "headers/prelude.h"
@@ -38,6 +38,7 @@ typedef struct
     u8 skill;
     u8 choosingSkill;
     u8 clear;
+    u16 globalChecksum;
     s8 Option[25];
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
@@ -69,7 +70,7 @@ struct RandomizerSettings
     u32 randMusic : 2;   // vanilla, random
     u32 colours : 3;     // vanilla, random, janky, portraits only
     u32 itemStats : 2;   // vanilla, random
-    u32 itemDur : 2;     // vanilla, infinite weps, infinite
+    u32 itemDur : 2;     // vanilla, infinite E/D rank items, infinite weps, infinite
     u32 playerBonus : 5; // +20 / -10 levels for players
     u32 grow50 : 1;      // always 50%
     u32 fog : 2;         // vanilla, always off, always on
@@ -1133,19 +1134,41 @@ int ShouldRandomizeBGM(void)
     return true;
 }
 
+int GetItemAttributes(int item)
+{ // 801727C
+    u32 attr = GetItemData(item & 0xFF)->attributes;
+    int wepType = GetItemData(item & 0xFF)->weaponType;
+    if ((RandBitflags->itemDur == 2) && ((attr & (IA_WEAPON | IA_STAFF)) || (wepType == 0xC)))
+    {
+        attr |= IA_UNBREAKABLE;
+    }
+    if (RandBitflags->itemDur == 3)
+    {
+        attr |= IA_UNBREAKABLE;
+    }
+    int rank = GetItemData(item & 0xFF)->weaponRank;
+    int maxRank = 1;
+    if (wepType == 7)
+    {
+        maxRank = 51; // WPN_EXP_D
+    }
+    // basics: E / D rank weps/staves and vulneraries
+    if ((RandBitflags->itemDur == 1) &&
+        (((item & 0xFF) == VULNERARY) || ((attr & (IA_WEAPON | IA_STAFF)) && (((rank <= maxRank) && (rank > 0))))))
+    {
+        attr |= IA_UNBREAKABLE;
+    }
+    return attr;
+}
+
 u16 GetItemAfterUse(int item)
 { // 16AEC 8016730 8016928
     int attr = GetItemAttributes(item);
-    if ((attr & IA_UNBREAKABLE) || (RandBitflags->itemDur == 2))
+
+    if (attr & IA_UNBREAKABLE)
     {
         return item;
     } // unbreakable items don't lose uses!
-
-    if ((RandBitflags->itemDur == 1) &&
-        ((attr & (IA_WEAPON | IA_STAFF)) || (GetItemData(item & 0xFF)->weaponType == 0xC)))
-    {
-        return item;
-    }
 
     item -= (1 << 8); // lose one use
 
@@ -1153,21 +1176,6 @@ u16 GetItemAfterUse(int item)
         return 0; // return no item if uses < 0
 
     return item; // return used item
-}
-
-int GetItemAttributes(int item)
-{ // 801727C
-    u32 attr = GetItemData(item & 0xFF)->attributes;
-    if ((RandBitflags->itemDur == 1) &&
-        ((attr & (IA_WEAPON | IA_STAFF)) || (GetItemData(item & 0xFF)->weaponType == 0xC)))
-    {
-        attr |= IA_UNBREAKABLE;
-    }
-    if (RandBitflags->itemDur == 2)
-    {
-        attr |= IA_UNBREAKABLE;
-    }
-    return attr;
 }
 
 int GetItemUses(int item)
@@ -2248,13 +2256,26 @@ u16 GetNthRN(int n, int seed)
     return result;
 }
 
-int GetInitialSeed(int rate)
+struct GlobalSaveInfo2
+{
+    u8 _pad_[0x60];
+    /* 60 */ u16 checksum;
+};
+extern bool ReadGlobalSaveInfo(struct GlobalSaveInfo2 * buf); // 80842E8 809E4F0
+int GetInitialSeed(int rate, ConfigMenuProc * proc)
 {
     int result = RandValues->seed;
     int clock = GetGameClock() >> rate;
     if (!result)
     {
+        if (!proc->globalChecksum)
+        {
+            struct GlobalSaveInfo2 info;
+            ReadGlobalSaveInfo(&info);
+            proc->globalChecksum = info.checksum;
+        }
         result = (GetNthRN(clock, (clock & 0xF)) << 4) | GetNthRN(clock, (clock & 0xF0));
+        result += proc->globalChecksum;
     }
     if (!result)
     {
@@ -3880,6 +3901,10 @@ int GetUnitMaxMag(struct Unit * unit)
     }
     if (!ShouldRandomizeStatCaps(unit))
     {
+        if (cap > GetGlobalStatCap())
+        {
+            cap = GetGlobalStatCap();
+        }
         return cap;
     }
     int max = GetGeneralStatCap();
@@ -5650,6 +5675,10 @@ int GetUnitMaxPow(struct Unit * unit)
     int cap = ((unit)->pClassData->maxPow); // return cap;
     if (!ShouldRandomizeStatCaps(unit))
     {
+        if (cap > GetGlobalStatCap())
+        {
+            cap = GetGlobalStatCap();
+        }
         return cap;
     }
     int max = GetGeneralStatCap();
@@ -5676,6 +5705,10 @@ int GetUnitMaxSkl(struct Unit * unit)
     int cap = ((unit)->pClassData->maxSkl); // return cap;
     if (!ShouldRandomizeStatCaps(unit))
     {
+        if (cap > GetGlobalStatCap())
+        {
+            cap = GetGlobalStatCap();
+        }
         return cap;
     }
     int max = GetGeneralStatCap();
@@ -5702,6 +5735,10 @@ int GetUnitMaxSpd(struct Unit * unit)
     int cap = ((unit)->pClassData->maxSpd); // return cap;
     if (!ShouldRandomizeStatCaps(unit))
     {
+        if (cap > GetGlobalStatCap())
+        {
+            cap = GetGlobalStatCap();
+        }
         return cap;
     }
     int max = GetGeneralStatCap();
@@ -5728,6 +5765,10 @@ int GetUnitMaxDef(struct Unit * unit)
     int cap = ((unit)->pClassData->maxDef); // return cap;
     if (!ShouldRandomizeStatCaps(unit))
     {
+        if (cap > GetGlobalStatCap())
+        {
+            cap = GetGlobalStatCap();
+        }
         return cap;
     }
     int max = GetGeneralStatCap();
@@ -5754,6 +5795,10 @@ int GetUnitMaxRes(struct Unit * unit)
     int cap = ((unit)->pClassData->maxRes); // return cap;
     if (!ShouldRandomizeStatCaps(unit))
     {
+        if (cap > GetGlobalStatCap())
+        {
+            cap = GetGlobalStatCap();
+        }
         return cap;
     }
     int max = GetGeneralStatCap();
@@ -5780,6 +5825,10 @@ int GetUnitMaxLck(struct Unit * unit)
     int cap = GetGlobalStatCap();
     if (!ShouldRandomizeStatCaps(unit))
     {
+        if (cap > GetGlobalStatCap())
+        {
+            cap = GetGlobalStatCap();
+        }
         return cap;
     }
     int max = GetGeneralStatCap();
@@ -6683,13 +6732,14 @@ const char Option11[OPT11NUM][22] = {
     "Portraits only",
 };
 #endif
-#define OPT12NUM 3
+#define OPT12NUM 4
 #ifdef FE6
 extern const char Option12[OPT12NUM][48]; // do align 16 before each?
 #else
 const char Option12[OPT12NUM][20] = {
     // Item durability
     "Vanilla",
+    "Infinite basics",
     "Infinite weapons",
     "Infinite items",
 };
@@ -7785,7 +7835,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     u16 keys = sKeyStatusBuffer.newKeys;
     if (!proc->freezeSeed)
     {
-        proc->seed = GetInitialSeed(2);
+        proc->seed = GetInitialSeed(2, proc);
         proc->redraw = true;
     }
     int id = proc->id;
@@ -8151,7 +8201,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         // if (proc->digit == 9) {
         if (!proc->freezeSeed)
         {
-            proc->seed = GetInitialSeed(0);
+            proc->seed = GetInitialSeed(0, proc);
             proc->redraw = RedrawSome;
         }
         proc->freezeSeed = true;
@@ -8268,7 +8318,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         if (!proc->freezeSeed)
         {
-            proc->seed = GetInitialSeed(0);
+            proc->seed = GetInitialSeed(0, proc);
             proc->redraw = RedrawSome;
         }
         proc->freezeSeed = true;
@@ -8839,6 +8889,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
             proc->Option[10] = 1; // Random BGM
             proc->Option[11] = 0; // Random Colours off by default now
         }
+        proc->globalChecksum = 0;
         proc->id = 1;
         proc->calledFromChapter = false;
         proc->offset = 0;
@@ -8851,7 +8902,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         {
             proc->freezeSeed = true;
         }
-        proc->seed = GetInitialSeed(2);
+        proc->seed = GetInitialSeed(2, proc);
         proc->digit = 0;
         StartGreenText(proc);
         proc->Option[21] = 3; // ui default: pikmin style

@@ -403,8 +403,8 @@ jumpToHack(DisplayStealOrDropIcon_FE8)
 #endif 
 
 
-// ORG $8B3C35 
-// BYTE 1 2 3 // Eirika items 
+ORG $8B3C35 
+BYTE 1 // Eirika weapon 
 
 
 // Disable tutorial by 7743 
