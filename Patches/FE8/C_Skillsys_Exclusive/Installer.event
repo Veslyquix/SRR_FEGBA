@@ -1,0 +1,26 @@
+
+
+
+// int GetAlwaysSkill(struct Unit * unit) 
+// int RandomizeSkill(int id, struct Unit * unit)
+
+#include "IWRAM_Hook.lyn.event" // jump from IWRAM skill tester to free space  
+#include "Hook.lyn.event" // jump from free space to RandomizeSkill 
+// also copy IWRAM_Hook into IWRAM 
+
+PUSH 
+ORG 0x11CC
+callHackNew(RandColoursHook_2) // 2nd version that replaces our old hook 
+// this version copies data into c skill tester 
+SHORT 0x46C0
+POP 
+
+// buffs / debuffs: 
+// in KERNEL_RELOC_START there's 
+// gpStatDebuffStatusPool which POINs to an allocated ram address 
+// in this case atm, it's: 
+// 2028150 
+// which is part way through text gUnknown_02026E30	thing 
+// this is saved on suspend 
+
+

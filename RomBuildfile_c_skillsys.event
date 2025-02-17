@@ -1,0 +1,36 @@
+
+// #define VeslyBuildfile
+// #define Reskin 
+//#define RepointChMenu
+
+#define FreeSpace 0x1000000
+ORG FreeSpace 
+
+
+#define DoNotUseAutoGetters
+#define NoWepLock
+#define C_SKILLSYS // don't take over page 1 
+#define Reskin 
+
+#ifdef _FE8_ 
+    #ifdef SKILLSYS_INSTALLED
+        #include ".FE8_WithSkillsys_Installer.event" 
+    #else 
+        #include ".FE8_Installer.event" 
+    #endif 
+	// #include "Patches/FE8/Installer.event" 
+#endif 
+
+
+#ifdef C_SKILLSYS 
+    #include "Patches/FE8/C_Skillsys_Exclusive/Installer.event" 
+#endif 
+
+
+ALIGN 32 
+WORD 0 0 0 0 0 0 0 0 
+
+
+
+
+

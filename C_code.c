@@ -217,6 +217,11 @@ u32 HashByte_Simple(u32 rn, int max)
 extern u8 VanillaSkill[];
 extern int NumberOfSkills;
 extern u8 * AlwaysSkill;
+void EnableRandSkills(void)
+{
+    RandValues->skills = 1;
+}
+
 int RandomizeSkill(int id, struct Unit * unit)
 {
     if (!id)
