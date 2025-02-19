@@ -270,17 +270,7 @@ Enchanter
 #define MadelineMug BlankMug
 
 // fe16 
-#define BylethFMug BlankMug
-#define CasparMug BlankMug
-#define DorotheaMug BlankMug
-#define PetraMug BlankMug
-#define DedueMug BlankMug
-#define AsheMug BlankMug
 #define IngridMug BlankMug
-#define IgnatzMug BlankMug
-#define SetethMug BlankMug
-#define HannemanMug BlankMug
-#define GilbertMug BlankMug
 #define CyrilMug BlankMug
 
 // fe15 
@@ -305,20 +295,8 @@ Enchanter
 #define ConradMug BlankMug
 
 // fe14 
-#define KazeMug BlankMug 
-#define SaizoMug BlankMug 
-#define OrochiMug BlankMug 
-#define AzamaMug BlankMug 
-#define HayatoMug BlankMug 
-#define ReinaMug BlankMug 
-#define NilesMug BlankMug 
 #define SelenaFE14Mug BlankMug 
-#define BerukaMug BlankMug 
-#define CharlotteMug BlankMug 
-#define KeatonMug BlankMug 
-#define IzanaMug BlankMug 
 #define YukimuraMug BlankMug 
-#define FloraMug BlankMug 
 #define KanaMMug BlankMug 
 #define DwyerMug BlankMug 
 #define ShiroMug BlankMug 
@@ -335,19 +313,27 @@ Enchanter
 // fe4/5 
 #define DewMug BlankMug 
 #define SalemMug BlankMug 
-#define TinaMug BlankMug 
 #define SleufMug BlankMug 
 #define SaraMug BlankMug 
 
-// fe3 
-#define RoderickMug BlankMug 
-#define LukeMug BlankMug
-#define RyanMug BlankMug
 
-// bsfe / fe12 
-#define ReidenMug BlankMug
-#define BelfMug BlankMug
-#define RobertoMug BlankMug
+// ?? 
+#define BlackKnightMug BlankMug
+#define DanvedMug BlankMug
+#define EmmaMug BlankMug
+#define HerminaMug BlankMug
+#define NealuchiMug BlankMug
+#define OliverMug BlankMug
+#define RandalMug BlankMug
+#define RenningMug BlankMug
+#define SanakiMug BlankMug
+#define SeliphMug BlankMug
+#define SephiranMug BlankMug
+#define ShadeMug BlankMug
+#define SigrunMug BlankMug
+#define SkrimirMug BlankMug
+#define TineMug BlankMug
+#define YuzuMug BlankMug
 
 
 
@@ -412,7 +398,7 @@ Enchanter
 
 #define MageKnight_F Valkyrie 
 
-
+#define Summoner Druid 
 #define GreatKnight Paladin 
 
 #define EliwoodLord Mercenary
@@ -460,7 +446,9 @@ Enchanter
 #define Manakete_2 Manakete_2_F 
 #define MageKnight_F Valkyrie 
 #define WyvernRider_F WyvernKnight_F
+#define Summoner Druid 
 #define Necromancer DarkPrince 
+#define FalconKnight FalcoKnight 
 #endif 
 
 
@@ -485,6 +473,7 @@ Enchanter
 #define Peer_F Paladin_F
 #define Transporter Tent
 #define Archsage Sage 
+#define FalconKnight FalcoKnight 
 
 #define MagicSeal MagicSeal2 
 #define TransporterHorse MerlinusTransport
@@ -506,7 +495,7 @@ Enchanter
 #else
     #define Horseman NomadTrooper
 #endif 
-#define 
+
 #ifndef _FE6_
     #define Mamkute Manakete_2_F 
 #endif 
@@ -531,6 +520,7 @@ Enchanter
     #define DragonKnight_F WyvernKnight_F
 #endif 
 #define DragonRider WyvernRider 
+#define DragonRider_F WyvernRider_F
 #ifdef _FE8_
     #define ArchKnight Cavalier
 #else
@@ -554,7 +544,7 @@ Enchanter
     #define Princess EirikaLord 
 #endif 
 #ifndef _FE6_ 
-    #define Sister Cleirc 
+    #define Sister Cleric
 #endif 
 #define HighPriest Sage 
 #define WindMage Magician 
@@ -573,7 +563,6 @@ Enchanter
     #define ThiefFighter Rogue
 #endif
 #define PegasusRider PegasusKnight 
-#define SwordArmour Knight
 #define AxeArmour Knight 
 #define LoputoMage Shaman
 
@@ -605,7 +594,7 @@ Enchanter
 // #define Halberdier Knight 
 #define Heron Bard
 #define Heron_F Dancer
-#define PrincessCrimea Falcoknight
+#define PrincessCrimea FalcoKnight
 #define RedDragon Berserker 
 #define WhiteDragon General 
 #define Hawk Hero
