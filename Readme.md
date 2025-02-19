@@ -410,7 +410,7 @@ Robert portrait by Dongus
 Fred portrait by Melia    
 Olwen portrait by Garytop    
 Mareeta portrait by CavalryUnits    
-Salem portrait by [Unknown Artist]    
+Salem portrait by TheGreatNothing  
 Perne portrait by Sterling Glovner    
 Tina portrait by WiiSportsRemote    
 Troude portrait by Sterling Glovner    
@@ -421,7 +421,7 @@ Homer portrait by Wasdye
 Linoan portrait by Linoan    
 Ralph portrait by Sterling_Glovner    
 Ilios portrait by Obsidian_Daddy    
-Sleuf portrait by [Unknown Artist]    
+Sleuf portrait by TheGreatNothing 
 Misha portrait by claire45    
 Sara portrait by [Unknown Artist]    
 Shannam portrait by Melia    
@@ -689,7 +689,7 @@ Ashe portrait by Glaciemnox
 Sylvain portrait by CavalryUnits    
 Mercedes portrait by Blade    
 Annette portrait by Yasako    
-Ingrid (no art credited)    
+Ingrid portrait by AtelierLabs
 Lorenz (FE16) portrait by Tobiki    
 Raphael portrait by Stitch    
 Ignatz portrait by Glaciemnox   
@@ -722,7 +722,7 @@ Celine (no art credited)
 Chloe (no art credited)    
 Louis (no art credited)    
 Yunaka portrait by RedBean    
-Alcryst (no art credited)    
+Alcryst portrait by Rammerrush   
 Citrinne portrait by CavalryUnits    
 Lapis portrait by Thorn    
 Diamant (no art credited)    
