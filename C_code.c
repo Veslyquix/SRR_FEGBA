@@ -140,7 +140,7 @@ extern int DefaultConfigToVanilla;
 typedef struct
 {
     /* 00 */ PROC_HEADER;
-    u16 count;
+    u16 initialized;
     u8 id[0x40];
 } RecruitmentProc;
 RecruitmentProc * InitRandomRecruitmentProc(int procID);
@@ -172,6 +172,54 @@ const struct ProcCmd RecruitmentProcCmd4[] = {
     PROC_REPEAT(LoopRandomRecruitmentProc),
     PROC_END,
 };
+void StartRecruitmentProcs(void);
+const struct ProcCmd StartRecruitmentProcs_Proc[] = {
+    PROC_YIELD,    PROC_CALL(StartRecruitmentProcs), PROC_SLEEP(1), PROC_CALL(StartRecruitmentProcs),
+    PROC_SLEEP(1), PROC_CALL(StartRecruitmentProcs), PROC_SLEEP(1), PROC_CALL(StartRecruitmentProcs),
+    PROC_SLEEP(1),
+
+    PROC_END,
+};
+void CallStartRecruitmentProcs(void)
+{
+    RecruitmentProc * proc = Proc_Find(RecruitmentProcCmd1);
+    if (!proc)
+    {
+        Proc_Start(StartRecruitmentProcs_Proc, PROC_TREE_3);
+    }
+}
+
+void StartRecruitmentProcs(void)
+{
+    RecruitmentProc * proc = Proc_Find(RecruitmentProcCmd1);
+    if (!proc)
+    {
+        proc = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3);
+        proc->initialized = false;
+        return;
+    }
+    proc = Proc_Find(RecruitmentProcCmd2);
+    if (!proc)
+    {
+        proc = Proc_Start(RecruitmentProcCmd2, PROC_TREE_3);
+        proc->initialized = false;
+        return;
+    }
+    proc = Proc_Find(RecruitmentProcCmd3);
+    if (!proc)
+    {
+        proc = Proc_Start(RecruitmentProcCmd3, PROC_TREE_3);
+        proc->initialized = false;
+        return;
+    }
+    proc = Proc_Find(RecruitmentProcCmd4);
+    if (!proc)
+    {
+        proc = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3);
+        proc->initialized = false;
+        return;
+    }
+}
 
 extern void ForceHardModeFE8(void);
 void MaybeForceHardModeFE8(void)
@@ -526,10 +574,15 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
         default:
     }
 
-    if (!proc)
+    if (!proc->initialized)
     {
         proc = InitRandomRecruitmentProc(procID);
+        if (!proc)
+        {
+            return table;
+        }
     }
+    // return table;
 
     int unitID = proc->id[(id & 0x3F) - 1];
     if (!unitID)
@@ -823,10 +876,31 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     int b = 0; // bosses count
     int seed = RandValues->seed;
 
-    RecruitmentProc * proc1 = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3);
-    RecruitmentProc * proc2 = Proc_Start(RecruitmentProcCmd2, PROC_TREE_3);
-    RecruitmentProc * proc3 = Proc_Start(RecruitmentProcCmd3, PROC_TREE_3);
-    RecruitmentProc * proc4 = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3);
+    RecruitmentProc * proc1 = Proc_Find(RecruitmentProcCmd1);
+    if (!proc1)
+    {
+        return NULL;
+    }
+    RecruitmentProc * proc2 = Proc_Find(RecruitmentProcCmd2);
+    if (!proc2)
+    {
+        return NULL;
+    }
+    RecruitmentProc * proc3 = Proc_Find(RecruitmentProcCmd3);
+    if (!proc3)
+    {
+        return NULL;
+    }
+    RecruitmentProc * proc4 = Proc_Find(RecruitmentProcCmd4);
+    if (!proc4)
+    {
+        return NULL;
+    }
+    proc1->initialized = true;
+    proc2->initialized = true;
+    proc3->initialized = true;
+    proc4->initialized = true;
+
     RecruitmentProc * proc = proc1;
     int boss;
     proc->id[0] = 0;
@@ -834,7 +908,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     for (int i = 1; i <= MAX_CHAR_ID; ++i)
     { // all available units
         table = GetCharacterData(i);
-        table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
+        // table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
 
         // table++;
         if (i == 0x40)
@@ -1716,6 +1790,7 @@ extern u8 gVision;
 extern struct ProcCmd ProcScr_ekrsubAnimeEmulator[];
 int MaybeRandomizeColours(void)
 {
+    CallStartRecruitmentProcs();
     if (RandBitflags->fog == 1)
     {
         gVision = 0;
@@ -8181,6 +8256,8 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         //}
 
         Proc_Break((ProcPtr)proc);
+        GetReorderedCharacter(NULL);
+        // CallStartRecruitmentProcs();
         return;
         // BG_SetPosition(BG_3, 0, 0);
         // gLCDControlBuffer.dispcnt.bg3_on = 1; // don't display bg3
