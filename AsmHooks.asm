@@ -553,6 +553,13 @@ pop {r3}
 bx r3 
 .ltorg 
 
+.global InfiniteLoop 
+.type InfiniteLoop, %function 
+InfiniteLoop: 
+KeepLooping: 
+mov r11, r11 
+b KeepLooping 
+
 .global HookLoadFace_FE6
 .type HookLoadFace_FE6, %function 
 HookLoadFace_FE6:

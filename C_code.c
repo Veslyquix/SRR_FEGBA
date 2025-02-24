@@ -6965,7 +6965,7 @@ void InitReplaceTextListRom(struct ReplaceTextStruct list[]) {
         //list[ListSize].replace = NULL;
 }
 */
-
+extern void InfiniteLoop(void);
 void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
 {
     const struct CharacterData * table = GetCharacterData(1);
@@ -6999,6 +6999,7 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
         list[c].replace = (void *)(value2 & 0x7FFFFFFF);
         c++;
     }
+
     // c++;
     list[c].find = NULL;
     // list[ListSize].replace = NULL;
@@ -7056,7 +7057,7 @@ const char * PutStringInBuffer(const char * str, int huffman)
 
 int GetStringLength(const char * str)
 {
-    for (int i = 0; i < 255; ++i)
+    for (int i = 0; i < 0x1000; ++i)
     {
         if (!str[i])
             return i;
@@ -7074,12 +7075,49 @@ int GetEndOfBuffer(char * buffer)
     }
     return 0;
 }
+
+void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLength[])
+{
+    if (amount == 0)
+        return;
+
+    int length = usedBufferLength[0];
+
+    if (amount < 0)
+    {
+        amount = -amount;
+        if (offset + amount > length)
+            return; // Prevent reading out of bounds
+
+        for (int i = offset; i < length - amount; ++i)
+        {
+            buffer[i] = buffer[i + amount];
+        }
+
+        usedBufferLength[0] -= amount;
+    }
+    else
+    {
+        if (length + amount >= 0x1000)
+            return; // Prevent buffer overflow
+
+        for (int i = length; i >= offset; --i)
+        {
+            buffer[i + amount] = buffer[i];
+        }
+
+        usedBufferLength[0] += amount;
+    }
+}
+
+/*
 void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLength[])
 {
     if (!amount)
     {
         return;
     }
+
     // int length = GetEndOfBuffer(buffer);
     int length = usedBufferLength[0];
 
@@ -7101,21 +7139,12 @@ void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLeng
     }
     usedBufferLength[0] = length + amount;
 }
+*/
 
 int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * replace, int c, char * b)
 {
     int i;
     char * buffer = &b[c];
-
-    // could string be in the next 4 bytes?
-    // if (!(c & 3)) { //4 aligned, as the buffers all start 4 aligned
-    //	u32 search = find[0];
-    //	u32 data = b[c] | (b[c+1]<<8) | (b[c+2]<<16) | (b[c+3]<<24);
-    //	if (((data&0xFF) != search) && (((data&0xFF00)>>8) != search) && (((data&0xFF0000)>>16) != search) &&
-    //(((data)>>24) != search)  ) { 	return c+4;
-    //	}
-    //}
-
     for (i = 0; i < 255; ++i)
     {
         if (!find[i])
@@ -7218,16 +7247,16 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
     InitReplaceTextListAntiHuffman(ReplaceTextList);
 #endif
 
-#ifdef STRINGS_IN_ROM
+    // #ifdef STRINGS_IN_ROM
     // InitReplaceTextListRom(ReplaceTextList);
-#endif
-#ifndef SET_TEXT_USED
-#ifndef STRINGS_IN_ROM
-    char textBuffer[ListSize + 1][TempTextBufferSize];
-    char textBuffer2[ListSize + 1][TempTextBufferSize];
-    InitReplaceTextList(ReplaceTextList, textBuffer, textBuffer2);
-#endif
-#endif
+    // #endif
+    // #ifndef SET_TEXT_USED
+    // #ifndef STRINGS_IN_ROM
+    // char textBuffer[ListSize + 1][TempTextBufferSize];
+    // char textBuffer2[ListSize + 1][TempTextBufferSize];
+    // InitReplaceTextList(ReplaceTextList, textBuffer, textBuffer2);
+    // #endif
+    // #endif
 
     for (int i = 0; i < TextBufferSize; ++i)
     {
@@ -7245,6 +7274,7 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
             {
                 break;
             }
+
             if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b))
             {
                 break;
