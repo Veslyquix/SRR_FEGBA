@@ -267,7 +267,7 @@ SET_FUNC __aeabi_idiv,    __divsi3
 @SET_FUNC Mod, __modsi3
 SET_DATA weatherId, 0x202BD05
 SET_DATA gPlaySt, 0x202BCF0
-SET_DATA gCh, 0x202BCFE
+SET_DATA gCh, 0x202BCFE 
 SET_DATA Ballista_TerrainTable, 0x880BC18
 SET_DATA gPhase, 0x202BCFF
 SET_DATA gTurn, 0x202BD00

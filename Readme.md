@@ -379,6 +379,20 @@ Asaello portrait by Melia
 Hawk portrait by Sterling Glovner    
 Hannibal portrait by Melia    
 Sharlow portrait by Melia    
+Seliph
+Altena portrait by Melia
+Hermina
+Scathach portrait by Melia 
+Febail portrait by Melia
+Coirpre portrait by Melia
+Lester portrait by Melia
+Arthur portrait by Melia
+Patty portrait by Melia
+Larcei portrait by Melia
+Lana portrait by Melia
+Tine
+Lene portrait by Melia
+
   
 // fe5   
 Leif portrait by Melia    
@@ -606,7 +620,7 @@ Keaton portrait by Garytop
 Xander portrait by Garytop    
 Izana portrait by Garytop    
 Fuga portrait by Renoud    
-Yukimura (no art credited)    
+Yukimura Garytop  
 Flora portrait by Garytop  
 Mozu portrait by Nobody    
 Kana_M (no art credited)    
@@ -662,12 +676,17 @@ Leon (no art credited)
 Palla (FE15) (no art credited)    
 Catria (FE15) (no art credited)    
 Atlas (no art credited)    
-Jesse (no art credited)    
+Jesse portrait by Atey, Norikins    
 Sonya portrait by Wasdye    
 Deen (FE15) (no art credited)    
 Est (FE15) portrait by Plant Academy    
 Nomah (no art credited)    
 Conrad (no art credited)    
+Randal portrait by SqRtOfPi
+Emma portrait by Redbean
+Yuzu portrait by Garytop
+Shade by
+Fernand portrait by TheSandwich
   
 // fe16   
   
@@ -713,8 +732,8 @@ Cyril (no art credited)
 AlearM portrait by CavalryUnits    
 AlearF portrait by JeyTheCount    
 Vander (no art credited)    
-Clanne (no art credited)    
-Framme (no art credited)    
+Clanne portrait by Maximus03 
+Framme portrait by Maximus03, Norikins  
 Alfred (no art credited)    
 Etie portrait by KingCrimson, AthenaBaer    
 Boucheron (no art credited)    
@@ -746,7 +765,7 @@ Saphir portrait by Garytop
 Veyle portrait by Sterling_Glovner    
 Mauvier (no art credited)    
 Anna2 (no art credited)    
-Jean (no art credited)    
+Jean portrait by Maximus03, Norikins    
 Nel (no art credited)    
 Rafal (no art credited)    
 Zelestia (no art credited)    

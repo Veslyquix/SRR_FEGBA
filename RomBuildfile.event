@@ -38,6 +38,13 @@
 
 #ifdef _FE7_ 
 PUSH 
+
+// female cav to use cav anim instead of assassin anim 
+ORG $C99346 
+BYTE 0x3C 
+ORG $C9934E 
+BYTE 0x3D
+ 
 //ORG $CA7A44
 //BYTE 0x9A 0 0 0; BYTE 0xCB 0 0 0; POIN LynModeEvent // CALL 
 //

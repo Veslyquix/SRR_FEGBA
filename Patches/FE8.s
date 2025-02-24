@@ -30324,7 +30324,7 @@ _GetTalkee:
 	.section	.rodata.str1.4
 	.align	2
 .LC739:
-	.ascii	" SRR V1.8.9          by Vesly\000"
+	.ascii	" SRR V1.9.0          by Vesly\000"
 	.align	2
 .LC742:
 	.ascii	"discord.com/invite/XEZ\000"
