@@ -393,7 +393,12 @@ const struct FE8CharacterData
 const int NumberOfCharTables = 12;
 int ShouldRandomizeUsedCharTable(void)
 {
-    return (GrowthValues->ForcedCharTable <= NumberOfCharTables);
+    int val = GrowthValues->ForcedCharTable;
+    if (!val)
+    {
+        return val;
+    }
+    return (val < NumberOfCharTables);
 }
 
 int GetForcedCharTable(void)
@@ -417,6 +422,33 @@ int GetCharTableID(int portraitID)
     // randomize
     return result;
 }
+
+int IsCharIdInvalidForGame(int charId)
+{
+    // 1 - 3a, 6e - 7f, 95 - a6: use new char tables
+    // otherwise, use vanilla one
+    // fe6: 1-0x44 because vanilla playables go up to 0x44, otherwise
+    // it wants to randomize into 0x3b - 0x44 which are non-playables
+    // in our new char tables
+    if (charId < 1 || charId >= MAX_CHAR_ID)
+    {
+        return true;
+    }
+#ifdef FE7 // use vanilla table for non-playables eg. bosses
+    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
+    {
+        return true;
+    }
+#endif
+#ifdef FE6 // use vanilla table for non-playables eg. bosses
+    if ((charId > 0x44 && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
+    {
+        return true;
+    }
+#endif
+    return false;
+}
+
 #ifdef FE6
 const struct FE8CharacterData *
 #endif
@@ -425,6 +457,11 @@ const struct FE8CharacterData *
 #endif
     NewGetCharacterData(int charId, int tableID)
 {
+#ifdef FE6
+    const struct FE8CharacterData * table = NULL;
+#else
+    const struct CharacterData * table = NULL;
+#endif
     if (charId < 1)
         return NULL;
 
@@ -437,28 +474,51 @@ const struct FE8CharacterData *
 #endif
     }
 
-// 1 - 3a, 6e - 7f, 95 - a6: use new char tables
-// otherwise, use vanilla one
-// fe6: 1-0x44 because vanilla playables go up to 0x44, otherwise
-// it wants to randomize into 0x3b - 0x44 which are non-playables
-// in our new char tables
-#ifdef FE7 // use vanilla table for non-playables eg. bosses
-    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
-    {
-        return GetCharacterData(charId);
-    }
-#endif
 #ifdef FE6 // use vanilla table for non-playables eg. bosses
-    if ((charId > 0x44 && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
+    if (IsCharIdInvalidForGame(charId))
     {
         return (const struct FE8CharacterData *)GetCharacterData(charId);
+    }
+#else
+    // use vanilla table for non-playables eg. bosses
+    if (IsCharIdInvalidForGame(charId))
+    {
+        return GetCharacterData(charId);
     }
 #endif
 
     if (!((cData[tableID] + (charId - 1))->number))
         return NULL;
 
-    return cData[tableID] + (charId - 1);
+    table = cData[tableID] + (charId - 1);
+    int newCharId;
+    for (int i = 1; i < 10; ++i)
+    {
+        if (table->portraitId)
+        {
+            break;
+        }
+        newCharId = charId + i - 1;
+        if (IsCharIdInvalidForGame(newCharId))
+        {
+            break;
+        }
+        table = cData[tableID] + (newCharId);
+    }
+    for (int i = 1; i < 10; ++i)
+    {
+        if (table->portraitId)
+        {
+            break;
+        }
+        newCharId = charId - i - 1;
+        if (IsCharIdInvalidForGame(newCharId))
+        {
+            break;
+        }
+        table = cData[tableID] + (newCharId);
+    }
+    return table;
 }
 
 extern u8 ReplacePortraitTable[];
@@ -818,9 +878,21 @@ int CallGetUnitListToUse(const struct CharacterData * table, int boss, int exclu
     }
     return result;
 }
+
+// RecruitmentProc * InitAllGamesRandomRecruitmentProc(int procID)
+// {
+
+// }
+
 // #define REVERSE_ORDER
 RecruitmentProc * InitRandomRecruitmentProc(int procID)
 {
+    // if (ShouldRandomizeUsedCharTable())
+    // {
+    // InitAllGamesRandomRecruitmentProc(procID);
+    // return;
+    // }
+
     u8 unit[80];
     u8 bosses[80];
     const struct CharacterData * table = GetCharacterData(1);
@@ -838,7 +910,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     // table--;
     for (int i = 1; i <= MAX_CHAR_ID; ++i)
     { // all available units
-        table = GetCharacterData(i);
+        // table = GetCharacterData(i);
         table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
 
         // table++;
@@ -7109,7 +7181,6 @@ void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLeng
         usedBufferLength[0] += amount;
     }
 }
-
 /*
 void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLength[])
 {
@@ -7140,7 +7211,6 @@ void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLeng
     usedBufferLength[0] = length + amount;
 }
 */
-
 int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * replace, int c, char * b)
 {
     int i;
