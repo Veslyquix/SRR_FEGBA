@@ -379,21 +379,21 @@ Asaello portrait by Melia
 Hawk portrait by Sterling Glovner     
 Hannibal portrait by Melia     
 Sharlow portrait by Melia     
-Seliph
-Altena portrait by Melia
-Hermina
-Scathach portrait by Melia  
-Febail portrait by Melia
-Coirpre portrait by Melia
-Lester portrait by Melia
-Arthur portrait by Melia
-Patty portrait by Melia
-Larcei portrait by Melia
-Lana portrait by Melia
-Tine
-Lene portrait by Melia
-
-   
+Seliph  
+Altena portrait by Melia  
+Hermina  
+Scathach portrait by Melia    
+Febail portrait by Melia  
+Coirpre portrait by Melia  
+Lester portrait by Melia  
+Arthur portrait by Melia  
+Patty portrait by Melia  
+Larcei portrait by Melia  
+Lana portrait by Melia  
+Tine  
+Lene portrait by Melia  
+  
+     
 // fe5    
 Leif portrait by Melia     
 Finn portrait by Melia     
@@ -708,7 +708,7 @@ Ashe portrait by Glaciemnox
 Sylvain portrait by CavalryUnits     
 Mercedes portrait by Blade     
 Annette portrait by Yasako     
-Ingrid portrait by AtelierLabs
+Ingrid portrait by AtelierLabs  
 Lorenz (FE16) portrait by Tobiki     
 Raphael portrait by Stitch     
 Ignatz portrait by Glaciemnox    
