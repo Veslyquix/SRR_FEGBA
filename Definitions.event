@@ -266,12 +266,6 @@ Enchanter
 #define MadelineMug BlankMug
 
 // fe16
-#define CyrilMug BlankMug
-#define JeritzaMug BlankMug 
-#define YuriMug BlankMug 
-#define BalthusMug BlankMug 
-#define HapiMug BlankMug 
-#define ConstanceMug BlankMug 
 
 
 // fe15 
@@ -288,7 +282,6 @@ Enchanter
 #define KamuiMug BlankMug
 #define LeonMug BlankMug
 #define PallaFe15Mug BlankMug
-#define CatriaFe15Mug BlankMug
 #define AtlasMug BlankMug
 #define DeenFe15Mug BlankMug
 #define NomahMug BlankMug
@@ -297,8 +290,6 @@ Enchanter
 
 // fe14 
 #define SelenaFE14Mug BlankMug 
-#define BerukaMug BlankMug 
-#define KanaMMug BlankMug 
 #define DwyerMug BlankMug 
 #define ShiroMug BlankMug 
 #define AsugiMug BlankMug 
@@ -309,11 +300,9 @@ Enchanter
 #define VelouriaMug BlankMug 
 #define PercyMug BlankMug 
 #define OpheliaMug BlankMug 
-#define OdinMug BlankMug 
 
 // fe4/5 
 #define DewMug BlankMug
-#define SaraMug BlankMug 
 
 
 
@@ -363,7 +352,7 @@ Enchanter
 #endif 
 
 #ifdef _FE6_ 
-
+#define WyvernKnight_F WyvernKnight 
 #undef Socialknight_F 
 #define Socialknight_F Cavalier 
 #undef Paladin_F 
@@ -688,7 +677,6 @@ Enchanter
 #define Ninja_F Ninja 
 #define DarkMage_F DarkMage 
 #ifndef _FE8_ 
-    #define WyvernKnight_F WyvernKnight 
     #define Ranger_F Ranger 
 #endif 
 

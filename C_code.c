@@ -1,6 +1,7 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.9.0"
+#define VersionNumber " SRR V1.9.1"
+// 547282
 
 #ifdef FE8
 #include "headers/prelude.h"
@@ -448,7 +449,7 @@ int IsCharIdInvalidForGame(int charId)
 #endif
     return false;
 }
-
+extern void BreakWithValue(int a, int b, int c);
 #ifdef FE6
 const struct FE8CharacterData *
 #endif
@@ -491,7 +492,11 @@ const struct FE8CharacterData *
         return NULL;
 
     table = cData[tableID] + (charId - 1);
-    int newCharId;
+    // if (charId == 0x19)
+    // {
+    // BreakWithValue(charId, charId, tableID);
+    // }
+    int newCharId = charId;
     for (int i = 1; i < 10; ++i)
     {
         if (table->portraitId)
@@ -518,6 +523,40 @@ const struct FE8CharacterData *
         }
         table = cData[tableID] + (newCharId);
     }
+    for (int i = 1; i < 10; ++i)
+    {
+        if (table->portraitId)
+        {
+            break;
+        }
+        newCharId = ((charId & 0x1F) + 1) + i - 1;
+        if (IsCharIdInvalidForGame(newCharId))
+        {
+            break;
+        }
+        table = cData[tableID] + (newCharId);
+    }
+    for (int i = 1; i < 10; ++i)
+    {
+        if (table->portraitId)
+        {
+            break;
+        }
+        newCharId = ((charId & 0x1F) + 1) - i - 1;
+        if (IsCharIdInvalidForGame(newCharId))
+        {
+            break;
+        }
+        table = cData[tableID] + (newCharId);
+    }
+    if ((!table->portraitId))
+    {
+        BreakWithValue(charId, newCharId, tableID);
+    }
+    // if (newCharId == 0x38)
+    // {
+    // BreakWithValue(charId, newCharId, tableID);
+    // }
     return table;
 }
 
@@ -7161,7 +7200,7 @@ void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLeng
         if (offset + amount > length)
             return; // Prevent reading out of bounds
 
-        for (int i = offset; i < length - amount; ++i)
+        for (int i = offset; i < length; ++i)
         {
             buffer[i] = buffer[i + amount];
         }

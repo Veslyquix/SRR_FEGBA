@@ -437,14 +437,14 @@ Ralph portrait by Sterling_Glovner
 Ilios portrait by Obsidian_Daddy    
 Sleuf portrait by TheGreatNothing 
 Misha portrait by claire45    
-Sara portrait by [Unknown Artist]    
-Shannam portrait by Melia    
+Sara portrait by Eden  
+Shannam portrait by Sterling_Glovner, Eden   
 Miranda portrait by Sterling_Glovner    
 Xavier portrait by TheGreatNothing    
 Amalda portrait by Sterling_Glovner    
 Conomor portrait by Sterling_Glovner    
 Diarmuid portrait by Melia    
-Salas portrait by Atey, Arcth    
+Saias portrait by Atey, Arcth, Eden   
 Ced portrait by Melia    
 Galzus portrait by Stitch    
   
@@ -605,7 +605,7 @@ Shura portrait by cardcafe
 Elise portrait by JeyTheCount    
 Arthur portrait by SatoshiKura    
 Effie portrait by JeyTheCount    
-Odin (no art credited)    
+Odin portrait by BatimaTheBat 
 Niles portrait by Garytop     
 Nyx portrait by Nobody    
 Camilla portrait by JeyTheCount    
@@ -623,7 +623,7 @@ Fuga portrait by Renoud
 Yukimura Garytop  
 Flora portrait by Garytop  
 Mozu portrait by Nobody    
-Kana_M (no art credited)    
+Kana_M portrait by Azbel    
 Kana_F portrait by Sterling_Glovner   
 Shigure portrait by Lenh    
 Dwyer (no art credited)    
@@ -674,7 +674,7 @@ Valbar (no art credited)
 Kamui (no art credited)    
 Leon (no art credited)    
 Palla (FE15) (no art credited)    
-Catria (FE15) (no art credited)    
+Catria (FE15) portrait by MeatOfJustice   
 Atlas (no art credited)    
 Jesse portrait by Atey, Norikins    
 Sonya portrait by Wasdye    
@@ -724,7 +724,12 @@ Gilbert portrait by Glaciemnox
 Alois portrait by UltraxBlade    
 Catherine portrait by Garytop    
 Shamir portrait by Wasdye    
-Cyril (no art credited)    
+Cyril portrait by Emkat    
+Jeritza portrait by Emkat 
+Yuri portrait by HyperGammaSpaces  
+Balthus portrait by MeatOfJustice  
+Hapi portrait by JeyTheCount  
+Constance portrait by Atey  
   
   
 // fe17   

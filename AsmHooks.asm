@@ -539,6 +539,12 @@ CallViaR2:
 bx r2 
 .ltorg 
 
+.global BreakWithValue 
+.type BreakWithValue, %function 
+BreakWithValue: 
+mov r11, r11 
+bx lr 
+
 .global CallEndEvent_FE6
 .type CallEndEvent_FE6, %function 
 CallEndEvent_FE6:
