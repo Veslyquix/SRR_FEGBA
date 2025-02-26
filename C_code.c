@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.9.1"
+#define VersionNumber " SRR V1.9.2"
 // 547282
 
 #ifdef FE8
@@ -436,7 +436,7 @@ int IsCharIdInvalidForGame(int charId)
         return true;
     }
 #ifdef FE7 // use vanilla table for non-playables eg. bosses
-    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
+    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x9E) || (charId > 0x9E))
     {
         return true;
     }
@@ -447,8 +447,45 @@ int IsCharIdInvalidForGame(int charId)
         return true;
     }
 #endif
+#ifdef FE8
+    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA7 && charId < 0xC5) ||
+        (charId > 0xA7 && charId < 0xC5) || (charId == 0xC6) || (charId > 0xCC))
+    {
+        return true;
+    }
+
+#endif
     return false;
 }
+
+int IsCharIdPastLimit(int charId)
+{
+    if (charId < 1 || charId >= MAX_CHAR_ID)
+    {
+        return true;
+    }
+#ifdef FE7 // accept 0 as portrait later in the char table
+    if (charId > 0x3a)
+    {
+        return true;
+    }
+#endif
+#ifdef FE6             // accept 0 as portrait later in the char table
+    if (charId > 0x3a) // 0x44?
+    {
+        return true;
+    }
+#endif
+#ifdef FE8 // accept 0 as portrait later in the char table
+    if (charId > 0x3a)
+    {
+        return true;
+    }
+
+#endif
+    return false;
+}
+
 extern void BreakWithValue(int a, int b, int c);
 #ifdef FE6
 const struct FE8CharacterData *
@@ -496,6 +533,10 @@ const struct FE8CharacterData *
     // {
     // BreakWithValue(charId, charId, tableID);
     // }
+    if ((table->portraitId) || (IsCharIdPastLimit(charId)))
+    {
+        return table;
+    }
     int newCharId = charId;
     for (int i = 1; i < 10; ++i)
     {
@@ -504,7 +545,7 @@ const struct FE8CharacterData *
             break;
         }
         newCharId = charId + i - 1;
-        if (IsCharIdInvalidForGame(newCharId))
+        if (IsCharIdPastLimit(newCharId))
         {
             break;
         }
@@ -517,7 +558,7 @@ const struct FE8CharacterData *
             break;
         }
         newCharId = charId - i - 1;
-        if (IsCharIdInvalidForGame(newCharId))
+        if (IsCharIdPastLimit(newCharId))
         {
             break;
         }
@@ -530,7 +571,7 @@ const struct FE8CharacterData *
             break;
         }
         newCharId = ((charId & 0x1F) + 1) + i - 1;
-        if (IsCharIdInvalidForGame(newCharId))
+        if (IsCharIdPastLimit(newCharId))
         {
             break;
         }
@@ -543,7 +584,7 @@ const struct FE8CharacterData *
             break;
         }
         newCharId = ((charId & 0x1F) + 1) - i - 1;
-        if (IsCharIdInvalidForGame(newCharId))
+        if (IsCharIdPastLimit(newCharId))
         {
             break;
         }
