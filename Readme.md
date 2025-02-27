@@ -452,7 +452,30 @@ Galzus portrait by Stitch
 Dryas portrait by Eden  
 Reinhardt portrait by HyperGammaSpaces, Eden  
    
-FE6 portrait blinking frames by Lenh, Obsidian_Daddy    
+FE6 portrait blinking frames by Lenh, Obsidian_Daddy   
+  
+  
+// FE7  
+Uther minimug by Levin64  
+Roy minimug by Eden  
+Leila minimug by Levin64  
+Jan minimug by topazlight  
+Hellene minimug by redlightning  
+Hannah minimug by topazlight  
+Guinevere minimug by redlightning  
+EphidelCloaked minimug by redlightning  
+Eleanora minimug by redlightning  
+Elbert minimug by Levin64  
+Durban minimug by redlightning  
+Bramimond minimug by Levin64  
+Roland minimug by redlightning  
+  
+// fe8  
+Dara minimug by topazlight  
+
+
+
+  
    
 // fe9/fe10    
    
