@@ -392,6 +392,8 @@ Larcei portrait by Melia
 Lana portrait by Melia  
 Tine  
 Lene portrait by Melia  
+Aida portrait by Eden  
+Augury portrait by Eden  
   
      
 // fe5    
@@ -426,9 +428,9 @@ Olwen portrait by Garytop
 Mareeta portrait by CavalryUnits     
 Salem portrait by TheGreatNothing   
 Perne portrait by Sterling Glovner     
-Tina portrait by WiiSportsRemote     
+Tina portrait by Eden     
 Troude portrait by Sterling Glovner     
-Glade portrait by squidaccus     
+Glade portrait by Eden     
 Deen portrait by Atey     
 Eda portrait by Atey     
 Homer portrait by Wasdye     
@@ -447,6 +449,8 @@ Diarmuid portrait by Melia
 Saias portrait by Atey, Arcth, Eden    
 Ced portrait by Melia     
 Galzus portrait by Stitch     
+Dryas portrait by Eden  
+Reinhardt portrait by HyperGammaSpaces, Eden  
    
 FE6 portrait blinking frames by Lenh, Obsidian_Daddy    
    
