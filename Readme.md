@@ -694,24 +694,24 @@ Fernand portrait by TheSandwich
    
 // fe16    
    
-Byleth_M portrait by Sterling_Glovner    
-Byleth_F portrait by Glaciemnox    
+Byleth_M portrait by emkat, Eden    
+Byleth_F portrait by emkat, Eden     
 Edelgard portrait by Redbean     
-Dimitri portrait by Melia     
-Claude portrait by Melia, CranJam     
+Dimitri portrait by emkat, Eden     
+Claude portrait by emkat, Eden     
 Hubert portrait by Raymond     
 Ferdinand portrait by MeatOfJustice     
 Linhardt portrait by HyperGammaSpaces     
-Caspar portrait by Glaciemnox    
-Bernadetta portrait by Garytop     
-Dorothea portrait by Glaciemnox    
-Petra portrait by Glaciemnox    
-Dedue portrait by Glaciemnox    
+Caspar portrait by emkat, Eden    
+Bernadetta portrait by emkat, Eden     
+Dorothea portrait by emkat, Eden    
+Petra portrait by emkat, Eden      
+Dedue portrait by emkat, Eden      
 Felix portrait by Melia, Renoud     
-Ashe portrait by Glaciemnox     
+Ashe portrait by emkat, Eden      
 Sylvain portrait by CavalryUnits     
 Mercedes portrait by Blade     
-Annette portrait by Yasako     
+Annette portrait by emkat, Eden     
 Ingrid portrait by AtelierLabs  
 Lorenz (FE16) portrait by Tobiki     
 Raphael portrait by Stitch     
@@ -720,20 +720,49 @@ Lysithea portrait by RedBean
 Marianne portrait by Garytop     
 Hilda (FE16) portrait by Garytop     
 Leonie portrait by Tobiki     
-Seteth portrait by Glaciemnox     
+Seteth portrait by emkat, Eden       
 Flayn portrait by Redbean     
-Hanneman portrait by Glaciemnox     
+Hanneman portrait by emkat, Eden      
 Manuela portrait by Garytop     
-Gilbert portrait by Glaciemnox      
-Alois portrait by UltraxBlade     
-Catherine portrait by Garytop     
+Gilbert portrait by emkat, Eden      
+Alois portrait by emkat, Eden      
+Catherine portrait by emkat, Eden     
 Shamir portrait by Wasdye     
-Cyril portrait by Emkat     
-Jeritza portrait by Emkat  
+Cyril portrait by emkat, Eden     
+Jeritza portrait by emkat, Eden   
 Yuri portrait by HyperGammaSpaces   
 Balthus portrait by MeatOfJustice   
 Hapi portrait by JeyTheCount   
 Constance portrait by Atey   
+Arundel portrait by emkat, Eden  
+Deathknight portrait by emkat, Eden  
+FlameEmperor portrait by emkat, Eden  
+Gatekeeper portrait by emkat, Eden  
+Gregoire portrait by Maximus, Eden  
+Holst portrait by Maximus, Eden  
+IoniusIX portrait by Eden 
+Jeralt portrait by emkat, Eden  
+JeritzaDeathKnight portrait by emkat, Eden 
+Judith portrait by Maximus, Eden  
+Koastas portrait by emkat, Eden  
+Kronya portrait by BuskHusker, emkat, Eden  
+Ladislava portrait by emkat, Eden 
+Lambert portrait by emkat, Eden  
+Lonato portrait by emkat, Eden  
+Ludwig portrait by Eden  
+Metodey portrait by emkat, Eden  
+Miklan portrait by emkat, Eden  
+Monica portrait by emkat, Eden  
+Randolph portrait by emkat, Eden  
+Rhea portrait by emkat, Eden  
+Rodrigue portrait by emkat, Eden  
+Shahid portrait by emkat, Eden  
+Solon portrait by emkat, Eden  
+Sothis portrait by emkat, Eden  
+Thales portrait by emkat, Eden  
+Tomas portrait by emkat, Eden  
+Waldemar portrait by Maximus, Eden  
+  
    
    
 // fe17    
