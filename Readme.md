@@ -258,7 +258,7 @@ Gordin portrait by Thorn
 Wrys portrait by Thorn     
 Ogma portrait by Thorn     
 Barst portrait by Thorn     
-Bord (no art credited)     
+Bord portrait by Frigid, Nickt     
 Cord portrait by Frigid, Nickt, Glaceo     
 Darros portrait by FEier     
 Castor portrait by Thorn     
@@ -345,7 +345,7 @@ Lex portrait by Sterling Glovner
 Azel portrait by WAve     
 Midayle portrait by Zoisite     
 Edain portrait by TAS20XX     
-Dew portrait by [Unknown Artist]     
+Dew portrait by Glaceo      
 Ayra portrait by LuminescentBlade     
 Deirdre portrait by Atey, Wasdye     
 Jamka portrait by Nobody     
@@ -452,7 +452,30 @@ Galzus portrait by Stitch
 Dryas portrait by Eden  
 Reinhardt portrait by HyperGammaSpaces, Eden  
    
-FE6 portrait blinking frames by Lenh, Obsidian_Daddy    
+FE6 portrait blinking frames by Lenh, Obsidian_Daddy   
+  
+  
+// FE7  
+Uther minimug by Levin64  
+Roy minimug by Eden  
+Leila minimug by Levin64  
+Jan minimug by topazlight  
+Hellene minimug by redlightning  
+Hannah minimug by topazlight  
+Guinevere minimug by redlightning  
+EphidelCloaked minimug by redlightning  
+Eleanora minimug by redlightning  
+Elbert minimug by Levin64  
+Durban minimug by redlightning  
+Bramimond minimug by Levin64  
+Roland minimug by redlightning  
+  
+// fe8  
+Dara minimug by topazlight  
+
+
+
+  
    
 // fe9/fe10    
    
@@ -511,7 +534,7 @@ Aran portrait by Nickt, Stitch
 Fiona portrait by Nickt, Stitch     
 Pelleas portrait by Quotedotlass, Electric_Serge     
 Jarod portrait by Quotedotlass, Electric_Serge     
-Izuka (no art credited)     
+Izuka portrait by Quotedotlass, Eden      
 Heather portrait by Alex_the_Retrogamer     
 Leanne portrait by Quotedotlass, Electric_Serge     
 Vika portrait by Quotedotlass, Ghostblade     
@@ -762,7 +785,7 @@ Sothis portrait by emkat, Eden
 Thales portrait by emkat, Eden  
 Tomas portrait by emkat, Eden  
 Waldemar portrait by Maximus, Eden  
-  
+Shez portrait by Kanna  
    
    
 // fe17    

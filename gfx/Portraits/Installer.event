@@ -66,3 +66,36 @@ POIN NewPortraitTable
 POP 
 
 
+
+// Vanilla portraits that need minimugs added 
+
+#ifdef _FE6_ 
+
+// portrait formatter doesn't work properly for fe6 anyway
+// so todo if that ever works 
+// setMugEntry(EliwoodMug, EliwoodMugData, 2, 5, 2, 3)
+// setMugEntry(HectorMug, HectorMugData, 2, 5, 2, 3)
+
+#endif 
+
+#ifdef _FE7_ 
+setMugEntry(0x4E, UtherMugData, 3, 4, 4, 2)
+setMugEntry(0x57, LeilaMugData, 2, 6, 3, 4)
+setMugEntry(0x4C, EleanoraMugData, 1, 5, 2, 3)
+setMugEntry(0x4F, ElbertMugData, 2, 5, 3, 3)
+setMugEntry(0x5C, BramimondMugData, 2, 6, 3, 3)
+#endif 
+
+
+
+#ifdef _FE8_ 
+setMugEntry(0x55, DaraMugData, 2, 7, 3, 5)
+#endif 
+
+
+
+
+
+
+
+
