@@ -1871,15 +1871,15 @@ ShamirMugData:
 setMugEntry(ShamirMug, ShamirMugData, 4, 5, 4, 3)
 
 ALIGN 4
-ShezMugData:
-#incbin "Png/FE16/Shez_Kanna_mug.dmp"
-#incbin "Png/FE16/Shez_Kanna_frames.dmp"
-#incbin "Png/FE16/Shez_Kanna_palette.dmp"
-#incbin "Png/FE16/Shez_Kanna_minimug.dmp"
-#ifndef ShezMug
-  #define ShezMug (FirstMugID+171)
+ShezFMugData:
+#incbin "Png/FE16/ShezF_Kanna_mug.dmp"
+#incbin "Png/FE16/ShezF_Kanna_frames.dmp"
+#incbin "Png/FE16/ShezF_Kanna_palette.dmp"
+#incbin "Png/FE16/ShezF_Kanna_minimug.dmp"
+#ifndef ShezFMug
+  #define ShezFMug (FirstMugID+171)
 #endif
-setMugEntry(ShezMug, ShezMugData, 3, 5, 3, 3)
+setMugEntry(ShezFMug, ShezFMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SolonMugData:
