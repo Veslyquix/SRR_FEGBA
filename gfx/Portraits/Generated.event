@@ -7273,10 +7273,10 @@ setMugEntry(BastianMug, BastianMugData, 3, 4, 3, 2)
 
 ALIGN 4
 BoydMugData:
-#incbin "Png/FE9FE10/Boyd_Younger_NickT_Stitch_mug.dmp"
-#incbin "Png/FE9FE10/Boyd_Younger_NickT_Stitch_frames.dmp"
-#incbin "Png/FE9FE10/Boyd_Younger_NickT_Stitch_palette.dmp"
-#incbin "Png/FE9FE10/Boyd_Younger_NickT_Stitch_minimug.dmp"
+#incbin "Png/FE9FE10/Boyd_Older_NickT_Stitch_mug.dmp"
+#incbin "Png/FE9FE10/Boyd_Older_NickT_Stitch_frames.dmp"
+#incbin "Png/FE9FE10/Boyd_Older_NickT_Stitch_palette.dmp"
+#incbin "Png/FE9FE10/Boyd_Older_NickT_Stitch_minimug.dmp"
 #ifndef BoydMug
   #define BoydMug (FirstMugID+664)
 #endif
@@ -7339,14 +7339,14 @@ setMugEntry(EdwardMug, EdwardMugData, 4, 6, 4, 4)
 
 ALIGN 4
 ElinciaMugData:
-#incbin "Png/FE9FE10/Elincia_NickT_Stitch_mug.dmp"
-#incbin "Png/FE9FE10/Elincia_NickT_Stitch_frames.dmp"
-#incbin "Png/FE9FE10/Elincia_NickT_Stitch_palette.dmp"
-#incbin "Png/FE9FE10/Elincia_NickT_Stitch_minimug.dmp"
+#incbin "Png/FE9FE10/Elincia_Imperial_Cardcafe_mug.dmp"
+#incbin "Png/FE9FE10/Elincia_Imperial_Cardcafe_frames.dmp"
+#incbin "Png/FE9FE10/Elincia_Imperial_Cardcafe_palette.dmp"
+#incbin "Png/FE9FE10/Elincia_Imperial_Cardcafe_minimug.dmp"
 #ifndef ElinciaMug
   #define ElinciaMug (FirstMugID+670)
 #endif
-setMugEntry(ElinciaMug, ElinciaMugData, 3, 5, 3, 3)
+setMugEntry(ElinciaMug, ElinciaMugData, 4, 5, 4, 3)
 
 ALIGN 4
 EnaMugData:
@@ -7801,14 +7801,14 @@ setMugEntry(ReysonMug, ReysonMugData, 3, 5, 3, 3)
 
 ALIGN 4
 RhysMugData:
-#incbin "Png/FE9FE10/Rhys_Version_1_NickT_Stitch_mug.dmp"
-#incbin "Png/FE9FE10/Rhys_Version_1_NickT_Stitch_frames.dmp"
-#incbin "Png/FE9FE10/Rhys_Version_1_NickT_Stitch_palette.dmp"
-#incbin "Png/FE9FE10/Rhys_Version_1_NickT_Stitch_minimug.dmp"
+#incbin "Png/FE9FE10/Rhys_Version_2_NickT_Stitch_mug.dmp"
+#incbin "Png/FE9FE10/Rhys_Version_2_NickT_Stitch_frames.dmp"
+#incbin "Png/FE9FE10/Rhys_Version_2_NickT_Stitch_palette.dmp"
+#incbin "Png/FE9FE10/Rhys_Version_2_NickT_Stitch_minimug.dmp"
 #ifndef RhysMug
   #define RhysMug (FirstMugID+712)
 #endif
-setMugEntry(RhysMug, RhysMugData, 3, 5, 3, 3)
+setMugEntry(RhysMug, RhysMugData, 4, 5, 3, 3)
 
 ALIGN 4
 RolfMugData:
@@ -7823,14 +7823,14 @@ setMugEntry(RolfMug, RolfMugData, 3, 6, 3, 4)
 
 ALIGN 4
 ShinonMugData:
-#incbin "Png/FE9FE10/Shinon_Version_1_NickT_Stitch_mug.dmp"
-#incbin "Png/FE9FE10/Shinon_Version_1_NickT_Stitch_frames.dmp"
-#incbin "Png/FE9FE10/Shinon_Version_1_NickT_Stitch_palette.dmp"
-#incbin "Png/FE9FE10/Shinon_Version_1_NickT_Stitch_minimug.dmp"
+#incbin "Png/FE9FE10/Shinon_Version_2_NickT_Stitch_mug.dmp"
+#incbin "Png/FE9FE10/Shinon_Version_2_NickT_Stitch_frames.dmp"
+#incbin "Png/FE9FE10/Shinon_Version_2_NickT_Stitch_palette.dmp"
+#incbin "Png/FE9FE10/Shinon_Version_2_NickT_Stitch_minimug.dmp"
 #ifndef ShinonMug
   #define ShinonMug (FirstMugID+714)
 #endif
-setMugEntry(ShinonMug, ShinonMugData, 5, 6, 6, 4)
+setMugEntry(ShinonMug, ShinonMugData, 3, 5, 2, 3)
 
 ALIGN 4
 SorenMugData:

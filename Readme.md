@@ -519,7 +519,7 @@ Lucia portrait by Quotedotlass, Electric_Serge
 Bastian portrait by Nickt, Stitch     
 Geoffrey portrait by Nickt, Stitch     
 Largo portrait by Nickt, Stitch     
-Elincia portrait by Nickt, Stitch     
+Elincia portrait by Imperial, Cardcafe     
 Ena portrait by Nickt, Stitch     
 Nasir portrait by Nickt, Stitch     
 Tibarn portrait by Nickt, Stitch     
