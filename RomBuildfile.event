@@ -384,6 +384,9 @@ POP
 
 PUSH
 
+ORG $80AF6C
+BYTE 0 // Wretched Air weapon rank requirement 
+
 ORG $24D8D
 AreUnitsAllied:
 ORG $24DA5

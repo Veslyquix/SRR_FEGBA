@@ -1297,6 +1297,7 @@ mov r4, r0
 mov r0, r4 
 
 blh 0x80890D0 @0x80930D5 
+bl EndAllRecruitmentProcs
 
 @ copied some stuff from 80890d0 
 @ proc+0x2e != 1 && proc+0x2e != 0x40: resume chapter I guess 
@@ -1338,7 +1339,7 @@ mov r4, r0
 
 
 blh 0x80A4A25 @ replaced function 
-
+bl EndAllRecruitmentProcs
 ldr r0, [r4, #0x14] @ parent proc 
 mov r1, #0x29 
 add r1, r0 
@@ -1373,7 +1374,7 @@ FE8_StartDifficultySelection:
 push {r4, lr} 
 mov r4, r0 
 blh 0x80AA031
-
+bl EndAllRecruitmentProcs
 ldr r0, [r4, #0x14] @ parent proc 
 mov r1, #0x29 
 add r1, r0 

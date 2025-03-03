@@ -465,19 +465,19 @@ int IsCharIdPastLimit(int charId)
         return true;
     }
 #ifdef FE7 // accept 0 as portrait later in the char table
-    if (charId > 0x3a)
+    if (charId > 0x22)
     {
         return true;
     }
 #endif
 #ifdef FE6             // accept 0 as portrait later in the char table
-    if (charId > 0x3a) // 0x44?
+    if (charId > 0x22) // 0x44?
     {
         return true;
     }
 #endif
 #ifdef FE8 // accept 0 as portrait later in the char table
-    if (charId > 0x3a)
+    if (charId > 0x22)
     {
         return true;
     }
@@ -628,6 +628,14 @@ int GetUnitIdOfPortrait(int portraitID)
     // }
 
     return 0;
+}
+
+void EndAllRecruitmentProcs(void)
+{
+    Proc_EndEach(RecruitmentProcCmd1);
+    Proc_EndEach(RecruitmentProcCmd2);
+    Proc_EndEach(RecruitmentProcCmd3);
+    Proc_EndEach(RecruitmentProcCmd4);
 }
 
 const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table)
