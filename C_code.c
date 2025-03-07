@@ -5261,6 +5261,27 @@ int GetStatMaxBonus(struct Unit * unit, int stat, int avg)
     return result;
 }
 
+int GetUnpromotedClass(const struct ClassData * data)
+{
+    int fallback = data->promotion;
+    if (!(data->attributes & CA_PROMOTED))
+    {
+        return data->number;
+    }
+    data = GetClassData(data->promotion);
+    if (!(data->attributes & CA_PROMOTED))
+    {
+        return data->number;
+    }
+    data = GetClassData(data->promotion);
+
+    if (!(data->attributes & CA_PROMOTED))
+    {
+        return data->number;
+    }
+    return fallback; // only reach this if 4th+ tier?
+}
+
 extern int ChanceToDemote;
 void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uDef)
 {
@@ -5418,12 +5439,12 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 
     // make them the same level of promotion half the time when possible
     if (RandomizeRecruitment)
-    {
+    { // if we've turned them into a promoted class...
         if ((!(originalClass->attributes & CA_PROMOTED)) && (unit->pClassData->attributes & CA_PROMOTED))
         {
             if (((HashByte_Ch(noise[0], 100, noise, 3)) < (ChanceToDemote)))
             { // 80%, as HashByte never returns the max number
-                int prepromoteClassId = unit->pClassData->promotion;
+                int prepromoteClassId = GetUnpromotedClass(unit->pClassData);
                 if (prepromoteClassId)
                 {
 #ifdef FE6
