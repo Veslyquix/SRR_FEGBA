@@ -5261,6 +5261,65 @@ int GetStatMaxBonus(struct Unit * unit, int stat, int avg)
     return result;
 }
 
+int CanClassPromote(const struct ClassData * data)
+{
+    if (!(data->attributes & CA_PROMOTED)) // unpromoted
+    {
+        if (data->number)
+        {
+            return true;
+        } // has something to promote into
+        else
+        {
+            return false;
+        } // nothing to promote into
+    }
+    // must be already promoted in 2nd or 3rd tier
+    data = GetClassData(data->promotion);
+    if ((!(data->attributes & CA_PROMOTED)) || (!data->promotion))
+    {
+        return false; // data->promotion is unpromoted version
+    }
+    // check if 3rd tier moving to 2nd tier
+    u8 wexp[8];
+    for (int i = 0; i < 8; ++i)
+    {
+        wexp[i] = data->baseRanks[i];
+    }
+    data = GetClassData(data->promotion); // 3rd tier or 2nd tier class
+    int tmp;
+    for (int i = 0; i < 8; ++i)
+    {
+        tmp = data->baseRanks[i];
+        if (tmp && wexp[i])
+        {
+            if (wexp[i] < tmp)
+            {
+                return false;
+            } // less wexp, so a demotion
+        }
+    }
+    // if (!(data->attributes & CA_PROMOTED))
+    // {
+    // return false; // we'd be demoting into 2nd tier, eg. from Trueblade to Swordmaster (so this checks if
+    // Swordmaster
+    // }
+
+    return true;
+}
+
+int SearchForUnpromotedClass(int id)
+{
+    for (int i = 1; i < 0xFF; ++i)
+    {
+        if (GetClassData(i)->promotion == id)
+        {
+            return i;
+        }
+    }
+    return 0;
+}
+
 int GetUnpromotedClass(const struct ClassData * data)
 {
     int fallback = data->promotion;
@@ -5273,13 +5332,19 @@ int GetUnpromotedClass(const struct ClassData * data)
     {
         return data->number;
     }
-    data = GetClassData(data->promotion);
-
-    if (!(data->attributes & CA_PROMOTED))
+    if (!CanClassPromote(data))
     {
-        return data->number;
+        // must be 3rd tier class, so use 2nd tier
+        data = GetClassData(data->promotion);
     }
-    return fallback; // only reach this if 4th+ tier?
+    // search for class that promotes into 2nd tier
+    int result = SearchForUnpromotedClass(data->number);
+    if (result)
+    {
+        return result;
+    }
+
+    return fallback; // only reach this if everything else failed
 }
 
 extern int ChanceToDemote;
@@ -5444,7 +5509,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         {
             if (((HashByte_Ch(noise[0], 100, noise, 3)) < (ChanceToDemote)))
             { // 80%, as HashByte never returns the max number
-                int prepromoteClassId = GetUnpromotedClass(unit->pClassData);
+                int prepromoteClassId = GetUnpromotedClass(unit->pClassData); // idk if necessary tbh, up to ~15k cycles
                 if (prepromoteClassId)
                 {
 #ifdef FE6

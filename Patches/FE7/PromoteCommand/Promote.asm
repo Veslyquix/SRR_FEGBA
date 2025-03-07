@@ -107,27 +107,23 @@ ldr r2, [r2] @ PromotionTable (Vanilla: 0x895DFA4)
 ldrh r0, [r2, r0] @ Are both choices 0? 
 cmp r0, #0 
 beq ReturnValue @ If no possible class to promote into, then return false. 
-.else 
-mov r1, #0x24 
-.if FE7 == true 
-add r1, #4 @ 0x28 offset in fe7 
-.endif 
 ldr r1, [r0, r1] @ word ability 
 mov r2, #1 
 lsl r2, #8 
 tst r1, r2 
-bne AlreadyInPromotedClass 
+bne ReturnValue 
 ldrb r1, [r0, #5] 
 cmp r1, #0 
 beq ReturnValue @ nothing to promote into 
 b HasAPromotion 
-
-AlreadyInPromotedClass: 
-b ReturnValue 
-
-
+.else 
+bl CanClassPromote
+cmp r0, #0 
+beq ReturnValue
+b HasAPromotion
 .endif 
 HasAPromotion: 
+
 
 
 
