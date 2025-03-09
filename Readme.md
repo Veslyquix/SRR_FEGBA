@@ -337,7 +337,7 @@ Ryan portrait by HunterAurzo
 Sigurd portrait by Atey    
 Naoise portrait by Obsidian_Daddy     
 Alec portrait by Atey     
-Arden portrait by Marymory     
+Arden portrait by Eden     
 Quan portrait by Garytop     
 Ethlin portrait by WAve     
 Fin portrait by Melia     
@@ -722,27 +722,27 @@ Byleth_F portrait by emkat, Eden
 Edelgard portrait by Redbean     
 Dimitri portrait by emkat, Eden     
 Claude portrait by emkat, Eden     
-Hubert portrait by Raymond     
-Ferdinand portrait by MeatOfJustice     
+Hubert portrait by emkat, Eden     
+Ferdinand portrait by emkat, Eden     
 Linhardt portrait by HyperGammaSpaces     
 Caspar portrait by emkat, Eden    
 Bernadetta portrait by emkat, Eden     
 Dorothea portrait by emkat, Eden    
 Petra portrait by emkat, Eden      
 Dedue portrait by emkat, Eden      
-Felix portrait by Melia, Renoud     
+Felix portrait by emkat, Eden     
 Ashe portrait by emkat, Eden      
-Sylvain portrait by CavalryUnits     
+Sylvain portrait by emkat, Eden     
 Mercedes portrait by Blade     
 Annette portrait by emkat, Eden     
-Ingrid portrait by AtelierLabs  
+Ingrid portrait by emkat, Eden  
 Lorenz (FE16) portrait by Tobiki     
-Raphael portrait by Stitch     
+Raphael portrait by emkat, Eden     
 Ignatz portrait by Glaciemnox    
 Lysithea portrait by RedBean     
 Marianne portrait by Garytop     
 Hilda (FE16) portrait by Garytop     
-Leonie portrait by Tobiki     
+Leonie portrait by emkat, Eden     
 Seteth portrait by emkat, Eden       
 Flayn portrait by Redbean     
 Hanneman portrait by emkat, Eden      
@@ -750,7 +750,7 @@ Manuela portrait by Garytop
 Gilbert portrait by emkat, Eden      
 Alois portrait by emkat, Eden      
 Catherine portrait by emkat, Eden     
-Shamir portrait by Wasdye     
+Shamir portrait by emkat, Eden     
 Cyril portrait by emkat, Eden     
 Jeritza portrait by emkat, Eden   
 Yuri portrait by HyperGammaSpaces   
