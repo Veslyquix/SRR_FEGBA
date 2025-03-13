@@ -1,6 +1,12 @@
 ALIGN 4
 PUSH
-ORG CURRENTOFFSET+$0;IWRAM_SkillTesterHook:
+ORG CURRENTOFFSET+$0;IWRAM_GenericSkillTesterHook:
+ORG CURRENTOFFSET+$c;IWRAM_LTableSkillTesterHook:
+ORG CURRENTOFFSET+$c;IWRAM_FastSkillTesterHook:
 POP
 WORD $E51F3000 $E12FFF13
-POIN SkillTester_VeslyHook
+POIN SkillTester_GenericHook
+WORD $E51F1000 $E12FFF11
+POIN SkillTester_LTableHook
+WORD $E51F1000 $E12FFF11
+POIN SkillTester_FastHook
