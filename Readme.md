@@ -632,13 +632,13 @@ Shura portrait by cardcafe
 Elise portrait by JeyTheCount     
 Arthur portrait by SatoshiKura     
 Effie portrait by JeyTheCount     
-Odin portrait by BatimaTheBat  
+Odin portrait by Garytop  
 Niles portrait by Garytop      
 Nyx portrait by Nobody     
 Camilla portrait by JeyTheCount     
-Selena (no art credited)     
+Selena portrait by Garytop       
 Beruka portrait by Garytop      
-Laslow portrait by BatimaTheBat     
+Laslow portrait by Garytop     
 Peri portrait by JeyTheCount     
 Benny portrait by JeyTheCount     
 Charlotte portrait by Garytop     
