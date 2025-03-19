@@ -82,7 +82,13 @@ SetText(0x2EB, ElysianWhipDesc)
 SetText(0x32C, ElysianWhipDesc2)
 
 
-
+ALIGN  4
+C_SKILLSYS_INSTALL:
+#ifdef C_SKILLSYS 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 ALIGN 4
 BonusItemChance: 
 WORD 10

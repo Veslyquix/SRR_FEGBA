@@ -1,12 +1,13 @@
 
 #define VeslyBuildfile
 #define Reskin 
+#define STRMAG_INSTALLED
 //#define RepointChMenu
 
 #define FreeSpace 0x1100000
 ORG FreeSpace 
 
-PROTECT $f4af4 $1000000
+// PROTECT $f4af4 $1000000
 
 #include "EAstdlib.event" 
 #include "Definitions.event"
@@ -41,10 +42,22 @@ PROTECT $f4af4 $1000000
 	#define TextTable 0x10ED9F0 // until end of rom in Jester's version 
 #endif // so until 10F59F0 if TextTable is 0x2000 
 // Mokha version: BF7FF4 
+
+PUSH 
+ORG $10256A8 //gMagicJInfos
+MagClassTable:
+ORG $1025AA8 //gMagicPInfos
+MagCharTable:
+CMagCharTable:
+POP 
+
+
 #ifdef VeslyBuildfile 
 #include "Text/InstallTextData.event"
 #include "gfx/Portraits/Installer.event"
 #endif 
+
+
 
 
 #define DoNotUseAutoGetters
@@ -65,8 +78,22 @@ PROTECT $f4af4 $1000000
     #include "Patches/FE8/C_Skillsys_Exclusive/Installer.event" 
 #endif 
 
+ALIGN 4 
+DebuggerTurnedOff_Flag:
+WORD 0xEC // if this flag is on, the debugger is off 
+
+prMagGetter: 
+Get_Mag_Growth:
+WORD 0 
+
 
 PUSH
+
+ORG $F4CF4 // 080F4CF4 MenuSkills_Usability TEMP fix 
+SHORT $2003 //mov r0, #3
+SHORT $4770 //  bx lr 
+// ORG $FD43C //PostActionBattleActorHurt
+// SHORT $4770 //  bx lr 
 
 
 ORG $80AF6C

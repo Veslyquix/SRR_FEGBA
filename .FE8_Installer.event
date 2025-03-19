@@ -69,6 +69,14 @@
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
 
+ALIGN  4
+C_SKILLSYS_INSTALL:
+#ifdef C_SKILLSYS 
+WORD 1 
+#else 
+WORD 0 
+#endif 
+
 ALIGN 4 
 DisplayTimedHitsOption:
 #ifdef VeslyBuildfile 

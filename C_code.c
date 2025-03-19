@@ -19,6 +19,7 @@
 #endif
 
 extern int maxStat;
+extern int C_SKILLSYS_INSTALL;
 int GetGlobalStatCap(void);
 
 #include "headers/gbafe.h"
@@ -3955,6 +3956,7 @@ struct magCharTable
 };
 extern struct magClassTable MagClassTable[];
 extern struct magCharTable MagCharTable[];
+extern struct magClassTable CMagCharTable[];
 
 int GetClassMagGrowth(struct Unit * unit, int modifiersBool)
 {
@@ -3996,6 +3998,11 @@ int GetUnitMagGrowth(struct Unit * unit, int modifiersBool)
     }
     baseGrowth = MagCharTable[GetReorderedUnitID(unit)].growth;
     int originalGrowth = MagCharTable[unit->pCharacterData->number].growth;
+    if (C_SKILLSYS_INSTALL)
+    {
+        baseGrowth = CMagCharTable[GetReorderedUnitID(unit)].growth;
+        originalGrowth = CMagCharTable[unit->pCharacterData->number].growth;
+    }
     if (ClassBasedGrowths)
     {
         baseGrowth = MagClassTable[unit->pClassData->number].growth;
@@ -4097,10 +4104,18 @@ int GetUnitMaxMag(struct Unit * unit)
 
 int GetUnitBaseMag(struct Unit * unit)
 {
+    if (C_SKILLSYS_INSTALL)
+    {
+        return MagClassTable[unit->pClassData->number].base + CMagCharTable[GetReorderedUnitID(unit)].base;
+    }
     return MagClassTable[unit->pClassData->number].base + MagCharTable[GetReorderedUnitID(unit)].base;
 }
 int GetBaseMag(int charID, int classID)
 {
+    if (C_SKILLSYS_INSTALL)
+    {
+        return MagClassTable[classID].base + CMagCharTable[charID].base;
+    }
     return MagClassTable[classID].base + MagCharTable[charID].base;
 }
 
@@ -4913,6 +4928,13 @@ void UnitCheckStatMins(struct Unit * unit)
             {
                 unit->_u3A = minStat;
             }
+            if (C_SKILLSYS_INSTALL)
+            {
+                if (unit->_u47 < minStat)
+                {
+                    unit->_u47 = minStat;
+                }
+            }
         }
     }
     else
@@ -4946,6 +4968,13 @@ void UnitCheckStatMins(struct Unit * unit)
             if ((unit->_u3A < 0) || (unit->_u3A > 127))
             {
                 unit->_u3A = 0;
+            }
+            if (C_SKILLSYS_INSTALL)
+            {
+                if ((unit->_u47 < 0) || (unit->_u47 > 127))
+                {
+                    unit->_u47 = 0;
+                }
             }
         } // _u3A is unsigned
     }
@@ -4985,6 +5014,13 @@ void MakePromotedUnitHaveMinStats(struct Unit * unit)
             if ((unit->_u3A < (MinPromotedStat + 2)) || (unit->_u3A > 127))
             {
                 unit->_u3A += MinPromotedStat;
+            }
+            if (C_SKILLSYS_INSTALL)
+            {
+                if ((unit->_u47 < (MinPromotedStat + 2)) || (unit->_u47 > 127))
+                {
+                    unit->_u47 += MinPromotedStat;
+                }
             }
         } // _u3A is unsigned
     }
@@ -5044,6 +5080,10 @@ void UnitAutolevelCore(struct Unit * unit, u8 classId, int levelCount)
         if (StrMagInstalled)
         {
             unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
+            if (C_SKILLSYS_INSTALL)
+            {
+                unit->_u47 += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
+            }
         }
     }
     if (levelCount < 0)
@@ -5072,6 +5112,10 @@ void UnitAutolevelCore(struct Unit * unit, u8 classId, int levelCount)
         if (StrMagInstalled)
         {
             unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u3A);
+            if (C_SKILLSYS_INSTALL)
+            {
+                unit->_u47 = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u47);
+            }
         }
     }
     UnitCheckStatMins(unit);
@@ -5103,6 +5147,10 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
         if (StrMagInstalled)
         {
             unit->_u3A += GetAutoleveledStatIncrease(GetUnitMagGrowth(unit, true), levelCount);
+            if (C_SKILLSYS_INSTALL)
+            {
+                unit->_u47 += GetAutoleveledStatIncrease(GetUnitMagGrowth(unit, true), levelCount);
+            }
         }
 #else
         unit->maxHP += GetAutoleveledStatIncrease(GetClassHPGrowth(unit, true), levelCount);
@@ -5115,6 +5163,10 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
         if (StrMagInstalled)
         {
             unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
+            if (C_SKILLSYS_INSTALL)
+            {
+                unit->_u47 += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
+            }
         }
 #endif
     }
@@ -5149,6 +5201,10 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
         if (StrMagInstalled)
         {
             unit->_u3A = GetAutoleveledStatDecrease(GetUnitMagGrowth(unit, true), levelCount, unit->_u3A);
+            if (C_SKILLSYS_INSTALL)
+            {
+                unit->_u47 = GetAutoleveledStatDecrease(GetUnitMagGrowth(unit, true), levelCount, unit->_u47);
+            }
         }
 #else
         int i = 0;
@@ -5188,6 +5244,11 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
         {
             unit->_u3A = GetAutoleveledStatDecrease(
                 AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u3A);
+            if (C_SKILLSYS_INSTALL)
+            {
+                unit->_u47 = GetAutoleveledStatDecrease(
+                    AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u47);
+            }
         }
 #endif
     }
@@ -5658,6 +5719,10 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     if (StrMagInstalled)
     {
         unit->_u3A = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent);
+        if (C_SKILLSYS_INSTALL)
+        {
+            unit->_u47 = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent);
+        }
     }
 
 #ifdef FE6
@@ -5823,6 +5888,13 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         if (unit->_u3A > max)
         {
             unit->_u3A = max;
+        }
+        if (C_SKILLSYS_INSTALL)
+        {
+            if (unit->_u47 > max)
+            {
+                unit->_u47 = max;
+            }
         }
     }
 #endif
@@ -6443,9 +6515,14 @@ void CheckBattleUnitLevelUp(struct BattleUnit * bu)
         else
             bu->changeLck = 0;
 
+#define BU_CHG_MAG(bu) (*((s8 *)(bu) + 0x7F))
         if (StrMagInstalled)
         {
             bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 8, useRN);
+            if (C_SKILLSYS_INSTALL)
+            {
+                BU_CHG_MAG(bu) = NewGetStatIncrease(magGrowth, noise, level, 8, useRN);
+            }
         }
 
         if (statGainTotal < MinimumStatUps)
@@ -6463,6 +6540,10 @@ void CheckBattleUnitLevelUp(struct BattleUnit * bu)
                 if (StrMagInstalled)
                 {
                     bu->changeCon = 0;
+                    if (C_SKILLSYS_INSTALL)
+                    {
+                        BU_CHG_MAG(bu) = 0;
+                    }
                 }
 
                 bu->changeHP = NewGetStatIncrease(hpGrowth, noise, level, 8 + (i * 13), useRN);
@@ -6544,14 +6625,31 @@ void CheckBattleUnitLevelUp(struct BattleUnit * bu)
 
                 if (StrMagInstalled)
                 {
-                    bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 15 + (i * 13), useRN);
 
-                    if (bu->changeCon && ((unit->_u3A + bu->changeCon) <= maxMag))
+                    int magStat = unit->_u3A;
+                    if (C_SKILLSYS_INSTALL)
                     {
-                        statGainTotal++;
-                        if (statGainTotal >= MinimumStatUps)
+                        magStat = unit->_u47;
+                        BU_CHG_MAG(bu) = NewGetStatIncrease(magGrowth, noise, level, 15 + (i * 13), useRN);
+                        if (BU_CHG_MAG(bu) && ((magStat + BU_CHG_MAG(bu)) <= maxMag))
                         {
-                            break;
+                            statGainTotal++;
+                            if (statGainTotal >= MinimumStatUps)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        bu->changeCon = NewGetStatIncrease(magGrowth, noise, level, 15 + (i * 13), useRN);
+                        if (bu->changeCon && ((magStat + bu->changeCon) <= maxMag))
+                        {
+                            statGainTotal++;
+                            if (statGainTotal >= MinimumStatUps)
+                            {
+                                break;
+                            }
                         }
                     }
                 }
@@ -6614,6 +6712,13 @@ void UnitCheckStatCaps(struct Unit * unit)
         if (unit->_u3A > max)
         {
             unit->_u3A = max;
+        }
+        if (C_SKILLSYS_INSTALL)
+        {
+            if (unit->_u47 > max)
+            {
+                unit->_u47 = max;
+            }
         }
     }
 
@@ -6679,9 +6784,18 @@ void CheckBattleUnitStatCaps(struct Unit * unit, struct BattleUnit * bu)
     if (StrMagInstalled)
     {
         max = GetUnitMaxMag(unit);
-        if ((unit->_u3A + bu->changeCon) > max)
+        int magStat = unit->_u3A;
+        if (C_SKILLSYS_INSTALL)
         {
-            bu->changeCon = max - unit->_u3A;
+            magStat = unit->_u47;
+            if ((magStat + BU_CHG_MAG(bu)) > max)
+            {
+                BU_CHG_MAG(bu) = max - magStat;
+            }
+        }
+        else if ((magStat + bu->changeCon) > max)
+        {
+            bu->changeCon = max - magStat;
         }
     }
 }
@@ -6708,6 +6822,10 @@ void ApplyUnitPromotion(struct Unit * unit, u8 classId)
     if (StrMagInstalled)
     {
         unit->_u3A += GetPromoMag(classId);
+        if (C_SKILLSYS_INSTALL)
+        {
+            unit->_u47 += GetPromoMag(classId);
+        }
     }
 #endif
 
@@ -9474,6 +9592,10 @@ int GetUnitMov(struct Unit * unit)
 }
 int GetUnitMag(struct Unit * unit)
 {
+    if (C_SKILLSYS_INSTALL)
+    {
+        return unit->_u47;
+    }
     return unit->_u3A;
 }
 
@@ -9938,6 +10060,10 @@ int GetUnitUnadjustedRes(struct Unit * unit)
 }
 int GetUnitUnadjustedMag(struct Unit * unit)
 {
+    if (C_SKILLSYS_INSTALL)
+    {
+        return unit->_u47;
+    }
     return unit->_u3A;
 }
 

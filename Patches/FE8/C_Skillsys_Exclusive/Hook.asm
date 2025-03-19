@@ -180,7 +180,7 @@ mov r2, #6 @ SHORT count (unless bit 26 is set, then it's WORD count)
 swi #0xB 
 
 @ in 0x3004378 
-ldr r0, =IWRAM_FastSkillTesterHook 
+ldr r0, =IWRAM_FastSkillTesterHook @ needs unit struct to work properly 
 ldr r1, =0x3004394 
 mov r2, #6 @ SHORT count (unless bit 26 is set, then it's WORD count) 
 @swi #0xB 

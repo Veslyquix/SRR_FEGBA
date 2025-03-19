@@ -62,6 +62,13 @@ STRING "Abel" "FE6TR" ; BYTE 0
 
 //#define NeverRandomizeMusic // comment this out if you want music randomized 
 // it only knows of vanilla song IDs though 
+ALIGN  4
+C_SKILLSYS_INSTALL:
+#ifdef C_SKILLSYS 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 ALIGN 4 
 MaxItems_Link:
 WORD 0 // If 0, it'll read through your item editor and count 
