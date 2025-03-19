@@ -106,6 +106,12 @@ u16 HashByte_Global(int number, int max, int noise[], int offset)
     return Mod((currentRN & 0x2FFFFFFF), max);
 }
 
+struct SkillInfo
+{
+    const u8 * icon;
+    u16 name, desc;
+};
+extern const struct SkillInfo gSkillInfos[];
 int RandSkill(int id, struct Unit * unit)
 {
     if (!id)
@@ -119,6 +125,10 @@ int RandSkill(int id, struct Unit * unit)
     const struct CharacterData * table = unit->pCharacterData;
     int noise[4] = { table->number, id, id, table->portraitId };
     id = (HashByte_Global(id, 0x3FF, noise, 12) + 1);
+    if (!gSkillInfos[id]->desc)
+    {
+        id = 0;
+    }
     return id;
 }
 
