@@ -50,15 +50,11 @@
 #include "Patches/FE8.lyn.event" 
 #include "Patches/FE8_AsmHooks.lyn.event" 
 
-#ifdef SKILLSYS_INSTALLED
-#ifndef VeslyBuildfile
-MESSAGE Open FE8_Installer and read / config things please 
-//asdf // add two slashes to comment out this line 
-#endif 
-#endif 
 
 #include "../ASM/EndBattleIfBroken/Installer.event" 
-#include "../ASM/Debugger/Installer.event" 
+#ifndef C_SKILLSYS // already included 
+    #include "../ASM/Debugger/Installer.event" 
+#endif 
 //#ifdef VeslyBuildfile 
 #include "../ASM/Reclass/Installer.event" 
 #include "../ASM/UI/Installer.event" 
@@ -76,7 +72,10 @@ MESSAGE Open FE8_Installer and read / config things please
 ALIGN 4 
 DisplayTimedHitsOption:
 #ifdef VeslyBuildfile 
+#ifndef C_SKILLSYS 
 WORD 1 
+#endif 
+WORD 0 
 #else 
 WORD 0 
 #endif 
@@ -245,7 +244,7 @@ NeverChangeChar(0xBE) // Demon king
 
 #ifdef SKILLSYS_INSTALLED
 #ifndef VeslyBuildfile
-MESSAGE Read/edit until this line unless you want to change your stat screen first page layout below 
+// MESSAGE Read/edit until this line unless you want to change your stat screen first page layout below 
 //qwer // add two slashes to comment out this line 
 #endif 
 #endif 
@@ -426,6 +425,9 @@ WORD 0 // 0 = Ewan, 1 = Knoll, 2 = Lyon
 
 ORG $7AF5E // don't 0 out phantom wexp 
 SHORT $46C0 
+
+
+
 
 #ifdef VeslyBuildfile
 
@@ -658,10 +660,12 @@ FILL 256*2
 #define NeverRandSkill(id) "PUSH; ORG SkillExceptions + (id*2); BYTE 1 1; POP" 
 #ifdef SKILLSYS_INSTALLED 
 #ifdef VeslyBuildfile
+#ifndef C_SKILLSYS 
 NeverRandSkill(DanceID)
 //NeverRandSkill(SummonID)
 NeverRandSkill(CunningID)
 NeverRandSkill(SlayerID)
+#endif 
 #endif 
 #endif 
 
@@ -670,6 +674,7 @@ VanillaSkill:
 FILL 256 
 #define VanillaSkill(id) "PUSH; ORG VanillaSkill + id; BYTE 1; POP" 
 #ifdef VeslyBuildfile
+#ifndef C_SKILLSYS 
 VanillaSkill(SupplyID)
 VanillaSkill(CantoID)
 VanillaSkill(GreatShieldID)
@@ -684,6 +689,7 @@ VanillaSkill(LethalityID)
 VanillaSkill(LunaID)
 VanillaSkill(LockTouchID)
 #endif 
+#endif 
 
 ALIGN 4 
 AlwaysSkillTable:
@@ -691,6 +697,7 @@ FILL 256
 #ifdef SKILLSYS_INSTALLED 
 #define AlwaysSkill(id) "PUSH; ORG AlwaysSkillTable + id; BYTE 1; POP" 
 #ifdef VeslyBuildfile
+#ifndef C_SKILLSYS
 AlwaysSkill(CantoPlusID)
 AlwaysSkill(CaptureID)
 AlwaysSkill(LifeAndDeathID)
@@ -726,6 +733,7 @@ AlwaysSkill(DarkBargainID)
 //AlwaysSkill(DevilsWhimID) // if skill defined, maybe 
 #endif 
 #endif 
+#endif 
 
 #ifdef VeslyBuildfile
 	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
@@ -737,6 +745,11 @@ AlwaysSkill(DarkBargainID)
 	#endif 
 #endif 
 
+#ifdef C_SKILLSYS 
+SkillDescTable:
+TimedHitsDifficultyRam:
+WORD 0 
+#endif 
 #ifndef VeslyBuildfile 
 SkillDescTable:
 TimedHitsDifficultyRam:
@@ -1073,6 +1086,9 @@ IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
+    #ifdef C_SKILLSYS 
+    WORD 23 
+    #endif 
     #ifdef SKILLSYS_INSTALLED 
     WORD 25
     #else 

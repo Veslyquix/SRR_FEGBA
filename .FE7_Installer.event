@@ -69,6 +69,20 @@ String("Reconfigure the randomizer.") ; BYTE 0
 SetText(0x119f, ConfigText)
 SetText(0x11a0, ConfigDescText)
 
+
+#define NL "BYTE 0x1" 
+ElysianWhipDesc:
+String("For fliers and"); NL 
+String("monsters Lv. 10 and up."); BYTE 0
+ElysianWhipDesc2:
+String("Use this on a worthy"); NL 
+String("flier or monster."); BYTE 0
+
+SetText(0x2EB, ElysianWhipDesc)
+SetText(0x32C, ElysianWhipDesc2)
+
+
+
 ALIGN 4
 BonusItemChance: 
 WORD 10

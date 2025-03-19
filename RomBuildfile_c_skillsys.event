@@ -1,16 +1,55 @@
 
-// #define VeslyBuildfile
-// #define Reskin 
+#define VeslyBuildfile
+#define Reskin 
 //#define RepointChMenu
 
-#define FreeSpace 0x1000000
+#define FreeSpace 0x1100000
 ORG FreeSpace 
+
+PROTECT $f4af4 $1000000
+
+#include "EAstdlib.event" 
+#include "Definitions.event"
+
+// New classes aren't included atm 
+#define MarthLord Mercenary 
+#define Mercenary2 Mercenary 
+#define Hunter Archer 
+#define Dancer2 Dancer 
+#define IkeRanger Mercenary 
+#define Halberdier Soldier 
+#define DarkPrince Shaman 
+#define BlackDragon Manakete_2_F
+#define Tactician2 Mercenary 
+#define WarCleric Warrior 
+#define Adventurer Sniper 
+#define HeavyInfantry Hero 
+#define AlmT1 Mercenary 
+#define Fletchling Archer 
+#define Pupil2 Mage 
+#define GaidenPriestess Cleric 
+#define Boxer Mercenary 
+#define Lancer Knight 
+#define Executioner Berserker 
+#define SeliphLord Cavalier 
+#define Bard2 Bard 
+#define Magician Sage 
+
+
+
+#ifndef TextTable 
+	#define TextTable 0x10ED9F0 // until end of rom in Jester's version 
+#endif // so until 10F59F0 if TextTable is 0x2000 
+// Mokha version: BF7FF4 
+#ifdef VeslyBuildfile 
+#include "Text/InstallTextData.event"
+#include "gfx/Portraits/Installer.event"
+#endif 
 
 
 #define DoNotUseAutoGetters
 #define NoWepLock
 #define C_SKILLSYS // don't take over page 1 
-#define Reskin 
 
 #ifdef _FE8_ 
     #ifdef SKILLSYS_INSTALLED
@@ -25,6 +64,143 @@ ORG FreeSpace
 #ifdef C_SKILLSYS 
     #include "Patches/FE8/C_Skillsys_Exclusive/Installer.event" 
 #endif 
+
+
+PUSH
+
+
+ORG $80AF6C
+BYTE 0 // Wretched Air weapon rank requirement 
+
+ORG $24D8D
+AreUnitsAllied:
+ORG $24DA5
+IsSameAllegiance:
+ORG $A4CFD
+GetPidStats:
+
+#ifdef VeslyBuildfile
+//Unit Placer  (EventUnitForm) 2024-09-24 9:28:32 AM
+ORG $8B42A4
+BYTE  $07 $01 $00 $00 $FF $FF $00 $00;
+//Unit Placer  (EventUnitForm) @Ross(Journeyman)  Lv:12024-09-24 9:28:32 AM
+ORG $8B4434
+BYTE  $07 $3D $00 $0A $87 $00 $00 $01 $A4 $42 $8B $08 $2C $6C $00 $00 $00 $0A $00 $00;
+
+
+
+ORG $28620
+BYTE 30 // Support range 
+
+// PutUnitSpriteIconsOam fe6/7/8 8022378 8025B54 80275E8
+ORG $278AC
+jumpToHack(DisplayStealOrDropIcon_FE8)
+#endif 
+
+
+ORG $8B3C35 
+BYTE 1 // Eirika weapon 
+
+
+// Disable tutorial by 7743 
+ORG 0x0E120
+BYTE 0x00 0x00
+
+
+//Skip very begining world map
+ORG $A39768
+EVBIT_MODIFY 0x1
+SKIPWN
+ENDA
+
+// Skip health & safety, logo etc. by 7743 
+ORG 0x0C6714
+BYTE 0xC0 0x46
+
+ORG 0x0CBDF6 
+BYTE 0xC0 0x46
+
+
+ORG 0xC6714 
+BYTE 0xC0 0x46 
+
+ORG 0x0CC20C
+BYTE 0x00 0x00	
+
+ORG 0x0CBDE2
+BYTE 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+
+
+ 
+// Skip difficulty selection by 7743 
+
+//ORG 0xAC3E0
+//BYTE 0x00 0x22 0x00 0x23 0x2A 0x21 0x42 0x54 0x3D 0x21 0x43 0x54 0x70 0x47 // Easy
+//BYTE 0x01 0x22 0x00 0x23 0x2A 0x21 0x42 0x54 0x3D 0x21 0x43 0x54 0x70 0x47 // Normal 
+//BYTE 0x02 0x22 0x00 0x23 0x2A 0x21 0x42 0x54 0x3D 0x21 0x43 0x54 0x70 0x47 // Hard
+
+
+
+//Set Default Options
+ORG $30d8a  //animations type 2
+SHORT $3306
+ORG $30da6  //Game/text speed Fast, Autocursor off
+SHORT $22d0
+
+//Fix Stone's map animation crashing no$ due to a bad decompression
+ORG $7E2B4
+BYTE 0x8
+
+//Make the Add trap data routine have a check to prevent writing past the limit
+ORG $2E2B8
+SHORT 0xB470 0x4C07 0x4D07 0x3408 0x42AC 0xD806 0x78A6 0x2E00 0xD1F9 0x7020 0x7061 0x70A2 0x70E3 0x1C20 0xBC70 0x4770 0xA60C 0x0203 0xA814 0x0203
+
+// make BWL not ignore units with no affinity 
+ORG $A4D12 
+SHORT $46c0 
+
+//Hold A to speed up movement (credit Gryz)
+ORG $794ee
+SHORT 0
+
+
+//Unlock Sound Room songs
+  ORG $aede0
+  BYTE $FF
+
+//CG Fade glitch
+  ORG $EBCA
+  BYTE 8
+  ORG $EDE0
+  SHORT $1c0a
+
+//Enemy Control Glitch Fix (Credits to Brendor, Eebit)
+  ORG 0x377A2
+  SHORT 0x46C0 0x46C0
+
+//Mode Coefficient EXP fix (credit Vennobennu)
+  ORG 0x2C474
+  WORD 0
+
+//Skip Intro and Class Roll (otherwise pre-battle anims will crash this)
+  ORG $c63ad
+  BYTE $e0
+
+// Fix proc names not being cleared (Stan)
+ORG $002C9E
+  SHORT $6129 $2026 $5429 $3002 $5429
+
+// Fix CAM1/CAMERA2 going out of bounds (Stan)
+ORG $015D52
+  BYTE 14
+ORG $015D66
+  BYTE 9
+
+// Don't draw portrait on item select menu if unit is generic (hypergammaspaces)
+ORG $22BE8
+  SHORT $6808 $88C0 $2800
+POP
+
 
 
 ALIGN 32 
