@@ -520,6 +520,10 @@ callHackNew(TitleScreen_FE7)
 
 ORG $a39fc
 jumpToHack(SaveScreen_FE7) 
+
+ORG $A447C  // sub_80A9A68
+callHackNew(RestoreTextForExtras_FE7)
+
 #endif 
 
 // display range on page 2 

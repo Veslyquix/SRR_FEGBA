@@ -216,7 +216,6 @@ ldr r3, =0x80881D5
 bx r3
 .ltorg 
 
-
 .global TitleScreen_FE7
 .type TitleScreen_FE7, %function 
 TitleScreen_FE7:
@@ -247,6 +246,30 @@ pop {r3}
 ldr r3, =0x80a3a05
 bx r3
 .ltorg 
+
+.global RestoreTextForExtras_FE7
+.type RestoreTextForExtras_FE7, %function 
+RestoreTextForExtras_FE7:
+push {lr} 
+mov r1, r5 
+add r1, #0x2e 
+mov r0, #8 
+strb r0, [r1] 
+mov r4, r5 
+add r4, #0x29 @ vanilla 
+
+@ first line of SaveMenu_LoadExtraMenuGraphics fe7 0x80A38D8
+ldr r0, =0x80A3908
+ldr r0, [r0] 
+ldr r1, =0x80A390C 
+ldr r1, [r1] 
+blh Decompress @ 0x8013168 
+
+pop {r3}
+bx r3
+.ltorg 
+
+
 
 .global TitleScreen_FE8
 .type TitleScreen_FE8, %function 
@@ -279,6 +302,27 @@ bx r3
 .ltorg 
 
 
+.global RestoreTextForExtras_FE8
+.type RestoreTextForExtras_FE8, %function 
+RestoreTextForExtras_FE8:
+push {lr} 
+mov r1, r5 
+add r1, #0x2e 
+mov r0, #8 
+strb r0, [r1] 
+mov r4, r5 
+add r4, #0x29 @ vanilla 
+
+@ first line of SaveMenu_LoadExtraMenuGraphics 80A8F04
+ldr r0, =0x80A8F34
+ldr r0, [r0] 
+ldr r1, =0x80A8F38 
+ldr r1, [r1] 
+blh Decompress @ 0x8012F50  
+
+pop {r3}
+bx r3
+.ltorg 
 
 .global UniqueAnimationHook_FE7
 .type UniqueAnimationHook_FE7, %function 
