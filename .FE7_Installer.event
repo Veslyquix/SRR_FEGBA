@@ -81,7 +81,9 @@ String("flier or monster."); BYTE 0
 SetText(0x2EB, ElysianWhipDesc)
 SetText(0x32C, ElysianWhipDesc2)
 
-
+ALIGN 4 
+RNTable:
+#incbin "RNTable.dmp" 
 ALIGN  4
 C_SKILLSYS_INSTALL:
 #ifdef C_SKILLSYS 

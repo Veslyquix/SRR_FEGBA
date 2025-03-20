@@ -6,10 +6,11 @@
 .global SkillTester_GenericHook 
 .type SkillTester_GenericHook, %function 
 SkillTester_GenericHook: 
-push {lr} 
+push {r4, lr} 
 mov r0, r5 
 add r0, #0x32 
 ldrb r0, [r0] @ unit struct + 0x32 
+mov r4, r2 @ skillID 
 mov r1, r5 
 bl RandomizeSkill 
 cmp r0, r4 
@@ -56,11 +57,15 @@ mov r1, r5
 bl RandomizeSkill 
 cmp r0, r4 
 beq HasSkill 
+mov r2, r4 
+pop {r4} 
 pop {r3} 
 ldr r3, =0x3003D58
 bx r3 
 
 HasSkill:
+mov r2, r4 
+pop {r4} 
 pop {r3} 
 ldr r3, =RetTrueAddr
 bx r3 

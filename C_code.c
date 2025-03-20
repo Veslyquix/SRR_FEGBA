@@ -208,7 +208,7 @@ int ShouldRandomizeRecruitmentForPortraitID(int id)
 }
 u16 HashByte_Global(int number, int max, int noise[], int offset);
 
-u32 GetNthRN_Simple(int n, int seed, u32 currentRN);
+u32 GetNthRN_Simple(int n, u32 seed, u32 currentRN);
 u32 HashByte_Simple(u32 rn, int max)
 {
     if (max == 0)
@@ -2312,7 +2312,7 @@ int GetMaxClasses(void)
     return c;
 }
 
-int NextSeededRN_Simple(u32 rn)
+u32 NextSeededRN_Simple(u32 rn)
 {
     // This generates a pseudorandom string of 32 bits
     u32 rn0 = rn & 0xFFFF;
@@ -2330,6 +2330,8 @@ int NextSeededRN_Simple(u32 rn)
     return rn;
 }
 
+extern const u32 RNTable[]; // = { 0x924EA36E };
+
 u32 InitSeededRN_Simple(int seed, u32 currentRN)
 {
     // This table is a collection of 8 possible initial rn state
@@ -2342,9 +2344,9 @@ u32 InitSeededRN_Simple(int seed, u32 currentRN)
     currentRN = initTable[(mod++ & 7)];
     currentRN |= initTable[(mod++ & 7)] << 16;
 
-    if (Mod(seed, 5) > 0)
+    if (Mod(seed, 23) > 0)
     {
-        for (mod = Mod(seed, 5); mod != 0; mod--)
+        for (mod = Mod(seed, 23); mod != 0; mod--)
         {
             currentRN = NextSeededRN_Simple(currentRN);
         }
@@ -2353,12 +2355,14 @@ u32 InitSeededRN_Simple(int seed, u32 currentRN)
     return currentRN;
 }
 
-u32 GetNthRN_Simple(int n, int seed, u32 currentRN)
+u32 GetNthRN_Simple(int n, u32 seed, u32 currentRN)
 {
-    n = (n ^ (n >> 4)) & 0xF;
+    int i = (n ^ (n >> 12)) & 0x3FFF;
+    // n = (n ^ (n >> 4)) & 0xF;
+    n &= 0xF;
     if (!currentRN)
     {
-        currentRN = InitSeededRN_Simple(seed, currentRN);
+        currentRN = RNTable[i]; // InitSeededRN_Simple(seed, currentRN);
     }
     for (int i = 0; i < n; i++)
     {
@@ -2428,8 +2432,38 @@ struct GlobalSaveInfo2
     /* 60 */ u16 checksum;
 };
 extern bool ReadGlobalSaveInfo(struct GlobalSaveInfo2 * buf); // 80842E8 809E4F0
+// no$gba -> utility -> binarydump -> saveas RNTable.dmp
+u32 * mainTest(u32 * result)
+{
+    asm("mov r11, r11");
+    u32 * start = result;
+    u32 current = InitSeededRN_Simple(0, 0);
+    // 0x924EA36E
+    current = 0x2318382c; // this is what InitSeededRN_Simple(0, 0); spits out
+
+    current = 0x9F3FAFCF; // next is ae ff 4f b7
+
+    current = 0x9CB918AB; //
+
+    int count = 0;
+
+    while (count < 0x80021)
+    {
+        current = NextSeededRN_Simple(current);
+        count++;
+        if (!(count & 0xF))
+        {
+            *result++ = current;
+        }
+    }
+    asm("mov r11, r11");
+    return result;
+}
+
 int GetInitialSeed(int rate, ConfigMenuProc * proc)
 {
+    // u32 * values = (u32 *)0x2000000;
+    // mainTest(values);
     int result = RandValues->seed;
     int clock = GetGameClock() >> rate;
     if (!result)
@@ -2469,6 +2503,15 @@ u16 HashByte_Class(int n, int max, u8 noise[], int offset)
 
 u16 HashByte_Global(int number, int max, int noise[], int offset)
 {
+    offset += noise[0] + noise[1] + noise[2] + noise[3] + number + RandValues->seed;
+    u32 currentRN = 0;
+    currentRN = GetNthRN_Simple(offset, RandValues->seed, currentRN);
+
+    return Mod((currentRN & 0x2FFFFFFF), max);
+}
+
+u16 HashByte_GlobalOld(int number, int max, int noise[], int offset)
+{
     offset += noise[0] + noise[1] + noise[2] + noise[3] + number;
     // offset &= 0xFF; // GetNthRN_Simple does this anyway
     int currentRN = 0;
@@ -2489,7 +2532,7 @@ u16 HashByte_Global(int number, int max, int noise[], int offset)
     return Mod((currentRN & 0x2FFFFFFF), max);
 }
 
-u16 HashByte_GlobalOld(int number, int max, int noise[], int offset)
+u16 HashByte_GlobalOlder(int number, int max, int noise[], int offset)
 {
     if (max == 0)
         return 0;
@@ -2831,7 +2874,7 @@ int RandClass(int id, int noise[], struct Unit * unit)
     int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes) & CA_PROMOTED;
 
     BuildAvailableClassList(list, promotedBitflag, allegiance);
-    id = HashByte_Ch(id, list[0] + 1, noise, 0);
+    id = HashByte_Global(id, list[0] + 1, noise, 0);
     if (!id)
     {
         id = 1;
@@ -5432,7 +5475,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     }
     unit->pClassData = originalClass; // for now
 
-#define UseRandClass2
+    // #define UseRandClass2
 
 #ifdef UseRandClass2
     u8 noise2[24];

@@ -10,6 +10,7 @@ ORG FreeSpace
 // PROTECT $f4af4 $1000000
 
 #include "EAstdlib.event" 
+#include "HackInstallation.txt" 
 #include "Definitions.event"
 
 // New classes aren't included atm 
@@ -44,6 +45,9 @@ ORG FreeSpace
 // Mokha version: BF7FF4 
 
 PUSH 
+ORG $F3244 // TEMP - RandSkill 
+replaceWithHack(RandomizeSkill) 
+
 ORG $10256A8 //gMagicJInfos
 MagClassTable:
 ORG $1025AA8 //gMagicPInfos
@@ -89,11 +93,9 @@ WORD 0
 
 PUSH
 
-// ORG $F4CF4 // 080F4CF4 MenuSkills_Usability TEMP fix 
-// SHORT $2003 //mov r0, #3
-// SHORT $4770 //  bx lr 
 // ORG $FD43C //PostActionBattleActorHurt
 // SHORT $4770 //  bx lr 
+
 
 
 ORG $80AF6C

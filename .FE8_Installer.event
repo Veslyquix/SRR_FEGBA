@@ -69,6 +69,9 @@
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
 
+ALIGN 4 
+RNTable:
+#incbin "RNTable.dmp" 
 ALIGN  4
 C_SKILLSYS_INSTALL:
 #ifdef C_SKILLSYS 
