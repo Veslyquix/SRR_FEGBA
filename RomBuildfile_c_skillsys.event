@@ -39,7 +39,7 @@ ORG FreeSpace
 
 
 #ifndef TextTable 
-	#define TextTable 0x10ED9F0 // until end of rom in Jester's version 
+	#define TextTable 0x10ED9F0 // NewTextTable until end of rom in Jester's version 
 #endif // so until 10F59F0 if TextTable is 0x2000 
 // Mokha version: BF7FF4 
 
@@ -89,9 +89,9 @@ WORD 0
 
 PUSH
 
-ORG $F4CF4 // 080F4CF4 MenuSkills_Usability TEMP fix 
-SHORT $2003 //mov r0, #3
-SHORT $4770 //  bx lr 
+// ORG $F4CF4 // 080F4CF4 MenuSkills_Usability TEMP fix 
+// SHORT $2003 //mov r0, #3
+// SHORT $4770 //  bx lr 
 // ORG $FD43C //PostActionBattleActorHurt
 // SHORT $4770 //  bx lr 
 

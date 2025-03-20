@@ -9,7 +9,7 @@ AversaMugData:
 #ifndef AversaMug
   #define AversaMug (FirstMugID+1)
 #endif
-setMugEntry(AversaMug, AversaMugData, 2, 5, 2, 3)
+MugEntry(AversaMug, AversaMugData, 2, 5, 2, 3)
 
 ALIGN 4
 BasilioMugData:
@@ -20,7 +20,7 @@ BasilioMugData:
 #ifndef BasilioMug
   #define BasilioMug (FirstMugID+2)
 #endif
-setMugEntry(BasilioMug, BasilioMugData, 3, 4, 3, 2)
+MugEntry(BasilioMug, BasilioMugData, 3, 4, 3, 2)
 
 ALIGN 4
 BradyMugData:
@@ -31,7 +31,7 @@ BradyMugData:
 #ifndef BradyMug
   #define BradyMug (FirstMugID+3)
 #endif
-setMugEntry(BradyMug, BradyMugData, 3, 5, 3, 3)
+MugEntry(BradyMug, BradyMugData, 3, 5, 3, 3)
 
 ALIGN 4
 ChercheMugData:
@@ -42,7 +42,7 @@ ChercheMugData:
 #ifndef ChercheMug
   #define ChercheMug (FirstMugID+4)
 #endif
-setMugEntry(ChercheMug, ChercheMugData, 2, 5, 2, 3)
+MugEntry(ChercheMug, ChercheMugData, 2, 5, 2, 3)
 
 ALIGN 4
 ChromMugData:
@@ -53,7 +53,7 @@ ChromMugData:
 #ifndef ChromMug
   #define ChromMug (FirstMugID+5)
 #endif
-setMugEntry(ChromMug, ChromMugData, 2, 5, 2, 3)
+MugEntry(ChromMug, ChromMugData, 2, 5, 2, 3)
 
 ALIGN 4
 CordeliaMugData:
@@ -64,7 +64,7 @@ CordeliaMugData:
 #ifndef CordeliaMug
   #define CordeliaMug (FirstMugID+6)
 #endif
-setMugEntry(CordeliaMug, CordeliaMugData, 3, 5, 3, 3)
+MugEntry(CordeliaMug, CordeliaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 CynthiaMugData:
@@ -75,7 +75,7 @@ CynthiaMugData:
 #ifndef CynthiaMug
   #define CynthiaMug (FirstMugID+7)
 #endif
-setMugEntry(CynthiaMug, CynthiaMugData, 3, 6, 3, 4)
+MugEntry(CynthiaMug, CynthiaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 DonnelMugData:
@@ -86,7 +86,7 @@ DonnelMugData:
 #ifndef DonnelMug
   #define DonnelMug (FirstMugID+8)
 #endif
-setMugEntry(DonnelMug, DonnelMugData, 3, 6, 3, 4)
+MugEntry(DonnelMug, DonnelMugData, 3, 6, 3, 4)
 
 ALIGN 4
 EmmerynMugData:
@@ -97,7 +97,7 @@ EmmerynMugData:
 #ifndef EmmerynMug
   #define EmmerynMug (FirstMugID+9)
 #endif
-setMugEntry(EmmerynMug, EmmerynMugData, 2, 5, 2, 3)
+MugEntry(EmmerynMug, EmmerynMugData, 2, 5, 2, 3)
 
 ALIGN 4
 FlaviaMugData:
@@ -108,7 +108,7 @@ FlaviaMugData:
 #ifndef FlaviaMug
   #define FlaviaMug (FirstMugID+10)
 #endif
-setMugEntry(FlaviaMug, FlaviaMugData, 2, 5, 2, 3)
+MugEntry(FlaviaMug, FlaviaMugData, 2, 5, 2, 3)
 
 ALIGN 4
 FrederickMugData:
@@ -119,7 +119,7 @@ FrederickMugData:
 #ifndef FrederickMug
   #define FrederickMug (FirstMugID+11)
 #endif
-setMugEntry(FrederickMug, FrederickMugData, 3, 5, 3, 3)
+MugEntry(FrederickMug, FrederickMugData, 3, 5, 3, 3)
 
 ALIGN 4
 GaiusMugData:
@@ -130,7 +130,7 @@ GaiusMugData:
 #ifndef GaiusMug
   #define GaiusMug (FirstMugID+12)
 #endif
-setMugEntry(GaiusMug, GaiusMugData, 3, 6, 3, 3)
+MugEntry(GaiusMug, GaiusMugData, 3, 6, 3, 3)
 
 ALIGN 4
 GangrelMugData:
@@ -141,7 +141,7 @@ GangrelMugData:
 #ifndef GangrelMug
   #define GangrelMug (FirstMugID+13)
 #endif
-setMugEntry(GangrelMug, GangrelMugData, 3, 5, 3, 3)
+MugEntry(GangrelMug, GangrelMugData, 3, 5, 3, 3)
 
 ALIGN 4
 GeromeMugData:
@@ -152,7 +152,7 @@ GeromeMugData:
 #ifndef GeromeMug
   #define GeromeMug (FirstMugID+14)
 #endif
-setMugEntry(GeromeMug, GeromeMugData, 3, 5, 3, 3)
+MugEntry(GeromeMug, GeromeMugData, 3, 5, 3, 3)
 
 ALIGN 4
 GregorMugData:
@@ -163,7 +163,7 @@ GregorMugData:
 #ifndef GregorMug
   #define GregorMug (FirstMugID+15)
 #endif
-setMugEntry(GregorMug, GregorMugData, 3, 4, 3, 2)
+MugEntry(GregorMug, GregorMugData, 3, 4, 3, 2)
 
 ALIGN 4
 HenryMugData:
@@ -174,7 +174,7 @@ HenryMugData:
 #ifndef HenryMug
   #define HenryMug (FirstMugID+16)
 #endif
-setMugEntry(HenryMug, HenryMugData, 3, 5, 3, 3)
+MugEntry(HenryMug, HenryMugData, 3, 5, 3, 3)
 
 ALIGN 4
 InigoMugData:
@@ -185,7 +185,7 @@ InigoMugData:
 #ifndef InigoMug
   #define InigoMug (FirstMugID+17)
 #endif
-setMugEntry(InigoMug, InigoMugData, 3, 5, 3, 3)
+MugEntry(InigoMug, InigoMugData, 3, 5, 3, 3)
 
 ALIGN 4
 KellamMugData:
@@ -196,7 +196,7 @@ KellamMugData:
 #ifndef KellamMug
   #define KellamMug (FirstMugID+18)
 #endif
-setMugEntry(KellamMug, KellamMugData, 2, 4, 2, 2)
+MugEntry(KellamMug, KellamMugData, 2, 4, 2, 2)
 
 ALIGN 4
 KjelleMugData:
@@ -207,7 +207,7 @@ KjelleMugData:
 #ifndef KjelleMug
   #define KjelleMug (FirstMugID+19)
 #endif
-setMugEntry(KjelleMug, KjelleMugData, 3, 5, 3, 3)
+MugEntry(KjelleMug, KjelleMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LaurentMugData:
@@ -218,7 +218,7 @@ LaurentMugData:
 #ifndef LaurentMug
   #define LaurentMug (FirstMugID+20)
 #endif
-setMugEntry(LaurentMug, LaurentMugData, 3, 5, 3, 3)
+MugEntry(LaurentMug, LaurentMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LibraMugData:
@@ -229,7 +229,7 @@ LibraMugData:
 #ifndef LibraMug
   #define LibraMug (FirstMugID+21)
 #endif
-setMugEntry(LibraMug, LibraMugData, 2, 5, 3, 3)
+MugEntry(LibraMug, LibraMugData, 2, 5, 3, 3)
 
 ALIGN 4
 LissaMugData:
@@ -240,7 +240,7 @@ LissaMugData:
 #ifndef LissaMug
   #define LissaMug (FirstMugID+22)
 #endif
-setMugEntry(LissaMug, LissaMugData, 3, 6, 3, 4)
+MugEntry(LissaMug, LissaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LonquMugData:
@@ -251,7 +251,7 @@ LonquMugData:
 #ifndef LonquMug
   #define LonquMug (FirstMugID+23)
 #endif
-setMugEntry(LonquMug, LonquMugData, 3, 5, 3, 3)
+MugEntry(LonquMug, LonquMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LucinaMugData:
@@ -262,7 +262,7 @@ LucinaMugData:
 #ifndef LucinaMug
   #define LucinaMug (FirstMugID+24)
 #endif
-setMugEntry(LucinaMug, LucinaMugData, 4, 6, 4, 4)
+MugEntry(LucinaMug, LucinaMugData, 4, 6, 4, 4)
 
 ALIGN 4
 MaribelleMugData:
@@ -273,7 +273,7 @@ MaribelleMugData:
 #ifndef MaribelleMug
   #define MaribelleMug (FirstMugID+25)
 #endif
-setMugEntry(MaribelleMug, MaribelleMugData, 3, 6, 3, 4)
+MugEntry(MaribelleMug, MaribelleMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MirielMugData:
@@ -284,7 +284,7 @@ MirielMugData:
 #ifndef MirielMug
   #define MirielMug (FirstMugID+26)
 #endif
-setMugEntry(MirielMug, MirielMugData, 3, 5, 3, 3)
+MugEntry(MirielMug, MirielMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MorganMugData:
@@ -295,7 +295,7 @@ MorganMugData:
 #ifndef MorganMug
   #define MorganMug (FirstMugID+27)
 #endif
-setMugEntry(MorganMug, MorganMugData, 3, 6, 3, 4)
+MugEntry(MorganMug, MorganMugData, 3, 6, 3, 4)
 
 ALIGN 4
 NahMugData:
@@ -306,7 +306,7 @@ NahMugData:
 #ifndef NahMug
   #define NahMug (FirstMugID+28)
 #endif
-setMugEntry(NahMug, NahMugData, 3, 7, 3, 5)
+MugEntry(NahMug, NahMugData, 3, 7, 3, 5)
 
 ALIGN 4
 NoireMugData:
@@ -317,7 +317,7 @@ NoireMugData:
 #ifndef NoireMug
   #define NoireMug (FirstMugID+29)
 #endif
-setMugEntry(NoireMug, NoireMugData, 3, 6, 3, 4)
+MugEntry(NoireMug, NoireMugData, 3, 6, 3, 4)
 
 ALIGN 4
 NowiMugData:
@@ -328,7 +328,7 @@ NowiMugData:
 #ifndef NowiMug
   #define NowiMug (FirstMugID+30)
 #endif
-setMugEntry(NowiMug, NowiMugData, 3, 7, 3, 5)
+MugEntry(NowiMug, NowiMugData, 3, 7, 3, 5)
 
 ALIGN 4
 OliviaMugData:
@@ -339,7 +339,7 @@ OliviaMugData:
 #ifndef OliviaMug
   #define OliviaMug (FirstMugID+31)
 #endif
-setMugEntry(OliviaMug, OliviaMugData, 2, 6, 3, 4)
+MugEntry(OliviaMug, OliviaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 OwainMugData:
@@ -350,7 +350,7 @@ OwainMugData:
 #ifndef OwainMug
   #define OwainMug (FirstMugID+32)
 #endif
-setMugEntry(OwainMug, OwainMugData, 4, 6, 2, 4)
+MugEntry(OwainMug, OwainMugData, 4, 6, 2, 4)
 
 ALIGN 4
 PanneMugData:
@@ -361,7 +361,7 @@ PanneMugData:
 #ifndef PanneMug
   #define PanneMug (FirstMugID+33)
 #endif
-setMugEntry(PanneMug, PanneMugData, 3, 5, 3, 3)
+MugEntry(PanneMug, PanneMugData, 3, 5, 3, 3)
 
 ALIGN 4
 PriamMugData:
@@ -372,7 +372,7 @@ PriamMugData:
 #ifndef PriamMug
   #define PriamMug (FirstMugID+34)
 #endif
-setMugEntry(PriamMug, PriamMugData, 3, 5, 3, 3)
+MugEntry(PriamMug, PriamMugData, 3, 5, 3, 3)
 
 ALIGN 4
 RickenMugData:
@@ -383,7 +383,7 @@ RickenMugData:
 #ifndef RickenMug
   #define RickenMug (FirstMugID+35)
 #endif
-setMugEntry(RickenMug, RickenMugData, 3, 6, 3, 4)
+MugEntry(RickenMug, RickenMugData, 3, 6, 3, 4)
 
 ALIGN 4
 RobinMugData:
@@ -394,7 +394,7 @@ RobinMugData:
 #ifndef RobinMug
   #define RobinMug (FirstMugID+36)
 #endif
-setMugEntry(RobinMug, RobinMugData, 3, 5, 3, 3)
+MugEntry(RobinMug, RobinMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SayriMugData:
@@ -405,7 +405,7 @@ SayriMugData:
 #ifndef SayriMug
   #define SayriMug (FirstMugID+37)
 #endif
-setMugEntry(SayriMug, SayriMugData, 4, 6, 3, 4)
+MugEntry(SayriMug, SayriMugData, 4, 6, 3, 4)
 
 ALIGN 4
 SeveraMugData:
@@ -416,7 +416,7 @@ SeveraMugData:
 #ifndef SeveraMug
   #define SeveraMug (FirstMugID+38)
 #endif
-setMugEntry(SeveraMug, SeveraMugData, 3, 6, 3, 4)
+MugEntry(SeveraMug, SeveraMugData, 3, 6, 3, 4)
 
 ALIGN 4
 StahlMugData:
@@ -427,7 +427,7 @@ StahlMugData:
 #ifndef StahlMug
   #define StahlMug (FirstMugID+39)
 #endif
-setMugEntry(StahlMug, StahlMugData, 2, 5, 2, 3)
+MugEntry(StahlMug, StahlMugData, 2, 5, 2, 3)
 
 ALIGN 4
 SullyMugData:
@@ -438,7 +438,7 @@ SullyMugData:
 #ifndef SullyMug
   #define SullyMug (FirstMugID+40)
 #endif
-setMugEntry(SullyMug, SullyMugData, 2, 5, 2, 3)
+MugEntry(SullyMug, SullyMugData, 2, 5, 2, 3)
 
 ALIGN 4
 SumiaMugData:
@@ -449,7 +449,7 @@ SumiaMugData:
 #ifndef SumiaMug
   #define SumiaMug (FirstMugID+41)
 #endif
-setMugEntry(SumiaMug, SumiaMugData, 2, 5, 2, 3)
+MugEntry(SumiaMug, SumiaMugData, 2, 5, 2, 3)
 
 ALIGN 4
 TharjaMugData:
@@ -460,7 +460,7 @@ TharjaMugData:
 #ifndef TharjaMug
   #define TharjaMug (FirstMugID+42)
 #endif
-setMugEntry(TharjaMug, TharjaMugData, 3, 5, 3, 4)
+MugEntry(TharjaMug, TharjaMugData, 3, 5, 3, 4)
 
 ALIGN 4
 TikiFE13MugData:
@@ -471,7 +471,7 @@ TikiFE13MugData:
 #ifndef TikiFE13Mug
   #define TikiFE13Mug (FirstMugID+43)
 #endif
-setMugEntry(TikiFE13Mug, TikiFE13MugData, 2, 6, 2, 4)
+MugEntry(TikiFE13Mug, TikiFE13MugData, 2, 6, 2, 4)
 
 ALIGN 4
 VaikeMugData:
@@ -482,7 +482,7 @@ VaikeMugData:
 #ifndef VaikeMug
   #define VaikeMug (FirstMugID+44)
 #endif
-setMugEntry(VaikeMug, VaikeMugData, 3, 4, 3, 2)
+MugEntry(VaikeMug, VaikeMugData, 3, 4, 3, 2)
 
 ALIGN 4
 ValidarMugData:
@@ -493,7 +493,7 @@ ValidarMugData:
 #ifndef ValidarMug
   #define ValidarMug (FirstMugID+45)
 #endif
-setMugEntry(ValidarMug, ValidarMugData, 2, 5, 2, 3)
+MugEntry(ValidarMug, ValidarMugData, 2, 5, 2, 3)
 
 ALIGN 4
 VirionMugData:
@@ -504,7 +504,7 @@ VirionMugData:
 #ifndef VirionMug
   #define VirionMug (FirstMugID+46)
 #endif
-setMugEntry(VirionMug, VirionMugData, 3, 5, 3, 3)
+MugEntry(VirionMug, VirionMugData, 3, 5, 3, 3)
 
 ALIGN 4
 WalhartMugData:
@@ -515,7 +515,7 @@ WalhartMugData:
 #ifndef WalhartMug
   #define WalhartMug (FirstMugID+47)
 #endif
-setMugEntry(WalhartMug, WalhartMugData, 2, 4, 2, 2)
+MugEntry(WalhartMug, WalhartMugData, 2, 4, 2, 2)
 
 ALIGN 4
 YarneMugData:
@@ -526,7 +526,7 @@ YarneMugData:
 #ifndef YarneMug
   #define YarneMug (FirstMugID+48)
 #endif
-setMugEntry(YarneMug, YarneMugData, 2, 5, 2, 3)
+MugEntry(YarneMug, YarneMugData, 2, 5, 2, 3)
 
 ALIGN 4
 YenfayMugData:
@@ -537,7 +537,7 @@ YenfayMugData:
 #ifndef YenfayMug
   #define YenfayMug (FirstMugID+49)
 #endif
-setMugEntry(YenfayMug, YenfayMugData, 3, 4, 3, 2)
+MugEntry(YenfayMug, YenfayMugData, 3, 4, 3, 2)
 
 ALIGN 4
 ArthurFE14MugData:
@@ -548,7 +548,7 @@ ArthurFE14MugData:
 #ifndef ArthurFE14Mug
   #define ArthurFE14Mug (FirstMugID+50)
 #endif
-setMugEntry(ArthurFE14Mug, ArthurFE14MugData, 3, 5, 3, 3)
+MugEntry(ArthurFE14Mug, ArthurFE14MugData, 3, 5, 3, 3)
 
 ALIGN 4
 AzamaMugData:
@@ -559,7 +559,7 @@ AzamaMugData:
 #ifndef AzamaMug
   #define AzamaMug (FirstMugID+51)
 #endif
-setMugEntry(AzamaMug, AzamaMugData, 3, 5, 3, 3)
+MugEntry(AzamaMug, AzamaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AzuraMugData:
@@ -570,7 +570,7 @@ AzuraMugData:
 #ifndef AzuraMug
   #define AzuraMug (FirstMugID+52)
 #endif
-setMugEntry(AzuraMug, AzuraMugData, 2, 5, 2, 3)
+MugEntry(AzuraMug, AzuraMugData, 2, 5, 2, 3)
 
 ALIGN 4
 BennyMugData:
@@ -581,7 +581,7 @@ BennyMugData:
 #ifndef BennyMug
   #define BennyMug (FirstMugID+53)
 #endif
-setMugEntry(BennyMug, BennyMugData, 2, 5, 2, 3)
+MugEntry(BennyMug, BennyMugData, 2, 5, 2, 3)
 
 ALIGN 4
 BerukaMugData:
@@ -592,7 +592,7 @@ BerukaMugData:
 #ifndef BerukaMug
   #define BerukaMug (FirstMugID+54)
 #endif
-setMugEntry(BerukaMug, BerukaMugData, 3, 6, 3, 4)
+MugEntry(BerukaMug, BerukaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 CamillaMugData:
@@ -603,7 +603,7 @@ CamillaMugData:
 #ifndef CamillaMug
   #define CamillaMug (FirstMugID+55)
 #endif
-setMugEntry(CamillaMug, CamillaMugData, 2, 4, 4, 2)
+MugEntry(CamillaMug, CamillaMugData, 2, 4, 4, 2)
 
 ALIGN 4
 CharlotteMugData:
@@ -614,7 +614,7 @@ CharlotteMugData:
 #ifndef CharlotteMug
   #define CharlotteMug (FirstMugID+56)
 #endif
-setMugEntry(CharlotteMug, CharlotteMugData, 3, 5, 3, 3)
+MugEntry(CharlotteMug, CharlotteMugData, 3, 5, 3, 3)
 
 ALIGN 4
 CorrinFMugData:
@@ -625,7 +625,7 @@ CorrinFMugData:
 #ifndef CorrinFMug
   #define CorrinFMug (FirstMugID+57)
 #endif
-setMugEntry(CorrinFMug, CorrinFMugData, 3, 7, 3, 5)
+MugEntry(CorrinFMug, CorrinFMugData, 3, 7, 3, 5)
 
 ALIGN 4
 CorrinMMugData:
@@ -636,7 +636,7 @@ CorrinMMugData:
 #ifndef CorrinMMug
   #define CorrinMMug (FirstMugID+58)
 #endif
-setMugEntry(CorrinMMug, CorrinMMugData, 2, 5, 2, 3)
+MugEntry(CorrinMMug, CorrinMMugData, 2, 5, 2, 3)
 
 ALIGN 4
 EffieMugData:
@@ -647,7 +647,7 @@ EffieMugData:
 #ifndef EffieMug
   #define EffieMug (FirstMugID+59)
 #endif
-setMugEntry(EffieMug, EffieMugData, 3, 5, 2, 3)
+MugEntry(EffieMug, EffieMugData, 3, 5, 2, 3)
 
 ALIGN 4
 EliseMugData:
@@ -658,7 +658,7 @@ EliseMugData:
 #ifndef EliseMug
   #define EliseMug (FirstMugID+60)
 #endif
-setMugEntry(EliseMug, EliseMugData, 3, 6, 3, 4)
+MugEntry(EliseMug, EliseMugData, 3, 6, 3, 4)
 
 ALIGN 4
 FeliciaMugData:
@@ -669,7 +669,7 @@ FeliciaMugData:
 #ifndef FeliciaMug
   #define FeliciaMug (FirstMugID+61)
 #endif
-setMugEntry(FeliciaMug, FeliciaMugData, 2, 6, 2, 4)
+MugEntry(FeliciaMug, FeliciaMugData, 2, 6, 2, 4)
 
 ALIGN 4
 FloraMugData:
@@ -680,7 +680,7 @@ FloraMugData:
 #ifndef FloraMug
   #define FloraMug (FirstMugID+62)
 #endif
-setMugEntry(FloraMug, FloraMugData, 3, 6, 3, 4)
+MugEntry(FloraMug, FloraMugData, 3, 6, 3, 4)
 
 ALIGN 4
 FugaMugData:
@@ -691,7 +691,7 @@ FugaMugData:
 #ifndef FugaMug
   #define FugaMug (FirstMugID+63)
 #endif
-setMugEntry(FugaMug, FugaMugData, 3, 4, 3, 2)
+MugEntry(FugaMug, FugaMugData, 3, 4, 3, 2)
 
 ALIGN 4
 GunterMugData:
@@ -702,7 +702,7 @@ GunterMugData:
 #ifndef GunterMug
   #define GunterMug (FirstMugID+64)
 #endif
-setMugEntry(GunterMug, GunterMugData, 2, 5, 2, 3)
+MugEntry(GunterMug, GunterMugData, 2, 5, 2, 3)
 
 ALIGN 4
 HanaMugData:
@@ -713,7 +713,7 @@ HanaMugData:
 #ifndef HanaMug
   #define HanaMug (FirstMugID+65)
 #endif
-setMugEntry(HanaMug, HanaMugData, 2, 6, 2, 4)
+MugEntry(HanaMug, HanaMugData, 2, 6, 2, 4)
 
 ALIGN 4
 HayatoMugData:
@@ -724,7 +724,7 @@ HayatoMugData:
 #ifndef HayatoMug
   #define HayatoMug (FirstMugID+66)
 #endif
-setMugEntry(HayatoMug, HayatoMugData, 3, 6, 3, 4)
+MugEntry(HayatoMug, HayatoMugData, 3, 6, 3, 4)
 
 ALIGN 4
 HinataMugData:
@@ -735,7 +735,7 @@ HinataMugData:
 #ifndef HinataMug
   #define HinataMug (FirstMugID+67)
 #endif
-setMugEntry(HinataMug, HinataMugData, 2, 5, 2, 3)
+MugEntry(HinataMug, HinataMugData, 2, 5, 2, 3)
 
 ALIGN 4
 HinokaMugData:
@@ -746,7 +746,7 @@ HinokaMugData:
 #ifndef HinokaMug
   #define HinokaMug (FirstMugID+68)
 #endif
-setMugEntry(HinokaMug, HinokaMugData, 3, 6, 3, 4)
+MugEntry(HinokaMug, HinokaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 HisameMugData:
@@ -757,7 +757,7 @@ HisameMugData:
 #ifndef HisameMug
   #define HisameMug (FirstMugID+69)
 #endif
-setMugEntry(HisameMug, HisameMugData, 3, 5, 3, 3)
+MugEntry(HisameMug, HisameMugData, 3, 5, 3, 3)
 
 ALIGN 4
 IgnatiusMugData:
@@ -768,7 +768,7 @@ IgnatiusMugData:
 #ifndef IgnatiusMug
   #define IgnatiusMug (FirstMugID+70)
 #endif
-setMugEntry(IgnatiusMug, IgnatiusMugData, 3, 5, 2, 3)
+MugEntry(IgnatiusMug, IgnatiusMugData, 3, 5, 2, 3)
 
 ALIGN 4
 IzanaMugData:
@@ -779,7 +779,7 @@ IzanaMugData:
 #ifndef IzanaMug
   #define IzanaMug (FirstMugID+71)
 #endif
-setMugEntry(IzanaMug, IzanaMugData, 3, 4, 3, 2)
+MugEntry(IzanaMug, IzanaMugData, 3, 4, 3, 2)
 
 ALIGN 4
 JakobMugData:
@@ -790,7 +790,7 @@ JakobMugData:
 #ifndef JakobMug
   #define JakobMug (FirstMugID+72)
 #endif
-setMugEntry(JakobMug, JakobMugData, 2, 6, 2, 4)
+MugEntry(JakobMug, JakobMugData, 2, 6, 2, 4)
 
 ALIGN 4
 KadenMugData:
@@ -801,7 +801,7 @@ KadenMugData:
 #ifndef KadenMug
   #define KadenMug (FirstMugID+73)
 #endif
-setMugEntry(KadenMug, KadenMugData, 2, 6, 2, 4)
+MugEntry(KadenMug, KadenMugData, 2, 6, 2, 4)
 
 ALIGN 4
 KageroMugData:
@@ -812,7 +812,7 @@ KageroMugData:
 #ifndef KageroMug
   #define KageroMug (FirstMugID+74)
 #endif
-setMugEntry(KageroMug, KageroMugData, 4, 6, 4, 4)
+MugEntry(KageroMug, KageroMugData, 4, 6, 4, 4)
 
 ALIGN 4
 KanaFMugData:
@@ -823,7 +823,7 @@ KanaFMugData:
 #ifndef KanaFMug
   #define KanaFMug (FirstMugID+75)
 #endif
-setMugEntry(KanaFMug, KanaFMugData, 3, 6, 3, 4)
+MugEntry(KanaFMug, KanaFMugData, 3, 6, 3, 4)
 
 ALIGN 4
 KanaMMugData:
@@ -834,7 +834,7 @@ KanaMMugData:
 #ifndef KanaMMug
   #define KanaMMug (FirstMugID+76)
 #endif
-setMugEntry(KanaMMug, KanaMMugData, 3, 7, 3, 5)
+MugEntry(KanaMMug, KanaMMugData, 3, 7, 3, 5)
 
 ALIGN 4
 KazeMugData:
@@ -845,7 +845,7 @@ KazeMugData:
 #ifndef KazeMug
   #define KazeMug (FirstMugID+77)
 #endif
-setMugEntry(KazeMug, KazeMugData, 3, 5, 3, 3)
+MugEntry(KazeMug, KazeMugData, 3, 5, 3, 3)
 
 ALIGN 4
 KeatonMugData:
@@ -856,7 +856,7 @@ KeatonMugData:
 #ifndef KeatonMug
   #define KeatonMug (FirstMugID+78)
 #endif
-setMugEntry(KeatonMug, KeatonMugData, 3, 5, 3, 3)
+MugEntry(KeatonMug, KeatonMugData, 3, 5, 3, 3)
 
 ALIGN 4
 KiragiMugData:
@@ -867,7 +867,7 @@ KiragiMugData:
 #ifndef KiragiMug
   #define KiragiMug (FirstMugID+79)
 #endif
-setMugEntry(KiragiMug, KiragiMugData, 3, 6, 3, 4)
+MugEntry(KiragiMug, KiragiMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LaslowMugData:
@@ -878,7 +878,7 @@ LaslowMugData:
 #ifndef LaslowMug
   #define LaslowMug (FirstMugID+80)
 #endif
-setMugEntry(LaslowMug, LaslowMugData, 2, 5, 2, 3)
+MugEntry(LaslowMug, LaslowMugData, 2, 5, 2, 3)
 
 ALIGN 4
 LeoMugData:
@@ -889,7 +889,7 @@ LeoMugData:
 #ifndef LeoMug
   #define LeoMug (FirstMugID+81)
 #endif
-setMugEntry(LeoMug, LeoMugData, 3, 5, 3, 3)
+MugEntry(LeoMug, LeoMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MidoriMugData:
@@ -900,7 +900,7 @@ MidoriMugData:
 #ifndef MidoriMug
   #define MidoriMug (FirstMugID+82)
 #endif
-setMugEntry(MidoriMug, MidoriMugData, 2, 6, 3, 4)
+MugEntry(MidoriMug, MidoriMugData, 2, 6, 3, 4)
 
 ALIGN 4
 MikotoMugData:
@@ -911,7 +911,7 @@ MikotoMugData:
 #ifndef MikotoMug
   #define MikotoMug (FirstMugID+83)
 #endif
-setMugEntry(MikotoMug, MikotoMugData, 2, 6, 2, 4)
+MugEntry(MikotoMug, MikotoMugData, 2, 6, 2, 4)
 
 ALIGN 4
 MitamaMugData:
@@ -922,7 +922,7 @@ MitamaMugData:
 #ifndef MitamaMug
   #define MitamaMug (FirstMugID+84)
 #endif
-setMugEntry(MitamaMug, MitamaMugData, 3, 6, 3, 4)
+MugEntry(MitamaMug, MitamaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MozuMugData:
@@ -933,7 +933,7 @@ MozuMugData:
 #ifndef MozuMug
   #define MozuMug (FirstMugID+85)
 #endif
-setMugEntry(MozuMug, MozuMugData, 3, 7, 4, 5)
+MugEntry(MozuMug, MozuMugData, 3, 7, 4, 5)
 
 ALIGN 4
 NilesMugData:
@@ -944,7 +944,7 @@ NilesMugData:
 #ifndef NilesMug
   #define NilesMug (FirstMugID+86)
 #endif
-setMugEntry(NilesMug, NilesMugData, 2, 5, 2, 3)
+MugEntry(NilesMug, NilesMugData, 2, 5, 2, 3)
 
 ALIGN 4
 NinaMugData:
@@ -955,7 +955,7 @@ NinaMugData:
 #ifndef NinaMug
   #define NinaMug (FirstMugID+87)
 #endif
-setMugEntry(NinaMug, NinaMugData, 2, 6, 3, 4)
+MugEntry(NinaMug, NinaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 NyxMugData:
@@ -966,7 +966,7 @@ NyxMugData:
 #ifndef NyxMug
   #define NyxMug (FirstMugID+88)
 #endif
-setMugEntry(NyxMug, NyxMugData, 3, 5, 3, 3)
+MugEntry(NyxMug, NyxMugData, 3, 5, 3, 3)
 
 ALIGN 4
 OboroMugData:
@@ -977,7 +977,7 @@ OboroMugData:
 #ifndef OboroMug
   #define OboroMug (FirstMugID+89)
 #endif
-setMugEntry(OboroMug, OboroMugData, 3, 6, 3, 4)
+MugEntry(OboroMug, OboroMugData, 3, 6, 3, 4)
 
 ALIGN 4
 OdinMugData:
@@ -988,7 +988,7 @@ OdinMugData:
 #ifndef OdinMug
   #define OdinMug (FirstMugID+90)
 #endif
-setMugEntry(OdinMug, OdinMugData, 4, 5, 4, 3)
+MugEntry(OdinMug, OdinMugData, 4, 5, 4, 3)
 
 ALIGN 4
 OrochiMugData:
@@ -999,7 +999,7 @@ OrochiMugData:
 #ifndef OrochiMug
   #define OrochiMug (FirstMugID+91)
 #endif
-setMugEntry(OrochiMug, OrochiMugData, 3, 6, 3, 4)
+MugEntry(OrochiMug, OrochiMugData, 3, 6, 3, 4)
 
 ALIGN 4
 PeriMugData:
@@ -1010,7 +1010,7 @@ PeriMugData:
 #ifndef PeriMug
   #define PeriMug (FirstMugID+92)
 #endif
-setMugEntry(PeriMug, PeriMugData, 2, 5, 3, 3)
+MugEntry(PeriMug, PeriMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ReinaMugData:
@@ -1021,7 +1021,7 @@ ReinaMugData:
 #ifndef ReinaMug
   #define ReinaMug (FirstMugID+93)
 #endif
-setMugEntry(ReinaMug, ReinaMugData, 2, 6, 2, 4)
+MugEntry(ReinaMug, ReinaMugData, 2, 6, 2, 4)
 
 ALIGN 4
 RinkahMugData:
@@ -1032,7 +1032,7 @@ RinkahMugData:
 #ifndef RinkahMug
   #define RinkahMug (FirstMugID+94)
 #endif
-setMugEntry(RinkahMug, RinkahMugData, 2, 5, 2, 4)
+MugEntry(RinkahMug, RinkahMugData, 2, 5, 2, 4)
 
 ALIGN 4
 RyomaMugData:
@@ -1043,7 +1043,7 @@ RyomaMugData:
 #ifndef RyomaMug
   #define RyomaMug (FirstMugID+95)
 #endif
-setMugEntry(RyomaMug, RyomaMugData, 2, 5, 2, 3)
+MugEntry(RyomaMug, RyomaMugData, 2, 5, 2, 3)
 
 ALIGN 4
 SaizoMugData:
@@ -1054,7 +1054,7 @@ SaizoMugData:
 #ifndef SaizoMug
   #define SaizoMug (FirstMugID+96)
 #endif
-setMugEntry(SaizoMug, SaizoMugData, 5, 5, 5, 3)
+MugEntry(SaizoMug, SaizoMugData, 5, 5, 5, 3)
 
 ALIGN 4
 SakuraMugData:
@@ -1065,7 +1065,7 @@ SakuraMugData:
 #ifndef SakuraMug
   #define SakuraMug (FirstMugID+97)
 #endif
-setMugEntry(SakuraMug, SakuraMugData, 4, 6, 4, 4)
+MugEntry(SakuraMug, SakuraMugData, 4, 6, 4, 4)
 
 ALIGN 4
 ScarletMugData:
@@ -1076,7 +1076,7 @@ ScarletMugData:
 #ifndef ScarletMug
   #define ScarletMug (FirstMugID+98)
 #endif
-setMugEntry(ScarletMug, ScarletMugData, 2, 6, 2, 4)
+MugEntry(ScarletMug, ScarletMugData, 2, 6, 2, 4)
 
 ALIGN 4
 SelenaFE14MugData:
@@ -1087,7 +1087,7 @@ SelenaFE14MugData:
 #ifndef SelenaFE14Mug
   #define SelenaFE14Mug (FirstMugID+99)
 #endif
-setMugEntry(SelenaFE14Mug, SelenaFE14MugData, 3, 6, 3, 4)
+MugEntry(SelenaFE14Mug, SelenaFE14MugData, 3, 6, 3, 4)
 
 ALIGN 4
 SelkieMugData:
@@ -1098,7 +1098,7 @@ SelkieMugData:
 #ifndef SelkieMug
   #define SelkieMug (FirstMugID+100)
 #endif
-setMugEntry(SelkieMug, SelkieMugData, 3, 6, 3, 4)
+MugEntry(SelkieMug, SelkieMugData, 3, 6, 3, 4)
 
 ALIGN 4
 SetsunaMugData:
@@ -1109,7 +1109,7 @@ SetsunaMugData:
 #ifndef SetsunaMug
   #define SetsunaMug (FirstMugID+101)
 #endif
-setMugEntry(SetsunaMug, SetsunaMugData, 2, 6, 3, 4)
+MugEntry(SetsunaMug, SetsunaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 ShigureMugData:
@@ -1120,7 +1120,7 @@ ShigureMugData:
 #ifndef ShigureMug
   #define ShigureMug (FirstMugID+102)
 #endif
-setMugEntry(ShigureMug, ShigureMugData, 4, 5, 4, 3)
+MugEntry(ShigureMug, ShigureMugData, 4, 5, 4, 3)
 
 ALIGN 4
 ShuraMugData:
@@ -1131,7 +1131,7 @@ ShuraMugData:
 #ifndef ShuraMug
   #define ShuraMug (FirstMugID+103)
 #endif
-setMugEntry(ShuraMug, ShuraMugData, 3, 6, 3, 4)
+MugEntry(ShuraMug, ShuraMugData, 3, 6, 3, 4)
 
 ALIGN 4
 SilasMugData:
@@ -1142,7 +1142,7 @@ SilasMugData:
 #ifndef SilasMug
   #define SilasMug (FirstMugID+104)
 #endif
-setMugEntry(SilasMug, SilasMugData, 2, 5, 2, 3)
+MugEntry(SilasMug, SilasMugData, 2, 5, 2, 3)
 
 ALIGN 4
 SoleilMugData:
@@ -1153,7 +1153,7 @@ SoleilMugData:
 #ifndef SoleilMug
   #define SoleilMug (FirstMugID+105)
 #endif
-setMugEntry(SoleilMug, SoleilMugData, 2, 6, 3, 4)
+MugEntry(SoleilMug, SoleilMugData, 2, 6, 3, 4)
 
 ALIGN 4
 SophieMugData:
@@ -1164,7 +1164,7 @@ SophieMugData:
 #ifndef SophieMug
   #define SophieMug (FirstMugID+106)
 #endif
-setMugEntry(SophieMug, SophieMugData, 3, 5, 3, 3)
+MugEntry(SophieMug, SophieMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SubakiMugData:
@@ -1175,7 +1175,7 @@ SubakiMugData:
 #ifndef SubakiMug
   #define SubakiMug (FirstMugID+107)
 #endif
-setMugEntry(SubakiMug, SubakiMugData, 2, 5, 3, 3)
+MugEntry(SubakiMug, SubakiMugData, 2, 5, 3, 3)
 
 ALIGN 4
 TakumiMugData:
@@ -1186,7 +1186,7 @@ TakumiMugData:
 #ifndef TakumiMug
   #define TakumiMug (FirstMugID+108)
 #endif
-setMugEntry(TakumiMug, TakumiMugData, 3, 6, 3, 4)
+MugEntry(TakumiMug, TakumiMugData, 3, 6, 3, 4)
 
 ALIGN 4
 XanderMugData:
@@ -1197,7 +1197,7 @@ XanderMugData:
 #ifndef XanderMug
   #define XanderMug (FirstMugID+109)
 #endif
-setMugEntry(XanderMug, XanderMugData, 3, 5, 3, 3)
+MugEntry(XanderMug, XanderMugData, 3, 5, 3, 3)
 
 ALIGN 4
 YukimuraMugData:
@@ -1208,7 +1208,7 @@ YukimuraMugData:
 #ifndef YukimuraMug
   #define YukimuraMug (FirstMugID+110)
 #endif
-setMugEntry(YukimuraMug, YukimuraMugData, 3, 5, 3, 3)
+MugEntry(YukimuraMug, YukimuraMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AloisMugData:
@@ -1219,7 +1219,7 @@ AloisMugData:
 #ifndef AloisMug
   #define AloisMug (FirstMugID+111)
 #endif
-setMugEntry(AloisMug, AloisMugData, 2, 5, 2, 3)
+MugEntry(AloisMug, AloisMugData, 2, 5, 2, 3)
 
 ALIGN 4
 AnnetteMugData:
@@ -1230,7 +1230,7 @@ AnnetteMugData:
 #ifndef AnnetteMug
   #define AnnetteMug (FirstMugID+112)
 #endif
-setMugEntry(AnnetteMug, AnnetteMugData, 3, 7, 3, 5)
+MugEntry(AnnetteMug, AnnetteMugData, 3, 7, 3, 5)
 
 ALIGN 4
 ArundelMugData:
@@ -1241,7 +1241,7 @@ ArundelMugData:
 #ifndef ArundelMug
   #define ArundelMug (FirstMugID+113)
 #endif
-setMugEntry(ArundelMug, ArundelMugData, 3, 5, 3, 3)
+MugEntry(ArundelMug, ArundelMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AsheMugData:
@@ -1252,7 +1252,7 @@ AsheMugData:
 #ifndef AsheMug
   #define AsheMug (FirstMugID+114)
 #endif
-setMugEntry(AsheMug, AsheMugData, 3, 7, 3, 5)
+MugEntry(AsheMug, AsheMugData, 3, 7, 3, 5)
 
 ALIGN 4
 BalthusMugData:
@@ -1263,7 +1263,7 @@ BalthusMugData:
 #ifndef BalthusMug
   #define BalthusMug (FirstMugID+115)
 #endif
-setMugEntry(BalthusMug, BalthusMugData, 1, 4, 2, 2)
+MugEntry(BalthusMug, BalthusMugData, 1, 4, 2, 2)
 
 ALIGN 4
 BernadettaMugData:
@@ -1274,7 +1274,7 @@ BernadettaMugData:
 #ifndef BernadettaMug
   #define BernadettaMug (FirstMugID+116)
 #endif
-setMugEntry(BernadettaMug, BernadettaMugData, 3, 6, 3, 4)
+MugEntry(BernadettaMug, BernadettaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 BylethFMugData:
@@ -1285,7 +1285,7 @@ BylethFMugData:
 #ifndef BylethFMug
   #define BylethFMug (FirstMugID+117)
 #endif
-setMugEntry(BylethFMug, BylethFMugData, 3, 6, 3, 4)
+MugEntry(BylethFMug, BylethFMugData, 3, 6, 3, 4)
 
 ALIGN 4
 BylethMMugData:
@@ -1296,7 +1296,7 @@ BylethMMugData:
 #ifndef BylethMMug
   #define BylethMMug (FirstMugID+118)
 #endif
-setMugEntry(BylethMMug, BylethMMugData, 3, 6, 3, 4)
+MugEntry(BylethMMug, BylethMMugData, 3, 6, 3, 4)
 
 ALIGN 4
 CasparMugData:
@@ -1307,7 +1307,7 @@ CasparMugData:
 #ifndef CasparMug
   #define CasparMug (FirstMugID+119)
 #endif
-setMugEntry(CasparMug, CasparMugData, 3, 7, 3, 5)
+MugEntry(CasparMug, CasparMugData, 3, 7, 3, 5)
 
 ALIGN 4
 CatherineMugData:
@@ -1318,7 +1318,7 @@ CatherineMugData:
 #ifndef CatherineMug
   #define CatherineMug (FirstMugID+120)
 #endif
-setMugEntry(CatherineMug, CatherineMugData, 3, 6, 3, 4)
+MugEntry(CatherineMug, CatherineMugData, 3, 6, 3, 4)
 
 ALIGN 4
 ClaudeFE16MugData:
@@ -1329,7 +1329,7 @@ ClaudeFE16MugData:
 #ifndef ClaudeFE16Mug
   #define ClaudeFE16Mug (FirstMugID+121)
 #endif
-setMugEntry(ClaudeFE16Mug, ClaudeFE16MugData, 3, 6, 3, 4)
+MugEntry(ClaudeFE16Mug, ClaudeFE16MugData, 3, 6, 3, 4)
 
 ALIGN 4
 ConstanceMugData:
@@ -1340,7 +1340,7 @@ ConstanceMugData:
 #ifndef ConstanceMug
   #define ConstanceMug (FirstMugID+122)
 #endif
-setMugEntry(ConstanceMug, ConstanceMugData, 3, 6, 3, 4)
+MugEntry(ConstanceMug, ConstanceMugData, 3, 6, 3, 4)
 
 ALIGN 4
 CyrilMugData:
@@ -1351,7 +1351,7 @@ CyrilMugData:
 #ifndef CyrilMug
   #define CyrilMug (FirstMugID+123)
 #endif
-setMugEntry(CyrilMug, CyrilMugData, 3, 7, 3, 5)
+MugEntry(CyrilMug, CyrilMugData, 3, 7, 3, 5)
 
 ALIGN 4
 DeathknightMugData:
@@ -1362,7 +1362,7 @@ DeathknightMugData:
 #ifndef DeathknightMug
   #define DeathknightMug (FirstMugID+124)
 #endif
-setMugEntry(DeathknightMug, DeathknightMugData, 2, 5, 2, 3)
+MugEntry(DeathknightMug, DeathknightMugData, 2, 5, 2, 3)
 
 ALIGN 4
 DedueMugData:
@@ -1373,7 +1373,7 @@ DedueMugData:
 #ifndef DedueMug
   #define DedueMug (FirstMugID+125)
 #endif
-setMugEntry(DedueMug, DedueMugData, 3, 4, 3, 2)
+MugEntry(DedueMug, DedueMugData, 3, 4, 3, 2)
 
 ALIGN 4
 DimitriMugData:
@@ -1384,7 +1384,7 @@ DimitriMugData:
 #ifndef DimitriMug
   #define DimitriMug (FirstMugID+126)
 #endif
-setMugEntry(DimitriMug, DimitriMugData, 3, 5, 3, 3)
+MugEntry(DimitriMug, DimitriMugData, 3, 5, 3, 3)
 
 ALIGN 4
 DorotheaMugData:
@@ -1395,7 +1395,7 @@ DorotheaMugData:
 #ifndef DorotheaMug
   #define DorotheaMug (FirstMugID+127)
 #endif
-setMugEntry(DorotheaMug, DorotheaMugData, 3, 5, 3, 3)
+MugEntry(DorotheaMug, DorotheaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 EdelgardMugData:
@@ -1406,7 +1406,7 @@ EdelgardMugData:
 #ifndef EdelgardMug
   #define EdelgardMug (FirstMugID+128)
 #endif
-setMugEntry(EdelgardMug, EdelgardMugData, 3, 5, 3, 3)
+MugEntry(EdelgardMug, EdelgardMugData, 3, 5, 3, 3)
 
 ALIGN 4
 FelixMugData:
@@ -1417,7 +1417,7 @@ FelixMugData:
 #ifndef FelixMug
   #define FelixMug (FirstMugID+129)
 #endif
-setMugEntry(FelixMug, FelixMugData, 3, 6, 3, 4)
+MugEntry(FelixMug, FelixMugData, 3, 6, 3, 4)
 
 ALIGN 4
 FerdinandMugData:
@@ -1428,7 +1428,7 @@ FerdinandMugData:
 #ifndef FerdinandMug
   #define FerdinandMug (FirstMugID+130)
 #endif
-setMugEntry(FerdinandMug, FerdinandMugData, 3, 6, 3, 4)
+MugEntry(FerdinandMug, FerdinandMugData, 3, 6, 3, 4)
 
 ALIGN 4
 FlameEmperorMugData:
@@ -1439,7 +1439,7 @@ FlameEmperorMugData:
 #ifndef FlameEmperorMug
   #define FlameEmperorMug (FirstMugID+131)
 #endif
-setMugEntry(FlameEmperorMug, FlameEmperorMugData, 2, 5, 2, 3)
+MugEntry(FlameEmperorMug, FlameEmperorMugData, 2, 5, 2, 3)
 
 ALIGN 4
 FlaynMugData:
@@ -1450,7 +1450,7 @@ FlaynMugData:
 #ifndef FlaynMug
   #define FlaynMug (FirstMugID+132)
 #endif
-setMugEntry(FlaynMug, FlaynMugData, 2, 6, 3, 4)
+MugEntry(FlaynMug, FlaynMugData, 2, 6, 3, 4)
 
 ALIGN 4
 GatekeeperMugData:
@@ -1461,7 +1461,7 @@ GatekeeperMugData:
 #ifndef GatekeeperMug
   #define GatekeeperMug (FirstMugID+133)
 #endif
-setMugEntry(GatekeeperMug, GatekeeperMugData, 3, 5, 3, 3)
+MugEntry(GatekeeperMug, GatekeeperMugData, 3, 5, 3, 3)
 
 ALIGN 4
 GilbertMugData:
@@ -1472,7 +1472,7 @@ GilbertMugData:
 #ifndef GilbertMug
   #define GilbertMug (FirstMugID+134)
 #endif
-setMugEntry(GilbertMug, GilbertMugData, 3, 4, 3, 2)
+MugEntry(GilbertMug, GilbertMugData, 3, 4, 3, 2)
 
 ALIGN 4
 GregoireMugData:
@@ -1483,7 +1483,7 @@ GregoireMugData:
 #ifndef GregoireMug
   #define GregoireMug (FirstMugID+135)
 #endif
-setMugEntry(GregoireMug, GregoireMugData, 2, 6, 2, 3)
+MugEntry(GregoireMug, GregoireMugData, 2, 6, 2, 3)
 
 ALIGN 4
 HannemanMugData:
@@ -1494,7 +1494,7 @@ HannemanMugData:
 #ifndef HannemanMug
   #define HannemanMug (FirstMugID+136)
 #endif
-setMugEntry(HannemanMug, HannemanMugData, 3, 5, 3, 3)
+MugEntry(HannemanMug, HannemanMugData, 3, 5, 3, 3)
 
 ALIGN 4
 HapiMugData:
@@ -1505,7 +1505,7 @@ HapiMugData:
 #ifndef HapiMug
   #define HapiMug (FirstMugID+137)
 #endif
-setMugEntry(HapiMug, HapiMugData, 3, 6, 3, 4)
+MugEntry(HapiMug, HapiMugData, 3, 6, 3, 4)
 
 ALIGN 4
 HildaFE16MugData:
@@ -1516,7 +1516,7 @@ HildaFE16MugData:
 #ifndef HildaFE16Mug
   #define HildaFE16Mug (FirstMugID+138)
 #endif
-setMugEntry(HildaFE16Mug, HildaFE16MugData, 3, 6, 3, 4)
+MugEntry(HildaFE16Mug, HildaFE16MugData, 3, 6, 3, 4)
 
 ALIGN 4
 HolstMugData:
@@ -1527,7 +1527,7 @@ HolstMugData:
 #ifndef HolstMug
   #define HolstMug (FirstMugID+139)
 #endif
-setMugEntry(HolstMug, HolstMugData, 2, 5, 2, 3)
+MugEntry(HolstMug, HolstMugData, 2, 5, 2, 3)
 
 ALIGN 4
 HubertMugData:
@@ -1538,7 +1538,7 @@ HubertMugData:
 #ifndef HubertMug
   #define HubertMug (FirstMugID+140)
 #endif
-setMugEntry(HubertMug, HubertMugData, 3, 5, 3, 3)
+MugEntry(HubertMug, HubertMugData, 3, 5, 3, 3)
 
 ALIGN 4
 IgnatzMugData:
@@ -1549,7 +1549,7 @@ IgnatzMugData:
 #ifndef IgnatzMug
   #define IgnatzMug (FirstMugID+141)
 #endif
-setMugEntry(IgnatzMug, IgnatzMugData, 3, 7, 3, 5)
+MugEntry(IgnatzMug, IgnatzMugData, 3, 7, 3, 5)
 
 ALIGN 4
 IngridMugData:
@@ -1560,7 +1560,7 @@ IngridMugData:
 #ifndef IngridMug
   #define IngridMug (FirstMugID+142)
 #endif
-setMugEntry(IngridMug, IngridMugData, 3, 7, 3, 5)
+MugEntry(IngridMug, IngridMugData, 3, 7, 3, 5)
 
 ALIGN 4
 IoniusIXMugData:
@@ -1571,7 +1571,7 @@ IoniusIXMugData:
 #ifndef IoniusIXMug
   #define IoniusIXMug (FirstMugID+143)
 #endif
-setMugEntry(IoniusIXMug, IoniusIXMugData, 3, 5, 3, 3)
+MugEntry(IoniusIXMug, IoniusIXMugData, 3, 5, 3, 3)
 
 ALIGN 4
 JeraltMugData:
@@ -1582,7 +1582,7 @@ JeraltMugData:
 #ifndef JeraltMug
   #define JeraltMug (FirstMugID+144)
 #endif
-setMugEntry(JeraltMug, JeraltMugData, 2, 5, 2, 3)
+MugEntry(JeraltMug, JeraltMugData, 2, 5, 2, 3)
 
 ALIGN 4
 JeritzaDeathKnightMugData:
@@ -1593,7 +1593,7 @@ JeritzaDeathKnightMugData:
 #ifndef JeritzaDeathKnightMug
   #define JeritzaDeathKnightMug (FirstMugID+145)
 #endif
-setMugEntry(JeritzaDeathKnightMug, JeritzaDeathKnightMugData, 3, 4, 3, 2)
+MugEntry(JeritzaDeathKnightMug, JeritzaDeathKnightMugData, 3, 4, 3, 2)
 
 ALIGN 4
 JeritzaMugData:
@@ -1604,7 +1604,7 @@ JeritzaMugData:
 #ifndef JeritzaMug
   #define JeritzaMug (FirstMugID+146)
 #endif
-setMugEntry(JeritzaMug, JeritzaMugData, 4, 4, 4, 2)
+MugEntry(JeritzaMug, JeritzaMugData, 4, 4, 4, 2)
 
 ALIGN 4
 JudithMugData:
@@ -1615,7 +1615,7 @@ JudithMugData:
 #ifndef JudithMug
   #define JudithMug (FirstMugID+147)
 #endif
-setMugEntry(JudithMug, JudithMugData, 4, 5, 4, 3)
+MugEntry(JudithMug, JudithMugData, 4, 5, 4, 3)
 
 ALIGN 4
 KostasMugData:
@@ -1626,7 +1626,7 @@ KostasMugData:
 #ifndef KostasMug
   #define KostasMug (FirstMugID+148)
 #endif
-setMugEntry(KostasMug, KostasMugData, 2, 6, 2, 4)
+MugEntry(KostasMug, KostasMugData, 2, 6, 2, 4)
 
 ALIGN 4
 KronyaMugData:
@@ -1637,7 +1637,7 @@ KronyaMugData:
 #ifndef KronyaMug
   #define KronyaMug (FirstMugID+149)
 #endif
-setMugEntry(KronyaMug, KronyaMugData, 3, 6, 3, 4)
+MugEntry(KronyaMug, KronyaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LadislavaMugData:
@@ -1648,7 +1648,7 @@ LadislavaMugData:
 #ifndef LadislavaMug
   #define LadislavaMug (FirstMugID+150)
 #endif
-setMugEntry(LadislavaMug, LadislavaMugData, 2, 5, 2, 3)
+MugEntry(LadislavaMug, LadislavaMugData, 2, 5, 2, 3)
 
 ALIGN 4
 LambertMugData:
@@ -1659,7 +1659,7 @@ LambertMugData:
 #ifndef LambertMug
   #define LambertMug (FirstMugID+151)
 #endif
-setMugEntry(LambertMug, LambertMugData, 3, 4, 3, 2)
+MugEntry(LambertMug, LambertMugData, 3, 4, 3, 2)
 
 ALIGN 4
 LeonieMugData:
@@ -1670,7 +1670,7 @@ LeonieMugData:
 #ifndef LeonieMug
   #define LeonieMug (FirstMugID+152)
 #endif
-setMugEntry(LeonieMug, LeonieMugData, 3, 4, 3, 2)
+MugEntry(LeonieMug, LeonieMugData, 3, 4, 3, 2)
 
 ALIGN 4
 LinhardtMugData:
@@ -1681,7 +1681,7 @@ LinhardtMugData:
 #ifndef LinhardtMug
   #define LinhardtMug (FirstMugID+153)
 #endif
-setMugEntry(LinhardtMug, LinhardtMugData, 3, 5, 3, 3)
+MugEntry(LinhardtMug, LinhardtMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LonatoMugData:
@@ -1692,7 +1692,7 @@ LonatoMugData:
 #ifndef LonatoMug
   #define LonatoMug (FirstMugID+154)
 #endif
-setMugEntry(LonatoMug, LonatoMugData, 3, 4, 3, 2)
+MugEntry(LonatoMug, LonatoMugData, 3, 4, 3, 2)
 
 ALIGN 4
 LorenzFE16MugData:
@@ -1703,7 +1703,7 @@ LorenzFE16MugData:
 #ifndef LorenzFE16Mug
   #define LorenzFE16Mug (FirstMugID+155)
 #endif
-setMugEntry(LorenzFE16Mug, LorenzFE16MugData, 3, 5, 3, 3)
+MugEntry(LorenzFE16Mug, LorenzFE16MugData, 3, 5, 3, 3)
 
 ALIGN 4
 LudwigMugData:
@@ -1714,7 +1714,7 @@ LudwigMugData:
 #ifndef LudwigMug
   #define LudwigMug (FirstMugID+156)
 #endif
-setMugEntry(LudwigMug, LudwigMugData, 2, 5, 2, 3)
+MugEntry(LudwigMug, LudwigMugData, 2, 5, 2, 3)
 
 ALIGN 4
 LysitheaMugData:
@@ -1725,7 +1725,7 @@ LysitheaMugData:
 #ifndef LysitheaMug
   #define LysitheaMug (FirstMugID+157)
 #endif
-setMugEntry(LysitheaMug, LysitheaMugData, 3, 6, 4, 4)
+MugEntry(LysitheaMug, LysitheaMugData, 3, 6, 4, 4)
 
 ALIGN 4
 ManuelaMugData:
@@ -1736,7 +1736,7 @@ ManuelaMugData:
 #ifndef ManuelaMug
   #define ManuelaMug (FirstMugID+158)
 #endif
-setMugEntry(ManuelaMug, ManuelaMugData, 4, 5, 4, 3)
+MugEntry(ManuelaMug, ManuelaMugData, 4, 5, 4, 3)
 
 ALIGN 4
 MarianneMugData:
@@ -1747,7 +1747,7 @@ MarianneMugData:
 #ifndef MarianneMug
   #define MarianneMug (FirstMugID+159)
 #endif
-setMugEntry(MarianneMug, MarianneMugData, 3, 6, 3, 4)
+MugEntry(MarianneMug, MarianneMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MercedesMugData:
@@ -1758,7 +1758,7 @@ MercedesMugData:
 #ifndef MercedesMug
   #define MercedesMug (FirstMugID+160)
 #endif
-setMugEntry(MercedesMug, MercedesMugData, 4, 5, 4, 3)
+MugEntry(MercedesMug, MercedesMugData, 4, 5, 4, 3)
 
 ALIGN 4
 MetodeyMugData:
@@ -1769,7 +1769,7 @@ MetodeyMugData:
 #ifndef MetodeyMug
   #define MetodeyMug (FirstMugID+161)
 #endif
-setMugEntry(MetodeyMug, MetodeyMugData, 2, 5, 2, 3)
+MugEntry(MetodeyMug, MetodeyMugData, 2, 5, 2, 3)
 
 ALIGN 4
 MiklanMugData:
@@ -1780,7 +1780,7 @@ MiklanMugData:
 #ifndef MiklanMug
   #define MiklanMug (FirstMugID+162)
 #endif
-setMugEntry(MiklanMug, MiklanMugData, 2, 5, 2, 3)
+MugEntry(MiklanMug, MiklanMugData, 2, 5, 2, 3)
 
 ALIGN 4
 MonicaMugData:
@@ -1791,7 +1791,7 @@ MonicaMugData:
 #ifndef MonicaMug
   #define MonicaMug (FirstMugID+163)
 #endif
-setMugEntry(MonicaMug, MonicaMugData, 3, 7, 3, 5)
+MugEntry(MonicaMug, MonicaMugData, 3, 7, 3, 5)
 
 ALIGN 4
 PetraMugData:
@@ -1802,7 +1802,7 @@ PetraMugData:
 #ifndef PetraMug
   #define PetraMug (FirstMugID+164)
 #endif
-setMugEntry(PetraMug, PetraMugData, 2, 6, 2, 4)
+MugEntry(PetraMug, PetraMugData, 2, 6, 2, 4)
 
 ALIGN 4
 RandolphMugData:
@@ -1813,7 +1813,7 @@ RandolphMugData:
 #ifndef RandolphMug
   #define RandolphMug (FirstMugID+165)
 #endif
-setMugEntry(RandolphMug, RandolphMugData, 2, 5, 2, 3)
+MugEntry(RandolphMug, RandolphMugData, 2, 5, 2, 3)
 
 ALIGN 4
 RaphaelMugData:
@@ -1824,7 +1824,7 @@ RaphaelMugData:
 #ifndef RaphaelMug
   #define RaphaelMug (FirstMugID+166)
 #endif
-setMugEntry(RaphaelMug, RaphaelMugData, 2, 4, 2, 2)
+MugEntry(RaphaelMug, RaphaelMugData, 2, 4, 2, 2)
 
 ALIGN 4
 RheaMugData:
@@ -1835,7 +1835,7 @@ RheaMugData:
 #ifndef RheaMug
   #define RheaMug (FirstMugID+167)
 #endif
-setMugEntry(RheaMug, RheaMugData, 3, 6, 3, 4)
+MugEntry(RheaMug, RheaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 RodrigueMugData:
@@ -1846,7 +1846,7 @@ RodrigueMugData:
 #ifndef RodrigueMug
   #define RodrigueMug (FirstMugID+168)
 #endif
-setMugEntry(RodrigueMug, RodrigueMugData, 3, 5, 3, 3)
+MugEntry(RodrigueMug, RodrigueMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SetethMugData:
@@ -1857,7 +1857,7 @@ SetethMugData:
 #ifndef SetethMug
   #define SetethMug (FirstMugID+169)
 #endif
-setMugEntry(SetethMug, SetethMugData, 3, 5, 3, 3)
+MugEntry(SetethMug, SetethMugData, 3, 5, 3, 3)
 
 ALIGN 4
 ShahidMugData:
@@ -1868,7 +1868,7 @@ ShahidMugData:
 #ifndef ShahidMug
   #define ShahidMug (FirstMugID+170)
 #endif
-setMugEntry(ShahidMug, ShahidMugData, 3, 5, 3, 3)
+MugEntry(ShahidMug, ShahidMugData, 3, 5, 3, 3)
 
 ALIGN 4
 ShamirMugData:
@@ -1879,7 +1879,7 @@ ShamirMugData:
 #ifndef ShamirMug
   #define ShamirMug (FirstMugID+171)
 #endif
-setMugEntry(ShamirMug, ShamirMugData, 4, 7, 4, 5)
+MugEntry(ShamirMug, ShamirMugData, 4, 7, 4, 5)
 
 ALIGN 4
 ShezFMugData:
@@ -1890,7 +1890,7 @@ ShezFMugData:
 #ifndef ShezFMug
   #define ShezFMug (FirstMugID+172)
 #endif
-setMugEntry(ShezFMug, ShezFMugData, 3, 5, 3, 3)
+MugEntry(ShezFMug, ShezFMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SolonMugData:
@@ -1901,7 +1901,7 @@ SolonMugData:
 #ifndef SolonMug
   #define SolonMug (FirstMugID+173)
 #endif
-setMugEntry(SolonMug, SolonMugData, 2, 5, 2, 3)
+MugEntry(SolonMug, SolonMugData, 2, 5, 2, 3)
 
 ALIGN 4
 SothisMugData:
@@ -1912,7 +1912,7 @@ SothisMugData:
 #ifndef SothisMug
   #define SothisMug (FirstMugID+174)
 #endif
-setMugEntry(SothisMug, SothisMugData, 3, 7, 3, 5)
+MugEntry(SothisMug, SothisMugData, 3, 7, 3, 5)
 
 ALIGN 4
 SylvainMugData:
@@ -1923,7 +1923,7 @@ SylvainMugData:
 #ifndef SylvainMug
   #define SylvainMug (FirstMugID+175)
 #endif
-setMugEntry(SylvainMug, SylvainMugData, 3, 5, 3, 3)
+MugEntry(SylvainMug, SylvainMugData, 3, 5, 3, 3)
 
 ALIGN 4
 ThalesMugData:
@@ -1934,7 +1934,7 @@ ThalesMugData:
 #ifndef ThalesMug
   #define ThalesMug (FirstMugID+176)
 #endif
-setMugEntry(ThalesMug, ThalesMugData, 2, 5, 2, 3)
+MugEntry(ThalesMug, ThalesMugData, 2, 5, 2, 3)
 
 ALIGN 4
 TomasFE16MugData:
@@ -1945,7 +1945,7 @@ TomasFE16MugData:
 #ifndef TomasFE16Mug
   #define TomasFE16Mug (FirstMugID+177)
 #endif
-setMugEntry(TomasFE16Mug, TomasFE16MugData, 2, 6, 2, 4)
+MugEntry(TomasFE16Mug, TomasFE16MugData, 2, 6, 2, 4)
 
 ALIGN 4
 WaldemarMugData:
@@ -1956,7 +1956,7 @@ WaldemarMugData:
 #ifndef WaldemarMug
   #define WaldemarMug (FirstMugID+178)
 #endif
-setMugEntry(WaldemarMug, WaldemarMugData, 2, 5, 2, 3)
+MugEntry(WaldemarMug, WaldemarMugData, 2, 5, 2, 3)
 
 ALIGN 4
 YuriMugData:
@@ -1967,7 +1967,7 @@ YuriMugData:
 #ifndef YuriMug
   #define YuriMug (FirstMugID+179)
 #endif
-setMugEntry(YuriMug, YuriMugData, 3, 5, 3, 3)
+MugEntry(YuriMug, YuriMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AlcrystMugData:
@@ -1978,7 +1978,7 @@ AlcrystMugData:
 #ifndef AlcrystMug
   #define AlcrystMug (FirstMugID+180)
 #endif
-setMugEntry(AlcrystMug, AlcrystMugData, 3, 5, 3, 3)
+MugEntry(AlcrystMug, AlcrystMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AlearFMugData:
@@ -1989,7 +1989,7 @@ AlearFMugData:
 #ifndef AlearFMug
   #define AlearFMug (FirstMugID+181)
 #endif
-setMugEntry(AlearFMug, AlearFMugData, 3, 5, 3, 3)
+MugEntry(AlearFMug, AlearFMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AlearMMugData:
@@ -2000,7 +2000,7 @@ AlearMMugData:
 #ifndef AlearMMug
   #define AlearMMug (FirstMugID+182)
 #endif
-setMugEntry(AlearMMug, AlearMMugData, 3, 5, 3, 3)
+MugEntry(AlearMMug, AlearMMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AmberMugData:
@@ -2011,7 +2011,7 @@ AmberMugData:
 #ifndef AmberMug
   #define AmberMug (FirstMugID+183)
 #endif
-setMugEntry(AmberMug, AmberMugData, 3, 5, 3, 3)
+MugEntry(AmberMug, AmberMugData, 3, 5, 3, 3)
 
 ALIGN 4
 CitrinneMugData:
@@ -2022,7 +2022,7 @@ CitrinneMugData:
 #ifndef CitrinneMug
   #define CitrinneMug (FirstMugID+184)
 #endif
-setMugEntry(CitrinneMug, CitrinneMugData, 3, 5, 3, 3)
+MugEntry(CitrinneMug, CitrinneMugData, 3, 5, 3, 3)
 
 ALIGN 4
 ClanneMugData:
@@ -2033,7 +2033,7 @@ ClanneMugData:
 #ifndef ClanneMug
   #define ClanneMug (FirstMugID+185)
 #endif
-setMugEntry(ClanneMug, ClanneMugData, 4, 6, 4, 4)
+MugEntry(ClanneMug, ClanneMugData, 4, 6, 4, 4)
 
 ALIGN 4
 EtieMugData:
@@ -2044,7 +2044,7 @@ EtieMugData:
 #ifndef EtieMug
   #define EtieMug (FirstMugID+186)
 #endif
-setMugEntry(EtieMug, EtieMugData, 4, 5, 4, 3)
+MugEntry(EtieMug, EtieMugData, 4, 5, 4, 3)
 
 ALIGN 4
 FrammeMugData:
@@ -2055,7 +2055,7 @@ FrammeMugData:
 #ifndef FrammeMug
   #define FrammeMug (FirstMugID+187)
 #endif
-setMugEntry(FrammeMug, FrammeMugData, 4, 6, 4, 4)
+MugEntry(FrammeMug, FrammeMugData, 4, 6, 4, 4)
 
 ALIGN 4
 GoldmaryMugData:
@@ -2066,7 +2066,7 @@ GoldmaryMugData:
 #ifndef GoldmaryMug
   #define GoldmaryMug (FirstMugID+188)
 #endif
-setMugEntry(GoldmaryMug, GoldmaryMugData, 3, 5, 3, 3)
+MugEntry(GoldmaryMug, GoldmaryMugData, 3, 5, 3, 3)
 
 ALIGN 4
 IvyMugData:
@@ -2077,7 +2077,7 @@ IvyMugData:
 #ifndef IvyMug
   #define IvyMug (FirstMugID+189)
 #endif
-setMugEntry(IvyMug, IvyMugData, 2, 6, 3, 4)
+MugEntry(IvyMug, IvyMugData, 2, 6, 3, 4)
 
 ALIGN 4
 JadeMugData:
@@ -2088,7 +2088,7 @@ JadeMugData:
 #ifndef JadeMug
   #define JadeMug (FirstMugID+190)
 #endif
-setMugEntry(JadeMug, JadeMugData, 2, 5, 2, 3)
+MugEntry(JadeMug, JadeMugData, 2, 5, 2, 3)
 
 ALIGN 4
 JeanMugData:
@@ -2099,7 +2099,7 @@ JeanMugData:
 #ifndef JeanMug
   #define JeanMug (FirstMugID+191)
 #endif
-setMugEntry(JeanMug, JeanMugData, 4, 6, 4, 4)
+MugEntry(JeanMug, JeanMugData, 4, 6, 4, 4)
 
 ALIGN 4
 KagetsuMugData:
@@ -2110,7 +2110,7 @@ KagetsuMugData:
 #ifndef KagetsuMug
   #define KagetsuMug (FirstMugID+192)
 #endif
-setMugEntry(KagetsuMug, KagetsuMugData, 6, 5, 5, 4)
+MugEntry(KagetsuMug, KagetsuMugData, 6, 5, 5, 4)
 
 ALIGN 4
 LapisMugData:
@@ -2121,7 +2121,7 @@ LapisMugData:
 #ifndef LapisMug
   #define LapisMug (FirstMugID+193)
 #endif
-setMugEntry(LapisMug, LapisMugData, 2, 6, 3, 4)
+MugEntry(LapisMug, LapisMugData, 2, 6, 3, 4)
 
 ALIGN 4
 LindonMugData:
@@ -2132,7 +2132,7 @@ LindonMugData:
 #ifndef LindonMug
   #define LindonMug (FirstMugID+194)
 #endif
-setMugEntry(LindonMug, LindonMugData, 3, 5, 3, 3)
+MugEntry(LindonMug, LindonMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MerrinMugData:
@@ -2143,7 +2143,7 @@ MerrinMugData:
 #ifndef MerrinMug
   #define MerrinMug (FirstMugID+195)
 #endif
-setMugEntry(MerrinMug, MerrinMugData, 4, 5, 4, 3)
+MugEntry(MerrinMug, MerrinMugData, 4, 5, 4, 3)
 
 ALIGN 4
 SaphirMugData:
@@ -2154,7 +2154,7 @@ SaphirMugData:
 #ifndef SaphirMug
   #define SaphirMug (FirstMugID+196)
 #endif
-setMugEntry(SaphirMug, SaphirMugData, 3, 5, 3, 3)
+MugEntry(SaphirMug, SaphirMugData, 3, 5, 3, 3)
 
 ALIGN 4
 VeyleMugData:
@@ -2165,7 +2165,7 @@ VeyleMugData:
 #ifndef VeyleMug
   #define VeyleMug (FirstMugID+197)
 #endif
-setMugEntry(VeyleMug, VeyleMugData, 4, 6, 4, 4)
+MugEntry(VeyleMug, VeyleMugData, 4, 6, 4, 4)
 
 ALIGN 4
 YunakaMugData:
@@ -2176,7 +2176,7 @@ YunakaMugData:
 #ifndef YunakaMug
   #define YunakaMug (FirstMugID+198)
 #endif
-setMugEntry(YunakaMug, YunakaMugData, 3, 5, 3, 3)
+MugEntry(YunakaMug, YunakaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AbelMugData:
@@ -2187,7 +2187,7 @@ AbelMugData:
 #ifndef AbelMug
   #define AbelMug (FirstMugID+199)
 #endif
-setMugEntry(AbelMug, AbelMugData, 3, 5, 3, 3)
+MugEntry(AbelMug, AbelMugData, 3, 5, 3, 3)
 
 ALIGN 4
 ArlenMugData:
@@ -2198,7 +2198,7 @@ ArlenMugData:
 #ifndef ArlenMug
   #define ArlenMug (FirstMugID+200)
 #endif
-setMugEntry(ArlenMug, ArlenMugData, 3, 4, 3, 2)
+MugEntry(ArlenMug, ArlenMugData, 3, 4, 3, 2)
 
 ALIGN 4
 ArranMugData:
@@ -2209,7 +2209,7 @@ ArranMugData:
 #ifndef ArranMug
   #define ArranMug (FirstMugID+201)
 #endif
-setMugEntry(ArranMug, ArranMugData, 3, 5, 3, 3)
+MugEntry(ArranMug, ArranMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AstramMugData:
@@ -2220,7 +2220,7 @@ AstramMugData:
 #ifndef AstramMug
   #define AstramMug (FirstMugID+202)
 #endif
-setMugEntry(AstramMug, AstramMugData, 3, 6, 3, 4)
+MugEntry(AstramMug, AstramMugData, 3, 6, 3, 4)
 
 ALIGN 4
 AthenaMugData:
@@ -2231,7 +2231,7 @@ AthenaMugData:
 #ifndef AthenaMug
   #define AthenaMug (FirstMugID+203)
 #endif
-setMugEntry(AthenaMug, AthenaMugData, 3, 5, 4, 3)
+MugEntry(AthenaMug, AthenaMugData, 3, 5, 4, 3)
 
 ALIGN 4
 BantuMugData:
@@ -2242,7 +2242,7 @@ BantuMugData:
 #ifndef BantuMug
   #define BantuMug (FirstMugID+204)
 #endif
-setMugEntry(BantuMug, BantuMugData, 2, 6, 2, 4)
+MugEntry(BantuMug, BantuMugData, 2, 6, 2, 4)
 
 ALIGN 4
 BarstMugData:
@@ -2253,7 +2253,7 @@ BarstMugData:
 #ifndef BarstMug
   #define BarstMug (FirstMugID+205)
 #endif
-setMugEntry(BarstMug, BarstMugData, 2, 5, 2, 3)
+MugEntry(BarstMug, BarstMugData, 2, 5, 2, 3)
 
 ALIGN 4
 BeckMugData:
@@ -2264,7 +2264,7 @@ BeckMugData:
 #ifndef BeckMug
   #define BeckMug (FirstMugID+206)
 #endif
-setMugEntry(BeckMug, BeckMugData, 4, 4, 4, 2)
+MugEntry(BeckMug, BeckMugData, 4, 4, 4, 2)
 
 ALIGN 4
 BelfMugData:
@@ -2275,7 +2275,7 @@ BelfMugData:
 #ifndef BelfMug
   #define BelfMug (FirstMugID+207)
 #endif
-setMugEntry(BelfMug, BelfMugData, 3, 5, 3, 3)
+MugEntry(BelfMug, BelfMugData, 3, 5, 3, 3)
 
 ALIGN 4
 BlankMugData:
@@ -2286,7 +2286,7 @@ BlankMugData:
 #ifndef BlankMug
   #define BlankMug (FirstMugID+208)
 #endif
-setMugEntry(BlankMug, BlankMugData, 2, 5, 3, 3)
+MugEntry(BlankMug, BlankMugData, 2, 5, 3, 3)
 
 ALIGN 4
 BoahMugData:
@@ -2297,7 +2297,7 @@ BoahMugData:
 #ifndef BoahMug
   #define BoahMug (FirstMugID+209)
 #endif
-setMugEntry(BoahMug, BoahMugData, 5, 5, 5, 3)
+MugEntry(BoahMug, BoahMugData, 5, 5, 5, 3)
 
 ALIGN 4
 BordMugData:
@@ -2308,7 +2308,7 @@ BordMugData:
 #ifndef BordMug
   #define BordMug (FirstMugID+210)
 #endif
-setMugEntry(BordMug, BordMugData, 3, 6, 3, 3)
+MugEntry(BordMug, BordMugData, 3, 6, 3, 3)
 
 ALIGN 4
 CaedaMugData:
@@ -2319,7 +2319,7 @@ CaedaMugData:
 #ifndef CaedaMug
   #define CaedaMug (FirstMugID+211)
 #endif
-setMugEntry(CaedaMug, CaedaMugData, 3, 6, 3, 4)
+MugEntry(CaedaMug, CaedaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 CaesarMugData:
@@ -2330,7 +2330,7 @@ CaesarMugData:
 #ifndef CaesarMug
   #define CaesarMug (FirstMugID+212)
 #endif
-setMugEntry(CaesarMug, CaesarMugData, 3, 5, 3, 3)
+MugEntry(CaesarMug, CaesarMugData, 3, 5, 3, 3)
 
 ALIGN 4
 CainMugData:
@@ -2341,7 +2341,7 @@ CainMugData:
 #ifndef CainMug
   #define CainMug (FirstMugID+213)
 #endif
-setMugEntry(CainMug, CainMugData, 3, 5, 3, 3)
+MugEntry(CainMug, CainMugData, 3, 5, 3, 3)
 
 ALIGN 4
 CamusMugData:
@@ -2352,7 +2352,7 @@ CamusMugData:
 #ifndef CamusMug
   #define CamusMug (FirstMugID+214)
 #endif
-setMugEntry(CamusMug, CamusMugData, 2, 4, 2, 2)
+MugEntry(CamusMug, CamusMugData, 2, 4, 2, 2)
 
 ALIGN 4
 CastorMugData:
@@ -2363,7 +2363,7 @@ CastorMugData:
 #ifndef CastorMug
   #define CastorMug (FirstMugID+215)
 #endif
-setMugEntry(CastorMug, CastorMugData, 4, 5, 4, 3)
+MugEntry(CastorMug, CastorMugData, 4, 5, 4, 3)
 
 ALIGN 4
 CatriaMugData:
@@ -2374,7 +2374,7 @@ CatriaMugData:
 #ifndef CatriaMug
   #define CatriaMug (FirstMugID+216)
 #endif
-setMugEntry(CatriaMug, CatriaMugData, 2, 5, 3, 3)
+MugEntry(CatriaMug, CatriaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 CecilMugData:
@@ -2385,7 +2385,7 @@ CecilMugData:
 #ifndef CecilMug
   #define CecilMug (FirstMugID+217)
 #endif
-setMugEntry(CecilMug, CecilMugData, 4, 6, 3, 4)
+MugEntry(CecilMug, CecilMugData, 4, 6, 3, 4)
 
 ALIGN 4
 CordMugData:
@@ -2396,7 +2396,7 @@ CordMugData:
 #ifndef CordMug
   #define CordMug (FirstMugID+218)
 #endif
-setMugEntry(CordMug, CordMugData, 2, 5, 2, 3)
+MugEntry(CordMug, CordMugData, 2, 5, 2, 3)
 
 ALIGN 4
 DarrosMugData:
@@ -2407,7 +2407,7 @@ DarrosMugData:
 #ifndef DarrosMug
   #define DarrosMug (FirstMugID+219)
 #endif
-setMugEntry(DarrosMug, DarrosMugData, 2, 4, 3, 2)
+MugEntry(DarrosMug, DarrosMugData, 2, 4, 3, 2)
 
 ALIGN 4
 DiceMugData:
@@ -2418,7 +2418,7 @@ DiceMugData:
 #ifndef DiceMug
   #define DiceMug (FirstMugID+220)
 #endif
-setMugEntry(DiceMug, DiceMugData, 2, 5, 3, 3)
+MugEntry(DiceMug, DiceMugData, 2, 5, 3, 3)
 
 ALIGN 4
 DolphMugData:
@@ -2429,7 +2429,7 @@ DolphMugData:
 #ifndef DolphMug
   #define DolphMug (FirstMugID+221)
 #endif
-setMugEntry(DolphMug, DolphMugData, 4, 4, 3, 2)
+MugEntry(DolphMug, DolphMugData, 4, 4, 3, 2)
 
 ALIGN 4
 DraugMugData:
@@ -2440,7 +2440,7 @@ DraugMugData:
 #ifndef DraugMug
   #define DraugMug (FirstMugID+222)
 #endif
-setMugEntry(DraugMug, DraugMugData, 2, 5, 2, 3)
+MugEntry(DraugMug, DraugMugData, 2, 5, 2, 3)
 
 ALIGN 4
 EliceMugData:
@@ -2451,7 +2451,7 @@ EliceMugData:
 #ifndef EliceMug
   #define EliceMug (FirstMugID+223)
 #endif
-setMugEntry(EliceMug, EliceMugData, 2, 6, 2, 4)
+MugEntry(EliceMug, EliceMugData, 2, 6, 2, 4)
 
 ALIGN 4
 EstMugData:
@@ -2462,7 +2462,7 @@ EstMugData:
 #ifndef EstMug
   #define EstMug (FirstMugID+224)
 #endif
-setMugEntry(EstMug, EstMugData, 2, 5, 3, 3)
+MugEntry(EstMug, EstMugData, 2, 5, 3, 3)
 
 ALIGN 4
 EtzelMugData:
@@ -2473,7 +2473,7 @@ EtzelMugData:
 #ifndef EtzelMug
   #define EtzelMug (FirstMugID+225)
 #endif
-setMugEntry(EtzelMug, EtzelMugData, 4, 5, 4, 3)
+MugEntry(EtzelMug, EtzelMugData, 4, 5, 4, 3)
 
 ALIGN 4
 FreyMugData:
@@ -2484,7 +2484,7 @@ FreyMugData:
 #ifndef FreyMug
   #define FreyMug (FirstMugID+226)
 #endif
-setMugEntry(FreyMug, FreyMugData, 3, 5, 3, 3)
+MugEntry(FreyMug, FreyMugData, 3, 5, 3, 3)
 
 ALIGN 4
 FrostMugData:
@@ -2495,7 +2495,7 @@ FrostMugData:
 #ifndef FrostMug
   #define FrostMug (FirstMugID+227)
 #endif
-setMugEntry(FrostMug, FrostMugData, 4, 6, 4, 4)
+MugEntry(FrostMug, FrostMugData, 4, 6, 4, 4)
 
 ALIGN 4
 GordinMugData:
@@ -2506,7 +2506,7 @@ GordinMugData:
 #ifndef GordinMug
   #define GordinMug (FirstMugID+228)
 #endif
-setMugEntry(GordinMug, GordinMugData, 2, 5, 2, 3)
+MugEntry(GordinMug, GordinMugData, 2, 5, 2, 3)
 
 ALIGN 4
 GotohMugData:
@@ -2517,7 +2517,7 @@ GotohMugData:
 #ifndef GotohMug
   #define GotohMug (FirstMugID+229)
 #endif
-setMugEntry(GotohMug, GotohMugData, 2, 5, 2, 2)
+MugEntry(GotohMug, GotohMugData, 2, 5, 2, 2)
 
 ALIGN 4
 HardinMugData:
@@ -2528,7 +2528,7 @@ HardinMugData:
 #ifndef HardinMug
   #define HardinMug (FirstMugID+230)
 #endif
-setMugEntry(HardinMug, HardinMugData, 2, 5, 2, 3)
+MugEntry(HardinMug, HardinMugData, 2, 5, 2, 3)
 
 ALIGN 4
 HoraceMugData:
@@ -2539,7 +2539,7 @@ HoraceMugData:
 #ifndef HoraceMug
   #define HoraceMug (FirstMugID+231)
 #endif
-setMugEntry(HoraceMug, HoraceMugData, 3, 5, 3, 3)
+MugEntry(HoraceMug, HoraceMugData, 3, 5, 3, 3)
 
 ALIGN 4
 JagenMugData:
@@ -2550,7 +2550,7 @@ JagenMugData:
 #ifndef JagenMug
   #define JagenMug (FirstMugID+232)
 #endif
-setMugEntry(JagenMug, JagenMugData, 2, 5, 2, 2)
+MugEntry(JagenMug, JagenMugData, 2, 5, 2, 2)
 
 ALIGN 4
 JakeMugData:
@@ -2561,7 +2561,7 @@ JakeMugData:
 #ifndef JakeMug
   #define JakeMug (FirstMugID+233)
 #endif
-setMugEntry(JakeMug, JakeMugData, 4, 5, 4, 3)
+MugEntry(JakeMug, JakeMugData, 4, 5, 4, 3)
 
 ALIGN 4
 JeorgeMugData:
@@ -2572,7 +2572,7 @@ JeorgeMugData:
 #ifndef JeorgeMug
   #define JeorgeMug (FirstMugID+234)
 #endif
-setMugEntry(JeorgeMug, JeorgeMugData, 4, 6, 3, 3)
+MugEntry(JeorgeMug, JeorgeMugData, 4, 6, 3, 3)
 
 ALIGN 4
 JubeloMugData:
@@ -2583,7 +2583,7 @@ JubeloMugData:
 #ifndef JubeloMug
   #define JubeloMug (FirstMugID+235)
 #endif
-setMugEntry(JubeloMug, JubeloMugData, 3, 7, 3, 5)
+MugEntry(JubeloMug, JubeloMugData, 3, 7, 3, 5)
 
 ALIGN 4
 JulianMugData:
@@ -2594,7 +2594,7 @@ JulianMugData:
 #ifndef JulianMug
   #define JulianMug (FirstMugID+236)
 #endif
-setMugEntry(JulianMug, JulianMugData, 4, 5, 4, 3)
+MugEntry(JulianMug, JulianMugData, 4, 5, 4, 3)
 
 ALIGN 4
 KatarinaMugData:
@@ -2605,7 +2605,7 @@ KatarinaMugData:
 #ifndef KatarinaMug
   #define KatarinaMug (FirstMugID+237)
 #endif
-setMugEntry(KatarinaMug, KatarinaMugData, 2, 5, 3, 3)
+MugEntry(KatarinaMug, KatarinaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 KrisMugData:
@@ -2616,7 +2616,7 @@ KrisMugData:
 #ifndef KrisMug
   #define KrisMug (FirstMugID+238)
 #endif
-setMugEntry(KrisMug, KrisMugData, 3, 5, 3, 3)
+MugEntry(KrisMug, KrisMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LenaMugData:
@@ -2627,7 +2627,7 @@ LenaMugData:
 #ifndef LenaMug
   #define LenaMug (FirstMugID+239)
 #endif
-setMugEntry(LenaMug, LenaMugData, 4, 5, 4, 3)
+MugEntry(LenaMug, LenaMugData, 4, 5, 4, 3)
 
 ALIGN 4
 LindeMugData:
@@ -2638,7 +2638,7 @@ LindeMugData:
 #ifndef LindeMug
   #define LindeMug (FirstMugID+240)
 #endif
-setMugEntry(LindeMug, LindeMugData, 3, 6, 3, 4)
+MugEntry(LindeMug, LindeMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LorenzMugData:
@@ -2649,7 +2649,7 @@ LorenzMugData:
 #ifndef LorenzMug
   #define LorenzMug (FirstMugID+241)
 #endif
-setMugEntry(LorenzMug, LorenzMugData, 3, 5, 3, 3)
+MugEntry(LorenzMug, LorenzMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LukeMugData:
@@ -2660,7 +2660,7 @@ LukeMugData:
 #ifndef LukeMug
   #define LukeMug (FirstMugID+242)
 #endif
-setMugEntry(LukeMug, LukeMugData, 3, 5, 3, 3)
+MugEntry(LukeMug, LukeMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MacellanMugData:
@@ -2671,7 +2671,7 @@ MacellanMugData:
 #ifndef MacellanMug
   #define MacellanMug (FirstMugID+243)
 #endif
-setMugEntry(MacellanMug, MacellanMugData, 5, 4, 5, 2)
+MugEntry(MacellanMug, MacellanMugData, 5, 4, 5, 2)
 
 ALIGN 4
 MaliceMugData:
@@ -2682,7 +2682,7 @@ MaliceMugData:
 #ifndef MaliceMug
   #define MaliceMug (FirstMugID+244)
 #endif
-setMugEntry(MaliceMug, MaliceMugData, 4, 4, 4, 2)
+MugEntry(MaliceMug, MaliceMugData, 4, 4, 4, 2)
 
 ALIGN 4
 MariaMugData:
@@ -2693,7 +2693,7 @@ MariaMugData:
 #ifndef MariaMug
   #define MariaMug (FirstMugID+245)
 #endif
-setMugEntry(MariaMug, MariaMugData, 3, 6, 3, 4)
+MugEntry(MariaMug, MariaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MarishaMugData:
@@ -2704,7 +2704,7 @@ MarishaMugData:
 #ifndef MarishaMug
   #define MarishaMug (FirstMugID+246)
 #endif
-setMugEntry(MarishaMug, MarishaMugData, 2, 6, 3, 4)
+MugEntry(MarishaMug, MarishaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 MarthMugData:
@@ -2715,7 +2715,7 @@ MarthMugData:
 #ifndef MarthMug
   #define MarthMug (FirstMugID+247)
 #endif
-setMugEntry(MarthMug, MarthMugData, 3, 6, 3, 4)
+MugEntry(MarthMug, MarthMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MatthisMugData:
@@ -2726,7 +2726,7 @@ MatthisMugData:
 #ifndef MatthisMug
   #define MatthisMug (FirstMugID+248)
 #endif
-setMugEntry(MatthisMug, MatthisMugData, 3, 5, 3, 3)
+MugEntry(MatthisMug, MatthisMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MerricMugData:
@@ -2737,7 +2737,7 @@ MerricMugData:
 #ifndef MerricMug
   #define MerricMug (FirstMugID+249)
 #endif
-setMugEntry(MerricMug, MerricMugData, 3, 5, 3, 3)
+MugEntry(MerricMug, MerricMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MichalisMugData:
@@ -2748,7 +2748,7 @@ MichalisMugData:
 #ifndef MichalisMug
   #define MichalisMug (FirstMugID+250)
 #endif
-setMugEntry(MichalisMug, MichalisMugData, 3, 4, 3, 2)
+MugEntry(MichalisMug, MichalisMugData, 3, 4, 3, 2)
 
 ALIGN 4
 MidiaMugData:
@@ -2759,7 +2759,7 @@ MidiaMugData:
 #ifndef MidiaMug
   #define MidiaMug (FirstMugID+251)
 #endif
-setMugEntry(MidiaMug, MidiaMugData, 3, 5, 3, 3)
+MugEntry(MidiaMug, MidiaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MinervaMugData:
@@ -2770,7 +2770,7 @@ MinervaMugData:
 #ifndef MinervaMug
   #define MinervaMug (FirstMugID+252)
 #endif
-setMugEntry(MinervaMug, MinervaMugData, 5, 5, 5, 3)
+MugEntry(MinervaMug, MinervaMugData, 5, 5, 5, 3)
 
 ALIGN 4
 NagiMugData:
@@ -2781,7 +2781,7 @@ NagiMugData:
 #ifndef NagiMug
   #define NagiMug (FirstMugID+253)
 #endif
-setMugEntry(NagiMug, NagiMugData, 2, 4, 2, 2)
+MugEntry(NagiMug, NagiMugData, 2, 4, 2, 2)
 
 ALIGN 4
 NavarreMugData:
@@ -2792,7 +2792,7 @@ NavarreMugData:
 #ifndef NavarreMug
   #define NavarreMug (FirstMugID+254)
 #endif
-setMugEntry(NavarreMug, NavarreMugData, 3, 5, 3, 3)
+MugEntry(NavarreMug, NavarreMugData, 3, 5, 3, 3)
 
 ALIGN 4
 NorneMugData:
@@ -2803,7 +2803,7 @@ NorneMugData:
 #ifndef NorneMug
   #define NorneMug (FirstMugID+255)
 #endif
-setMugEntry(NorneMug, NorneMugData, 2, 5, 2, 3)
+MugEntry(NorneMug, NorneMugData, 2, 5, 2, 3)
 
 ALIGN 4
 NynaMugData:
@@ -2814,7 +2814,7 @@ NynaMugData:
 #ifndef NynaMug
   #define NynaMug (FirstMugID+257)
 #endif
-setMugEntry(NynaMug, NynaMugData, 3, 5, 3, 3)
+MugEntry(NynaMug, NynaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 OgmaMugData:
@@ -2825,7 +2825,7 @@ OgmaMugData:
 #ifndef OgmaMug
   #define OgmaMug (FirstMugID+258)
 #endif
-setMugEntry(OgmaMug, OgmaMugData, 2, 4, 2, 2)
+MugEntry(OgmaMug, OgmaMugData, 2, 4, 2, 2)
 
 ALIGN 4
 PallaMugData:
@@ -2836,7 +2836,7 @@ PallaMugData:
 #ifndef PallaMug
   #define PallaMug (FirstMugID+259)
 #endif
-setMugEntry(PallaMug, PallaMugData, 2, 5, 3, 3)
+MugEntry(PallaMug, PallaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 PhinaMugData:
@@ -2847,7 +2847,7 @@ PhinaMugData:
 #ifndef PhinaMug
   #define PhinaMug (FirstMugID+260)
 #endif
-setMugEntry(PhinaMug, PhinaMugData, 2, 6, 2, 4)
+MugEntry(PhinaMug, PhinaMugData, 2, 6, 2, 4)
 
 ALIGN 4
 RaddMugData:
@@ -2858,7 +2858,7 @@ RaddMugData:
 #ifndef RaddMug
   #define RaddMug (FirstMugID+261)
 #endif
-setMugEntry(RaddMug, RaddMugData, 4, 6, 4, 4)
+MugEntry(RaddMug, RaddMugData, 4, 6, 4, 4)
 
 ALIGN 4
 ReidenMugData:
@@ -2869,7 +2869,7 @@ ReidenMugData:
 #ifndef ReidenMug
   #define ReidenMug (FirstMugID+262)
 #endif
-setMugEntry(ReidenMug, ReidenMugData, 2, 5, 2, 3)
+MugEntry(ReidenMug, ReidenMugData, 2, 5, 2, 3)
 
 ALIGN 4
 RickardMugData:
@@ -2880,7 +2880,7 @@ RickardMugData:
 #ifndef RickardMug
   #define RickardMug (FirstMugID+263)
 #endif
-setMugEntry(RickardMug, RickardMugData, 4, 5, 4, 3)
+MugEntry(RickardMug, RickardMugData, 4, 5, 4, 3)
 
 ALIGN 4
 RobertoMugData:
@@ -2891,7 +2891,7 @@ RobertoMugData:
 #ifndef RobertoMug
   #define RobertoMug (FirstMugID+264)
 #endif
-setMugEntry(RobertoMug, RobertoMugData, 2, 5, 3, 3)
+MugEntry(RobertoMug, RobertoMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RoderickMugData:
@@ -2902,7 +2902,7 @@ RoderickMugData:
 #ifndef RoderickMug
   #define RoderickMug (FirstMugID+265)
 #endif
-setMugEntry(RoderickMug, RoderickMugData, 3, 5, 3, 3)
+MugEntry(RoderickMug, RoderickMugData, 3, 5, 3, 3)
 
 ALIGN 4
 RogerMugData:
@@ -2913,7 +2913,7 @@ RogerMugData:
 #ifndef RogerMug
   #define RogerMug (FirstMugID+266)
 #endif
-setMugEntry(RogerMug, RogerMugData, 2, 5, 3, 3)
+MugEntry(RogerMug, RogerMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RosheaMugData:
@@ -2924,7 +2924,7 @@ RosheaMugData:
 #ifndef RosheaMug
   #define RosheaMug (FirstMugID+267)
 #endif
-setMugEntry(RosheaMug, RosheaMugData, 3, 5, 3, 3)
+MugEntry(RosheaMug, RosheaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 RyanMugData:
@@ -2935,7 +2935,7 @@ RyanMugData:
 #ifndef RyanMug
   #define RyanMug (FirstMugID+268)
 #endif
-setMugEntry(RyanMug, RyanMugData, 3, 6, 3, 4)
+MugEntry(RyanMug, RyanMugData, 3, 6, 3, 4)
 
 ALIGN 4
 SamsonMugData:
@@ -2946,7 +2946,7 @@ SamsonMugData:
 #ifndef SamsonMug
   #define SamsonMug (FirstMugID+269)
 #endif
-setMugEntry(SamsonMug, SamsonMugData, 2, 5, 2, 3)
+MugEntry(SamsonMug, SamsonMugData, 2, 5, 2, 3)
 
 ALIGN 4
 SamuelMugData:
@@ -2957,7 +2957,7 @@ SamuelMugData:
 #ifndef SamuelMug
   #define SamuelMug (FirstMugID+270)
 #endif
-setMugEntry(SamuelMug, SamuelMugData, 4, 5, 4, 3)
+MugEntry(SamuelMug, SamuelMugData, 4, 5, 4, 3)
 
 ALIGN 4
 SedgarMugData:
@@ -2968,7 +2968,7 @@ SedgarMugData:
 #ifndef SedgarMug
   #define SedgarMug (FirstMugID+271)
 #endif
-setMugEntry(SedgarMug, SedgarMugData, 3, 5, 3, 3)
+MugEntry(SedgarMug, SedgarMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SheenaMugData:
@@ -2979,7 +2979,7 @@ SheenaMugData:
 #ifndef SheenaMug
   #define SheenaMug (FirstMugID+272)
 #endif
-setMugEntry(SheenaMug, SheenaMugData, 3, 5, 3, 3)
+MugEntry(SheenaMug, SheenaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SiriusMugData:
@@ -2990,7 +2990,7 @@ SiriusMugData:
 #ifndef SiriusMug
   #define SiriusMug (FirstMugID+273)
 #endif
-setMugEntry(SiriusMug, SiriusMugData, 4, 6, 4, 4)
+MugEntry(SiriusMug, SiriusMugData, 4, 6, 4, 4)
 
 ALIGN 4
 TikiMugData:
@@ -3001,7 +3001,7 @@ TikiMugData:
 #ifndef TikiMug
   #define TikiMug (FirstMugID+274)
 #endif
-setMugEntry(TikiMug, TikiMugData, 2, 7, 2, 5)
+MugEntry(TikiMug, TikiMugData, 2, 7, 2, 5)
 
 ALIGN 4
 TomasMugData:
@@ -3012,7 +3012,7 @@ TomasMugData:
 #ifndef TomasMug
   #define TomasMug (FirstMugID+275)
 #endif
-setMugEntry(TomasMug, TomasMugData, 4, 5, 4, 3)
+MugEntry(TomasMug, TomasMugData, 4, 5, 4, 3)
 
 ALIGN 4
 VylandMugData:
@@ -3023,7 +3023,7 @@ VylandMugData:
 #ifndef VylandMug
   #define VylandMug (FirstMugID+276)
 #endif
-setMugEntry(VylandMug, VylandMugData, 3, 5, 3, 3)
+MugEntry(VylandMug, VylandMugData, 3, 5, 3, 3)
 
 ALIGN 4
 WarrenMugData:
@@ -3034,7 +3034,7 @@ WarrenMugData:
 #ifndef WarrenMug
   #define WarrenMug (FirstMugID+277)
 #endif
-setMugEntry(WarrenMug, WarrenMugData, 4, 5, 3, 3)
+MugEntry(WarrenMug, WarrenMugData, 4, 5, 3, 3)
 
 ALIGN 4
 WendellMugData:
@@ -3045,7 +3045,7 @@ WendellMugData:
 #ifndef WendellMug
   #define WendellMug (FirstMugID+278)
 #endif
-setMugEntry(WendellMug, WendellMugData, 4, 6, 4, 4)
+MugEntry(WendellMug, WendellMugData, 4, 6, 4, 4)
 
 ALIGN 4
 WolfMugData:
@@ -3056,7 +3056,7 @@ WolfMugData:
 #ifndef WolfMug
   #define WolfMug (FirstMugID+279)
 #endif
-setMugEntry(WolfMug, WolfMugData, 4, 5, 4, 3)
+MugEntry(WolfMug, WolfMugData, 4, 5, 4, 3)
 
 ALIGN 4
 WrysMugData:
@@ -3067,7 +3067,7 @@ WrysMugData:
 #ifndef WrysMug
   #define WrysMug (FirstMugID+280)
 #endif
-setMugEntry(WrysMug, WrysMugData, 2, 6, 2, 4)
+MugEntry(WrysMug, WrysMugData, 2, 6, 2, 4)
 
 ALIGN 4
 XaneMugData:
@@ -3078,7 +3078,7 @@ XaneMugData:
 #ifndef XaneMug
   #define XaneMug (FirstMugID+281)
 #endif
-setMugEntry(XaneMug, XaneMugData, 3, 5, 3, 3)
+MugEntry(XaneMug, XaneMugData, 3, 5, 3, 3)
 
 ALIGN 4
 YmirMugData:
@@ -3089,7 +3089,7 @@ YmirMugData:
 #ifndef YmirMug
   #define YmirMug (FirstMugID+282)
 #endif
-setMugEntry(YmirMug, YmirMugData, 2, 4, 2, 2)
+MugEntry(YmirMug, YmirMugData, 2, 4, 2, 2)
 
 ALIGN 4
 YuliyaMugData:
@@ -3100,7 +3100,7 @@ YuliyaMugData:
 #ifndef YuliyaMug
   #define YuliyaMug (FirstMugID+283)
 #endif
-setMugEntry(YuliyaMug, YuliyaMugData, 2, 6, 3, 4)
+MugEntry(YuliyaMug, YuliyaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 AlmMugData:
@@ -3111,7 +3111,7 @@ AlmMugData:
 #ifndef AlmMug
   #define AlmMug (FirstMugID+284)
 #endif
-setMugEntry(AlmMug, AlmMugData, 3, 6, 3, 4)
+MugEntry(AlmMug, AlmMugData, 3, 6, 3, 4)
 
 ALIGN 4
 CatriaFe15MugData:
@@ -3122,7 +3122,7 @@ CatriaFe15MugData:
 #ifndef CatriaFe15Mug
   #define CatriaFe15Mug (FirstMugID+285)
 #endif
-setMugEntry(CatriaFe15Mug, CatriaFe15MugData, 2, 6, 3, 4)
+MugEntry(CatriaFe15Mug, CatriaFe15MugData, 2, 6, 3, 4)
 
 ALIGN 4
 CelicaMugData:
@@ -3133,7 +3133,7 @@ CelicaMugData:
 #ifndef CelicaMug
   #define CelicaMug (FirstMugID+286)
 #endif
-setMugEntry(CelicaMug, CelicaMugData, 3, 6, 3, 4)
+MugEntry(CelicaMug, CelicaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 DeltheaMugData:
@@ -3144,7 +3144,7 @@ DeltheaMugData:
 #ifndef DeltheaMug
   #define DeltheaMug (FirstMugID+287)
 #endif
-setMugEntry(DeltheaMug, DeltheaMugData, 2, 6, 3, 4)
+MugEntry(DeltheaMug, DeltheaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 EstFe15MugData:
@@ -3155,7 +3155,7 @@ EstFe15MugData:
 #ifndef EstFe15Mug
   #define EstFe15Mug (FirstMugID+288)
 #endif
-setMugEntry(EstFe15Mug, EstFe15MugData, 2, 6, 3, 4)
+MugEntry(EstFe15Mug, EstFe15MugData, 2, 6, 3, 4)
 
 ALIGN 4
 FernandMugData:
@@ -3166,7 +3166,7 @@ FernandMugData:
 #ifndef FernandMug
   #define FernandMug (FirstMugID+289)
 #endif
-setMugEntry(FernandMug, FernandMugData, 5, 5, 5, 3)
+MugEntry(FernandMug, FernandMugData, 5, 5, 5, 3)
 
 ALIGN 4
 GennyMugData:
@@ -3177,7 +3177,7 @@ GennyMugData:
 #ifndef GennyMug
   #define GennyMug (FirstMugID+290)
 #endif
-setMugEntry(GennyMug, GennyMugData, 3, 6, 3, 4)
+MugEntry(GennyMug, GennyMugData, 3, 6, 3, 4)
 
 ALIGN 4
 GrayMugData:
@@ -3188,7 +3188,7 @@ GrayMugData:
 #ifndef GrayMug
   #define GrayMug (FirstMugID+291)
 #endif
-setMugEntry(GrayMug, GrayMugData, 3, 5, 3, 3)
+MugEntry(GrayMug, GrayMugData, 3, 5, 3, 3)
 
 ALIGN 4
 JesseMugData:
@@ -3199,7 +3199,7 @@ JesseMugData:
 #ifndef JesseMug
   #define JesseMug (FirstMugID+292)
 #endif
-setMugEntry(JesseMug, JesseMugData, 3, 5, 2, 3)
+MugEntry(JesseMug, JesseMugData, 3, 5, 2, 3)
 
 ALIGN 4
 KliffMugData:
@@ -3210,7 +3210,7 @@ KliffMugData:
 #ifndef KliffMug
   #define KliffMug (FirstMugID+293)
 #endif
-setMugEntry(KliffMug, KliffMugData, 3, 6, 3, 4)
+MugEntry(KliffMug, KliffMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LukasMugData:
@@ -3221,7 +3221,7 @@ LukasMugData:
 #ifndef LukasMug
   #define LukasMug (FirstMugID+294)
 #endif
-setMugEntry(LukasMug, LukasMugData, 3, 5, 3, 3)
+MugEntry(LukasMug, LukasMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MathildaMugData:
@@ -3232,7 +3232,7 @@ MathildaMugData:
 #ifndef MathildaMug
   #define MathildaMug (FirstMugID+295)
 #endif
-setMugEntry(MathildaMug, MathildaMugData, 2, 5, 2, 3)
+MugEntry(MathildaMug, MathildaMugData, 2, 5, 2, 3)
 
 ALIGN 4
 PythonMugData:
@@ -3243,7 +3243,7 @@ PythonMugData:
 #ifndef PythonMug
   #define PythonMug (FirstMugID+296)
 #endif
-setMugEntry(PythonMug, PythonMugData, 5, 6, 5, 4)
+MugEntry(PythonMug, PythonMugData, 5, 6, 5, 4)
 
 ALIGN 4
 SaberMugData:
@@ -3254,7 +3254,7 @@ SaberMugData:
 #ifndef SaberMug
   #define SaberMug (FirstMugID+297)
 #endif
-setMugEntry(SaberMug, SaberMugData, 3, 4, 3, 2)
+MugEntry(SaberMug, SaberMugData, 3, 4, 3, 2)
 
 ALIGN 4
 SilqueMugData:
@@ -3265,7 +3265,7 @@ SilqueMugData:
 #ifndef SilqueMug
   #define SilqueMug (FirstMugID+298)
 #endif
-setMugEntry(SilqueMug, SilqueMugData, 3, 6, 3, 4)
+MugEntry(SilqueMug, SilqueMugData, 3, 6, 3, 4)
 
 ALIGN 4
 SonyaMugData:
@@ -3276,7 +3276,7 @@ SonyaMugData:
 #ifndef SonyaMug
   #define SonyaMug (FirstMugID+299)
 #endif
-setMugEntry(SonyaMug, SonyaMugData, 4, 5, 4, 3)
+MugEntry(SonyaMug, SonyaMugData, 4, 5, 4, 3)
 
 ALIGN 4
 TobinMugData:
@@ -3287,7 +3287,7 @@ TobinMugData:
 #ifndef TobinMug
   #define TobinMug (FirstMugID+300)
 #endif
-setMugEntry(TobinMug, TobinMugData, 3, 5, 3, 3)
+MugEntry(TobinMug, TobinMugData, 3, 5, 3, 3)
 
 ALIGN 4
 YuzuMugData:
@@ -3298,7 +3298,7 @@ YuzuMugData:
 #ifndef YuzuMug
   #define YuzuMug (FirstMugID+301)
 #endif
-setMugEntry(YuzuMug, YuzuMugData, 3, 6, 3, 4)
+MugEntry(YuzuMug, YuzuMugData, 3, 6, 3, 4)
 
 ALIGN 4
 ZekeMugData:
@@ -3309,7 +3309,7 @@ ZekeMugData:
 #ifndef ZekeMug
   #define ZekeMug (FirstMugID+302)
 #endif
-setMugEntry(ZekeMug, ZekeMugData, 2, 4, 2, 2)
+MugEntry(ZekeMug, ZekeMugData, 2, 4, 2, 2)
 
 ALIGN 4
 AidaMugData:
@@ -3320,7 +3320,7 @@ AidaMugData:
 #ifndef AidaMug
   #define AidaMug (FirstMugID+303)
 #endif
-setMugEntry(AidaMug, AidaMugData, 3, 5, 3, 3)
+MugEntry(AidaMug, AidaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AlecMugData:
@@ -3331,7 +3331,7 @@ AlecMugData:
 #ifndef AlecMug
   #define AlecMug (FirstMugID+304)
 #endif
-setMugEntry(AlecMug, AlecMugData, 3, 6, 3, 4)
+MugEntry(AlecMug, AlecMugData, 3, 6, 3, 4)
 
 ALIGN 4
 AlessMugData:
@@ -3342,7 +3342,7 @@ AlessMugData:
 #ifndef AlessMug
   #define AlessMug (FirstMugID+305)
 #endif
-setMugEntry(AlessMug, AlessMugData, 3, 5, 3, 3)
+MugEntry(AlessMug, AlessMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AltenaMugData:
@@ -3353,7 +3353,7 @@ AltenaMugData:
 #ifndef AltenaMug
   #define AltenaMug (FirstMugID+306)
 #endif
-setMugEntry(AltenaMug, AltenaMugData, 2, 5, 2, 3)
+MugEntry(AltenaMug, AltenaMugData, 2, 5, 2, 3)
 
 ALIGN 4
 AlvaMugData:
@@ -3364,7 +3364,7 @@ AlvaMugData:
 #ifndef AlvaMug
   #define AlvaMug (FirstMugID+307)
 #endif
-setMugEntry(AlvaMug, AlvaMugData, 3, 5, 3, 3)
+MugEntry(AlvaMug, AlvaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AmaldaMugData:
@@ -3375,7 +3375,7 @@ AmaldaMugData:
 #ifndef AmaldaMug
   #define AmaldaMug (FirstMugID+308)
 #endif
-setMugEntry(AmaldaMug, AmaldaMugData, 3, 5, 3, 3)
+MugEntry(AmaldaMug, AmaldaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AmidMugData:
@@ -3386,7 +3386,7 @@ AmidMugData:
 #ifndef AmidMug
   #define AmidMug (FirstMugID+309)
 #endif
-setMugEntry(AmidMug, AmidMugData, 4, 5, 4, 3)
+MugEntry(AmidMug, AmidMugData, 4, 5, 4, 3)
 
 ALIGN 4
 ArdenMugData:
@@ -3397,7 +3397,7 @@ ArdenMugData:
 #ifndef ArdenMug
   #define ArdenMug (FirstMugID+310)
 #endif
-setMugEntry(ArdenMug, ArdenMugData, 2, 5, 2, 3)
+MugEntry(ArdenMug, ArdenMugData, 2, 5, 2, 3)
 
 ALIGN 4
 ArionMugData:
@@ -3408,7 +3408,7 @@ ArionMugData:
 #ifndef ArionMug
   #define ArionMug (FirstMugID+311)
 #endif
-setMugEntry(ArionMug, ArionMugData, 2, 5, 2, 3)
+MugEntry(ArionMug, ArionMugData, 2, 5, 2, 3)
 
 ALIGN 4
 ArthurMugData:
@@ -3419,7 +3419,7 @@ ArthurMugData:
 #ifndef ArthurMug
   #define ArthurMug (FirstMugID+312)
 #endif
-setMugEntry(ArthurMug, ArthurMugData, 3, 5, 3, 3)
+MugEntry(ArthurMug, ArthurMugData, 3, 5, 3, 3)
 
 ALIGN 4
 ArvisMugData:
@@ -3430,7 +3430,7 @@ ArvisMugData:
 #ifndef ArvisMug
   #define ArvisMug (FirstMugID+313)
 #endif
-setMugEntry(ArvisMug, ArvisMugData, 3, 4, 3, 2)
+MugEntry(ArvisMug, ArvisMugData, 3, 4, 3, 2)
 
 ALIGN 4
 AsaelloMugData:
@@ -3441,7 +3441,7 @@ AsaelloMugData:
 #ifndef AsaelloMug
   #define AsaelloMug (FirstMugID+314)
 #endif
-setMugEntry(AsaelloMug, AsaelloMugData, 3, 5, 3, 3)
+MugEntry(AsaelloMug, AsaelloMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AsbelMugData:
@@ -3452,7 +3452,7 @@ AsbelMugData:
 #ifndef AsbelMug
   #define AsbelMug (FirstMugID+315)
 #endif
-setMugEntry(AsbelMug, AsbelMugData, 3, 7, 4, 5)
+MugEntry(AsbelMug, AsbelMugData, 3, 7, 4, 5)
 
 ALIGN 4
 AuguryMugData:
@@ -3463,7 +3463,7 @@ AuguryMugData:
 #ifndef AuguryMug
   #define AuguryMug (FirstMugID+316)
 #endif
-setMugEntry(AuguryMug, AuguryMugData, 2, 6, 2, 4)
+MugEntry(AuguryMug, AuguryMugData, 2, 6, 2, 4)
 
 ALIGN 4
 AyraMugData:
@@ -3474,7 +3474,7 @@ AyraMugData:
 #ifndef AyraMug
   #define AyraMug (FirstMugID+317)
 #endif
-setMugEntry(AyraMug, AyraMugData, 3, 5, 3, 3)
+MugEntry(AyraMug, AyraMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AzelMugData:
@@ -3485,7 +3485,7 @@ AzelMugData:
 #ifndef AzelMug
   #define AzelMug (FirstMugID+318)
 #endif
-setMugEntry(AzelMug, AzelMugData, 2, 6, 3, 4)
+MugEntry(AzelMug, AzelMugData, 2, 6, 3, 4)
 
 ALIGN 4
 BeowolfMugData:
@@ -3496,7 +3496,7 @@ BeowolfMugData:
 #ifndef BeowolfMug
   #define BeowolfMug (FirstMugID+319)
 #endif
-setMugEntry(BeowolfMug, BeowolfMugData, 2, 5, 2, 3)
+MugEntry(BeowolfMug, BeowolfMugData, 2, 5, 2, 3)
 
 ALIGN 4
 BlumeMugData:
@@ -3507,7 +3507,7 @@ BlumeMugData:
 #ifndef BlumeMug
   #define BlumeMug (FirstMugID+320)
 #endif
-setMugEntry(BlumeMug, BlumeMugData, 3, 5, 3, 3)
+MugEntry(BlumeMug, BlumeMugData, 3, 5, 3, 3)
 
 ALIGN 4
 BriggidMugData:
@@ -3518,7 +3518,7 @@ BriggidMugData:
 #ifndef BriggidMug
   #define BriggidMug (FirstMugID+321)
 #endif
-setMugEntry(BriggidMug, BriggidMugData, 2, 5, 3, 3)
+MugEntry(BriggidMug, BriggidMugData, 2, 5, 3, 3)
 
 ALIGN 4
 BrightonMugData:
@@ -3529,7 +3529,7 @@ BrightonMugData:
 #ifndef BrightonMug
   #define BrightonMug (FirstMugID+322)
 #endif
-setMugEntry(BrightonMug, BrightonMugData, 3, 5, 3, 3)
+MugEntry(BrightonMug, BrightonMugData, 3, 5, 3, 3)
 
 ALIGN 4
 BucksMugData:
@@ -3540,7 +3540,7 @@ BucksMugData:
 #ifndef BucksMug
   #define BucksMug (FirstMugID+323)
 #endif
-setMugEntry(BucksMug, BucksMugData, 3, 5, 3, 3)
+MugEntry(BucksMug, BucksMugData, 3, 5, 3, 3)
 
 ALIGN 4
 Cain2MugData:
@@ -3551,7 +3551,7 @@ Cain2MugData:
 #ifndef Cain2Mug
   #define Cain2Mug (FirstMugID+324)
 #endif
-setMugEntry(Cain2Mug, Cain2MugData, 3, 5, 3, 3)
+MugEntry(Cain2Mug, Cain2MugData, 3, 5, 3, 3)
 
 ALIGN 4
 CarrionMugData:
@@ -3562,7 +3562,7 @@ CarrionMugData:
 #ifndef CarrionMug
   #define CarrionMug (FirstMugID+325)
 #endif
-setMugEntry(CarrionMug, CarrionMugData, 2, 6, 3, 4)
+MugEntry(CarrionMug, CarrionMugData, 2, 6, 3, 4)
 
 ALIGN 4
 CedMugData:
@@ -3573,7 +3573,7 @@ CedMugData:
 #ifndef CedMug
   #define CedMug (FirstMugID+326)
 #endif
-setMugEntry(CedMug, CedMugData, 3, 5, 3, 3)
+MugEntry(CedMug, CedMugData, 3, 5, 3, 3)
 
 ALIGN 4
 ClaudeMugData:
@@ -3584,7 +3584,7 @@ ClaudeMugData:
 #ifndef ClaudeMug
   #define ClaudeMug (FirstMugID+327)
 #endif
-setMugEntry(ClaudeMug, ClaudeMugData, 2, 5, 2, 3)
+MugEntry(ClaudeMug, ClaudeMugData, 2, 5, 2, 3)
 
 ALIGN 4
 CoddaMugData:
@@ -3595,7 +3595,7 @@ CoddaMugData:
 #ifndef CoddaMug
   #define CoddaMug (FirstMugID+328)
 #endif
-setMugEntry(CoddaMug, CoddaMugData, 2, 6, 4, 4)
+MugEntry(CoddaMug, CoddaMugData, 2, 6, 4, 4)
 
 ALIGN 4
 CoirpreMugData:
@@ -3606,7 +3606,7 @@ CoirpreMugData:
 #ifndef CoirpreMug
   #define CoirpreMug (FirstMugID+329)
 #endif
-setMugEntry(CoirpreMug, CoirpreMugData, 3, 6, 3, 4)
+MugEntry(CoirpreMug, CoirpreMugData, 3, 6, 3, 4)
 
 ALIGN 4
 ConomorMugData:
@@ -3617,7 +3617,7 @@ ConomorMugData:
 #ifndef ConomorMug
   #define ConomorMug (FirstMugID+330)
 #endif
-setMugEntry(ConomorMug, ConomorMugData, 2, 5, 2, 3)
+MugEntry(ConomorMug, ConomorMugData, 2, 5, 2, 3)
 
 ALIGN 4
 CorutaMugData:
@@ -3628,7 +3628,7 @@ CorutaMugData:
 #ifndef CorutaMug
   #define CorutaMug (FirstMugID+331)
 #endif
-setMugEntry(CorutaMug, CorutaMugData, 2, 5, 2, 3)
+MugEntry(CorutaMug, CorutaMugData, 2, 5, 2, 3)
 
 ALIGN 4
 CreidneMugData:
@@ -3639,7 +3639,7 @@ CreidneMugData:
 #ifndef CreidneMug
   #define CreidneMug (FirstMugID+332)
 #endif
-setMugEntry(CreidneMug, CreidneMugData, 3, 6, 3, 4)
+MugEntry(CreidneMug, CreidneMugData, 3, 6, 3, 4)
 
 ALIGN 4
 DagdarMugData:
@@ -3650,7 +3650,7 @@ DagdarMugData:
 #ifndef DagdarMug
   #define DagdarMug (FirstMugID+333)
 #endif
-setMugEntry(DagdarMug, DagdarMugData, 2, 5, 2, 3)
+MugEntry(DagdarMug, DagdarMugData, 2, 5, 2, 3)
 
 ALIGN 4
 DaisyMugData:
@@ -3661,7 +3661,7 @@ DaisyMugData:
 #ifndef DaisyMug
   #define DaisyMug (FirstMugID+334)
 #endif
-setMugEntry(DaisyMug, DaisyMugData, 3, 6, 3, 4)
+MugEntry(DaisyMug, DaisyMugData, 3, 6, 3, 4)
 
 ALIGN 4
 DalsinMugData:
@@ -3672,7 +3672,7 @@ DalsinMugData:
 #ifndef DalsinMug
   #define DalsinMug (FirstMugID+335)
 #endif
-setMugEntry(DalsinMug, DalsinMugData, 2, 5, 3, 3)
+MugEntry(DalsinMug, DalsinMugData, 2, 5, 3, 3)
 
 ALIGN 4
 DalvanMugData:
@@ -3683,7 +3683,7 @@ DalvanMugData:
 #ifndef DalvanMug
   #define DalvanMug (FirstMugID+336)
 #endif
-setMugEntry(DalvanMug, DalvanMugData, 3, 5, 3, 3)
+MugEntry(DalvanMug, DalvanMugData, 3, 5, 3, 3)
 
 ALIGN 4
 DanannMugData:
@@ -3694,7 +3694,7 @@ DanannMugData:
 #ifndef DanannMug
   #define DanannMug (FirstMugID+337)
 #endif
-setMugEntry(DanannMug, DanannMugData, 2, 4, 3, 2)
+MugEntry(DanannMug, DanannMugData, 2, 4, 3, 2)
 
 ALIGN 4
 DeenMugData:
@@ -3705,7 +3705,7 @@ DeenMugData:
 #ifndef DeenMug
   #define DeenMug (FirstMugID+338)
 #endif
-setMugEntry(DeenMug, DeenMugData, 2, 4, 2, 2)
+MugEntry(DeenMug, DeenMugData, 2, 4, 2, 2)
 
 ALIGN 4
 DeirdreMugData:
@@ -3716,7 +3716,7 @@ DeirdreMugData:
 #ifndef DeirdreMug
   #define DeirdreMug (FirstMugID+339)
 #endif
-setMugEntry(DeirdreMug, DeirdreMugData, 4, 6, 4, 4)
+MugEntry(DeirdreMug, DeirdreMugData, 4, 6, 4, 4)
 
 ALIGN 4
 DewMugData:
@@ -3727,7 +3727,7 @@ DewMugData:
 #ifndef DewMug
   #define DewMug (FirstMugID+340)
 #endif
-setMugEntry(DewMug, DewMugData, 3, 6, 3, 4)
+MugEntry(DewMug, DewMugData, 3, 6, 3, 4)
 
 ALIGN 4
 DiarmuidMugData:
@@ -3738,7 +3738,7 @@ DiarmuidMugData:
 #ifndef DiarmuidMug
   #define DiarmuidMug (FirstMugID+341)
 #endif
-setMugEntry(DiarmuidMug, DiarmuidMugData, 2, 5, 2, 3)
+MugEntry(DiarmuidMug, DiarmuidMugData, 2, 5, 2, 3)
 
 ALIGN 4
 DiMaggioMugData:
@@ -3749,7 +3749,7 @@ DiMaggioMugData:
 #ifndef DiMaggioMug
   #define DiMaggioMug (FirstMugID+342)
 #endif
-setMugEntry(DiMaggioMug, DiMaggioMugData, 3, 5, 3, 3)
+MugEntry(DiMaggioMug, DiMaggioMugData, 3, 5, 3, 3)
 
 ALIGN 4
 DimnaMugData:
@@ -3760,7 +3760,7 @@ DimnaMugData:
 #ifndef DimnaMug
   #define DimnaMug (FirstMugID+343)
 #endif
-setMugEntry(DimnaMug, DimnaMugData, 3, 6, 3, 4)
+MugEntry(DimnaMug, DimnaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 DryasMugData:
@@ -3771,7 +3771,7 @@ DryasMugData:
 #ifndef DryasMug
   #define DryasMug (FirstMugID+344)
 #endif
-setMugEntry(DryasMug, DryasMugData, 3, 5, 3, 3)
+MugEntry(DryasMug, DryasMugData, 3, 5, 3, 3)
 
 ALIGN 4
 EdainMugData:
@@ -3782,7 +3782,7 @@ EdainMugData:
 #ifndef EdainMug
   #define EdainMug (FirstMugID+345)
 #endif
-setMugEntry(EdainMug, EdainMugData, 3, 5, 3, 3)
+MugEntry(EdainMug, EdainMugData, 3, 5, 3, 3)
 
 ALIGN 4
 EdaMugData:
@@ -3793,7 +3793,7 @@ EdaMugData:
 #ifndef EdaMug
   #define EdaMug (FirstMugID+346)
 #endif
-setMugEntry(EdaMug, EdaMugData, 3, 6, 3, 4)
+MugEntry(EdaMug, EdaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 ErinrysMugData:
@@ -3804,7 +3804,7 @@ ErinrysMugData:
 #ifndef ErinrysMug
   #define ErinrysMug (FirstMugID+347)
 #endif
-setMugEntry(ErinrysMug, ErinrysMugData, 3, 5, 3, 3)
+MugEntry(ErinrysMug, ErinrysMugData, 3, 5, 3, 3)
 
 ALIGN 4
 EthlinMugData:
@@ -3815,7 +3815,7 @@ EthlinMugData:
 #ifndef EthlinMug
   #define EthlinMug (FirstMugID+348)
 #endif
-setMugEntry(EthlinMug, EthlinMugData, 2, 6, 3, 4)
+MugEntry(EthlinMug, EthlinMugData, 2, 6, 3, 4)
 
 ALIGN 4
 EyvelMugData:
@@ -3826,7 +3826,7 @@ EyvelMugData:
 #ifndef EyvelMug
   #define EyvelMug (FirstMugID+349)
 #endif
-setMugEntry(EyvelMug, EyvelMugData, 2, 5, 3, 3)
+MugEntry(EyvelMug, EyvelMugData, 2, 5, 3, 3)
 
 ALIGN 4
 FebailMugData:
@@ -3837,7 +3837,7 @@ FebailMugData:
 #ifndef FebailMug
   #define FebailMug (FirstMugID+350)
 #endif
-setMugEntry(FebailMug, FebailMugData, 3, 5, 3, 3)
+MugEntry(FebailMug, FebailMugData, 3, 5, 3, 3)
 
 ALIGN 4
 FeeMugData:
@@ -3848,7 +3848,7 @@ FeeMugData:
 #ifndef FeeMug
   #define FeeMug (FirstMugID+351)
 #endif
-setMugEntry(FeeMug, FeeMugData, 2, 6, 3, 4)
+MugEntry(FeeMug, FeeMugData, 2, 6, 3, 4)
 
 ALIGN 4
 FergusMugData:
@@ -3859,7 +3859,7 @@ FergusMugData:
 #ifndef FergusMug
   #define FergusMug (FirstMugID+352)
 #endif
-setMugEntry(FergusMug, FergusMugData, 2, 5, 3, 3)
+MugEntry(FergusMug, FergusMugData, 2, 5, 3, 3)
 
 ALIGN 4
 FinMugData:
@@ -3870,7 +3870,7 @@ FinMugData:
 #ifndef FinMug
   #define FinMug (FirstMugID+353)
 #endif
-setMugEntry(FinMug, FinMugData, 2, 5, 2, 3)
+MugEntry(FinMug, FinMugData, 2, 5, 2, 3)
 
 ALIGN 4
 FredMugData:
@@ -3881,7 +3881,7 @@ FredMugData:
 #ifndef FredMug
   #define FredMug (FirstMugID+354)
 #endif
-setMugEntry(FredMug, FredMugData, 2, 5, 3, 3)
+MugEntry(FredMug, FredMugData, 2, 5, 3, 3)
 
 ALIGN 4
 FuryMugData:
@@ -3892,7 +3892,7 @@ FuryMugData:
 #ifndef FuryMug
   #define FuryMug (FirstMugID+355)
 #endif
-setMugEntry(FuryMug, FuryMugData, 3, 5, 3, 3)
+MugEntry(FuryMug, FuryMugData, 3, 5, 3, 3)
 
 ALIGN 4
 GalzusMugData:
@@ -3903,7 +3903,7 @@ GalzusMugData:
 #ifndef GalzusMug
   #define GalzusMug (FirstMugID+356)
 #endif
-setMugEntry(GalzusMug, GalzusMugData, 3, 5, 3, 3)
+MugEntry(GalzusMug, GalzusMugData, 3, 5, 3, 3)
 
 ALIGN 4
 GladeMugData:
@@ -3914,7 +3914,7 @@ GladeMugData:
 #ifndef GladeMug
   #define GladeMug (FirstMugID+357)
 #endif
-setMugEntry(GladeMug, GladeMugData, 3, 5, 3, 3)
+MugEntry(GladeMug, GladeMugData, 3, 5, 3, 3)
 
 ALIGN 4
 HalvanMugData:
@@ -3925,7 +3925,7 @@ HalvanMugData:
 #ifndef HalvanMug
   #define HalvanMug (FirstMugID+358)
 #endif
-setMugEntry(HalvanMug, HalvanMugData, 2, 5, 2, 3)
+MugEntry(HalvanMug, HalvanMugData, 2, 5, 2, 3)
 
 ALIGN 4
 HannibalMugData:
@@ -3936,7 +3936,7 @@ HannibalMugData:
 #ifndef HannibalMug
   #define HannibalMug (FirstMugID+359)
 #endif
-setMugEntry(HannibalMug, HannibalMugData, 2, 5, 2, 3)
+MugEntry(HannibalMug, HannibalMugData, 2, 5, 2, 3)
 
 ALIGN 4
 HaroldMugData:
@@ -3947,7 +3947,7 @@ HaroldMugData:
 #ifndef HaroldMug
   #define HaroldMug (FirstMugID+360)
 #endif
-setMugEntry(HaroldMug, HaroldMugData, 2, 5, 2, 3)
+MugEntry(HaroldMug, HaroldMugData, 2, 5, 2, 3)
 
 ALIGN 4
 HawkMugData:
@@ -3958,7 +3958,7 @@ HawkMugData:
 #ifndef HawkMug
   #define HawkMug (FirstMugID+361)
 #endif
-setMugEntry(HawkMug, HawkMugData, 3, 5, 3, 3)
+MugEntry(HawkMug, HawkMugData, 3, 5, 3, 3)
 
 ALIGN 4
 HicksMugData:
@@ -3969,7 +3969,7 @@ HicksMugData:
 #ifndef HicksMug
   #define HicksMug (FirstMugID+362)
 #endif
-setMugEntry(HicksMug, HicksMugData, 3, 5, 3, 3)
+MugEntry(HicksMug, HicksMugData, 3, 5, 3, 3)
 
 ALIGN 4
 HildaMugData:
@@ -3980,7 +3980,7 @@ HildaMugData:
 #ifndef HildaMug
   #define HildaMug (FirstMugID+363)
 #endif
-setMugEntry(HildaMug, HildaMugData, 3, 5, 3, 3)
+MugEntry(HildaMug, HildaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 HolynMugData:
@@ -3991,7 +3991,7 @@ HolynMugData:
 #ifndef HolynMug
   #define HolynMug (FirstMugID+364)
 #endif
-setMugEntry(HolynMug, HolynMugData, 3, 5, 3, 3)
+MugEntry(HolynMug, HolynMugData, 3, 5, 3, 3)
 
 ALIGN 4
 HomerMugData:
@@ -4002,7 +4002,7 @@ HomerMugData:
 #ifndef HomerMug
   #define HomerMug (FirstMugID+365)
 #endif
-setMugEntry(HomerMug, HomerMugData, 3, 6, 3, 4)
+MugEntry(HomerMug, HomerMugData, 3, 6, 3, 4)
 
 ALIGN 4
 IliosMugData:
@@ -4013,7 +4013,7 @@ IliosMugData:
 #ifndef IliosMug
   #define IliosMug (FirstMugID+366)
 #endif
-setMugEntry(IliosMug, IliosMugData, 3, 5, 3, 3)
+MugEntry(IliosMug, IliosMugData, 3, 5, 3, 3)
 
 ALIGN 4
 IshtarMugData:
@@ -4024,7 +4024,7 @@ IshtarMugData:
 #ifndef IshtarMug
   #define IshtarMug (FirstMugID+367)
 #endif
-setMugEntry(IshtarMug, IshtarMugData, 3, 6, 3, 4)
+MugEntry(IshtarMug, IshtarMugData, 3, 6, 3, 4)
 
 ALIGN 4
 IshtoreMugData:
@@ -4035,7 +4035,7 @@ IshtoreMugData:
 #ifndef IshtoreMug
   #define IshtoreMug (FirstMugID+368)
 #endif
-setMugEntry(IshtoreMug, IshtoreMugData, 4, 5, 4, 3)
+MugEntry(IshtoreMug, IshtoreMugData, 4, 5, 4, 3)
 
 ALIGN 4
 IucharbaMugData:
@@ -4046,7 +4046,7 @@ IucharbaMugData:
 #ifndef IucharbaMug
   #define IucharbaMug (FirstMugID+369)
 #endif
-setMugEntry(IucharbaMug, IucharbaMugData, 2, 5, 3, 3)
+MugEntry(IucharbaMug, IucharbaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 IucharMugData:
@@ -4057,7 +4057,7 @@ IucharMugData:
 #ifndef IucharMug
   #define IucharMug (FirstMugID+370)
 #endif
-setMugEntry(IucharMug, IucharMugData, 3, 5, 3, 3)
+MugEntry(IucharMug, IucharMugData, 3, 5, 3, 3)
 
 ALIGN 4
 JamkaMugData:
@@ -4068,7 +4068,7 @@ JamkaMugData:
 #ifndef JamkaMug
   #define JamkaMug (FirstMugID+371)
 #endif
-setMugEntry(JamkaMug, JamkaMugData, 3, 5, 3, 3)
+MugEntry(JamkaMug, JamkaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 JeanneMugData:
@@ -4079,7 +4079,7 @@ JeanneMugData:
 #ifndef JeanneMug
   #define JeanneMug (FirstMugID+372)
 #endif
-setMugEntry(JeanneMug, JeanneMugData, 2, 6, 3, 4)
+MugEntry(JeanneMug, JeanneMugData, 2, 6, 3, 4)
 
 ALIGN 4
 JohalvaMugData:
@@ -4090,7 +4090,7 @@ JohalvaMugData:
 #ifndef JohalvaMug
   #define JohalvaMug (FirstMugID+373)
 #endif
-setMugEntry(JohalvaMug, JohalvaMugData, 2, 5, 3, 3)
+MugEntry(JohalvaMug, JohalvaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 JohanMugData:
@@ -4101,7 +4101,7 @@ JohanMugData:
 #ifndef JohanMug
   #define JohanMug (FirstMugID+374)
 #endif
-setMugEntry(JohanMug, JohanMugData, 3, 5, 3, 3)
+MugEntry(JohanMug, JohanMugData, 3, 5, 3, 3)
 
 ALIGN 4
 JuliaMugData:
@@ -4112,7 +4112,7 @@ JuliaMugData:
 #ifndef JuliaMug
   #define JuliaMug (FirstMugID+375)
 #endif
-setMugEntry(JuliaMug, JuliaMugData, 3, 6, 3, 4)
+MugEntry(JuliaMug, JuliaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 JuliusMugData:
@@ -4123,7 +4123,7 @@ JuliusMugData:
 #ifndef JuliusMug
   #define JuliusMug (FirstMugID+376)
 #endif
-setMugEntry(JuliusMug, JuliusMugData, 3, 5, 3, 3)
+MugEntry(JuliusMug, JuliusMugData, 3, 5, 3, 3)
 
 ALIGN 4
 KarinMugData:
@@ -4134,7 +4134,7 @@ KarinMugData:
 #ifndef KarinMug
   #define KarinMug (FirstMugID+377)
 #endif
-setMugEntry(KarinMug, KarinMugData, 2, 6, 3, 4)
+MugEntry(KarinMug, KarinMugData, 2, 6, 3, 4)
 
 ALIGN 4
 KempfMugData:
@@ -4145,7 +4145,7 @@ KempfMugData:
 #ifndef KempfMug
   #define KempfMug (FirstMugID+378)
 #endif
-setMugEntry(KempfMug, KempfMugData, 3, 5, 3, 3)
+MugEntry(KempfMug, KempfMugData, 3, 5, 3, 3)
 
 ALIGN 4
 KurthMugData:
@@ -4156,7 +4156,7 @@ KurthMugData:
 #ifndef KurthMug
   #define KurthMug (FirstMugID+379)
 #endif
-setMugEntry(KurthMug, KurthMugData, 3, 5, 3, 3)
+MugEntry(KurthMug, KurthMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LachesisMugData:
@@ -4167,7 +4167,7 @@ LachesisMugData:
 #ifndef LachesisMug
   #define LachesisMug (FirstMugID+380)
 #endif
-setMugEntry(LachesisMug, LachesisMugData, 4, 6, 3, 4)
+MugEntry(LachesisMug, LachesisMugData, 4, 6, 3, 4)
 
 ALIGN 4
 LamiaMugData:
@@ -4178,7 +4178,7 @@ LamiaMugData:
 #ifndef LamiaMug
   #define LamiaMug (FirstMugID+381)
 #endif
-setMugEntry(LamiaMug, LamiaMugData, 2, 4, 2, 2)
+MugEntry(LamiaMug, LamiaMugData, 2, 4, 2, 2)
 
 ALIGN 4
 LanaMugData:
@@ -4189,7 +4189,7 @@ LanaMugData:
 #ifndef LanaMug
   #define LanaMug (FirstMugID+382)
 #endif
-setMugEntry(LanaMug, LanaMugData, 4, 6, 4, 4)
+MugEntry(LanaMug, LanaMugData, 4, 6, 4, 4)
 
 ALIGN 4
 LaraMugData:
@@ -4200,7 +4200,7 @@ LaraMugData:
 #ifndef LaraMug
   #define LaraMug (FirstMugID+383)
 #endif
-setMugEntry(LaraMug, LaraMugData, 2, 6, 2, 4)
+MugEntry(LaraMug, LaraMugData, 2, 6, 2, 4)
 
 ALIGN 4
 LarceiMugData:
@@ -4211,7 +4211,7 @@ LarceiMugData:
 #ifndef LarceiMug
   #define LarceiMug (FirstMugID+384)
 #endif
-setMugEntry(LarceiMug, LarceiMugData, 3, 6, 3, 4)
+MugEntry(LarceiMug, LarceiMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LayleaMugData:
@@ -4222,7 +4222,7 @@ LayleaMugData:
 #ifndef LayleaMug
   #define LayleaMug (FirstMugID+385)
 #endif
-setMugEntry(LayleaMug, LayleaMugData, 3, 6, 3, 4)
+MugEntry(LayleaMug, LayleaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LeifMugData:
@@ -4233,7 +4233,7 @@ LeifMugData:
 #ifndef LeifMug
   #define LeifMug (FirstMugID+386)
 #endif
-setMugEntry(LeifMug, LeifMugData, 3, 6, 3, 4)
+MugEntry(LeifMug, LeifMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LeneMugData:
@@ -4244,7 +4244,7 @@ LeneMugData:
 #ifndef LeneMug
   #define LeneMug (FirstMugID+387)
 #endif
-setMugEntry(LeneMug, LeneMugData, 3, 6, 3, 4)
+MugEntry(LeneMug, LeneMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LesterMugData:
@@ -4255,7 +4255,7 @@ LesterMugData:
 #ifndef LesterMug
   #define LesterMug (FirstMugID+388)
 #endif
-setMugEntry(LesterMug, LesterMugData, 2, 5, 2, 3)
+MugEntry(LesterMug, LesterMugData, 2, 5, 2, 3)
 
 ALIGN 4
 LevinMugData:
@@ -4266,7 +4266,7 @@ LevinMugData:
 #ifndef LevinMug
   #define LevinMug (FirstMugID+389)
 #endif
-setMugEntry(LevinMug, LevinMugData, 3, 5, 3, 3)
+MugEntry(LevinMug, LevinMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LexMugData:
@@ -4277,7 +4277,7 @@ LexMugData:
 #ifndef LexMug
   #define LexMug (FirstMugID+390)
 #endif
-setMugEntry(LexMug, LexMugData, 3, 5, 3, 3)
+MugEntry(LexMug, LexMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LifisMugData:
@@ -4288,7 +4288,7 @@ LifisMugData:
 #ifndef LifisMug
   #define LifisMug (FirstMugID+391)
 #endif
-setMugEntry(LifisMug, LifisMugData, 2, 6, 3, 4)
+MugEntry(LifisMug, LifisMugData, 2, 6, 3, 4)
 
 ALIGN 4
 LindaMugData:
@@ -4299,7 +4299,7 @@ LindaMugData:
 #ifndef LindaMug
   #define LindaMug (FirstMugID+392)
 #endif
-setMugEntry(LindaMug, LindaMugData, 2, 6, 3, 4)
+MugEntry(LindaMug, LindaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 LinoanMugData:
@@ -4310,7 +4310,7 @@ LinoanMugData:
 #ifndef LinoanMug
   #define LinoanMug (FirstMugID+393)
 #endif
-setMugEntry(LinoanMug, LinoanMugData, 3, 6, 3, 4)
+MugEntry(LinoanMug, LinoanMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LithisMugData:
@@ -4321,7 +4321,7 @@ LithisMugData:
 #ifndef LithisMug
   #define LithisMug (FirstMugID+394)
 #endif
-setMugEntry(LithisMug, LithisMugData, 3, 5, 3, 3)
+MugEntry(LithisMug, LithisMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LizaMugData:
@@ -4332,7 +4332,7 @@ LizaMugData:
 #ifndef LizaMug
   #define LizaMug (FirstMugID+395)
 #endif
-setMugEntry(LizaMug, LizaMugData, 3, 5, 3, 3)
+MugEntry(LizaMug, LizaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LoptyrMugData:
@@ -4343,7 +4343,7 @@ LoptyrMugData:
 #ifndef LoptyrMug
   #define LoptyrMug (FirstMugID+396)
 #endif
-setMugEntry(LoptyrMug, LoptyrMugData, 2, 4, 2, 2)
+MugEntry(LoptyrMug, LoptyrMugData, 2, 4, 2, 2)
 
 ALIGN 4
 MachyuaMugData:
@@ -4354,7 +4354,7 @@ MachyuaMugData:
 #ifndef MachyuaMug
   #define MachyuaMug (FirstMugID+397)
 #endif
-setMugEntry(MachyuaMug, MachyuaMugData, 3, 5, 3, 3)
+MugEntry(MachyuaMug, MachyuaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MagornMugData:
@@ -4365,7 +4365,7 @@ MagornMugData:
 #ifndef MagornMug
   #define MagornMug (FirstMugID+398)
 #endif
-setMugEntry(MagornMug, MagornMugData, 2, 5, 2, 3)
+MugEntry(MagornMug, MagornMugData, 2, 5, 2, 3)
 
 ALIGN 4
 ManaMugData:
@@ -4376,7 +4376,7 @@ ManaMugData:
 #ifndef ManaMug
   #define ManaMug (FirstMugID+399)
 #endif
-setMugEntry(ManaMug, ManaMugData, 4, 6, 4, 4)
+MugEntry(ManaMug, ManaMugData, 4, 6, 4, 4)
 
 ALIGN 4
 ManfroyMugData:
@@ -4387,7 +4387,7 @@ ManfroyMugData:
 #ifndef ManfroyMug
   #define ManfroyMug (FirstMugID+400)
 #endif
-setMugEntry(ManfroyMug, ManfroyMugData, 3, 5, 3, 3)
+MugEntry(ManfroyMug, ManfroyMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MareetaMugData:
@@ -4398,7 +4398,7 @@ MareetaMugData:
 #ifndef MareetaMug
   #define MareetaMug (FirstMugID+401)
 #endif
-setMugEntry(MareetaMug, MareetaMugData, 3, 5, 3, 3)
+MugEntry(MareetaMug, MareetaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MartyMugData:
@@ -4409,7 +4409,7 @@ MartyMugData:
 #ifndef MartyMug
   #define MartyMug (FirstMugID+402)
 #endif
-setMugEntry(MartyMug, MartyMugData, 2, 5, 3, 2)
+MugEntry(MartyMug, MartyMugData, 2, 5, 3, 2)
 
 ALIGN 4
 MidayleMugData:
@@ -4420,7 +4420,7 @@ MidayleMugData:
 #ifndef MidayleMug
   #define MidayleMug (FirstMugID+403)
 #endif
-setMugEntry(MidayleMug, MidayleMugData, 3, 6, 3, 4)
+MugEntry(MidayleMug, MidayleMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MirandaMugData:
@@ -4431,7 +4431,7 @@ MirandaMugData:
 #ifndef MirandaMug
   #define MirandaMug (FirstMugID+404)
 #endif
-setMugEntry(MirandaMug, MirandaMugData, 3, 6, 3, 4)
+MugEntry(MirandaMug, MirandaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MishaMugData:
@@ -4442,7 +4442,7 @@ MishaMugData:
 #ifndef MishaMug
   #define MishaMug (FirstMugID+405)
 #endif
-setMugEntry(MishaMug, MishaMugData, 3, 5, 3, 3)
+MugEntry(MishaMug, MishaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MuellerMugData:
@@ -4453,7 +4453,7 @@ MuellerMugData:
 #ifndef MuellerMug
   #define MuellerMug (FirstMugID+406)
 #endif
-setMugEntry(MuellerMug, MuellerMugData, 3, 5, 3, 3)
+MugEntry(MuellerMug, MuellerMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MuirneMugData:
@@ -4464,7 +4464,7 @@ MuirneMugData:
 #ifndef MuirneMug
   #define MuirneMug (FirstMugID+407)
 #endif
-setMugEntry(MuirneMug, MuirneMugData, 4, 6, 4, 4)
+MugEntry(MuirneMug, MuirneMugData, 4, 6, 4, 4)
 
 ALIGN 4
 MunnirMugData:
@@ -4475,7 +4475,7 @@ MunnirMugData:
 #ifndef MunnirMug
   #define MunnirMug (FirstMugID+408)
 #endif
-setMugEntry(MunnirMug, MunnirMugData, 3, 4, 3, 2)
+MugEntry(MunnirMug, MunnirMugData, 3, 4, 3, 2)
 
 ALIGN 4
 MusarMugData:
@@ -4486,7 +4486,7 @@ MusarMugData:
 #ifndef MusarMug
   #define MusarMug (FirstMugID+409)
 #endif
-setMugEntry(MusarMug, MusarMugData, 2, 5, 2, 3)
+MugEntry(MusarMug, MusarMugData, 2, 5, 2, 3)
 
 ALIGN 4
 NannaMugData:
@@ -4497,7 +4497,7 @@ NannaMugData:
 #ifndef NannaMug
   #define NannaMug (FirstMugID+410)
 #endif
-setMugEntry(NannaMug, NannaMugData, 4, 6, 4, 4)
+MugEntry(NannaMug, NannaMugData, 4, 6, 4, 4)
 
 ALIGN 4
 NaoiseMugData:
@@ -4508,7 +4508,7 @@ NaoiseMugData:
 #ifndef NaoiseMug
   #define NaoiseMug (FirstMugID+411)
 #endif
-setMugEntry(NaoiseMug, NaoiseMugData, 3, 5, 3, 3)
+MugEntry(NaoiseMug, NaoiseMugData, 3, 5, 3, 3)
 
 ALIGN 4
 OifeyMugData:
@@ -4519,7 +4519,7 @@ OifeyMugData:
 #ifndef OifeyMug
   #define OifeyMug (FirstMugID+412)
 #endif
-setMugEntry(OifeyMug, OifeyMugData, 3, 5, 3, 3)
+MugEntry(OifeyMug, OifeyMugData, 3, 5, 3, 3)
 
 ALIGN 4
 OlthoffMugData:
@@ -4530,7 +4530,7 @@ OlthoffMugData:
 #ifndef OlthoffMug
   #define OlthoffMug (FirstMugID+413)
 #endif
-setMugEntry(OlthoffMug, OlthoffMugData, 2, 6, 2, 4)
+MugEntry(OlthoffMug, OlthoffMugData, 2, 6, 2, 4)
 
 ALIGN 4
 OlwenMugData:
@@ -4541,7 +4541,7 @@ OlwenMugData:
 #ifndef OlwenMug
   #define OlwenMug (FirstMugID+414)
 #endif
-setMugEntry(OlwenMug, OlwenMugData, 4, 6, 4, 4)
+MugEntry(OlwenMug, OlwenMugData, 4, 6, 4, 4)
 
 ALIGN 4
 OsianMugData:
@@ -4552,7 +4552,7 @@ OsianMugData:
 #ifndef OsianMug
   #define OsianMug (FirstMugID+415)
 #endif
-setMugEntry(OsianMug, OsianMugData, 3, 5, 3, 3)
+MugEntry(OsianMug, OsianMugData, 3, 5, 3, 3)
 
 ALIGN 4
 PapilioMugData:
@@ -4563,7 +4563,7 @@ PapilioMugData:
 #ifndef PapilioMug
   #define PapilioMug (FirstMugID+416)
 #endif
-setMugEntry(PapilioMug, PapilioMugData, 2, 5, 2, 3)
+MugEntry(PapilioMug, PapilioMugData, 2, 5, 2, 3)
 
 ALIGN 4
 PattyMugData:
@@ -4574,7 +4574,7 @@ PattyMugData:
 #ifndef PattyMug
   #define PattyMug (FirstMugID+417)
 #endif
-setMugEntry(PattyMug, PattyMugData, 3, 6, 3, 4)
+MugEntry(PattyMug, PattyMugData, 3, 6, 3, 4)
 
 ALIGN 4
 PerneMugData:
@@ -4585,7 +4585,7 @@ PerneMugData:
 #ifndef PerneMug
   #define PerneMug (FirstMugID+418)
 #endif
-setMugEntry(PerneMug, PerneMugData, 3, 5, 3, 3)
+MugEntry(PerneMug, PerneMugData, 3, 5, 3, 3)
 
 ALIGN 4
 QuanMugData:
@@ -4596,7 +4596,7 @@ QuanMugData:
 #ifndef QuanMug
   #define QuanMug (FirstMugID+419)
 #endif
-setMugEntry(QuanMug, QuanMugData, 3, 5, 3, 3)
+MugEntry(QuanMug, QuanMugData, 3, 5, 3, 3)
 
 ALIGN 4
 RalphMugData:
@@ -4607,7 +4607,7 @@ RalphMugData:
 #ifndef RalphMug
   #define RalphMug (FirstMugID+420)
 #endif
-setMugEntry(RalphMug, RalphMugData, 3, 5, 3, 3)
+MugEntry(RalphMug, RalphMugData, 3, 5, 3, 3)
 
 ALIGN 4
 RaydrickMugData:
@@ -4618,7 +4618,7 @@ RaydrickMugData:
 #ifndef RaydrickMug
   #define RaydrickMug (FirstMugID+421)
 #endif
-setMugEntry(RaydrickMug, RaydrickMugData, 3, 5, 3, 3)
+MugEntry(RaydrickMug, RaydrickMugData, 3, 5, 3, 3)
 
 ALIGN 4
 ReinhardtMugData:
@@ -4629,7 +4629,7 @@ ReinhardtMugData:
 #ifndef ReinhardtMug
   #define ReinhardtMug (FirstMugID+422)
 #endif
-setMugEntry(ReinhardtMug, ReinhardtMugData, 3, 5, 3, 3)
+MugEntry(ReinhardtMug, ReinhardtMugData, 3, 5, 3, 3)
 
 ALIGN 4
 RidaleMugData:
@@ -4640,7 +4640,7 @@ RidaleMugData:
 #ifndef RidaleMug
   #define RidaleMug (FirstMugID+423)
 #endif
-setMugEntry(RidaleMug, RidaleMugData, 2, 5, 2, 3)
+MugEntry(RidaleMug, RidaleMugData, 2, 5, 2, 3)
 
 ALIGN 4
 RobertMugData:
@@ -4651,7 +4651,7 @@ RobertMugData:
 #ifndef RobertMug
   #define RobertMug (FirstMugID+424)
 #endif
-setMugEntry(RobertMug, RobertMugData, 4, 5, 4, 3)
+MugEntry(RobertMug, RobertMugData, 4, 5, 4, 3)
 
 ALIGN 4
 RoddlevanMugData:
@@ -4662,7 +4662,7 @@ RoddlevanMugData:
 #ifndef RoddlevanMug
   #define RoddlevanMug (FirstMugID+425)
 #endif
-setMugEntry(RoddlevanMug, RoddlevanMugData, 3, 5, 3, 3)
+MugEntry(RoddlevanMug, RoddlevanMugData, 3, 5, 3, 3)
 
 ALIGN 4
 RonanMugData:
@@ -4673,7 +4673,7 @@ RonanMugData:
 #ifndef RonanMug
   #define RonanMug (FirstMugID+426)
 #endif
-setMugEntry(RonanMug, RonanMugData, 2, 5, 3, 3)
+MugEntry(RonanMug, RonanMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RumeiMugData:
@@ -4684,7 +4684,7 @@ RumeiMugData:
 #ifndef RumeiMug
   #define RumeiMug (FirstMugID+427)
 #endif
-setMugEntry(RumeiMug, RumeiMugData, 3, 5, 3, 3)
+MugEntry(RumeiMug, RumeiMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SafyMugData:
@@ -4695,7 +4695,7 @@ SafyMugData:
 #ifndef SafyMug
   #define SafyMug (FirstMugID+428)
 #endif
-setMugEntry(SafyMug, SafyMugData, 3, 6, 3, 4)
+MugEntry(SafyMug, SafyMugData, 3, 6, 3, 4)
 
 ALIGN 4
 SaiasMugData:
@@ -4706,7 +4706,7 @@ SaiasMugData:
 #ifndef SaiasMug
   #define SaiasMug (FirstMugID+429)
 #endif
-setMugEntry(SaiasMug, SaiasMugData, 3, 5, 3, 3)
+MugEntry(SaiasMug, SaiasMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SalemMugData:
@@ -4717,7 +4717,7 @@ SalemMugData:
 #ifndef SalemMug
   #define SalemMug (FirstMugID+430)
 #endif
-setMugEntry(SalemMug, SalemMugData, 4, 5, 4, 3)
+MugEntry(SalemMug, SalemMugData, 4, 5, 4, 3)
 
 ALIGN 4
 SaraMugData:
@@ -4728,7 +4728,7 @@ SaraMugData:
 #ifndef SaraMug
   #define SaraMug (FirstMugID+431)
 #endif
-setMugEntry(SaraMug, SaraMugData, 3, 6, 3, 4)
+MugEntry(SaraMug, SaraMugData, 3, 6, 3, 4)
 
 ALIGN 4
 ScathachMugData:
@@ -4739,7 +4739,7 @@ ScathachMugData:
 #ifndef ScathachMug
   #define ScathachMug (FirstMugID+432)
 #endif
-setMugEntry(ScathachMug, ScathachMugData, 2, 6, 3, 4)
+MugEntry(ScathachMug, ScathachMugData, 2, 6, 3, 4)
 
 ALIGN 4
 SeimtoMugData:
@@ -4750,7 +4750,7 @@ SeimtoMugData:
 #ifndef SeimtoMug
   #define SeimtoMug (FirstMugID+433)
 #endif
-setMugEntry(SeimtoMug, SeimtoMugData, 3, 5, 3, 3)
+MugEntry(SeimtoMug, SeimtoMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SelphinaMugData:
@@ -4761,7 +4761,7 @@ SelphinaMugData:
 #ifndef SelphinaMug
   #define SelphinaMug (FirstMugID+434)
 #endif
-setMugEntry(SelphinaMug, SelphinaMugData, 2, 5, 2, 3)
+MugEntry(SelphinaMug, SelphinaMugData, 2, 5, 2, 3)
 
 ALIGN 4
 ShananMugData:
@@ -4772,7 +4772,7 @@ ShananMugData:
 #ifndef ShananMug
   #define ShananMug (FirstMugID+435)
 #endif
-setMugEntry(ShananMug, ShananMugData, 2, 5, 2, 3)
+MugEntry(ShananMug, ShananMugData, 2, 5, 2, 3)
 
 ALIGN 4
 ShannamMugData:
@@ -4783,7 +4783,7 @@ ShannamMugData:
 #ifndef ShannamMug
   #define ShannamMug (FirstMugID+436)
 #endif
-setMugEntry(ShannamMug, ShannamMugData, 3, 5, 3, 3)
+MugEntry(ShannamMug, ShannamMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SharlowMugData:
@@ -4794,7 +4794,7 @@ SharlowMugData:
 #ifndef SharlowMug
   #define SharlowMug (FirstMugID+437)
 #endif
-setMugEntry(SharlowMug, SharlowMugData, 3, 6, 3, 4)
+MugEntry(SharlowMug, SharlowMugData, 3, 6, 3, 4)
 
 ALIGN 4
 ShivaMugData:
@@ -4805,7 +4805,7 @@ ShivaMugData:
 #ifndef ShivaMug
   #define ShivaMug (FirstMugID+438)
 #endif
-setMugEntry(ShivaMug, ShivaMugData, 3, 5, 3, 3)
+MugEntry(ShivaMug, ShivaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SigurdMugData:
@@ -4816,7 +4816,7 @@ SigurdMugData:
 #ifndef SigurdMug
   #define SigurdMug (FirstMugID+439)
 #endif
-setMugEntry(SigurdMug, SigurdMugData, 3, 5, 3, 3)
+MugEntry(SigurdMug, SigurdMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SleufMugData:
@@ -4827,7 +4827,7 @@ SleufMugData:
 #ifndef SleufMug
   #define SleufMug (FirstMugID+440)
 #endif
-setMugEntry(SleufMug, SleufMugData, 3, 5, 3, 3)
+MugEntry(SleufMug, SleufMugData, 3, 5, 3, 3)
 
 ALIGN 4
 SylviaMugData:
@@ -4838,7 +4838,7 @@ SylviaMugData:
 #ifndef SylviaMug
   #define SylviaMug (FirstMugID+441)
 #endif
-setMugEntry(SylviaMug, SylviaMugData, 4, 5, 4, 3)
+MugEntry(SylviaMug, SylviaMugData, 4, 5, 4, 3)
 
 ALIGN 4
 TailtiuMugData:
@@ -4849,7 +4849,7 @@ TailtiuMugData:
 #ifndef TailtiuMug
   #define TailtiuMug (FirstMugID+442)
 #endif
-setMugEntry(TailtiuMug, TailtiuMugData, 3, 6, 3, 4)
+MugEntry(TailtiuMug, TailtiuMugData, 3, 6, 3, 4)
 
 ALIGN 4
 TanyaMugData:
@@ -4860,7 +4860,7 @@ TanyaMugData:
 #ifndef TanyaMug
   #define TanyaMug (FirstMugID+443)
 #endif
-setMugEntry(TanyaMug, TanyaMugData, 4, 6, 4, 4)
+MugEntry(TanyaMug, TanyaMugData, 4, 6, 4, 4)
 
 ALIGN 4
 ThrudMugData:
@@ -4871,7 +4871,7 @@ ThrudMugData:
 #ifndef ThrudMug
   #define ThrudMug (FirstMugID+444)
 #endif
-setMugEntry(ThrudMug, ThrudMugData, 3, 5, 3, 3)
+MugEntry(ThrudMug, ThrudMugData, 3, 5, 3, 3)
 
 ALIGN 4
 TiltyuMugData:
@@ -4882,7 +4882,7 @@ TiltyuMugData:
 #ifndef TiltyuMug
   #define TiltyuMug (FirstMugID+445)
 #endif
-setMugEntry(TiltyuMug, TiltyuMugData, 3, 7, 3, 5)
+MugEntry(TiltyuMug, TiltyuMugData, 3, 7, 3, 5)
 
 ALIGN 4
 TinaMugData:
@@ -4893,7 +4893,7 @@ TinaMugData:
 #ifndef TinaMug
   #define TinaMug (FirstMugID+446)
 #endif
-setMugEntry(TinaMug, TinaMugData, 3, 6, 3, 4)
+MugEntry(TinaMug, TinaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 TravantMugData:
@@ -4904,7 +4904,7 @@ TravantMugData:
 #ifndef TravantMug
   #define TravantMug (FirstMugID+447)
 #endif
-setMugEntry(TravantMug, TravantMugData, 2, 4, 2, 2)
+MugEntry(TravantMug, TravantMugData, 2, 4, 2, 2)
 
 ALIGN 4
 TristanMugData:
@@ -4915,7 +4915,7 @@ TristanMugData:
 #ifndef TristanMug
   #define TristanMug (FirstMugID+448)
 #endif
-setMugEntry(TristanMug, TristanMugData, 2, 5, 2, 3)
+MugEntry(TristanMug, TristanMugData, 2, 5, 2, 3)
 
 ALIGN 4
 TroudeMugData:
@@ -4926,7 +4926,7 @@ TroudeMugData:
 #ifndef TroudeMug
   #define TroudeMug (FirstMugID+449)
 #endif
-setMugEntry(TroudeMug, TroudeMugData, 3, 5, 3, 3)
+MugEntry(TroudeMug, TroudeMugData, 3, 5, 3, 3)
 
 ALIGN 4
 VajaMugData:
@@ -4937,7 +4937,7 @@ VajaMugData:
 #ifndef VajaMug
   #define VajaMug (FirstMugID+450)
 #endif
-setMugEntry(VajaMug, VajaMugData, 3, 5, 3, 3)
+MugEntry(VajaMug, VajaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 WeismannMugData:
@@ -4948,7 +4948,7 @@ WeismannMugData:
 #ifndef WeismannMug
   #define WeismannMug (FirstMugID+451)
 #endif
-setMugEntry(WeismannMug, WeismannMugData, 3, 5, 3, 3)
+MugEntry(WeismannMug, WeismannMugData, 3, 5, 3, 3)
 
 ALIGN 4
 XavierMugData:
@@ -4959,7 +4959,7 @@ XavierMugData:
 #ifndef XavierMug
   #define XavierMug (FirstMugID+452)
 #endif
-setMugEntry(XavierMug, XavierMugData, 3, 4, 3, 2)
+MugEntry(XavierMug, XavierMugData, 3, 4, 3, 2)
 
 ALIGN 4
 ZaneMugData:
@@ -4970,7 +4970,7 @@ ZaneMugData:
 #ifndef ZaneMug
   #define ZaneMug (FirstMugID+453)
 #endif
-setMugEntry(ZaneMug, ZaneMugData, 3, 5, 3, 3)
+MugEntry(ZaneMug, ZaneMugData, 3, 5, 3, 3)
 
 ALIGN 4
 AlenMugData:
@@ -4981,7 +4981,7 @@ AlenMugData:
 #ifndef AlenMug
   #define AlenMug (FirstMugID+454)
 #endif
-setMugEntry(AlenMug, AlenMugData, 2, 5, 3, 3)
+MugEntry(AlenMug, AlenMugData, 2, 5, 3, 3)
 
 ALIGN 4
 AnnaMugData:
@@ -4992,7 +4992,7 @@ AnnaMugData:
 #ifndef AnnaMug
   #define AnnaMug (FirstMugID+455)
 #endif
-setMugEntry(AnnaMug, AnnaMugData, 2, 5, 3, 3)
+MugEntry(AnnaMug, AnnaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ArcardoMugData:
@@ -5003,7 +5003,7 @@ ArcardoMugData:
 #ifndef ArcardoMug
   #define ArcardoMug (FirstMugID+456)
 #endif
-setMugEntry(ArcardoMug, ArcardoMugData, 2, 5, 3, 3)
+MugEntry(ArcardoMug, ArcardoMugData, 2, 5, 3, 3)
 
 ALIGN 4
 AstolfoMugData:
@@ -5014,7 +5014,7 @@ AstolfoMugData:
 #ifndef AstolfoMug
   #define AstolfoMug (FirstMugID+457)
 #endif
-setMugEntry(AstolfoMug, AstolfoMugData, 2, 5, 2, 3)
+MugEntry(AstolfoMug, AstolfoMugData, 2, 5, 2, 3)
 
 ALIGN 4
 BartheMugData:
@@ -5025,7 +5025,7 @@ BartheMugData:
 #ifndef BartheMug
   #define BartheMug (FirstMugID+458)
 #endif
-setMugEntry(BartheMug, BartheMugData, 2, 4, 2, 2)
+MugEntry(BartheMug, BartheMugData, 2, 4, 2, 2)
 
 ALIGN 4
 BartreMugData:
@@ -5036,7 +5036,7 @@ BartreMugData:
 #ifndef BartreMug
   #define BartreMug (FirstMugID+459)
 #endif
-setMugEntry(BartreMug, BartreMugData, 2, 5, 2, 2)
+MugEntry(BartreMug, BartreMugData, 2, 5, 2, 2)
 
 ALIGN 4
 BorsMugData:
@@ -5047,7 +5047,7 @@ BorsMugData:
 #ifndef BorsMug
   #define BorsMug (FirstMugID+460)
 #endif
-setMugEntry(BorsMug, BorsMugData, 2, 4, 3, 2)
+MugEntry(BorsMug, BorsMugData, 2, 4, 3, 2)
 
 ALIGN 4
 BrunnyaMugData:
@@ -5058,7 +5058,7 @@ BrunnyaMugData:
 #ifndef BrunnyaMug
   #define BrunnyaMug (FirstMugID+461)
 #endif
-setMugEntry(BrunnyaMug, BrunnyaMugData, 2, 5, 3, 3)
+MugEntry(BrunnyaMug, BrunnyaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 CathMugData:
@@ -5069,7 +5069,7 @@ CathMugData:
 #ifndef CathMug
   #define CathMug (FirstMugID+462)
 #endif
-setMugEntry(CathMug, CathMugData, 2, 6, 3, 4)
+MugEntry(CathMug, CathMugData, 2, 6, 3, 4)
 
 ALIGN 4
 CeciliaMugData:
@@ -5080,7 +5080,7 @@ CeciliaMugData:
 #ifndef CeciliaMug
   #define CeciliaMug (FirstMugID+463)
 #endif
-setMugEntry(CeciliaMug, CeciliaMugData, 2, 5, 3, 3)
+MugEntry(CeciliaMug, CeciliaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ChadMugData:
@@ -5091,7 +5091,7 @@ ChadMugData:
 #ifndef ChadMug
   #define ChadMug (FirstMugID+464)
 #endif
-setMugEntry(ChadMug, ChadMugData, 2, 6, 3, 4)
+MugEntry(ChadMug, ChadMugData, 2, 6, 3, 4)
 
 ALIGN 4
 ClarineMugData:
@@ -5102,7 +5102,7 @@ ClarineMugData:
 #ifndef ClarineMug
   #define ClarineMug (FirstMugID+465)
 #endif
-setMugEntry(ClarineMug, ClarineMugData, 2, 6, 3, 4)
+MugEntry(ClarineMug, ClarineMugData, 2, 6, 3, 4)
 
 ALIGN 4
 DamasMugData:
@@ -5113,7 +5113,7 @@ DamasMugData:
 #ifndef DamasMug
   #define DamasMug (FirstMugID+466)
 #endif
-setMugEntry(DamasMug, DamasMugData, 2, 5, 2, 3)
+MugEntry(DamasMug, DamasMugData, 2, 5, 2, 3)
 
 ALIGN 4
 DayanMugData:
@@ -5124,7 +5124,7 @@ DayanMugData:
 #ifndef DayanMug
   #define DayanMug (FirstMugID+467)
 #endif
-setMugEntry(DayanMug, DayanMugData, 2, 5, 3, 3)
+MugEntry(DayanMug, DayanMugData, 2, 5, 3, 3)
 
 ALIGN 4
 DebiasMugData:
@@ -5135,7 +5135,7 @@ DebiasMugData:
 #ifndef DebiasMug
   #define DebiasMug (FirstMugID+468)
 #endif
-setMugEntry(DebiasMug, DebiasMugData, 2, 5, 2, 3)
+MugEntry(DebiasMug, DebiasMugData, 2, 5, 2, 3)
 
 ALIGN 4
 DieckMugData:
@@ -5146,7 +5146,7 @@ DieckMugData:
 #ifndef DieckMug
   #define DieckMug (FirstMugID+469)
 #endif
-setMugEntry(DieckMug, DieckMugData, 2, 5, 2, 3)
+MugEntry(DieckMug, DieckMugData, 2, 5, 2, 3)
 
 ALIGN 4
 DorothyMugData:
@@ -5157,7 +5157,7 @@ DorothyMugData:
 #ifndef DorothyMug
   #define DorothyMug (FirstMugID+470)
 #endif
-setMugEntry(DorothyMug, DorothyMugData, 2, 5, 3, 3)
+MugEntry(DorothyMug, DorothyMugData, 2, 5, 3, 3)
 
 ALIGN 4
 DoryMugData:
@@ -5168,7 +5168,7 @@ DoryMugData:
 #ifndef DoryMug
   #define DoryMug (FirstMugID+471)
 #endif
-setMugEntry(DoryMug, DoryMugData, 2, 5, 3, 3)
+MugEntry(DoryMug, DoryMugData, 2, 5, 3, 3)
 
 ALIGN 4
 DouglasMugData:
@@ -5179,7 +5179,7 @@ DouglasMugData:
 #ifndef DouglasMug
   #define DouglasMug (FirstMugID+472)
 #endif
-setMugEntry(DouglasMug, DouglasMugData, 2, 5, 3, 3)
+MugEntry(DouglasMug, DouglasMugData, 2, 5, 3, 3)
 
 ALIGN 4
 EchidnaMugData:
@@ -5190,7 +5190,7 @@ EchidnaMugData:
 #ifndef EchidnaMug
   #define EchidnaMug (FirstMugID+473)
 #endif
-setMugEntry(EchidnaMug, EchidnaMugData, 2, 5, 3, 3)
+MugEntry(EchidnaMug, EchidnaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 EinMugData:
@@ -5201,7 +5201,7 @@ EinMugData:
 #ifndef EinMug
   #define EinMug (FirstMugID+474)
 #endif
-setMugEntry(EinMug, EinMugData, 2, 5, 3, 3)
+MugEntry(EinMug, EinMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ElenMugData:
@@ -5212,7 +5212,7 @@ ElenMugData:
 #ifndef ElenMug
   #define ElenMug (FirstMugID+475)
 #endif
-setMugEntry(ElenMug, ElenMugData, 2, 6, 3, 4)
+MugEntry(ElenMug, ElenMugData, 2, 6, 3, 4)
 
 ALIGN 4
 ElffinMugData:
@@ -5223,7 +5223,7 @@ ElffinMugData:
 #ifndef ElffinMug
   #define ElffinMug (FirstMugID+476)
 #endif
-setMugEntry(ElffinMug, ElffinMugData, 2, 5, 2, 3)
+MugEntry(ElffinMug, ElffinMugData, 2, 5, 2, 3)
 
 ALIGN 4
 EliwoodFE6MugData:
@@ -5234,7 +5234,7 @@ EliwoodFE6MugData:
 #ifndef EliwoodFE6Mug
   #define EliwoodFE6Mug (FirstMugID+477)
 #endif
-setMugEntry(EliwoodFE6Mug, EliwoodFE6MugData, 2, 5, 3, 3)
+MugEntry(EliwoodFE6Mug, EliwoodFE6MugData, 2, 5, 3, 3)
 
 ALIGN 4
 ErikMugData:
@@ -5245,7 +5245,7 @@ ErikMugData:
 #ifndef ErikMug
   #define ErikMug (FirstMugID+478)
 #endif
-setMugEntry(ErikMug, ErikMugData, 2, 5, 3, 3)
+MugEntry(ErikMug, ErikMugData, 2, 5, 3, 3)
 
 ALIGN 4
 FaeMugData:
@@ -5256,7 +5256,7 @@ FaeMugData:
 #ifndef FaeMug
   #define FaeMug (FirstMugID+479)
 #endif
-setMugEntry(FaeMug, FaeMugData, 3, 7, 3, 5)
+MugEntry(FaeMug, FaeMugData, 3, 7, 3, 5)
 
 ALIGN 4
 FirMugData:
@@ -5267,7 +5267,7 @@ FirMugData:
 #ifndef FirMug
   #define FirMug (FirstMugID+480)
 #endif
-setMugEntry(FirMug, FirMugData, 2, 6, 3, 4)
+MugEntry(FirMug, FirMugData, 2, 6, 3, 4)
 
 ALIGN 4
 FlaerMugData:
@@ -5278,7 +5278,7 @@ FlaerMugData:
 #ifndef FlaerMug
   #define FlaerMug (FirstMugID+481)
 #endif
-setMugEntry(FlaerMug, FlaerMugData, 2, 5, 3, 3)
+MugEntry(FlaerMug, FlaerMugData, 2, 5, 3, 3)
 
 ALIGN 4
 GalleMugData:
@@ -5289,7 +5289,7 @@ GalleMugData:
 #ifndef GalleMug
   #define GalleMug (FirstMugID+482)
 #endif
-setMugEntry(GalleMug, GalleMugData, 2, 5, 3, 3)
+MugEntry(GalleMug, GalleMugData, 2, 5, 3, 3)
 
 ALIGN 4
 GarrettMugData:
@@ -5300,7 +5300,7 @@ GarrettMugData:
 #ifndef GarrettMug
   #define GarrettMug (FirstMugID+483)
 #endif
-setMugEntry(GarrettMug, GarrettMugData, 2, 4, 3, 2)
+MugEntry(GarrettMug, GarrettMugData, 2, 4, 3, 2)
 
 ALIGN 4
 GeeseMugData:
@@ -5311,7 +5311,7 @@ GeeseMugData:
 #ifndef GeeseMug
   #define GeeseMug (FirstMugID+484)
 #endif
-setMugEntry(GeeseMug, GeeseMugData, 2, 5, 3, 3)
+MugEntry(GeeseMug, GeeseMugData, 2, 5, 3, 3)
 
 ALIGN 4
 GonzalezMugData:
@@ -5322,7 +5322,7 @@ GonzalezMugData:
 #ifndef GonzalezMug
   #define GonzalezMug (FirstMugID+485)
 #endif
-setMugEntry(GonzalezMug, GonzalezMugData, 2, 5, 2, 3)
+MugEntry(GonzalezMug, GonzalezMugData, 2, 5, 2, 3)
 
 ALIGN 4
 GuerreroMugData:
@@ -5333,7 +5333,7 @@ GuerreroMugData:
 #ifndef GuerreroMug
   #define GuerreroMug (FirstMugID+486)
 #endif
-setMugEntry(GuerreroMug, GuerreroMugData, 2, 5, 3, 3)
+MugEntry(GuerreroMug, GuerreroMugData, 2, 5, 3, 3)
 
 ALIGN 4
 GuinivereMugData:
@@ -5344,7 +5344,7 @@ GuinivereMugData:
 #ifndef GuinivereMug
   #define GuinivereMug (FirstMugID+487)
 #endif
-setMugEntry(GuinivereMug, GuinivereMugData, 3, 6, 3, 4)
+MugEntry(GuinivereMug, GuinivereMugData, 3, 6, 3, 4)
 
 ALIGN 4
 GwendolynMugData:
@@ -5355,7 +5355,7 @@ GwendolynMugData:
 #ifndef GwendolynMug
   #define GwendolynMug (FirstMugID+488)
 #endif
-setMugEntry(GwendolynMug, GwendolynMugData, 2, 6, 3, 4)
+MugEntry(GwendolynMug, GwendolynMugData, 2, 6, 3, 4)
 
 ALIGN 4
 GwynevreMugData:
@@ -5366,7 +5366,7 @@ GwynevreMugData:
 #ifndef GwynevreMug
   #define GwynevreMug (FirstMugID+489)
 #endif
-setMugEntry(GwynevreMug, GwynevreMugData, 2, 6, 3, 4)
+MugEntry(GwynevreMug, GwynevreMugData, 2, 6, 3, 4)
 
 ALIGN 4
 HectorFE6MugData:
@@ -5377,7 +5377,7 @@ HectorFE6MugData:
 #ifndef HectorFE6Mug
   #define HectorFE6Mug (FirstMugID+490)
 #endif
-setMugEntry(HectorFE6Mug, HectorFE6MugData, 2, 5, 3, 2)
+MugEntry(HectorFE6Mug, HectorFE6MugData, 2, 5, 3, 2)
 
 ALIGN 4
 HenningMugData:
@@ -5388,7 +5388,7 @@ HenningMugData:
 #ifndef HenningMug
   #define HenningMug (FirstMugID+491)
 #endif
-setMugEntry(HenningMug, HenningMugData, 2, 5, 3, 3)
+MugEntry(HenningMug, HenningMugData, 2, 5, 3, 3)
 
 ALIGN 4
 HughMugData:
@@ -5399,7 +5399,7 @@ HughMugData:
 #ifndef HughMug
   #define HughMug (FirstMugID+492)
 #endif
-setMugEntry(HughMug, HughMugData, 2, 5, 3, 3)
+MugEntry(HughMug, HughMugData, 2, 5, 3, 3)
 
 ALIGN 4
 IdunnMugData:
@@ -5410,7 +5410,7 @@ IdunnMugData:
 #ifndef IdunnMug
   #define IdunnMug (FirstMugID+493)
 #endif
-setMugEntry(IdunnMug, IdunnMugData, 2, 6, 3, 4)
+MugEntry(IdunnMug, IdunnMugData, 2, 6, 3, 4)
 
 ALIGN 4
 IdunnDragonMugData:
@@ -5421,7 +5421,7 @@ IdunnDragonMugData:
 #ifndef IdunnDragonMug
   #define IdunnDragonMug (FirstMugID+494)
 #endif
-setMugEntry(IdunnDragonMug, IdunnDragonMugData, 2, 6, 3, 4)
+MugEntry(IdunnDragonMug, IdunnDragonMugData, 2, 6, 3, 4)
 
 ALIGN 4
 IdunnHoodMugData:
@@ -5432,7 +5432,7 @@ IdunnHoodMugData:
 #ifndef IdunnHoodMug
   #define IdunnHoodMug (FirstMugID+495)
 #endif
-setMugEntry(IdunnHoodMug, IdunnHoodMugData, 2, 6, 3, 4)
+MugEntry(IdunnHoodMug, IdunnHoodMugData, 2, 6, 3, 4)
 
 ALIGN 4
 IgreneMugData:
@@ -5443,7 +5443,7 @@ IgreneMugData:
 #ifndef IgreneMug
   #define IgreneMug (FirstMugID+496)
 #endif
-setMugEntry(IgreneMug, IgreneMugData, 2, 5, 3, 3)
+MugEntry(IgreneMug, IgreneMugData, 2, 5, 3, 3)
 
 ALIGN 4
 JahnMugData:
@@ -5454,7 +5454,7 @@ JahnMugData:
 #ifndef JahnMug
   #define JahnMug (FirstMugID+497)
 #endif
-setMugEntry(JahnMug, JahnMugData, 3, 5, 3, 3)
+MugEntry(JahnMug, JahnMugData, 3, 5, 3, 3)
 
 ALIGN 4
 JunoMugData:
@@ -5465,7 +5465,7 @@ JunoMugData:
 #ifndef JunoMug
   #define JunoMug (FirstMugID+498)
 #endif
-setMugEntry(JunoMug, JunoMugData, 2, 5, 3, 3)
+MugEntry(JunoMug, JunoMugData, 2, 5, 3, 3)
 
 ALIGN 4
 KarelMugData:
@@ -5476,7 +5476,7 @@ KarelMugData:
 #ifndef KarelMug
   #define KarelMug (FirstMugID+499)
 #endif
-setMugEntry(KarelMug, KarelMugData, 2, 5, 3, 3)
+MugEntry(KarelMug, KarelMugData, 2, 5, 3, 3)
 
 ALIGN 4
 KelMugData:
@@ -5487,7 +5487,7 @@ KelMugData:
 #ifndef KelMug
   #define KelMug (FirstMugID+500)
 #endif
-setMugEntry(KelMug, KelMugData, 2, 5, 3, 3)
+MugEntry(KelMug, KelMugData, 2, 5, 3, 3)
 
 ALIGN 4
 KleinMugData:
@@ -5498,7 +5498,7 @@ KleinMugData:
 #ifndef KleinMug
   #define KleinMug (FirstMugID+501)
 #endif
-setMugEntry(KleinMug, KleinMugData, 2, 5, 3, 3)
+MugEntry(KleinMug, KleinMugData, 2, 5, 3, 3)
 
 ALIGN 4
 LanceMugData:
@@ -5509,7 +5509,7 @@ LanceMugData:
 #ifndef LanceMug
   #define LanceMug (FirstMugID+502)
 #endif
-setMugEntry(LanceMug, LanceMugData, 2, 5, 3, 3)
+MugEntry(LanceMug, LanceMugData, 2, 5, 3, 3)
 
 ALIGN 4
 LarumMugData:
@@ -5520,7 +5520,7 @@ LarumMugData:
 #ifndef LarumMug
   #define LarumMug (FirstMugID+503)
 #endif
-setMugEntry(LarumMug, LarumMugData, 2, 6, 3, 4)
+MugEntry(LarumMug, LarumMugData, 2, 6, 3, 4)
 
 ALIGN 4
 LeganceMugData:
@@ -5531,7 +5531,7 @@ LeganceMugData:
 #ifndef LeganceMug
   #define LeganceMug (FirstMugID+504)
 #endif
-setMugEntry(LeganceMug, LeganceMugData, 2, 5, 2, 3)
+MugEntry(LeganceMug, LeganceMugData, 2, 5, 2, 3)
 
 ALIGN 4
 LilinaMugData:
@@ -5542,7 +5542,7 @@ LilinaMugData:
 #ifndef LilinaMug
   #define LilinaMug (FirstMugID+505)
 #endif
-setMugEntry(LilinaMug, LilinaMugData, 2, 6, 3, 4)
+MugEntry(LilinaMug, LilinaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 LotMugData:
@@ -5553,7 +5553,7 @@ LotMugData:
 #ifndef LotMug
   #define LotMug (FirstMugID+506)
 #endif
-setMugEntry(LotMug, LotMugData, 2, 5, 3, 3)
+MugEntry(LotMug, LotMugData, 2, 5, 3, 3)
 
 ALIGN 4
 LughMugData:
@@ -5564,7 +5564,7 @@ LughMugData:
 #ifndef LughMug
   #define LughMug (FirstMugID+507)
 #endif
-setMugEntry(LughMug, LughMugData, 2, 6, 3, 4)
+MugEntry(LughMug, LughMugData, 2, 6, 3, 4)
 
 ALIGN 4
 MaggieMugData:
@@ -5575,7 +5575,7 @@ MaggieMugData:
 #ifndef MaggieMug
   #define MaggieMug (FirstMugID+508)
 #endif
-setMugEntry(MaggieMug, MaggieMugData, 2, 5, 3, 3)
+MugEntry(MaggieMug, MaggieMugData, 2, 5, 3, 3)
 
 ALIGN 4
 MarcusMugData:
@@ -5586,7 +5586,7 @@ MarcusMugData:
 #ifndef MarcusMug
   #define MarcusMug (FirstMugID+509)
 #endif
-setMugEntry(MarcusMug, MarcusMugData, 2, 5, 2, 3)
+MugEntry(MarcusMug, MarcusMugData, 2, 5, 2, 3)
 
 ALIGN 4
 MartelMugData:
@@ -5597,7 +5597,7 @@ MartelMugData:
 #ifndef MartelMug
   #define MartelMug (FirstMugID+510)
 #endif
-setMugEntry(MartelMug, MartelMugData, 3, 5, 3, 3)
+MugEntry(MartelMug, MartelMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MeladyMugData:
@@ -5608,7 +5608,7 @@ MeladyMugData:
 #ifndef MeladyMug
   #define MeladyMug (FirstMugID+511)
 #endif
-setMugEntry(MeladyMug, MeladyMugData, 2, 5, 4, 3)
+MugEntry(MeladyMug, MeladyMugData, 2, 5, 4, 3)
 
 ALIGN 4
 MerlinusMugData:
@@ -5619,7 +5619,7 @@ MerlinusMugData:
 #ifndef MerlinusMug
   #define MerlinusMug (FirstMugID+513)
 #endif
-setMugEntry(MerlinusMug, MerlinusMugData, 2, 5, 2, 3)
+MugEntry(MerlinusMug, MerlinusMugData, 2, 5, 2, 3)
 
 ALIGN 4
 MessengerMugData:
@@ -5630,7 +5630,7 @@ MessengerMugData:
 #ifndef MessengerMug
   #define MessengerMug (FirstMugID+514)
 #endif
-setMugEntry(MessengerMug, MessengerMugData, 2, 6, 3, 4)
+MugEntry(MessengerMug, MessengerMugData, 2, 6, 3, 4)
 
 ALIGN 4
 MonkeMugData:
@@ -5641,7 +5641,7 @@ MonkeMugData:
 #ifndef MonkeMug
   #define MonkeMug (FirstMugID+515)
 #endif
-setMugEntry(MonkeMug, MonkeMugData, 2, 5, 3, 3)
+MugEntry(MonkeMug, MonkeMugData, 2, 5, 3, 3)
 
 ALIGN 4
 MordredMugData:
@@ -5652,7 +5652,7 @@ MordredMugData:
 #ifndef MordredMug
   #define MordredMug (FirstMugID+516)
 #endif
-setMugEntry(MordredMug, MordredMugData, 3, 6, 4, 4)
+MugEntry(MordredMug, MordredMugData, 3, 6, 4, 4)
 
 ALIGN 4
 MurdockMugData:
@@ -5663,7 +5663,7 @@ MurdockMugData:
 #ifndef MurdockMug
   #define MurdockMug (FirstMugID+517)
 #endif
-setMugEntry(MurdockMug, MurdockMugData, 2, 4, 3, 2)
+MugEntry(MurdockMug, MurdockMugData, 2, 4, 3, 2)
 
 ALIGN 4
 NarcianMugData:
@@ -5674,7 +5674,7 @@ NarcianMugData:
 #ifndef NarcianMug
   #define NarcianMug (FirstMugID+518)
 #endif
-setMugEntry(NarcianMug, NarcianMugData, 2, 5, 3, 3)
+MugEntry(NarcianMug, NarcianMugData, 2, 5, 3, 3)
 
 ALIGN 4
 NiimeMugData:
@@ -5685,7 +5685,7 @@ NiimeMugData:
 #ifndef NiimeMug
   #define NiimeMug (FirstMugID+519)
 #endif
-setMugEntry(NiimeMug, NiimeMugData, 2, 6, 2, 4)
+MugEntry(NiimeMug, NiimeMugData, 2, 6, 2, 4)
 
 ALIGN 4
 NoahMugData:
@@ -5696,7 +5696,7 @@ NoahMugData:
 #ifndef NoahMug
   #define NoahMug (FirstMugID+520)
 #endif
-setMugEntry(NoahMug, NoahMugData, 2, 5, 3, 3)
+MugEntry(NoahMug, NoahMugData, 2, 5, 3, 3)
 
 ALIGN 4
 NordMugData:
@@ -5707,7 +5707,7 @@ NordMugData:
 #ifndef NordMug
   #define NordMug (FirstMugID+521)
 #endif
-setMugEntry(NordMug, NordMugData, 2, 6, 3, 4)
+MugEntry(NordMug, NordMugData, 2, 6, 3, 4)
 
 ALIGN 4
 OatesMugData:
@@ -5718,7 +5718,7 @@ OatesMugData:
 #ifndef OatesMug
   #define OatesMug (FirstMugID+522)
 #endif
-setMugEntry(OatesMug, OatesMugData, 2, 6, 2, 4)
+MugEntry(OatesMug, OatesMugData, 2, 6, 2, 4)
 
 ALIGN 4
 OgierMugData:
@@ -5729,7 +5729,7 @@ OgierMugData:
 #ifndef OgierMug
   #define OgierMug (FirstMugID+523)
 #endif
-setMugEntry(OgierMug, OgierMugData, 2, 6, 3, 4)
+MugEntry(OgierMug, OgierMugData, 2, 6, 3, 4)
 
 ALIGN 4
 OrloMugData:
@@ -5740,7 +5740,7 @@ OrloMugData:
 #ifndef OrloMug
   #define OrloMug (FirstMugID+524)
 #endif
-setMugEntry(OrloMug, OrloMugData, 3, 5, 3, 3)
+MugEntry(OrloMug, OrloMugData, 3, 5, 3, 3)
 
 ALIGN 4
 PercevalMugData:
@@ -5751,7 +5751,7 @@ PercevalMugData:
 #ifndef PercevalMug
   #define PercevalMug (FirstMugID+525)
 #endif
-setMugEntry(PercevalMug, PercevalMugData, 2, 5, 2, 3)
+MugEntry(PercevalMug, PercevalMugData, 2, 5, 2, 3)
 
 ALIGN 4
 PeresMugData:
@@ -5762,7 +5762,7 @@ PeresMugData:
 #ifndef PeresMug
   #define PeresMug (FirstMugID+526)
 #endif
-setMugEntry(PeresMug, PeresMugData, 2, 6, 2, 4)
+MugEntry(PeresMug, PeresMugData, 2, 6, 2, 4)
 
 ALIGN 4
 PriestMugData:
@@ -5773,7 +5773,7 @@ PriestMugData:
 #ifndef PriestMug
   #define PriestMug (FirstMugID+527)
 #endif
-setMugEntry(PriestMug, PriestMugData, 2, 5, 2, 3)
+MugEntry(PriestMug, PriestMugData, 2, 5, 2, 3)
 
 ALIGN 4
 RaighMugData:
@@ -5784,7 +5784,7 @@ RaighMugData:
 #ifndef RaighMug
   #define RaighMug (FirstMugID+528)
 #endif
-setMugEntry(RaighMug, RaighMugData, 2, 6, 3, 4)
+MugEntry(RaighMug, RaighMugData, 2, 6, 3, 4)
 
 ALIGN 4
 RaithMugData:
@@ -5795,7 +5795,7 @@ RaithMugData:
 #ifndef RaithMug
   #define RaithMug (FirstMugID+529)
 #endif
-setMugEntry(RaithMug, RaithMugData, 2, 5, 3, 3)
+MugEntry(RaithMug, RaithMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RandyMugData:
@@ -5806,7 +5806,7 @@ RandyMugData:
 #ifndef RandyMug
   #define RandyMug (FirstMugID+530)
 #endif
-setMugEntry(RandyMug, RandyMugData, 2, 5, 3, 3)
+MugEntry(RandyMug, RandyMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RoartzMugData:
@@ -5817,7 +5817,7 @@ RoartzMugData:
 #ifndef RoartzMug
   #define RoartzMug (FirstMugID+531)
 #endif
-setMugEntry(RoartzMug, RoartzMugData, 2, 5, 2, 3)
+MugEntry(RoartzMug, RoartzMugData, 2, 5, 2, 3)
 
 ALIGN 4
 RoseMugData:
@@ -5828,7 +5828,7 @@ RoseMugData:
 #ifndef RoseMug
   #define RoseMug (FirstMugID+532)
 #endif
-setMugEntry(RoseMug, RoseMugData, 2, 5, 3, 3)
+MugEntry(RoseMug, RoseMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RoyMugData:
@@ -5839,7 +5839,7 @@ RoyMugData:
 #ifndef RoyMug
   #define RoyMug (FirstMugID+533)
 #endif
-setMugEntry(RoyMug, RoyMugData, 2, 6, 3, 4)
+MugEntry(RoyMug, RoyMugData, 2, 6, 3, 4)
 
 ALIGN 4
 RutgerMugData:
@@ -5850,7 +5850,7 @@ RutgerMugData:
 #ifndef RutgerMug
   #define RutgerMug (FirstMugID+534)
 #endif
-setMugEntry(RutgerMug, RutgerMugData, 2, 5, 2, 3)
+MugEntry(RutgerMug, RutgerMugData, 2, 5, 2, 3)
 
 ALIGN 4
 RuudMugData:
@@ -5861,7 +5861,7 @@ RuudMugData:
 #ifndef RuudMug
   #define RuudMug (FirstMugID+535)
 #endif
-setMugEntry(RuudMug, RuudMugData, 3, 5, 4, 3)
+MugEntry(RuudMug, RuudMugData, 3, 5, 4, 3)
 
 ALIGN 4
 SaulMugData:
@@ -5872,7 +5872,7 @@ SaulMugData:
 #ifndef SaulMug
   #define SaulMug (FirstMugID+536)
 #endif
-setMugEntry(SaulMug, SaulMugData, 2, 5, 3, 3)
+MugEntry(SaulMug, SaulMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ScottMugData:
@@ -5883,7 +5883,7 @@ ScottMugData:
 #ifndef ScottMug
   #define ScottMug (FirstMugID+537)
 #endif
-setMugEntry(ScottMug, ScottMugData, 2, 5, 3, 3)
+MugEntry(ScottMug, ScottMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ShannaMugData:
@@ -5894,7 +5894,7 @@ ShannaMugData:
 #ifndef ShannaMug
   #define ShannaMug (FirstMugID+538)
 #endif
-setMugEntry(ShannaMug, ShannaMugData, 2, 6, 3, 4)
+MugEntry(ShannaMug, ShannaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 SiguneMugData:
@@ -5905,7 +5905,7 @@ SiguneMugData:
 #ifndef SiguneMug
   #define SiguneMug (FirstMugID+539)
 #endif
-setMugEntry(SiguneMug, SiguneMugData, 2, 5, 3, 3)
+MugEntry(SiguneMug, SiguneMugData, 2, 5, 3, 3)
 
 ALIGN 4
 SinMugData:
@@ -5916,7 +5916,7 @@ SinMugData:
 #ifndef SinMug
   #define SinMug (FirstMugID+540)
 #endif
-setMugEntry(SinMug, SinMugData, 2, 5, 3, 3)
+MugEntry(SinMug, SinMugData, 2, 5, 3, 3)
 
 ALIGN 4
 SophiaMugData:
@@ -5927,7 +5927,7 @@ SophiaMugData:
 #ifndef SophiaMug
   #define SophiaMug (FirstMugID+541)
 #endif
-setMugEntry(SophiaMug, SophiaMugData, 2, 6, 3, 4)
+MugEntry(SophiaMug, SophiaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 SueMugData:
@@ -5938,7 +5938,7 @@ SueMugData:
 #ifndef SueMug
   #define SueMug (FirstMugID+542)
 #endif
-setMugEntry(SueMug, SueMugData, 2, 5, 3, 3)
+MugEntry(SueMug, SueMugData, 2, 5, 3, 3)
 
 ALIGN 4
 TheaMugData:
@@ -5949,7 +5949,7 @@ TheaMugData:
 #ifndef TheaMug
   #define TheaMug (FirstMugID+543)
 #endif
-setMugEntry(TheaMug, TheaMugData, 3, 6, 3, 4)
+MugEntry(TheaMug, TheaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 TickMugData:
@@ -5960,7 +5960,7 @@ TickMugData:
 #ifndef TickMug
   #define TickMug (FirstMugID+544)
 #endif
-setMugEntry(TickMug, TickMugData, 2, 5, 3, 3)
+MugEntry(TickMug, TickMugData, 2, 5, 3, 3)
 
 ALIGN 4
 TrecMugData:
@@ -5971,7 +5971,7 @@ TrecMugData:
 #ifndef TrecMug
   #define TrecMug (FirstMugID+545)
 #endif
-setMugEntry(TrecMug, TrecMugData, 2, 5, 3, 3)
+MugEntry(TrecMug, TrecMugData, 2, 5, 3, 3)
 
 ALIGN 4
 WagnerMugData:
@@ -5982,7 +5982,7 @@ WagnerMugData:
 #ifndef WagnerMug
   #define WagnerMug (FirstMugID+546)
 #endif
-setMugEntry(WagnerMug, WagnerMugData, 2, 6, 3, 4)
+MugEntry(WagnerMug, WagnerMugData, 2, 6, 3, 4)
 
 ALIGN 4
 WardMugData:
@@ -5993,7 +5993,7 @@ WardMugData:
 #ifndef WardMug
   #define WardMug (FirstMugID+547)
 #endif
-setMugEntry(WardMug, WardMugData, 2, 5, 2, 3)
+MugEntry(WardMug, WardMugData, 2, 5, 2, 3)
 
 ALIGN 4
 WilliamMugData:
@@ -6004,7 +6004,7 @@ WilliamMugData:
 #ifndef WilliamMug
   #define WilliamMug (FirstMugID+548)
 #endif
-setMugEntry(WilliamMug, WilliamMugData, 2, 6, 3, 3)
+MugEntry(WilliamMug, WilliamMugData, 2, 6, 3, 3)
 
 ALIGN 4
 WindhamMugData:
@@ -6015,7 +6015,7 @@ WindhamMugData:
 #ifndef WindhamMug
   #define WindhamMug (FirstMugID+549)
 #endif
-setMugEntry(WindhamMug, WindhamMugData, 3, 5, 3, 3)
+MugEntry(WindhamMug, WindhamMugData, 3, 5, 3, 3)
 
 ALIGN 4
 WoltMugData:
@@ -6026,7 +6026,7 @@ WoltMugData:
 #ifndef WoltMug
   #define WoltMug (FirstMugID+550)
 #endif
-setMugEntry(WoltMug, WoltMugData, 2, 6, 3, 4)
+MugEntry(WoltMug, WoltMugData, 2, 6, 3, 4)
 
 ALIGN 4
 YoderMugData:
@@ -6037,7 +6037,7 @@ YoderMugData:
 #ifndef YoderMug
   #define YoderMug (FirstMugID+551)
 #endif
-setMugEntry(YoderMug, YoderMugData, 2, 5, 3, 3)
+MugEntry(YoderMug, YoderMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ZeissMugData:
@@ -6048,7 +6048,7 @@ ZeissMugData:
 #ifndef ZeissMug
   #define ZeissMug (FirstMugID+552)
 #endif
-setMugEntry(ZeissMug, ZeissMugData, 2, 5, 2, 3)
+MugEntry(ZeissMug, ZeissMugData, 2, 5, 2, 3)
 
 ALIGN 4
 ZelotMugData:
@@ -6059,7 +6059,7 @@ ZelotMugData:
 #ifndef ZelotMug
   #define ZelotMug (FirstMugID+553)
 #endif
-setMugEntry(ZelotMug, ZelotMugData, 2, 5, 3, 3)
+MugEntry(ZelotMug, ZelotMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ZephielMugData:
@@ -6070,7 +6070,7 @@ ZephielMugData:
 #ifndef ZephielMug
   #define ZephielMug (FirstMugID+554)
 #endif
-setMugEntry(ZephielMug, ZephielMugData, 4, 4, 4, 2)
+MugEntry(ZephielMug, ZephielMugData, 4, 4, 4, 2)
 
 ALIGN 4
 ZinqueMugData:
@@ -6081,7 +6081,7 @@ ZinqueMugData:
 #ifndef ZinqueMug
   #define ZinqueMug (FirstMugID+555)
 #endif
-setMugEntry(ZinqueMug, ZinqueMugData, 2, 5, 3, 3)
+MugEntry(ZinqueMug, ZinqueMugData, 2, 5, 3, 3)
 
 ALIGN 4
 AthosMugData:
@@ -6092,7 +6092,7 @@ AthosMugData:
 #ifndef AthosMug
   #define AthosMug (FirstMugID+556)
 #endif
-setMugEntry(AthosMug, AthosMugData, 2, 4, 3, 2)
+MugEntry(AthosMug, AthosMugData, 2, 4, 3, 2)
 
 ALIGN 4
 Bartre2MugData:
@@ -6103,7 +6103,7 @@ Bartre2MugData:
 #ifndef Bartre2Mug
   #define Bartre2Mug (FirstMugID+557)
 #endif
-setMugEntry(Bartre2Mug, Bartre2MugData, 2, 5, 2, 3)
+MugEntry(Bartre2Mug, Bartre2MugData, 2, 5, 2, 3)
 
 ALIGN 4
 BramimondMugData:
@@ -6114,7 +6114,7 @@ BramimondMugData:
 #ifndef BramimondMug
   #define BramimondMug (FirstMugID+558)
 #endif
-setMugEntry(BramimondMug, BramimondMugData, 2, 6, 3, 3)
+MugEntry(BramimondMug, BramimondMugData, 2, 6, 3, 3)
 
 ALIGN 4
 CanasMugData:
@@ -6125,7 +6125,7 @@ CanasMugData:
 #ifndef CanasMug
   #define CanasMug (FirstMugID+559)
 #endif
-setMugEntry(CanasMug, CanasMugData, 2, 5, 3, 3)
+MugEntry(CanasMug, CanasMugData, 2, 5, 3, 3)
 
 ALIGN 4
 DartMugData:
@@ -6136,7 +6136,7 @@ DartMugData:
 #ifndef DartMug
   #define DartMug (FirstMugID+560)
 #endif
-setMugEntry(DartMug, DartMugData, 3, 5, 3, 3)
+MugEntry(DartMug, DartMugData, 3, 5, 3, 3)
 
 ALIGN 4
 DorcasMugData:
@@ -6147,7 +6147,7 @@ DorcasMugData:
 #ifndef DorcasMug
   #define DorcasMug (FirstMugID+561)
 #endif
-setMugEntry(DorcasMug, DorcasMugData, 2, 4, 3, 2)
+MugEntry(DorcasMug, DorcasMugData, 2, 4, 3, 2)
 
 ALIGN 4
 DurbanMugData:
@@ -6158,7 +6158,7 @@ DurbanMugData:
 #ifndef DurbanMug
   #define DurbanMug (FirstMugID+562)
 #endif
-setMugEntry(DurbanMug, DurbanMugData, 2, 5, 3, 3)
+MugEntry(DurbanMug, DurbanMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ElbertMugData:
@@ -6169,7 +6169,7 @@ ElbertMugData:
 #ifndef ElbertMug
   #define ElbertMug (FirstMugID+563)
 #endif
-setMugEntry(ElbertMug, ElbertMugData, 2, 5, 3, 3)
+MugEntry(ElbertMug, ElbertMugData, 2, 5, 3, 3)
 
 ALIGN 4
 EleanoraMugData:
@@ -6180,7 +6180,7 @@ EleanoraMugData:
 #ifndef EleanoraMug
   #define EleanoraMug (FirstMugID+564)
 #endif
-setMugEntry(EleanoraMug, EleanoraMugData, 1, 5, 2, 3)
+MugEntry(EleanoraMug, EleanoraMugData, 1, 5, 2, 3)
 
 ALIGN 4
 EliwoodMugData:
@@ -6191,7 +6191,7 @@ EliwoodMugData:
 #ifndef EliwoodMug
   #define EliwoodMug (FirstMugID+565)
 #endif
-setMugEntry(EliwoodMug, EliwoodMugData, 2, 5, 3, 3)
+MugEntry(EliwoodMug, EliwoodMugData, 2, 5, 3, 3)
 
 ALIGN 4
 EphidelCloakedMugData:
@@ -6202,7 +6202,7 @@ EphidelCloakedMugData:
 #ifndef EphidelCloakedMug
   #define EphidelCloakedMug (FirstMugID+566)
 #endif
-setMugEntry(EphidelCloakedMug, EphidelCloakedMugData, 2, 5, 3, 3)
+MugEntry(EphidelCloakedMug, EphidelCloakedMugData, 2, 5, 3, 3)
 
 ALIGN 4
 EphidelMugData:
@@ -6213,7 +6213,7 @@ EphidelMugData:
 #ifndef EphidelMug
   #define EphidelMug (FirstMugID+567)
 #endif
-setMugEntry(EphidelMug, EphidelMugData, 2, 5, 3, 3)
+MugEntry(EphidelMug, EphidelMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ErkMugData:
@@ -6224,7 +6224,7 @@ ErkMugData:
 #ifndef ErkMug
   #define ErkMug (FirstMugID+568)
 #endif
-setMugEntry(ErkMug, ErkMugData, 2, 6, 3, 4)
+MugEntry(ErkMug, ErkMugData, 2, 6, 3, 4)
 
 ALIGN 4
 FargusMugData:
@@ -6235,7 +6235,7 @@ FargusMugData:
 #ifndef FargusMug
   #define FargusMug (FirstMugID+569)
 #endif
-setMugEntry(FargusMug, FargusMugData, 2, 5, 3, 3)
+MugEntry(FargusMug, FargusMugData, 2, 5, 3, 3)
 
 ALIGN 4
 FarinaMugData:
@@ -6246,7 +6246,7 @@ FarinaMugData:
 #ifndef FarinaMug
   #define FarinaMug (FirstMugID+570)
 #endif
-setMugEntry(FarinaMug, FarinaMugData, 2, 5, 3, 3)
+MugEntry(FarinaMug, FarinaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 FioraMugData:
@@ -6257,7 +6257,7 @@ FioraMugData:
 #ifndef FioraMug
   #define FioraMug (FirstMugID+571)
 #endif
-setMugEntry(FioraMug, FioraMugData, 2, 5, 3, 3)
+MugEntry(FioraMug, FioraMugData, 2, 5, 3, 3)
 
 ALIGN 4
 FlorinaMugData:
@@ -6268,7 +6268,7 @@ FlorinaMugData:
 #ifndef FlorinaMug
   #define FlorinaMug (FirstMugID+572)
 #endif
-setMugEntry(FlorinaMug, FlorinaMugData, 2, 7, 3, 5)
+MugEntry(FlorinaMug, FlorinaMugData, 2, 7, 3, 5)
 
 ALIGN 4
 GeitzMugData:
@@ -6279,7 +6279,7 @@ GeitzMugData:
 #ifndef GeitzMug
   #define GeitzMug (FirstMugID+573)
 #endif
-setMugEntry(GeitzMug, GeitzMugData, 2, 5, 3, 3)
+MugEntry(GeitzMug, GeitzMugData, 2, 5, 3, 3)
 
 ALIGN 4
 GuinevereFE7MugData:
@@ -6290,7 +6290,7 @@ GuinevereFE7MugData:
 #ifndef GuinevereFE7Mug
   #define GuinevereFE7Mug (FirstMugID+574)
 #endif
-setMugEntry(GuinevereFE7Mug, GuinevereFE7MugData, 2, 7, 3, 6)
+MugEntry(GuinevereFE7Mug, GuinevereFE7MugData, 2, 7, 3, 6)
 
 ALIGN 4
 GuyMugData:
@@ -6301,7 +6301,7 @@ GuyMugData:
 #ifndef GuyMug
   #define GuyMug (FirstMugID+575)
 #endif
-setMugEntry(GuyMug, GuyMugData, 2, 6, 3, 4)
+MugEntry(GuyMug, GuyMugData, 2, 6, 3, 4)
 
 ALIGN 4
 HannahMugData:
@@ -6312,7 +6312,7 @@ HannahMugData:
 #ifndef HannahMug
   #define HannahMug (FirstMugID+576)
 #endif
-setMugEntry(HannahMug, HannahMugData, 2, 6, 2, 4)
+MugEntry(HannahMug, HannahMugData, 2, 6, 2, 4)
 
 ALIGN 4
 HarkenMugData:
@@ -6323,7 +6323,7 @@ HarkenMugData:
 #ifndef HarkenMug
   #define HarkenMug (FirstMugID+577)
 #endif
-setMugEntry(HarkenMug, HarkenMugData, 2, 5, 3, 3)
+MugEntry(HarkenMug, HarkenMugData, 2, 5, 3, 3)
 
 ALIGN 4
 HawkeyeMugData:
@@ -6334,7 +6334,7 @@ HawkeyeMugData:
 #ifndef HawkeyeMug
   #define HawkeyeMug (FirstMugID+578)
 #endif
-setMugEntry(HawkeyeMug, HawkeyeMugData, 2, 4, 2, 2)
+MugEntry(HawkeyeMug, HawkeyeMugData, 2, 4, 2, 2)
 
 ALIGN 4
 HeathMugData:
@@ -6345,7 +6345,7 @@ HeathMugData:
 #ifndef HeathMug
   #define HeathMug (FirstMugID+579)
 #endif
-setMugEntry(HeathMug, HeathMugData, 3, 5, 3, 3)
+MugEntry(HeathMug, HeathMugData, 3, 5, 3, 3)
 
 ALIGN 4
 HectorMugData:
@@ -6356,7 +6356,7 @@ HectorMugData:
 #ifndef HectorMug
   #define HectorMug (FirstMugID+580)
 #endif
-setMugEntry(HectorMug, HectorMugData, 2, 4, 3, 2)
+MugEntry(HectorMug, HectorMugData, 2, 4, 3, 2)
 
 ALIGN 4
 HelleneMugData:
@@ -6367,7 +6367,7 @@ HelleneMugData:
 #ifndef HelleneMug
   #define HelleneMug (FirstMugID+581)
 #endif
-setMugEntry(HelleneMug, HelleneMugData, 2, 5, 3, 3)
+MugEntry(HelleneMug, HelleneMugData, 2, 5, 3, 3)
 
 ALIGN 4
 IsadoraMugData:
@@ -6378,7 +6378,7 @@ IsadoraMugData:
 #ifndef IsadoraMug
   #define IsadoraMug (FirstMugID+582)
 #endif
-setMugEntry(IsadoraMug, IsadoraMugData, 2, 6, 3, 4)
+MugEntry(IsadoraMug, IsadoraMugData, 2, 6, 3, 4)
 
 ALIGN 4
 JaffarMugData:
@@ -6389,7 +6389,7 @@ JaffarMugData:
 #ifndef JaffarMug
   #define JaffarMug (FirstMugID+583)
 #endif
-setMugEntry(JaffarMug, JaffarMugData, 2, 5, 2, 3)
+MugEntry(JaffarMug, JaffarMugData, 2, 5, 2, 3)
 
 ALIGN 4
 JanMugData:
@@ -6400,7 +6400,7 @@ JanMugData:
 #ifndef JanMug
   #define JanMug (FirstMugID+584)
 #endif
-setMugEntry(JanMug, JanMugData, 2, 6, 3, 4)
+MugEntry(JanMug, JanMugData, 2, 6, 3, 4)
 
 ALIGN 4
 Karel2MugData:
@@ -6411,7 +6411,7 @@ Karel2MugData:
 #ifndef Karel2Mug
   #define Karel2Mug (FirstMugID+585)
 #endif
-setMugEntry(Karel2Mug, Karel2MugData, 2, 5, 3, 3)
+MugEntry(Karel2Mug, Karel2MugData, 2, 5, 3, 3)
 
 ALIGN 4
 KarlaMugData:
@@ -6422,7 +6422,7 @@ KarlaMugData:
 #ifndef KarlaMug
   #define KarlaMug (FirstMugID+586)
 #endif
-setMugEntry(KarlaMug, KarlaMugData, 2, 5, 3, 3)
+MugEntry(KarlaMug, KarlaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 KentMugData:
@@ -6433,7 +6433,7 @@ KentMugData:
 #ifndef KentMug
   #define KentMug (FirstMugID+587)
 #endif
-setMugEntry(KentMug, KentMugData, 2, 5, 3, 3)
+MugEntry(KentMug, KentMugData, 2, 5, 3, 3)
 
 ALIGN 4
 LegaultMugData:
@@ -6444,7 +6444,7 @@ LegaultMugData:
 #ifndef LegaultMug
   #define LegaultMug (FirstMugID+588)
 #endif
-setMugEntry(LegaultMug, LegaultMugData, 2, 4, 3, 2)
+MugEntry(LegaultMug, LegaultMugData, 2, 4, 3, 2)
 
 ALIGN 4
 LeilaMugData:
@@ -6455,7 +6455,7 @@ LeilaMugData:
 #ifndef LeilaMug
   #define LeilaMug (FirstMugID+589)
 #endif
-setMugEntry(LeilaMug, LeilaMugData, 2, 6, 3, 4)
+MugEntry(LeilaMug, LeilaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 LouiseMugData:
@@ -6466,7 +6466,7 @@ LouiseMugData:
 #ifndef LouiseMug
   #define LouiseMug (FirstMugID+590)
 #endif
-setMugEntry(LouiseMug, LouiseMugData, 2, 6, 3, 4)
+MugEntry(LouiseMug, LouiseMugData, 2, 6, 3, 4)
 
 ALIGN 4
 LowenMugData:
@@ -6477,7 +6477,7 @@ LowenMugData:
 #ifndef LowenMug
   #define LowenMug (FirstMugID+591)
 #endif
-setMugEntry(LowenMug, LowenMugData, 2, 5, 3, 3)
+MugEntry(LowenMug, LowenMugData, 2, 5, 3, 3)
 
 ALIGN 4
 LuciusMugData:
@@ -6488,7 +6488,7 @@ LuciusMugData:
 #ifndef LuciusMug
   #define LuciusMug (FirstMugID+592)
 #endif
-setMugEntry(LuciusMug, LuciusMugData, 2, 5, 3, 3)
+MugEntry(LuciusMug, LuciusMugData, 2, 5, 3, 3)
 
 ALIGN 4
 LynMugData:
@@ -6499,7 +6499,7 @@ LynMugData:
 #ifndef LynMug
   #define LynMug (FirstMugID+593)
 #endif
-setMugEntry(LynMug, LynMugData, 2, 6, 3, 4)
+MugEntry(LynMug, LynMugData, 2, 6, 3, 4)
 
 ALIGN 4
 Marcus2MugData:
@@ -6510,7 +6510,7 @@ Marcus2MugData:
 #ifndef Marcus2Mug
   #define Marcus2Mug (FirstMugID+594)
 #endif
-setMugEntry(Marcus2Mug, Marcus2MugData, 2, 5, 3, 3)
+MugEntry(Marcus2Mug, Marcus2MugData, 2, 5, 3, 3)
 
 ALIGN 4
 MatthewMugData:
@@ -6521,7 +6521,7 @@ MatthewMugData:
 #ifndef MatthewMug
   #define MatthewMug (FirstMugID+595)
 #endif
-setMugEntry(MatthewMug, MatthewMugData, 2, 5, 3, 3)
+MugEntry(MatthewMug, MatthewMugData, 2, 5, 3, 3)
 
 ALIGN 4
 Merlinus2MugData:
@@ -6532,7 +6532,7 @@ Merlinus2MugData:
 #ifndef Merlinus2Mug
   #define Merlinus2Mug (FirstMugID+596)
 #endif
-setMugEntry(Merlinus2Mug, Merlinus2MugData, 2, 5, 2, 3)
+MugEntry(Merlinus2Mug, Merlinus2MugData, 2, 5, 2, 3)
 
 ALIGN 4
 NatalieMugData:
@@ -6543,7 +6543,7 @@ NatalieMugData:
 #ifndef NatalieMug
   #define NatalieMug (FirstMugID+597)
 #endif
-setMugEntry(NatalieMug, NatalieMugData, 2, 6, 3, 4)
+MugEntry(NatalieMug, NatalieMugData, 2, 6, 3, 4)
 
 ALIGN 4
 NergalMugData:
@@ -6554,7 +6554,7 @@ NergalMugData:
 #ifndef NergalMug
   #define NergalMug (FirstMugID+598)
 #endif
-setMugEntry(NergalMug, NergalMugData, 3, 4, 3, 2)
+MugEntry(NergalMug, NergalMugData, 3, 4, 3, 2)
 
 ALIGN 4
 NilsMugData:
@@ -6565,7 +6565,7 @@ NilsMugData:
 #ifndef NilsMug
   #define NilsMug (FirstMugID+599)
 #endif
-setMugEntry(NilsMug, NilsMugData, 2, 7, 3, 5)
+MugEntry(NilsMug, NilsMugData, 2, 7, 3, 5)
 
 ALIGN 4
 NinianMugData:
@@ -6576,7 +6576,7 @@ NinianMugData:
 #ifndef NinianMug
   #define NinianMug (FirstMugID+600)
 #endif
-setMugEntry(NinianMug, NinianMugData, 3, 6, 4, 4)
+MugEntry(NinianMug, NinianMugData, 3, 6, 4, 4)
 
 ALIGN 4
 NinoMugData:
@@ -6587,7 +6587,7 @@ NinoMugData:
 #ifndef NinoMug
   #define NinoMug (FirstMugID+601)
 #endif
-setMugEntry(NinoMug, NinoMugData, 2, 6, 3, 4)
+MugEntry(NinoMug, NinoMugData, 2, 6, 3, 4)
 
 ALIGN 4
 OswinMugData:
@@ -6598,7 +6598,7 @@ OswinMugData:
 #ifndef OswinMug
   #define OswinMug (FirstMugID+602)
 #endif
-setMugEntry(OswinMug, OswinMugData, 2, 4, 3, 2)
+MugEntry(OswinMug, OswinMugData, 2, 4, 3, 2)
 
 ALIGN 4
 PentMugData:
@@ -6609,7 +6609,7 @@ PentMugData:
 #ifndef PentMug
   #define PentMug (FirstMugID+603)
 #endif
-setMugEntry(PentMug, PentMugData, 3, 5, 4, 3)
+MugEntry(PentMug, PentMugData, 3, 5, 4, 3)
 
 ALIGN 4
 PriscillaMugData:
@@ -6620,7 +6620,7 @@ PriscillaMugData:
 #ifndef PriscillaMug
   #define PriscillaMug (FirstMugID+604)
 #endif
-setMugEntry(PriscillaMug, PriscillaMugData, 2, 6, 3, 4)
+MugEntry(PriscillaMug, PriscillaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 RathMugData:
@@ -6631,7 +6631,7 @@ RathMugData:
 #ifndef RathMug
   #define RathMug (FirstMugID+605)
 #endif
-setMugEntry(RathMug, RathMugData, 2, 5, 3, 3)
+MugEntry(RathMug, RathMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RavenMugData:
@@ -6642,7 +6642,7 @@ RavenMugData:
 #ifndef RavenMug
   #define RavenMug (FirstMugID+606)
 #endif
-setMugEntry(RavenMug, RavenMugData, 2, 5, 3, 3)
+MugEntry(RavenMug, RavenMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RebeccaMugData:
@@ -6653,7 +6653,7 @@ RebeccaMugData:
 #ifndef RebeccaMug
   #define RebeccaMug (FirstMugID+607)
 #endif
-setMugEntry(RebeccaMug, RebeccaMugData, 2, 6, 3, 4)
+MugEntry(RebeccaMug, RebeccaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 RenaultMugData:
@@ -6664,7 +6664,7 @@ RenaultMugData:
 #ifndef RenaultMug
   #define RenaultMug (FirstMugID+608)
 #endif
-setMugEntry(RenaultMug, RenaultMugData, 2, 5, 3, 3)
+MugEntry(RenaultMug, RenaultMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RolandMugData:
@@ -6675,7 +6675,7 @@ RolandMugData:
 #ifndef RolandMug
   #define RolandMug (FirstMugID+609)
 #endif
-setMugEntry(RolandMug, RolandMugData, 2, 6, 3, 4)
+MugEntry(RolandMug, RolandMugData, 2, 6, 3, 4)
 
 ALIGN 4
 RoyFE7MugData:
@@ -6686,7 +6686,7 @@ RoyFE7MugData:
 #ifndef RoyFE7Mug
   #define RoyFE7Mug (FirstMugID+610)
 #endif
-setMugEntry(RoyFE7Mug, RoyFE7MugData, 2, 7, 3, 6)
+MugEntry(RoyFE7Mug, RoyFE7MugData, 2, 7, 3, 6)
 
 ALIGN 4
 SainMugData:
@@ -6697,7 +6697,7 @@ SainMugData:
 #ifndef SainMug
   #define SainMug (FirstMugID+611)
 #endif
-setMugEntry(SainMug, SainMugData, 2, 5, 3, 3)
+MugEntry(SainMug, SainMugData, 2, 5, 3, 3)
 
 ALIGN 4
 SerraMugData:
@@ -6708,7 +6708,7 @@ SerraMugData:
 #ifndef SerraMug
   #define SerraMug (FirstMugID+612)
 #endif
-setMugEntry(SerraMug, SerraMugData, 2, 6, 3, 4)
+MugEntry(SerraMug, SerraMugData, 2, 6, 3, 4)
 
 ALIGN 4
 UtherMugData:
@@ -6719,7 +6719,7 @@ UtherMugData:
 #ifndef UtherMug
   #define UtherMug (FirstMugID+613)
 #endif
-setMugEntry(UtherMug, UtherMugData, 3, 4, 4, 2)
+MugEntry(UtherMug, UtherMugData, 3, 4, 4, 2)
 
 ALIGN 4
 VaidaMugData:
@@ -6730,7 +6730,7 @@ VaidaMugData:
 #ifndef VaidaMug
   #define VaidaMug (FirstMugID+614)
 #endif
-setMugEntry(VaidaMug, VaidaMugData, 2, 5, 3, 3)
+MugEntry(VaidaMug, VaidaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 VillagerMugData:
@@ -6741,7 +6741,7 @@ VillagerMugData:
 #ifndef VillagerMug
   #define VillagerMug (FirstMugID+615)
 #endif
-setMugEntry(VillagerMug, VillagerMugData, 2, 6, 3, 4)
+MugEntry(VillagerMug, VillagerMugData, 2, 6, 3, 4)
 
 ALIGN 4
 WallaceMugData:
@@ -6752,7 +6752,7 @@ WallaceMugData:
 #ifndef WallaceMug
   #define WallaceMug (FirstMugID+616)
 #endif
-setMugEntry(WallaceMug, WallaceMugData, 2, 4, 2, 2)
+MugEntry(WallaceMug, WallaceMugData, 2, 4, 2, 2)
 
 ALIGN 4
 WilMugData:
@@ -6763,7 +6763,7 @@ WilMugData:
 #ifndef WilMug
   #define WilMug (FirstMugID+617)
 #endif
-setMugEntry(WilMug, WilMugData, 2, 5, 3, 3)
+MugEntry(WilMug, WilMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ZephielFE7MugData:
@@ -6774,7 +6774,7 @@ ZephielFE7MugData:
 #ifndef ZephielFE7Mug
   #define ZephielFE7Mug (FirstMugID+618)
 #endif
-setMugEntry(ZephielFE7Mug, ZephielFE7MugData, 2, 6, 3, 4)
+MugEntry(ZephielFE7Mug, ZephielFE7MugData, 2, 6, 3, 4)
 
 ALIGN 4
 AmeliaMugData:
@@ -6785,7 +6785,7 @@ AmeliaMugData:
 #ifndef AmeliaMug
   #define AmeliaMug (FirstMugID+619)
 #endif
-setMugEntry(AmeliaMug, AmeliaMugData, 2, 6, 3, 4)
+MugEntry(AmeliaMug, AmeliaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 ArturMugData:
@@ -6796,7 +6796,7 @@ ArturMugData:
 #ifndef ArturMug
   #define ArturMug (FirstMugID+620)
 #endif
-setMugEntry(ArturMug, ArturMugData, 2, 5, 3, 3)
+MugEntry(ArturMug, ArturMugData, 2, 5, 3, 3)
 
 ALIGN 4
 CaellachMugData:
@@ -6807,7 +6807,7 @@ CaellachMugData:
 #ifndef CaellachMug
   #define CaellachMug (FirstMugID+621)
 #endif
-setMugEntry(CaellachMug, CaellachMugData, 2, 5, 3, 3)
+MugEntry(CaellachMug, CaellachMugData, 2, 5, 3, 3)
 
 ALIGN 4
 ColmMugData:
@@ -6818,7 +6818,7 @@ ColmMugData:
 #ifndef ColmMug
   #define ColmMug (FirstMugID+622)
 #endif
-setMugEntry(ColmMug, ColmMugData, 3, 5, 3, 3)
+MugEntry(ColmMug, ColmMugData, 3, 5, 3, 3)
 
 ALIGN 4
 CormagMugData:
@@ -6829,7 +6829,7 @@ CormagMugData:
 #ifndef CormagMug
   #define CormagMug (FirstMugID+623)
 #endif
-setMugEntry(CormagMug, CormagMugData, 2, 5, 3, 3)
+MugEntry(CormagMug, CormagMugData, 2, 5, 3, 3)
 
 ALIGN 4
 DaraMugData:
@@ -6840,7 +6840,7 @@ DaraMugData:
 #ifndef DaraMug
   #define DaraMug (FirstMugID+624)
 #endif
-setMugEntry(DaraMug, DaraMugData, 2, 7, 3, 5)
+MugEntry(DaraMug, DaraMugData, 2, 7, 3, 5)
 
 ALIGN 4
 DozlaMugData:
@@ -6851,7 +6851,7 @@ DozlaMugData:
 #ifndef DozlaMug
   #define DozlaMug (FirstMugID+625)
 #endif
-setMugEntry(DozlaMug, DozlaMugData, 2, 6, 3, 4)
+MugEntry(DozlaMug, DozlaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 DuesselMugData:
@@ -6862,7 +6862,7 @@ DuesselMugData:
 #ifndef DuesselMug
   #define DuesselMug (FirstMugID+626)
 #endif
-setMugEntry(DuesselMug, DuesselMugData, 2, 5, 3, 3)
+MugEntry(DuesselMug, DuesselMugData, 2, 5, 3, 3)
 
 ALIGN 4
 EirikaMugData:
@@ -6873,7 +6873,7 @@ EirikaMugData:
 #ifndef EirikaMug
   #define EirikaMug (FirstMugID+627)
 #endif
-setMugEntry(EirikaMug, EirikaMugData, 2, 6, 3, 4)
+MugEntry(EirikaMug, EirikaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 EphraimMugData:
@@ -6884,7 +6884,7 @@ EphraimMugData:
 #ifndef EphraimMug
   #define EphraimMug (FirstMugID+628)
 #endif
-setMugEntry(EphraimMug, EphraimMugData, 2, 5, 3, 3)
+MugEntry(EphraimMug, EphraimMugData, 2, 5, 3, 3)
 
 ALIGN 4
 EwanMugData:
@@ -6895,7 +6895,7 @@ EwanMugData:
 #ifndef EwanMug
   #define EwanMug (FirstMugID+629)
 #endif
-setMugEntry(EwanMug, EwanMugData, 3, 7, 3, 5)
+MugEntry(EwanMug, EwanMugData, 3, 7, 3, 5)
 
 ALIGN 4
 FadoMugData:
@@ -6906,7 +6906,7 @@ FadoMugData:
 #ifndef FadoMug
   #define FadoMug (FirstMugID+630)
 #endif
-setMugEntry(FadoMug, FadoMugData, 2, 5, 3, 3)
+MugEntry(FadoMug, FadoMugData, 2, 5, 3, 3)
 
 ALIGN 4
 FordeMugData:
@@ -6917,7 +6917,7 @@ FordeMugData:
 #ifndef FordeMug
   #define FordeMug (FirstMugID+631)
 #endif
-setMugEntry(FordeMug, FordeMugData, 2, 5, 3, 3)
+MugEntry(FordeMug, FordeMugData, 2, 5, 3, 3)
 
 ALIGN 4
 FranzMugData:
@@ -6928,7 +6928,7 @@ FranzMugData:
 #ifndef FranzMug
   #define FranzMug (FirstMugID+632)
 #endif
-setMugEntry(FranzMug, FranzMugData, 2, 6, 3, 4)
+MugEntry(FranzMug, FranzMugData, 2, 6, 3, 4)
 
 ALIGN 4
 GarciaMugData:
@@ -6939,7 +6939,7 @@ GarciaMugData:
 #ifndef GarciaMug
   #define GarciaMug (FirstMugID+633)
 #endif
-setMugEntry(GarciaMug, GarciaMugData, 2, 5, 3, 3)
+MugEntry(GarciaMug, GarciaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 GerikMugData:
@@ -6950,7 +6950,7 @@ GerikMugData:
 #ifndef GerikMug
   #define GerikMug (FirstMugID+634)
 #endif
-setMugEntry(GerikMug, GerikMugData, 2, 4, 3, 2)
+MugEntry(GerikMug, GerikMugData, 2, 4, 3, 2)
 
 ALIGN 4
 GilliamMugData:
@@ -6961,7 +6961,7 @@ GilliamMugData:
 #ifndef GilliamMug
   #define GilliamMug (FirstMugID+635)
 #endif
-setMugEntry(GilliamMug, GilliamMugData, 2, 5, 3, 3)
+MugEntry(GilliamMug, GilliamMugData, 2, 5, 3, 3)
 
 ALIGN 4
 GlenMugData:
@@ -6972,7 +6972,7 @@ GlenMugData:
 #ifndef GlenMug
   #define GlenMug (FirstMugID+636)
 #endif
-setMugEntry(GlenMug, GlenMugData, 2, 5, 3, 3)
+MugEntry(GlenMug, GlenMugData, 2, 5, 3, 3)
 
 ALIGN 4
 HaydenMugData:
@@ -6983,7 +6983,7 @@ HaydenMugData:
 #ifndef HaydenMug
   #define HaydenMug (FirstMugID+637)
 #endif
-setMugEntry(HaydenMug, HaydenMugData, 2, 5, 3, 3)
+MugEntry(HaydenMug, HaydenMugData, 2, 5, 3, 3)
 
 ALIGN 4
 InnesMugData:
@@ -6994,7 +6994,7 @@ InnesMugData:
 #ifndef InnesMug
   #define InnesMug (FirstMugID+638)
 #endif
-setMugEntry(InnesMug, InnesMugData, 2, 5, 3, 3)
+MugEntry(InnesMug, InnesMugData, 2, 5, 3, 3)
 
 ALIGN 4
 IsmaireMugData:
@@ -7005,7 +7005,7 @@ IsmaireMugData:
 #ifndef IsmaireMug
   #define IsmaireMug (FirstMugID+639)
 #endif
-setMugEntry(IsmaireMug, IsmaireMugData, 2, 6, 3, 4)
+MugEntry(IsmaireMug, IsmaireMugData, 2, 6, 3, 4)
 
 ALIGN 4
 JoshuaMugData:
@@ -7016,7 +7016,7 @@ JoshuaMugData:
 #ifndef JoshuaMug
   #define JoshuaMug (FirstMugID+640)
 #endif
-setMugEntry(JoshuaMug, JoshuaMugData, 2, 5, 3, 3)
+MugEntry(JoshuaMug, JoshuaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 KnollMugData:
@@ -7027,7 +7027,7 @@ KnollMugData:
 #ifndef KnollMug
   #define KnollMug (FirstMugID+641)
 #endif
-setMugEntry(KnollMug, KnollMugData, 2, 5, 3, 3)
+MugEntry(KnollMug, KnollMugData, 2, 5, 3, 3)
 
 ALIGN 4
 KyleMugData:
@@ -7038,7 +7038,7 @@ KyleMugData:
 #ifndef KyleMug
   #define KyleMug (FirstMugID+642)
 #endif
-setMugEntry(KyleMug, KyleMugData, 2, 5, 3, 3)
+MugEntry(KyleMug, KyleMugData, 2, 5, 3, 3)
 
 ALIGN 4
 LarachelMugData:
@@ -7049,7 +7049,7 @@ LarachelMugData:
 #ifndef LarachelMug
   #define LarachelMug (FirstMugID+643)
 #endif
-setMugEntry(LarachelMug, LarachelMugData, 2, 6, 3, 4)
+MugEntry(LarachelMug, LarachelMugData, 2, 6, 3, 4)
 
 ALIGN 4
 LuteMugData:
@@ -7060,7 +7060,7 @@ LuteMugData:
 #ifndef LuteMug
   #define LuteMug (FirstMugID+644)
 #endif
-setMugEntry(LuteMug, LuteMugData, 2, 6, 3, 4)
+MugEntry(LuteMug, LuteMugData, 2, 6, 3, 4)
 
 ALIGN 4
 LyonMugData:
@@ -7071,7 +7071,7 @@ LyonMugData:
 #ifndef LyonMug
   #define LyonMug (FirstMugID+645)
 #endif
-setMugEntry(LyonMug, LyonMugData, 2, 5, 3, 3)
+MugEntry(LyonMug, LyonMugData, 2, 5, 3, 3)
 
 ALIGN 4
 MarisaMugData:
@@ -7082,7 +7082,7 @@ MarisaMugData:
 #ifndef MarisaMug
   #define MarisaMug (FirstMugID+646)
 #endif
-setMugEntry(MarisaMug, MarisaMugData, 2, 6, 3, 4)
+MugEntry(MarisaMug, MarisaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 MoulderMugData:
@@ -7093,7 +7093,7 @@ MoulderMugData:
 #ifndef MoulderMug
   #define MoulderMug (FirstMugID+647)
 #endif
-setMugEntry(MoulderMug, MoulderMugData, 2, 5, 3, 3)
+MugEntry(MoulderMug, MoulderMugData, 2, 5, 3, 3)
 
 ALIGN 4
 MyrrhMugData:
@@ -7104,7 +7104,7 @@ MyrrhMugData:
 #ifndef MyrrhMug
   #define MyrrhMug (FirstMugID+648)
 #endif
-setMugEntry(MyrrhMug, MyrrhMugData, 2, 7, 3, 5)
+MugEntry(MyrrhMug, MyrrhMugData, 2, 7, 3, 5)
 
 ALIGN 4
 NatashaMugData:
@@ -7115,7 +7115,7 @@ NatashaMugData:
 #ifndef NatashaMug
   #define NatashaMug (FirstMugID+649)
 #endif
-setMugEntry(NatashaMug, NatashaMugData, 2, 6, 3, 4)
+MugEntry(NatashaMug, NatashaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 NeimiMugData:
@@ -7126,7 +7126,7 @@ NeimiMugData:
 #ifndef NeimiMug
   #define NeimiMug (FirstMugID+650)
 #endif
-setMugEntry(NeimiMug, NeimiMugData, 2, 6, 3, 4)
+MugEntry(NeimiMug, NeimiMugData, 2, 6, 3, 4)
 
 ALIGN 4
 OrsonMugData:
@@ -7137,7 +7137,7 @@ OrsonMugData:
 #ifndef OrsonMug
   #define OrsonMug (FirstMugID+651)
 #endif
-setMugEntry(OrsonMug, OrsonMugData, 2, 5, 3, 3)
+MugEntry(OrsonMug, OrsonMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RennacMugData:
@@ -7148,7 +7148,7 @@ RennacMugData:
 #ifndef RennacMug
   #define RennacMug (FirstMugID+652)
 #endif
-setMugEntry(RennacMug, RennacMugData, 2, 5, 3, 3)
+MugEntry(RennacMug, RennacMugData, 2, 5, 3, 3)
 
 ALIGN 4
 RievMugData:
@@ -7159,7 +7159,7 @@ RievMugData:
 #ifndef RievMug
   #define RievMug (FirstMugID+653)
 #endif
-setMugEntry(RievMug, RievMugData, 2, 7, 2, 5)
+MugEntry(RievMug, RievMugData, 2, 7, 2, 5)
 
 ALIGN 4
 RossMugData:
@@ -7170,7 +7170,7 @@ RossMugData:
 #ifndef RossMug
   #define RossMug (FirstMugID+654)
 #endif
-setMugEntry(RossMug, RossMugData, 3, 6, 3, 4)
+MugEntry(RossMug, RossMugData, 3, 6, 3, 4)
 
 ALIGN 4
 SalehMugData:
@@ -7181,7 +7181,7 @@ SalehMugData:
 #ifndef SalehMug
   #define SalehMug (FirstMugID+655)
 #endif
-setMugEntry(SalehMug, SalehMugData, 2, 5, 3, 3)
+MugEntry(SalehMug, SalehMugData, 2, 5, 3, 3)
 
 ALIGN 4
 SelenaMugData:
@@ -7192,7 +7192,7 @@ SelenaMugData:
 #ifndef SelenaMug
   #define SelenaMug (FirstMugID+656)
 #endif
-setMugEntry(SelenaMug, SelenaMugData, 2, 5, 3, 3)
+MugEntry(SelenaMug, SelenaMugData, 2, 5, 3, 3)
 
 ALIGN 4
 SethMugData:
@@ -7203,7 +7203,7 @@ SethMugData:
 #ifndef SethMug
   #define SethMug (FirstMugID+657)
 #endif
-setMugEntry(SethMug, SethMugData, 2, 5, 3, 3)
+MugEntry(SethMug, SethMugData, 2, 5, 3, 3)
 
 ALIGN 4
 SyreneMugData:
@@ -7214,7 +7214,7 @@ SyreneMugData:
 #ifndef SyreneMug
   #define SyreneMug (FirstMugID+658)
 #endif
-setMugEntry(SyreneMug, SyreneMugData, 2, 5, 3, 3)
+MugEntry(SyreneMug, SyreneMugData, 2, 5, 3, 3)
 
 ALIGN 4
 TanaMugData:
@@ -7225,7 +7225,7 @@ TanaMugData:
 #ifndef TanaMug
   #define TanaMug (FirstMugID+659)
 #endif
-setMugEntry(TanaMug, TanaMugData, 2, 6, 3, 4)
+MugEntry(TanaMug, TanaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 TethysMugData:
@@ -7236,7 +7236,7 @@ TethysMugData:
 #ifndef TethysMug
   #define TethysMug (FirstMugID+660)
 #endif
-setMugEntry(TethysMug, TethysMugData, 2, 6, 3, 4)
+MugEntry(TethysMug, TethysMugData, 2, 6, 3, 4)
 
 ALIGN 4
 ValterMugData:
@@ -7247,7 +7247,7 @@ ValterMugData:
 #ifndef ValterMug
   #define ValterMug (FirstMugID+661)
 #endif
-setMugEntry(ValterMug, ValterMugData, 2, 4, 3, 2)
+MugEntry(ValterMug, ValterMugData, 2, 4, 3, 2)
 
 ALIGN 4
 VanessaMugData:
@@ -7258,7 +7258,7 @@ VanessaMugData:
 #ifndef VanessaMug
   #define VanessaMug (FirstMugID+662)
 #endif
-setMugEntry(VanessaMug, VanessaMugData, 2, 6, 3, 4)
+MugEntry(VanessaMug, VanessaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 AranMugData:
@@ -7269,7 +7269,7 @@ AranMugData:
 #ifndef AranMug
   #define AranMug (FirstMugID+663)
 #endif
-setMugEntry(AranMug, AranMugData, 3, 6, 3, 3)
+MugEntry(AranMug, AranMugData, 3, 6, 3, 3)
 
 ALIGN 4
 AstridMugData:
@@ -7280,7 +7280,7 @@ AstridMugData:
 #ifndef AstridMug
   #define AstridMug (FirstMugID+664)
 #endif
-setMugEntry(AstridMug, AstridMugData, 3, 5, 3, 3)
+MugEntry(AstridMug, AstridMugData, 3, 5, 3, 3)
 
 ALIGN 4
 BastianMugData:
@@ -7291,7 +7291,7 @@ BastianMugData:
 #ifndef BastianMug
   #define BastianMug (FirstMugID+665)
 #endif
-setMugEntry(BastianMug, BastianMugData, 3, 4, 3, 2)
+MugEntry(BastianMug, BastianMugData, 3, 4, 3, 2)
 
 ALIGN 4
 BoydMugData:
@@ -7302,7 +7302,7 @@ BoydMugData:
 #ifndef BoydMug
   #define BoydMug (FirstMugID+666)
 #endif
-setMugEntry(BoydMug, BoydMugData, 3, 5, 3, 3)
+MugEntry(BoydMug, BoydMugData, 3, 5, 3, 3)
 
 ALIGN 4
 BromMugData:
@@ -7313,7 +7313,7 @@ BromMugData:
 #ifndef BromMug
   #define BromMug (FirstMugID+667)
 #endif
-setMugEntry(BromMug, BromMugData, 3, 4, 2, 2)
+MugEntry(BromMug, BromMugData, 3, 4, 2, 2)
 
 ALIGN 4
 CaineghisMugData:
@@ -7324,7 +7324,7 @@ CaineghisMugData:
 #ifndef CaineghisMug
   #define CaineghisMug (FirstMugID+668)
 #endif
-setMugEntry(CaineghisMug, CaineghisMugData, 4, 5, 4, 3)
+MugEntry(CaineghisMug, CaineghisMugData, 4, 5, 4, 3)
 
 ALIGN 4
 CalillMugData:
@@ -7335,7 +7335,7 @@ CalillMugData:
 #ifndef CalillMug
   #define CalillMug (FirstMugID+669)
 #endif
-setMugEntry(CalillMug, CalillMugData, 3, 5, 3, 3)
+MugEntry(CalillMug, CalillMugData, 3, 5, 3, 3)
 
 ALIGN 4
 DevdanMugData:
@@ -7346,7 +7346,7 @@ DevdanMugData:
 #ifndef DevdanMug
   #define DevdanMug (FirstMugID+670)
 #endif
-setMugEntry(DevdanMug, DevdanMugData, 3, 4, 3, 2)
+MugEntry(DevdanMug, DevdanMugData, 3, 4, 3, 2)
 
 ALIGN 4
 EdwardMugData:
@@ -7357,7 +7357,7 @@ EdwardMugData:
 #ifndef EdwardMug
   #define EdwardMug (FirstMugID+671)
 #endif
-setMugEntry(EdwardMug, EdwardMugData, 4, 6, 4, 4)
+MugEntry(EdwardMug, EdwardMugData, 4, 6, 4, 4)
 
 ALIGN 4
 ElinciaMugData:
@@ -7368,7 +7368,7 @@ ElinciaMugData:
 #ifndef ElinciaMug
   #define ElinciaMug (FirstMugID+672)
 #endif
-setMugEntry(ElinciaMug, ElinciaMugData, 4, 5, 4, 3)
+MugEntry(ElinciaMug, ElinciaMugData, 4, 5, 4, 3)
 
 ALIGN 4
 EnaMugData:
@@ -7379,7 +7379,7 @@ EnaMugData:
 #ifndef EnaMug
   #define EnaMug (FirstMugID+673)
 #endif
-setMugEntry(EnaMug, EnaMugData, 4, 5, 3, 3)
+MugEntry(EnaMug, EnaMugData, 4, 5, 3, 3)
 
 ALIGN 4
 FionaMugData:
@@ -7390,7 +7390,7 @@ FionaMugData:
 #ifndef FionaMug
   #define FionaMug (FirstMugID+674)
 #endif
-setMugEntry(FionaMug, FionaMugData, 3, 5, 3, 3)
+MugEntry(FionaMug, FionaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 GarethMugData:
@@ -7401,7 +7401,7 @@ GarethMugData:
 #ifndef GarethMug
   #define GarethMug (FirstMugID+675)
 #endif
-setMugEntry(GarethMug, GarethMugData, 5, 5, 5, 3)
+MugEntry(GarethMug, GarethMugData, 5, 5, 5, 3)
 
 ALIGN 4
 GatrieMugData:
@@ -7412,7 +7412,7 @@ GatrieMugData:
 #ifndef GatrieMug
   #define GatrieMug (FirstMugID+676)
 #endif
-setMugEntry(GatrieMug, GatrieMugData, 3, 5, 3, 3)
+MugEntry(GatrieMug, GatrieMugData, 3, 5, 3, 3)
 
 ALIGN 4
 GeoffreyMugData:
@@ -7423,7 +7423,7 @@ GeoffreyMugData:
 #ifndef GeoffreyMug
   #define GeoffreyMug (FirstMugID+677)
 #endif
-setMugEntry(GeoffreyMug, GeoffreyMugData, 3, 5, 3, 3)
+MugEntry(GeoffreyMug, GeoffreyMugData, 3, 5, 3, 3)
 
 ALIGN 4
 GiffcaMugData:
@@ -7434,7 +7434,7 @@ GiffcaMugData:
 #ifndef GiffcaMug
   #define GiffcaMug (FirstMugID+678)
 #endif
-setMugEntry(GiffcaMug, GiffcaMugData, 3, 4, 3, 2)
+MugEntry(GiffcaMug, GiffcaMugData, 3, 4, 3, 2)
 
 ALIGN 4
 HaarMugData:
@@ -7445,7 +7445,7 @@ HaarMugData:
 #ifndef HaarMug
   #define HaarMug (FirstMugID+679)
 #endif
-setMugEntry(HaarMug, HaarMugData, 3, 5, 3, 3)
+MugEntry(HaarMug, HaarMugData, 3, 5, 3, 3)
 
 ALIGN 4
 HeatherMugData:
@@ -7456,7 +7456,7 @@ HeatherMugData:
 #ifndef HeatherMug
   #define HeatherMug (FirstMugID+680)
 #endif
-setMugEntry(HeatherMug, HeatherMugData, 2, 6, 3, 4)
+MugEntry(HeatherMug, HeatherMugData, 2, 6, 3, 4)
 
 ALIGN 4
 IkeMugData:
@@ -7467,7 +7467,7 @@ IkeMugData:
 #ifndef IkeMug
   #define IkeMug (FirstMugID+681)
 #endif
-setMugEntry(IkeMug, IkeMugData, 3, 5, 3, 3)
+MugEntry(IkeMug, IkeMugData, 3, 5, 3, 3)
 
 ALIGN 4
 IlyanaMugData:
@@ -7478,7 +7478,7 @@ IlyanaMugData:
 #ifndef IlyanaMug
   #define IlyanaMug (FirstMugID+682)
 #endif
-setMugEntry(IlyanaMug, IlyanaMugData, 3, 5, 3, 3)
+MugEntry(IlyanaMug, IlyanaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 IzukaMugData:
@@ -7489,7 +7489,7 @@ IzukaMugData:
 #ifndef IzukaMug
   #define IzukaMug (FirstMugID+683)
 #endif
-setMugEntry(IzukaMug, IzukaMugData, 2, 7, 2, 5)
+MugEntry(IzukaMug, IzukaMugData, 2, 7, 2, 5)
 
 ALIGN 4
 JanaffMugData:
@@ -7500,7 +7500,7 @@ JanaffMugData:
 #ifndef JanaffMug
   #define JanaffMug (FirstMugID+684)
 #endif
-setMugEntry(JanaffMug, JanaffMugData, 3, 5, 3, 3)
+MugEntry(JanaffMug, JanaffMugData, 3, 5, 3, 3)
 
 ALIGN 4
 JillMugData:
@@ -7511,7 +7511,7 @@ JillMugData:
 #ifndef JillMug
   #define JillMug (FirstMugID+685)
 #endif
-setMugEntry(JillMug, JillMugData, 3, 6, 2, 4)
+MugEntry(JillMug, JillMugData, 3, 6, 2, 4)
 
 ALIGN 4
 KieranMugData:
@@ -7522,7 +7522,7 @@ KieranMugData:
 #ifndef KieranMug
   #define KieranMug (FirstMugID+686)
 #endif
-setMugEntry(KieranMug, KieranMugData, 4, 5, 3, 3)
+MugEntry(KieranMug, KieranMugData, 4, 5, 3, 3)
 
 ALIGN 4
 KurthnagaMugData:
@@ -7533,7 +7533,7 @@ KurthnagaMugData:
 #ifndef KurthnagaMug
   #define KurthnagaMug (FirstMugID+687)
 #endif
-setMugEntry(KurthnagaMug, KurthnagaMugData, 4, 6, 3, 4)
+MugEntry(KurthnagaMug, KurthnagaMugData, 4, 6, 3, 4)
 
 ALIGN 4
 KyzaMugData:
@@ -7544,7 +7544,7 @@ KyzaMugData:
 #ifndef KyzaMug
   #define KyzaMug (FirstMugID+688)
 #endif
-setMugEntry(KyzaMug, KyzaMugData, 4, 5, 4, 3)
+MugEntry(KyzaMug, KyzaMugData, 4, 5, 4, 3)
 
 ALIGN 4
 LargoMugData:
@@ -7555,7 +7555,7 @@ LargoMugData:
 #ifndef LargoMug
   #define LargoMug (FirstMugID+689)
 #endif
-setMugEntry(LargoMug, LargoMugData, 3, 4, 3, 2)
+MugEntry(LargoMug, LargoMugData, 3, 4, 3, 2)
 
 ALIGN 4
 LauraMugData:
@@ -7566,7 +7566,7 @@ LauraMugData:
 #ifndef LauraMug
   #define LauraMug (FirstMugID+690)
 #endif
-setMugEntry(LauraMug, LauraMugData, 4, 6, 3, 4)
+MugEntry(LauraMug, LauraMugData, 4, 6, 3, 4)
 
 ALIGN 4
 LeanneMugData:
@@ -7577,7 +7577,7 @@ LeanneMugData:
 #ifndef LeanneMug
   #define LeanneMug (FirstMugID+691)
 #endif
-setMugEntry(LeanneMug, LeanneMugData, 3, 6, 3, 4)
+MugEntry(LeanneMug, LeanneMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LeonardoMugData:
@@ -7588,7 +7588,7 @@ LeonardoMugData:
 #ifndef LeonardoMug
   #define LeonardoMug (FirstMugID+692)
 #endif
-setMugEntry(LeonardoMug, LeonardoMugData, 3, 5, 3, 3)
+MugEntry(LeonardoMug, LeonardoMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LetheMugData:
@@ -7599,7 +7599,7 @@ LetheMugData:
 #ifndef LetheMug
   #define LetheMug (FirstMugID+693)
 #endif
-setMugEntry(LetheMug, LetheMugData, 3, 5, 3, 3)
+MugEntry(LetheMug, LetheMugData, 3, 5, 3, 3)
 
 ALIGN 4
 LuciaMugData:
@@ -7610,7 +7610,7 @@ LuciaMugData:
 #ifndef LuciaMug
   #define LuciaMug (FirstMugID+694)
 #endif
-setMugEntry(LuciaMug, LuciaMugData, 3, 6, 3, 4)
+MugEntry(LuciaMug, LuciaMugData, 3, 6, 3, 4)
 
 ALIGN 4
 LyreMugData:
@@ -7621,7 +7621,7 @@ LyreMugData:
 #ifndef LyreMug
   #define LyreMug (FirstMugID+695)
 #endif
-setMugEntry(LyreMug, LyreMugData, 3, 6, 3, 4)
+MugEntry(LyreMug, LyreMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MakalovMugData:
@@ -7632,7 +7632,7 @@ MakalovMugData:
 #ifndef MakalovMug
   #define MakalovMug (FirstMugID+696)
 #endif
-setMugEntry(MakalovMug, MakalovMugData, 3, 5, 3, 3)
+MugEntry(MakalovMug, MakalovMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MarciaMugData:
@@ -7643,7 +7643,7 @@ MarciaMugData:
 #ifndef MarciaMug
   #define MarciaMug (FirstMugID+697)
 #endif
-setMugEntry(MarciaMug, MarciaMugData, 3, 5, 3, 3)
+MugEntry(MarciaMug, MarciaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MegMugData:
@@ -7654,7 +7654,7 @@ MegMugData:
 #ifndef MegMug
   #define MegMug (FirstMugID+698)
 #endif
-setMugEntry(MegMug, MegMugData, 3, 6, 3, 4)
+MugEntry(MegMug, MegMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MiaMugData:
@@ -7665,7 +7665,7 @@ MiaMugData:
 #ifndef MiaMug
   #define MiaMug (FirstMugID+699)
 #endif
-setMugEntry(MiaMug, MiaMugData, 3, 5, 3, 3)
+MugEntry(MiaMug, MiaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 MicaiahMugData:
@@ -7676,7 +7676,7 @@ MicaiahMugData:
 #ifndef MicaiahMug
   #define MicaiahMug (FirstMugID+700)
 #endif
-setMugEntry(MicaiahMug, MicaiahMugData, 3, 6, 3, 4)
+MugEntry(MicaiahMug, MicaiahMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MistMugData:
@@ -7687,7 +7687,7 @@ MistMugData:
 #ifndef MistMug
   #define MistMug (FirstMugID+701)
 #endif
-setMugEntry(MistMug, MistMugData, 3, 6, 3, 4)
+MugEntry(MistMug, MistMugData, 3, 6, 3, 4)
 
 ALIGN 4
 MordecaiMugData:
@@ -7698,7 +7698,7 @@ MordecaiMugData:
 #ifndef MordecaiMug
   #define MordecaiMug (FirstMugID+702)
 #endif
-setMugEntry(MordecaiMug, MordecaiMugData, 3, 5, 3, 2)
+MugEntry(MordecaiMug, MordecaiMugData, 3, 5, 3, 2)
 
 ALIGN 4
 MuarimMugData:
@@ -7709,7 +7709,7 @@ MuarimMugData:
 #ifndef MuarimMug
   #define MuarimMug (FirstMugID+703)
 #endif
-setMugEntry(MuarimMug, MuarimMugData, 2, 5, 2, 2)
+MugEntry(MuarimMug, MuarimMugData, 2, 5, 2, 2)
 
 ALIGN 4
 NaesalaMugData:
@@ -7720,7 +7720,7 @@ NaesalaMugData:
 #ifndef NaesalaMug
   #define NaesalaMug (FirstMugID+704)
 #endif
-setMugEntry(NaesalaMug, NaesalaMugData, 2, 4, 2, 2)
+MugEntry(NaesalaMug, NaesalaMugData, 2, 4, 2, 2)
 
 ALIGN 4
 NailahMugData:
@@ -7731,7 +7731,7 @@ NailahMugData:
 #ifndef NailahMug
   #define NailahMug (FirstMugID+705)
 #endif
-setMugEntry(NailahMug, NailahMugData, 4, 5, 4, 3)
+MugEntry(NailahMug, NailahMugData, 4, 5, 4, 3)
 
 ALIGN 4
 NasirMugData:
@@ -7742,7 +7742,7 @@ NasirMugData:
 #ifndef NasirMug
   #define NasirMug (FirstMugID+706)
 #endif
-setMugEntry(NasirMug, NasirMugData, 4, 4, 3, 2)
+MugEntry(NasirMug, NasirMugData, 4, 4, 3, 2)
 
 ALIGN 4
 NepheneeMugData:
@@ -7753,7 +7753,7 @@ NepheneeMugData:
 #ifndef NepheneeMug
   #define NepheneeMug (FirstMugID+707)
 #endif
-setMugEntry(NepheneeMug, NepheneeMugData, 3, 6, 3, 4)
+MugEntry(NepheneeMug, NepheneeMugData, 3, 6, 3, 4)
 
 ALIGN 4
 NolanMugData:
@@ -7764,7 +7764,7 @@ NolanMugData:
 #ifndef NolanMug
   #define NolanMug (FirstMugID+708)
 #endif
-setMugEntry(NolanMug, NolanMugData, 3, 4, 3, 2)
+MugEntry(NolanMug, NolanMugData, 3, 4, 3, 2)
 
 ALIGN 4
 OscarMugData:
@@ -7775,7 +7775,7 @@ OscarMugData:
 #ifndef OscarMug
   #define OscarMug (FirstMugID+709)
 #endif
-setMugEntry(OscarMug, OscarMugData, 3, 5, 3, 3)
+MugEntry(OscarMug, OscarMugData, 3, 5, 3, 3)
 
 ALIGN 4
 PelleasMugData:
@@ -7786,7 +7786,7 @@ PelleasMugData:
 #ifndef PelleasMug
   #define PelleasMug (FirstMugID+710)
 #endif
-setMugEntry(PelleasMug, PelleasMugData, 4, 5, 4, 3)
+MugEntry(PelleasMug, PelleasMugData, 4, 5, 4, 3)
 
 ALIGN 4
 RafielMugData:
@@ -7797,7 +7797,7 @@ RafielMugData:
 #ifndef RafielMug
   #define RafielMug (FirstMugID+711)
 #endif
-setMugEntry(RafielMug, RafielMugData, 3, 6, 2, 4)
+MugEntry(RafielMug, RafielMugData, 3, 6, 2, 4)
 
 ALIGN 4
 RanulfMugData:
@@ -7808,7 +7808,7 @@ RanulfMugData:
 #ifndef RanulfMug
   #define RanulfMug (FirstMugID+712)
 #endif
-setMugEntry(RanulfMug, RanulfMugData, 3, 5, 2, 3)
+MugEntry(RanulfMug, RanulfMugData, 3, 5, 2, 3)
 
 ALIGN 4
 ReysonMugData:
@@ -7819,7 +7819,7 @@ ReysonMugData:
 #ifndef ReysonMug
   #define ReysonMug (FirstMugID+713)
 #endif
-setMugEntry(ReysonMug, ReysonMugData, 3, 5, 3, 3)
+MugEntry(ReysonMug, ReysonMugData, 3, 5, 3, 3)
 
 ALIGN 4
 RhysMugData:
@@ -7830,7 +7830,7 @@ RhysMugData:
 #ifndef RhysMug
   #define RhysMug (FirstMugID+714)
 #endif
-setMugEntry(RhysMug, RhysMugData, 4, 5, 3, 3)
+MugEntry(RhysMug, RhysMugData, 4, 5, 3, 3)
 
 ALIGN 4
 RolfMugData:
@@ -7841,7 +7841,7 @@ RolfMugData:
 #ifndef RolfMug
   #define RolfMug (FirstMugID+715)
 #endif
-setMugEntry(RolfMug, RolfMugData, 3, 6, 3, 4)
+MugEntry(RolfMug, RolfMugData, 3, 6, 3, 4)
 
 ALIGN 4
 ShinonMugData:
@@ -7852,7 +7852,7 @@ ShinonMugData:
 #ifndef ShinonMug
   #define ShinonMug (FirstMugID+716)
 #endif
-setMugEntry(ShinonMug, ShinonMugData, 3, 5, 2, 3)
+MugEntry(ShinonMug, ShinonMugData, 3, 5, 2, 3)
 
 ALIGN 4
 SorenMugData:
@@ -7863,7 +7863,7 @@ SorenMugData:
 #ifndef SorenMug
   #define SorenMug (FirstMugID+717)
 #endif
-setMugEntry(SorenMug, SorenMugData, 4, 5, 4, 3)
+MugEntry(SorenMug, SorenMugData, 4, 5, 4, 3)
 
 ALIGN 4
 SotheMugData:
@@ -7874,7 +7874,7 @@ SotheMugData:
 #ifndef SotheMug
   #define SotheMug (FirstMugID+718)
 #endif
-setMugEntry(SotheMug, SotheMugData, 4, 5, 3, 3)
+MugEntry(SotheMug, SotheMugData, 4, 5, 3, 3)
 
 ALIGN 4
 StefanMugData:
@@ -7885,7 +7885,7 @@ StefanMugData:
 #ifndef StefanMug
   #define StefanMug (FirstMugID+719)
 #endif
-setMugEntry(StefanMug, StefanMugData, 3, 5, 3, 3)
+MugEntry(StefanMug, StefanMugData, 3, 5, 3, 3)
 
 ALIGN 4
 TanithMugData:
@@ -7896,7 +7896,7 @@ TanithMugData:
 #ifndef TanithMug
   #define TanithMug (FirstMugID+720)
 #endif
-setMugEntry(TanithMug, TanithMugData, 2, 5, 2, 3)
+MugEntry(TanithMug, TanithMugData, 2, 5, 2, 3)
 
 ALIGN 4
 TauroneoMugData:
@@ -7907,7 +7907,7 @@ TauroneoMugData:
 #ifndef TauroneoMug
   #define TauroneoMug (FirstMugID+721)
 #endif
-setMugEntry(TauroneoMug, TauroneoMugData, 3, 5, 3, 2)
+MugEntry(TauroneoMug, TauroneoMugData, 3, 5, 3, 2)
 
 ALIGN 4
 TibarnMugData:
@@ -7918,7 +7918,7 @@ TibarnMugData:
 #ifndef TibarnMug
   #define TibarnMug (FirstMugID+722)
 #endif
-setMugEntry(TibarnMug, TibarnMugData, 4, 5, 4, 3)
+MugEntry(TibarnMug, TibarnMugData, 4, 5, 4, 3)
 
 ALIGN 4
 TitaniaMugData:
@@ -7929,7 +7929,7 @@ TitaniaMugData:
 #ifndef TitaniaMug
   #define TitaniaMug (FirstMugID+723)
 #endif
-setMugEntry(TitaniaMug, TitaniaMugData, 3, 5, 3, 3)
+MugEntry(TitaniaMug, TitaniaMugData, 3, 5, 3, 3)
 
 ALIGN 4
 TormodMugData:
@@ -7940,7 +7940,7 @@ TormodMugData:
 #ifndef TormodMug
   #define TormodMug (FirstMugID+724)
 #endif
-setMugEntry(TormodMug, TormodMugData, 4, 5, 3, 3)
+MugEntry(TormodMug, TormodMugData, 4, 5, 3, 3)
 
 ALIGN 4
 UlkiMugData:
@@ -7951,7 +7951,7 @@ UlkiMugData:
 #ifndef UlkiMug
   #define UlkiMug (FirstMugID+725)
 #endif
-setMugEntry(UlkiMug, UlkiMugData, 2, 5, 2, 3)
+MugEntry(UlkiMug, UlkiMugData, 2, 5, 2, 3)
 
 ALIGN 4
 VikaMugData:
@@ -7962,7 +7962,7 @@ VikaMugData:
 #ifndef VikaMug
   #define VikaMug (FirstMugID+726)
 #endif
-setMugEntry(VikaMug, VikaMugData, 2, 6, 3, 4)
+MugEntry(VikaMug, VikaMugData, 2, 6, 3, 4)
 
 ALIGN 4
 VolkeMugData:
@@ -7973,7 +7973,7 @@ VolkeMugData:
 #ifndef VolkeMug
   #define VolkeMug (FirstMugID+727)
 #endif
-setMugEntry(VolkeMug, VolkeMugData, 3, 5, 3, 3)
+MugEntry(VolkeMug, VolkeMugData, 3, 5, 3, 3)
 
 ALIGN 4
 VolugMugData:
@@ -7984,7 +7984,7 @@ VolugMugData:
 #ifndef VolugMug
   #define VolugMug (FirstMugID+728)
 #endif
-setMugEntry(VolugMug, VolugMugData, 3, 5, 3, 3)
+MugEntry(VolugMug, VolugMugData, 3, 5, 3, 3)
 
 ALIGN 4
 ZiharkMugData:
@@ -7995,5 +7995,5 @@ ZiharkMugData:
 #ifndef ZiharkMug
   #define ZiharkMug (FirstMugID+729)
 #endif
-setMugEntry(ZiharkMug, ZiharkMugData, 3, 5, 3, 3)
+MugEntry(ZiharkMug, ZiharkMugData, 3, 5, 3, 3)
 

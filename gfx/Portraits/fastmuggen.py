@@ -63,7 +63,7 @@ for png_file in png_files:
     image = Image.open(mug_path).quantize(16)
     arr = numpy.array(image.getdata(), dtype="<u1").reshape((112, 128))
     x1, y1, x2, y2 = cv_locate_eye_mouse_pos(arr)
-    installer.write(f"setMugEntry({base_name}Mug, {base_name}MugData, {x1}, {y1}, {x2}, {y2})\n\n")
+    installer.write(f"MugEntry({base_name}Mug, {base_name}MugData, {x1}, {y1}, {x2}, {y2})\n\n")
 
     # Increment the counter and handle cases where `c` is a multiple of 256
     c += 1

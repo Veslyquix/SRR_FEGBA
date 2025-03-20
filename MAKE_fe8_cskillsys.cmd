@@ -6,13 +6,16 @@
 
 @rem defining buildfile config
 set "vanilla_rom=%~dp0fe8.gba"
-set "source_rom=%~dp0fe8-kernel-dev.gba"
+@rem set "source_rom=%~dp0fe8-kernel-dev.gba"
+set "source_rom=%~dp0FE8-CSkillSystem.gba"
+@rem set "base_sym=%~dp0fe8-kernel-dev.sym"
+set "base_sym=%~dp0FE8-CSkillSystem.sym"
 
 set "main_event=%~dp0RomBuildfile_c_skillsys.event"
-
 set "target_rom=%~dp0fe8srr_c_skillsys.gba"
 set "target_ups=%~dp0fe8srr_c_skillsys.ups"
 set "target_sym=%~dp0fe8srr_c_skillsys.sym"
+
 
 @rem defining tools
 
@@ -50,7 +53,7 @@ ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" --nocash-sym "--bu
 echo:
 echo Generating sym file
 
-echo: | ( "%symcombo%" "%target_sym%" "%target_sym%" "fe8.sym" )
+echo: | ( "%symcombo%" "%target_sym%" "%target_sym%" "%base_sym%" )
 
 echo:
 echo Done!

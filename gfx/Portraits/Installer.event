@@ -1,39 +1,21 @@
 
 
 #ifdef _FE6_ 
-// #define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE mouthX mouthY eyeX eyeY; POP"
-// #define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; BYTE mouthX mouthY eyeX eyeY; POP"
-#define setMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1404; POIN mugLocation+0x1604; BYTE mouthX mouthY 0 1; POP"
+// #define MugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE mouthX mouthY eyeX eyeY; POP"
+// #define MugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; BYTE mouthX mouthY eyeX eyeY; POP"
+#define MugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1404; POIN mugLocation+0x1604; BYTE mouthX mouthY 0 1; POP"
 // 0x1104, 0x1404 mouth 
 #endif 
 
 #ifndef _FE6_ 
-#ifdef SetMugEntry 
-	#undef SetMugEntry
+#ifdef MugEntry 
+	#undef MugEntry
 #endif 	
-#define SetMugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY)"PUSH; ORG NewPortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE 0 0 0 0; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; POP"
+#define MugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY)"PUSH; ORG NewPortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE 0 0 0 0; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; POP"
 #endif 
 
 // #define FirstMugID 0xAC
 #define FirstMugID 0x100
-
-/* 
-ALIGN 4
-Elice_ThornMugData:
-
-ORG Elice_ThornMugData + 0x800
-#incbin "Dmp/Elice_Thorn_frames.dmp"
-ORG Elice_ThornMugData
-#incbin "Dmp/Elice_Thorn_mug.dmp"
-
-ORG Elice_ThornMugData + 0x1604
-#incbin "Dmp/Elice_Thorn_palette.dmp"
-#incbin "Dmp/Elice_Thorn_minimug.dmp"
-#ifndef EliceMug
-  #define EliceMug (FirstMugID+149)
-#endif
-setMugEntry(EliceMug, Elice_ThornMugData, 2, 6, 2, 4)
-*/
 
 
 ALIGN 4 
@@ -73,23 +55,23 @@ POP
 
 // portrait formatter doesn't work properly for fe6 anyway
 // so todo if that ever works 
-// setMugEntry(EliwoodMug, EliwoodMugData, 2, 5, 2, 3)
-// setMugEntry(HectorMug, HectorMugData, 2, 5, 2, 3)
+// MugEntry(EliwoodMug, EliwoodMugData, 2, 5, 2, 3)
+// MugEntry(HectorMug, HectorMugData, 2, 5, 2, 3)
 
 #endif 
 
 #ifdef _FE7_ 
-setMugEntry(0x4E, UtherMugData, 3, 4, 4, 2)
-setMugEntry(0x57, LeilaMugData, 2, 6, 3, 4)
-setMugEntry(0x4C, EleanoraMugData, 1, 5, 2, 3)
-setMugEntry(0x4F, ElbertMugData, 2, 5, 3, 3)
-setMugEntry(0x5C, BramimondMugData, 2, 6, 3, 3)
+MugEntry(0x4E, UtherMugData, 3, 4, 4, 2)
+MugEntry(0x57, LeilaMugData, 2, 6, 3, 4)
+MugEntry(0x4C, EleanoraMugData, 1, 5, 2, 3)
+MugEntry(0x4F, ElbertMugData, 2, 5, 3, 3)
+MugEntry(0x5C, BramimondMugData, 2, 6, 3, 3)
 #endif 
 
 
 
 #ifdef _FE8_ 
-setMugEntry(0x55, DaraMugData, 2, 7, 3, 5)
+MugEntry(0x55, DaraMugData, 2, 7, 3, 5)
 #endif 
 
 
