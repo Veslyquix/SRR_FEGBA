@@ -15,10 +15,10 @@ PUSH
 // ORG $84800 // IsCharForceDeployed
 // SHORT $2000 $4770 // mov r0, #0    bx lr 
 
-// ORG 0x11CC // no idea if this actually does anything relevant 
-// callHackNew(RandColoursHook_2) // 2nd version that replaces our old hook 
+ORG 0x11CC 
+callHackNew(RandColoursHook_2) // 2nd version that replaces our old hook 
 // this version copies data into c skill tester 
-// SHORT 0x46C0
+SHORT 0x46C0
 POP 
 
 // buffs / debuffs: 

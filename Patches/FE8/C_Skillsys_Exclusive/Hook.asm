@@ -105,12 +105,15 @@ ldr r1, =0x3003D88
 bx r1 
 .ltorg 
 
+
+@ do not use this 
 .global SkillTester_FastHook
 .type SkillTester_FastHook, %function 
 SkillTester_FastHook: 
 push {lr} 
-push {r4} 
-mov r4, r3 
+push {r0, r2, r3} 
+mov r0, r2 @ skill ID 
+
 bl RandomizeSkill 
 mov r1, #1 
 lsl r1, r3 
@@ -123,45 +126,6 @@ bx r3
 .ltorg 
 
 
-@ 2028D98 [2028d98]!!
-@ 2028DD8 
-@ 2028E18 
-
-.global RandomizeSkillRam
-.type RandomizeSkillRam, %function 
-RandomizeSkillRam: 
-push {r4-r7, lr} 
-ldr r4, =0x2028D98 
-@ldr r4, =0x2028E58 
-mov r5, #0xC0 @ bytes to randomize 
-@mov r5, #0xFF @ bytes to randomize 
-add r5, r4 
-RandomizeLoop: 
-ldrh r6, [r4] 
-add r4, #2 
-cmp r4, r5 
-bgt BreakLoop 
-cmp r6, #0 
-beq RandomizeLoop 
-lsl r0, r6, #24 
-lsr r0, #24 
-bl RandomizeSkill 
-lsr r6, #8 
-lsl r6, #8 
-orr r0, r6 
-strh r0, [r4] 
-b RandomizeLoop 
-BreakLoop: 
-
-
-
-pop {r4-r7} 
-pop {r3} 
-bx r3 
-.ltorg 
-
-
-
 @ Hooked at 0x80011CC in 800114C FlushBackgrounds
 .global RandColoursHook_2
 .type RandColoursHook_2, %function
@@ -169,7 +133,7 @@ RandColoursHook_2:
 push {lr} 
 bl EnableRandSkills
 
-ldr r0, =IWRAM_GenericSkillTesterHook 
+ldr r0, =IWRAM_GenericSkillTesterHook  @ used by Provoke 
 ldr r1, =0x3003D00  
 mov r2, #6 @ SHORT count (unless bit 26 is set, then it's WORD count) 
 swi #0xB 
@@ -179,19 +143,11 @@ ldr r1, =0x3003D68
 mov r2, #6 @ SHORT count (unless bit 26 is set, then it's WORD count) 
 swi #0xB 
 
-@ in 0x3004378 
+@ .Lfun_judgeskill 30043CC calls _ARM_SkillList 0x3004378 
 ldr r0, =IWRAM_FastSkillTesterHook @ needs unit struct to work properly 
-ldr r1, =0x3004394 
+ldr r1, =0x30043F0 
 mov r2, #6 @ SHORT count (unless bit 26 is set, then it's WORD count) 
-@swi #0xB 
-
-@bl RandomizeSkillRam
-
-
-@ldr r0, =IWRAM_SkillTesterHook 
-@ldr r1, =0x3003CBC  @ ldr r1, =0x3003CF4 
-@mov r2, #6 @ SHORT count (unless bit 26 is set, then it's WORD count) 
-@swi #0xB 
+@swi #0xB @ I believe this one uses GenerateSkillListExt beforehand, so hooking here will break things 
 
 
 ldr   r0, =0x020228A8 @gPaletteBuffer
