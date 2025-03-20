@@ -17,11 +17,4 @@ bx r1
 .ltorg 
 
 
-.global IWRAM_FastSkillTesterHook 
-.type IWRAM_FastSkillTesterHook, %function 
-IWRAM_FastSkillTesterHook: 
-ldr r1, =SkillTester_FastHook
-bx r1 
-.ltorg 
-
 

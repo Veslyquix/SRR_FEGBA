@@ -105,27 +105,6 @@ ldr r1, =0x3003D88
 bx r1 
 .ltorg 
 
-
-@ do not use this 
-.global SkillTester_FastHook
-.type SkillTester_FastHook, %function 
-SkillTester_FastHook: 
-push {lr} 
-push {r0, r2, r3} 
-mov r0, r2 @ skill ID 
-
-bl RandomizeSkill 
-mov r1, #1 
-lsl r1, r3 
-tst r0, r1 
-pop {r4} 
-pop {r3} 
-mov lr, r3 
-ldr r3, =0x30043A0 
-bx r3 
-.ltorg 
-
-
 @ Hooked at 0x80011CC in 800114C FlushBackgrounds
 .global RandColoursHook_2
 .type RandColoursHook_2, %function
@@ -142,12 +121,6 @@ ldr r0, =IWRAM_LTableSkillTesterHook
 ldr r1, =0x3003D68 
 mov r2, #6 @ SHORT count (unless bit 26 is set, then it's WORD count) 
 swi #0xB 
-
-@ .Lfun_judgeskill 30043CC calls _ARM_SkillList 0x3004378 
-ldr r0, =IWRAM_FastSkillTesterHook @ needs unit struct to work properly 
-ldr r1, =0x30043F0 
-mov r2, #6 @ SHORT count (unless bit 26 is set, then it's WORD count) 
-@swi #0xB @ I believe this one uses GenerateSkillListExt beforehand, so hooking here will break things 
 
 
 ldr   r0, =0x020228A8 @gPaletteBuffer
