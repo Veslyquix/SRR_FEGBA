@@ -53,6 +53,35 @@ MagClassTable:
 ORG $1025AA8 //gMagicPInfos
 MagCharTable:
 CMagCharTable:
+
+
+// These could probably be used to support skills that effect growths & max hp, but no point trying until stat screen first page is taken over 
+// Comment this out to use 
+#define DoNotUseAutoGetters
+// ORG $EE884 
+// Get_Mag_Growth: 
+/* 
+080EE884 GetUnitBasicMagGrowth
+080EE89C GetUnitJobBasedBasicMagGrowth
+*/
+/*
+prConGetter: 
+prAidGetter: 
+prMovGetter: 
+Growth_Getter_Table:
+Skill_Getter:
+Get_Hp_Growth: 
+Get_Str_Growth: 
+Get_Skl_Growth: 
+Get_Spd_Growth: 
+Get_Luk_Growth: 
+Get_Def_Growth: 
+Get_Res_Growth:
+prMaxHPGetter:
+prMagGetter: 
+Get_Mag_Growth:
+*/
+
 POP 
 
 
@@ -62,9 +91,6 @@ POP
 #endif 
 
 
-
-
-#define DoNotUseAutoGetters
 #define NoWepLock
 #define C_SKILLSYS // don't take over page 1 
 
