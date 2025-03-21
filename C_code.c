@@ -18,6 +18,9 @@
 #include "headers/types.h"
 #endif
 
+#define C_SKILLSYS_MAG_BYTE_COPY _u47
+#define C_SKILLSYS_MAG_BYTE pow // make them both _u47 for mag to exist
+
 extern int maxStat;
 extern int C_SKILLSYS_INSTALL;
 int GetGlobalStatCap(void);
@@ -4974,9 +4977,9 @@ void UnitCheckStatMins(struct Unit * unit)
             }
             if (C_SKILLSYS_INSTALL)
             {
-                if (unit->_u47 < minStat)
+                if (unit->C_SKILLSYS_MAG_BYTE < minStat)
                 {
-                    unit->_u47 = minStat;
+                    unit->C_SKILLSYS_MAG_BYTE = minStat;
                 }
             }
         }
@@ -5015,9 +5018,9 @@ void UnitCheckStatMins(struct Unit * unit)
             }
             if (C_SKILLSYS_INSTALL)
             {
-                if ((unit->_u47 < 0) || (unit->_u47 > 127))
+                if ((unit->C_SKILLSYS_MAG_BYTE < 0) || (unit->C_SKILLSYS_MAG_BYTE > 127))
                 {
-                    unit->_u47 = 0;
+                    unit->C_SKILLSYS_MAG_BYTE = 0;
                 }
             }
         } // _u3A is unsigned
@@ -5061,9 +5064,9 @@ void MakePromotedUnitHaveMinStats(struct Unit * unit)
             }
             if (C_SKILLSYS_INSTALL)
             {
-                if ((unit->_u47 < (MinPromotedStat + 2)) || (unit->_u47 > 127))
+                if ((unit->C_SKILLSYS_MAG_BYTE < (MinPromotedStat + 2)) || (unit->C_SKILLSYS_MAG_BYTE > 127))
                 {
-                    unit->_u47 += MinPromotedStat;
+                    unit->C_SKILLSYS_MAG_BYTE += MinPromotedStat;
                 }
             }
         } // _u3A is unsigned
@@ -5126,7 +5129,8 @@ void UnitAutolevelCore(struct Unit * unit, u8 classId, int levelCount)
             unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
             if (C_SKILLSYS_INSTALL)
             {
-                unit->_u47 += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
+                unit->C_SKILLSYS_MAG_BYTE += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
+                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
     }
@@ -5158,7 +5162,9 @@ void UnitAutolevelCore(struct Unit * unit, u8 classId, int levelCount)
             unit->_u3A = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u3A);
             if (C_SKILLSYS_INSTALL)
             {
-                unit->_u47 = GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->_u47);
+                unit->C_SKILLSYS_MAG_BYTE =
+                    GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->C_SKILLSYS_MAG_BYTE);
+                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
     }
@@ -5193,7 +5199,8 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
             unit->_u3A += GetAutoleveledStatIncrease(GetUnitMagGrowth(unit, true), levelCount);
             if (C_SKILLSYS_INSTALL)
             {
-                unit->_u47 += GetAutoleveledStatIncrease(GetUnitMagGrowth(unit, true), levelCount);
+                unit->C_SKILLSYS_MAG_BYTE += GetAutoleveledStatIncrease(GetUnitMagGrowth(unit, true), levelCount);
+                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
 #else
@@ -5209,7 +5216,8 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
             unit->_u3A += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
             if (C_SKILLSYS_INSTALL)
             {
-                unit->_u47 += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
+                unit->C_SKILLSYS_MAG_BYTE += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
+                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
 #endif
@@ -5247,7 +5255,9 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
             unit->_u3A = GetAutoleveledStatDecrease(GetUnitMagGrowth(unit, true), levelCount, unit->_u3A);
             if (C_SKILLSYS_INSTALL)
             {
-                unit->_u47 = GetAutoleveledStatDecrease(GetUnitMagGrowth(unit, true), levelCount, unit->_u47);
+                unit->C_SKILLSYS_MAG_BYTE =
+                    GetAutoleveledStatDecrease(GetUnitMagGrowth(unit, true), levelCount, unit->C_SKILLSYS_MAG_BYTE);
+                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
 #else
@@ -5290,8 +5300,10 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
                 AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u3A);
             if (C_SKILLSYS_INSTALL)
             {
-                unit->_u47 = GetAutoleveledStatDecrease(
-                    AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount, unit->_u47);
+                unit->C_SKILLSYS_MAG_BYTE = GetAutoleveledStatDecrease(
+                    AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount,
+                    unit->C_SKILLSYS_MAG_BYTE);
+                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
 #endif
@@ -5765,7 +5777,8 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         unit->_u3A = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent);
         if (C_SKILLSYS_INSTALL)
         {
-            unit->_u47 = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent);
+            unit->C_SKILLSYS_MAG_BYTE = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent);
+            unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
         }
     }
 
@@ -5935,9 +5948,9 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         }
         if (C_SKILLSYS_INSTALL)
         {
-            if (unit->_u47 > max)
+            if (unit->C_SKILLSYS_MAG_BYTE > max)
             {
-                unit->_u47 = max;
+                unit->C_SKILLSYS_MAG_BYTE = max;
             }
         }
     }
@@ -6673,7 +6686,8 @@ void CheckBattleUnitLevelUp(struct BattleUnit * bu)
                     int magStat = unit->_u3A;
                     if (C_SKILLSYS_INSTALL)
                     {
-                        magStat = unit->_u47;
+                        magStat = unit->C_SKILLSYS_MAG_BYTE;
+                        unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
                         BU_CHG_MAG(bu) = NewGetStatIncrease(magGrowth, noise, level, 15 + (i * 13), useRN);
                         if (BU_CHG_MAG(bu) && ((magStat + BU_CHG_MAG(bu)) <= maxMag))
                         {
@@ -6759,9 +6773,9 @@ void UnitCheckStatCaps(struct Unit * unit)
         }
         if (C_SKILLSYS_INSTALL)
         {
-            if (unit->_u47 > max)
+            if (unit->C_SKILLSYS_MAG_BYTE > max)
             {
-                unit->_u47 = max;
+                unit->C_SKILLSYS_MAG_BYTE = max;
             }
         }
     }
@@ -6831,7 +6845,8 @@ void CheckBattleUnitStatCaps(struct Unit * unit, struct BattleUnit * bu)
         int magStat = unit->_u3A;
         if (C_SKILLSYS_INSTALL)
         {
-            magStat = unit->_u47;
+            magStat = unit->C_SKILLSYS_MAG_BYTE;
+            unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             if ((magStat + BU_CHG_MAG(bu)) > max)
             {
                 BU_CHG_MAG(bu) = max - magStat;
@@ -6868,7 +6883,8 @@ void ApplyUnitPromotion(struct Unit * unit, u8 classId)
         unit->_u3A += GetPromoMag(classId);
         if (C_SKILLSYS_INSTALL)
         {
-            unit->_u47 += GetPromoMag(classId);
+            unit->C_SKILLSYS_MAG_BYTE += GetPromoMag(classId);
+            unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
         }
     }
 #endif
@@ -9638,7 +9654,8 @@ int GetUnitMag(struct Unit * unit)
 {
     if (C_SKILLSYS_INSTALL)
     {
-        return unit->_u47;
+        unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
+        return unit->C_SKILLSYS_MAG_BYTE;
     }
     return unit->_u3A;
 }
@@ -10106,7 +10123,8 @@ int GetUnitUnadjustedMag(struct Unit * unit)
 {
     if (C_SKILLSYS_INSTALL)
     {
-        return unit->_u47;
+        unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
+        return unit->C_SKILLSYS_MAG_BYTE;
     }
     return unit->_u3A;
 }

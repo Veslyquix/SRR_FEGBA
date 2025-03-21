@@ -510,7 +510,12 @@ ORG $115CC
 jumpToHack(DroppableItemHook_FE8) 
 
 
-#ifndef C_SKILLSYS
+#ifdef C_SKILLSYS
+
+ORG $087184 
+replaceWithHack(NewDisplayPage0) // DisplayPage0
+#endif 
+
 ORG $205B24 
 POIN NewDisplayPage0|1
 
@@ -537,7 +542,7 @@ callHackNew(StatScreenSelectLoop)
 ORG $88588 
 callHackNew(ConditionallyRemoveGlowy)
 
-#endif 
+
 
 
 #ifndef JankyPalettes
