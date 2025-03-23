@@ -1,5 +1,17 @@
 
 
+#include "src/src.event"
+
+
+ALIGN 4; Sommie256BG:
+#incbin "BG/256Sommie.dmp"
+ALIGN 4; Sommie256Pal:
+#incbin "BG/256SommiePal.dmp"
+ALIGN 4; Sommie224BG:
+#incbin "BG/224Sommie.dmp"
+ALIGN 4; Sommie224Pal:
+#incbin "BG/224SommiePal.dmp"
+
 ALIGN 4
 throne2_IMG:
 #incbin "data/ThroneRoom2Day.png.dmp"
@@ -24,6 +36,7 @@ village6_PAL:
 
 
 #define BGEntry(Img, TSA, Pal) "POIN Img; POIN TSA; POIN Pal"
+#define BGEntry(Img, Pal) "POIN Img; WORD 1; POIN Pal"
 
 ALIGN 12 // for easy feb terminator
 NewBGTable:
@@ -32,8 +45,55 @@ ORG NewBGTable
 #include "VanillaData.event"
 BGEntry(throne2_IMG,	throne2_TSA,	throne2_PAL )
 BGEntry(village6_IMG, village6_TSA, village6_PAL )
+BGEntry(Sommie256BG, 0, Sommie256Pal ) // TSA == 0 indicates 256-colour BGs.
+BGEntry(Sommie224BG, Sommie224Pal ) // TSA == 1 indicates 224-colour BGs.
+
+
 
 
 
 ALIGN 12 
 WORD 0xFFFFFFFF // Febuilder terminator 
+
+
+
+
+
+
+
+
+
+ALIGN 4; CGC_BubbleSpriteGfx:
+#incbin "BubbleSprite.dmp"
+
+ALIGN 4; CGC_TextSpriteOAM:
+SHORT 0x1
+SHORT 0x4400 0x8000 0x0000
+
+ALIGN 4; CGC_NoNameBubbleSpriteOAM:
+SHORT 0x6
+SHORT 0x4420 0xE008 0x21B8        // Chatbubble.
+SHORT 0x4420 0xF078 0x21B8
+SHORT 0x4410 0xD078 0x21B8
+SHORT 0x4410 0xC040 0x21B9
+SHORT 0x4420 0xE040 0x21B9
+SHORT 0x4410 0xC008 0x21B8
+
+ALIGN 4; CGC_NameBubbleSpriteOAM:
+SHORT 0xD
+SHORT 0x4400 0x4000 0x0000        // Name Box.
+SHORT 0x4400 0x4020 0x0004
+SHORT 0x4408 0x4000 0x0008
+SHORT 0x4408 0x4020 0x000C
+SHORT 0x4410 0x4000 0x0010
+SHORT 0x4410 0x4020 0x0014
+
+SHORT 0x4420 0xE008 0x21B8        // Chatbubble.
+SHORT 0x4420 0xF078 0x21B8
+SHORT 0x4410 0xD078 0x21B8
+SHORT 0x4410 0xC040 0x21B9
+SHORT 0x4420 0xE040 0x21B9
+SHORT 0x4418 0x4008 0x21D8
+SHORT 0x4418 0x4028 0x21D9
+
+
