@@ -382,6 +382,11 @@ BYTE $10 $A0 $00 $00 $00 $55 $53 $FF $7F $FF $6B $1F $4B $00 $18 $2A $2E $19 $B3
 
 PUSH 
 
+ORG $E834 
+callHackNew(RandBGsFe8)
+SHORT $46C0
+
+
 // EF8008 CharacterPaletteTable is followed by free space, so don't bother repointing 
 ORG $95EF07 
 BYTE 0x6D

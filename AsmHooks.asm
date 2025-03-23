@@ -43,6 +43,25 @@ mov r11, r11
 bx lr 
 .ltorg 
 
+.global RandBGsFe8
+.type RandBGsFe8, %function 
+RandBGsFe8: 
+push {lr} 
+@cmp r6, #0x37 
+@bne UseBG
+RandBGs:
+ldr r0, =MaxBGID
+ldr r0, [r0] 
+blh 0x8000C80 @ NextRN_N
+mov r6, r0 
+UseBG: 
+
+pop {r3} 
+bx r3 
+.ltorg
+
+
+
 .global DisableMouthFrames_FE6
 .type DisableMouthFrames_FE6, %function 
 DisableMouthFrames_FE6: 

@@ -3,50 +3,18 @@
 #include "src/src.event"
 
 
-ALIGN 4; Sommie256BG:
-#incbin "BG/256Sommie.dmp"
-ALIGN 4; Sommie256Pal:
-#incbin "BG/256SommiePal.dmp"
-ALIGN 4; Sommie224BG:
-#incbin "BG/224Sommie.dmp"
-ALIGN 4; Sommie224Pal:
-#incbin "BG/224SommiePal.dmp"
-
-ALIGN 4
-throne2_IMG:
-#incbin "data/ThroneRoom2Day.png.dmp"
-ALIGN 4
-throne2_TSA:
-#incbin "data/ThroneRoom2Day.png.tsa.dmp"
-ALIGN 4
-throne2_PAL:
-#incbin "data/ThroneRoom2Day.png.pal.dmp"
-
-
-ALIGN 4
-village6_IMG:
-#incbin "data/Village6WinterDay.png.dmp"
-ALIGN 4
-village6_TSA:
-#incbin "data/Village6WinterDay.png.tsa.dmp"
-ALIGN 4
-village6_PAL:
-#incbin "data/Village6WinterDay.png.pal.dmp"
-
-
 
 #define BGEntry(Img, TSA, Pal) "POIN Img; POIN TSA; POIN Pal"
 #define BGEntry(Img, Pal) "POIN Img; WORD 1; POIN Pal"
-
+#define FirstBG_ID 0x37
 ALIGN 12 // for easy feb terminator
 NewBGTable:
 FILL 12*200
 ORG NewBGTable
 #include "VanillaData.event"
-BGEntry(throne2_IMG,	throne2_TSA,	throne2_PAL )
-BGEntry(village6_IMG, village6_TSA, village6_PAL )
-BGEntry(Sommie256BG, 0, Sommie256Pal ) // TSA == 0 indicates 256-colour BGs.
-BGEntry(Sommie224BG, Sommie224Pal ) // TSA == 1 indicates 224-colour BGs.
+#include "Generated.event"
+// BGEntry(Sommie256BG, 0, Sommie256Pal ) // TSA == 0 indicates 256-colour BGs.
+// BGEntry(Sommie224BG, Sommie224Pal ) // TSA == 1 indicates 224-colour BGs.
 
 
 
@@ -64,7 +32,7 @@ WORD 0xFFFFFFFF // Febuilder terminator
 
 
 ALIGN 4; CGC_BubbleSpriteGfx:
-#incbin "BubbleSprite.dmp"
+#incbin "src/BubbleSprite.dmp"
 
 ALIGN 4; CGC_TextSpriteOAM:
 SHORT 0x1
