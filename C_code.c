@@ -2437,6 +2437,7 @@ struct GlobalSaveInfo2
 };
 extern bool ReadGlobalSaveInfo(struct GlobalSaveInfo2 * buf); // 80842E8 809E4F0
 // no$gba -> utility -> binarydump -> saveas RNTable.dmp
+/*
 u32 * mainTest(u32 * result)
 {
     asm("mov r11, r11");
@@ -2463,6 +2464,7 @@ u32 * mainTest(u32 * result)
     asm("mov r11, r11");
     return result;
 }
+*/
 
 int GetInitialSeed(int rate, ConfigMenuProc * proc)
 {
@@ -5130,7 +5132,6 @@ void UnitAutolevelCore(struct Unit * unit, u8 classId, int levelCount)
             if (C_SKILLSYS_INSTALL)
             {
                 unit->C_SKILLSYS_MAG_BYTE += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
-                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
     }
@@ -5164,7 +5165,6 @@ void UnitAutolevelCore(struct Unit * unit, u8 classId, int levelCount)
             {
                 unit->C_SKILLSYS_MAG_BYTE =
                     GetAutoleveledStatDecrease(GetClassMagGrowth(unit, true), levelCount, unit->C_SKILLSYS_MAG_BYTE);
-                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
     }
@@ -5200,7 +5200,6 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
             if (C_SKILLSYS_INSTALL)
             {
                 unit->C_SKILLSYS_MAG_BYTE += GetAutoleveledStatIncrease(GetUnitMagGrowth(unit, true), levelCount);
-                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
 #else
@@ -5217,7 +5216,6 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
             if (C_SKILLSYS_INSTALL)
             {
                 unit->C_SKILLSYS_MAG_BYTE += GetAutoleveledStatIncrease(GetClassMagGrowth(unit, true), levelCount);
-                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
 #endif
@@ -5257,7 +5255,6 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
             {
                 unit->C_SKILLSYS_MAG_BYTE =
                     GetAutoleveledStatDecrease(GetUnitMagGrowth(unit, true), levelCount, unit->C_SKILLSYS_MAG_BYTE);
-                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
 #else
@@ -5303,7 +5300,6 @@ void UnitAutolevelCore_Char(struct Unit * unit, u8 classId, int levelCount)
                 unit->C_SKILLSYS_MAG_BYTE = GetAutoleveledStatDecrease(
                     AdjustGrowthForLosingLevels(GetClassMagGrowth(unit, false), avg), levelCount,
                     unit->C_SKILLSYS_MAG_BYTE);
-                unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             }
         }
 #endif
@@ -5778,7 +5774,6 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         if (C_SKILLSYS_INSTALL)
         {
             unit->C_SKILLSYS_MAG_BYTE = RandStat(unit, GetUnitBaseMag(unit), noise, 85, max150percent);
-            unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
         }
     }
 
@@ -6687,7 +6682,6 @@ void CheckBattleUnitLevelUp(struct BattleUnit * bu)
                     if (C_SKILLSYS_INSTALL)
                     {
                         magStat = unit->C_SKILLSYS_MAG_BYTE;
-                        unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
                         BU_CHG_MAG(bu) = NewGetStatIncrease(magGrowth, noise, level, 15 + (i * 13), useRN);
                         if (BU_CHG_MAG(bu) && ((magStat + BU_CHG_MAG(bu)) <= maxMag))
                         {
@@ -6846,7 +6840,6 @@ void CheckBattleUnitStatCaps(struct Unit * unit, struct BattleUnit * bu)
         if (C_SKILLSYS_INSTALL)
         {
             magStat = unit->C_SKILLSYS_MAG_BYTE;
-            unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
             if ((magStat + BU_CHG_MAG(bu)) > max)
             {
                 BU_CHG_MAG(bu) = max - magStat;
@@ -6884,7 +6877,6 @@ void ApplyUnitPromotion(struct Unit * unit, u8 classId)
         if (C_SKILLSYS_INSTALL)
         {
             unit->C_SKILLSYS_MAG_BYTE += GetPromoMag(classId);
-            unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
         }
     }
 #endif
@@ -9654,7 +9646,6 @@ int GetUnitMag(struct Unit * unit)
 {
     if (C_SKILLSYS_INSTALL)
     {
-        unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
         return unit->C_SKILLSYS_MAG_BYTE;
     }
     return unit->_u3A;
@@ -10123,7 +10114,6 @@ int GetUnitUnadjustedMag(struct Unit * unit)
 {
     if (C_SKILLSYS_INSTALL)
     {
-        unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
         return unit->C_SKILLSYS_MAG_BYTE;
     }
     return unit->_u3A;
@@ -11377,3 +11367,19 @@ s8 UnitHasMagicRank(struct Unit * unit) // fe6 18188 fe7 184dc
     return combinedRanks ? TRUE : FALSE;
 }
 */
+extern int GetItemType(int item);
+void C_SS_ComputeBattleUnitWeaponRankBonuses(struct BattleUnit * bu)
+{
+    struct Unit * unit = GetUnit(bu->unit.index);
+    unit->C_SKILLSYS_MAG_BYTE_COPY = unit->C_SKILLSYS_MAG_BYTE;
+    if (bu->weapon)
+    {
+        int wType = GetItemType(bu->weapon);
+
+        if (wType < 8 && bu->unit.ranks[wType] >= 251)
+        {
+            bu->battleHitRate += 5;
+            bu->battleCritRate += 5;
+        }
+    }
+}
