@@ -1,0 +1,39 @@
+
+
+ALIGN 4
+throne2_IMG:
+#incbin "data/ThroneRoom2Day.png.dmp"
+ALIGN 4
+throne2_TSA:
+#incbin "data/ThroneRoom2Day.png.tsa.dmp"
+ALIGN 4
+throne2_PAL:
+#incbin "data/ThroneRoom2Day.png.pal.dmp"
+
+
+ALIGN 4
+village6_IMG:
+#incbin "data/Village6WinterDay.png.dmp"
+ALIGN 4
+village6_TSA:
+#incbin "data/Village6WinterDay.png.tsa.dmp"
+ALIGN 4
+village6_PAL:
+#incbin "data/Village6WinterDay.png.pal.dmp"
+
+
+
+#define BGEntry(Img, TSA, Pal) "POIN Img; POIN TSA; POIN Pal"
+
+ALIGN 12 // for easy feb terminator
+NewBGTable:
+FILL 12*200
+ORG NewBGTable
+#include "VanillaData.event"
+BGEntry(throne2_IMG,	throne2_TSA,	throne2_PAL )
+BGEntry(village6_IMG, village6_TSA, village6_PAL )
+
+
+
+ALIGN 12 
+WORD 0xFFFFFFFF // Febuilder terminator 
