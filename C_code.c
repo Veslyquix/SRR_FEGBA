@@ -11367,6 +11367,9 @@ s8 UnitHasMagicRank(struct Unit * unit) // fe6 18188 fe7 184dc
     return combinedRanks ? TRUE : FALSE;
 }
 */
+
+#ifdef FE8
+
 extern int GetItemType(int item);
 void C_SS_ComputeBattleUnitWeaponRankBonuses(struct BattleUnit * bu)
 {
@@ -11383,3 +11386,4 @@ void C_SS_ComputeBattleUnitWeaponRankBonuses(struct BattleUnit * bu)
         }
     }
 }
+#endif

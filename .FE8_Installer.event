@@ -52,8 +52,11 @@
 
 
 #include "../ASM/EndBattleIfBroken/Installer.event" 
+#include "../ASM/BGOnlyDisplayInConvos/Installer.event" 
 #ifndef C_SKILLSYS // already included 
     #include "../ASM/Debugger/Installer.event" 
+    CMagCharTable:
+    WORD 0 
 #endif 
 //#ifdef VeslyBuildfile 
 #include "../ASM/Reclass/Installer.event" 
@@ -381,6 +384,8 @@ EirikaCharPalette:
 BYTE $10 $A0 $00 $00 $00 $55 $53 $FF $7F $FF $6B $1F $4B $00 $18 $2A $2E $19 $B3 $7F $89 $7A $00 $62 $5D $FF $1B $9E $1A $94 $01 $00 $1C $01 $76 $08 $6F $0C $A5 $14 $FE $F0 $1F $F0 $1F $F0 $1F $F0 $1F $F0 $1F $F0 $1F $F0 $1F $A5 $00 $14 $00 $00
 
 PUSH 
+
+
 
 ORG $E834 
 callHackNew(RandBGsFe8)
