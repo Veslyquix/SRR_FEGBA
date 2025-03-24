@@ -49,8 +49,15 @@ bx lr
 .type RandBGsFe8, %function 
 RandBGsFe8: 
 push {lr} 
-@cmp r6, #0x37 
-@bne UseBG
+bl ShouldRandomizeBG
+cmp r0, #0 
+bne RandBGs 
+cmp r6, #0x37 
+bne UseBG
+mov r0, #0x35 
+blh 0x8000C80 @ NextRN_N
+mov r6, r0 
+b UseBG 
 RandBGs:
 ldr r0, =MaxBGID
 ldr r0, [r0] 

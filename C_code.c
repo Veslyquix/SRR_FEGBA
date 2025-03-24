@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.9.2"
+#define VersionNumber " SRR V1.9.3"
 // 547282
 
 #ifdef FE8
@@ -44,7 +44,7 @@ typedef struct
     u8 choosingSkill;
     u8 clear;
     u16 globalChecksum;
-    s8 Option[25];
+    s8 Option[26];
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -109,7 +109,8 @@ struct GrowthBonusValues
     u8 player : 4;
     u8 enemy : 4;
     u8 ForcedCharTable : 5;
-    u8 pad : 3;
+    u8 Backgrounds;
+    u8 pad : 2;
 };
 
 extern struct TimedHitsDifficultyStruct * TimedHitsDifficultyRam;
@@ -218,6 +219,10 @@ u32 HashByte_Simple(u32 rn, int max)
         return 0;
     return Mod((rn >> 3), max);
 };
+int ShouldRandomizeBG(void)
+{
+    return GrowthValues->Backgrounds;
+}
 
 extern u8 VanillaSkill[];
 extern int NumberOfSkills;
@@ -7272,24 +7277,32 @@ const char Option22[OPT22NUM][20] = {
     "Disabled",
     "Press B on unit",
 };
-#define OPT23NUM 4
-const char Option23[OPT23NUM][10] = {
+#define OPT23NUM 2
+const char Option23[OPT23NUM][25] = {
+    // Backgrounds
+    "Vanilla",
+    "Random",
+};
+
+#define OPT24NUM 4
+const char Option24[OPT24NUM][10] = {
     "Off",
     "Easy",
     "Normal",
     "Hard",
 };
-#define OPT24NUM 4
-const char Option24[OPT24NUM][10] = {
+#define OPT25NUM 4
+const char Option25[OPT25NUM][10] = {
     "Vanilla",
     "Random",
     "Fixed",
     "Random &",
 };
 
-const u8 OptionAmounts[] = { OPT0NUM,  OPT1NUM,  OPT2NUM,  OPT3NUM,  OPT4NUM,  OPT5NUM,  OPT6NUM,  OPT7NUM,  OPT8NUM,
-                             OPT9NUM,  OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM, OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM,
-                             OPT18NUM, OPT19NUM, OPT20NUM, OPT21NUM, OPT22NUM, OPT23NUM, OPT24NUM, 0,        0 };
+const u8 OptionAmounts[] = { OPT0NUM,  OPT1NUM,  OPT2NUM,  OPT3NUM,  OPT4NUM,  OPT5NUM,  OPT6NUM,
+                             OPT7NUM,  OPT8NUM,  OPT9NUM,  OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM,
+                             OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM, OPT18NUM, OPT19NUM, OPT20NUM,
+                             OPT21NUM, OPT22NUM, OPT23NUM, OPT24NUM, OPT25NUM, 0,        0 };
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -8025,11 +8038,22 @@ void DrawConfigMenu(ConfigMenuProc * proc)
         }
         case 24:
         {
+            PutDrawText(
+                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                PutStringInBuffer(Option23[proc->Option[23]], UseHuffmanEncoding));
+            i++;
+            if (i > SRR_MAXDISP)
+            {
+                break;
+            }
+        }
+        case 25:
+        {
             if (DisplayTimedHitsOption)
             {
                 PutDrawText(
                     &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                    PutStringInBuffer(Option23[proc->Option[23]], UseHuffmanEncoding));
+                    PutStringInBuffer(Option24[proc->Option[24]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
@@ -8037,15 +8061,15 @@ void DrawConfigMenu(ConfigMenuProc * proc)
                 }
             }
         }
-        case 25:
+        case 26:
         {
             if (DisplayRandomSkillsOption)
             {
-                if ((proc->Option[24] != 3) || (!IsSkill(proc->skill)))
+                if ((proc->Option[25] != 3) || (!IsSkill(proc->skill)))
                 {
                     PutDrawText(
                         &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                        PutStringInBuffer(Option24[proc->Option[24]], UseHuffmanEncoding));
+                        PutStringInBuffer(Option25[proc->Option[25]], UseHuffmanEncoding));
                     i++;
                 }
                 else
@@ -8053,7 +8077,7 @@ void DrawConfigMenu(ConfigMenuProc * proc)
                     char string[30];
                     PutDrawText(
                         &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                        GetCombinedString(Option24[proc->Option[24]], GetSkillName(proc->skill), string));
+                        GetCombinedString(Option25[proc->Option[25]], GetSkillName(proc->skill), string));
                     i++;
                     // DrawIcon(
                     // gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
@@ -8382,7 +8406,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         if (DisplayRandomSkillsOption)
         {
-            if (RandValues->skills != proc->Option[24])
+            if (RandValues->skills != proc->Option[25])
             {
                 reloadUnits = true;
             }
@@ -8524,6 +8548,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             }
             default:
         }
+
         if (proc->Option[22] == 0)
         {
             SetFlag(DebuggerTurnedOff_Flag);
@@ -8532,16 +8557,17 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             UnsetFlag(DebuggerTurnedOff_Flag);
         }
+        GrowthValues->Backgrounds = proc->Option[23];
 
         if (DisplayRandomSkillsOption)
         {
-            RandValues->skills = proc->Option[24];
+            RandValues->skills = proc->Option[25];
             AlwaysSkill[0] = proc->skill;
         }
 
         if (DisplayTimedHitsOption)
         {
-            int timedHits = proc->Option[23];
+            int timedHits = proc->Option[24];
             TimedHitsDifficultyRam->off = false;
             TimedHitsDifficultyRam->alwaysA = false;
             TimedHitsDifficultyRam->difficulty = 0;
@@ -8729,7 +8755,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     //
 
-    if (((id + offset) == 25) && (proc->Option[24] == 3) && (proc->choosingSkill))
+    if (((id + offset) == 26) && (proc->Option[25] == 3) && (proc->choosingSkill))
     {
 
         if (keys & DPAD_UP)
@@ -8855,7 +8881,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0);
     if (proc->redraw == RedrawSome)
     {
-        if (((id + offset) == 25) && (proc->Option[24] == 3))
+        if (((id + offset) == 26) && (proc->Option[25] == 3))
         {
             proc->choosingSkill = true;
         }
@@ -8918,6 +8944,7 @@ const char SkipChapterText[] = { "Skip chapter" };
 const char ReloadUnitsText[] = { "Reload units" };
 const char UIText[] = { "User Interface" };
 const char DebuggerText[] = { "Debugger" };
+const char BGText[] = { "Backgrounds" };
 const char SkillsText[] = { "Skills" };
 const char TimedHitsText[] = { "Timed Hits" };
 const char RandomizerText[] = { "Randomizer" };
@@ -9158,8 +9185,16 @@ void RedrawAllText(ConfigMenuProc * proc)
             {
                 break;
             }
-
         case 24:
+            PutDrawText(
+                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
+                PutStringInBuffer((const char *)&BGText, false));
+            i++;
+            if (i > SRR_MAXDISP)
+            {
+                break;
+            }
+        case 25:
         {
             if (DisplayTimedHitsOption)
             {
@@ -9173,7 +9208,7 @@ void RedrawAllText(ConfigMenuProc * proc)
                 }
             }
         }
-        case 25:
+        case 26:
         {
             if (DisplayRandomSkillsOption)
             {
@@ -9355,9 +9390,10 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         proc->digit = 0;
         StartGreenText(proc);
         proc->Option[21] = 3; // ui default: pikmin style
-
         proc->Option[22] = 1; // debugger
-        proc->Option[23] = 1; // timed hits
+        proc->Option[23] = 0; // BGs
+
+        proc->Option[24] = 1; // timed hits
 #ifdef FORCE_SPECIFIC_SEED
         proc->Option[3] = 0;
         proc->Option[4] = 0;
@@ -9450,27 +9486,28 @@ int MenuStartConfigMenu(ProcPtr parent)
     }
 
     proc->Option[22] = !CheckFlag(DebuggerTurnedOff_Flag);
+    proc->Option[23] = GrowthValues->Backgrounds;
     if (DisplayTimedHitsOption)
     {
-        proc->Option[23] = 0;
+        proc->Option[24] = 0;
         if (TimedHitsDifficultyRam->alwaysA)
         {
-            proc->Option[23] = 1;
+            proc->Option[24] = 1;
         }
         if (TimedHitsDifficultyRam->difficulty == 2)
         {
-            proc->Option[23] = 2;
+            proc->Option[24] = 2;
         }
         if (TimedHitsDifficultyRam->difficulty == 3)
         {
-            proc->Option[23] = 3;
+            proc->Option[24] = 3;
         }
     }
 #endif
 
     if (DisplayRandomSkillsOption)
     {
-        proc->Option[24] = RandValues->skills;
+        proc->Option[25] = RandValues->skills;
         proc->skill = AlwaysSkill[0];
     }
 

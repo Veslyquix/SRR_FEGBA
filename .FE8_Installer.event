@@ -1116,12 +1116,12 @@ WORD IconOrrValue
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
     #ifdef C_SKILLSYS 
-    WORD 23 
+    WORD 24 
     #endif 
     #ifdef SKILLSYS_INSTALLED 
-    WORD 25
+    WORD 26
     #else 
-    WORD 24
+    WORD 25
     #endif  
 #else 
 WORD 23
