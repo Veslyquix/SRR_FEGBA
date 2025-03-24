@@ -33,7 +33,7 @@ installer = open("Generated.event", "w")
 installer.write("//Generated! Do not edit!\n\n")
 
 # Find all .png files recursively in the `png` folder
-png_files = list(Path("Png").rglob("*.png"))
+png_files = list(Path("png").rglob("*.png"))
 
 # Initialize counter
 c = 1

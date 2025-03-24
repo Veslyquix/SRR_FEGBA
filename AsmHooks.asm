@@ -43,6 +43,8 @@ mov r11, r11
 bx lr 
 .ltorg 
 
+@ FE8U = 0x0800E7D0
+@ in @u8 EventShowTextBgDirect(u8 mode, u16 bgIndex)
 .global RandBGsFe8
 .type RandBGsFe8, %function 
 RandBGsFe8: 
@@ -53,6 +55,7 @@ RandBGs:
 ldr r0, =MaxBGID
 ldr r0, [r0] 
 blh 0x8000C80 @ NextRN_N
+add r0, #0x38 
 mov r6, r0 
 UseBG: 
 

@@ -1,5 +1,6 @@
 @echo off
-@GenerateAndQuantize.py 
+@FormatImages.py
+@GenerateInstaller.py 
 @echo making stuff 
 make
 
