@@ -37,6 +37,7 @@ Droppable Item Icon GFX: Scraiza
 Animation Numbers: Huichelaar    
 MMB: Zane (FE8 only)   
 Support Hearts: Vesly, Gamma, 7743 (FE8 only)   
+224 Colour Backgrounds: Huichelaar   
    
    
 UI:
