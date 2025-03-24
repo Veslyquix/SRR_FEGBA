@@ -25,7 +25,7 @@
 #define Djinn_M_Alexsplodestand 144 
 #define Dragoon_M_v2_Lance_Pikmin_Unknownstand 145 
 #define Dread_Fighter_M_Nuramonstand 146 
-#define Enchanter_Ninja_Derstand 147 
+#define Enchanter_Aruka_Kenpuhustand 147 
 #define Executioner_U_Huichelaar_IS_Lexoustand 148 
 #define FE15Myrmidon_U_Sword_Nuramonstand 149 
 #define Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand 150 
@@ -107,7 +107,7 @@
 #define Djinn_M_Alexsplodewalk 143 
 #define Dragoon_M_v2_Lance_Pikmin_Unknownwalk 144 
 #define Dread_Fighter_M_Nuramonwalk 145 
-#define Enchanter_Ninja_Derwalk 146 
+#define Enchanter_Aruka_Kenpuhuwalk 146 
 #define Executioner_U_Huichelaar_IS_Lexouwalk 147 
 #define FE15Myrmidon_U_Sword_Nuramonwalk 148 
 #define Fellbeast_Wyvern_Wild_U_Faeriefruitwalk 149 
@@ -195,7 +195,7 @@ SetSMS(Dark_Prince_M_Norikins_Stephano_Zanestand, 1, Dark_Prince_M_Norikins_Step
 SetSMS(Djinn_M_Alexsplodestand, 1, Djinn_M_Alexsplodestand_Data) 
 SetSMS(Dragoon_M_v2_Lance_Pikmin_Unknownstand, 1, Dragoon_M_v2_Lance_Pikmin_Unknownstand_Data) 
 SetSMS(Dread_Fighter_M_Nuramonstand, 1, Dread_Fighter_M_Nuramonstand_Data) 
-SetSMS(Enchanter_Ninja_Derstand, 1, Enchanter_Ninja_Derstand_Data) 
+SetSMS(Enchanter_Aruka_Kenpuhustand, 1, Enchanter_Aruka_Kenpuhustand_Data) 
 SetSMS(Executioner_U_Huichelaar_IS_Lexoustand, 1, Executioner_U_Huichelaar_IS_Lexoustand_Data) 
 SetSMS(FE15Myrmidon_U_Sword_Nuramonstand, 1, FE15Myrmidon_U_Sword_Nuramonstand_Data) 
 SetSMS(Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand, 1, Fellbeast_Wyvern_Wild_U_16x16_Faeriefruitstand_Data) 
@@ -276,7 +276,7 @@ SetMMS(Dark_Prince_M_Norikins_Stephano_Zanewalk, Dark_Prince_M_Norikins_Stephano
 SetMMS(Djinn_M_Alexsplodewalk, Djinn_M_Alexsplodewalk_Data, DemonKingAP) 
 SetMMS(Dragoon_M_v2_Lance_Pikmin_Unknownwalk, Dragoon_M_v2_Lance_Pikmin_Unknownwalk_Data, DemonKingAP) 
 SetMMS(Dread_Fighter_M_Nuramonwalk, Dread_Fighter_M_Nuramonwalk_Data, DemonKingAP) 
-SetMMS(Enchanter_Ninja_Derwalk, Enchanter_Ninja_Derwalk_Data, DemonKingAP) 
+SetMMS(Enchanter_Aruka_Kenpuhuwalk, Enchanter_Aruka_Kenpuhuwalk_Data, DemonKingAP) 
 SetMMS(Executioner_U_Huichelaar_IS_Lexouwalk, Executioner_U_Huichelaar_IS_Lexouwalk_Data, DemonKingAP) 
 SetMMS(FE15Myrmidon_U_Sword_Nuramonwalk, FE15Myrmidon_U_Sword_Nuramonwalk_Data, DemonKingAP) 
 SetMMS(Fellbeast_Wyvern_Wild_U_Faeriefruitwalk, Fellbeast_Wyvern_Wild_U_Faeriefruitwalk_Data, DemonKingAP) 
@@ -421,8 +421,8 @@ Dread_Fighter_M_Nuramonstand_Data:
 #incbin "dmp/Dread_Fighter_M_Nuramonstand.dmp" 
  
 ALIGN 4 
-Enchanter_Ninja_Derstand_Data: 
-#incbin "dmp/Enchanter_Ninja_Derstand.dmp" 
+Enchanter_Aruka_Kenpuhustand_Data: 
+#incbin "dmp/Enchanter_Aruka_Kenpuhustand.dmp" 
  
 ALIGN 4 
 Executioner_U_Huichelaar_IS_Lexoustand_Data: 
@@ -742,8 +742,8 @@ Dread_Fighter_M_Nuramonwalk_Data:
 #incbin "dmp/Dread_Fighter_M_Nuramonwalk.dmp" 
  
 ALIGN 4 
-Enchanter_Ninja_Derwalk_Data: 
-#incbin "dmp/Enchanter_Ninja_Derwalk.dmp" 
+Enchanter_Aruka_Kenpuhuwalk_Data: 
+#incbin "dmp/Enchanter_Aruka_Kenpuhuwalk.dmp" 
  
 ALIGN 4 
 Executioner_U_Huichelaar_IS_Lexouwalk_Data: 
