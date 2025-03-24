@@ -665,7 +665,7 @@ Mitama portrait by Sterling_Glovner
 Caeldori (no art credited)     
 Rhajat (no art credited)     
 Siegbert (no art credited)     
-Forrest (no art credited)     
+Forrest portrait by Scraiza     
 Ignatius portrait by JeyTheCount     
 Velouria (no art credited)     
 Percy (no art credited)     
