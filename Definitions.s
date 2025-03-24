@@ -418,6 +418,7 @@ SET_DATA ProcScr_GotItem, 0x85C4934 @ maybe
 SET_FUNC StartBlockingPrepShop, 0x8095df1
 SET_FUNC ApplyUnitDefaultPromotion, 0x8029819
 SET_FUNC Decompress, 0x8013CA5
+SET_FUNC memcpy, 0x809F991
 .endif
 
 

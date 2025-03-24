@@ -11,7 +11,7 @@ By Vesly
 Special thanks:    
 -   
    
-Norikins, Mimikyudis, GeorgeCalibur, AthenaBaer   
+Norikins, Mimikyudis, GeorgeCalibur, Eden, AthenaBaer   
 Circles for the 2018 FE8 Self Randomizer as a reference.   
 FE8U Decomp Contributors, as many functions were copied from the decomp.   
 Gringe: FE6 translation used with permission (FE6 only).   
@@ -242,6 +242,9 @@ WarClericMMS by SkidMarc25
 WitchMMS by ArukaKenpu     
    
    
+Backgrounds (when set to random):  
+Various game screenshots  
+Norikins, WAve, Fenreir
    
    
 Portraits    
@@ -675,46 +678,46 @@ Nina portrait by JeyTheCount
    
 // fe15    
    
-Alm portrait by Atey     
-Lukas portrait by Blade     
-Gray portrait by GabrielKnight     
-Tobin portrait by GabrielKnight     
-Kliff portrait by GabrielKnight     
-Silque portrait by Blade     
-Clair (no art credited)     
-Clive (no art credited)     
-Forsyth (no art credited)     
-Python portrait by Norikins     
-Luthier (no art credited)     
-Mathilda portrait by BuskHusker     
-Delthea portrait by RedBean     
-Tatiana (no art credited)     
-Zeke portrait by Garytop     
-Mycen (no art credited)     
-Faye (no art credited)     
-Celica portrait by Atey     
-Mae (no art credited)     
-Boey (no art credited)     
-Genny portrait by Orihara_Saki     
-Saber portrait by What-Is-An-Aubin     
-Valbar (no art credited)     
-Kamui (no art credited)     
-Leon (no art credited)     
-Palla (FE15) (no art credited)     
-Catria (FE15) portrait by MeatOfJustice    
-Atlas (no art credited)     
-Jesse portrait by Atey, Norikins     
-Sonya portrait by Wasdye     
-Deen (FE15) (no art credited)     
-Est (FE15) portrait by Plant Academy     
-Nomah (no art credited)     
-Conrad (no art credited)     
-Randal portrait by SqRtOfPi  
-Emma portrait by Redbean  
-Yuzu portrait by Garytop  
-Shade by  
-Fernand portrait by TheSandwich  
-   
+Alm portrait by HyperGammaSpaces     
+Lukas portrait by HyperGammaSpaces      
+Gray portrait by HyperGammaSpaces     
+Tobin portrait by HyperGammaSpaces      
+Kliff portrait by HyperGammaSpaces      
+Silque portrait by HyperGammaSpaces     
+Clair portrait by HyperGammaSpaces     
+Clive portrait by HyperGammaSpaces     
+Forsyth portrait by HyperGammaSpaces        
+Python portrait by HyperGammaSpaces     
+Luthier portrait by HyperGammaSpaces     
+Mathilda portrait by HyperGammaSpaces     
+Delthea portrait by HyperGammaSpaces      
+Tatiana portrait by HyperGammaSpaces     
+Zeke portrait by HyperGammaSpaces      
+Mycen portrait by HyperGammaSpaces     
+Faye portrait by HyperGammaSpaces      
+Celica portrait by HyperGammaSpaces     
+Mae portrait by HyperGammaSpaces     
+Boey portrait by HyperGammaSpaces     
+Genny portrait by HyperGammaSpaces        
+Saber portrait by HyperGammaSpaces     
+Valbar portrait by HyperGammaSpaces       
+Kamui portrait by HyperGammaSpaces     
+Leon portrait by HyperGammaSpaces     
+Palla (FE15) portrait by HyperGammaSpaces     
+Catria (FE15) portrait by HyperGammaSpaces     
+Atlas portrait by HyperGammaSpaces      
+Jesse portrait by HyperGammaSpaces      
+Sonya portrait by HyperGammaSpaces     
+Deen (FE15) portrait by HyperGammaSpaces     
+Est (FE15) portrait by HyperGammaSpaces     
+Nomah portrait by HyperGammaSpaces     
+Conrad portrait by HyperGammaSpaces     
+Randal portrait by HyperGammaSpaces     
+Emma portrait by HyperGammaSpaces     
+Yuzu portrait by HyperGammaSpaces     
+Shade portrait by HyperGammaSpaces     
+Fernand  portrait by HyperGammaSpaces     
+    
 // fe16    
    
 Byleth_M portrait by emkat, Eden    
