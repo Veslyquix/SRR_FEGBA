@@ -2514,9 +2514,19 @@ u16 HashByte_Class(int n, int max, u8 noise[], int offset)
 
 u16 HashByte_Global(int number, int max, int noise[], int offset)
 {
-    offset += noise[0] + noise[1] + noise[2] + noise[3] + number + RandValues->seed;
-    u32 currentRN = 0;
-    currentRN = GetNthRN_Simple(offset, RandValues->seed, currentRN);
+    // Mix values without large multiplications
+    offset ^= RandValues->seed;
+    offset ^= noise[1] * 29; // Small primes
+    offset ^= noise[2] * 61;
+    offset ^= noise[3] * 113;
+    offset ^= number * 37;
+    offset ^= noise[0] * 73;
+
+    // Lightweight bit scrambling
+    offset ^= (offset >> 4) ^ (offset << 3);
+    offset *= 40503; // Smaller prime (fits in 16-bit)
+
+    u32 currentRN = GetNthRN_Simple(offset, RandValues->seed, 0);
 
     return Mod((currentRN & 0x2FFFFFFF), max);
 }
