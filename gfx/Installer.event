@@ -2,7 +2,12 @@
 #include "Portraits/Installer.event" 
 //#include "ClassCards/Installer.event" 
 #include "MapSprites/Installer.event" 
-#include "BGs/Installer.event" 
-
+#ifdef _FE8_
+    #include "BGs/Installer.event" 
+    #else 
+    ALIGN 4 
+    MaxBGID:
+    WORD 0 
+#endif 
 
 
