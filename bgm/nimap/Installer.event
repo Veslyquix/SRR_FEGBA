@@ -1,0 +1,19 @@
+
+
+ALIGN 4 
+voicegroup000:
+#ifdef _FE8_
+#incbin "fe8nimap.bin" 
+#include "FE8_Drumfix/Installer.event" 
+#endif 
+#ifdef _FE7_
+    #include "fe7nimap.bin" 
+#endif 
+#ifdef _FE6_
+    #include "fe6nimap.bin" 
+#endif 
+
+
+
+
+

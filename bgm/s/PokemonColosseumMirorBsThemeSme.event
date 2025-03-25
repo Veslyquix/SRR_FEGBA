@@ -1,0 +1,1686 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	PokemonColosseumMirorBsThemeSme_grp  voicegroup000
+	#define	PokemonColosseumMirorBsThemeSme_pri  0
+	#define	PokemonColosseumMirorBsThemeSme_rev  0
+	#define	PokemonColosseumMirorBsThemeSme_mvl  85
+	#define	PokemonColosseumMirorBsThemeSme_key  0
+	#define	PokemonColosseumMirorBsThemeSme_tbs  1
+	#define	PokemonColosseumMirorBsThemeSme_exg  0
+	#define	PokemonColosseumMirorBsThemeSme_cmp  1
+
+	// .rodata
+	//	PokemonColosseumMirorBsThemeSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+PokemonColosseumMirorBsThemeSme_1:
+	BYTE	KEYSH   PokemonColosseumMirorBsThemeSme_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   130*PokemonColosseumMirorBsThemeSme_tbs/2
+	BYTE		VOICE   65
+	BYTE		VOL     100*PokemonColosseumMirorBsThemeSme_mvl/mxv
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v-14
+	BYTE		N06     Cs3   v072
+	BYTE	W12
+	BYTE		N05     Cs3   v064
+	BYTE	W12
+	BYTE		        Ds3   v068
+	BYTE	W06
+	BYTE		        Ds3   v064
+	BYTE	W12
+	BYTE		N11     Fn3   v056
+	BYTE		N11     Cs4   v068
+	BYTE	W18
+	BYTE		N17     Fn3   v056
+	BYTE		N17     Cs4   v068
+	BYTE	W36
+// 001   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_1_001:
+	BYTE	W12
+	BYTE		N05     Cs3   v064
+	BYTE	W12
+	BYTE		        Ds3   v068
+	BYTE	W06
+	BYTE		        Ds3   v064
+	BYTE	W12
+	BYTE		N11     Fn3   v056
+	BYTE		N11     Cs4   v068
+	BYTE	W18
+	BYTE		N17     Fn3   v056
+	BYTE		N17     Cs4   v068
+	BYTE	W36
+	BYTE	PEND
+PokemonColosseumMirorBsThemeSme_1_B1:
+// 002   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_1_002:
+	BYTE		N06     Cs3   v072
+	BYTE	W06
+	BYTE		N05     Bn2   v064
+	BYTE	W06
+	BYTE		        Cs3 
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W06
+	BYTE		        As3   v068
+	BYTE	W12
+	BYTE		        Fs3   v064
+	BYTE	W06
+	BYTE		N28     Gs3 
+	BYTE	W30
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE		N06     As3   v072
+	BYTE	W06
+	BYTE		N05     Fs3   v064
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE	W06
+	BYTE		        Fn3   v068
+	BYTE	W12
+	BYTE		        Gs3   v064
+	BYTE	W06
+	BYTE		N28     Cs3 
+	BYTE	W30
+// 004   ----------------------------------------
+	BYTE		N06     Cs4   v072
+	BYTE	W06
+	BYTE		N05     Cs4   v064
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W18
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Gs3   v068
+	BYTE	W12
+	BYTE		        Fs3   v064
+	BYTE	W06
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W11
+	BYTE		N54     Gs3 
+	BYTE	W07
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_1_002
+// 007   ----------------------------------------
+	BYTE		N06     Ds3   v072
+	BYTE	W06
+	BYTE		N05     Fn3   v064
+	BYTE	W06
+	BYTE		        Gs3 
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		N24     Cs4   v052
+	BYTE	W24
+	BYTE		N05     Ds4   v064
+	BYTE	W06
+	BYTE		        Cs4 
+	BYTE	W06
+	BYTE		        Gs3   v068
+	BYTE	W06
+	BYTE		        Fs3   v064
+	BYTE	W11
+	BYTE		N05   
+	BYTE	W07
+// 008   ----------------------------------------
+	BYTE		N06     Cs4   v072
+	BYTE	W06
+	BYTE		N05     Ds4   v064
+	BYTE	W06
+	BYTE		        Fs4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N32     Gs4   v068
+	BYTE	W36
+	BYTE		N05     Gs4   v064
+	BYTE	W12
+	BYTE		        Fn4   v068
+	BYTE	W06
+	BYTE		        Ds4   v064
+	BYTE	W11
+	BYTE		TIE     Cs4 
+	BYTE	W07
+// 009   ----------------------------------------
+	BYTE	W92
+	BYTE	W03
+	BYTE		EOT   
+	BYTE	W01
+// 010   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_1_010:
+	BYTE		N06     Fs3   v072
+	BYTE	W12
+	BYTE		N05     Fs3   v064
+	BYTE	W12
+	BYTE		        En3   v068
+	BYTE	W06
+	BYTE		        Gs3   v064
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W06
+	BYTE		N10     Fs3   v068
+	BYTE	W18
+	BYTE		N11     Fs3   v064
+	BYTE	W30
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_1_010
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE		N06     Fn3   v072
+	BYTE	W06
+	BYTE		N05     Fs3   v064
+	BYTE	W06
+	BYTE		N40     Gs3 
+	BYTE	W42
+	BYTE		N05     Cs3 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE		        Fn3   v068
+	BYTE	W06
+	BYTE		        Cs3   v064
+	BYTE	W11
+	BYTE		N12     As2 
+	BYTE	W07
+// 017   ----------------------------------------
+	BYTE	W06
+	BYTE		N05     Gs2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W24
+	BYTE		N05   
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE	W12
+	BYTE		        As2   v064
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE	W06
+	BYTE		        Fs2   v064
+	BYTE	W11
+	BYTE		N12     Fn2 
+	BYTE	W07
+// 018   ----------------------------------------
+	BYTE	W06
+	BYTE		N05     Fs2 
+	BYTE	W06
+	BYTE		N40     Gs2 
+	BYTE	W42
+	BYTE		N05     Cs3 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W18
+	BYTE		N05   
+	BYTE	W11
+	BYTE		N05   
+	BYTE	W07
+// 019   ----------------------------------------
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+	BYTE		        As2 
+	BYTE	W06
+	BYTE		        Bn2   v068
+	BYTE	W06
+	BYTE		        As2   v064
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE	W06
+	BYTE		        Fs2 
+	BYTE	W06
+	BYTE		N17     Gs2   v068
+	BYTE	W18
+	BYTE		N05     Cs2   v064
+	BYTE	W18
+	BYTE		N05   
+	BYTE	W12
+// 020   ----------------------------------------
+	BYTE		N06     Fn3   v072
+	BYTE	W06
+	BYTE		N05     Fn3   v064
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N17     Gs3   v068
+	BYTE	W18
+	BYTE		N16     As3   v064
+	BYTE	W18
+	BYTE		N10     Fs3 
+	BYTE	W12
+// 021   ----------------------------------------
+	BYTE		N06     Gs3   v072
+	BYTE	W06
+	BYTE		N05     Fs3   v064
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Cs3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		N23     Fn3   v068
+	BYTE	W36
+	BYTE		N05     Gs3   v064
+	BYTE	W12
+// 022   ----------------------------------------
+	BYTE		N06     Cs4   v072
+	BYTE	W06
+	BYTE		N05     Cs4   v064
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Bn3   v068
+	BYTE	W06
+	BYTE		        As3   v064
+	BYTE	W06
+	BYTE		        Gs3 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE	W06
+	BYTE		        Gs3   v068
+	BYTE	W06
+	BYTE		        Fs3   v064
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W11
+	BYTE		        Bn2 
+	BYTE	W07
+// 023   ----------------------------------------
+	BYTE		N06     Gs2   v072
+	BYTE	W06
+	BYTE		N05     Bn2   v064
+	BYTE	W06
+	BYTE		        Cs3 
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W06
+	BYTE		N17     As3   v068
+	BYTE	W18
+	BYTE		N28     Gs3   v064
+	BYTE	W30
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_1_010
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_1_010
+// 026   ----------------------------------------
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v-14
+	BYTE		N06     Cs3   v072
+	BYTE	W12
+	BYTE		N05     Cs3   v064
+	BYTE	W12
+	BYTE		        Ds3   v068
+	BYTE	W06
+	BYTE		        Ds3   v064
+	BYTE	W12
+	BYTE		N11     Fn3   v056
+	BYTE		N11     Cs4   v068
+	BYTE	W18
+	BYTE		N17     Fn3   v056
+	BYTE		N17     Cs4   v068
+	BYTE	W36
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_1_001
+	BYTE	GoTo
+	 POIN2	PokemonColosseumMirorBsThemeSme_1_B1
+PokemonColosseumMirorBsThemeSme_1_B2:
+// 028   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+PokemonColosseumMirorBsThemeSme_2:
+	BYTE	KEYSH   PokemonColosseumMirorBsThemeSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   66
+	BYTE		VOL     94*PokemonColosseumMirorBsThemeSme_mvl/mxv
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+13
+	BYTE		N07     Gs2   v052
+	BYTE		N07     Bn2   v060
+	BYTE	W12
+	BYTE		N06     Gs2   v044
+	BYTE		N06     Bn2   v056
+	BYTE	W12
+	BYTE		N05     Gs2   v048
+	BYTE		N05     Bn2   v056
+	BYTE	W06
+	BYTE		        Gs2   v044
+	BYTE		N05     Bn2   v060
+	BYTE	W12
+	BYTE		N11     Gs2   v056
+	BYTE		N11     Bn2 
+	BYTE		N11     Cs3   v072
+	BYTE	W18
+	BYTE		N17     Gs2   v056
+	BYTE		N17     Bn2 
+	BYTE		N17     Cs3   v072
+	BYTE	W36
+// 001   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_2_001:
+	BYTE	W12
+	BYTE		N06     Gs2   v044
+	BYTE		N06     Bn2   v060
+	BYTE	W12
+	BYTE		N05     Gs2   v048
+	BYTE		N05     Bn2   v056
+	BYTE	W06
+	BYTE		        Gs2   v044
+	BYTE		N05     Bn2   v060
+	BYTE	W12
+	BYTE		N11     Gs2   v056
+	BYTE		N11     Bn2 
+	BYTE		N11     Cs3   v072
+	BYTE	W18
+	BYTE		N17     Gs2   v056
+	BYTE		N17     Bn2 
+	BYTE		N17     Cs3   v068
+	BYTE	W36
+	BYTE	PEND
+PokemonColosseumMirorBsThemeSme_2_B1:
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_2_010:
+	BYTE		N06     As2   v064
+	BYTE		N06     Cs3   v072
+	BYTE	W12
+	BYTE		N05     As2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W06
+	BYTE		        Bn2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W06
+	BYTE		N10     As2   v072
+	BYTE		N10     Cs3   v068
+	BYTE	W18
+	BYTE		N11     As2   v056
+	BYTE		N11     Cs3   v068
+	BYTE	W18
+	BYTE		N10     As2   v056
+	BYTE		N10     Cs3   v068
+	BYTE	W12
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE		N06     As2   v064
+	BYTE		N06     Cs3   v072
+	BYTE	W12
+	BYTE		N05     As2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W06
+	BYTE		        Bn2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W06
+	BYTE		N10     As2   v072
+	BYTE		N10     Cs3   v068
+	BYTE	W18
+	BYTE		N11     As2   v056
+	BYTE		N11     Cs3   v068
+	BYTE	W30
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_2_010
+// 025   ----------------------------------------
+	BYTE		N06     As2   v064
+	BYTE		N06     Cs3   v072
+	BYTE	W12
+	BYTE		N05     As2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W06
+	BYTE		        Bn2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE		N05     Cs3   v064
+	BYTE	W06
+	BYTE		N10     As2   v072
+	BYTE		N10     Cs3   v068
+	BYTE	W18
+	BYTE		N11     As2   v056
+	BYTE		N11     Cs3   v072
+	BYTE	W30
+// 026   ----------------------------------------
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+13
+	BYTE		N07     Gs2   v052
+	BYTE		N07     Bn2   v060
+	BYTE	W12
+	BYTE		N06     Gs2   v044
+	BYTE		N06     Bn2   v056
+	BYTE	W12
+	BYTE		N05     Gs2   v048
+	BYTE		N05     Bn2   v056
+	BYTE	W06
+	BYTE		        Gs2   v044
+	BYTE		N05     Bn2   v060
+	BYTE	W12
+	BYTE		N11     Gs2   v056
+	BYTE		N11     Bn2 
+	BYTE		N11     Cs3   v072
+	BYTE	W18
+	BYTE		N17     Gs2   v056
+	BYTE		N17     Bn2 
+	BYTE		N17     Cs3   v072
+	BYTE	W36
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_2_001
+	BYTE	GoTo
+	 POIN2	PokemonColosseumMirorBsThemeSme_2_B1
+PokemonColosseumMirorBsThemeSme_2_B2:
+// 028   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+PokemonColosseumMirorBsThemeSme_3:
+	BYTE	KEYSH   PokemonColosseumMirorBsThemeSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   67
+	BYTE		VOL     94*PokemonColosseumMirorBsThemeSme_mvl/mxv
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+40
+	BYTE	W42
+	BYTE		N11     Cs1   v056
+	BYTE		N11     Cs2   v072
+	BYTE	W18
+	BYTE		N17     Cs1   v056
+	BYTE		N17     Cs2   v068
+	BYTE	W36
+// 001   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_3_001:
+	BYTE	W42
+	BYTE		N11     Cs1   v056
+	BYTE		N11     Cs2   v068
+	BYTE	W18
+	BYTE		N17     Cs1   v056
+	BYTE		N17     Cs2   v068
+	BYTE	W36
+	BYTE	PEND
+PokemonColosseumMirorBsThemeSme_3_B1:
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_3_010:
+	BYTE		N06     Fs1   v068
+	BYTE	W12
+	BYTE		N05     Fs1   v064
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		N10     Fs1   v068
+	BYTE	W18
+	BYTE		N11     Fs1   v064
+	BYTE	W18
+	BYTE		N10   
+	BYTE	W12
+	BYTE	PEND
+// 011   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_3_011:
+	BYTE		N06     Fs1   v068
+	BYTE	W12
+	BYTE		N05     Fs1   v064
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		N10     Fs1   v068
+	BYTE	W18
+	BYTE		N11     Fs1   v064
+	BYTE	W30
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_3_010
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_3_011
+// 026   ----------------------------------------
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+40
+	BYTE	W42
+	BYTE		N11     Cs1   v056
+	BYTE		N11     Cs2   v072
+	BYTE	W18
+	BYTE		N17     Cs1   v056
+	BYTE		N17     Cs2   v068
+	BYTE	W36
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_3_001
+	BYTE	GoTo
+	 POIN2	PokemonColosseumMirorBsThemeSme_3_B1
+PokemonColosseumMirorBsThemeSme_3_B2:
+// 028   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+PokemonColosseumMirorBsThemeSme_4:
+	BYTE	KEYSH   PokemonColosseumMirorBsThemeSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   57
+	BYTE		VOL     94*PokemonColosseumMirorBsThemeSme_mvl/mxv
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+40
+	BYTE	W42
+	BYTE		N11     Fn4   v056
+	BYTE		N11     Gs4 
+	BYTE		N11     Bn4 
+	BYTE		N11     Cs5   v068
+	BYTE	W18
+	BYTE		N17     Fn4   v056
+	BYTE		N17     Gs4 
+	BYTE		N17     Bn4 
+	BYTE		N17     Cs5   v068
+	BYTE	W36
+// 001   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_4_001:
+	BYTE	W42
+	BYTE		N11     Fn4   v056
+	BYTE		N11     Gs4 
+	BYTE		N11     Bn4 
+	BYTE		N11     Cs5   v068
+	BYTE	W18
+	BYTE		N17     Fn4   v056
+	BYTE		N17     Gs4 
+	BYTE		N17     Bn4 
+	BYTE		N17     Cs5   v068
+	BYTE	W36
+	BYTE	PEND
+PokemonColosseumMirorBsThemeSme_4_B1:
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_4_010:
+	BYTE		N06     As2   v064
+	BYTE		N06     Cs3 
+	BYTE		N06     Fs3   v072
+	BYTE	W12
+	BYTE		N05     As2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     Fs3   v072
+	BYTE	W12
+	BYTE		        Gs2   v060
+	BYTE		N05     Cs3 
+	BYTE		N05     En3   v072
+	BYTE	W06
+	BYTE		        Bn2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     Gs3   v072
+	BYTE	W12
+	BYTE		        Gs2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     En3   v072
+	BYTE	W06
+	BYTE		N10     As2   v060
+	BYTE		N10     Cs3 
+	BYTE		N10     Fs3   v076
+	BYTE	W18
+	BYTE		N11     As2   v056
+	BYTE		N11     Cs3 
+	BYTE		N11     Fs3   v068
+	BYTE	W30
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_4_010
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE		N06     Cs4   v064
+	BYTE		N06     Fn4   v076
+	BYTE	W06
+	BYTE		N05     Ds4   v056
+	BYTE		N05     Fs4   v072
+	BYTE	W06
+	BYTE		N40     Fn4   v056
+	BYTE		N40     Gs4   v072
+	BYTE	W42
+	BYTE		N05     Gs3   v056
+	BYTE		N05     Cs4   v072
+	BYTE	W06
+	BYTE		        Ds4   v056
+	BYTE		N05     Fs4   v072
+	BYTE	W12
+	BYTE		        Cs4   v060
+	BYTE		N05     Fn4   v072
+	BYTE	W06
+	BYTE		        As3   v056
+	BYTE		N05     Cs4   v072
+	BYTE	W11
+	BYTE		N12     Fs3   v056
+	BYTE		N12     As3   v072
+	BYTE	W07
+// 017   ----------------------------------------
+	BYTE	W06
+	BYTE		N05     Fn3   v056
+	BYTE		N05     Gs3   v072
+	BYTE	W06
+	BYTE		        Fn3   v056
+	BYTE		N05     Gs3   v068
+	BYTE	W24
+	BYTE		        Fn3   v056
+	BYTE		N05     Gs3   v068
+	BYTE	W12
+	BYTE		        Fn3   v060
+	BYTE		N05     Gs3   v076
+	BYTE	W12
+	BYTE		        Fs3   v056
+	BYTE		N05     As3   v072
+	BYTE	W12
+	BYTE		        Fn3   v060
+	BYTE		N05     Gs3   v072
+	BYTE	W06
+	BYTE		        Ds3   v056
+	BYTE		N05     Fs3   v072
+	BYTE	W11
+	BYTE		N12     Cs3   v056
+	BYTE		N12     Fn3   v072
+	BYTE	W07
+// 018   ----------------------------------------
+	BYTE	W06
+	BYTE		N05     Ds3   v056
+	BYTE		N05     Fs3   v072
+	BYTE	W06
+	BYTE		N40     Fn3   v056
+	BYTE		N40     Gs3   v072
+	BYTE	W42
+	BYTE		N05     Gs3   v056
+	BYTE		N05     Cs4   v072
+	BYTE	W06
+	BYTE		        Gs3   v056
+	BYTE		N05     Cs4   v068
+	BYTE	W18
+	BYTE		        Gs3   v056
+	BYTE		N05     Cs4   v068
+	BYTE	W11
+	BYTE		        Gs3   v056
+	BYTE		N05     Cs4   v068
+	BYTE	W07
+// 019   ----------------------------------------
+	BYTE	W06
+	BYTE		        Gs3   v056
+	BYTE		N05     Cs4   v072
+	BYTE	W06
+	BYTE		        Gs3   v056
+	BYTE		N05     Bn3   v072
+	BYTE	W06
+	BYTE		        Fs3   v056
+	BYTE		N05     As3   v072
+	BYTE	W06
+	BYTE		        Gs3   v060
+	BYTE		N05     Bn3   v072
+	BYTE	W06
+	BYTE		        Fs3   v056
+	BYTE		N05     As3   v072
+	BYTE	W06
+	BYTE		        Fn3   v056
+	BYTE		N05     Gs3   v072
+	BYTE	W06
+	BYTE		        Ds3   v056
+	BYTE		N05     Fs3   v072
+	BYTE	W06
+	BYTE		N17     Cs3   v060
+	BYTE		N17     Fn3 
+	BYTE		N17     Gs3   v076
+	BYTE	W18
+	BYTE		N05     Cs3   v064
+	BYTE	W18
+	BYTE		N05   
+	BYTE	W12
+// 020   ----------------------------------------
+	BYTE		N06     Cs4 
+	BYTE		N06     Fn4   v072
+	BYTE	W06
+	BYTE		N05     Cs4   v056
+	BYTE		N05     Fn4   v072
+	BYTE	W06
+	BYTE		        Gs3   v056
+	BYTE		N05     Ds4   v072
+	BYTE	W06
+	BYTE		        Cs4   v056
+	BYTE		N05     Fn4   v072
+	BYTE	W12
+	BYTE		        Ds4   v056
+	BYTE		N05     Fs4   v072
+	BYTE	W12
+	BYTE		        Ds4   v056
+	BYTE		N05     Fs4   v072
+	BYTE	W06
+	BYTE		N17     Fn4   v060
+	BYTE		N17     Gs4   v076
+	BYTE	W18
+	BYTE		N16     Fs4   v056
+	BYTE		N16     As4   v072
+	BYTE	W18
+	BYTE		N10     Ds4   v056
+	BYTE		N10     Fs4   v072
+	BYTE	W12
+// 021   ----------------------------------------
+	BYTE		N06     Fn4   v064
+	BYTE		N06     Gs4   v076
+	BYTE	W06
+	BYTE		N05     Ds4   v056
+	BYTE		N05     Fs4   v072
+	BYTE	W06
+	BYTE		        Cs4   v056
+	BYTE		N05     Fn4   v072
+	BYTE	W06
+	BYTE		        Gs3   v056
+	BYTE		N05     Cs4   v072
+	BYTE	W12
+	BYTE		        Gs3   v056
+	BYTE		N05     Ds4   v072
+	BYTE	W06
+	BYTE		        Cs4   v056
+	BYTE		N05     Fn4   v072
+	BYTE	W12
+	BYTE		N23     Cs4   v060
+	BYTE		N23     Fn4   v076
+	BYTE	W36
+	BYTE		N05     Fn4   v056
+	BYTE		N05     Gs4   v072
+	BYTE	W12
+// 022   ----------------------------------------
+	BYTE		N06     Gs4   v064
+	BYTE		N06     Cs5   v076
+	BYTE	W06
+	BYTE		N05     Gs4   v056
+	BYTE		N05     Cs5   v072
+	BYTE	W06
+	BYTE		        Gs4   v056
+	BYTE		N05     Bn4   v072
+	BYTE	W06
+	BYTE		        Fs4   v056
+	BYTE		N05     As4   v072
+	BYTE	W06
+	BYTE		        Gs4   v060
+	BYTE		N05     Bn4   v072
+	BYTE	W06
+	BYTE		        Fs4   v056
+	BYTE		N05     As4   v072
+	BYTE	W06
+	BYTE		        Fn4   v056
+	BYTE		N05     Gs4   v072
+	BYTE	W06
+	BYTE		        Ds4   v056
+	BYTE		N05     Fs4   v072
+	BYTE	W06
+	BYTE		        Fn4   v060
+	BYTE		N05     Gs4   v076
+	BYTE	W06
+	BYTE		        Ds4   v056
+	BYTE		N05     Fs4   v072
+	BYTE	W06
+	BYTE		        Cs4   v056
+	BYTE		N05     Fn4   v072
+	BYTE	W06
+	BYTE		        Gs3   v056
+	BYTE		N05     Ds4   v072
+	BYTE	W12
+	BYTE		        Gs3   v056
+	BYTE		N05     Cs4   v072
+	BYTE	W11
+	BYTE		        Gs3   v056
+	BYTE		N05     Bn3   v072
+	BYTE	W07
+// 023   ----------------------------------------
+	BYTE		N06     Fn3   v064
+	BYTE		N06     Gs3   v076
+	BYTE	W06
+	BYTE		N05     Gs3   v056
+	BYTE		N05     Bn3   v072
+	BYTE	W06
+	BYTE		        Gs3   v056
+	BYTE		N05     Cs4   v072
+	BYTE	W06
+	BYTE		        Gs3   v056
+	BYTE		N05     Ds4   v072
+	BYTE	W12
+	BYTE		        Ds4   v056
+	BYTE		N05     Fs4   v072
+	BYTE	W12
+	BYTE		        Gs3   v056
+	BYTE		N05     Ds4   v072
+	BYTE	W06
+	BYTE		N17     Fs4   v060
+	BYTE		N17     As4   v076
+	BYTE	W18
+	BYTE		N28     Fn4   v056
+	BYTE		N28     Gs4   v072
+	BYTE	W30
+// 024   ----------------------------------------
+	BYTE		N06     As2   v064
+	BYTE		N06     Cs3 
+	BYTE		N06     Fs3   v076
+	BYTE	W12
+	BYTE		N05     As2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     Fs3   v072
+	BYTE	W12
+	BYTE		        Gs2   v060
+	BYTE		N05     Cs3 
+	BYTE		N05     En3   v072
+	BYTE	W06
+	BYTE		        Bn2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     Gs3   v072
+	BYTE	W12
+	BYTE		        Gs2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     En3   v072
+	BYTE	W06
+	BYTE		N10     As2   v060
+	BYTE		N10     Cs3 
+	BYTE		N10     Fs3   v076
+	BYTE	W18
+	BYTE		N11     As2   v056
+	BYTE		N11     Cs3 
+	BYTE		N11     Fs3   v068
+	BYTE	W30
+// 025   ----------------------------------------
+	BYTE		N06     As2   v064
+	BYTE		N06     Cs3 
+	BYTE		N06     Fs3   v072
+	BYTE	W12
+	BYTE		N05     As2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     Fs3   v072
+	BYTE	W12
+	BYTE		        Gs2   v060
+	BYTE		N05     Cs3 
+	BYTE		N05     En3   v072
+	BYTE	W06
+	BYTE		        Bn2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     Gs3   v072
+	BYTE	W12
+	BYTE		        Gs2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     En3   v072
+	BYTE	W06
+	BYTE		N10     As2   v060
+	BYTE		N10     Cs3 
+	BYTE		N10     Fs3   v076
+	BYTE	W18
+	BYTE		N11     As2   v056
+	BYTE		N11     Cs3 
+	BYTE		N11     Fs3   v072
+	BYTE	W30
+// 026   ----------------------------------------
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+40
+	BYTE	W42
+	BYTE		N11     Fn4   v056
+	BYTE		N11     Gs4 
+	BYTE		N11     Bn4 
+	BYTE		N11     Cs5   v068
+	BYTE	W18
+	BYTE		N17     Fn4   v056
+	BYTE		N17     Gs4 
+	BYTE		N17     Bn4 
+	BYTE		N17     Cs5   v068
+	BYTE	W36
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_4_001
+	BYTE	GoTo
+	 POIN2	PokemonColosseumMirorBsThemeSme_4_B1
+PokemonColosseumMirorBsThemeSme_4_B2:
+// 028   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+PokemonColosseumMirorBsThemeSme_5:
+	BYTE	KEYSH   PokemonColosseumMirorBsThemeSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     79*PokemonColosseumMirorBsThemeSme_mvl/mxv
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+40
+	BYTE	W42
+	BYTE		N11     Cn1   v056
+	BYTE		N11     Dn1 
+	BYTE		N11     Cs2   v072
+	BYTE	W18
+	BYTE		N17     Cn1   v056
+	BYTE		N17     Dn1 
+	BYTE		N17     Cs2   v068
+	BYTE	W18
+	BYTE		N10     Fs4   v064
+	BYTE	W18
+// 001   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_5_001:
+	BYTE	W42
+	BYTE		N11     Cn1   v056
+	BYTE		N11     Dn1 
+	BYTE		N11     Cs2   v068
+	BYTE	W18
+	BYTE		N17     Cn1   v056
+	BYTE		N17     Dn1 
+	BYTE		N17     Cs2   v068
+	BYTE	W24
+	BYTE		N10     Gn4   v064
+	BYTE	W12
+	BYTE	PEND
+PokemonColosseumMirorBsThemeSme_5_B1:
+// 002   ----------------------------------------
+	BYTE		N18     Cn1   v060
+	BYTE		N18     Dn1 
+	BYTE		N18     Cs2   v076
+	BYTE	W18
+	BYTE		N11     Dn2   v064
+	BYTE	W12
+	BYTE		N05     Cn2 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		N17     Bn1   v068
+	BYTE	W18
+	BYTE		N06     Cn2   v052
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W05
+	BYTE		N06   
+	BYTE	W07
+// 003   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_5_003:
+	BYTE		N18     Bn1   v068
+	BYTE	W18
+	BYTE		N11     Dn2   v064
+	BYTE	W12
+	BYTE		N05     Cn2 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		N17     Bn1   v068
+	BYTE	W18
+	BYTE		N06     Cn2   v052
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W05
+	BYTE		N06   
+	BYTE	W07
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 005   ----------------------------------------
+	BYTE		N18     Bn1   v068
+	BYTE	W18
+	BYTE		N17     Dn2   v064
+	BYTE	W18
+	BYTE		N10     An1 
+	BYTE	W12
+	BYTE		N17     Cn2   v060
+	BYTE		N17     Gn4   v076
+	BYTE	W18
+	BYTE		N05     Bn1   v064
+	BYTE	W06
+	BYTE		N10     Cn2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 009   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_5_009:
+	BYTE		N18     Bn1   v068
+	BYTE	W18
+	BYTE		N17     Dn2   v064
+	BYTE	W18
+	BYTE		N10     An1 
+	BYTE	W12
+	BYTE		N17     Cn2   v068
+	BYTE	W18
+	BYTE		N05     Bn1   v064
+	BYTE	W06
+	BYTE		N10     Cn2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_5_010:
+	BYTE		N11     An1   v068
+	BYTE	W12
+	BYTE		N10     Gn1   v064
+	BYTE	W12
+	BYTE		N05     Cn1   v056
+	BYTE		N05     Dn1   v064
+	BYTE	W06
+	BYTE		N10     Cn1   v056
+	BYTE		N10     Dn1   v064
+	BYTE	W12
+	BYTE		N05     Cn1   v056
+	BYTE		N05     Dn1   v064
+	BYTE	W06
+	BYTE		N17     Cn1   v056
+	BYTE		N17     Dn1   v068
+	BYTE	W18
+	BYTE		N11     Cn1   v056
+	BYTE		N11     Dn1   v064
+	BYTE	W30
+	BYTE	PEND
+// 011   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_5_011:
+	BYTE		N11     An1   v068
+	BYTE	W12
+	BYTE		N10     Gn1   v064
+	BYTE	W12
+	BYTE		N05     Cn1   v056
+	BYTE		N05     Dn1   v064
+	BYTE	W06
+	BYTE		N10     Cn1   v056
+	BYTE		N10     Dn1   v064
+	BYTE	W12
+	BYTE		N05     Cn1   v056
+	BYTE		N05     Dn1   v064
+	BYTE	W06
+	BYTE		N17     Cn1   v056
+	BYTE		N17     Dn1   v068
+	BYTE		N23     Fs4 
+	BYTE	W18
+	BYTE		N11     Cn1   v056
+	BYTE		N11     Dn1   v064
+	BYTE	W06
+	BYTE		N23     Gn4   v068
+	BYTE	W24
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 015   ----------------------------------------
+	BYTE		N18     Bn1   v068
+	BYTE	W18
+	BYTE		N17     Dn2   v064
+	BYTE	W18
+	BYTE		N10     An1 
+	BYTE	W12
+	BYTE		N17     Cn2   v068
+	BYTE		N23     Fs4 
+	BYTE	W18
+	BYTE		N05     Bn1   v064
+	BYTE	W06
+	BYTE		N10     Cn2 
+	BYTE		N23     Gn4   v068
+	BYTE	W12
+	BYTE		N10     An1   v064
+	BYTE	W12
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_009
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_003
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_009
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_010
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_011
+// 026   ----------------------------------------
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+40
+	BYTE	W42
+	BYTE		N11     Cn1   v056
+	BYTE		N11     Dn1 
+	BYTE		N11     Cs2   v072
+	BYTE	W18
+	BYTE		N17     Cn1   v056
+	BYTE		N17     Dn1 
+	BYTE		N17     Cs2   v068
+	BYTE	W18
+	BYTE		N10     Fs4   v064
+	BYTE	W18
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_001
+	BYTE	GoTo
+	 POIN2	PokemonColosseumMirorBsThemeSme_5_B1
+PokemonColosseumMirorBsThemeSme_5_B2:
+// 028   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+PokemonColosseumMirorBsThemeSme_6:
+	BYTE	KEYSH   PokemonColosseumMirorBsThemeSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   33
+	BYTE		VOL     83*PokemonColosseumMirorBsThemeSme_mvl/mxv
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+40
+	BYTE	W42
+	BYTE		N11     Cs1   v064
+	BYTE	W18
+	BYTE		N17   
+	BYTE	W36
+// 001   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_6_001:
+	BYTE	W42
+	BYTE		N11     Cs1   v064
+	BYTE	W18
+	BYTE		N17   
+	BYTE	W36
+	BYTE	PEND
+PokemonColosseumMirorBsThemeSme_6_B1:
+// 002   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_6_002:
+	BYTE		N18     Cs1   v068
+	BYTE	W18
+	BYTE		N16     Fn1   v064
+	BYTE	W18
+	BYTE		N10     Cs1 
+	BYTE	W12
+	BYTE		N17     Bn0 
+	BYTE	W18
+	BYTE		N16     Ds1 
+	BYTE	W18
+	BYTE		N10     Bn0 
+	BYTE	W12
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 010   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_6_010:
+	BYTE		N06     Fs1   v068
+	BYTE	W12
+	BYTE		N05     Fs1   v064
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		N10     Fs1   v068
+	BYTE	W18
+	BYTE		N11     Fs1   v064
+	BYTE	W30
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_010
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_002
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_010
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_010
+// 026   ----------------------------------------
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+40
+	BYTE	W42
+	BYTE		N11     Cs1   v064
+	BYTE	W18
+	BYTE		N17   
+	BYTE	W36
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_001
+	BYTE	GoTo
+	 POIN2	PokemonColosseumMirorBsThemeSme_6_B1
+PokemonColosseumMirorBsThemeSme_6_B2:
+// 028   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+PokemonColosseumMirorBsThemeSme_7:
+	BYTE	KEYSH   PokemonColosseumMirorBsThemeSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   1
+	BYTE		VOL     88*PokemonColosseumMirorBsThemeSme_mvl/mxv
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+56
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		        c_v+56
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+PokemonColosseumMirorBsThemeSme_7_B1:
+// 002   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_7_002:
+	BYTE		N11     Cs3   v072
+	BYTE	W12
+	BYTE		N05     Cs3   v064
+	BYTE	W06
+	BYTE		        Fn3   v056
+	BYTE		N05     Gs3 
+	BYTE		N05     Cs4   v072
+	BYTE	W12
+	BYTE		        Cs3   v064
+	BYTE	W06
+	BYTE		        Fn3   v056
+	BYTE		N05     Gs3 
+	BYTE		N05     Cs4   v072
+	BYTE	W12
+	BYTE		N17     Bn2   v068
+	BYTE	W18
+	BYTE		N05     Ds3   v056
+	BYTE		N05     Fs3 
+	BYTE		N05     Bn3   v072
+	BYTE	W30
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 010   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_7_010:
+	BYTE		N06     As2   v064
+	BYTE		N06     Cs3 
+	BYTE		N06     Fs3   v076
+	BYTE	W12
+	BYTE		N05     As2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     Fs3   v072
+	BYTE	W12
+	BYTE		        Gs2   v060
+	BYTE		N05     Cs3 
+	BYTE		N05     En3   v072
+	BYTE	W06
+	BYTE		        Bn2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     Gs3   v072
+	BYTE	W12
+	BYTE		        Gs2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     En3   v072
+	BYTE	W06
+	BYTE		N10     As2   v060
+	BYTE		N10     Cs3 
+	BYTE		N10     Fs3   v076
+	BYTE	W18
+	BYTE		N11     As2   v056
+	BYTE		N11     Cs3 
+	BYTE		N11     Fs3   v068
+	BYTE	W30
+	BYTE	PEND
+// 011   ----------------------------------------
+PokemonColosseumMirorBsThemeSme_7_011:
+	BYTE		N06     As2   v064
+	BYTE		N06     Cs3 
+	BYTE		N06     Fs3   v072
+	BYTE	W12
+	BYTE		N05     As2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     Fs3   v072
+	BYTE	W12
+	BYTE		        Gs2   v060
+	BYTE		N05     Cs3 
+	BYTE		N05     En3   v072
+	BYTE	W06
+	BYTE		        Bn2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     Gs3   v072
+	BYTE	W12
+	BYTE		        Gs2   v056
+	BYTE		N05     Cs3 
+	BYTE		N05     En3   v072
+	BYTE	W06
+	BYTE		N10     As2   v060
+	BYTE		N10     Cs3 
+	BYTE		N10     Fs3   v076
+	BYTE	W18
+	BYTE		N11     As2   v056
+	BYTE		N11     Cs3 
+	BYTE		N11     Fs3   v068
+	BYTE	W30
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_002
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_010
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_011
+// 026   ----------------------------------------
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		PAN     c_v+56
+	BYTE	MEMACC  mem_set  0x00  2
+	BYTE		        c_v+56
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	PokemonColosseumMirorBsThemeSme_7_B1
+PokemonColosseumMirorBsThemeSme_7_B2:
+// 028   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+PokemonColosseumMirorBsThemeSme:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	PokemonColosseumMirorBsThemeSme_pri	// Priority
+	BYTE	PokemonColosseumMirorBsThemeSme_rev	// Reverb.
+
+	POIN2	PokemonColosseumMirorBsThemeSme_grp
+
+	POIN2	PokemonColosseumMirorBsThemeSme_1
+	POIN2	PokemonColosseumMirorBsThemeSme_2
+	POIN2	PokemonColosseumMirorBsThemeSme_3
+	POIN2	PokemonColosseumMirorBsThemeSme_4
+	POIN2	PokemonColosseumMirorBsThemeSme_5
+	POIN2	PokemonColosseumMirorBsThemeSme_6
+	POIN2	PokemonColosseumMirorBsThemeSme_7
+
+	

@@ -1,0 +1,2624 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_grp  voicegroup000
+	#define	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_pri  0
+	#define	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_rev  0
+	#define	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_mvl  90
+	#define	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_key  0
+	#define	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_tbs  1
+	#define	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_exg  0
+	#define	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_cmp  1
+
+	// .rodata
+	//	PokemonRangerGuardianSignsLegendaryPokemonBattleSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.2) ****************//
+
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1:
+	BYTE	KEYSH   PokemonRangerGuardianSignsLegendaryPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   163*PokemonRangerGuardianSignsLegendaryPokemonBattleSme_tbs/2
+	BYTE		VOICE   49
+	BYTE		VOL     59*PokemonRangerGuardianSignsLegendaryPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE		N12     Gn2   v112
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+// 001   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_001:
+	BYTE	W12
+	BYTE		N06     Gn2   v112
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N12     As2 
+	BYTE	W18
+	BYTE		        Cn3 
+	BYTE	W18
+	BYTE		        Cs3 
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_002:
+	BYTE		N12     Dn3   v112
+	BYTE	W12
+	BYTE		N04     Cs3 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 003   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_003:
+	BYTE	W12
+	BYTE		N06     Gn2   v112
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N12     As2 
+	BYTE	W18
+	BYTE		        An2 
+	BYTE	W18
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE	PEND
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_B1:
+// 004   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_004:
+	BYTE		N12     Gn2   v112
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_003
+// 008   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_008:
+	BYTE		N06     Gn2   v112
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 009   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_009:
+	BYTE	W12
+	BYTE		N06     Gn2   v112
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_008
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_009
+// 012   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_012:
+	BYTE		N06     Gn2   v112
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE	PEND
+// 013   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_013:
+	BYTE	W12
+	BYTE		N06     Gn2   v112
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE	PEND
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_012
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_013
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_008
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_009
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_008
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_009
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_012
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_013
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_012
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_013
+// 024   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_024:
+	BYTE		N06     Gs2   v112
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_024
+// 026   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_026:
+	BYTE		N06     As2   v112
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_026
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_028:
+	BYTE		N06     Gn2   v112
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE	PEND
+// 029   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_029:
+	BYTE		N06     Fn2   v112
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE	PEND
+// 030   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_030:
+	BYTE		N06     Ds2   v112
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE	PEND
+// 031   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_031:
+	BYTE		N06     Fn2   v112
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE	PEND
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_028
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_029
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_030
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_031
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_028
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_029
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_030
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_031
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_028
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_029
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_030
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_031
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_004
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_001
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_002
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_003
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_B1
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1_B2:
+// 048   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.3) ****************//
+
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2:
+	BYTE	KEYSH   PokemonRangerGuardianSignsLegendaryPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   20
+	BYTE		VOL     65*PokemonRangerGuardianSignsLegendaryPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+4
+	BYTE		MOD     5
+	BYTE		N96     Dn2   v100
+	BYTE		N96     Gn2 
+	BYTE	W96
+// 001   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_001:
+	BYTE		N48     Ds2   v100
+	BYTE		N48     Gs2 
+	BYTE	W48
+	BYTE		        Cn2 
+	BYTE		N48     Fn2 
+	BYTE	W48
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE		N96     Dn2 
+	BYTE		N96     Gn2 
+	BYTE	W96
+// 003   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_003:
+	BYTE		N48     Cn2   v100
+	BYTE		N48     Fn2 
+	BYTE	W48
+	BYTE		N48   
+	BYTE		N48     As2 
+	BYTE	W48
+	BYTE	PEND
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_B1:
+// 004   ----------------------------------------
+	BYTE		N96     Dn2   v100
+	BYTE		N96     Gn2 
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE		N48     Fn2 
+	BYTE		N48     As2 
+	BYTE	W48
+	BYTE		        Gs2 
+	BYTE		N48     Cs3 
+	BYTE	W48
+// 006   ----------------------------------------
+	BYTE		N96     An2 
+	BYTE		N96     Dn3 
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE		        Gs2 
+	BYTE		N96     Cs3 
+	BYTE	W96
+// 008   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_008:
+	BYTE		PAN     c_v-10
+	BYTE		N06     Gn2   v100
+	BYTE	W12
+	BYTE		PAN     c_v+10
+	BYTE		N06     Cn3 
+	BYTE	W12
+	BYTE		PAN     c_v-20
+	BYTE		N06     Dn3 
+	BYTE	W12
+	BYTE		PAN     c_v+20
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE		PAN     c_v-10
+	BYTE		N06     Gn2 
+	BYTE	W12
+	BYTE		PAN     c_v+10
+	BYTE		N06     Dn3 
+	BYTE	W12
+	BYTE		PAN     c_v-20
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE		PAN     c_v+20
+	BYTE		N06     Gn2 
+	BYTE	W12
+	BYTE	PEND
+// 009   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_009:
+	BYTE		PAN     c_v-10
+	BYTE		N06     Dn3   v100
+	BYTE	W12
+	BYTE		PAN     c_v+10
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE		PAN     c_v-20
+	BYTE		N06     Gn2 
+	BYTE	W12
+	BYTE		PAN     c_v+20
+	BYTE		N06     Dn3 
+	BYTE	W12
+	BYTE		PAN     c_v-10
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE		PAN     c_v+10
+	BYTE		N06     Gn2 
+	BYTE	W12
+	BYTE		PAN     c_v-20
+	BYTE		N06     Dn3 
+	BYTE	W12
+	BYTE		PAN     c_v+20
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_008
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_009
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_008
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_009
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_008
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_009
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_008
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_009
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_008
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_009
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_008
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_009
+// 024   ----------------------------------------
+	BYTE		N80     Ds2   v100
+	BYTE		N80     Gs2 
+	BYTE	W01
+	BYTE		PAN     c_v+4
+	BYTE	W92
+	BYTE	W03
+// 025   ----------------------------------------
+	BYTE		N48     Dn2 
+	BYTE		N48     Gn2 
+	BYTE	W48
+	BYTE		        Ds2 
+	BYTE		N48     Gs2 
+	BYTE	W48
+// 026   ----------------------------------------
+	BYTE		N80     Fn2 
+	BYTE		N80     As2 
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE		N48     An2 
+	BYTE		N48     Dn3 
+	BYTE	W48
+	BYTE		        As2 
+	BYTE		N48     Ds3 
+	BYTE	W48
+// 028   ----------------------------------------
+	BYTE		N12     Gn2 
+	BYTE	W12
+	BYTE		N06     As2 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N24     Dn3 
+	BYTE	W24
+	BYTE		N06     Cn3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		N22     Gn2 
+	BYTE	W12
+// 029   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_029:
+	BYTE	W12
+	BYTE		N06     As2   v100
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N24     Fn3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE	PEND
+// 030   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_030:
+	BYTE	W12
+	BYTE		N06     Fn2   v100
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		N24     Gs2 
+	BYTE	W24
+	BYTE		N06     Fn2 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+	BYTE		N24     As2 
+	BYTE	W12
+	BYTE	PEND
+// 031   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_031:
+	BYTE	W12
+	BYTE		N24     Cn3   v100
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W24
+	BYTE		N36     Fs3 
+	BYTE	W36
+	BYTE	PEND
+// 032   ----------------------------------------
+	BYTE		N12     Gn3 
+	BYTE	W12
+	BYTE		N06     As2 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N24     Dn3 
+	BYTE	W24
+	BYTE		N06     Cn3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		N22     Gn2 
+	BYTE	W12
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_029
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_030
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_031
+// 036   ----------------------------------------
+	BYTE		N12     Gn3   v100
+	BYTE	W12
+	BYTE		N06     As3 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N24     Dn4 
+	BYTE	W24
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		N22     Gn3 
+	BYTE	W12
+// 037   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_037:
+	BYTE	W12
+	BYTE		N06     As3   v100
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N24     Fn4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE	PEND
+// 038   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_038:
+	BYTE	W12
+	BYTE		N06     Fn3   v100
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N24     Gs3 
+	BYTE	W24
+	BYTE		N06     Fn3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		N24     As3 
+	BYTE	W12
+	BYTE	PEND
+// 039   ----------------------------------------
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		N36     Fs4 
+	BYTE	W36
+// 040   ----------------------------------------
+	BYTE		N12     Gn4 
+	BYTE	W12
+	BYTE		N06     As3 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N24     Dn4 
+	BYTE	W24
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		N22     Gn3 
+	BYTE	W12
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_037
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_038
+// 043   ----------------------------------------
+	BYTE	W12
+	BYTE		N24     Fn3   v100
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE	W24
+	BYTE		N36     Cn3 
+	BYTE	W36
+// 044   ----------------------------------------
+	BYTE		N96     Dn2 
+	BYTE		N96     Gn2 
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_001
+// 046   ----------------------------------------
+	BYTE		N96     Dn2   v100
+	BYTE		N96     Gn2 
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_003
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_B1
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2_B2:
+// 048   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.4) ****************//
+
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3:
+	BYTE	KEYSH   PokemonRangerGuardianSignsLegendaryPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		VOL     85*PokemonRangerGuardianSignsLegendaryPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+16
+	BYTE		MOD     0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_B1:
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_008:
+	BYTE		N80     Dn4   v127
+	BYTE	W84
+	BYTE		N12     Cn4 
+	BYTE	W12
+	BYTE	PEND
+// 009   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_009:
+	BYTE		N48     Dn4   v127
+	BYTE	W48
+	BYTE		        Ds4 
+	BYTE	W48
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_008
+// 011   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_011:
+	BYTE		N12     Dn4   v127
+	BYTE	W12
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N24     Fn3 
+	BYTE	W24
+	BYTE		        Gs3 
+	BYTE	W24
+	BYTE	PEND
+// 012   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_012:
+	BYTE		N18     Gn3   v127
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W18
+	BYTE		TIE     Gn3 
+	BYTE	W60
+	BYTE	PEND
+// 013   ----------------------------------------
+	BYTE	W68
+	BYTE	W02
+	BYTE		EOT   
+	BYTE	W24
+	BYTE	W02
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_012
+// 015   ----------------------------------------
+	BYTE	W68
+	BYTE	W03
+	BYTE		EOT     Gn3 
+	BYTE	W24
+	BYTE	W01
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_008
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_009
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_008
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_011
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_012
+// 021   ----------------------------------------
+	BYTE	W68
+	BYTE	W02
+	BYTE		EOT     Gn3 
+	BYTE	W24
+	BYTE	W02
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_012
+// 023   ----------------------------------------
+	BYTE	W68
+	BYTE	W03
+	BYTE		EOT     Gn3 
+	BYTE	W24
+	BYTE	W01
+// 024   ----------------------------------------
+	BYTE		N80     Dn3   v127
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE		N48     Ds3 
+	BYTE	W48
+	BYTE		        En3 
+	BYTE	W48
+// 026   ----------------------------------------
+	BYTE		N80     Fn3 
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE		N48   
+	BYTE	W48
+	BYTE		        Fs3 
+	BYTE	W48
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_028:
+	BYTE		N12     Gn3   v127
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		N36     Dn4 
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_029:
+	BYTE	W36
+	BYTE		N21     Cs4   v127
+	BYTE	W24
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		N12     Cs4 
+	BYTE	W12
+	BYTE		N06     Cn4 
+	BYTE	W06
+	BYTE		N36     Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 030   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_030:
+	BYTE	W36
+	BYTE		N21     Gs3   v127
+	BYTE	W24
+	BYTE		N06     Fn3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		N32     Gn3 
+	BYTE	W12
+	BYTE	PEND
+// 031   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_031:
+	BYTE	W36
+	BYTE		N24     Fn3   v127
+	BYTE	W24
+	BYTE		N32     Fs3 
+	BYTE	W36
+	BYTE	PEND
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_028
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_029
+// 034   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_034:
+	BYTE	W36
+	BYTE		N21     Fn4   v127
+	BYTE	W24
+	BYTE		N24     Fs4 
+	BYTE	W24
+	BYTE		N48     Gn4 
+	BYTE	W12
+	BYTE	PEND
+// 035   ----------------------------------------
+	BYTE	W36
+	BYTE		N32     Fn4 
+	BYTE	W48
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE	W06
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_028
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_029
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_030
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_031
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_028
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_029
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_034
+// 043   ----------------------------------------
+	BYTE	W36
+	BYTE		N32     Fn4   v127
+	BYTE	W48
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fs4 
+	BYTE	W06
+// 044   ----------------------------------------
+	BYTE		TIE     Gn4 
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W24
+	BYTE		EOT   
+	BYTE	W24
+	BYTE		N18     Dn4 
+	BYTE	W18
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		TIE     Gn3 
+	BYTE	W12
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W72
+	BYTE		EOT   
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_B1
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3_B2:
+// 048   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.5) ****************//
+
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4:
+	BYTE	KEYSH   PokemonRangerGuardianSignsLegendaryPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   60
+	BYTE		VOL     95*PokemonRangerGuardianSignsLegendaryPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v-14
+	BYTE		MOD     0
+	BYTE		N06     Dn2   v084
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W24
+	BYTE		        Dn2   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+// 001   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_001:
+	BYTE	W12
+	BYTE		N06     Dn2   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N12     As1 
+	BYTE	W18
+	BYTE		        Cn2 
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_002:
+	BYTE		N06     Dn2   v084
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W24
+	BYTE		        Dn2   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_001
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_B1:
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_002
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_002
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_001
+// 010   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_010:
+	BYTE		N06     Gn2   v084
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W24
+	BYTE		        Gn2   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 011   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_011:
+	BYTE	W12
+	BYTE		N06     Gn2   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N12     Ds2 
+	BYTE	W18
+	BYTE		        Fn2 
+	BYTE	W18
+	BYTE		        Fs2 
+	BYTE	W12
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_002
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_002
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_010
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_011
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_010
+// 021   ----------------------------------------
+	BYTE	W12
+	BYTE		N06     Gn2   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N12     Gs2 
+	BYTE	W18
+	BYTE		        Fn2 
+	BYTE	W18
+	BYTE		N12   
+	BYTE	W12
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_010
+// 023   ----------------------------------------
+	BYTE	W12
+	BYTE		N06     Gn2   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W24
+	BYTE		        Gn2   v092
+	BYTE	W12
+	BYTE		        Gn2   v096
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+// 024   ----------------------------------------
+	BYTE		N12     Dn3 
+	BYTE	W12
+	BYTE		N06     Gs2   v088
+	BYTE	W12
+	BYTE		        Gn2   v096
+	BYTE	W12
+	BYTE		N22     Gs2 
+	BYTE	W24
+	BYTE		N06     Gn2   v084
+	BYTE	W12
+	BYTE		N09     Gs2   v096
+	BYTE	W12
+	BYTE		N06     As2   v084
+	BYTE	W12
+// 025   ----------------------------------------
+	BYTE		N36     Gn2   v096
+	BYTE	W48
+	BYTE		N40     Gs2   v104
+	BYTE	W48
+// 026   ----------------------------------------
+	BYTE		N42     As2 
+	BYTE	W48
+	BYTE		N36     Ds3   v100
+	BYTE	W48
+// 027   ----------------------------------------
+	BYTE		        Fn3 
+	BYTE	W48
+	BYTE		N40     Fs3   v096
+	BYTE	W48
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_028:
+	BYTE		N12     Gn3   v092
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		N36     Dn4 
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_029:
+	BYTE	W36
+	BYTE		N21     Cs4   v092
+	BYTE	W24
+	BYTE		N06     Cn4 
+	BYTE	W24
+	BYTE		N42     Gn3 
+	BYTE	W12
+	BYTE	PEND
+// 030   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_030:
+	BYTE	W36
+	BYTE		N21     Gs3   v092
+	BYTE	W24
+	BYTE		N06     Fn3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		N32     Gn3 
+	BYTE	W12
+	BYTE	PEND
+// 031   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_031:
+	BYTE	W36
+	BYTE		N24     Fn3   v092
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE	W36
+	BYTE	PEND
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_028
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_029
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_030
+// 035   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_035:
+	BYTE	W36
+	BYTE		N24     Fn3   v096
+	BYTE	W24
+	BYTE		        Fs3   v100
+	BYTE	W36
+	BYTE	PEND
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_028
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_029
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_030
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_031
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_028
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_029
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_030
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_035
+// 044   ----------------------------------------
+	BYTE		N96     Gn3   v092
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W48
+	BYTE		N12     As1   v088
+	BYTE	W18
+	BYTE		        Cn2 
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE	W12
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_002
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_001
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_B1
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4_B2:
+// 048   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.6) ****************//
+
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5:
+	BYTE	KEYSH   PokemonRangerGuardianSignsLegendaryPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   46
+	BYTE		VOL     80*PokemonRangerGuardianSignsLegendaryPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v-6
+	BYTE		MOD     0
+	BYTE		N03     Dn3   v080
+	BYTE	W03
+	BYTE		        Fn3   v084
+	BYTE	W03
+	BYTE		        Gn3   v088
+	BYTE	W03
+	BYTE		        Gs3   v092
+	BYTE	W03
+	BYTE		N48     Dn4   v096
+	BYTE	W84
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5_B1:
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W48
+	BYTE		N06     Dn4   v072
+	BYTE	W06
+	BYTE		        Cs4   v076
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        An3   v080
+	BYTE	W06
+	BYTE		        Gn3   v084
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Dn3   v088
+	BYTE	W06
+	BYTE		        Cs3   v092
+	BYTE	W06
+// 008   ----------------------------------------
+	BYTE		N48     Gn2   v100
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W48
+	BYTE		N06     Fn2   v088
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE	W06
+	BYTE		        Gs2   v092
+	BYTE	W06
+	BYTE		        As2   v096
+	BYTE	W06
+	BYTE		        Gn2   v100
+	BYTE	W06
+	BYTE		        Gs2   v104
+	BYTE	W06
+	BYTE		        As2   v108
+	BYTE	W06
+	BYTE		        Cn3   v112
+	BYTE	W06
+// 024   ----------------------------------------
+	BYTE		N48     Dn3   v104
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE		        Ds3 
+	BYTE	W48
+	BYTE		        En3 
+	BYTE	W48
+// 026   ----------------------------------------
+	BYTE		        Fn3 
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE		        Fn3   v096
+	BYTE	W48
+	BYTE		N06     Fs2   v108
+	BYTE	W06
+	BYTE		        As2   v104
+	BYTE	W06
+	BYTE		        Dn3   v100
+	BYTE	W06
+	BYTE		        Fs3   v096
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        Dn3   v088
+	BYTE	W06
+	BYTE		        Fs3   v084
+	BYTE	W06
+	BYTE		        An3   v080
+	BYTE	W06
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5_028:
+	BYTE		N32     As3   v076
+	BYTE	W36
+	BYTE		N42     Gn3   v092
+	BYTE	W48
+	BYTE		N44     Dn4   v096
+	BYTE	W12
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE	W84
+	BYTE		N48     Gn3   v092
+	BYTE	W12
+// 030   ----------------------------------------
+	BYTE	W84
+	BYTE		N40     Dn3   v088
+	BYTE	W12
+// 031   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5_031:
+	BYTE	W48
+	BYTE		N06     Fs2   v108
+	BYTE	W06
+	BYTE		        As2   v104
+	BYTE	W06
+	BYTE		        Dn3   v100
+	BYTE	W06
+	BYTE		        Fs3   v096
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        Dn3   v088
+	BYTE	W06
+	BYTE		        Fs3   v084
+	BYTE	W06
+	BYTE		        An3   v080
+	BYTE	W06
+	BYTE	PEND
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5_028
+// 033   ----------------------------------------
+	BYTE	W84
+	BYTE		N48     Gn3   v092
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE	W84
+	BYTE		N40     Gn3   v088
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5_031
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5_028
+// 037   ----------------------------------------
+	BYTE	W84
+	BYTE		N48     Gn3   v092
+	BYTE	W12
+// 038   ----------------------------------------
+	BYTE	W84
+	BYTE		N40     Dn3   v088
+	BYTE	W12
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5_031
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5_028
+// 041   ----------------------------------------
+	BYTE	W84
+	BYTE		N48     Gn3   v092
+	BYTE	W12
+// 042   ----------------------------------------
+	BYTE	W84
+	BYTE		N40     Dn3   v088
+	BYTE	W12
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE		N03     Dn3   v080
+	BYTE	W03
+	BYTE		        Fn3   v084
+	BYTE	W03
+	BYTE		        Gn3   v088
+	BYTE	W03
+	BYTE		        Gs3   v092
+	BYTE	W03
+	BYTE		N48     Dn4   v096
+	BYTE	W84
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5_B1
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5_B2:
+// 048   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.7) ****************//
+
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6:
+	BYTE	KEYSH   PokemonRangerGuardianSignsLegendaryPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		VOL     60*PokemonRangerGuardianSignsLegendaryPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+6
+	BYTE		MOD     0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_B1:
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_008:
+	BYTE		N80     Gn3   v127
+	BYTE	W84
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE	PEND
+// 009   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_009:
+	BYTE		N48     Gn3   v127
+	BYTE	W48
+	BYTE		        Gs3 
+	BYTE	W48
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_008
+// 011   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_011:
+	BYTE		N12     Gn3   v127
+	BYTE	W12
+	BYTE		N06     Cn3 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N24     As2 
+	BYTE	W24
+	BYTE		        Cs3 
+	BYTE	W24
+	BYTE	PEND
+// 012   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_012:
+	BYTE		N18     Cn3   v127
+	BYTE	W18
+	BYTE		        Cs3 
+	BYTE	W18
+	BYTE		TIE     Cn3 
+	BYTE	W60
+	BYTE	PEND
+// 013   ----------------------------------------
+	BYTE	W68
+	BYTE	W02
+	BYTE		EOT   
+	BYTE	W24
+	BYTE	W02
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_012
+// 015   ----------------------------------------
+	BYTE	W68
+	BYTE	W03
+	BYTE		EOT     Cn3 
+	BYTE	W24
+	BYTE	W01
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_008
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_009
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_008
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_011
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_012
+// 021   ----------------------------------------
+	BYTE	W68
+	BYTE	W02
+	BYTE		EOT     Cn3 
+	BYTE	W24
+	BYTE	W02
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_012
+// 023   ----------------------------------------
+	BYTE	W68
+	BYTE	W03
+	BYTE		EOT     Cn3 
+	BYTE	W24
+	BYTE	W01
+// 024   ----------------------------------------
+	BYTE		N80     Gs2   v127
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE		N48     Gn2 
+	BYTE	W48
+	BYTE		        Gs2 
+	BYTE	W48
+// 026   ----------------------------------------
+	BYTE		N80     As2 
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE		N48     An2 
+	BYTE	W48
+	BYTE		        As2 
+	BYTE	W48
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_028:
+	BYTE		N12     Cn3   v127
+	BYTE	W12
+	BYTE		N06     Gn2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W06
+	BYTE		N36     Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_029:
+	BYTE	W36
+	BYTE		N21     Fs3   v127
+	BYTE	W24
+	BYTE		N06     Fn3 
+	BYTE	W12
+	BYTE		N12     Fs3 
+	BYTE	W12
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		N36     Cn3 
+	BYTE	W06
+	BYTE	PEND
+// 030   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_030:
+	BYTE	W36
+	BYTE		N21     Cs3   v127
+	BYTE	W24
+	BYTE		N06     As2 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W12
+	BYTE		N32     Cn3 
+	BYTE	W12
+	BYTE	PEND
+// 031   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_031:
+	BYTE	W36
+	BYTE		N24     As2   v127
+	BYTE	W24
+	BYTE		N32     Bn2 
+	BYTE	W36
+	BYTE	PEND
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_028
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_029
+// 034   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_034:
+	BYTE	W36
+	BYTE		N21     As3   v127
+	BYTE	W24
+	BYTE		N24     Bn3 
+	BYTE	W24
+	BYTE		N48     Cn4 
+	BYTE	W12
+	BYTE	PEND
+// 035   ----------------------------------------
+	BYTE	W36
+	BYTE		N32     As3 
+	BYTE	W48
+	BYTE		N06     As2 
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_028
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_029
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_030
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_031
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_028
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_029
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_034
+// 043   ----------------------------------------
+	BYTE	W36
+	BYTE		N32     As3   v127
+	BYTE	W48
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W06
+// 044   ----------------------------------------
+	BYTE		TIE     Cn4 
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W24
+	BYTE		EOT   
+	BYTE	W24
+	BYTE		N18     Gn3 
+	BYTE	W18
+	BYTE		        Dn3 
+	BYTE	W18
+	BYTE		TIE     Cn3 
+	BYTE	W12
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W72
+	BYTE		EOT   
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_B1
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6_B2:
+// 048   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.9) ****************//
+
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7:
+	BYTE	KEYSH   PokemonRangerGuardianSignsLegendaryPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		VOL     80*PokemonRangerGuardianSignsLegendaryPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE		N24     Dn2   v127
+	BYTE	W84
+	BYTE		N06     Dn2   v096
+	BYTE	W06
+	BYTE		        Dn2   v100
+	BYTE	W06
+// 001   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001:
+	BYTE		N24     Dn2   v127
+	BYTE	W36
+	BYTE		N06     Dn2   v092
+	BYTE	W06
+	BYTE		        Dn2   v096
+	BYTE	W06
+	BYTE		N12     Dn2   v104
+	BYTE	W18
+	BYTE		        Dn2   v108
+	BYTE	W18
+	BYTE		        Dn2   v112
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002:
+	BYTE		N24     Dn2   v127
+	BYTE	W84
+	BYTE		N06     Dn2   v096
+	BYTE	W06
+	BYTE		        Dn2   v100
+	BYTE	W06
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_B1:
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 023   ----------------------------------------
+	BYTE		N24     Dn2   v127
+	BYTE	W36
+	BYTE		N06     Gn2   v080
+	BYTE	W06
+	BYTE		        Gn2   v084
+	BYTE	W06
+	BYTE		        Gn2   v088
+	BYTE	W06
+	BYTE		        Gn2   v092
+	BYTE	W06
+	BYTE		        Gn2   v096
+	BYTE	W06
+	BYTE		        Gn2   v100
+	BYTE	W06
+	BYTE		        Gn2   v104
+	BYTE	W06
+	BYTE		        Gn2   v108
+	BYTE	W06
+	BYTE		        Gn2   v112
+	BYTE	W06
+	BYTE		        Gn2   v116
+	BYTE	W06
+// 024   ----------------------------------------
+	BYTE		N48     Dn2   v127
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W84
+	BYTE		N06     Dn2   v092
+	BYTE	W06
+	BYTE		        Dn2   v096
+	BYTE	W06
+// 026   ----------------------------------------
+	BYTE		N24     Dn2   v127
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE		N48     Dn2   v108
+	BYTE	W72
+	BYTE		N06     Dn2   v096
+	BYTE	W06
+	BYTE		        Dn2   v100
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v108
+	BYTE	W06
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028:
+	BYTE		N12     Dn2   v112
+	BYTE	W12
+	BYTE		        Dn2   v100
+	BYTE	W24
+	BYTE		        Gn2   v104
+	BYTE	W24
+	BYTE		        Gn2   v088
+	BYTE	W24
+	BYTE		N06     Dn2   v092
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_028
+// 043   ----------------------------------------
+	BYTE		N12     Dn2   v112
+	BYTE	W12
+	BYTE		        Gn2   v080
+	BYTE	W12
+	BYTE		        Gn2   v084
+	BYTE	W12
+	BYTE		        Gn2   v088
+	BYTE	W12
+	BYTE		        Gn2   v092
+	BYTE	W12
+	BYTE		        Gn2   v096
+	BYTE	W12
+	BYTE		        Gn2   v104
+	BYTE	W12
+	BYTE		        Gn2   v108
+	BYTE	W12
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_002
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_001
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_B1
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7_B2:
+// 048   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.11) ****************//
+
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8:
+	BYTE	KEYSH   PokemonRangerGuardianSignsLegendaryPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     100*PokemonRangerGuardianSignsLegendaryPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE		N12     Cn1   v092
+	BYTE	W48
+	BYTE		        Cn1   v080
+	BYTE	W48
+// 001   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001:
+	BYTE		N12     Cn1   v080
+	BYTE	W36
+	BYTE		N06     Dn1   v068
+	BYTE	W06
+	BYTE		        Dn1   v072
+	BYTE	W06
+	BYTE		N12     Cn1   v080
+	BYTE		N06     Dn1   v100
+	BYTE	W18
+	BYTE		        Dn1   v076
+	BYTE	W18
+	BYTE		        Dn1   v060
+	BYTE	W06
+	BYTE		        Dn1   v056
+	BYTE	W06
+	BYTE	PEND
+// 002   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_002:
+	BYTE		N12     Cn1   v092
+	BYTE		N06     Dn1   v088
+	BYTE	W48
+	BYTE		N12     Cn1   v080
+	BYTE	W48
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_B1:
+// 004   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_004:
+	BYTE		N12     Cn1   v092
+	BYTE	W48
+	BYTE		        Cn1   v080
+	BYTE	W48
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 006   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_006:
+	BYTE		N12     Cn1   v092
+	BYTE		N06     Dn1   v076
+	BYTE	W48
+	BYTE		N12     Cn1   v080
+	BYTE	W48
+	BYTE	PEND
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_004
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_004
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_002
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_004
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_002
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 024   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_024:
+	BYTE		N12     Cn1   v080
+	BYTE	W36
+	BYTE		        Cn1   v068
+	BYTE	W12
+	BYTE		        Cn1   v072
+	BYTE	W36
+	BYTE		        Cn1   v068
+	BYTE	W12
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_024
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_024
+// 027   ----------------------------------------
+	BYTE		N12     Cn1   v080
+	BYTE	W36
+	BYTE		        Cn1   v068
+	BYTE	W12
+	BYTE		        Cn1   v100
+	BYTE		N06     Cn2 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        An1   v104
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fn1 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028:
+	BYTE		N06     Cn1   v096
+	BYTE	W24
+	BYTE		        Dn1   v108
+	BYTE	W18
+	BYTE		        Cn1   v096
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Cn1   v084
+	BYTE	W12
+	BYTE		        Dn1   v112
+	BYTE	W12
+	BYTE		        Cn1   v092
+	BYTE	W12
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 031   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_031:
+	BYTE		N06     Cn1   v096
+	BYTE	W06
+	BYTE		        Dn1   v080
+	BYTE	W06
+	BYTE		        Dn1   v068
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE	W18
+	BYTE		        Cn1   v096
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn1   v108
+	BYTE	W06
+	BYTE		        Cn1   v104
+	BYTE		N06     Dn1   v112
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn1   v096
+	BYTE	W06
+	BYTE		        Cn1   v092
+	BYTE	W12
+	BYTE	PEND
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 035   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_035:
+	BYTE		N06     Cn1   v096
+	BYTE	W06
+	BYTE		        Dn1   v080
+	BYTE	W06
+	BYTE		        Dn1   v068
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE	W06
+	BYTE		        Dn1   v068
+	BYTE	W12
+	BYTE		        Cn1   v096
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Cn2   v100
+	BYTE	W06
+	BYTE		        Cn1   v104
+	BYTE		N06     Cn2 
+	BYTE	W06
+	BYTE		        An1   v108
+	BYTE	W06
+	BYTE		        An1   v104
+	BYTE	W06
+	BYTE		        Fn1   v088
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE		N06     Fn1 
+	BYTE	W12
+	BYTE	PEND
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_031
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_028
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_035
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_004
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_006
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_001
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_B1
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8_B2:
+// 048   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 9 (Midi-Chn.12) ****************//
+
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9:
+	BYTE	KEYSH   PokemonRangerGuardianSignsLegendaryPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     80*PokemonRangerGuardianSignsLegendaryPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE		N48     An2   v108
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_B1:
+// 004   ----------------------------------------
+	BYTE		N48     An2   v100
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE		N48   
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE		N48   
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE		N48   
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE		N48   
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_024:
+	BYTE		N06     Fs1   v088
+	BYTE	W12
+	BYTE		        Fs1   v056
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W12
+	BYTE		        Fs1   v060
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W12
+	BYTE		        Fs1   v056
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W12
+	BYTE		        Fs1   v056
+	BYTE	W12
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_024
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_024
+// 027   ----------------------------------------
+	BYTE		N06     Fs1   v088
+	BYTE	W12
+	BYTE		        Fs1   v056
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE		N48     An2   v100
+	BYTE	W12
+	BYTE		N06     Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v084
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v064
+	BYTE	W06
+	BYTE		        Fs1   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v084
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v064
+	BYTE	W06
+// 029   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_029:
+	BYTE		N06     Fs1   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v084
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v064
+	BYTE	W06
+	BYTE		        Fs1   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v084
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v064
+	BYTE	W06
+	BYTE	PEND
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_029
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_029
+// 032   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_032:
+	BYTE		N48     An2   v084
+	BYTE	W12
+	BYTE		N06     Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v084
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v064
+	BYTE	W06
+	BYTE		        Fs1   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v084
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v064
+	BYTE	W06
+	BYTE	PEND
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_029
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_029
+// 035   ----------------------------------------
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_035:
+	BYTE		N06     Fs1   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v084
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v064
+	BYTE	W54
+	BYTE	PEND
+// 036   ----------------------------------------
+	BYTE		N48     An2   v096
+	BYTE	W12
+	BYTE		N06     Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v084
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v064
+	BYTE	W06
+	BYTE		        Fs1   v088
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v084
+	BYTE	W12
+	BYTE		        Fs1   v088
+	BYTE	W06
+	BYTE		        Fs1   v064
+	BYTE	W06
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_029
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_029
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_029
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_032
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_029
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_029
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_035
+// 044   ----------------------------------------
+	BYTE		N48     An2   v100
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_B1
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9_B2:
+// 048   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+PokemonRangerGuardianSignsLegendaryPokemonBattleSme:
+	BYTE	9	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_pri	// Priority
+	BYTE	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_rev	// Reverb.
+
+	POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_grp
+
+	POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_1
+	POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_2
+	POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_3
+	POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_4
+	POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_5
+	POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_6
+	POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_7
+	POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_8
+	POIN2	PokemonRangerGuardianSignsLegendaryPokemonBattleSme_9
+
+	

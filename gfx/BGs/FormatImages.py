@@ -3,12 +3,22 @@ from PIL import Image
 import re
 import shutil
 import os 
+import unicodedata
 
-
-# Function to clean filenames
+# Function to clean filenames but keep extensions intact
 def clean_name(name):
-    return re.sub(r"[()\[\]{}\,\-\s%]", "", name)  # Remove (), {}, [], , - spaces and %
-
+    # Extract the file extension
+    name_without_extension, extension = Path(name).stem, Path(name).suffix
+    
+    # Normalize the name to remove accents
+    name_without_extension = unicodedata.normalize('NFD', name_without_extension)  # Decompose characters into base + accent
+    name_without_extension = ''.join([c for c in name_without_extension if unicodedata.category(c) != 'Mn'])  # Remove accents
+    
+    # Remove unwanted characters: (), {}, [], , - spaces, %, ', !, and .
+    cleaned_name = re.sub(r"[()\[\]{}\,\-\s%!'\".]", "", name_without_extension)
+    
+    # Return cleaned name with the original extension
+    return cleaned_name + extension
 
 
 i = 0

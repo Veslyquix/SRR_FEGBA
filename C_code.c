@@ -1392,7 +1392,7 @@ struct Song
     u16 me;
 };
 extern struct Song * getSongTable[];
-const int MaxNumberOfSongs = 99;
+const int MaxNumberOfSongs = 255;
 extern u8 BGMExceptions[];
 // #define MaxNumberOfSongs 99
 u16 * BuildTracklist(u16 List[])
@@ -1404,7 +1404,7 @@ u16 * BuildTracklist(u16 List[])
         List[i] = 0;
     }
     struct Song * gST = *getSongTable;
-    for (i = 0; i < 1000; ++i)
+    for (i = 0; i < 1500; ++i)
     {
         if (List[0] >= MaxNumberOfSongs)
         {

@@ -1,0 +1,936 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	PokemonSnapAlbumPandan_grp  voicegroup000
+	#define	PokemonSnapAlbumPandan_pri  0
+	#define	PokemonSnapAlbumPandan_rev  0
+	#define	PokemonSnapAlbumPandan_mvl  127
+	#define	PokemonSnapAlbumPandan_key  0
+	#define	PokemonSnapAlbumPandan_tbs  1
+	#define	PokemonSnapAlbumPandan_exg  0
+	#define	PokemonSnapAlbumPandan_cmp  1
+
+	// .rodata
+	//	PokemonSnapAlbumPandan
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+PokemonSnapAlbumPandan_001:
+// 000   ----------------------------------------
+ BYTE   VOL   50*PokemonSnapAlbumPandan_mvl/mxv
+ BYTE   KEYSH   PokemonSnapAlbumPandan_key+0
+ BYTE   TEMPO   94*PokemonSnapAlbumPandan_tbs/2
+ BYTE   VOICE   10
+ BYTE   PAN   c_v-1
+ BYTE   N32  Gs3  v100
+ BYTE   N16  Ds4
+ BYTE   N16  Ds5
+ BYTE   W24
+ BYTE   N08  Cs4
+ BYTE   N08  Cs5
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N08  Cn5
+ BYTE   W12
+ BYTE   N32  Gn3
+ BYTE   N16  As3
+ BYTE   N16  As4
+ BYTE   W48
+// 001   ----------------------------------------
+ BYTE   N32  Fs3
+ BYTE   N16  Cs4
+ BYTE   N16  Cs5
+ BYTE   W24
+ BYTE   N08  Cn4
+ BYTE   N08  Cn5
+ BYTE   W12
+ BYTE   As3
+ BYTE   N08  As4
+ BYTE   W12
+ BYTE   N32  Fn3
+ BYTE   N16  Gs3
+ BYTE   N16  Gs4
+ BYTE   W48
+// 002   ----------------------------------------
+ BYTE   N32  En3
+ BYTE   N08  Gs3
+ BYTE   N08  Gs4
+ BYTE   W12
+ BYTE   As3
+ BYTE   N08  As4
+ BYTE   W12
+ BYTE   N16  Cn4
+ BYTE   N16  Cn5
+ BYTE   W24
+ BYTE   N32  Ds3
+ BYTE   N16  Gs3
+ BYTE   N16  Gs4
+ BYTE   W24
+ BYTE   N16
+ BYTE   N16  Gs5
+ BYTE   W24
+// 003   ----------------------------------------
+ BYTE   Gn4
+ BYTE   N16  Gn5
+ BYTE   W24
+ BYTE   Fn4
+ BYTE   N16  Fn5
+ BYTE   W24
+ BYTE   Ds4
+ BYTE   N16  Ds5
+ BYTE   W36
+Label_0_01165658:
+ BYTE   W12
+// 004   ----------------------------------------
+Label_0_01165659:
+ BYTE   N16  Ds4  v100
+ BYTE   N16  Ds5
+ BYTE   W24
+ BYTE   N08  Cs4
+ BYTE   N08  Cs5
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N08  Cn5
+ BYTE   W12
+ BYTE   N16  As3
+ BYTE   N16  As4
+ BYTE   W36
+ BYTE   N08  Cn4
+ BYTE   N08  Cn5
+ BYTE   W12
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_0_01165673:
+ BYTE   N16  Cs4  v100
+ BYTE   N16  Cs5
+ BYTE   W24
+ BYTE   N08  Cn4
+ BYTE   N08  Cn5
+ BYTE   W12
+ BYTE   As3
+ BYTE   N08  As4
+ BYTE   W12
+ BYTE   N16  Gs3
+ BYTE   N16  Gs4
+ BYTE   W48
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_0_01165688:
+ BYTE   N08  Gs3  v100
+ BYTE   N08  Gs4
+ BYTE   W12
+ BYTE   As3
+ BYTE   N08  As4
+ BYTE   W12
+ BYTE   N16  Cn4
+ BYTE   N16  Cn5
+ BYTE   W24
+ BYTE   Gs3
+ BYTE   N16  Gs4
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   N16  Cn5
+ BYTE   W24
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_0_011656A0:
+ BYTE   N16  Cs4  v100
+ BYTE   N16  Cs5
+ BYTE   W24
+ BYTE   As3
+ BYTE   N16  As4
+ BYTE   W24
+ BYTE   Gs3
+ BYTE   N16  Gs4
+ BYTE   W48
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_0_011656AF:
+ BYTE   N16  Ds4  v100
+ BYTE   N16  Ds5
+ BYTE   W24
+ BYTE   N08  Cs4
+ BYTE   N08  Cs5
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N08  Cn5
+ BYTE   W12
+ BYTE   N16  As3
+ BYTE   N16  As4
+ BYTE   W48
+ BYTE   PEND 
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165673
+// 010   ----------------------------------------
+Label_0_011656C9:
+ BYTE   N08  Gs3  v100
+ BYTE   N08  Gs4
+ BYTE   W12
+ BYTE   As3
+ BYTE   N08  As4
+ BYTE   W12
+ BYTE   N16  Cn4
+ BYTE   N16  Cn5
+ BYTE   W24
+ BYTE   Gs3
+ BYTE   N16  Gs4
+ BYTE   W24
+ BYTE   N16
+ BYTE   N16  Gs5
+ BYTE   W24
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_0_011656E1:
+ BYTE   N16  Gn4  v100
+ BYTE   N16  Gn5
+ BYTE   W24
+ BYTE   Fn4
+ BYTE   N16  Fn5
+ BYTE   W24
+ BYTE   Ds4
+ BYTE   N16  Ds5
+ BYTE   W48
+ BYTE   PEND 
+// 012   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165659
+// 013   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165673
+// 014   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165688
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_011656A0
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_011656AF
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165673
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_011656C9
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_011656E1
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165659
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165673
+// 022   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165688
+// 023   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_011656A0
+// 024   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_011656AF
+// 025   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165673
+// 026   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_011656C9
+// 027   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_011656E1
+// 028   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165659
+// 029   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165673
+// 030   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01165688
+// 031   ----------------------------------------
+ BYTE   N16  Cs4  v100
+ BYTE   N16  Cs5
+ BYTE   W24
+ BYTE   As3
+ BYTE   N16  As4
+ BYTE   W24
+ BYTE   Gs3
+ BYTE   N16  Gs4
+ BYTE   W44
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_0_01165658
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+PokemonSnapAlbumPandan_002:
+// 000   ----------------------------------------
+ BYTE   VOL   50*PokemonSnapAlbumPandan_mvl/mxv
+ BYTE   KEYSH   PokemonSnapAlbumPandan_key+0
+ BYTE   VOICE   73
+ BYTE   PAN   c_v-1
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W84
+Label_1_01165770:
+ BYTE   W12
+// 004   ----------------------------------------
+ BYTE   N44  Gs3  v100
+ BYTE   W48
+ BYTE   As3
+ BYTE   W48
+// 005   ----------------------------------------
+ BYTE   Cn4
+ BYTE   W48
+ BYTE   Cs4
+ BYTE   W48
+// 006   ----------------------------------------
+ BYTE   Ds4
+ BYTE   W48
+ BYTE   Cn4
+ BYTE   W48
+// 007   ----------------------------------------
+Label_1_0116577F:
+ BYTE   N44  As3  v100
+ BYTE   W48
+ BYTE   Gs3
+ BYTE   W48
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_1_01165786:
+ BYTE   N44  Cn4  v100
+ BYTE   W48
+ BYTE   As3
+ BYTE   W48
+ BYTE   PEND 
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0116577F
+// 010   ----------------------------------------
+Label_1_01165792:
+ BYTE   N44  Gs3  v100
+ BYTE   W48
+ BYTE   Cn4
+ BYTE   W48
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_1_01165799:
+ BYTE   N44  As3  v100
+ BYTE   W48
+ BYTE   N23  Gn3
+ BYTE   W24
+ BYTE   N11  Gs3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   PEND 
+// 012   ----------------------------------------
+Label_1_011657A6:
+ BYTE   N44  Cn4  v100
+ BYTE   W60
+ BYTE   N11  As3
+ BYTE   W12
+ BYTE   Gs3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   PEND 
+// 013   ----------------------------------------
+Label_1_011657B2:
+ BYTE   N68  As3  v100
+ BYTE   W60
+ BYTE   N11  Gs3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   PEND 
+// 014   ----------------------------------------
+Label_1_011657BE:
+ BYTE   N23  Ds4  v100
+ BYTE   W24
+ BYTE   Cs4
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   Gs3
+ BYTE   W24
+ BYTE   PEND 
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0116577F
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01165786
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0116577F
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01165792
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01165799
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011657A6
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011657B2
+// 022   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011657BE
+// 023   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0116577F
+// 024   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01165786
+// 025   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0116577F
+// 026   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01165792
+// 027   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01165799
+// 028   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011657A6
+// 029   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011657B2
+// 030   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011657BE
+// 031   ----------------------------------------
+ BYTE   N44  As3  v100
+ BYTE   W48
+ BYTE   Gs3
+ BYTE   W44
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_1_01165770
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+PokemonSnapAlbumPandan_003:
+// 000   ----------------------------------------
+ BYTE   VOL   50*PokemonSnapAlbumPandan_mvl/mxv
+ BYTE   KEYSH   PokemonSnapAlbumPandan_key+0
+ BYTE   VOICE   11
+ BYTE   PAN   c_v+0
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W84
+Label_2_01165834:
+ BYTE   W12
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+Label_2_01165839:
+ BYTE   N08  Gs4  v096
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Ds5
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_2_0116584C:
+ BYTE   N08  As4  v096
+ BYTE   W12
+ BYTE   Fs4
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   Cs5
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   PEND 
+// 010   ----------------------------------------
+Label_2_0116585F:
+ BYTE   N11  Gs4  v096
+ BYTE   W12
+ BYTE   En4
+ BYTE   W12
+ BYTE   N08  Gs4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   N11  Gs4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   N08  Gs4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_2_01165875:
+ BYTE   N08  As4  v096
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   PEND 
+// 012   ----------------------------------------
+Label_2_01165888:
+ BYTE   N08  Gs4  v096
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   PEND 
+// 013   ----------------------------------------
+Label_2_0116589B:
+ BYTE   N08  Cs5  v096
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   Cs5
+ BYTE   W12
+ BYTE   Ds5
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   PEND 
+// 014   ----------------------------------------
+Label_2_011658AE:
+ BYTE   N08  Cn5  v096
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   PEND 
+// 015   ----------------------------------------
+Label_2_011658C1:
+ BYTE   N08  As4  v096
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   PEND 
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_01165839
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0116584C
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0116585F
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_01165875
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_01165888
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0116589B
+// 022   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_011658AE
+// 023   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_011658C1
+// 024   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_01165839
+// 025   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0116584C
+// 026   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0116585F
+// 027   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_01165875
+// 028   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_01165888
+// 029   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0116589B
+// 030   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_011658AE
+// 031   ----------------------------------------
+ BYTE   N08  As4  v096
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W11
+ BYTE   GoTo
+  POIN2 Label_2_01165834
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+PokemonSnapAlbumPandan_004:
+// 000   ----------------------------------------
+ BYTE   VOL   50*PokemonSnapAlbumPandan_mvl/mxv
+ BYTE   KEYSH   PokemonSnapAlbumPandan_key+0
+ BYTE   VOICE   42
+ BYTE   PAN   c_v-1
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W84
+Label_3_01165944:
+ BYTE   W12
+// 004   ----------------------------------------
+ BYTE   N44  Gs0  v100
+ BYTE   W48
+ BYTE   As0
+ BYTE   W48
+// 005   ----------------------------------------
+ BYTE   Gs0
+ BYTE   W48
+ BYTE   Fn0
+ BYTE   W48
+// 006   ----------------------------------------
+ BYTE   Ds0
+ BYTE   W48
+ BYTE   Gs0
+ BYTE   W48
+// 007   ----------------------------------------
+Label_3_01165953:
+ BYTE   N44  Gn0  v100
+ BYTE   W48
+ BYTE   Gs0
+ BYTE   W48
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_3_0116595A:
+ BYTE   N44  Gs0  v100
+ BYTE   W48
+ BYTE   Gn0
+ BYTE   W48
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_3_01165961:
+ BYTE   N44  Fs0  v100
+ BYTE   W48
+ BYTE   Fn0
+ BYTE   W48
+ BYTE   PEND 
+// 010   ----------------------------------------
+Label_3_01165968:
+ BYTE   N44  En0  v100
+ BYTE   W48
+ BYTE   Gs0
+ BYTE   W48
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_3_0116596F:
+ BYTE   N44  Gn0  v100
+ BYTE   W48
+ BYTE   Ds0
+ BYTE   W48
+ BYTE   PEND 
+// 012   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0116595A
+// 013   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165961
+// 014   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165968
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165953
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0116595A
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165961
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165968
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0116596F
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0116595A
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165961
+// 022   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165968
+// 023   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165953
+// 024   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0116595A
+// 025   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165961
+// 026   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165968
+// 027   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0116596F
+// 028   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0116595A
+// 029   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165961
+// 030   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_01165968
+// 031   ----------------------------------------
+ BYTE   N44  Gn0  v100
+ BYTE   W48
+ BYTE   Gs0
+ BYTE   W44
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_3_01165944
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+PokemonSnapAlbumPandan_005:
+// 000   ----------------------------------------
+ BYTE   VOL   50*PokemonSnapAlbumPandan_mvl/mxv
+ BYTE   KEYSH   PokemonSnapAlbumPandan_key+0
+ BYTE   VOICE   121
+ BYTE   PAN   c_v-1
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W84
+Label_4_011659F0:
+ BYTE   W12
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+Label_4_011659F5:
+ BYTE   N22  Bn0  v127
+ BYTE   W24
+ BYTE   En1
+ BYTE   W24
+ BYTE   Bn0
+ BYTE   W24
+ BYTE   En1
+ BYTE   W24
+ BYTE   PEND 
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 010   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 011   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 012   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 013   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 014   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 022   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 023   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 024   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 025   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 026   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 027   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 028   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 029   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 030   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_011659F5
+// 031   ----------------------------------------
+ BYTE   N22  Bn0  v127
+ BYTE   W24
+ BYTE   En1
+ BYTE   W24
+ BYTE   Bn0
+ BYTE   W24
+ BYTE   En1
+ BYTE   W23
+ BYTE   GoTo
+  POIN2 Label_4_011659F0
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+PokemonSnapAlbumPandan:
+	BYTE	5	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	PokemonSnapAlbumPandan_pri	// Priority
+	BYTE	PokemonSnapAlbumPandan_rev	// Reverb.
+    
+	POIN2	PokemonSnapAlbumPandan_grp
+    
+	POIN2	PokemonSnapAlbumPandan_001
+	POIN2	PokemonSnapAlbumPandan_002
+	POIN2	PokemonSnapAlbumPandan_003
+	POIN2	PokemonSnapAlbumPandan_004
+	POIN2	PokemonSnapAlbumPandan_005
+
+	

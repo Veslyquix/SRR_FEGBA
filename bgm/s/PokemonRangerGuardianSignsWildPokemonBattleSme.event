@@ -1,0 +1,4728 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	PokemonRangerGuardianSignsWildPokemonBattleSme_grp  voicegroup000
+	#define	PokemonRangerGuardianSignsWildPokemonBattleSme_pri  0
+	#define	PokemonRangerGuardianSignsWildPokemonBattleSme_rev  0
+	#define	PokemonRangerGuardianSignsWildPokemonBattleSme_mvl  60
+	#define	PokemonRangerGuardianSignsWildPokemonBattleSme_key  0
+	#define	PokemonRangerGuardianSignsWildPokemonBattleSme_tbs  1
+	#define	PokemonRangerGuardianSignsWildPokemonBattleSme_exg  0
+	#define	PokemonRangerGuardianSignsWildPokemonBattleSme_cmp  1
+
+	// .rodata
+	//	PokemonRangerGuardianSignsWildPokemonBattleSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_1:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   173*PokemonRangerGuardianSignsWildPokemonBattleSme_tbs/2
+	BYTE		VOICE   48
+	BYTE		VOL     100*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_1_B1:
+	BYTE		PAN     c_v+10
+	BYTE	W24
+	BYTE		N12     Gn3   v120
+	BYTE	W12
+	BYTE		        Gn3   v052
+	BYTE	W12
+	BYTE		N24     En4   v120
+	BYTE	W24
+// 001   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_1_001:
+	BYTE		N12     En4   v052
+	BYTE	W12
+	BYTE		N06     Dn4   v120
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		N24     Fs4 
+	BYTE	W24
+	BYTE		N12     Fs4   v052
+	BYTE	W12
+	BYTE		N06     Dn4   v120
+	BYTE	W06
+	BYTE		        Dn4   v052
+	BYTE	W06
+	BYTE		N24     An3   v120
+	BYTE	W24
+	BYTE	PEND
+// 002   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_1_002:
+	BYTE		N06     An3   v120
+	BYTE	W06
+	BYTE		        An3   v052
+	BYTE	W06
+	BYTE		        Bn3   v120
+	BYTE	W06
+	BYTE		        Bn3   v052
+	BYTE	W06
+	BYTE		N24     Cn4   v120
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		        An4 
+	BYTE	W24
+	BYTE	PEND
+// 003   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_1_003:
+	BYTE		N06     Gn4   v120
+	BYTE	W06
+	BYTE		        Gn4   v052
+	BYTE	W06
+	BYTE		        Fn4   v120
+	BYTE	W06
+	BYTE		        Fn4   v052
+	BYTE	W06
+	BYTE		        En4   v120
+	BYTE	W06
+	BYTE		        En4   v052
+	BYTE	W06
+	BYTE		        Fn4   v120
+	BYTE	W06
+	BYTE		        Fn4   v052
+	BYTE	W06
+	BYTE		N68     Gn4   v120
+	BYTE	W48
+	BYTE	PEND
+// 004   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_1_004:
+	BYTE	W24
+	BYTE		N24     Gn4   v052
+	BYTE	W24
+	BYTE		N12     Gn3   v120
+	BYTE	W12
+	BYTE		        Gn3   v052
+	BYTE	W12
+	BYTE		N24     En4   v120
+	BYTE	W24
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_002
+// 007   ----------------------------------------
+	BYTE		N06     Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		        Dn5   v120
+	BYTE	W06
+	BYTE		        Dn5   v052
+	BYTE	W06
+	BYTE		        En5   v120
+	BYTE	W06
+	BYTE		        En5   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		N72     Gn4   v120
+	BYTE	W48
+// 008   ----------------------------------------
+	BYTE	W24
+	BYTE		PAN     c_v+20
+	BYTE	W24
+	BYTE		N12     Gn3 
+	BYTE	W12
+	BYTE		        Gn3   v052
+	BYTE	W12
+	BYTE		N24     En4   v120
+	BYTE	W24
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_003
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_002
+// 015   ----------------------------------------
+	BYTE		N06     Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		        Dn5   v120
+	BYTE	W06
+	BYTE		        Dn5   v052
+	BYTE	W06
+	BYTE		        En5   v120
+	BYTE	W06
+	BYTE		        En5   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		N48     Gn4   v120
+	BYTE	W48
+// 016   ----------------------------------------
+	BYTE		PAN     c_v+20
+	BYTE		N12     En4   v100
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		N24     Gn4 
+	BYTE	W24
+	BYTE		N12     Gn4   v032
+	BYTE	W12
+	BYTE		        Cn4   v100
+	BYTE	W12
+	BYTE		N24   
+	BYTE	W24
+// 017   ----------------------------------------
+	BYTE		        Gn4 
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+	BYTE		N36     Fs4 
+	BYTE	W36
+	BYTE		N12     Fs4   v060
+	BYTE	W12
+// 018   ----------------------------------------
+	BYTE		        Dn4   v100
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		N24     Fn4 
+	BYTE	W24
+	BYTE		N12     Fn4   v032
+	BYTE	W12
+	BYTE		        Gn3   v100
+	BYTE	W12
+	BYTE		N24   
+	BYTE	W24
+// 019   ----------------------------------------
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fn4   v032
+	BYTE	W06
+	BYTE		        Gn4   v100
+	BYTE	W06
+	BYTE		        Gn4   v032
+	BYTE	W06
+	BYTE		N36     En4   v100
+	BYTE	W36
+	BYTE		N12     En4   v032
+	BYTE	W12
+// 020   ----------------------------------------
+	BYTE		N06     Cn4   v100
+	BYTE	W06
+	BYTE		        Cn4   v032
+	BYTE	W06
+	BYTE		        Dn4   v100
+	BYTE	W06
+	BYTE		        Dn4   v032
+	BYTE	W06
+	BYTE		N24     En4   v100
+	BYTE	W24
+	BYTE		N12     En4   v032
+	BYTE	W12
+	BYTE		        An3   v100
+	BYTE	W12
+	BYTE		N24   
+	BYTE	W24
+// 021   ----------------------------------------
+	BYTE		        En4 
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        An4 
+	BYTE	W24
+// 022   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		N36     Cn4 
+	BYTE	W36
+	BYTE		N12     Cn4   v052
+	BYTE	W12
+	BYTE		N36     Bn3   v100
+	BYTE	W24
+// 023   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Bn3   v052
+	BYTE	W12
+	BYTE		N36     An3   v100
+	BYTE	W36
+	BYTE		N12     An3   v052
+	BYTE	W12
+	BYTE		N24     Bn3   v100
+	BYTE	W24
+// 024   ----------------------------------------
+	BYTE		PAN     c_v+0
+	BYTE		N06     Fn4   v120
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W06
+	BYTE		N36     Cn5   v100
+	BYTE	W36
+	BYTE		N12     Cn5   v052
+	BYTE	W12
+	BYTE		N36     As4   v100
+	BYTE	W24
+// 025   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     As4   v052
+	BYTE	W12
+	BYTE		N36     Cn5   v100
+	BYTE	W36
+	BYTE		N12     Cn5   v052
+	BYTE	W12
+	BYTE		N36     Dn5   v100
+	BYTE	W24
+// 026   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Dn5   v052
+	BYTE	W12
+	BYTE		PAN     c_v+10
+	BYTE		N18     As4   v100
+	BYTE	W18
+	BYTE		N06     As4   v052
+	BYTE	W06
+	BYTE		N18     As4   v100
+	BYTE	W18
+	BYTE		N06     As4   v052
+	BYTE	W06
+	BYTE		N18     Cn5   v100
+	BYTE	W18
+	BYTE		N06     Cn5   v052
+	BYTE	W06
+// 027   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_1_027:
+	BYTE		N18     Dn5   v100
+	BYTE	W18
+	BYTE		N06     Dn5   v052
+	BYTE	W06
+	BYTE		        Ds5   v100
+	BYTE	W06
+	BYTE		        Ds5   v052
+	BYTE	W06
+	BYTE		        Fn5   v100
+	BYTE	W06
+	BYTE		        Fn5   v052
+	BYTE	W06
+	BYTE		N30     Gn5   v100
+	BYTE	W30
+	BYTE		N06     Gn5   v040
+	BYTE	W06
+	BYTE		        Gn5   v100
+	BYTE	W06
+	BYTE		        Gn5   v052
+	BYTE	W06
+	BYTE	PEND
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_1_028:
+	BYTE		N06     Fn5   v100
+	BYTE	W06
+	BYTE		        Fn5   v052
+	BYTE	W06
+	BYTE		        Gn5   v100
+	BYTE	W06
+	BYTE		        Gn5   v052
+	BYTE	W06
+	BYTE		N18     Gs5   v100
+	BYTE	W18
+	BYTE		N06     Gs5   v052
+	BYTE	W06
+	BYTE		N18     Gn5   v100
+	BYTE	W18
+	BYTE		N06     Gn5   v052
+	BYTE	W06
+	BYTE		N18     Fn5   v100
+	BYTE	W18
+	BYTE		N06     Fn5   v052
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE		N18     Ds5   v100
+	BYTE	W18
+	BYTE		N06     Ds5   v052
+	BYTE	W06
+	BYTE		N48     Ds5   v100
+	BYTE	W48
+	BYTE		N09     Dn5 
+	BYTE	W12
+	BYTE		N12     Dn5   v052
+	BYTE	W12
+// 030   ----------------------------------------
+	BYTE		N24     As4   v100
+	BYTE	W24
+	BYTE		PAN     c_v+10
+	BYTE		N18   
+	BYTE	W18
+	BYTE		N06     As4   v052
+	BYTE	W06
+	BYTE		N18     As4   v100
+	BYTE	W18
+	BYTE		N06     As4   v052
+	BYTE	W06
+	BYTE		N18     Cn5   v100
+	BYTE	W18
+	BYTE		N06     Cn5   v052
+	BYTE	W06
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_027
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_028
+// 033   ----------------------------------------
+	BYTE		N18     Ds5   v100
+	BYTE	W18
+	BYTE		N06     Ds5   v052
+	BYTE	W06
+	BYTE		N42     As5   v100
+	BYTE	W42
+	BYTE		N06     As5   v052
+	BYTE	W06
+	BYTE		N12     As4   v100
+	BYTE	W12
+	BYTE		        As4   v052
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE		N24     Gs4   v100
+	BYTE	W24
+	BYTE		N09     Gn4 
+	BYTE	W12
+	BYTE		N06     Gn4   v052
+	BYTE	W12
+	BYTE		N36     Cn5   v100
+	BYTE	W36
+	BYTE		N12     Cn5   v052
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE		N24     As4   v100
+	BYTE	W24
+	BYTE		N09   
+	BYTE	W12
+	BYTE		N06     As4   v052
+	BYTE	W12
+	BYTE		N36     Ds5   v100
+	BYTE	W36
+	BYTE		N12     Ds5   v052
+	BYTE	W12
+// 036   ----------------------------------------
+	BYTE		N24     Cs5   v100
+	BYTE	W24
+	BYTE		N06     Cn5   v112
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		        Gs4   v112
+	BYTE	W06
+	BYTE		        Gs4   v052
+	BYTE	W06
+	BYTE		N36     Fn5   v112
+	BYTE	W36
+	BYTE		N12     Fn5   v052
+	BYTE	W12
+// 037   ----------------------------------------
+	BYTE		N06     Ds5   v112
+	BYTE	W06
+	BYTE		        Ds5   v052
+	BYTE	W06
+	BYTE		        Fn5   v112
+	BYTE	W06
+	BYTE		        Fn5   v052
+	BYTE	W06
+	BYTE		N72     Ds5   v112
+	BYTE	W72
+// 038   ----------------------------------------
+	BYTE		N12     Ds5   v052
+	BYTE	W12
+	BYTE		N06     Fn5   v112
+	BYTE	W06
+	BYTE		        Fn5   v052
+	BYTE	W06
+	BYTE		N72     Dn5   v112
+	BYTE	W72
+// 039   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Dn5   v052
+	BYTE	W84
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_1_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_2:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   41
+	BYTE		VOL     100*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_2_B1:
+	BYTE		PAN     c_v-10
+	BYTE	W24
+	BYTE		N12     Gn2   v120
+	BYTE	W12
+	BYTE		        Gn2   v052
+	BYTE	W12
+	BYTE		N24     En3   v120
+	BYTE	W24
+// 001   ----------------------------------------
+	BYTE		N12     En3   v052
+	BYTE	W12
+	BYTE		N06     Dn3   v120
+	BYTE	W06
+	BYTE		        En3 
+	BYTE	W06
+	BYTE		N24     Fs3 
+	BYTE	W24
+	BYTE		N12     Fs3   v052
+	BYTE	W12
+	BYTE		N06     Dn3   v120
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE		N24     An2   v120
+	BYTE	W24
+// 002   ----------------------------------------
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        An2   v060
+	BYTE	W06
+	BYTE		        Bn2   v120
+	BYTE	W06
+	BYTE		        Bn2   v060
+	BYTE	W06
+	BYTE		N24     Cn3   v120
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W24
+	BYTE		        An3 
+	BYTE	W24
+// 003   ----------------------------------------
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Gn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v120
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE	W06
+	BYTE		        En3   v120
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE	W06
+	BYTE		        Fn3   v120
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE	W06
+	BYTE		N68     Gn3   v120
+	BYTE	W48
+// 004   ----------------------------------------
+	BYTE	W48
+	BYTE		N12     En3 
+	BYTE	W12
+	BYTE		        En3   v052
+	BYTE	W12
+	BYTE		N24     Cn4   v120
+	BYTE	W24
+// 005   ----------------------------------------
+	BYTE		N12     Cn4   v052
+	BYTE	W12
+	BYTE		N06     Bn3   v120
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N24     Dn4 
+	BYTE	W24
+	BYTE		N12     Dn4   v052
+	BYTE	W12
+	BYTE		N06     An3   v120
+	BYTE	W06
+	BYTE		        An3   v052
+	BYTE	W06
+	BYTE		N24     Fs3   v120
+	BYTE	W24
+// 006   ----------------------------------------
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE	W06
+	BYTE		        Gn3   v120
+	BYTE	W06
+	BYTE		        Gn3   v052
+	BYTE	W06
+	BYTE		N24     An3   v120
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+// 007   ----------------------------------------
+	BYTE		N06     An4 
+	BYTE	W06
+	BYTE		        An4   v052
+	BYTE	W06
+	BYTE		        Bn4   v120
+	BYTE	W06
+	BYTE		        Bn4   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		        Gn4   v120
+	BYTE	W06
+	BYTE		        Gn4   v052
+	BYTE	W06
+	BYTE		N72     En4   v120
+	BYTE	W48
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W24
+	BYTE		PAN     c_v-10
+	BYTE		N18     As3 
+	BYTE	W18
+	BYTE		N06     As3   v060
+	BYTE	W06
+	BYTE		N18     As3   v120
+	BYTE	W18
+	BYTE		N06     As3   v060
+	BYTE	W06
+	BYTE		N18     Cn4   v120
+	BYTE	W18
+	BYTE		N06     Cn4   v060
+	BYTE	W06
+// 027   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_2_027:
+	BYTE		N18     Dn4   v120
+	BYTE	W18
+	BYTE		N06     Dn4   v060
+	BYTE	W06
+	BYTE		        Ds4   v120
+	BYTE	W06
+	BYTE		        Ds4   v060
+	BYTE	W06
+	BYTE		        Fn4   v120
+	BYTE	W06
+	BYTE		        Fn4   v060
+	BYTE	W06
+	BYTE		N30     Gn4   v120
+	BYTE	W30
+	BYTE		N06     Gn4   v052
+	BYTE	W06
+	BYTE		        Gn4   v120
+	BYTE	W06
+	BYTE		        Gn4   v060
+	BYTE	W06
+	BYTE	PEND
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_2_028:
+	BYTE		N06     Fn4   v120
+	BYTE	W06
+	BYTE		        Fn4   v060
+	BYTE	W06
+	BYTE		        Gn4   v120
+	BYTE	W06
+	BYTE		        Gn4   v060
+	BYTE	W06
+	BYTE		N18     Gs4   v120
+	BYTE	W18
+	BYTE		N06     Gs4   v060
+	BYTE	W06
+	BYTE		N18     Gn4   v120
+	BYTE	W18
+	BYTE		N06     Gn4   v060
+	BYTE	W06
+	BYTE		N18     Fn4   v120
+	BYTE	W18
+	BYTE		N06     Fn4   v060
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE		N18     Ds4   v120
+	BYTE	W18
+	BYTE		N06     Ds4   v060
+	BYTE	W06
+	BYTE		N48     Ds4   v120
+	BYTE	W48
+	BYTE		N09     Dn4 
+	BYTE	W12
+	BYTE		N12     Dn4   v060
+	BYTE	W12
+// 030   ----------------------------------------
+	BYTE		N24     As3   v120
+	BYTE	W24
+	BYTE		PAN     c_v-10
+	BYTE		N18   
+	BYTE	W18
+	BYTE		N06     As3   v060
+	BYTE	W06
+	BYTE		N18     As3   v120
+	BYTE	W18
+	BYTE		N06     As3   v060
+	BYTE	W06
+	BYTE		N18     Cn4   v120
+	BYTE	W18
+	BYTE		N06     Cn4   v060
+	BYTE	W06
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_2_027
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_2_028
+// 033   ----------------------------------------
+	BYTE		N18     Ds4   v120
+	BYTE	W18
+	BYTE		N06     Ds4   v060
+	BYTE	W06
+	BYTE		N42     As4   v120
+	BYTE	W42
+	BYTE		N06     As4   v060
+	BYTE	W06
+	BYTE		N12     As3   v120
+	BYTE	W12
+	BYTE		        As3   v060
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE		N24     Gs3   v120
+	BYTE	W24
+	BYTE		N09     Gn3 
+	BYTE	W12
+	BYTE		N06     Gn3   v060
+	BYTE	W12
+	BYTE		N36     Cn4   v120
+	BYTE	W36
+	BYTE		N12     Cn4   v060
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE		N24     As3   v120
+	BYTE	W24
+	BYTE		N09   
+	BYTE	W12
+	BYTE		N06     As3   v060
+	BYTE	W12
+	BYTE		N36     Ds4   v120
+	BYTE	W36
+	BYTE		N12     Ds4   v060
+	BYTE	W12
+// 036   ----------------------------------------
+	BYTE		N24     Cs4   v120
+	BYTE	W24
+	BYTE		N06     Cn4 
+	BYTE	W06
+	BYTE		        Cn4   v060
+	BYTE	W06
+	BYTE		        Gs3   v120
+	BYTE	W06
+	BYTE		        Gs3   v060
+	BYTE	W06
+	BYTE		N36     Fn4   v120
+	BYTE	W36
+	BYTE		N12     Fn4   v060
+	BYTE	W12
+// 037   ----------------------------------------
+	BYTE		N06     Ds4   v120
+	BYTE	W06
+	BYTE		        Ds4   v060
+	BYTE	W06
+	BYTE		        Fn4   v120
+	BYTE	W06
+	BYTE		        Fn4   v060
+	BYTE	W06
+	BYTE		N72     Ds4   v120
+	BYTE	W72
+// 038   ----------------------------------------
+	BYTE		N12     Ds4   v060
+	BYTE	W12
+	BYTE		N06     Fn4   v120
+	BYTE	W06
+	BYTE		        Fn4   v060
+	BYTE	W06
+	BYTE		N72     Dn4   v120
+	BYTE	W72
+// 039   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Dn4   v060
+	BYTE	W84
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_2_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_2_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_3:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   49
+	BYTE		VOL     100*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_3_B1:
+	BYTE		N06     En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+// 001   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_3_001:
+	BYTE		N06     En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE		        Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE		        Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE	PEND
+// 002   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_3_002:
+	BYTE		N06     Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE	PEND
+// 003   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_3_003:
+	BYTE		N06     Fn3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE	PEND
+// 004   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_3_004:
+	BYTE		N06     En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_003
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_004
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_003
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_003
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_004
+// 017   ----------------------------------------
+	BYTE		N06     En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Gn3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Gn3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE		        Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE		        Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+// 018   ----------------------------------------
+	BYTE		        Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE		        Dn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Bn2   v092
+	BYTE	W06
+	BYTE		        Bn2   v052
+	BYTE	W06
+	BYTE		        Dn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Bn2   v092
+	BYTE	W06
+	BYTE		        Bn2   v052
+	BYTE	W06
+	BYTE		        Dn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Bn2   v092
+	BYTE	W06
+	BYTE		        Bn2   v052
+	BYTE	W06
+// 019   ----------------------------------------
+	BYTE		        Dn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Bn2   v092
+	BYTE	W06
+	BYTE		        Bn2   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+// 020   ----------------------------------------
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+// 021   ----------------------------------------
+	BYTE		        En3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+// 022   ----------------------------------------
+	BYTE		        Fs3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Dn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Bn2   v092
+	BYTE	W06
+	BYTE		        Bn2   v052
+	BYTE	W06
+// 023   ----------------------------------------
+	BYTE		        Dn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Bn2   v092
+	BYTE	W06
+	BYTE		        Bn2   v052
+	BYTE	W06
+	BYTE		        Cn3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        An2   v092
+	BYTE	W06
+	BYTE		        An2   v052
+	BYTE	W06
+	BYTE		        Cn3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        An2   v092
+	BYTE	W06
+	BYTE		        An2   v052
+	BYTE	W06
+	BYTE		        Dn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Bn2   v092
+	BYTE	W06
+	BYTE		        Bn2   v052
+	BYTE	W06
+// 024   ----------------------------------------
+	BYTE		        Dn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Bn2   v092
+	BYTE	W06
+	BYTE		        Bn2   v052
+	BYTE	W06
+	BYTE		N36     Ds3   v120
+	BYTE		N36     Gs3 
+	BYTE		N36     Cn4 
+	BYTE	W36
+	BYTE		N12     Ds3   v060
+	BYTE		N12     Gs3 
+	BYTE		N12     Cn4 
+	BYTE	W12
+	BYTE		N36     Dn3   v120
+	BYTE		N36     Fn3 
+	BYTE		N36     As3 
+	BYTE	W24
+// 025   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Dn3   v060
+	BYTE		N12     Fn3 
+	BYTE		N12     As3 
+	BYTE	W12
+	BYTE		N36     Ds3   v120
+	BYTE		N36     Gs3 
+	BYTE		N36     Cn4 
+	BYTE	W36
+	BYTE		N12     Ds3 
+	BYTE		N12     Gs3 
+	BYTE		N12     Cn4 
+	BYTE	W12
+	BYTE		N36     Fn3 
+	BYTE		N36     As3 
+	BYTE		N36     Dn4 
+	BYTE	W24
+// 026   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Fn3 
+	BYTE		N12     As3 
+	BYTE		N12     Dn4 
+	BYTE	W12
+	BYTE		N06     Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+// 027   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_3_027:
+	BYTE		N06     Dn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE	PEND
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_3_028:
+	BYTE		N06     Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE		        Ds3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Dn3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+// 030   ----------------------------------------
+	BYTE		        Dn3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_027
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_028
+// 033   ----------------------------------------
+	BYTE		N06     Ds3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Dn3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Dn3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Dn3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Bn2   v092
+	BYTE	W06
+	BYTE		        Bn2   v052
+	BYTE	W06
+// 034   ----------------------------------------
+	BYTE		        Dn3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Bn2   v092
+	BYTE	W06
+	BYTE		        Bn2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+// 035   ----------------------------------------
+	BYTE		        Fn3   v112
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Gn3   v112
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Gn3   v052
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Cs3   v092
+	BYTE	W06
+	BYTE		        Cs3   v052
+	BYTE	W06
+// 036   ----------------------------------------
+	BYTE		        Gn3   v112
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Gn3   v052
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Cs3   v092
+	BYTE	W06
+	BYTE		        Cs3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+// 037   ----------------------------------------
+	BYTE		        Fn3   v112
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+// 038   ----------------------------------------
+	BYTE		        Ds3   v112
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        As2   v092
+	BYTE	W06
+	BYTE		        As2   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+// 039   ----------------------------------------
+	BYTE		        Fn3   v112
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+// 040   ----------------------------------------
+	BYTE		        En3   v112
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        En3   v052
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Cn3   v092
+	BYTE	W06
+	BYTE		        Cn3   v052
+	BYTE	W06
+	BYTE		        Gs3   v112
+	BYTE		N06     Cn4 
+	BYTE	W06
+	BYTE		        Gs3   v052
+	BYTE		N06     Cn4 
+	BYTE	W06
+	BYTE		        Ds3   v092
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE	W06
+	BYTE		        Gs3   v112
+	BYTE		N06     Cn4 
+	BYTE	W06
+	BYTE		        Gs3   v052
+	BYTE		N06     Cn4 
+	BYTE	W06
+	BYTE		        Ds3   v092
+	BYTE	W06
+	BYTE		        Ds3   v052
+	BYTE	W06
+	BYTE		        As3   v112
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE		        As3   v052
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE		        Fn3   v092
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE	W06
+// 041   ----------------------------------------
+	BYTE		        As3   v112
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE		        As3   v052
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE		        Fn3   v092
+	BYTE	W06
+	BYTE		        Fn3   v052
+	BYTE	W06
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_3_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_4:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   13
+	BYTE		VOL     90*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_4_B1:
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE		PAN     c_v+0
+	BYTE		N06     Fn5   v120
+	BYTE	W06
+	BYTE		        Gn5 
+	BYTE	W06
+	BYTE		        An5 
+	BYTE	W06
+	BYTE		        Bn5 
+	BYTE	W06
+	BYTE		PAN     c_v-30
+	BYTE		N06     Cn6 
+	BYTE	W06
+	BYTE		        Cn6   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v+30
+	BYTE		N06     En5   v120
+	BYTE	W06
+	BYTE		        En5   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v-30
+	BYTE		N06     Gn4   v120
+	BYTE	W06
+	BYTE		        Gn4   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+// 009   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_4_009:
+	BYTE		PAN     c_v+30
+	BYTE		N06     En5   v120
+	BYTE	W06
+	BYTE		        En5   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v-30
+	BYTE		N06     Dn6   v120
+	BYTE	W06
+	BYTE		        Dn6   v052
+	BYTE	W06
+	BYTE		        Dn5   v120
+	BYTE	W06
+	BYTE		        Dn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v+30
+	BYTE		N06     Fs5   v120
+	BYTE	W06
+	BYTE		        Fs5   v052
+	BYTE	W06
+	BYTE		        Dn5   v120
+	BYTE	W06
+	BYTE		        Dn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v-30
+	BYTE		N06     An4   v120
+	BYTE	W06
+	BYTE		        An4   v052
+	BYTE	W06
+	BYTE		        Dn5   v120
+	BYTE	W06
+	BYTE		        Dn5   v052
+	BYTE	W06
+	BYTE	PEND
+// 010   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_4_010:
+	BYTE		PAN     c_v+30
+	BYTE		N06     Fs5   v120
+	BYTE	W06
+	BYTE		        Fs5   v052
+	BYTE	W06
+	BYTE		        Dn5   v120
+	BYTE	W06
+	BYTE		        Dn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v-30
+	BYTE		N06     Cn6   v120
+	BYTE	W06
+	BYTE		        Cn6   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v+30
+	BYTE		N06     Fn5   v120
+	BYTE	W06
+	BYTE		        Fn5   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v-30
+	BYTE		N06     An4   v120
+	BYTE	W06
+	BYTE		        An4   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE	PEND
+// 011   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_4_011:
+	BYTE		PAN     c_v+30
+	BYTE		N06     Fn5   v120
+	BYTE	W06
+	BYTE		        Fn5   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v-30
+	BYTE		N06     Cn6   v120
+	BYTE	W06
+	BYTE		        Cn6   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v+30
+	BYTE		N06     En5   v120
+	BYTE	W06
+	BYTE		        En5   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v-30
+	BYTE		N06     Gn4   v120
+	BYTE	W06
+	BYTE		        Gn4   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE		PAN     c_v+30
+	BYTE		N06     En5   v120
+	BYTE	W06
+	BYTE		        En5   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v-30
+	BYTE		N06     Cn6   v120
+	BYTE	W06
+	BYTE		        Cn6   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v+30
+	BYTE		N06     En5   v120
+	BYTE	W06
+	BYTE		        En5   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		PAN     c_v-30
+	BYTE		N06     Gn4   v120
+	BYTE	W06
+	BYTE		        Gn4   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_4_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_4_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_4_011
+// 016   ----------------------------------------
+	BYTE		PAN     c_v+30
+	BYTE		N06     En5   v120
+	BYTE	W06
+	BYTE		        En5   v052
+	BYTE	W06
+	BYTE		        Cn5   v120
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W78
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_4_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_4_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_5:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   8
+	BYTE		VOL     100*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v-20
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_5_B1:
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W24
+	BYTE		N24     As3   v120
+	BYTE	W72
+// 027   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_5_027:
+	BYTE	W24
+	BYTE		N24     Ds4   v120
+	BYTE	W24
+	BYTE		N72     Gn4 
+	BYTE	W48
+	BYTE	PEND
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_5_028:
+	BYTE	W24
+	BYTE		N24     Gs4   v120
+	BYTE	W48
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE	W48
+	BYTE		        Ds4   v124
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+// 030   ----------------------------------------
+	BYTE		        Fn4   v112
+	BYTE	W24
+	BYTE		        As3   v120
+	BYTE	W72
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_5_027
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_5_028
+// 033   ----------------------------------------
+	BYTE	W24
+	BYTE		N24     As4   v120
+	BYTE	W48
+	BYTE		N24   
+	BYTE	W24
+// 034   ----------------------------------------
+	BYTE		        Gs4 
+	BYTE	W48
+	BYTE		        Cn5 
+	BYTE	W48
+// 035   ----------------------------------------
+	BYTE		        As4 
+	BYTE	W48
+	BYTE		        Ds5 
+	BYTE	W48
+// 036   ----------------------------------------
+	BYTE		        Cs5 
+	BYTE	W36
+	BYTE		        Gs4 
+	BYTE	W12
+	BYTE		N48     Fn5 
+	BYTE	W48
+// 037   ----------------------------------------
+	BYTE		N12     Ds5 
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W36
+	BYTE		N24     Fn4   v096
+	BYTE	W24
+	BYTE		        As4   v108
+	BYTE	W24
+// 038   ----------------------------------------
+	BYTE		        Fn5   v116
+	BYTE	W48
+	BYTE		        Fn5   v096
+	BYTE	W24
+	BYTE		        As4   v108
+	BYTE	W24
+// 039   ----------------------------------------
+	BYTE		        Fn4   v116
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_5_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_5_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_6:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   73
+	BYTE		VOL     97*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_6_B1:
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W24
+	BYTE		MOD     2
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE		N12     En5   v112
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W12
+	BYTE		N30     Gn5 
+	BYTE	W30
+	BYTE		N06     Gn5   v060
+	BYTE	W06
+	BYTE		N12     Cn5   v112
+	BYTE	W12
+	BYTE		N24   
+	BYTE	W24
+// 017   ----------------------------------------
+	BYTE		        Gn5 
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+	BYTE		N36     Fs5 
+	BYTE	W36
+	BYTE		N12     Fs5   v072
+	BYTE	W12
+// 018   ----------------------------------------
+	BYTE		        Dn5   v112
+	BYTE	W12
+	BYTE		        En5 
+	BYTE	W12
+	BYTE		N24     Fn5 
+	BYTE	W24
+	BYTE		N12     Fn5   v060
+	BYTE	W12
+	BYTE		        Gn4   v112
+	BYTE	W12
+	BYTE		N24   
+	BYTE	W24
+// 019   ----------------------------------------
+	BYTE		        Fn5 
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fn5   v060
+	BYTE	W06
+	BYTE		        Gn5   v112
+	BYTE	W06
+	BYTE		        Gn5   v060
+	BYTE	W06
+	BYTE		N36     En5   v112
+	BYTE	W36
+	BYTE		N12     En5   v060
+	BYTE	W12
+// 020   ----------------------------------------
+	BYTE		N06     Cn5   v112
+	BYTE	W06
+	BYTE		        Cn5   v060
+	BYTE	W06
+	BYTE		        Dn5   v112
+	BYTE	W06
+	BYTE		        Dn5   v060
+	BYTE	W06
+	BYTE		N24     En5   v112
+	BYTE	W24
+	BYTE		N12     En5   v060
+	BYTE	W12
+	BYTE		        An4   v112
+	BYTE	W12
+	BYTE		N24   
+	BYTE	W24
+// 021   ----------------------------------------
+	BYTE		        En5 
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+	BYTE		        Dn5 
+	BYTE	W24
+	BYTE		        An5 
+	BYTE	W24
+// 022   ----------------------------------------
+	BYTE		        Dn5 
+	BYTE	W24
+	BYTE		N42     Cn5 
+	BYTE	W42
+	BYTE		N06     Cn5   v060
+	BYTE	W06
+	BYTE		N42     Bn4   v112
+	BYTE	W24
+// 023   ----------------------------------------
+	BYTE	W18
+	BYTE		N06     Bn4   v060
+	BYTE	W06
+	BYTE		N42     An4   v112
+	BYTE	W42
+	BYTE		N06     An4   v060
+	BYTE	W06
+	BYTE		N36     Bn4   v112
+	BYTE	W24
+// 024   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Bn4   v060
+	BYTE	W12
+	BYTE		N36     Cn5   v112
+	BYTE	W36
+	BYTE		N12     Cn5   v060
+	BYTE	W12
+	BYTE		N36     As4   v112
+	BYTE	W24
+// 025   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     As4   v060
+	BYTE	W12
+	BYTE		N36     Cn5   v112
+	BYTE	W36
+	BYTE		N12     Cn5   v060
+	BYTE	W12
+	BYTE		N36     Dn5   v112
+	BYTE	W24
+// 026   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Dn5   v060
+	BYTE	W84
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_6_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_6_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_7:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   71
+	BYTE		VOL     98*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_7_B1:
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W21
+	BYTE		PAN     c_v-59
+	BYTE	W03
+	BYTE		N18     As4   v120
+	BYTE	W18
+	BYTE		N06     As4   v060
+	BYTE	W06
+	BYTE		N18     As4   v120
+	BYTE	W18
+	BYTE		N06     As4   v060
+	BYTE	W06
+	BYTE		N18     Cn5   v120
+	BYTE	W18
+	BYTE		N06     Cn5   v060
+	BYTE	W06
+// 027   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_7_027:
+	BYTE		N18     Dn5   v120
+	BYTE	W18
+	BYTE		N06     Dn5   v060
+	BYTE	W06
+	BYTE		        Ds5   v120
+	BYTE	W06
+	BYTE		        Ds5   v060
+	BYTE	W06
+	BYTE		        Fn5   v120
+	BYTE	W06
+	BYTE		        Fn5   v060
+	BYTE	W06
+	BYTE		N30     Gn5   v120
+	BYTE	W30
+	BYTE		N06     Gn5   v052
+	BYTE	W06
+	BYTE		        Gn5   v120
+	BYTE	W06
+	BYTE		        Gn5   v060
+	BYTE	W06
+	BYTE	PEND
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_7_028:
+	BYTE		N06     Fn5   v120
+	BYTE	W06
+	BYTE		        Fn5   v060
+	BYTE	W06
+	BYTE		        Gn5   v120
+	BYTE	W06
+	BYTE		        Gn5   v060
+	BYTE	W06
+	BYTE		N18     Gs5   v120
+	BYTE	W18
+	BYTE		N06     Gs5   v060
+	BYTE	W06
+	BYTE		N18     Gn5   v120
+	BYTE	W18
+	BYTE		N06     Gn5   v060
+	BYTE	W06
+	BYTE		N18     Fn5   v120
+	BYTE	W18
+	BYTE		N06     Fn5   v060
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE		N18     Ds5   v120
+	BYTE	W18
+	BYTE		N06     Ds5   v060
+	BYTE	W06
+	BYTE		N48     Ds5   v120
+	BYTE	W48
+	BYTE		N09     Dn5 
+	BYTE	W12
+	BYTE		N12     Dn5   v060
+	BYTE	W12
+// 030   ----------------------------------------
+	BYTE		N24     As4   v120
+	BYTE	W24
+	BYTE		N18   
+	BYTE	W18
+	BYTE		N06     As4   v060
+	BYTE	W06
+	BYTE		N18     As4   v120
+	BYTE	W18
+	BYTE		N06     As4   v060
+	BYTE	W06
+	BYTE		N18     Cn5   v120
+	BYTE	W18
+	BYTE		N06     Cn5   v060
+	BYTE	W06
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_7_027
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_7_028
+// 033   ----------------------------------------
+	BYTE		N18     Ds5   v120
+	BYTE	W18
+	BYTE		N06     Ds5   v060
+	BYTE	W06
+	BYTE		N42     As5   v120
+	BYTE	W42
+	BYTE		N06     As5   v060
+	BYTE	W06
+	BYTE		N12     As4   v120
+	BYTE	W12
+	BYTE		        As4   v060
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE		N24     Gs4   v120
+	BYTE	W24
+	BYTE		N09     Gn4 
+	BYTE	W12
+	BYTE		N06     Gn4   v060
+	BYTE	W12
+	BYTE		N36     Cn5   v120
+	BYTE	W36
+	BYTE		N12     Cn5   v060
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE		N24     As4   v120
+	BYTE	W24
+	BYTE		N09   
+	BYTE	W12
+	BYTE		N06     As4   v060
+	BYTE	W12
+	BYTE		N36     Ds5   v120
+	BYTE	W36
+	BYTE		N12     Ds5   v060
+	BYTE	W12
+// 036   ----------------------------------------
+	BYTE		N24     Cs5   v120
+	BYTE	W24
+	BYTE		N06     Cn5 
+	BYTE	W06
+	BYTE		        Cn5   v060
+	BYTE	W06
+	BYTE		        Gs4   v120
+	BYTE	W06
+	BYTE		        Gs4   v060
+	BYTE	W06
+	BYTE		N36     Fn5   v120
+	BYTE	W36
+	BYTE		N12     Fn5   v060
+	BYTE	W12
+// 037   ----------------------------------------
+	BYTE		N06     Ds5   v120
+	BYTE	W06
+	BYTE		        Ds5   v060
+	BYTE	W06
+	BYTE		        Fn5   v120
+	BYTE	W06
+	BYTE		        Fn5   v060
+	BYTE	W06
+	BYTE		N72     Ds5   v120
+	BYTE	W72
+// 038   ----------------------------------------
+	BYTE		N12     Ds5   v060
+	BYTE	W12
+	BYTE		N06     Fn5   v120
+	BYTE	W06
+	BYTE		        Fn5   v060
+	BYTE	W06
+	BYTE		N72     Dn5   v120
+	BYTE	W72
+// 039   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Dn5   v060
+	BYTE	W84
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_7_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_7_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_8:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		VOL     100*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v-20
+	BYTE		MOD     0
+	BYTE		N06     Cn2   v120
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Gn1 
+	BYTE	W12
+PokemonRangerGuardianSignsWildPokemonBattleSme_8_B1:
+	BYTE		N01     Cn2   v120
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_8_003:
+	BYTE	W36
+	BYTE		N12     Gn1   v120
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE	PEND
+// 004   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_8_004:
+	BYTE		N12     Cn2   v120
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		N24     Cn2 
+	BYTE	W72
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_8_007:
+	BYTE	W36
+	BYTE		N12     Gn1   v120
+	BYTE	W12
+	BYTE		N06     Cn2 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Gn1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_8_004
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_8_003
+// 012   ----------------------------------------
+	BYTE		N12     Cn2   v120
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		N06     Cn2 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N36     Gn1 
+	BYTE	W60
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_8_007
+// 016   ----------------------------------------
+	BYTE		N12     Cn2   v120
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W84
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_8_025:
+	BYTE	W36
+	BYTE		N12     Fn1   v120
+	BYTE	W12
+	BYTE		N06     As1 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Fn1 
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE	PEND
+// 026   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_8_026:
+	BYTE		N12     As1   v120
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W84
+	BYTE	PEND
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_8_025
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_8_026
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W36
+	BYTE		N12     Fn1   v120
+	BYTE	W12
+	BYTE		N06     As1 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Fn1 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		N24     Cn2   v060
+	BYTE	W48
+	BYTE		N12     Dn2   v120
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     As1 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		N24     Ds2   v060
+	BYTE	W48
+	BYTE		N12     En2   v120
+	BYTE	W12
+// 036   ----------------------------------------
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Cn2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		N24     Fn2   v060
+	BYTE	W60
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_8_025
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_8_026
+// 040   ----------------------------------------
+	BYTE	W24
+	BYTE		N06     Gs1   v120
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Ds1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+	BYTE		N06     As1 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Fn1 
+	BYTE	W12
+// 041   ----------------------------------------
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_8_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_8_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 9 (Midi-Chn.9) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_9:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   33
+	BYTE		VOL     127*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_9_B1:
+	BYTE		N12     Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+// 001   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_9_001:
+	BYTE		N12     Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_001
+// 016   ----------------------------------------
+	BYTE		N12     Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        An1   v127
+	BYTE	W12
+	BYTE		        An1   v100
+	BYTE	W12
+	BYTE		        An1   v127
+	BYTE	W12
+	BYTE		        An1   v100
+	BYTE	W12
+	BYTE		        An1   v127
+	BYTE	W12
+	BYTE		        An1   v100
+	BYTE	W12
+// 017   ----------------------------------------
+	BYTE		        An1   v127
+	BYTE	W12
+	BYTE		        An1   v100
+	BYTE	W12
+	BYTE		        Dn2   v127
+	BYTE	W12
+	BYTE		        Dn2   v100
+	BYTE	W12
+	BYTE		        Dn2   v127
+	BYTE	W12
+	BYTE		        Dn2   v100
+	BYTE	W12
+	BYTE		        Dn2   v127
+	BYTE	W12
+	BYTE		        Dn2   v100
+	BYTE	W12
+// 018   ----------------------------------------
+	BYTE		        Dn2   v127
+	BYTE	W12
+	BYTE		        Dn2   v100
+	BYTE	W12
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+// 019   ----------------------------------------
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+// 020   ----------------------------------------
+	BYTE		        Bn1   v127
+	BYTE	W12
+	BYTE		        Bn1   v100
+	BYTE	W12
+	BYTE		        An1   v127
+	BYTE	W12
+	BYTE		        An1   v100
+	BYTE	W12
+	BYTE		        An1   v127
+	BYTE	W12
+	BYTE		        An1   v100
+	BYTE	W12
+	BYTE		        An1   v127
+	BYTE	W12
+	BYTE		        An1   v100
+	BYTE	W12
+// 021   ----------------------------------------
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+	BYTE		        Fs1   v127
+	BYTE	W12
+	BYTE		        Fs1   v100
+	BYTE	W12
+	BYTE		        Fs1   v127
+	BYTE	W12
+	BYTE		        Fs1   v100
+	BYTE	W12
+	BYTE		        Fs1   v127
+	BYTE	W12
+	BYTE		        Fs1   v100
+	BYTE	W12
+// 022   ----------------------------------------
+	BYTE		        Fs1   v127
+	BYTE	W12
+	BYTE		        Fs1   v100
+	BYTE	W12
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+// 023   ----------------------------------------
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+// 024   ----------------------------------------
+	BYTE		        Gn1   v127
+	BYTE	W12
+	BYTE		        Gn1   v100
+	BYTE	W12
+	BYTE		        Gs1   v127
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W12
+	BYTE		        Gs1   v127
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W12
+	BYTE		        Gs1   v127
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W12
+// 025   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_9_025:
+	BYTE		N12     Gs1   v127
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE	PEND
+// 026   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_9_026:
+	BYTE		N12     As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        Ds2   v127
+	BYTE	W12
+	BYTE		        Ds2   v100
+	BYTE	W12
+	BYTE		        Ds2   v127
+	BYTE	W12
+	BYTE		        Ds2   v100
+	BYTE	W12
+	BYTE		        Ds2   v127
+	BYTE	W12
+	BYTE		        Ds2   v100
+	BYTE	W12
+	BYTE	PEND
+// 027   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_9_027:
+	BYTE		N12     Dn2   v127
+	BYTE	W12
+	BYTE		        Dn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE	PEND
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_9_028:
+	BYTE		N12     As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        Gs1   v127
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W12
+	BYTE		        Gs1   v127
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W12
+	BYTE		        An1   v127
+	BYTE	W12
+	BYTE		        An1   v100
+	BYTE	W12
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE		        An1   v127
+	BYTE	W12
+	BYTE		        An1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_026
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_027
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_028
+// 033   ----------------------------------------
+	BYTE		N12     An1   v127
+	BYTE	W12
+	BYTE		        An1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        Bn1   v127
+	BYTE	W12
+	BYTE		        Bn1   v100
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE		        Bn1   v127
+	BYTE	W12
+	BYTE		        Bn1   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Dn2   v127
+	BYTE	W12
+	BYTE		        Dn2   v100
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE		        Dn2   v127
+	BYTE	W12
+	BYTE		        Dn2   v100
+	BYTE	W12
+	BYTE		        Ds2   v127
+	BYTE	W12
+	BYTE		        Ds2   v100
+	BYTE	W12
+	BYTE		        Ds2   v127
+	BYTE	W12
+	BYTE		        Ds2   v100
+	BYTE	W12
+	BYTE		        En2   v127
+	BYTE	W12
+	BYTE		        En2   v100
+	BYTE	W12
+// 036   ----------------------------------------
+	BYTE		        En2   v127
+	BYTE	W12
+	BYTE		        En2   v100
+	BYTE	W12
+	BYTE		        Fn2   v127
+	BYTE	W12
+	BYTE		        Fn2   v100
+	BYTE	W12
+	BYTE		        Fn2   v127
+	BYTE	W12
+	BYTE		        Fn2   v100
+	BYTE	W12
+	BYTE		        Gs1   v127
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W12
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_025
+// 038   ----------------------------------------
+	BYTE		N12     As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+// 039   ----------------------------------------
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+// 040   ----------------------------------------
+	BYTE		        Cn2   v127
+	BYTE	W12
+	BYTE		        Cn2   v100
+	BYTE	W12
+	BYTE		        Gs1   v127
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W12
+	BYTE		        Gs1   v127
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W12
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+// 041   ----------------------------------------
+	BYTE		        As1   v127
+	BYTE	W12
+	BYTE		        As1   v100
+	BYTE	W12
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_9_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 10 (Midi-Chn.11) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_10:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     100*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_10_B1:
+	BYTE		N24     Cn1   v120
+	BYTE		N12     Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v052
+	BYTE	W12
+	BYTE		        Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v064
+	BYTE	W12
+	BYTE		N06     Dn1   v092
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Dn1   v052
+	BYTE	W12
+// 001   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_10_001:
+	BYTE		N12     Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v052
+	BYTE	W12
+	BYTE		        Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v052
+	BYTE	W12
+	BYTE		N06     Dn1   v092
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Dn1   v064
+	BYTE	W12
+	BYTE		N06     Dn1   v092
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Dn1   v064
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_10_002:
+	BYTE		N12     Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v052
+	BYTE	W12
+	BYTE		        Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v052
+	BYTE	W12
+	BYTE		        Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v064
+	BYTE	W12
+	BYTE		N06     Dn1   v092
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Dn1   v052
+	BYTE	W12
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 004   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_10_004:
+	BYTE		N12     Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v052
+	BYTE	W12
+	BYTE		N24     Cn1   v120
+	BYTE		N12     Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v052
+	BYTE	W12
+	BYTE		        Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v064
+	BYTE	W12
+	BYTE		N06     Dn1   v092
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Dn1   v052
+	BYTE	W12
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_004
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_004
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_002
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_002
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_002
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_004
+// 025   ----------------------------------------
+	BYTE		N12     Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v052
+	BYTE	W12
+	BYTE		N24     Cn1   v120
+	BYTE		N12     Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v052
+	BYTE	W12
+	BYTE		N06     Dn1   v092
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Dn1   v064
+	BYTE	W12
+	BYTE		N24     Cn1   v120
+	BYTE		N06     Dn1   v092
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N12     Dn1   v064
+	BYTE	W12
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_004
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_002
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_002
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_002
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_004
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_004
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_004
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_002
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_001
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_004
+// 041   ----------------------------------------
+	BYTE		N12     Dn1   v092
+	BYTE	W12
+	BYTE		        Dn1   v052
+	BYTE	W12
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_10_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 11 (Midi-Chn.12) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_11:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     100*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_11_B1:
+	BYTE		N48     Cs2   v092
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE	W72
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE	W72
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W72
+// 025   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_11_025:
+	BYTE	W24
+	BYTE		N48     Cs2   v092
+	BYTE	W48
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE	PEND
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W24
+	BYTE		N48   
+	BYTE	W72
+// 035   ----------------------------------------
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE	W72
+// 036   ----------------------------------------
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W72
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W24
+	BYTE		N48   
+	BYTE	W72
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_11_025
+// 041   ----------------------------------------
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_11_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_11_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 12 (Midi-Chn.13) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_12:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   61
+	BYTE		VOL     113*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_12_B1:
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W36
+	BYTE		PAN     c_v-10
+	BYTE	W12
+	BYTE		N12     Gn3   v080
+	BYTE	W12
+	BYTE		        Gn3   v052
+	BYTE	W12
+	BYTE		N24     En4   v080
+	BYTE	W24
+// 009   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_12_009:
+	BYTE		N12     En4   v052
+	BYTE	W12
+	BYTE		N06     Dn4   v080
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		N24     Fs4 
+	BYTE	W24
+	BYTE		N12     Fs4   v052
+	BYTE	W12
+	BYTE		N06     Dn4   v080
+	BYTE	W06
+	BYTE		        Dn4   v052
+	BYTE	W06
+	BYTE		N24     An3   v080
+	BYTE	W24
+	BYTE	PEND
+// 010   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_12_010:
+	BYTE		N06     An3   v080
+	BYTE	W06
+	BYTE		        An3   v052
+	BYTE	W06
+	BYTE		        Bn3   v080
+	BYTE	W06
+	BYTE		        Bn3   v052
+	BYTE	W06
+	BYTE		N24     Cn4   v080
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		        An4 
+	BYTE	W24
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE		N06     Gn4 
+	BYTE	W06
+	BYTE		        Gn4   v052
+	BYTE	W06
+	BYTE		        Fn4   v080
+	BYTE	W06
+	BYTE		        Fn4   v052
+	BYTE	W06
+	BYTE		        En4   v080
+	BYTE	W06
+	BYTE		        En4   v052
+	BYTE	W06
+	BYTE		        Fn4   v080
+	BYTE	W06
+	BYTE		        Fn4   v052
+	BYTE	W06
+	BYTE		N72     Gn4   v080
+	BYTE	W48
+// 012   ----------------------------------------
+	BYTE	W24
+	BYTE		N24     Gn4   v052
+	BYTE	W24
+	BYTE		N12     Gn3   v080
+	BYTE	W12
+	BYTE		        Gn3   v052
+	BYTE	W12
+	BYTE		N24     En4   v080
+	BYTE	W24
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_12_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_12_010
+// 015   ----------------------------------------
+	BYTE		N06     Cn5   v072
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		        Dn5   v072
+	BYTE	W06
+	BYTE		        Dn5   v052
+	BYTE	W06
+	BYTE		        En5   v072
+	BYTE	W06
+	BYTE		        En5   v052
+	BYTE	W06
+	BYTE		        Cn5   v072
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		N48     Gn4   v080
+	BYTE	W48
+// 016   ----------------------------------------
+	BYTE		N24     Gn4   v052
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W72
+	BYTE		N04     En4   v100
+	BYTE		N04     Fs4 
+	BYTE		N04     An4   v120
+	BYTE	W06
+	BYTE		        En4   v100
+	BYTE		N04     Fs4 
+	BYTE		N04     An4   v120
+	BYTE	W06
+	BYTE		N06     An3   v100
+	BYTE		N06     Dn4 
+	BYTE		N06     Fs4   v120
+	BYTE	W06
+	BYTE		N12     An3   v060
+	BYTE		N12     Dn4 
+	BYTE		N12     Fs4 
+	BYTE	W06
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W72
+	BYTE		N04     Dn4   v100
+	BYTE		N04     En4 
+	BYTE		N04     Gn4   v120
+	BYTE	W06
+	BYTE		        Dn4   v100
+	BYTE		N04     En4 
+	BYTE		N04     Gn4   v120
+	BYTE	W06
+	BYTE		N06     Gn3   v100
+	BYTE		N06     Cn4 
+	BYTE		N06     En4   v120
+	BYTE	W06
+	BYTE		N12     Gn3   v060
+	BYTE		N12     Cn4 
+	BYTE		N12     En4 
+	BYTE	W06
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W24
+	BYTE		N36     Gs3   v100
+	BYTE		N36     Cn4 
+	BYTE	W36
+	BYTE		N12     Gs3   v060
+	BYTE		N12     Cn4 
+	BYTE	W12
+	BYTE		N36     Fn3   v100
+	BYTE		N36     As3 
+	BYTE	W24
+// 025   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Fn3   v060
+	BYTE		N12     As3 
+	BYTE	W12
+	BYTE		N36     Gs3   v100
+	BYTE		N36     Cn4 
+	BYTE	W36
+	BYTE		N12     Gs3   v060
+	BYTE		N12     Cn4 
+	BYTE	W12
+	BYTE		N36     As3   v100
+	BYTE		N36     Dn4 
+	BYTE	W24
+// 026   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     As3   v060
+	BYTE		N12     Dn4 
+	BYTE	W84
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W24
+	BYTE		N09     Gn4   v092
+	BYTE	W12
+	BYTE		N06     Gn4   v052
+	BYTE	W12
+	BYTE		N36     Cn5   v092
+	BYTE	W36
+	BYTE		N12     Cn5   v052
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE		N24     As4   v092
+	BYTE	W24
+	BYTE		N09   
+	BYTE	W12
+	BYTE		N06     As4   v052
+	BYTE	W12
+	BYTE		N36     Ds5   v092
+	BYTE	W36
+	BYTE		N12     Ds5   v052
+	BYTE	W12
+// 036   ----------------------------------------
+	BYTE		N24     Cs5   v092
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W24
+	BYTE		        Cn4   v100
+	BYTE		N24     Fn4 
+	BYTE		N24     Gn4 
+	BYTE	W24
+	BYTE		N12     Cn4   v052
+	BYTE		N12     Fn4 
+	BYTE		N12     Gn4 
+	BYTE	W12
+	BYTE		N04     Cn4   v100
+	BYTE		N04     Fn4 
+	BYTE		N04     Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE		N04     Fn4 
+	BYTE		N04     Gn4 
+	BYTE	W06
+	BYTE		N48     Cn4 
+	BYTE		N48     En4 
+	BYTE		N48     Gn4 
+	BYTE	W24
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_12_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_12_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 13 (Midi-Chn.14) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_13:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   57
+	BYTE		VOL     113*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v+10
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_13_B1:
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W36
+	BYTE		PAN     c_v+10
+	BYTE	W12
+	BYTE		N12     Gn2   v112
+	BYTE	W12
+	BYTE		        Gn2   v072
+	BYTE	W12
+	BYTE		N24     En3   v112
+	BYTE	W24
+// 009   ----------------------------------------
+	BYTE		N12     En3   v072
+	BYTE	W12
+	BYTE		N06     Dn3   v112
+	BYTE	W06
+	BYTE		        En3 
+	BYTE	W06
+	BYTE		N24     Fs3 
+	BYTE	W24
+	BYTE		N12     Fs3   v072
+	BYTE	W12
+	BYTE		N06     Dn3   v112
+	BYTE	W06
+	BYTE		        Dn3   v072
+	BYTE	W06
+	BYTE		N24     An2   v112
+	BYTE	W24
+// 010   ----------------------------------------
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        An2   v072
+	BYTE	W06
+	BYTE		        Bn2   v112
+	BYTE	W06
+	BYTE		        Bn2   v072
+	BYTE	W06
+	BYTE		N24     Cn3   v112
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W24
+	BYTE		        An3 
+	BYTE	W24
+// 011   ----------------------------------------
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Gn3   v072
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE	W06
+	BYTE		        Fn3   v072
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE	W06
+	BYTE		        En3   v072
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE	W06
+	BYTE		        Fn3   v072
+	BYTE	W06
+	BYTE		N72     Gn3   v112
+	BYTE	W48
+// 012   ----------------------------------------
+	BYTE	W48
+	BYTE		N12     En3   v100
+	BYTE	W12
+	BYTE		        En3   v052
+	BYTE	W12
+	BYTE		N24     Cn4   v100
+	BYTE	W24
+// 013   ----------------------------------------
+	BYTE		N12     Cn4   v052
+	BYTE	W12
+	BYTE		N06     Bn3   v100
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N24     Dn4 
+	BYTE	W24
+	BYTE		N12     Dn4   v052
+	BYTE	W12
+	BYTE		N06     An3   v100
+	BYTE	W06
+	BYTE		        An3   v052
+	BYTE	W06
+	BYTE		N24     Fs3   v100
+	BYTE	W24
+// 014   ----------------------------------------
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Fs3   v052
+	BYTE	W06
+	BYTE		        Gn3   v100
+	BYTE	W06
+	BYTE		        Gn3   v052
+	BYTE	W06
+	BYTE		N24     An3   v100
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+// 015   ----------------------------------------
+	BYTE		N06     An4 
+	BYTE	W06
+	BYTE		        An4   v052
+	BYTE	W06
+	BYTE		        Bn4   v100
+	BYTE	W06
+	BYTE		        Bn4   v052
+	BYTE	W06
+	BYTE		        Cn5   v100
+	BYTE	W06
+	BYTE		        Cn5   v052
+	BYTE	W06
+	BYTE		        Gn4   v100
+	BYTE	W06
+	BYTE		        Gn4   v052
+	BYTE	W06
+	BYTE		N48     En4   v100
+	BYTE	W48
+// 016   ----------------------------------------
+	BYTE		N24     En4   v040
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W48
+	BYTE		N18     Dn1   v120
+	BYTE		N18     Dn2 
+	BYTE	W18
+	BYTE		N06     Dn1   v060
+	BYTE		N06     Dn2 
+	BYTE	W06
+	BYTE		N18     An1   v120
+	BYTE		N18     An2 
+	BYTE	W18
+	BYTE		N06     An1   v060
+	BYTE		N06     An2 
+	BYTE	W06
+// 018   ----------------------------------------
+	BYTE		N24     Fs1   v120
+	BYTE		N24     Fs2 
+	BYTE	W24
+	BYTE		N36     Gn1 
+	BYTE	W36
+	BYTE		        Gn1   v060
+	BYTE	W36
+// 019   ----------------------------------------
+	BYTE	W48
+	BYTE		N18     Cn1   v120
+	BYTE		N18     Cn2 
+	BYTE	W18
+	BYTE		N06     Cn1   v060
+	BYTE		N06     Cn2 
+	BYTE	W06
+	BYTE		N18     Gn1   v120
+	BYTE		N18     Gn2 
+	BYTE	W18
+	BYTE		N06     Gn1   v060
+	BYTE		N06     Gn2 
+	BYTE	W06
+// 020   ----------------------------------------
+	BYTE		N24     En1   v120
+	BYTE		N24     En2 
+	BYTE	W24
+	BYTE		N36     An1 
+	BYTE	W36
+	BYTE		        An1   v060
+	BYTE	W36
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W24
+	BYTE		N96     Dn2   v120
+	BYTE		N96     Gn2 
+	BYTE		N36     Cn3 
+	BYTE	W48
+	BYTE		        Bn2 
+	BYTE	W24
+// 023   ----------------------------------------
+	BYTE	W24
+	BYTE		N96     Gn1 
+	BYTE		N96     Fn2 
+	BYTE		N36     An2 
+	BYTE	W48
+	BYTE		        Bn2 
+	BYTE	W24
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W24
+	BYTE		N30     Ds3 
+	BYTE		N30     Gs3 
+	BYTE		N30     Cn4 
+	BYTE	W30
+	BYTE		N06     Ds3   v060
+	BYTE		N06     Gs3 
+	BYTE		N06     Cn4 
+	BYTE	W06
+	BYTE		N04     Ds3   v120
+	BYTE		N04     Gs3 
+	BYTE		N04     Cn4 
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE		N04     Gs3 
+	BYTE		N04     Cn4 
+	BYTE	W06
+	BYTE		N42     Fn3 
+	BYTE		N42     As3 
+	BYTE		N42     Dn4 
+	BYTE	W24
+// 041   ----------------------------------------
+	BYTE	W18
+	BYTE		N06     Fn3   v060
+	BYTE		N06     As3 
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_13_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_13_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 14 (Midi-Chn.15) ****************//
+
+PokemonRangerGuardianSignsWildPokemonBattleSme_14:
+	BYTE	KEYSH   PokemonRangerGuardianSignsWildPokemonBattleSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		VOL     100*PokemonRangerGuardianSignsWildPokemonBattleSme_mvl/mxv
+	BYTE		PAN     c_v-10
+	BYTE		MOD     0
+	BYTE	W24
+PokemonRangerGuardianSignsWildPokemonBattleSme_14_B1:
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W24
+	BYTE		PAN     c_v+10
+	BYTE		N18     Gn4   v120
+	BYTE	W18
+	BYTE		N06     Gn4   v060
+	BYTE	W06
+	BYTE		N18     Gn4   v120
+	BYTE	W18
+	BYTE		N06     Gn4   v060
+	BYTE	W06
+	BYTE		N18     Gn4   v120
+	BYTE	W18
+	BYTE		N06     Gn4   v060
+	BYTE	W06
+// 027   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_14_027:
+	BYTE		N18     Fn4   v120
+	BYTE	W18
+	BYTE		N06     Fn4   v060
+	BYTE	W06
+	BYTE		        Gn4   v120
+	BYTE	W06
+	BYTE		        Gn4   v060
+	BYTE	W06
+	BYTE		        Gs4   v120
+	BYTE	W06
+	BYTE		        Gs4   v060
+	BYTE	W06
+	BYTE		N30     As4   v120
+	BYTE	W30
+	BYTE		N06     As4   v052
+	BYTE	W06
+	BYTE		        As4   v120
+	BYTE	W06
+	BYTE		        As4   v060
+	BYTE	W06
+	BYTE	PEND
+// 028   ----------------------------------------
+PokemonRangerGuardianSignsWildPokemonBattleSme_14_028:
+	BYTE		N06     Gs4   v120
+	BYTE	W06
+	BYTE		        Gs4   v060
+	BYTE	W06
+	BYTE		        As4   v120
+	BYTE	W06
+	BYTE		        As4   v060
+	BYTE	W06
+	BYTE		N18     Cn5   v120
+	BYTE	W18
+	BYTE		N06     Cn5   v060
+	BYTE	W06
+	BYTE		N18     As4   v120
+	BYTE	W18
+	BYTE		N06     As4   v060
+	BYTE	W06
+	BYTE		N18     An4   v120
+	BYTE	W18
+	BYTE		N06     An4   v060
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE		N18     An4   v120
+	BYTE	W18
+	BYTE		N06     An4   v060
+	BYTE	W06
+	BYTE		N48     As4   v120
+	BYTE	W48
+	BYTE		N09   
+	BYTE	W12
+	BYTE		N12     As4   v060
+	BYTE	W12
+// 030   ----------------------------------------
+	BYTE		N24     Dn4   v120
+	BYTE	W24
+	BYTE		PAN     c_v+10
+	BYTE		N18     Gn4 
+	BYTE	W18
+	BYTE		N06     Gn4   v060
+	BYTE	W06
+	BYTE		N18     Gn4   v120
+	BYTE	W18
+	BYTE		N06     Gn4   v060
+	BYTE	W06
+	BYTE		N18     Gn4   v120
+	BYTE	W18
+	BYTE		N06     Gn4   v060
+	BYTE	W06
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_14_027
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_14_028
+// 033   ----------------------------------------
+	BYTE		N18     An4   v120
+	BYTE	W18
+	BYTE		N06     An4   v060
+	BYTE	W06
+	BYTE		N42     Dn5   v120
+	BYTE	W42
+	BYTE		N06     Dn5   v060
+	BYTE	W06
+	BYTE		N12     Dn4   v120
+	BYTE	W12
+	BYTE		        Dn4   v060
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE		N24     Dn4   v120
+	BYTE	W24
+	BYTE		N09     Ds4 
+	BYTE	W12
+	BYTE		N06     Ds4   v060
+	BYTE	W12
+	BYTE		N36     Gn4   v120
+	BYTE	W36
+	BYTE		N12     Gn4   v060
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE		N24     Gn4   v120
+	BYTE	W24
+	BYTE		N09   
+	BYTE	W12
+	BYTE		N06     Gn4   v060
+	BYTE	W12
+	BYTE		N36     Gn4   v120
+	BYTE	W36
+	BYTE		N12     Gn4   v060
+	BYTE	W12
+// 036   ----------------------------------------
+	BYTE		N24     Gn4   v120
+	BYTE	W24
+	BYTE		N06     Gs4 
+	BYTE	W06
+	BYTE		        Gs4   v060
+	BYTE	W06
+	BYTE		        Fn4   v120
+	BYTE	W06
+	BYTE		        Fn4   v060
+	BYTE	W06
+	BYTE		N36     Gs4   v120
+	BYTE	W36
+	BYTE		N12     Gs4   v060
+	BYTE	W12
+// 037   ----------------------------------------
+	BYTE		N06     Gn4   v120
+	BYTE	W06
+	BYTE		        Gn4   v060
+	BYTE	W06
+	BYTE		        Gs4   v120
+	BYTE	W06
+	BYTE		        Gs4   v060
+	BYTE	W06
+	BYTE		N72     As4   v120
+	BYTE	W72
+// 038   ----------------------------------------
+	BYTE		N12     As4   v060
+	BYTE	W12
+	BYTE		N06     As4   v120
+	BYTE	W06
+	BYTE		        As4   v060
+	BYTE	W06
+	BYTE		N72     As4   v120
+	BYTE	W72
+// 039   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     As4   v060
+	BYTE	W84
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_14_B1
+PokemonRangerGuardianSignsWildPokemonBattleSme_14_B2:
+	BYTE	W24
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+PokemonRangerGuardianSignsWildPokemonBattleSme:
+	BYTE	14	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	PokemonRangerGuardianSignsWildPokemonBattleSme_pri	// Priority
+	BYTE	PokemonRangerGuardianSignsWildPokemonBattleSme_rev	// Reverb.
+
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_grp
+
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_1
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_2
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_3
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_4
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_5
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_6
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_7
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_8
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_9
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_10
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_11
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_12
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_13
+	POIN2	PokemonRangerGuardianSignsWildPokemonBattleSme_14
+
+	

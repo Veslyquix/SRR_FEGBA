@@ -1,0 +1,2868 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	ChronoTriggerBattle2TristanHollow_grp  voicegroup000
+	#define	ChronoTriggerBattle2TristanHollow_pri  10
+	#define	ChronoTriggerBattle2TristanHollow_rev  176
+	#define	ChronoTriggerBattle2TristanHollow_mvl  127
+	#define	ChronoTriggerBattle2TristanHollow_key  0
+	#define	ChronoTriggerBattle2TristanHollow_tbs  1
+	#define	ChronoTriggerBattle2TristanHollow_exg  0
+	#define	ChronoTriggerBattle2TristanHollow_cmp  1
+
+	// .rodata
+	//	ChronoTriggerBattle2TristanHollow
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+ChronoTriggerBattle2TristanHollow_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   ChronoTriggerBattle2TristanHollow_key+0
+ BYTE   TEMPO   358*ChronoTriggerBattle2TristanHollow_tbs/2
+ BYTE   VOICE   61
+ BYTE   W96
+// 001   ----------------------------------------
+Label_0_0111F947:
+ BYTE   VOICE   61
+ BYTE   VOL   41*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N68  En3  v116
+ BYTE   W72
+ BYTE   N68  Fs3  v116
+ BYTE   W24
+// 002   ----------------------------------------
+ BYTE   W48
+ BYTE   N68  Gn3  v116
+ BYTE   W72
+// 003   ----------------------------------------
+ BYTE   N68  An3  v116
+ BYTE   W72
+ BYTE   N44  Bn3  v116
+ BYTE   W48
+// 004   ----------------------------------------
+ BYTE   N44  An3  v116
+ BYTE   W48
+ BYTE   N68  Dn4  v116
+ BYTE   W72
+// 005   ----------------------------------------
+ BYTE   N68  Cn4  v116
+ BYTE   W24
+ BYTE   W48
+ BYTE   N68  Bn3  v116
+ BYTE   W72
+// 006   ----------------------------------------
+ BYTE   N68  An3  v116
+ BYTE   W72
+ BYTE   N44  Gn3  v116
+ BYTE   W48
+// 007   ----------------------------------------
+ BYTE   N44  An3  v116
+ BYTE   W48
+ BYTE   N68  Fs3  v116
+ BYTE   W72
+// 008   ----------------------------------------
+ BYTE   N68  Gn3  v116
+ BYTE   W24
+ BYTE   W48
+ BYTE   N68  An3  v116
+ BYTE   W72
+// 009   ----------------------------------------
+ BYTE   N68  Bn3  v116
+ BYTE   W72
+ BYTE   N44  An3  v116
+ BYTE   W48
+// 010   ----------------------------------------
+ BYTE   N44  Gn3  v116
+ BYTE   W48
+ BYTE   N68  Fs3  v116
+ BYTE   W72
+// 011   ----------------------------------------
+ BYTE   N12  Gn3  v116
+ BYTE   W12
+ BYTE   N12  Fs3  v116
+ BYTE   W12
+ BYTE   TIE  En3  v116
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W10
+ BYTE   EOT
+ BYTE   En3
+ BYTE   W14
+ BYTE   N22  Cn3  v116
+ BYTE   W24
+ BYTE   N22  Dn3  v116
+ BYTE   W24
+ BYTE   TIE  En3  v116
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W22
+ BYTE   EOT
+ BYTE   En3
+ BYTE   W02
+ BYTE   N44  En3  v116
+ BYTE   W48
+ BYTE   N22  An3  v116
+ BYTE   W24
+// 015   ----------------------------------------
+ BYTE   N92  Fs3  v116
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   N22  Dn3  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   N22  Cn3  v116
+ BYTE   W24
+ BYTE   N22  Dn3  v116
+ BYTE   W24
+// 017   ----------------------------------------
+ BYTE   TIE  En3  v116
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W22
+ BYTE   EOT
+ BYTE   En3
+ BYTE   W02
+ BYTE   N44  En3  v116
+ BYTE   W48
+ BYTE   N22  Bn3  v116
+ BYTE   W48
+// 019   ----------------------------------------
+ BYTE   N68  Bn3  v116
+ BYTE   W72
+ BYTE   N22  An3  v116
+ BYTE   W24
+// 020   ----------------------------------------
+ BYTE   W24
+ BYTE   N22  En3  v116
+ BYTE   W24
+ BYTE   N22  Fs3  v116
+ BYTE   W24
+ BYTE   TIE  Gn3  v116
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W24
+ BYTE   W10
+ BYTE   EOT
+ BYTE   Gn3
+ BYTE   W14
+ BYTE   N22  Fs3  v116
+ BYTE   W24
+ BYTE   N22  Gn3  v116
+ BYTE   W24
+// 022   ----------------------------------------
+ BYTE   TIE  An3  v116
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W22
+ BYTE   EOT
+ BYTE   An3
+ BYTE   W02
+ BYTE   N44  Gn3  v116
+ BYTE   W48
+ BYTE   N22  An3  v116
+ BYTE   W24
+// 024   ----------------------------------------
+ BYTE   TIE  Fs3  v116
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W24
+ BYTE   W96
+// 026   ----------------------------------------
+ BYTE   W96
+// 027   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Fs3
+ BYTE   W02
+// 028   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   PAN   c_v-35
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Fn4  v116
+ BYTE   W24
+// 029   ----------------------------------------
+ BYTE   W24
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+ BYTE   PAN   c_v+36
+ BYTE   N44  En4  v116
+ BYTE   W48
+// 030   ----------------------------------------
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  Gn4  v116
+ BYTE   W48
+ BYTE   N22  Gn4  v116
+ BYTE   W48
+// 031   ----------------------------------------
+ BYTE   PAN   c_v-35
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+// 032   ----------------------------------------
+ BYTE   N22  Fn4  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   PAN   c_v+36
+ BYTE   N44  En4  v116
+ BYTE   W48
+// 033   ----------------------------------------
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  An4  v116
+ BYTE   W48
+ BYTE   N22  An4  v116
+ BYTE   W48
+// 034   ----------------------------------------
+ BYTE   PAN   c_v-35
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+// 035   ----------------------------------------
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+ BYTE   PAN   c_v+36
+ BYTE   N44  En4  v116
+ BYTE   W24
+ BYTE   W24
+// 036   ----------------------------------------
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  Gn4  v116
+ BYTE   W48
+ BYTE   N22  Gn4  v116
+ BYTE   W48
+// 037   ----------------------------------------
+ BYTE   PAN   c_v-35
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+// 038   ----------------------------------------
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+ BYTE   PAN   c_v+36
+ BYTE   N44  En4  v116
+ BYTE   W48
+// 039   ----------------------------------------
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  An4  v116
+ BYTE   W48
+ BYTE   N22  An4  v116
+ BYTE   W48
+// 040   ----------------------------------------
+ BYTE   VOL   27*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   VOICE   110
+ BYTE   PAN   c_v+0
+ BYTE   TIE  En4  v116
+ BYTE   W96
+// 041   ----------------------------------------
+ BYTE   W96
+// 042   ----------------------------------------
+ BYTE   W96
+// 043   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   En4
+ BYTE   W02
+// 044   ----------------------------------------
+ BYTE   TIE  Fs4  v116
+ BYTE   W96
+// 045   ----------------------------------------
+ BYTE   W96
+// 046   ----------------------------------------
+ BYTE   W96
+// 047   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Fs4
+ BYTE   GoTo
+  POIN2 Label_0_0111F947
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+ChronoTriggerBattle2TristanHollow_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   ChronoTriggerBattle2TristanHollow_key+0
+ BYTE   VOICE   110
+ BYTE   W96
+// 001   ----------------------------------------
+Label_1_0111FAF1:
+ BYTE   VOL   26*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   TIE  En5  v116
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   En5
+ BYTE   W02
+// 005   ----------------------------------------
+ BYTE   TIE  Dn5  v116
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Dn5
+ BYTE   W02
+// 009   ----------------------------------------
+ BYTE   TIE  Bn4  v116
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Bn4
+ BYTE   W02
+// 013   ----------------------------------------
+ BYTE   TIE  An4  v116
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   An4
+ BYTE   W02
+// 015   ----------------------------------------
+ BYTE   N92  Gn4  v116
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   N68  Fs4  v116
+ BYTE   W72
+ BYTE   TIE  En4  v116
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   En4
+ BYTE   W02
+// 018   ----------------------------------------
+ BYTE   TIE  Fs4  v116
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Fs4
+ BYTE   W02
+// 020   ----------------------------------------
+ BYTE   TIE  Gn4  v116
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Gn4
+ BYTE   W02
+// 022   ----------------------------------------
+ BYTE   TIE  An4  v116
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   An4
+ BYTE   W02
+// 024   ----------------------------------------
+ BYTE   TIE  Gn4  v116
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Gn4
+ BYTE   W02
+// 026   ----------------------------------------
+ BYTE   TIE  An4  v116
+ BYTE   W96
+// 027   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   An4
+ BYTE   W02
+// 028   ----------------------------------------
+ BYTE   TIE  Bn4  v116
+ BYTE   W96
+// 029   ----------------------------------------
+ BYTE   W24
+ BYTE   W96
+// 030   ----------------------------------------
+ BYTE   W96
+// 031   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Bn4
+ BYTE   W02
+// 032   ----------------------------------------
+ BYTE   VOICE   61
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   PAN   c_v-35
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  Cn4  v116
+ BYTE   W24
+// 033   ----------------------------------------
+ BYTE   W24
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+ BYTE   PAN   c_v+36
+ BYTE   N44  Bn3  v116
+ BYTE   W48
+// 034   ----------------------------------------
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W48
+ BYTE   N22  Dn4  v116
+ BYTE   W48
+// 035   ----------------------------------------
+ BYTE   PAN   c_v-35
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+// 036   ----------------------------------------
+ BYTE   N22  Cn4  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   PAN   c_v+36
+ BYTE   N44  Bn3  v116
+ BYTE   W48
+// 037   ----------------------------------------
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W48
+ BYTE   N22  En4  v116
+ BYTE   W48
+// 038   ----------------------------------------
+ BYTE   PAN   c_v-35
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+// 039   ----------------------------------------
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+ BYTE   PAN   c_v+36
+ BYTE   N44  Bn3  v116
+ BYTE   W24
+ BYTE   W24
+// 040   ----------------------------------------
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W48
+ BYTE   N22  Dn4  v116
+ BYTE   W48
+// 041   ----------------------------------------
+ BYTE   PAN   c_v-35
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+// 042   ----------------------------------------
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+ BYTE   PAN   c_v+36
+ BYTE   N44  Bn3  v116
+ BYTE   W48
+// 043   ----------------------------------------
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W48
+ BYTE   N22  En4  v116
+ BYTE   W48
+// 044   ----------------------------------------
+ BYTE   VOICE   110
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   TIE  En5  v116
+ BYTE   W96
+// 045   ----------------------------------------
+ BYTE   W96
+// 046   ----------------------------------------
+ BYTE   W96
+// 047   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   En5
+ BYTE   W02
+// 048   ----------------------------------------
+ BYTE   TIE  Fs5  v116
+ BYTE   W96
+// 049   ----------------------------------------
+ BYTE   W96
+// 050   ----------------------------------------
+ BYTE   W22
+ BYTE   EOT
+ BYTE   Fs5
+ BYTE   W02
+ BYTE   VOL   26*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   PAN   c_v-32
+ BYTE   N12  Fs6  v116
+ BYTE   W12
+ BYTE   N12  En6  v116
+ BYTE   W12
+ BYTE   N12  Ds6  v116
+ BYTE   W12
+ BYTE   N12  Bn5  v116
+ BYTE   W12
+ BYTE   N12  An5  v116
+ BYTE   W12
+ BYTE   N12  Fs5  v116
+ BYTE   W12
+// 051   ----------------------------------------
+ BYTE   N12  En5  v116
+ BYTE   W12
+ BYTE   N12  Ds5  v116
+ BYTE   W12
+ BYTE   N12  Bn4  v116
+ BYTE   W12
+ BYTE   N12  An4  v116
+ BYTE   W12
+ BYTE   N12  Fs4  v116
+ BYTE   W12
+ BYTE   N12  En4  v116
+ BYTE   W12
+ BYTE   N12  Ds4  v116
+ BYTE   W12
+ BYTE   N12  Bn3  v116
+ BYTE   W12
+// 052   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_1_0111FAF1
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+ChronoTriggerBattle2TristanHollow_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   ChronoTriggerBattle2TristanHollow_key+0
+ BYTE   VOICE   34
+ BYTE   W96
+// 001   ----------------------------------------
+Label_2_0111FC79:
+ BYTE   VOL   38*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N22  En1  v116
+ BYTE   W24
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  Dn2  v116
+ BYTE   W24
+// 002   ----------------------------------------
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  Dn2  v116
+ BYTE   W24
+ BYTE   N44  En2  v116
+ BYTE   W48
+// 003   ----------------------------------------
+ BYTE   N22  En1  v116
+ BYTE   W24
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  Dn2  v116
+ BYTE   W24
+ BYTE   N22  En2  v116
+ BYTE   W24
+// 004   ----------------------------------------
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  Dn2  v116
+ BYTE   W24
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W24
+// 005   ----------------------------------------
+ BYTE   N22  Fn2  v116
+ BYTE   W24
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+ BYTE   N44  Gn2  v116
+ BYTE   W24
+ BYTE   W24
+// 006   ----------------------------------------
+ BYTE   N22  Fn1  v116
+ BYTE   W24
+ BYTE   N22  Fn2  v116
+ BYTE   W24
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+ BYTE   N22  An2  v116
+ BYTE   W24
+// 007   ----------------------------------------
+ BYTE   N22  Fn1  v116
+ BYTE   W24
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+ BYTE   N22  Cn3  v116
+ BYTE   W24
+// 008   ----------------------------------------
+ BYTE   N22  Fn1  v116
+ BYTE   W24
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+ BYTE   N22  En1  v116
+ BYTE   W24
+// 009   ----------------------------------------
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  Dn2  v116
+ BYTE   W24
+ BYTE   N22  En2  v116
+ BYTE   W24
+// 010   ----------------------------------------
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  Dn2  v116
+ BYTE   W24
+ BYTE   N44  En2  v116
+ BYTE   W48
+// 011   ----------------------------------------
+ BYTE   N22  En1  v116
+ BYTE   W24
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  Dn2  v116
+ BYTE   W24
+ BYTE   N22  En2  v116
+ BYTE   W24
+// 012   ----------------------------------------
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  Dn2  v116
+ BYTE   W24
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+// 013   ----------------------------------------
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+ BYTE   N22  Cn3  v116
+ BYTE   W24
+ BYTE   N44  Cn2  v116
+ BYTE   W24
+ BYTE   W24
+// 014   ----------------------------------------
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+ BYTE   N22  Cn3  v116
+ BYTE   W24
+ BYTE   N44  Cn2  v116
+ BYTE   W48
+// 015   ----------------------------------------
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+ BYTE   N22  Cn3  v116
+ BYTE   W24
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+// 016   ----------------------------------------
+ BYTE   N44  Bn1  v116
+ BYTE   W48
+ BYTE   N44  An1  v116
+ BYTE   W48
+// 017   ----------------------------------------
+ BYTE   N22  An2  v116
+ BYTE   W24
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Gn2  v116
+ BYTE   W24
+ BYTE   N22  An2  v116
+ BYTE   W24
+// 018   ----------------------------------------
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Gn2  v116
+ BYTE   W24
+ BYTE   N44  Bn1  v116
+ BYTE   W48
+// 019   ----------------------------------------
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+ BYTE   N44  Bn2  v116
+ BYTE   W24
+ BYTE   W24
+// 020   ----------------------------------------
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+ BYTE   N44  Cn2  v116
+ BYTE   W48
+// 021   ----------------------------------------
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+ BYTE   N22  Gn2  v116
+ BYTE   W24
+ BYTE   N44  Cn3  v116
+ BYTE   W24
+ BYTE   W24
+// 022   ----------------------------------------
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+ BYTE   N22  Gn2  v116
+ BYTE   W24
+ BYTE   N68  Dn2  v116
+ BYTE   W72
+// 023   ----------------------------------------
+ BYTE   N22  An2  v116
+ BYTE   W24
+ BYTE   N44  Dn3  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   N22  En3  v116
+ BYTE   W24
+// 024   ----------------------------------------
+ BYTE   N22  Dn3  v116
+ BYTE   W24
+ BYTE   N22  An2  v116
+ BYTE   W24
+ BYTE   N22  An1  v116
+ BYTE   W24
+ BYTE   N22  An2  v116
+ BYTE   W24
+// 025   ----------------------------------------
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Gn2  v116
+ BYTE   W24
+ BYTE   N22  An2  v116
+ BYTE   W24
+ BYTE   N22  En2  v116
+ BYTE   W24
+// 026   ----------------------------------------
+ BYTE   N22  Gn2  v116
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W24
+ BYTE   N22  Fn2  v116
+ BYTE   W24
+// 027   ----------------------------------------
+ BYTE   N22  Cn2  v116
+ BYTE   W24
+ BYTE   N44  Gn2  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W24
+// 028   ----------------------------------------
+ BYTE   N22  Fn2  v116
+ BYTE   W24
+ BYTE   N44  Bn1  v116
+ BYTE   W48
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+// 029   ----------------------------------------
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+ BYTE   N44  Bn2  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+// 030   ----------------------------------------
+ BYTE   N22  An2  v116
+ BYTE   W24
+ BYTE   N44  Bn2  v116
+ BYTE   W48
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+// 031   ----------------------------------------
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+ BYTE   N44  Bn2  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   N22  An2  v116
+ BYTE   W24
+// 032   ----------------------------------------
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+ BYTE   N22  Ds2  v116
+ BYTE   W24
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+// 033   ----------------------------------------
+ BYTE   N22  En1  v116
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+// 034   ----------------------------------------
+ BYTE   N44  En2  v116
+ BYTE   W48
+ BYTE   N22  En1  v116
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+// 035   ----------------------------------------
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+// 036   ----------------------------------------
+ BYTE   N22  En1  v116
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+ BYTE   N22  Fn1  v116
+ BYTE   W24
+// 037   ----------------------------------------
+ BYTE   W24
+ BYTE   N44  En2  v116
+ BYTE   W48
+ BYTE   N22  En1  v116
+ BYTE   W24
+// 038   ----------------------------------------
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+// 039   ----------------------------------------
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  En1  v116
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+// 040   ----------------------------------------
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+ BYTE   N44  En2  v116
+ BYTE   W24
+ BYTE   W24
+// 041   ----------------------------------------
+ BYTE   N22  En1  v116
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+// 042   ----------------------------------------
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Bn1  v116
+ BYTE   W24
+ BYTE   N22  En1  v116
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+// 043   ----------------------------------------
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+ BYTE   N44  En2  v116
+ BYTE   W48
+// 044   ----------------------------------------
+ BYTE   N22  En1  v116
+ BYTE   W24
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+ BYTE   N22  Fn1  v116
+ BYTE   W48
+// 045   ----------------------------------------
+ BYTE   N44  Bn1  v116
+ BYTE   W48
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+// 046   ----------------------------------------
+ BYTE   N44  An2  v116
+ BYTE   W48
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+ BYTE   N44  Bn1  v116
+ BYTE   W48
+// 047   ----------------------------------------
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+ BYTE   N22  An2  v116
+ BYTE   W24
+ BYTE   N44  Cn3  v116
+ BYTE   W48
+// 048   ----------------------------------------
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+ BYTE   N22  An2  v116
+ BYTE   W24
+ BYTE   N44  Bn1  v116
+ BYTE   W48
+// 049   ----------------------------------------
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+ BYTE   N44  An2  v116
+ BYTE   W48
+// 050   ----------------------------------------
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+ BYTE   N44  Bn1  v116
+ BYTE   W48
+ BYTE   N22  Bn2  v116
+ BYTE   W24
+// 051   ----------------------------------------
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+ BYTE   N22  An2  v116
+ BYTE   W24
+ BYTE   N22  Gn2  v116
+ BYTE   W24
+ BYTE   N22  Fs2  v116
+ BYTE   W24
+// 052   ----------------------------------------
+ BYTE   N22  En2  v116
+ BYTE   W24
+ BYTE   N22  Bn1  v116
+ BYTE   W22
+ BYTE   GoTo
+  POIN2 Label_2_0111FC79
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+ChronoTriggerBattle2TristanHollow_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   ChronoTriggerBattle2TristanHollow_key+0
+ BYTE   VOICE   11
+ BYTE   W96
+// 001   ----------------------------------------
+Label_3_0111FF3D:
+ BYTE   VOICE   11
+ BYTE   VOL   18*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   PAN   c_v+36
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+// 002   ----------------------------------------
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+// 003   ----------------------------------------
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+// 004   ----------------------------------------
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+// 005   ----------------------------------------
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+// 006   ----------------------------------------
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+// 007   ----------------------------------------
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N44  An4  v116
+ BYTE   W48
+// 008   ----------------------------------------
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+// 009   ----------------------------------------
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+// 010   ----------------------------------------
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+// 011   ----------------------------------------
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+// 012   ----------------------------------------
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+// 013   ----------------------------------------
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+// 014   ----------------------------------------
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  An4  v116
+ BYTE   W48
+ BYTE   N44  Gn4  v116
+ BYTE   W48
+// 015   ----------------------------------------
+ BYTE   N22  Gn4  v116
+ BYTE   W24
+ BYTE   N44  Gn4  v116
+ BYTE   W48
+ BYTE   N92  Gn4  v116
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   N68  An4  v116
+ BYTE   W72
+ BYTE   N44  An4  v116
+ BYTE   W24
+// 017   ----------------------------------------
+ BYTE   W24
+ BYTE   N44  An4  v116
+ BYTE   W48
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+// 018   ----------------------------------------
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N92  Bn4  v116
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   N68  An4  v116
+ BYTE   W72
+ BYTE   N44  An4  v116
+ BYTE   W24
+// 020   ----------------------------------------
+ BYTE   W24
+ BYTE   N44  An4  v116
+ BYTE   W48
+ BYTE   N44  Gn4  v116
+ BYTE   W48
+// 021   ----------------------------------------
+ BYTE   N22  Gn4  v116
+ BYTE   W24
+ BYTE   N44  Gn4  v116
+ BYTE   W48
+ BYTE   N92  Gn4  v116
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   N68  An4  v116
+ BYTE   W72
+ BYTE   N44  An4  v116
+ BYTE   W24
+// 023   ----------------------------------------
+ BYTE   W24
+ BYTE   N44  An4  v116
+ BYTE   W48
+ BYTE   N44  An4  v116
+ BYTE   W48
+// 024   ----------------------------------------
+ BYTE   N68  Bn4  v116
+ BYTE   W72
+ BYTE   N92  Bn4  v116
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   N44  Bn4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+ BYTE   N44  Dn5  v116
+ BYTE   W24
+// 026   ----------------------------------------
+ BYTE   W24
+ BYTE   N44  Ds5  v116
+ BYTE   W48
+ BYTE   N22  En5  v116
+ BYTE   W24
+// 027   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   VOICE   110
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Fn4  v116
+ BYTE   W24
+// 028   ----------------------------------------
+ BYTE   W24
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+ BYTE   N44  En4  v116
+ BYTE   W48
+// 029   ----------------------------------------
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  Gn4  v116
+ BYTE   W48
+ BYTE   N22  Gn4  v116
+ BYTE   W48
+// 030   ----------------------------------------
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+// 031   ----------------------------------------
+ BYTE   N22  Fn4  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   N44  En4  v116
+ BYTE   W48
+// 032   ----------------------------------------
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  An4  v116
+ BYTE   W48
+ BYTE   N22  An4  v116
+ BYTE   W48
+// 033   ----------------------------------------
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+// 034   ----------------------------------------
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+ BYTE   N44  En4  v116
+ BYTE   W24
+ BYTE   W24
+// 035   ----------------------------------------
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  Gn4  v116
+ BYTE   W48
+ BYTE   N22  Gn4  v116
+ BYTE   W48
+// 036   ----------------------------------------
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+// 037   ----------------------------------------
+ BYTE   N22  Fn4  v116
+ BYTE   W48
+ BYTE   N44  En4  v116
+ BYTE   W48
+// 038   ----------------------------------------
+ BYTE   N22  Dn4  v116
+ BYTE   W24
+ BYTE   N22  An4  v116
+ BYTE   W48
+ BYTE   N22  An4  v116
+ BYTE   W48
+// 039   ----------------------------------------
+ BYTE   VOL   24*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   VOICE   11
+ BYTE   PAN   c_v+0
+ BYTE   N68  En4  v116
+ BYTE   W72
+ BYTE   N68  En4  v116
+ BYTE   W24
+// 040   ----------------------------------------
+ BYTE   W48
+ BYTE   N44  En4  v116
+ BYTE   W72
+// 041   ----------------------------------------
+ BYTE   N68  En4  v116
+ BYTE   W72
+ BYTE   N44  En4  v116
+ BYTE   W48
+// 042   ----------------------------------------
+ BYTE   N44  En4  v116
+ BYTE   W48
+ BYTE   N68  Fs4  v116
+ BYTE   W72
+// 043   ----------------------------------------
+ BYTE   N68  Fs4  v116
+ BYTE   W24
+ BYTE   W48
+ BYTE   N44  Fs4  v116
+ BYTE   W72
+// 044   ----------------------------------------
+ BYTE   N68  Fs4  v116
+ BYTE   W72
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+// 045   ----------------------------------------
+ BYTE   N44  Fs4  v116
+ BYTE   W44
+ BYTE   W02
+ BYTE   GoTo
+  POIN2 Label_3_0111FF3D
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+ChronoTriggerBattle2TristanHollow_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   ChronoTriggerBattle2TristanHollow_key+0
+ BYTE   VOICE   11
+ BYTE   W96
+// 001   ----------------------------------------
+Label_4_01120139:
+ BYTE   VOICE   11
+ BYTE   VOL   18*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   PAN   c_v-35
+ BYTE   N22  Fs4  v116
+ BYTE   W24
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+ BYTE   N22  Fs4  v116
+ BYTE   W24
+// 002   ----------------------------------------
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+ BYTE   N22  Fs4  v116
+ BYTE   W24
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+// 003   ----------------------------------------
+ BYTE   N22  Fs4  v116
+ BYTE   W24
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+// 004   ----------------------------------------
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+ BYTE   N22  Fn4  v116
+ BYTE   W24
+ BYTE   N44  Fn4  v116
+ BYTE   W48
+// 005   ----------------------------------------
+ BYTE   N22  Fn4  v116
+ BYTE   W24
+ BYTE   N44  Fn4  v116
+ BYTE   W48
+ BYTE   N22  Fn4  v116
+ BYTE   W24
+// 006   ----------------------------------------
+ BYTE   N44  Fn4  v116
+ BYTE   W48
+ BYTE   N22  Fn4  v116
+ BYTE   W24
+ BYTE   N44  Fn4  v116
+ BYTE   W48
+// 007   ----------------------------------------
+ BYTE   N44  Fn4  v116
+ BYTE   W48
+ BYTE   N44  Fn4  v116
+ BYTE   W48
+// 008   ----------------------------------------
+ BYTE   N22  Fs4  v116
+ BYTE   W24
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+ BYTE   N22  Fs4  v116
+ BYTE   W24
+// 009   ----------------------------------------
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+ BYTE   N22  Fs4  v116
+ BYTE   W24
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+// 010   ----------------------------------------
+ BYTE   N22  Fs4  v116
+ BYTE   W24
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+// 011   ----------------------------------------
+ BYTE   N44  Fs4  v116
+ BYTE   W48
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N44  En4  v116
+ BYTE   W48
+// 012   ----------------------------------------
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N44  En4  v116
+ BYTE   W48
+ BYTE   N22  En4  v116
+ BYTE   W24
+// 013   ----------------------------------------
+ BYTE   N44  En4  v116
+ BYTE   W48
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N44  En4  v116
+ BYTE   W48
+// 014   ----------------------------------------
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N44  Dn4  v116
+ BYTE   W48
+ BYTE   N44  Cn4  v116
+ BYTE   W48
+// 015   ----------------------------------------
+ BYTE   N22  Cn4  v116
+ BYTE   W24
+ BYTE   N44  Cn4  v116
+ BYTE   W48
+ BYTE   N92  Cn4  v116
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   N68  Dn4  v116
+ BYTE   W72
+ BYTE   N44  Dn4  v116
+ BYTE   W24
+// 017   ----------------------------------------
+ BYTE   W24
+ BYTE   N44  Dn4  v116
+ BYTE   W48
+ BYTE   N44  En4  v116
+ BYTE   W48
+// 018   ----------------------------------------
+ BYTE   N22  En4  v116
+ BYTE   W24
+ BYTE   N44  En4  v116
+ BYTE   W48
+ BYTE   N92  En4  v116
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   N68  Dn4  v116
+ BYTE   W72
+ BYTE   N44  Dn4  v116
+ BYTE   W24
+// 020   ----------------------------------------
+ BYTE   W24
+ BYTE   N44  Dn4  v116
+ BYTE   W48
+ BYTE   N44  Cn4  v116
+ BYTE   W48
+// 021   ----------------------------------------
+ BYTE   N22  Cn4  v116
+ BYTE   W24
+ BYTE   N44  Cn4  v116
+ BYTE   W48
+ BYTE   N92  Cn4  v116
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   N68  Cn4  v116
+ BYTE   W72
+ BYTE   N44  Cn4  v116
+ BYTE   W24
+// 023   ----------------------------------------
+ BYTE   W24
+ BYTE   N44  Cn4  v116
+ BYTE   W48
+ BYTE   N44  Cn4  v116
+ BYTE   W48
+// 024   ----------------------------------------
+ BYTE   N68  Ds4  v116
+ BYTE   W72
+ BYTE   N92  Ds4  v116
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   N44  Ds4  v116
+ BYTE   W48
+ BYTE   N22  Ds4  v116
+ BYTE   W24
+ BYTE   N44  Fs4  v116
+ BYTE   W24
+// 026   ----------------------------------------
+ BYTE   W24
+ BYTE   N44  An4  v116
+ BYTE   W48
+ BYTE   N22  Bn4  v116
+ BYTE   W24
+// 027   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   VOICE   110
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  Cn4  v116
+ BYTE   W24
+// 028   ----------------------------------------
+ BYTE   W24
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+ BYTE   N44  Bn3  v116
+ BYTE   W48
+// 029   ----------------------------------------
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W48
+ BYTE   N22  Dn4  v116
+ BYTE   W48
+// 030   ----------------------------------------
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+// 031   ----------------------------------------
+ BYTE   N22  Cn4  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   N44  Bn3  v116
+ BYTE   W48
+// 032   ----------------------------------------
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W48
+ BYTE   N22  En4  v116
+ BYTE   W48
+// 033   ----------------------------------------
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+// 034   ----------------------------------------
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+ BYTE   N44  Bn3  v116
+ BYTE   W24
+ BYTE   W24
+// 035   ----------------------------------------
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Dn4  v116
+ BYTE   W48
+ BYTE   N22  Dn4  v116
+ BYTE   W48
+// 036   ----------------------------------------
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  Bn3  v116
+ BYTE   W24
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+// 037   ----------------------------------------
+ BYTE   N22  Cn4  v116
+ BYTE   W48
+ BYTE   N44  Bn3  v116
+ BYTE   W48
+// 038   ----------------------------------------
+ BYTE   N22  An3  v116
+ BYTE   W24
+ BYTE   N22  En4  v116
+ BYTE   W48
+ BYTE   N22  En4  v116
+ BYTE   W48
+// 039   ----------------------------------------
+ BYTE   VOL   18*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   PAN   c_v-24
+ BYTE   TIE  Bn5  v116
+ BYTE   W96
+// 040   ----------------------------------------
+ BYTE   W96
+// 041   ----------------------------------------
+ BYTE   W96
+// 042   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Bn5
+ BYTE   W02
+// 043   ----------------------------------------
+ BYTE   TIE  Ds6  v116
+ BYTE   W96
+// 044   ----------------------------------------
+ BYTE   W96
+// 045   ----------------------------------------
+ BYTE   W96
+// 046   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Ds6
+ BYTE   GoTo
+  POIN2 Label_4_01120139
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+ChronoTriggerBattle2TristanHollow_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   ChronoTriggerBattle2TristanHollow_key+0
+ BYTE   VOICE   124
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   27*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   45*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+// 001   ----------------------------------------
+Label_5_0112032C:
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+// 002   ----------------------------------------
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 003   ----------------------------------------
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 004   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 005   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 006   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 007   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 008   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 009   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 010   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 011   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 012   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 013   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 014   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 015   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 016   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 017   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 018   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 019   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 020   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 021   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 022   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 023   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 024   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 025   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 026   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 027   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 028   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 029   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 030   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 031   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   27*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+// 032   ----------------------------------------
+ BYTE   VOL   37*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   45*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 033   ----------------------------------------
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W24
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 034   ----------------------------------------
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   39*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+// 035   ----------------------------------------
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 036   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N44  Cn1  v116
+ BYTE   W24
+// 037   ----------------------------------------
+ BYTE   W24
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 038   ----------------------------------------
+ BYTE   VOL   39*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+// 039   ----------------------------------------
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+// 040   ----------------------------------------
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N44  Cn1  v116
+ BYTE   W24
+ BYTE   W24
+// 041   ----------------------------------------
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   39*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+// 042   ----------------------------------------
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 043   ----------------------------------------
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 044   ----------------------------------------
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   39*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+// 045   ----------------------------------------
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+// 046   ----------------------------------------
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 047   ----------------------------------------
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 048   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+// 049   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Dn1  v116
+ BYTE   W48
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 050   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Cn1  v116
+ BYTE   W48
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+// 051   ----------------------------------------
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   46*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W24
+ BYTE   VOL   27*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   35*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+// 052   ----------------------------------------
+ BYTE   VOL   39*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W24
+ BYTE   VOL   45*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Dn1  v116
+ BYTE   W22
+ BYTE   GoTo
+  POIN2 Label_5_0112032C
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+ChronoTriggerBattle2TristanHollow_007:
+// 000   ----------------------------------------
+ BYTE   KEYSH   ChronoTriggerBattle2TristanHollow_key+0
+ BYTE   VOICE   124
+ BYTE   W96
+// 001   ----------------------------------------
+Label_6_01120645:
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 002   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 003   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 004   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 005   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 006   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 007   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 008   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 009   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 010   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 011   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 012   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 013   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 014   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 015   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 016   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 017   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 018   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 019   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 020   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 021   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 022   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 023   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 024   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 025   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 026   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 027   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 028   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 029   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 030   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 031   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 032   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 033   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 034   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 035   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 036   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 037   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 038   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 039   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 040   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 041   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 042   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 043   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 044   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 045   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 046   ----------------------------------------
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+ BYTE   N44  Fs1  v116
+ BYTE   W48
+// 047   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 048   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 049   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 050   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 051   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 052   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 053   ----------------------------------------
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+// 054   ----------------------------------------
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   28*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W24
+ BYTE   VOL   20*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Fs1  v116
+ BYTE   W22
+ BYTE   GoTo
+  POIN2 Label_6_01120645
+ BYTE   FINE
+
+//**************** Track 8 (Midi-Chn.7) ****************//
+
+ChronoTriggerBattle2TristanHollow_008:
+// 000   ----------------------------------------
+ BYTE   KEYSH   ChronoTriggerBattle2TristanHollow_key+0
+ BYTE   VOICE   124
+ BYTE   VOL   39*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   N22  Cn1  v116
+ BYTE   W96
+// 001   ----------------------------------------
+Label_7_011209EE:
+ BYTE   VOL   38*ChronoTriggerBattle2TristanHollow_mvl/mxv
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+// 009   ----------------------------------------
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+// 018   ----------------------------------------
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+// 020   ----------------------------------------
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+// 022   ----------------------------------------
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+// 024   ----------------------------------------
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+// 026   ----------------------------------------
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 027   ----------------------------------------
+ BYTE   W24
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+// 028   ----------------------------------------
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 029   ----------------------------------------
+ BYTE   W24
+ BYTE   W96
+// 030   ----------------------------------------
+ BYTE   W96
+// 031   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+// 032   ----------------------------------------
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 033   ----------------------------------------
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 034   ----------------------------------------
+ BYTE   W24
+ BYTE   W44
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 035   ----------------------------------------
+ BYTE   W48
+ BYTE   W22
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 036   ----------------------------------------
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 037   ----------------------------------------
+ BYTE   W68
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+ BYTE   TIE  Cs2  v116
+ BYTE   W24
+// 038   ----------------------------------------
+ BYTE   W96
+// 039   ----------------------------------------
+ BYTE   W44
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+ BYTE   TIE  Cs2  v116
+ BYTE   W48
+// 040   ----------------------------------------
+ BYTE   W96
+// 041   ----------------------------------------
+ BYTE   W22
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+ BYTE   TIE  Cs2  v116
+ BYTE   W72
+// 042   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+// 043   ----------------------------------------
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 044   ----------------------------------------
+ BYTE   W96
+// 045   ----------------------------------------
+ BYTE   W96
+// 046   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   W02
+// 047   ----------------------------------------
+ BYTE   TIE  Cs2  v116
+ BYTE   W96
+// 048   ----------------------------------------
+ BYTE   W96
+// 049   ----------------------------------------
+ BYTE   W96
+// 050   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Cs2
+ BYTE   GoTo
+  POIN2 Label_7_011209EE
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+ChronoTriggerBattle2TristanHollow:
+	BYTE	8	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	ChronoTriggerBattle2TristanHollow_pri	// Priority
+	BYTE	ChronoTriggerBattle2TristanHollow_rev	// Reverb.
+    
+	POIN2	ChronoTriggerBattle2TristanHollow_grp
+    
+	POIN2	ChronoTriggerBattle2TristanHollow_001
+	POIN2	ChronoTriggerBattle2TristanHollow_002
+	POIN2	ChronoTriggerBattle2TristanHollow_003
+	POIN2	ChronoTriggerBattle2TristanHollow_004
+	POIN2	ChronoTriggerBattle2TristanHollow_005
+	POIN2	ChronoTriggerBattle2TristanHollow_006
+	POIN2	ChronoTriggerBattle2TristanHollow_007
+	POIN2	ChronoTriggerBattle2TristanHollow_008
+
+	

@@ -1,0 +1,54 @@
+
+#include "defs/defs.event" 
+#include "nimap/Installer.event" 
+
+
+PUSH 
+#ifdef _FE8_ 
+ORG $28bc  
+POIN NewSongTable
+ORG $14b80  
+POIN NewSongTable
+ORG $458e0  
+POIN NewSongTable
+ORG $71b20  
+POIN NewSongTable
+ORG $71B64  
+POIN NewSongTable
+ORG $b575c  
+POIN NewSongTable
+ORG $d0224  
+POIN NewSongTable
+ORG $d0258  
+POIN NewSongTable
+ORG $d02a4  
+POIN NewSongTable
+ORG $d02f8  
+POIN NewSongTable
+ORG $d032c 
+POIN NewSongTable
+#endif 
+POP 
+
+#define SongTableSize 0x600 
+
+ALIGN 4 
+NewSongTable: 
+FILL(8 * SongTableSize) 
+#ifdef _FE8_ 
+BYTE $00 00 00 00 00 00 00 40 0 // Febuilder terminator 
+#endif 
+ORG NewSongTable 
+#incbin "fe8_vanilla_track_table.dmp"
+ORG NewSongTable + (8 * SongTableSize) 
+
+
+#define FirstBGM_ID 0x3E6  
+
+#define SongTableOffset NewSongTable//0x224470
+#define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
+
+#include "Generated.event" 
+
+
+
