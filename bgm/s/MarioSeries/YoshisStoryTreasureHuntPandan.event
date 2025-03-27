@@ -1,0 +1,1015 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	YoshisStoryTreasureHuntPandan_grp  voicegroup000
+	#define	YoshisStoryTreasureHuntPandan_pri  0
+	#define	YoshisStoryTreasureHuntPandan_rev  0
+	#define	YoshisStoryTreasureHuntPandan_mvl  127
+	#define	YoshisStoryTreasureHuntPandan_key  0
+	#define	YoshisStoryTreasureHuntPandan_tbs  1
+	#define	YoshisStoryTreasureHuntPandan_exg  0
+	#define	YoshisStoryTreasureHuntPandan_cmp  1
+
+	// .rodata
+	//	YoshisStoryTreasureHuntPandan
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+YoshisStoryTreasureHuntPandan_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   YoshisStoryTreasureHuntPandan_key+0
+Label_0_0116727E:
+ BYTE   TEMPO   122*YoshisStoryTreasureHuntPandan_tbs/2
+ BYTE   VOICE   11
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W12
+ BYTE   N12  Gn1  v100
+ BYTE   W12
+Label_0_0116728B:
+ BYTE   N12  Cn2  v100
+ BYTE   W12
+ BYTE   N06  Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N12  Fs3
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+// 001   ----------------------------------------
+ BYTE   N12  Gn1
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   PEND 
+// 002   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0116728B
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0116728B
+// 004   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0116728B
+// 005   ----------------------------------------
+ BYTE   N12  Cn2  v100
+ BYTE   W02
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W10
+ BYTE   N06  Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W09
+ BYTE   VOL   78*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W02
+ BYTE   Fs4
+ BYTE   W01
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W01
+ BYTE   VOL   77*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W11
+ BYTE   N12  Gn1
+ BYTE   W01
+ BYTE   VOL   76*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W08
+ BYTE   Ds4
+ BYTE   W03
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W01
+ BYTE   VOL   74*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W07
+ BYTE   Cs4
+ BYTE   W04
+ BYTE   Cs4
+ BYTE   N12  Gn1
+ BYTE   W03
+ BYTE   VOL   72*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W03
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W08
+ BYTE   VOL   71*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W01
+ BYTE   An3
+ BYTE   W03
+// 006   ----------------------------------------
+ BYTE   N12  Cn2
+ BYTE   W06
+ BYTE   VOL   69*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   N06  Dn3
+ BYTE   N06  Fs3
+ BYTE   W02
+ BYTE   VOL   68*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W04
+ BYTE   N06  Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   VOL   67*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W02
+ BYTE   VOL   66*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W10
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W01
+ BYTE   VOL   65*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W11
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  Gn1
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0116728B
+// 008   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0116728B
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0116728B
+// 010   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0116728B
+// 011   ----------------------------------------
+ BYTE   N12  Cn2  v100
+ BYTE   W12
+ BYTE   N06  Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N12  Fs3
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  Gn1
+ BYTE   W10
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W02
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+// 012   ----------------------------------------
+ BYTE   N12  Gs1
+ BYTE   N12  Gs2
+ BYTE   W36
+ BYTE   Fs2
+ BYTE   N12  Fs3
+ BYTE   W60
+// 013   ----------------------------------------
+ BYTE   W72
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W12
+ BYTE   N12  Gn1
+ BYTE   W12
+// 014   ----------------------------------------
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   N06  Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N12  Fs3
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  Gn1
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W03
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W09
+// 015   ----------------------------------------
+ BYTE   N12  Cn2
+ BYTE   W12
+ BYTE   N06  Dn3
+ BYTE   N06  Fs3
+ BYTE   W01
+ BYTE   VOL   78*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W02
+ BYTE   Fs4
+ BYTE   W01
+ BYTE   Fn4
+ BYTE   W01
+ BYTE   En4
+ BYTE   W01
+ BYTE   N06  Dn3
+ BYTE   N06  Fs3
+ BYTE   W03
+ BYTE   VOL   76*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W02
+ BYTE   Ds4
+ BYTE   W01
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W01
+ BYTE   VOL   74*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W01
+ BYTE   Cs4
+ BYTE   W04
+ BYTE   Cs4
+ BYTE   W02
+ BYTE   Cn4
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W01
+ BYTE   VOL   71*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W02
+ BYTE   An3
+ BYTE   W05
+ BYTE   An3
+ BYTE   W01
+ BYTE   Gs3
+ BYTE   W03
+ BYTE   N12  Gn1
+ BYTE   W02
+ BYTE   VOL   68*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W02
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W03
+ BYTE   VOL   66*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W01
+ BYTE   Fn3
+ BYTE   W08
+ BYTE   N12  Gn1
+ BYTE   W04
+ BYTE   VOL   64*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W08
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0116728B
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0116728B
+// 018   ----------------------------------------
+ BYTE   N12  Cn2  v100
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W24
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W24
+ BYTE   N12  As1
+ BYTE   N06  As2
+ BYTE   N06  Dn3
+ BYTE   W12
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W36
+// 019   ----------------------------------------
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  As1
+ BYTE   N06  As2
+ BYTE   N06  Dn3
+ BYTE   W12
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W36
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W17
+ BYTE   Gs4
+ BYTE   W07
+// 020   ----------------------------------------
+ BYTE   N06  Cn4
+ BYTE   N06  Cn5
+ BYTE   W30
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   N03  Bn4
+ BYTE   W03
+ BYTE   As4
+ BYTE   W03
+ BYTE   N06  Dn4
+ BYTE   W06
+ BYTE   N03  An4
+ BYTE   W03
+ BYTE   Gs4
+ BYTE   W03
+ BYTE   N06  Cs4
+ BYTE   W42
+// 021   ----------------------------------------
+ BYTE   W24
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  As1
+ BYTE   N06  As2
+ BYTE   N06  Dn3
+ BYTE   W12
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W36
+// 022   ----------------------------------------
+ BYTE   W16
+ BYTE   VOL   65*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W08
+ BYTE   N12  Fn2
+ BYTE   W12
+ BYTE   VOL   65*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W03
+ BYTE   VOL   66*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W21
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  Cn2
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  Dn3
+ BYTE   W12
+// 023   ----------------------------------------
+ BYTE   N12  Cn2
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  Dn3
+ BYTE   W12
+ BYTE   N12  Fs2
+ BYTE   W12
+ BYTE   N06  An2
+ BYTE   N06  Cn3
+ BYTE   W24
+ BYTE   An2
+ BYTE   N06  Cn3
+ BYTE   W12
+ BYTE   N12  Dn2
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  Dn3
+ BYTE   W12
+// 024   ----------------------------------------
+ BYTE   N12  Dn2
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  Dn3
+ BYTE   W12
+ BYTE   N12  Gn2
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   Gn2  v080
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   Gn2  v100
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   Gn2  v072
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   Gs2  v100
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   Gs2  v072
+ BYTE   N12  Bn2
+ BYTE   W12
+// 025   ----------------------------------------
+ BYTE   Gs2  v100
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   Gs2  v072
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   An2  v100
+ BYTE   W12
+ BYTE   An2  v068
+ BYTE   W12
+ BYTE   An2  v100
+ BYTE   W12
+ BYTE   An2  v072
+ BYTE   W12
+ BYTE   Gs2  v100
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   Gs2  v072
+ BYTE   N12  Bn2
+ BYTE   W12
+// 026   ----------------------------------------
+ BYTE   Gs2  v100
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   Gs2  v072
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   An2  v100
+ BYTE   W12
+ BYTE   An2  v072
+ BYTE   W12
+ BYTE   An2  v100
+ BYTE   W12
+ BYTE   An2  v072
+ BYTE   W12
+ BYTE   En2  v100
+ BYTE   N12  An2
+ BYTE   W12
+ BYTE   En2  v072
+ BYTE   N12  An2
+ BYTE   W12
+// 027   ----------------------------------------
+ BYTE   En2  v100
+ BYTE   N12  An2
+ BYTE   W12
+ BYTE   En2  v072
+ BYTE   N12  An2
+ BYTE   W12
+ BYTE   Dn2  v100
+ BYTE   W12
+ BYTE   N06  An2
+ BYTE   N06  Cn3
+ BYTE   W06
+ BYTE   An2
+ BYTE   N06  Cn3
+ BYTE   W06
+ BYTE   An2
+ BYTE   N06  Cn3
+ BYTE   W12
+ BYTE   An2
+ BYTE   N06  Cn3
+ BYTE   W12
+ BYTE   N12  An1
+ BYTE   W12
+ BYTE   N06  Fn2
+ BYTE   N06  An2
+ BYTE   W12
+// 028   ----------------------------------------
+ BYTE   N12  An1
+ BYTE   W12
+ BYTE   N06  Fn2
+ BYTE   N06  An2
+ BYTE   W12
+ BYTE   N12  Gn1
+ BYTE   N12  Gn2
+ BYTE   N12  Gn3
+ BYTE   W24
+ BYTE   Gn1
+ BYTE   N12  Gn2
+ BYTE   N12  Gn3
+ BYTE   W24
+ BYTE   Fn1
+ BYTE   N12  Fn2
+ BYTE   N12  Fn3
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   N12  Gn2
+ BYTE   N12  Gn3
+ BYTE   W10
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W10
+// 029   ----------------------------------------
+ BYTE   Gs4
+ BYTE   W16
+ BYTE   N12  Gn1
+ BYTE   N12  Gn2
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   N12  Gn2
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   Fn1
+ BYTE   N12  Fn2
+ BYTE   N12  Fn3
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   N12  Gn2
+ BYTE   N12  Gn3
+ BYTE   W48
+// 030   ----------------------------------------
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   N06  Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W09
+ BYTE   VOL   60*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W03
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  Gn1
+ BYTE   W12
+// 031   ----------------------------------------
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  Cn2
+ BYTE   W12
+ BYTE   N06  Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W02
+ BYTE   VOL   66*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W10
+ BYTE   N12  Dn3
+ BYTE   N12  Fs3
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  Gn1
+ BYTE   W12
+// 032   ----------------------------------------
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W05
+ BYTE   VOL   78*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W07
+ BYTE   N12  Cn2
+ BYTE   W12
+ BYTE   N12
+ BYTE   W04
+ BYTE   VOL   79*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W08
+ BYTE   N24  En3
+ BYTE   N24  Bn3
+ BYTE   W19
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W05
+ BYTE   N12  Ds3
+ BYTE   N12  An3
+ BYTE   W44
+// 033   ----------------------------------------
+ BYTE   W03
+ BYTE   MOD 0
+ BYTE   Gn8
+ BYTE   W01
+ BYTE   N12  En3
+ BYTE   N12  Bn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   N12  An3
+ BYTE   W12
+ BYTE   N24  En3
+ BYTE   N24  Bn3
+ BYTE   W01
+ BYTE   MOD 0
+ BYTE   CnM2
+ BYTE   W23
+ BYTE   N12  Ds3
+ BYTE   N12  An3
+ BYTE   W48
+// 034   ----------------------------------------
+ BYTE   MOD 0
+ BYTE   Gn8
+ BYTE   N12  Cn4
+ BYTE   N12  Gn4
+ BYTE   W18
+ BYTE   Bn3
+ BYTE   N12  Fs4
+ BYTE   W06
+ BYTE   MOD 0
+ BYTE   CnM2
+ BYTE   W12
+ BYTE   N12  As3
+ BYTE   N12  Fn4
+ BYTE   W12
+ BYTE   An3
+ BYTE   N12  En4
+ BYTE   W18
+ BYTE   Gs3
+ BYTE   N12  Ds4
+ BYTE   W18
+ BYTE   Gn3
+ BYTE   N12  Dn4
+ BYTE   W12
+// 035   ----------------------------------------
+ BYTE   Fs3
+ BYTE   N12  Cs4
+ BYTE   W18
+ BYTE   Fn3
+ BYTE   N12  Cn4
+ BYTE   W18
+ BYTE   En3
+ BYTE   N12  Bn3
+ BYTE   W12
+ BYTE   N24  Ds3
+ BYTE   N24  An3
+ BYTE   W48
+// 036   ----------------------------------------
+ BYTE   W24
+ BYTE   MOD 0
+ BYTE   Gn8
+ BYTE   N12  Cn2
+ BYTE   N12  En3
+ BYTE   W23
+ BYTE   MOD 0
+ BYTE   Gn8
+ BYTE   W01
+ BYTE   CnM2
+ BYTE   VOL   69*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   N12  As1
+ BYTE   N06  Dn3
+ BYTE   W12
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W36
+// 037   ----------------------------------------
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   N12  As1
+ BYTE   N06  As2
+ BYTE   N06  Dn3
+ BYTE   W12
+ BYTE   N12  Cn2
+ BYTE   N06  Cn3
+ BYTE   N06  En3
+ BYTE   W48
+ BYTE   N12  Gn4
+ BYTE   W12
+// 038   ----------------------------------------
+ BYTE   N42  Cn5
+ BYTE   W42
+ BYTE   N06  As4
+ BYTE   W06
+ BYTE   Gn4
+ BYTE   W22
+ BYTE   MOD 0
+ BYTE   DnM2
+ BYTE   W01
+ BYTE   EnM2
+ BYTE   W01
+ BYTE   Fs8
+ BYTE   W08
+ BYTE   VOL   71*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W13
+ BYTE   Cn4
+ BYTE   W03
+// 039   ----------------------------------------
+ BYTE   N06  En4
+ BYTE   W12
+ BYTE   N06
+ BYTE   W02
+ BYTE   MOD 0
+ BYTE   En7
+ BYTE   W01
+ BYTE   Fn4
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   DnM1
+ BYTE   W01
+ BYTE   CnM2
+ BYTE   W06
+ BYTE   N06  Dn4
+ BYTE   W12
+ BYTE   N48  En4
+ BYTE   W48
+ BYTE   GoTo
+  POIN2 Label_0_0116727E
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+YoshisStoryTreasureHuntPandan_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   YoshisStoryTreasureHuntPandan_key+0
+Label_1_011676A6:
+ BYTE   VOICE   57
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W24
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+Label_1_011676B3:
+ BYTE   N06  Gn3  v100
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_1_011676C4:
+ BYTE   W12
+ BYTE   N06  En4  v100
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   N24  An3
+ BYTE   W48
+ BYTE   PEND 
+// 008   ----------------------------------------
+ BYTE   W18
+ BYTE   VOL   64*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W06
+ BYTE   N24  Bn3
+ BYTE   W24
+ BYTE   N06  An3
+ BYTE   W22
+ BYTE   VOL   63*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W24
+ BYTE   W02
+// 009   ----------------------------------------
+ BYTE   N06  Bn3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   N24  Bn3
+ BYTE   W24
+ BYTE   N06  An3
+ BYTE   W48
+// 010   ----------------------------------------
+ BYTE   W24
+ BYTE   N24  Bn3
+ BYTE   W24
+ BYTE   N06  An3
+ BYTE   W48
+// 011   ----------------------------------------
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   N06
+ BYTE   W02
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W04
+ BYTE   N06
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N06
+ BYTE   W12
+ BYTE   Fs4
+ BYTE   W28
+ BYTE   VOL   80*YoshisStoryTreasureHuntPandan_mvl/mxv
+ BYTE   W32
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011676B3
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011676C4
+// 017   ----------------------------------------
+ BYTE   N06  Cn4  v100
+ BYTE   W24
+ BYTE   N06
+ BYTE   W24
+ BYTE   As3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W36
+// 018   ----------------------------------------
+Label_1_01167718:
+ BYTE   N06  Cn4  v100
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W60
+ BYTE   PEND 
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   W24
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W36
+// 021   ----------------------------------------
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   An4
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   N36  Dn4
+ BYTE   W48
+// 022   ----------------------------------------
+ BYTE   N06  Cn4
+ BYTE   W12
+ BYTE   An4
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   N36  Dn4
+ BYTE   W60
+// 023   ----------------------------------------
+ BYTE   N24  En4
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N06  Dn4
+ BYTE   W12
+ BYTE   En4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   W12
+ BYTE   N12  Cn4
+ BYTE   W12
+// 024   ----------------------------------------
+ BYTE   W48
+ BYTE   N06  Bn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+ BYTE   N12  An3
+ BYTE   W12
+// 025   ----------------------------------------
+ BYTE   W48
+ BYTE   N06  Gn3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   N36  Fn3
+ BYTE   W12
+// 026   ----------------------------------------
+ BYTE   W36
+ BYTE   Dn4
+ BYTE   W60
+// 027   ----------------------------------------
+ BYTE   W96
+// 028   ----------------------------------------
+ BYTE   W84
+ BYTE   N12  Fs3
+ BYTE   W12
+// 029   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011676B3
+// 030   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011676C4
+// 031   ----------------------------------------
+ BYTE   W96
+// 032   ----------------------------------------
+ BYTE   W84
+ BYTE   N12  Fs3  v100
+ BYTE   W12
+// 033   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011676B3
+// 034   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_011676C4
+// 035   ----------------------------------------
+ BYTE   W24
+ BYTE   N12  Cn4  v100
+ BYTE   W24
+ BYTE   N06  As3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W36
+// 036   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01167718
+// 037   ----------------------------------------
+ BYTE   W96
+// 038   ----------------------------------------
+ BYTE   N06  Cn4  v100
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W48
+ BYTE   GoTo
+  POIN2 Label_1_011676A6
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+YoshisStoryTreasureHuntPandan:
+	BYTE	2	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	YoshisStoryTreasureHuntPandan_pri	// Priority
+	BYTE	YoshisStoryTreasureHuntPandan_rev	// Reverb.
+    
+	POIN2	YoshisStoryTreasureHuntPandan_grp
+    
+	POIN2	YoshisStoryTreasureHuntPandan_001
+	POIN2	YoshisStoryTreasureHuntPandan_002
+
+	

@@ -1,0 +1,3602 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	RomancingSagaPassionateRhythm7743_grp  voicegroup000
+	#define	RomancingSagaPassionateRhythm7743_pri  0
+	#define	RomancingSagaPassionateRhythm7743_rev  0
+	#define	RomancingSagaPassionateRhythm7743_mvl  50
+	#define	RomancingSagaPassionateRhythm7743_key  0
+	#define	RomancingSagaPassionateRhythm7743_tbs  1
+	#define	RomancingSagaPassionateRhythm7743_exg  0
+	#define	RomancingSagaPassionateRhythm7743_cmp  1
+
+	// .rodata
+	//	RomancingSagaPassionateRhythm7743
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+RomancingSagaPassionateRhythm7743_1:
+	BYTE	KEYSH   RomancingSagaPassionateRhythm7743_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   144*RomancingSagaPassionateRhythm7743_tbs/2
+	BYTE		VOICE   24
+	BYTE		VOL     110*RomancingSagaPassionateRhythm7743_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		BEND    c_v+0
+	BYTE		MOD     0
+// 001   ----------------------------------------
+	BYTE		N10     An2   v116
+	BYTE		N10     Cs3   v108
+	BYTE	W12
+	BYTE		N04     Fs2   v116
+	BYTE		N04     An2   v108
+	BYTE	W06
+	BYTE		        An2   v116
+	BYTE		N04     Cs3   v108
+	BYTE	W12
+	BYTE		N10     An2   v116
+	BYTE		N10     Cs3   v108
+	BYTE	W12
+	BYTE		N04     Fs2   v116
+	BYTE		N04     An2   v108
+	BYTE	W06
+	BYTE		N10     An2   v116
+	BYTE		N10     Cs3   v108
+	BYTE	W12
+	BYTE		N04     Fs2   v116
+	BYTE		N04     An2   v108
+	BYTE	W06
+	BYTE		        An2   v116
+	BYTE		N04     Cs3   v108
+	BYTE	W12
+	BYTE		N10     An2   v116
+	BYTE		N10     Cs3   v108
+	BYTE	W12
+	BYTE		N04     Fs2   v116
+	BYTE		N04     An2   v108
+	BYTE	W06
+// 002   ----------------------------------------
+	BYTE		N10     An2   v116
+	BYTE		N10     Cs3   v108
+	BYTE	W12
+	BYTE		N04     Fs2   v116
+	BYTE		N04     An2   v108
+	BYTE	W06
+	BYTE		        An2   v116
+	BYTE		N04     Cs3   v108
+	BYTE	W12
+	BYTE		N10     An2   v116
+	BYTE		N10     Cs3   v108
+	BYTE	W12
+	BYTE		N04     Fs2   v116
+	BYTE		N04     An2   v108
+	BYTE	W06
+	BYTE		N10     An2   v116
+	BYTE		N10     Cs3   v108
+	BYTE	W12
+	BYTE		N04     Fs2   v116
+	BYTE		N04     An2   v108
+	BYTE	W06
+	BYTE		        An2   v116
+	BYTE		N04     Cs3   v108
+	BYTE	W12
+	BYTE		N10     An2   v116
+	BYTE		N10     Cs3   v108
+	BYTE	W12
+	BYTE		N04     Fs2   v116
+	BYTE		N04     An2   v108
+	BYTE	W06
+// 003   ----------------------------------------
+RomancingSagaPassionateRhythm7743_1_B1:
+RomancingSagaPassionateRhythm7743_1_003:
+	BYTE		N10     An2   v108
+	BYTE		N10     Cs3   v100
+	BYTE	W12
+	BYTE		N04     Fs2   v108
+	BYTE		N04     An2   v100
+	BYTE	W06
+	BYTE		        An2   v108
+	BYTE		N04     Cs3   v100
+	BYTE	W12
+	BYTE		N10     An2   v108
+	BYTE		N10     Cs3   v100
+	BYTE	W12
+	BYTE		N04     Fs2   v108
+	BYTE		N04     An2   v100
+	BYTE	W06
+	BYTE		N10     An2   v108
+	BYTE		N10     Cs3   v100
+	BYTE	W12
+	BYTE		N04     Fs2   v108
+	BYTE		N04     An2   v100
+	BYTE	W06
+	BYTE		        An2   v108
+	BYTE		N04     Cs3   v100
+	BYTE	W12
+	BYTE		N10     An2   v108
+	BYTE		N10     Cs3   v100
+	BYTE	W12
+	BYTE		N04     Fs2   v108
+	BYTE		N04     An2   v100
+	BYTE	W06
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_003
+// 005   ----------------------------------------
+RomancingSagaPassionateRhythm7743_1_005:
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     An2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn3   v108
+	BYTE		N04     Fs3   v100
+	BYTE	W12
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     An2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     An2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn3   v108
+	BYTE		N04     Fs3   v100
+	BYTE	W12
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     An2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE	PEND
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_005
+// 007   ----------------------------------------
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     Bn2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn3   v108
+	BYTE		N04     Fs3   v100
+	BYTE	W12
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     Bn2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     Bn2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn3   v108
+	BYTE		N04     Fs3   v100
+	BYTE	W12
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     Bn2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+// 008   ----------------------------------------
+	BYTE		N10     Cs3   v108
+	BYTE		N10     En3   v100
+	BYTE	W12
+	BYTE		N04     Gs2   v108
+	BYTE		N04     Cs3   v100
+	BYTE	W06
+	BYTE		        Cs3   v108
+	BYTE		N04     En3   v100
+	BYTE	W12
+	BYTE		N10     Cs3   v108
+	BYTE		N10     En3   v100
+	BYTE	W12
+	BYTE		N04     Gs2   v108
+	BYTE		N04     Cs3   v100
+	BYTE	W06
+	BYTE		N10     Cs3   v108
+	BYTE		N10     En3   v100
+	BYTE	W12
+	BYTE		N04     Gs2   v108
+	BYTE		N04     Cs3   v100
+	BYTE	W06
+	BYTE		        Cs3   v108
+	BYTE		N04     En3   v100
+	BYTE	W12
+	BYTE		N10     Cs3   v108
+	BYTE		N10     En3   v100
+	BYTE	W12
+	BYTE		N04     Gs2   v108
+	BYTE		N04     Cs3   v100
+	BYTE	W06
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_003
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_003
+// 011   ----------------------------------------
+RomancingSagaPassionateRhythm7743_1_011:
+	BYTE		N10     An2   v108
+	BYTE		N10     Cs3   v100
+	BYTE	W12
+	BYTE		N04     Fs2   v108
+	BYTE		N04     An2   v100
+	BYTE	W06
+	BYTE		        An2   v108
+	BYTE		N04     Cs3   v100
+	BYTE	W12
+	BYTE		N10     An2   v108
+	BYTE		N10     Cs3   v100
+	BYTE	W12
+	BYTE		N04     Fs2   v108
+	BYTE		N04     An2   v100
+	BYTE	W06
+	BYTE		N10     Bn2   v108
+	BYTE		N10     Dn3   v100
+	BYTE	W12
+	BYTE		N04     Fs2   v108
+	BYTE		N04     Bn2   v100
+	BYTE	W06
+	BYTE		        Bn2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W12
+	BYTE		N10     Bn2   v108
+	BYTE		N10     Dn3   v100
+	BYTE	W12
+	BYTE		N04     Fs2   v108
+	BYTE		N04     Bn2   v100
+	BYTE	W06
+	BYTE	PEND
+// 012   ----------------------------------------
+RomancingSagaPassionateRhythm7743_1_012:
+	BYTE		N10     Bn2   v108
+	BYTE		N10     En3   v100
+	BYTE	W12
+	BYTE		N04     Gs2   v108
+	BYTE		N04     Bn2   v100
+	BYTE	W06
+	BYTE		        Bn2   v108
+	BYTE		N04     En3   v100
+	BYTE	W12
+	BYTE		N10     Bn2   v108
+	BYTE		N10     En3   v100
+	BYTE	W12
+	BYTE		N04     Gs2   v108
+	BYTE		N04     Bn2   v100
+	BYTE	W06
+	BYTE		N10     Cs3   v108
+	BYTE		N10     En3   v100
+	BYTE	W12
+	BYTE		N04     An2   v108
+	BYTE		N04     Cs3   v100
+	BYTE	W06
+	BYTE		        Cs3   v108
+	BYTE		N04     En3   v100
+	BYTE	W12
+	BYTE		N10     Cs3   v108
+	BYTE		N10     En3   v100
+	BYTE	W12
+	BYTE		N04     An2   v108
+	BYTE		N04     Cs3   v100
+	BYTE	W06
+	BYTE	PEND
+// 013   ----------------------------------------
+RomancingSagaPassionateRhythm7743_1_013:
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     Bn2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn3   v108
+	BYTE		N04     Fs3   v100
+	BYTE	W12
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     Bn2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE		N10     Ds3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     An2   v108
+	BYTE		N04     Ds3   v100
+	BYTE	W06
+	BYTE		        Ds3   v108
+	BYTE		N04     Fs3   v100
+	BYTE	W12
+	BYTE		N10     Ds3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     An2   v108
+	BYTE		N04     Ds3   v100
+	BYTE	W06
+	BYTE	PEND
+// 014   ----------------------------------------
+RomancingSagaPassionateRhythm7743_1_014:
+	BYTE		N10     Bn2   v108
+	BYTE		N10     Fn3   v100
+	BYTE	W12
+	BYTE		N04     Gs2   v108
+	BYTE		N04     Bn2   v100
+	BYTE	W06
+	BYTE		        Bn2   v108
+	BYTE		N04     Fn3   v100
+	BYTE	W12
+	BYTE		N10     Bn2   v108
+	BYTE		N10     Fn3   v100
+	BYTE	W12
+	BYTE		N04     Gs2   v108
+	BYTE		N04     Bn2   v100
+	BYTE	W06
+	BYTE		        Gs3   v124
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Dn3   v116
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE	W06
+	BYTE		        Fn2   v112
+	BYTE	W06
+	BYTE	PEND
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_011
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_012
+// 017   ----------------------------------------
+RomancingSagaPassionateRhythm7743_1_017:
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     An2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn3   v108
+	BYTE		N04     Fs3   v100
+	BYTE	W12
+	BYTE		N10     Dn3   v108
+	BYTE		N10     Fs3   v100
+	BYTE	W12
+	BYTE		N04     An2   v108
+	BYTE		N04     Dn3   v100
+	BYTE	W06
+	BYTE		N10     Bn2   v108
+	BYTE		N10     Fn3   v100
+	BYTE	W12
+	BYTE		N04     Gs2   v108
+	BYTE		N04     Bn2   v100
+	BYTE	W06
+	BYTE		        Bn2   v108
+	BYTE		N04     Fn3   v100
+	BYTE	W12
+	BYTE		N10     Bn2   v108
+	BYTE		N10     Fn3   v100
+	BYTE	W12
+	BYTE		N04     Gs2   v108
+	BYTE		N04     Bn2   v100
+	BYTE	W06
+	BYTE	PEND
+// 018   ----------------------------------------
+RomancingSagaPassionateRhythm7743_1_018:
+	BYTE		N92     Cs3   v108
+	BYTE		N92     Fs3   v100
+	BYTE	W96
+	BYTE	PEND
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_011
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_012
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_013
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_014
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_011
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_012
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_017
+// 034   ----------------------------------------
+	BYTE		N04     Fs3   v116
+	BYTE	W06
+	BYTE		        Cs3   v112
+	BYTE	W06
+	BYTE		        An2   v108
+	BYTE	W06
+	BYTE		        Fs2   v104
+	BYTE	W06
+	BYTE		        Fs3   v116
+	BYTE	W06
+	BYTE		        Dn3   v108
+	BYTE	W06
+	BYTE		        Bn2   v104
+	BYTE	W06
+	BYTE		        Fs2 
+	BYTE	W06
+	BYTE		        Fn3   v112
+	BYTE	W06
+	BYTE		        Cs3   v108
+	BYTE	W06
+	BYTE		        An2 
+	BYTE	W06
+	BYTE		        Fn2   v104
+	BYTE	W06
+	BYTE		        Gs3   v112
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Cs3   v108
+	BYTE	W06
+	BYTE		        Gs2   v104
+	BYTE	W06
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_011
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_012
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_013
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_014
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_011
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_012
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_017
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_1_018
+// 043   ----------------------------------------
+	BYTE	GoTo
+	 POIN2	RomancingSagaPassionateRhythm7743_1_B1
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+RomancingSagaPassionateRhythm7743_2:
+	BYTE	KEYSH   RomancingSagaPassionateRhythm7743_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   24
+	BYTE		VOL     110*RomancingSagaPassionateRhythm7743_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		BEND    c_v+0
+	BYTE		MOD     0
+// 001   ----------------------------------------
+	BYTE		N16     Fs1   v100
+	BYTE		N16     An1   v096
+	BYTE		N16     Cs2 
+	BYTE		N16     Fs2 
+	BYTE		N16     An2   v104
+	BYTE	W18
+	BYTE		N04     Fs1   v100
+	BYTE		N04     An1   v096
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     An2   v104
+	BYTE	W18
+	BYTE		        Fs1   v100
+	BYTE		N04     An1   v096
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2   v104
+	BYTE	W12
+	BYTE		N16     Fs1   v100
+	BYTE		N16     An1   v096
+	BYTE		N16     Cs2 
+	BYTE		N16     Fs2 
+	BYTE		N16     An2   v104
+	BYTE	W18
+	BYTE		N04     Fs1   v100
+	BYTE		N04     An1   v096
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     An2   v104
+	BYTE	W18
+	BYTE		        Fs1   v100
+	BYTE		N04     An1   v096
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2   v104
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		N16     Fs1   v100
+	BYTE		N16     An1   v096
+	BYTE		N16     Cs2 
+	BYTE		N16     Fs2 
+	BYTE		N16     An2   v104
+	BYTE	W18
+	BYTE		N04     Fs1   v100
+	BYTE		N04     An1   v096
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     An2   v104
+	BYTE	W18
+	BYTE		        Fs1   v100
+	BYTE		N04     An1   v096
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2   v104
+	BYTE	W12
+	BYTE		N16     Fs1   v100
+	BYTE		N16     An1   v096
+	BYTE		N16     Cs2 
+	BYTE		N16     Fs2 
+	BYTE		N16     An2   v104
+	BYTE	W18
+	BYTE		N04     Fs1   v100
+	BYTE		N04     An1   v096
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     An2   v104
+	BYTE	W18
+	BYTE		        Fs1   v100
+	BYTE		N04     An1   v096
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2   v104
+	BYTE	W12
+// 003   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_B1:
+RomancingSagaPassionateRhythm7743_2_003:
+	BYTE		N16     Fs1   v092
+	BYTE		N16     An1   v088
+	BYTE		N16     Cs2 
+	BYTE		N16     Fs2 
+	BYTE		N16     An2   v096
+	BYTE	W18
+	BYTE		N04     Fs1   v092
+	BYTE		N04     An1   v088
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     An2   v096
+	BYTE	W18
+	BYTE		        Fs1   v092
+	BYTE		N04     An1   v088
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2   v096
+	BYTE	W12
+	BYTE		N16     Fs1   v092
+	BYTE		N16     An1   v088
+	BYTE		N16     Cs2 
+	BYTE		N16     Fs2 
+	BYTE		N16     An2   v096
+	BYTE	W18
+	BYTE		N04     Fs1   v092
+	BYTE		N04     An1   v088
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     An2   v096
+	BYTE	W18
+	BYTE		        Fs1   v092
+	BYTE		N04     An1   v088
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2   v096
+	BYTE	W12
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_003
+// 005   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_005:
+	BYTE		N16     An1   v092
+	BYTE		N16     Dn2   v088
+	BYTE		N16     Fs2 
+	BYTE		N16     An2 
+	BYTE		N16     Dn3   v092
+	BYTE	W18
+	BYTE		N04     An1 
+	BYTE		N04     Dn2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     An2 
+	BYTE		N04     Dn3   v092
+	BYTE	W18
+	BYTE		        An1 
+	BYTE		N04     Dn2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Dn3   v092
+	BYTE	W12
+	BYTE		N16     An1 
+	BYTE		N16     Dn2   v088
+	BYTE		N16     Fs2 
+	BYTE		N16     An2 
+	BYTE		N16     Dn3   v092
+	BYTE	W18
+	BYTE		N04     An1 
+	BYTE		N04     Dn2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     An2 
+	BYTE		N04     Dn3   v092
+	BYTE	W18
+	BYTE		        An1 
+	BYTE		N04     Dn2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Dn3   v092
+	BYTE	W12
+	BYTE	PEND
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_005
+// 007   ----------------------------------------
+	BYTE		N16     Bn1   v092
+	BYTE		N16     Dn2   v088
+	BYTE		N16     Fs2 
+	BYTE		N16     Bn2 
+	BYTE		N16     Dn3   v092
+	BYTE	W18
+	BYTE		N04     Bn1 
+	BYTE		N04     Dn2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Dn3   v092
+	BYTE	W18
+	BYTE		        Bn1 
+	BYTE		N04     Dn2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Dn3   v092
+	BYTE	W12
+	BYTE		N16     Bn1 
+	BYTE		N16     Dn2   v088
+	BYTE		N16     Fs2 
+	BYTE		N16     Bn2 
+	BYTE		N16     Dn3   v092
+	BYTE	W18
+	BYTE		N04     Bn1 
+	BYTE		N04     Dn2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Dn3   v092
+	BYTE	W18
+	BYTE		        Bn1 
+	BYTE		N04     Dn2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Dn3   v092
+	BYTE	W12
+// 008   ----------------------------------------
+	BYTE		N16     Cs2 
+	BYTE		N16     En2   v088
+	BYTE		N16     Gs2 
+	BYTE		N16     Cs3 
+	BYTE		N16     En3   v092
+	BYTE	W18
+	BYTE		N04     Cs2 
+	BYTE		N04     En2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Cs3 
+	BYTE		N04     En3   v092
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE		N04     En2   v088
+	BYTE		N04     Bn2 
+	BYTE		N04     Cs3 
+	BYTE		N04     En3   v092
+	BYTE	W12
+	BYTE		N16     Cs2 
+	BYTE		N16     En2   v088
+	BYTE		N16     Gs2 
+	BYTE		N16     Cs3 
+	BYTE		N16     En3   v092
+	BYTE	W18
+	BYTE		N04     Cs2 
+	BYTE		N04     En2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Cs3 
+	BYTE		N04     En3   v092
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE		N04     En2   v088
+	BYTE		N04     Bn2 
+	BYTE		N04     Cs3 
+	BYTE		N04     En3   v092
+	BYTE	W12
+// 009   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_009:
+	BYTE		N16     An1   v092
+	BYTE		N16     Cs2   v088
+	BYTE		N16     Fs2 
+	BYTE		N16     An2 
+	BYTE		N16     Cs3   v092
+	BYTE	W18
+	BYTE		N04     An1 
+	BYTE		N04     Cs2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     An2 
+	BYTE		N04     Cs3   v092
+	BYTE	W18
+	BYTE		        An1 
+	BYTE		N04     Cs2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Cs3   v092
+	BYTE	W12
+	BYTE		N16     An1 
+	BYTE		N16     Cs2   v088
+	BYTE		N16     Fs2 
+	BYTE		N16     An2 
+	BYTE		N16     Cs3   v092
+	BYTE	W18
+	BYTE		N04     An1 
+	BYTE		N04     Cs2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     An2 
+	BYTE		N04     Cs3   v092
+	BYTE	W18
+	BYTE		        An1 
+	BYTE		N04     Cs2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Cs3   v092
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_009
+// 011   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_011:
+	BYTE		N16     An1   v092
+	BYTE		N16     Cs2   v088
+	BYTE		N16     Fs2 
+	BYTE		N16     An2 
+	BYTE		N16     Cs3   v092
+	BYTE	W18
+	BYTE		N04     An1 
+	BYTE		N04     Cs2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     An2 
+	BYTE		N04     Cs3   v092
+	BYTE	W18
+	BYTE		        An1 
+	BYTE		N04     Cs2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     Gs2 
+	BYTE		N04     Cs3   v092
+	BYTE	W12
+	BYTE		N16     Bn1 
+	BYTE		N16     Dn2   v088
+	BYTE		N16     Fs2 
+	BYTE		N16     Bn2 
+	BYTE		N16     Dn3   v092
+	BYTE	W18
+	BYTE		N04     Bn1 
+	BYTE		N04     Dn2   v088
+	BYTE		N04     Fs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Dn3   v092
+	BYTE	W18
+	BYTE		        Bn1 
+	BYTE		N04     Dn2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Dn3   v092
+	BYTE	W12
+	BYTE	PEND
+// 012   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_012:
+	BYTE		N16     Bn1   v092
+	BYTE		N16     En2   v088
+	BYTE		N16     Gs2 
+	BYTE		N16     Bn2 
+	BYTE		N16     En3   v092
+	BYTE	W18
+	BYTE		N04     Bn1 
+	BYTE		N04     En2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     En3   v092
+	BYTE	W18
+	BYTE		        Bn1 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     En3   v092
+	BYTE	W12
+	BYTE		N16     Cs2 
+	BYTE		N16     En2   v088
+	BYTE		N16     An2 
+	BYTE		N16     Cs3 
+	BYTE		N16     En3   v092
+	BYTE	W18
+	BYTE		N04     Cs2 
+	BYTE		N04     En2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Cs3 
+	BYTE		N04     En3   v092
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Cs3 
+	BYTE		N04     En3   v092
+	BYTE	W12
+	BYTE	PEND
+// 013   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_013:
+	BYTE		N16     Dn2   v092
+	BYTE		N16     Fs2   v088
+	BYTE		N16     Bn2 
+	BYTE		N16     Dn3 
+	BYTE		N16     Fs3   v092
+	BYTE	W18
+	BYTE		N04     Dn2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     Bn2 
+	BYTE		N04     Dn3 
+	BYTE		N04     Fs3   v092
+	BYTE	W18
+	BYTE		        Dn2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     Bn2 
+	BYTE		N04     Dn3 
+	BYTE		N04     Fs3   v092
+	BYTE	W12
+	BYTE		N16     Ds2 
+	BYTE		N16     Fs2   v088
+	BYTE		N16     An2 
+	BYTE		N16     Ds3 
+	BYTE		N16     Fs3   v092
+	BYTE	W18
+	BYTE		N04     Ds2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Ds3 
+	BYTE		N04     Fs3   v092
+	BYTE	W18
+	BYTE		        Ds2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Ds3 
+	BYTE		N04     Fs3   v092
+	BYTE	W12
+	BYTE	PEND
+// 014   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_014:
+	BYTE		N16     Bn1   v092
+	BYTE		N16     Fn2   v088
+	BYTE		N16     Gs2 
+	BYTE		N16     Bn2 
+	BYTE		N16     Fn3   v092
+	BYTE	W18
+	BYTE		N04     Bn1 
+	BYTE		N04     Fn2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Fn3   v092
+	BYTE	W18
+	BYTE		        Bn1 
+	BYTE		N04     Fn2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Fn3   v092
+	BYTE	W12
+	BYTE		N06     Gs3   v120
+	BYTE	W08
+	BYTE		        Fn3   v116
+	BYTE	W08
+	BYTE		        Bn2   v112
+	BYTE	W08
+	BYTE		        Dn3   v116
+	BYTE	W08
+	BYTE		        Bn2   v112
+	BYTE	W08
+	BYTE		        Fn2   v108
+	BYTE	W08
+	BYTE	PEND
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_011
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_012
+// 017   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_017:
+	BYTE		N16     Dn2   v092
+	BYTE		N16     Fs2   v088
+	BYTE		N16     An2 
+	BYTE		N16     Dn3 
+	BYTE		N16     Fs3   v092
+	BYTE	W18
+	BYTE		N04     Dn2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Dn3 
+	BYTE		N04     Fs3   v092
+	BYTE	W18
+	BYTE		        Dn2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Dn3 
+	BYTE		N04     Fs3   v092
+	BYTE	W12
+	BYTE		N16     Bn1 
+	BYTE		N16     Fn2   v088
+	BYTE		N16     Gs2 
+	BYTE		N16     Bn2 
+	BYTE		N16     Fn3   v092
+	BYTE	W18
+	BYTE		N04     Bn1 
+	BYTE		N04     Fn2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Fn3   v092
+	BYTE	W18
+	BYTE		        Bn1 
+	BYTE		N04     Fn2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Bn2 
+	BYTE		N04     Fn3   v092
+	BYTE	W12
+	BYTE	PEND
+// 018   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_018:
+	BYTE		N92     Cs2   v092
+	BYTE		N92     Fs2   v088
+	BYTE		N92     An2 
+	BYTE	W01
+	BYTE		        Cs3 
+	BYTE	W01
+	BYTE		        Fs3   v092
+	BYTE	W92
+	BYTE	W02
+	BYTE	PEND
+// 019   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_019:
+	BYTE		N16     Cs2   v092
+	BYTE		N16     Fs2   v088
+	BYTE		N16     An2 
+	BYTE		N16     Cs3 
+	BYTE		N16     Fs3   v092
+	BYTE	W18
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fs3   v092
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fs3   v092
+	BYTE	W12
+	BYTE		N16     Cs2 
+	BYTE		N16     Fs2   v088
+	BYTE		N16     An2 
+	BYTE		N16     Cs3 
+	BYTE		N16     Fs3   v092
+	BYTE	W18
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fs3   v092
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fs3   v092
+	BYTE	W12
+	BYTE	PEND
+// 020   ----------------------------------------
+RomancingSagaPassionateRhythm7743_2_020:
+	BYTE		N16     Cs2   v092
+	BYTE		N16     Fs2   v088
+	BYTE		N16     An2 
+	BYTE		N16     Cs3 
+	BYTE		N16     Fs3   v092
+	BYTE	W18
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fs3   v092
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fs3   v092
+	BYTE	W12
+	BYTE		N16     Cs2 
+	BYTE		N16     Fs2   v088
+	BYTE		N16     An2 
+	BYTE		N16     Cs3 
+	BYTE		N16     Fs3   v092
+	BYTE	W18
+	BYTE		N04     Cs2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fs3   v092
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     An2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fs3   v092
+	BYTE	W12
+	BYTE	PEND
+// 021   ----------------------------------------
+	BYTE		N16     En2 
+	BYTE		N16     Gs2   v088
+	BYTE		N16     Cs3 
+	BYTE		N16     En3 
+	BYTE		N16     Gs3   v092
+	BYTE	W18
+	BYTE		N04     En2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     Cs3 
+	BYTE		N04     En3 
+	BYTE		N04     Gs3   v092
+	BYTE	W18
+	BYTE		        En2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     Cs3 
+	BYTE		N04     En3 
+	BYTE		N04     Gs3   v092
+	BYTE	W12
+	BYTE		N16     En2 
+	BYTE		N16     Gs2   v088
+	BYTE		N16     Cs3 
+	BYTE		N16     En3 
+	BYTE		N16     Gs3   v092
+	BYTE	W18
+	BYTE		N04     En2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     Cs3 
+	BYTE		N04     En3 
+	BYTE		N04     Gs3   v092
+	BYTE	W18
+	BYTE		        En2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     Cs3 
+	BYTE		N04     En3 
+	BYTE		N04     Gs3   v092
+	BYTE	W12
+// 022   ----------------------------------------
+	BYTE		N16     En2 
+	BYTE		N16     Gs2   v088
+	BYTE		N16     Cs3 
+	BYTE		N16     En3 
+	BYTE		N16     Gs3   v092
+	BYTE	W18
+	BYTE		N04     En2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     Cs3 
+	BYTE		N04     En3 
+	BYTE		N04     Gs3   v092
+	BYTE	W18
+	BYTE		        En2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     Cs3 
+	BYTE		N04     En3 
+	BYTE		N04     Gs3   v092
+	BYTE	W12
+	BYTE		N16     En2 
+	BYTE		N16     Gs2   v088
+	BYTE		N16     Cs3 
+	BYTE		N16     En3 
+	BYTE		N16     Gs3   v092
+	BYTE	W18
+	BYTE		N04     En2 
+	BYTE		N04     Gs2   v088
+	BYTE		N04     Cs3 
+	BYTE		N04     En3 
+	BYTE		N04     Gs3   v092
+	BYTE	W18
+	BYTE		        En2 
+	BYTE		N04     Fs2   v088
+	BYTE		N04     Cs3 
+	BYTE		N04     En3 
+	BYTE		N04     Gs3   v092
+	BYTE	W12
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_019
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_020
+// 025   ----------------------------------------
+	BYTE		N16     Cs2   v092
+	BYTE		N16     Fn2   v088
+	BYTE		N16     Gs2 
+	BYTE		N16     Cs3 
+	BYTE		N16     Fn3   v092
+	BYTE	W18
+	BYTE		N04     Cs2 
+	BYTE		N04     Fn2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fn3   v092
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE		N04     Fn2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fn3   v092
+	BYTE	W12
+	BYTE		N16     Cs2 
+	BYTE		N16     Fn2   v088
+	BYTE		N16     Gs2 
+	BYTE		N16     Cs3 
+	BYTE		N16     Fn3   v092
+	BYTE	W18
+	BYTE		N04     Cs2 
+	BYTE		N04     Fn2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fn3   v092
+	BYTE	W18
+	BYTE		        Cs2 
+	BYTE		N04     Fn2   v088
+	BYTE		N04     Gs2 
+	BYTE		N04     Cs3 
+	BYTE		N04     Fn3   v092
+	BYTE	W12
+// 026   ----------------------------------------
+	BYTE		N92     Cs2 
+	BYTE		N92     Fn2   v088
+	BYTE	W01
+	BYTE		        Gs2 
+	BYTE	W01
+	BYTE		        Cs3 
+	BYTE	W01
+	BYTE		        Fn3   v092
+	BYTE	W92
+	BYTE	W01
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_011
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_012
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_013
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_014
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_011
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_012
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_017
+// 034   ----------------------------------------
+	BYTE		N22     An1   v092
+	BYTE		N22     Cs2   v088
+	BYTE		N22     Fs2 
+	BYTE	W01
+	BYTE		        An2 
+	BYTE		N22     Cs3   v092
+	BYTE	W23
+	BYTE		        Bn1 
+	BYTE		N22     Dn2   v088
+	BYTE		N22     Fs2 
+	BYTE	W01
+	BYTE		        Bn2 
+	BYTE		N22     Dn3   v092
+	BYTE	W23
+	BYTE		        Cs2 
+	BYTE		N22     Fn2   v088
+	BYTE		N22     An2 
+	BYTE	W01
+	BYTE		        Cs3 
+	BYTE		N22     Fn3   v092
+	BYTE	W23
+	BYTE		        Gs1 
+	BYTE		N22     Cs2   v088
+	BYTE		N22     Fn2 
+	BYTE	W01
+	BYTE		        Gs2 
+	BYTE		N22     Cs3   v092
+	BYTE	W23
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_011
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_012
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_013
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_014
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_011
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_012
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_017
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_2_018
+// 043   ----------------------------------------
+	BYTE	GoTo
+	 POIN2	RomancingSagaPassionateRhythm7743_2_B1
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+RomancingSagaPassionateRhythm7743_3:
+	BYTE	KEYSH   RomancingSagaPassionateRhythm7743_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   24
+	BYTE		VOL     110*RomancingSagaPassionateRhythm7743_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		BEND    c_v+0
+	BYTE		MOD     0
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+RomancingSagaPassionateRhythm7743_3_B1:
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+RomancingSagaPassionateRhythm7743_3_010:
+	BYTE	W56
+	BYTE	W03
+	BYTE		N05     Fs3   v127
+	BYTE	W07
+	BYTE		        Fs3   v124
+	BYTE	W06
+	BYTE		N07   
+	BYTE	W09
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		N06     An3   v120
+	BYTE	W07
+	BYTE	PEND
+// 011   ----------------------------------------
+RomancingSagaPassionateRhythm7743_3_011:
+	BYTE		N07     Bn3   v127
+	BYTE	W08
+	BYTE		N32     Cs4 
+	BYTE	W52
+	BYTE		N04     Cs4   v120
+	BYTE	W05
+	BYTE		N03   
+	BYTE	W04
+	BYTE		N08     Cs4   v124
+	BYTE	W09
+	BYTE		        Dn4 
+	BYTE	W09
+	BYTE		N07     En4   v127
+	BYTE	W09
+	BYTE	PEND
+// 012   ----------------------------------------
+RomancingSagaPassionateRhythm7743_3_012:
+	BYTE		BEND    c_v-11
+	BYTE		N17     Fs4   v127
+	BYTE	W01
+	BYTE		BEND    c_v-11
+	BYTE	W01
+	BYTE		        c_v-11
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-9
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W12
+	BYTE		N16   
+	BYTE	W18
+	BYTE		N11     En4   v124
+	BYTE	W12
+	BYTE		N32     Dn4   v127
+	BYTE	W01
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+10
+	BYTE	W02
+	BYTE		        c_v+10
+	BYTE	W01
+	BYTE		        c_v+9
+	BYTE	W01
+	BYTE		        c_v+8
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W03
+	BYTE		        c_v-1
+	BYTE	W02
+	BYTE		        c_v-1
+	BYTE	W01
+	BYTE		        c_v-1
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W18
+	BYTE		N11     Cs4   v124
+	BYTE	W04
+	BYTE		BEND    c_v-6
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W07
+	BYTE	PEND
+// 013   ----------------------------------------
+RomancingSagaPassionateRhythm7743_3_013:
+	BYTE		N17     Bn3   v127
+	BYTE	W18
+	BYTE		N32     An3   v124
+	BYTE	W36
+	BYTE	W03
+	BYTE		N06   
+	BYTE	W07
+	BYTE		N06   
+	BYTE	W08
+	BYTE		N07     Bn3 
+	BYTE	W08
+	BYTE		N15     Cs4   v127
+	BYTE	W07
+	BYTE		BEND    c_v-1
+	BYTE	W01
+	BYTE		        c_v-11
+	BYTE	W08
+	BYTE	PEND
+// 014   ----------------------------------------
+RomancingSagaPassionateRhythm7743_3_014:
+	BYTE		BEND    c_v+0
+	BYTE		N07     An3   v127
+	BYTE	W08
+	BYTE		N32     Gs3 
+	BYTE	W40
+	BYTE		N07     Fn3   v124
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Gs3   v120
+	BYTE	W08
+	BYTE		        An3   v124
+	BYTE	W09
+	BYTE		        Bn3 
+	BYTE	W07
+	BYTE	PEND
+// 015   ----------------------------------------
+RomancingSagaPassionateRhythm7743_3_015:
+	BYTE	W01
+	BYTE		N44     Cs4   v127
+	BYTE	W56
+	BYTE	W03
+	BYTE		N03     Cs4   v124
+	BYTE	W04
+	BYTE		        Cs4   v120
+	BYTE	W04
+	BYTE		N09     Cs4   v124
+	BYTE	W10
+	BYTE		        Dn4 
+	BYTE	W10
+	BYTE		        En4   v127
+	BYTE	W08
+	BYTE	PEND
+// 016   ----------------------------------------
+RomancingSagaPassionateRhythm7743_3_016:
+	BYTE	W03
+	BYTE		N16     Fs4   v127
+	BYTE	W17
+	BYTE		        Gs4   v112
+	BYTE	W17
+	BYTE		N13     Fs4   v104
+	BYTE	W15
+	BYTE		N21     En4   v124
+	BYTE	W11
+	BYTE		BEND    c_v-1
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-11
+	BYTE	W08
+	BYTE		        c_v+0
+	BYTE		N22     Dn4 
+	BYTE	W08
+	BYTE		BEND    c_v-1
+	BYTE	W01
+	BYTE		        c_v-1
+	BYTE	W01
+	BYTE		        c_v-4
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W11
+	BYTE	PEND
+// 017   ----------------------------------------
+RomancingSagaPassionateRhythm7743_3_017:
+	BYTE	W02
+	BYTE		BEND    c_v+0
+	BYTE		N17     Cs4   v127
+	BYTE	W18
+	BYTE		N16     Bn3   v124
+	BYTE	W17
+	BYTE		N11     An3   v120
+	BYTE	W12
+	BYTE		N22     Gs3   v127
+	BYTE	W05
+	BYTE		BEND    c_v+1
+	BYTE	W01
+	BYTE		        c_v+5
+	BYTE	W04
+	BYTE		        c_v+5
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W13
+	BYTE		N11     Fs3   v124
+	BYTE	W12
+	BYTE		N10     Fn3 
+	BYTE	W11
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE		N23     Fs3   v127
+	BYTE	W10
+	BYTE		BEND    c_v-1
+	BYTE	W01
+	BYTE		        c_v-1
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-5
+	BYTE	W01
+	BYTE		        c_v-5
+	BYTE	W01
+	BYTE		        c_v-7
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-13
+	BYTE	W01
+	BYTE		        c_v-15
+	BYTE	W01
+	BYTE		        c_v-18
+	BYTE	W01
+	BYTE		        c_v-22
+	BYTE	W01
+	BYTE		        c_v-25
+	BYTE	W01
+	BYTE		        c_v-27
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE		N11     Cs3   v116
+	BYTE	W12
+	BYTE		N44     Fs3   v124
+	BYTE	W56
+	BYTE	W03
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W12
+	BYTE		N11     Fs3   v116
+	BYTE	W12
+	BYTE		        Bn2   v112
+	BYTE	W12
+	BYTE		N44     An2   v108
+	BYTE	W48
+	BYTE		BEND    c_v-6
+	BYTE		N11     An2   v112
+	BYTE	W01
+	BYTE		BEND    c_v-3
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-1
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W07
+// 021   ----------------------------------------
+	BYTE		N11     Fs3 
+	BYTE	W12
+	BYTE		BEND    c_v-8
+	BYTE		N11     Cs3 
+	BYTE	W01
+	BYTE		BEND    c_v-6
+	BYTE	W01
+	BYTE		        c_v-1
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W09
+	BYTE		N11     Gs3 
+	BYTE	W12
+	BYTE		BEND    c_v-8
+	BYTE		N11     Cs3 
+	BYTE	W01
+	BYTE		BEND    c_v-6
+	BYTE	W01
+	BYTE		        c_v-1
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W09
+	BYTE		N11     An3 
+	BYTE	W12
+	BYTE		BEND    c_v-6
+	BYTE		N11     Dn3 
+	BYTE	W02
+	BYTE		BEND    c_v-4
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-1
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W06
+	BYTE		N11     Bn3 
+	BYTE	W12
+	BYTE		BEND    c_v-11
+	BYTE		N11     En3 
+	BYTE	W01
+	BYTE		BEND    c_v-10
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-1
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W07
+// 022   ----------------------------------------
+	BYTE		N17     Cs4   v116
+	BYTE	W18
+	BYTE		        Cs4   v096
+	BYTE	W18
+	BYTE		N44     Cs4   v108
+	BYTE	W60
+// 023   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     Gs2 
+	BYTE	W06
+	BYTE		        An2   v104
+	BYTE	W06
+	BYTE		        Bn2   v108
+	BYTE	W06
+	BYTE		        Cs3   v100
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		        En3 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE	W06
+	BYTE		        Gs3 
+	BYTE	W06
+	BYTE		        An3   v104
+	BYTE	W06
+	BYTE		        Bn3   v100
+	BYTE	W06
+	BYTE		        Cs4 
+	BYTE	W06
+	BYTE		        Dn4   v096
+	BYTE	W06
+	BYTE		        Cs4   v104
+	BYTE	W06
+	BYTE		        Bn3   v100
+	BYTE	W06
+// 024   ----------------------------------------
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		        Gs3   v104
+	BYTE	W06
+	BYTE		        Fs3   v100
+	BYTE	W06
+	BYTE		        En3 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		        Cs3   v104
+	BYTE	W06
+	BYTE		        Bn2   v100
+	BYTE	W06
+	BYTE		        An2 
+	BYTE	W06
+	BYTE		        Gs2   v096
+	BYTE	W06
+	BYTE		        Fs2 
+	BYTE	W06
+	BYTE		        En2   v100
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W06
+	BYTE		        Cs2 
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		        An1 
+	BYTE	W06
+	BYTE		        Gs1   v096
+	BYTE	W06
+// 025   ----------------------------------------
+	BYTE		N32     Fn1   v100
+	BYTE	W36
+	BYTE		BEND    c_v-11
+	BYTE		N80     Cs2   v104
+	BYTE	W02
+	BYTE		BEND    c_v-11
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-9
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W54
+	BYTE	W01
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_3_010
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_3_011
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_3_012
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_3_013
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_3_014
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_3_015
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_3_016
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_3_017
+// 034   ----------------------------------------
+	BYTE		N40     Fs3   v127
+	BYTE	W48
+	BYTE		N07     Fs1   v112
+	BYTE	W08
+	BYTE		        Gs1   v104
+	BYTE	W08
+	BYTE		        An1   v108
+	BYTE	W08
+	BYTE		        Bn1 
+	BYTE	W08
+	BYTE		        Cs2 
+	BYTE	W08
+	BYTE		        Dn2   v112
+	BYTE	W08
+// 035   ----------------------------------------
+	BYTE		        En2   v116
+	BYTE	W08
+	BYTE		        Fs2   v112
+	BYTE	W08
+	BYTE		        Gs2   v116
+	BYTE	W08
+	BYTE		        An2 
+	BYTE	W08
+	BYTE		        Bn2   v112
+	BYTE	W08
+	BYTE		        Cs3   v116
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		N06     En3 
+	BYTE	W07
+	BYTE		N07     Fs3 
+	BYTE	W08
+	BYTE		        Gs3   v120
+	BYTE	W08
+	BYTE		N06     An3   v116
+	BYTE	W08
+	BYTE		N13     Bn3   v120
+	BYTE	W06
+	BYTE		BEND    c_v-3
+	BYTE	W01
+	BYTE		        c_v-11
+	BYTE	W02
+// 036   ----------------------------------------
+	BYTE	W05
+	BYTE		        c_v+0
+	BYTE		N07     Gs3 
+	BYTE	W08
+	BYTE		        Fs3   v116
+	BYTE	W08
+	BYTE		        En3   v112
+	BYTE	W08
+	BYTE		N03     Cs4   v116
+	BYTE	W05
+	BYTE		        Bn3 
+	BYTE	W04
+	BYTE		        An3   v112
+	BYTE	W05
+	BYTE		        Gs3   v116
+	BYTE	W04
+	BYTE		        Fs3 
+	BYTE	W04
+	BYTE		N08     En3   v108
+	BYTE	W09
+	BYTE		N03     Bn3   v116
+	BYTE	W04
+	BYTE		        An3   v112
+	BYTE	W05
+	BYTE		        Gs3 
+	BYTE	W04
+	BYTE		        Fs3 
+	BYTE	W04
+	BYTE		        En3 
+	BYTE	W04
+	BYTE		N02     Fs3   v104
+	BYTE	W04
+	BYTE		        Cs3   v112
+	BYTE	W03
+	BYTE		        Dn3   v108
+	BYTE	W04
+	BYTE		N03     En3 
+	BYTE	W04
+// 037   ----------------------------------------
+	BYTE		N01     Fs3 
+	BYTE	W02
+	BYTE		N02     Gs3   v112
+	BYTE	W03
+	BYTE		N01     An3   v104
+	BYTE	W02
+	BYTE		N10     Bn3   v116
+	BYTE	W11
+	BYTE		N17     Gs3   v096
+	BYTE	W18
+	BYTE		N05     An3   v116
+	BYTE	W06
+	BYTE		        Gs3   v112
+	BYTE	W06
+	BYTE		        Fs3   v116
+	BYTE	W06
+	BYTE		        En3 
+	BYTE	W06
+	BYTE		        Ds3   v112
+	BYTE	W06
+	BYTE		        Dn3   v116
+	BYTE	W06
+	BYTE		        Cs3   v112
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+	BYTE		        An2   v108
+	BYTE	W06
+	BYTE		        Gs2   v104
+	BYTE	W06
+// 038   ----------------------------------------
+	BYTE		        Fs2   v116
+	BYTE	W06
+	BYTE		        Gs2   v108
+	BYTE	W06
+	BYTE		        An2 
+	BYTE	W06
+	BYTE		        Bn2   v112
+	BYTE	W06
+	BYTE		        Cs3   v108
+	BYTE	W06
+	BYTE		        Dn3   v112
+	BYTE	W06
+	BYTE		        En3 
+	BYTE	W06
+	BYTE		        Fn3   v116
+	BYTE	W06
+	BYTE		N07     Fs3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		N19     An3   v120
+	BYTE	W10
+	BYTE		BEND    c_v-1
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-4
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-9
+	BYTE	W01
+	BYTE		        c_v-13
+	BYTE	W01
+	BYTE		        c_v-15
+	BYTE	W01
+	BYTE		        c_v-16
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE		N11     Cs4   v124
+	BYTE	W05
+	BYTE		BEND    c_v-6
+	BYTE	W01
+	BYTE		        c_v-11
+	BYTE	W06
+// 039   ----------------------------------------
+	BYTE		        c_v+0
+	BYTE		N07     An3   v116
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		BEND    c_v-11
+	BYTE		N17     En4   v127
+	BYTE	W04
+	BYTE		BEND    c_v-3
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W13
+	BYTE		N17     Dn4   v124
+	BYTE	W18
+	BYTE		N05     Bn3   v120
+	BYTE	W06
+	BYTE		N17     An3   v124
+	BYTE	W06
+	BYTE		BEND    c_v-1
+	BYTE	W01
+	BYTE		        c_v-1
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W06
+	BYTE		        c_v+0
+	BYTE		N05     Fs3   v120
+	BYTE	W06
+	BYTE		        Gs3 
+	BYTE	W06
+// 040   ----------------------------------------
+	BYTE		N15     En3   v104
+	BYTE	W04
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+5
+	BYTE	W09
+	BYTE		        c_v+0
+	BYTE		N07     Fs3   v116
+	BYTE	W08
+	BYTE		        Gs3   v120
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Bn3   v124
+	BYTE	W08
+	BYTE		N16     Cs4   v127
+	BYTE	W17
+	BYTE		N17     Bn3   v124
+	BYTE	W18
+	BYTE		N11     An3 
+	BYTE	W13
+// 041   ----------------------------------------
+	BYTE		N16     Gs3   v127
+	BYTE	W17
+	BYTE		N06     Fn3   v120
+	BYTE	W07
+	BYTE		N07     Fs3 
+	BYTE	W08
+	BYTE		        An3   v124
+	BYTE	W08
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		N17     Cs4 
+	BYTE	W18
+	BYTE		N16     Dn4   v127
+	BYTE	W17
+	BYTE		N12     Fn4   v124
+	BYTE	W13
+// 042   ----------------------------------------
+	BYTE		N44     Fs4   v127
+	BYTE	W48
+	BYTE		N02     Fs4   v064
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		        Fs4   v076
+	BYTE	W03
+	BYTE		        Fs4   v072
+	BYTE	W03
+	BYTE		        Fs4   v084
+	BYTE	W03
+	BYTE		        Fs4   v080
+	BYTE	W03
+	BYTE		        Fs4   v096
+	BYTE	W03
+	BYTE		        Fs4   v088
+	BYTE	W03
+	BYTE		        Fs4   v104
+	BYTE	W03
+	BYTE		        Fs4   v100
+	BYTE	W03
+	BYTE		        Fs4   v116
+	BYTE	W03
+	BYTE		        Fs4   v108
+	BYTE	W03
+	BYTE		        Fs4   v124
+	BYTE	W03
+	BYTE		        Fs4   v116
+	BYTE	W03
+	BYTE		        Fs4   v127
+	BYTE	W03
+	BYTE		        Fs4   v120
+	BYTE	W03
+// 043   ----------------------------------------
+	BYTE	GoTo
+	 POIN2	RomancingSagaPassionateRhythm7743_3_B1
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+RomancingSagaPassionateRhythm7743_4:
+	BYTE	KEYSH   RomancingSagaPassionateRhythm7743_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   1
+	BYTE		VOL     110*RomancingSagaPassionateRhythm7743_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		BEND    c_v+0
+	BYTE		MOD     0
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+RomancingSagaPassionateRhythm7743_4_B1:
+	BYTE		N72     An3   v108
+	BYTE		N72     Cs4 
+	BYTE		N72     Fs4   v112
+	BYTE	W01
+	BYTE		        An4   v108
+	BYTE	W80
+	BYTE	W03
+	BYTE		N06     An3 
+	BYTE		N06     Cs4 
+	BYTE		N06     Fs4   v112
+	BYTE		N06     An4   v108
+	BYTE	W06
+	BYTE		        An3 
+	BYTE		N06     Cs4 
+	BYTE		N06     Fs4   v112
+	BYTE		N06     An4   v108
+	BYTE	W06
+// 004   ----------------------------------------
+	BYTE		N72     An3 
+	BYTE		N72     Cs4 
+	BYTE	W01
+	BYTE		        Fs4   v112
+	BYTE		N72     An4   v108
+	BYTE	W92
+	BYTE	W03
+// 005   ----------------------------------------
+	BYTE		        Dn4   v112
+	BYTE	W01
+	BYTE		        Fs4   v108
+	BYTE	W01
+	BYTE		        An4 
+	BYTE	W01
+	BYTE		        Dn5 
+	BYTE	W80
+	BYTE	W01
+	BYTE		N06     Dn4   v112
+	BYTE		N06     Fs4   v108
+	BYTE		N06     An4 
+	BYTE		N06     Dn5 
+	BYTE	W06
+	BYTE		        Dn4   v112
+	BYTE		N06     Fs4   v108
+	BYTE		N06     An4 
+	BYTE		N06     Dn5 
+	BYTE	W06
+// 006   ----------------------------------------
+	BYTE		N72     Dn4   v112
+	BYTE		N72     Fs4   v108
+	BYTE	W01
+	BYTE		        An4 
+	BYTE	W01
+	BYTE		        Dn5 
+	BYTE	W92
+	BYTE	W02
+// 007   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W01
+	BYTE		        Fs4 
+	BYTE	W01
+	BYTE		        Bn4   v112
+	BYTE	W01
+	BYTE		        Dn5   v108
+	BYTE	W92
+	BYTE	W01
+// 008   ----------------------------------------
+	BYTE		        En4 
+	BYTE	W01
+	BYTE		        Gs4 
+	BYTE	W02
+	BYTE		        Cs5   v112
+	BYTE	W01
+	BYTE		        En5   v108
+	BYTE	W92
+// 009   ----------------------------------------
+	BYTE		        Fs4 
+	BYTE	W01
+	BYTE		        An4 
+	BYTE	W01
+	BYTE		        Cs5 
+	BYTE	W01
+	BYTE		        Fs5   v112
+	BYTE	W92
+	BYTE	W01
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	GoTo
+	 POIN2	RomancingSagaPassionateRhythm7743_4_B1
+RomancingSagaPassionateRhythm7743_4_B2:
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+RomancingSagaPassionateRhythm7743_5:
+	BYTE	KEYSH   RomancingSagaPassionateRhythm7743_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		VOL     80*RomancingSagaPassionateRhythm7743_mvl/mxv
+	BYTE		PAN     c_v-0
+	BYTE		BEND    c_v+0
+	BYTE		MOD     0
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W48
+	BYTE		N04     Bn3   v116
+	BYTE	W06
+	BYTE		        Cs4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Fs4 
+	BYTE	W06
+	BYTE		        Gs4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W06
+// 003   ----------------------------------------
+RomancingSagaPassionateRhythm7743_5_B1:
+	BYTE		TIE     Cs5   v116
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT   
+	BYTE	W02
+// 007   ----------------------------------------
+	BYTE		N92     Dn5 
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE		        En5 
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE		TIE     Fs5 
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT   
+	BYTE	W02
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W48
+	BYTE		N16     Fs4 
+	BYTE	W18
+	BYTE		        En4 
+	BYTE	W18
+	BYTE		N10     Dn4 
+	BYTE	W12
+// 019   ----------------------------------------
+	BYTE		N32     Cs4 
+	BYTE	W36
+	BYTE		        Dn4 
+	BYTE	W36
+	BYTE		N22     En4 
+	BYTE	W24
+// 020   ----------------------------------------
+	BYTE		N32     Fs4 
+	BYTE	W36
+	BYTE		        Gs4 
+	BYTE	W36
+	BYTE		N22     An4 
+	BYTE	W24
+// 021   ----------------------------------------
+	BYTE		N16     Bn4 
+	BYTE	W18
+	BYTE		        Cs5 
+	BYTE	W18
+	BYTE		N80     Gs4 
+	BYTE	W60
+// 022   ----------------------------------------
+	BYTE	W24
+	BYTE		N22     Fs4 
+	BYTE	W24
+	BYTE		        Gs4 
+	BYTE	W24
+	BYTE		        An4 
+	BYTE	W24
+// 023   ----------------------------------------
+	BYTE		N32     En5 
+	BYTE	W36
+	BYTE		        Dn5 
+	BYTE	W36
+	BYTE		N22     Fs4 
+	BYTE	W24
+// 024   ----------------------------------------
+	BYTE		N32     Gs4 
+	BYTE	W36
+	BYTE		        An4 
+	BYTE	W36
+	BYTE		N22     Bn4 
+	BYTE	W24
+// 025   ----------------------------------------
+	BYTE		N16     Dn5 
+	BYTE	W18
+	BYTE		TIE     Cs5 
+	BYTE	W78
+// 026   ----------------------------------------
+	BYTE	W18
+	BYTE	W03
+	BYTE	W02
+	BYTE	W03
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE		EOT   
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W20
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+RomancingSagaPassionateRhythm7743_5_035:
+	BYTE		N22     Cs3   v104
+	BYTE	W24
+	BYTE		        En3 
+	BYTE	W24
+	BYTE		N16     Dn3 
+	BYTE	W18
+	BYTE		        En3 
+	BYTE	W18
+	BYTE		N10     Fs3 
+	BYTE	W12
+	BYTE	PEND
+// 036   ----------------------------------------
+	BYTE		N22     Gs3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE	W24
+	BYTE		N16     Cs3 
+	BYTE	W18
+	BYTE		        Dn3 
+	BYTE	W18
+	BYTE		N10     En3 
+	BYTE	W12
+// 037   ----------------------------------------
+	BYTE		N16     Fs3 
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W18
+	BYTE		N10     Fs3 
+	BYTE	W12
+	BYTE		N16     An3 
+	BYTE	W18
+	BYTE		        Bn3 
+	BYTE	W18
+	BYTE		N10     An3 
+	BYTE	W12
+// 038   ----------------------------------------
+	BYTE		N16     Gs3 
+	BYTE	W18
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		N10     Bn3 
+	BYTE	W12
+	BYTE		N04     Gs3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE	W06
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_5_035
+// 040   ----------------------------------------
+	BYTE		N16     Gs3   v104
+	BYTE	W18
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		N10     Bn3 
+	BYTE	W12
+	BYTE		N16     Cs4 
+	BYTE	W18
+	BYTE		        Bn3 
+	BYTE	W18
+	BYTE		N10     An3 
+	BYTE	W12
+// 041   ----------------------------------------
+	BYTE		N22     Gs3 
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W24
+	BYTE		        Gs3 
+	BYTE	W24
+// 042   ----------------------------------------
+	BYTE		N44     Fs3 
+	BYTE	W48
+	BYTE		N04     Bn3   v116
+	BYTE	W06
+	BYTE		        Cs4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Fs4 
+	BYTE	W06
+	BYTE		        Gs4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W06
+// 043   ----------------------------------------
+	BYTE	GoTo
+	 POIN2	RomancingSagaPassionateRhythm7743_5_B1
+RomancingSagaPassionateRhythm7743_5_B2:
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+RomancingSagaPassionateRhythm7743_6:
+	BYTE	KEYSH   RomancingSagaPassionateRhythm7743_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		VOL     80*RomancingSagaPassionateRhythm7743_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		BEND    c_v+0
+	BYTE		MOD     0
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+RomancingSagaPassionateRhythm7743_6_B1:
+	BYTE		TIE     An2   v088
+	BYTE		TIE     Fs4   v096
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT     An2 
+	BYTE		        Fs4 
+	BYTE	W02
+// 007   ----------------------------------------
+	BYTE		N92     Bn2   v088
+	BYTE		N92     Fs4   v096
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE		        Cs3   v088
+	BYTE		N92     Gs4   v096
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE		TIE     Cs3   v088
+	BYTE		TIE     Fs4   v096
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT     Cs3 
+	BYTE		        Fs4 
+	BYTE	W02
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+RomancingSagaPassionateRhythm7743_6_019:
+	BYTE		TIE     Dn3   v088
+	BYTE		TIE     Fs3   v096
+	BYTE	W96
+	BYTE	PEND
+// 020   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT     Dn3 
+	BYTE		        Fs3 
+	BYTE	W02
+// 021   ----------------------------------------
+	BYTE		TIE     Bn2   v088
+	BYTE		TIE     En3   v096
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT     Bn2 
+	BYTE		        En3 
+	BYTE	W02
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_6_019
+// 024   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT     Dn3 
+	BYTE		        Fs3 
+	BYTE	W02
+// 025   ----------------------------------------
+	BYTE		N16     Cs3   v088
+	BYTE		N16     Fn3   v116
+	BYTE	W18
+	BYTE		        Fn3   v088
+	BYTE		N16     Gs3   v116
+	BYTE	W18
+	BYTE		N10     Cs4   v088
+	BYTE		N10     Fn4   v116
+	BYTE	W12
+	BYTE		N16     Bn3   v088
+	BYTE		N16     Dn4   v116
+	BYTE	W18
+	BYTE		        Gs3   v088
+	BYTE		N16     Bn3   v116
+	BYTE	W18
+	BYTE		N10     Bn3   v088
+	BYTE		N10     Dn4   v116
+	BYTE	W12
+// 026   ----------------------------------------
+	BYTE		N68     Fn3   v088
+	BYTE		N68     Cs4   v096
+	BYTE	W18
+	BYTE	W03
+	BYTE	W02
+	BYTE	W03
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W01
+	BYTE	W20
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+RomancingSagaPassionateRhythm7743_6_035:
+	BYTE		N44     Fs1   v088
+	BYTE		N44     An2   v096
+	BYTE	W48
+	BYTE		        Fs1   v088
+	BYTE		N44     Bn2   v096
+	BYTE	W48
+	BYTE	PEND
+// 036   ----------------------------------------
+	BYTE		        Gs1   v088
+	BYTE		N44     Bn2   v096
+	BYTE	W48
+	BYTE		        An1   v088
+	BYTE		N44     Cs3   v096
+	BYTE	W48
+// 037   ----------------------------------------
+	BYTE		        Bn1   v088
+	BYTE		N44     Dn3   v096
+	BYTE	W48
+	BYTE		        An1   v088
+	BYTE		N44     Ds3   v096
+	BYTE	W48
+// 038   ----------------------------------------
+	BYTE		        Bn1   v088
+	BYTE		N16     Fn3   v096
+	BYTE	W18
+	BYTE		        Fs3 
+	BYTE	W18
+	BYTE		N10     Gs3 
+	BYTE	W12
+	BYTE		N22     Bn1   v088
+	BYTE		N04     Fn3   v096
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE	W06
+	BYTE		N22     Gs1   v088
+	BYTE		N04     Bn2   v096
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE	W06
+	BYTE		        Cs2 
+	BYTE	W06
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_6_035
+// 040   ----------------------------------------
+	BYTE		N44     Gs1   v088
+	BYTE		N44     En3   v096
+	BYTE	W48
+	BYTE		        An1   v088
+	BYTE		N44     En3   v096
+	BYTE	W48
+// 041   ----------------------------------------
+	BYTE		        An1   v088
+	BYTE		N44     Dn3   v096
+	BYTE	W48
+	BYTE		        Gs1   v088
+	BYTE		N44     Bn2   v096
+	BYTE	W48
+// 042   ----------------------------------------
+	BYTE		N92     An1   v088
+	BYTE		N92     Cs3   v096
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	GoTo
+	 POIN2	RomancingSagaPassionateRhythm7743_6_B1
+RomancingSagaPassionateRhythm7743_6_B2:
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+RomancingSagaPassionateRhythm7743_7:
+	BYTE	KEYSH   RomancingSagaPassionateRhythm7743_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   33
+	BYTE		VOL     110*RomancingSagaPassionateRhythm7743_mvl/mxv
+	BYTE		PAN     c_v-0
+	BYTE		BEND    c_v+0
+	BYTE		MOD     0
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W48
+	BYTE		N10     Cs1   v116
+	BYTE	W12
+	BYTE		N04     Bn0 
+	BYTE	W06
+	BYTE		N10     Cs1 
+	BYTE	W12
+	BYTE		N04     Bn0 
+	BYTE	W06
+	BYTE		        An0 
+	BYTE	W06
+	BYTE		        Gs0 
+	BYTE	W06
+// 003   ----------------------------------------
+RomancingSagaPassionateRhythm7743_7_B1:
+RomancingSagaPassionateRhythm7743_7_003:
+	BYTE		N16     Fs0   v116
+	BYTE	W18
+	BYTE		N04   
+	BYTE	W18
+	BYTE		N10     Cs1 
+	BYTE	W12
+	BYTE		N16     Fs0 
+	BYTE	W18
+	BYTE		N04   
+	BYTE	W18
+	BYTE		N10     Cs1 
+	BYTE	W12
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_003
+// 005   ----------------------------------------
+RomancingSagaPassionateRhythm7743_7_005:
+	BYTE		N16     Dn1   v116
+	BYTE	W18
+	BYTE		N04   
+	BYTE	W18
+	BYTE		N10     An0 
+	BYTE	W12
+	BYTE		N16     Dn1 
+	BYTE	W18
+	BYTE		N04   
+	BYTE	W18
+	BYTE		N10     An0 
+	BYTE	W12
+	BYTE	PEND
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_005
+// 007   ----------------------------------------
+RomancingSagaPassionateRhythm7743_7_007:
+	BYTE		N16     Bn0   v116
+	BYTE	W18
+	BYTE		N04   
+	BYTE	W18
+	BYTE		N10     Fs0 
+	BYTE	W12
+	BYTE		N16     Bn0 
+	BYTE	W18
+	BYTE		N04   
+	BYTE	W18
+	BYTE		N10     Fs0 
+	BYTE	W12
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE		N16     Cs1 
+	BYTE	W18
+	BYTE		N04   
+	BYTE	W18
+	BYTE		N10     Gs0 
+	BYTE	W12
+	BYTE		N16     Cs1 
+	BYTE	W18
+	BYTE		N04   
+	BYTE	W18
+	BYTE		N10     Gs0 
+	BYTE	W12
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_003
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_003
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W48
+	BYTE		N16     Fs0   v116
+	BYTE	W18
+	BYTE		        En0 
+	BYTE	W18
+	BYTE		N10     Dn0 
+	BYTE	W12
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_007
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_007
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_003
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_003
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_007
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_007
+// 025   ----------------------------------------
+	BYTE		N16     Fn0   v116
+	BYTE	W18
+	BYTE		N04   
+	BYTE	W18
+	BYTE		N10     Cs1 
+	BYTE	W12
+	BYTE		N16     Fn0 
+	BYTE	W18
+	BYTE		N04   
+	BYTE	W18
+	BYTE		N10     Cs1 
+	BYTE	W12
+// 026   ----------------------------------------
+	BYTE		N92   
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+RomancingSagaPassionateRhythm7743_7_035:
+	BYTE		N44     Fs0   v116
+	BYTE	W48
+	BYTE		        Bn0 
+	BYTE	W48
+	BYTE	PEND
+// 036   ----------------------------------------
+RomancingSagaPassionateRhythm7743_7_036:
+	BYTE		N44     En0   v116
+	BYTE	W48
+	BYTE		        An0 
+	BYTE	W48
+	BYTE	PEND
+// 037   ----------------------------------------
+	BYTE		        Dn1 
+	BYTE	W48
+	BYTE		        Ds1 
+	BYTE	W48
+// 038   ----------------------------------------
+	BYTE		        Bn0 
+	BYTE	W48
+	BYTE		N44   
+	BYTE	W48
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_035
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_7_036
+// 041   ----------------------------------------
+	BYTE		N44     Dn1   v116
+	BYTE	W48
+	BYTE		        Gs0 
+	BYTE	W48
+// 042   ----------------------------------------
+	BYTE		        Fs0 
+	BYTE	W48
+	BYTE		N16   
+	BYTE	W18
+	BYTE		        En0 
+	BYTE	W18
+	BYTE		N10     Dn0 
+	BYTE	W12
+// 043   ----------------------------------------
+	BYTE	GoTo
+	 POIN2	RomancingSagaPassionateRhythm7743_7_B1
+RomancingSagaPassionateRhythm7743_7_B2:
+	BYTE	FINE
+
+//**************** Track 9 (Midi-Chn.10) ****************//
+
+RomancingSagaPassionateRhythm7743_8:
+	BYTE	KEYSH   RomancingSagaPassionateRhythm7743_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   0
+	BYTE		VOL     110*RomancingSagaPassionateRhythm7743_mvl/mxv
+	BYTE		PAN     c_v+0
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W48
+	BYTE		N01     Dn1   v108
+	BYTE		N01     En1   v112
+	BYTE		N01     Cs3   v104
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE		N01     En1   v112
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn1   v108
+	BYTE		N01     En1   v112
+	BYTE		N01     Cs3   v104
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE		N01     En1   v112
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn1   v108
+	BYTE		N01     En1   v112
+	BYTE		N01     Cn2   v120
+	BYTE		N01     Cs3   v104
+	BYTE	W12
+// 003   ----------------------------------------
+RomancingSagaPassionateRhythm7743_8_B1:
+RomancingSagaPassionateRhythm7743_8_003:
+	BYTE		N01     Bn0   v112
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Cs2   v124
+	BYTE		N01     Cs3   v104
+	BYTE	W12
+	BYTE		        As1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        As1   v068
+	BYTE	W12
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE		        As1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Dn3   v100
+	BYTE	W06
+	BYTE		        Dn1   v108
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        As1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE	PEND
+// 004   ----------------------------------------
+RomancingSagaPassionateRhythm7743_8_004:
+	BYTE		N01     Bn0   v112
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Cs3   v104
+	BYTE	W12
+	BYTE		        As1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        As1   v068
+	BYTE	W12
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE		        As1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Dn3   v100
+	BYTE	W06
+	BYTE		        Dn1   v108
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        As1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_004
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_004
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_004
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_004
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_004
+// 010   ----------------------------------------
+	BYTE		N01     Bn0   v112
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Cs3   v104
+	BYTE	W12
+	BYTE		        As1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        As1   v068
+	BYTE	W06
+	BYTE		        Dn1   v092
+	BYTE		N01     En1   v096
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn1   v084
+	BYTE		N01     En1   v088
+	BYTE	W06
+	BYTE		        Dn1   v092
+	BYTE		N01     En1   v096
+	BYTE		N01     As1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Dn1   v096
+	BYTE		N01     En1   v100
+	BYTE		N01     Dn3 
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn2   v120
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Cn2   v120
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        An1   v120
+	BYTE	W06
+// 011   ----------------------------------------
+RomancingSagaPassionateRhythm7743_8_011:
+	BYTE		N01     Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Cs2   v124
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE	W06
+	BYTE		        Gs1   v048
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Bn0   v100
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v048
+	BYTE	W06
+	BYTE	PEND
+// 012   ----------------------------------------
+RomancingSagaPassionateRhythm7743_8_012:
+	BYTE		N01     Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE	W06
+	BYTE		        Gs1   v048
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Bn0   v100
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v048
+	BYTE	W06
+	BYTE	PEND
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 018   ----------------------------------------
+	BYTE		N01     Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE	W06
+	BYTE		        Gs1   v048
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE		        Dn1   v076
+	BYTE		N01     En1 
+	BYTE	W06
+	BYTE		        Dn1   v080
+	BYTE		N01     En1   v084
+	BYTE	W06
+	BYTE		        Dn1   v088
+	BYTE		N01     En1 
+	BYTE	W06
+	BYTE		        Dn1   v092
+	BYTE		N01     En1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE		N01     En1   v096
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE		N01     En1   v100
+	BYTE	W06
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_003
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_004
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_004
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_004
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_003
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_004
+// 025   ----------------------------------------
+	BYTE		N01     Bn0   v112
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Cs3   v104
+	BYTE	W12
+	BYTE		        As1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        As1   v068
+	BYTE	W12
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE		        As1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Dn3   v100
+	BYTE	W06
+	BYTE		        Dn1   v108
+	BYTE		N01     Fs1   v072
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn2   v120
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Cn2   v120
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        An1   v120
+	BYTE	W06
+// 026   ----------------------------------------
+	BYTE		        Bn0   v112
+	BYTE		N01     Cs2   v124
+	BYTE	W60
+	BYTE		        Bn0   v112
+	BYTE	W12
+	BYTE		        Cn2   v120
+	BYTE		N01     Dn3   v100
+	BYTE	W24
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_011
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_012
+// 034   ----------------------------------------
+RomancingSagaPassionateRhythm7743_8_034:
+	BYTE		N01     Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE	W06
+	BYTE		        Gs1   v048
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W12
+	BYTE		        Dn1   v076
+	BYTE		N01     En1 
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Dn1   v080
+	BYTE		N01     En1   v084
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn1   v088
+	BYTE		N01     En1 
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn1   v092
+	BYTE		N01     En1 
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Dn1   v092
+	BYTE		N01     En1   v096
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Dn1   v096
+	BYTE		N01     En1   v100
+	BYTE	W06
+	BYTE	PEND
+// 035   ----------------------------------------
+RomancingSagaPassionateRhythm7743_8_035:
+	BYTE		N01     Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Cs2   v124
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE	W06
+	BYTE		        Gs1   v048
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE		N01     Bn4 
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Bn0   v100
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v048
+	BYTE	W06
+	BYTE	PEND
+// 036   ----------------------------------------
+RomancingSagaPassionateRhythm7743_8_036:
+	BYTE		N01     Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE	W06
+	BYTE		        Gs1   v048
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE	W06
+	BYTE		        Fs1   v068
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Bn0   v112
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE		N01     Bn4 
+	BYTE	W06
+	BYTE		        Gs1   v060
+	BYTE		N01     Cs3   v104
+	BYTE	W06
+	BYTE		        Bn0   v100
+	BYTE		N01     Fs1   v068
+	BYTE		N01     Dn3   v100
+	BYTE	W06
+	BYTE		        Gs1   v048
+	BYTE	W06
+	BYTE	PEND
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_036
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_036
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_035
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_036
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_036
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	RomancingSagaPassionateRhythm7743_8_034
+// 043   ----------------------------------------
+	BYTE	GoTo
+	 POIN2	RomancingSagaPassionateRhythm7743_8_B1
+RomancingSagaPassionateRhythm7743_8_B2:
+	BYTE	FINE
+
+
+//******************************************************//
+	ALIGN 4
+
+RomancingSagaPassionateRhythm7743:
+	BYTE	8	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	RomancingSagaPassionateRhythm7743_pri	// Priority
+	BYTE	RomancingSagaPassionateRhythm7743_rev	// Reverb.
+
+	POIN2	RomancingSagaPassionateRhythm7743_grp
+
+	POIN2	RomancingSagaPassionateRhythm7743_1
+	POIN2	RomancingSagaPassionateRhythm7743_2
+	POIN2	RomancingSagaPassionateRhythm7743_3
+	POIN2	RomancingSagaPassionateRhythm7743_4
+	POIN2	RomancingSagaPassionateRhythm7743_5
+	POIN2	RomancingSagaPassionateRhythm7743_6
+	POIN2	RomancingSagaPassionateRhythm7743_7
+	POIN2	RomancingSagaPassionateRhythm7743_8
+
+	

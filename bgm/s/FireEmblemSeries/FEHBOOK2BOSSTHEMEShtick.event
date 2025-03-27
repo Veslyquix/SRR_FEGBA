@@ -1,0 +1,410 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FEHBOOK2BOSSTHEMEShtick_grp  voicegroup000
+	#define	FEHBOOK2BOSSTHEMEShtick_pri  0
+	#define	FEHBOOK2BOSSTHEMEShtick_rev  0
+	#define	FEHBOOK2BOSSTHEMEShtick_mvl  127
+	#define	FEHBOOK2BOSSTHEMEShtick_key  0
+	#define	FEHBOOK2BOSSTHEMEShtick_tbs  1
+	#define	FEHBOOK2BOSSTHEMEShtick_exg  0
+	#define	FEHBOOK2BOSSTHEMEShtick_cmp  1
+
+	// .rodata
+	//	FEHBOOK2BOSSTHEMEShtick
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+FEHBOOK2BOSSTHEMEShtick_001:
+// 000   ----------------------------------------
+ BYTE   VOL   60*FEHBOOK2BOSSTHEMEShtick_mvl/mxv
+ BYTE   KEYSH   FEHBOOK2BOSSTHEMEShtick_key+0
+Label_0_563550:
+ BYTE   VOICE   61
+ BYTE   W12
+ BYTE   N12  Dn3  v064
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W36
+ BYTE   Cs3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W36
+// 001   ----------------------------------------
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W24
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W48
+// 002   ----------------------------------------
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W36
+ BYTE   Cs3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   W24
+// 003   ----------------------------------------
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W36
+ BYTE   An3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   An3
+ BYTE   W12
+// 004   ----------------------------------------
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W36
+ BYTE   An3
+ BYTE   W12
+// 005   ----------------------------------------
+ BYTE   Fn3
+ BYTE   W36
+ BYTE   An3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   W24
+// 006   ----------------------------------------
+ BYTE   An3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W36
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W36
+// 007   ----------------------------------------
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   W24
+ BYTE   Dn4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W36
+// 008   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 009   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 010   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 011   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 012   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 013   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 014   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 015   ----------------------------------------
+ BYTE   W30
+ BYTE   GoTo
+  POIN2 Label_0_563550
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+FEHBOOK2BOSSTHEMEShtick_002:
+// 000   ----------------------------------------
+ BYTE   VOL   80*FEHBOOK2BOSSTHEMEShtick_mvl/mxv
+ BYTE   KEYSH   FEHBOOK2BOSSTHEMEShtick_key+0
+Label_1_01193EF0:
+ BYTE   VOICE   73
+ BYTE   W72
+ BYTE   W72
+// 001   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 002   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 003   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 004   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 005   ----------------------------------------
+ BYTE   W66
+ BYTE   N03  Fs2  v064
+ BYTE   W03
+ BYTE   N48  En4
+ BYTE   W03
+ BYTE   W44
+// 006   ----------------------------------------
+ BYTE   W01
+ BYTE   N06  An3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   N44  En4
+ BYTE   W09
+ BYTE   W40
+ BYTE   N06  Dn4
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W06
+ BYTE   N36  An3
+ BYTE   W14
+// 007   ----------------------------------------
+ BYTE   W28
+ BYTE   N06
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N48  En3
+ BYTE   W24
+ BYTE   W02
+ BYTE   W22
+ BYTE   N12
+ BYTE   W12
+// 008   ----------------------------------------
+ BYTE   N42  Cn3
+ BYTE   W36
+ BYTE   W02
+ BYTE   W04
+ BYTE   N06  Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W06
+ BYTE   N48  An3
+ BYTE   W32
+// 009   ----------------------------------------
+ BYTE   W19
+ BYTE   N06  Bn3
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   N48  Fn3
+ BYTE   W32
+ BYTE   W03
+ BYTE   W24
+// 010   ----------------------------------------
+ BYTE   W01
+ BYTE   N06  En3
+ BYTE   W06
+ BYTE   N48  En4
+ BYTE   W40
+ BYTE   W01
+ BYTE   W07
+ BYTE   N06  Cn4
+ BYTE   W06
+ BYTE   Gn4
+ BYTE   W06
+ BYTE   N48  En4
+ BYTE   W48
+// 011   ----------------------------------------
+ BYTE   N06  Dn4
+ BYTE   W05
+ BYTE   W01
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W06
+ BYTE   N48  An3
+ BYTE   W48
+ BYTE   N06  Gn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W05
+ BYTE   W01
+ BYTE   En3
+ BYTE   W06
+ BYTE   N48  Dn3
+ BYTE   W48
+// 012   ----------------------------------------
+ BYTE   N06  Gn3
+ BYTE   W06
+ BYTE   N48  En3
+ BYTE   W11
+ BYTE   W36
+ BYTE   W03
+ BYTE   N06  Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W03
+ BYTE   W03
+ BYTE   N48  An3
+ BYTE   W48
+// 013   ----------------------------------------
+ BYTE   W02
+ BYTE   N06  Bn3
+ BYTE   W07
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   N48  Dn3
+ BYTE   W60
+ BYTE   W06
+// 014   ----------------------------------------
+ BYTE   N06  Cn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Gs2
+ BYTE   W06
+ BYTE   Fs2
+ BYTE   W30
+// 015   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_1_01193EF0
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+FEHBOOK2BOSSTHEMEShtick_003:
+// 000   ----------------------------------------
+ BYTE   VOL   60*FEHBOOK2BOSSTHEMEShtick_mvl/mxv
+ BYTE   KEYSH   FEHBOOK2BOSSTHEMEShtick_key+0
+Label_2_562E98:
+ BYTE   VOICE   116
+ BYTE   N48  As2  v064
+ BYTE   W48
+ BYTE   N48
+ BYTE   W24
+ BYTE   W24
+// 001   ----------------------------------------
+ BYTE   N48
+ BYTE   W48
+Label_2_562EA3:
+ BYTE   N48  As2  v064
+ BYTE   W48
+// 002   ----------------------------------------
+ BYTE   N48
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   W24
+ BYTE   N48
+ BYTE   W48
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_562EA3
+// 004   ----------------------------------------
+ BYTE   W24
+ BYTE   N48  As2  v064
+ BYTE   W48
+// 005   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_562EA3
+// 006   ----------------------------------------
+ BYTE   W24
+ BYTE   N48  As2  v064
+ BYTE   W48
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_562EA3
+// 008   ----------------------------------------
+ BYTE   W24
+ BYTE   N48  As2  v064
+ BYTE   W48
+ BYTE   N48
+ BYTE   W72
+// 009   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 010   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 011   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 012   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 013   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 014   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 015   ----------------------------------------
+ BYTE   W72
+ BYTE   W72
+// 016   ----------------------------------------
+ BYTE   W30
+ BYTE   GoTo
+  POIN2 Label_2_562E98
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+FEHBOOK2BOSSTHEMEShtick:
+	BYTE	3	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FEHBOOK2BOSSTHEMEShtick_pri	// Priority
+	BYTE	FEHBOOK2BOSSTHEMEShtick_rev	// Reverb.
+    
+	POIN2	FEHBOOK2BOSSTHEMEShtick_grp
+    
+	POIN2	FEHBOOK2BOSSTHEMEShtick_001
+	POIN2	FEHBOOK2BOSSTHEMEShtick_002
+	POIN2	FEHBOOK2BOSSTHEMEShtick_003
+
+	

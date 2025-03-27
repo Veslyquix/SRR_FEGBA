@@ -64,6 +64,17 @@ STRING "Abel" "FE6TR" ; BYTE 0
 //#define NeverRandomizeMusic // comment this out if you want music randomized 
 // it only knows of vanilla song IDs though 
 ALIGN 4 
+RNTable:
+#incbin "RNTable.dmp" 
+ALIGN  4
+C_SKILLSYS_INSTALL:
+#ifdef C_SKILLSYS 
+WORD 1 
+#else 
+WORD 0 
+#endif 
+
+ALIGN 4 
 MaxItems_Link:
 WORD 0 // If 0, it'll read through your item editor and count 
 // until it finds an item with an ID that does not match (eg. says 0) 
@@ -607,8 +618,7 @@ ORG $1F524
 jumpToHack(FE6_SeizeCantoFix) 
 
 ORG $5C554 
-jumpToHack(FE6_RandBattleMusicHook)
-
+callHackNew(FE6_RandBattleMusicHook)
 
 ORG $4EC4 
 SHORT $46C0 $46C0 // don't erase bg when setting up debug font 

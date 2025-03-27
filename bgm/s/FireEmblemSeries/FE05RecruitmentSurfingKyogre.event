@@ -1,0 +1,1337 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE05RecruitmentSurfingKyogre_grp  voicegroup000
+	#define	FE05RecruitmentSurfingKyogre_pri  0
+	#define	FE05RecruitmentSurfingKyogre_rev  0
+	#define	FE05RecruitmentSurfingKyogre_mvl  127
+	#define	FE05RecruitmentSurfingKyogre_key  0
+	#define	FE05RecruitmentSurfingKyogre_tbs  1
+	#define	FE05RecruitmentSurfingKyogre_exg  0
+	#define	FE05RecruitmentSurfingKyogre_cmp  1
+
+	// .rodata
+	//	FE05RecruitmentSurfingKyogre
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+FE05RecruitmentSurfingKyogre_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   TEMPO   154*FE05RecruitmentSurfingKyogre_tbs/2
+ BYTE   VOICE   57
+ BYTE   VOL   68*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   N08  Gn2  v100
+ BYTE   W72
+ BYTE   N08
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+// 001   ----------------------------------------
+ BYTE   Gn3
+ BYTE   W16
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   N72  Gn3
+ BYTE   W72
+// 002   ----------------------------------------
+Label_0_014CD309:
+ BYTE   N16  Dn3  v100
+ BYTE   W16
+ BYTE   N08  En3
+ BYTE   W08
+ BYTE   N60  Fn3
+ BYTE   W72
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_0_014CD314:
+ BYTE   N08  Fn3  v100
+ BYTE   W08
+ BYTE   En3
+ BYTE   W08
+ BYTE   Fn3
+ BYTE   W08
+ BYTE   N12  Gn3
+ BYTE   W24
+ BYTE   N48  En3
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_014CD309
+// 004   ----------------------------------------
+Label_0_014CD328:
+ BYTE   N16  En3  v100
+ BYTE   W16
+ BYTE   N08  Fn3
+ BYTE   W08
+ BYTE   N60  Gn3
+ BYTE   W72
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_014CD309
+// 005   ----------------------------------------
+Label_0_014CD338:
+ BYTE   N08  Dn3  v100
+ BYTE   W08
+ BYTE   N08
+ BYTE   W08
+ BYTE   En3
+ BYTE   W08
+ BYTE   N72  Fn3
+ BYTE   W72
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_0_014CD344:
+ BYTE   N16  En3  v100
+ BYTE   W16
+ BYTE   N08  Fn3
+ BYTE   W08
+ BYTE   N72  Gn3
+ BYTE   W72
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_0_014CD34F:
+ BYTE   N16  Fn3  v100
+ BYTE   W16
+ BYTE   N08  Gn3
+ BYTE   W08
+ BYTE   N72  An3
+ BYTE   W72
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_0_014CD35A:
+ BYTE   N36  An3  v100
+ BYTE   W36
+ BYTE   Gn3
+ BYTE   W36
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_0_014CD363:
+ BYTE   W12
+ BYTE   N36  Cn4  v100
+ BYTE   W36
+ BYTE   N12  As3
+ BYTE   W24
+ BYTE   An3
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_014CD35A
+// 010   ----------------------------------------
+Label_0_014CD373:
+ BYTE   W12
+ BYTE   N36  En3  v100
+ BYTE   W36
+ BYTE   N12  Gn3
+ BYTE   W24
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_0_014CD37E:
+ BYTE   N36  En3  v100
+ BYTE   W36
+ BYTE   Fn3
+ BYTE   W36
+ BYTE   N12  Gn3
+ BYTE   W24
+ BYTE   PEND 
+// 012   ----------------------------------------
+ BYTE   N72  En3
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_0_014CD309
+ BYTE   PATT
+  POIN2 Label_0_014CD314
+ BYTE   PATT
+  POIN2 Label_0_014CD309
+ BYTE   PATT
+  POIN2 Label_0_014CD328
+ BYTE   PATT
+  POIN2 Label_0_014CD309
+ BYTE   PATT
+  POIN2 Label_0_014CD338
+ BYTE   PATT
+  POIN2 Label_0_014CD344
+ BYTE   PATT
+  POIN2 Label_0_014CD34F
+ BYTE   PATT
+  POIN2 Label_0_014CD35A
+ BYTE   PATT
+  POIN2 Label_0_014CD363
+ BYTE   PATT
+  POIN2 Label_0_014CD35A
+ BYTE   PATT
+  POIN2 Label_0_014CD373
+ BYTE   PATT
+  POIN2 Label_0_014CD37E
+// 013   ----------------------------------------
+ BYTE   N72  En3  v100
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_0_014CD309
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+FE05RecruitmentSurfingKyogre_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   VOICE   48
+ BYTE   VOL   59*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   W08
+ BYTE   N08  As2  v100
+ BYTE   W08
+ BYTE   N08
+ BYTE   W08
+ BYTE   N08
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   TIE  En3
+ BYTE   W48
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   EOT
+Label_1_014CD3F0:
+ BYTE   N16  An2  v100
+ BYTE   W16
+ BYTE   N08  As2
+ BYTE   W08
+ BYTE   N60  Cn3
+ BYTE   W72
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_1_014CD3FB:
+ BYTE   N08  As2  v100
+ BYTE   W08
+ BYTE   An2
+ BYTE   W08
+ BYTE   As2
+ BYTE   W08
+ BYTE   N24  Cn3
+ BYTE   W24
+ BYTE   Dn3
+ BYTE   W24
+ BYTE   As2
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_014CD3F0
+// 004   ----------------------------------------
+Label_1_014CD410:
+ BYTE   N08  Cn3  v100
+ BYTE   W08
+ BYTE   As2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   Cn3
+ BYTE   W24
+ BYTE   N16  As2
+ BYTE   W16
+ BYTE   N08  An2
+ BYTE   W08
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_1_014CD424:
+ BYTE   N16  Gn2  v100
+ BYTE   W16
+ BYTE   N08  An2
+ BYTE   W08
+ BYTE   N60  As2
+ BYTE   W72
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_1_014CD42F:
+ BYTE   N08  Gn2  v100
+ BYTE   W08
+ BYTE   N08
+ BYTE   W08
+ BYTE   An2
+ BYTE   W08
+ BYTE   N72  As2
+ BYTE   W72
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_1_014CD43B:
+ BYTE   N16  An2  v100
+ BYTE   W16
+ BYTE   N08
+ BYTE   W08
+ BYTE   N48
+ BYTE   W48
+ BYTE   N08
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   En3
+ BYTE   W08
+ BYTE   PEND 
+// 008   ----------------------------------------
+ BYTE   N96  Fn3
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+Label_1_014CD44F:
+ BYTE   N36  Gn3  v100
+ BYTE   W36
+ BYTE   Dn3
+ BYTE   W60
+ BYTE   PEND 
+// 012   ----------------------------------------
+Label_1_014CD456:
+ BYTE   W24
+ BYTE   N24  En3  v100
+ BYTE   W24
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   W24
+ BYTE   PEND 
+// 013   ----------------------------------------
+Label_1_014CD460:
+ BYTE   N36  Fn3  v100
+ BYTE   W36
+ BYTE   N12  Dn3
+ BYTE   W12
+ BYTE   TIE  En3
+ BYTE   W48
+ BYTE   PEND 
+// 014   ----------------------------------------
+ BYTE   W72
+ BYTE   EOT
+ BYTE   W24
+ BYTE   PATT
+  POIN2 Label_1_014CD3F0
+ BYTE   PATT
+  POIN2 Label_1_014CD3FB
+ BYTE   PATT
+  POIN2 Label_1_014CD3F0
+ BYTE   PATT
+  POIN2 Label_1_014CD410
+ BYTE   PATT
+  POIN2 Label_1_014CD424
+ BYTE   PATT
+  POIN2 Label_1_014CD42F
+ BYTE   PATT
+  POIN2 Label_1_014CD43B
+// 015   ----------------------------------------
+ BYTE   N96  Fn3  v100
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_1_014CD44F
+ BYTE   PATT
+  POIN2 Label_1_014CD456
+ BYTE   PATT
+  POIN2 Label_1_014CD460
+// 018   ----------------------------------------
+ BYTE   W72
+ BYTE   EOT
+ BYTE   En3
+ BYTE   W24
+// 019   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_1_014CD3F0
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+FE05RecruitmentSurfingKyogre_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   VOICE   48
+ BYTE   VOL   59*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   W08
+ BYTE   N08  Fn2  v100
+ BYTE   W08
+ BYTE   N08
+ BYTE   W08
+ BYTE   N08
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   An2
+ BYTE   W08
+ BYTE   TIE
+ BYTE   W48
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   EOT
+Label_2_014CD4C7:
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W96
+// 024   ----------------------------------------
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W96
+// 026   ----------------------------------------
+ BYTE   W96
+// 027   ----------------------------------------
+ BYTE   W96
+// 028   ----------------------------------------
+ BYTE   W96
+// 029   ----------------------------------------
+ BYTE   W96
+// 030   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_2_014CD4C7
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+FE05RecruitmentSurfingKyogre_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   VOICE   48
+ BYTE   VOL   57*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_3_014CD4F4:
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   TIE  Fn2  v100
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   EOT
+ BYTE   N96  En2
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   An2
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   TIE  Fn2
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   EOT
+ BYTE   TIE  Fn2  v088
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   EOT
+ BYTE   N96  Gn2  v100
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   En2
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   TIE  Fn2
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   EOT
+ BYTE   N96  En2
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   An2
+ BYTE   W96
+// 024   ----------------------------------------
+ BYTE   TIE  Fn2
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W96
+// 026   ----------------------------------------
+ BYTE   EOT
+ BYTE   TIE  Fn2  v088
+ BYTE   W96
+// 027   ----------------------------------------
+ BYTE   W96
+// 028   ----------------------------------------
+ BYTE   EOT
+ BYTE   N96  Gn2  v100
+ BYTE   W96
+// 029   ----------------------------------------
+ BYTE   En2
+ BYTE   W96
+// 030   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_3_014CD4F4
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+FE05RecruitmentSurfingKyogre_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   VOICE   58
+ BYTE   VOL   56*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   TIE  Cn1  v100
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   EOT
+Label_4_014CD548:
+ BYTE   N12  Cn1  v100
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_4_014CD548
+ BYTE   PATT
+  POIN2 Label_4_014CD548
+// 003   ----------------------------------------
+Label_4_014CD55D:
+ BYTE   N12  Cn1  v100
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_4_014CD568:
+ BYTE   N12  As0  v100
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_4_014CD568
+// 005   ----------------------------------------
+Label_4_014CD578:
+ BYTE   N12  An0  v100
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_4_014CD583:
+ BYTE   N12  Dn1  v100
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   Cn1
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_4_014CD568
+// 007   ----------------------------------------
+Label_4_014CD593:
+ BYTE   N12  As0  v100
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_4_014CD59E:
+ BYTE   N12  Bn0  v100
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_4_014CD59E
+ BYTE   PATT
+  POIN2 Label_4_014CD548
+ BYTE   PATT
+  POIN2 Label_4_014CD578
+ BYTE   PATT
+  POIN2 Label_4_014CD548
+ BYTE   PATT
+  POIN2 Label_4_014CD548
+ BYTE   PATT
+  POIN2 Label_4_014CD548
+ BYTE   PATT
+  POIN2 Label_4_014CD55D
+ BYTE   PATT
+  POIN2 Label_4_014CD568
+ BYTE   PATT
+  POIN2 Label_4_014CD568
+ BYTE   PATT
+  POIN2 Label_4_014CD578
+ BYTE   PATT
+  POIN2 Label_4_014CD583
+ BYTE   PATT
+  POIN2 Label_4_014CD568
+ BYTE   PATT
+  POIN2 Label_4_014CD593
+ BYTE   PATT
+  POIN2 Label_4_014CD59E
+ BYTE   PATT
+  POIN2 Label_4_014CD59E
+ BYTE   PATT
+  POIN2 Label_4_014CD548
+ BYTE   PATT
+  POIN2 Label_4_014CD578
+// 009   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_4_014CD548
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+FE05RecruitmentSurfingKyogre_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   VOICE   48
+ BYTE   VOL   57*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_5_014CD60C:
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   TIE  As1  v100
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   EOT
+ BYTE   N96  An1
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   Dn2
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   TIE  As1
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   EOT
+ BYTE   TIE  Bn1
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   EOT
+ BYTE   N96  Cn2
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   An1
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   TIE  As1
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   EOT
+ BYTE   N96  An1
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   Dn2
+ BYTE   W96
+// 024   ----------------------------------------
+ BYTE   TIE  As1
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W96
+// 026   ----------------------------------------
+ BYTE   EOT
+ BYTE   TIE  Bn1
+ BYTE   W96
+// 027   ----------------------------------------
+ BYTE   W96
+// 028   ----------------------------------------
+ BYTE   EOT
+ BYTE   N96  Cn2
+ BYTE   W96
+// 029   ----------------------------------------
+ BYTE   An1
+ BYTE   W96
+// 030   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_5_014CD60C
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+FE05RecruitmentSurfingKyogre_007:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   VOICE   13
+ BYTE   VOL   47*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_6_014CD658:
+ BYTE   N06  Dn3  v100
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+ BYTE   PATT
+  POIN2 Label_6_014CD658
+// 003   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_6_014CD658
+ BYTE   FINE
+
+//**************** Track 8 (Midi-Chn.7) ****************//
+
+FE05RecruitmentSurfingKyogre_008:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   VOICE   13
+ BYTE   VOL   47*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_7_014CD700:
+ BYTE   N06  Gn2  v100
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   Fn2
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   Fn2
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+ BYTE   PATT
+  POIN2 Label_7_014CD700
+// 003   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_7_014CD700
+ BYTE   FINE
+
+//**************** Track 9 (Midi-Chn.8) ****************//
+
+FE05RecruitmentSurfingKyogre_009:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   VOICE   13
+ BYTE   VOL   51*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_8_014CD7A8:
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+Label_8_014CD7B0:
+ BYTE   N12  Gn3  v100
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_8_014CD7C3:
+ BYTE   N12  An3  v100
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   PEND 
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_8_014CD7B0
+ BYTE   PATT
+  POIN2 Label_8_014CD7C3
+// 024   ----------------------------------------
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W96
+// 026   ----------------------------------------
+ BYTE   W96
+// 027   ----------------------------------------
+ BYTE   W96
+// 028   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_8_014CD7A8
+ BYTE   FINE
+
+//**************** Track 10 (Midi-Chn.9) ****************//
+
+FE05RecruitmentSurfingKyogre_010:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   VOICE   47
+ BYTE   VOL   42*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   N24  An1  v100
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W36
+ BYTE   N06  An1  v088
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   An1  v092
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   An1  v096
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   An1  v100
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   An1
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+// 002   ----------------------------------------
+Label_9_014CD81C:
+ BYTE   N24  En2  v100
+ BYTE   W36
+ BYTE   N06
+ BYTE   W06
+ BYTE   An1
+ BYTE   W06
+ BYTE   N12  En2
+ BYTE   W12
+ BYTE   N12
+ BYTE   W24
+ BYTE   An1
+ BYTE   W12
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_9_014CD82C:
+ BYTE   N24  En2  v100
+ BYTE   W36
+ BYTE   N06
+ BYTE   W06
+ BYTE   An1
+ BYTE   W06
+ BYTE   N12  En2
+ BYTE   W12
+ BYTE   N24
+ BYTE   W36
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_9_014CD81C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD81C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD81C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+// 004   ----------------------------------------
+Label_9_014CD871:
+ BYTE   N12  En2  v100
+ BYTE   W12
+ BYTE   N12
+ BYTE   W18
+ BYTE   N06  An1
+ BYTE   W06
+ BYTE   N12  En2
+ BYTE   W12
+ BYTE   N12
+ BYTE   W24
+ BYTE   N06  An1
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   An1
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_9_014CD81C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD81C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD81C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD81C
+ BYTE   PATT
+  POIN2 Label_9_014CD82C
+ BYTE   PATT
+  POIN2 Label_9_014CD871
+// 005   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_9_014CD81C
+ BYTE   FINE
+
+//**************** Track 11 (Midi-Chn.10) ****************//
+
+FE05RecruitmentSurfingKyogre_011:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05RecruitmentSurfingKyogre_key+0
+ BYTE   VOICE   47
+ BYTE   VOL   53*FE05RecruitmentSurfingKyogre_mvl/mxv
+ BYTE   N24  An0  v100
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W36
+ BYTE   N06  An0  v088
+ BYTE   W06
+ BYTE   En1
+ BYTE   W06
+ BYTE   An0  v092
+ BYTE   W06
+ BYTE   En1
+ BYTE   W06
+ BYTE   An0  v096
+ BYTE   W06
+ BYTE   En1
+ BYTE   W06
+ BYTE   An0  v100
+ BYTE   W06
+ BYTE   En1
+ BYTE   W06
+ BYTE   An0
+ BYTE   W06
+ BYTE   En1
+ BYTE   W06
+// 002   ----------------------------------------
+Label_10_014CD8FC:
+ BYTE   N24  En1  v100
+ BYTE   W36
+ BYTE   N06
+ BYTE   W06
+ BYTE   An0
+ BYTE   W06
+ BYTE   N12  En1
+ BYTE   W12
+ BYTE   N12
+ BYTE   W24
+ BYTE   An0
+ BYTE   W12
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_10_014CD90C:
+ BYTE   N24  En1  v100
+ BYTE   W36
+ BYTE   N06
+ BYTE   W06
+ BYTE   An0
+ BYTE   W06
+ BYTE   N12  En1
+ BYTE   W12
+ BYTE   N24
+ BYTE   W36
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_10_014CD8FC
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD8FC
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD8FC
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+// 004   ----------------------------------------
+Label_10_014CD951:
+ BYTE   N12  En1  v100
+ BYTE   W12
+ BYTE   N12
+ BYTE   W18
+ BYTE   N06  An0
+ BYTE   W06
+ BYTE   N12  En1
+ BYTE   W12
+ BYTE   N12
+ BYTE   W24
+ BYTE   N06  An0
+ BYTE   W06
+ BYTE   En1
+ BYTE   W06
+ BYTE   An0
+ BYTE   W06
+ BYTE   En1
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_10_014CD8FC
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD8FC
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD8FC
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD8FC
+ BYTE   PATT
+  POIN2 Label_10_014CD90C
+ BYTE   PATT
+  POIN2 Label_10_014CD951
+// 005   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_10_014CD8FC
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE05RecruitmentSurfingKyogre:
+	BYTE	11	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE05RecruitmentSurfingKyogre_pri	// Priority
+	BYTE	FE05RecruitmentSurfingKyogre_rev	// Reverb.
+    
+	POIN2	FE05RecruitmentSurfingKyogre_grp
+    
+	POIN2	FE05RecruitmentSurfingKyogre_001
+	POIN2	FE05RecruitmentSurfingKyogre_002
+	POIN2	FE05RecruitmentSurfingKyogre_003
+	POIN2	FE05RecruitmentSurfingKyogre_004
+	POIN2	FE05RecruitmentSurfingKyogre_005
+	POIN2	FE05RecruitmentSurfingKyogre_006
+	POIN2	FE05RecruitmentSurfingKyogre_007
+	POIN2	FE05RecruitmentSurfingKyogre_008
+	POIN2	FE05RecruitmentSurfingKyogre_009
+	POIN2	FE05RecruitmentSurfingKyogre_010
+	POIN2	FE05RecruitmentSurfingKyogre_011
+
+	

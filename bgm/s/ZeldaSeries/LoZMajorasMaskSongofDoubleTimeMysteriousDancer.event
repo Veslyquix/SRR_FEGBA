@@ -1,0 +1,155 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_grp  voicegroup000
+	#define	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_pri  0
+	#define	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_rev  0
+	#define	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_mvl  127
+	#define	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_key  0
+	#define	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs  1
+	#define	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_exg  0
+	#define	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_cmp  1
+
+	// .rodata
+	//	LoZMajorasMaskSongofDoubleTimeMysteriousDancer
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+LoZMajorasMaskSongofDoubleTimeMysteriousDancer_1:
+	BYTE	KEYSH   LoZMajorasMaskSongofDoubleTimeMysteriousDancer_key+0
+LoZMajorasMaskSongofDoubleTimeMysteriousDancer_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   99*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs/2
+	BYTE		VOICE   1
+	BYTE		VOL     101*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		VOL     110*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_mvl/mxv
+	BYTE		        110*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_mvl/mxv
+	BYTE		N68     An1   v044
+	BYTE		N68     An2   v056
+	BYTE		N12     An3   v048
+	BYTE		N12     An4   v056
+	BYTE	W12
+	BYTE		N11     An3   v044
+	BYTE		N11     An4   v056
+	BYTE	W12
+	BYTE		        Dn3   v044
+	BYTE		N11     Dn4   v056
+	BYTE	W12
+	BYTE		        Dn3   v044
+	BYTE		N11     Dn4   v056
+	BYTE	W12
+	BYTE		        Fn3   v044
+	BYTE		N11     Fn4   v060
+	BYTE	W12
+	BYTE		        Fn3   v048
+	BYTE		N11     Fn4   v060
+	BYTE	W12
+	BYTE		N68     An1   v048
+	BYTE		N68     An2   v060
+	BYTE		N12     An3   v048
+	BYTE		N12     An4   v064
+	BYTE	W12
+	BYTE		N11     An3   v048
+	BYTE		N11     An4   v064
+	BYTE	W12
+	BYTE		        Dn3   v052
+	BYTE		N11     Dn4   v064
+	BYTE	W12
+	BYTE		        Dn3   v052
+	BYTE		N11     Dn4   v068
+	BYTE	W12
+	BYTE		        Fn3   v052
+	BYTE		N11     Fn4   v068
+	BYTE	W11
+	BYTE	W01
+	BYTE		        Fn3   v056
+	BYTE		N11     Fn4   v068
+	BYTE	W11
+	BYTE	W01
+// 001   ----------------------------------------
+	BYTE	TEMPO   99*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs/2
+	BYTE		N68     As1   v056
+	BYTE		N68     As2   v068
+	BYTE		N12     As3   v056
+	BYTE		N12     As4   v072
+	BYTE	W10
+	BYTE	TEMPO   103*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs/2
+	BYTE	W02
+	BYTE		N11     As3   v056
+	BYTE		N11     As4   v072
+	BYTE	W08
+	BYTE	TEMPO   108*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE		        En3   v060
+	BYTE		N11     En4   v072
+	BYTE	W06
+	BYTE	TEMPO   112*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		        En3   v060
+	BYTE		N11     En4   v076
+	BYTE	W04
+	BYTE	TEMPO   116*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs/2
+	BYTE	W08
+	BYTE		        Gn3   v064
+	BYTE		N11     Gn4   v076
+	BYTE	W02
+	BYTE	TEMPO   120*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs/2
+	BYTE	W10
+	BYTE	TEMPO   125*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs/2
+	BYTE		        Gn3   v064
+	BYTE		N11     Gn4   v076
+	BYTE	W10
+	BYTE	TEMPO   129*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs/2
+	BYTE	W02
+	BYTE	TEMPO   139*LoZMajorasMaskSongofDoubleTimeMysteriousDancer_tbs/2
+	BYTE		N44     Cs2   v064
+	BYTE		N44     Cs3   v076
+	BYTE		N12     Cs4   v064
+	BYTE		N12     Cs5   v080
+	BYTE	W12
+	BYTE		N11     Cs4   v068
+	BYTE		N11     Cs5   v080
+	BYTE	W12
+	BYTE		        As3   v068
+	BYTE		N11     As4   v080
+	BYTE	W12
+	BYTE		        As3   v068
+	BYTE		N11     As4   v084
+	BYTE	W12
+	BYTE		N23     En2   v072
+	BYTE		N23     En3   v084
+	BYTE		N11     En4   v072
+	BYTE		N11     En5   v088
+	BYTE	W11
+	BYTE	W01
+	BYTE		        En4   v108
+	BYTE		N11     En5   v124
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		N68     Fn2   v127
+	BYTE		N68     Fn3 
+	BYTE		N60     Fn4 
+	BYTE		N60     Fn5 
+	BYTE	W68
+	BYTE	W03
+	BYTE	GoTo
+	 POIN2	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_1_B1
+LoZMajorasMaskSongofDoubleTimeMysteriousDancer_1_B2:
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+LoZMajorasMaskSongofDoubleTimeMysteriousDancer:
+	BYTE	1	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_pri	// Priority
+	BYTE	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_rev	// Reverb.
+
+	POIN2	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_grp
+
+	POIN2	LoZMajorasMaskSongofDoubleTimeMysteriousDancer_1
+
+	

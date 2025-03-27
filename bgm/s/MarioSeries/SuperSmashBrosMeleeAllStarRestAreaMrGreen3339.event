@@ -1,0 +1,1128 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_grp  voicegroup000
+	#define	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_pri  0
+	#define	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_rev  0
+	#define	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_mvl  127
+	#define	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_key  0
+	#define	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_tbs  1
+	#define	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_exg  0
+	#define	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_cmp  1
+
+	// .rodata
+	//	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_key+0
+Label_0_0120FF6A:
+ BYTE   TEMPO   100*SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_tbs/2
+ BYTE   VOICE   0
+ BYTE   PAN   c_v+18
+ BYTE   VOL   46*SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_mvl/mxv
+ BYTE   N28  Fn1  v100
+ BYTE   N28  Fn2
+ BYTE   N28  Cn3
+ BYTE   N28  En3
+ BYTE   W30
+ BYTE   W01
+ BYTE   N30  Fn1
+ BYTE   N30  Fn2
+ BYTE   N30  Cn3
+ BYTE   N28  En3
+ BYTE   W32
+ BYTE   Fn1
+ BYTE   N28  Fn2
+ BYTE   N28  Cn3
+ BYTE   N28  En3
+ BYTE   W32
+ BYTE   Fn1
+ BYTE   N28  Fn2
+ BYTE   N28  Cn3
+ BYTE   N28  En3
+ BYTE   W01
+// 001   ----------------------------------------
+ BYTE   W30
+ BYTE   N30  En1
+ BYTE   W01
+ BYTE   En2
+ BYTE   N30  Bn2
+ BYTE   N30  Dn3
+ BYTE   W32
+ BYTE   W01
+ BYTE   En1
+ BYTE   N30  En2
+ BYTE   N30  Bn2
+ BYTE   N30  Dn3
+ BYTE   W32
+// 002   ----------------------------------------
+ BYTE   N28  En1
+ BYTE   N28  Dn3
+ BYTE   W01
+ BYTE   N24  En2
+ BYTE   N28  Bn2
+ BYTE   W30
+ BYTE   W01
+ BYTE   En1
+ BYTE   N28  En2
+ BYTE   N28  Bn2
+ BYTE   N28  Dn3
+ BYTE   W32
+ BYTE   N24  Fn1
+ BYTE   N28  Fn2
+ BYTE   N28  Cn3
+ BYTE   N28  En3
+ BYTE   W30
+ BYTE   W01
+ BYTE   N30  Fn1
+ BYTE   N30  Fn2
+ BYTE   N30  Cn3
+ BYTE   N30  En3
+ BYTE   W01
+// 003   ----------------------------------------
+ BYTE   W32
+ BYTE   N28  Fn1
+ BYTE   N28  Fn2
+ BYTE   N28  En3
+ BYTE   W01
+ BYTE   Cn3
+ BYTE   W30
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   N24  Fn2
+ BYTE   N28  Cn3
+ BYTE   N24  En3
+ BYTE   W30
+ BYTE   N28  En1
+ BYTE   W01
+ BYTE   En2
+ BYTE   N28  Bn2
+ BYTE   N28  Dn3
+ BYTE   W01
+// 004   ----------------------------------------
+ BYTE   W28
+ BYTE   W01
+ BYTE   N30  En1
+ BYTE   N30  En2
+ BYTE   N30  Bn2
+ BYTE   N30  Dn3
+ BYTE   W32
+ BYTE   W01
+ BYTE   N28  En1
+ BYTE   N28  Bn2
+ BYTE   N28  Dn3
+ BYTE   W01
+ BYTE   N24  En2
+ BYTE   W30
+ BYTE   N22  En1
+ BYTE   N24  Bn2
+ BYTE   N24  Dn3
+ BYTE   W01
+ BYTE   N22  En2
+ BYTE   W02
+// 005   ----------------------------------------
+ BYTE   W30
+ BYTE   N30  Gs1
+ BYTE   N30  Gs2
+ BYTE   N30  Ds3
+ BYTE   N30  Gn3
+ BYTE   W32
+ BYTE   N30
+ BYTE   W01
+ BYTE   N28  Gs1
+ BYTE   N28  Gs2
+ BYTE   N28  Ds3
+ BYTE   W30
+ BYTE   W01
+ BYTE   N30  Gs1
+ BYTE   N30  Gs2
+ BYTE   N30  Ds3
+ BYTE   N30  Gn3
+ BYTE   W02
+// 006   ----------------------------------------
+ BYTE   W30
+ BYTE   Gs1
+ BYTE   N32  Gs2
+ BYTE   N30  Ds3
+ BYTE   N32  Gn3
+ BYTE   W32
+ BYTE   W02
+ BYTE   N28  Gn1
+ BYTE   N28  Gn2
+ BYTE   N28  Dn3
+ BYTE   W01
+ BYTE   N24  Fn3
+ BYTE   W28
+ BYTE   W01
+ BYTE   N28  Gn1
+ BYTE   N30  Gn2
+ BYTE   N30  Dn3
+ BYTE   N30  Fn3
+ BYTE   W02
+// 007   ----------------------------------------
+ BYTE   W30
+ BYTE   W01
+ BYTE   N28  Gn1
+ BYTE   N28  Gn2
+ BYTE   N28  Dn3
+ BYTE   N28  Fn3
+ BYTE   W32
+ BYTE   Gn1
+ BYTE   N28  Gn2
+ BYTE   N28  Dn3
+ BYTE   N28  Fn3
+ BYTE   W32
+ BYTE   Gn3
+ BYTE   W01
+// 008   ----------------------------------------
+ BYTE   Gs1
+ BYTE   N28  Gs2
+ BYTE   N28  Ds3
+ BYTE   W28
+ BYTE   W01
+ BYTE   N30  Gn3
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   N30  Gs2
+ BYTE   N30  Ds3
+ BYTE   W32
+ BYTE   W01
+ BYTE   N28  Gs1
+ BYTE   N28  Gs2
+ BYTE   N28  Ds3
+ BYTE   N28  Gn3
+ BYTE   W30
+ BYTE   Gs1
+ BYTE   N30  Gs2
+ BYTE   N30  Ds3
+ BYTE   N30  Gn3
+ BYTE   W03
+// 009   ----------------------------------------
+ BYTE   W30
+ BYTE   W01
+ BYTE   N28  Gn1
+ BYTE   N28  Gn2
+ BYTE   N28  Dn3
+ BYTE   N28  Fn3
+ BYTE   W32
+ BYTE   W01
+ BYTE   Gn1
+ BYTE   N24  Gn2
+ BYTE   N24  Dn3
+ BYTE   N24  Fn3
+ BYTE   W30
+ BYTE   N28  Gn1
+ BYTE   N28  Gn2
+ BYTE   N28  Dn3
+ BYTE   N28  Fn3
+ BYTE   W02
+// 010   ----------------------------------------
+ BYTE   W30
+ BYTE   Gn1
+ BYTE   N28  Gn2
+ BYTE   N28  Dn3
+ BYTE   N28  Fn3
+ BYTE   W30
+ BYTE   W01
+ BYTE   N01  Cn3
+ BYTE   N01  En3
+ BYTE   W24
+ BYTE   W01
+ BYTE   GoTo
+  POIN2 Label_0_0120FF6A
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_key+0
+Label_1_012100B2:
+ BYTE   VOICE   46
+ BYTE   PAN   c_v-20
+ BYTE   VOL   32*SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_mvl/mxv
+ BYTE   N04  Fn2  v127
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   Fn2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   Fn2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+// 001   ----------------------------------------
+ BYTE   Fn2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   En2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   En2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+// 002   ----------------------------------------
+ BYTE   En2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   En2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   Fn2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+// 003   ----------------------------------------
+ BYTE   Fn2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   Fn2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   Fn2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+// 004   ----------------------------------------
+ BYTE   En2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   En2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   En2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+// 005   ----------------------------------------
+ BYTE   En2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   Gs2
+ BYTE   W08
+ BYTE   Ds3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+ BYTE   Gs2
+ BYTE   W08
+ BYTE   Ds3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+// 006   ----------------------------------------
+ BYTE   Gs2
+ BYTE   W08
+ BYTE   Ds3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+ BYTE   Gs2
+ BYTE   W08
+ BYTE   Ds3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+// 007   ----------------------------------------
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+// 008   ----------------------------------------
+ BYTE   Gs2
+ BYTE   W08
+ BYTE   Ds3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+ BYTE   Gs2
+ BYTE   W08
+ BYTE   Ds3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+ BYTE   Gs2
+ BYTE   W08
+ BYTE   Ds3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+// 009   ----------------------------------------
+ BYTE   Gs2
+ BYTE   W08
+ BYTE   Ds3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+// 010   ----------------------------------------
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Dn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W30
+ BYTE   GoTo
+  POIN2 Label_1_012100B2
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_key+0
+Label_2_012101C2:
+ BYTE   VOICE   48
+ BYTE   PAN   c_v-32
+ BYTE   VOL   11*SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_mvl/mxv
+ BYTE   TIE  Fn4  v100
+ BYTE   TIE  Cn5
+ BYTE   TIE  En5
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W24
+ BYTE   W03
+ BYTE   EOT
+ BYTE   Cn5
+ BYTE   W01
+ BYTE   En5
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   TIE  En4
+ BYTE   TIE  Bn4
+ BYTE   TIE  Dn5
+ BYTE   W66
+// 002   ----------------------------------------
+ BYTE   W60
+ BYTE   W01
+ BYTE   EOT
+ BYTE   W01
+ BYTE   EOT
+ BYTE   Bn4
+ BYTE   W01
+ BYTE   En4
+ BYTE   TIE  Fn4
+ BYTE   TIE  En5
+ BYTE   W01
+ BYTE   Cn5
+ BYTE   W32
+// 003   ----------------------------------------
+ BYTE   W92
+ BYTE   W03
+ BYTE   EOT
+ BYTE   Fn4  v088
+ BYTE   W01
+// 004   ----------------------------------------
+ BYTE   Cn5
+ BYTE   W01
+ BYTE   TIE  Dn5
+ BYTE   W01
+ BYTE   En4
+ BYTE   TIE  Bn4
+ BYTE   W92
+ BYTE   W02
+// 005   ----------------------------------------
+ BYTE   W24
+ BYTE   W01
+ BYTE   EOT
+ BYTE   Dn5
+ BYTE   W02
+ BYTE   En4  v083
+ BYTE   W03
+ BYTE   TIE  Gs4
+ BYTE   TIE  Ds5
+ BYTE   TIE  Gn5
+ BYTE   W66
+// 006   ----------------------------------------
+ BYTE   W56
+ BYTE   W03
+ BYTE   EOT
+ BYTE   Ds5  v091
+ BYTE   W01
+ BYTE   Gs4
+ BYTE   W01
+ BYTE   TIE  Gn4
+ BYTE   W01
+ BYTE   Dn5
+ BYTE   TIE  Fn5
+ BYTE   W32
+ BYTE   W02
+// 007   ----------------------------------------
+ BYTE   W90
+ BYTE   EOT
+ BYTE   W01
+ BYTE   EOT
+ BYTE   Gn4
+ BYTE   W01
+ BYTE   Dn5
+ BYTE   W02
+ BYTE   TIE  Gs4
+ BYTE   TIE  Ds5
+ BYTE   TIE  Gn5
+ BYTE   W02
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W28
+ BYTE   EOT
+ BYTE   Ds5
+ BYTE   W02
+ BYTE   Gs4  v091
+ BYTE   W03
+ BYTE   TIE  Gn4
+ BYTE   TIE  Dn5
+ BYTE   TIE  Fn5
+ BYTE   W60
+ BYTE   W03
+// 010   ----------------------------------------
+ BYTE   W60
+ BYTE   EOT
+ BYTE   Gn4  v086
+ BYTE   Fn5
+ BYTE   W24
+ BYTE   W02
+ BYTE   GoTo
+  POIN2 Label_2_012101C2
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_key+0
+Label_3_0121024E:
+ BYTE   VOICE   13
+ BYTE   PAN   c_v-16
+ BYTE   VOL   18*SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_mvl/mxv
+ BYTE   W02
+ BYTE   N90  En4  v100
+ BYTE   W92
+ BYTE   W02
+// 001   ----------------------------------------
+ BYTE   W01
+ BYTE   N16  Dn4
+ BYTE   W16
+ BYTE   N06  Cn4
+ BYTE   W07
+ BYTE   TIE  Dn4
+ BYTE   W72
+// 002   ----------------------------------------
+ BYTE   W30
+ BYTE   EOT
+ BYTE   W02
+ BYTE   N15  Cn4
+ BYTE   W16
+ BYTE   N07  Dn4
+ BYTE   W08
+ BYTE   TIE  En4
+ BYTE   W40
+// 003   ----------------------------------------
+ BYTE   W60
+ BYTE   W01
+ BYTE   EOT
+ BYTE   W03
+ BYTE   N15  Dn4
+ BYTE   W16
+ BYTE   N06  Cn4
+ BYTE   W08
+ BYTE   N96  Dn4
+ BYTE   W08
+// 004   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   N16  Ds4
+ BYTE   W02
+// 005   ----------------------------------------
+ BYTE   W15
+ BYTE   N09  Fn4
+ BYTE   W09
+ BYTE   TIE  Gn4
+ BYTE   W72
+// 006   ----------------------------------------
+ BYTE   W28
+ BYTE   EOT
+ BYTE   W02
+ BYTE   N16  Fn4
+ BYTE   W16
+ BYTE   N07  Ds4
+ BYTE   W09
+ BYTE   TIE  Fn4
+ BYTE   W40
+ BYTE   W01
+// 007   ----------------------------------------
+ BYTE   W60
+ BYTE   W02
+ BYTE   EOT
+ BYTE   W02
+ BYTE   N13  Ds4
+ BYTE   W14
+ BYTE   N07  Fn4
+ BYTE   W09
+ BYTE   TIE  Gn4
+ BYTE   W09
+// 008   ----------------------------------------
+ BYTE   W88
+ BYTE   W01
+ BYTE   EOT
+ BYTE   W04
+ BYTE   N14
+ BYTE   W03
+// 009   ----------------------------------------
+ BYTE   W15
+ BYTE   N08  As4
+ BYTE   W09
+ BYTE   TIE  Fn4
+ BYTE   W72
+// 010   ----------------------------------------
+ BYTE   W56
+ BYTE   EOT
+ BYTE   W30
+ BYTE   GoTo
+  POIN2 Label_3_0121024E
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_key+0
+Label_4_012102BE:
+ BYTE   VOICE   0
+ BYTE   PAN   c_v+20
+ BYTE   VOL   44*SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_mvl/mxv
+ BYTE   W02
+ BYTE   N90  En4  v100
+ BYTE   W92
+ BYTE   W02
+// 001   ----------------------------------------
+ BYTE   W01
+ BYTE   N16  Dn4
+ BYTE   W16
+ BYTE   N06  Cn4
+ BYTE   W07
+ BYTE   TIE  Dn4
+ BYTE   W72
+// 002   ----------------------------------------
+ BYTE   W30
+ BYTE   EOT
+ BYTE   W02
+ BYTE   N15  Cn4
+ BYTE   W16
+ BYTE   N07  Dn4
+ BYTE   W08
+ BYTE   TIE  En4
+ BYTE   W40
+// 003   ----------------------------------------
+ BYTE   W60
+ BYTE   W01
+ BYTE   EOT
+ BYTE   W03
+ BYTE   N15  Dn4
+ BYTE   W16
+ BYTE   N06  Cn4
+ BYTE   W08
+ BYTE   N96  Dn4
+ BYTE   W08
+// 004   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   N16  Ds4
+ BYTE   W02
+// 005   ----------------------------------------
+ BYTE   W15
+ BYTE   N09  Fn4
+ BYTE   W09
+ BYTE   TIE  Gn4
+ BYTE   W72
+// 006   ----------------------------------------
+ BYTE   W28
+ BYTE   EOT
+ BYTE   W02
+ BYTE   N16  Fn4
+ BYTE   W16
+ BYTE   N07  Ds4
+ BYTE   W09
+ BYTE   TIE  Fn4
+ BYTE   W40
+ BYTE   W01
+// 007   ----------------------------------------
+ BYTE   W60
+ BYTE   W02
+ BYTE   EOT
+ BYTE   W02
+ BYTE   N13  Ds4
+ BYTE   W14
+ BYTE   N07  Fn4
+ BYTE   W09
+ BYTE   TIE  Gn4
+ BYTE   W09
+// 008   ----------------------------------------
+ BYTE   W88
+ BYTE   W01
+ BYTE   EOT
+ BYTE   W04
+ BYTE   N14
+ BYTE   W03
+// 009   ----------------------------------------
+ BYTE   W15
+ BYTE   N08  As4
+ BYTE   W09
+ BYTE   TIE  Fn4
+ BYTE   W72
+// 010   ----------------------------------------
+ BYTE   W56
+ BYTE   EOT
+ BYTE   W30
+ BYTE   GoTo
+  POIN2 Label_4_012102BE
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_key+0
+Label_5_0121032E:
+ BYTE   VOICE   48
+ BYTE   PAN   c_v+9
+ BYTE   VOL   32*SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   TIE  Fn2  v100
+ BYTE   TIE  Cn3
+ BYTE   TIE  En3
+ BYTE   W92
+ BYTE   W03
+// 001   ----------------------------------------
+ BYTE   W28
+ BYTE   EOT
+ BYTE   Cn3
+ BYTE   W01
+ BYTE   Fn2  v064
+ BYTE   W02
+ BYTE   TIE  Bn2
+ BYTE   TIE  Dn3
+ BYTE   W01
+ BYTE   En2
+ BYTE   W64
+// 002   ----------------------------------------
+ BYTE   W60
+ BYTE   EOT
+ BYTE   Dn3
+ BYTE   W01
+ BYTE   Bn2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   TIE  Fn2
+ BYTE   TIE  Cn3
+ BYTE   TIE  En3
+ BYTE   W32
+ BYTE   W01
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W01
+ BYTE   EOT
+ BYTE   Cn3  v064
+ BYTE   W02
+ BYTE   Fn2
+ BYTE   TIE  En2
+ BYTE   TIE  Bn2
+ BYTE   W01
+ BYTE   Dn3
+ BYTE   W92
+// 005   ----------------------------------------
+ BYTE   W24
+ BYTE   W01
+ BYTE   EOT
+ BYTE   Bn2  v062
+ BYTE   W02
+ BYTE   En2
+ BYTE   W04
+ BYTE   TIE  Gs2
+ BYTE   TIE  Ds3
+ BYTE   TIE  Gn3
+ BYTE   W64
+ BYTE   W01
+// 006   ----------------------------------------
+ BYTE   W56
+ BYTE   W03
+ BYTE   EOT
+ BYTE   Gs2  v063
+ BYTE   Gn3
+ BYTE   W03
+ BYTE   TIE  Gn2
+ BYTE   TIE  Dn3
+ BYTE   TIE  Fn3
+ BYTE   W32
+ BYTE   W02
+// 007   ----------------------------------------
+ BYTE   W90
+ BYTE   EOT
+ BYTE   W02
+ BYTE   EOT
+ BYTE   Gn2  v062
+ BYTE   W02
+ BYTE   TIE  Gs2
+ BYTE   TIE  Ds3
+ BYTE   TIE  Gn3
+ BYTE   W02
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W28
+ BYTE   EOT
+ BYTE   Ds3  v067
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W02
+ BYTE   TIE  Gn2
+ BYTE   TIE  Dn3
+ BYTE   TIE  Fn3
+ BYTE   W64
+ BYTE   W01
+// 010   ----------------------------------------
+ BYTE   W60
+ BYTE   EOT
+ BYTE   Gn2  v062
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   W02
+ BYTE   GoTo
+  POIN2 Label_5_0121032E
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_007:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_key+0
+Label_6_012103B6:
+ BYTE   VOICE   127
+ BYTE   PAN   c_v+0
+ BYTE   VOL   45*SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   N24  Cn6  v100
+ BYTE   N24  En6
+ BYTE   W24
+ BYTE   W03
+ BYTE   N30  Cn6
+ BYTE   N30  En6
+ BYTE   W32
+ BYTE   N28
+ BYTE   W01
+ BYTE   Cn6
+ BYTE   W30
+ BYTE   W01
+ BYTE   N28
+ BYTE   N28  En6
+ BYTE   W04
+// 001   ----------------------------------------
+ BYTE   W24
+ BYTE   W03
+ BYTE   N30  Bn5
+ BYTE   N30  Dn6
+ BYTE   W32
+ BYTE   N32
+ BYTE   W01
+ BYTE   Bn5
+ BYTE   W32
+ BYTE   W03
+ BYTE   N28
+ BYTE   N30  Dn6
+ BYTE   W01
+// 002   ----------------------------------------
+ BYTE   W30
+ BYTE   W01
+ BYTE   N13  An5
+ BYTE   N13  Cn6
+ BYTE   W16
+ BYTE   N03  An5
+ BYTE   N13  Dn6
+ BYTE   W01
+ BYTE   N11  Bn5
+ BYTE   W14
+ BYTE   N30  Cn6
+ BYTE   N30  En6
+ BYTE   W32
+ BYTE   W02
+// 003   ----------------------------------------
+ BYTE   N24  Cn6
+ BYTE   N28  En6
+ BYTE   W30
+ BYTE   W01
+ BYTE   Cn6
+ BYTE   W01
+ BYTE   N24  En6
+ BYTE   W30
+ BYTE   N30  Cn6
+ BYTE   W01
+ BYTE   N28  En6
+ BYTE   W30
+ BYTE   W01
+ BYTE   Bn5
+ BYTE   N28  Dn6
+ BYTE   W02
+// 004   ----------------------------------------
+ BYTE   W28
+ BYTE   W01
+ BYTE   Bn5
+ BYTE   W02
+ BYTE   N24  Dn6
+ BYTE   W30
+ BYTE   W01
+ BYTE   Bn5
+ BYTE   N24  Dn6
+ BYTE   W30
+ BYTE   W01
+ BYTE   N13  Cn6
+ BYTE   N14  Ds6
+ BYTE   W03
+// 005   ----------------------------------------
+ BYTE   W13
+ BYTE   N11  Dn6
+ BYTE   N13  Fn6
+ BYTE   W13
+ BYTE   N32  Ds6
+ BYTE   W02
+ BYTE   Gn6
+ BYTE   W32
+ BYTE   W03
+ BYTE   N30  Ds6
+ BYTE   N30  Gn6
+ BYTE   W32
+ BYTE   W01
+// 006   ----------------------------------------
+ BYTE   N28  Ds6
+ BYTE   N28  Gn6
+ BYTE   W32
+ BYTE   N24  Ds6
+ BYTE   N24  Gn6
+ BYTE   W28
+ BYTE   N28  Ds6
+ BYTE   N24  Gn6
+ BYTE   W32
+ BYTE   W03
+ BYTE   N30  Dn6
+ BYTE   N30  Fn6
+ BYTE   W01
+// 007   ----------------------------------------
+ BYTE   W32
+ BYTE   W01
+ BYTE   N28  Dn6
+ BYTE   N28  Fn6
+ BYTE   W30
+ BYTE   N13  Cn6
+ BYTE   N13  Ds6
+ BYTE   W13
+ BYTE   N11  Dn6
+ BYTE   N12  Fn6
+ BYTE   W13
+ BYTE   N36  Ds6
+ BYTE   W02
+ BYTE   Gn6
+ BYTE   W05
+// 008   ----------------------------------------
+ BYTE   W32
+ BYTE   W01
+ BYTE   N24  Ds6
+ BYTE   N24  Gn6
+ BYTE   W30
+ BYTE   N30  Ds6
+ BYTE   N30  Gn6
+ BYTE   W32
+ BYTE   N24  Ds6
+ BYTE   N24  Gn6
+ BYTE   W01
+// 009   ----------------------------------------
+ BYTE   W30
+ BYTE   N30  Dn6
+ BYTE   N30  Fn6
+ BYTE   W32
+ BYTE   W02
+ BYTE   Dn6
+ BYTE   N30  Fn6
+ BYTE   W32
+// 010   ----------------------------------------
+ BYTE   W01
+ BYTE   N24  Dn6
+ BYTE   N24  Fn6
+ BYTE   W28
+ BYTE   W01
+ BYTE   N30  Dn6
+ BYTE   N30  Fn6
+ BYTE   W56
+ BYTE   GoTo
+  POIN2 Label_6_012103B6
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+SuperSmashBrosMeleeAllStarRestAreaMrGreen3339:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_pri	// Priority
+	BYTE	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_rev	// Reverb.
+    
+	POIN2	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_grp
+    
+	POIN2	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_001
+	POIN2	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_002
+	POIN2	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_003
+	POIN2	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_004
+	POIN2	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_005
+	POIN2	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_006
+	POIN2	SuperSmashBrosMeleeAllStarRestAreaMrGreen3339_007
+
+	

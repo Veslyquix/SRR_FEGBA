@@ -7,10 +7,10 @@ voicegroup000:
 #include "FE8_Drumfix/Installer.event" 
 #endif 
 #ifdef _FE7_
-    #include "fe7nimap.bin" 
+    #incbin "fe7nimap.bin" 
 #endif 
 #ifdef _FE6_
-    #include "fe6nimap.bin" 
+    #incbin "fe6nimap.bin" 
 #endif 
 
 

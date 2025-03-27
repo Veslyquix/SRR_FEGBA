@@ -1,0 +1,819 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	SuperMarioLandMudaKingdomPandan_grp  voicegroup000
+	#define	SuperMarioLandMudaKingdomPandan_pri  0
+	#define	SuperMarioLandMudaKingdomPandan_rev  0
+	#define	SuperMarioLandMudaKingdomPandan_mvl  127
+	#define	SuperMarioLandMudaKingdomPandan_key  0
+	#define	SuperMarioLandMudaKingdomPandan_tbs  1
+	#define	SuperMarioLandMudaKingdomPandan_exg  0
+	#define	SuperMarioLandMudaKingdomPandan_cmp  1
+
+	// .rodata
+	//	SuperMarioLandMudaKingdomPandan
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+SuperMarioLandMudaKingdomPandan_001:
+// 000   ----------------------------------------
+ BYTE   VOL   40*SuperMarioLandMudaKingdomPandan_mvl/mxv
+ BYTE   KEYSH   SuperMarioLandMudaKingdomPandan_key+0
+ BYTE   TEMPO   160*SuperMarioLandMudaKingdomPandan_tbs/2
+ BYTE   VOICE   73
+ BYTE   PAN   c_v-1
+ BYTE   W90
+Label_0_01899F07:
+ BYTE   W06
+// 001   ----------------------------------------
+Label_0_01899F08:
+ BYTE   N48  En3  v116
+ BYTE   N48  Gs3
+ BYTE   W48
+ BYTE   Dn3
+ BYTE   N48  Fs3
+ BYTE   W48
+ BYTE   PEND 
+// 002   ----------------------------------------
+ BYTE   Cs3
+ BYTE   N48  En3
+ BYTE   W48
+ BYTE   N06  Bn2
+ BYTE   N06  Dn3
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   N06  Dn3
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   N06  Dn3
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   N06  Dn3
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   N06  Dn3
+ BYTE   W09
+ BYTE   Bn2
+ BYTE   N06  Dn3
+ BYTE   W07
+// 003   ----------------------------------------
+Label_0_01899F30:
+ BYTE   W48
+ BYTE   N14  An3  v116
+ BYTE   N14  Cs4
+ BYTE   W16
+ BYTE   N11  An3
+ BYTE   N11  Dn4
+ BYTE   W23
+ BYTE   N24  Cs4
+ BYTE   N24  En4
+ BYTE   W09
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_0_01899F42:
+ BYTE   W36
+ BYTE   W02
+ BYTE   N09  En3  v116
+ BYTE   N09  An3
+ BYTE   W09
+ BYTE   N14  Cs4
+ BYTE   N14  En4
+ BYTE   W15
+ BYTE   N08  Bn3
+ BYTE   N08  Dn4
+ BYTE   W09
+ BYTE   N24  An3
+ BYTE   N24  Cs4
+ BYTE   W24
+ BYTE   W01
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_0_01899F5B:
+ BYTE   N22  Fs3  v116
+ BYTE   N22  Bn3
+ BYTE   W24
+ BYTE   N14  An3
+ BYTE   N14  Cs4
+ BYTE   W15
+ BYTE   N40  Fs3
+ BYTE   N40  An3
+ BYTE   W56
+ BYTE   W01
+ BYTE   PEND 
+// 006   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_0_01899F30
+ BYTE   PATT
+  POIN2 Label_0_01899F42
+ BYTE   PATT
+  POIN2 Label_0_01899F5B
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+Label_0_01899F7E:
+ BYTE   W44
+ BYTE   W03
+ BYTE   N11  Bn3  v116
+ BYTE   N11  Dn4
+ BYTE   W15
+ BYTE   N06  Bn3
+ BYTE   N06  Dn4
+ BYTE   W22
+ BYTE   N24  Bn3
+ BYTE   N24  Dn4
+ BYTE   W12
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_0_01899F91:
+ BYTE   W36
+ BYTE   N08  An3  v116
+ BYTE   N08  Cs4
+ BYTE   W09
+ BYTE   N20  Gs3
+ BYTE   N20  Bn3
+ BYTE   W24
+ BYTE   W03
+ BYTE   N14  Fs3
+ BYTE   N14  An3
+ BYTE   W24
+ BYTE   PEND 
+// 010   ----------------------------------------
+Label_0_01899FA4:
+ BYTE   N09  En3  v116
+ BYTE   N09  Gs3
+ BYTE   W14
+ BYTE   Fs3
+ BYTE   N09  An3
+ BYTE   W24
+ BYTE   N32  Gs3
+ BYTE   N32  Bn3
+ BYTE   W56
+ BYTE   W02
+ BYTE   PEND 
+// 011   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_0_01899F7E
+ BYTE   PATT
+  POIN2 Label_0_01899F91
+ BYTE   PATT
+  POIN2 Label_0_01899F08
+// 012   ----------------------------------------
+Label_0_01899FC5:
+ BYTE   N48  Cs3  v116
+ BYTE   N48  En3
+ BYTE   W48
+ BYTE   Bn2
+ BYTE   N48  Dn3
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_01899F30
+ BYTE   PATT
+  POIN2 Label_0_01899F42
+ BYTE   PATT
+  POIN2 Label_0_01899F5B
+// 013   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_0_01899F30
+ BYTE   PATT
+  POIN2 Label_0_01899F42
+ BYTE   PATT
+  POIN2 Label_0_01899F5B
+// 014   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_0_01899F7E
+ BYTE   PATT
+  POIN2 Label_0_01899F91
+ BYTE   PATT
+  POIN2 Label_0_01899FA4
+// 015   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_0_01899F7E
+ BYTE   PATT
+  POIN2 Label_0_01899F91
+ BYTE   PATT
+  POIN2 Label_0_01899F08
+ BYTE   PATT
+  POIN2 Label_0_01899FC5
+ BYTE   PATT
+  POIN2 Label_0_01899F30
+ BYTE   PATT
+  POIN2 Label_0_01899F42
+ BYTE   PATT
+  POIN2 Label_0_01899F5B
+// 016   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_0_01899F30
+ BYTE   PATT
+  POIN2 Label_0_01899F42
+ BYTE   PATT
+  POIN2 Label_0_01899F5B
+// 017   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_0_01899F7E
+ BYTE   PATT
+  POIN2 Label_0_01899F91
+ BYTE   PATT
+  POIN2 Label_0_01899FA4
+// 018   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_0_01899F7E
+ BYTE   PATT
+  POIN2 Label_0_01899F91
+ BYTE   PATT
+  POIN2 Label_0_01899F08
+ BYTE   PATT
+  POIN2 Label_0_01899FC5
+// 019   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_0_01899F07
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+SuperMarioLandMudaKingdomPandan_002:
+// 000   ----------------------------------------
+ BYTE   VOL   30*SuperMarioLandMudaKingdomPandan_mvl/mxv
+ BYTE   KEYSH   SuperMarioLandMudaKingdomPandan_key+0
+ BYTE   VOICE   4
+ BYTE   PAN   c_v-1
+ BYTE   W90
+Label_1_0189A069:
+ BYTE   W06
+// 001   ----------------------------------------
+ BYTE   N48  En2  v127
+ BYTE   W48
+ BYTE   Dn2
+ BYTE   W48
+// 002   ----------------------------------------
+ BYTE   Cs2
+ BYTE   W48
+ BYTE   N06  Bn1
+ BYTE   W08
+ BYTE   N06
+ BYTE   W08
+ BYTE   N06
+ BYTE   W08
+ BYTE   N06
+ BYTE   W08
+ BYTE   N06
+ BYTE   W09
+ BYTE   N06
+ BYTE   W07
+// 003   ----------------------------------------
+Label_1_0189A07F:
+ BYTE   N36  An1  v127
+ BYTE   W36
+ BYTE   W01
+ BYTE   N11  En1
+ BYTE   W11
+ BYTE   N36  An1
+ BYTE   W36
+ BYTE   W02
+ BYTE   N10  En1
+ BYTE   W10
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+// 004   ----------------------------------------
+Label_1_0189A094:
+ BYTE   N36  Dn1  v127
+ BYTE   W36
+ BYTE   W01
+ BYTE   N11  An1
+ BYTE   W11
+ BYTE   N36  Dn1
+ BYTE   W36
+ BYTE   W02
+ BYTE   N10  An1
+ BYTE   W10
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_1_0189A0A4:
+ BYTE   N36  Dn1  v127
+ BYTE   W36
+ BYTE   W01
+ BYTE   N11  An1
+ BYTE   W10
+ BYTE   N36  Dn1
+ BYTE   W36
+ BYTE   W03
+ BYTE   N10  An1
+ BYTE   W10
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+ BYTE   PATT
+  POIN2 Label_1_0189A094
+ BYTE   PATT
+  POIN2 Label_1_0189A094
+// 006   ----------------------------------------
+Label_1_0189A0C8:
+ BYTE   N36  Bn1  v127
+ BYTE   W36
+ BYTE   W01
+ BYTE   N11  Fs1
+ BYTE   W11
+ BYTE   N36  Bn1
+ BYTE   W36
+ BYTE   W02
+ BYTE   N10  Fs1
+ BYTE   W10
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+// 007   ----------------------------------------
+Label_1_0189A0DD:
+ BYTE   N36  En1  v127
+ BYTE   W36
+ BYTE   W01
+ BYTE   N11  Bn1
+ BYTE   W11
+ BYTE   N36  En1
+ BYTE   W36
+ BYTE   W02
+ BYTE   N10  Bn1
+ BYTE   W10
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_0189A0DD
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+// 008   ----------------------------------------
+Label_1_0189A0FC:
+ BYTE   N24  En2  v127
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_1_0189A107:
+ BYTE   N24  Cs2  v127
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   Bn1
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+ BYTE   PATT
+  POIN2 Label_1_0189A094
+ BYTE   PATT
+  POIN2 Label_1_0189A0A4
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+ BYTE   PATT
+  POIN2 Label_1_0189A094
+ BYTE   PATT
+  POIN2 Label_1_0189A094
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+ BYTE   PATT
+  POIN2 Label_1_0189A0DD
+ BYTE   PATT
+  POIN2 Label_1_0189A0DD
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+ BYTE   PATT
+  POIN2 Label_1_0189A0FC
+ BYTE   PATT
+  POIN2 Label_1_0189A107
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+ BYTE   PATT
+  POIN2 Label_1_0189A094
+ BYTE   PATT
+  POIN2 Label_1_0189A0A4
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+ BYTE   PATT
+  POIN2 Label_1_0189A07F
+ BYTE   PATT
+  POIN2 Label_1_0189A094
+ BYTE   PATT
+  POIN2 Label_1_0189A094
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+ BYTE   PATT
+  POIN2 Label_1_0189A0DD
+ BYTE   PATT
+  POIN2 Label_1_0189A0DD
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+ BYTE   PATT
+  POIN2 Label_1_0189A0C8
+ BYTE   PATT
+  POIN2 Label_1_0189A0FC
+ BYTE   PATT
+  POIN2 Label_1_0189A107
+// 010   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_1_0189A069
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+SuperMarioLandMudaKingdomPandan_003:
+// 000   ----------------------------------------
+ BYTE   VOL   30*SuperMarioLandMudaKingdomPandan_mvl/mxv
+ BYTE   KEYSH   SuperMarioLandMudaKingdomPandan_key+0
+ BYTE   VOICE   36
+ BYTE   PAN   c_v+0
+ BYTE   W90
+Label_2_0189A1C1:
+ BYTE   W06
+// 001   ----------------------------------------
+ BYTE   N48  En3  v072
+ BYTE   W48
+ BYTE   Dn3
+ BYTE   W48
+// 002   ----------------------------------------
+ BYTE   Cs3
+ BYTE   W48
+ BYTE   N06  Bn2
+ BYTE   W08
+ BYTE   N06
+ BYTE   W08
+ BYTE   N06
+ BYTE   W08
+ BYTE   N06
+ BYTE   W08
+ BYTE   N06
+ BYTE   W09
+ BYTE   N06
+ BYTE   W07
+// 003   ----------------------------------------
+Label_2_0189A1D7:
+ BYTE   N36  An2  v072
+ BYTE   W36
+ BYTE   W01
+ BYTE   N11  En2
+ BYTE   W11
+ BYTE   N36  An2
+ BYTE   W36
+ BYTE   W02
+ BYTE   N10  En2
+ BYTE   W10
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+// 004   ----------------------------------------
+Label_2_0189A1EC:
+ BYTE   N36  Dn2  v072
+ BYTE   W36
+ BYTE   W01
+ BYTE   N11  An2
+ BYTE   W11
+ BYTE   N36  Dn2
+ BYTE   W36
+ BYTE   W02
+ BYTE   N10  An2
+ BYTE   W10
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_2_0189A1FC:
+ BYTE   N36  Dn2  v072
+ BYTE   W36
+ BYTE   W01
+ BYTE   N11  An2
+ BYTE   W10
+ BYTE   N36  Dn2
+ BYTE   W36
+ BYTE   W03
+ BYTE   N10  An2
+ BYTE   W10
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+ BYTE   PATT
+  POIN2 Label_2_0189A1EC
+ BYTE   PATT
+  POIN2 Label_2_0189A1EC
+// 006   ----------------------------------------
+Label_2_0189A220:
+ BYTE   N36  Bn2  v072
+ BYTE   W36
+ BYTE   W01
+ BYTE   N11  Fs2
+ BYTE   W11
+ BYTE   N36  Bn2
+ BYTE   W36
+ BYTE   W02
+ BYTE   N10  Fs2
+ BYTE   W10
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+// 007   ----------------------------------------
+Label_2_0189A235:
+ BYTE   N36  En2  v072
+ BYTE   W36
+ BYTE   W01
+ BYTE   N11  Bn2
+ BYTE   W11
+ BYTE   N36  En2
+ BYTE   W36
+ BYTE   W02
+ BYTE   N10  Bn2
+ BYTE   W10
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_0189A235
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+// 008   ----------------------------------------
+Label_2_0189A254:
+ BYTE   N24  En3  v072
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   Dn3
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_2_0189A25F:
+ BYTE   N24  Cs3  v072
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   Bn2
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+ BYTE   PATT
+  POIN2 Label_2_0189A1EC
+ BYTE   PATT
+  POIN2 Label_2_0189A1FC
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+ BYTE   PATT
+  POIN2 Label_2_0189A1EC
+ BYTE   PATT
+  POIN2 Label_2_0189A1EC
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+ BYTE   PATT
+  POIN2 Label_2_0189A235
+ BYTE   PATT
+  POIN2 Label_2_0189A235
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+ BYTE   PATT
+  POIN2 Label_2_0189A254
+ BYTE   PATT
+  POIN2 Label_2_0189A25F
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+ BYTE   PATT
+  POIN2 Label_2_0189A1EC
+ BYTE   PATT
+  POIN2 Label_2_0189A1FC
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+ BYTE   PATT
+  POIN2 Label_2_0189A1D7
+ BYTE   PATT
+  POIN2 Label_2_0189A1EC
+ BYTE   PATT
+  POIN2 Label_2_0189A1EC
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+ BYTE   PATT
+  POIN2 Label_2_0189A235
+ BYTE   PATT
+  POIN2 Label_2_0189A235
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+ BYTE   PATT
+  POIN2 Label_2_0189A220
+ BYTE   PATT
+  POIN2 Label_2_0189A254
+ BYTE   PATT
+  POIN2 Label_2_0189A25F
+// 010   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_2_0189A1C1
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+SuperMarioLandMudaKingdomPandan_004:
+// 000   ----------------------------------------
+ BYTE   VOL   40*SuperMarioLandMudaKingdomPandan_mvl/mxv
+ BYTE   KEYSH   SuperMarioLandMudaKingdomPandan_key+0
+ BYTE   VOICE   121
+ BYTE   W72
+ BYTE   W18
+Label_3_0189A318:
+ BYTE   W06
+// 001   ----------------------------------------
+ BYTE   N24  Fs1  v116
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+// 002   ----------------------------------------
+ BYTE   Dn1
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N06
+ BYTE   W08
+ BYTE   N06
+ BYTE   W08
+ BYTE   N06
+ BYTE   W08
+ BYTE   N06
+ BYTE   W08
+ BYTE   N06
+ BYTE   W09
+ BYTE   N06
+ BYTE   W07
+// 003   ----------------------------------------
+Label_3_0189A333:
+ BYTE   N12  Fs1  v116
+ BYTE   W24
+ BYTE   Dn1
+ BYTE   W17
+ BYTE   N06  Fs1  v076
+ BYTE   W07
+ BYTE   N12  Fs1  v116
+ BYTE   W24
+ BYTE   Dn1
+ BYTE   W17
+ BYTE   N06  Fs1  v080
+ BYTE   W07
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+ BYTE   PATT
+  POIN2 Label_3_0189A333
+// 004   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_3_0189A318
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+SuperMarioLandMudaKingdomPandan:
+	BYTE	4	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	SuperMarioLandMudaKingdomPandan_pri	// Priority
+	BYTE	SuperMarioLandMudaKingdomPandan_rev	// Reverb.
+    
+	POIN2	SuperMarioLandMudaKingdomPandan_grp
+    
+	POIN2	SuperMarioLandMudaKingdomPandan_001
+	POIN2	SuperMarioLandMudaKingdomPandan_002
+	POIN2	SuperMarioLandMudaKingdomPandan_003
+	POIN2	SuperMarioLandMudaKingdomPandan_004
+
+	

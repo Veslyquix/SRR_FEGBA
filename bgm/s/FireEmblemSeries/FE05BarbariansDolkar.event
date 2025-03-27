@@ -1,0 +1,1217 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE05BarbariansDolkar_grp  voicegroup000
+	#define	FE05BarbariansDolkar_pri  0
+	#define	FE05BarbariansDolkar_rev  0
+	#define	FE05BarbariansDolkar_mvl  127
+	#define	FE05BarbariansDolkar_key  0
+	#define	FE05BarbariansDolkar_tbs  1
+	#define	FE05BarbariansDolkar_exg  0
+	#define	FE05BarbariansDolkar_cmp  1
+
+	// .rodata
+	//	FE05BarbariansDolkar
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+FE05BarbariansDolkar_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05BarbariansDolkar_key+0
+Label_0_0118F74E:
+ BYTE   TEMPO   114*FE05BarbariansDolkar_tbs/2
+ BYTE   VOICE   58
+ BYTE   VOL   67*FE05BarbariansDolkar_mvl/mxv
+ BYTE   N12  Fs1  v100
+ BYTE   W24
+ BYTE   Fn1
+ BYTE   W24
+ BYTE   Fs1
+ BYTE   W24
+ BYTE   Gn1
+ BYTE   W24
+// 001   ----------------------------------------
+Label_0_0118F75E:
+ BYTE   N12  Fs1  v100
+ BYTE   W24
+ BYTE   Fn1
+ BYTE   W24
+ BYTE   Fs1
+ BYTE   W24
+ BYTE   Gn1
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0118F75E
+ BYTE   PATT
+  POIN2 Label_0_0118F75E
+// 002   ----------------------------------------
+Label_0_0118F773:
+ BYTE   N12  Fs1  v100
+ BYTE   W18
+ BYTE   N06  Bn1
+ BYTE   W06
+ BYTE   TIE  Cn2
+ BYTE   W72
+ BYTE   PEND 
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   EOT
+Label_0_0118F780:
+ BYTE   N12  En1  v100
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   Fs1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   En1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   Fs1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_0_0118F793:
+ BYTE   N12  En1  v100
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   Fs1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   En1
+ BYTE   W12
+ BYTE   N36  Gn1
+ BYTE   W36
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0118F780
+// 006   ----------------------------------------
+Label_0_0118F7A8:
+ BYTE   N12  En1  v100
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   Fs1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   En1
+ BYTE   W12
+ BYTE   N24  Bn0
+ BYTE   W36
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0118F780
+// 007   ----------------------------------------
+Label_0_0118F7BD:
+ BYTE   N12  En1  v100
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   Fs1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   En1
+ BYTE   W12
+ BYTE   N24  Gn1
+ BYTE   W36
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0118F780
+// 008   ----------------------------------------
+ BYTE   N12  En1  v100
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   Fs1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   En1
+ BYTE   W12
+ BYTE   N24  Bn0
+ BYTE   W30
+ BYTE   N06
+ BYTE   W06
+// 009   ----------------------------------------
+ BYTE   VOL   67*FE05BarbariansDolkar_mvl/mxv
+ BYTE   N12  Fs1
+ BYTE   W24
+ BYTE   Fn1
+ BYTE   W24
+ BYTE   Fs1
+ BYTE   W24
+ BYTE   Gn1
+ BYTE   W24
+ BYTE   PATT
+  POIN2 Label_0_0118F75E
+ BYTE   PATT
+  POIN2 Label_0_0118F75E
+ BYTE   PATT
+  POIN2 Label_0_0118F75E
+ BYTE   PATT
+  POIN2 Label_0_0118F773
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   EOT
+ BYTE   Cn2
+ BYTE   PATT
+  POIN2 Label_0_0118F780
+ BYTE   PATT
+  POIN2 Label_0_0118F793
+ BYTE   PATT
+  POIN2 Label_0_0118F780
+ BYTE   PATT
+  POIN2 Label_0_0118F7A8
+ BYTE   PATT
+  POIN2 Label_0_0118F780
+ BYTE   PATT
+  POIN2 Label_0_0118F7BD
+ BYTE   PATT
+  POIN2 Label_0_0118F780
+// 012   ----------------------------------------
+ BYTE   N12  En1  v100
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   Fs1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   En1
+ BYTE   W12
+ BYTE   N24  Bn0
+ BYTE   W30
+ BYTE   N06
+ BYTE   W05
+ BYTE   GoTo
+  POIN2 Label_0_0118F74E
+// 013   ----------------------------------------
+ BYTE   W01
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+FE05BarbariansDolkar_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05BarbariansDolkar_key+0
+Label_1_0118F842:
+ BYTE   VOICE   56
+ BYTE   VOL   79*FE05BarbariansDolkar_mvl/mxv
+ BYTE   N12  Bn1  v100
+ BYTE   W24
+ BYTE   As1
+ BYTE   W24
+ BYTE   Bn1
+ BYTE   W24
+ BYTE   Cn2
+ BYTE   W24
+// 001   ----------------------------------------
+Label_1_0118F850:
+ BYTE   N12  Bn1  v100
+ BYTE   W24
+ BYTE   As1
+ BYTE   W24
+ BYTE   Bn1
+ BYTE   W24
+ BYTE   Cn2
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_0118F850
+ BYTE   PATT
+  POIN2 Label_1_0118F850
+// 002   ----------------------------------------
+Label_1_0118F865:
+ BYTE   N12  As1  v100
+ BYTE   W18
+ BYTE   N06  Fs2
+ BYTE   W06
+ BYTE   TIE  Fn2
+ BYTE   W72
+ BYTE   PEND 
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   EOT
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W72
+ BYTE   N18
+ BYTE   W24
+// 006   ----------------------------------------
+Label_1_0118F876:
+ BYTE   N72  En2  v100
+ BYTE   W90
+ BYTE   N06
+ BYTE   W06
+ BYTE   PEND 
+// 007   ----------------------------------------
+ BYTE   N72
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_1_0118F876
+// 008   ----------------------------------------
+ BYTE   N72  En2  v100
+ BYTE   W96
+// 009   ----------------------------------------
+Label_1_0118F888:
+ BYTE   N12  En2  v100
+ BYTE   W18
+ BYTE   N06
+ BYTE   W06
+ BYTE   N48
+ BYTE   W48
+ BYTE   N12
+ BYTE   W18
+ BYTE   N06
+ BYTE   W06
+ BYTE   PEND 
+// 010   ----------------------------------------
+ BYTE   N72
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   VOL   79*FE05BarbariansDolkar_mvl/mxv
+ BYTE   N12  Bn1
+ BYTE   W24
+ BYTE   As1
+ BYTE   W24
+ BYTE   Bn1
+ BYTE   W24
+ BYTE   Cn2
+ BYTE   W24
+ BYTE   PATT
+  POIN2 Label_1_0118F850
+ BYTE   PATT
+  POIN2 Label_1_0118F850
+ BYTE   PATT
+  POIN2 Label_1_0118F850
+ BYTE   PATT
+  POIN2 Label_1_0118F865
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   EOT
+ BYTE   Fn2
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W72
+ BYTE   N18  Fn2  v100
+ BYTE   W24
+ BYTE   PATT
+  POIN2 Label_1_0118F876
+// 015   ----------------------------------------
+ BYTE   N72  En2  v100
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_1_0118F876
+// 016   ----------------------------------------
+ BYTE   N72  En2  v100
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_1_0118F888
+// 017   ----------------------------------------
+ BYTE   N72  En2  v100
+ BYTE   W92
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_1_0118F842
+// 018   ----------------------------------------
+ BYTE   W01
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+FE05BarbariansDolkar_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05BarbariansDolkar_key+0
+Label_2_0118F8E6:
+ BYTE   VOICE   56
+ BYTE   VOL   79*FE05BarbariansDolkar_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_2_0118F8EC:
+ BYTE   N36  Fs3  v100
+ BYTE   W48
+ BYTE   N60  Bn3
+ BYTE   W48
+ BYTE   PEND 
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+Label_2_0118F8F5:
+ BYTE   W48
+ BYTE   N12  Cn3  v100
+ BYTE   W18
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   N60  Fn3
+ BYTE   W24
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_2_0118F901:
+ BYTE   W48
+ BYTE   N48  Fs3  v100
+ BYTE   N48  Cn4
+ BYTE   W48
+ BYTE   PEND 
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W72
+ BYTE   N18  Cn3
+ BYTE   W24
+// 008   ----------------------------------------
+Label_2_0118F90E:
+ BYTE   N72  Bn2  v100
+ BYTE   W90
+ BYTE   N06
+ BYTE   W06
+ BYTE   PEND 
+// 009   ----------------------------------------
+ BYTE   N72  As2
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_2_0118F90E
+// 010   ----------------------------------------
+ BYTE   N72  Cn3  v100
+ BYTE   W96
+// 011   ----------------------------------------
+Label_2_0118F921:
+ BYTE   N12  Bn2  v100
+ BYTE   W18
+ BYTE   N06
+ BYTE   W06
+ BYTE   N48  Cn3
+ BYTE   W48
+ BYTE   N12  Bn2
+ BYTE   W18
+ BYTE   N06
+ BYTE   W06
+ BYTE   PEND 
+// 012   ----------------------------------------
+ BYTE   N72  Dn3
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   VOL   79*FE05BarbariansDolkar_mvl/mxv
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_2_0118F8EC
+// 015   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_2_0118F8F5
+ BYTE   PATT
+  POIN2 Label_2_0118F901
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W72
+ BYTE   N18  Cn3  v100
+ BYTE   W24
+ BYTE   PATT
+  POIN2 Label_2_0118F90E
+// 018   ----------------------------------------
+ BYTE   N72  As2  v100
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_2_0118F90E
+// 019   ----------------------------------------
+ BYTE   N72  Cn3  v100
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_2_0118F921
+// 020   ----------------------------------------
+ BYTE   N72  Dn3  v100
+ BYTE   W92
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_2_0118F8E6
+// 021   ----------------------------------------
+ BYTE   W01
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+FE05BarbariansDolkar_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05BarbariansDolkar_key+0
+Label_3_0118F972:
+ BYTE   VOICE   60
+ BYTE   VOL   73*FE05BarbariansDolkar_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   N36  Bn2  v100
+ BYTE   W96
+// 003   ----------------------------------------
+Label_3_0118F97C:
+ BYTE   W24
+ BYTE   N12  Fs2  v100
+ BYTE   W24
+ BYTE   Bn2
+ BYTE   W24
+ BYTE   As2
+ BYTE   W24
+ BYTE   PEND 
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W48
+ BYTE   N48  Cn4
+ BYTE   W48
+// 006   ----------------------------------------
+Label_3_0118F98B:
+ BYTE   N12  Cn3  v100
+ BYTE   N12  Fn3
+ BYTE   W48
+ BYTE   N06  Cn3
+ BYTE   N06  Fn3
+ BYTE   W12
+ BYTE   N12  Cn3
+ BYTE   N12  Fn3
+ BYTE   W36
+ BYTE   PEND 
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   VOL   73*FE05BarbariansDolkar_mvl/mxv
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   N36  Bn2
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_3_0118F97C
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W48
+ BYTE   N48  Cn4  v100
+ BYTE   W48
+ BYTE   PATT
+  POIN2 Label_3_0118F98B
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W96
+// 024   ----------------------------------------
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W92
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_3_0118F972
+// 026   ----------------------------------------
+ BYTE   W01
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+FE05BarbariansDolkar_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05BarbariansDolkar_key+0
+Label_4_0118F9CE:
+ BYTE   VOICE   56
+ BYTE   VOL   79*FE05BarbariansDolkar_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_4_0118F9D4:
+ BYTE   N24  Bn2  v100
+ BYTE   W36
+ BYTE   N03  Cs3
+ BYTE   W03
+ BYTE   Dn3
+ BYTE   W03
+ BYTE   N06  En3
+ BYTE   W06
+ BYTE   N60  Fn3
+ BYTE   W48
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_4_0118F9E4:
+ BYTE   W24
+ BYTE   N12  En3  v100
+ BYTE   W24
+ BYTE   Gs3
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   W24
+ BYTE   PEND 
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+Label_4_0118F9EF:
+ BYTE   N08  Bn2  v100
+ BYTE   W08
+ BYTE   Fs2
+ BYTE   W08
+ BYTE   Cs3
+ BYTE   W08
+ BYTE   N72  Cn3
+ BYTE   W72
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_4_0118F9FB:
+ BYTE   N12  Cn2  v100
+ BYTE   W48
+ BYTE   N06
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   PEND 
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   VOL   79*FE05BarbariansDolkar_mvl/mxv
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_4_0118F9D4
+ BYTE   PATT
+  POIN2 Label_4_0118F9E4
+// 016   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_4_0118F9EF
+ BYTE   PATT
+  POIN2 Label_4_0118F9FB
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W92
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_4_0118F9CE
+// 024   ----------------------------------------
+ BYTE   W01
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+FE05BarbariansDolkar_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05BarbariansDolkar_key+0
+Label_5_0118FA36:
+ BYTE   VOICE   66
+ BYTE   VOL   75*FE05BarbariansDolkar_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W24
+ BYTE   N48  En1  v100
+ BYTE   W72
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W84
+ BYTE   N12
+ BYTE   W12
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+Label_5_0118FA4B:
+ BYTE   W54
+ BYTE   N06  Cn1  v100
+ BYTE   W06
+ BYTE   En1
+ BYTE   W06
+ BYTE   Gn1
+ BYTE   W06
+ BYTE   En1
+ BYTE   W06
+ BYTE   Cn1
+ BYTE   W06
+ BYTE   N12  Gn0
+ BYTE   W12
+ BYTE   PEND 
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   VOL   75*FE05BarbariansDolkar_mvl/mxv
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W24
+ BYTE   N48  En1
+ BYTE   W72
+// 022   ----------------------------------------
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W84
+ BYTE   N12
+ BYTE   W12
+// 024   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_5_0118FA4B
+// 025   ----------------------------------------
+ BYTE   W96
+// 026   ----------------------------------------
+ BYTE   W92
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_5_0118FA36
+// 027   ----------------------------------------
+ BYTE   W01
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+FE05BarbariansDolkar_007:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05BarbariansDolkar_key+0
+Label_6_0118FA82:
+ BYTE   VOICE   11
+ BYTE   VOL   57*FE05BarbariansDolkar_mvl/mxv
+ BYTE   N12  Bn1  v120
+ BYTE   W12
+ BYTE   Bn1  v100
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+ BYTE   Bn1  v120
+ BYTE   W12
+ BYTE   Bn1  v100
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+// 001   ----------------------------------------
+Label_6_0118FA9B:
+ BYTE   N12  Bn1  v120
+ BYTE   W12
+ BYTE   Bn1  v100
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+ BYTE   Bn1  v120
+ BYTE   W12
+ BYTE   Bn1  v100
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_6_0118FA9B
+ BYTE   PATT
+  POIN2 Label_6_0118FA9B
+ BYTE   PATT
+  POIN2 Label_6_0118FA9B
+ BYTE   PATT
+  POIN2 Label_6_0118FA9B
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_0118FA9B
+ BYTE   PATT
+  POIN2 Label_6_0118FA9B
+ BYTE   PATT
+  POIN2 Label_6_0118FA9B
+ BYTE   PATT
+  POIN2 Label_6_0118FA9B
+ BYTE   PATT
+  POIN2 Label_6_0118FA9B
+ BYTE   PATT
+  POIN2 Label_6_0118FA9B
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W92
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_6_0118FA82
+// 018   ----------------------------------------
+ BYTE   W01
+ BYTE   FINE
+
+//**************** Track 8 (Midi-Chn.7) ****************//
+
+FE05BarbariansDolkar_008:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05BarbariansDolkar_key+0
+Label_7_0118FAFE:
+ BYTE   VOICE   56
+ BYTE   VOL   57*FE05BarbariansDolkar_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_7_0118FB04:
+ BYTE   W06
+ BYTE   N24  Bn2  v100
+ BYTE   W36
+ BYTE   N03  Cs3
+ BYTE   W03
+ BYTE   Dn3
+ BYTE   W03
+ BYTE   N06  En3
+ BYTE   W06
+ BYTE   N60  Fn3
+ BYTE   W42
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_7_0118FB15:
+ BYTE   W30
+ BYTE   N12  En3  v100
+ BYTE   W24
+ BYTE   Gs3
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   W18
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_7_0118FB1F:
+ BYTE   W48
+ BYTE   W03
+ BYTE   N12  Cn3  v100
+ BYTE   W18
+ BYTE   N06  Fs3
+ BYTE   W06
+ BYTE   N60  Fn3
+ BYTE   W21
+ BYTE   PEND 
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   VOL   57*FE05BarbariansDolkar_mvl/mxv
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_7_0118FB04
+ BYTE   PATT
+  POIN2 Label_7_0118FB15
+ BYTE   PATT
+  POIN2 Label_7_0118FB1F
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W96
+// 024   ----------------------------------------
+ BYTE   W92
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_7_0118FAFE
+// 025   ----------------------------------------
+ BYTE   W01
+ BYTE   FINE
+
+//**************** Track 9 (Midi-Chn.8) ****************//
+
+FE05BarbariansDolkar_009:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05BarbariansDolkar_key+0
+Label_8_0118FB5E:
+ BYTE   VOICE   0
+ BYTE   VOL   64*FE05BarbariansDolkar_mvl/mxv
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+// 001   ----------------------------------------
+Label_8_0118FB81:
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_8_0118FBA1:
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W84
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_8_0118FBB5:
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W84
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_8_0118FB81
+// 004   ----------------------------------------
+Label_8_0118FBC8:
+ BYTE   W84
+ BYTE   N06  En1  v100
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_8_0118FBD0:
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W24
+ BYTE   En1  v100
+ BYTE   W12
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_8_0118FBF3:
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   En1  v100
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_8_0118FC12:
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   En1  v100
+ BYTE   W24
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_8_0118FC35:
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   En1  v100
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_8_0118FBD0
+// 009   ----------------------------------------
+Label_8_0118FC5F:
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   En1  v100
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_8_0118FBD0
+// 010   ----------------------------------------
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W48
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   En1  v100
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N06
+ BYTE   W12
+// 011   ----------------------------------------
+ BYTE   VOL   64*FE05BarbariansDolkar_mvl/mxv
+ BYTE   N06  Cn1
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W06
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W36
+ BYTE   PATT
+  POIN2 Label_8_0118FB81
+ BYTE   PATT
+  POIN2 Label_8_0118FBA1
+ BYTE   PATT
+  POIN2 Label_8_0118FBB5
+ BYTE   PATT
+  POIN2 Label_8_0118FB81
+ BYTE   PATT
+  POIN2 Label_8_0118FBC8
+ BYTE   PATT
+  POIN2 Label_8_0118FBD0
+ BYTE   PATT
+  POIN2 Label_8_0118FBF3
+ BYTE   PATT
+  POIN2 Label_8_0118FC12
+ BYTE   PATT
+  POIN2 Label_8_0118FC35
+ BYTE   PATT
+  POIN2 Label_8_0118FBD0
+ BYTE   PATT
+  POIN2 Label_8_0118FC5F
+ BYTE   PATT
+  POIN2 Label_8_0118FBD0
+// 012   ----------------------------------------
+ BYTE   N06  Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W48
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   Cn1  v100
+ BYTE   N06  Gn1  v076
+ BYTE   W12
+ BYTE   En1  v100
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N06
+ BYTE   W11
+ BYTE   GoTo
+  POIN2 Label_8_0118FB5E
+// 013   ----------------------------------------
+ BYTE   W01
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE05BarbariansDolkar:
+	BYTE	9	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE05BarbariansDolkar_pri	// Priority
+	BYTE	FE05BarbariansDolkar_rev	// Reverb.
+    
+	POIN2	FE05BarbariansDolkar_grp
+    
+	POIN2	FE05BarbariansDolkar_001
+	POIN2	FE05BarbariansDolkar_002
+	POIN2	FE05BarbariansDolkar_003
+	POIN2	FE05BarbariansDolkar_004
+	POIN2	FE05BarbariansDolkar_005
+	POIN2	FE05BarbariansDolkar_006
+	POIN2	FE05BarbariansDolkar_007
+	POIN2	FE05BarbariansDolkar_008
+	POIN2	FE05BarbariansDolkar_009
+
+	

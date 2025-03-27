@@ -1,0 +1,1471 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	EarthboundRunawayFiveOnTheMoveSme_grp  voicegroup000
+	#define	EarthboundRunawayFiveOnTheMoveSme_pri  0
+	#define	EarthboundRunawayFiveOnTheMoveSme_rev  0
+	#define	EarthboundRunawayFiveOnTheMoveSme_mvl  85
+	#define	EarthboundRunawayFiveOnTheMoveSme_key  0
+	#define	EarthboundRunawayFiveOnTheMoveSme_tbs  1
+	#define	EarthboundRunawayFiveOnTheMoveSme_exg  0
+	#define	EarthboundRunawayFiveOnTheMoveSme_cmp  1
+
+	// .rodata
+	//	EarthboundRunawayFiveOnTheMoveSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+EarthboundRunawayFiveOnTheMoveSme_1:
+	BYTE	KEYSH   EarthboundRunawayFiveOnTheMoveSme_key+0
+EarthboundRunawayFiveOnTheMoveSme_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   75*EarthboundRunawayFiveOnTheMoveSme_tbs/2
+	BYTE		VOICE   127
+	BYTE		VOL     80*EarthboundRunawayFiveOnTheMoveSme_mvl/mxv
+	BYTE		PAN     c_v-49
+	BYTE		VOL     90*EarthboundRunawayFiveOnTheMoveSme_mvl/mxv
+	BYTE	W01
+	BYTE		N05     Dn2   v127
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v127
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W05
+// 001   ----------------------------------------
+EarthboundRunawayFiveOnTheMoveSme_1_001:
+	BYTE	W01
+	BYTE		N05     Dn2   v127
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v127
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W05
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_1_001
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_1_001
+// 004   ----------------------------------------
+EarthboundRunawayFiveOnTheMoveSme_1_004:
+	BYTE	W02
+	BYTE		N05     Dn2   v127
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v127
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W04
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_1_004
+// 006   ----------------------------------------
+	BYTE	W02
+	BYTE		N05     Dn2   v127
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W18
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		        Dn2   v104
+	BYTE	W04
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_1_004
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_1_004
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_1_B1
+EarthboundRunawayFiveOnTheMoveSme_1_B2:
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+EarthboundRunawayFiveOnTheMoveSme_2:
+	BYTE	KEYSH   EarthboundRunawayFiveOnTheMoveSme_key+0
+EarthboundRunawayFiveOnTheMoveSme_2_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     90*EarthboundRunawayFiveOnTheMoveSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W01
+	BYTE		N11     Dn1   v116
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W11
+// 001   ----------------------------------------
+EarthboundRunawayFiveOnTheMoveSme_2_001:
+	BYTE	W01
+	BYTE		N11     Dn1   v116
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W11
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_2_001
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_2_001
+// 004   ----------------------------------------
+EarthboundRunawayFiveOnTheMoveSme_2_004:
+	BYTE	W02
+	BYTE		N11     Dn1   v116
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W10
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_2_004
+// 006   ----------------------------------------
+	BYTE	W02
+	BYTE		N11     Dn1   v116
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Dn1   v127
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W04
+// 007   ----------------------------------------
+	BYTE	W14
+	BYTE		N10   
+	BYTE	W12
+	BYTE		N11     Dn1   v104
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Dn1   v116
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W10
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_2_004
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_2_B1
+EarthboundRunawayFiveOnTheMoveSme_2_B2:
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+EarthboundRunawayFiveOnTheMoveSme_3:
+	BYTE	KEYSH   EarthboundRunawayFiveOnTheMoveSme_key+0
+EarthboundRunawayFiveOnTheMoveSme_3_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     105*EarthboundRunawayFiveOnTheMoveSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W01
+	BYTE		N28     Bn2   v116
+	BYTE	W30
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Bn2   v104
+	BYTE	W06
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N02     Bn2   v104
+	BYTE	W03
+	BYTE		N08     Bn2   v116
+	BYTE	W09
+	BYTE		N05   
+	BYTE	W05
+// 001   ----------------------------------------
+	BYTE	W01
+	BYTE		N28   
+	BYTE	W30
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Bn2   v104
+	BYTE	W06
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N02     Bn2   v104
+	BYTE	W03
+	BYTE		N08     Bn2   v116
+	BYTE	W09
+	BYTE		N05   
+	BYTE	W05
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N11     Bn2   v116
+	BYTE	W12
+	BYTE		N05     Bn2   v104
+	BYTE	W06
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N02     Bn2   v104
+	BYTE	W03
+	BYTE		N08     Bn2   v116
+	BYTE	W09
+	BYTE		N05   
+	BYTE	W05
+// 003   ----------------------------------------
+	BYTE	W01
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N11     Bn2   v116
+	BYTE	W12
+	BYTE		N05     Bn2   v104
+	BYTE	W06
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N02     Bn2   v104
+	BYTE	W03
+	BYTE		N08     Bn2   v127
+	BYTE	W09
+	BYTE		N05     Bn2   v116
+	BYTE	W05
+// 004   ----------------------------------------
+EarthboundRunawayFiveOnTheMoveSme_3_004:
+	BYTE	W02
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N11     Bn2   v116
+	BYTE	W12
+	BYTE		N05     Bn2   v104
+	BYTE	W06
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N02     Bn2   v104
+	BYTE	W03
+	BYTE		N08     Bn2   v116
+	BYTE	W09
+	BYTE		N05   
+	BYTE	W04
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_3_004
+// 006   ----------------------------------------
+EarthboundRunawayFiveOnTheMoveSme_3_006:
+	BYTE	W02
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N11     Bn2   v116
+	BYTE	W12
+	BYTE		N05     Bn2   v104
+	BYTE	W06
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N02     Bn2   v104
+	BYTE	W03
+	BYTE		N08     Bn2   v127
+	BYTE	W09
+	BYTE		N05     Bn2   v116
+	BYTE	W04
+	BYTE	PEND
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_3_006
+// 008   ----------------------------------------
+	BYTE	W02
+	BYTE		N28     Bn2   v116
+	BYTE	W30
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Bn2   v104
+	BYTE	W06
+	BYTE		N28     Bn2   v127
+	BYTE	W30
+	BYTE		N02     Bn2   v104
+	BYTE	W03
+	BYTE		N08     Bn2   v127
+	BYTE	W09
+	BYTE		N05     Bn2   v116
+	BYTE	W04
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_3_B1
+EarthboundRunawayFiveOnTheMoveSme_3_B2:
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+EarthboundRunawayFiveOnTheMoveSme_4:
+	BYTE	KEYSH   EarthboundRunawayFiveOnTheMoveSme_key+0
+EarthboundRunawayFiveOnTheMoveSme_4_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   33
+	BYTE		PAN     c_v+0
+	BYTE		VOL     85*EarthboundRunawayFiveOnTheMoveSme_mvl/mxv
+	BYTE	W01
+	BYTE		N05     Gn1   v116
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N01     Gn1   v040
+	BYTE	W06
+	BYTE		N05     Gn1   v116
+	BYTE	W06
+	BYTE		N01     Gn1   v040
+	BYTE	W06
+	BYTE		N05     Gn1   v116
+	BYTE	W06
+	BYTE		N01     Gn1   v040
+	BYTE	W06
+	BYTE		N05     Gn1   v116
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N01     Gn1   v040
+	BYTE	W06
+	BYTE		N05     Gn1   v116
+	BYTE	W06
+	BYTE		        Gn1   v104
+	BYTE	W06
+	BYTE		        En1   v116
+	BYTE	W06
+	BYTE		        Fn1 
+	BYTE	W06
+	BYTE		        Fs1 
+	BYTE	W05
+// 001   ----------------------------------------
+	BYTE	W01
+	BYTE		        Gn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N01     Gn1   v040
+	BYTE	W06
+	BYTE		N05     Gn1   v116
+	BYTE	W06
+	BYTE		N01     Gn1   v040
+	BYTE	W06
+	BYTE		N05     Gn1   v116
+	BYTE	W06
+	BYTE		N01     Gn1   v040
+	BYTE	W06
+	BYTE		        Gn1   v116
+	BYTE	W03
+	BYTE		N01   
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N01     Gn1   v040
+	BYTE	W06
+	BYTE		N05     Gn1   v116
+	BYTE	W06
+	BYTE		        Gn1   v104
+	BYTE	W06
+	BYTE		        An1   v116
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W05
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		        Fn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        An1 
+	BYTE	W06
+	BYTE		N02     As1   v076
+	BYTE	W03
+	BYTE		N05     As1   v116
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N02     As1   v076
+	BYTE	W03
+	BYTE		N05     Bn1   v116
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N02     Cn2 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cs2 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W05
+// 003   ----------------------------------------
+	BYTE	W01
+	BYTE		N02     Fn1 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N02     Gs1 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        An1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N02     An1 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N02     As1 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W05
+// 004   ----------------------------------------
+	BYTE	W02
+	BYTE		        Fn2 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE	W06
+	BYTE		        An1 
+	BYTE	W06
+	BYTE		N02     En1 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn1 
+	BYTE	W06
+	BYTE		        Fs1 
+	BYTE	W06
+	BYTE		        Gn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gs1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N02     An1 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N05     Bn1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        Cs2 
+	BYTE	W04
+// 005   ----------------------------------------
+	BYTE	W02
+	BYTE		        Dn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N05     An1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        An1 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Fs1 
+	BYTE	W06
+	BYTE		        Gn1 
+	BYTE	W06
+	BYTE		        Gs1 
+	BYTE	W04
+// 006   ----------------------------------------
+	BYTE	W02
+	BYTE		        Dn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Dn2   v052
+	BYTE	W06
+	BYTE		        Dn2   v116
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N05     An1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        Cs2 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W06
+	BYTE		N11     Fs1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		N05     An1 
+	BYTE	W04
+// 007   ----------------------------------------
+EarthboundRunawayFiveOnTheMoveSme_4_007:
+	BYTE	W02
+	BYTE		N05     Gn1   v116
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn1   v052
+	BYTE	W06
+	BYTE		        Gn1   v116
+	BYTE	W06
+	BYTE		N01     Gn2   v052
+	BYTE	W03
+	BYTE		        Gn2   v116
+	BYTE	W03
+	BYTE		N05     Dn2 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn2   v052
+	BYTE	W06
+	BYTE		        Cn2   v116
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		        Fn1 
+	BYTE	W06
+	BYTE		        Fs1 
+	BYTE	W04
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_4_007
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_4_B1
+EarthboundRunawayFiveOnTheMoveSme_4_B2:
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+EarthboundRunawayFiveOnTheMoveSme_5:
+	BYTE	KEYSH   EarthboundRunawayFiveOnTheMoveSme_key+0
+EarthboundRunawayFiveOnTheMoveSme_5_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   18
+	BYTE		VOL     95*EarthboundRunawayFiveOnTheMoveSme_mvl/mxv
+	BYTE	W01
+	BYTE		PAN     c_v+25
+	BYTE		N11     Fn5   v116
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W12
+	BYTE		N11     En5 
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W12
+	BYTE		N11     Dn5 
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W12
+	BYTE		N11     Cn5 
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W11
+// 001   ----------------------------------------
+	BYTE	W01
+	BYTE		N11     Bn4 
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W12
+	BYTE		N11     An4 
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W12
+	BYTE		N11     Gn4 
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W05
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		PAN     c_v+14
+	BYTE		N11     Cn5 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N17     Gn4 
+	BYTE	W18
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W06
+	BYTE		N17     Cn5 
+	BYTE	W05
+// 003   ----------------------------------------
+	BYTE	W13
+	BYTE		N11     Dn5 
+	BYTE	W12
+	BYTE		N05     Bn4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N17   
+	BYTE	W18
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W05
+// 004   ----------------------------------------
+	BYTE	W02
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N17     Gn4 
+	BYTE	W18
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N17     Fs4 
+	BYTE	W04
+// 005   ----------------------------------------
+	BYTE	W14
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Gs4 
+	BYTE	W06
+	BYTE		N17     An4 
+	BYTE	W18
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W06
+	BYTE		N17     Cn5 
+	BYTE	W04
+// 006   ----------------------------------------
+	BYTE	W14
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cs5 
+	BYTE	W06
+	BYTE		N28     Dn5 
+	BYTE	W30
+	BYTE		N05     Bn4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N28   
+	BYTE	W04
+// 007   ----------------------------------------
+	BYTE	W24
+	BYTE	W02
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N28     En4 
+	BYTE	W30
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		N17     Cn4 
+	BYTE	W16
+// 008   ----------------------------------------
+	BYTE	W02
+	BYTE		N11     Gn4 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N28     En4 
+	BYTE	W30
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		N17     Cn4 
+	BYTE	W16
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_5_B1
+EarthboundRunawayFiveOnTheMoveSme_5_B2:
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+EarthboundRunawayFiveOnTheMoveSme_6:
+	BYTE	KEYSH   EarthboundRunawayFiveOnTheMoveSme_key+0
+EarthboundRunawayFiveOnTheMoveSme_6_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   18
+	BYTE		VOL     90*EarthboundRunawayFiveOnTheMoveSme_mvl/mxv
+	BYTE	W01
+	BYTE		PAN     c_v+14
+	BYTE		N11     Dn5   v116
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N05     Gn4 
+	BYTE	W06
+	BYTE		N11     Cn5 
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N05     Gn4 
+	BYTE	W06
+	BYTE		N11     Bn4 
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N05     Gn4 
+	BYTE	W06
+	BYTE		N11     An4 
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N05     Gn4 
+	BYTE	W05
+// 001   ----------------------------------------
+	BYTE	W01
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N05     Bn3 
+	BYTE	W06
+	BYTE		N04     Dn4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W05
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		PAN     c_v+0
+	BYTE		N11     An4 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W06
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		N17     Bn3 
+	BYTE	W18
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N17     An4 
+	BYTE	W05
+// 003   ----------------------------------------
+	BYTE	W13
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		N17     Dn4 
+	BYTE	W18
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Bn3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W05
+// 004   ----------------------------------------
+	BYTE	W02
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W06
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		N17     Bn3 
+	BYTE	W18
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N17   
+	BYTE	W04
+// 005   ----------------------------------------
+	BYTE	W14
+	BYTE		N11     An3 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W06
+	BYTE		N17     Cn4 
+	BYTE	W18
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cs4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N17     En4 
+	BYTE	W04
+// 006   ----------------------------------------
+	BYTE	W14
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N28     Fs4 
+	BYTE	W30
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W06
+	BYTE		N28   
+	BYTE	W04
+// 007   ----------------------------------------
+	BYTE	W24
+	BYTE	W02
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N28     Cn4 
+	BYTE	W30
+	BYTE		N05     Bn3 
+	BYTE	W06
+	BYTE		N17     An3 
+	BYTE	W16
+// 008   ----------------------------------------
+	BYTE	W02
+	BYTE		N11     En4 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Bn3 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N28     Cn4 
+	BYTE	W30
+	BYTE		N05     Bn3 
+	BYTE	W06
+	BYTE		N17     An3 
+	BYTE	W16
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_6_B1
+EarthboundRunawayFiveOnTheMoveSme_6_B2:
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+EarthboundRunawayFiveOnTheMoveSme_7:
+	BYTE	KEYSH   EarthboundRunawayFiveOnTheMoveSme_key+0
+EarthboundRunawayFiveOnTheMoveSme_7_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   57
+	BYTE		VOL     97*EarthboundRunawayFiveOnTheMoveSme_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		PAN     c_v+25
+	BYTE	W12
+	BYTE		N02     Fn4   v127
+	BYTE	W48
+	BYTE		N08     Gn4   v104
+	BYTE	W09
+	BYTE		N02     Fn4   v116
+	BYTE	W03
+	BYTE		N01     Gn4 
+	BYTE	W03
+	BYTE		        Fn4   v104
+	BYTE	W03
+	BYTE		N02     Gn4   v127
+	BYTE	W17
+// 003   ----------------------------------------
+	BYTE	W13
+	BYTE		        Fn4 
+	BYTE	W36
+	BYTE		        Gn4   v116
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W36
+	BYTE	W03
+	BYTE		        Cn4   v127
+	BYTE	W05
+// 004   ----------------------------------------
+	BYTE	W14
+	BYTE		        Fn4 
+	BYTE	W48
+	BYTE		N08     Gn4   v104
+	BYTE	W09
+	BYTE		N02     Fn4   v116
+	BYTE	W03
+	BYTE		N01     Gn4 
+	BYTE	W03
+	BYTE		        Fn4   v104
+	BYTE	W03
+	BYTE		N02     Gn4   v127
+	BYTE	W16
+// 005   ----------------------------------------
+	BYTE	W02
+	BYTE		N23     Fs3   v116
+	BYTE	W24
+	BYTE		N02     Fs3   v127
+	BYTE	W06
+	BYTE		N03     An2   v116
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+	BYTE		N02     Cn3 
+	BYTE	W06
+	BYTE		N23     An3 
+	BYTE	W24
+	BYTE		N02     An3   v127
+	BYTE	W06
+	BYTE		N03     An2   v116
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+	BYTE		N02     Cn3 
+	BYTE	W04
+// 006   ----------------------------------------
+	BYTE	W02
+	BYTE		N23     Cn4 
+	BYTE	W24
+	BYTE		N02     Cn4   v127
+	BYTE	W06
+	BYTE		N03     Fs3   v116
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N02     An3 
+	BYTE	W06
+	BYTE		N23     Dn4   v092
+	BYTE	W24
+	BYTE		N02     En4   v104
+	BYTE	W03
+	BYTE		N08     En4   v092
+	BYTE	W09
+	BYTE		N02     Fn4   v116
+	BYTE	W06
+	BYTE		N03     Fs4   v127
+	BYTE	W04
+// 007   ----------------------------------------
+	BYTE	W14
+	BYTE		        Gn4 
+	BYTE	W48
+	BYTE		N08     As3 
+	BYTE	W09
+	BYTE		N02     An3   v116
+	BYTE	W03
+	BYTE		        As3 
+	BYTE	W03
+	BYTE		        An3 
+	BYTE	W03
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Gn3   v127
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W04
+// 008   ----------------------------------------
+	BYTE	W02
+	BYTE		N04     Gn4   v116
+	BYTE	W12
+	BYTE		N03     Gn4   v127
+	BYTE	W48
+	BYTE		N08     As3 
+	BYTE	W09
+	BYTE		N02     An3   v116
+	BYTE	W03
+	BYTE		        As3 
+	BYTE	W03
+	BYTE		        An3 
+	BYTE	W03
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Gn3   v127
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W04
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_7_B1
+EarthboundRunawayFiveOnTheMoveSme_7_B2:
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+EarthboundRunawayFiveOnTheMoveSme_8:
+	BYTE	KEYSH   EarthboundRunawayFiveOnTheMoveSme_key+0
+EarthboundRunawayFiveOnTheMoveSme_8_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   67
+	BYTE		VOL     101*EarthboundRunawayFiveOnTheMoveSme_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		PAN     c_v-25
+	BYTE	W13
+	BYTE		N02     An2   v127
+	BYTE	W48
+	BYTE		N08     Bn2   v104
+	BYTE	W09
+	BYTE		N02     An2   v116
+	BYTE	W03
+	BYTE		N01     Bn2 
+	BYTE	W03
+	BYTE		        An2   v104
+	BYTE	W03
+	BYTE		N02     Bn2   v127
+	BYTE	W16
+// 003   ----------------------------------------
+	BYTE	W14
+	BYTE		        An2 
+	BYTE	W36
+	BYTE		        Gn2 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W36
+	BYTE	W03
+	BYTE		N04     Cn2 
+	BYTE	W04
+// 004   ----------------------------------------
+	BYTE	W14
+	BYTE		N02     An2 
+	BYTE	W48
+	BYTE		N08     Bn2   v104
+	BYTE	W09
+	BYTE		N02     An2   v116
+	BYTE	W03
+	BYTE		N01     Bn2 
+	BYTE	W03
+	BYTE		        An2   v104
+	BYTE	W03
+	BYTE		N02     Bn2   v127
+	BYTE	W16
+// 005   ----------------------------------------
+	BYTE	W02
+	BYTE		N23     Cn3   v116
+	BYTE	W24
+	BYTE		N02     Cn3   v127
+	BYTE	W06
+	BYTE		N03     Fs2   v116
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE	W06
+	BYTE		N02     An2 
+	BYTE	W06
+	BYTE		N23     Dn3 
+	BYTE	W24
+	BYTE		N02     Cn3   v127
+	BYTE	W06
+	BYTE		N03     Fs2   v116
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE	W06
+	BYTE		N02     An2 
+	BYTE	W04
+// 006   ----------------------------------------
+	BYTE	W02
+	BYTE		N23   
+	BYTE	W24
+	BYTE		N02     An2   v127
+	BYTE	W06
+	BYTE		N03     Dn3   v116
+	BYTE	W06
+	BYTE		        En3 
+	BYTE	W06
+	BYTE		N02     Cn3 
+	BYTE	W06
+	BYTE		N23     Cn3   v092
+	BYTE	W24
+	BYTE		N02     En3   v104
+	BYTE	W03
+	BYTE		N08     En3   v092
+	BYTE	W09
+	BYTE		N02     Fn3   v116
+	BYTE	W06
+	BYTE		N03     Fs3   v127
+	BYTE	W04
+// 007   ----------------------------------------
+	BYTE	W14
+	BYTE		N04     Dn3 
+	BYTE	W48
+	BYTE		N08     En3 
+	BYTE	W09
+	BYTE		N02     Fn3   v116
+	BYTE	W03
+	BYTE		        En3 
+	BYTE	W03
+	BYTE		        Fn3 
+	BYTE	W03
+	BYTE		        En3 
+	BYTE	W06
+	BYTE		        As2   v127
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W04
+// 008   ----------------------------------------
+	BYTE	W02
+	BYTE		N05     Dn3   v116
+	BYTE	W12
+	BYTE		N04     Dn3   v127
+	BYTE	W48
+	BYTE		N08     En3 
+	BYTE	W09
+	BYTE		N02     Fn3   v116
+	BYTE	W03
+	BYTE		        En3 
+	BYTE	W03
+	BYTE		        Fn3 
+	BYTE	W03
+	BYTE		        En3 
+	BYTE	W06
+	BYTE		        As2   v127
+	BYTE	W06
+	BYTE		N04     Dn1 
+	BYTE	W04
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	EarthboundRunawayFiveOnTheMoveSme_8_B1
+EarthboundRunawayFiveOnTheMoveSme_8_B2:
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+EarthboundRunawayFiveOnTheMoveSme:
+	BYTE	8	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	EarthboundRunawayFiveOnTheMoveSme_pri	// Priority
+	BYTE	EarthboundRunawayFiveOnTheMoveSme_rev	// Reverb.
+
+	POIN2	EarthboundRunawayFiveOnTheMoveSme_grp
+
+	POIN2	EarthboundRunawayFiveOnTheMoveSme_1
+	POIN2	EarthboundRunawayFiveOnTheMoveSme_2
+	POIN2	EarthboundRunawayFiveOnTheMoveSme_3
+	POIN2	EarthboundRunawayFiveOnTheMoveSme_4
+	POIN2	EarthboundRunawayFiveOnTheMoveSme_5
+	POIN2	EarthboundRunawayFiveOnTheMoveSme_6
+	POIN2	EarthboundRunawayFiveOnTheMoveSme_7
+	POIN2	EarthboundRunawayFiveOnTheMoveSme_8
+
+	

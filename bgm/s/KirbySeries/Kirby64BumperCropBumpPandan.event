@@ -1,0 +1,3730 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	Kirby64BumperCropBumpPandan_grp  voicegroup000
+	#define	Kirby64BumperCropBumpPandan_pri  0
+	#define	Kirby64BumperCropBumpPandan_rev  0
+	#define	Kirby64BumperCropBumpPandan_mvl  127
+	#define	Kirby64BumperCropBumpPandan_key  0
+	#define	Kirby64BumperCropBumpPandan_tbs  1
+	#define	Kirby64BumperCropBumpPandan_exg  0
+	#define	Kirby64BumperCropBumpPandan_cmp  1
+
+	// .rodata
+	//	Kirby64BumperCropBumpPandan
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+Kirby64BumperCropBumpPandan_001:
+// 000   ----------------------------------------
+ BYTE   VOL   50*Kirby64BumperCropBumpPandan_mvl/mxv
+ BYTE   KEYSH   Kirby64BumperCropBumpPandan_key+0
+Label_0_018602A0:
+ BYTE   TEMPO   174*Kirby64BumperCropBumpPandan_tbs/2
+ BYTE   VOICE   38
+ BYTE   W24
+ BYTE   N05  Cn2  v127
+ BYTE   W36
+ BYTE   As1
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W24
+// 001   ----------------------------------------
+Label_0_018602AD:
+ BYTE   W12
+ BYTE   N05  As1  v127
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   As1
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W24
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_0_018602BD:
+ BYTE   VOICE   38
+ BYTE   W24
+ BYTE   N05  Cn2  v127
+ BYTE   W36
+ BYTE   As1
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+// 003   ----------------------------------------
+Label_0_018602CE:
+ BYTE   VOICE   38
+ BYTE   W24
+ BYTE   N05  Gs1  v127
+ BYTE   W36
+ BYTE   Fs1
+ BYTE   W12
+ BYTE   Gs1
+ BYTE   W24
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_0_018602DA:
+ BYTE   W12
+ BYTE   N05  Fs1  v127
+ BYTE   W12
+ BYTE   Gs1
+ BYTE   W12
+ BYTE   Bn1
+ BYTE   W12
+ BYTE   Gs1
+ BYTE   W12
+ BYTE   Fs1
+ BYTE   W12
+ BYTE   Gs1
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602CE
+ BYTE   PATT
+  POIN2 Label_0_018602DA
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+// 005   ----------------------------------------
+Label_0_0186031C:
+ BYTE   N05  Cn2  v127
+ BYTE   W12
+ BYTE   As1
+ BYTE   W12
+ BYTE   Gs1
+ BYTE   W36
+ BYTE   N05
+ BYTE   W24
+ BYTE   N05
+ BYTE   W12
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_0_01860329:
+ BYTE   N05  Gs1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W36
+ BYTE   N05
+ BYTE   W24
+ BYTE   N05
+ BYTE   W12
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_0_01860336:
+ BYTE   N05  Gs1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   As1
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W24
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_0_01860347:
+ BYTE   W12
+ BYTE   N05  As1  v127
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   As1
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   As1
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0186031C
+// 009   ----------------------------------------
+Label_0_0186035E:
+ BYTE   N05  Gs1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Ds1
+ BYTE   W12
+ BYTE   Gs1
+ BYTE   W24
+ BYTE   N05
+ BYTE   W24
+ BYTE   N05
+ BYTE   W12
+ BYTE   PEND 
+// 010   ----------------------------------------
+Label_0_0186036D:
+ BYTE   N05  Gs1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Dn1
+ BYTE   W12
+ BYTE   N05
+ BYTE   W24
+ BYTE   N05
+ BYTE   W24
+ BYTE   N05
+ BYTE   W12
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_0_0186037C:
+ BYTE   N05  Dn1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   N05  Fn2
+ BYTE   N05  As2
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N05  Fn2
+ BYTE   N05  As2
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N05  Fn2
+ BYTE   N05  As2
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N05  Fn2
+ BYTE   N05  As2
+ BYTE   W24
+ BYTE   PEND 
+// 012   ----------------------------------------
+Label_0_0186039B:
+ BYTE   W24
+ BYTE   N05  Fn1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   PEND 
+// 013   ----------------------------------------
+Label_0_018603AB:
+ BYTE   N05  Fn1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   PEND 
+// 014   ----------------------------------------
+Label_0_018603BE:
+ BYTE   N05  Gn1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Bn1
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   PEND 
+// 015   ----------------------------------------
+Label_0_018603D1:
+ BYTE   N05  Bn1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   As1
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   An1
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   PEND 
+// 016   ----------------------------------------
+Label_0_018603E4:
+ BYTE   N05  An1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Fn1
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_018603AB
+// 017   ----------------------------------------
+Label_0_018603FC:
+ BYTE   N05  Gn1  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   PEND 
+// 018   ----------------------------------------
+Label_0_0186040F:
+ BYTE   N05  Cn2  v127
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W36
+ BYTE   PEND 
+// 019   ----------------------------------------
+Label_0_0186041E:
+ BYTE   N05  As1  v127
+ BYTE   W12
+ BYTE   N11  Gn1
+ BYTE   W12
+ BYTE   Ds1
+ BYTE   W12
+ BYTE   Ds2
+ BYTE   W24
+ BYTE   N11
+ BYTE   W24
+ BYTE   N23
+ BYTE   W12
+ BYTE   PEND 
+// 020   ----------------------------------------
+Label_0_0186042E:
+ BYTE   W12
+ BYTE   N11  Ds2  v127
+ BYTE   W12
+ BYTE   Fn1
+ BYTE   W12
+ BYTE   Fn2
+ BYTE   W24
+ BYTE   N11
+ BYTE   W24
+ BYTE   N23
+ BYTE   W12
+ BYTE   PEND 
+// 021   ----------------------------------------
+Label_0_0186043C:
+ BYTE   W12
+ BYTE   N11  Fn2  v127
+ BYTE   W12
+ BYTE   Cs1
+ BYTE   N11  Fs1
+ BYTE   W12
+ BYTE   Cs2
+ BYTE   N11  Fs2
+ BYTE   W24
+ BYTE   Cs2
+ BYTE   N11  Fs2
+ BYTE   W24
+ BYTE   N23  Cs2
+ BYTE   N23  Fs2
+ BYTE   W12
+ BYTE   PEND 
+// 022   ----------------------------------------
+Label_0_01860453:
+ BYTE   W12
+ BYTE   N11  Cs2  v127
+ BYTE   N11  Fs2
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N11  Gn2
+ BYTE   N11  Dn3
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N11  Gn2
+ BYTE   N11  Dn3
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N11  Gn2
+ BYTE   N11  Dn3
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N11  Gn2
+ BYTE   N11  Dn3
+ BYTE   W36
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602CE
+ BYTE   PATT
+  POIN2 Label_0_018602DA
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602CE
+ BYTE   PATT
+  POIN2 Label_0_018602DA
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_0186031C
+ BYTE   PATT
+  POIN2 Label_0_01860329
+ BYTE   PATT
+  POIN2 Label_0_01860336
+ BYTE   PATT
+  POIN2 Label_0_01860347
+ BYTE   PATT
+  POIN2 Label_0_0186031C
+ BYTE   PATT
+  POIN2 Label_0_0186035E
+ BYTE   PATT
+  POIN2 Label_0_0186036D
+ BYTE   PATT
+  POIN2 Label_0_0186037C
+ BYTE   PATT
+  POIN2 Label_0_0186039B
+ BYTE   PATT
+  POIN2 Label_0_018603AB
+ BYTE   PATT
+  POIN2 Label_0_018603BE
+ BYTE   PATT
+  POIN2 Label_0_018603D1
+ BYTE   PATT
+  POIN2 Label_0_018603E4
+ BYTE   PATT
+  POIN2 Label_0_018603AB
+ BYTE   PATT
+  POIN2 Label_0_018603FC
+ BYTE   PATT
+  POIN2 Label_0_0186040F
+ BYTE   PATT
+  POIN2 Label_0_0186041E
+ BYTE   PATT
+  POIN2 Label_0_0186042E
+ BYTE   PATT
+  POIN2 Label_0_0186043C
+ BYTE   PATT
+  POIN2 Label_0_01860453
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602CE
+ BYTE   PATT
+  POIN2 Label_0_018602DA
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_018602CE
+ BYTE   PATT
+  POIN2 Label_0_018602DA
+ BYTE   PATT
+  POIN2 Label_0_018602BD
+ BYTE   PATT
+  POIN2 Label_0_018602AD
+ BYTE   PATT
+  POIN2 Label_0_0186031C
+ BYTE   PATT
+  POIN2 Label_0_01860329
+ BYTE   PATT
+  POIN2 Label_0_01860336
+ BYTE   PATT
+  POIN2 Label_0_01860347
+ BYTE   PATT
+  POIN2 Label_0_0186031C
+ BYTE   PATT
+  POIN2 Label_0_0186035E
+ BYTE   PATT
+  POIN2 Label_0_0186036D
+ BYTE   PATT
+  POIN2 Label_0_0186037C
+ BYTE   PATT
+  POIN2 Label_0_0186039B
+ BYTE   PATT
+  POIN2 Label_0_018603AB
+ BYTE   PATT
+  POIN2 Label_0_018603BE
+ BYTE   PATT
+  POIN2 Label_0_018603D1
+ BYTE   PATT
+  POIN2 Label_0_018603E4
+ BYTE   PATT
+  POIN2 Label_0_018603AB
+ BYTE   PATT
+  POIN2 Label_0_018603FC
+ BYTE   PATT
+  POIN2 Label_0_0186040F
+ BYTE   PATT
+  POIN2 Label_0_0186041E
+ BYTE   PATT
+  POIN2 Label_0_0186042E
+ BYTE   PATT
+  POIN2 Label_0_0186043C
+// 023   ----------------------------------------
+ BYTE   W12
+ BYTE   N11  Cs2  v127
+ BYTE   N11  Fs2
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N11  Gn2
+ BYTE   N11  Dn3
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N11  Gn2
+ BYTE   N11  Dn3
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N11  Gn2
+ BYTE   N11  Dn3
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   N11  Gn2
+ BYTE   N11  Dn3
+ BYTE   W30
+ BYTE   GoTo
+  POIN2 Label_0_018602A0
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+Kirby64BumperCropBumpPandan_002:
+// 000   ----------------------------------------
+ BYTE   VOL   50*Kirby64BumperCropBumpPandan_mvl/mxv
+ BYTE   KEYSH   Kirby64BumperCropBumpPandan_key+0
+Label_1_01860600:
+ BYTE   VOICE   67
+ BYTE   N11  Gn4  v127
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   N68  Cn5
+ BYTE   W72
+ BYTE   PEND 
+// 001   ----------------------------------------
+Label_1_0186060C:
+ BYTE   W12
+ BYTE   N11  As4  v127
+ BYTE   W12
+ BYTE   N68  Gn4
+ BYTE   W72
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_1_01860615:
+ BYTE   N11  Ds4  v127
+ BYTE   W12
+ BYTE   Fn4
+ BYTE   W12
+ BYTE   N17  Gn4
+ BYTE   W24
+ BYTE   Ds4
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_1_01860623:
+ BYTE   N17  As3  v127
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   Ds4
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_1_0186062E:
+ BYTE   N11  Cn4  v127
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   W12
+ BYTE   N68  Ds4
+ BYTE   W72
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_1_01860638:
+ BYTE   N11  Ds4  v127
+ BYTE   W12
+ BYTE   Fn4
+ BYTE   W12
+ BYTE   N17  Fs4
+ BYTE   W24
+ BYTE   Ds4
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_01860623
+// 006   ----------------------------------------
+Label_1_0186064B:
+ BYTE   W12
+ BYTE   N11  As3  v127
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_1_0186065B:
+ BYTE   N11  Dn4  v127
+ BYTE   N11  Gn4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   N11  As4
+ BYTE   W12
+ BYTE   N68  Ds4
+ BYTE   N68  Cn5
+ BYTE   W72
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_1_0186066B:
+ BYTE   N11  Fn4  v127
+ BYTE   N11  Cn5
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   N11  As4
+ BYTE   W12
+ BYTE   N68  Ds4
+ BYTE   N68  Gn4
+ BYTE   W72
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_1_0186067B:
+ BYTE   N11  Cn4  v127
+ BYTE   N11  Ds4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   N11  Fn4
+ BYTE   W12
+ BYTE   N17  Ds4
+ BYTE   N17  Gn4
+ BYTE   W24
+ BYTE   As3
+ BYTE   N17  Ds4
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   N17  Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 010   ----------------------------------------
+Label_1_01860693:
+ BYTE   N17  Ds3  v127
+ BYTE   N17  As3
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   N17  Cn4
+ BYTE   W24
+ BYTE   As3
+ BYTE   N17  Ds4
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   N17  Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_1_018606A6:
+ BYTE   N11  Gn3  v127
+ BYTE   N11  Cn4
+ BYTE   W12
+ BYTE   As3
+ BYTE   N11  Dn4
+ BYTE   W12
+ BYTE   N68  Cn4
+ BYTE   N68  Ds4
+ BYTE   W72
+ BYTE   PEND 
+// 012   ----------------------------------------
+Label_1_018606B6:
+ BYTE   N11  Cn4  v127
+ BYTE   N11  Ds4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   N11  Fn4
+ BYTE   W12
+ BYTE   N17  Ds4
+ BYTE   N17  Fs4
+ BYTE   W24
+ BYTE   As3
+ BYTE   N17  Ds4
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   N17  Cn4
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_01860693
+// 013   ----------------------------------------
+Label_1_018606D3:
+ BYTE   W12
+ BYTE   N11  Ds3  v127
+ BYTE   N11  As3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   N11  Cn4
+ BYTE   W12
+ BYTE   As3
+ BYTE   N11  Ds4
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   N11  Cn4
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   N11  As3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   N11  Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 014   ----------------------------------------
+Label_1_018606EF:
+ BYTE   N11  Gn3  v127
+ BYTE   N11  Cn4
+ BYTE   W12
+ BYTE   As3
+ BYTE   N11  Ds4
+ BYTE   W12
+ BYTE   As3
+ BYTE   N11  Cn4
+ BYTE   N11  Fs4
+ BYTE   W36
+ BYTE   As3
+ BYTE   N11  Cn4
+ BYTE   N11  Fs4
+ BYTE   W24
+ BYTE   Fs3
+ BYTE   N11  Fs4
+ BYTE   W12
+ BYTE   PEND 
+// 015   ----------------------------------------
+Label_1_0186070A:
+ BYTE   N11  Fn3  v127
+ BYTE   N11  Fn4
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   N11  Ds4
+ BYTE   W12
+ BYTE   As3
+ BYTE   N11  Cn4
+ BYTE   N11  Fs4
+ BYTE   W36
+ BYTE   As3
+ BYTE   N11  Cn4
+ BYTE   N11  Fs4
+ BYTE   W24
+ BYTE   Fs3
+ BYTE   N11  Fs4
+ BYTE   W12
+ BYTE   PEND 
+// 016   ----------------------------------------
+Label_1_01860725:
+ BYTE   N11  Fn3  v127
+ BYTE   N11  Fn4
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   N11  Ds4
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   N11  Cn4
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   N11  Ds4
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   N11  Cn4
+ BYTE   W12
+ BYTE   As2
+ BYTE   N11  As3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   N11  Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 017   ----------------------------------------
+Label_1_01860744:
+ BYTE   W12
+ BYTE   N23  Cn3  v127
+ BYTE   N23  Cn4
+ BYTE   W24
+ BYTE   N11  Ds3
+ BYTE   N11  Ds4
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   N11  Cn4
+ BYTE   W12
+ BYTE   As2
+ BYTE   N11  As3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   N11  Cn4
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   PEND 
+// 018   ----------------------------------------
+Label_1_0186075F:
+ BYTE   N11  Cn4  v127
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   As3
+ BYTE   N11  Cn4
+ BYTE   N11  Fs4
+ BYTE   W36
+ BYTE   As3
+ BYTE   N11  Cn4
+ BYTE   N11  Fs4
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   PEND 
+// 019   ----------------------------------------
+Label_1_01860774:
+ BYTE   N11  Fn4  v127
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N11  As3
+ BYTE   N11  Cn4
+ BYTE   N11  Fs4
+ BYTE   W24
+ BYTE   As3
+ BYTE   N11  Cn4
+ BYTE   N11  Fs4
+ BYTE   W24
+ BYTE   Fs3
+ BYTE   N11  Fs4
+ BYTE   W12
+ BYTE   PEND 
+// 020   ----------------------------------------
+Label_1_0186078E:
+ BYTE   N11  Fn3  v127
+ BYTE   N11  Fn4
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   N11  Ds4
+ BYTE   W12
+ BYTE   N08  Dn3
+ BYTE   N08  Dn4
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   N08  Ds4
+ BYTE   W24
+ BYTE   Fn3
+ BYTE   N08  Fn4
+ BYTE   W24
+ BYTE   N11  Gn3
+ BYTE   N11  Gn4
+ BYTE   W12
+ BYTE   PEND 
+// 021   ----------------------------------------
+Label_1_018607AB:
+ BYTE   N11  Gs3  v127
+ BYTE   N11  Gs4
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   N11  Gn4
+ BYTE   W24
+ BYTE   Dn4
+ BYTE   N11  Fn4
+ BYTE   N11  As4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   N11  Fn4
+ BYTE   N11  As4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   N11  Fn4
+ BYTE   N11  As4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   N11  Fn4
+ BYTE   N11  As4
+ BYTE   W24
+ BYTE   PEND 
+// 022   ----------------------------------------
+Label_1_018607CE:
+ BYTE   VOICE   24
+ BYTE   N11  Gn4  v127
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W36
+ BYTE   N11
+ BYTE   W24
+ BYTE   Dn5
+ BYTE   W12
+ BYTE   PEND 
+// 023   ----------------------------------------
+Label_1_018607DD:
+ BYTE   N11  Ds5  v127
+ BYTE   W12
+ BYTE   Dn5
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   As4
+ BYTE   W24
+ BYTE   Gn4
+ BYTE   W24
+ BYTE   As4
+ BYTE   W12
+ BYTE   PEND 
+// 024   ----------------------------------------
+Label_1_018607EC:
+ BYTE   N11  Cn5  v127
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   PEND 
+// 025   ----------------------------------------
+Label_1_018607FF:
+ BYTE   N11  Gn4  v127
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W24
+ BYTE   PEND 
+// 026   ----------------------------------------
+Label_1_01860810:
+ BYTE   N11  Gn4  v127
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W36
+ BYTE   N11
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   PEND 
+// 027   ----------------------------------------
+Label_1_0186081D:
+ BYTE   N11  Ds5  v127
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   BEND   c_v-55
+ BYTE   N11  Gn5
+ BYTE   W01
+ BYTE   BEND   c_v-27
+ BYTE   W01
+ BYTE   En3
+ BYTE   W10
+ BYTE   N11  Fn5
+ BYTE   W24
+ BYTE   Ds5
+ BYTE   W24
+ BYTE   As4
+ BYTE   W12
+ BYTE   PEND 
+// 028   ----------------------------------------
+Label_1_01860835:
+ BYTE   N11  As4  v127
+ BYTE   W12
+ BYTE   N23  Cn5
+ BYTE   W24
+ BYTE   N11  Ds5
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W24
+ BYTE   PEND 
+// 029   ----------------------------------------
+Label_1_01860846:
+ BYTE   W12
+ BYTE   BEND   c_v-55
+ BYTE   N23  Gn5  v127
+ BYTE   W01
+ BYTE   BEND   c_v-27
+ BYTE   W01
+ BYTE   En3
+ BYTE   W22
+ BYTE   N11  Fn5
+ BYTE   W12
+ BYTE   Ds5
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W24
+ BYTE   PEND 
+// 030   ----------------------------------------
+Label_1_0186085C:
+ BYTE   VOICE   61
+ BYTE   W24
+ BYTE   N11  Cn4  v127
+ BYTE   N11  Ds4
+ BYTE   N11  Gn4
+ BYTE   W36
+ BYTE   Cn4
+ BYTE   N11  Ds4
+ BYTE   N11  Gn4
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   PEND 
+// 031   ----------------------------------------
+Label_1_01860870:
+ BYTE   N11  Fn4  v127
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   N11  Fn4
+ BYTE   N11  An4
+ BYTE   W36
+ BYTE   Dn4
+ BYTE   N11  Fn4
+ BYTE   N11  An4
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   PEND 
+// 032   ----------------------------------------
+Label_1_01860885:
+ BYTE   N11  Gn4  v127
+ BYTE   W12
+ BYTE   Fn4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   N11  Fn4
+ BYTE   N11  As4
+ BYTE   W36
+ BYTE   Ds4
+ BYTE   N11  Fn4
+ BYTE   N11  As4
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   PEND 
+// 033   ----------------------------------------
+Label_1_0186089A:
+ BYTE   N11  Gs4  v127
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Fn4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Gn4
+ BYTE   W36
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_01860600
+ BYTE   PATT
+  POIN2 Label_1_0186060C
+ BYTE   PATT
+  POIN2 Label_1_01860615
+ BYTE   PATT
+  POIN2 Label_1_01860623
+ BYTE   PATT
+  POIN2 Label_1_0186062E
+ BYTE   PATT
+  POIN2 Label_1_01860638
+ BYTE   PATT
+  POIN2 Label_1_01860623
+ BYTE   PATT
+  POIN2 Label_1_0186064B
+ BYTE   PATT
+  POIN2 Label_1_0186065B
+ BYTE   PATT
+  POIN2 Label_1_0186066B
+ BYTE   PATT
+  POIN2 Label_1_0186067B
+ BYTE   PATT
+  POIN2 Label_1_01860693
+ BYTE   PATT
+  POIN2 Label_1_018606A6
+ BYTE   PATT
+  POIN2 Label_1_018606B6
+ BYTE   PATT
+  POIN2 Label_1_01860693
+ BYTE   PATT
+  POIN2 Label_1_018606D3
+ BYTE   PATT
+  POIN2 Label_1_018606EF
+ BYTE   PATT
+  POIN2 Label_1_0186070A
+ BYTE   PATT
+  POIN2 Label_1_01860725
+ BYTE   PATT
+  POIN2 Label_1_01860744
+ BYTE   PATT
+  POIN2 Label_1_0186075F
+ BYTE   PATT
+  POIN2 Label_1_01860774
+ BYTE   PATT
+  POIN2 Label_1_0186078E
+ BYTE   PATT
+  POIN2 Label_1_018607AB
+ BYTE   PATT
+  POIN2 Label_1_018607CE
+ BYTE   PATT
+  POIN2 Label_1_018607DD
+ BYTE   PATT
+  POIN2 Label_1_018607EC
+ BYTE   PATT
+  POIN2 Label_1_018607FF
+ BYTE   PATT
+  POIN2 Label_1_01860810
+ BYTE   PATT
+  POIN2 Label_1_0186081D
+ BYTE   PATT
+  POIN2 Label_1_01860835
+ BYTE   PATT
+  POIN2 Label_1_01860846
+ BYTE   PATT
+  POIN2 Label_1_0186085C
+ BYTE   PATT
+  POIN2 Label_1_01860870
+ BYTE   PATT
+  POIN2 Label_1_01860885
+ BYTE   PATT
+  POIN2 Label_1_0186089A
+ BYTE   PATT
+  POIN2 Label_1_01860600
+ BYTE   PATT
+  POIN2 Label_1_0186060C
+ BYTE   PATT
+  POIN2 Label_1_01860615
+ BYTE   PATT
+  POIN2 Label_1_01860623
+ BYTE   PATT
+  POIN2 Label_1_0186062E
+ BYTE   PATT
+  POIN2 Label_1_01860638
+ BYTE   PATT
+  POIN2 Label_1_01860623
+ BYTE   PATT
+  POIN2 Label_1_0186064B
+ BYTE   PATT
+  POIN2 Label_1_0186065B
+ BYTE   PATT
+  POIN2 Label_1_0186066B
+ BYTE   PATT
+  POIN2 Label_1_0186067B
+ BYTE   PATT
+  POIN2 Label_1_01860693
+ BYTE   PATT
+  POIN2 Label_1_018606A6
+ BYTE   PATT
+  POIN2 Label_1_018606B6
+ BYTE   PATT
+  POIN2 Label_1_01860693
+ BYTE   PATT
+  POIN2 Label_1_018606D3
+ BYTE   PATT
+  POIN2 Label_1_018606EF
+ BYTE   PATT
+  POIN2 Label_1_0186070A
+ BYTE   PATT
+  POIN2 Label_1_01860725
+ BYTE   PATT
+  POIN2 Label_1_01860744
+ BYTE   PATT
+  POIN2 Label_1_0186075F
+ BYTE   PATT
+  POIN2 Label_1_01860774
+ BYTE   PATT
+  POIN2 Label_1_0186078E
+ BYTE   PATT
+  POIN2 Label_1_018607AB
+ BYTE   PATT
+  POIN2 Label_1_018607CE
+ BYTE   PATT
+  POIN2 Label_1_018607DD
+ BYTE   PATT
+  POIN2 Label_1_018607EC
+ BYTE   PATT
+  POIN2 Label_1_018607FF
+ BYTE   PATT
+  POIN2 Label_1_01860810
+ BYTE   PATT
+  POIN2 Label_1_0186081D
+ BYTE   PATT
+  POIN2 Label_1_01860835
+ BYTE   PATT
+  POIN2 Label_1_01860846
+ BYTE   PATT
+  POIN2 Label_1_0186085C
+ BYTE   PATT
+  POIN2 Label_1_01860870
+ BYTE   PATT
+  POIN2 Label_1_01860885
+// 034   ----------------------------------------
+ BYTE   N11  Gs4  v127
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Fn4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Gn4
+ BYTE   W12
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Gn4
+ BYTE   W30
+ BYTE   GoTo
+  POIN2 Label_1_01860600
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+Kirby64BumperCropBumpPandan_003:
+// 000   ----------------------------------------
+ BYTE   VOL   50*Kirby64BumperCropBumpPandan_mvl/mxv
+ BYTE   KEYSH   Kirby64BumperCropBumpPandan_key+0
+Label_2_01860A3C:
+ BYTE   VOICE   38
+ BYTE   W30
+ BYTE   N05  Cn3  v076
+ BYTE   W36
+ BYTE   As2
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W18
+ BYTE   PEND 
+// 001   ----------------------------------------
+Label_2_01860A48:
+ BYTE   W18
+ BYTE   N05  As2  v076
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W18
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_2_01860A58:
+ BYTE   W06
+ BYTE   VOICE   38
+ BYTE   W24
+ BYTE   N05  Cn3  v076
+ BYTE   W36
+ BYTE   As2
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W18
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+// 003   ----------------------------------------
+Label_2_01860A6A:
+ BYTE   W06
+ BYTE   VOICE   38
+ BYTE   W24
+ BYTE   N05  Gs2  v076
+ BYTE   W36
+ BYTE   Fs2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W18
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_2_01860A77:
+ BYTE   W18
+ BYTE   N05  Fs2  v076
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   Fs2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W18
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A6A
+ BYTE   PATT
+  POIN2 Label_2_01860A77
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+// 005   ----------------------------------------
+Label_2_01860AB9:
+ BYTE   W06
+ BYTE   N05  Cn3  v076
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W36
+ BYTE   N05
+ BYTE   W24
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_2_01860AC7:
+ BYTE   W06
+ BYTE   N05  Gs2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W36
+ BYTE   N05
+ BYTE   W24
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_2_01860AD5:
+ BYTE   W06
+ BYTE   N05  Gs2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W18
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_2_01860AE7:
+ BYTE   W18
+ BYTE   N05  As2  v076
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   As2
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_01860AB9
+// 009   ----------------------------------------
+Label_2_01860AFE:
+ BYTE   W06
+ BYTE   N05  Gs2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Fs2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W24
+ BYTE   N05
+ BYTE   W24
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 010   ----------------------------------------
+Label_2_01860B0E:
+ BYTE   W06
+ BYTE   N05  Gs2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   N05
+ BYTE   W24
+ BYTE   N05
+ BYTE   W24
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_2_01860B1E:
+ BYTE   W06
+ BYTE   N05  Gn2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W24
+ BYTE   Dn3
+ BYTE   N05  Fn3
+ BYTE   N05  As3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N05  Fn3
+ BYTE   N05  As3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N05  Fn3
+ BYTE   N05  As3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N05  Fn3
+ BYTE   N05  As3
+ BYTE   W18
+ BYTE   PEND 
+// 012   ----------------------------------------
+Label_2_01860B3E:
+ BYTE   W30
+ BYTE   N05  Fn2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 013   ----------------------------------------
+Label_2_01860B4E:
+ BYTE   W06
+ BYTE   N05  Fn2  v060
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Gn2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 014   ----------------------------------------
+Label_2_01860B63:
+ BYTE   W06
+ BYTE   N05  Gn2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 015   ----------------------------------------
+Label_2_01860B77:
+ BYTE   W06
+ BYTE   N05  Bn2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 016   ----------------------------------------
+Label_2_01860B8B:
+ BYTE   W06
+ BYTE   N05  An2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Fn2
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 017   ----------------------------------------
+Label_2_01860B9F:
+ BYTE   W06
+ BYTE   N05  Fn2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 018   ----------------------------------------
+Label_2_01860BB3:
+ BYTE   W06
+ BYTE   N05  Gn2  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 019   ----------------------------------------
+Label_2_01860BC7:
+ BYTE   W06
+ BYTE   N05  Cn3  v076
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W30
+ BYTE   PEND 
+// 020   ----------------------------------------
+Label_2_01860BD7:
+ BYTE   W06
+ BYTE   N05  As2  v076
+ BYTE   W12
+ BYTE   N11  Gn2
+ BYTE   W12
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W24
+ BYTE   N11
+ BYTE   W24
+ BYTE   N23
+ BYTE   W06
+ BYTE   PEND 
+// 021   ----------------------------------------
+Label_2_01860BE8:
+ BYTE   W18
+ BYTE   N11  Ds3  v076
+ BYTE   W12
+ BYTE   Fn2
+ BYTE   W18
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   N11
+ BYTE   W24
+ BYTE   PEND 
+// 022   ----------------------------------------
+Label_2_01860BF4:
+ BYTE   N11  Fn3  v076
+ BYTE   W18
+ BYTE   N11
+ BYTE   W12
+ BYTE   Cs2
+ BYTE   W12
+ BYTE   Cs3
+ BYTE   W24
+ BYTE   N11
+ BYTE   W24
+ BYTE   N23
+ BYTE   W06
+ BYTE   PEND 
+// 023   ----------------------------------------
+Label_2_01860C03:
+ BYTE   W18
+ BYTE   N11  Fn3  v076
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N11  Gn3
+ BYTE   N11  Dn4
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N11  Gn3
+ BYTE   N11  Dn4
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N11  Gn3
+ BYTE   N11  Dn4
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N11  Gn3
+ BYTE   N11  Dn4
+ BYTE   W30
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_01860A3C
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A6A
+ BYTE   PATT
+  POIN2 Label_2_01860A77
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A6A
+ BYTE   PATT
+  POIN2 Label_2_01860A77
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860AB9
+ BYTE   PATT
+  POIN2 Label_2_01860AC7
+ BYTE   PATT
+  POIN2 Label_2_01860AD5
+ BYTE   PATT
+  POIN2 Label_2_01860AE7
+ BYTE   PATT
+  POIN2 Label_2_01860AB9
+ BYTE   PATT
+  POIN2 Label_2_01860AFE
+ BYTE   PATT
+  POIN2 Label_2_01860B0E
+ BYTE   PATT
+  POIN2 Label_2_01860B1E
+ BYTE   PATT
+  POIN2 Label_2_01860B3E
+ BYTE   PATT
+  POIN2 Label_2_01860B4E
+ BYTE   PATT
+  POIN2 Label_2_01860B63
+ BYTE   PATT
+  POIN2 Label_2_01860B77
+ BYTE   PATT
+  POIN2 Label_2_01860B8B
+ BYTE   PATT
+  POIN2 Label_2_01860B9F
+ BYTE   PATT
+  POIN2 Label_2_01860BB3
+ BYTE   PATT
+  POIN2 Label_2_01860BC7
+ BYTE   PATT
+  POIN2 Label_2_01860BD7
+ BYTE   PATT
+  POIN2 Label_2_01860BE8
+ BYTE   PATT
+  POIN2 Label_2_01860BF4
+ BYTE   PATT
+  POIN2 Label_2_01860C03
+ BYTE   PATT
+  POIN2 Label_2_01860A3C
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A6A
+ BYTE   PATT
+  POIN2 Label_2_01860A77
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860A6A
+ BYTE   PATT
+  POIN2 Label_2_01860A77
+ BYTE   PATT
+  POIN2 Label_2_01860A58
+ BYTE   PATT
+  POIN2 Label_2_01860A48
+ BYTE   PATT
+  POIN2 Label_2_01860AB9
+ BYTE   PATT
+  POIN2 Label_2_01860AC7
+ BYTE   PATT
+  POIN2 Label_2_01860AD5
+ BYTE   PATT
+  POIN2 Label_2_01860AE7
+ BYTE   PATT
+  POIN2 Label_2_01860AB9
+ BYTE   PATT
+  POIN2 Label_2_01860AFE
+ BYTE   PATT
+  POIN2 Label_2_01860B0E
+ BYTE   PATT
+  POIN2 Label_2_01860B1E
+ BYTE   PATT
+  POIN2 Label_2_01860B3E
+ BYTE   PATT
+  POIN2 Label_2_01860B4E
+ BYTE   PATT
+  POIN2 Label_2_01860B63
+ BYTE   PATT
+  POIN2 Label_2_01860B77
+ BYTE   PATT
+  POIN2 Label_2_01860B8B
+ BYTE   PATT
+  POIN2 Label_2_01860B9F
+ BYTE   PATT
+  POIN2 Label_2_01860BB3
+ BYTE   PATT
+  POIN2 Label_2_01860BC7
+ BYTE   PATT
+  POIN2 Label_2_01860BD7
+ BYTE   PATT
+  POIN2 Label_2_01860BE8
+ BYTE   PATT
+  POIN2 Label_2_01860BF4
+// 024   ----------------------------------------
+ BYTE   W18
+ BYTE   N11  Fn3  v076
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N11  Gn3
+ BYTE   N11  Dn4
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N11  Gn3
+ BYTE   N11  Dn4
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N11  Gn3
+ BYTE   N11  Dn4
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N11  Gn3
+ BYTE   N11  Dn4
+ BYTE   W24
+ BYTE   GoTo
+  POIN2 Label_2_01860A3C
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+Kirby64BumperCropBumpPandan_004:
+// 000   ----------------------------------------
+ BYTE   VOL   50*Kirby64BumperCropBumpPandan_mvl/mxv
+ BYTE   KEYSH   Kirby64BumperCropBumpPandan_key+0
+Label_3_01860DAC:
+ BYTE   VOICE   46
+ BYTE   W24
+ BYTE   N05  As3  v127
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   PEND 
+// 001   ----------------------------------------
+Label_3_01860DCA:
+ BYTE   N05  As3  v127
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+// 002   ----------------------------------------
+Label_3_01860DF7:
+ BYTE   N05  As3  v127
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_3_01860E1A:
+ BYTE   N05  Gs3  v127
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_3_01860E3D:
+ BYTE   N05  Gs3  v127
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Gs3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DF7
+ BYTE   PATT
+  POIN2 Label_3_01860E1A
+ BYTE   PATT
+  POIN2 Label_3_01860E3D
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+// 005   ----------------------------------------
+Label_3_01860E8D:
+ BYTE   N05  As3  v127
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_3_01860EB0:
+ BYTE   N05  Fs4  v127
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_3_01860ED3:
+ BYTE   N05  Fs4  v127
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_3_01860EF6:
+ BYTE   N05  Ds4  v127
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_3_01860F19:
+ BYTE   N05  Ds4  v127
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_01860EB0
+// 010   ----------------------------------------
+Label_3_01860F41:
+ BYTE   N05  Fs4  v127
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fs4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fn4
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W06
+ BYTE   Fn4
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W06
+ BYTE   Fn4
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W06
+ BYTE   Fn4
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W06
+ BYTE   Fn4
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W06
+ BYTE   Fn4
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W06
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_3_01860F64:
+ BYTE   N05  Fn4  v127
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W06
+ BYTE   Fn4
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W06
+ BYTE   Fn4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   N05  Fn4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   N05  Fn4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   N05  Fn4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   N05  Fn4
+ BYTE   W24
+ BYTE   PEND 
+// 012   ----------------------------------------
+Label_3_01860F81:
+ BYTE   VOICE   11
+ BYTE   W24
+ BYTE   N05  Cn3  v127
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   PEND 
+// 013   ----------------------------------------
+Label_3_01860F9F:
+ BYTE   N05  Cn3  v127
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   PEND 
+// 014   ----------------------------------------
+Label_3_01860FC2:
+ BYTE   N05  Gn3  v127
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W06
+ BYTE   Fs3
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W06
+ BYTE   Fs3
+ BYTE   W06
+ BYTE   PEND 
+// 015   ----------------------------------------
+Label_3_01860FE5:
+ BYTE   N05  Bn3  v127
+ BYTE   W06
+ BYTE   Fs3
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W06
+ BYTE   Fs3
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   PEND 
+// 016   ----------------------------------------
+Label_3_01861008:
+ BYTE   N05  An3  v127
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_01860F9F
+// 017   ----------------------------------------
+Label_3_01861030:
+ BYTE   N05  Gn3  v127
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   PEND 
+// 018   ----------------------------------------
+Label_3_01861053:
+ BYTE   N05  Cn4  v127
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W30
+ BYTE   PEND 
+// 019   ----------------------------------------
+Label_3_0186106E:
+ BYTE   VOICE   60
+ BYTE   W24
+ BYTE   N11  Cn4  v127
+ BYTE   N11  Ds4
+ BYTE   N11  Gn4
+ BYTE   W36
+ BYTE   Cn4
+ BYTE   N11  Ds4
+ BYTE   N11  Gn4
+ BYTE   W36
+ BYTE   PEND 
+// 020   ----------------------------------------
+Label_3_01861080:
+ BYTE   W24
+ BYTE   N11  Dn4  v127
+ BYTE   N11  Fn4
+ BYTE   N11  An4
+ BYTE   W36
+ BYTE   Dn4
+ BYTE   N11  Fn4
+ BYTE   N11  An4
+ BYTE   W36
+ BYTE   PEND 
+// 021   ----------------------------------------
+Label_3_01861090:
+ BYTE   W24
+ BYTE   N11  Ds4  v127
+ BYTE   N11  Fn4
+ BYTE   N11  As4
+ BYTE   W36
+ BYTE   Ds4
+ BYTE   N11  Fn4
+ BYTE   N11  As4
+ BYTE   W36
+ BYTE   PEND 
+// 022   ----------------------------------------
+Label_3_018610A0:
+ BYTE   W24
+ BYTE   N11  Cn4  v127
+ BYTE   N11  Dn4
+ BYTE   N11  Gn4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Gn4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Gs4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Gn4
+ BYTE   W36
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_01860DAC
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DF7
+ BYTE   PATT
+  POIN2 Label_3_01860E1A
+ BYTE   PATT
+  POIN2 Label_3_01860E3D
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DF7
+ BYTE   PATT
+  POIN2 Label_3_01860E1A
+ BYTE   PATT
+  POIN2 Label_3_01860E3D
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860E8D
+ BYTE   PATT
+  POIN2 Label_3_01860EB0
+ BYTE   PATT
+  POIN2 Label_3_01860ED3
+ BYTE   PATT
+  POIN2 Label_3_01860EF6
+ BYTE   PATT
+  POIN2 Label_3_01860F19
+ BYTE   PATT
+  POIN2 Label_3_01860EB0
+ BYTE   PATT
+  POIN2 Label_3_01860F41
+ BYTE   PATT
+  POIN2 Label_3_01860F64
+ BYTE   PATT
+  POIN2 Label_3_01860F81
+ BYTE   PATT
+  POIN2 Label_3_01860F9F
+ BYTE   PATT
+  POIN2 Label_3_01860FC2
+ BYTE   PATT
+  POIN2 Label_3_01860FE5
+ BYTE   PATT
+  POIN2 Label_3_01861008
+ BYTE   PATT
+  POIN2 Label_3_01860F9F
+ BYTE   PATT
+  POIN2 Label_3_01861030
+ BYTE   PATT
+  POIN2 Label_3_01861053
+ BYTE   PATT
+  POIN2 Label_3_0186106E
+ BYTE   PATT
+  POIN2 Label_3_01861080
+ BYTE   PATT
+  POIN2 Label_3_01861090
+ BYTE   PATT
+  POIN2 Label_3_018610A0
+ BYTE   PATT
+  POIN2 Label_3_01860DAC
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DF7
+ BYTE   PATT
+  POIN2 Label_3_01860E1A
+ BYTE   PATT
+  POIN2 Label_3_01860E3D
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860DF7
+ BYTE   PATT
+  POIN2 Label_3_01860E1A
+ BYTE   PATT
+  POIN2 Label_3_01860E3D
+ BYTE   PATT
+  POIN2 Label_3_01860DCA
+ BYTE   PATT
+  POIN2 Label_3_01860E8D
+ BYTE   PATT
+  POIN2 Label_3_01860EB0
+ BYTE   PATT
+  POIN2 Label_3_01860ED3
+ BYTE   PATT
+  POIN2 Label_3_01860EF6
+ BYTE   PATT
+  POIN2 Label_3_01860F19
+ BYTE   PATT
+  POIN2 Label_3_01860EB0
+ BYTE   PATT
+  POIN2 Label_3_01860F41
+ BYTE   PATT
+  POIN2 Label_3_01860F64
+ BYTE   PATT
+  POIN2 Label_3_01860F81
+ BYTE   PATT
+  POIN2 Label_3_01860F9F
+ BYTE   PATT
+  POIN2 Label_3_01860FC2
+ BYTE   PATT
+  POIN2 Label_3_01860FE5
+ BYTE   PATT
+  POIN2 Label_3_01861008
+ BYTE   PATT
+  POIN2 Label_3_01860F9F
+ BYTE   PATT
+  POIN2 Label_3_01861030
+ BYTE   PATT
+  POIN2 Label_3_01861053
+ BYTE   PATT
+  POIN2 Label_3_0186106E
+ BYTE   PATT
+  POIN2 Label_3_01861080
+ BYTE   PATT
+  POIN2 Label_3_01861090
+// 023   ----------------------------------------
+ BYTE   W24
+ BYTE   N11  Cn4  v127
+ BYTE   N11  Dn4
+ BYTE   N11  Gn4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Gn4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Gs4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Dn4
+ BYTE   N11  Gn4
+ BYTE   W30
+ BYTE   GoTo
+  POIN2 Label_3_01860DAC
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+Kirby64BumperCropBumpPandan_005:
+// 000   ----------------------------------------
+ BYTE   VOL   50*Kirby64BumperCropBumpPandan_mvl/mxv
+ BYTE   KEYSH   Kirby64BumperCropBumpPandan_key+0
+Label_4_01861244:
+ BYTE   VOICE   81
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+Label_4_01861256:
+ BYTE   W24
+ BYTE   N11  Cn4  v127
+ BYTE   N11  Fs4
+ BYTE   W36
+ BYTE   Cn4
+ BYTE   N11  Fs4
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   PEND 
+// 017   ----------------------------------------
+Label_4_01861264:
+ BYTE   N11  Fn4  v127
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Fs4
+ BYTE   W36
+ BYTE   Cn4
+ BYTE   N11  Fs4
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   PEND 
+// 018   ----------------------------------------
+Label_4_01861275:
+ BYTE   N11  Fn4  v127
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 019   ----------------------------------------
+Label_4_01861286:
+ BYTE   W12
+ BYTE   N23  Cn4  v127
+ BYTE   W24
+ BYTE   N11  Ds4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   PEND 
+// 020   ----------------------------------------
+Label_4_01861297:
+ BYTE   N11  Cn4  v127
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   N11  Fs4
+ BYTE   W36
+ BYTE   Cn4
+ BYTE   N11  Fs4
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   PEND 
+// 021   ----------------------------------------
+Label_4_018612A8:
+ BYTE   N11  Fn4  v127
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N11  Cn4
+ BYTE   N11  Fs4
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   N11  Fs4
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   PEND 
+// 022   ----------------------------------------
+Label_4_018612BC:
+ BYTE   N11  Fn4  v127
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   N08  Dn4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W24
+ BYTE   Fn4
+ BYTE   W24
+ BYTE   N11  Gn4
+ BYTE   W12
+ BYTE   PEND 
+// 023   ----------------------------------------
+Label_4_018612CD:
+ BYTE   N11  Gs4  v127
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W84
+ BYTE   PEND 
+// 024   ----------------------------------------
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W96
+// 026   ----------------------------------------
+ BYTE   W96
+// 027   ----------------------------------------
+ BYTE   W96
+// 028   ----------------------------------------
+ BYTE   W96
+// 029   ----------------------------------------
+ BYTE   W96
+// 030   ----------------------------------------
+ BYTE   W96
+// 031   ----------------------------------------
+ BYTE   W96
+// 032   ----------------------------------------
+ BYTE   W96
+// 033   ----------------------------------------
+ BYTE   W96
+// 034   ----------------------------------------
+ BYTE   W96
+// 035   ----------------------------------------
+ BYTE   W96
+// 036   ----------------------------------------
+ BYTE   VOICE   81
+ BYTE   W96
+// 037   ----------------------------------------
+ BYTE   W96
+// 038   ----------------------------------------
+ BYTE   W96
+// 039   ----------------------------------------
+ BYTE   W96
+// 040   ----------------------------------------
+ BYTE   W96
+// 041   ----------------------------------------
+ BYTE   W96
+// 042   ----------------------------------------
+ BYTE   W96
+// 043   ----------------------------------------
+ BYTE   W96
+// 044   ----------------------------------------
+ BYTE   W96
+// 045   ----------------------------------------
+ BYTE   W96
+// 046   ----------------------------------------
+ BYTE   W96
+// 047   ----------------------------------------
+ BYTE   W96
+// 048   ----------------------------------------
+ BYTE   W96
+// 049   ----------------------------------------
+ BYTE   W96
+// 050   ----------------------------------------
+ BYTE   W96
+// 051   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_4_01861256
+ BYTE   PATT
+  POIN2 Label_4_01861264
+ BYTE   PATT
+  POIN2 Label_4_01861275
+ BYTE   PATT
+  POIN2 Label_4_01861286
+ BYTE   PATT
+  POIN2 Label_4_01861297
+ BYTE   PATT
+  POIN2 Label_4_018612A8
+ BYTE   PATT
+  POIN2 Label_4_018612BC
+ BYTE   PATT
+  POIN2 Label_4_018612CD
+// 052   ----------------------------------------
+ BYTE   W96
+// 053   ----------------------------------------
+ BYTE   W96
+// 054   ----------------------------------------
+ BYTE   W96
+// 055   ----------------------------------------
+ BYTE   W96
+// 056   ----------------------------------------
+ BYTE   W96
+// 057   ----------------------------------------
+ BYTE   W96
+// 058   ----------------------------------------
+ BYTE   W96
+// 059   ----------------------------------------
+ BYTE   W96
+// 060   ----------------------------------------
+ BYTE   W96
+// 061   ----------------------------------------
+ BYTE   W96
+// 062   ----------------------------------------
+ BYTE   W96
+// 063   ----------------------------------------
+ BYTE   W96
+// 064   ----------------------------------------
+ BYTE   VOICE   81
+ BYTE   W96
+// 065   ----------------------------------------
+ BYTE   W96
+// 066   ----------------------------------------
+ BYTE   W96
+// 067   ----------------------------------------
+ BYTE   W96
+// 068   ----------------------------------------
+ BYTE   W96
+// 069   ----------------------------------------
+ BYTE   W96
+// 070   ----------------------------------------
+ BYTE   W96
+// 071   ----------------------------------------
+ BYTE   W96
+// 072   ----------------------------------------
+ BYTE   W96
+// 073   ----------------------------------------
+ BYTE   W96
+// 074   ----------------------------------------
+ BYTE   W96
+// 075   ----------------------------------------
+ BYTE   W96
+// 076   ----------------------------------------
+ BYTE   W96
+// 077   ----------------------------------------
+ BYTE   W96
+// 078   ----------------------------------------
+ BYTE   W96
+// 079   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_4_01861256
+ BYTE   PATT
+  POIN2 Label_4_01861264
+ BYTE   PATT
+  POIN2 Label_4_01861275
+ BYTE   PATT
+  POIN2 Label_4_01861286
+ BYTE   PATT
+  POIN2 Label_4_01861297
+ BYTE   PATT
+  POIN2 Label_4_018612A8
+ BYTE   PATT
+  POIN2 Label_4_018612BC
+ BYTE   PATT
+  POIN2 Label_4_018612CD
+// 080   ----------------------------------------
+ BYTE   W96
+// 081   ----------------------------------------
+ BYTE   W96
+// 082   ----------------------------------------
+ BYTE   W96
+// 083   ----------------------------------------
+ BYTE   W96
+// 084   ----------------------------------------
+ BYTE   W96
+// 085   ----------------------------------------
+ BYTE   W96
+// 086   ----------------------------------------
+ BYTE   W96
+// 087   ----------------------------------------
+ BYTE   W96
+// 088   ----------------------------------------
+ BYTE   W96
+// 089   ----------------------------------------
+ BYTE   W96
+// 090   ----------------------------------------
+ BYTE   W96
+// 091   ----------------------------------------
+ BYTE   W90
+ BYTE   GoTo
+  POIN2 Label_4_01861244
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+Kirby64BumperCropBumpPandan_006:
+// 000   ----------------------------------------
+ BYTE   VOL   50*Kirby64BumperCropBumpPandan_mvl/mxv
+ BYTE   KEYSH   Kirby64BumperCropBumpPandan_key+0
+Label_5_01861378:
+ BYTE   VOICE   123
+ BYTE   N11  Cs2  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+// 001   ----------------------------------------
+Label_5_018613A7:
+ BYTE   N11  Dn1  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+// 002   ----------------------------------------
+Label_5_018613F1:
+ BYTE   N11  Dn1  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+// 003   ----------------------------------------
+Label_5_0186143D:
+ BYTE   N11  Dn1  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_018613F1
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186143D
+ BYTE   PATT
+  POIN2 Label_5_018613F1
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+// 004   ----------------------------------------
+Label_5_0186148E:
+ BYTE   N11  Dn1  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W06
+ BYTE   N05  Dn1
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_5_018614C2:
+ BYTE   N11  Dn1  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Dn1
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186148E
+// 006   ----------------------------------------
+Label_5_01861513:
+ BYTE   N11  Dn1  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Dn1
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Dn1
+ BYTE   W12
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Dn1
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_5_0186153D:
+ BYTE   N11  Dn1  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+// 008   ----------------------------------------
+Label_5_0186156E:
+ BYTE   N11  Dn1  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Dn1
+ BYTE   N11  Cs2
+ BYTE   W12
+ BYTE   Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N11  Cs2
+ BYTE   N05  Fs2
+ BYTE   W24
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W05
+ BYTE   W01
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_5_0186159A:
+ BYTE   VOICE   123
+ BYTE   N11  Cs2  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Bn0
+ BYTE   W12
+ BYTE   N11
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613F1
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186143D
+ BYTE   PATT
+  POIN2 Label_5_018613F1
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186143D
+ BYTE   PATT
+  POIN2 Label_5_018613F1
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186148E
+ BYTE   PATT
+  POIN2 Label_5_018614C2
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186148E
+ BYTE   PATT
+  POIN2 Label_5_01861513
+ BYTE   PATT
+  POIN2 Label_5_0186153D
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186156E
+ BYTE   PATT
+  POIN2 Label_5_0186159A
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613F1
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186143D
+ BYTE   PATT
+  POIN2 Label_5_018613F1
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186143D
+ BYTE   PATT
+  POIN2 Label_5_018613F1
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186148E
+ BYTE   PATT
+  POIN2 Label_5_018614C2
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+ BYTE   PATT
+  POIN2 Label_5_0186148E
+ BYTE   PATT
+  POIN2 Label_5_01861513
+ BYTE   PATT
+  POIN2 Label_5_0186153D
+ BYTE   PATT
+  POIN2 Label_5_018613A7
+// 010   ----------------------------------------
+ BYTE   N11  Dn1  v127
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Bn0
+ BYTE   N05  Fs2
+ BYTE   W12
+ BYTE   N11  Dn1
+ BYTE   N11  Cs2
+ BYTE   W12
+ BYTE   Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Dn1
+ BYTE   N11  Cs2
+ BYTE   N05  Fs2
+ BYTE   W24
+ BYTE   N05
+ BYTE   W06
+ BYTE   GoTo
+  POIN2 Label_5_01861378
+// 011   ----------------------------------------
+ BYTE   N05  Fs2  v127
+ BYTE   W05
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+Kirby64BumperCropBumpPandan:
+	BYTE	6	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	Kirby64BumperCropBumpPandan_pri	// Priority
+	BYTE	Kirby64BumperCropBumpPandan_rev	// Reverb.
+    
+	POIN2	Kirby64BumperCropBumpPandan_grp
+    
+	POIN2	Kirby64BumperCropBumpPandan_001
+	POIN2	Kirby64BumperCropBumpPandan_002
+	POIN2	Kirby64BumperCropBumpPandan_003
+	POIN2	Kirby64BumperCropBumpPandan_004
+	POIN2	Kirby64BumperCropBumpPandan_005
+	POIN2	Kirby64BumperCropBumpPandan_006
+
+	

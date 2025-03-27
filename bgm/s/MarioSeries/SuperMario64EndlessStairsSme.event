@@ -1,0 +1,1219 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	SuperMario64EndlessStairsSme_grp  voicegroup000
+	#define	SuperMario64EndlessStairsSme_pri  0
+	#define	SuperMario64EndlessStairsSme_rev  0
+	#define	SuperMario64EndlessStairsSme_mvl  85
+	#define	SuperMario64EndlessStairsSme_key  0
+	#define	SuperMario64EndlessStairsSme_tbs  1
+	#define	SuperMario64EndlessStairsSme_exg  0
+	#define	SuperMario64EndlessStairsSme_cmp  1
+
+	// .rodata
+	//	SuperMario64EndlessStairsSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+SuperMario64EndlessStairsSme_1:
+	BYTE	KEYSH   SuperMario64EndlessStairsSme_key+0
+SuperMario64EndlessStairsSme_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   200*SuperMario64EndlessStairsSme_tbs/2
+	BYTE		VOICE   1
+	BYTE	W01
+	BYTE		VOL     30*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Cn1   v112
+	BYTE	W12
+	BYTE		        Fs1 
+	BYTE	W10
+	BYTE		PAN     c_v+0
+	BYTE		VOL     0*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Gn1 
+	BYTE	W02
+	BYTE		VOL     32*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Cs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W03
+	BYTE		VOL     34*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W09
+	BYTE		N12     Gs1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W05
+	BYTE		VOL     36*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Ds1 
+	BYTE	W11
+// 001   ----------------------------------------
+	BYTE	W01
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		VOL     38*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W06
+	BYTE		N12     As1 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W08
+	BYTE		VOL     40*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W04
+	BYTE		N12     Fn1 
+	BYTE	W12
+	BYTE		        Fs1 
+	BYTE	W10
+	BYTE		VOL     42*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Cn2 
+	BYTE	W12
+	BYTE		        Cs2 
+	BYTE	W11
+	BYTE		VOL     44*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W01
+	BYTE		N12     Gn1 
+	BYTE	W11
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W01
+	BYTE		VOL     46*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W11
+	BYTE		N12     Ds2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W02
+	BYTE		VOL     48*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     En2 
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W04
+	BYTE		VOL     50*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W08
+	BYTE		N12     Fn2 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		VOL     52*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+// 003   ----------------------------------------
+	BYTE	W01
+	BYTE		N12     Cn2 
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W07
+	BYTE		VOL     54*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Gn2 
+	BYTE	W12
+	BYTE		        Cs2 
+	BYTE	W09
+	BYTE		VOL     56*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W03
+	BYTE		N12     Dn2 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W10
+	BYTE		VOL     58*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     An2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W11
+// 004   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     60*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     En2 
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W02
+	BYTE		VOL     62*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Fn2 
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W03
+	BYTE		VOL     64*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W09
+	BYTE		N12     Cn3 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W05
+	BYTE		VOL     66*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Gn2 
+	BYTE	W11
+// 005   ----------------------------------------
+	BYTE	W01
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		VOL     68*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W06
+	BYTE		N12     Gs2 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		VOL     70*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W04
+	BYTE		N12     An2 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W10
+	BYTE		VOL     72*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     As2 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W11
+	BYTE		VOL     74*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W01
+	BYTE		N12     Bn2 
+	BYTE	W11
+// 006   ----------------------------------------
+	BYTE	W01
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W01
+	BYTE		VOL     76*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W11
+	BYTE		N12     Gn3 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W02
+	BYTE		VOL     78*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Dn3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W04
+	BYTE		VOL     80*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W08
+	BYTE		N12     An3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W06
+	BYTE		VOL     82*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+// 007   ----------------------------------------
+	BYTE	W01
+	BYTE		N12     En3 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W07
+	BYTE		VOL     84*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Bn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W09
+	BYTE		VOL     86*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W03
+	BYTE		N12     Fs3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W10
+	BYTE		VOL     88*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Cs4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W11
+// 008   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     90*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Dn4 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W02
+	BYTE		VOL     92*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     An3 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W03
+	BYTE		VOL     94*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W09
+	BYTE		N12     As3 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W05
+	BYTE		VOL     96*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Bn3 
+	BYTE	W11
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		VOL     98*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W06
+	BYTE		N12     Fs4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		VOL     100*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W04
+	BYTE		N12     Cs4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W10
+	BYTE		VOL     102*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Gs4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W11
+	BYTE		VOL     104*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W01
+	BYTE		N12     Ds4 
+	BYTE	W11
+// 010   ----------------------------------------
+	BYTE	W01
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W01
+	BYTE		VOL     106*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W11
+	BYTE		N12     Bn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W02
+	BYTE		VOL     108*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Fs4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W04
+	BYTE		VOL     110*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W08
+	BYTE		N12     Cs5 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		VOL     112*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+// 011   ----------------------------------------
+	BYTE	W01
+	BYTE		N12     Dn5 
+	BYTE	W12
+	BYTE		        Gs4 
+	BYTE	W07
+	BYTE		VOL     114*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Ds5 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W09
+	BYTE		VOL     116*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W03
+	BYTE		N12     En5 
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W10
+	BYTE		VOL     118*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Fn5 
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W11
+// 012   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	SuperMario64EndlessStairsSme_1_B1
+SuperMario64EndlessStairsSme_1_B2:
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+SuperMario64EndlessStairsSme_2:
+	BYTE	KEYSH   SuperMario64EndlessStairsSme_key+0
+SuperMario64EndlessStairsSme_2_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   1
+	BYTE	W01
+	BYTE		VOL     74*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Cn3   v112
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W01
+	BYTE		VOL     76*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W09
+	BYTE		PAN     c_v+0
+	BYTE	W02
+	BYTE		N12     Gn3 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W02
+	BYTE		VOL     78*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Dn3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W04
+	BYTE		VOL     80*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W08
+	BYTE		N12     An3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W06
+	BYTE		VOL     82*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+// 001   ----------------------------------------
+	BYTE	W01
+	BYTE		N12     En3 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W07
+	BYTE		VOL     84*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Bn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W09
+	BYTE		VOL     86*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W03
+	BYTE		N12     Fs3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W10
+	BYTE		VOL     88*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Cs4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W11
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     90*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Dn4 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W02
+	BYTE		VOL     92*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     An3 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W03
+	BYTE		VOL     94*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W09
+	BYTE		N12     As3 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W05
+	BYTE		VOL     96*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Bn3 
+	BYTE	W11
+// 003   ----------------------------------------
+	BYTE	W01
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		VOL     98*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W06
+	BYTE		N12     Fs4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		VOL     100*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W04
+	BYTE		N12     Cs4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W10
+	BYTE		VOL     102*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Gs4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W11
+	BYTE		VOL     104*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W01
+	BYTE		N12     Ds4 
+	BYTE	W11
+// 004   ----------------------------------------
+	BYTE	W01
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W01
+	BYTE		VOL     106*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W11
+	BYTE		N12     Bn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W02
+	BYTE		VOL     108*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Fs4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W04
+	BYTE		VOL     110*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W08
+	BYTE		N12     Cs5 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		VOL     112*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+// 005   ----------------------------------------
+	BYTE	W01
+	BYTE		N12     Dn5 
+	BYTE	W12
+	BYTE		        Gs4 
+	BYTE	W07
+	BYTE		VOL     114*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Ds5 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W09
+	BYTE		VOL     116*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W03
+	BYTE		N12     En5 
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W10
+	BYTE		VOL     118*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Fn5 
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W11
+// 006   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     120*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Cn5 
+	BYTE	W12
+	BYTE		        Fs5 
+	BYTE	W07
+	BYTE		VOL     118*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Gn5 
+	BYTE	W12
+	BYTE		        Cs5 
+	BYTE	W02
+	BYTE		VOL     116*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Dn5 
+	BYTE	W10
+	BYTE		VOL     114*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Gs5 
+	BYTE	W12
+	BYTE		        An5 
+	BYTE	W05
+	BYTE		VOL     112*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Ds5 
+	BYTE	W11
+// 007   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     110*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     En5 
+	BYTE	W12
+	BYTE		        As5 
+	BYTE	W07
+	BYTE		VOL     108*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Bn5 
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W02
+	BYTE		VOL     106*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Fs5 
+	BYTE	W10
+	BYTE		VOL     104*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Cn6 
+	BYTE	W12
+	BYTE		        Cs6 
+	BYTE	W05
+	BYTE		VOL     102*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Gn5 
+	BYTE	W11
+// 008   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     100*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Dn6 
+	BYTE	W12
+	BYTE		        Gs5 
+	BYTE	W07
+	BYTE		VOL     98*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Ds6 
+	BYTE	W12
+	BYTE		        An5 
+	BYTE	W02
+	BYTE		VOL     96*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     En6 
+	BYTE	W10
+	BYTE		VOL     94*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     As5 
+	BYTE	W12
+	BYTE		        Fn6 
+	BYTE	W05
+	BYTE		VOL     92*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Bn5 
+	BYTE	W11
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     90*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Cn6 
+	BYTE	W12
+	BYTE		        Fs6 
+	BYTE	W07
+	BYTE		VOL     88*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Gn6 
+	BYTE	W12
+	BYTE		        Cs6 
+	BYTE	W02
+	BYTE		VOL     86*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Dn6 
+	BYTE	W10
+	BYTE		VOL     84*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Gs6 
+	BYTE	W12
+	BYTE		        An6 
+	BYTE	W05
+	BYTE		VOL     82*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Ds6 
+	BYTE	W11
+// 010   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     80*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     En6 
+	BYTE	W12
+	BYTE		        As6 
+	BYTE	W07
+	BYTE		VOL     78*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Bn6 
+	BYTE	W12
+	BYTE		        Fn6 
+	BYTE	W02
+	BYTE		VOL     76*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Fs6 
+	BYTE	W10
+	BYTE		VOL     74*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Cn7 
+	BYTE	W12
+	BYTE		        Cs7 
+	BYTE	W05
+	BYTE		VOL     72*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Gn6 
+	BYTE	W11
+// 011   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     70*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Dn7 
+	BYTE	W12
+	BYTE		        Gs6 
+	BYTE	W07
+	BYTE		VOL     68*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Ds7 
+	BYTE	W12
+	BYTE		        An6 
+	BYTE	W02
+	BYTE		VOL     66*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     En7 
+	BYTE	W10
+	BYTE		VOL     64*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     As6 
+	BYTE	W12
+	BYTE		        Fn7 
+	BYTE	W05
+	BYTE		VOL     62*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Bn6 
+	BYTE	W11
+// 012   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	SuperMario64EndlessStairsSme_2_B1
+SuperMario64EndlessStairsSme_2_B2:
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+SuperMario64EndlessStairsSme_3:
+	BYTE	KEYSH   SuperMario64EndlessStairsSme_key+0
+SuperMario64EndlessStairsSme_3_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   1
+	BYTE	W01
+	BYTE		VOL     120*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Cn5   v112
+	BYTE	W12
+	BYTE		        Fs5 
+	BYTE	W07
+	BYTE		VOL     118*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W03
+	BYTE		PAN     c_v+0
+	BYTE	W02
+	BYTE		N12     Gn5 
+	BYTE	W12
+	BYTE		        Cs5 
+	BYTE	W02
+	BYTE		VOL     116*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Dn5 
+	BYTE	W10
+	BYTE		VOL     114*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Gs5 
+	BYTE	W12
+	BYTE		        An5 
+	BYTE	W05
+	BYTE		VOL     112*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Ds5 
+	BYTE	W11
+// 001   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     110*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     En5 
+	BYTE	W12
+	BYTE		        As5 
+	BYTE	W07
+	BYTE		VOL     108*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Bn5 
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W02
+	BYTE		VOL     106*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Fs5 
+	BYTE	W10
+	BYTE		VOL     104*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Cn6 
+	BYTE	W12
+	BYTE		        Cs6 
+	BYTE	W05
+	BYTE		VOL     102*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Gn5 
+	BYTE	W11
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     100*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Dn6 
+	BYTE	W12
+	BYTE		        Gs5 
+	BYTE	W07
+	BYTE		VOL     98*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Ds6 
+	BYTE	W12
+	BYTE		        An5 
+	BYTE	W02
+	BYTE		VOL     96*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     En6 
+	BYTE	W10
+	BYTE		VOL     94*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     As5 
+	BYTE	W12
+	BYTE		        Fn6 
+	BYTE	W05
+	BYTE		VOL     92*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Bn5 
+	BYTE	W11
+// 003   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     90*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Cn6 
+	BYTE	W12
+	BYTE		        Fs6 
+	BYTE	W07
+	BYTE		VOL     88*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Gn6 
+	BYTE	W12
+	BYTE		        Cs6 
+	BYTE	W02
+	BYTE		VOL     86*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Dn6 
+	BYTE	W10
+	BYTE		VOL     84*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Gs6 
+	BYTE	W12
+	BYTE		        An6 
+	BYTE	W05
+	BYTE		VOL     82*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Ds6 
+	BYTE	W11
+// 004   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     80*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     En6 
+	BYTE	W12
+	BYTE		        As6 
+	BYTE	W07
+	BYTE		VOL     78*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Bn6 
+	BYTE	W12
+	BYTE		        Fn6 
+	BYTE	W02
+	BYTE		VOL     76*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Fs6 
+	BYTE	W10
+	BYTE		VOL     74*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Cn7 
+	BYTE	W12
+	BYTE		        Cs7 
+	BYTE	W05
+	BYTE		VOL     72*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Gn6 
+	BYTE	W11
+// 005   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     70*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Dn7 
+	BYTE	W12
+	BYTE		        Gs6 
+	BYTE	W07
+	BYTE		VOL     68*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Ds7 
+	BYTE	W12
+	BYTE		        An6 
+	BYTE	W02
+	BYTE		VOL     66*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     En7 
+	BYTE	W10
+	BYTE		VOL     64*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     As6 
+	BYTE	W12
+	BYTE		        Fn7 
+	BYTE	W05
+	BYTE		VOL     62*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Bn6 
+	BYTE	W11
+// 006   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     30*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     Cn1 
+	BYTE	W12
+	BYTE		        Fs1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W02
+	BYTE		VOL     32*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Cs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W03
+	BYTE		VOL     34*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W09
+	BYTE		N12     Gs1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W05
+	BYTE		VOL     36*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Ds1 
+	BYTE	W11
+// 007   ----------------------------------------
+	BYTE	W01
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		VOL     38*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W06
+	BYTE		N12     As1 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W08
+	BYTE		VOL     40*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W04
+	BYTE		N12     Fn1 
+	BYTE	W12
+	BYTE		        Fs1 
+	BYTE	W10
+	BYTE		VOL     42*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     Cn2 
+	BYTE	W12
+	BYTE		        Cs2 
+	BYTE	W11
+	BYTE		VOL     44*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W01
+	BYTE		N12     Gn1 
+	BYTE	W11
+// 008   ----------------------------------------
+	BYTE	W01
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W01
+	BYTE		VOL     46*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W11
+	BYTE		N12     Ds2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W02
+	BYTE		VOL     48*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     En2 
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W04
+	BYTE		VOL     50*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W08
+	BYTE		N12     Fn2 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		VOL     52*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+// 009   ----------------------------------------
+	BYTE	W01
+	BYTE		N12     Cn2 
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W07
+	BYTE		VOL     54*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W05
+	BYTE		N12     Gn2 
+	BYTE	W12
+	BYTE		        Cs2 
+	BYTE	W09
+	BYTE		VOL     56*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W03
+	BYTE		N12     Dn2 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W10
+	BYTE		VOL     58*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     An2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W11
+// 010   ----------------------------------------
+	BYTE	W01
+	BYTE		VOL     60*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE		N12     En2 
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W02
+	BYTE		VOL     62*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W10
+	BYTE		N12     Fn2 
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W03
+	BYTE		VOL     64*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W09
+	BYTE		N12     Cn3 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W05
+	BYTE		VOL     66*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W07
+	BYTE		N12     Gn2 
+	BYTE	W11
+// 011   ----------------------------------------
+	BYTE	W01
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		VOL     68*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W06
+	BYTE		N12     Gs2 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		VOL     70*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W04
+	BYTE		N12     An2 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W10
+	BYTE		VOL     72*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W02
+	BYTE		N12     As2 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W11
+	BYTE		VOL     74*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W01
+	BYTE		N12     Bn2 
+	BYTE	W11
+// 012   ----------------------------------------
+	BYTE	W01
+	BYTE	GoTo
+	 POIN2	SuperMario64EndlessStairsSme_3_B1
+SuperMario64EndlessStairsSme_3_B2:
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.5) ****************//
+
+SuperMario64EndlessStairsSme_4:
+	BYTE		VOL     127*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	KEYSH   SuperMario64EndlessStairsSme_key+0
+SuperMario64EndlessStairsSme_4_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   49
+	BYTE	W01
+	BYTE		TIE     Cs3   v096
+	BYTE	W20
+	BYTE		PAN     c_v-64
+	BYTE		VOL     60*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W72
+	BYTE	W03
+// 001   ----------------------------------------
+	BYTE	W92
+	BYTE		EOT   
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		TIE     Bn3 
+	BYTE	W92
+	BYTE	W03
+// 003   ----------------------------------------
+	BYTE	W92
+	BYTE		EOT   
+	BYTE	W04
+// 004   ----------------------------------------
+	BYTE	W01
+	BYTE		TIE     Dn4   v088
+	BYTE	W92
+	BYTE	W03
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W01
+	BYTE		EOT   
+	BYTE		TIE     Dn3   v092
+	BYTE	W92
+	BYTE	W03
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W01
+	BYTE		EOT   
+	BYTE		TIE     Fs3   v096
+	BYTE	W92
+	BYTE	W03
+// 009   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT   
+	BYTE	W02
+// 010   ----------------------------------------
+	BYTE	W01
+	BYTE		TIE     An2   v088
+	BYTE	W92
+	BYTE	W03
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W01
+	BYTE		EOT   
+	BYTE	GoTo
+	 POIN2	SuperMario64EndlessStairsSme_4_B1
+SuperMario64EndlessStairsSme_4_B2:
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.6) ****************//
+
+SuperMario64EndlessStairsSme_5:
+	BYTE		VOL     127*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	KEYSH   SuperMario64EndlessStairsSme_key+0
+SuperMario64EndlessStairsSme_5_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   49
+	BYTE	W01
+	BYTE		TIE     Cn4   v100
+	BYTE	W20
+	BYTE		PAN     c_v+0
+	BYTE		VOL     60*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W72
+	BYTE	W03
+// 001   ----------------------------------------
+	BYTE	W92
+	BYTE		EOT   
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		TIE     Fn3   v088
+	BYTE	W92
+	BYTE	W03
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W01
+	BYTE		EOT   
+	BYTE		TIE     As3   v096
+	BYTE	W92
+	BYTE	W03
+// 005   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 006   ----------------------------------------
+	BYTE	W01
+	BYTE		TIE     Cs4 
+	BYTE	W92
+	BYTE	W03
+// 007   ----------------------------------------
+	BYTE	W92
+	BYTE		EOT   
+	BYTE	W04
+// 008   ----------------------------------------
+	BYTE	W01
+	BYTE		TIE     Cs3 
+	BYTE	W92
+	BYTE	W03
+// 009   ----------------------------------------
+	BYTE	W92
+	BYTE		EOT   
+	BYTE	W04
+// 010   ----------------------------------------
+	BYTE	W01
+	BYTE		TIE     Gs3   v092
+	BYTE	W92
+	BYTE	W03
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W01
+	BYTE		EOT   
+	BYTE	GoTo
+	 POIN2	SuperMario64EndlessStairsSme_5_B1
+SuperMario64EndlessStairsSme_5_B2:
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.7) ****************//
+
+SuperMario64EndlessStairsSme_6:
+	BYTE		VOL     127*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	KEYSH   SuperMario64EndlessStairsSme_key+0
+SuperMario64EndlessStairsSme_6_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   49
+	BYTE	W01
+	BYTE		TIE     Fs3   v096
+	BYTE	W19
+	BYTE		PAN     c_v+63
+	BYTE		VOL     60*SuperMario64EndlessStairsSme_mvl/mxv
+	BYTE	W76
+// 001   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT   
+	BYTE	W02
+// 002   ----------------------------------------
+	BYTE	W01
+	BYTE		TIE     Ds4 
+	BYTE	W92
+	BYTE	W03
+// 003   ----------------------------------------
+	BYTE	W92
+	BYTE		EOT   
+	BYTE	W04
+// 004   ----------------------------------------
+	BYTE	W01
+	BYTE		TIE     En3   v092
+	BYTE	W92
+	BYTE	W03
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W01
+	BYTE		EOT   
+	BYTE		TIE     Gn3   v100
+	BYTE	W92
+	BYTE	W03
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W01
+	BYTE		        Cn4 
+	BYTE	W04
+	BYTE		EOT     Gn3 
+	BYTE	W90
+	BYTE	W01
+// 009   ----------------------------------------
+	BYTE	W92
+	BYTE		        Cn4 
+	BYTE	W04
+// 010   ----------------------------------------
+	BYTE	W01
+	BYTE		TIE     Dn3   v096
+	BYTE	W92
+	BYTE	W03
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W01
+	BYTE		EOT   
+	BYTE	GoTo
+	 POIN2	SuperMario64EndlessStairsSme_6_B1
+SuperMario64EndlessStairsSme_6_B2:
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+SuperMario64EndlessStairsSme:
+	BYTE	6	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	SuperMario64EndlessStairsSme_pri	// Priority
+	BYTE	SuperMario64EndlessStairsSme_rev	// Reverb.
+
+	POIN2	SuperMario64EndlessStairsSme_grp
+
+	POIN2	SuperMario64EndlessStairsSme_1
+	POIN2	SuperMario64EndlessStairsSme_2
+	POIN2	SuperMario64EndlessStairsSme_3
+	POIN2	SuperMario64EndlessStairsSme_4
+	POIN2	SuperMario64EndlessStairsSme_5
+	POIN2	SuperMario64EndlessStairsSme_6
+
+	

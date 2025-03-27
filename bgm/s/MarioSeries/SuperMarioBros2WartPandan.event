@@ -1,0 +1,600 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	SuperMarioBros2WartPandan_grp  voicegroup000
+	#define	SuperMarioBros2WartPandan_pri  0
+	#define	SuperMarioBros2WartPandan_rev  0
+	#define	SuperMarioBros2WartPandan_mvl  127
+	#define	SuperMarioBros2WartPandan_key  0
+	#define	SuperMarioBros2WartPandan_tbs  1
+	#define	SuperMarioBros2WartPandan_exg  0
+	#define	SuperMarioBros2WartPandan_cmp  1
+
+	// .rodata
+	//	SuperMarioBros2WartPandan
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+SuperMarioBros2WartPandan_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioBros2WartPandan_key+0
+Label_0_0117BC2E:
+ BYTE   TEMPO   200*SuperMarioBros2WartPandan_tbs/2
+ BYTE   VOICE   20
+ BYTE   VOL   51*SuperMarioBros2WartPandan_mvl/mxv
+ BYTE   N36  Gn3  v080
+ BYTE   W36
+ BYTE   Fs3
+ BYTE   W36
+ BYTE   N24  Dn3
+ BYTE   W24
+// 001   ----------------------------------------
+Label_0_0117BC3D:
+ BYTE   N36  Fs3  v080
+ BYTE   W36
+ BYTE   Fn3
+ BYTE   W36
+ BYTE   N24  Cs3
+ BYTE   W24
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_0_0117BC47:
+ BYTE   N36  Fn3  v080
+ BYTE   W36
+ BYTE   En3
+ BYTE   W32
+ BYTE   W03
+ BYTE   N24  Cn3
+ BYTE   W24
+ BYTE   W01
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_0_0117BC53:
+ BYTE   N12  Ds3  v080
+ BYTE   W12
+ BYTE   N84  Dn3
+ BYTE   W84
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_0_0117BC5B:
+ BYTE   N36  An3  v080
+ BYTE   W36
+ BYTE   Gs3
+ BYTE   W36
+ BYTE   N24  En3
+ BYTE   W24
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_0_0117BC65:
+ BYTE   N36  Gs3  v080
+ BYTE   W36
+ BYTE   Gn3
+ BYTE   W36
+ BYTE   N24  Ds3
+ BYTE   W24
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_0_0117BC6F:
+ BYTE   N36  Gn3  v080
+ BYTE   W36
+ BYTE   Fs3
+ BYTE   W32
+ BYTE   W03
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   W01
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_0_0117BC7B:
+ BYTE   N12  Fn3  v080
+ BYTE   W12
+ BYTE   N84  En3
+ BYTE   W84
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_0_0117BC83:
+ BYTE   N12  Ds3  v080
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_0_0117BC96:
+ BYTE   N12  En3  v080
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   PEND 
+// 010   ----------------------------------------
+Label_0_0117BCA9:
+ BYTE   N12  Fn3  v080
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_0_0117BCBC:
+ BYTE   N12  Fs3  v080
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   Fs3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   Fs3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   Fs3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   PEND 
+// 012   ----------------------------------------
+ BYTE   N36  Gn3
+ BYTE   W36
+ BYTE   Fs3
+ BYTE   W36
+ BYTE   N24  Dn3
+ BYTE   W24
+// 013   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BC3D
+// 014   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BC47
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BC53
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BC5B
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BC65
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BC6F
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BC7B
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BC83
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BC96
+// 022   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BCA9
+// 023   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0117BCBC
+// 024   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_0_0117BC2E
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+SuperMarioBros2WartPandan_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioBros2WartPandan_key+0
+Label_1_0117BD16:
+ BYTE   VOICE   19
+ BYTE   VOL   56*SuperMarioBros2WartPandan_mvl/mxv
+ BYTE   N36  As3  v080
+ BYTE   W36
+ BYTE   An3
+ BYTE   W36
+ BYTE   N24  Fn3
+ BYTE   W24
+// 001   ----------------------------------------
+Label_1_0117BD23:
+ BYTE   N36  An3  v080
+ BYTE   W36
+ BYTE   Gs3
+ BYTE   W36
+ BYTE   N24  En3
+ BYTE   W24
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_1_0117BD2D:
+ BYTE   N36  Gs3  v080
+ BYTE   W36
+ BYTE   Gn3
+ BYTE   W32
+ BYTE   W03
+ BYTE   N24  Ds3
+ BYTE   W24
+ BYTE   W01
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_1_0117BD39:
+ BYTE   N12  Fs3  v080
+ BYTE   W12
+ BYTE   N84  Fn3
+ BYTE   W84
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_1_0117BD41:
+ BYTE   N36  Cn4  v080
+ BYTE   W36
+ BYTE   Bn3
+ BYTE   W36
+ BYTE   N24  Gn3
+ BYTE   W24
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_1_0117BD4B:
+ BYTE   N36  Bn3  v080
+ BYTE   W36
+ BYTE   As3
+ BYTE   W36
+ BYTE   N24  Fs3
+ BYTE   W24
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_1_0117BD55:
+ BYTE   N36  As3  v080
+ BYTE   W36
+ BYTE   An3
+ BYTE   W32
+ BYTE   W03
+ BYTE   N24  Fn3
+ BYTE   W24
+ BYTE   W01
+ BYTE   PEND 
+// 007   ----------------------------------------
+Label_1_0117BD61:
+ BYTE   N12  Gs3  v080
+ BYTE   W12
+ BYTE   N84  Gn3
+ BYTE   W84
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_1_0117BD69:
+ BYTE   N12  An3  v080
+ BYTE   W12
+ BYTE   Gs3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Gs3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Gs3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Gs3
+ BYTE   W12
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_1_0117BD7C:
+ BYTE   N12  As3  v080
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   PEND 
+// 010   ----------------------------------------
+Label_1_0117BD8F:
+ BYTE   N12  Bn3  v080
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_1_0117BDA2:
+ BYTE   N12  Cn4  v080
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W11
+ BYTE   Cn4
+ BYTE   W13
+ BYTE   Bn3
+ BYTE   W12
+ BYTE   PEND 
+// 012   ----------------------------------------
+ BYTE   N36  As3
+ BYTE   W36
+ BYTE   An3
+ BYTE   W36
+ BYTE   N24  Fn3
+ BYTE   W24
+// 013   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BD23
+// 014   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BD2D
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BD39
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BD41
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BD4B
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BD55
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BD61
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BD69
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BD7C
+// 022   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BD8F
+// 023   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0117BDA2
+// 024   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_1_0117BD16
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+SuperMarioBros2WartPandan_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioBros2WartPandan_key+0
+Label_2_0117BDFE:
+ BYTE   VOICE   36
+ BYTE   VOL   45*SuperMarioBros2WartPandan_mvl/mxv
+ BYTE   N12  Gn3  v080
+ BYTE   W11
+ BYTE   An3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W13
+ BYTE   An3
+ BYTE   W12
+// 001   ----------------------------------------
+Label_2_0117BE14:
+ BYTE   N12  Gn3  v080
+ BYTE   W11
+ BYTE   An3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W13
+ BYTE   An3
+ BYTE   W12
+ BYTE   PEND 
+// 002   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE14
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE14
+// 004   ----------------------------------------
+Label_2_0117BE31:
+ BYTE   N12  Fs3  v080
+ BYTE   W11
+ BYTE   Gs3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Fs3
+ BYTE   W12
+ BYTE   Gs3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Fs3
+ BYTE   W13
+ BYTE   Gs3
+ BYTE   W12
+ BYTE   PEND 
+// 005   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE31
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE31
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE31
+// 008   ----------------------------------------
+Label_2_0117BE53:
+ BYTE   N12  En3  v080
+ BYTE   W12
+ BYTE   N24
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_2_0117BE60:
+ BYTE   N12  Fn3  v080
+ BYTE   W12
+ BYTE   N24
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   PEND 
+// 010   ----------------------------------------
+Label_2_0117BE6D:
+ BYTE   N12  Fs3  v080
+ BYTE   W12
+ BYTE   N24
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   PEND 
+// 011   ----------------------------------------
+Label_2_0117BE7A:
+ BYTE   N12  Gn3  v080
+ BYTE   W12
+ BYTE   N24
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N24
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   PEND 
+// 012   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE14
+// 013   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE14
+// 014   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE14
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE14
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE31
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE31
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE31
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE31
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE53
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE60
+// 022   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE6D
+// 023   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0117BE7A
+// 024   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_2_0117BDFE
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+SuperMarioBros2WartPandan:
+	BYTE	3	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	SuperMarioBros2WartPandan_pri	// Priority
+	BYTE	SuperMarioBros2WartPandan_rev	// Reverb.
+    
+	POIN2	SuperMarioBros2WartPandan_grp
+    
+	POIN2	SuperMarioBros2WartPandan_001
+	POIN2	SuperMarioBros2WartPandan_002
+	POIN2	SuperMarioBros2WartPandan_003
+
+	

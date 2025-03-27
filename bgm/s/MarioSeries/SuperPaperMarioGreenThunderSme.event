@@ -1,0 +1,708 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	SuperPaperMarioGreenThunderSme_grp  voicegroup000
+	#define	SuperPaperMarioGreenThunderSme_pri  0
+	#define	SuperPaperMarioGreenThunderSme_rev  0
+	#define	SuperPaperMarioGreenThunderSme_mvl  127
+	#define	SuperPaperMarioGreenThunderSme_key  0
+	#define	SuperPaperMarioGreenThunderSme_tbs  1
+	#define	SuperPaperMarioGreenThunderSme_exg  0
+	#define	SuperPaperMarioGreenThunderSme_cmp  1
+
+	// .rodata
+	//	SuperPaperMarioGreenThunderSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+SuperPaperMarioGreenThunderSme_1:
+	BYTE	KEYSH   SuperPaperMarioGreenThunderSme_key+0
+SuperPaperMarioGreenThunderSme_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   120*SuperPaperMarioGreenThunderSme_tbs/2
+	BYTE		VOICE   30
+	BYTE		VOL     88*SuperPaperMarioGreenThunderSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		N12     Ds2   v127
+	BYTE	W40
+	BYTE	W01
+	BYTE		N05     Ds2   v096
+	BYTE	W06
+	BYTE		N11     Fs2 
+	BYTE	W48
+	BYTE	W01
+// 001   ----------------------------------------
+SuperPaperMarioGreenThunderSme_1_001:
+	BYTE	W17
+	BYTE		N05     Gs2   v096
+	BYTE	W24
+	BYTE		        As2 
+	BYTE	W06
+	BYTE		N17     Bn2 
+	BYTE	W18
+	BYTE		N11     As2 
+	BYTE	W30
+	BYTE		N22     Ds2 
+	BYTE	W01
+	BYTE	PEND
+// 002   ----------------------------------------
+SuperPaperMarioGreenThunderSme_1_002:
+	BYTE	W40
+	BYTE	W01
+	BYTE		N05     Ds2   v096
+	BYTE	W06
+	BYTE		N11     Fs2 
+	BYTE	W48
+	BYTE	W01
+	BYTE	PEND
+// 003   ----------------------------------------
+SuperPaperMarioGreenThunderSme_1_003:
+	BYTE	W17
+	BYTE		N05     Gs2   v096
+	BYTE	W24
+	BYTE		        As2 
+	BYTE	W06
+	BYTE		N17     Bn2 
+	BYTE	W18
+	BYTE		N11     As2 
+	BYTE	W30
+	BYTE	W01
+	BYTE	PEND
+// 004   ----------------------------------------
+SuperPaperMarioGreenThunderSme_1_004:
+	BYTE		PAN     c_v+0
+	BYTE		N12     Ds2   v127
+	BYTE	W40
+	BYTE	W01
+	BYTE		N05     Ds2   v096
+	BYTE	W06
+	BYTE		N11     Fs2 
+	BYTE	W48
+	BYTE	W01
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_002
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_003
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_003
+// 016   ----------------------------------------
+	BYTE		VOL     88*SuperPaperMarioGreenThunderSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		N12     Ds2   v127
+	BYTE	W40
+	BYTE	W01
+	BYTE		N05     Ds2   v096
+	BYTE	W06
+	BYTE		N11     Fs2 
+	BYTE	W48
+	BYTE	W01
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_002
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_1_003
+// 020   ----------------------------------------
+	BYTE		PAN     c_v+0
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	SuperPaperMarioGreenThunderSme_1_B1
+SuperPaperMarioGreenThunderSme_1_B2:
+// 023   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+SuperPaperMarioGreenThunderSme_2:
+	BYTE	KEYSH   SuperPaperMarioGreenThunderSme_key+0
+SuperPaperMarioGreenThunderSme_2_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   28
+	BYTE		VOL     95*SuperPaperMarioGreenThunderSme_mvl/mxv
+	BYTE		N17     Ds1   v096
+	BYTE	W18
+	BYTE		N05   
+	BYTE	W24
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Fs1 
+	BYTE	W48
+// 001   ----------------------------------------
+SuperPaperMarioGreenThunderSme_2_001:
+	BYTE	W18
+	BYTE		N05     Gs1   v096
+	BYTE	W24
+	BYTE		        As1 
+	BYTE	W06
+	BYTE		N17     Bn1 
+	BYTE	W18
+	BYTE		N11     As1 
+	BYTE	W30
+	BYTE	PEND
+// 002   ----------------------------------------
+SuperPaperMarioGreenThunderSme_2_002:
+	BYTE		N17     Ds1   v096
+	BYTE	W18
+	BYTE		N05   
+	BYTE	W24
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Fs1 
+	BYTE	W48
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_001
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_002
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_001
+// 008   ----------------------------------------
+SuperPaperMarioGreenThunderSme_2_008:
+	BYTE		N22     Ds1   v096
+	BYTE	W42
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Fs1 
+	BYTE	W48
+	BYTE	PEND
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_008
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_002
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_002
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_002
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_2_001
+// 020   ----------------------------------------
+	BYTE		N44     Cs1   v064
+	BYTE	W84
+	BYTE		N11     En1 
+	BYTE	W12
+// 021   ----------------------------------------
+	BYTE		N44     Cs1 
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE		N44   
+	BYTE	W84
+	BYTE		N05     Gs1 
+	BYTE	W06
+	BYTE		        Fs1 
+	BYTE	W06
+	BYTE	GoTo
+	 POIN2	SuperPaperMarioGreenThunderSme_2_B1
+SuperPaperMarioGreenThunderSme_2_B2:
+// 023   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+SuperPaperMarioGreenThunderSme_3:
+	BYTE	KEYSH   SuperPaperMarioGreenThunderSme_key+0
+SuperPaperMarioGreenThunderSme_3_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     51*SuperPaperMarioGreenThunderSme_mvl/mxv
+	BYTE		N24     As1   v127
+	BYTE	W24
+	BYTE		N08     Fs1 
+	BYTE	W16
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N24     As1 
+	BYTE	W24
+	BYTE		N08     Fs1 
+	BYTE	W16
+	BYTE		N08   
+	BYTE	W08
+// 001   ----------------------------------------
+SuperPaperMarioGreenThunderSme_3_001:
+	BYTE		N24     As1   v127
+	BYTE	W24
+	BYTE		N08     Fs1 
+	BYTE	W16
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N24     As1 
+	BYTE	W24
+	BYTE		N08     Fs1 
+	BYTE	W16
+	BYTE		N08   
+	BYTE	W08
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_3_001
+	BYTE	GoTo
+	 POIN2	SuperPaperMarioGreenThunderSme_3_B1
+SuperPaperMarioGreenThunderSme_3_B2:
+// 023   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+SuperPaperMarioGreenThunderSme_4:
+	BYTE	KEYSH   SuperPaperMarioGreenThunderSme_key+0
+SuperPaperMarioGreenThunderSme_4_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   75
+	BYTE		VOL     82*SuperPaperMarioGreenThunderSme_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+SuperPaperMarioGreenThunderSme_4_003:
+	BYTE	W92
+	BYTE	W03
+	BYTE		N22     As3   v096
+	BYTE	W01
+	BYTE	PEND
+// 004   ----------------------------------------
+SuperPaperMarioGreenThunderSme_4_004:
+	BYTE	W23
+	BYTE		N22     As3   v096
+	BYTE	W24
+	BYTE		N22   
+	BYTE	W24
+	BYTE		N17     Gs3 
+	BYTE	W18
+	BYTE		N05     Fs3 
+	BYTE	W06
+	BYTE		N17     Gs3 
+	BYTE	W01
+	BYTE	PEND
+// 005   ----------------------------------------
+SuperPaperMarioGreenThunderSme_4_005:
+	BYTE	W17
+	BYTE		N05     Fs3   v096
+	BYTE	W06
+	BYTE		N17     Ds3 
+	BYTE	W18
+	BYTE		N28     Fs3 
+	BYTE	W54
+	BYTE		N22     Gs3 
+	BYTE	W01
+	BYTE	PEND
+// 006   ----------------------------------------
+SuperPaperMarioGreenThunderSme_4_006:
+	BYTE	W23
+	BYTE		N22     Gs3   v096
+	BYTE	W24
+	BYTE		N22   
+	BYTE	W24
+	BYTE		N17     Fs3 
+	BYTE	W18
+	BYTE		N05     Ds3 
+	BYTE	W06
+	BYTE		N17     Fs3 
+	BYTE	W01
+	BYTE	PEND
+// 007   ----------------------------------------
+SuperPaperMarioGreenThunderSme_4_007:
+	BYTE	W17
+	BYTE		N05     Ds3   v096
+	BYTE	W06
+	BYTE		N17     Cs3 
+	BYTE	W18
+	BYTE		N28     As2 
+	BYTE	W54
+	BYTE	W01
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_4_003
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_4_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_4_005
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_4_006
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_4_007
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	SuperPaperMarioGreenThunderSme_4_B1
+SuperPaperMarioGreenThunderSme_4_B2:
+// 023   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+SuperPaperMarioGreenThunderSme_5:
+	BYTE	KEYSH   SuperPaperMarioGreenThunderSme_key+0
+SuperPaperMarioGreenThunderSme_5_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   64
+	BYTE		VOL     101*SuperPaperMarioGreenThunderSme_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+SuperPaperMarioGreenThunderSme_5_003:
+	BYTE	W92
+	BYTE	W03
+	BYTE		N22     As3   v096
+	BYTE	W01
+	BYTE	PEND
+// 004   ----------------------------------------
+SuperPaperMarioGreenThunderSme_5_004:
+	BYTE	W23
+	BYTE		N22     As3   v096
+	BYTE	W24
+	BYTE		N22   
+	BYTE	W24
+	BYTE		N17     Gs3 
+	BYTE	W18
+	BYTE		N05     Fs3 
+	BYTE	W06
+	BYTE		N17     Gs3 
+	BYTE	W01
+	BYTE	PEND
+// 005   ----------------------------------------
+SuperPaperMarioGreenThunderSme_5_005:
+	BYTE	W17
+	BYTE		N05     Fs3   v096
+	BYTE	W06
+	BYTE		N17     Ds3 
+	BYTE	W18
+	BYTE		N28     Fs3 
+	BYTE	W54
+	BYTE		N22     Gs3 
+	BYTE	W01
+	BYTE	PEND
+// 006   ----------------------------------------
+SuperPaperMarioGreenThunderSme_5_006:
+	BYTE	W23
+	BYTE		N22     Gs3   v096
+	BYTE	W24
+	BYTE		N22   
+	BYTE	W24
+	BYTE		N17     Fs3 
+	BYTE	W18
+	BYTE		N05     Ds3 
+	BYTE	W06
+	BYTE		N17     Fs3 
+	BYTE	W01
+	BYTE	PEND
+// 007   ----------------------------------------
+SuperPaperMarioGreenThunderSme_5_007:
+	BYTE	W17
+	BYTE		N05     Ds3   v096
+	BYTE	W06
+	BYTE		N17     Cs3 
+	BYTE	W18
+	BYTE		N28     As2 
+	BYTE	W54
+	BYTE	W01
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_5_003
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_5_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_5_005
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_5_006
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperPaperMarioGreenThunderSme_5_007
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	SuperPaperMarioGreenThunderSme_5_B1
+SuperPaperMarioGreenThunderSme_5_B2:
+// 023   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+SuperPaperMarioGreenThunderSme_6:
+	BYTE	KEYSH   SuperPaperMarioGreenThunderSme_key+0
+SuperPaperMarioGreenThunderSme_6_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   33
+	BYTE		VOL     97*SuperPaperMarioGreenThunderSme_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W23
+	BYTE		N22     Ds3   v064
+	BYTE	W24
+	BYTE		N17     As2 
+	BYTE	W18
+	BYTE		        An2 
+	BYTE	W18
+	BYTE		N05     Gs2 
+	BYTE	W06
+	BYTE		        Fs2 
+	BYTE	W06
+	BYTE		N11     Gs2 
+	BYTE	W01
+// 021   ----------------------------------------
+	BYTE	W17
+	BYTE		N05     Fs2 
+	BYTE	W06
+	BYTE		N11     Gs2 
+	BYTE	W24
+	BYTE		        As2 
+	BYTE	W24
+	BYTE		N68     Cs2 
+	BYTE	W24
+	BYTE	W01
+// 022   ----------------------------------------
+	BYTE	W44
+	BYTE	W03
+	BYTE		N05     Ds1 
+	BYTE	W06
+	BYTE		        Gs1 
+	BYTE	W06
+	BYTE		        Cs2 
+	BYTE	W06
+	BYTE		        Ds2 
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE	W06
+	BYTE		        Cs3 
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE	W13
+	BYTE	GoTo
+	 POIN2	SuperPaperMarioGreenThunderSme_6_B1
+SuperPaperMarioGreenThunderSme_6_B2:
+// 023   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+SuperPaperMarioGreenThunderSme:
+	BYTE	6	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	SuperPaperMarioGreenThunderSme_pri	// Priority
+	BYTE	SuperPaperMarioGreenThunderSme_rev	// Reverb.
+
+	POIN2	SuperPaperMarioGreenThunderSme_grp
+
+	POIN2	SuperPaperMarioGreenThunderSme_1
+	POIN2	SuperPaperMarioGreenThunderSme_2
+	POIN2	SuperPaperMarioGreenThunderSme_3
+	POIN2	SuperPaperMarioGreenThunderSme_4
+	POIN2	SuperPaperMarioGreenThunderSme_5
+	POIN2	SuperPaperMarioGreenThunderSme_6
+
+	

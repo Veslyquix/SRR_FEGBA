@@ -1,0 +1,845 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	LoZTwilightPrincessMidnasLamentMysteriousDancer_grp  voicegroup000
+	#define	LoZTwilightPrincessMidnasLamentMysteriousDancer_pri  0
+	#define	LoZTwilightPrincessMidnasLamentMysteriousDancer_rev  0
+	#define	LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl  127
+	#define	LoZTwilightPrincessMidnasLamentMysteriousDancer_key  0
+	#define	LoZTwilightPrincessMidnasLamentMysteriousDancer_tbs  1
+	#define	LoZTwilightPrincessMidnasLamentMysteriousDancer_exg  0
+	#define	LoZTwilightPrincessMidnasLamentMysteriousDancer_cmp  1
+
+	// .rodata
+	//	LoZTwilightPrincessMidnasLamentMysteriousDancer
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+LoZTwilightPrincessMidnasLamentMysteriousDancer_1:
+	BYTE	KEYSH   LoZTwilightPrincessMidnasLamentMysteriousDancer_key+0
+LoZTwilightPrincessMidnasLamentMysteriousDancer_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   132*LoZTwilightPrincessMidnasLamentMysteriousDancer_tbs/2
+	BYTE		VOICE   1
+	BYTE		VOL     127*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE		        127*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE		        127*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE		        127*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE		        127*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W72
+// 002   ----------------------------------------
+	BYTE	W72
+// 003   ----------------------------------------
+	BYTE	W72
+// 004   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_1_004:
+	BYTE		N44     An3   v112
+	BYTE	W48
+	BYTE		N23     Fn4 
+	BYTE	W24
+	BYTE	PEND
+// 005   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_1_005:
+	BYTE		N44     En4   v112
+	BYTE	W48
+	BYTE		N23     Cn4 
+	BYTE	W24
+	BYTE	PEND
+// 006   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_1_006:
+	BYTE		N44     Bn3   v112
+	BYTE	W48
+	BYTE		N11     An3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE	PEND
+// 007   ----------------------------------------
+	BYTE		N72     Bn3 
+	BYTE	W72
+// 008   ----------------------------------------
+	BYTE	W72
+// 009   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_1_009:
+	BYTE		N11     Dn5   v112
+	BYTE	W12
+	BYTE		        An5 
+	BYTE	W12
+	BYTE		N23     En5 
+	BYTE	W24
+	BYTE		N11     Dn5 
+	BYTE	W12
+	BYTE		        An5 
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE		N72     En5 
+	BYTE	W72
+// 011   ----------------------------------------
+	BYTE	W72
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_005
+// 014   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_1_014:
+	BYTE		N44     Dn4   v112
+	BYTE	W48
+	BYTE		N11     En4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE	PEND
+// 015   ----------------------------------------
+	BYTE		N72     Gn4 
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE	W72
+// 017   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_1_017:
+	BYTE	W24
+	BYTE		N11     Fn5   v112
+	BYTE	W12
+	BYTE		        Cn6 
+	BYTE	W12
+	BYTE		        Gn5 
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W12
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE		N72     En5 
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	W72
+// 020   ----------------------------------------
+	BYTE		TIE     An4 
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	W72
+	BYTE		EOT   
+// 022   ----------------------------------------
+	BYTE		N32     Ds4 
+	BYTE	W36
+	BYTE		        As4 
+	BYTE	W36
+// 023   ----------------------------------------
+	BYTE		        An4 
+	BYTE	W36
+	BYTE		        Fn4 
+	BYTE	W36
+// 024   ----------------------------------------
+	BYTE		TIE     Gn4 
+	BYTE	W72
+// 025   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+// 026   ----------------------------------------
+	BYTE		TIE     En4 
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE	W24
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_004
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_005
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_006
+// 031   ----------------------------------------
+	BYTE		N72     Bn3   v112
+	BYTE	W72
+// 032   ----------------------------------------
+	BYTE	W72
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_009
+// 034   ----------------------------------------
+	BYTE		N72     En5   v112
+	BYTE	W72
+// 035   ----------------------------------------
+	BYTE	W72
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_004
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_005
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_014
+// 039   ----------------------------------------
+	BYTE		N72     Gn4   v112
+	BYTE	W72
+// 040   ----------------------------------------
+	BYTE	W72
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_017
+// 042   ----------------------------------------
+	BYTE		N72     En5   v112
+	BYTE	W72
+// 043   ----------------------------------------
+	BYTE	W72
+// 044   ----------------------------------------
+	BYTE	W72
+// 045   ----------------------------------------
+	BYTE	W72
+// 046   ----------------------------------------
+	BYTE	W72
+// 047   ----------------------------------------
+	BYTE	W72
+// 048   ----------------------------------------
+	BYTE	W72
+// 049   ----------------------------------------
+	BYTE	W72
+// 050   ----------------------------------------
+	BYTE	W72
+// 051   ----------------------------------------
+	BYTE	W72
+// 052   ----------------------------------------
+	BYTE	W24
+	BYTE		N11     Gn3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		N23     An3 
+	BYTE	W24
+// 053   ----------------------------------------
+	BYTE		N11     Gn3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		N48     An3 
+	BYTE	W48
+// 054   ----------------------------------------
+	BYTE	W72
+// 055   ----------------------------------------
+	BYTE	W72
+// 056   ----------------------------------------
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		N23     Bn3 
+	BYTE	W24
+// 057   ----------------------------------------
+	BYTE		N11     An3 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		N48     Bn3 
+	BYTE	W48
+// 058   ----------------------------------------
+	BYTE	W72
+// 059   ----------------------------------------
+	BYTE	W72
+// 060   ----------------------------------------
+	BYTE	W72
+// 061   ----------------------------------------
+	BYTE	W72
+// 062   ----------------------------------------
+	BYTE	W72
+// 063   ----------------------------------------
+	BYTE	W68
+	BYTE	W01
+	BYTE		VOL     126*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE	W03
+	BYTE	GoTo
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1_B1
+LoZTwilightPrincessMidnasLamentMysteriousDancer_1_B2:
+// 064   ----------------------------------------
+	BYTE		VOL     1*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+LoZTwilightPrincessMidnasLamentMysteriousDancer_2:
+	BYTE	KEYSH   LoZTwilightPrincessMidnasLamentMysteriousDancer_key+0
+LoZTwilightPrincessMidnasLamentMysteriousDancer_2_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   73
+	BYTE		VOL     127*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE	W72
+// 001   ----------------------------------------
+	BYTE	W72
+// 002   ----------------------------------------
+	BYTE	W72
+// 003   ----------------------------------------
+	BYTE	W72
+// 004   ----------------------------------------
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	W72
+// 006   ----------------------------------------
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	W72
+// 008   ----------------------------------------
+	BYTE	W72
+// 009   ----------------------------------------
+	BYTE	W72
+// 010   ----------------------------------------
+	BYTE	W72
+// 011   ----------------------------------------
+	BYTE	W72
+// 012   ----------------------------------------
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	W72
+// 014   ----------------------------------------
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE	W72
+// 017   ----------------------------------------
+	BYTE	W72
+// 018   ----------------------------------------
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	W72
+// 020   ----------------------------------------
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	W72
+// 022   ----------------------------------------
+	BYTE	W72
+// 023   ----------------------------------------
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	W72
+// 025   ----------------------------------------
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE	W72
+// 029   ----------------------------------------
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	W72
+// 031   ----------------------------------------
+	BYTE	W72
+// 032   ----------------------------------------
+	BYTE	W72
+// 033   ----------------------------------------
+	BYTE	W72
+// 034   ----------------------------------------
+	BYTE	W72
+// 035   ----------------------------------------
+	BYTE	W72
+// 036   ----------------------------------------
+	BYTE	W72
+// 037   ----------------------------------------
+	BYTE	W72
+// 038   ----------------------------------------
+	BYTE	W72
+// 039   ----------------------------------------
+	BYTE	W72
+// 040   ----------------------------------------
+	BYTE	W72
+// 041   ----------------------------------------
+	BYTE	W72
+// 042   ----------------------------------------
+	BYTE	W72
+// 043   ----------------------------------------
+	BYTE	W48
+	BYTE		N12     An4   v080
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W12
+// 044   ----------------------------------------
+	BYTE		TIE     Cn5 
+	BYTE	W72
+// 045   ----------------------------------------
+	BYTE	W48
+	BYTE		N24     En5 
+	BYTE	W01
+	BYTE		EOT     Cn5 
+	BYTE	W23
+// 046   ----------------------------------------
+	BYTE		N36     Dn5 
+	BYTE	W36
+	BYTE		TIE     Gn4 
+	BYTE	W36
+// 047   ----------------------------------------
+	BYTE	W72
+	BYTE		EOT   
+// 048   ----------------------------------------
+	BYTE		TIE     Fn4 
+	BYTE	W72
+// 049   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE		N24     Cn5 
+	BYTE	W24
+// 050   ----------------------------------------
+	BYTE		N36     Bn4 
+	BYTE	W36
+	BYTE		TIE     En4 
+	BYTE	W36
+// 051   ----------------------------------------
+	BYTE	W72
+	BYTE		EOT   
+// 052   ----------------------------------------
+	BYTE	W72
+// 053   ----------------------------------------
+	BYTE	W72
+// 054   ----------------------------------------
+	BYTE	W24
+	BYTE		N12     Gn3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		TIE     An3 
+	BYTE	W24
+// 055   ----------------------------------------
+	BYTE	W72
+// 056   ----------------------------------------
+	BYTE	W01
+	BYTE		EOT   
+	BYTE	W68
+	BYTE	W03
+// 057   ----------------------------------------
+	BYTE	W72
+// 058   ----------------------------------------
+	BYTE	W24
+	BYTE		N12     Cn4 
+	BYTE	W10
+	BYTE		N13     Gn4 
+	BYTE	W14
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+// 059   ----------------------------------------
+	BYTE		N72     Bn3 
+	BYTE	W72
+// 060   ----------------------------------------
+	BYTE	W72
+// 061   ----------------------------------------
+	BYTE	W72
+// 062   ----------------------------------------
+	BYTE	W72
+// 063   ----------------------------------------
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_2_B1
+LoZTwilightPrincessMidnasLamentMysteriousDancer_2_B2:
+// 064   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3:
+	BYTE	KEYSH   LoZTwilightPrincessMidnasLamentMysteriousDancer_key+0
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   1
+	BYTE		VOL     127*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE		        127*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE		N19     Dn2   v076
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+// 001   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001:
+	BYTE		N19     Dn2   v076
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 003   ----------------------------------------
+	BYTE		N19     Gn3   v076
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 008   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008:
+	BYTE		N19     Dn2   v076
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE	PEND
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 022   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_022:
+	BYTE		N19     Ds2   v076
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE	PEND
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_022
+// 024   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_024:
+	BYTE		N19     Gs1   v076
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_024
+// 026   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_026:
+	BYTE		N19     An1   v076
+	BYTE	W12
+	BYTE		        Cs2 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W12
+	BYTE	PEND
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_026
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_001
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_008
+// 044   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_044:
+	BYTE		N19     An1   v076
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE	PEND
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_044
+// 046   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_046:
+	BYTE		N19     Gn1   v076
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE	PEND
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_046
+// 048   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_048:
+	BYTE		N19     Fn1   v076
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE	PEND
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_048
+// 050   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_050:
+	BYTE		N19     En1   v076
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE	PEND
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_050
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_048
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_048
+// 054   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_054:
+	BYTE		N19     Fs1   v076
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE	PEND
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_054
+// 056   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_046
+// 057   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_046
+// 058   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_058:
+	BYTE		N19     Gs1   v076
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE	PEND
+// 059   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_058
+// 060   ----------------------------------------
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_060:
+	BYTE		N19     An1   v076
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE	PEND
+// 061   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_060
+// 062   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_060
+// 063   ----------------------------------------
+	BYTE		N19     Dn3   v076
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		N07     Bn1 
+	BYTE	W12
+	BYTE	GoTo
+	 POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3_B1
+LoZTwilightPrincessMidnasLamentMysteriousDancer_3_B2:
+// 064   ----------------------------------------
+	BYTE		VOL     1*LoZTwilightPrincessMidnasLamentMysteriousDancer_mvl/mxv
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+LoZTwilightPrincessMidnasLamentMysteriousDancer:
+	BYTE	3	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	LoZTwilightPrincessMidnasLamentMysteriousDancer_pri	// Priority
+	BYTE	LoZTwilightPrincessMidnasLamentMysteriousDancer_rev	// Reverb.
+
+	POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_grp
+
+	POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_1
+	POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_2
+	POIN2	LoZTwilightPrincessMidnasLamentMysteriousDancer_3
+
+	

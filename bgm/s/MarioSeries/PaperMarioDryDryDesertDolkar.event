@@ -1,0 +1,933 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	PaperMarioDryDryDesertDolkar_grp  voicegroup000
+	#define	PaperMarioDryDryDesertDolkar_pri  0
+	#define	PaperMarioDryDryDesertDolkar_rev  0
+	#define	PaperMarioDryDryDesertDolkar_mvl  127
+	#define	PaperMarioDryDryDesertDolkar_key  0
+	#define	PaperMarioDryDryDesertDolkar_tbs  1
+	#define	PaperMarioDryDryDesertDolkar_exg  0
+	#define	PaperMarioDryDryDesertDolkar_cmp  1
+
+	// .rodata
+	//	PaperMarioDryDryDesertDolkar
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+PaperMarioDryDryDesertDolkar_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   PaperMarioDryDryDesertDolkar_key+0
+Label_0_0190E7DA:
+ BYTE   TEMPO   100*PaperMarioDryDryDesertDolkar_tbs/2
+ BYTE   VOICE   52
+ BYTE   VOL   42*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N06  Gn3  v127
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Fs3  v124
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   Fs3  v104
+ BYTE   W12
+ BYTE   Cn3  v124
+ BYTE   W12
+// 001   ----------------------------------------
+Label_0_0190E7F8:
+ BYTE   N06  Gn3  v127
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Fs3  v124
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   Fs3  v104
+ BYTE   W12
+ BYTE   Cn3  v124
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0190E7F8
+ BYTE   PATT
+  POIN2 Label_0_0190E7F8
+// 002   ----------------------------------------
+Label_0_0190E819:
+ BYTE   N06  Gn3  v127
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Fs3  v124
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   Fs3  v104
+ BYTE   W12
+ BYTE   Cn3  v124
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0190E7F8
+ BYTE   PATT
+  POIN2 Label_0_0190E7F8
+ BYTE   PATT
+  POIN2 Label_0_0190E7F8
+ BYTE   PATT
+  POIN2 Label_0_0190E819
+ BYTE   PATT
+  POIN2 Label_0_0190E7F8
+ BYTE   PATT
+  POIN2 Label_0_0190E7F8
+ BYTE   PATT
+  POIN2 Label_0_0190E7F8
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W48
+ BYTE   GoTo
+  POIN2 Label_0_0190E7DA
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+PaperMarioDryDryDesertDolkar_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   PaperMarioDryDryDesertDolkar_key+0
+Label_1_0190E86A:
+ BYTE   VOICE   52
+ BYTE   VOL   60*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W72
+ BYTE   N24  Cn3  v127
+ BYTE   N24  Fs3  v124
+ BYTE   W24
+// 001   ----------------------------------------
+ BYTE   N12  Cn3  v127
+ BYTE   N12  Gn3
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   N40  Gs3
+ BYTE   W01
+ BYTE   N36  Ds3
+ BYTE   W44
+ BYTE   W01
+ BYTE   N11  Gn3
+ BYTE   W01
+ BYTE   N10  Dn3
+ BYTE   W48
+ BYTE   W01
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W02
+ BYTE   N05  Ds3
+ BYTE   N06  Gs3
+ BYTE   W12
+ BYTE   N07  Dn3
+ BYTE   N06  Gn3
+ BYTE   W10
+ BYTE   N48  Dn3
+ BYTE   W01
+ BYTE   Gn3
+ BYTE   W68
+ BYTE   W03
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W24
+ BYTE   N24  Cn3
+ BYTE   N24  Fs3  v124
+ BYTE   W24
+ BYTE   N12  Cn3  v127
+ BYTE   N12  Gn3
+ BYTE   W48
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W24
+ BYTE   N16  Cs3
+ BYTE   N16  Fs3
+ BYTE   W24
+ BYTE   Dn3
+ BYTE   N16  Gn3
+ BYTE   W24
+ BYTE   Ds3
+ BYTE   N16  Gs3
+ BYTE   W24
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   N12  Fs2  v112
+ BYTE   W12
+ BYTE   Gn2  v127
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   An2  v116
+ BYTE   W12
+ BYTE   Gs2  v127
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W36
+// 017   ----------------------------------------
+ BYTE   Fs2
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   An2
+ BYTE   W36
+// 018   ----------------------------------------
+ BYTE   Fs2  v112
+ BYTE   W12
+ BYTE   Gn2  v127
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   An2  v116
+ BYTE   W12
+ BYTE   Gs2  v127
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Bn2  v120
+ BYTE   W12
+// 019   ----------------------------------------
+ BYTE   As2  v100
+ BYTE   W12
+ BYTE   An2  v127
+ BYTE   W12
+ BYTE   Gs2  v100
+ BYTE   W12
+ BYTE   Gn2  v127
+ BYTE   W15
+ BYTE   N12
+ BYTE   W42
+ BYTE   N12
+ BYTE   W03
+// 020   ----------------------------------------
+ BYTE   W09
+ BYTE   N12
+ BYTE   W36
+ BYTE   N24  Cs3  v116
+ BYTE   N24  Fs3  v052
+ BYTE   W24
+ BYTE   N12  Dn3  v127
+ BYTE   N12  Gn3
+ BYTE   W24
+ BYTE   Gn2
+ BYTE   W03
+// 021   ----------------------------------------
+ BYTE   W48
+ BYTE   W03
+ BYTE   N12
+ BYTE   W44
+ BYTE   W01
+// 022   ----------------------------------------
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N48  Ds3  v124
+ BYTE   N48  Gs3  v127
+ BYTE   W24
+ BYTE   W03
+ BYTE   N12  Gn2
+ BYTE   W21
+// 023   ----------------------------------------
+ BYTE   Dn3
+ BYTE   N12  Gn3
+ BYTE   W24
+ BYTE   W03
+ BYTE   Gn2
+ BYTE   W21
+ BYTE   GoTo
+  POIN2 Label_1_0190E86A
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+PaperMarioDryDryDesertDolkar_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   PaperMarioDryDryDesertDolkar_key+0
+Label_2_0190E93A:
+ BYTE   VOICE   104
+ BYTE   VOL   60*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   N15  Gn3  v127
+ BYTE   W24
+ BYTE   N15
+ BYTE   W24
+ BYTE   N24  Fs3
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   W24
+// 003   ----------------------------------------
+ BYTE   En3
+ BYTE   W24
+ BYTE   Cn3
+ BYTE   W24
+ BYTE   N48  Gn2
+ BYTE   W48
+// 004   ----------------------------------------
+ BYTE   N96  Fs2
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   N12  Gn2
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   N72  Fs2
+ BYTE   W72
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+// 007   ----------------------------------------
+ BYTE   Gn2
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   Fs3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Fs3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Fs3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Fs3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+// 009   ----------------------------------------
+ BYTE   Gs3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   N12
+ BYTE   W72
+// 010   ----------------------------------------
+ BYTE   Fs2
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Fs2  v124
+ BYTE   W12
+ BYTE   Gn2  v127
+ BYTE   W12
+ BYTE   Fs2  v120
+ BYTE   W12
+ BYTE   Gn2  v127
+ BYTE   W12
+ BYTE   Fs2  v124
+ BYTE   W12
+ BYTE   Gn2  v127
+ BYTE   W12
+// 011   ----------------------------------------
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   Gn2  v120
+ BYTE   W12
+ BYTE   Gn2  v127
+ BYTE   W72
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W92
+ BYTE   W02
+ BYTE   VOL   12*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   Fs0
+ BYTE   W01
+// 016   ----------------------------------------
+ BYTE   Fs0
+ BYTE   N12  Cn3  v116
+ BYTE   W02
+ BYTE   VOL   12*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W10
+ BYTE   N06  Gn3  v127
+ BYTE   W06
+ BYTE   Fs3  v124
+ BYTE   W06
+ BYTE   N12  Gn3  v127
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Cn3  v116
+ BYTE   W12
+ BYTE   N06  Gn3  v127
+ BYTE   W06
+ BYTE   Fs3  v124
+ BYTE   W06
+ BYTE   N12  Gn3  v127
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+// 017   ----------------------------------------
+Label_2_0190E9C5:
+ BYTE   N12  Cn3  v116
+ BYTE   W12
+ BYTE   N06  Gn3  v127
+ BYTE   W06
+ BYTE   Fs3  v124
+ BYTE   W06
+ BYTE   N12  Gn3  v127
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Cn3  v116
+ BYTE   W12
+ BYTE   N06  Gn3  v127
+ BYTE   W06
+ BYTE   Fs3  v124
+ BYTE   W06
+ BYTE   N12  Gn3  v127
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_0190E9C5
+// 018   ----------------------------------------
+ BYTE   N12  Cn3  v116
+ BYTE   W12
+ BYTE   N06  Gn3  v127
+ BYTE   W06
+ BYTE   Fs3  v124
+ BYTE   W06
+ BYTE   N12  Gn3  v127
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Cn3  v116
+ BYTE   W12
+ BYTE   N06  Gn3  v127
+ BYTE   W06
+ BYTE   Fs3  v124
+ BYTE   W06
+ BYTE   N12  Gn3  v116
+ BYTE   W12
+ BYTE   Cn3  v112
+ BYTE   W12
+// 019   ----------------------------------------
+ BYTE   Ds3  v116
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   Gn3  v108
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   Ds3  v112
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   Gn3  v120
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+// 020   ----------------------------------------
+ BYTE   Ds3  v124
+ BYTE   W12
+ BYTE   Cn3  v120
+ BYTE   W12
+ BYTE   Gn3  v116
+ BYTE   W12
+ BYTE   Cn3  v112
+ BYTE   W12
+ BYTE   Ds3  v116
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   Gn3  v108
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+// 021   ----------------------------------------
+ BYTE   Ds3  v112
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   Gn3  v120
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   Ds3  v124
+ BYTE   W12
+ BYTE   Cn3  v120
+ BYTE   W12
+ BYTE   Gn3  v116
+ BYTE   W12
+ BYTE   Cn3  v112
+ BYTE   W12
+// 022   ----------------------------------------
+ BYTE   Ds3  v116
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   Gn3  v108
+ BYTE   W12
+ BYTE   Cn3  v127
+ BYTE   W12
+ BYTE   GoTo
+  POIN2 Label_2_0190E93A
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+PaperMarioDryDryDesertDolkar_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   PaperMarioDryDryDesertDolkar_key+0
+Label_3_0190EA6A:
+ BYTE   VOICE   32
+ BYTE   VOL   60*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   N15  Cn1  v100
+ BYTE   W18
+ BYTE   N12  Gn1
+ BYTE   W18
+ BYTE   Cn1
+ BYTE   W12
+ BYTE   N48  Gn1
+ BYTE   W48
+// 001   ----------------------------------------
+Label_3_0190EA7A:
+ BYTE   N15  Cn1  v100
+ BYTE   W18
+ BYTE   N12  Gn1
+ BYTE   W18
+ BYTE   Cn1
+ BYTE   W12
+ BYTE   N48  Gn1
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_0190EA7A
+ BYTE   PATT
+  POIN2 Label_3_0190EA7A
+ BYTE   PATT
+  POIN2 Label_3_0190EA7A
+ BYTE   PATT
+  POIN2 Label_3_0190EA7A
+ BYTE   PATT
+  POIN2 Label_3_0190EA7A
+ BYTE   PATT
+  POIN2 Label_3_0190EA7A
+ BYTE   PATT
+  POIN2 Label_3_0190EA7A
+ BYTE   PATT
+  POIN2 Label_3_0190EA7A
+ BYTE   PATT
+  POIN2 Label_3_0190EA7A
+ BYTE   PATT
+  POIN2 Label_3_0190EA7A
+// 002   ----------------------------------------
+Label_3_0190EAB9:
+ BYTE   N15  Fs0  v100
+ BYTE   W18
+ BYTE   N12  Cs1
+ BYTE   W18
+ BYTE   Fs0
+ BYTE   W12
+ BYTE   N48  Cs1
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_0190EAB9
+ BYTE   PATT
+  POIN2 Label_3_0190EAB9
+ BYTE   PATT
+  POIN2 Label_3_0190EAB9
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W72
+ BYTE   N15  Cn1  v100
+ BYTE   W18
+ BYTE   N12  Gn1
+ BYTE   W06
+// 005   ----------------------------------------
+ BYTE   W12
+ BYTE   Cn1
+ BYTE   W12
+ BYTE   N48  Gn1
+ BYTE   W48
+ BYTE   N15  Cn1
+ BYTE   W18
+ BYTE   N12  Gn1
+ BYTE   W06
+// 006   ----------------------------------------
+ BYTE   W12
+ BYTE   Cn1
+ BYTE   W12
+ BYTE   N48  Gn1
+ BYTE   W72
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W48
+ BYTE   GoTo
+  POIN2 Label_3_0190EA6A
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+PaperMarioDryDryDesertDolkar_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   PaperMarioDryDryDesertDolkar_key+0
+Label_4_0190EAFE:
+ BYTE   VOICE   48
+ BYTE   VOL   60*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+Label_4_0190EB0E:
+ BYTE   N48  Cs3  v127
+ BYTE   N48  Fs3
+ BYTE   W48
+ BYTE   N12  Dn3
+ BYTE   N12  Gn3
+ BYTE   W48
+ BYTE   PEND 
+// 013   ----------------------------------------
+Label_4_0190EB1A:
+ BYTE   N12  Ds3  v124
+ BYTE   N12  Gs3
+ BYTE   W12
+ BYTE   Dn3  v127
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   N12  Gn3
+ BYTE   W72
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_4_0190EB0E
+ BYTE   PATT
+  POIN2 Label_4_0190EB1A
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W48
+ BYTE   GoTo
+  POIN2 Label_4_0190EAFE
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+PaperMarioDryDryDesertDolkar_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   PaperMarioDryDryDesertDolkar_key+0
+Label_5_0190EB46:
+ BYTE   VOICE   11
+ BYTE   VOL   60*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+Label_5_0190EB57:
+ BYTE   W32
+ BYTE   W01
+ BYTE   VOL   5*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   Dn0
+ BYTE   W01
+ BYTE   Ds0
+ BYTE   W01
+ BYTE   En0
+ BYTE   N06  Ds4  v127
+ BYTE   W01
+ BYTE   VOL   8*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   Fs0
+ BYTE   W01
+ BYTE   Fs0
+ BYTE   W01
+ BYTE   Gs0
+ BYTE   W01
+ BYTE   Gs0
+ BYTE   W01
+ BYTE   An0
+ BYTE   N06  Fn4  v120
+ BYTE   W01
+ BYTE   VOL   14*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   Bn0
+ BYTE   W01
+ BYTE   Cn1
+ BYTE   W01
+ BYTE   Cs1
+ BYTE   W01
+ BYTE   Cs1
+ BYTE   W01
+ BYTE   Ds1
+ BYTE   N06  Ds4  v127
+ BYTE   W01
+ BYTE   VOL   19*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Gn1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   N06  Fn4  v120
+ BYTE   W01
+ BYTE   VOL   24*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   N06  Ds4  v127
+ BYTE   W01
+ BYTE   VOL   30*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fs2
+ BYTE   N06  Fn4
+ BYTE   W01
+ BYTE   VOL   35*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W01
+ BYTE   An2
+ BYTE   W01
+ BYTE   An2
+ BYTE   W01
+ BYTE   Bn2
+ BYTE   W01
+ BYTE   Bn2
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   40*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   Cs3
+ BYTE   W01
+ BYTE   Dn3
+ BYTE   W01
+ BYTE   Dn3
+ BYTE   W01
+ BYTE   En3
+ BYTE   W01
+ BYTE   En3
+ BYTE   N06  Fn4  v116
+ BYTE   W01
+ BYTE   VOL   46*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   Fs3
+ BYTE   W01
+ BYTE   Gn3
+ BYTE   W01
+ BYTE   Gs3
+ BYTE   W01
+ BYTE   An3
+ BYTE   W01
+ BYTE   As3
+ BYTE   N06  Ds4  v127
+ BYTE   W01
+ BYTE   VOL   51*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   Bn3
+ BYTE   W01
+ BYTE   Cs4
+ BYTE   W01
+ BYTE   Cs4
+ BYTE   W01
+ BYTE   Dn4
+ BYTE   W01
+ BYTE   Ds4
+ BYTE   N06  Fn4  v100
+ BYTE   W01
+ BYTE   VOL   56*PaperMarioDryDryDesertDolkar_mvl/mxv
+ BYTE   W01
+ BYTE   Fn4
+ BYTE   W01
+ BYTE   Fs4
+ BYTE   W01
+ BYTE   Fs4
+ BYTE   W01
+ BYTE   Gs4
+ BYTE   W01
+ BYTE   PEND 
+// 014   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_5_0190EB57
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   W48
+ BYTE   GoTo
+  POIN2 Label_5_0190EB46
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+PaperMarioDryDryDesertDolkar:
+	BYTE	6	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	PaperMarioDryDryDesertDolkar_pri	// Priority
+	BYTE	PaperMarioDryDryDesertDolkar_rev	// Reverb.
+    
+	POIN2	PaperMarioDryDryDesertDolkar_grp
+    
+	POIN2	PaperMarioDryDryDesertDolkar_001
+	POIN2	PaperMarioDryDryDesertDolkar_002
+	POIN2	PaperMarioDryDryDesertDolkar_003
+	POIN2	PaperMarioDryDryDesertDolkar_004
+	POIN2	PaperMarioDryDryDesertDolkar_005
+	POIN2	PaperMarioDryDryDesertDolkar_006
+
+	

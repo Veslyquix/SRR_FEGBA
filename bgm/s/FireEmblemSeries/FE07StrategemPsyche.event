@@ -1,0 +1,1459 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE07StrategemPsyche_grp  voicegroup000
+	#define	FE07StrategemPsyche_pri  10
+	#define	FE07StrategemPsyche_rev  128
+	#define	FE07StrategemPsyche_mvl  127
+	#define	FE07StrategemPsyche_key  0
+	#define	FE07StrategemPsyche_tbs  1
+	#define	FE07StrategemPsyche_exg  0
+	#define	FE07StrategemPsyche_cmp  1
+
+	// .rodata
+	//	FE07StrategemPsyche
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+FE07StrategemPsyche_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07StrategemPsyche_key+0
+ BYTE   TEMPO   106*FE07StrategemPsyche_tbs/2
+ BYTE   W12
+Label_0_0102C951:
+ BYTE   VOICE   48
+ BYTE   VOL   84*FE07StrategemPsyche_mvl/mxv
+ BYTE   PAN   c_v+10
+ BYTE   N44  Dn3  v112
+ BYTE   W48
+ BYTE   N18  Cs3
+ BYTE   W24
+ BYTE   Ds3
+ BYTE   W24
+// 001   ----------------------------------------
+ BYTE   N96  Dn3
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   N06  Dn3  v020
+ BYTE   W24
+ BYTE   N18  Cs3  v112
+ BYTE   W24
+ BYTE   Ds3
+ BYTE   W24
+ BYTE   Fn3
+ BYTE   W24
+// 003   ----------------------------------------
+ BYTE   N84  Dn3
+ BYTE   W84
+ BYTE   N06  Dn3  v020
+ BYTE   W12
+// 004   ----------------------------------------
+Label_0_0102C976:
+ BYTE   N48  Dn3  v100
+ BYTE   W48
+ BYTE   N06  Dn3  v020
+ BYTE   W12
+ BYTE   N24  Fn3  v100
+ BYTE   W36
+ BYTE   PEND 
+// 005   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_0102C976
+// 006   ----------------------------------------
+ BYTE   TIE  Dn3  v112
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W24
+ BYTE   EOT
+ BYTE   N06  Dn3  v020
+ BYTE   W24
+ BYTE   N18  Dn3  v112
+ BYTE   W24
+ BYTE   Ds3
+ BYTE   W24
+// 008   ----------------------------------------
+ BYTE   Dn3
+ BYTE   W24
+ BYTE   Gn2
+ BYTE   W24
+ BYTE   Cn3
+ BYTE   W24
+ BYTE   As2
+ BYTE   W24
+// 009   ----------------------------------------
+ BYTE   N36  Gn2
+ BYTE   W36
+ BYTE   N06  Dn3
+ BYTE   W06
+ BYTE   Ds3
+ BYTE   W06
+ BYTE   N12  Fn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+// 010   ----------------------------------------
+ BYTE   N90  Dn3
+ BYTE   W90
+ BYTE   N06  Dn3  v020
+ BYTE   W06
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   N96  Cs3  v112
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   N12  Cn3
+ BYTE   W15
+ BYTE   N09  Cn3  v020
+ BYTE   W80
+ BYTE   W01
+// 014   ----------------------------------------
+ BYTE   N84  Cs3  v112
+ BYTE   W84
+ BYTE   N12  Ds3
+ BYTE   W12
+// 015   ----------------------------------------
+ BYTE   N06  Cn3
+ BYTE   W06
+ BYTE   Cn3  v020
+ BYTE   W06
+ BYTE   Cn3  v112
+ BYTE   W06
+ BYTE   Cn3  v020
+ BYTE   W66
+ BYTE   N12  Gn2  v112
+ BYTE   N12  Cn3
+ BYTE   W12
+// 016   ----------------------------------------
+ BYTE   N24  Gs2
+ BYTE   N24  Cs3
+ BYTE   W24
+ BYTE   N12  Gn2
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   As2
+ BYTE   N12  Ds3
+ BYTE   W12
+ BYTE   N24  Gs2
+ BYTE   N24  Cs3
+ BYTE   W24
+ BYTE   N12  Gn2
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   As2
+ BYTE   N12  Ds3
+ BYTE   W12
+// 017   ----------------------------------------
+ BYTE   N84  Gs2
+ BYTE   N84  Cs3
+ BYTE   W84
+ BYTE   N06  Cs3  v020
+ BYTE   W12
+// 018   ----------------------------------------
+ BYTE   N24  Gs2  v112
+ BYTE   W24
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   N24  Gs2
+ BYTE   W24
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+// 019   ----------------------------------------
+ BYTE   N84  Gs2
+ BYTE   W84
+ BYTE   N06  Gs2  v020
+ BYTE   W12
+// 020   ----------------------------------------
+ BYTE   En3  v112
+ BYTE   W06
+ BYTE   En3  v020
+ BYTE   W12
+ BYTE   Cs3  v112
+ BYTE   W06
+ BYTE   N24  Gs3
+ BYTE   W24
+ BYTE   N06  En3
+ BYTE   W06
+ BYTE   En3  v020
+ BYTE   W12
+ BYTE   Cs3  v112
+ BYTE   W06
+ BYTE   N24  Gs3
+ BYTE   W24
+// 021   ----------------------------------------
+ BYTE   N06  En3
+ BYTE   W12
+ BYTE   Cs3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   N18  Gs3
+ BYTE   W24
+ BYTE   N36  Bn3
+ BYTE   W36
+ BYTE   N06  Bn3  v020
+ BYTE   W12
+// 022   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_0_0102C951
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+FE07StrategemPsyche_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07StrategemPsyche_key+0
+ BYTE   W12
+Label_1_0102CA4F:
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W72
+ BYTE   VOICE   41
+ BYTE   W06
+ BYTE   VOL   81*FE07StrategemPsyche_mvl/mxv
+ BYTE   W06
+ BYTE   PAN   c_v-25
+ BYTE   W11
+ BYTE   VOL   81*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+// 004   ----------------------------------------
+ BYTE   VOL   50*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4  v072
+ BYTE   W02
+ BYTE   VOL   50*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   51*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   51*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   52*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   52*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   52*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   53*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   53*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   N06  Dn4
+ BYTE   W01
+ BYTE   VOL   54*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   54*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   55*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   55*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   55*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   56*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   56*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   57*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   57*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   58*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W02
+ BYTE   VOL   58*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   58*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   59*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   59*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   60*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   60*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   61*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   61*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   62*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W01
+ BYTE   VOL   62*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   62*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   63*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   63*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   64*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W02
+ BYTE   VOL   64*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   65*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   65*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   65*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W01
+ BYTE   VOL   66*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   66*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   67*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   67*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   68*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   68*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   68*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   69*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   69*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   N06  Dn4
+ BYTE   W01
+ BYTE   VOL   70*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   70*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   71*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   71*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   71*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   72*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   72*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   73*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   73*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   74*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W02
+ BYTE   VOL   74*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   75*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   75*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   75*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   76*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   76*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   77*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   77*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   78*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W01
+ BYTE   VOL   78*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   78*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   79*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   79*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   80*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   80*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   81*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   81*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   81*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+// 005   ----------------------------------------
+ BYTE   N06  Dn4
+ BYTE   W02
+ BYTE   VOL   81*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   81*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   80*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   80*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   79*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   79*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   78*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   78*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   78*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W02
+ BYTE   VOL   77*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   77*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   76*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   76*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   75*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   75*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   75*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   74*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   74*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W01
+ BYTE   VOL   73*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   73*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   72*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   72*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   71*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W02
+ BYTE   VOL   71*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   71*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   70*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   70*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W01
+ BYTE   VOL   69*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   69*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   68*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   68*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   68*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   67*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   67*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   66*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   66*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   N06  Dn4
+ BYTE   W01
+ BYTE   VOL   65*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   65*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   65*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   64*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   64*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   63*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   63*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   62*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   62*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   62*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W02
+ BYTE   VOL   61*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   61*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   60*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   60*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   59*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   59*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   58*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   58*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   58*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W01
+ BYTE   VOL   57*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   57*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   56*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   56*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   N06  Ds4
+ BYTE   W01
+ BYTE   VOL   55*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   55*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   55*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   54*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   54*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Dn4
+ BYTE   W01
+ BYTE   VOL   53*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   53*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   52*FE07StrategemPsyche_mvl/mxv
+ BYTE   W02
+ BYTE   VOL   52*FE07StrategemPsyche_mvl/mxv
+ BYTE   N06  Ds4
+ BYTE   W02
+ BYTE   VOL   52*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   51*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   51*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+ BYTE   VOL   50*FE07StrategemPsyche_mvl/mxv
+ BYTE   W01
+// 006   ----------------------------------------
+ BYTE   VOL   81*FE07StrategemPsyche_mvl/mxv
+ BYTE   W24
+ BYTE   N24  Dn4  v092
+ BYTE   W24
+ BYTE   Cs4
+ BYTE   W24
+ BYTE   Ds4
+ BYTE   W24
+// 007   ----------------------------------------
+ BYTE   N48  Dn4
+ BYTE   W48
+ BYTE   N06  Dn4  v020
+ BYTE   W48
+// 008   ----------------------------------------
+ BYTE   W24
+ BYTE   N24  Dn4  v092
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   Ds4
+ BYTE   W24
+// 009   ----------------------------------------
+ BYTE   N12  Dn4
+ BYTE   W12
+ BYTE   N06  Dn4  v020
+ BYTE   W12
+ BYTE   N48  Gn3  v092
+ BYTE   W48
+ BYTE   N06  Gn3  v020
+ BYTE   W24
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   N96  Cs4  v112
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   N12  Cn4
+ BYTE   W15
+ BYTE   N09  Cn4  v020
+ BYTE   W80
+ BYTE   W01
+// 014   ----------------------------------------
+ BYTE   N84  Cs4  v112
+ BYTE   W84
+ BYTE   N12  Ds4
+ BYTE   W12
+// 015   ----------------------------------------
+ BYTE   N06  Cn4
+ BYTE   W06
+ BYTE   Cn4  v020
+ BYTE   W06
+ BYTE   Cn4  v112
+ BYTE   W06
+ BYTE   Cn4  v020
+ BYTE   W78
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   N24  Cs4  v112
+ BYTE   W24
+ BYTE   N12  Cn4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   N24  Cs4
+ BYTE   W24
+ BYTE   N12  Cn4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W12
+// 019   ----------------------------------------
+ BYTE   N84  Cs4
+ BYTE   W84
+ BYTE   N06  Cs4  v020
+ BYTE   W12
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_1_0102CA4F
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+FE07StrategemPsyche_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07StrategemPsyche_key+0
+ BYTE   W12
+Label_2_0102CCCF:
+ BYTE   VOICE   33
+ BYTE   VOL   84*FE07StrategemPsyche_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N06  Gn2  v112
+ BYTE   W12
+ BYTE   N06
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W24
+ BYTE   Gn2
+ BYTE   W24
+// 001   ----------------------------------------
+ BYTE   Dn2
+ BYTE   W12
+Label_2_0102CCE1:
+ BYTE   N06  Gn2  v112
+ BYTE   W12
+ BYTE   N06
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W24
+ BYTE   Gn2
+ BYTE   W24
+// 002   ----------------------------------------
+ BYTE   Dn2
+ BYTE   W12
+ BYTE   PEND 
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCE1
+// 004   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCE1
+// 005   ----------------------------------------
+Label_2_0102CCF8:
+ BYTE   N06  Gs2  v112
+ BYTE   W12
+ BYTE   N06
+ BYTE   W24
+ BYTE   Ds2
+ BYTE   W24
+ BYTE   Gs2
+ BYTE   W24
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   PEND 
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCF8
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCE1
+// 008   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCE1
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCE1
+// 010   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCE1
+// 011   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCE1
+// 012   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCE1
+// 013   ----------------------------------------
+Label_2_0102CD28:
+ BYTE   N06  Gs2  v112
+ BYTE   W12
+ BYTE   N06
+ BYTE   W24
+ BYTE   Ds2
+ BYTE   W24
+ BYTE   Gs2
+ BYTE   W24
+ BYTE   Ds2
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   PEND 
+// 014   ----------------------------------------
+Label_2_0102CD37:
+ BYTE   N06  Gn2  v112
+ BYTE   W12
+ BYTE   N06
+ BYTE   W24
+ BYTE   N06
+ BYTE   W24
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   PEND 
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CD28
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CD37
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCF8
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCF8
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCF8
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102CCF8
+// 021   ----------------------------------------
+ BYTE   W24
+ BYTE   N24  Gs2  v112
+ BYTE   W48
+ BYTE   N24
+ BYTE   W24
+// 022   ----------------------------------------
+ BYTE   W24
+ BYTE   N06
+ BYTE   W12
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+// 023   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_2_0102CCCF
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+FE07StrategemPsyche_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07StrategemPsyche_key+0
+ BYTE   W12
+Label_3_0102CD83:
+ BYTE   VOICE   57
+ BYTE   VOL   82*FE07StrategemPsyche_mvl/mxv
+ BYTE   PAN   c_v+15
+ BYTE   N44  Gn2  v112
+ BYTE   W48
+ BYTE   N18  Fs2
+ BYTE   W24
+ BYTE   Gs2
+ BYTE   W24
+// 001   ----------------------------------------
+ BYTE   N96  Gn2
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   N06  Gn2  v020
+ BYTE   W24
+ BYTE   N18  Fs2  v112
+ BYTE   W24
+ BYTE   Gs2
+ BYTE   W24
+ BYTE   As2
+ BYTE   W24
+// 003   ----------------------------------------
+ BYTE   N84  Gn2
+ BYTE   W84
+ BYTE   N06  Gn2  v020
+ BYTE   W12
+// 004   ----------------------------------------
+Label_3_0102CDA8:
+ BYTE   N48  Fs2  v100
+ BYTE   W48
+ BYTE   N06  Fs2  v020
+ BYTE   W12
+ BYTE   N24  As2  v100
+ BYTE   W36
+ BYTE   PEND 
+// 005   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0102CDA8
+// 006   ----------------------------------------
+ BYTE   TIE  Gn2  v112
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W24
+ BYTE   EOT
+ BYTE   N06  Gn2  v020
+ BYTE   W24
+ BYTE   N18  Gn2  v112
+ BYTE   W24
+ BYTE   Gs2
+ BYTE   W24
+// 008   ----------------------------------------
+ BYTE   Gn2
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W24
+ BYTE   Fn2
+ BYTE   W24
+ BYTE   N18
+ BYTE   W24
+// 009   ----------------------------------------
+ BYTE   N84  Dn2
+ BYTE   W84
+ BYTE   N06  Dn2  v020
+ BYTE   W12
+// 010   ----------------------------------------
+ BYTE   W36
+ BYTE   N03  Gn2  v112
+ BYTE   W03
+ BYTE   An2
+ BYTE   W03
+ BYTE   As2
+ BYTE   W03
+ BYTE   Cn3
+ BYTE   W03
+ BYTE   N12  Dn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+// 011   ----------------------------------------
+ BYTE   N72  As2
+ BYTE   W72
+ BYTE   N06  As2  v020
+ BYTE   W24
+// 012   ----------------------------------------
+ BYTE   N96  Fn2  v112
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   N12  En2
+ BYTE   W15
+ BYTE   N09  En2  v020
+ BYTE   W80
+ BYTE   W01
+// 014   ----------------------------------------
+ BYTE   N84  Fn2  v112
+ BYTE   W84
+ BYTE   N12  Gn2
+ BYTE   W12
+// 015   ----------------------------------------
+ BYTE   N06  En2
+ BYTE   W06
+ BYTE   En2  v020
+ BYTE   W06
+ BYTE   En2  v112
+ BYTE   W06
+ BYTE   En2  v020
+ BYTE   W78
+// 016   ----------------------------------------
+ BYTE   N92  En3  v100
+ BYTE   W92
+ BYTE   W01
+ BYTE   N06  En3  v020
+ BYTE   W03
+// 017   ----------------------------------------
+Label_3_0102CE1C:
+ BYTE   W36
+ BYTE   N03  En3  v092
+ BYTE   W06
+ BYTE   N03
+ BYTE   W06
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   PEND 
+// 018   ----------------------------------------
+ BYTE   N92  En3  v108
+ BYTE   W92
+ BYTE   W01
+ BYTE   N06  En3  v020
+ BYTE   W03
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0102CE1C
+// 020   ----------------------------------------
+ BYTE   N06  En2  v112
+ BYTE   W06
+ BYTE   En2  v020
+ BYTE   W12
+ BYTE   Cs2  v112
+ BYTE   W06
+ BYTE   N24  Gs2
+ BYTE   W24
+ BYTE   N06  En2
+ BYTE   W06
+ BYTE   En2  v020
+ BYTE   W12
+ BYTE   Cs2  v112
+ BYTE   W06
+ BYTE   N24  Gs2
+ BYTE   W24
+// 021   ----------------------------------------
+ BYTE   N06  En2
+ BYTE   W06
+ BYTE   En2  v020
+ BYTE   W06
+ BYTE   Cs2  v112
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   N18  Gs2
+ BYTE   W24
+ BYTE   N36  Bn2
+ BYTE   W36
+ BYTE   N06  Bn2  v020
+ BYTE   W12
+// 022   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_3_0102CD83
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+FE07StrategemPsyche_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07StrategemPsyche_key+0
+ BYTE   W12
+Label_4_0102CE73:
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   VOICE   65
+ BYTE   W06
+ BYTE   VOL   83*FE07StrategemPsyche_mvl/mxv
+ BYTE   W06
+ BYTE   PAN   c_v-12
+ BYTE   W24
+ BYTE   N03  As2  v112
+ BYTE   W03
+ BYTE   Cn3
+ BYTE   W03
+ BYTE   Dn3
+ BYTE   W03
+ BYTE   Ds3
+ BYTE   W03
+ BYTE   N12  Fn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+// 011   ----------------------------------------
+ BYTE   N72  Dn3
+ BYTE   W72
+ BYTE   N06  Dn3  v020
+ BYTE   W24
+// 012   ----------------------------------------
+ BYTE   N96  Gs2  v112
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   N12  Gn2
+ BYTE   W15
+ BYTE   N09  Gn2  v020
+ BYTE   W80
+ BYTE   W01
+// 014   ----------------------------------------
+ BYTE   N84  Gs2  v112
+ BYTE   W84
+ BYTE   N12  As2
+ BYTE   W12
+// 015   ----------------------------------------
+ BYTE   N06  Gn2
+ BYTE   W06
+ BYTE   Gn2  v020
+ BYTE   W06
+ BYTE   Gn2  v112
+ BYTE   W06
+ BYTE   Gn2  v020
+ BYTE   W78
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+Label_4_0102CEC0:
+ BYTE   W36
+ BYTE   N03  En3  v088
+ BYTE   N03  En4
+ BYTE   W06
+ BYTE   En3
+ BYTE   N03  En4
+ BYTE   W06
+ BYTE   N06  En3
+ BYTE   N06  En4
+ BYTE   W12
+ BYTE   En3
+ BYTE   N06  En4
+ BYTE   W12
+ BYTE   En3
+ BYTE   N06  En4
+ BYTE   W12
+ BYTE   En3
+ BYTE   N06  En4
+ BYTE   W12
+ BYTE   PEND 
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0102CEC0
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_4_0102CE73
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+FE07StrategemPsyche_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07StrategemPsyche_key+0
+ BYTE   VOICE   47
+ BYTE   VOL   85*FE07StrategemPsyche_mvl/mxv
+ BYTE   PAN   c_v-20
+ BYTE   N12  Dn3  v120
+ BYTE   W12
+Label_5_0102CEF8:
+ BYTE   N24  Gn2  v120
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W84
+ BYTE   N12  Dn3
+ BYTE   W12
+// 002   ----------------------------------------
+ BYTE   N24  Gn2
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W84
+ BYTE   N12  Dn3
+ BYTE   W12
+// 004   ----------------------------------------
+ BYTE   N24  Gs2
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W84
+ BYTE   N12  Dn3
+ BYTE   W12
+// 006   ----------------------------------------
+ BYTE   N24  Gn2
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W84
+ BYTE   N12  Dn3
+ BYTE   W12
+// 008   ----------------------------------------
+ BYTE   N24  Gn2
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W84
+ BYTE   N12  Dn3
+ BYTE   W12
+// 010   ----------------------------------------
+ BYTE   N24  Gn2
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+Label_5_0102CF21:
+ BYTE   N12  Gn2  v120
+ BYTE   W36
+ BYTE   N06  Dn3
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   PEND 
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_5_0102CF21
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W84
+ BYTE   N06  Gs2  v108
+ BYTE   W06
+ BYTE   Gs2  v116
+ BYTE   W06
+// 020   ----------------------------------------
+ BYTE   N12  Gs2  v120
+ BYTE   W48
+ BYTE   N12
+ BYTE   W48
+// 021   ----------------------------------------
+ BYTE   N12
+ BYTE   W48
+ BYTE   N12
+ BYTE   W24
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+// 022   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_5_0102CEF8
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+FE07StrategemPsyche_007:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07StrategemPsyche_key+0
+ BYTE   W12
+Label_6_0102CF5F:
+ BYTE   VOICE   127
+ BYTE   VOL   76*FE07StrategemPsyche_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N12  Cs2  v080
+ BYTE   W12
+ BYTE   N06  Fs1  v052
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   N12  As1  v052
+ BYTE   W12
+ BYTE   N06  Fs1
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   Fs1  v052
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   N12  As1  v052
+ BYTE   W12
+// 001   ----------------------------------------
+ BYTE   N06  Fs1
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+Label_6_0102CF8C:
+ BYTE   N06  Fs1  v052
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   N12  As1  v052
+ BYTE   W12
+ BYTE   N06  Fs1
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   Fs1  v052
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   N12  As1  v052
+ BYTE   W12
+// 002   ----------------------------------------
+ BYTE   N06  Fs1
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   PEND 
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102CF8C
+// 004   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102CF8C
+// 005   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102CF8C
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102CF8C
+// 007   ----------------------------------------
+ BYTE   N12  Cs2  v080
+ BYTE   W12
+ BYTE   N06  Fs1  v052
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   N12  As1  v052
+ BYTE   W12
+ BYTE   N06  Fs1
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   Fs1  v052
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   N12  As1  v052
+ BYTE   W12
+ BYTE   N06  Fs1
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+// 008   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102CF8C
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102CF8C
+// 010   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102CF8C
+// 011   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102CF8C
+// 012   ----------------------------------------
+ BYTE   N06  Fs1  v052
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   N12  As1  v052
+ BYTE   W12
+ BYTE   N06  Fs1
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   Fs1  v052
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fs1  v040
+ BYTE   W06
+ BYTE   As1  v052
+ BYTE   W06
+ BYTE   As1  v040
+ BYTE   W06
+ BYTE   As1  v056
+ BYTE   W06
+ BYTE   As1  v068
+ BYTE   W06
+// 013   ----------------------------------------
+Label_6_0102D028:
+ BYTE   N12  As1  v072
+ BYTE   W12
+ BYTE   Ds1  v100
+ BYTE   W24
+ BYTE   N06
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   PEND 
+// 014   ----------------------------------------
+Label_6_0102D03A:
+ BYTE   N24  Gn2  v108
+ BYTE   W24
+ BYTE   N12  Fs1  v072
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W12
+ BYTE   PEND 
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102D028
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102D03A
+// 017   ----------------------------------------
+Label_6_0102D055:
+ BYTE   N06  Fs1  v052
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   N12  As1
+ BYTE   W12
+ BYTE   N06  Fs1
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   N12  As1
+ BYTE   W12
+ BYTE   N06  Fs1
+ BYTE   W12
+ BYTE   PEND 
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102D055
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102D055
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0102D055
+// 021   ----------------------------------------
+ BYTE   W24
+ BYTE   N24  Gn2  v108
+ BYTE   W48
+ BYTE   N24
+ BYTE   W24
+// 022   ----------------------------------------
+ BYTE   N06  Fs1  v052
+ BYTE   W24
+ BYTE   N06
+ BYTE   N24  Gn2  v108
+ BYTE   W24
+ BYTE   N06  Fs1  v052
+ BYTE   N24  Gn2  v108
+ BYTE   W24
+ BYTE   N06  As1  v068
+ BYTE   W06
+ BYTE   As1  v052
+ BYTE   W06
+ BYTE   As1  v068
+ BYTE   W06
+ BYTE   As1  v076
+ BYTE   W06
+// 023   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_6_0102CF5F
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE07StrategemPsyche:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE07StrategemPsyche_pri	// Priority
+	BYTE	FE07StrategemPsyche_rev	// Reverb.
+    
+	POIN2	FE07StrategemPsyche_grp
+    
+	POIN2	FE07StrategemPsyche_001
+	POIN2	FE07StrategemPsyche_002
+	POIN2	FE07StrategemPsyche_003
+	POIN2	FE07StrategemPsyche_004
+	POIN2	FE07StrategemPsyche_005
+	POIN2	FE07StrategemPsyche_006
+	POIN2	FE07StrategemPsyche_007
+
+	

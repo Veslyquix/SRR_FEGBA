@@ -1091,22 +1091,26 @@ bx r3
 .global FE6_RandBattleMusicHook
 .type FE6_RandBattleMusicHook, %function 
 FE6_RandBattleMusicHook: 
-push {lr} 
+push {r4, lr} @ necessary to push/pop r4 for some reason (uh oh)  
 mov r0, r5
 bl RandomizeBattleMusic
 mov r5, r0 
 blh 0x804C500
 cmp r0, #1 
 beq ExitFE6RandBattleMusic_A
+blh 0x8042578 
+pop {r4} 
 pop {r3} 
-ldr r3, =0x805C55D
 bx r3 
 .ltorg 
 ExitFE6RandBattleMusic_A: 
+mov r0, #1 
+pop {r4} 
 pop {r3} 
-ldr r3, =0x805C565
 bx r3 
 .ltorg 
+
+
 
 .global FE7_RandBattleMusicHook
 .type FE7_RandBattleMusicHook, %function 

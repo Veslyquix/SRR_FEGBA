@@ -1,0 +1,2534 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	SuperMarioRPGHardworkingMolePandan_grp  voicegroup000
+	#define	SuperMarioRPGHardworkingMolePandan_pri  10
+	#define	SuperMarioRPGHardworkingMolePandan_rev  0
+	#define	SuperMarioRPGHardworkingMolePandan_mvl  127
+	#define	SuperMarioRPGHardworkingMolePandan_key  0
+	#define	SuperMarioRPGHardworkingMolePandan_tbs  1
+	#define	SuperMarioRPGHardworkingMolePandan_exg  0
+	#define	SuperMarioRPGHardworkingMolePandan_cmp  1
+
+	// .rodata
+	//	SuperMarioRPGHardworkingMolePandan
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+SuperMarioRPGHardworkingMolePandan_001:
+// 000   ----------------------------------------
+Label_0_0114595C:
+ BYTE   TEMPO   120*SuperMarioRPGHardworkingMolePandan_tbs/2
+ BYTE   KEYSH   SuperMarioRPGHardworkingMolePandan_key+0
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_0_01145962:
+ BYTE   VOICE   75
+ BYTE   VOL   53*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+10
+ BYTE   N08  Cn4  v113
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  Gn3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Cn4
+ BYTE   W12
+ BYTE   N04  Dn4
+ BYTE   W12
+ BYTE   N08  Fn4
+ BYTE   W12
+ BYTE   N04  En4
+ BYTE   W12
+// 003   ----------------------------------------
+ BYTE   N08  Cn4
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  Gn3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Cn4
+ BYTE   W12
+ BYTE   N04  Bn3
+ BYTE   W12
+ BYTE   N08  Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_0_01145993:
+ BYTE   VOL   53*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N08  Cn4  v113
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  Gn3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Cn4
+ BYTE   W12
+ BYTE   N04  Dn4
+ BYTE   W12
+ BYTE   N08  Fn4
+ BYTE   W12
+ BYTE   N04  En4
+ BYTE   W12
+// 005   ----------------------------------------
+ BYTE   N08  Cn4
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  Gn3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Cn4
+ BYTE   W12
+ BYTE   N04  Bn3
+ BYTE   W12
+ BYTE   N08  Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 006   ----------------------------------------
+ BYTE   VOICE   75
+ BYTE   VOL   39*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds4  v113
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06  Fn4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   W12
+ BYTE   N24  Ds4
+ BYTE   W24
+// 007   ----------------------------------------
+ BYTE   N06
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W12
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W06
+ BYTE   Fn4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   W12
+ BYTE   N24  Ds4
+ BYTE   W24
+// 008   ----------------------------------------
+ BYTE   VOICE   93
+ BYTE   VOL   34*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+60
+ BYTE   N12  Fn3  v113
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   VOL   39*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Fn3  v113
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   VOL   43*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Dn3  v113
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   VOL   48*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Bn2  v113
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+// 009   ----------------------------------------
+ BYTE   VOL   53*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  Gn2  v113
+ BYTE   W24
+ BYTE   W01
+ BYTE   VOL   43*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N23  Gn3  v113
+ BYTE   W68
+ BYTE   W03
+ BYTE   PATT
+  POIN2 Label_0_01145962
+ BYTE   PATT
+  POIN2 Label_0_01145993
+// 010   ----------------------------------------
+ BYTE   VOICE   75
+ BYTE   VOL   30*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  An3  v113
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   An3
+ BYTE   W18
+ BYTE   VOICE   93
+ BYTE   VOL   53*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+60
+ BYTE   N12  Gn3  v113
+ BYTE   W12
+ BYTE   N24  Cn4
+ BYTE   W24
+// 011   ----------------------------------------
+ BYTE   VOICE   75
+ BYTE   VOL   30*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+10
+ BYTE   N12  Fn3  v113
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W18
+ BYTE   VOICE   93
+ BYTE   VOL   53*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+60
+ BYTE   N12  En3  v113
+ BYTE   W12
+ BYTE   N24  Cn4
+ BYTE   W24
+// 012   ----------------------------------------
+ BYTE   VOICE   75
+ BYTE   VOL   34*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+10
+ BYTE   N12  An3  v113
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N06  Gn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+// 013   ----------------------------------------
+ BYTE   VOL   39*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Fn3  v113
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   VOICE   93
+ BYTE   VOL   53*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+60
+ BYTE   N12  Bn2  v113
+ BYTE   W12
+ BYTE   N24  Gn3
+ BYTE   W24
+// 014   ----------------------------------------
+ BYTE   VOICE   75
+ BYTE   VOL   53*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+10
+ BYTE   N08  Cn4  v113
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  Gn3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Cn4
+ BYTE   W12
+ BYTE   N04  Dn4
+ BYTE   W12
+ BYTE   N08  Fn4
+ BYTE   W12
+ BYTE   N04  En4
+ BYTE   W12
+// 015   ----------------------------------------
+ BYTE   N08  Dn4
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  An3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Dn4
+ BYTE   W12
+ BYTE   N04  Fn4
+ BYTE   W12
+ BYTE   N08  An4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+// 016   ----------------------------------------
+ BYTE   N06  Fn4
+ BYTE   W12
+ BYTE   En4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   N08  Bn3
+ BYTE   W12
+ BYTE   N04  Gn3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+// 017   ----------------------------------------
+ BYTE   N06  Cn4
+ BYTE   W60
+ BYTE   VOICE   93
+ BYTE   VOL   53*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+60
+ BYTE   N12  Gn3  v113
+ BYTE   W12
+ BYTE   N24  Cn4
+ BYTE   W24
+// 018   ----------------------------------------
+ BYTE   VOICE   75
+ BYTE   VOL   53*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+10
+ BYTE   N08  Cn4  v113
+ BYTE   W12
+ BYTE   W06
+ BYTE   N02  Cn4  v113
+ BYTE   W02
+ BYTE   W04
+ BYTE   GoTo
+  POIN2 Label_0_0114595C
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+SuperMarioRPGHardworkingMolePandan_002:
+// 000   ----------------------------------------
+Label_1_01145B14:
+ BYTE   TEMPO   120*SuperMarioRPGHardworkingMolePandan_tbs/2
+ BYTE   KEYSH   SuperMarioRPGHardworkingMolePandan_key+0
+ BYTE   VOICE   79
+ BYTE   VOL   46*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N12  Cn3  v113
+ BYTE   W48
+Label_1_01145B22:
+ BYTE   VOL   46*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Cn3  v113
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_01145B22
+ BYTE   PATT
+  POIN2 Label_1_01145B22
+ BYTE   PATT
+  POIN2 Label_1_01145B22
+ BYTE   PATT
+  POIN2 Label_1_01145B22
+ BYTE   PATT
+  POIN2 Label_1_01145B22
+ BYTE   PATT
+  POIN2 Label_1_01145B22
+ BYTE   PATT
+  POIN2 Label_1_01145B22
+ BYTE   PATT
+  POIN2 Label_1_01145B22
+ BYTE   PATT
+  POIN2 Label_1_01145B22
+// 001   ----------------------------------------
+ BYTE   VOL   46*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Cn3  v113
+ BYTE   W48
+ BYTE   Ds2
+ BYTE   W24
+ BYTE   As2
+ BYTE   W24
+// 002   ----------------------------------------
+ BYTE   N24  Dn2
+ BYTE   W24
+ BYTE   N12  Ds2
+ BYTE   W24
+ BYTE   Ds2
+ BYTE   W24
+ BYTE   As2
+ BYTE   W24
+// 003   ----------------------------------------
+ BYTE   Dn2
+ BYTE   W12
+ BYTE   N06  Fn2
+ BYTE   W12
+ BYTE   N12  Ds2
+ BYTE   W24
+ BYTE   VOL   38*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N48  Fn2  v113
+ BYTE   W48
+// 004   ----------------------------------------
+ BYTE   Fs2
+ BYTE   W48
+ BYTE   N12  Gn2
+ BYTE   W60
+// 005   ----------------------------------------
+ BYTE   N06
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+// 006   ----------------------------------------
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+// 007   ----------------------------------------
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+// 008   ----------------------------------------
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+// 009   ----------------------------------------
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W24
+// 010   ----------------------------------------
+ BYTE   N08  Cn3
+ BYTE   W12
+ BYTE   N06
+ BYTE   W24
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   An3
+ BYTE   W24
+// 011   ----------------------------------------
+ BYTE   N08  Cn3
+ BYTE   W12
+ BYTE   N06
+ BYTE   W24
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+// 012   ----------------------------------------
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   Fs3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W24
+// 013   ----------------------------------------
+ BYTE   N18  Gn2
+ BYTE   W24
+ BYTE   N06  Cn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+// 014   ----------------------------------------
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+// 015   ----------------------------------------
+ BYTE   An2
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+// 016   ----------------------------------------
+ BYTE   An2
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   N12  Cn3
+ BYTE   W48
+ BYTE   Cn2
+ BYTE   W36
+// 017   ----------------------------------------
+ BYTE   N06  Gn2
+ BYTE   W12
+ BYTE   VOL   46*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Cn3  v113
+ BYTE   W12
+ BYTE   W08
+ BYTE   W04
+ BYTE   GoTo
+  POIN2 Label_1_01145B14
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+SuperMarioRPGHardworkingMolePandan_003:
+// 000   ----------------------------------------
+Label_2_01145C44:
+ BYTE   TEMPO   120*SuperMarioRPGHardworkingMolePandan_tbs/2
+ BYTE   KEYSH   SuperMarioRPGHardworkingMolePandan_key+0
+ BYTE   VOICE   78
+ BYTE   VOL   31*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+50
+ BYTE   N06  En3  v113
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   N24  Fn3
+ BYTE   W24
+ BYTE   N12  Dn3
+ BYTE   W12
+ BYTE   N24  En3
+ BYTE   W24
+// 001   ----------------------------------------
+Label_2_01145C64:
+ BYTE   N06  Cn3  v113
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   N12  Fn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_2_01145C7C:
+ BYTE   N06  En3  v113
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   N24  Fn3
+ BYTE   W24
+ BYTE   N12  Dn3
+ BYTE   W12
+ BYTE   N24  En3
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_01145C64
+ BYTE   PATT
+  POIN2 Label_2_01145C7C
+// 003   ----------------------------------------
+ BYTE   N06  Cn3  v113
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   N12  Fn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   As2
+ BYTE   W84
+// 004   ----------------------------------------
+ BYTE   VOICE   75
+ BYTE   VOL   46*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N96  Ds2  v113
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   Ds2
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W12
+ BYTE   VOICE   78
+ BYTE   VOL   21*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+50
+ BYTE   N06  Cn3  v113
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   VOL   31*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  En3  v113
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   N24  Fn3
+ BYTE   W24
+ BYTE   N12  Dn3
+ BYTE   W12
+// 008   ----------------------------------------
+ BYTE   N24  En3
+ BYTE   W24
+ BYTE   N06  Cn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   N12  Fn3
+ BYTE   W12
+// 009   ----------------------------------------
+ BYTE   En3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   VOL   31*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  En3  v113
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   N24  Fn3
+ BYTE   W24
+ BYTE   N12  Dn3
+ BYTE   W12
+// 010   ----------------------------------------
+ BYTE   N24  En3
+ BYTE   W24
+ BYTE   N06  Cn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   N12  Fn3
+ BYTE   W12
+// 011   ----------------------------------------
+ BYTE   En3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W32
+ BYTE   W02
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N02  Cn3  v113
+ BYTE   W02
+ BYTE   Dn3
+ BYTE   W02
+ BYTE   En3
+ BYTE   W02
+ BYTE   Fn3
+ BYTE   W02
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N02  Gn3  v113
+ BYTE   W02
+ BYTE   An3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N02  Cn4  v113
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   VOL   13*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N02  Fn4  v113
+ BYTE   W02
+ BYTE   Fs4
+ BYTE   W02
+ BYTE   Gn4
+ BYTE   W02
+ BYTE   N48  Cn5
+ BYTE   W68
+// 012   ----------------------------------------
+ BYTE   W02
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N02  Gn2  v113
+ BYTE   W02
+ BYTE   An2
+ BYTE   W02
+ BYTE   Bn2
+ BYTE   W02
+ BYTE   Cn3
+ BYTE   W02
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N02  Dn3  v113
+ BYTE   W02
+ BYTE   En3
+ BYTE   W02
+ BYTE   Fn3
+ BYTE   W02
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N02  Gn3  v113
+ BYTE   W02
+ BYTE   An3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   VOL   13*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N02  Cn4  v113
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   N48  Cn5
+ BYTE   W48
+ BYTE   VOICE   93
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+60
+ BYTE   N24  Cn3  v113
+ BYTE   W24
+// 013   ----------------------------------------
+ BYTE   Cn3
+ BYTE   W24
+ BYTE   Cn3
+ BYTE   W24
+ BYTE   Cn3
+ BYTE   W24
+ BYTE   VOICE   78
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+50
+ BYTE   N02  An4  v113
+ BYTE   W02
+ BYTE   An4
+ BYTE   W02
+ BYTE   An4
+ BYTE   W02
+ BYTE   An4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Gn4
+ BYTE   W02
+ BYTE   Gn4
+ BYTE   W02
+ BYTE   Gn4
+ BYTE   W02
+ BYTE   Gn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+// 014   ----------------------------------------
+ BYTE   N02  Fn4
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N03  Dn4
+ BYTE   W03
+ BYTE   Dn4
+ BYTE   W03
+ BYTE   Dn4
+ BYTE   W03
+ BYTE   Dn4
+ BYTE   W03
+ BYTE   N36
+ BYTE   W36
+ BYTE   VOL   31*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  En3  v113
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+// 015   ----------------------------------------
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   N24  Fn3
+ BYTE   W24
+ BYTE   N12  Dn3
+ BYTE   W12
+ BYTE   N24  En3
+ BYTE   W24
+ BYTE   N06  Fn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   An3
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W06
+// 016   ----------------------------------------
+ BYTE   N12  An3
+ BYTE   W12
+ BYTE   N24  Gn3
+ BYTE   W24
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N24  Fn3
+ BYTE   W24
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N02  An4  v113
+ BYTE   W02
+ BYTE   An4
+ BYTE   W02
+ BYTE   An4
+ BYTE   W02
+ BYTE   An4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Gn4
+ BYTE   W02
+ BYTE   Gn4
+ BYTE   W02
+ BYTE   Gn4
+ BYTE   W02
+ BYTE   Gn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+// 017   ----------------------------------------
+ BYTE   N02  Fn4
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Bn3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Cn4
+ BYTE   W02
+ BYTE   Cn4
+ BYTE   W02
+ BYTE   Cn4
+ BYTE   W02
+ BYTE   Cn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   VOL   21*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  En4  v113
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W06
+ BYTE   Cn4
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W06
+// 018   ----------------------------------------
+ BYTE   N12  Cn4
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   N36  En3
+ BYTE   W36
+ BYTE   N06  Cn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   N06  Fn3  v113
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   N06  An3  v113
+ BYTE   W02
+ BYTE   W04
+// 019   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_2_01145C44
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+SuperMarioRPGHardworkingMolePandan_004:
+// 000   ----------------------------------------
+Label_3_01145E88:
+ BYTE   TEMPO   120*SuperMarioRPGHardworkingMolePandan_tbs/2
+ BYTE   KEYSH   SuperMarioRPGHardworkingMolePandan_key+0
+ BYTE   VOICE   41
+ BYTE   PAN   c_v-30
+ BYTE   W24
+ BYTE   VOL   8*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N08  Gn4  v113
+ BYTE   W48
+ BYTE   Gn4
+ BYTE   W48
+// 001   ----------------------------------------
+Label_3_01145E99:
+ BYTE   VOL   8*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N08  Gn4  v113
+ BYTE   W48
+ BYTE   Gn4
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_01145E99
+ BYTE   PATT
+  POIN2 Label_3_01145E99
+// 002   ----------------------------------------
+ BYTE   VOL   8*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N08  Gn4  v113
+ BYTE   W48
+ BYTE   Gn4
+ BYTE   W48
+// 003   ----------------------------------------
+ BYTE   Gn4
+ BYTE   W48
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   VOICE   24
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N04  Gn3  v113
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   N32
+ BYTE   W16
+ BYTE   N02
+ BYTE   W20
+// 004   ----------------------------------------
+ BYTE   N04
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   N12  Gs3
+ BYTE   W12
+ BYTE   N06  Fn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W24
+ BYTE   N32
+ BYTE   W16
+ BYTE   N02
+ BYTE   W20
+// 005   ----------------------------------------
+ BYTE   N04
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   N12  Gs3
+ BYTE   W12
+ BYTE   N06  Fn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W48
+ BYTE   VOICE   41
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Cn5  v113
+ BYTE   W48
+// 006   ----------------------------------------
+ BYTE   Dn5
+ BYTE   W48
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Dn5  v113
+ BYTE   W72
+// 007   ----------------------------------------
+ BYTE   VOICE   40
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N24  An2  v113
+ BYTE   W24
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  An2  v113
+ BYTE   W24
+Label_3_01145F02:
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  An2  v113
+ BYTE   W24
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  An2  v113
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_01145F02
+ BYTE   PATT
+  POIN2 Label_3_01145F02
+ BYTE   PATT
+  POIN2 Label_3_01145F02
+ BYTE   PATT
+  POIN2 Label_3_01145F02
+ BYTE   PATT
+  POIN2 Label_3_01145F02
+ BYTE   PATT
+  POIN2 Label_3_01145F02
+// 008   ----------------------------------------
+ BYTE   VOICE   41
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-30
+ BYTE   N48  Cn5  v113
+ BYTE   W48
+ BYTE   N06
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   N18  En4
+ BYTE   W24
+// 009   ----------------------------------------
+ BYTE   N48  An4
+ BYTE   W48
+ BYTE   N06  En4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   N18  Cn5
+ BYTE   W24
+// 010   ----------------------------------------
+ BYTE   N48
+ BYTE   W48
+ BYTE   Cn5
+ BYTE   W48
+// 011   ----------------------------------------
+ BYTE   VOICE   24
+ BYTE   VOL   13*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N04  Dn2  v113
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   VOL   17*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N04  Fn2  v113
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   VOL   21*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N04  Dn2  v113
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   VOL   26*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N04  Fn2  v113
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   VOL   31*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N04  Dn2  v113
+ BYTE   W06
+ BYTE   En2
+ BYTE   W06
+ BYTE   VOL   34*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N04  Dn2  v113
+ BYTE   W06
+ BYTE   Cn2
+ BYTE   W06
+ BYTE   N06  Bn1
+ BYTE   W24
+// 012   ----------------------------------------
+ BYTE   VOICE   74
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-30
+ BYTE   N48  En5  v113
+ BYTE   W48
+ BYTE   Cn5
+ BYTE   W48
+// 013   ----------------------------------------
+ BYTE   Dn5
+ BYTE   W48
+ BYTE   An4
+ BYTE   W48
+// 014   ----------------------------------------
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Dn5  v113
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   Bn4
+ BYTE   W12
+ BYTE   An4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   N12  Dn4
+ BYTE   W12
+ BYTE   En4
+ BYTE   W12
+ BYTE   Fn4
+ BYTE   W12
+// 015   ----------------------------------------
+ BYTE   En4
+ BYTE   W24
+ BYTE   N24  Bn4
+ BYTE   W24
+ BYTE   N12  Cn5
+ BYTE   W48
+// 016   ----------------------------------------
+ BYTE   VOICE   41
+ BYTE   PAN   c_v-30
+ BYTE   W12
+ BYTE   W08
+ BYTE   W04
+ BYTE   GoTo
+  POIN2 Label_3_01145E88
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+SuperMarioRPGHardworkingMolePandan_005:
+// 000   ----------------------------------------
+Label_4_01145FC0:
+ BYTE   TEMPO   120*SuperMarioRPGHardworkingMolePandan_tbs/2
+ BYTE   KEYSH   SuperMarioRPGHardworkingMolePandan_key+0
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_4_01145FC6:
+ BYTE   VOICE   41
+ BYTE   VOL   13*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-10
+ BYTE   N08  Gn3  v113
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  En3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Gn3
+ BYTE   W12
+ BYTE   N04  Bn3
+ BYTE   W12
+ BYTE   N08  Dn4
+ BYTE   W12
+ BYTE   N04  Cn4
+ BYTE   W12
+// 003   ----------------------------------------
+ BYTE   N08  Gn3
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  En3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Gn3
+ BYTE   W12
+ BYTE   N04
+ BYTE   W12
+ BYTE   N08
+ BYTE   W24
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_4_01145FF5:
+ BYTE   VOL   13*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N08  Gn3  v113
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  En3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Gn3
+ BYTE   W12
+ BYTE   N04  Bn3
+ BYTE   W12
+ BYTE   N08  Dn4
+ BYTE   W12
+ BYTE   N04  Cn4
+ BYTE   W12
+// 005   ----------------------------------------
+ BYTE   N08  Gn3
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  En3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Gn3
+ BYTE   W12
+ BYTE   N04
+ BYTE   W12
+ BYTE   N08
+ BYTE   W24
+ BYTE   PEND 
+// 006   ----------------------------------------
+ BYTE   VOICE   42
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As3  v113
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06  Dn4
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   N24
+ BYTE   W24
+// 007   ----------------------------------------
+ BYTE   N06
+ BYTE   W12
+ BYTE   As3
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   As3
+ BYTE   W12
+ BYTE   As3
+ BYTE   W06
+ BYTE   As3
+ BYTE   W06
+ BYTE   Dn4
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   N24
+ BYTE   W24
+// 008   ----------------------------------------
+ BYTE   VOICE   93
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-60
+ BYTE   N12  Fn2  v113
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Fn2  v113
+ BYTE   W12
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Dn2  v113
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   VOL   8*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Bn1  v113
+ BYTE   W12
+ BYTE   An1
+ BYTE   W12
+// 009   ----------------------------------------
+ BYTE   VOL   13*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  Gn1  v113
+ BYTE   W24
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  Gn2  v113
+ BYTE   W72
+ BYTE   PATT
+  POIN2 Label_4_01145FC6
+ BYTE   PATT
+  POIN2 Label_4_01145FF5
+// 010   ----------------------------------------
+ BYTE   VOICE   42
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Fn3  v113
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W18
+ BYTE   VOICE   93
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-60
+ BYTE   N12  En3  v113
+ BYTE   W12
+ BYTE   N24  Gn3
+ BYTE   W24
+// 011   ----------------------------------------
+ BYTE   VOICE   42
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-10
+ BYTE   N12  Dn3  v113
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W18
+ BYTE   VOICE   93
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-60
+ BYTE   N12  Cn3  v113
+ BYTE   W12
+ BYTE   N24  Gn3
+ BYTE   W24
+// 012   ----------------------------------------
+ BYTE   VOICE   42
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-10
+ BYTE   N12  Fn3  v113
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   N06  En3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+// 013   ----------------------------------------
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Dn3  v113
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   VOICE   93
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-50
+ BYTE   N12  Gn2  v113
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+// 014   ----------------------------------------
+ BYTE   VOICE   41
+ BYTE   VOL   13*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-10
+ BYTE   N08  Gn3  v113
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  En3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  Gn3
+ BYTE   W12
+ BYTE   N04  Bn3
+ BYTE   W12
+ BYTE   N08  Dn4
+ BYTE   W12
+ BYTE   N04  Cn4
+ BYTE   W12
+// 015   ----------------------------------------
+ BYTE   N08  An3
+ BYTE   W18
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  Fn3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N10  An3
+ BYTE   W12
+ BYTE   N04  Dn4
+ BYTE   W12
+ BYTE   N08  Fn4
+ BYTE   W12
+ BYTE   En4
+ BYTE   W12
+// 016   ----------------------------------------
+ BYTE   N06  Dn4
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+ BYTE   N08  Gn3
+ BYTE   W12
+ BYTE   N04  Dn3
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+// 017   ----------------------------------------
+ BYTE   N06
+ BYTE   W60
+ BYTE   VOICE   93
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-50
+ BYTE   N12  En3  v113
+ BYTE   W12
+ BYTE   N24  Gn3
+ BYTE   W24
+// 018   ----------------------------------------
+ BYTE   VOICE   41
+ BYTE   VOL   13*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-10
+ BYTE   N08  Gn3  v113
+ BYTE   W12
+ BYTE   W06
+ BYTE   N02  Gn3  v113
+ BYTE   W02
+ BYTE   W04
+ BYTE   GoTo
+  POIN2 Label_4_01145FC0
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+SuperMarioRPGHardworkingMolePandan_006:
+// 000   ----------------------------------------
+Label_5_0114616C:
+ BYTE   TEMPO   120*SuperMarioRPGHardworkingMolePandan_tbs/2
+ BYTE   KEYSH   SuperMarioRPGHardworkingMolePandan_key+0
+ BYTE   VOICE   46
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N18  Ds2  v113
+ BYTE   W18
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   VOL   18*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  As1  v113
+ BYTE   W12
+Label_5_01146188:
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  Ds2  v113
+ BYTE   W18
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   VOL   18*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+ BYTE   PEND 
+// 001   ----------------------------------------
+Label_5_011461A3:
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  Ds2  v113
+ BYTE   W18
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   VOL   18*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  As1  v113
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_01146188
+ BYTE   PATT
+  POIN2 Label_5_011461A3
+ BYTE   PATT
+  POIN2 Label_5_01146188
+ BYTE   PATT
+  POIN2 Label_5_011461A3
+ BYTE   PATT
+  POIN2 Label_5_01146188
+ BYTE   PATT
+  POIN2 Label_5_011461A3
+ BYTE   PATT
+  POIN2 Label_5_01146188
+ BYTE   PATT
+  POIN2 Label_5_011461A3
+ BYTE   PATT
+  POIN2 Label_5_01146188
+ BYTE   PATT
+  POIN2 Label_5_011461A3
+ BYTE   PATT
+  POIN2 Label_5_01146188
+ BYTE   PATT
+  POIN2 Label_5_011461A3
+// 002   ----------------------------------------
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  Ds2  v113
+ BYTE   W18
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   VOL   18*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W90
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+// 004   ----------------------------------------
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  Ds2  v113
+ BYTE   W18
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+Label_5_01146229:
+ BYTE   VOL   18*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  As1  v113
+ BYTE   W12
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  Ds2  v113
+ BYTE   W18
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   PEND 
+Label_5_0114623E:
+ BYTE   VOL   18*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+// 005   ----------------------------------------
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  Ds2  v113
+ BYTE   W18
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_01146229
+ BYTE   PATT
+  POIN2 Label_5_0114623E
+ BYTE   PATT
+  POIN2 Label_5_01146229
+ BYTE   PATT
+  POIN2 Label_5_0114623E
+ BYTE   PATT
+  POIN2 Label_5_01146229
+ BYTE   PATT
+  POIN2 Label_5_0114623E
+// 006   ----------------------------------------
+ BYTE   VOL   18*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  As1  v113
+ BYTE   W24
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Ds2  v113
+ BYTE   W12
+ BYTE   N24
+ BYTE   W24
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  Ds2  v113
+ BYTE   W18
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+// 007   ----------------------------------------
+ BYTE   VOL   18*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  As1  v113
+ BYTE   W24
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Ds2  v113
+ BYTE   W12
+ BYTE   N24
+ BYTE   W24
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  Ds2  v113
+ BYTE   W18
+Label_5_011462A7:
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+// 008   ----------------------------------------
+ BYTE   VOL   18*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  As1  v113
+ BYTE   W12
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  Ds2  v113
+ BYTE   W18
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_011462A7
+// 009   ----------------------------------------
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   VOL   18*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  As1  v113
+ BYTE   W24
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Ds2  v113
+ BYTE   W12
+ BYTE   N24
+ BYTE   W24
+ BYTE   PATT
+  POIN2 Label_5_011461A3
+ BYTE   PATT
+  POIN2 Label_5_01146188
+ BYTE   PATT
+  POIN2 Label_5_011461A3
+ BYTE   PATT
+  POIN2 Label_5_01146188
+// 010   ----------------------------------------
+Label_5_011462EB:
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Ds2  v113
+ BYTE   W12
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+ BYTE   As1
+ BYTE   W06
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Ds2  v113
+ BYTE   W12
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+ BYTE   As1
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_011462EB
+ BYTE   PATT
+  POIN2 Label_5_011461A3
+// 011   ----------------------------------------
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Ds2  v113
+ BYTE   W12
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  As1  v113
+ BYTE   W06
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Ds2  v113
+ BYTE   W12
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Ds2  v113
+ BYTE   W12
+ BYTE   VOL   14*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  Ds2  v113
+ BYTE   W12
+ BYTE   W06
+ BYTE   VOL   9*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Ds2  v113
+ BYTE   W02
+ BYTE   W04
+ BYTE   GoTo
+  POIN2 Label_5_0114616C
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+SuperMarioRPGHardworkingMolePandan_007:
+// 000   ----------------------------------------
+Label_6_01146344:
+ BYTE   TEMPO   120*SuperMarioRPGHardworkingMolePandan_tbs/2
+ BYTE   KEYSH   SuperMarioRPGHardworkingMolePandan_key+0
+ BYTE   VOICE   78
+ BYTE   VOL   31*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-50
+ BYTE   N06  Cn3  v113
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   N24  Cn3
+ BYTE   W24
+// 001   ----------------------------------------
+Label_6_01146364:
+ BYTE   N06  Gn2  v113
+ BYTE   W06
+ BYTE   Bn2
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   N24  Bn2
+ BYTE   W24
+ BYTE   N12  Dn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_6_0114637C:
+ BYTE   N06  Cn3  v113
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   N24  Cn3
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_6_01146364
+ BYTE   PATT
+  POIN2 Label_6_0114637C
+// 003   ----------------------------------------
+ BYTE   N06  Gn2  v113
+ BYTE   W06
+ BYTE   Bn2
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   N24  Bn2
+ BYTE   W24
+ BYTE   N12  Dn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   VOL   21*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Gn2  v113
+ BYTE   W06
+ BYTE   Bn2
+ BYTE   W06
+ BYTE   VOL   31*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Cn3  v113
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   N24  Cn3
+ BYTE   W24
+// 008   ----------------------------------------
+ BYTE   N06  Gn2
+ BYTE   W06
+ BYTE   Bn2
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   N24  Bn2
+ BYTE   W24
+ BYTE   N12  Dn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+// 009   ----------------------------------------
+ BYTE   VOL   31*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Cn3  v113
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   N24  Cn3
+ BYTE   W24
+// 010   ----------------------------------------
+ BYTE   N06  Gn2
+ BYTE   W06
+ BYTE   Bn2
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   N24  Bn2
+ BYTE   W24
+ BYTE   N12  Dn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W84
+// 011   ----------------------------------------
+ BYTE   VOICE   40
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N96  An2  v113
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   N24
+ BYTE   W24
+ BYTE   VOICE   93
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-60
+ BYTE   N24  Fn2  v113
+ BYTE   W24
+ BYTE   Fn2
+ BYTE   W24
+ BYTE   En2
+ BYTE   W24
+// 013   ----------------------------------------
+ BYTE   En2
+ BYTE   W24
+ BYTE   VOICE   78
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v-50
+ BYTE   N02  Fn4  v113
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Cn4
+ BYTE   W02
+ BYTE   Cn4
+ BYTE   W02
+ BYTE   Cn4
+ BYTE   W02
+ BYTE   Cn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N03  Bn3
+ BYTE   W03
+ BYTE   Bn3
+ BYTE   W03
+ BYTE   Bn3
+ BYTE   W03
+ BYTE   Bn3
+ BYTE   W03
+ BYTE   N36
+ BYTE   W36
+// 014   ----------------------------------------
+ BYTE   VOL   31*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Cn3  v113
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+ BYTE   N12  Bn2
+ BYTE   W12
+ BYTE   N24  Cn3
+ BYTE   W24
+// 015   ----------------------------------------
+ BYTE   N06  Dn3
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   Fn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   N12  Fn3
+ BYTE   W12
+ BYTE   N24  En3
+ BYTE   W24
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   N24  Dn3
+ BYTE   W24
+// 016   ----------------------------------------
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N02  Fn4  v113
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   Fn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   En4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   Dn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Cn4
+ BYTE   W02
+ BYTE   Cn4
+ BYTE   W02
+ BYTE   Cn4
+ BYTE   W02
+ BYTE   Cn4
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Bn3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Gn3
+ BYTE   W02
+ BYTE   Gn3
+ BYTE   W02
+ BYTE   Gn3
+ BYTE   W02
+ BYTE   Gn3
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  An3
+ BYTE   W02
+ BYTE   An3
+ BYTE   W02
+ BYTE   An3
+ BYTE   W02
+ BYTE   An3
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+ BYTE   N02  Bn3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   Bn3
+ BYTE   W02
+ BYTE   N04
+ BYTE   W04
+// 017   ----------------------------------------
+ BYTE   VOL   21*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Cn4  v113
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   N36  Cn3
+ BYTE   W36
+ BYTE   N06  Gn2
+ BYTE   W06
+ BYTE   Bn2
+ BYTE   W06
+// 018   ----------------------------------------
+ BYTE   Cn3
+ BYTE   W06
+ BYTE   N06  Dn3  v113
+ BYTE   W06
+ BYTE   En3
+ BYTE   W06
+ BYTE   N06  Fn3  v113
+ BYTE   W02
+ BYTE   W04
+ BYTE   GoTo
+  POIN2 Label_6_01146344
+ BYTE   FINE
+
+//**************** Track 8 (Midi-Chn.7) ****************//
+
+SuperMarioRPGHardworkingMolePandan_008:
+// 000   ----------------------------------------
+Label_7_01146528:
+ BYTE   TEMPO   120*SuperMarioRPGHardworkingMolePandan_tbs/2
+ BYTE   KEYSH   SuperMarioRPGHardworkingMolePandan_key+0
+ BYTE   VOICE   41
+ BYTE   PAN   c_v+30
+ BYTE   W24
+ BYTE   VOL   8*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N08  En4  v113
+ BYTE   W48
+ BYTE   En4
+ BYTE   W48
+// 001   ----------------------------------------
+Label_7_01146539:
+ BYTE   VOL   8*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N08  En4  v113
+ BYTE   W48
+ BYTE   En4
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_7_01146539
+ BYTE   PATT
+  POIN2 Label_7_01146539
+// 002   ----------------------------------------
+ BYTE   VOL   8*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N08  En4  v113
+ BYTE   W48
+ BYTE   En4
+ BYTE   W48
+// 003   ----------------------------------------
+ BYTE   En4
+ BYTE   W48
+ BYTE   En4
+ BYTE   W12
+ BYTE   VOICE   24
+ BYTE   VOL   3*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N04  Ds3  v113
+ BYTE   W06
+ BYTE   Ds3
+ BYTE   W06
+ BYTE   N32
+ BYTE   W16
+ BYTE   N02
+ BYTE   W20
+// 004   ----------------------------------------
+ BYTE   N04
+ BYTE   W06
+ BYTE   Ds3
+ BYTE   W06
+ BYTE   N12  Fn3
+ BYTE   W12
+ BYTE   N06  Dn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W24
+ BYTE   N32
+ BYTE   W16
+ BYTE   N02
+ BYTE   W20
+// 005   ----------------------------------------
+ BYTE   N04
+ BYTE   W06
+ BYTE   Ds3
+ BYTE   W06
+ BYTE   N12  Fn3
+ BYTE   W12
+ BYTE   N06  Dn3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W48
+ BYTE   VOICE   41
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  An4  v113
+ BYTE   W48
+// 006   ----------------------------------------
+ BYTE   An4
+ BYTE   W48
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  Bn4  v113
+ BYTE   W84
+// 007   ----------------------------------------
+ BYTE   VOICE   56
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N06  An3  v113
+ BYTE   W06
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  An3  v113
+ BYTE   W18
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  An3  v113
+ BYTE   W24
+ BYTE   N06
+ BYTE   W06
+Label_7_011465AA:
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  An3  v113
+ BYTE   W18
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N12  An3  v113
+ BYTE   W24
+// 008   ----------------------------------------
+ BYTE   N06
+ BYTE   W06
+ BYTE   PEND 
+Label_7_011465B9:
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  An3  v113
+ BYTE   W18
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  An3  v113
+ BYTE   W24
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  An3  v113
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  An3  v113
+ BYTE   W06
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  An3  v113
+ BYTE   W36
+// 009   ----------------------------------------
+ BYTE   N06
+ BYTE   W06
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N18  An3  v113
+ BYTE   W18
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  An3  v113
+ BYTE   W24
+ BYTE   N06
+ BYTE   W06
+ BYTE   PATT
+  POIN2 Label_7_011465AA
+ BYTE   PATT
+  POIN2 Label_7_011465B9
+// 010   ----------------------------------------
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  An3  v113
+ BYTE   W06
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N24  An3  v113
+ BYTE   W24
+ BYTE   VOICE   41
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+30
+ BYTE   N48  An4  v113
+ BYTE   W48
+ BYTE   N06  Gn4
+ BYTE   W12
+ BYTE   En4
+ BYTE   W12
+// 011   ----------------------------------------
+ BYTE   N18  Cn4
+ BYTE   W24
+ BYTE   N48  Fn4
+ BYTE   W48
+ BYTE   N06  Cn4
+ BYTE   W12
+ BYTE   En4
+ BYTE   W12
+// 012   ----------------------------------------
+ BYTE   N18  Gn4
+ BYTE   W24
+ BYTE   N48  An4
+ BYTE   W48
+ BYTE   Gn4
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W24
+ BYTE   VOICE   16
+ BYTE   VOL   46*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N24  Gn2  v113
+ BYTE   W24
+ BYTE   VOICE   74
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   PAN   c_v+30
+ BYTE   N96  Gn4  v113
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   Fn4
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   VOL   0*SuperMarioRPGHardworkingMolePandan_mvl/mxv
+ BYTE   N06  Bn4  v113
+ BYTE   W12
+ BYTE   An4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+ BYTE   Fn4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   W12
+ BYTE   N12  Bn3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   Dn4
+ BYTE   W12
+// 016   ----------------------------------------
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   N24  Fn4
+ BYTE   W24
+ BYTE   N12  En4
+ BYTE   W48
+// 017   ----------------------------------------
+ BYTE   VOICE   41
+ BYTE   PAN   c_v+30
+ BYTE   W12
+ BYTE   W08
+ BYTE   W04
+ BYTE   GoTo
+  POIN2 Label_7_01146528
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+SuperMarioRPGHardworkingMolePandan:
+	BYTE	8	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	SuperMarioRPGHardworkingMolePandan_pri	// Priority
+	BYTE	SuperMarioRPGHardworkingMolePandan_rev	// Reverb.
+    
+	POIN2	SuperMarioRPGHardworkingMolePandan_grp
+    
+	POIN2	SuperMarioRPGHardworkingMolePandan_001
+	POIN2	SuperMarioRPGHardworkingMolePandan_002
+	POIN2	SuperMarioRPGHardworkingMolePandan_003
+	POIN2	SuperMarioRPGHardworkingMolePandan_004
+	POIN2	SuperMarioRPGHardworkingMolePandan_005
+	POIN2	SuperMarioRPGHardworkingMolePandan_006
+	POIN2	SuperMarioRPGHardworkingMolePandan_007
+	POIN2	SuperMarioRPGHardworkingMolePandan_008
+
+	

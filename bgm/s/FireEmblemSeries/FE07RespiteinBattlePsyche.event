@@ -1,0 +1,445 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE07RespiteinBattlePsyche_grp  voicegroup000
+	#define	FE07RespiteinBattlePsyche_pri  10
+	#define	FE07RespiteinBattlePsyche_rev  128
+	#define	FE07RespiteinBattlePsyche_mvl  127
+	#define	FE07RespiteinBattlePsyche_key  0
+	#define	FE07RespiteinBattlePsyche_tbs  1
+	#define	FE07RespiteinBattlePsyche_exg  0
+	#define	FE07RespiteinBattlePsyche_cmp  1
+
+	// .rodata
+	//	FE07RespiteinBattlePsyche
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+FE07RespiteinBattlePsyche_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07RespiteinBattlePsyche_key+0
+Label_0_0102B816:
+ BYTE   TEMPO   72*FE07RespiteinBattlePsyche_tbs/2
+ BYTE   VOICE   68
+ BYTE   VOL   63*FE07RespiteinBattlePsyche_mvl/mxv
+ BYTE   PAN   c_v-5
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W60
+ BYTE   N12  Cn4  v088
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   N11  An3
+ BYTE   W12
+// 008   ----------------------------------------
+ BYTE   N68
+ BYTE   W72
+ BYTE   N12  Gn3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+// 009   ----------------------------------------
+ BYTE   N36  As3
+ BYTE   W36
+ BYTE   An3
+ BYTE   W36
+ BYTE   N21  Gn3
+ BYTE   W24
+// 010   ----------------------------------------
+ BYTE   N24
+ BYTE   W24
+ BYTE   N12  An3
+ BYTE   W12
+ BYTE   N36  Fn3
+ BYTE   W36
+ BYTE   N12  En3
+ BYTE   W12
+ BYTE   N60  En4
+ BYTE   W12
+// 011   ----------------------------------------
+ BYTE   W48
+ BYTE   N44  Dn4
+ BYTE   W48
+// 012   ----------------------------------------
+ BYTE   N72  Cn4
+ BYTE   W72
+ BYTE   N12  As3
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+// 013   ----------------------------------------
+ BYTE   N44  As3
+ BYTE   W48
+ BYTE   N24  An3
+ BYTE   W24
+ BYTE   N21  Gn3
+ BYTE   W24
+// 014   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_0_0102B816
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+FE07RespiteinBattlePsyche_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07RespiteinBattlePsyche_key+0
+Label_1_0102B86A:
+ BYTE   VOICE   73
+ BYTE   VOL   63*FE07RespiteinBattlePsyche_mvl/mxv
+ BYTE   PAN   c_v-10
+ BYTE   N24  En5  v088
+ BYTE   W24
+ BYTE   N12  Gn4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+ BYTE   N24  An4
+ BYTE   W24
+ BYTE   N12  Dn4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+// 001   ----------------------------------------
+ BYTE   N48  En4
+ BYTE   W60
+ BYTE   N12
+ BYTE   W12
+ BYTE   Fn4
+ BYTE   W12
+ BYTE   Gn4
+ BYTE   W12
+// 002   ----------------------------------------
+ BYTE   N48  An4
+ BYTE   W60
+ BYTE   N12
+ BYTE   W12
+ BYTE   As4
+ BYTE   W12
+ BYTE   Cn5
+ BYTE   W12
+// 003   ----------------------------------------
+ BYTE   N44  An4
+ BYTE   W48
+ BYTE   N24  Gn4
+ BYTE   W24
+ BYTE   Fn4
+ BYTE   W24
+// 004   ----------------------------------------
+ BYTE   N72  En4
+ BYTE   W84
+ BYTE   N12  Fn4
+ BYTE   W12
+// 005   ----------------------------------------
+ BYTE   N44  Gn4
+ BYTE   W48
+ BYTE   N24  An4
+ BYTE   W24
+ BYTE   As4
+ BYTE   W24
+// 006   ----------------------------------------
+ BYTE   N92  Cn5
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   N48  An4
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_1_0102B86A
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+FE07RespiteinBattlePsyche_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07RespiteinBattlePsyche_key+0
+Label_2_0102B8BE:
+ BYTE   VOICE   4
+ BYTE   VOL   56*FE07RespiteinBattlePsyche_mvl/mxv
+ BYTE   PAN   c_v+25
+ BYTE   W24
+ BYTE   N72  Cn3  v056
+ BYTE   W12
+ BYTE   N60  En3  v072
+ BYTE   N56  Fn3  v068
+ BYTE   N56  An3  v092
+ BYTE   W60
+// 001   ----------------------------------------
+ BYTE   W24
+ BYTE   N72  Cn3  v068
+ BYTE   W12
+ BYTE   N60  En3  v060
+ BYTE   N60  Fn3  v064
+ BYTE   N60  An3  v088
+ BYTE   W60
+// 002   ----------------------------------------
+ BYTE   W24
+ BYTE   N78  Dn3  v064
+ BYTE   W12
+ BYTE   N64  Fn3
+ BYTE   N60  Gn3  v072
+ BYTE   N60  As3  v092
+ BYTE   W60
+// 003   ----------------------------------------
+ BYTE   W24
+ BYTE   N72  Dn3  v064
+ BYTE   W12
+ BYTE   N64  Fn3  v068
+ BYTE   N64  Gn3  v072
+ BYTE   N64  As3  v092
+ BYTE   W60
+// 004   ----------------------------------------
+ BYTE   W24
+ BYTE   N72  Cn3  v068
+ BYTE   W12
+ BYTE   N60  Fn3  v072
+ BYTE   N60  Gn3  v064
+ BYTE   N56  As3  v096
+ BYTE   W60
+// 005   ----------------------------------------
+ BYTE   W24
+ BYTE   N72  Cn3  v060
+ BYTE   W12
+ BYTE   N56  En3  v072
+ BYTE   N56  Gn3  v060
+ BYTE   N56  As3  v092
+ BYTE   W60
+// 006   ----------------------------------------
+ BYTE   W24
+ BYTE   N72  Cn3  v056
+ BYTE   W12
+ BYTE   N60  En3  v068
+ BYTE   N56  Fn3
+ BYTE   N56  An3  v096
+ BYTE   W60
+// 007   ----------------------------------------
+ BYTE   W24
+ BYTE   N54  Cn3  v052
+ BYTE   W12
+ BYTE   N36  En3  v072
+ BYTE   N32  Fn3
+ BYTE   N32  An3  v096
+ BYTE   W48
+ BYTE   N10  An3  v092
+ BYTE   W12
+// 008   ----------------------------------------
+ BYTE   N32  Dn3  v060
+ BYTE   N32  En3
+ BYTE   N32  Gn3  v068
+ BYTE   N32  An3  v084
+ BYTE   W36
+ BYTE   N28  Dn3  v060
+ BYTE   N28  En3  v064
+ BYTE   N24  Gn3  v068
+ BYTE   N28  An3  v088
+ BYTE   W36
+ BYTE   N10  Gn3  v096
+ BYTE   W12
+ BYTE   An3
+ BYTE   W12
+// 009   ----------------------------------------
+ BYTE   N32  Cs3  v068
+ BYTE   N32  En3  v064
+ BYTE   N32  As3  v096
+ BYTE   W36
+ BYTE   Cs3  v076
+ BYTE   N32  En3  v068
+ BYTE   N36  An3  v092
+ BYTE   W36
+ BYTE   N21  Gn3  v096
+ BYTE   W24
+// 010   ----------------------------------------
+ BYTE   N32  An2  v064
+ BYTE   N32  Dn3  v060
+ BYTE   N32  Gn3  v100
+ BYTE   W36
+ BYTE   N42  An2  v060
+ BYTE   N36  Dn3  v068
+ BYTE   N32  Fn3  v092
+ BYTE   W36
+ BYTE   N10  En3
+ BYTE   W12
+ BYTE   N42  As2  v072
+ BYTE   N42  Dn3  v076
+ BYTE   N44  Fn3  v100
+ BYTE   W12
+// 011   ----------------------------------------
+ BYTE   W36
+ BYTE   N32  Dn3  v068
+ BYTE   N32  Fn3  v072
+ BYTE   N32  An3  v092
+ BYTE   W36
+ BYTE   N24  Fn3  v056
+ BYTE   N24  An3  v072
+ BYTE   N24  Dn4  v096
+ BYTE   W24
+// 012   ----------------------------------------
+ BYTE   W24
+ BYTE   N72  Cn3  v060
+ BYTE   W12
+ BYTE   N60  Fn3  v072
+ BYTE   N60  Gn3
+ BYTE   N60  Cn4  v088
+ BYTE   W60
+// 013   ----------------------------------------
+ BYTE   W24
+ BYTE   N09  Dn3  v092
+ BYTE   W12
+ BYTE   N56  Dn3  v072
+ BYTE   N56  Fn3
+ BYTE   N56  Gn3  v068
+ BYTE   N56  As3  v096
+ BYTE   W60
+// 014   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_2_0102B8BE
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+FE07RespiteinBattlePsyche_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE07RespiteinBattlePsyche_key+0
+Label_3_0102B9D2:
+ BYTE   VOICE   4
+ BYTE   VOL   61*FE07RespiteinBattlePsyche_mvl/mxv
+ BYTE   PAN   c_v-20
+ BYTE   N28  Dn2  v112
+ BYTE   W36
+ BYTE   N40  Dn2  v108
+ BYTE   W48
+ BYTE   N11  An1
+ BYTE   W12
+// 001   ----------------------------------------
+ BYTE   N28  Dn2  v112
+ BYTE   W36
+ BYTE   N40
+ BYTE   W48
+ BYTE   N11  Dn2  v108
+ BYTE   W12
+// 002   ----------------------------------------
+ BYTE   N28  Gn2  v112
+ BYTE   W36
+ BYTE   N40  Gn2  v104
+ BYTE   W48
+ BYTE   N11  Dn2  v100
+ BYTE   W12
+// 003   ----------------------------------------
+ BYTE   N28  Gn1
+ BYTE   W36
+ BYTE   N40  Gn1  v104
+ BYTE   W48
+ BYTE   N11
+ BYTE   W12
+// 004   ----------------------------------------
+ BYTE   N28  Cn2
+ BYTE   W36
+ BYTE   N40
+ BYTE   W48
+ BYTE   N11  Gn2
+ BYTE   W12
+// 005   ----------------------------------------
+ BYTE   N28  Cn2
+ BYTE   W36
+ BYTE   N40  Cn2  v100
+ BYTE   W48
+ BYTE   N11
+ BYTE   W12
+// 006   ----------------------------------------
+ BYTE   N28  Fn2  v104
+ BYTE   W36
+ BYTE   N40
+ BYTE   W48
+ BYTE   N11  Cn2  v096
+ BYTE   W12
+// 007   ----------------------------------------
+ BYTE   N28  Fn1  v100
+ BYTE   W36
+ BYTE   N40  Fn2
+ BYTE   W48
+ BYTE   N11  Fn2  v092
+ BYTE   W12
+// 008   ----------------------------------------
+ BYTE   N28  En2  v104
+ BYTE   W36
+ BYTE   N52
+ BYTE   W60
+// 009   ----------------------------------------
+ BYTE   N28  An1
+ BYTE   W36
+ BYTE   N40  An1  v100
+ BYTE   W48
+ BYTE   N11  An1  v104
+ BYTE   W12
+// 010   ----------------------------------------
+ BYTE   N28  Dn2  v100
+ BYTE   W36
+ BYTE   N40  Cn2
+ BYTE   W48
+ BYTE   N92  As1  v104
+ BYTE   W12
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   N28  An1  v100
+ BYTE   W36
+ BYTE   N40
+ BYTE   W48
+ BYTE   N11  An1  v104
+ BYTE   W12
+// 013   ----------------------------------------
+ BYTE   N28  As1
+ BYTE   W36
+ BYTE   N40
+ BYTE   W48
+ BYTE   N11  Cn2  v096
+ BYTE   W12
+// 014   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_3_0102B9D2
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE07RespiteinBattlePsyche:
+	BYTE	4	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE07RespiteinBattlePsyche_pri	// Priority
+	BYTE	FE07RespiteinBattlePsyche_rev	// Reverb.
+    
+	POIN2	FE07RespiteinBattlePsyche_grp
+    
+	POIN2	FE07RespiteinBattlePsyche_001
+	POIN2	FE07RespiteinBattlePsyche_002
+	POIN2	FE07RespiteinBattlePsyche_003
+	POIN2	FE07RespiteinBattlePsyche_004
+
+	

@@ -1,0 +1,1449 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE15TheVoiceThatCallsYouMysteriousDancer_grp  voicegroup000
+	#define	FE15TheVoiceThatCallsYouMysteriousDancer_pri  0
+	#define	FE15TheVoiceThatCallsYouMysteriousDancer_rev  0
+	#define	FE15TheVoiceThatCallsYouMysteriousDancer_mvl  127
+	#define	FE15TheVoiceThatCallsYouMysteriousDancer_key  0
+	#define	FE15TheVoiceThatCallsYouMysteriousDancer_tbs  1
+	#define	FE15TheVoiceThatCallsYouMysteriousDancer_exg  0
+	#define	FE15TheVoiceThatCallsYouMysteriousDancer_cmp  1
+
+	// .rodata
+	//	FE15TheVoiceThatCallsYouMysteriousDancer
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+FE15TheVoiceThatCallsYouMysteriousDancer_1:
+	BYTE	KEYSH   FE15TheVoiceThatCallsYouMysteriousDancer_key+0
+FE15TheVoiceThatCallsYouMysteriousDancer_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		VOICE   24
+	BYTE		VOL     101*FE15TheVoiceThatCallsYouMysteriousDancer_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		VOL     102*FE15TheVoiceThatCallsYouMysteriousDancer_mvl/mxv
+	BYTE		N11     As1   v068
+	BYTE	W12
+	BYTE		        Fn2   v064
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        An2   v068
+	BYTE	W12
+	BYTE		        Fn2   v064
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		        As1   v068
+	BYTE	W12
+	BYTE		        En2   v064
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        Gn2   v068
+	BYTE	W12
+	BYTE		        En2   v064
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		        An1   v068
+	BYTE	W12
+	BYTE		        En2   v064
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N23     En3   v068
+	BYTE	W21
+	BYTE		N72     Cn3   v056
+	BYTE	W01
+	BYTE		VOL     110*FE15TheVoiceThatCallsYouMysteriousDancer_mvl/mxv
+	BYTE	W02
+// 003   ----------------------------------------
+	BYTE		N68     Dn2 
+	BYTE		N68     An2   v068
+	BYTE		N68     Gn3 
+	BYTE	W36
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W05
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   103*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+// 004   ----------------------------------------
+	BYTE		N11     Gn1 
+	BYTE	W06
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		        Fn2   v064
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        As2   v068
+	BYTE	W12
+	BYTE		        Fn2   v064
+	BYTE	W12
+// 005   ----------------------------------------
+	BYTE		        Gn1   v068
+	BYTE	W12
+	BYTE		        Fn2   v064
+	BYTE	W08
+	BYTE		N24     Dn3   v056
+	BYTE	W02
+	BYTE		        Fn3 
+	BYTE	W02
+	BYTE		N44     As2   v064
+	BYTE		N23     An3   v072
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Gn3   v068
+	BYTE	W05
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   103*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+// 006   ----------------------------------------
+	BYTE		N11     Cn2 
+	BYTE	W06
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		        En2   v064
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        As2   v068
+	BYTE	W12
+	BYTE		        En2   v064
+	BYTE	W08
+	BYTE		N52     Fs2   v056
+	BYTE	W02
+	BYTE		N48     As2 
+	BYTE	W02
+// 007   ----------------------------------------
+	BYTE		        Fs1 
+	BYTE		N48     Cs2   v068
+	BYTE		N48     Cs3 
+	BYTE	W48
+	BYTE		N11     Fn3 
+	BYTE	W05
+	BYTE		VOL     102*FE15TheVoiceThatCallsYouMysteriousDancer_mvl/mxv
+	BYTE	W07
+	BYTE		N11     Gn3   v064
+	BYTE	W12
+// 008   ----------------------------------------
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Fn1   v068
+	BYTE		N48     An3   v064
+	BYTE	W12
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Cn3 
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        An2   v068
+	BYTE		N23     An3 
+	BYTE	W05
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		N11     Fn2   v064
+	BYTE	W01
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   103*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+// 009   ----------------------------------------
+	BYTE		        As1   v068
+	BYTE		N24     An3 
+	BYTE	W06
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		N11     Fn2   v064
+	BYTE	W12
+	BYTE		        As2 
+	BYTE		N23     Gn3 
+	BYTE	W12
+	BYTE		N11     Dn3 
+	BYTE	W12
+	BYTE		        As2   v068
+	BYTE		N23     Fn3 
+	BYTE	W12
+	BYTE		N11     Fn2   v064
+	BYTE	W12
+// 010   ----------------------------------------
+	BYTE		        An1   v068
+	BYTE		N48     Gn3   v064
+	BYTE	W12
+	BYTE		N11     Gn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Cn3   v068
+	BYTE		N03     Fn3 
+	BYTE	W03
+	BYTE		N20     Gn3   v060
+	BYTE	W09
+	BYTE		N11     Gn2   v064
+	BYTE	W12
+// 011   ----------------------------------------
+	BYTE		        Dn2   v068
+	BYTE		N24     Gn3 
+	BYTE	W12
+	BYTE		N11     An2   v064
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N23     Fn3 
+	BYTE	W12
+	BYTE		N11     An2 
+	BYTE	W12
+	BYTE		        Cn2   v068
+	BYTE		N23     En3 
+	BYTE	W12
+	BYTE		N11     An2   v064
+	BYTE	W12
+// 012   ----------------------------------------
+	BYTE		        As1   v068
+	BYTE		N48     Dn3   v064
+	BYTE	W12
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        As2   v068
+	BYTE		N23     Dn3 
+	BYTE	W12
+	BYTE		N11     Fn2   v064
+	BYTE	W12
+// 013   ----------------------------------------
+	BYTE		        As1   v068
+	BYTE		N24     En3 
+	BYTE	W12
+	BYTE		N11     En2   v064
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE		N23     Fn3 
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N11     Cn3 
+	BYTE	W04
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Gn2   v068
+	BYTE		N03     Fs3 
+	BYTE	W03
+	BYTE		N20     Gn3   v060
+	BYTE	W02
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		N11     En2   v064
+	BYTE	W01
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+// 014   ----------------------------------------
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Fn1   v068
+	BYTE		N68     An3   v064
+	BYTE	W12
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Cn3 
+	BYTE	W04
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        An2   v068
+	BYTE	W05
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		        Fn2   v064
+	BYTE	W01
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+// 015   ----------------------------------------
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Cn2   v068
+	BYTE		N48     Gn3   v064
+	BYTE	W12
+	BYTE		N11     Gn2 
+	BYTE	W12
+	BYTE		        As2   v068
+	BYTE	W12
+	BYTE		N23     Fn3 
+	BYTE	W12
+	BYTE		N11     An3   v072
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE		N11     Gn3   v064
+	BYTE		N11     As3   v080
+	BYTE	W12
+// 016   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_016:
+	BYTE		N11     Fn2   v080
+	BYTE		N48     An3   v068
+	BYTE		N48     Cn4   v084
+	BYTE	W12
+	BYTE		N11     Cn3   v076
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Cn3 
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Fn3   v080
+	BYTE		N23     An3   v072
+	BYTE		N23     Cn4   v080
+	BYTE	W05
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		N11     Cn3   v076
+	BYTE	W01
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   103*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+	BYTE	PEND
+// 017   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_017:
+	BYTE		N11     As1   v080
+	BYTE		N24     An3   v072
+	BYTE		N24     Cn4   v088
+	BYTE	W06
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		N11     Fn2   v076
+	BYTE	W12
+	BYTE		        As2 
+	BYTE		N23     Gn3   v068
+	BYTE		N23     As3   v084
+	BYTE	W12
+	BYTE		N11     Dn3   v076
+	BYTE	W12
+	BYTE		N23     Fn2   v080
+	BYTE		N23     Fn3   v072
+	BYTE		N23     An3   v084
+	BYTE	W24
+	BYTE	PEND
+// 018   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_018:
+	BYTE		N11     An2   v080
+	BYTE		N48     Gn3   v068
+	BYTE		N48     As3   v084
+	BYTE	W12
+	BYTE		N11     Cn3   v076
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N23     An2   v080
+	BYTE		N23     Gn3   v072
+	BYTE		N23     As3   v080
+	BYTE	W24
+	BYTE	PEND
+// 019   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_019:
+	BYTE		N11     Dn2   v080
+	BYTE		N24     Gn3   v072
+	BYTE		N24     As3   v088
+	BYTE	W12
+	BYTE		N11     An2   v076
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N23     Fn3   v068
+	BYTE		N23     An3   v084
+	BYTE	W12
+	BYTE		N11     An2   v076
+	BYTE	W12
+	BYTE		        Cn2   v080
+	BYTE		N23     En3   v072
+	BYTE		N23     Gn3   v084
+	BYTE	W12
+	BYTE		N11     An2   v076
+	BYTE	W12
+	BYTE	PEND
+// 020   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_020:
+	BYTE		N11     As1   v080
+	BYTE		N48     Dn3   v068
+	BYTE		N48     Fn3   v084
+	BYTE	W12
+	BYTE		N11     Fn2   v076
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		N23     As2   v080
+	BYTE		N23     Fn3   v072
+	BYTE		N23     An3   v084
+	BYTE	W24
+	BYTE	PEND
+// 021   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_021:
+	BYTE		N11     As1   v080
+	BYTE		N24     En3   v072
+	BYTE		N24     Gn3   v088
+	BYTE	W12
+	BYTE		N11     En2   v076
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE		N23     Gn3   v068
+	BYTE		N23     As3   v084
+	BYTE	W12
+	BYTE		N11     Cn3   v076
+	BYTE	W12
+	BYTE		        Gn2   v080
+	BYTE		N03     Cn4 
+	BYTE		N02     Fn4   v084
+	BYTE	W03
+	BYTE		N20     Dn4   v076
+	BYTE		N20     Fn4 
+	BYTE	W09
+	BYTE		N11     En2 
+	BYTE	W12
+	BYTE	PEND
+// 022   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_022:
+	BYTE		N11     An1   v080
+	BYTE		N68     Cn4   v068
+	BYTE		N68     En4   v084
+	BYTE	W12
+	BYTE		N11     Gn2   v076
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Cn3   v080
+	BYTE	W12
+	BYTE		        Gn2   v076
+	BYTE	W12
+	BYTE	PEND
+// 023   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_023:
+	BYTE		N11     Dn2   v076
+	BYTE		N48     An3   v068
+	BYTE		N48     Cn4   v084
+	BYTE	W12
+	BYTE		N11     An2   v076
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N23     An3   v068
+	BYTE		N23     Cn4   v080
+	BYTE	W12
+	BYTE		N11     An2   v076
+	BYTE	W12
+	BYTE	PEND
+// 024   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_024:
+	BYTE		N11     Cn2   v072
+	BYTE		N48     Gn3   v064
+	BYTE		N48     As3   v080
+	BYTE	W12
+	BYTE		N11     Gn2   v072
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        As2 
+	BYTE		N23     Gn3   v064
+	BYTE		N23     As3   v076
+	BYTE	W12
+	BYTE		N11     Gn2   v072
+	BYTE	W12
+	BYTE	PEND
+// 025   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_025:
+	BYTE		N11     Cn2   v072
+	BYTE		N48     An3   v064
+	BYTE		N48     Cn4   v076
+	BYTE	W12
+	BYTE		N11     Gn2   v068
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        As2 
+	BYTE		N23     Gn3   v060
+	BYTE		N23     As3   v076
+	BYTE	W12
+	BYTE		N11     Gn2   v068
+	BYTE	W12
+	BYTE	PEND
+// 026   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_026:
+	BYTE		N11     Fn2   v068
+	BYTE		N12     Fn3   v060
+	BYTE		N68     An3   v072
+	BYTE	W12
+	BYTE		N11     Fn3   v068
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Fn3   v064
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE	PEND
+// 027   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_027:
+	BYTE		N48     Fn1   v064
+	BYTE		N48     Fn3 
+	BYTE	W48
+	BYTE		N23     Fn2   v084
+	BYTE	W24
+	BYTE	PEND
+// 028   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_028:
+	BYTE		N11     Gn1   v068
+	BYTE		N48     Bn2   v064
+	BYTE	W12
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N23     En2   v068
+	BYTE		N23     Cn3 
+	BYTE	W24
+	BYTE	PEND
+// 029   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_029:
+	BYTE		N11     Gn1   v068
+	BYTE		N48     Dn3   v064
+	BYTE	W12
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        An2   v068
+	BYTE		N23     En3 
+	BYTE	W12
+	BYTE		N11     Fn2   v064
+	BYTE	W12
+	BYTE	PEND
+// 030   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_030:
+	BYTE		N11     Gn1   v068
+	BYTE		N68     Fn3   v064
+	BYTE	W12
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        An2   v068
+	BYTE	W12
+	BYTE		        Fn2   v064
+	BYTE	W12
+	BYTE	PEND
+// 031   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_031:
+	BYTE		N11     Gn1   v068
+	BYTE		N48     Dn3   v064
+	BYTE	W12
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Cn3 
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        An2   v068
+	BYTE		N23     Gn3 
+	BYTE	W05
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		N11     Fn2   v064
+	BYTE	W01
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   103*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+	BYTE	PEND
+// 032   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_032:
+	BYTE		N11     Cn2   v068
+	BYTE		N36     En3   v064
+	BYTE	W06
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		N11     Bn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Gn3   v068
+	BYTE	W12
+	BYTE		        En3   v064
+	BYTE	W12
+	BYTE	PEND
+// 033   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_033:
+	BYTE		N11     An1   v068
+	BYTE	W05
+	BYTE		VOL     110*FE15TheVoiceThatCallsYouMysteriousDancer_mvl/mxv
+	BYTE	W07
+	BYTE		N11     Bn2   v064
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Gn3   v068
+	BYTE	W12
+	BYTE		        En3   v064
+	BYTE	W12
+	BYTE	PEND
+// 034   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_034:
+	BYTE		N11     Gn1   v068
+	BYTE	W12
+	BYTE		        Bn2   v064
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Gn3   v068
+	BYTE	W12
+	BYTE		        En3   v064
+	BYTE	W12
+	BYTE	PEND
+// 035   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_035:
+	BYTE		N11     An1   v068
+	BYTE	W12
+	BYTE		        Bn2   v064
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        En3 
+	BYTE	W04
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N23     En2   v084
+	BYTE	W05
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+	BYTE	PEND
+// 036   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_036:
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N11     En1   v068
+	BYTE		N36     Bn2   v064
+	BYTE	W12
+	BYTE		N11     Dn2 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE		N23     Cn3 
+	BYTE	W12
+	BYTE		N11     Dn2   v064
+	BYTE	W12
+	BYTE	PEND
+// 037   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_037:
+	BYTE		N11     En1   v068
+	BYTE		N48     Dn3   v064
+	BYTE	W12
+	BYTE		N11     Dn2 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE		N23     En3 
+	BYTE	W12
+	BYTE		N11     Dn2   v064
+	BYTE	W12
+	BYTE	PEND
+// 038   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_038:
+	BYTE		N11     En1   v068
+	BYTE		N68     Fn3   v064
+	BYTE	W12
+	BYTE		N11     Dn2 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Gs2   v068
+	BYTE	W12
+	BYTE		        Bn1   v064
+	BYTE	W12
+	BYTE	PEND
+// 039   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_039:
+	BYTE		N24     En2   v068
+	BYTE		N24     Gn3   v064
+	BYTE	W20
+	BYTE		        Gs2   v056
+	BYTE	W02
+	BYTE		        Dn3 
+	BYTE	W02
+	BYTE		N23     Gn3   v072
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Fn3   v068
+	BYTE	W05
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		VOL     102*FE15TheVoiceThatCallsYouMysteriousDancer_mvl/mxv
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   103*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+	BYTE	PEND
+// 040   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_040:
+	BYTE		N11     An1   v068
+	BYTE		N36     En3   v064
+	BYTE	W06
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		N11     An2 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		N23     An3   v068
+	BYTE	W24
+	BYTE	PEND
+// 041   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_041:
+	BYTE		N11     An1   v068
+	BYTE	W05
+	BYTE		VOL     110*FE15TheVoiceThatCallsYouMysteriousDancer_mvl/mxv
+	BYTE	W07
+	BYTE		N11     An2   v064
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		N23     Gs3   v068
+	BYTE	W24
+	BYTE	PEND
+// 042   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_042:
+	BYTE		N11     An1   v068
+	BYTE	W12
+	BYTE		        An2   v064
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		N23     Gn3   v068
+	BYTE	W24
+	BYTE	PEND
+// 043   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_043:
+	BYTE		N11     An1   v068
+	BYTE	W12
+	BYTE		        An2   v064
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		N23     Fs3   v068
+	BYTE	W24
+	BYTE	PEND
+// 044   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_044:
+	BYTE		N11     Ds2   v080
+	BYTE		N48     An3   v068
+	BYTE		N48     An4   v084
+	BYTE	W12
+	BYTE		N11     An2   v076
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N32     Gn3 
+	BYTE	W12
+	BYTE		N23     As3   v072
+	BYTE		N23     As4   v084
+	BYTE	W24
+	BYTE	PEND
+// 045   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_045:
+	BYTE		N11     Ds2   v080
+	BYTE		N48     Cn4   v068
+	BYTE		N48     Cn5   v084
+	BYTE	W12
+	BYTE		N11     An2   v076
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn3   v080
+	BYTE		N03     Fn5 
+	BYTE		N03     Gn5   v084
+	BYTE	W03
+	BYTE		N20     Gn4   v076
+	BYTE		N20     Gn5 
+	BYTE	W09
+	BYTE		N11     An2 
+	BYTE	W12
+	BYTE	PEND
+// 046   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_046:
+	BYTE		N11     Dn2   v080
+	BYTE		N68     Fn4   v068
+	BYTE		N68     Fn5   v084
+	BYTE	W12
+	BYTE		N11     As2   v076
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Cn3   v080
+	BYTE	W12
+	BYTE		        As2   v076
+	BYTE	W12
+	BYTE	PEND
+// 047   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_047:
+	BYTE		N11     Dn2   v080
+	BYTE		N48     As3   v068
+	BYTE		N48     As4   v084
+	BYTE	W12
+	BYTE		N11     As2   v076
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N32     Fn3 
+	BYTE	W12
+	BYTE		N23     As3   v072
+	BYTE		N23     As4   v084
+	BYTE	W24
+	BYTE	PEND
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_044
+// 049   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_049:
+	BYTE		N11     Ds2   v080
+	BYTE		N48     Cn4   v068
+	BYTE		N48     Cn5   v084
+	BYTE	W12
+	BYTE		N11     An2   v076
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn3   v080
+	BYTE		N03     Fn5 
+	BYTE		N02     Gn5   v084
+	BYTE	W03
+	BYTE		N20     Gn4   v076
+	BYTE		N20     Gn5 
+	BYTE	W09
+	BYTE		N11     An2 
+	BYTE	W12
+	BYTE	PEND
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_046
+// 051   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_051:
+	BYTE		N11     Dn2   v080
+	BYTE		N48     As3   v068
+	BYTE		N48     As4   v084
+	BYTE	W12
+	BYTE		N11     As2   v076
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N32     Fn3 
+	BYTE	W12
+	BYTE		N23     Cn4   v072
+	BYTE		N23     Cn5   v084
+	BYTE	W24
+	BYTE	PEND
+// 052   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_052:
+	BYTE		N11     Cn2   v080
+	BYTE		N48     Dn4   v068
+	BYTE		N48     Dn5   v084
+	BYTE	W12
+	BYTE		N11     Ds2   v076
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Ds2 
+	BYTE	W04
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        As2   v080
+	BYTE		N23     Dn4   v072
+	BYTE		N23     Dn5   v084
+	BYTE	W05
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		N11     Ds2   v076
+	BYTE	W01
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+	BYTE	PEND
+// 053   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_053:
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N11     Fn1   v080
+	BYTE		N24     Cn4   v072
+	BYTE		N24     Cn5   v088
+	BYTE	W12
+	BYTE		N11     Ds2   v076
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE		N23     As3   v068
+	BYTE		N23     As4   v084
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N11     Ds2   v076
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N23     An2   v080
+	BYTE		N23     Cn4   v072
+	BYTE		N23     Cn5   v084
+	BYTE	W05
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   103*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+	BYTE	PEND
+// 054   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_054:
+	BYTE		N11     As1   v080
+	BYTE		N68     As3   v068
+	BYTE		N68     As4   v084
+	BYTE	W06
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		N11     Fn2   v076
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        As2   v080
+	BYTE	W12
+	BYTE		        Fn2   v076
+	BYTE	W12
+	BYTE	PEND
+// 055   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_055:
+	BYTE		N11     As1   v080
+	BYTE	W12
+	BYTE		        Fn2   v076
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        As2   v080
+	BYTE	W12
+	BYTE		        Fn2   v076
+	BYTE	W12
+	BYTE	PEND
+// 056   ----------------------------------------
+FE15TheVoiceThatCallsYouMysteriousDancer_1_056:
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N11     Cn2   v080
+	BYTE		N68     Gn3   v076
+	BYTE	W10
+	BYTE	TEMPO   102*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W02
+	BYTE		N11     Gn2 
+	BYTE	W08
+	BYTE	TEMPO   96*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE		        Cn3 
+	BYTE	W06
+	BYTE	TEMPO   91*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE	W04
+	BYTE	TEMPO   85*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W08
+	BYTE		        Dn3   v080
+	BYTE	W02
+	BYTE	TEMPO   80*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W10
+	BYTE	TEMPO   74*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Gn2   v076
+	BYTE	W08
+	BYTE		N44     Cn3   v068
+	BYTE	W02
+	BYTE	TEMPO   69*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N42     En3 
+	BYTE	W02
+	BYTE	PEND
+// 057   ----------------------------------------
+	BYTE	TEMPO   43*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N48     Cn2   v076
+	BYTE		N40     Cn4   v084
+	BYTE	W48
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N11     Fn3   v080
+	BYTE	W05
+	BYTE		VOL     102*FE15TheVoiceThatCallsYouMysteriousDancer_mvl/mxv
+	BYTE	W07
+	BYTE		N11     Gn3   v076
+	BYTE	W12
+// 058   ----------------------------------------
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Fn1   v080
+	BYTE		N48     An3   v076
+	BYTE	W12
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Cn3 
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        An2   v080
+	BYTE		N23     An3 
+	BYTE	W05
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		N11     Fn2   v076
+	BYTE	W01
+	BYTE	TEMPO   104*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   103*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+// 059   ----------------------------------------
+	BYTE		        As1   v080
+	BYTE		N24     An3 
+	BYTE	W06
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		N11     Fn2   v076
+	BYTE	W12
+	BYTE		        As2 
+	BYTE		N23     Gn3 
+	BYTE	W12
+	BYTE		N11     Dn3 
+	BYTE	W12
+	BYTE		        As2   v080
+	BYTE		N23     Fn3 
+	BYTE	W12
+	BYTE		N11     Fn2   v076
+	BYTE	W12
+// 060   ----------------------------------------
+	BYTE		        An1   v080
+	BYTE		N48     Gn3   v076
+	BYTE	W12
+	BYTE		N11     Gn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Cn3   v080
+	BYTE		N03     Fn3 
+	BYTE	W03
+	BYTE		N20     Gn3   v072
+	BYTE	W09
+	BYTE		N11     Gn2   v076
+	BYTE	W12
+// 061   ----------------------------------------
+	BYTE		        Dn2   v080
+	BYTE		N24     Gn3 
+	BYTE	W12
+	BYTE		N11     An2   v076
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N23     Fn3 
+	BYTE	W12
+	BYTE		N11     An2 
+	BYTE	W12
+	BYTE		        Cn2   v080
+	BYTE		N23     En3 
+	BYTE	W12
+	BYTE		N11     An2   v076
+	BYTE	W12
+// 062   ----------------------------------------
+	BYTE		        As1   v080
+	BYTE		N48     Dn3   v076
+	BYTE	W12
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        As2   v080
+	BYTE		N23     Dn3 
+	BYTE	W12
+	BYTE		N11     Fn2   v076
+	BYTE	W12
+// 063   ----------------------------------------
+	BYTE		        As1   v080
+	BYTE		N24     En3 
+	BYTE	W12
+	BYTE		N11     En2   v076
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE		N23     Fn3 
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		N11     Cn3 
+	BYTE	W04
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Gn2   v080
+	BYTE		N03     Fs3 
+	BYTE	W03
+	BYTE		N20     Gn3   v072
+	BYTE	W02
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		N11     En2   v076
+	BYTE	W01
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+// 064   ----------------------------------------
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Fn1   v080
+	BYTE		N68     An3   v076
+	BYTE	W12
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Cn3 
+	BYTE	W04
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        An2   v080
+	BYTE	W05
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   106*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		        Fn2   v076
+	BYTE	W01
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   105*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE	W07
+// 065   ----------------------------------------
+	BYTE	TEMPO   107*FE15TheVoiceThatCallsYouMysteriousDancer_tbs/2
+	BYTE		        Cn2   v080
+	BYTE		N48     Gn3   v076
+	BYTE	W12
+	BYTE		N11     Gn2 
+	BYTE	W12
+	BYTE		        As2   v080
+	BYTE	W12
+	BYTE		N23     Fn3   v084
+	BYTE	W12
+	BYTE		N11     An3 
+	BYTE	W12
+	BYTE		        Cn2   v088
+	BYTE		N11     Gn3   v080
+	BYTE		N11     As3   v092
+	BYTE	W12
+// 066   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_016
+// 067   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_017
+// 068   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_018
+// 069   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_019
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_020
+// 071   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_021
+// 072   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_022
+// 073   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_023
+// 074   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_024
+// 075   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_025
+// 076   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_026
+// 077   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_027
+// 078   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_028
+// 079   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_029
+// 080   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_030
+// 081   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_031
+// 082   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_032
+// 083   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_033
+// 084   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_034
+// 085   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_035
+// 086   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_036
+// 087   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_037
+// 088   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_038
+// 089   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_039
+// 090   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_040
+// 091   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_041
+// 092   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_042
+// 093   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_043
+// 094   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_044
+// 095   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_045
+// 096   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_046
+// 097   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_047
+// 098   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_044
+// 099   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_049
+// 100   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_046
+// 101   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_051
+// 102   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_052
+// 103   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_053
+// 104   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_054
+// 105   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_055
+// 106   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_056
+// 107   ----------------------------------------
+	BYTE		N48     Cn2   v076
+	BYTE		N40     Cn4   v084
+	BYTE	W48
+	BYTE		N11     Fn3   v080
+	BYTE	W05
+	BYTE		VOL     102*FE15TheVoiceThatCallsYouMysteriousDancer_mvl/mxv
+	BYTE	W07
+	BYTE		N11     Gn3   v076
+	BYTE	W11
+	BYTE	GoTo
+	 POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1_B1
+FE15TheVoiceThatCallsYouMysteriousDancer_1_B2:
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE15TheVoiceThatCallsYouMysteriousDancer:
+	BYTE	1	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE15TheVoiceThatCallsYouMysteriousDancer_pri	// Priority
+	BYTE	FE15TheVoiceThatCallsYouMysteriousDancer_rev	// Reverb.
+
+	POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_grp
+
+	POIN2	FE15TheVoiceThatCallsYouMysteriousDancer_1
+
+	

@@ -1,0 +1,1388 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE16LifeatGarregMachMonasterySme_grp  voicegroup000
+	#define	FE16LifeatGarregMachMonasterySme_pri  0
+	#define	FE16LifeatGarregMachMonasterySme_rev  0
+	#define	FE16LifeatGarregMachMonasterySme_mvl  85
+	#define	FE16LifeatGarregMachMonasterySme_key  0
+	#define	FE16LifeatGarregMachMonasterySme_tbs  1
+	#define	FE16LifeatGarregMachMonasterySme_exg  0
+	#define	FE16LifeatGarregMachMonasterySme_cmp  1
+
+	// .rodata
+	//	FE16LifeatGarregMachMonasterySme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+FE16LifeatGarregMachMonasterySme_1:
+	BYTE	KEYSH   FE16LifeatGarregMachMonasterySme_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   112*FE16LifeatGarregMachMonasterySme_tbs/2
+	BYTE		VOICE   60
+	BYTE		VOL     100*FE16LifeatGarregMachMonasterySme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		N05     Cs4   v080
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+FE16LifeatGarregMachMonasterySme_1_B1:
+// 001   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_1_001:
+	BYTE		N32     En4   v080
+	BYTE	W36
+	BYTE		N05     Ds4 
+	BYTE	W12
+	BYTE		        Cs4 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_1_002:
+	BYTE		N32     Cs4   v080
+	BYTE	W36
+	BYTE		N05     Bn3 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE	PEND
+// 003   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_1_003:
+	BYTE	W12
+	BYTE		N05     Gs3   v080
+	BYTE	W12
+	BYTE		N90   
+	BYTE	W48
+	BYTE	PEND
+// 004   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_1_004:
+	BYTE	W48
+	BYTE		N05     Cs4   v080
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_002
+// 007   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_1_007:
+	BYTE		N11     Fs3   v080
+	BYTE	W12
+	BYTE		N05     Gs3 
+	BYTE	W12
+	BYTE		N90   
+	BYTE	W48
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE	W72
+// 009   ----------------------------------------
+	BYTE	W72
+// 010   ----------------------------------------
+	BYTE	W72
+// 011   ----------------------------------------
+	BYTE	W72
+// 012   ----------------------------------------
+	BYTE	W48
+	BYTE		N11     Fs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+// 013   ----------------------------------------
+	BYTE		TIE     An3 
+	BYTE	W72
+// 014   ----------------------------------------
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	W60
+	BYTE	W01
+	BYTE		EOT   
+	BYTE	W11
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_004
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_002
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_007
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_004
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_001
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_002
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_003
+// 024   ----------------------------------------
+	BYTE	W72
+// 025   ----------------------------------------
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE	W72
+// 029   ----------------------------------------
+	BYTE		TIE     Gs4   v096
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	W64
+	BYTE		EOT   
+	BYTE	W08
+// 031   ----------------------------------------
+	BYTE		N90   
+	BYTE		N90     Cn5 
+	BYTE	W72
+// 032   ----------------------------------------
+	BYTE	W48
+	BYTE		N11     As3   v080
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+// 033   ----------------------------------------
+	BYTE		N32     Cs4 
+	BYTE	W36
+	BYTE		N11     Bn3 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE		N32     As3 
+	BYTE	W36
+	BYTE		N11     Gs3 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE		N22     Ds3 
+	BYTE	W24
+	BYTE		TIE     Fn3 
+	BYTE	W48
+// 036   ----------------------------------------
+	BYTE	W48
+	BYTE		N11     Gs3 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W05
+	BYTE		EOT     Fn3 
+	BYTE	W07
+// 037   ----------------------------------------
+	BYTE		N24     Bn3 
+	BYTE	W36
+	BYTE		N05     An3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+// 038   ----------------------------------------
+	BYTE		N24     Gs3 
+	BYTE	W36
+	BYTE		N05     Fs3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+// 039   ----------------------------------------
+	BYTE		N22     Cs3 
+	BYTE	W24
+	BYTE		TIE     Ds3 
+	BYTE	W48
+// 040   ----------------------------------------
+	BYTE	W64
+	BYTE	W01
+	BYTE		EOT   
+	BYTE	W07
+// 041   ----------------------------------------
+	BYTE	W03
+	BYTE	W01
+	BYTE	W01
+	BYTE	W66
+	BYTE	W01
+// 042   ----------------------------------------
+	BYTE	W72
+// 043   ----------------------------------------
+	BYTE	W72
+// 044   ----------------------------------------
+	BYTE	W72
+// 045   ----------------------------------------
+	BYTE		N32     En4   v096
+	BYTE	W36
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		        Cs4 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+// 046   ----------------------------------------
+	BYTE		N44     Cs4 
+	BYTE	W48
+	BYTE		N11     Bn3 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+// 047   ----------------------------------------
+	BYTE		N90   
+	BYTE	W72
+// 048   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_1_048:
+	BYTE	W48
+	BYTE		N11     Dn4   v080
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE	PEND
+// 049   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_1_049:
+	BYTE		N32     Fn4   v080
+	BYTE	W36
+	BYTE		N11     En4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE	PEND
+// 050   ----------------------------------------
+	BYTE		N32     Dn4 
+	BYTE	W36
+	BYTE		N11     Cn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W12
+// 051   ----------------------------------------
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W12
+	BYTE		N90   
+	BYTE	W48
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_048
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_049
+// 054   ----------------------------------------
+	BYTE		N32     Dn4   v080
+	BYTE	W36
+	BYTE		N11     Cn4 
+	BYTE	W36
+// 055   ----------------------------------------
+	BYTE	W72
+// 056   ----------------------------------------
+	BYTE	W72
+// 057   ----------------------------------------
+	BYTE	W72
+// 058   ----------------------------------------
+	BYTE	W72
+// 059   ----------------------------------------
+	BYTE	W72
+// 060   ----------------------------------------
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+// 061   ----------------------------------------
+	BYTE	W48
+	BYTE		N20     Fs4   v064
+	BYTE	W12
+	BYTE		N11     Gs4 
+	BYTE	W12
+// 062   ----------------------------------------
+	BYTE		N32     An4 
+	BYTE	W36
+	BYTE		N11     Gs4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+// 063   ----------------------------------------
+	BYTE		N22     Fs4 
+	BYTE	W72
+// 064   ----------------------------------------
+	BYTE	W48
+	BYTE		N11     Cs4   v080
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE	GoTo
+	 POIN2	FE16LifeatGarregMachMonasterySme_1_B1
+FE16LifeatGarregMachMonasterySme_1_B2:
+// 065   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+FE16LifeatGarregMachMonasterySme_2:
+	BYTE	KEYSH   FE16LifeatGarregMachMonasterySme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   49
+	BYTE		VOL     88*FE16LifeatGarregMachMonasterySme_mvl/mxv
+	BYTE	W24
+FE16LifeatGarregMachMonasterySme_2_B1:
+// 001   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_2_001:
+	BYTE		N11     An1   v080
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE		N11     Bn2 
+	BYTE		N11     Ds3 
+	BYTE	W48
+	BYTE	PEND
+// 002   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_2_002:
+	BYTE		N11     An1   v080
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE		N11     Cs3 
+	BYTE		N11     En3 
+	BYTE	W48
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE		        En1 
+	BYTE		N11     Fs3 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE		N11     En3 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE		N11     Fs3 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+// 004   ----------------------------------------
+	BYTE		        Bn2 
+	BYTE		N11     Ds3 
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_002
+// 007   ----------------------------------------
+	BYTE		N11     Gs1   v080
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE		N11     En3 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE		N11     Fs3 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+// 008   ----------------------------------------
+	BYTE		        Bn2 
+	BYTE		N11     Ds3 
+	BYTE	W72
+// 009   ----------------------------------------
+	BYTE		N68     Fs1   v096
+	BYTE		N68     Fs2 
+	BYTE	W72
+// 010   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_2_010:
+	BYTE		N44     Bn1   v096
+	BYTE		N44     Bn2 
+	BYTE	W48
+	BYTE		N11     Fs1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE		N11     Fn2 
+	BYTE	W12
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE		N68     En1 
+	BYTE		N68     En2 
+	BYTE	W72
+// 012   ----------------------------------------
+	BYTE		N44     An1 
+	BYTE		N44     An2 
+	BYTE	W48
+	BYTE		N11     En1   v080
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+// 013   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_2_013:
+	BYTE		N11     Dn1   v080
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W36
+	BYTE		        An1 
+	BYTE	W12
+	BYTE	PEND
+// 014   ----------------------------------------
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W36
+	BYTE		        An1 
+	BYTE	W12
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_013
+// 016   ----------------------------------------
+	BYTE		N11     Dn1   v080
+	BYTE	W72
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_002
+// 019   ----------------------------------------
+	BYTE		N11     En1   v080
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE		N11     En3 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE		N11     Fs3 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+// 020   ----------------------------------------
+	BYTE		        Bn2 
+	BYTE		N11     Ds3 
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_001
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_002
+// 023   ----------------------------------------
+	BYTE		N11     Gs1   v080
+	BYTE		N11     Fs3 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE		N11     En3 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE		N11     Fs3 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+// 024   ----------------------------------------
+	BYTE		        Bn2 
+	BYTE		N11     Ds3 
+	BYTE	W72
+// 025   ----------------------------------------
+	BYTE		N68     Fs1   v096
+	BYTE		N68     Fs2 
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_010
+// 027   ----------------------------------------
+	BYTE		N68     En1   v096
+	BYTE		N68     En2 
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE		N44     An1 
+	BYTE		N44     An2 
+	BYTE	W48
+	BYTE		N11     Gs1 
+	BYTE		N11     Gs2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE		N11     An2 
+	BYTE	W12
+// 029   ----------------------------------------
+	BYTE		TIE     As1 
+	BYTE		TIE     As2 
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	W72
+// 031   ----------------------------------------
+	BYTE	W72
+// 032   ----------------------------------------
+	BYTE	W11
+	BYTE		EOT     As1 
+	BYTE		        As2 
+	BYTE	W60
+	BYTE	W01
+// 033   ----------------------------------------
+	BYTE		N22     Bn1   v080
+	BYTE	W24
+	BYTE		N44     Cs2 
+	BYTE		N44     Fn2 
+	BYTE	W48
+// 034   ----------------------------------------
+	BYTE		        Bn1 
+	BYTE		N68     Ds2 
+	BYTE	W48
+	BYTE		N22     As1 
+	BYTE	W24
+// 035   ----------------------------------------
+	BYTE		N11     Fs1 
+	BYTE	W12
+	BYTE		        Cs2 
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Cs2 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W12
+	BYTE		        Cs2 
+	BYTE	W12
+// 036   ----------------------------------------
+	BYTE		        As2 
+	BYTE		N11     Cs3 
+	BYTE	W72
+// 037   ----------------------------------------
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE		N11     Ds3 
+	BYTE	W36
+	BYTE		        En2 
+	BYTE	W12
+// 038   ----------------------------------------
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE		N11     En3 
+	BYTE	W36
+	BYTE		        En2 
+	BYTE	W12
+// 039   ----------------------------------------
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+// 040   ----------------------------------------
+	BYTE		        Bn2 
+	BYTE	W72
+// 041   ----------------------------------------
+	BYTE		N68     Gn1   v096
+	BYTE		N68     Gn2 
+	BYTE	W72
+// 042   ----------------------------------------
+	BYTE		N44     Cn2 
+	BYTE		N44     Cn3 
+	BYTE	W48
+	BYTE		N11     Gn1 
+	BYTE		N11     Gn2 
+	BYTE	W12
+	BYTE		        Fs1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+// 043   ----------------------------------------
+	BYTE		N68     Fn1 
+	BYTE		N68     Fn2 
+	BYTE	W72
+// 044   ----------------------------------------
+	BYTE		        As1 
+	BYTE		N68     As2 
+	BYTE	W72
+// 045   ----------------------------------------
+	BYTE		TIE     Bn1 
+	BYTE		TIE     Bn2 
+	BYTE	W72
+// 046   ----------------------------------------
+	BYTE	W72
+// 047   ----------------------------------------
+	BYTE	W72
+// 048   ----------------------------------------
+	BYTE	W11
+	BYTE		EOT     Bn1 
+	BYTE		        Bn2 
+	BYTE	W60
+	BYTE	W01
+// 049   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_2_049:
+	BYTE		N11     As2   v080
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W48
+	BYTE	PEND
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_049
+// 051   ----------------------------------------
+	BYTE		N11     Fn1   v080
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+// 052   ----------------------------------------
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W36
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_049
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_049
+// 055   ----------------------------------------
+	BYTE		N68     Bn1   v112
+	BYTE		N68     Bn2 
+	BYTE	W72
+// 056   ----------------------------------------
+	BYTE		        As1 
+	BYTE		N68     As2 
+	BYTE	W72
+// 057   ----------------------------------------
+	BYTE		        An1 
+	BYTE		N68     An2 
+	BYTE	W72
+// 058   ----------------------------------------
+	BYTE		        Dn1 
+	BYTE		N68     Dn2 
+	BYTE	W72
+// 059   ----------------------------------------
+	BYTE		        Gn1 
+	BYTE		N68     Gn2 
+	BYTE	W72
+// 060   ----------------------------------------
+	BYTE		        Ds2 
+	BYTE		N68     Ds3 
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+	BYTE	W01
+	BYTE	W02
+// 061   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_2_061:
+	BYTE		N11     Dn1   v064
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W48
+	BYTE	PEND
+// 062   ----------------------------------------
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W48
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_061
+// 064   ----------------------------------------
+	BYTE		N11     Dn1   v064
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	FE16LifeatGarregMachMonasterySme_2_B1
+FE16LifeatGarregMachMonasterySme_2_B2:
+// 065   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+FE16LifeatGarregMachMonasterySme_3:
+	BYTE	KEYSH   FE16LifeatGarregMachMonasterySme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		VOL     64*FE16LifeatGarregMachMonasterySme_mvl/mxv
+	BYTE	W24
+FE16LifeatGarregMachMonasterySme_3_B1:
+// 001   ----------------------------------------
+	BYTE	W72
+// 002   ----------------------------------------
+	BYTE	W72
+// 003   ----------------------------------------
+	BYTE	W72
+// 004   ----------------------------------------
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	W72
+// 006   ----------------------------------------
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	W72
+// 008   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_3_008:
+	BYTE	W48
+	BYTE		N11     Gs4   v096
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE	PEND
+// 009   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_3_009:
+	BYTE		N32     En4   v096
+	BYTE		N32     Bn4 
+	BYTE	W36
+	BYTE		N11     Cs4 
+	BYTE		N11     An4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N11     En4 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N11     Cs4 
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_3_010:
+	BYTE		N68     An3   v096
+	BYTE		N68     Ds4 
+	BYTE		N22     Gs4 
+	BYTE	W24
+	BYTE		N44     Fs4 
+	BYTE	W48
+	BYTE	PEND
+// 011   ----------------------------------------
+FE16LifeatGarregMachMonasterySme_3_011:
+	BYTE		N32     En4   v096
+	BYTE		N32     An4 
+	BYTE	W36
+	BYTE		N11     Bn3 
+	BYTE		N11     Gn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE		N11     Bn3 
+	BYTE	W12
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE		N44     Gn3 
+	BYTE		N44     Cs4 
+	BYTE		N22     Fs4 
+	BYTE	W24
+	BYTE		N44     En4 
+	BYTE	W48
+// 013   ----------------------------------------
+	BYTE	W72
+// 014   ----------------------------------------
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE	W72
+// 017   ----------------------------------------
+	BYTE	W72
+// 018   ----------------------------------------
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	W72
+// 020   ----------------------------------------
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	W72
+// 022   ----------------------------------------
+	BYTE	W72
+// 023   ----------------------------------------
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_3_008
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_3_009
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_3_010
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	FE16LifeatGarregMachMonasterySme_3_011
+// 028   ----------------------------------------
+	BYTE		N44     Gn3   v096
+	BYTE		N44     Cs4 
+	BYTE		N22     Fs4 
+	BYTE	W24
+	BYTE		        En4 
+	BYTE	W24
+	BYTE		N11     Fs4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+// 029   ----------------------------------------
+	BYTE		N32     Ds4 
+	BYTE	W36
+	BYTE		N11     Cs4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+// 030   ----------------------------------------
+	BYTE		N44     Cn4 
+	BYTE	W48
+	BYTE		N11     As3 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+// 031   ----------------------------------------
+	BYTE		N90   
+	BYTE	W72
+// 032   ----------------------------------------
+	BYTE	W72
+// 033   ----------------------------------------
+	BYTE	W72
+// 034   ----------------------------------------
+	BYTE	W72
+// 035   ----------------------------------------
+	BYTE	W72
+// 036   ----------------------------------------
+	BYTE	W72
+// 037   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     Gs3   v080
+	BYTE	W06
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		N11     Bn3 
+	BYTE	W48
+// 038   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     En3 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE	W06
+	BYTE		N11     Gs3 
+	BYTE	W48
+// 039   ----------------------------------------
+	BYTE	W72
+// 040   ----------------------------------------
+	BYTE	W48
+	BYTE		N05     Ds4   v096
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Fs4 
+	BYTE	W06
+	BYTE		        Gs4 
+	BYTE	W06
+// 041   ----------------------------------------
+	BYTE		N60     As3 
+	BYTE		N68     Fn4 
+	BYTE		N32     An4   v127
+	BYTE	W36
+	BYTE		N11     Gn4   v096
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+// 042   ----------------------------------------
+	BYTE		N68   
+	BYTE		N68     Cn4 
+	BYTE		N22     Fn4 
+	BYTE	W24
+	BYTE		N32     En4 
+	BYTE	W36
+	BYTE		N11     Fn4 
+	BYTE	W12
+// 043   ----------------------------------------
+	BYTE		N48     Cn4 
+	BYTE		N68     Ds4 
+	BYTE		N32     Gn4 
+	BYTE	W36
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		N20     Cn4 
+	BYTE	W12
+	BYTE		N11     Gs3 
+	BYTE	W12
+// 044   ----------------------------------------
+	BYTE		N68     Fn3 
+	BYTE		N68     As3 
+	BYTE		N22     Ds4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+// 045   ----------------------------------------
+	BYTE		TIE     An4 
+	BYTE	W72
+// 046   ----------------------------------------
+	BYTE	W64
+	BYTE		EOT   
+	BYTE	W08
+// 047   ----------------------------------------
+	BYTE		N90   
+	BYTE		N90     Cs5 
+	BYTE	W72
+// 048   ----------------------------------------
+	BYTE	W72
+// 049   ----------------------------------------
+	BYTE	W72
+// 050   ----------------------------------------
+	BYTE	W72
+// 051   ----------------------------------------
+	BYTE	W72
+// 052   ----------------------------------------
+	BYTE	W72
+// 053   ----------------------------------------
+	BYTE	W72
+// 054   ----------------------------------------
+	BYTE	W48
+	BYTE		N05     Cn4   v112
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+// 055   ----------------------------------------
+	BYTE		N68     Bn3 
+	BYTE		N68     Dn4 
+	BYTE		N11     Gn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		N44   
+	BYTE	W48
+// 056   ----------------------------------------
+	BYTE		N68     As3 
+	BYTE		N68     Cs4 
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N44   
+	BYTE	W48
+// 057   ----------------------------------------
+	BYTE		N56     An3 
+	BYTE		N56     Cn4 
+	BYTE		N11     En4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		N32     Cn5 
+	BYTE	W36
+	BYTE		N11     An4 
+	BYTE		N11     Fn5 
+	BYTE	W12
+// 058   ----------------------------------------
+	BYTE		        Gn4 
+	BYTE		N11     En5 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE		N11     Fn5 
+	BYTE	W12
+	BYTE		N22     An4 
+	BYTE		N22     Fn5 
+	BYTE	W24
+	BYTE		N11     Dn5 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE		N11     En5 
+	BYTE	W12
+// 059   ----------------------------------------
+	BYTE		N68     As4 
+	BYTE		N11     En5 
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W12
+	BYTE		N44   
+	BYTE	W48
+// 060   ----------------------------------------
+	BYTE		N68     As4 
+	BYTE		N60     Ds5 
+	BYTE		N11     Gn5 
+	BYTE	W12
+	BYTE		        An5   v104
+	BYTE	W12
+	BYTE		N32     Fn5   v096
+	BYTE	W36
+	BYTE		N11     Ds5   v072
+	BYTE	W12
+// 061   ----------------------------------------
+	BYTE		N48     Fs4   v064
+	BYTE		N68     An4 
+	BYTE		N68     Dn5 
+	BYTE	W72
+// 062   ----------------------------------------
+	BYTE	W72
+// 063   ----------------------------------------
+	BYTE	W72
+// 064   ----------------------------------------
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	FE16LifeatGarregMachMonasterySme_3_B1
+FE16LifeatGarregMachMonasterySme_3_B2:
+// 065   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+FE16LifeatGarregMachMonasterySme_4:
+	BYTE	KEYSH   FE16LifeatGarregMachMonasterySme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   73
+	BYTE		VOL     84*FE16LifeatGarregMachMonasterySme_mvl/mxv
+	BYTE	W24
+FE16LifeatGarregMachMonasterySme_4_B1:
+// 001   ----------------------------------------
+	BYTE	W72
+// 002   ----------------------------------------
+	BYTE	W72
+// 003   ----------------------------------------
+	BYTE	W72
+// 004   ----------------------------------------
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	W72
+// 006   ----------------------------------------
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	W72
+// 008   ----------------------------------------
+	BYTE	W72
+// 009   ----------------------------------------
+	BYTE	W72
+// 010   ----------------------------------------
+	BYTE	W72
+// 011   ----------------------------------------
+	BYTE	W72
+// 012   ----------------------------------------
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	W48
+	BYTE		N05     Fs5   v080
+	BYTE	W12
+	BYTE		        Gs5 
+	BYTE	W12
+// 014   ----------------------------------------
+	BYTE		N32     An5 
+	BYTE	W36
+	BYTE		N05     Gs5 
+	BYTE	W12
+	BYTE		        Fs5 
+	BYTE	W12
+	BYTE		        En5 
+	BYTE	W12
+// 015   ----------------------------------------
+	BYTE		N68     Fs5 
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE	W72
+// 017   ----------------------------------------
+	BYTE	W72
+// 018   ----------------------------------------
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	W72
+// 020   ----------------------------------------
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	W72
+// 022   ----------------------------------------
+	BYTE	W72
+// 023   ----------------------------------------
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	W72
+// 025   ----------------------------------------
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE	W72
+// 029   ----------------------------------------
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	W72
+// 031   ----------------------------------------
+	BYTE	W72
+// 032   ----------------------------------------
+	BYTE	W72
+// 033   ----------------------------------------
+	BYTE	W72
+// 034   ----------------------------------------
+	BYTE	W72
+// 035   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     As4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W06
+	BYTE		        Cs5 
+	BYTE	W12
+	BYTE		        Ds5 
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W12
+	BYTE		        Fs5 
+	BYTE	W12
+// 036   ----------------------------------------
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Fs5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W12
+	BYTE		N11     Cs5 
+	BYTE	W48
+// 037   ----------------------------------------
+	BYTE	W72
+// 038   ----------------------------------------
+	BYTE	W72
+// 039   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     Gs4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Bn4 
+	BYTE	W12
+	BYTE		        Cs5 
+	BYTE	W12
+	BYTE		        Ds5 
+	BYTE	W12
+	BYTE		        En5 
+	BYTE	W12
+// 040   ----------------------------------------
+	BYTE		        Ds5 
+	BYTE	W06
+	BYTE		        En5 
+	BYTE	W06
+	BYTE		        Ds5 
+	BYTE	W12
+	BYTE		N22     Bn4 
+	BYTE	W48
+// 041   ----------------------------------------
+	BYTE	W72
+// 042   ----------------------------------------
+	BYTE	W72
+// 043   ----------------------------------------
+	BYTE	W72
+// 044   ----------------------------------------
+	BYTE	W72
+// 045   ----------------------------------------
+	BYTE	W72
+// 046   ----------------------------------------
+	BYTE	W72
+// 047   ----------------------------------------
+	BYTE	W72
+// 048   ----------------------------------------
+	BYTE	W72
+// 049   ----------------------------------------
+	BYTE	W72
+// 050   ----------------------------------------
+	BYTE	W72
+// 051   ----------------------------------------
+	BYTE	W72
+// 052   ----------------------------------------
+	BYTE	W72
+// 053   ----------------------------------------
+	BYTE	W72
+// 054   ----------------------------------------
+	BYTE	W72
+// 055   ----------------------------------------
+	BYTE	W72
+// 056   ----------------------------------------
+	BYTE	W72
+// 057   ----------------------------------------
+	BYTE	W72
+// 058   ----------------------------------------
+	BYTE	W72
+// 059   ----------------------------------------
+	BYTE	W72
+// 060   ----------------------------------------
+	BYTE	W72
+// 061   ----------------------------------------
+	BYTE	W72
+// 062   ----------------------------------------
+	BYTE	W72
+// 063   ----------------------------------------
+	BYTE	W72
+// 064   ----------------------------------------
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	FE16LifeatGarregMachMonasterySme_4_B1
+FE16LifeatGarregMachMonasterySme_4_B2:
+// 065   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE16LifeatGarregMachMonasterySme:
+	BYTE	4	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE16LifeatGarregMachMonasterySme_pri	// Priority
+	BYTE	FE16LifeatGarregMachMonasterySme_rev	// Reverb.
+
+	POIN2	FE16LifeatGarregMachMonasterySme_grp
+
+	POIN2	FE16LifeatGarregMachMonasterySme_1
+	POIN2	FE16LifeatGarregMachMonasterySme_2
+	POIN2	FE16LifeatGarregMachMonasterySme_3
+	POIN2	FE16LifeatGarregMachMonasterySme_4
+
+	

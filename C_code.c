@@ -1392,25 +1392,66 @@ struct Song
     u16 me;
 };
 extern struct Song * getSongTable[];
-const int MaxNumberOfSongs = 255;
+const int MaxNumberOfSongs = 500;
 extern u8 BGMExceptions[];
+#ifdef FE8
+#define EmptyTrack 0x82263B0
+#endif
+#ifdef FE7
+#define EmptyTrack 0x8ABC4AC
+#endif
+#ifdef FE6
+#define EmptyTrack 0x839A840
+#endif
 // #define MaxNumberOfSongs 99
-u16 * BuildTracklist(u16 List[])
+u16 * BuildTracklist(u16 List[], int startingPoint, int priority)
 {
     int i;
+    int priority_A = priority & 0xFFFF;
+    int priority_B = priority >> 16;
+
     // 0th entry of List is the count of available tracks
     for (i = 0; i < MaxNumberOfSongs; ++i)
     {
         List[i] = 0;
     }
     struct Song * gST = *getSongTable;
-    for (i = 0; i < 1500; ++i)
+    for (i = startingPoint; i < 2000; ++i)
     {
         if (List[0] >= MaxNumberOfSongs)
         {
             break;
         }
-        if (!gST[i].header)
+        if (!gST[i].header) // no song pointer
+        {
+            break;
+        }
+        if (gST[i].header == (void *)EmptyTrack)
+        {
+            continue;
+        }
+        if (BGMExceptions[i])
+        {
+            continue;
+        }
+        if (gST[i].ms != priority_A)
+        {
+            continue;
+        }
+        if (gST[i].me != priority_B)
+        {
+            continue;
+        }
+        List[0]++;
+        List[List[0]] = i;
+    }
+    for (i = 0; i < startingPoint; ++i)
+    {
+        if (List[0] >= MaxNumberOfSongs)
+        {
+            break;
+        }
+        if (!gST[i].header) // no song pointer
         {
             break;
         }
@@ -1418,11 +1459,11 @@ u16 * BuildTracklist(u16 List[])
         {
             continue;
         }
-        if (gST[i].ms != 1)
+        if (gST[i].ms != priority_A)
         {
             continue;
         }
-        if (gST[i].me != 1)
+        if (gST[i].me != priority_B)
         {
             continue;
         }
@@ -1445,8 +1486,11 @@ int GetBGMTrack()
     //	noise[0] = gActiveUnit->xPos;
     //	noise[1] = gActiveUnit->yPos;
     // }
+
     u16 List[MaxNumberOfSongs];
-    BuildTracklist(List);
+    BuildTracklist(
+        List, HashByte_Ch(number, 500, noise, gTurn) + 1,
+        0x10001); // random number up to 500 to start building the tracklist from
     int result = List[HashByte_Ch(number, List[0], noise, gTurn) + 1];
     return result;
 };
@@ -1479,21 +1523,22 @@ int RandomizeBattleMusic(int id)
     {
         return id;
     }
-    // u16 List[MaxNumberOfSongs];
-    // BuildTracklist(List);
+    u16 List[MaxNumberOfSongs];
+    BuildTracklist(List, NextRN_N(600), 0);
+    return List[NextRN_N(List[0])];
     // int result = List[NextRN_N(List[0])+1];
     // return result; // not all tracks with 0x10001 priority work for battle music fsr
     //  a random track from sound room seems to work, though *shrugs*
-    struct SoundRoomData * SoundRoomTable = *getSoundRoom; // starts at index 1, not 0
+    // struct SoundRoomData * SoundRoomTable = *getSoundRoom; // starts at index 1, not 0
 #ifdef FE6
     // #68 is max
-    return SoundRoomTable[NextRN_N(52)].songID; // before game over at 53 I guess
+    // return SoundRoomTable[NextRN_N(52)].songID; // before game over at 53 I guess
 #endif
-#ifdef FE7                                      // #99 is max
-    return SoundRoomTable[NextRN_N(90)].songID; // before game over at 91
+#ifdef FE7 // #99 is max
+    // return SoundRoomTable[NextRN_N(90)].songID; // before game over at 91
 #endif
-#ifdef FE8                                      // #68 is max
-    return SoundRoomTable[NextRN_N(63)].songID; // before game over at 64
+#ifdef FE8 // #68 is max
+    // return SoundRoomTable[NextRN_N(63)].songID; // before game over at 64
 #endif
 };
 

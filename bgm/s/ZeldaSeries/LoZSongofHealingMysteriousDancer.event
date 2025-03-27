@@ -1,0 +1,650 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	LoZSongofHealingMysteriousDancer_grp  voicegroup000
+	#define	LoZSongofHealingMysteriousDancer_pri  0
+	#define	LoZSongofHealingMysteriousDancer_rev  0
+	#define	LoZSongofHealingMysteriousDancer_mvl  127
+	#define	LoZSongofHealingMysteriousDancer_key  0
+	#define	LoZSongofHealingMysteriousDancer_tbs  1
+	#define	LoZSongofHealingMysteriousDancer_exg  0
+	#define	LoZSongofHealingMysteriousDancer_cmp  1
+
+	// .rodata
+	//	LoZSongofHealingMysteriousDancer
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+LoZSongofHealingMysteriousDancer_1:
+	BYTE	KEYSH   LoZSongofHealingMysteriousDancer_key+0
+LoZSongofHealingMysteriousDancer_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		VOICE   1
+	BYTE		VOL     101*LoZSongofHealingMysteriousDancer_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		VOL     110*LoZSongofHealingMysteriousDancer_mvl/mxv
+	BYTE		TIE     Cn2   v056
+	BYTE		TIE     Fn2   v072
+	BYTE		TIE     Fn3   v064
+	BYTE	W36
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W05
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   93*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   93*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W07
+// 001   ----------------------------------------
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W36
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W05
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   93*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   93*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W06
+	BYTE		EOT     Cn2 
+	BYTE		        Fn2 
+	BYTE		        Fn3 
+	BYTE	W01
+// 002   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_002:
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		N68     Fn2   v064
+	BYTE		N24     Bn3   v072
+	BYTE	W12
+	BYTE		N23     Cn3   v064
+	BYTE	W12
+	BYTE		        An3   v068
+	BYTE	W12
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		        Cn3   v064
+	BYTE	W04
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		        Fn3   v068
+	BYTE	W05
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		N11     Cn3   v064
+	BYTE	W01
+	BYTE	TEMPO   93*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   93*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W07
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_002
+// 004   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_004:
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		N68     Fn2   v064
+	BYTE		N24     Bn3   v072
+	BYTE	W12
+	BYTE		N23     Cn3   v064
+	BYTE	W12
+	BYTE		        An3   v068
+	BYTE	W12
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		        Cn3   v064
+	BYTE	W04
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		N11     En3   v068
+	BYTE	W05
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		        Cn3   v064
+	BYTE		N11     Dn3 
+	BYTE	W01
+	BYTE	TEMPO   93*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   93*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W07
+	BYTE	PEND
+// 005   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_005:
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		N68     En2   v064
+	BYTE		N68     En3 
+	BYTE	W12
+	BYTE		N23     Bn2 
+	BYTE	W24
+	BYTE		N23   
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W12
+	BYTE	PEND
+// 006   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_006:
+	BYTE		N68     Fn2   v064
+	BYTE		N24     Bn3   v072
+	BYTE	W12
+	BYTE		N23     Cn3   v064
+	BYTE	W12
+	BYTE		        An3   v068
+	BYTE	W12
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		        Cn3   v064
+	BYTE	W04
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		        Fn3   v068
+	BYTE	W05
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   94*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		N11     Cn3   v064
+	BYTE	W01
+	BYTE	TEMPO   93*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W04
+	BYTE	TEMPO   93*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W07
+	BYTE	PEND
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_002
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_004
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_005
+// 010   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_010:
+	BYTE		N68     Dn2   v064
+	BYTE		N24     Fn3   v072
+	BYTE	W12
+	BYTE		N23     An2   v064
+	BYTE	W12
+	BYTE		        Cn3   v068
+	BYTE	W12
+	BYTE		        An2   v064
+	BYTE	W12
+	BYTE		        Bn2   v068
+	BYTE	W12
+	BYTE		N11     An2   v064
+	BYTE	W12
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_010
+// 012   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_012:
+	BYTE		N68     Cn2   v064
+	BYTE		N24     Fn3   v072
+	BYTE	W12
+	BYTE		N23     Gn2   v064
+	BYTE	W12
+	BYTE		        En3   v068
+	BYTE	W12
+	BYTE		        Gn2   v064
+	BYTE	W12
+	BYTE		N11     Bn2   v068
+	BYTE	W12
+	BYTE		        Gn2   v064
+	BYTE		N11     An2 
+	BYTE	W12
+	BYTE	PEND
+// 013   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_013:
+	BYTE		N68     Cn2   v064
+	BYTE		N68     Bn2 
+	BYTE	W12
+	BYTE		N23     Gn2 
+	BYTE	W24
+	BYTE		N23   
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W12
+	BYTE	PEND
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_010
+// 016   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_016:
+	BYTE		N68     Cn2   v064
+	BYTE		N24     Fn3   v072
+	BYTE	W12
+	BYTE		N23     Gn2   v064
+	BYTE	W12
+	BYTE		        En3   v068
+	BYTE	W12
+	BYTE		        Gn2   v064
+	BYTE	W12
+	BYTE		        En3   v060
+	BYTE		N23     Bn3   v076
+	BYTE	W12
+	BYTE		N11     Gn2   v064
+	BYTE	W12
+	BYTE	PEND
+// 017   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_017:
+	BYTE		N68     Cn2   v064
+	BYTE		N68     En3   v056
+	BYTE		N68     Gn3   v072
+	BYTE	W12
+	BYTE		N23     Gn2   v064
+	BYTE	W24
+	BYTE		N23   
+	BYTE	W24
+	BYTE		N12     Gn2   v052
+	BYTE	W12
+	BYTE	PEND
+// 018   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_018:
+	BYTE		N13     As1   v060
+	BYTE		N24     Fn3   v064
+	BYTE		N24     An3   v076
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE		        As2   v056
+	BYTE		N23     Fn3   v060
+	BYTE		N23     An3   v068
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE		        Dn3   v056
+	BYTE		N23     Fn3   v060
+	BYTE		N23     An3   v076
+	BYTE	W12
+	BYTE		N12     As2   v052
+	BYTE	W12
+	BYTE	PEND
+// 019   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_019:
+	BYTE		N13     As1   v060
+	BYTE		N24     An3   v064
+	BYTE		N24     Dn4   v076
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE		        As2   v056
+	BYTE		N23     An3   v060
+	BYTE		N23     Dn4   v068
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE		        Dn3   v056
+	BYTE		N23     An3   v060
+	BYTE		N23     Dn4   v076
+	BYTE	W12
+	BYTE		N12     As2   v052
+	BYTE	W12
+	BYTE	PEND
+// 020   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_020:
+	BYTE		N13     An1   v060
+	BYTE		N24     En3   v064
+	BYTE		N24     Gn3   v076
+	BYTE	W12
+	BYTE		N12     En2   v052
+	BYTE	W12
+	BYTE		        Gn2   v056
+	BYTE		N23     En3   v060
+	BYTE		N23     Gn3   v068
+	BYTE	W12
+	BYTE		N12     En2   v052
+	BYTE	W12
+	BYTE		        Cn3   v056
+	BYTE		N23     En3   v060
+	BYTE		N23     Gn3   v076
+	BYTE	W12
+	BYTE		N12     Gn2   v052
+	BYTE	W12
+	BYTE	PEND
+// 021   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_021:
+	BYTE		N13     An1   v060
+	BYTE		N24     En3   v064
+	BYTE		N24     Cn4   v076
+	BYTE	W12
+	BYTE		N12     En2   v052
+	BYTE	W12
+	BYTE		        Gn2   v056
+	BYTE		N44     En3 
+	BYTE		N44     Gn3   v072
+	BYTE	W12
+	BYTE		N12     En2   v052
+	BYTE	W12
+	BYTE		N23     Cn3   v068
+	BYTE	W24
+	BYTE	PEND
+// 022   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_022:
+	BYTE		N13     Gn1   v060
+	BYTE		N24     Dn3   v064
+	BYTE		N24     Fn3   v076
+	BYTE	W12
+	BYTE		N12     Dn2   v052
+	BYTE	W12
+	BYTE		        Fn2   v056
+	BYTE		N23     Dn3   v060
+	BYTE		N23     Fn3   v068
+	BYTE	W12
+	BYTE		N12     Dn2   v052
+	BYTE	W12
+	BYTE		        As2   v056
+	BYTE		N23     Dn3   v060
+	BYTE		N23     Fn3   v076
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE	PEND
+// 023   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_023:
+	BYTE		N13     Gn1   v060
+	BYTE		N24     Fn3   v064
+	BYTE		N24     As3   v076
+	BYTE	W12
+	BYTE		N12     Dn2   v052
+	BYTE	W12
+	BYTE		        Fn2   v056
+	BYTE		N23     Fn3   v060
+	BYTE		N23     As3   v068
+	BYTE	W12
+	BYTE		N12     Dn2   v052
+	BYTE	W12
+	BYTE		        As2   v056
+	BYTE		N23     Fn3   v060
+	BYTE		N23     As3   v076
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE	PEND
+// 024   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_024:
+	BYTE		N13     Fn1   v060
+	BYTE		N24     Cn3   v064
+	BYTE		N24     En3   v076
+	BYTE	W12
+	BYTE		N12     Cn2   v052
+	BYTE	W12
+	BYTE		        En2   v056
+	BYTE		N23     Cn3   v060
+	BYTE		N23     Dn3   v072
+	BYTE	W12
+	BYTE		N12     Cn2   v052
+	BYTE	W12
+	BYTE		        An2   v056
+	BYTE		N23     Cn3   v060
+	BYTE		N23     An3   v076
+	BYTE	W12
+	BYTE		N12     En2   v052
+	BYTE	W12
+	BYTE	PEND
+// 025   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_025:
+	BYTE		N13     Fn1   v060
+	BYTE		N68     Cn3   v056
+	BYTE		N68     En3   v072
+	BYTE	W12
+	BYTE		N12     Cn2   v052
+	BYTE	W12
+	BYTE		        En2   v056
+	BYTE	W12
+	BYTE		        Cn2   v052
+	BYTE	W12
+	BYTE		N23     An2   v068
+	BYTE	W24
+	BYTE	PEND
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_018
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_019
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_020
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_021
+// 030   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_030:
+	BYTE		N13     As1   v060
+	BYTE		N24     Dn3   v064
+	BYTE		N24     Fn3   v076
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE		        As2   v056
+	BYTE		N23     Dn3   v060
+	BYTE		N23     Gn3   v072
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE		        Dn3   v056
+	BYTE		N23     An3   v076
+	BYTE	W12
+	BYTE		N12     As2   v052
+	BYTE	W12
+	BYTE	PEND
+// 031   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_031:
+	BYTE		N13     As1   v060
+	BYTE		N24     Fn3   v064
+	BYTE		N24     As3   v076
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE		        As2   v056
+	BYTE		N23     Fn3   v060
+	BYTE		N23     Cn4   v072
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE		        Dn3   v056
+	BYTE		N23     Fn3   v060
+	BYTE		N23     Dn4   v076
+	BYTE	W12
+	BYTE		N12     As2   v052
+	BYTE	W12
+	BYTE	PEND
+// 032   ----------------------------------------
+LoZSongofHealingMysteriousDancer_1_032:
+	BYTE	TEMPO   95*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		N13     Bn1   v060
+	BYTE		N24     Fn3   v064
+	BYTE		N24     An3   v076
+	BYTE	W12
+	BYTE		N12     Fn2   v052
+	BYTE	W04
+	BYTE	TEMPO   90*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W08
+	BYTE		        An2   v056
+	BYTE		N23     Fn3   v060
+	BYTE		N23     Bn3   v072
+	BYTE	W09
+	BYTE	TEMPO   86*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W03
+	BYTE		N12     Fn2   v052
+	BYTE	W12
+	BYTE		        Dn3   v056
+	BYTE		N23     Fn3   v060
+	BYTE		N23     Dn4   v076
+	BYTE	W02
+	BYTE	TEMPO   81*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W10
+	BYTE		N12     An2   v052
+	BYTE	W07
+	BYTE	TEMPO   76*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W05
+	BYTE	PEND
+// 033   ----------------------------------------
+	BYTE		N24     En2   v060
+	BYTE		N48     En3   v056
+	BYTE		N68     En4   v072
+	BYTE	W12
+	BYTE	TEMPO   71*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W12
+	BYTE		N24     Bn2   v056
+	BYTE	W05
+	BYTE	TEMPO   67*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W17
+	BYTE	TEMPO   62*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE	W02
+	BYTE	TEMPO   26*LoZSongofHealingMysteriousDancer_tbs/2
+	BYTE		N20     En3 
+	BYTE	W24
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_002
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_002
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_004
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_005
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_006
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_002
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_004
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_005
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_010
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_010
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_012
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_013
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_010
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_010
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_016
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_017
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_018
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_019
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_020
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_021
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_022
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_023
+// 056   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_024
+// 057   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_025
+// 058   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_018
+// 059   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_019
+// 060   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_020
+// 061   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_021
+// 062   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_030
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_031
+// 064   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZSongofHealingMysteriousDancer_1_032
+// 065   ----------------------------------------
+	BYTE		N24     En2   v060
+	BYTE		N48     En3   v056
+	BYTE		N68     En4   v072
+	BYTE	W24
+	BYTE		N24     Bn2   v056
+	BYTE	W24
+	BYTE		N20     En3 
+	BYTE	W23
+	BYTE	GoTo
+	 POIN2	LoZSongofHealingMysteriousDancer_1_B1
+LoZSongofHealingMysteriousDancer_1_B2:
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+LoZSongofHealingMysteriousDancer:
+	BYTE	1	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	LoZSongofHealingMysteriousDancer_pri	// Priority
+	BYTE	LoZSongofHealingMysteriousDancer_rev	// Reverb.
+
+	POIN2	LoZSongofHealingMysteriousDancer_grp
+
+	POIN2	LoZSongofHealingMysteriousDancer_1
+
+	

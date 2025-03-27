@@ -3,7 +3,8 @@ from pathlib import Path
 import shutil
 
 # Find all .png files recursively in the `data` folder
-event_files = list(Path("s").rglob("*.s"))
+SRC_DIR = Path("s").resolve()  # Get absolute path
+event_files = list(SRC_DIR.rglob("*.s"))
 
 # Initialize counter
 c = 1
@@ -28,7 +29,9 @@ for event_file in event_files:
 
     # Define BGM ID if not already defined
     bgm_entries.append(f"#ifndef {base_name}ID\n  #define {base_name}ID (FirstBGM_ID+{c})\n#endif\n{{")
-    bgm_entries.append(f"SongTable({base_name}ID, {base_name}, 1)")
+    bgm_entries.append(f"SongTable({base_name}ID, {base_name}, 0)")
+    c+= 1
+    bgm_entries.append(f"SongTable(({base_name}ID+1), {base_name}, 1)")
     bgm_entries.append("ALIGN 4")
     bgm_entries.append(f'#include "{normalized_relative_path}/{base_name}.event"'+"\n}\n")
 

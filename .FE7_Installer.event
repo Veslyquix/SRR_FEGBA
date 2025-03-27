@@ -69,6 +69,16 @@ String("Reconfigure the randomizer.") ; BYTE 0
 
 SetText(0x119f, ConfigText)
 SetText(0x11a0, ConfigDescText)
+ALIGN 4 
+RNTable:
+#incbin "RNTable.dmp" 
+ALIGN  4
+C_SKILLSYS_INSTALL:
+#ifdef C_SKILLSYS 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 
 ALIGN 4
 BonusItemChance: 
@@ -517,8 +527,6 @@ BL(0x8005B3C)
 ORG $7D9E4 // Should karla appear 
 jumpToHack(ShouldKarlaAppear) 
 
-ORG $CC5B56 
-BYTE 3 4 // Lyn placement temp 
 
 POP 
 

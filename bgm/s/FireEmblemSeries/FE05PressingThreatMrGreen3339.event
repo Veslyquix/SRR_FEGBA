@@ -1,0 +1,2072 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE05PressingThreatMrGreen3339_grp  voicegroup000
+	#define	FE05PressingThreatMrGreen3339_pri  0
+	#define	FE05PressingThreatMrGreen3339_rev  0
+	#define	FE05PressingThreatMrGreen3339_mvl  127
+	#define	FE05PressingThreatMrGreen3339_key  0
+	#define	FE05PressingThreatMrGreen3339_tbs  1
+	#define	FE05PressingThreatMrGreen3339_exg  0
+	#define	FE05PressingThreatMrGreen3339_cmp  1
+
+	// .rodata
+	//	FE05PressingThreatMrGreen3339
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+FE05PressingThreatMrGreen3339_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05PressingThreatMrGreen3339_key+0
+ BYTE   TEMPO   46*FE05PressingThreatMrGreen3339_tbs/2
+ BYTE   W48
+Label_0_014EF7A9:
+ BYTE   W07
+ BYTE   VOICE   1
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N04  An2  v127
+ BYTE   W40
+ BYTE   W01
+// 001   ----------------------------------------
+Label_0_014EF7B5:
+ BYTE   W42
+ BYTE   W01
+ BYTE   N02  An2  v127
+ BYTE   W52
+ BYTE   W01
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_014EF7B5
+// 002   ----------------------------------------
+ BYTE   W36
+ BYTE   W01
+ BYTE   N03  An2  v127
+ BYTE   W06
+ BYTE   N02
+ BYTE   W52
+ BYTE   W01
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W08
+ BYTE   VOICE   2
+ BYTE   VOL   51*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N12  Dn3
+ BYTE   W18
+ BYTE   N02  Bn2  v108
+ BYTE   W06
+ BYTE   N12  En3  v116
+ BYTE   W18
+ BYTE   N01  Dn3  v120
+ BYTE   W03
+ BYTE   Cs3  v108
+ BYTE   W03
+ BYTE   N36  Dn3  v120
+ BYTE   W40
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W07
+ BYTE   GoTo
+  POIN2 Label_0_014EF7A9
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+FE05PressingThreatMrGreen3339_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05PressingThreatMrGreen3339_key+0
+ BYTE   W48
+Label_1_014EF7FB:
+ BYTE   W07
+ BYTE   VOICE   1
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   Fs4
+ BYTE   W01
+ BYTE   N04  En2  v127
+ BYTE   W40
+// 001   ----------------------------------------
+ BYTE   W44
+ BYTE   N02
+ BYTE   W52
+// 002   ----------------------------------------
+ BYTE   W44
+ BYTE   N02
+ BYTE   W52
+// 003   ----------------------------------------
+ BYTE   W36
+ BYTE   W02
+ BYTE   N03
+ BYTE   W06
+ BYTE   N02
+ BYTE   W11
+ BYTE   VOICE   0
+ BYTE   VOL   46*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   W06
+ BYTE   N03  En2  v108
+ BYTE   W06
+ BYTE   En2  v104
+ BYTE   W12
+ BYTE   En2  v116
+ BYTE   W06
+ BYTE   N03
+ BYTE   W11
+// 004   ----------------------------------------
+ BYTE   W01
+ BYTE   N02  En2  v108
+ BYTE   W06
+ BYTE   N03
+ BYTE   W12
+ BYTE   N02  Fn2  v112
+ BYTE   W06
+ BYTE   N03  Fn2  v116
+ BYTE   W12
+ BYTE   N02  En2  v108
+ BYTE   W06
+ BYTE   N03
+ BYTE   W12
+ BYTE   N02  En2  v116
+ BYTE   W06
+ BYTE   N03
+ BYTE   W12
+ BYTE   N03
+ BYTE   W06
+ BYTE   N02  En2  v112
+ BYTE   W12
+ BYTE   N03  Fn2  v120
+ BYTE   W05
+// 005   ----------------------------------------
+ BYTE   W01
+ BYTE   N03
+ BYTE   W07
+ BYTE   VOICE   1
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   W84
+ BYTE   W01
+ BYTE   N02  As2  v127
+ BYTE   W03
+// 006   ----------------------------------------
+ BYTE   W84
+ BYTE   W03
+ BYTE   N03
+ BYTE   W06
+ BYTE   N02
+ BYTE   W03
+// 007   ----------------------------------------
+ BYTE   W84
+ BYTE   W03
+ BYTE   N03
+ BYTE   W06
+ BYTE   N03
+ BYTE   W03
+// 008   ----------------------------------------
+ BYTE   W03
+ BYTE   N02
+ BYTE   W05
+ BYTE   VOICE   1
+ BYTE   VOL   40*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-34
+ BYTE   W02
+ BYTE   N12  Dn3
+ BYTE   W18
+ BYTE   N02  Bn2  v108
+ BYTE   W06
+ BYTE   N12  En3  v116
+ BYTE   W18
+ BYTE   N01  Dn3  v120
+ BYTE   W03
+ BYTE   Cs3  v108
+ BYTE   W03
+ BYTE   N36  Dn3  v120
+ BYTE   W36
+ BYTE   W02
+// 009   ----------------------------------------
+ BYTE   W08
+ BYTE   VOICE   47
+ BYTE   VOL   58*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   Ds1
+ BYTE   W01
+ BYTE   N17  Bn1  v108
+ BYTE   W24
+ BYTE   N07  En2
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   W12
+ BYTE   Cs2
+ BYTE   W12
+ BYTE   An1
+ BYTE   W12
+ BYTE   Bn1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W03
+// 010   ----------------------------------------
+ BYTE   W09
+ BYTE   N04  Fs1
+ BYTE   W09
+ BYTE   N02  Gn1
+ BYTE   W03
+ BYTE   N30  An1
+ BYTE   W36
+ BYTE   N05  Gn1
+ BYTE   W09
+ BYTE   N02  An1
+ BYTE   W03
+ BYTE   N32  As1
+ BYTE   W24
+ BYTE   W03
+// 011   ----------------------------------------
+ BYTE   W07
+ BYTE   GoTo
+  POIN2 Label_1_014EF7FB
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+FE05PressingThreatMrGreen3339_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05PressingThreatMrGreen3339_key+0
+ BYTE   W48
+Label_2_014EF8C3:
+ BYTE   W07
+ BYTE   VOICE   0
+ BYTE   VOL   40*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+34
+ BYTE   N32  Bn2  v104
+ BYTE   W36
+ BYTE   N10  Gs2
+ BYTE   W05
+// 001   ----------------------------------------
+ BYTE   W07
+ BYTE   N32  Cs3
+ BYTE   W36
+ BYTE   N02  Bn2
+ BYTE   W06
+ BYTE   As2
+ BYTE   W06
+ BYTE   N40  Bn2
+ BYTE   W40
+ BYTE   W01
+// 002   ----------------------------------------
+ BYTE   W07
+ BYTE   VOICE   2
+ BYTE   VOL   51*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N22  En2  v076
+ BYTE   W24
+ BYTE   Fn2
+ BYTE   W24
+ BYTE   N44  Fs2  v084
+ BYTE   W40
+ BYTE   W01
+// 003   ----------------------------------------
+ BYTE   W07
+ BYTE   N36  Gn2
+ BYTE   W48
+ BYTE   VOICE   1
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N54  An0  v127
+ BYTE   W40
+ BYTE   W01
+// 004   ----------------------------------------
+ BYTE   W19
+ BYTE   N10  As0
+ BYTE   W12
+ BYTE   N56  An0
+ BYTE   W60
+ BYTE   N08  As0
+ BYTE   W05
+// 005   ----------------------------------------
+ BYTE   W08
+ BYTE   VOICE   1
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   W84
+ BYTE   N02  Fn2
+ BYTE   W04
+// 006   ----------------------------------------
+ BYTE   W84
+ BYTE   W02
+ BYTE   N03
+ BYTE   W06
+ BYTE   N02
+ BYTE   W04
+// 007   ----------------------------------------
+ BYTE   W84
+ BYTE   W02
+ BYTE   N03
+ BYTE   W06
+ BYTE   N03
+ BYTE   W04
+// 008   ----------------------------------------
+ BYTE   W02
+ BYTE   N03
+ BYTE   W92
+ BYTE   W02
+// 009   ----------------------------------------
+ BYTE   W08
+ BYTE   VOICE   47
+ BYTE   VOL   58*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   Ds1
+ BYTE   N05  Bn1  v116
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W04
+// 010   ----------------------------------------
+ BYTE   W08
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W04
+// 011   ----------------------------------------
+ BYTE   W07
+ BYTE   GoTo
+  POIN2 Label_2_014EF8C3
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+FE05PressingThreatMrGreen3339_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05PressingThreatMrGreen3339_key+0
+ BYTE   VOICE   47
+ BYTE   W06
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   W36
+ BYTE   VOL   36*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   N10  An1  v127
+ BYTE   W01
+ BYTE   VOL   37*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Ds1
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+Label_3_014EF973:
+ BYTE   VOL   45*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   As2
+ BYTE   PAN   c_v-14
+ BYTE   N05  An1  v116
+ BYTE   W06
+ BYTE   N01  En2  v096
+ BYTE   W06
+ BYTE   En2  v092
+ BYTE   W06
+ BYTE   N05  An1  v116
+ BYTE   W06
+ BYTE   N01  Fn2  v104
+ BYTE   W06
+ BYTE   N01
+ BYTE   W06
+ BYTE   N04  An1  v127
+ BYTE   W05
+// 001   ----------------------------------------
+Label_3_014EF99E:
+ BYTE   W01
+ BYTE   N01  En2  v096
+ BYTE   W06
+ BYTE   N05  An1  v116
+ BYTE   W06
+ BYTE   N01  En2  v096
+ BYTE   W06
+ BYTE   En2  v092
+ BYTE   W06
+ BYTE   N05  An1  v116
+ BYTE   W06
+ BYTE   N01  Fn2  v104
+ BYTE   W06
+ BYTE   N01
+ BYTE   W06
+ BYTE   N04  An1  v127
+ BYTE   W06
+ BYTE   N01  En2  v096
+ BYTE   W06
+ BYTE   N05  An1  v116
+ BYTE   W06
+ BYTE   N01  En2  v096
+ BYTE   W06
+ BYTE   En2  v092
+ BYTE   W06
+ BYTE   N05  An1  v116
+ BYTE   W06
+ BYTE   N01  Fn2  v104
+ BYTE   W06
+ BYTE   N01
+ BYTE   W06
+ BYTE   N04  An1  v127
+ BYTE   W05
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_014EF99E
+// 002   ----------------------------------------
+ BYTE   W01
+ BYTE   N01  En2  v096
+ BYTE   W06
+ BYTE   N05  An1  v116
+ BYTE   W06
+ BYTE   N01  En2  v096
+ BYTE   W06
+ BYTE   En2  v092
+ BYTE   W06
+ BYTE   N05  An1  v116
+ BYTE   W06
+ BYTE   N01  Fn2  v104
+ BYTE   W06
+ BYTE   N01
+ BYTE   W06
+ BYTE   N04  An1  v127
+ BYTE   W06
+ BYTE   N01  En2  v096
+ BYTE   W06
+ BYTE   VOL   58*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W06
+ BYTE   N03  En3  v108
+ BYTE   W06
+ BYTE   En3  v104
+ BYTE   W12
+ BYTE   En3  v116
+ BYTE   W06
+ BYTE   N03
+ BYTE   W11
+// 003   ----------------------------------------
+ BYTE   W01
+ BYTE   N02  En3  v108
+ BYTE   W06
+ BYTE   N03
+ BYTE   W12
+ BYTE   N02  Fn3  v112
+ BYTE   W06
+ BYTE   N03  Fn3  v116
+ BYTE   W12
+ BYTE   N02  En3  v108
+ BYTE   W06
+ BYTE   N03
+ BYTE   W12
+ BYTE   N02  En3  v116
+ BYTE   W06
+ BYTE   N03
+ BYTE   W12
+ BYTE   N03
+ BYTE   W06
+ BYTE   N02  En3  v112
+ BYTE   W12
+ BYTE   N03  Fn3  v120
+ BYTE   W05
+// 004   ----------------------------------------
+ BYTE   W01
+ BYTE   N03
+ BYTE   W07
+ BYTE   VOL   58*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N01  Fn2  v088
+ BYTE   W06
+ BYTE   Fn2  v084
+ BYTE   W06
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N02  Fs2  v092
+ BYTE   W06
+ BYTE   N01  Fs2  v076
+ BYTE   W06
+ BYTE   N04  As1  v127
+ BYTE   W06
+ BYTE   N01  Gn2  v084
+ BYTE   W06
+ BYTE   N04  As1  v127
+ BYTE   W06
+ BYTE   N01  Gs2  v096
+ BYTE   W06
+ BYTE   N02
+ BYTE   W06
+ BYTE   N04  As1  v127
+ BYTE   W06
+ BYTE   N01  Gn2  v104
+ BYTE   W06
+ BYTE   N02  Gn2  v096
+ BYTE   W06
+ BYTE   N03  As1  v127
+ BYTE   W04
+// 005   ----------------------------------------
+ BYTE   W02
+ BYTE   N02  Fs2  v096
+ BYTE   W06
+ BYTE   N04  As1  v127
+ BYTE   W06
+ BYTE   N01  Gn2  v100
+ BYTE   W06
+ BYTE   Gn2  v096
+ BYTE   W06
+ BYTE   N04  As1  v127
+ BYTE   W06
+ BYTE   N01  Gs2  v096
+ BYTE   W06
+ BYTE   N01
+ BYTE   W06
+ BYTE   N04  As1  v127
+ BYTE   W06
+ BYTE   N01  Gs2  v076
+ BYTE   W06
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N01  En2  v076
+ BYTE   W06
+ BYTE   N01
+ BYTE   W06
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N01  As2  v076
+ BYTE   W06
+ BYTE   N02  As2  v092
+ BYTE   W06
+ BYTE   N04  As1  v127
+ BYTE   W04
+// 006   ----------------------------------------
+ BYTE   W02
+ BYTE   N01  As2  v088
+ BYTE   W06
+ BYTE   N03  As1  v127
+ BYTE   W06
+ BYTE   N01  As2  v076
+ BYTE   W06
+ BYTE   N01
+ BYTE   W06
+ BYTE   N04  As1  v127
+ BYTE   W06
+ BYTE   N01  Gs2  v076
+ BYTE   W06
+ BYTE   N01
+ BYTE   W06
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N01  Gs2  v076
+ BYTE   W06
+ BYTE   N03  As1  v127
+ BYTE   W06
+ BYTE   N01  As2  v076
+ BYTE   W06
+ BYTE   N01
+ BYTE   W06
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N01  Gs2  v088
+ BYTE   W06
+ BYTE   As2  v100
+ BYTE   W06
+ BYTE   N04  As1  v127
+ BYTE   W04
+// 007   ----------------------------------------
+ BYTE   W02
+ BYTE   N01  Cn3  v112
+ BYTE   W06
+ BYTE   N90  Bn1  v127
+ BYTE   W88
+// 008   ----------------------------------------
+ BYTE   W08
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N07  Fs2  v104
+ BYTE   W18
+ BYTE   N02  Fs2  v096
+ BYTE   W06
+ BYTE   N23  Gn2  v104
+ BYTE   W36
+ BYTE   N03  Fs2  v096
+ BYTE   W12
+ BYTE   Gn2  v100
+ BYTE   W12
+ BYTE   Gn2  v104
+ BYTE   W04
+// 009   ----------------------------------------
+ BYTE   W08
+ BYTE   N05  Fs2
+ BYTE   W18
+ BYTE   N01  Fs2  v108
+ BYTE   W06
+ BYTE   N23  Gn2  v116
+ BYTE   W36
+ BYTE   N03  Fs2  v092
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   En2  v100
+ BYTE   W04
+// 010   ----------------------------------------
+ BYTE   W07
+ BYTE   GoTo
+  POIN2 Label_3_014EF973
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+FE05PressingThreatMrGreen3339_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05PressingThreatMrGreen3339_key+0
+ BYTE   VOICE   47
+ BYTE   W06
+ BYTE   VOL   58*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   W06
+ BYTE   N01  An2  v096
+ BYTE   W06
+ BYTE   N02  An2  v092
+ BYTE   W12
+ BYTE   N01  An2  v084
+ BYTE   W06
+ BYTE   N02  An2  v092
+ BYTE   W12
+Label_4_014EFB4A:
+ BYTE   N03  Bn2  v092
+ BYTE   W07
+ BYTE   VOL   58*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N04  An1  v108
+ BYTE   W06
+ BYTE   N01  An2  v096
+ BYTE   W06
+ BYTE   N02  An2  v092
+ BYTE   W12
+ BYTE   N01  An2  v084
+ BYTE   W06
+ BYTE   N02  An2  v092
+ BYTE   W11
+// 001   ----------------------------------------
+ BYTE   W01
+ BYTE   N03  Bn2
+ BYTE   W06
+ BYTE   N04  An1  v127
+ BYTE   W06
+ BYTE   N01  Cn3  v088
+ BYTE   W06
+ BYTE   N02  Cn3  v096
+ BYTE   W12
+ BYTE   N01
+ BYTE   W06
+ BYTE   N02
+ BYTE   W12
+ BYTE   Bn2  v100
+ BYTE   W06
+ BYTE   N04  An1  v127
+ BYTE   W06
+ BYTE   N01  An2  v096
+ BYTE   W06
+ BYTE   N02  An2  v100
+ BYTE   W12
+ BYTE   N01  An2  v104
+ BYTE   W06
+ BYTE   N02  An2  v096
+ BYTE   W11
+// 002   ----------------------------------------
+ BYTE   W01
+ BYTE   Bn2  v100
+ BYTE   W06
+ BYTE   N04  An1  v127
+ BYTE   W06
+ BYTE   N01  Cn3  v092
+ BYTE   W06
+ BYTE   N02  Cn3  v096
+ BYTE   W12
+ BYTE   N01  Cn3  v104
+ BYTE   W06
+ BYTE   N02  Cn3  v100
+ BYTE   W12
+ BYTE   N01  Bn2
+ BYTE   W06
+ BYTE   N04  An1  v127
+ BYTE   W06
+ BYTE   N01  An2  v096
+ BYTE   W06
+ BYTE   N02  An2  v100
+ BYTE   W12
+ BYTE   N01  Bn2  v104
+ BYTE   W06
+ BYTE   N02  Bn2  v100
+ BYTE   W11
+// 003   ----------------------------------------
+ BYTE   W01
+ BYTE   N01  Cn3
+ BYTE   W06
+ BYTE   N04  An1  v127
+ BYTE   W06
+ BYTE   N01  Bn2  v084
+ BYTE   W06
+ BYTE   N02  Bn2  v088
+ BYTE   W12
+ BYTE   Cn3  v108
+ BYTE   W06
+ BYTE   N02
+ BYTE   W12
+ BYTE   N01  An2  v100
+ BYTE   W06
+ BYTE   VOL   58*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   W07
+ BYTE   N03  An2  v108
+ BYTE   W06
+ BYTE   An2  v104
+ BYTE   W12
+ BYTE   An2  v116
+ BYTE   W06
+ BYTE   N03
+ BYTE   W10
+// 004   ----------------------------------------
+ BYTE   W02
+ BYTE   N02  An2  v108
+ BYTE   W06
+ BYTE   N03
+ BYTE   W12
+ BYTE   N02  As2  v112
+ BYTE   W06
+ BYTE   N03  As2  v116
+ BYTE   W12
+ BYTE   N02  An2  v108
+ BYTE   W06
+ BYTE   N03
+ BYTE   W12
+ BYTE   N02  An2  v116
+ BYTE   W06
+ BYTE   N03
+ BYTE   W12
+ BYTE   N03
+ BYTE   W06
+ BYTE   N02  An2  v112
+ BYTE   W12
+ BYTE   N03  As2  v120
+ BYTE   W04
+// 005   ----------------------------------------
+ BYTE   W02
+ BYTE   N03
+ BYTE   W06
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   VOL   44*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   N44  Gs2  v116
+ BYTE   W01
+ BYTE   VOL   45*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fs2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W01
+ BYTE   An2
+ BYTE   W01
+ BYTE   As2
+ BYTE   W01
+ BYTE   As2
+ BYTE   W24
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   N44  As2
+ BYTE   W01
+ BYTE   VOL   45*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fs2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W01
+ BYTE   An2
+ BYTE   W01
+ BYTE   As2
+ BYTE   W01
+ BYTE   As2
+ BYTE   W17
+// 006   ----------------------------------------
+ BYTE   W08
+ BYTE   Gs1
+ BYTE   N42  Gn2
+ BYTE   W01
+ BYTE   VOL   45*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fs2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W01
+ BYTE   An2
+ BYTE   W01
+ BYTE   As2
+ BYTE   W01
+ BYTE   As2
+ BYTE   W24
+ BYTE   W01
+ BYTE   N44  Fn2  v104
+ BYTE   W40
+// 007   ----------------------------------------
+ BYTE   W56
+ BYTE   VOL   58*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   W30
+ BYTE   N03  As2  v127
+ BYTE   W06
+ BYTE   N03
+ BYTE   W04
+// 008   ----------------------------------------
+ BYTE   W02
+ BYTE   N03
+ BYTE   W06
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N12  Dn3
+ BYTE   W18
+ BYTE   N01  Bn2  v108
+ BYTE   W06
+ BYTE   N12  En3  v116
+ BYTE   W18
+ BYTE   N01  Dn3  v120
+ BYTE   W03
+ BYTE   Cs3  v108
+ BYTE   W03
+ BYTE   N36  Dn3  v120
+ BYTE   W40
+// 009   ----------------------------------------
+ BYTE   W08
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   Fn5
+ BYTE   N17  Bn1  v108
+ BYTE   W24
+ BYTE   N07  En2
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   W12
+ BYTE   Cs2
+ BYTE   W12
+ BYTE   An1
+ BYTE   W12
+ BYTE   Bn1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W04
+// 010   ----------------------------------------
+ BYTE   W08
+ BYTE   N04  Fs1
+ BYTE   W09
+ BYTE   N02  Gn1
+ BYTE   W03
+ BYTE   N30  An1
+ BYTE   W36
+ BYTE   N05  Gn1
+ BYTE   W09
+ BYTE   N02  An1
+ BYTE   W03
+ BYTE   N32  As1
+ BYTE   W28
+// 011   ----------------------------------------
+ BYTE   W07
+ BYTE   GoTo
+  POIN2 Label_4_014EFB4A
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+FE05PressingThreatMrGreen3339_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05PressingThreatMrGreen3339_key+0
+ BYTE   VOICE   60
+ BYTE   W06
+ BYTE   VOL   58*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N04  An1  v127
+ BYTE   W06
+ BYTE   N01  En2  v084
+ BYTE   W06
+ BYTE   N01
+ BYTE   W06
+ BYTE   N05  An1  v124
+ BYTE   W06
+ BYTE   N01  En2  v088
+ BYTE   W06
+ BYTE   N02  En2  v084
+ BYTE   W06
+ BYTE   N04  An1  v127
+ BYTE   W06
+Label_5_014EFD37:
+ BYTE   N02  Fn2  v096
+ BYTE   W07
+ BYTE   VOL   46*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N32  Cn4  v104
+ BYTE   W36
+ BYTE   N10  An3
+ BYTE   W05
+// 001   ----------------------------------------
+ BYTE   W07
+ BYTE   N32  Dn4
+ BYTE   W36
+ BYTE   N02  Cn4
+ BYTE   W06
+ BYTE   Bn3
+ BYTE   W06
+ BYTE   N40  Cn4
+ BYTE   W40
+ BYTE   W01
+// 002   ----------------------------------------
+ BYTE   W07
+ BYTE   VOL   51*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N22  En2  v076
+ BYTE   W24
+ BYTE   Fn2
+ BYTE   W24
+ BYTE   N44  Fs2  v084
+ BYTE   W40
+ BYTE   W01
+// 003   ----------------------------------------
+ BYTE   W07
+ BYTE   N36  Gn2
+ BYTE   W48
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   VOL   38*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   N56  An2  v080
+ BYTE   W01
+ BYTE   VOL   39*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Ds1
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Gn1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W12
+// 004   ----------------------------------------
+ BYTE   W19
+ BYTE   N10  As2  v096
+ BYTE   W12
+ BYTE   VOL   38*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   N56  Cn3  v092
+ BYTE   W01
+ BYTE   VOL   39*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Ds1
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Gn1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W30
+ BYTE   W01
+ BYTE   N09  Cs3  v108
+ BYTE   W05
+// 005   ----------------------------------------
+ BYTE   W08
+ BYTE   VOL   58*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N01  As2  v092
+ BYTE   W06
+ BYTE   As2  v088
+ BYTE   W12
+ BYTE   As2  v076
+ BYTE   W06
+ BYTE   N02  As2  v092
+ BYTE   W12
+ BYTE   N01  Cn3  v096
+ BYTE   W06
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N02  Cs3  v100
+ BYTE   W06
+ BYTE   Cs3  v096
+ BYTE   W12
+ BYTE   Cn3  v104
+ BYTE   W06
+ BYTE   N01  Cn3  v092
+ BYTE   W10
+// 006   ----------------------------------------
+ BYTE   W02
+ BYTE   N02  As2  v096
+ BYTE   W06
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N01  Cn3  v104
+ BYTE   W06
+ BYTE   Cn3  v096
+ BYTE   W12
+ BYTE   Cs3  v100
+ BYTE   W06
+ BYTE   N02  Cs3  v096
+ BYTE   W12
+ BYTE   Ds3  v104
+ BYTE   W06
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N01  As2  v076
+ BYTE   W06
+ BYTE   N02  As2  v096
+ BYTE   W12
+ BYTE   N01  Cn3  v080
+ BYTE   W06
+ BYTE   Cn3  v096
+ BYTE   W10
+// 007   ----------------------------------------
+ BYTE   W02
+ BYTE   Cs3  v076
+ BYTE   W06
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N01  Cn3  v096
+ BYTE   W06
+ BYTE   N02  Cn3  v104
+ BYTE   W12
+ BYTE   As2
+ BYTE   W06
+ BYTE   As2  v108
+ BYTE   W12
+ BYTE   N01  Cn3  v100
+ BYTE   W06
+ BYTE   N05  As1  v127
+ BYTE   W06
+ BYTE   N01  Cn3  v096
+ BYTE   W06
+ BYTE   N02  Cn3  v104
+ BYTE   W12
+ BYTE   Cn3  v096
+ BYTE   W06
+ BYTE   Cs3  v104
+ BYTE   W10
+// 008   ----------------------------------------
+ BYTE   W02
+ BYTE   Ds3  v116
+ BYTE   W06
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N12  Gs2
+ BYTE   W18
+ BYTE   N02  Gs2  v100
+ BYTE   W06
+ BYTE   N12  Gs2  v104
+ BYTE   W18
+ BYTE   N01  Gs2  v100
+ BYTE   W03
+ BYTE   Gs2  v084
+ BYTE   W03
+ BYTE   N36  Gs2  v100
+ BYTE   W40
+// 009   ----------------------------------------
+ BYTE   W08
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N07  Bn2  v104
+ BYTE   W18
+ BYTE   N02  Bn2  v100
+ BYTE   W06
+ BYTE   N23  Cn3  v124
+ BYTE   W36
+ BYTE   N04  Bn2  v104
+ BYTE   W12
+ BYTE   N03  Dn3  v108
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W04
+// 010   ----------------------------------------
+ BYTE   W08
+ BYTE   N05  Bn2  v112
+ BYTE   W18
+ BYTE   N01  Bn2  v116
+ BYTE   W06
+ BYTE   N23  Cn3  v124
+ BYTE   W36
+ BYTE   N03  Bn2  v100
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   An2  v104
+ BYTE   W04
+// 011   ----------------------------------------
+ BYTE   W07
+ BYTE   GoTo
+  POIN2 Label_5_014EFD37
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+FE05PressingThreatMrGreen3339_007:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE05PressingThreatMrGreen3339_key+0
+ BYTE   VOICE   48
+ BYTE   W06
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   W36
+ BYTE   VOL   36*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   N10  En2  v127
+ BYTE   W01
+ BYTE   VOL   37*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Ds1
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+Label_6_014EFEEF:
+ BYTE   VOL   45*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   As1
+ BYTE   PAN   c_v+14
+ BYTE   Dn2
+ BYTE   N32  Cn3  v104
+ BYTE   W36
+ BYTE   N10  An2
+ BYTE   W05
+// 001   ----------------------------------------
+ BYTE   W07
+ BYTE   N32  Dn3
+ BYTE   W36
+ BYTE   N02  Cn3
+ BYTE   W06
+ BYTE   Bn2
+ BYTE   W06
+ BYTE   N40  Cn3
+ BYTE   W40
+ BYTE   W01
+// 002   ----------------------------------------
+ BYTE   W07
+ BYTE   VOL   51*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N23  Cn3  v076
+ BYTE   W24
+ BYTE   Dn3
+ BYTE   W24
+ BYTE   N44  Ds3  v084
+ BYTE   W40
+ BYTE   W01
+// 003   ----------------------------------------
+ BYTE   W07
+ BYTE   N36  En3
+ BYTE   W48
+ BYTE   VOL   51*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   VOL   38*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   N56  En3  v096
+ BYTE   W01
+ BYTE   VOL   39*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Ds1
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Gn1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W12
+// 004   ----------------------------------------
+ BYTE   W19
+ BYTE   N10  Fn3
+ BYTE   W12
+ BYTE   VOL   38*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   N56  An3  v100
+ BYTE   W01
+ BYTE   VOL   39*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Ds1
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   En1
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Gn1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W30
+ BYTE   W01
+ BYTE   N11  As3  v096
+ BYTE   W05
+// 005   ----------------------------------------
+ BYTE   W08
+ BYTE   VOL   51*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   VOL   41*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   N44  Cs3  v116
+ BYTE   W01
+ BYTE   VOL   42*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Gn1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fs2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W24
+ BYTE   W01
+ BYTE   Fn1
+ BYTE   N44  Ds3
+ BYTE   W01
+ BYTE   VOL   42*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Gn1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fs2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W17
+// 006   ----------------------------------------
+ BYTE   W08
+ BYTE   Fn1
+ BYTE   N42  Cn3
+ BYTE   W01
+ BYTE   VOL   42*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   W01
+ BYTE   Fs1
+ BYTE   W01
+ BYTE   Gn1
+ BYTE   W01
+ BYTE   Gs1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   An1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   As1
+ BYTE   W01
+ BYTE   Bn1
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cn2
+ BYTE   W01
+ BYTE   Cs2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Dn2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   Ds2
+ BYTE   W01
+ BYTE   En2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fn2
+ BYTE   W01
+ BYTE   Fs2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gn2
+ BYTE   W01
+ BYTE   Gs2
+ BYTE   W24
+ BYTE   W01
+ BYTE   N44  As2  v104
+ BYTE   W40
+// 007   ----------------------------------------
+ BYTE   W56
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   W30
+ BYTE   N03  Fn2  v127
+ BYTE   W06
+ BYTE   N03
+ BYTE   W04
+// 008   ----------------------------------------
+ BYTE   W02
+ BYTE   N03
+ BYTE   W06
+ BYTE   VOL   46*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N12  Dn4  v092
+ BYTE   W18
+ BYTE   N01  Bn3
+ BYTE   W06
+ BYTE   N12  En4
+ BYTE   W18
+ BYTE   N01  Dn4
+ BYTE   W03
+ BYTE   Cs4
+ BYTE   W03
+ BYTE   N36  Dn4
+ BYTE   W40
+// 009   ----------------------------------------
+ BYTE   W08
+ BYTE   VOL   53*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   Fn5
+ BYTE   N05  Bn0  v116
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W04
+// 010   ----------------------------------------
+ BYTE   W08
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W04
+// 011   ----------------------------------------
+ BYTE   W07
+ BYTE   GoTo
+  POIN2 Label_6_014EFEEF
+ BYTE   FINE
+
+//**************** Track 8 (Midi-Chn.7) ****************//
+
+FE05PressingThreatMrGreen3339_008:
+// 000   ----------------------------------------
+ BYTE   VOL   65*FE05PressingThreatMrGreen3339_mvl/mxv
+ BYTE   KEYSH   FE05PressingThreatMrGreen3339_key+0
+ BYTE   VOICE   0
+ BYTE   W06
+ BYTE   N05  Ds0  v127
+ BYTE   W06
+ BYTE   En0  v084
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v084
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+Label_7_014F00D5:
+ BYTE   N05  En0  v096
+ BYTE   W07
+ BYTE   Ds0  v124
+ BYTE   W06
+ BYTE   En0  v084
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v084
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v124
+ BYTE   W05
+// 001   ----------------------------------------
+Label_7_014F00EE:
+ BYTE   W01
+ BYTE   N05  En0  v096
+ BYTE   W06
+ BYTE   Ds0  v124
+ BYTE   W06
+ BYTE   En0  v084
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v084
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v124
+ BYTE   W06
+ BYTE   En0  v096
+ BYTE   W06
+ BYTE   Ds0  v124
+ BYTE   W06
+ BYTE   En0  v084
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v084
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v124
+ BYTE   W05
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_7_014F00EE
+// 002   ----------------------------------------
+ BYTE   W01
+ BYTE   N05  En0  v096
+ BYTE   W06
+ BYTE   Ds0  v124
+ BYTE   W06
+ BYTE   En0  v084
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v084
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v124
+ BYTE   W06
+ BYTE   En0  v096
+ BYTE   W06
+ BYTE   N17  Ds0  v127
+ BYTE   W18
+ BYTE   N05  Ds0  v120
+ BYTE   W06
+ BYTE   N11  Ds0  v127
+ BYTE   W17
+// 003   ----------------------------------------
+ BYTE   W01
+ BYTE   N05  Ds0  v124
+ BYTE   W06
+ BYTE   N11  Ds0  v120
+ BYTE   W12
+ BYTE   N05  Ds0  v116
+ BYTE   W06
+ BYTE   N05
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11  Ds0  v124
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   Ds0  v120
+ BYTE   W12
+ BYTE   Ds0  v124
+ BYTE   W06
+ BYTE   N11
+ BYTE   W12
+ BYTE   N02  Ds0  v127
+ BYTE   W03
+ BYTE   En0  v088
+ BYTE   W02
+// 004   ----------------------------------------
+ BYTE   W01
+ BYTE   Ds0  v104
+ BYTE   W03
+ BYTE   En0
+ BYTE   W04
+ BYTE   N05  Ds0  v127
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   En0  v096
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   En0  v096
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   En0  v096
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   En0  v096
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W04
+// 005   ----------------------------------------
+Label_7_014F01A9:
+ BYTE   W02
+ BYTE   N05  En0  v092
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   En0  v096
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   En0  v096
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   En0  v096
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W06
+ BYTE   En0  v092
+ BYTE   W06
+ BYTE   En0  v096
+ BYTE   W06
+ BYTE   Ds0  v127
+ BYTE   W04
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_7_014F01A9
+// 006   ----------------------------------------
+ BYTE   W02
+ BYTE   N05  En0  v092
+ BYTE   W06
+ BYTE   N36  Ds0  v116
+ BYTE   W42
+ BYTE   N02  Ds0  v112
+ BYTE   W03
+ BYTE   En0  v104
+ BYTE   W03
+ BYTE   N11  Ds0  v120
+ BYTE   W12
+ BYTE   N22  En0  v100
+ BYTE   W24
+ BYTE   N11  En0  v104
+ BYTE   W04
+// 007   ----------------------------------------
+ BYTE   W08
+ BYTE   Ds0  v127
+ BYTE   W12
+ BYTE   N05  En0  v096
+ BYTE   W06
+ BYTE   En0  v104
+ BYTE   W06
+ BYTE   N11  Ds0  v127
+ BYTE   W12
+ BYTE   N05  En0  v096
+ BYTE   W06
+ BYTE   En0  v100
+ BYTE   W06
+ BYTE   N11  Ds0  v127
+ BYTE   W12
+ BYTE   N05  En0  v096
+ BYTE   W06
+ BYTE   En0  v104
+ BYTE   W06
+ BYTE   N11  Ds0  v127
+ BYTE   W12
+ BYTE   N05  En0  v096
+ BYTE   W04
+// 008   ----------------------------------------
+ BYTE   W02
+ BYTE   En0  v100
+ BYTE   W06
+ BYTE   N11  Ds0  v127
+ BYTE   W12
+ BYTE   N05  En0  v096
+ BYTE   W06
+ BYTE   En0  v104
+ BYTE   W06
+ BYTE   N11  Ds0  v127
+ BYTE   W12
+ BYTE   N05  En0  v096
+ BYTE   W06
+ BYTE   En0  v100
+ BYTE   W06
+ BYTE   N11  Ds0  v127
+ BYTE   W12
+ BYTE   N05  En0  v096
+ BYTE   W06
+ BYTE   En0  v104
+ BYTE   W06
+ BYTE   N11  Ds0  v127
+ BYTE   W12
+ BYTE   N05  En0  v096
+ BYTE   W04
+// 009   ----------------------------------------
+ BYTE   W02
+ BYTE   En0  v100
+ BYTE   W05
+ BYTE   GoTo
+  POIN2 Label_7_014F00D5
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE05PressingThreatMrGreen3339:
+	BYTE	8	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE05PressingThreatMrGreen3339_pri	// Priority
+	BYTE	FE05PressingThreatMrGreen3339_rev	// Reverb.
+    
+	POIN2	FE05PressingThreatMrGreen3339_grp
+    
+	POIN2	FE05PressingThreatMrGreen3339_001
+	POIN2	FE05PressingThreatMrGreen3339_002
+	POIN2	FE05PressingThreatMrGreen3339_003
+	POIN2	FE05PressingThreatMrGreen3339_004
+	POIN2	FE05PressingThreatMrGreen3339_005
+	POIN2	FE05PressingThreatMrGreen3339_006
+	POIN2	FE05PressingThreatMrGreen3339_007
+	POIN2	FE05PressingThreatMrGreen3339_008
+
+	

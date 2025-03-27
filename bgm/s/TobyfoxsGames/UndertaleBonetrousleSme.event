@@ -1,0 +1,2235 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	UndertaleBonetrousleSme_grp  voicegroup000
+	#define	UndertaleBonetrousleSme_pri  0
+	#define	UndertaleBonetrousleSme_rev  0
+	#define	UndertaleBonetrousleSme_mvl  85
+	#define	UndertaleBonetrousleSme_key  0
+	#define	UndertaleBonetrousleSme_tbs  1
+	#define	UndertaleBonetrousleSme_exg  0
+	#define	UndertaleBonetrousleSme_cmp  1
+
+	// .rodata
+	//	UndertaleBonetrousleSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+UndertaleBonetrousleSme_1:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   150*UndertaleBonetrousleSme_tbs/2
+	BYTE		VOICE   81
+	BYTE		VOL     64*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		N12     Cn2   v108
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+// 001   ----------------------------------------
+UndertaleBonetrousleSme_1_001:
+	BYTE		N12     Cn2   v108
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_001
+// 019   ----------------------------------------
+	BYTE		N12     Cn2   v108
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W48
+// 020   ----------------------------------------
+UndertaleBonetrousleSme_1_020:
+	BYTE		N12     Fn2   v108
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE	PEND
+// 021   ----------------------------------------
+UndertaleBonetrousleSme_1_021:
+	BYTE		N12     Gn2   v108
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE	PEND
+// 022   ----------------------------------------
+UndertaleBonetrousleSme_1_022:
+	BYTE		N12     Gs2   v108
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE		        Gs2 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE	PEND
+// 023   ----------------------------------------
+UndertaleBonetrousleSme_1_023:
+	BYTE		N12     Ds2   v108
+	BYTE	W24
+	BYTE		        As1 
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_020
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_021
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_022
+// 027   ----------------------------------------
+	BYTE		N12     Fn2   v108
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		N05     Gn2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_020
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_021
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_022
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_1_023
+// 032   ----------------------------------------
+	BYTE		N12     Fn2   v092
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+// 033   ----------------------------------------
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+// 034   ----------------------------------------
+	BYTE		        Gs2 
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N36   
+	BYTE	W48
+// 035   ----------------------------------------
+	BYTE		N12     Gn1 
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W48
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_1_B1
+UndertaleBonetrousleSme_1_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.3) ****************//
+
+UndertaleBonetrousleSme_2:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_2_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   61
+	BYTE		VOL     64*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+UndertaleBonetrousleSme_2_020:
+	BYTE		N12     Fn1   v112
+	BYTE	W24
+	BYTE		        Cn1 
+	BYTE	W24
+	BYTE		        Fn1 
+	BYTE	W24
+	BYTE		        Cn1 
+	BYTE	W24
+	BYTE	PEND
+// 021   ----------------------------------------
+UndertaleBonetrousleSme_2_021:
+	BYTE		N12     Gn1   v112
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE	W24
+	BYTE	PEND
+// 022   ----------------------------------------
+UndertaleBonetrousleSme_2_022:
+	BYTE		N12     Gs1   v112
+	BYTE	W24
+	BYTE		        Ds1 
+	BYTE	W24
+	BYTE		        Gs1 
+	BYTE	W24
+	BYTE		        Ds1 
+	BYTE	W24
+	BYTE	PEND
+// 023   ----------------------------------------
+UndertaleBonetrousleSme_2_023:
+	BYTE		N12     Ds1   v112
+	BYTE	W24
+	BYTE		        As0 
+	BYTE	W24
+	BYTE		        Cs1 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_2_020
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_2_021
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_2_022
+// 027   ----------------------------------------
+	BYTE		N12     Fn1   v112
+	BYTE	W24
+	BYTE		        Cn1 
+	BYTE	W24
+	BYTE		N05     Gn1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_2_020
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_2_021
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_2_022
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_2_023
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_2_B1
+UndertaleBonetrousleSme_2_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.4) ****************//
+
+UndertaleBonetrousleSme_3:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_3_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   61
+	BYTE		VOL     64*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+UndertaleBonetrousleSme_3_020:
+	BYTE		N12     Fn0   v112
+	BYTE	W24
+	BYTE		        Cn0 
+	BYTE	W24
+	BYTE		        Fn0 
+	BYTE	W24
+	BYTE		        Cn0 
+	BYTE	W24
+	BYTE	PEND
+// 021   ----------------------------------------
+UndertaleBonetrousleSme_3_021:
+	BYTE		N12     Gn0   v112
+	BYTE	W24
+	BYTE		        Dn0 
+	BYTE	W24
+	BYTE		        Gn0 
+	BYTE	W24
+	BYTE		        Dn0 
+	BYTE	W24
+	BYTE	PEND
+// 022   ----------------------------------------
+UndertaleBonetrousleSme_3_022:
+	BYTE		N12     Gs0   v112
+	BYTE	W24
+	BYTE		        Ds0 
+	BYTE	W24
+	BYTE		        Gs0 
+	BYTE	W24
+	BYTE		        Ds0 
+	BYTE	W24
+	BYTE	PEND
+// 023   ----------------------------------------
+UndertaleBonetrousleSme_3_023:
+	BYTE		N12     Ds0   v112
+	BYTE	W24
+	BYTE		        AsM1
+	BYTE	W24
+	BYTE		        Cs0 
+	BYTE	W24
+	BYTE		        Gn0 
+	BYTE	W24
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_3_020
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_3_021
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_3_022
+// 027   ----------------------------------------
+	BYTE		N12     Fn0   v112
+	BYTE	W24
+	BYTE		        Cn0 
+	BYTE	W24
+	BYTE		N05     Gn0 
+	BYTE	W12
+	BYTE		        Fn0 
+	BYTE	W12
+	BYTE		        Ds0 
+	BYTE	W12
+	BYTE		        Dn0 
+	BYTE	W12
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_3_020
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_3_021
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_3_022
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_3_023
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_3_B1
+UndertaleBonetrousleSme_3_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.5) ****************//
+
+UndertaleBonetrousleSme_4:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_4_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   41
+	BYTE		VOL     64*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+UndertaleBonetrousleSme_4_020:
+	BYTE	W12
+	BYTE		N05     Gs2   v092
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		N24     Gs3 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W24
+	BYTE	PEND
+// 021   ----------------------------------------
+UndertaleBonetrousleSme_4_021:
+	BYTE		N05     Dn3   v092
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		N02     Fn3 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N17   
+	BYTE	W18
+	BYTE		N05     Dn3 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE	PEND
+// 022   ----------------------------------------
+UndertaleBonetrousleSme_4_022:
+	BYTE		N18     Ds3   v092
+	BYTE	W18
+	BYTE		N03     Fn3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		N05     Dn3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N24     Gs3 
+	BYTE	W24
+	BYTE		N05     Gn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE	PEND
+// 023   ----------------------------------------
+UndertaleBonetrousleSme_4_023:
+	BYTE		N17     Ds3   v092
+	BYTE	W18
+	BYTE		N02     Fn3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		N05     Dn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		N42     Ds3 
+	BYTE	W48
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_4_020
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_4_021
+// 026   ----------------------------------------
+	BYTE		N18     Ds3   v092
+	BYTE	W18
+	BYTE		N03     Fn3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		N05     Dn3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N24     Gs3 
+	BYTE	W24
+	BYTE		N05     As3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+// 027   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		N02     Bn2 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N36   
+	BYTE	W42
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_4_020
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_4_021
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_4_022
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_4_023
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_4_B1
+UndertaleBonetrousleSme_4_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.6) ****************//
+
+UndertaleBonetrousleSme_5:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_5_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		VOL     64*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     Fn4   v092
+	BYTE	W12
+	BYTE		        Gs4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		N02     En5 
+	BYTE	W03
+	BYTE		N21     Fn5 
+	BYTE	W21
+	BYTE		N24     Cn5 
+	BYTE	W24
+// 029   ----------------------------------------
+	BYTE		N05     Bn4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		N03     Dn5 
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE		N18     Dn5 
+	BYTE	W18
+	BYTE		N05     Bn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W12
+	BYTE		        Dn5 
+	BYTE	W12
+// 030   ----------------------------------------
+	BYTE		N17     Ds5 
+	BYTE	W18
+	BYTE		N03     Fn5 
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE		N05     Dn5 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		N24     Cn6 
+	BYTE	W24
+	BYTE		N05     As5 
+	BYTE	W12
+	BYTE		        Gs5 
+	BYTE	W12
+// 031   ----------------------------------------
+	BYTE		N17     Gn5 
+	BYTE	W18
+	BYTE		N03     Gs5 
+	BYTE	W03
+	BYTE		        Gn5 
+	BYTE	W03
+	BYTE		N05     Fn5 
+	BYTE	W12
+	BYTE		        Gs5 
+	BYTE	W12
+	BYTE		N42     Gn5 
+	BYTE	W48
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_5_B1
+UndertaleBonetrousleSme_5_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.7) ****************//
+
+UndertaleBonetrousleSme_6:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_6_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   123
+	BYTE		VOL     45*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+8
+	BYTE		N20     Cn1   v108
+	BYTE	W12
+	BYTE		N11     Fs1   v112
+	BYTE	W12
+	BYTE		N20     Dn1   v108
+	BYTE	W12
+	BYTE		N11     As1   v112
+	BYTE	W12
+	BYTE		N20     Cn1   v108
+	BYTE		N11     Gs1   v112
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE		N05     Gs1   v112
+	BYTE	W06
+	BYTE		        Fs1 
+	BYTE	W06
+	BYTE		N11     Cn1   v108
+	BYTE		N05     Fs1   v112
+	BYTE	W12
+// 001   ----------------------------------------
+UndertaleBonetrousleSme_6_001:
+	BYTE		N20     Cn1   v108
+	BYTE	W12
+	BYTE		N11     Fs1   v112
+	BYTE	W12
+	BYTE		N20     Dn1   v108
+	BYTE	W12
+	BYTE		N11     As1   v112
+	BYTE	W12
+	BYTE		N20     Cn1   v108
+	BYTE		N11     Gs1   v112
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE		N05     Gs1   v112
+	BYTE	W06
+	BYTE		        Fs1 
+	BYTE	W06
+	BYTE		N11     Cn1   v108
+	BYTE		N05     Fs1   v112
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_001
+// 019   ----------------------------------------
+	BYTE		N20     Cn1   v108
+	BYTE	W12
+	BYTE		N11     Fs1   v112
+	BYTE	W12
+	BYTE		N20     Dn1   v108
+	BYTE	W12
+	BYTE		N11     As1   v112
+	BYTE	W12
+	BYTE		N20     Cn1   v108
+	BYTE		N05     Fs1   v112
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As1 
+	BYTE	W12
+// 020   ----------------------------------------
+UndertaleBonetrousleSme_6_020:
+	BYTE		N20     Cn1   v108
+	BYTE		N11     Fs1   v112
+	BYTE		N11     Cs2 
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		N20     Dn1   v108
+	BYTE		N11     Fs1   v112
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		N20     Cn1   v108
+	BYTE		N11     Fs1   v112
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE		N11     Fs1   v112
+	BYTE	W12
+	BYTE		        Cn1   v108
+	BYTE		N11     As1   v112
+	BYTE	W12
+	BYTE	PEND
+// 021   ----------------------------------------
+UndertaleBonetrousleSme_6_021:
+	BYTE		N20     Cn1   v108
+	BYTE		N11     Fs1   v112
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		N20     Dn1   v108
+	BYTE		N11     Fs1   v112
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		N20     Cn1   v108
+	BYTE		N11     Fs1   v112
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		        Dn1   v108
+	BYTE		N11     Fs1   v112
+	BYTE	W12
+	BYTE		        Cn1   v108
+	BYTE		N11     As1   v112
+	BYTE	W12
+	BYTE	PEND
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_021
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_021
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_020
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_021
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_021
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_021
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_020
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_021
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_021
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_021
+// 032   ----------------------------------------
+UndertaleBonetrousleSme_6_032:
+	BYTE		N11     Bn0   v076
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W12
+	BYTE		        Bn0 
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W12
+	BYTE		        Bn0 
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE	PEND
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_6_032
+// 034   ----------------------------------------
+	BYTE		N11     Bn0   v076
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W12
+	BYTE		        Bn0 
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W48
+// 035   ----------------------------------------
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Bn0 
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W12
+	BYTE		        Bn0 
+	BYTE	W36
+	BYTE		        DnM2
+	BYTE	W12
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_6_B1
+UndertaleBonetrousleSme_6_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.11) ****************//
+
+UndertaleBonetrousleSme_7:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_7_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   81
+	BYTE		VOL     63*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W12
+	BYTE		N05     Ds3   v108
+	BYTE		N05     Gn3 
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE		N05     An3 
+	BYTE	W24
+	BYTE		        Ds3 
+	BYTE		N05     Gn3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE		N05     Fs3 
+	BYTE	W12
+// 001   ----------------------------------------
+UndertaleBonetrousleSme_7_001:
+	BYTE	W12
+	BYTE		N05     Ds3   v108
+	BYTE		N05     Gn3 
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE		N05     An3 
+	BYTE	W24
+	BYTE		        Ds3 
+	BYTE		N05     Gn3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE		N05     Fs3 
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_7_001
+// 019   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     Ds3   v108
+	BYTE		N05     Gn3 
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE		N05     An3 
+	BYTE	W60
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W12
+	BYTE		        Cn3   v092
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        Cn3 
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        Cn3 
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        Cn3 
+	BYTE		N05     Fn3 
+	BYTE	W12
+// 033   ----------------------------------------
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE		N05     Gn3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE		N05     Gn3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE		N05     Gn3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE		N05     Gn3 
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE		N05     Gs3 
+	BYTE	W24
+	BYTE		        Ds3 
+	BYTE		N05     Gs3 
+	BYTE	W60
+// 035   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_7_B1
+UndertaleBonetrousleSme_7_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.12) ****************//
+
+UndertaleBonetrousleSme_8:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_8_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		VOL     64*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+UndertaleBonetrousleSme_8_004:
+	BYTE	W12
+	BYTE		N05     Cn3   v112
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N24     Ds4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE	PEND
+// 005   ----------------------------------------
+UndertaleBonetrousleSme_8_005:
+	BYTE		N05     Bn3   v112
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N24     Dn4 
+	BYTE	W24
+	BYTE		N05     Cn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE	PEND
+// 006   ----------------------------------------
+UndertaleBonetrousleSme_8_006:
+	BYTE		N05     Dn3   v112
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		N24     Fs3 
+	BYTE	W24
+	BYTE		N05     Gn3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE	PEND
+// 007   ----------------------------------------
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N24     Dn3 
+	BYTE	W24
+	BYTE		N05     Cn3 
+	BYTE	W48
+// 008   ----------------------------------------
+UndertaleBonetrousleSme_8_008:
+	BYTE	W12
+	BYTE		N05     Cn3   v112
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N18     Ds4 
+	BYTE	W18
+	BYTE		N02     Gs4 
+	BYTE	W03
+	BYTE		        An4 
+	BYTE	W03
+	BYTE		N24     As4 
+	BYTE	W24
+	BYTE	PEND
+// 009   ----------------------------------------
+UndertaleBonetrousleSme_8_009:
+	BYTE		N05     An4   v112
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N24     An4 
+	BYTE	W24
+	BYTE		N05     As4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+UndertaleBonetrousleSme_8_010:
+	BYTE		N05     Bn3   v112
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N24     Dn4 
+	BYTE	W24
+	BYTE		N05     Ds4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE	PEND
+// 011   ----------------------------------------
+UndertaleBonetrousleSme_8_011:
+	BYTE		N11     Bn3   v112
+	BYTE	W12
+	BYTE		N05     An3 
+	BYTE	W12
+	BYTE		N02     Bn3 
+	BYTE	W03
+	BYTE		        Cn4 
+	BYTE	W03
+	BYTE		        Bn3 
+	BYTE	W03
+	BYTE		        Cn4 
+	BYTE	W03
+	BYTE		N11     Bn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W48
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_8_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_8_005
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_8_006
+// 015   ----------------------------------------
+	BYTE		N05     Dn3   v112
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N24     Dn3 
+	BYTE	W24
+	BYTE		N05     Cn3 
+	BYTE	W48
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_8_008
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_8_009
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_8_010
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_8_011
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_8_B1
+UndertaleBonetrousleSme_8_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 9 (Midi-Chn.13) ****************//
+
+UndertaleBonetrousleSme_9:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_9_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		VOL     64*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     Ds4   v108
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N24     Bn3 
+	BYTE	W24
+	BYTE		        Gs4 
+	BYTE	W24
+// 013   ----------------------------------------
+	BYTE		N05     Gn4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		N24     Gn4 
+	BYTE	W24
+	BYTE		N05     Cn5 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+// 014   ----------------------------------------
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N24     Dn4 
+	BYTE	W24
+	BYTE		N05     Ds4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+// 015   ----------------------------------------
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N24     Dn4 
+	BYTE	W24
+	BYTE		N05     Cn4 
+	BYTE	W48
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+UndertaleBonetrousleSme_9_020:
+	BYTE	W12
+	BYTE		N05     Gs2   v092
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		N24     Gs3 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W24
+	BYTE	PEND
+// 021   ----------------------------------------
+UndertaleBonetrousleSme_9_021:
+	BYTE		N05     Dn3   v092
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		N02     Fn3 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N17   
+	BYTE	W18
+	BYTE		N05     Dn3 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE	PEND
+// 022   ----------------------------------------
+UndertaleBonetrousleSme_9_022:
+	BYTE		N18     Ds3   v092
+	BYTE	W18
+	BYTE		N03     Fn3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		N05     Dn3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N24     Gs3 
+	BYTE	W24
+	BYTE		N05     Gn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE	PEND
+// 023   ----------------------------------------
+UndertaleBonetrousleSme_9_023:
+	BYTE		N17     Ds3   v092
+	BYTE	W18
+	BYTE		N02     Fn3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		N05     Dn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		N42     Ds3 
+	BYTE	W48
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_9_020
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_9_021
+// 026   ----------------------------------------
+	BYTE		N18     Ds3   v092
+	BYTE	W18
+	BYTE		N03     Fn3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		N05     Dn3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N24     Gs3 
+	BYTE	W24
+	BYTE		N05     As3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+// 027   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		N02     Bn2 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N36   
+	BYTE	W42
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_9_020
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_9_021
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_9_022
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_9_023
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W72
+	BYTE		N12     Cn5   v092
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_9_B1
+UndertaleBonetrousleSme_9_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 10 (Midi-Chn.14) ****************//
+
+UndertaleBonetrousleSme_10:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_10_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		VOL     64*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W48
+	BYTE		N18     Cn3   v112
+	BYTE	W18
+	BYTE		N02     Fn3 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N24     Gn3 
+	BYTE	W24
+// 017   ----------------------------------------
+	BYTE		N05     Fs3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		N24     Fs3 
+	BYTE	W24
+	BYTE		N05     Gn3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+// 018   ----------------------------------------
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N24     Dn3 
+	BYTE	W24
+	BYTE		N05     Ds3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+// 019   ----------------------------------------
+	BYTE		N11     Bn1 
+	BYTE	W12
+	BYTE		N05     Gn1 
+	BYTE	W12
+	BYTE		N02     Gn2 
+	BYTE	W03
+	BYTE		        Gs2 
+	BYTE	W03
+	BYTE		        Gn2 
+	BYTE	W03
+	BYTE		        Gs2 
+	BYTE	W03
+	BYTE		N11     Gn2 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W48
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     Fn3   v092
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N18     Fn4 
+	BYTE	W18
+	BYTE		N02   
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W03
+	BYTE		N24     Gs4 
+	BYTE	W24
+// 033   ----------------------------------------
+	BYTE		N05     Gn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		N11     Dn4 
+	BYTE	W24
+	BYTE		        Bn3 
+	BYTE	W18
+	BYTE		N02     Cn4 
+	BYTE	W03
+	BYTE		        Dn4 
+	BYTE	W03
+	BYTE		N11     Ds4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+// 035   ----------------------------------------
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W48
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_10_B1
+UndertaleBonetrousleSme_10_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 11 (Midi-Chn.15) ****************//
+
+UndertaleBonetrousleSme_11:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_11_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   13
+	BYTE		VOL     63*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+UndertaleBonetrousleSme_11_020:
+	BYTE	W12
+	BYTE		N11     Gs2   v092
+	BYTE		N11     Cn3 
+	BYTE	W24
+	BYTE		        Gs2 
+	BYTE		N11     Cn3 
+	BYTE	W24
+	BYTE		        Gs2 
+	BYTE		N11     Cn3 
+	BYTE	W24
+	BYTE		        Gs2 
+	BYTE		N11     Cn3 
+	BYTE	W12
+	BYTE	PEND
+// 021   ----------------------------------------
+UndertaleBonetrousleSme_11_021:
+	BYTE	W12
+	BYTE		N11     Bn2   v092
+	BYTE		N11     Dn3 
+	BYTE	W24
+	BYTE		        Bn2 
+	BYTE		N11     Dn3 
+	BYTE	W24
+	BYTE		        Bn2 
+	BYTE		N11     Dn3 
+	BYTE	W24
+	BYTE		        Bn2 
+	BYTE		N11     Dn3 
+	BYTE	W12
+	BYTE	PEND
+// 022   ----------------------------------------
+UndertaleBonetrousleSme_11_022:
+	BYTE	W12
+	BYTE		N11     Cn3   v092
+	BYTE		N11     Ds3 
+	BYTE	W24
+	BYTE		        Cn3 
+	BYTE		N11     Ds3 
+	BYTE	W24
+	BYTE		        Cn3 
+	BYTE		N11     Ds3 
+	BYTE	W24
+	BYTE		        Cn3 
+	BYTE		N11     Ds3 
+	BYTE	W12
+	BYTE	PEND
+// 023   ----------------------------------------
+UndertaleBonetrousleSme_11_023:
+	BYTE	W12
+	BYTE		N11     Gn2   v092
+	BYTE		N11     As2 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N11     As2 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE		N11     Gs2 
+	BYTE	W24
+	BYTE		N11   
+	BYTE		N11     Cs3 
+	BYTE	W12
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_11_020
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_11_021
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_11_022
+// 027   ----------------------------------------
+	BYTE	W12
+	BYTE		N11     Gs2   v092
+	BYTE		N11     Dn3 
+	BYTE	W24
+	BYTE		        Gs2 
+	BYTE		N11     Dn3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N11     Bn2 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N11     Bn2 
+	BYTE	W12
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_11_020
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_11_021
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_11_022
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_11_023
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_11_B1
+UndertaleBonetrousleSme_11_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 12 (Midi-Chn.16) ****************//
+
+UndertaleBonetrousleSme_12:
+	BYTE	KEYSH   UndertaleBonetrousleSme_key+0
+UndertaleBonetrousleSme_12_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   40
+	BYTE		VOL     63*UndertaleBonetrousleSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+UndertaleBonetrousleSme_12_020:
+	BYTE	W12
+	BYTE		N05     Fn3   v127
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N02     En4 
+	BYTE	W03
+	BYTE		N21     Fn4 
+	BYTE	W21
+	BYTE		N24     Cn4 
+	BYTE	W24
+	BYTE	PEND
+// 021   ----------------------------------------
+UndertaleBonetrousleSme_12_021:
+	BYTE		N05     Bn3   v127
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N03     Dn4 
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W03
+	BYTE		N18     Dn4 
+	BYTE	W18
+	BYTE		N05     Bn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE	PEND
+// 022   ----------------------------------------
+UndertaleBonetrousleSme_12_022:
+	BYTE		N17     Ds4   v127
+	BYTE	W18
+	BYTE		N03     Fn4 
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W03
+	BYTE		N05     Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N24     Cn5 
+	BYTE	W24
+	BYTE		N05     As4 
+	BYTE	W12
+	BYTE		        Gs4 
+	BYTE	W12
+	BYTE	PEND
+// 023   ----------------------------------------
+UndertaleBonetrousleSme_12_023:
+	BYTE		N17     Gn4   v127
+	BYTE	W18
+	BYTE		N03     Gs4 
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W03
+	BYTE		N05     Fn4 
+	BYTE	W12
+	BYTE		        Gs4 
+	BYTE	W12
+	BYTE		N48     Gn4 
+	BYTE	W48
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_12_020
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_12_021
+// 026   ----------------------------------------
+	BYTE		N17     Ds4   v127
+	BYTE	W18
+	BYTE		N03     Fn4 
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W03
+	BYTE		N05     Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N24     Cn5 
+	BYTE	W24
+	BYTE		N05     Dn5 
+	BYTE	W12
+	BYTE		        Ds5 
+	BYTE	W12
+// 027   ----------------------------------------
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W12
+	BYTE		        Gs4 
+	BYTE	W12
+	BYTE		N02     Gn4 
+	BYTE	W03
+	BYTE		        Gs4 
+	BYTE	W03
+	BYTE		N36     Gn4 
+	BYTE	W42
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_12_020
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_12_021
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_12_022
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleBonetrousleSme_12_023
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleBonetrousleSme_12_B1
+UndertaleBonetrousleSme_12_B2:
+// 036   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+UndertaleBonetrousleSme:
+	BYTE	12	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	UndertaleBonetrousleSme_pri	// Priority
+	BYTE	UndertaleBonetrousleSme_rev	// Reverb.
+
+	POIN2	UndertaleBonetrousleSme_grp
+
+	POIN2	UndertaleBonetrousleSme_1
+	POIN2	UndertaleBonetrousleSme_2
+	POIN2	UndertaleBonetrousleSme_3
+	POIN2	UndertaleBonetrousleSme_4
+	POIN2	UndertaleBonetrousleSme_5
+	POIN2	UndertaleBonetrousleSme_6
+	POIN2	UndertaleBonetrousleSme_7
+	POIN2	UndertaleBonetrousleSme_8
+	POIN2	UndertaleBonetrousleSme_9
+	POIN2	UndertaleBonetrousleSme_10
+	POIN2	UndertaleBonetrousleSme_11
+	POIN2	UndertaleBonetrousleSme_12
+
+	

@@ -2,9 +2,13 @@
 #include "defs/defs.event" 
 #include "nimap/Installer.event" 
 
+// Vanilla addresses for SongTable 
+// fe6 3994D8, fe7 69D6E0 fe8 224470 
+
 
 PUSH 
 #ifdef _FE8_ 
+#define EmptyTrack 0x82263B0 0 
 ORG $28bc  
 POIN NewSongTable
 ORG $14b80  
@@ -28,24 +32,84 @@ POIN NewSongTable
 ORG $d032c 
 POIN NewSongTable
 #endif 
+#ifdef _FE7_ 
+#define EmptyTrack 0x8ABC4AC 0 
+ORG $3f50 
+POIN NewSongTable
+ORG $14dd8 
+POIN NewSongTable
+ORG $40230 
+POIN NewSongTable
+ORG $67558 
+POIN NewSongTable
+ORG $6779c 
+POIN NewSongTable
+ORG $b2668 
+POIN NewSongTable
+ORG $be5bc 
+POIN NewSongTable
+ORG $be5f0 
+POIN NewSongTable
+ORG $be63c 
+POIN NewSongTable
+ORG $be690 
+POIN NewSongTable
+ORG $be6c4 
+POIN NewSongTable
+#endif 
+#ifdef _FE6_
+#define EmptyTrack 0x839A840 0 
+ORG $3748 
+POIN NewSongTable
+ORG $1544c 
+POIN NewSongTable
+ORG $39170 
+POIN NewSongTable
+ORG $5be30 
+POIN NewSongTable
+ORG $5be74 
+POIN NewSongTable
+ORG $97e70 
+POIN NewSongTable
+ORG $9c888 
+POIN NewSongTable
+ORG $9c8bc 
+POIN NewSongTable
+ORG $9c908 
+POIN NewSongTable
+ORG $9c95c 
+POIN NewSongTable
+ORG $9c990
+POIN NewSongTable
+#endif 
 POP 
 
-#define SongTableSize 0x600 
+#define SongTableSize 0x1200 
+#define EmptyTrack_16 "EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack" 
+#define EmptyTrack_256 "EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16" 
+
+
 
 ALIGN 4 
 NewSongTable: 
-FILL(8 * SongTableSize) 
-#ifdef _FE8_ 
+WORD EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 
 BYTE $00 00 00 00 00 00 00 40 0 // Febuilder terminator 
-#endif 
 ORG NewSongTable 
+#ifdef _FE8_ 
 #incbin "fe8_vanilla_track_table.dmp"
-ORG NewSongTable + (8 * SongTableSize) 
+#endif 
+#ifdef _FE7_ 
+#incbin "fe7_vanilla_track_table.dmp"
+#endif 
+#ifdef _FE6_ 
+#incbin "fe6_vanilla_track_table.dmp"
+#endif 
+ORG NewSongTable + (8 * (SongTableSize+1)) 
 
 
 #define FirstBGM_ID 0x3E6  
 
-#define SongTableOffset NewSongTable//0x224470
+#define SongTableOffset NewSongTable
 #define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
 
 #include "Generated.event" 

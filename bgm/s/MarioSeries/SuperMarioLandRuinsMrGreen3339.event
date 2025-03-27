@@ -1,0 +1,925 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	SuperMarioLandRuinsMrGreen3339_grp  voicegroup000
+	#define	SuperMarioLandRuinsMrGreen3339_pri  10
+	#define	SuperMarioLandRuinsMrGreen3339_rev  128
+	#define	SuperMarioLandRuinsMrGreen3339_mvl  127
+	#define	SuperMarioLandRuinsMrGreen3339_key  0
+	#define	SuperMarioLandRuinsMrGreen3339_tbs  1
+	#define	SuperMarioLandRuinsMrGreen3339_exg  0
+	#define	SuperMarioLandRuinsMrGreen3339_cmp  1
+
+	// .rodata
+	//	SuperMarioLandRuinsMrGreen3339
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+SuperMarioLandRuinsMrGreen3339_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioLandRuinsMrGreen3339_key+0
+Label_0_0100AF42:
+ BYTE   TEMPO   120*SuperMarioLandRuinsMrGreen3339_tbs/2
+ BYTE   VOICE   1
+ BYTE   PAN   c_v+0
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N24  Gn3  v064
+ BYTE   W24
+ BYTE   N18  Fs3
+ BYTE   W18
+ BYTE   N03  Ds3
+ BYTE   W03
+ BYTE   Fs3
+ BYTE   W03
+ BYTE   N36  Dn3
+ BYTE   W36
+ BYTE   N12  Gn2
+ BYTE   W12
+// 001   ----------------------------------------
+Label_0_0100AF5C:
+ BYTE   N18  Gs2  v064
+ BYTE   W18
+ BYTE   N06  As2
+ BYTE   W06
+ BYTE   N12  Gs2
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   N48  Gn2
+ BYTE   W48
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_0_0100AF6C:
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N24  Gn3  v064
+ BYTE   W24
+ BYTE   N18  Fs3
+ BYTE   W18
+ BYTE   N03  Ds3
+ BYTE   W03
+ BYTE   Fs3
+ BYTE   W03
+ BYTE   N36  Dn3
+ BYTE   W36
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_0_0100AF81:
+ BYTE   N18  Gs2  v064
+ BYTE   W18
+ BYTE   N06  As2
+ BYTE   W06
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   N03  As2
+ BYTE   W03
+ BYTE   Gs2
+ BYTE   W03
+ BYTE   Fs2
+ BYTE   W03
+ BYTE   Gs2
+ BYTE   W03
+ BYTE   N48  Gn2
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0100AF6C
+ BYTE   PATT
+  POIN2 Label_0_0100AF5C
+ BYTE   PATT
+  POIN2 Label_0_0100AF6C
+ BYTE   PATT
+  POIN2 Label_0_0100AF81
+// 004   ----------------------------------------
+Label_0_0100AFAC:
+ BYTE   N72  Gs2  v064
+ BYTE   W72
+ BYTE   N24  Cn3
+ BYTE   W24
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_0_0100AFB4:
+ BYTE   N48  Fn3  v064
+ BYTE   W48
+ BYTE   N36  Ds3
+ BYTE   W36
+ BYTE   N06  Fn3
+ BYTE   W06
+ BYTE   Ds3
+ BYTE   W06
+ BYTE   PEND 
+// 006   ----------------------------------------
+ BYTE   N72  Dn3
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_0_0100AF6C
+ BYTE   PATT
+  POIN2 Label_0_0100AF5C
+ BYTE   PATT
+  POIN2 Label_0_0100AF6C
+ BYTE   PATT
+  POIN2 Label_0_0100AF81
+ BYTE   PATT
+  POIN2 Label_0_0100AF6C
+ BYTE   PATT
+  POIN2 Label_0_0100AF5C
+ BYTE   PATT
+  POIN2 Label_0_0100AF6C
+ BYTE   PATT
+  POIN2 Label_0_0100AF81
+ BYTE   PATT
+  POIN2 Label_0_0100AFAC
+ BYTE   PATT
+  POIN2 Label_0_0100AFB4
+// 008   ----------------------------------------
+ BYTE   N72  Dn3  v064
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W12
+ BYTE   GoTo
+  POIN2 Label_0_0100AF42
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+SuperMarioLandRuinsMrGreen3339_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioLandRuinsMrGreen3339_key+0
+Label_1_0100B005:
+ BYTE   VOICE   1
+ BYTE   PAN   c_v+0
+ BYTE   VOL   56*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   W12
+ BYTE   N24  Gn3  v064
+ BYTE   W24
+ BYTE   N18  Fs3
+ BYTE   W18
+ BYTE   N03  Ds3
+ BYTE   W03
+ BYTE   Fs3
+ BYTE   W03
+ BYTE   N36  Dn3
+ BYTE   W36
+// 001   ----------------------------------------
+Label_1_0100B01B:
+ BYTE   N12  Gn2  v064
+ BYTE   W12
+ BYTE   N18  Gs2
+ BYTE   W18
+ BYTE   N06  As2
+ BYTE   W06
+ BYTE   N12  Gs2
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   N48  Gn2
+ BYTE   W36
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_1_0100B02E:
+ BYTE   W12
+ BYTE   N24  Gn3  v064
+ BYTE   W24
+ BYTE   N18  Fs3
+ BYTE   W18
+ BYTE   N03  Ds3
+ BYTE   W03
+ BYTE   Fs3
+ BYTE   W03
+ BYTE   N36  Dn3
+ BYTE   W36
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_1_0100B03F:
+ BYTE   N12  Gn2  v064
+ BYTE   W12
+ BYTE   N18  Gs2
+ BYTE   W18
+ BYTE   N06  As2
+ BYTE   W06
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   N03  As2
+ BYTE   W03
+ BYTE   Gs2
+ BYTE   W03
+ BYTE   Fs2
+ BYTE   W03
+ BYTE   Gs2
+ BYTE   W03
+ BYTE   N48  Gn2
+ BYTE   W36
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_0100B02E
+ BYTE   PATT
+  POIN2 Label_1_0100B01B
+ BYTE   PATT
+  POIN2 Label_1_0100B02E
+ BYTE   PATT
+  POIN2 Label_1_0100B03F
+// 004   ----------------------------------------
+Label_1_0100B06D:
+ BYTE   W12
+ BYTE   N72  Gs2  v064
+ BYTE   W72
+ BYTE   N24  Cn3
+ BYTE   W12
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_1_0100B076:
+ BYTE   W12
+ BYTE   N48  Fn3  v064
+ BYTE   W48
+ BYTE   N36  Ds3
+ BYTE   W36
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_1_0100B07F:
+ BYTE   N06  Fn3  v064
+ BYTE   W06
+ BYTE   Ds3
+ BYTE   W06
+ BYTE   N72  Dn3
+ BYTE   W84
+ BYTE   PEND 
+// 007   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_1_0100B02E
+ BYTE   PATT
+  POIN2 Label_1_0100B01B
+ BYTE   PATT
+  POIN2 Label_1_0100B02E
+ BYTE   PATT
+  POIN2 Label_1_0100B03F
+ BYTE   PATT
+  POIN2 Label_1_0100B02E
+ BYTE   PATT
+  POIN2 Label_1_0100B01B
+ BYTE   PATT
+  POIN2 Label_1_0100B02E
+ BYTE   PATT
+  POIN2 Label_1_0100B03F
+ BYTE   PATT
+  POIN2 Label_1_0100B06D
+ BYTE   PATT
+  POIN2 Label_1_0100B076
+ BYTE   PATT
+  POIN2 Label_1_0100B07F
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W12
+ BYTE   GoTo
+  POIN2 Label_1_0100B005
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+SuperMarioLandRuinsMrGreen3339_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioLandRuinsMrGreen3339_key+0
+Label_2_0100B0CB:
+ BYTE   VOICE   2
+ BYTE   PAN   c_v+0
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N24  Gn3  v064
+ BYTE   W24
+ BYTE   N18  Fs3
+ BYTE   W18
+ BYTE   N03  Ds3
+ BYTE   W03
+ BYTE   Fs3
+ BYTE   W03
+ BYTE   N36  Dn3
+ BYTE   W36
+ BYTE   N12  Gn2
+ BYTE   W12
+// 001   ----------------------------------------
+Label_2_0100B0E3:
+ BYTE   N18  Gs2  v064
+ BYTE   W18
+ BYTE   N06  As2
+ BYTE   W06
+ BYTE   N12  Gs2
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   N48  Gn2
+ BYTE   W48
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_2_0100B0F3:
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N24  Gn3  v064
+ BYTE   W24
+ BYTE   N18  Fs3
+ BYTE   W18
+ BYTE   N03  Ds3
+ BYTE   W03
+ BYTE   Fs3
+ BYTE   W03
+ BYTE   N36  Dn3
+ BYTE   W36
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_2_0100B108:
+ BYTE   N18  Gs2  v064
+ BYTE   W18
+ BYTE   N06  As2
+ BYTE   W06
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   N03  As2
+ BYTE   W03
+ BYTE   Gs2
+ BYTE   W03
+ BYTE   Fs2
+ BYTE   W03
+ BYTE   Gs2
+ BYTE   W03
+ BYTE   N48  Gn2
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_0100B0F3
+ BYTE   PATT
+  POIN2 Label_2_0100B0E3
+ BYTE   PATT
+  POIN2 Label_2_0100B0F3
+ BYTE   PATT
+  POIN2 Label_2_0100B108
+// 004   ----------------------------------------
+Label_2_0100B133:
+ BYTE   N72  Gs2  v064
+ BYTE   W72
+ BYTE   N24  Cn3
+ BYTE   W24
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_2_0100B13B:
+ BYTE   N48  Fn3  v064
+ BYTE   W48
+ BYTE   N36  Ds3
+ BYTE   W36
+ BYTE   N06  Fn3
+ BYTE   W06
+ BYTE   Ds3
+ BYTE   W06
+ BYTE   PEND 
+// 006   ----------------------------------------
+ BYTE   N72  Dn3
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_2_0100B0F3
+ BYTE   PATT
+  POIN2 Label_2_0100B0E3
+ BYTE   PATT
+  POIN2 Label_2_0100B0F3
+ BYTE   PATT
+  POIN2 Label_2_0100B108
+ BYTE   PATT
+  POIN2 Label_2_0100B0F3
+ BYTE   PATT
+  POIN2 Label_2_0100B0E3
+ BYTE   PATT
+  POIN2 Label_2_0100B0F3
+ BYTE   PATT
+  POIN2 Label_2_0100B108
+ BYTE   PATT
+  POIN2 Label_2_0100B133
+ BYTE   PATT
+  POIN2 Label_2_0100B13B
+// 008   ----------------------------------------
+ BYTE   N72  Dn3  v064
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   W12
+ BYTE   GoTo
+  POIN2 Label_2_0100B0CB
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+SuperMarioLandRuinsMrGreen3339_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioLandRuinsMrGreen3339_key+0
+Label_3_0100B18E:
+ BYTE   VOICE   2
+ BYTE   PAN   c_v+0
+ BYTE   VOL   56*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   W12
+ BYTE   N24  Gn3  v064
+ BYTE   W24
+ BYTE   N18  Fs3
+ BYTE   W18
+ BYTE   N03  Ds3
+ BYTE   W03
+ BYTE   Fs3
+ BYTE   W03
+ BYTE   N36  Dn3
+ BYTE   W36
+// 001   ----------------------------------------
+Label_3_0100B1A4:
+ BYTE   N12  Gn2  v064
+ BYTE   W12
+ BYTE   N18  Gs2
+ BYTE   W18
+ BYTE   N06  As2
+ BYTE   W06
+ BYTE   N12  Gs2
+ BYTE   W12
+ BYTE   As2
+ BYTE   W12
+ BYTE   N48  Gn2
+ BYTE   W36
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_3_0100B1B7:
+ BYTE   W12
+ BYTE   N24  Gn3  v064
+ BYTE   W24
+ BYTE   N18  Fs3
+ BYTE   W18
+ BYTE   N03  Ds3
+ BYTE   W03
+ BYTE   Fs3
+ BYTE   W03
+ BYTE   N36  Dn3
+ BYTE   W36
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_3_0100B1C8:
+ BYTE   N12  Gn2  v064
+ BYTE   W12
+ BYTE   N18  Gs2
+ BYTE   W18
+ BYTE   N06  As2
+ BYTE   W06
+ BYTE   N12  Cn3
+ BYTE   W12
+ BYTE   N03  As2
+ BYTE   W03
+ BYTE   Gs2
+ BYTE   W03
+ BYTE   Fs2
+ BYTE   W03
+ BYTE   Gs2
+ BYTE   W03
+ BYTE   N48  Gn2
+ BYTE   W36
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_0100B1B7
+ BYTE   PATT
+  POIN2 Label_3_0100B1A4
+ BYTE   PATT
+  POIN2 Label_3_0100B1B7
+ BYTE   PATT
+  POIN2 Label_3_0100B1C8
+// 004   ----------------------------------------
+Label_3_0100B1F6:
+ BYTE   W12
+ BYTE   N72  Gs2  v064
+ BYTE   W72
+ BYTE   N24  Cn3
+ BYTE   W12
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_3_0100B1FF:
+ BYTE   W12
+ BYTE   N48  Fn3  v064
+ BYTE   W48
+ BYTE   N36  Ds3
+ BYTE   W36
+ BYTE   PEND 
+// 006   ----------------------------------------
+Label_3_0100B208:
+ BYTE   N06  Fn3  v064
+ BYTE   W06
+ BYTE   Ds3
+ BYTE   W06
+ BYTE   N72  Dn3
+ BYTE   W84
+ BYTE   PEND 
+// 007   ----------------------------------------
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_3_0100B1B7
+ BYTE   PATT
+  POIN2 Label_3_0100B1A4
+ BYTE   PATT
+  POIN2 Label_3_0100B1B7
+ BYTE   PATT
+  POIN2 Label_3_0100B1C8
+ BYTE   PATT
+  POIN2 Label_3_0100B1B7
+ BYTE   PATT
+  POIN2 Label_3_0100B1A4
+ BYTE   PATT
+  POIN2 Label_3_0100B1B7
+ BYTE   PATT
+  POIN2 Label_3_0100B1C8
+ BYTE   PATT
+  POIN2 Label_3_0100B1F6
+ BYTE   PATT
+  POIN2 Label_3_0100B1FF
+ BYTE   PATT
+  POIN2 Label_3_0100B208
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W12
+ BYTE   GoTo
+  POIN2 Label_3_0100B18E
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+SuperMarioLandRuinsMrGreen3339_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioLandRuinsMrGreen3339_key+0
+Label_4_0100B254:
+ BYTE   VOICE   3
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2  v064
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Fn2
+ BYTE   W12
+// 001   ----------------------------------------
+Label_4_0100B273:
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2  v064
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Fn2
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+// 002   ----------------------------------------
+Label_4_0100B2AF:
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gs2  v064
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gs2
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gs2
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gs2
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_4_0100B2AF
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B2AF
+ BYTE   PATT
+  POIN2 Label_4_0100B2AF
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+ BYTE   PATT
+  POIN2 Label_4_0100B273
+// 003   ----------------------------------------
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   W12
+ BYTE   GoTo
+  POIN2 Label_4_0100B254
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+SuperMarioLandRuinsMrGreen3339_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioLandRuinsMrGreen3339_key+0
+Label_5_0100B323:
+ BYTE   VOICE   4
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2  v064
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Fn2
+ BYTE   W12
+// 001   ----------------------------------------
+Label_5_0100B342:
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2  v064
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gn2
+ BYTE   W12
+ BYTE   Fn2
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+// 002   ----------------------------------------
+Label_5_0100B37E:
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gs2  v064
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gs2
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gs2
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  Gs2
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   W12
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_0100B37E
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B37E
+ BYTE   PATT
+  POIN2 Label_5_0100B37E
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+ BYTE   PATT
+  POIN2 Label_5_0100B342
+// 003   ----------------------------------------
+ BYTE   VOL   66*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   W12
+ BYTE   GoTo
+  POIN2 Label_5_0100B323
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+SuperMarioLandRuinsMrGreen3339_007:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioLandRuinsMrGreen3339_key+0
+Label_6_0100B3F2:
+ BYTE   VOICE   0
+ BYTE   VOL   33*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  FnM2  v064
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N12  FsM2
+ BYTE   W12
+ BYTE   N06  FnM2
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N12  FsM2
+ BYTE   W12
+ BYTE   N06  FnM2
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+// 001   ----------------------------------------
+Label_6_0100B414:
+ BYTE   VOL   33*SuperMarioLandRuinsMrGreen3339_mvl/mxv
+ BYTE   N12  FnM2  v064
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N12  FsM2
+ BYTE   W12
+ BYTE   N06  FnM2
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N12
+ BYTE   W12
+ BYTE   N06
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   N12  FsM2
+ BYTE   W12
+ BYTE   N06  FnM2
+ BYTE   W06
+ BYTE   N06
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+ BYTE   PATT
+  POIN2 Label_6_0100B414
+// 002   ----------------------------------------
+ BYTE   W12
+ BYTE   GoTo
+  POIN2 Label_6_0100B3F2
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+SuperMarioLandRuinsMrGreen3339:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	SuperMarioLandRuinsMrGreen3339_pri	// Priority
+	BYTE	SuperMarioLandRuinsMrGreen3339_rev	// Reverb.
+    
+	POIN2	SuperMarioLandRuinsMrGreen3339_grp
+    
+	POIN2	SuperMarioLandRuinsMrGreen3339_001
+	POIN2	SuperMarioLandRuinsMrGreen3339_002
+	POIN2	SuperMarioLandRuinsMrGreen3339_003
+	POIN2	SuperMarioLandRuinsMrGreen3339_004
+	POIN2	SuperMarioLandRuinsMrGreen3339_005
+	POIN2	SuperMarioLandRuinsMrGreen3339_006
+	POIN2	SuperMarioLandRuinsMrGreen3339_007
+
+	

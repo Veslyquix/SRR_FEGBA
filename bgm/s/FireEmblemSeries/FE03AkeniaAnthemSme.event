@@ -1,0 +1,2856 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE03AkeniaAnthemSme_grp  voicegroup000
+	#define	FE03AkeniaAnthemSme_pri  0
+	#define	FE03AkeniaAnthemSme_rev  0
+	#define	FE03AkeniaAnthemSme_mvl  85
+	#define	FE03AkeniaAnthemSme_key  0
+	#define	FE03AkeniaAnthemSme_tbs  1
+	#define	FE03AkeniaAnthemSme_exg  0
+	#define	FE03AkeniaAnthemSme_cmp  1
+
+	// .rodata
+	//	FE03AkeniaAnthemSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.2) ****************//
+
+FE03AkeniaAnthemSme_1:
+	BYTE	KEYSH   FE03AkeniaAnthemSme_key+0
+FE03AkeniaAnthemSme_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   43*FE03AkeniaAnthemSme_tbs/2
+	BYTE		VOICE   109
+	BYTE		VOL     72*FE03AkeniaAnthemSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W06
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04     Gn4   v116
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Cn5 
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE		        An4 
+	BYTE	W06
+// 001   ----------------------------------------
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE	TEMPO   44*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   44*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   45*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   45*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   45*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        An4 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+// 002   ----------------------------------------
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        An4 
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn4 
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   26*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W03
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Cn4 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As5   v104
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W03
+// 003   ----------------------------------------
+	BYTE	W03
+	BYTE		        Fn5   v116
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Ds5   v104
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn5   v116
+	BYTE	W06
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn5 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn5 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn5 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Cn5 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+// 004   ----------------------------------------
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Cn5 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn5 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Cn5 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Dn4 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn3 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W03
+// 005   ----------------------------------------
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        An4 
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn4 
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Cn5 
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+// 006   ----------------------------------------
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   39*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   34*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE	TEMPO   44*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   44*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   44*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   45*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   45*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+// 007   ----------------------------------------
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        An4 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        An4 
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn4 
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   26*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W03
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Cn4 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+// 008   ----------------------------------------
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As5   v104
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn5   v116
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Ds5   v104
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn5   v116
+	BYTE	W06
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn5 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+// 009   ----------------------------------------
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn5 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn5 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Cn5 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Cn5 
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   46*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn5 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Cn5 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn4 
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   41*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Dn4 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+// 010   ----------------------------------------
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Gn3 
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   36*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		N04   
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        As4 
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        An4 
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE		        Fn4 
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W01
+	BYTE	TEMPO   29*FE03AkeniaAnthemSme_tbs/2
+	BYTE	W03
+	BYTE	GoTo
+	 POIN2	FE03AkeniaAnthemSme_1_B1
+FE03AkeniaAnthemSme_1_B2:
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.3) ****************//
+
+FE03AkeniaAnthemSme_2:
+	BYTE	KEYSH   FE03AkeniaAnthemSme_key+0
+FE03AkeniaAnthemSme_2_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   109
+	BYTE		VOL     65*FE03AkeniaAnthemSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W06
+	BYTE		N05     Gn4   v116
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+// 001   ----------------------------------------
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+// 002   ----------------------------------------
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W09
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As5   v104
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W03
+// 003   ----------------------------------------
+	BYTE	W03
+	BYTE		        Fn5   v116
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Ds5   v104
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5   v116
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W03
+// 004   ----------------------------------------
+	BYTE	W03
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W03
+// 005   ----------------------------------------
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE	W03
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W03
+// 007   ----------------------------------------
+	BYTE	W03
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W09
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+// 008   ----------------------------------------
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As5   v104
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5   v116
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Ds5   v104
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5   v116
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+// 009   ----------------------------------------
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+// 010   ----------------------------------------
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W09
+	BYTE	GoTo
+	 POIN2	FE03AkeniaAnthemSme_2_B1
+FE03AkeniaAnthemSme_2_B2:
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.4) ****************//
+
+FE03AkeniaAnthemSme_3:
+	BYTE	KEYSH   FE03AkeniaAnthemSme_key+0
+FE03AkeniaAnthemSme_3_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   109
+	BYTE		VOL     72*FE03AkeniaAnthemSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W06
+	BYTE	W03
+	BYTE		N05     Gn4   v092
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W03
+// 001   ----------------------------------------
+	BYTE	W03
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W03
+// 002   ----------------------------------------
+	BYTE	W03
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W09
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As5 
+	BYTE	W06
+// 003   ----------------------------------------
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Ds5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+// 004   ----------------------------------------
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+// 005   ----------------------------------------
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W03
+	BYTE	W04
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W05
+// 006   ----------------------------------------
+	BYTE	W01
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W05
+// 007   ----------------------------------------
+	BYTE	W01
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W09
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W02
+// 008   ----------------------------------------
+	BYTE	W04
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Ds5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W02
+// 009   ----------------------------------------
+	BYTE	W04
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W02
+// 010   ----------------------------------------
+	BYTE	W04
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W05
+	BYTE	GoTo
+	 POIN2	FE03AkeniaAnthemSme_3_B1
+FE03AkeniaAnthemSme_3_B2:
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.5) ****************//
+
+FE03AkeniaAnthemSme_4:
+	BYTE	KEYSH   FE03AkeniaAnthemSme_key+0
+FE03AkeniaAnthemSme_4_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   109
+	BYTE		VOL     72*FE03AkeniaAnthemSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W06
+	BYTE		N04     Cn4   v104
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+// 001   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+// 002   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W09
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W03
+// 003   ----------------------------------------
+	BYTE	W03
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W03
+// 004   ----------------------------------------
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W03
+// 005   ----------------------------------------
+	BYTE	W03
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W03
+// 007   ----------------------------------------
+	BYTE	W03
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W09
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+// 008   ----------------------------------------
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+// 009   ----------------------------------------
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        An3 
+	BYTE	W06
+// 010   ----------------------------------------
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W09
+	BYTE	GoTo
+	 POIN2	FE03AkeniaAnthemSme_4_B1
+FE03AkeniaAnthemSme_4_B2:
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.6) ****************//
+
+FE03AkeniaAnthemSme_5:
+	BYTE	KEYSH   FE03AkeniaAnthemSme_key+0
+FE03AkeniaAnthemSme_5_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   109
+	BYTE		VOL     65*FE03AkeniaAnthemSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W06
+	BYTE		N04     Cn4   v096
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+// 001   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+// 002   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W09
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W03
+// 003   ----------------------------------------
+	BYTE	W03
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W03
+// 004   ----------------------------------------
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W03
+// 005   ----------------------------------------
+	BYTE	W03
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W03
+// 007   ----------------------------------------
+	BYTE	W03
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W09
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+// 008   ----------------------------------------
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Fn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+// 009   ----------------------------------------
+	BYTE		        As4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Cn5 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        An3 
+	BYTE	W06
+// 010   ----------------------------------------
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W09
+	BYTE	GoTo
+	 POIN2	FE03AkeniaAnthemSme_5_B1
+FE03AkeniaAnthemSme_5_B2:
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.7) ****************//
+
+FE03AkeniaAnthemSme_6:
+	BYTE	KEYSH   FE03AkeniaAnthemSme_key+0
+FE03AkeniaAnthemSme_6_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   42
+	BYTE		VOL     90*FE03AkeniaAnthemSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W06
+	BYTE		TIE     Cn3   v116
+	BYTE	W90
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W80
+	BYTE		EOT   
+	BYTE	W01
+	BYTE		N44     Cs3 
+	BYTE	W15
+// 003   ----------------------------------------
+	BYTE	W32
+	BYTE	W01
+	BYTE		        Bn2 
+	BYTE	W48
+	BYTE		        Gs2 
+	BYTE	W15
+// 004   ----------------------------------------
+	BYTE	W32
+	BYTE	W01
+	BYTE		        An2 
+	BYTE	W48
+	BYTE		        As2 
+	BYTE	W15
+// 005   ----------------------------------------
+	BYTE	W32
+	BYTE	W01
+	BYTE		TIE     Cn3 
+	BYTE	W60
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W11
+	BYTE		EOT   
+	BYTE	W01
+	BYTE		N44     Cs3 
+	BYTE	W48
+	BYTE		        Bn2 
+	BYTE	W36
+// 009   ----------------------------------------
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W48
+	BYTE		        An2 
+	BYTE	W36
+// 010   ----------------------------------------
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W48
+	BYTE	W03
+	BYTE	GoTo
+	 POIN2	FE03AkeniaAnthemSme_6_B1
+FE03AkeniaAnthemSme_6_B2:
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.8) ****************//
+
+FE03AkeniaAnthemSme_7:
+	BYTE	KEYSH   FE03AkeniaAnthemSme_key+0
+FE03AkeniaAnthemSme_7_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   51
+	BYTE		VOL     80*FE03AkeniaAnthemSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W06
+	BYTE	W03
+	BYTE		TIE     Cn2   v127
+	BYTE	W84
+	BYTE	W03
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W80
+	BYTE	W03
+	BYTE		EOT   
+	BYTE	W01
+	BYTE		N44     Cs2 
+	BYTE	W12
+// 003   ----------------------------------------
+	BYTE	W36
+	BYTE		        Bn1 
+	BYTE	W48
+	BYTE		        Gs1 
+	BYTE	W12
+// 004   ----------------------------------------
+	BYTE	W36
+	BYTE		        An1 
+	BYTE	W48
+	BYTE		        As1 
+	BYTE	W12
+// 005   ----------------------------------------
+	BYTE	W32
+	BYTE	W01
+	BYTE	W03
+	BYTE		TIE     Cn2 
+	BYTE	W60
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W14
+	BYTE		EOT   
+	BYTE	W01
+	BYTE		N44     Cs2 
+	BYTE	W48
+	BYTE		        Bn1 
+	BYTE	W32
+	BYTE	W01
+// 009   ----------------------------------------
+	BYTE	W15
+	BYTE		        Gs1 
+	BYTE	W48
+	BYTE		        An1 
+	BYTE	W32
+	BYTE	W01
+// 010   ----------------------------------------
+	BYTE	W15
+	BYTE		        As1 
+	BYTE	W48
+	BYTE	GoTo
+	 POIN2	FE03AkeniaAnthemSme_7_B1
+FE03AkeniaAnthemSme_7_B2:
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE03AkeniaAnthemSme:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE03AkeniaAnthemSme_pri	// Priority
+	BYTE	FE03AkeniaAnthemSme_rev	// Reverb.
+
+	POIN2	FE03AkeniaAnthemSme_grp
+
+	POIN2	FE03AkeniaAnthemSme_1
+	POIN2	FE03AkeniaAnthemSme_2
+	POIN2	FE03AkeniaAnthemSme_3
+	POIN2	FE03AkeniaAnthemSme_4
+	POIN2	FE03AkeniaAnthemSme_5
+	POIN2	FE03AkeniaAnthemSme_6
+	POIN2	FE03AkeniaAnthemSme_7
+
+	

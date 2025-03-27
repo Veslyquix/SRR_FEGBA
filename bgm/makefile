@@ -3,7 +3,7 @@ FORMATTER = C:/Users/David/Desktop/SRR_FEGBA/bgm/s2ea.exe
 SRC_DIR = s
 
 # Find all .s files recursively
-SRC = $(wildcard $(SRC_DIR)/*.s)
+SRC = $(shell find $(SRC_DIR) -type f -name "*.s")
 EVENT = $(patsubst %.s, %.event, $(SRC))
 OBJ = $(EVENT)
 

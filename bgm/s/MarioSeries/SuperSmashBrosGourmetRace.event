@@ -1,0 +1,3002 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	SuperSmashBrosGourmetRace_grp  voicegroup000
+	#define	SuperSmashBrosGourmetRace_pri  0
+	#define	SuperSmashBrosGourmetRace_rev  0
+	#define	SuperSmashBrosGourmetRace_mvl  75
+	#define	SuperSmashBrosGourmetRace_key  0
+	#define	SuperSmashBrosGourmetRace_tbs  1
+	#define	SuperSmashBrosGourmetRace_exg  0
+	#define	SuperSmashBrosGourmetRace_cmp  1
+
+	// .rodata
+	//	SuperSmashBrosGourmetRace
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+SuperSmashBrosGourmetRace_1:
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   190*SuperSmashBrosGourmetRace_tbs/2
+	BYTE		VOICE   34
+	BYTE		VOL     98*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE		PAN     c_v-23
+	BYTE		N11     Gs2   v060
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W24
+// 001   ----------------------------------------
+SuperSmashBrosGourmetRace_1_001:
+	BYTE		N11     Ds2   v060
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W48
+	BYTE	PEND
+SuperSmashBrosGourmetRace_1_B1:
+// 002   ----------------------------------------
+SuperSmashBrosGourmetRace_1_002:
+	BYTE		N11     Cn2   v060
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_002
+// 004   ----------------------------------------
+SuperSmashBrosGourmetRace_1_004:
+	BYTE		N11     Fn2   v060
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_002
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_002
+// 008   ----------------------------------------
+	BYTE		N11     Gn1   v060
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Bn1 
+	BYTE	W24
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_002
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_002
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_002
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_004
+// 016   ----------------------------------------
+	BYTE		N11     Gn1   v060
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+// 017   ----------------------------------------
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W48
+// 018   ----------------------------------------
+SuperSmashBrosGourmetRace_1_018:
+	BYTE		N17     Fn1   v060
+	BYTE	W24
+	BYTE		N17   
+	BYTE	W24
+	BYTE		        Gs1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE	PEND
+// 019   ----------------------------------------
+SuperSmashBrosGourmetRace_1_019:
+	BYTE		N17     Ds2   v060
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE	PEND
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_018
+// 021   ----------------------------------------
+SuperSmashBrosGourmetRace_1_021:
+	BYTE		N17     Ds2   v060
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE	W24
+	BYTE		N44     Gn2 
+	BYTE	W48
+	BYTE	PEND
+// 022   ----------------------------------------
+SuperSmashBrosGourmetRace_1_022:
+	BYTE		N11     Gn1   v060
+	BYTE	W24
+	BYTE		        Bn1 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE	PEND
+// 023   ----------------------------------------
+SuperSmashBrosGourmetRace_1_023:
+	BYTE		N11     Cn2   v060
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE	PEND
+// 024   ----------------------------------------
+SuperSmashBrosGourmetRace_1_024:
+	BYTE		N11     Gn1   v060
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_023
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_018
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_019
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_018
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_021
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_022
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_023
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_024
+// 033   ----------------------------------------
+	BYTE		N11     Cn2   v060
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Bn1 
+	BYTE	W24
+// 034   ----------------------------------------
+SuperSmashBrosGourmetRace_1_034:
+	BYTE		N11     Ds2   v060
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE	PEND
+// 035   ----------------------------------------
+SuperSmashBrosGourmetRace_1_035:
+	BYTE		N11     Fn1   v060
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE		        Fn1 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE	PEND
+// 036   ----------------------------------------
+SuperSmashBrosGourmetRace_1_036:
+	BYTE		N11     Cn2   v060
+	BYTE	W24
+	BYTE		        Ds1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Ds1 
+	BYTE	W24
+	BYTE	PEND
+// 037   ----------------------------------------
+SuperSmashBrosGourmetRace_1_037:
+	BYTE		N11     Ds1   v060
+	BYTE	W24
+	BYTE		        As1 
+	BYTE	W24
+	BYTE		        Ds1 
+	BYTE	W24
+	BYTE		        As1 
+	BYTE	W24
+	BYTE	PEND
+// 038   ----------------------------------------
+SuperSmashBrosGourmetRace_1_038:
+	BYTE		N11     Gs1   v060
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Gs1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE	PEND
+// 039   ----------------------------------------
+SuperSmashBrosGourmetRace_1_039:
+	BYTE		N11     Gn1   v060
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE	PEND
+// 040   ----------------------------------------
+	BYTE		        Gs1 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE		        Gs1 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+// 041   ----------------------------------------
+	BYTE		        As1 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE	W24
+	BYTE		        As1 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE	W24
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_034
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_035
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_036
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_037
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_038
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_039
+// 048   ----------------------------------------
+	BYTE		N11     Dn2   v060
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+// 049   ----------------------------------------
+	BYTE		N11   
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W48
+// 050   ----------------------------------------
+	BYTE		VOICE   34
+	BYTE		N11     Gs2 
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W24
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_1_001
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_1_B1
+SuperSmashBrosGourmetRace_1_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+SuperSmashBrosGourmetRace_2:
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   57
+	BYTE		VOL     89*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE		N23     Dn4   v060
+	BYTE		N23     Gn4 
+	BYTE	W24
+	BYTE		N06     Cn4 
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N06     Ds4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		N23     Cn3 
+	BYTE		N23     Gn3 
+	BYTE	W24
+// 001   ----------------------------------------
+	BYTE		N06   
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N06     Ds4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N06     Dn4 
+	BYTE	W48
+SuperSmashBrosGourmetRace_2_B1:
+// 002   ----------------------------------------
+SuperSmashBrosGourmetRace_2_002:
+	BYTE		N23     Cn5   v060
+	BYTE	W48
+	BYTE		        Gn4 
+	BYTE	W48
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE		        Ds4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W48
+// 004   ----------------------------------------
+	BYTE		N23   
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Ds4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+// 005   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE	W48
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_2_002
+// 007   ----------------------------------------
+	BYTE		N23     Ds4   v060
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE		N05   
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+// 008   ----------------------------------------
+	BYTE		N23     Ds4 
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        As3 
+	BYTE	W24
+// 009   ----------------------------------------
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W48
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE		N32     Fn4 
+	BYTE		N32     Gs4 
+	BYTE	W36
+	BYTE		N11     Ds4 
+	BYTE		N11     Gn4 
+	BYTE	W12
+	BYTE		N23     Dn4 
+	BYTE		N23     Fn4 
+	BYTE	W24
+	BYTE		N11     Ds4 
+	BYTE		N11     Gs4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE		N11     As4 
+	BYTE	W12
+// 031   ----------------------------------------
+	BYTE		        Gn4 
+	BYTE		N11     Cn5 
+	BYTE	W24
+	BYTE		        Ds4 
+	BYTE		N11     Gn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE		N11     Ds4 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE		N11     Cn4 
+	BYTE	W24
+// 032   ----------------------------------------
+	BYTE		        As3 
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		N05     As3 
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		N11     As3 
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N11     As3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE		N11     Gn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N11     As3 
+	BYTE	W12
+// 033   ----------------------------------------
+	BYTE		N68     Ds3 
+	BYTE		N68     Cn4 
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE		N05     Dn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+// 049   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		N23     Bn4 
+	BYTE	W48
+// 050   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE		N23     Gn4 
+	BYTE	W24
+	BYTE		N06     Cn4 
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N06     Ds4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		N23     Cn3 
+	BYTE		N23     Gn3 
+	BYTE	W24
+// 051   ----------------------------------------
+	BYTE		N02   
+	BYTE		N02     Cn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N02     Dn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N02     Ds4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N02     Fn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N02     Dn4 
+	BYTE	W48
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_2_B1
+SuperSmashBrosGourmetRace_2_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+SuperSmashBrosGourmetRace_3:
+	BYTE		VOL     127*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   20
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+SuperSmashBrosGourmetRace_3_B1:
+// 002   ----------------------------------------
+SuperSmashBrosGourmetRace_3_002:
+	BYTE	W12
+	BYTE		N05     Gn2   v060
+	BYTE		N05     Cn3 
+	BYTE		N05     Ds3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Cn3 
+	BYTE		N05     Ds3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Cn3 
+	BYTE		N05     Ds3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Cn3 
+	BYTE		N05     Ds3 
+	BYTE	W12
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 004   ----------------------------------------
+SuperSmashBrosGourmetRace_3_004:
+	BYTE	W12
+	BYTE		N05     An2   v060
+	BYTE		N05     Cn3 
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE		N05     Cn3 
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE		N05     Cn3 
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE		N05     Cn3 
+	BYTE		N05     Fn3 
+	BYTE	W12
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 008   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     An2   v060
+	BYTE		N05     Cn3 
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE		N05     Cn3 
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Bn2 
+	BYTE		N05     Dn3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Bn2 
+	BYTE		N05     Dn3 
+	BYTE	W12
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_004
+// 016   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     Bn2   v060
+	BYTE		N05     Dn3 
+	BYTE		N05     Gn3 
+	BYTE	W24
+	BYTE		        Bn2 
+	BYTE		N05     Dn3 
+	BYTE		N05     Gn3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Bn2 
+	BYTE		N05     Dn3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Bn2 
+	BYTE		N05     Dn3 
+	BYTE	W12
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 018   ----------------------------------------
+SuperSmashBrosGourmetRace_3_018:
+	BYTE	W12
+	BYTE		N05     An2   v060
+	BYTE		N05     Dn3 
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE		N05     Dn3 
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE		N05     Dn3 
+	BYTE		N05     Fn3 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE		N05     Dn3 
+	BYTE		N05     Fn3 
+	BYTE	W12
+	BYTE	PEND
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_018
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_018
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 024   ----------------------------------------
+SuperSmashBrosGourmetRace_3_024:
+	BYTE	W12
+	BYTE		N05     Gn2   v060
+	BYTE		N05     Bn2 
+	BYTE		N05     Dn3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Bn2 
+	BYTE		N05     Dn3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Bn2 
+	BYTE		N05     Dn3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Bn2 
+	BYTE		N05     Dn3 
+	BYTE	W12
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_018
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_018
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_018
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_002
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_024
+// 033   ----------------------------------------
+	BYTE	W12
+	BYTE		N05     Gn2   v060
+	BYTE		N05     Cn3 
+	BYTE		N05     Ds3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Cn3 
+	BYTE		N05     Ds3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     Cn3 
+	BYTE		N05     Ds3 
+	BYTE	W12
+	BYTE		N24     Gn2 
+	BYTE		N24     As2 
+	BYTE		N24     Dn3 
+	BYTE	W24
+// 034   ----------------------------------------
+SuperSmashBrosGourmetRace_3_034:
+	BYTE	W12
+	BYTE		N05     Gn2   v060
+	BYTE		N05     As2 
+	BYTE		N05     Ds3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     As2 
+	BYTE		N05     Ds3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     As2 
+	BYTE		N05     Ds3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N05     As2 
+	BYTE		N05     Ds3 
+	BYTE	W12
+	BYTE	PEND
+// 035   ----------------------------------------
+SuperSmashBrosGourmetRace_3_035:
+	BYTE	W12
+	BYTE		N05     Fn2   v060
+	BYTE		N05     As2 
+	BYTE		N05     Dn3 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE		N05     As2 
+	BYTE		N05     Dn3 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE		N05     As2 
+	BYTE		N05     Dn3 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE		N05     As2 
+	BYTE		N05     Dn3 
+	BYTE	W12
+	BYTE	PEND
+// 036   ----------------------------------------
+SuperSmashBrosGourmetRace_3_036:
+	BYTE	W12
+	BYTE		N05     Ds2   v060
+	BYTE		N05     Gs2 
+	BYTE		N05     Cn3 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE		N05     Gs2 
+	BYTE		N05     Cn3 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE		N05     Gs2 
+	BYTE		N05     Cn3 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE		N05     Gs2 
+	BYTE		N05     Cn3 
+	BYTE	W12
+	BYTE	PEND
+// 037   ----------------------------------------
+SuperSmashBrosGourmetRace_3_037:
+	BYTE	W12
+	BYTE		N05     Dn2   v060
+	BYTE		N05     Fn2 
+	BYTE		N05     As2 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE		N05     Fn2 
+	BYTE		N05     As2 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE		N05     Fn2 
+	BYTE		N05     As2 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE		N05     Fn2 
+	BYTE		N05     As2 
+	BYTE	W12
+	BYTE	PEND
+// 038   ----------------------------------------
+SuperSmashBrosGourmetRace_3_038:
+	BYTE	W12
+	BYTE		N05     Cn2   v060
+	BYTE		N05     Ds2 
+	BYTE		N05     Gs2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE		N05     Ds2 
+	BYTE		N05     Gs2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE		N05     Ds2 
+	BYTE		N05     Gs2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE		N05     Ds2 
+	BYTE		N05     Gs2 
+	BYTE	W12
+	BYTE	PEND
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_034
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_038
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_035
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_034
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_035
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_036
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_037
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_038
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_3_034
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_3_B1
+SuperSmashBrosGourmetRace_3_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+SuperSmashBrosGourmetRace_4:
+	BYTE		VOL     127*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   13
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+SuperSmashBrosGourmetRace_4_B1:
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+SuperSmashBrosGourmetRace_4_010:
+	BYTE		N23     Cn5   v060
+	BYTE	W48
+	BYTE		        Gn4 
+	BYTE	W48
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE		        Ds4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W48
+// 012   ----------------------------------------
+	BYTE		N23   
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Ds4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+// 013   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE	W48
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_4_010
+// 015   ----------------------------------------
+	BYTE		N23     Ds4   v060
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		        Gn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+// 016   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        As3 
+	BYTE	W24
+// 017   ----------------------------------------
+	BYTE		N68     Cn4 
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_4_B1
+SuperSmashBrosGourmetRace_4_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+SuperSmashBrosGourmetRace_5:
+	BYTE		VOL     127*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   40
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+SuperSmashBrosGourmetRace_5_B1:
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+SuperSmashBrosGourmetRace_5_010:
+	BYTE		N23     Cn5   v060
+	BYTE	W48
+	BYTE		        Gn4 
+	BYTE	W48
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE		        Ds4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W48
+// 012   ----------------------------------------
+	BYTE		N23   
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Ds4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+// 013   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE	W48
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_5_010
+// 015   ----------------------------------------
+	BYTE		N23     Ds4   v060
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		        Gn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+// 016   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        As3 
+	BYTE	W24
+// 017   ----------------------------------------
+	BYTE		N68     Cn4 
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE		N32     Fn4 
+	BYTE		N32     Gs4 
+	BYTE	W36
+	BYTE		N11     Ds4 
+	BYTE		N11     Gn4 
+	BYTE	W12
+	BYTE		N23     Dn4 
+	BYTE		N23     Fn4 
+	BYTE	W24
+	BYTE		N11     Cn4 
+	BYTE		N11     Ds4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE		N11     Fn4 
+	BYTE	W12
+// 023   ----------------------------------------
+	BYTE		        Ds4 
+	BYTE		N11     Gn4 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE		N11     Cn4 
+	BYTE	W24
+	BYTE		N44     Ds4 
+	BYTE		N44     Gn4 
+	BYTE	W48
+// 024   ----------------------------------------
+	BYTE		N11     Dn4 
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		N05     Dn4 
+	BYTE		N05     Fn4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE		N05     Fn4 
+	BYTE	W06
+	BYTE		N11     Dn4 
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N11     Ds4 
+	BYTE	W12
+	BYTE		N23     Bn3 
+	BYTE		N23     Dn4 
+	BYTE	W24
+	BYTE		N11     Cn4 
+	BYTE		N11     Ds4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE		N11     Fn4 
+	BYTE	W12
+// 025   ----------------------------------------
+	BYTE		        Cn4 
+	BYTE		N11     Ds4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE		N11     Fn4 
+	BYTE	W24
+	BYTE		N23     Ds4 
+	BYTE		N23     Gn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE		N23     Ds4 
+	BYTE	W24
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE		N32     Dn4 
+	BYTE	W36
+	BYTE		N05     Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+// 036   ----------------------------------------
+	BYTE		N11     Cn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+// 037   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N32     Dn4 
+	BYTE	W36
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+// 038   ----------------------------------------
+	BYTE		N11     Gs3 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     As3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+// 039   ----------------------------------------
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Ds4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		N23     Ds4 
+	BYTE	W24
+	BYTE		        As3 
+	BYTE	W24
+// 040   ----------------------------------------
+	BYTE		N11     Ds4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Gs4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+// 041   ----------------------------------------
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		N32     Fn4 
+	BYTE	W48
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_5_B1
+SuperSmashBrosGourmetRace_5_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+SuperSmashBrosGourmetRace_6:
+	BYTE		VOL     127*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   123
+	BYTE		N11     Cn1   v060
+	BYTE		N11     En2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N11     En2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+// 001   ----------------------------------------
+SuperSmashBrosGourmetRace_6_001:
+	BYTE		N11     Cn1   v060
+	BYTE		N11     En2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE		N11     En2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N11     En2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE	PEND
+SuperSmashBrosGourmetRace_6_B1:
+// 002   ----------------------------------------
+	BYTE		N11     Cn1   v060
+	BYTE		N11     En2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+// 003   ----------------------------------------
+SuperSmashBrosGourmetRace_6_003:
+	BYTE		N11     Cn1   v060
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_003
+// 018   ----------------------------------------
+SuperSmashBrosGourmetRace_6_018:
+	BYTE		N11     Cn1   v060
+	BYTE		N17     En2 
+	BYTE	W12
+	BYTE		N11     Cs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Cs1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N17     En2 
+	BYTE	W12
+	BYTE		N11     Cs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Cs1 
+	BYTE	W12
+	BYTE	PEND
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_018
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_018
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_018
+// 022   ----------------------------------------
+SuperSmashBrosGourmetRace_6_022:
+	BYTE		N11     Cn1   v060
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE	PEND
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_022
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_022
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_022
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_018
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_018
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_018
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_018
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_022
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_022
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_022
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_022
+// 034   ----------------------------------------
+SuperSmashBrosGourmetRace_6_034:
+	BYTE		N11     Cn1   v060
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE	W24
+	BYTE		        Cn1 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE	W24
+	BYTE	PEND
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_034
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_034
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_034
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_034
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_034
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_034
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_034
+// 042   ----------------------------------------
+SuperSmashBrosGourmetRace_6_042:
+	BYTE		N11     Cn1   v060
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE		N11     Fs2 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE	PEND
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_042
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_042
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_042
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_042
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_042
+// 048   ----------------------------------------
+	BYTE		N11     Cn1   v060
+	BYTE		N11     Ds2 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE		N11     Ds2 
+	BYTE	W24
+	BYTE		        Cn1 
+	BYTE		N11     Ds2 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE		N11     Ds2 
+	BYTE	W24
+// 049   ----------------------------------------
+	BYTE		        Cn1 
+	BYTE		N11     Ds2 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE		N11     Ds2 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE		N11     Ds2 
+	BYTE	W24
+	BYTE		N02     Dn1 
+	BYTE		N11     En2 
+	BYTE	W03
+	BYTE		N02     Dn1 
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+	BYTE		N02   
+	BYTE	W03
+// 050   ----------------------------------------
+	BYTE		N11     Cn1 
+	BYTE		N11     En2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N11     En2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_6_001
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_6_B1
+SuperSmashBrosGourmetRace_6_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+SuperSmashBrosGourmetRace_7:
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   69
+	BYTE		VOL     126*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+SuperSmashBrosGourmetRace_7_B1:
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W84
+	BYTE		N05     Gn4   v060
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+// 042   ----------------------------------------
+	BYTE		N11     Ds4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+// 043   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE		N32     Dn4 
+	BYTE	W36
+	BYTE		N05     Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+// 044   ----------------------------------------
+	BYTE		N11     Cn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+// 045   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N32     Dn4 
+	BYTE	W36
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+// 046   ----------------------------------------
+	BYTE		N11     Gs3 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+// 047   ----------------------------------------
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_7_B1
+SuperSmashBrosGourmetRace_7_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+SuperSmashBrosGourmetRace_8:
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		VOL     80*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+SuperSmashBrosGourmetRace_8_B1:
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE		N11     Dn2   v060
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+// 049   ----------------------------------------
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W48
+// 050   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		VOL     80*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_8_B1
+SuperSmashBrosGourmetRace_8_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 9 (Midi-Chn.9) ****************//
+
+SuperSmashBrosGourmetRace_9:
+	BYTE		VOL     127*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   8
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+SuperSmashBrosGourmetRace_9_B1:
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE		N11     Dn5   v060
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W12
+	BYTE		        Gn5 
+	BYTE	W12
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W12
+	BYTE		        Gn5 
+	BYTE	W12
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W12
+// 049   ----------------------------------------
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        Fn5 
+	BYTE	W12
+	BYTE		        Gn5 
+	BYTE	W12
+	BYTE		        Cn6 
+	BYTE	W12
+	BYTE		        Bn5 
+	BYTE	W48
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_9_B1
+SuperSmashBrosGourmetRace_9_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 10 (Midi-Chn.12) ****************//
+
+SuperSmashBrosGourmetRace_10:
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   33
+	BYTE		VOL     101*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE		PAN     c_v+22
+	BYTE		N11     Gs2   v060
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W24
+// 001   ----------------------------------------
+SuperSmashBrosGourmetRace_10_001:
+	BYTE		N11     Ds2   v060
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W48
+	BYTE	PEND
+SuperSmashBrosGourmetRace_10_B1:
+// 002   ----------------------------------------
+SuperSmashBrosGourmetRace_10_002:
+	BYTE		N11     Cn2   v060
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_002
+// 004   ----------------------------------------
+SuperSmashBrosGourmetRace_10_004:
+	BYTE		N11     Fn2   v060
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_002
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_002
+// 008   ----------------------------------------
+	BYTE		N11     Gn1   v060
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Bn1 
+	BYTE	W24
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_002
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_002
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_002
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_004
+// 016   ----------------------------------------
+	BYTE		N11     Gn1   v060
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+// 017   ----------------------------------------
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W48
+// 018   ----------------------------------------
+SuperSmashBrosGourmetRace_10_018:
+	BYTE		N17     Fn1   v060
+	BYTE	W24
+	BYTE		N17   
+	BYTE	W24
+	BYTE		        Gs1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE	PEND
+// 019   ----------------------------------------
+SuperSmashBrosGourmetRace_10_019:
+	BYTE		N17     Ds2   v060
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE	PEND
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_018
+// 021   ----------------------------------------
+SuperSmashBrosGourmetRace_10_021:
+	BYTE		N17     Ds2   v060
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE	W24
+	BYTE		N44     Gn2 
+	BYTE	W48
+	BYTE	PEND
+// 022   ----------------------------------------
+SuperSmashBrosGourmetRace_10_022:
+	BYTE		N11     Gn1   v060
+	BYTE	W24
+	BYTE		        Bn1 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE	PEND
+// 023   ----------------------------------------
+SuperSmashBrosGourmetRace_10_023:
+	BYTE		N11     Cn2   v060
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE	PEND
+// 024   ----------------------------------------
+SuperSmashBrosGourmetRace_10_024:
+	BYTE		N11     Gn1   v060
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_023
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_018
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_019
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_018
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_021
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_022
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_023
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_024
+// 033   ----------------------------------------
+	BYTE		N11     Cn2   v060
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Bn1 
+	BYTE	W24
+// 034   ----------------------------------------
+SuperSmashBrosGourmetRace_10_034:
+	BYTE		N11     Ds2   v060
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE	PEND
+// 035   ----------------------------------------
+SuperSmashBrosGourmetRace_10_035:
+	BYTE		N11     Fn1   v060
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE		        Fn1 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+	BYTE	PEND
+// 036   ----------------------------------------
+SuperSmashBrosGourmetRace_10_036:
+	BYTE		N11     Cn2   v060
+	BYTE	W24
+	BYTE		        Ds1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Ds1 
+	BYTE	W24
+	BYTE	PEND
+// 037   ----------------------------------------
+SuperSmashBrosGourmetRace_10_037:
+	BYTE		N11     Ds1   v060
+	BYTE	W24
+	BYTE		        As1 
+	BYTE	W24
+	BYTE		        Ds1 
+	BYTE	W24
+	BYTE		        As1 
+	BYTE	W24
+	BYTE	PEND
+// 038   ----------------------------------------
+SuperSmashBrosGourmetRace_10_038:
+	BYTE		N11     Gs1   v060
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		        Gs1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE	PEND
+// 039   ----------------------------------------
+SuperSmashBrosGourmetRace_10_039:
+	BYTE		N11     Gn1   v060
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE	PEND
+// 040   ----------------------------------------
+	BYTE		        Gs1 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+	BYTE		        Gs1 
+	BYTE	W24
+	BYTE		        Ds2 
+	BYTE	W24
+// 041   ----------------------------------------
+	BYTE		        As1 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE	W24
+	BYTE		        As1 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE	W24
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_034
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_035
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_036
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_037
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_038
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_039
+// 048   ----------------------------------------
+	BYTE		N11     Dn2   v060
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W24
+// 049   ----------------------------------------
+	BYTE		N11   
+	BYTE	W24
+	BYTE		        Gn1 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W48
+// 050   ----------------------------------------
+	BYTE		        Gs2 
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE	W24
+	BYTE		N11   
+	BYTE	W24
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_10_001
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_10_B1
+SuperSmashBrosGourmetRace_10_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 11 (Midi-Chn.13) ****************//
+
+SuperSmashBrosGourmetRace_11:
+	BYTE	KEYSH   SuperSmashBrosGourmetRace_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   41
+	BYTE		VOL     123*SuperSmashBrosGourmetRace_mvl/mxv
+	BYTE		N23     Dn4   v060
+	BYTE		N23     Gn4 
+	BYTE	W24
+	BYTE		N06     Cn4 
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N06     Ds4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		N23     Cn3 
+	BYTE		N23     Gn3 
+	BYTE	W24
+// 001   ----------------------------------------
+SuperSmashBrosGourmetRace_11_001:
+	BYTE		N06     Gn3   v060
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N06     Ds4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N06     Dn4 
+	BYTE	W48
+	BYTE	PEND
+SuperSmashBrosGourmetRace_11_B1:
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE		N32     Fn4   v060
+	BYTE		N32     Gs4 
+	BYTE	W36
+	BYTE		N11     Ds4 
+	BYTE		N11     Gn4 
+	BYTE	W12
+	BYTE		N23     Dn4 
+	BYTE		N23     Fn4 
+	BYTE	W24
+	BYTE		N11     Ds4 
+	BYTE		N11     Gs4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE		N11     As4 
+	BYTE	W12
+// 031   ----------------------------------------
+	BYTE		        Gn4 
+	BYTE		N11     Cn5 
+	BYTE	W24
+	BYTE		        Ds4 
+	BYTE		N11     Gn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE		N11     Ds4 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE		N11     Cn4 
+	BYTE	W24
+// 032   ----------------------------------------
+	BYTE		        As3 
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		N05     As3 
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		N11     As3 
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N11     As3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE		N11     Gn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N11     As3 
+	BYTE	W12
+// 033   ----------------------------------------
+	BYTE		N68     Ds3 
+	BYTE		N68     Cn4 
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE		N05     Dn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+// 049   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		N23     Bn4 
+	BYTE	W48
+// 050   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE		N23     Gn4 
+	BYTE	W24
+	BYTE		N06     Cn4 
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N06     Ds4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		N23     Cn3 
+	BYTE		N23     Gn3 
+	BYTE	W24
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	SuperSmashBrosGourmetRace_11_001
+	BYTE	GoTo
+	 POIN2	SuperSmashBrosGourmetRace_11_B1
+SuperSmashBrosGourmetRace_11_B2:
+// 052   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+SuperSmashBrosGourmetRace:
+	BYTE	11	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	SuperSmashBrosGourmetRace_pri	// Priority
+	BYTE	SuperSmashBrosGourmetRace_rev	// Reverb.
+
+	POIN2	SuperSmashBrosGourmetRace_grp
+
+	POIN2	SuperSmashBrosGourmetRace_1
+	POIN2	SuperSmashBrosGourmetRace_2
+	POIN2	SuperSmashBrosGourmetRace_3
+	POIN2	SuperSmashBrosGourmetRace_4
+	POIN2	SuperSmashBrosGourmetRace_5
+	POIN2	SuperSmashBrosGourmetRace_6
+	POIN2	SuperSmashBrosGourmetRace_7
+	POIN2	SuperSmashBrosGourmetRace_8
+	POIN2	SuperSmashBrosGourmetRace_9
+	POIN2	SuperSmashBrosGourmetRace_10
+	POIN2	SuperSmashBrosGourmetRace_11
+
+	

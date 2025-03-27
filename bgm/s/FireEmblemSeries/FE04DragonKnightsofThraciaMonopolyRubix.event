@@ -1,0 +1,1869 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE04DragonKnightsofThraciaMonopolyRubix_grp  voicegroup000
+	#define	FE04DragonKnightsofThraciaMonopolyRubix_pri  0
+	#define	FE04DragonKnightsofThraciaMonopolyRubix_rev  0
+	#define	FE04DragonKnightsofThraciaMonopolyRubix_mvl  127
+	#define	FE04DragonKnightsofThraciaMonopolyRubix_key  0
+	#define	FE04DragonKnightsofThraciaMonopolyRubix_tbs  1
+	#define	FE04DragonKnightsofThraciaMonopolyRubix_exg  0
+	#define	FE04DragonKnightsofThraciaMonopolyRubix_cmp  1
+
+	// .rodata
+	//	FE04DragonKnightsofThraciaMonopolyRubix
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+FE04DragonKnightsofThraciaMonopolyRubix_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE04DragonKnightsofThraciaMonopolyRubix_key+0
+ BYTE   TEMPO   126*FE04DragonKnightsofThraciaMonopolyRubix_tbs/2
+ BYTE   PAN   c_v+0
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   MOD 0
+ BYTE   BEND   c_v+0
+ BYTE   W06
+ BYTE   VOICE   48
+ BYTE   PAN   c_v+16
+ BYTE   VOL   55*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N05  Bn2  v127
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   N21  Dn3
+ BYTE   W24
+ BYTE   N05  Cn3
+ BYTE   W08
+ BYTE   An2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   N21  En3
+ BYTE   W18
+// 001   ----------------------------------------
+ BYTE   W06
+ BYTE   N80  Dn3
+ BYTE   W90
+// 002   ----------------------------------------
+Label_0_567554:
+ BYTE   W06
+ BYTE   N05  Bn2  v127
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   N21  Dn3
+ BYTE   W24
+ BYTE   N05  Cn3
+ BYTE   W08
+ BYTE   An2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   N21  En3
+ BYTE   W18
+// 003   ----------------------------------------
+ BYTE   W06
+ BYTE   N80  Dn3
+ BYTE   W90
+// 004   ----------------------------------------
+Label_0_56756E:
+ BYTE   W06
+ BYTE   N21  Dn3  v127
+ BYTE   W24
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   En3
+ BYTE   W24
+ BYTE   N09  Cn3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W06
+ BYTE   PEND 
+// 005   ----------------------------------------
+ BYTE   W06
+ BYTE   N21  Dn3
+ BYTE   W24
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   N44  En3
+ BYTE   W42
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_56756E
+// 007   ----------------------------------------
+ BYTE   W06
+ BYTE   N21  Dn3  v127
+ BYTE   W24
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   En3
+ BYTE   W24
+ BYTE   Cn3
+ BYTE   W18
+// 008   ----------------------------------------
+ BYTE   W06
+ BYTE   N44  Fn3
+ BYTE   W48
+ BYTE   Cn4
+ BYTE   W42
+// 009   ----------------------------------------
+ BYTE   W06
+ BYTE   N21
+ BYTE   W24
+ BYTE   As3
+ BYTE   W24
+ BYTE   Gs3
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   W18
+// 010   ----------------------------------------
+ BYTE   W06
+ BYTE   N44
+ BYTE   W48
+ BYTE   Fn3
+ BYTE   W42
+// 011   ----------------------------------------
+ BYTE   W06
+ BYTE   Ds3
+ BYTE   W48
+ BYTE   Dn3
+ BYTE   W42
+// 012   ----------------------------------------
+ BYTE   W30
+ BYTE   VOICE   63
+ BYTE   PAN   c_v+6
+ BYTE   VOL   55*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N21  As2
+ BYTE   W24
+ BYTE   Ds3
+ BYTE   W24
+ BYTE   As3
+ BYTE   W18
+// 013   ----------------------------------------
+ BYTE   W06
+ BYTE   N03  Gs3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   N80  Fn3
+ BYTE   W66
+// 014   ----------------------------------------
+ BYTE   W30
+ BYTE   N21  As2
+ BYTE   W24
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   As3
+ BYTE   W18
+// 015   ----------------------------------------
+ BYTE   W06
+ BYTE   N03  Gs3
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   N32
+ BYTE   W48
+ BYTE   N03
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W06
+// 016   ----------------------------------------
+ BYTE   W06
+ BYTE   N44  Ds3
+ BYTE   W60
+ BYTE   N09
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   N03  Gn3
+ BYTE   W06
+// 017   ----------------------------------------
+ BYTE   W06
+ BYTE   N09
+ BYTE   W12
+ BYTE   N32  Gs3
+ BYTE   W48
+ BYTE   N09
+ BYTE   W12
+ BYTE   As3
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W06
+// 018   ----------------------------------------
+ BYTE   W06
+ BYTE   As3
+ BYTE   W12
+ BYTE   N32  Fn3
+ BYTE   W48
+ BYTE   N09
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Gs3
+ BYTE   W06
+// 019   ----------------------------------------
+ BYTE   W06
+ BYTE   N03
+ BYTE   W12
+ BYTE   N32  Gn3
+ BYTE   W60
+ BYTE   N21  Gn2
+ BYTE   W18
+// 020   ----------------------------------------
+ BYTE   W06
+ BYTE   N30  Ds3
+ BYTE   W48
+ BYTE   N15  Fn3
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   W18
+// 021   ----------------------------------------
+ BYTE   W06
+ BYTE   N07
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   N30  Cn3
+ BYTE   W48
+ BYTE   N07
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W06
+// 022   ----------------------------------------
+ BYTE   W06
+ BYTE   TIE  Ds3
+ BYTE   W90
+// 023   ----------------------------------------
+ BYTE   W66
+ BYTE   EOT
+ BYTE   W12
+ BYTE   N12
+ BYTE   W18
+// 024   ----------------------------------------
+ BYTE   W06
+ BYTE   TIE  Dn3
+ BYTE   W90
+// 025   ----------------------------------------
+ BYTE   W66
+ BYTE   EOT
+ BYTE   W12
+ BYTE   N24  Cn3
+ BYTE   W18
+// 026   ----------------------------------------
+ BYTE   W06
+ BYTE   VOICE   48
+ BYTE   PAN   c_v+16
+ BYTE   VOL   55*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N05  Bn2
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   Bn2
+ BYTE   W08
+ BYTE   N21  Dn3
+ BYTE   W24
+ BYTE   N05  Cn3
+ BYTE   W08
+ BYTE   An2
+ BYTE   W08
+ BYTE   Cn3
+ BYTE   W08
+ BYTE   N21  En3
+ BYTE   W18
+// 027   ----------------------------------------
+ BYTE   W06
+ BYTE   N80  Dn3
+ BYTE   W84
+ BYTE   GoTo
+  POIN2 Label_0_567554
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+FE04DragonKnightsofThraciaMonopolyRubix_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE04DragonKnightsofThraciaMonopolyRubix_key+0
+ BYTE   PAN   c_v+0
+ BYTE   VOL   8*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   MOD 0
+ BYTE   BEND   c_v+0
+ BYTE   W06
+ BYTE   VOICE   20
+ BYTE   PAN   c_v-14
+ BYTE   VOL   45*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N05  Gn2  v127
+ BYTE   W08
+ BYTE   Dn2
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   N21  Bn2
+ BYTE   W24
+ BYTE   N05  An2
+ BYTE   W08
+ BYTE   Fn2
+ BYTE   W08
+ BYTE   An2
+ BYTE   W08
+ BYTE   N21  Cn3
+ BYTE   W18
+// 001   ----------------------------------------
+ BYTE   W06
+ BYTE   N80  Bn2
+ BYTE   W90
+// 002   ----------------------------------------
+Label_1_5671E2:
+ BYTE   W06
+ BYTE   N05  Gn2  v127
+ BYTE   W08
+ BYTE   Dn2
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   N21  Bn2
+ BYTE   W24
+ BYTE   N05  An2
+ BYTE   W08
+ BYTE   Fn2
+ BYTE   W08
+ BYTE   An2
+ BYTE   W08
+ BYTE   N21
+ BYTE   W18
+// 003   ----------------------------------------
+ BYTE   W06
+ BYTE   N80  Bn2
+ BYTE   W90
+// 004   ----------------------------------------
+Label_1_5671FB:
+ BYTE   W06
+ BYTE   N21  As2  v127
+ BYTE   W24
+ BYTE   Dn3
+ BYTE   W24
+ BYTE   Cn3
+ BYTE   W24
+ BYTE   N09  Gn2
+ BYTE   W12
+ BYTE   As2
+ BYTE   W06
+ BYTE   PEND 
+// 005   ----------------------------------------
+ BYTE   W06
+ BYTE   N21
+ BYTE   W24
+ BYTE   N21
+ BYTE   W24
+ BYTE   N44  Cn3
+ BYTE   W42
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_5671FB
+// 007   ----------------------------------------
+ BYTE   W06
+ BYTE   N21  As2  v127
+ BYTE   W24
+ BYTE   N21
+ BYTE   W24
+ BYTE   Cn3
+ BYTE   W24
+ BYTE   Gn2
+ BYTE   W18
+// 008   ----------------------------------------
+ BYTE   W06
+ BYTE   N44  Cn3
+ BYTE   W48
+ BYTE   Fn3
+ BYTE   W42
+// 009   ----------------------------------------
+ BYTE   W06
+ BYTE   N21  Ds3
+ BYTE   W24
+ BYTE   N21
+ BYTE   W24
+ BYTE   N21
+ BYTE   W24
+ BYTE   N21
+ BYTE   W18
+// 010   ----------------------------------------
+ BYTE   W06
+ BYTE   N44  Cn3
+ BYTE   W48
+ BYTE   N44
+ BYTE   W42
+// 011   ----------------------------------------
+ BYTE   W06
+ BYTE   Gs2
+ BYTE   W48
+ BYTE   N44
+ BYTE   W42
+// 012   ----------------------------------------
+ BYTE   W06
+ BYTE   VOICE   60
+ BYTE   PAN   c_v+31
+ BYTE   VOL   38*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W90
+// 013   ----------------------------------------
+ BYTE   W78
+ BYTE   N21  Gn3
+ BYTE   W18
+// 014   ----------------------------------------
+ BYTE   W06
+ BYTE   N44  Fn3
+ BYTE   W90
+// 015   ----------------------------------------
+ BYTE   W06
+ BYTE   N21  Gn3
+ BYTE   W90
+// 016   ----------------------------------------
+ BYTE   W30
+ BYTE   Gn2
+ BYTE   W24
+ BYTE   Cn3
+ BYTE   W24
+ BYTE   Dn3
+ BYTE   W18
+// 017   ----------------------------------------
+ BYTE   W06
+ BYTE   N44  Ds3
+ BYTE   W48
+ BYTE   N21  Fn3
+ BYTE   W24
+ BYTE   Ds3
+ BYTE   W18
+// 018   ----------------------------------------
+ BYTE   W06
+ BYTE   N44  Dn3
+ BYTE   W48
+ BYTE   As2
+ BYTE   W42
+// 019   ----------------------------------------
+ BYTE   W06
+ BYTE   N68  Ds3
+ BYTE   W90
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   W06
+ BYTE   N08  Gn3
+ BYTE   W08
+ BYTE   Ds3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   N18  As3
+ BYTE   W24
+ BYTE   N08  An3
+ BYTE   W08
+ BYTE   Fn3
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   N18  Cn4
+ BYTE   W18
+// 023   ----------------------------------------
+ BYTE   W06
+ BYTE   N08  As3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   As3
+ BYTE   W08
+ BYTE   N36  Ds4
+ BYTE   W48
+ BYTE   N09
+ BYTE   W18
+// 024   ----------------------------------------
+ BYTE   W06
+ BYTE   N72
+ BYTE   W90
+// 025   ----------------------------------------
+ BYTE   W06
+ BYTE   N54  Dn4
+ BYTE   W72
+ BYTE   N24  Cn4
+ BYTE   W18
+// 026   ----------------------------------------
+ BYTE   W06
+ BYTE   VOICE   20
+ BYTE   PAN   c_v-14
+ BYTE   VOL   45*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N05  Gn2
+ BYTE   W08
+ BYTE   Dn2
+ BYTE   W08
+ BYTE   Gn2
+ BYTE   W08
+ BYTE   N21  Bn2
+ BYTE   W24
+ BYTE   N05  An2
+ BYTE   W08
+ BYTE   Fn2
+ BYTE   W08
+ BYTE   An2
+ BYTE   W08
+ BYTE   N21  Cn3
+ BYTE   W18
+// 027   ----------------------------------------
+ BYTE   W06
+ BYTE   N80  Bn2
+ BYTE   W84
+ BYTE   GoTo
+  POIN2 Label_1_5671E2
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+FE04DragonKnightsofThraciaMonopolyRubix_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE04DragonKnightsofThraciaMonopolyRubix_key+0
+ BYTE   PAN   c_v+0
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   MOD 0
+ BYTE   BEND   c_v+0
+ BYTE   W06
+ BYTE   VOICE   18
+ BYTE   PAN   c_v-44
+ BYTE   VOL   26*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N08  Bn3  v127
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   Bn3
+ BYTE   W08
+ BYTE   N16  Dn4
+ BYTE   W24
+ BYTE   N08  Cn4
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+ BYTE   N16  En4
+ BYTE   W18
+// 001   ----------------------------------------
+ BYTE   W06
+ BYTE   N84  Dn4
+ BYTE   W90
+// 002   ----------------------------------------
+Label_2_566D4A:
+ BYTE   W06
+ BYTE   N08  Bn3  v127
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   Bn3
+ BYTE   W08
+ BYTE   N16  Dn4
+ BYTE   W24
+ BYTE   N08  Cn4
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+ BYTE   N16  En4
+ BYTE   W18
+// 003   ----------------------------------------
+ BYTE   W06
+ BYTE   N84  Dn4
+ BYTE   W90
+// 004   ----------------------------------------
+Label_2_566D64:
+ BYTE   W06
+ BYTE   N24  Dn4  v127
+ BYTE   W24
+ BYTE   Fn4
+ BYTE   W24
+ BYTE   En4
+ BYTE   W24
+ BYTE   N12  Cn4
+ BYTE   W12
+ BYTE   En4
+ BYTE   W06
+ BYTE   PEND 
+// 005   ----------------------------------------
+ BYTE   W06
+ BYTE   N24  Dn4
+ BYTE   W24
+ BYTE   Fn4
+ BYTE   W24
+ BYTE   N48  En4
+ BYTE   W42
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_566D64
+// 007   ----------------------------------------
+ BYTE   W06
+ BYTE   N24  Dn4  v127
+ BYTE   W24
+ BYTE   Fn4
+ BYTE   W24
+ BYTE   En4
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   W18
+// 008   ----------------------------------------
+ BYTE   W06
+ BYTE   Fn4
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N24  Cn5
+ BYTE   W36
+ BYTE   N12
+ BYTE   W06
+// 009   ----------------------------------------
+ BYTE   W06
+ BYTE   N18
+ BYTE   W24
+ BYTE   N24  As4
+ BYTE   W24
+ BYTE   N18  Gs4
+ BYTE   W24
+ BYTE   N24  Gn4
+ BYTE   W18
+// 010   ----------------------------------------
+ BYTE   W06
+ BYTE   N48
+ BYTE   W48
+ BYTE   Fn4
+ BYTE   W42
+// 011   ----------------------------------------
+ BYTE   W06
+ BYTE   Ds4
+ BYTE   W48
+ BYTE   Dn4
+ BYTE   W42
+// 012   ----------------------------------------
+ BYTE   W06
+ BYTE   VOICE   57
+ BYTE   PAN   c_v-44
+ BYTE   VOL   33*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N04  Ds2
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W06
+// 013   ----------------------------------------
+ BYTE   W06
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W06
+// 014   ----------------------------------------
+ BYTE   W06
+ BYTE   Dn2
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W06
+// 015   ----------------------------------------
+ BYTE   W06
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W06
+// 016   ----------------------------------------
+ BYTE   W06
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W06
+// 017   ----------------------------------------
+ BYTE   W06
+ BYTE   Fn2
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W06
+// 018   ----------------------------------------
+ BYTE   W06
+ BYTE   As1
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W06
+// 019   ----------------------------------------
+ BYTE   W06
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   N04
+ BYTE   W12
+ BYTE   N04
+ BYTE   W24
+ BYTE   PAN   c_v-24
+ BYTE   VOL   48*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N18  Gn2
+ BYTE   W18
+// 020   ----------------------------------------
+ BYTE   W06
+ BYTE   N36
+ BYTE   W48
+ BYTE   N18
+ BYTE   W24
+ BYTE   As2
+ BYTE   W18
+// 021   ----------------------------------------
+ BYTE   W06
+ BYTE   Gs2
+ BYTE   W24
+ BYTE   N18
+ BYTE   W24
+ BYTE   N18
+ BYTE   W24
+ BYTE   N18
+ BYTE   W18
+// 022   ----------------------------------------
+ BYTE   W06
+ BYTE   TIE  Gn2
+ BYTE   W90
+// 023   ----------------------------------------
+ BYTE   W66
+ BYTE   EOT
+ BYTE   W12
+ BYTE   N12
+ BYTE   W18
+// 024   ----------------------------------------
+ BYTE   W06
+ BYTE   TIE  Gs2
+ BYTE   W90
+// 025   ----------------------------------------
+ BYTE   W66
+ BYTE   EOT
+ BYTE   W12
+ BYTE   N24  An2
+ BYTE   W18
+// 026   ----------------------------------------
+ BYTE   W06
+ BYTE   VOICE   18
+ BYTE   PAN   c_v-44
+ BYTE   VOL   26*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N08  Bn3
+ BYTE   W08
+ BYTE   Gn3
+ BYTE   W08
+ BYTE   Bn3
+ BYTE   W08
+ BYTE   N16  Dn4
+ BYTE   W24
+ BYTE   N08  Cn4
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   W08
+ BYTE   N16  En4
+ BYTE   W18
+// 027   ----------------------------------------
+ BYTE   W06
+ BYTE   N84  Dn4
+ BYTE   W84
+ BYTE   GoTo
+  POIN2 Label_2_566D4A
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+FE04DragonKnightsofThraciaMonopolyRubix_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE04DragonKnightsofThraciaMonopolyRubix_key+0
+ BYTE   PAN   c_v+0
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   MOD 0
+ BYTE   BEND   c_v+0
+ BYTE   W06
+ BYTE   VOICE   45
+ BYTE   PAN   c_v-19
+ BYTE   VOL   45*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N10  Gn2  v127
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W06
+// 001   ----------------------------------------
+ BYTE   W06
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W06
+// 002   ----------------------------------------
+Label_3_566E9C:
+ BYTE   W06
+ BYTE   N10  Gn2  v127
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W06
+// 003   ----------------------------------------
+ BYTE   W06
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   An2
+ BYTE   W06
+// 004   ----------------------------------------
+Label_3_566EB8:
+ BYTE   W06
+ BYTE   N10  As2  v127
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W06
+ BYTE   PEND 
+// 005   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_566EB8
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_566EB8
+// 007   ----------------------------------------
+ BYTE   W06
+ BYTE   N10  As2  v127
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W06
+// 008   ----------------------------------------
+Label_3_566EE1:
+ BYTE   W06
+ BYTE   N10  An2  v127
+ BYTE   W12
+ BYTE   N10
+ BYTE   W36
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W30
+ BYTE   PEND 
+// 009   ----------------------------------------
+ BYTE   W06
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   N10
+ BYTE   W36
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W30
+// 010   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_566EE1
+// 011   ----------------------------------------
+ BYTE   W06
+ BYTE   N10  As2  v127
+ BYTE   W12
+ BYTE   N10
+ BYTE   W36
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W06
+// 012   ----------------------------------------
+Label_3_566F08:
+ BYTE   W06
+ BYTE   N10  Ds2  v127
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W06
+ BYTE   PEND 
+// 013   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_566F08
+// 014   ----------------------------------------
+ BYTE   W06
+ BYTE   N10  Dn2  v127
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W06
+// 015   ----------------------------------------
+ BYTE   W06
+ BYTE   Ds2
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W06
+// 016   ----------------------------------------
+Label_3_566F39:
+ BYTE   W06
+ BYTE   N10  Cn2  v127
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W06
+ BYTE   PEND 
+// 017   ----------------------------------------
+ BYTE   W06
+ BYTE   Fn2
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W06
+// 018   ----------------------------------------
+ BYTE   W06
+ BYTE   As1
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W06
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_566F08
+// 020   ----------------------------------------
+ BYTE   W06
+ BYTE   N10  Cs2  v127
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W06
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_566F39
+// 022   ----------------------------------------
+ BYTE   W06
+ BYTE   N21  As1  v127
+ BYTE   W90
+// 023   ----------------------------------------
+ BYTE   W78
+ BYTE   N10
+ BYTE   W18
+// 024   ----------------------------------------
+ BYTE   W06
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W36
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W30
+// 025   ----------------------------------------
+ BYTE   W06
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W36
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N21  Dn2
+ BYTE   W18
+// 026   ----------------------------------------
+ BYTE   W06
+ BYTE   VOICE   45
+ BYTE   PAN   c_v-19
+ BYTE   VOL   45*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N10  Gn2
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   N10
+ BYTE   W06
+// 027   ----------------------------------------
+ BYTE   W06
+ BYTE   N10
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W12
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   N10
+ BYTE   W24
+ BYTE   GoTo
+  POIN2 Label_3_566E9C
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+FE04DragonKnightsofThraciaMonopolyRubix_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE04DragonKnightsofThraciaMonopolyRubix_key+0
+ BYTE   PAN   c_v+0
+ BYTE   VOL   13*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   MOD 0
+ BYTE   BEND   c_v+0
+ BYTE   W06
+ BYTE   VOICE   47
+ BYTE   PAN   c_v+26
+ BYTE   VOL   50*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N12  Gn1  v127
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W06
+// 001   ----------------------------------------
+Label_4_0137AC3B:
+ BYTE   W06
+ BYTE   N12  Gn1  v127
+ BYTE   W36
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   Dn1
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W06
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_4_0137AC49:
+ BYTE   W06
+ BYTE   N12  Gn1  v127
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W06
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0137AC3B
+// 004   ----------------------------------------
+Label_4_0137AC59:
+ BYTE   W06
+ BYTE   N12  As1  v127
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W30
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_4_0137AC65:
+ BYTE   W06
+ BYTE   N12  As1  v127
+ BYTE   W12
+ BYTE   N12
+ BYTE   W48
+ BYTE   N12
+ BYTE   W12
+ BYTE   Fn1
+ BYTE   W12
+ BYTE   As1
+ BYTE   W06
+ BYTE   PEND 
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0137AC59
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0137AC65
+// 008   ----------------------------------------
+ BYTE   W06
+ BYTE   N12  An1  v127
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W30
+// 009   ----------------------------------------
+ BYTE   W06
+ BYTE   Gs1
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W30
+// 010   ----------------------------------------
+ BYTE   W06
+ BYTE   Dn1
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W06
+// 011   ----------------------------------------
+ BYTE   W06
+ BYTE   As1
+ BYTE   W12
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   Fn1
+ BYTE   W12
+ BYTE   As1
+ BYTE   W06
+// 012   ----------------------------------------
+ BYTE   W06
+ BYTE   VOICE   48
+ BYTE   PAN   c_v-9
+ BYTE   VOL   43*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N96  Ds1
+ BYTE   W30
+ BYTE   VOL   36*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   30*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   24*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   17*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   11*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+// 013   ----------------------------------------
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W78
+ BYTE   VOL   43*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N24
+ BYTE   W18
+// 014   ----------------------------------------
+ BYTE   W06
+ BYTE   VOL   43*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N96  Dn1
+ BYTE   W30
+ BYTE   VOL   36*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   30*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   24*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   17*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   11*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+// 015   ----------------------------------------
+Label_4_0137ACE8:
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   43*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N96  Ds1  v127
+ BYTE   W30
+ BYTE   VOL   36*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   30*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   24*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   17*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   11*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   PEND 
+// 016   ----------------------------------------
+ BYTE   FnM1
+ BYTE   W06
+ BYTE   En5
+ BYTE   N96  Cn1
+ BYTE   W30
+ BYTE   VOL   36*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   30*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   24*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   17*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   11*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+// 017   ----------------------------------------
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   43*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N96  Fn1
+ BYTE   W30
+ BYTE   VOL   36*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   30*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   24*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   17*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   11*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+// 018   ----------------------------------------
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   43*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N96  As1
+ BYTE   W30
+ BYTE   VOL   36*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   30*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   24*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   17*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   11*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0137ACE8
+// 020   ----------------------------------------
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   43*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N96  Dn1  v127
+ BYTE   W30
+ BYTE   VOL   35*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   26*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   18*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   10*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+// 021   ----------------------------------------
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   43*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N96  Cn1
+ BYTE   W30
+ BYTE   VOL   35*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   26*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   18*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   10*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+// 022   ----------------------------------------
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   43*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   TIE  As1
+ BYTE   W30
+ BYTE   VOL   36*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   30*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   24*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   17*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   11*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+// 023   ----------------------------------------
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W48
+ BYTE   EOT
+ BYTE   W24
+ BYTE   VOL   58*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N12
+ BYTE   W18
+// 024   ----------------------------------------
+ BYTE   W06
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W36
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W30
+// 025   ----------------------------------------
+ BYTE   W06
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W36
+ BYTE   N06
+ BYTE   W12
+ BYTE   N06
+ BYTE   W12
+ BYTE   N24  Dn2
+ BYTE   W18
+// 026   ----------------------------------------
+ BYTE   W06
+ BYTE   VOICE   47
+ BYTE   PAN   c_v+26
+ BYTE   VOL   50*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N12  Gn1
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W06
+// 027   ----------------------------------------
+ BYTE   W06
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   Dn1
+ BYTE   W12
+ BYTE   GoTo
+  POIN2 Label_4_0137AC49
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+FE04DragonKnightsofThraciaMonopolyRubix_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   FE04DragonKnightsofThraciaMonopolyRubix_key+0
+ BYTE   VOICE   122
+ BYTE   MOD 0
+ BYTE   VOL   13*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   BEND   c_v+0
+ BYTE   W06
+ BYTE   VOL   50*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   PAN   c_v+26
+ BYTE   VOL   36*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   N12  Dn1  v127
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W06
+// 001   ----------------------------------------
+Label_5_0137AAC9:
+ BYTE   W06
+ BYTE   N12  Dn1  v127
+ BYTE   W36
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   As1
+ BYTE   W12
+ BYTE   Dn1
+ BYTE   W06
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_5_0137AAD7:
+ BYTE   W06
+ BYTE   N12  Dn1  v127
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W06
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_5_0137AAC9
+// 004   ----------------------------------------
+Label_5_0137AAE7:
+ BYTE   W06
+ BYTE   N12  Dn1  v127
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W30
+ BYTE   PEND 
+// 005   ----------------------------------------
+Label_5_0137AAF3:
+ BYTE   W06
+ BYTE   N12  Dn1  v127
+ BYTE   W12
+ BYTE   N12
+ BYTE   W48
+ BYTE   N12
+ BYTE   W12
+ BYTE   Gn1
+ BYTE   W12
+ BYTE   Dn1
+ BYTE   W06
+ BYTE   PEND 
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_5_0137AAE7
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_5_0137AAF3
+// 008   ----------------------------------------
+Label_5_0137AB0B:
+ BYTE   W06
+ BYTE   N12  Gn1  v127
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W30
+ BYTE   PEND 
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_5_0137AB0B
+// 010   ----------------------------------------
+ BYTE   W06
+ BYTE   N12  Gn1  v127
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W06
+// 011   ----------------------------------------
+ BYTE   W06
+ BYTE   Dn1
+ BYTE   W12
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   As1
+ BYTE   W12
+ BYTE   Dn1
+ BYTE   W06
+// 012   ----------------------------------------
+ BYTE   W06
+ BYTE   VOL   43*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   PAN   c_v-9
+ BYTE   W90
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   W96
+// 021   ----------------------------------------
+ BYTE   W96
+// 022   ----------------------------------------
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W72
+ BYTE   VOL   5*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   58*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   W18
+// 024   ----------------------------------------
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W96
+// 026   ----------------------------------------
+ BYTE   W06
+ BYTE   VOL   50*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   PAN   c_v+26
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W12
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W06
+// 027   ----------------------------------------
+ BYTE   W06
+ BYTE   N12
+ BYTE   W36
+ BYTE   N12
+ BYTE   W24
+ BYTE   N12
+ BYTE   W12
+ BYTE   As1
+ BYTE   W12
+ BYTE   GoTo
+  POIN2 Label_5_0137AAD7
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+FE04DragonKnightsofThraciaMonopolyRubix_007:
+// 000   ----------------------------------------
+ BYTE   VOL   72*FE04DragonKnightsofThraciaMonopolyRubix_mvl/mxv
+ BYTE   KEYSH   FE04DragonKnightsofThraciaMonopolyRubix_key+0
+ BYTE   VOICE   127
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+Label_6_0137AE08:
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+Label_6_0137AE12:
+ BYTE   W06
+ BYTE   N04  Ds1  v127
+ BYTE   W36
+ BYTE   N01
+ BYTE   W54
+ BYTE   PEND 
+// 013   ----------------------------------------
+Label_6_0137AE1A:
+ BYTE   W06
+ BYTE   N04  Ds1  v127
+ BYTE   W36
+ BYTE   N01  Ds1  v100
+ BYTE   W12
+ BYTE   Ds1  v127
+ BYTE   W12
+ BYTE   N01
+ BYTE   W30
+ BYTE   PEND 
+// 014   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0137AE12
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0137AE1A
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0137AE12
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0137AE1A
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0137AE12
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0137AE1A
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0137AE12
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_6_0137AE1A
+// 022   ----------------------------------------
+ BYTE   W96
+// 023   ----------------------------------------
+ BYTE   W96
+// 024   ----------------------------------------
+ BYTE   W96
+// 025   ----------------------------------------
+ BYTE   W96
+// 026   ----------------------------------------
+ BYTE   W96
+// 027   ----------------------------------------
+ BYTE   W90
+ BYTE   GoTo
+  POIN2 Label_6_0137AE08
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE04DragonKnightsofThraciaMonopolyRubix:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE04DragonKnightsofThraciaMonopolyRubix_pri	// Priority
+	BYTE	FE04DragonKnightsofThraciaMonopolyRubix_rev	// Reverb.
+    
+	POIN2	FE04DragonKnightsofThraciaMonopolyRubix_grp
+    
+	POIN2	FE04DragonKnightsofThraciaMonopolyRubix_001
+	POIN2	FE04DragonKnightsofThraciaMonopolyRubix_002
+	POIN2	FE04DragonKnightsofThraciaMonopolyRubix_003
+	POIN2	FE04DragonKnightsofThraciaMonopolyRubix_004
+	POIN2	FE04DragonKnightsofThraciaMonopolyRubix_005
+	POIN2	FE04DragonKnightsofThraciaMonopolyRubix_006
+	POIN2	FE04DragonKnightsofThraciaMonopolyRubix_007
+
+	

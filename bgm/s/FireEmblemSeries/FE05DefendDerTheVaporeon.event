@@ -1,0 +1,595 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE05DefendDerTheVaporeon_grp  voicegroup000
+	#define	FE05DefendDerTheVaporeon_pri  0
+	#define	FE05DefendDerTheVaporeon_rev  0
+	#define	FE05DefendDerTheVaporeon_mvl  127
+	#define	FE05DefendDerTheVaporeon_key  0
+	#define	FE05DefendDerTheVaporeon_tbs  1
+	#define	FE05DefendDerTheVaporeon_exg  0
+	#define	FE05DefendDerTheVaporeon_cmp  1
+
+	// .rodata
+	//	FE05DefendDerTheVaporeon
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.3) ****************//
+
+FE05DefendDerTheVaporeon_1:
+	BYTE	KEYSH   FE05DefendDerTheVaporeon_key+0
+FE05DefendDerTheVaporeon_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   80*FE05DefendDerTheVaporeon_tbs/2
+	BYTE		VOICE   30
+	BYTE		VOL     63*FE05DefendDerTheVaporeon_mvl/mxv
+	BYTE	W03
+	BYTE		PAN     c_v-25
+	BYTE	W01
+	BYTE		N05     An2   v124
+	BYTE	W06
+	BYTE		N02     Bn2   v080
+	BYTE	W03
+	BYTE		N01     Cn3   v076
+	BYTE	W03
+	BYTE		N04     An2   v116
+	BYTE	W06
+	BYTE		        En3   v084
+	BYTE	W06
+	BYTE		N05     An2   v127
+	BYTE	W06
+	BYTE		N02     Bn2   v076
+	BYTE	W03
+	BYTE		N01     Cn3   v072
+	BYTE	W03
+	BYTE		N02     Dn3   v124
+	BYTE	W03
+	BYTE		N01     Cn3   v100
+	BYTE	W03
+	BYTE		        Bn2   v124
+	BYTE	W06
+	BYTE		N05     An2   v127
+	BYTE	W06
+	BYTE		N02     Bn2   v072
+	BYTE	W03
+	BYTE		N01     Cn3   v076
+	BYTE	W03
+	BYTE		N04     An2   v116
+	BYTE	W06
+	BYTE		        En3   v076
+	BYTE	W06
+	BYTE		N05     An2   v124
+	BYTE	W06
+	BYTE		N02     Bn2   v076
+	BYTE	W03
+	BYTE		N01     Cn3   v084
+	BYTE	W03
+	BYTE		N04     Dn3   v116
+	BYTE	W06
+	BYTE		N03     En3   v076
+	BYTE	W02
+// 001   ----------------------------------------
+	BYTE	W04
+	BYTE		N05     Bn2   v124
+	BYTE	W06
+	BYTE		N02     Cs3   v092
+	BYTE	W03
+	BYTE		N01     Dn3   v084
+	BYTE	W03
+	BYTE		N04     Cn3   v096
+	BYTE	W06
+	BYTE		N03     Gn3   v108
+	BYTE	W06
+	BYTE		N05     Cs3   v116
+	BYTE	W06
+	BYTE		N02     Ds3   v088
+	BYTE	W03
+	BYTE		N01     En3   v068
+	BYTE	W03
+	BYTE		N04     Dn3   v104
+	BYTE	W06
+	BYTE		N03     An3   v116
+	BYTE	W06
+	BYTE		N05     Cs3 
+	BYTE	W06
+	BYTE		N02     Ds3   v096
+	BYTE	W03
+	BYTE		N01     En3   v104
+	BYTE	W03
+	BYTE		N04     Cn3   v108
+	BYTE	W06
+	BYTE		N02     Gn3 
+	BYTE	W06
+	BYTE		N05     Bn2 
+	BYTE	W06
+	BYTE		N02     Dn3   v084
+	BYTE	W03
+	BYTE		N01     Fs3   v120
+	BYTE	W03
+	BYTE		N04     Fn3   v104
+	BYTE	W06
+	BYTE		        Gs2   v120
+	BYTE	W02
+	BYTE	GoTo
+	 POIN2	FE05DefendDerTheVaporeon_1_B1
+FE05DefendDerTheVaporeon_1_B2:
+// 002   ----------------------------------------
+	BYTE	W02
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.4) ****************//
+
+FE05DefendDerTheVaporeon_2:
+	BYTE	KEYSH   FE05DefendDerTheVaporeon_key+0
+FE05DefendDerTheVaporeon_2_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   57
+	BYTE		VOL     64*FE05DefendDerTheVaporeon_mvl/mxv
+	BYTE	W03
+	BYTE		VOICE   57
+	BYTE		PAN     c_v+34
+	BYTE	W24
+	BYTE		N05     En2   v124
+	BYTE	W06
+	BYTE		        An2 
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE	W06
+	BYTE		N02     En2   v112
+	BYTE	W03
+	BYTE		        Gs2   v116
+	BYTE	W03
+	BYTE		N07     An2   v092
+	BYTE	W12
+	BYTE		N08     As2   v096
+	BYTE	W12
+	BYTE		        Bn2   v092
+	BYTE	W12
+	BYTE		N09     Cn3   v084
+	BYTE	W09
+// 001   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	FE05DefendDerTheVaporeon_2_B1
+FE05DefendDerTheVaporeon_2_B2:
+// 002   ----------------------------------------
+	BYTE	W02
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.6) ****************//
+
+FE05DefendDerTheVaporeon_3:
+	BYTE	KEYSH   FE05DefendDerTheVaporeon_key+0
+FE05DefendDerTheVaporeon_3_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   109
+	BYTE		VOL     63*FE05DefendDerTheVaporeon_mvl/mxv
+	BYTE	W03
+	BYTE		PAN     c_v-25
+	BYTE	W01
+	BYTE		N05     An3   v124
+	BYTE	W06
+	BYTE		N02     Bn3   v080
+	BYTE	W03
+	BYTE		N01     Cn4   v076
+	BYTE	W03
+	BYTE		N04     An3   v116
+	BYTE	W06
+	BYTE		        En4   v084
+	BYTE	W06
+	BYTE		N05     An3   v127
+	BYTE	W06
+	BYTE		N02     Bn3   v076
+	BYTE	W03
+	BYTE		N01     Cn4   v072
+	BYTE	W03
+	BYTE		N02     Dn4   v124
+	BYTE	W03
+	BYTE		N01     Cn4   v100
+	BYTE	W03
+	BYTE		        Bn3   v124
+	BYTE	W06
+	BYTE		N05     An3   v127
+	BYTE	W06
+	BYTE		N02     Bn3   v072
+	BYTE	W03
+	BYTE		N01     Cn4   v076
+	BYTE	W03
+	BYTE		N04     An3   v116
+	BYTE	W06
+	BYTE		        En4   v076
+	BYTE	W06
+	BYTE		N05     An3   v124
+	BYTE	W06
+	BYTE		N02     Bn3   v076
+	BYTE	W03
+	BYTE		N01     Cn4   v084
+	BYTE	W03
+	BYTE		N04     Dn4   v116
+	BYTE	W06
+	BYTE		N03     En4   v076
+	BYTE	W02
+// 001   ----------------------------------------
+	BYTE	W04
+	BYTE		N05     Bn3   v124
+	BYTE	W06
+	BYTE		N02     Cs4   v092
+	BYTE	W03
+	BYTE		N01     Dn4   v084
+	BYTE	W03
+	BYTE		N04     Cn4   v096
+	BYTE	W06
+	BYTE		N03     Gn4   v108
+	BYTE	W06
+	BYTE		N05     Cs4   v116
+	BYTE	W06
+	BYTE		N02     Ds4   v088
+	BYTE	W03
+	BYTE		N01     En4   v068
+	BYTE	W03
+	BYTE		N04     Dn4   v104
+	BYTE	W06
+	BYTE		N03     An4   v116
+	BYTE	W06
+	BYTE		N05     Cs4 
+	BYTE	W06
+	BYTE		N02     Ds4   v096
+	BYTE	W03
+	BYTE		N01     En4   v104
+	BYTE	W03
+	BYTE		N04     Cn4   v108
+	BYTE	W06
+	BYTE		N02     Gn4 
+	BYTE	W06
+	BYTE		N05     Bn3 
+	BYTE	W06
+	BYTE		N02     Dn4   v084
+	BYTE	W03
+	BYTE		N01     Fs4   v120
+	BYTE	W03
+	BYTE		N04     Fn4   v104
+	BYTE	W06
+	BYTE		        Gs3   v120
+	BYTE	W02
+	BYTE	GoTo
+	 POIN2	FE05DefendDerTheVaporeon_3_B1
+FE05DefendDerTheVaporeon_3_B2:
+// 002   ----------------------------------------
+	BYTE	W02
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.7) ****************//
+
+FE05DefendDerTheVaporeon_4:
+	BYTE	KEYSH   FE05DefendDerTheVaporeon_key+0
+FE05DefendDerTheVaporeon_4_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   30
+	BYTE		VOL     64*FE05DefendDerTheVaporeon_mvl/mxv
+	BYTE	W03
+	BYTE		PAN     c_v+25
+	BYTE	W03
+	BYTE		N01     En2   v116
+	BYTE	W03
+	BYTE		        En2   v064
+	BYTE	W03
+	BYTE		        Fs2   v076
+	BYTE	W03
+	BYTE		        Gn2   v092
+	BYTE	W03
+	BYTE		        En2 
+	BYTE	W03
+	BYTE		        En2   v060
+	BYTE	W03
+	BYTE		N02     Cn3   v056
+	BYTE	W06
+	BYTE		N01     En2   v112
+	BYTE	W03
+	BYTE		        En2   v056
+	BYTE	W03
+	BYTE		        Fs2   v084
+	BYTE	W03
+	BYTE		        Gn2   v104
+	BYTE	W03
+	BYTE		        Fn2   v084
+	BYTE	W03
+	BYTE		N02     En2   v096
+	BYTE	W09
+	BYTE		N01     En2   v108
+	BYTE	W03
+	BYTE		        En2   v060
+	BYTE	W03
+	BYTE		        Fs2   v072
+	BYTE	W03
+	BYTE		        Gn2   v088
+	BYTE	W03
+	BYTE		        En2   v092
+	BYTE	W03
+	BYTE		        En2   v056
+	BYTE	W03
+	BYTE		N02     Cn3   v052
+	BYTE	W06
+	BYTE		N01     En2   v104
+	BYTE	W03
+	BYTE		        En2   v068
+	BYTE	W03
+	BYTE		        Fs2   v080
+	BYTE	W03
+	BYTE		        Gn2   v092
+	BYTE	W03
+	BYTE		        An2   v064
+	BYTE	W03
+	BYTE		N02     Cn3   v060
+	BYTE	W03
+// 001   ----------------------------------------
+	BYTE	W03
+	BYTE		N05     Fs2   v108
+	BYTE	W06
+	BYTE		N02     Gs2   v092
+	BYTE	W03
+	BYTE		        An2   v084
+	BYTE	W03
+	BYTE		N04     Gn2   v096
+	BYTE	W06
+	BYTE		N03     Dn3   v072
+	BYTE	W06
+	BYTE		N05     Gs2   v076
+	BYTE	W06
+	BYTE		N02     As2   v088
+	BYTE	W03
+	BYTE		        Bn2   v068
+	BYTE	W03
+	BYTE		N04     An2   v092
+	BYTE	W06
+	BYTE		N03     En2   v072
+	BYTE	W06
+	BYTE		VOICE   52
+	BYTE	W07
+	BYTE		PAN     c_v+25
+	BYTE		N01     Cs3   v104
+	BYTE	W04
+	BYTE		N07     Cs3   v116
+	BYTE	W08
+	BYTE		PAN     c_v+0
+	BYTE		N01     Cn3   v104
+	BYTE	W02
+	BYTE		        Cn4   v084
+	BYTE	W02
+	BYTE		N07     Cn3   v116
+	BYTE	W08
+	BYTE		PAN     c_v-14
+	BYTE		N01     Bn2   v104
+	BYTE	W02
+	BYTE		        Bn3   v084
+	BYTE	W02
+	BYTE		N07     Bn2   v116
+	BYTE	W08
+	BYTE		PAN     c_v+0
+	BYTE		N01     As2   v104
+	BYTE	W02
+	BYTE	GoTo
+	 POIN2	FE05DefendDerTheVaporeon_4_B1
+FE05DefendDerTheVaporeon_4_B2:
+// 002   ----------------------------------------
+	BYTE		N01     As3   v084
+	BYTE	W01
+	BYTE		        As2   v116
+	BYTE	W01
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.8) ****************//
+
+FE05DefendDerTheVaporeon_5:
+	BYTE	KEYSH   FE05DefendDerTheVaporeon_key+0
+FE05DefendDerTheVaporeon_5_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   81
+	BYTE		VOL     64*FE05DefendDerTheVaporeon_mvl/mxv
+	BYTE	W03
+	BYTE		PAN     c_v+25
+	BYTE		N05     An1   v127
+	BYTE	W06
+	BYTE		N02     Bn1   v068
+	BYTE	W03
+	BYTE		N01     Cn2   v064
+	BYTE	W03
+	BYTE		N04     An1   v092
+	BYTE	W06
+	BYTE		        En2   v072
+	BYTE	W06
+	BYTE		N05     An1   v127
+	BYTE	W06
+	BYTE		N02     Bn1   v064
+	BYTE	W03
+	BYTE		N01     Cn2   v068
+	BYTE	W03
+	BYTE		N02     Dn2   v104
+	BYTE	W03
+	BYTE		N01     Cn2   v076
+	BYTE	W03
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		N05     An1   v127
+	BYTE	W06
+	BYTE		N02     Bn1   v068
+	BYTE	W03
+	BYTE		N01     Cn2   v064
+	BYTE	W03
+	BYTE		N04     An1   v092
+	BYTE	W06
+	BYTE		        En2   v072
+	BYTE	W06
+	BYTE		N05     An1   v124
+	BYTE	W06
+	BYTE		N02     Bn1   v064
+	BYTE	W03
+	BYTE		N01     Cn2   v068
+	BYTE	W03
+	BYTE		N04     Dn2   v076
+	BYTE	W06
+	BYTE		N03     En2 
+	BYTE	W03
+// 001   ----------------------------------------
+	BYTE	W03
+	BYTE		N05     Bn1   v108
+	BYTE	W06
+	BYTE		N02     Cs2   v092
+	BYTE	W03
+	BYTE		N01     Dn2   v084
+	BYTE	W03
+	BYTE		N04     Cn2   v076
+	BYTE	W06
+	BYTE		N02     Gn2   v064
+	BYTE	W06
+	BYTE		N05     Cs2   v096
+	BYTE	W06
+	BYTE		N02     Ds2   v088
+	BYTE	W03
+	BYTE		N01     En2   v068
+	BYTE	W03
+	BYTE		N04     Dn2   v076
+	BYTE	W06
+	BYTE		N02     An2   v064
+	BYTE	W06
+	BYTE		N05     Cs2   v116
+	BYTE	W06
+	BYTE		N02     Ds2   v084
+	BYTE	W03
+	BYTE		N01     En2   v076
+	BYTE	W03
+	BYTE		N04     Cn2   v084
+	BYTE	W06
+	BYTE		N02     Gn2   v080
+	BYTE	W06
+	BYTE		N05     Bn1   v120
+	BYTE	W06
+	BYTE		N02     Dn2   v084
+	BYTE	W03
+	BYTE		N01     Fs2   v080
+	BYTE	W03
+	BYTE		N04     Fn2   v116
+	BYTE	W06
+	BYTE		N05     Gs1   v120
+	BYTE	W03
+	BYTE	GoTo
+	 POIN2	FE05DefendDerTheVaporeon_5_B1
+FE05DefendDerTheVaporeon_5_B2:
+// 002   ----------------------------------------
+	BYTE	W02
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.9) ****************//
+
+FE05DefendDerTheVaporeon_6:
+	BYTE	KEYSH   FE05DefendDerTheVaporeon_key+0
+FE05DefendDerTheVaporeon_6_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		VOL     64*FE05DefendDerTheVaporeon_mvl/mxv
+	BYTE	W03
+	BYTE		N17     Cn3   v116
+	BYTE	W18
+	BYTE		N02     Cn3   v044
+	BYTE	W03
+	BYTE		        Cs3   v108
+	BYTE	W03
+	BYTE		N17     Cn3   v112
+	BYTE	W18
+	BYTE		N02     Cn3   v044
+	BYTE	W03
+	BYTE		        Cs3   v104
+	BYTE	W03
+	BYTE		N05     Cn3   v092
+	BYTE	W06
+	BYTE		N02     Cn3   v044
+	BYTE	W03
+	BYTE		        Cs3   v060
+	BYTE	W03
+	BYTE		N01     Cn3   v044
+	BYTE	W02
+	BYTE		        Cn3   v052
+	BYTE	W01
+	BYTE		        Cn3   v044
+	BYTE	W02
+	BYTE		        Cn3   v052
+	BYTE	W01
+	BYTE		N05     Cn3   v104
+	BYTE	W06
+	BYTE		        Cn3   v076
+	BYTE	W06
+	BYTE		N02     Cn3   v044
+	BYTE	W03
+	BYTE		        Cs3   v104
+	BYTE	W03
+	BYTE		N05     Cs3   v076
+	BYTE	W06
+	BYTE		N02     Cs3   v104
+	BYTE	W03
+// 001   ----------------------------------------
+	BYTE		        Cn3   v096
+	BYTE	W03
+	BYTE		N17     Cn3   v116
+	BYTE	W18
+	BYTE		N02     Cn3   v044
+	BYTE	W03
+	BYTE		        Cs3   v108
+	BYTE	W03
+	BYTE		N17     Cn3   v112
+	BYTE	W18
+	BYTE		N02     Cn3   v044
+	BYTE	W03
+	BYTE		        Cs3   v104
+	BYTE	W03
+	BYTE		N05     Cn3   v092
+	BYTE	W06
+	BYTE		N02     Cn3   v044
+	BYTE	W03
+	BYTE		        Cs3   v060
+	BYTE	W03
+	BYTE		N01     Cn3   v044
+	BYTE	W02
+	BYTE		        Cn3   v052
+	BYTE	W01
+	BYTE		        Cn3   v044
+	BYTE	W02
+	BYTE		        Cn3   v052
+	BYTE	W01
+	BYTE		N05     Cn3   v104
+	BYTE	W06
+	BYTE		        Cn3   v076
+	BYTE	W06
+	BYTE		N02     Cn3   v044
+	BYTE	W03
+	BYTE		        Cs3   v104
+	BYTE	W03
+	BYTE		N05     Cs3   v076
+	BYTE	W06
+	BYTE		N02     Cs3   v104
+	BYTE	W03
+	BYTE	GoTo
+	 POIN2	FE05DefendDerTheVaporeon_6_B1
+FE05DefendDerTheVaporeon_6_B2:
+// 002   ----------------------------------------
+	BYTE		N02     Cn3   v096
+	BYTE	W02
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE05DefendDerTheVaporeon:
+	BYTE	6	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE05DefendDerTheVaporeon_pri	// Priority
+	BYTE	FE05DefendDerTheVaporeon_rev	// Reverb.
+
+	POIN2	FE05DefendDerTheVaporeon_grp
+
+	POIN2	FE05DefendDerTheVaporeon_1
+	POIN2	FE05DefendDerTheVaporeon_2
+	POIN2	FE05DefendDerTheVaporeon_3
+	POIN2	FE05DefendDerTheVaporeon_4
+	POIN2	FE05DefendDerTheVaporeon_5
+	POIN2	FE05DefendDerTheVaporeon_6
+
+	

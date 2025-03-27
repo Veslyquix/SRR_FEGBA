@@ -1,0 +1,220 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	LoZWindWakerEarthGodsLyricPandan_grp  voicegroup000
+	#define	LoZWindWakerEarthGodsLyricPandan_pri  10
+	#define	LoZWindWakerEarthGodsLyricPandan_rev  0
+	#define	LoZWindWakerEarthGodsLyricPandan_mvl  127
+	#define	LoZWindWakerEarthGodsLyricPandan_key  0
+	#define	LoZWindWakerEarthGodsLyricPandan_tbs  1
+	#define	LoZWindWakerEarthGodsLyricPandan_exg  0
+	#define	LoZWindWakerEarthGodsLyricPandan_cmp  1
+
+	// .rodata
+	//	LoZWindWakerEarthGodsLyricPandan
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+LoZWindWakerEarthGodsLyricPandan_001:
+// 000   ----------------------------------------
+Label_0_011EA168:
+ BYTE   TEMPO   80*LoZWindWakerEarthGodsLyricPandan_tbs/2
+ BYTE   KEYSH   LoZWindWakerEarthGodsLyricPandan_key+0
+ BYTE   VOICE   46
+ BYTE   W01
+ BYTE   VOL   127*LoZWindWakerEarthGodsLyricPandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   BEND   c_v+0
+ BYTE   N23  An3  v076
+ BYTE   W23
+ BYTE   N16
+ BYTE   W16
+ BYTE   N08  Dn4
+ BYTE   W08
+ BYTE   N16  Fs4
+ BYTE   W16
+ BYTE   N08  En4
+ BYTE   W08
+ BYTE   N15  Dn4
+ BYTE   W15
+ BYTE   N08  Cs4
+ BYTE   W08
+ BYTE   N16  Dn4
+ BYTE   W16
+// 001   ----------------------------------------
+ BYTE   N08  Bn3
+ BYTE   W08
+ BYTE   N16  Gn3
+ BYTE   W16
+ BYTE   N08  Cs4
+ BYTE   W08
+ BYTE   An3
+ BYTE   W08
+ BYTE   N07  Dn4
+ BYTE   W07
+ BYTE   N08  Bn3
+ BYTE   W08
+ BYTE   N16  Cs4
+ BYTE   W16
+ BYTE   N08  An3
+ BYTE   W08
+ BYTE   N16  Gn3
+ BYTE   W16
+ BYTE   N08  Dn4
+ BYTE   W08
+// 002   ----------------------------------------
+ BYTE   N15  Bn3
+ BYTE   W15
+ BYTE   N08  Cs4
+ BYTE   W08
+ BYTE   N16  Dn4
+ BYTE   W16
+ BYTE   N08  En4
+ BYTE   W08
+ BYTE   Fs4
+ BYTE   W08
+ BYTE   Dn4
+ BYTE   W08
+ BYTE   En4
+ BYTE   W08
+ BYTE   N23  An3
+ BYTE   W23
+ BYTE   N16
+ BYTE   W16
+// 003   ----------------------------------------
+ BYTE   N08  Dn4
+ BYTE   W08
+ BYTE   N16  Fs4
+ BYTE   W16
+ BYTE   N08  En4
+ BYTE   W08
+ BYTE   N15  Dn4
+ BYTE   W15
+ BYTE   N08  Cs4
+ BYTE   W08
+ BYTE   N16  Dn4
+ BYTE   W16
+ BYTE   N08  Bn3
+ BYTE   W08
+ BYTE   N16  Gn3
+ BYTE   W16
+ BYTE   N08  Cs4
+ BYTE   W08
+// 004   ----------------------------------------
+ BYTE   N07  An3
+ BYTE   W07
+ BYTE   N08  Dn4
+ BYTE   W08
+ BYTE   Bn3
+ BYTE   W08
+ BYTE   N16  Cs4
+ BYTE   W16
+ BYTE   N08  Dn4
+ BYTE   W08
+ BYTE   N16  En4
+ BYTE   W16
+ BYTE   N08  Fs4
+ BYTE   W08
+ BYTE   N07  Gn4
+ BYTE   W07
+ BYTE   N08  En4
+ BYTE   W08
+ BYTE   Cs4
+ BYTE   W08
+ BYTE   N24  Dn4
+ BYTE   W24
+// 005   ----------------------------------------
+ BYTE   N44
+ BYTE   W05
+ BYTE   N03
+ BYTE   W44
+ BYTE   GoTo
+  POIN2 Label_0_011EA168
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+LoZWindWakerEarthGodsLyricPandan_002:
+// 000   ----------------------------------------
+Label_1_011EA208:
+ BYTE   TEMPO   80*LoZWindWakerEarthGodsLyricPandan_tbs/2
+ BYTE   KEYSH   LoZWindWakerEarthGodsLyricPandan_key+0
+ BYTE   VOICE   46
+ BYTE   W24
+ BYTE   VOL   127*LoZWindWakerEarthGodsLyricPandan_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   BEND   c_v+0
+ BYTE   N72  Dn3  v064
+ BYTE   W01
+ BYTE   Fs3
+ BYTE   W68
+ BYTE   W02
+ BYTE   Dn3
+ BYTE   W01
+// 001   ----------------------------------------
+ BYTE   Gn3
+ BYTE   W68
+ BYTE   W02
+ BYTE   Cs3
+ BYTE   W01
+ BYTE   An3
+ BYTE   W68
+// 002   ----------------------------------------
+ BYTE   W02
+ BYTE   Dn3
+ BYTE   W01
+ BYTE   Fs3
+ BYTE   W68
+ BYTE   W02
+ BYTE   Dn3
+ BYTE   W01
+ BYTE   Fs3
+ BYTE   W68
+// 003   ----------------------------------------
+ BYTE   W02
+ BYTE   Dn3
+ BYTE   W01
+ BYTE   Gn3
+ BYTE   W68
+ BYTE   W02
+ BYTE   N48  Cs3
+ BYTE   W01
+ BYTE   An3
+ BYTE   W44
+// 004   ----------------------------------------
+ BYTE   W02
+ BYTE   N24  Gn3
+ BYTE   W01
+ BYTE   N23  Cs4
+ BYTE   W44
+ BYTE   W02
+ BYTE   N48  Dn3
+ BYTE   W01
+ BYTE   N44  Fs3
+ BYTE   W01
+ BYTE   N48  An3
+ BYTE   W04
+ BYTE   N03  Fs3
+ BYTE   W44
+// 005   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_1_011EA208
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+LoZWindWakerEarthGodsLyricPandan:
+	BYTE	2	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	LoZWindWakerEarthGodsLyricPandan_pri	// Priority
+	BYTE	LoZWindWakerEarthGodsLyricPandan_rev	// Reverb.
+    
+	POIN2	LoZWindWakerEarthGodsLyricPandan_grp
+    
+	POIN2	LoZWindWakerEarthGodsLyricPandan_001
+	POIN2	LoZWindWakerEarthGodsLyricPandan_002
+
+	

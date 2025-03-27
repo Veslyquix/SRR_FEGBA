@@ -1,0 +1,1356 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE11LeapsandBoundsSaXortheNobody_grp  voicegroup000
+	#define	FE11LeapsandBoundsSaXortheNobody_pri  0
+	#define	FE11LeapsandBoundsSaXortheNobody_rev  0
+	#define	FE11LeapsandBoundsSaXortheNobody_mvl  127
+	#define	FE11LeapsandBoundsSaXortheNobody_key  0
+	#define	FE11LeapsandBoundsSaXortheNobody_tbs  1
+	#define	FE11LeapsandBoundsSaXortheNobody_exg  0
+	#define	FE11LeapsandBoundsSaXortheNobody_cmp  1
+
+	// .rodata
+	//	FE11LeapsandBoundsSaXortheNobody
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+FE11LeapsandBoundsSaXortheNobody_1:
+	BYTE	KEYSH   FE11LeapsandBoundsSaXortheNobody_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   142*FE11LeapsandBoundsSaXortheNobody_tbs/2
+	BYTE		VOICE   57
+	BYTE		VOL     51*FE11LeapsandBoundsSaXortheNobody_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W32
+	BYTE	W01
+	BYTE		N01     Gn2   v104
+	BYTE		N01     Gn3 
+	BYTE	W03
+	BYTE		        Cn3 
+	BYTE		N01     Cn4 
+	BYTE	W03
+	BYTE		        Dn3 
+	BYTE		N01     Dn4 
+	BYTE	W03
+	BYTE		        En3   v092
+	BYTE		N01     En4 
+	BYTE	W03
+	BYTE		        Fn3 
+	BYTE		N01     Fn4 
+	BYTE	W03
+	BYTE		N16     En3   v064
+	BYTE		N16     Gn3   v080
+	BYTE		N16     En4   v064
+	BYTE		N16     Gn4   v080
+	BYTE	W18
+	BYTE		N04     En3   v020
+	BYTE		N04     Gn3 
+	BYTE		N04     En4 
+	BYTE		N04     Gn4 
+	BYTE	W06
+	BYTE		N16     Dn3   v080
+	BYTE		N16     Fn3 
+	BYTE		N16     Dn4 
+	BYTE		N16     Fn4 
+	BYTE	W18
+	BYTE		N04     Dn3   v036
+	BYTE		N04     Fn3   v020
+	BYTE		N04     Dn4   v036
+	BYTE		N04     Fn4   v020
+	BYTE	W06
+// 004   ----------------------------------------
+	BYTE		N05     Cn3   v072
+	BYTE		N05     En3   v088
+	BYTE		N05     Cn4   v072
+	BYTE		N05     En4   v088
+	BYTE	W06
+	BYTE		        Cn3   v036
+	BYTE		N05     En3   v020
+	BYTE		N05     Cn4   v036
+	BYTE		N05     En4   v020
+	BYTE	W06
+	BYTE		        Gn2   v064
+	BYTE		N05     Dn3   v100
+	BYTE		N05     Gn3   v064
+	BYTE		N05     Dn4   v100
+	BYTE	W06
+	BYTE		        Gn2   v036
+	BYTE		N05     Dn3 
+	BYTE		N05     Gn3 
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		        En2   v076
+	BYTE		N05     Cn3   v108
+	BYTE		N05     En3   v076
+	BYTE		N05     Cn4   v108
+	BYTE	W06
+	BYTE		        En2   v036
+	BYTE		N05     Cn3 
+	BYTE		N05     En3 
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		N17     Gn2   v080
+	BYTE		N17     Dn3   v100
+	BYTE		N17     Gn3   v080
+	BYTE		N17     Dn4   v100
+	BYTE	W18
+	BYTE		N05     Gn2   v036
+	BYTE		N05     Dn3 
+	BYTE		N05     Gn3 
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		TIE     Cn3   v084
+	BYTE		TIE     En3   v088
+	BYTE		TIE     Cn4   v084
+	BYTE		TIE     En4   v088
+	BYTE	W36
+// 005   ----------------------------------------
+	BYTE	W68
+	BYTE	W03
+	BYTE		EOT     Cn3 
+	BYTE		        En3 
+	BYTE		        Cn4 
+	BYTE		        En4 
+	BYTE	TEMPO   126*FE11LeapsandBoundsSaXortheNobody_tbs/2
+	BYTE	W01
+	BYTE		N05     Cn3   v036
+	BYTE		N05     En3 
+	BYTE		N05     Cn4 
+	BYTE		N05     En4 
+	BYTE	W21
+FE11LeapsandBoundsSaXortheNobody_1_B1:
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W60
+	BYTE		N02     Fn2   v060
+	BYTE		N02     Cn3   v076
+	BYTE		N02     Fn3   v060
+	BYTE		N02     Cn4   v076
+	BYTE	W03
+	BYTE		        Fn2   v032
+	BYTE		N02     Cn3   v036
+	BYTE		N02     Fn3   v032
+	BYTE		N02     Cn4   v036
+	BYTE	W03
+	BYTE		        Fn2   v052
+	BYTE		N02     Cn3   v076
+	BYTE		N02     Fn3   v052
+	BYTE		N02     Cn4   v076
+	BYTE	W03
+	BYTE		        Fn2   v028
+	BYTE		N02     Cn3   v036
+	BYTE		N02     Fn3   v028
+	BYTE		N02     Cn4   v036
+	BYTE	W03
+	BYTE		        Fn2   v064
+	BYTE		N02     Cn3   v084
+	BYTE		N02     Fn3   v064
+	BYTE		N02     Cn4   v084
+	BYTE	W03
+	BYTE		N03     Fn2   v032
+	BYTE		N03     Cn3   v040
+	BYTE		N03     Fn3   v032
+	BYTE		N03     Cn4   v040
+	BYTE	W09
+	BYTE		N02     Fn2   v060
+	BYTE		N02     Cn3   v080
+	BYTE		N02     Fn3   v060
+	BYTE		N02     Cn4   v080
+	BYTE	W03
+	BYTE		        Fn2   v032
+	BYTE		N02     Cn3   v036
+	BYTE		N02     Fn3   v032
+	BYTE		N02     Cn4   v036
+	BYTE	W03
+	BYTE		        Fn2   v052
+	BYTE		N02     Cn3   v084
+	BYTE		N02     Fn3   v052
+	BYTE		N02     Cn4   v084
+	BYTE	W03
+	BYTE		        Fn2   v028
+	BYTE		N02     Cn3   v040
+	BYTE		N02     Fn3   v028
+	BYTE		N02     Cn4   v040
+	BYTE	W03
+// 008   ----------------------------------------
+	BYTE		N72     Fn2   v068
+	BYTE		N72     Cn3   v084
+	BYTE		N72     Fn3   v068
+	BYTE		N72     Cn4   v084
+	BYTE	W72
+	BYTE	W03
+	BYTE		N01     Fn2   v036
+	BYTE		N01     Cn3 
+	BYTE		N01     Fn3 
+	BYTE		N01     Cn4 
+	BYTE	W09
+	BYTE		N04     Fn2   v064
+	BYTE		N04     Cn3   v072
+	BYTE		N04     Fn3   v064
+	BYTE		N04     Cn4   v072
+	BYTE	W06
+	BYTE		        Fn2   v036
+	BYTE		N04     Cn3 
+	BYTE		N04     Fn3 
+	BYTE		N04     Cn4 
+	BYTE	W06
+// 009   ----------------------------------------
+	BYTE		N22     Gn2   v080
+	BYTE		N22     Cn3   v084
+	BYTE		N22     Gn3   v080
+	BYTE		N22     Cn4   v084
+	BYTE	W24
+	BYTE		N04     Gn2   v036
+	BYTE		N04     Cn3 
+	BYTE		N04     Gn3 
+	BYTE		N04     Cn4 
+	BYTE	W12
+	BYTE		        Gn2   v068
+	BYTE		N04     Bn2   v072
+	BYTE		N04     Gn3   v068
+	BYTE		N04     Bn3   v072
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE		N04     Cn3   v076
+	BYTE		N04     Gn3   v072
+	BYTE		N04     Cn4   v076
+	BYTE	W06
+	BYTE		N44     Gn2   v068
+	BYTE		N44     Dn3   v080
+	BYTE		N44     Gn3   v068
+	BYTE		N44     Dn4   v080
+	BYTE	W48
+// 010   ----------------------------------------
+	BYTE		N01     Gn2   v036
+	BYTE		N01     Dn3 
+	BYTE		N01     Gn3 
+	BYTE		N01     Dn4 
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W12
+	BYTE		        Fn2   v084
+	BYTE		N01     An2   v088
+	BYTE		N01     Fn3   v084
+	BYTE		N01     An3   v088
+	BYTE	W03
+	BYTE		        Fn2   v040
+	BYTE		N01     An2 
+	BYTE		N01     Fn3 
+	BYTE		N01     An3 
+	BYTE	W03
+	BYTE		        Fn2   v068
+	BYTE		N01     An2 
+	BYTE		N01     Fn3 
+	BYTE		N01     An3 
+	BYTE	W03
+	BYTE		        Fn2   v040
+	BYTE		N01     An2 
+	BYTE		N01     Fn3 
+	BYTE		N01     An3 
+	BYTE	W03
+	BYTE		        Fn2   v080
+	BYTE		N01     An2   v076
+	BYTE		N01     Fn3   v080
+	BYTE		N01     An3   v076
+	BYTE	W03
+	BYTE		N03     Fn2   v040
+	BYTE		N03     An2 
+	BYTE		N03     Fn3 
+	BYTE		N03     An3 
+	BYTE	W09
+	BYTE		N01     Fn2   v080
+	BYTE		N01     An2   v084
+	BYTE		N01     Fn3   v080
+	BYTE		N01     An3   v084
+	BYTE	W03
+	BYTE		        Fn2   v040
+	BYTE		N01     An2 
+	BYTE		N01     Fn3 
+	BYTE		N01     An3 
+	BYTE	W03
+	BYTE		        Fn2   v068
+	BYTE		N01     An2   v076
+	BYTE		N01     Fn3   v068
+	BYTE		N01     An3   v076
+	BYTE	W03
+	BYTE		        Fn2   v040
+	BYTE		N01     An2 
+	BYTE		N01     Fn3 
+	BYTE		N01     An3 
+	BYTE	W03
+	BYTE		N44     Fn2   v072
+	BYTE		N44     An2 
+	BYTE		N44     Fn3 
+	BYTE		N44     An3 
+	BYTE	W48
+// 013   ----------------------------------------
+	BYTE		N04     Fn2   v036
+	BYTE		N04     An2 
+	BYTE		N04     Fn3 
+	BYTE		N04     An3 
+	BYTE	W24
+	BYTE		N16     An2   v076
+	BYTE		N16     Dn3   v080
+	BYTE		N16     An3   v076
+	BYTE		N16     Dn4   v080
+	BYTE	W18
+	BYTE		N04     An2   v036
+	BYTE		N04     Dn3 
+	BYTE		N04     An3 
+	BYTE		N04     Dn4 
+	BYTE	W06
+	BYTE		        An2   v072
+	BYTE		N04     Cn3   v076
+	BYTE		N04     An3   v072
+	BYTE		N04     Cn4   v076
+	BYTE	W06
+	BYTE		        An2   v036
+	BYTE		N04     Cn3 
+	BYTE		N04     An3 
+	BYTE		N04     Cn4 
+	BYTE	W06
+	BYTE		N03     An2   v068
+	BYTE		N03     Bn2   v076
+	BYTE		N03     An3   v068
+	BYTE		N03     Bn3   v076
+	BYTE	W06
+	BYTE		N04     An2   v036
+	BYTE		N04     Bn2 
+	BYTE		N04     An3 
+	BYTE		N04     Bn3 
+	BYTE	W06
+	BYTE		N03     Gn2   v068
+	BYTE		N03     Bn2 
+	BYTE		N03     Gn3 
+	BYTE		N03     Bn3 
+	BYTE	W06
+	BYTE		N04     Gn2   v036
+	BYTE		N04     Bn2 
+	BYTE		N04     Gn3 
+	BYTE		N04     Bn3 
+	BYTE	W06
+	BYTE		N03     Fn2   v064
+	BYTE		N03     An2   v080
+	BYTE		N03     Fn3   v064
+	BYTE		N03     An3   v080
+	BYTE	W06
+	BYTE		N04     Fn2   v036
+	BYTE		N04     An2 
+	BYTE		N04     Fn3 
+	BYTE		N04     An3 
+	BYTE	W04
+	BYTE	GoTo
+	 POIN2	FE11LeapsandBoundsSaXortheNobody_1_B1
+FE11LeapsandBoundsSaXortheNobody_1_B2:
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+FE11LeapsandBoundsSaXortheNobody_2:
+	BYTE	KEYSH   FE11LeapsandBoundsSaXortheNobody_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   40
+	BYTE		PAN     c_v+26
+	BYTE		VOL     51*FE11LeapsandBoundsSaXortheNobody_mvl/mxv
+	BYTE		N44     Fn2   v108
+	BYTE		N44     Cn3   v076
+	BYTE		N44     As3   v060
+	BYTE	W48
+	BYTE		N32     Gn2   v108
+	BYTE		N44     Dn3   v080
+	BYTE		N44     Cn4   v064
+	BYTE	W36
+	BYTE		N04     Fn2   v108
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE	W06
+// 001   ----------------------------------------
+	BYTE		N32     An2   v104
+	BYTE		N44     En3   v072
+	BYTE		N44     Dn4   v064
+	BYTE	W36
+	BYTE		N05     Gn2   v104
+	BYTE	W06
+	BYTE		        An2 
+	BYTE	W06
+	BYTE		N44     As2 
+	BYTE		N44     Fn3   v072
+	BYTE		N44     Ds4   v060
+	BYTE	W48
+// 002   ----------------------------------------
+	BYTE		TIE     Cn3   v104
+	BYTE		TIE     Gn3   v072
+	BYTE		TIE     En4   v052
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W44
+	BYTE	W03
+	BYTE		EOT     Cn3 
+	BYTE		        Gn3 
+	BYTE		        En4 
+	BYTE	W01
+	BYTE		N16     Gn3   v080
+	BYTE	W18
+	BYTE		N04     Gn3   v024
+	BYTE	W06
+	BYTE		N16     Fn3   v080
+	BYTE	W18
+	BYTE		N04     Fn3   v024
+	BYTE	W06
+// 004   ----------------------------------------
+	BYTE		N05     En3   v076
+	BYTE	W06
+	BYTE		        En3   v028
+	BYTE	W06
+	BYTE		        Dn3   v092
+	BYTE	W06
+	BYTE		        Dn3   v028
+	BYTE	W06
+	BYTE		        Cn3   v120
+	BYTE	W06
+	BYTE		        Cn3   v044
+	BYTE	W06
+	BYTE		N17     Dn3   v088
+	BYTE	W18
+	BYTE		N05     Dn3   v028
+	BYTE	W06
+	BYTE		TIE     En3   v092
+	BYTE	W36
+// 005   ----------------------------------------
+	BYTE	W68
+	BYTE	W03
+	BYTE		EOT   
+	BYTE	W01
+	BYTE		N05     En3   v028
+	BYTE	W21
+FE11LeapsandBoundsSaXortheNobody_2_B1:
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE		N44     Gn2   v080
+	BYTE	W48
+	BYTE		N23     Cn3   v088
+	BYTE	W24
+	BYTE		        En3   v068
+	BYTE	W24
+// 007   ----------------------------------------
+	BYTE		N44     En3   v064
+	BYTE	W48
+	BYTE		        An2   v080
+	BYTE	W48
+// 008   ----------------------------------------
+	BYTE		        An2   v076
+	BYTE	W48
+	BYTE		N22     Bn2 
+	BYTE	W24
+	BYTE		N10     Cn3 
+	BYTE	W12
+	BYTE		        Dn3   v072
+	BYTE	W12
+// 009   ----------------------------------------
+	BYTE		N44     Cn3   v076
+	BYTE	W48
+	BYTE		        Bn2 
+	BYTE	W48
+// 010   ----------------------------------------
+	BYTE		        Gn2   v080
+	BYTE	W48
+	BYTE		N22     Cn3 
+	BYTE	W24
+	BYTE		        En3   v072
+	BYTE	W24
+// 011   ----------------------------------------
+	BYTE		N44     Gn3   v064
+	BYTE	W48
+	BYTE		N22     Fn3   v072
+	BYTE	W24
+	BYTE		        En3 
+	BYTE	W24
+// 012   ----------------------------------------
+	BYTE		N32     An2   v088
+	BYTE	W36
+	BYTE		N04     Bn2   v072
+	BYTE	W06
+	BYTE		        Cn3   v084
+	BYTE	W06
+	BYTE		N32     Dn3   v080
+	BYTE	W36
+	BYTE		N04     Cn3 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+// 013   ----------------------------------------
+	BYTE		N92     Gn3   v064
+	BYTE	W92
+	BYTE	W02
+	BYTE	GoTo
+	 POIN2	FE11LeapsandBoundsSaXortheNobody_2_B1
+FE11LeapsandBoundsSaXortheNobody_2_B2:
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+FE11LeapsandBoundsSaXortheNobody_3:
+	BYTE	KEYSH   FE11LeapsandBoundsSaXortheNobody_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   57
+	BYTE		PAN     c_v-26
+	BYTE		VOL     51*FE11LeapsandBoundsSaXortheNobody_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W92
+	BYTE	W01
+FE11LeapsandBoundsSaXortheNobody_3_B1:
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE		N44     Gn2   v080
+	BYTE		N44     Gn3 
+	BYTE	W48
+	BYTE		N23     Cn3   v088
+	BYTE		N23     Cn4 
+	BYTE	W24
+	BYTE		        En3   v068
+	BYTE		N23     En4 
+	BYTE	W24
+// 007   ----------------------------------------
+	BYTE		N44     En3   v064
+	BYTE		N44     En4 
+	BYTE	W48
+	BYTE		        An2   v080
+	BYTE		N44     An3 
+	BYTE	W48
+// 008   ----------------------------------------
+	BYTE		        An2   v076
+	BYTE		N44     An3 
+	BYTE	W48
+	BYTE		N22     Bn2 
+	BYTE		N22     Bn3 
+	BYTE	W24
+	BYTE		N10     Cn3 
+	BYTE		N10     Cn4 
+	BYTE	W12
+	BYTE		        Dn3   v072
+	BYTE		N10     Dn4 
+	BYTE	W12
+// 009   ----------------------------------------
+	BYTE		N44     Cn3   v076
+	BYTE		N44     Cn4 
+	BYTE	W48
+	BYTE		        Bn2 
+	BYTE		N44     Bn3 
+	BYTE	W48
+// 010   ----------------------------------------
+	BYTE		        Gn2   v080
+	BYTE		N44     Gn3 
+	BYTE	W48
+	BYTE		N22     Cn3 
+	BYTE		N22     Cn4 
+	BYTE	W24
+	BYTE		        En3   v072
+	BYTE		N22     En4 
+	BYTE	W24
+// 011   ----------------------------------------
+	BYTE		N44     Gn3   v064
+	BYTE		N44     Gn4 
+	BYTE	W48
+	BYTE		N22     Fn3   v072
+	BYTE		N22     Fn4 
+	BYTE	W24
+	BYTE		        En3 
+	BYTE		N22     En4 
+	BYTE	W24
+// 012   ----------------------------------------
+	BYTE		N32     An2   v088
+	BYTE		N32     An3 
+	BYTE	W36
+	BYTE		N04     Bn2   v072
+	BYTE		N04     Bn3 
+	BYTE	W06
+	BYTE		        Cn3   v084
+	BYTE		N04     Cn4 
+	BYTE	W06
+	BYTE		N32     Dn3   v080
+	BYTE		N32     Dn4 
+	BYTE	W36
+	BYTE		N04     Cn3 
+	BYTE		N04     Cn4 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE		N04     Dn4 
+	BYTE	W06
+// 013   ----------------------------------------
+	BYTE		N92     Gn3   v064
+	BYTE		N92     Gn4 
+	BYTE	W92
+	BYTE	W02
+	BYTE	GoTo
+	 POIN2	FE11LeapsandBoundsSaXortheNobody_3_B1
+FE11LeapsandBoundsSaXortheNobody_3_B2:
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+FE11LeapsandBoundsSaXortheNobody_4:
+	BYTE	KEYSH   FE11LeapsandBoundsSaXortheNobody_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   10
+	BYTE		VOL     45*FE11LeapsandBoundsSaXortheNobody_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W92
+	BYTE	W01
+FE11LeapsandBoundsSaXortheNobody_4_B1:
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE		N04     Gn3   v064
+	BYTE	W06
+	BYTE		        Cn4   v080
+	BYTE	W06
+	BYTE		        Dn4   v076
+	BYTE	W06
+	BYTE		        Gn4   v064
+	BYTE	W06
+	BYTE		        Gn3   v072
+	BYTE	W06
+	BYTE		        Cn4   v076
+	BYTE	W06
+	BYTE		        Dn4   v056
+	BYTE	W06
+	BYTE		        Gn4   v064
+	BYTE	W06
+	BYTE		        Gn3   v072
+	BYTE	W06
+	BYTE		        Cn4   v084
+	BYTE	W06
+	BYTE		        Dn4   v056
+	BYTE	W06
+	BYTE		        Gn4   v064
+	BYTE	W06
+	BYTE		        Gn3   v068
+	BYTE	W06
+	BYTE		        Cn4   v056
+	BYTE	W06
+	BYTE		        Dn4   v052
+	BYTE	W06
+	BYTE		        Gn4   v072
+	BYTE	W06
+// 011   ----------------------------------------
+	BYTE		        An3   v056
+	BYTE	W06
+	BYTE		        Cs4   v040
+	BYTE	W06
+	BYTE		        En4   v052
+	BYTE	W06
+	BYTE		        Gn4   v064
+	BYTE	W06
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		        Cs4   v040
+	BYTE	W06
+	BYTE		        En4   v052
+	BYTE	W06
+	BYTE		        Gn4   v072
+	BYTE	W06
+	BYTE		        An3   v064
+	BYTE	W06
+	BYTE		        Cs4   v068
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Gn4   v084
+	BYTE	W06
+	BYTE		        An3   v056
+	BYTE	W06
+	BYTE		        Cs4   v068
+	BYTE	W06
+	BYTE		        En4   v064
+	BYTE	W06
+	BYTE		        Gn4   v060
+	BYTE	W06
+// 012   ----------------------------------------
+	BYTE		        An3   v068
+	BYTE	W06
+	BYTE		        Cn4   v084
+	BYTE	W06
+	BYTE		        Dn4   v056
+	BYTE	W06
+	BYTE		        Fn4   v076
+	BYTE	W06
+	BYTE		        An3   v052
+	BYTE	W06
+	BYTE		        Cn4   v076
+	BYTE	W06
+	BYTE		        Dn4   v064
+	BYTE	W06
+	BYTE		        Fn4   v068
+	BYTE	W06
+	BYTE		        An3   v060
+	BYTE	W06
+	BYTE		        Cn4   v076
+	BYTE	W06
+	BYTE		        Dn4   v072
+	BYTE	W06
+	BYTE		        Fn4   v076
+	BYTE	W06
+	BYTE		        An3   v052
+	BYTE	W06
+	BYTE		        Cn4   v072
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4   v048
+	BYTE	W06
+// 013   ----------------------------------------
+	BYTE		        Gn3   v072
+	BYTE	W06
+	BYTE		        Bn3   v076
+	BYTE	W06
+	BYTE		        Dn4   v064
+	BYTE	W06
+	BYTE		        Gn4   v072
+	BYTE	W06
+	BYTE		        Gn3   v084
+	BYTE	W06
+	BYTE		        Bn3   v068
+	BYTE	W06
+	BYTE		        Dn4   v072
+	BYTE	W06
+	BYTE		        Gn4   v064
+	BYTE	W06
+	BYTE		        Gn3   v092
+	BYTE	W06
+	BYTE		        Bn3   v088
+	BYTE	W06
+	BYTE		        Dn4   v084
+	BYTE	W06
+	BYTE		        Gn4   v068
+	BYTE	W06
+	BYTE		        Gn3   v096
+	BYTE	W06
+	BYTE		        Bn3   v080
+	BYTE	W06
+	BYTE		        Dn4   v076
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W04
+	BYTE	GoTo
+	 POIN2	FE11LeapsandBoundsSaXortheNobody_4_B1
+FE11LeapsandBoundsSaXortheNobody_4_B2:
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+FE11LeapsandBoundsSaXortheNobody_5:
+	BYTE	KEYSH   FE11LeapsandBoundsSaXortheNobody_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   39
+	BYTE		VOL     51*FE11LeapsandBoundsSaXortheNobody_mvl/mxv
+	BYTE		N40     Fn1   v112
+	BYTE	W48
+	BYTE		        Gn1   v116
+	BYTE	W48
+// 001   ----------------------------------------
+	BYTE		        An1   v124
+	BYTE	W48
+	BYTE		N44     As1   v120
+	BYTE	W48
+// 002   ----------------------------------------
+	BYTE		TIE     Cn2   v127
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W30
+	BYTE		EOT   
+	BYTE	W06
+	BYTE		N04     Gn1   v124
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N44     Cn2   v127
+	BYTE	W48
+// 004   ----------------------------------------
+	BYTE		N10     Cn2   v112
+	BYTE	W12
+	BYTE		N04     Gn1   v096
+	BYTE	W12
+	BYTE		        Gn1   v120
+	BYTE	W12
+	BYTE		N16     Cn2   v127
+	BYTE	W24
+	BYTE		TIE   
+	BYTE	W36
+// 005   ----------------------------------------
+	BYTE	W68
+	BYTE		EOT   
+	BYTE	W16
+	BYTE		N04     Gn1   v124
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W03
+FE11LeapsandBoundsSaXortheNobody_5_B1:
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE		N10     Cn2   v104
+	BYTE	W24
+	BYTE		N15     Cn2   v100
+	BYTE	W24
+	BYTE		N13     Cn2   v108
+	BYTE	W24
+	BYTE		N12     Cn2   v100
+	BYTE	W24
+// 007   ----------------------------------------
+	BYTE		N13     Fn1 
+	BYTE	W24
+	BYTE		N14     Fn1   v104
+	BYTE	W24
+	BYTE		N12     Fn1   v100
+	BYTE	W24
+	BYTE		N13     Fn1   v096
+	BYTE	W24
+// 008   ----------------------------------------
+	BYTE		N15     Dn2   v104
+	BYTE	W24
+	BYTE		        Dn2   v100
+	BYTE	W24
+	BYTE		N13     Dn2   v104
+	BYTE	W24
+	BYTE		        Dn2   v092
+	BYTE	W24
+// 009   ----------------------------------------
+	BYTE		N18     Gn1   v088
+	BYTE	W24
+	BYTE		N16   
+	BYTE	W24
+	BYTE		N13     Gn1   v104
+	BYTE	W24
+	BYTE		N03   
+	BYTE	W12
+	BYTE		N04     Fn1   v100
+	BYTE	W12
+// 010   ----------------------------------------
+	BYTE		N15     En1   v108
+	BYTE	W24
+	BYTE		        En1   v096
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N16     En1   v104
+	BYTE	W24
+// 011   ----------------------------------------
+	BYTE		N13     An1   v092
+	BYTE	W24
+	BYTE		        An1   v100
+	BYTE	W24
+	BYTE		N15   
+	BYTE	W24
+	BYTE		        An1   v104
+	BYTE	W24
+// 012   ----------------------------------------
+	BYTE		N12     Dn2 
+	BYTE	W24
+	BYTE		        Dn2   v084
+	BYTE	W24
+	BYTE		N13     Dn2   v096
+	BYTE	W24
+	BYTE		N12     Dn2   v092
+	BYTE	W24
+// 013   ----------------------------------------
+	BYTE		N13     Gn1 
+	BYTE	W24
+	BYTE		N16     Gn1   v088
+	BYTE	W24
+	BYTE		N03     Gn1   v080
+	BYTE	W12
+	BYTE		N03   
+	BYTE	W12
+	BYTE		N06     An1   v072
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W10
+	BYTE	GoTo
+	 POIN2	FE11LeapsandBoundsSaXortheNobody_5_B1
+FE11LeapsandBoundsSaXortheNobody_5_B2:
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+FE11LeapsandBoundsSaXortheNobody_6:
+	BYTE	KEYSH   FE11LeapsandBoundsSaXortheNobody_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   41
+	BYTE		PAN     c_v-28
+	BYTE		VOL     38*FE11LeapsandBoundsSaXortheNobody_mvl/mxv
+	BYTE		N02     Gn3   v112
+	BYTE	W03
+	BYTE		        Gn3   v048
+	BYTE	W03
+	BYTE		        Cn4   v112
+	BYTE	W03
+	BYTE		        Cn4   v048
+	BYTE	W03
+	BYTE		N01     Fn4   v112
+	BYTE	W03
+	BYTE		        Fn4   v048
+	BYTE	W03
+	BYTE		        As4   v112
+	BYTE	W03
+	BYTE		        As4   v048
+	BYTE	W03
+	BYTE		N02     As4   v112
+	BYTE	W03
+	BYTE		        As4   v048
+	BYTE	W03
+	BYTE		        Fn4   v112
+	BYTE	W03
+	BYTE		        Fn4   v048
+	BYTE	W03
+	BYTE		        Cn4   v112
+	BYTE	W03
+	BYTE		        Cn4   v048
+	BYTE	W03
+	BYTE		        Gn3   v112
+	BYTE	W03
+	BYTE		        Gn3   v048
+	BYTE	W03
+	BYTE		N01     An3   v112
+	BYTE	W03
+	BYTE		        An3   v048
+	BYTE	W03
+	BYTE		        Dn4   v112
+	BYTE	W03
+	BYTE		        Dn4   v048
+	BYTE	W03
+	BYTE		        Gn4   v112
+	BYTE	W03
+	BYTE		        Gn4   v048
+	BYTE	W03
+	BYTE		        Cn5   v112
+	BYTE	W03
+	BYTE		        Cn5   v048
+	BYTE	W03
+	BYTE		        Cn5   v112
+	BYTE	W03
+	BYTE		        Cn5   v048
+	BYTE	W03
+	BYTE		        Gn4   v112
+	BYTE	W03
+	BYTE		        Gn4   v048
+	BYTE	W03
+	BYTE		        Dn4   v112
+	BYTE	W03
+	BYTE		        Dn4   v048
+	BYTE	W03
+	BYTE		        An3   v112
+	BYTE	W03
+	BYTE		        An3   v048
+	BYTE	W03
+// 001   ----------------------------------------
+	BYTE		N02     An3   v112
+	BYTE	W03
+	BYTE		        An3   v048
+	BYTE	W03
+	BYTE		        En4   v112
+	BYTE	W03
+	BYTE		        En4   v048
+	BYTE	W03
+	BYTE		        An4   v112
+	BYTE	W03
+	BYTE		        An4   v048
+	BYTE	W03
+	BYTE		        Dn5   v112
+	BYTE	W03
+	BYTE		        Dn5   v048
+	BYTE	W03
+	BYTE		        Dn5   v112
+	BYTE	W03
+	BYTE		        Dn5   v048
+	BYTE	W03
+	BYTE		        An4   v112
+	BYTE	W03
+	BYTE		        An4   v048
+	BYTE	W03
+	BYTE		        En4   v112
+	BYTE	W03
+	BYTE		        En4   v048
+	BYTE	W03
+	BYTE		        An3   v112
+	BYTE	W03
+	BYTE		        An3   v048
+	BYTE	W03
+	BYTE		        Dn4   v112
+	BYTE	W03
+	BYTE		        Dn4   v048
+	BYTE	W03
+	BYTE		        Fn4   v112
+	BYTE	W03
+	BYTE		        Fn4   v048
+	BYTE	W03
+	BYTE		        As4   v112
+	BYTE	W03
+	BYTE		        As4   v048
+	BYTE	W03
+	BYTE		        Ds5   v112
+	BYTE	W03
+	BYTE		        Ds5   v048
+	BYTE	W03
+	BYTE		        Ds5   v112
+	BYTE	W03
+	BYTE		        Ds5   v048
+	BYTE	W03
+	BYTE		        As4   v112
+	BYTE	W03
+	BYTE		        As4   v048
+	BYTE	W03
+	BYTE		        Fn4   v112
+	BYTE	W03
+	BYTE		        Fn4   v048
+	BYTE	W03
+	BYTE		        Dn4   v112
+	BYTE	W03
+	BYTE		        Dn4   v048
+	BYTE	W03
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W92
+	BYTE	W01
+FE11LeapsandBoundsSaXortheNobody_6_B1:
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE	GoTo
+	 POIN2	FE11LeapsandBoundsSaXortheNobody_6_B1
+FE11LeapsandBoundsSaXortheNobody_6_B2:
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+FE11LeapsandBoundsSaXortheNobody_7:
+	BYTE	KEYSH   FE11LeapsandBoundsSaXortheNobody_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   51
+	BYTE		PAN     c_v-26
+	BYTE		VOL     50*FE11LeapsandBoundsSaXortheNobody_mvl/mxv
+	BYTE		N36     Fn2   v100
+	BYTE	W42
+	BYTE		N05     Fn2   v044
+	BYTE	W06
+	BYTE		N32     Gn2   v108
+	BYTE	W36
+	BYTE		N06     Fn2   v080
+	BYTE	W06
+	BYTE		        Gn2   v104
+	BYTE	W06
+// 001   ----------------------------------------
+	BYTE		N32     An2 
+	BYTE	W36
+	BYTE		N05     Gn2   v092
+	BYTE	W06
+	BYTE		N04     An2   v100
+	BYTE	W06
+	BYTE		N48     As2   v104
+	BYTE	W48
+// 002   ----------------------------------------
+	BYTE		N76     Gn2   v108
+	BYTE	W78
+	BYTE		N04     Gn2   v044
+	BYTE	W18
+// 003   ----------------------------------------
+	BYTE	W48
+	BYTE		N16     En3   v112
+	BYTE	W18
+	BYTE		N04     En3   v044
+	BYTE	W06
+	BYTE		N16     Dn3   v120
+	BYTE	W18
+	BYTE		N04     Dn3   v044
+	BYTE	W06
+// 004   ----------------------------------------
+	BYTE		N05     Cn4   v100
+	BYTE	W06
+	BYTE		        Cn4   v060
+	BYTE	W06
+	BYTE		        Gn3   v100
+	BYTE	W06
+	BYTE		        Gn3   v060
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE	W06
+	BYTE		        En3   v064
+	BYTE	W06
+	BYTE		        Gn3   v100
+	BYTE	W06
+	BYTE		N07     Gn3   v060
+	BYTE	W18
+	BYTE		TIE     Cn3   v120
+	BYTE	W36
+// 005   ----------------------------------------
+	BYTE	W68
+	BYTE	W03
+	BYTE		EOT   
+	BYTE	W01
+	BYTE		N05     Cn3   v044
+	BYTE	W21
+FE11LeapsandBoundsSaXortheNobody_7_B1:
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE		N80     Cn2   v088
+	BYTE		N80     En2 
+	BYTE	W84
+	BYTE		N04     Cn2   v044
+	BYTE		N03     En2 
+	BYTE	W12
+// 007   ----------------------------------------
+	BYTE		N80     Cn2   v080
+	BYTE		N84     Fn2   v092
+	BYTE	W84
+	BYTE	W03
+	BYTE		N05     Cn2   v036
+	BYTE		N05     Fn2 
+	BYTE	W09
+// 008   ----------------------------------------
+	BYTE		N72     Dn2   v092
+	BYTE		N72     Fn2   v084
+	BYTE	W72
+	BYTE	W03
+	BYTE		N07     Dn2   v036
+	BYTE		N07     Fn2 
+	BYTE	W09
+	BYTE		N04     Dn2   v068
+	BYTE		N04     Fn2   v080
+	BYTE	W06
+	BYTE		        Dn2   v036
+	BYTE		N04     Fn2 
+	BYTE	W06
+// 009   ----------------------------------------
+	BYTE		N76     Dn2   v088
+	BYTE		N76     Gn2   v092
+	BYTE	W78
+	BYTE		N04     Dn2   v036
+	BYTE		N04     Gn2 
+	BYTE	W06
+	BYTE		N03     Dn2   v080
+	BYTE		N04     Fn2   v084
+	BYTE	W06
+	BYTE		        Dn2   v036
+	BYTE		N04     Fn2 
+	BYTE	W06
+// 010   ----------------------------------------
+	BYTE		N66     Cn2   v084
+	BYTE		N66     En2 
+	BYTE	W68
+	BYTE	W01
+	BYTE		N04     Cn2   v036
+	BYTE		N04     En2 
+	BYTE	W15
+	BYTE		        Cn2   v072
+	BYTE		N04     En2   v080
+	BYTE	W06
+	BYTE		        Cn2   v036
+	BYTE		N04     En2 
+	BYTE	W06
+// 011   ----------------------------------------
+	BYTE		N90     Cs2   v072
+	BYTE		N44     An2   v076
+	BYTE	W48
+	BYTE		        Gn2   v092
+	BYTE	W48
+// 012   ----------------------------------------
+	BYTE		N72     Dn2   v088
+	BYTE		N72     Fn2   v084
+	BYTE	W78
+	BYTE		N04     Dn2   v036
+	BYTE		N04     Fn2 
+	BYTE	W06
+	BYTE		        Dn2   v084
+	BYTE		N04     Fn2   v080
+	BYTE	W06
+	BYTE		        Dn2   v036
+	BYTE		N04     Fn2 
+	BYTE	W06
+// 013   ----------------------------------------
+	BYTE		N78     Fn2   v084
+	BYTE		N80     Gn2 
+	BYTE	W84
+	BYTE		N04     Fn2   v036
+	BYTE		N04     Gn2 
+	BYTE	W10
+	BYTE	GoTo
+	 POIN2	FE11LeapsandBoundsSaXortheNobody_7_B1
+FE11LeapsandBoundsSaXortheNobody_7_B2:
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+FE11LeapsandBoundsSaXortheNobody_8:
+	BYTE	KEYSH   FE11LeapsandBoundsSaXortheNobody_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   14
+	BYTE		VOL     45*FE11LeapsandBoundsSaXortheNobody_mvl/mxv
+	BYTE		N44     As2   v080
+	BYTE		N44     Fn3   v088
+	BYTE	W48
+	BYTE		        Cn3   v072
+	BYTE		N44     Gn3   v088
+	BYTE	W48
+// 001   ----------------------------------------
+	BYTE		        Dn3 
+	BYTE		N44     An3   v076
+	BYTE	W48
+	BYTE		        Ds3   v100
+	BYTE		N44     As3   v068
+	BYTE	W48
+// 002   ----------------------------------------
+	BYTE		TIE     En3   v112
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W44
+	BYTE		EOT   
+	BYTE	W10
+	BYTE		N16     Gn3   v124
+	BYTE	W18
+	BYTE		N04     Gn3   v048
+	BYTE	W06
+	BYTE		N16     Fn3   v124
+	BYTE	W18
+// 004   ----------------------------------------
+	BYTE		N05     Fn3   v048
+	BYTE	W06
+	BYTE		        En3   v112
+	BYTE	W06
+	BYTE		        En3   v048
+	BYTE	W06
+	BYTE		        Dn3   v108
+	BYTE	W06
+	BYTE		        Dn3   v048
+	BYTE	W06
+	BYTE		        Cn3   v120
+	BYTE	W06
+	BYTE		        Cn3   v048
+	BYTE	W06
+	BYTE		N17     Dn3   v124
+	BYTE	W18
+	BYTE		N05     Dn3   v048
+	BYTE	W06
+	BYTE		TIE     En3   v127
+	BYTE	W30
+// 005   ----------------------------------------
+	BYTE	W76
+	BYTE	W01
+	BYTE		EOT   
+	BYTE	W01
+	BYTE		N06     En3   v048
+	BYTE	W15
+FE11LeapsandBoundsSaXortheNobody_8_B1:
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE		N92     Cn2   v092
+	BYTE		N92     En3   v084
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE		        Cn2 
+	BYTE		N92     En3 
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE		        Dn2   v088
+	BYTE		N92     Cn3   v104
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE		        Gn1   v084
+	BYTE		N92     Dn3 
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE		        Cn2   v096
+	BYTE		N92     En3   v092
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE		        En2   v088
+	BYTE		N92     En3   v072
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE		        Dn2   v096
+	BYTE		N92     Fn3   v092
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE		        Gn1   v076
+	BYTE		N92     Gn3   v100
+	BYTE	W92
+	BYTE	W02
+	BYTE	GoTo
+	 POIN2	FE11LeapsandBoundsSaXortheNobody_8_B1
+FE11LeapsandBoundsSaXortheNobody_8_B2:
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE11LeapsandBoundsSaXortheNobody:
+	BYTE	8	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE11LeapsandBoundsSaXortheNobody_pri	// Priority
+	BYTE	FE11LeapsandBoundsSaXortheNobody_rev	// Reverb.
+
+	POIN2	FE11LeapsandBoundsSaXortheNobody_grp
+
+	POIN2	FE11LeapsandBoundsSaXortheNobody_1
+	POIN2	FE11LeapsandBoundsSaXortheNobody_2
+	POIN2	FE11LeapsandBoundsSaXortheNobody_3
+	POIN2	FE11LeapsandBoundsSaXortheNobody_4
+	POIN2	FE11LeapsandBoundsSaXortheNobody_5
+	POIN2	FE11LeapsandBoundsSaXortheNobody_6
+	POIN2	FE11LeapsandBoundsSaXortheNobody_7
+	POIN2	FE11LeapsandBoundsSaXortheNobody_8
+
+	

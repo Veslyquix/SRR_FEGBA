@@ -1,0 +1,1073 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE03DefendingRSflame_grp  voicegroup000
+	#define	FE03DefendingRSflame_pri  10
+	#define	FE03DefendingRSflame_rev  0
+	#define	FE03DefendingRSflame_mvl  127
+	#define	FE03DefendingRSflame_key  0
+	#define	FE03DefendingRSflame_tbs  1
+	#define	FE03DefendingRSflame_exg  0
+	#define	FE03DefendingRSflame_cmp  1
+
+	// .rodata
+	//	FE03DefendingRSflame
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+FE03DefendingRSflame_001:
+// 000   ----------------------------------------
+Label_0_01029D70:
+ BYTE   KEYSH   FE03DefendingRSflame_key+0
+ BYTE   VOICE   2
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   TEMPO   86*FE03DefendingRSflame_tbs/2
+ BYTE   W06
+ BYTE   N02  Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+Label_0_01029DA0:
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   PEND 
+// 001   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 002   ----------------------------------------
+Label_0_01029DCF:
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N01  Gn3  v119
+ BYTE   W03
+ BYTE   Gn3  v112
+ BYTE   W03
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N01  Gn3  v121
+ BYTE   W03
+ BYTE   Gn3  v114
+ BYTE   W03
+ BYTE   PEND 
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 004   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 005   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 006   ----------------------------------------
+Label_0_01029E17:
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N01  Gn3  v121
+ BYTE   W03
+ BYTE   Gn3  v108
+ BYTE   W03
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N01  Gn3  v114
+ BYTE   W03
+ BYTE   Gn3  v102
+ BYTE   W03
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N01  Gn3  v121
+ BYTE   W03
+ BYTE   Gn3  v114
+ BYTE   W03
+ BYTE   PEND 
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 008   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 010   ----------------------------------------
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N01  Gn3  v119
+ BYTE   W03
+ BYTE   Gn3  v112
+ BYTE   W03
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N01  Gn3  v121
+ BYTE   W03
+ BYTE   Gn3  v114
+ BYTE   W03
+// 011   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 012   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 013   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 014   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DCF
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029E17
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_0_01029DA0
+// 022   ----------------------------------------
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N01  Gn3  v119
+ BYTE   W03
+ BYTE   Gn3  v112
+ BYTE   W03
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+49
+ BYTE   N02  Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   Cn3  v076
+ BYTE   W03
+ BYTE   Cn3  v070
+ BYTE   W03
+ BYTE   Cn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   N01  Gn3  v121
+ BYTE   W01
+ BYTE   W02
+ BYTE   N01  Gn3  v114
+ BYTE   W01
+ BYTE   GoTo
+  POIN2 Label_0_01029D70
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+FE03DefendingRSflame_002:
+// 000   ----------------------------------------
+Label_1_01027164:
+ BYTE   KEYSH   FE03DefendingRSflame_key+0
+ BYTE   VOICE   2
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   TEMPO   86*FE03DefendingRSflame_tbs/2
+ BYTE   W06
+ BYTE   N02  Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+Label_1_01027194:
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   PEND 
+// 001   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 002   ----------------------------------------
+Label_1_010271C3:
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N02  Cn4  v119
+ BYTE   W03
+ BYTE   N01  Cn4  v112
+ BYTE   W03
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N02  Cn4  v121
+ BYTE   W03
+ BYTE   N01  Cn4  v114
+ BYTE   W03
+ BYTE   PEND 
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 004   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 005   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 006   ----------------------------------------
+Label_1_0102720D:
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N02  Cn4  v121
+ BYTE   W03
+ BYTE   N01  Cn4  v108
+ BYTE   W03
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N02  Cn4  v114
+ BYTE   W03
+ BYTE   N01  Cn4  v102
+ BYTE   W03
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N02  Cn4  v121
+ BYTE   W03
+ BYTE   N01  Cn4  v114
+ BYTE   W03
+ BYTE   PEND 
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 008   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 010   ----------------------------------------
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N02  Cn4  v119
+ BYTE   W03
+ BYTE   N01  Cn4  v112
+ BYTE   W03
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N02  Cn4  v121
+ BYTE   W03
+ BYTE   N01  Cn4  v114
+ BYTE   W03
+// 011   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 012   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 013   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 014   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_010271C3
+// 015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 016   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 017   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 018   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_0102720D
+// 019   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 020   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 021   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_1_01027194
+// 022   ----------------------------------------
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N02  Cn4  v119
+ BYTE   W03
+ BYTE   N01  Cn4  v112
+ BYTE   W03
+ BYTE   VOL   30*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-49
+ BYTE   N02  Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   Fn3  v076
+ BYTE   W03
+ BYTE   Fn3  v070
+ BYTE   W03
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   VOL   53*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N02  Cn4  v121
+ BYTE   W01
+ BYTE   W02
+ BYTE   N01  Cn4  v114
+ BYTE   W01
+ BYTE   GoTo
+  POIN2 Label_1_01027164
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+FE03DefendingRSflame_003:
+// 000   ----------------------------------------
+Label_2_0102783C:
+ BYTE   KEYSH   FE03DefendingRSflame_key+0
+ BYTE   VOICE   41
+ BYTE   VOL   42*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-34
+ BYTE   N76  Fn3  v095
+ BYTE   TEMPO   86*FE03DefendingRSflame_tbs/2
+ BYTE   W36
+ BYTE   W02
+ BYTE   N01  Fn3  v095
+ BYTE   W40
+ BYTE   N05  En3  v089
+ BYTE   W06
+ BYTE   Dn3  v099
+ BYTE   W06
+ BYTE   Cn3  v108
+ BYTE   W06
+// 001   ----------------------------------------
+ BYTE   N84  Gn3  v102
+ BYTE   W42
+ BYTE   N03
+ BYTE   W54
+// 002   ----------------------------------------
+Label_2_0102785F:
+ BYTE   N76  Fn3  v098
+ BYTE   W78
+ BYTE   N05  En3  v085
+ BYTE   W06
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   N96  Cn4  v112
+ BYTE   W48
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_2_0102786F:
+ BYTE   N05  Cn4  v112
+ BYTE   W54
+ BYTE   N03  Fn3  v089
+ BYTE   W04
+ BYTE   Gn3  v108
+ BYTE   W04
+ BYTE   Fn3  v089
+ BYTE   W04
+ BYTE   N32  Cn4  v108
+ BYTE   W16
+ BYTE   N03
+ BYTE   W20
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_2_01027884:
+ BYTE   N03  Fn4  v093
+ BYTE   W04
+ BYTE   Gn4  v102
+ BYTE   W04
+ BYTE   N02  Fn4  v095
+ BYTE   W03
+ BYTE   N32  Cn5  v105
+ BYTE   W16
+ BYTE   N03
+ BYTE   W20
+ BYTE   N02  Fn3  v095
+ BYTE   W03
+ BYTE   Gn3  v110
+ BYTE   W03
+ BYTE   Fn3  v089
+ BYTE   W03
+ BYTE   Cn4  v108
+ BYTE   W03
+ BYTE   N32  Dn4  v114
+ BYTE   W16
+ BYTE   N03
+ BYTE   W20
+ BYTE   PEND 
+ BYTE   N02  Fn4  v095
+ BYTE   W03
+// 005   ----------------------------------------
+ BYTE   Gn4  v104
+ BYTE   W03
+ BYTE   Fn4  v089
+ BYTE   W03
+ BYTE   Cn5  v095
+ BYTE   W03
+ BYTE   N30  Dn5  v098
+ BYTE   W15
+ BYTE   N01
+ BYTE   W21
+ BYTE   N76  Fn3  v095
+ BYTE   W36
+ BYTE   W02
+ BYTE   N01
+ BYTE   W40
+// 006   ----------------------------------------
+ BYTE   N05  En3  v089
+ BYTE   W06
+ BYTE   Dn3  v099
+ BYTE   W06
+ BYTE   Cn3  v108
+ BYTE   W06
+ BYTE   N84  Gn3  v102
+ BYTE   W42
+ BYTE   N03
+ BYTE   W54
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102785F
+// 008   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_0102786F
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_2_01027884
+// 010   ----------------------------------------
+ BYTE   N02  Fn4  v095
+ BYTE   W03
+ BYTE   Gn4  v104
+ BYTE   W03
+ BYTE   Fn4  v089
+ BYTE   W03
+ BYTE   Cn5  v095
+ BYTE   W03
+ BYTE   N30  Dn5  v098
+ BYTE   W15
+ BYTE   N01
+ BYTE   W16
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_2_0102783C
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+FE03DefendingRSflame_004:
+// 000   ----------------------------------------
+Label_3_01027750:
+ BYTE   KEYSH   FE03DefendingRSflame_key+0
+ BYTE   VOICE   46
+ BYTE   VOL   64*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v+14
+ BYTE   TEMPO   86*FE03DefendingRSflame_tbs/2
+ BYTE   W12
+ BYTE   N08  Gn2  v070
+ BYTE   W09
+ BYTE   N14  Gn2  v089
+ BYTE   W15
+ BYTE   N08  Gn2  v070
+ BYTE   W09
+ BYTE   N14  Dn2  v089
+ BYTE   W15
+ BYTE   N08  Gn2  v070
+ BYTE   W09
+ BYTE   N14  Gn2  v089
+ BYTE   W15
+ BYTE   N08  Gn2  v070
+ BYTE   W09
+ BYTE   N14  Dn2  v089
+ BYTE   W15
+// 001   ----------------------------------------
+Label_3_0102777B:
+ BYTE   N08  Gs2  v070
+ BYTE   W09
+ BYTE   N14  Gs2  v089
+ BYTE   W15
+ BYTE   N08  Gs2  v070
+ BYTE   W09
+ BYTE   N14  Ds2  v089
+ BYTE   W15
+ BYTE   N08  Gs2  v070
+ BYTE   W09
+ BYTE   Gs2  v089
+ BYTE   W09
+ BYTE   N11  Ds2  v099
+ BYTE   W12
+ BYTE   N17  Ds2  v114
+ BYTE   W18
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_3_0102779B:
+ BYTE   N08  Gn2  v070
+ BYTE   W09
+ BYTE   N14  Gn2  v089
+ BYTE   W15
+ BYTE   N08  Gn2  v070
+ BYTE   W09
+ BYTE   N14  Dn2  v089
+ BYTE   W15
+ BYTE   N08  Gn2  v070
+ BYTE   W09
+ BYTE   N14  Gn2  v089
+ BYTE   W15
+ BYTE   N08  Gn2  v070
+ BYTE   W09
+ BYTE   N14  Dn2  v089
+ BYTE   W15
+ BYTE   PEND 
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0102777B
+// 004   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0102779B
+// 005   ----------------------------------------
+ BYTE   N08  Gs2  v070
+ BYTE   W09
+ BYTE   N14  Gs2  v089
+ BYTE   W15
+ BYTE   N08  Gs2  v070
+ BYTE   W09
+ BYTE   Ds2  v089
+ BYTE   W09
+ BYTE   N11  Ds2  v086
+ BYTE   W12
+ BYTE   Ds2  v095
+ BYTE   W12
+ BYTE   Ds2  v102
+ BYTE   W12
+ BYTE   N17  Ds2  v121
+ BYTE   W18
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0102779B
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0102777B
+// 008   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0102779B
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0102777B
+// 010   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_3_0102779B
+// 011   ----------------------------------------
+ BYTE   N08  Gs2  v070
+ BYTE   W09
+ BYTE   N14  Gs2  v089
+ BYTE   W15
+ BYTE   N08  Gs2  v070
+ BYTE   W09
+ BYTE   Ds2  v089
+ BYTE   W09
+ BYTE   N11  Ds2  v086
+ BYTE   W12
+ BYTE   Ds2  v095
+ BYTE   W12
+ BYTE   Ds2  v102
+ BYTE   W12
+ BYTE   N05  Ds2  v121
+ BYTE   W01
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_3_01027750
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+FE03DefendingRSflame_005:
+// 000   ----------------------------------------
+Label_4_01029FE0:
+ BYTE   KEYSH   FE03DefendingRSflame_key+0
+ BYTE   VOICE   46
+ BYTE   VOL   64*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-14
+ BYTE   N17  Gn2  v113
+ BYTE   TEMPO   86*FE03DefendingRSflame_tbs/2
+ BYTE   W18
+ BYTE   N05  Gn2  v100
+ BYTE   W06
+ BYTE   N17  Gn2  v105
+ BYTE   W18
+ BYTE   N05  Dn2  v099
+ BYTE   W06
+ BYTE   N17  Gn2  v113
+ BYTE   W18
+ BYTE   N05  Gn2  v100
+ BYTE   W06
+ BYTE   N17  Gn2  v105
+ BYTE   W18
+ BYTE   N05  Dn2  v099
+ BYTE   W06
+// 001   ----------------------------------------
+Label_4_0102A00A:
+ BYTE   N17  Gs2  v113
+ BYTE   W18
+ BYTE   N05  Gs2  v100
+ BYTE   W06
+ BYTE   N17  Gs2  v105
+ BYTE   W18
+ BYTE   N05  Ds2  v099
+ BYTE   W06
+ BYTE   N17  Gs2  v112
+ BYTE   W18
+ BYTE   N05  Gs2  v100
+ BYTE   W06
+ BYTE   N11  Gs2  v095
+ BYTE   W12
+ BYTE   Gs2  v104
+ BYTE   W12
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_4_0102A02A:
+ BYTE   N17  Gn2  v113
+ BYTE   W18
+ BYTE   N05  Gn2  v100
+ BYTE   W06
+ BYTE   N17  Gn2  v105
+ BYTE   W18
+ BYTE   N05  Dn2  v099
+ BYTE   W06
+ BYTE   N17  Gn2  v113
+ BYTE   W18
+ BYTE   N05  Gn2  v100
+ BYTE   W06
+ BYTE   N17  Gn2  v105
+ BYTE   W18
+ BYTE   N05  Dn2  v099
+ BYTE   W06
+ BYTE   PEND 
+// 003   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0102A00A
+// 004   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0102A02A
+// 005   ----------------------------------------
+ BYTE   N17  Gs2  v113
+ BYTE   W18
+ BYTE   N05  Gs2  v100
+ BYTE   W06
+ BYTE   N17  Gs2  v105
+ BYTE   W18
+ BYTE   N05  Ds2  v099
+ BYTE   W06
+ BYTE   N11  Gs2  v089
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   Gs2  v099
+ BYTE   W12
+ BYTE   Gs2  v117
+ BYTE   W12
+// 006   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0102A02A
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0102A00A
+// 008   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0102A02A
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0102A00A
+// 010   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_4_0102A02A
+// 011   ----------------------------------------
+ BYTE   N17  Gs2  v113
+ BYTE   W18
+ BYTE   N05  Gs2  v100
+ BYTE   W06
+ BYTE   N17  Gs2  v105
+ BYTE   W18
+ BYTE   N05  Ds2  v099
+ BYTE   W06
+ BYTE   N11  Gs2  v089
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   Gs2  v099
+ BYTE   W12
+ BYTE   Gs2  v117
+ BYTE   W07
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_4_01029FE0
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+FE03DefendingRSflame_006:
+// 000   ----------------------------------------
+Label_5_01029F18:
+ BYTE   KEYSH   FE03DefendingRSflame_key+0
+ BYTE   VOICE   41
+ BYTE   VOL   42*FE03DefendingRSflame_mvl/mxv
+ BYTE   PAN   c_v-34
+ BYTE   N76  Fn3  v095
+ BYTE   TEMPO   86*FE03DefendingRSflame_tbs/2
+ BYTE   W36
+ BYTE   W02
+ BYTE   N01  Fn3  v095
+ BYTE   W40
+ BYTE   N05  En3  v089
+ BYTE   W06
+ BYTE   Dn3  v099
+ BYTE   W06
+ BYTE   Cn3  v108
+ BYTE   W06
+// 001   ----------------------------------------
+ BYTE   N84  Gn3  v102
+ BYTE   W42
+ BYTE   N03
+ BYTE   W54
+// 002   ----------------------------------------
+Label_5_01029F3B:
+ BYTE   N76  Fn3  v098
+ BYTE   W78
+ BYTE   N05  En3  v085
+ BYTE   W06
+ BYTE   Fn3  v095
+ BYTE   W06
+ BYTE   N96  Cn4  v112
+ BYTE   W48
+ BYTE   PEND 
+// 003   ----------------------------------------
+Label_5_01029F4B:
+ BYTE   N05  Cn4  v112
+ BYTE   W54
+ BYTE   N03  Fn3  v089
+ BYTE   W04
+ BYTE   Gn3  v108
+ BYTE   W04
+ BYTE   Fn3  v089
+ BYTE   W04
+ BYTE   N32  Cn4  v108
+ BYTE   W16
+ BYTE   N03
+ BYTE   W20
+ BYTE   PEND 
+// 004   ----------------------------------------
+Label_5_01029F60:
+ BYTE   N03  Fn4  v093
+ BYTE   W04
+ BYTE   Gn4  v102
+ BYTE   W04
+ BYTE   N02  Fn4  v095
+ BYTE   W03
+ BYTE   N32  Cn5  v105
+ BYTE   W16
+ BYTE   N03
+ BYTE   W20
+ BYTE   N02  Fn3  v095
+ BYTE   W03
+ BYTE   Gn3  v110
+ BYTE   W03
+ BYTE   Fn3  v089
+ BYTE   W03
+ BYTE   Cn4  v108
+ BYTE   W03
+ BYTE   N32  Dn4  v114
+ BYTE   W16
+ BYTE   N03
+ BYTE   W20
+ BYTE   PEND 
+ BYTE   N02  Fn4  v095
+ BYTE   W03
+// 005   ----------------------------------------
+ BYTE   Gn4  v104
+ BYTE   W03
+ BYTE   Fn4  v089
+ BYTE   W03
+ BYTE   Cn5  v095
+ BYTE   W03
+ BYTE   N30  Dn5  v098
+ BYTE   W15
+ BYTE   N01
+ BYTE   W21
+ BYTE   N76  Fn3  v095
+ BYTE   W36
+ BYTE   W02
+ BYTE   N01
+ BYTE   W40
+// 006   ----------------------------------------
+ BYTE   N05  En3  v089
+ BYTE   W06
+ BYTE   Dn3  v099
+ BYTE   W06
+ BYTE   Cn3  v108
+ BYTE   W06
+ BYTE   N84  Gn3  v102
+ BYTE   W42
+ BYTE   N03
+ BYTE   W54
+// 007   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_5_01029F3B
+// 008   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_5_01029F4B
+// 009   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_5_01029F60
+// 010   ----------------------------------------
+ BYTE   N02  Fn4  v095
+ BYTE   W03
+ BYTE   Gn4  v104
+ BYTE   W03
+ BYTE   Fn4  v089
+ BYTE   W03
+ BYTE   Cn5  v095
+ BYTE   W03
+ BYTE   N30  Dn5  v098
+ BYTE   W15
+ BYTE   N01
+ BYTE   W16
+ BYTE   W03
+ BYTE   GoTo
+  POIN2 Label_5_01029F18
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE03DefendingRSflame:
+	BYTE	6	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE03DefendingRSflame_pri	// Priority
+	BYTE	FE03DefendingRSflame_rev	// Reverb.
+    
+	POIN2	FE03DefendingRSflame_grp
+    
+	POIN2	FE03DefendingRSflame_001
+	POIN2	FE03DefendingRSflame_002
+	POIN2	FE03DefendingRSflame_003
+	POIN2	FE03DefendingRSflame_004
+	POIN2	FE03DefendingRSflame_005
+	POIN2	FE03DefendingRSflame_006
+
+	
