@@ -1487,7 +1487,7 @@ int GetBGMTrack()
     //	noise[1] = gActiveUnit->yPos;
     // }
 
-    u16 List[MaxNumberOfSongs];
+    u16 List[MaxNumberOfSongs + 1];
     BuildTracklist(
         List, HashByte_Ch(number, 500, noise, gTurn) + 1,
         0x10001); // random number up to 500 to start building the tracklist from
@@ -1523,9 +1523,9 @@ int RandomizeBattleMusic(int id)
     {
         return id;
     }
-    u16 List[MaxNumberOfSongs];
+    u16 List[MaxNumberOfSongs + 1];
     BuildTracklist(List, NextRN_N(600), 0);
-    return List[NextRN_N(List[0])];
+    return List[NextRN_N(List[0]) + 1];
     // int result = List[NextRN_N(List[0])+1];
     // return result; // not all tracks with 0x10001 priority work for battle music fsr
     //  a random track from sound room seems to work, though *shrugs*
