@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.9.3"
+#define VersionNumber " SRR V1.9.4"
 // 547282
 
 #ifdef FE8
@@ -1454,6 +1454,10 @@ u16 * BuildTracklist(u16 List[], int startingPoint, int priority)
         if (!gST[i].header) // no song pointer
         {
             break;
+        }
+        if (gST[i].header == (void *)EmptyTrack)
+        {
+            continue;
         }
         if (BGMExceptions[i])
         {

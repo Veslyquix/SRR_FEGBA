@@ -7,11 +7,13 @@ ALIGN 4
 voicegroup000:
 #ifdef _FE8_
 //#incbin "fe8nimap.bin" 
-#include "fe8nimap.event" 
+#include "fe8nimap2.event" 
+// essential fixes includes 16 tracks 12 sounds already 
 #include "FE8_Drumfix/Installer.event" 
 #endif 
 #ifdef _FE7_
-    #incbin "fe7nimap.bin" 
+    #include "fe7nimap2.event" 
+    #include "FE7_Drumfix_bad/Installer.event" // this just replaces the dummy sounds from 40 - 80 with a generic percussive sound 
 PUSH
 // 16 tracks fix  
 ORG $3FCD 
@@ -24,11 +26,15 @@ POP
 
 #endif 
 #ifdef _FE6_
-    #incbin "fe6nimap.bin" 
+    #include "fe6nimap2.event" 
+    // no 16 tracks fix 
+    #include "FE6_Drumfix_bad/Installer.event" // this just replaces the dummy sounds from 40 - 80 with a generic percussive sound
 #endif 
 
+// fe6 drum sets: 
+// 83931AC, 83933EC,  
+// 8393548, 8393650 
 
-
-
-
-
+// FE8 drum sets: 
+// 123 - 82226B0, 124 - 82228F0, 
+// 127 - 8222D70, 122 - 8222FB0, 121 - 82231F0 

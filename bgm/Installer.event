@@ -84,7 +84,7 @@ POIN NewSongTable
 #endif 
 POP 
 
-#define SongTableSize 0x1200 
+#define SongTableSize 0x500 
 #define EmptyTrack_16 "EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack" 
 #define EmptyTrack_256 "EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16" 
 
@@ -92,7 +92,7 @@ POP
 
 ALIGN 4 
 NewSongTable: 
-WORD EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 
+WORD EmptyTrack_256 EmptyTrack_256 //EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 
 ORG NewSongTable 
 #ifdef _FE8_ 
 #incbin "fe8_vanilla_track_table.dmp"
@@ -104,7 +104,8 @@ ORG NewSongTable
 #incbin "fe6_vanilla_track_table.dmp"
 #endif 
 ORG NewSongTable + (8 * (SongTableSize+1)) 
-
+FILL(256*8*16) 
+ORG NewSongTable + (8 * (SongTableSize+1)) 
 
 #define FirstBGM_ID 0x3E6  
 
@@ -112,6 +113,7 @@ ORG NewSongTable + (8 * (SongTableSize+1))
 #define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
 
 #include "Generated.event" 
+
 
 
 

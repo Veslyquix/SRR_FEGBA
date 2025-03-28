@@ -789,7 +789,8 @@ Sothis portrait by emkat, Eden
 Thales portrait by emkat, Eden  
 Tomas portrait by emkat, Eden  
 Waldemar portrait by Maximus, Eden  
-Shez portrait by Kanna  
+ShezF portrait by Kanna  
+ShezM portrait by Blade  
    
    
 // fe17    
@@ -816,10 +817,10 @@ Ivy portrait by KingCrimson
 Kagetsu portrait by Tobiki     
 Zelkov (no art credited)     
 Fogado (no art credited)     
-Pandreo (no art credited)     
+Pandreo portrait by Priestess     
 Bunet (no art credited)     
 Timerra (no art credited)     
-Panette (no art credited)     
+Panette portrait by Priestess       
 Merrin portrait by Tobiki     
 Hortensia (no art credited)     
 Seadall (no art credited)     
@@ -840,7 +841,35 @@ Morva (no art credited)
    
    
    
+Backgrounds (when random is enabled): 
+--   
+Game screenshots  
+Norikins  
+armyd  
+7743  
+Fenreir  
+WAve  
+ZoramineFae  
+For details on specific BGs, please see the files in gfx/BGs  
+    
+  
+BGM (when random is enabled):  
+RandomWizard  
+AReliableChair  
+Tak  
+MrGreen3339  
+ShinKuma  
+TristanHollow  
+Pandan  
+RSflame  
+MeatOfJustice  
+Sme  
+SR23  
+Dolkar  
+DonkinDo  
+Azula  
+LemonTart  
+DerTheVaporeon  
    
-   
-   
-   
+For details on specific tracks, please see the files in `bgm/s`  
+ 
