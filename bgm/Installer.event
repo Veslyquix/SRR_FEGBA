@@ -92,7 +92,7 @@ POP
 
 ALIGN 4 
 NewSongTable: 
-WORD EmptyTrack_256 EmptyTrack_256 //EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 
+WORD EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 //EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 
 ORG NewSongTable 
 #ifdef _FE8_ 
 #incbin "fe8_vanilla_track_table.dmp"

@@ -1396,12 +1396,15 @@ const int MaxNumberOfSongs = 500;
 extern u8 BGMExceptions[];
 #ifdef FE8
 #define EmptyTrack 0x82263B0
+#define EmptyTrack2 0x857CE28
 #endif
 #ifdef FE7
 #define EmptyTrack 0x8ABC4AC
+#define EmptyTrack2 0x869F620
 #endif
 #ifdef FE6
 #define EmptyTrack 0x839A840
+#define EmptyTrack2 0x839A840 // only 1 empty track in fe6
 #endif
 // #define MaxNumberOfSongs 99
 u16 * BuildTracklist(u16 List[], int startingPoint, int priority)
@@ -1427,6 +1430,10 @@ u16 * BuildTracklist(u16 List[], int startingPoint, int priority)
             break;
         }
         if (gST[i].header == (void *)EmptyTrack)
+        {
+            continue;
+        }
+        if (gST[i].header == (void *)EmptyTrack2)
         {
             continue;
         }
@@ -1456,6 +1463,10 @@ u16 * BuildTracklist(u16 List[], int startingPoint, int priority)
             break;
         }
         if (gST[i].header == (void *)EmptyTrack)
+        {
+            continue;
+        }
+        if (gST[i].header == (void *)EmptyTrack2)
         {
             continue;
         }
