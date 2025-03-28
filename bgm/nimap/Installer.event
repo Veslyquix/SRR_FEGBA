@@ -1,17 +1,32 @@
 
 
+  // #define VoiceDirect(VoiceTable,VoiceIndex,BaseNote,Address,FixedFreq,IsForcedPan,Pan,EnvAtk,EnvDec,EnvSus,EnvRel) "ORG VoiceTable+VoiceIndex*0x0c; BYTE $00+FixedFreq*0x8 BaseNote $00 IsForcedPan*0x80+Pan; POIN Address; BYTE EnvAtk EnvDec EnvSus EnvRel"
+  #define VoiceDirect(Type,BaseNote,Pan,Address,EnvAtk,EnvDec,EnvSus,EnvRel) "BYTE Type BaseNote $00 Pan; WORD Address; BYTE EnvAtk EnvDec EnvSus EnvRel"
+
 ALIGN 4 
 voicegroup000:
 #ifdef _FE8_
-#incbin "fe8nimap.bin" 
+//#incbin "fe8nimap.bin" 
+#include "fe8nimap.event" 
 #include "FE8_Drumfix/Installer.event" 
 #endif 
 #ifdef _FE7_
     #incbin "fe7nimap.bin" 
+PUSH
+// 16 tracks fix  
+ORG $3FCD 
+BYTE 0xD0 
+ORG $3ff6 
+BYTE $08 $29 $02 $D0 $08
+ORG $69d668 
+BYTE $10 $5B $00 $03 $28 $16 $00 $03 $0C $00 $00 $00 $20 $5D $00 $03 $B0 $67 $00 $03 $0C $00 $00 $00 $60 $5D $00 $03 $28 $1B $00 $03 $02 $00 $01 $00 $30 $5E $00 $03 $C8 $1B $00 $03 $02 $00 $01 $00 $A0 $5D $00 $03 $68 $1C $00 $03 $04 $00 $01 $00 $90 $5A $00 $03 $A8 $1D $00 $03 $04 $00 $01 $00 $D0 $5A $00 $03 $E8 $1E $00 $03 $05 $00 $01 $00 $E0 $5C $00 $03 $78 $20 $00 $03 $04 $00 $01 $00 $F0 $5D $00 $03 $B8 $21 $00 $03 $02 $00 $01 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+POP 
+
 #endif 
 #ifdef _FE6_
     #incbin "fe6nimap.bin" 
 #endif 
+
 
 
 

@@ -1,0 +1,791 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	SuperMarioBros3AirshipThemeMrGreen3339_grp  voicegroup000
+	#define	SuperMarioBros3AirshipThemeMrGreen3339_pri  0
+	#define	SuperMarioBros3AirshipThemeMrGreen3339_rev  0
+	#define	SuperMarioBros3AirshipThemeMrGreen3339_mvl  127
+	#define	SuperMarioBros3AirshipThemeMrGreen3339_key  0
+	#define	SuperMarioBros3AirshipThemeMrGreen3339_tbs  1
+	#define	SuperMarioBros3AirshipThemeMrGreen3339_exg  0
+	#define	SuperMarioBros3AirshipThemeMrGreen3339_cmp  1
+
+	// .rodata
+	//	SuperMarioBros3AirshipThemeMrGreen3339
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+SuperMarioBros3AirshipThemeMrGreen3339_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioBros3AirshipThemeMrGreen3339_key+0
+ BYTE   TEMPO   114*SuperMarioBros3AirshipThemeMrGreen3339_tbs/2
+ BYTE   VOICE   47
+ BYTE   VOL   65*SuperMarioBros3AirshipThemeMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N20  Cn1  v076
+ BYTE   W24
+ BYTE   N15
+ BYTE   W16
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N20
+ BYTE   W24
+// 001   ----------------------------------------
+Label_0_0103F14A:
+ BYTE   N20  Cn1  v076
+ BYTE   W24
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N11
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_0_0103F15F:
+ BYTE   N20  Cn1  v076
+ BYTE   W24
+ BYTE   N15
+ BYTE   W16
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N20
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0103F14A
+// 003   ----------------------------------------
+Label_0_0103F175:
+ BYTE   PATT
+  POIN2 Label_0_0103F15F
+ BYTE   PATT
+  POIN2 Label_0_0103F14A
+ BYTE   PATT
+  POIN2 Label_0_0103F15F
+ BYTE   PATT
+  POIN2 Label_0_0103F14A
+ BYTE   PATT
+  POIN2 Label_0_0103F15F
+ BYTE   PATT
+  POIN2 Label_0_0103F14A
+ BYTE   PATT
+  POIN2 Label_0_0103F15F
+ BYTE   PATT
+  POIN2 Label_0_0103F14A
+// 004   ----------------------------------------
+Label_0_0103F19D:
+ BYTE   N20  Cn1  v076
+ BYTE   W24
+ BYTE   N20
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0103F19D
+// 005   ----------------------------------------
+Label_0_0103F1B3:
+ BYTE   N20  Fn1  v076
+ BYTE   W24
+ BYTE   N20
+ BYTE   W24
+ BYTE   N11
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_0103F1B3
+// 006   ----------------------------------------
+ BYTE   TEMPO   114*SuperMarioBros3AirshipThemeMrGreen3339_tbs/2
+ BYTE   VOICE   47
+ BYTE   N20  Cn1  v076
+ BYTE   W24
+ BYTE   N15
+ BYTE   W16
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N20
+ BYTE   W24
+ BYTE   PATT
+  POIN2 Label_0_0103F14A
+ BYTE   PATT
+  POIN2 Label_0_0103F15F
+ BYTE   PATT
+  POIN2 Label_0_0103F14A
+// 007   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_0_0103F175
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+SuperMarioBros3AirshipThemeMrGreen3339_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioBros3AirshipThemeMrGreen3339_key+0
+ BYTE   VOICE   52
+ BYTE   VOL   65*SuperMarioBros3AirshipThemeMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+Label_1_0103F200:
+ BYTE   N96  Fn2  v060
+ BYTE   N96  Cn3
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   Fn3
+ BYTE   N96  Cn4
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   N90  En3
+ BYTE   N90  Bn3
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   N96  Fn2
+ BYTE   N96  Cn3
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   Fn3
+ BYTE   N96  Cn4
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   N90  En3
+ BYTE   N90  Bn3
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+Label_1_0103F21F:
+ BYTE   N15  Ds3  v060
+ BYTE   N15  Gs3
+ BYTE   W24
+ BYTE   Ds3
+ BYTE   N15  Gs3
+ BYTE   W24
+ BYTE   N08  Ds3
+ BYTE   N08  Gs3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   N08  Gs3
+ BYTE   W12
+ BYTE   N07  Ds3
+ BYTE   N07  Gs3
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   N07  Bn3
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   N07  Bn3
+ BYTE   W08
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_0103F21F
+// 013   ----------------------------------------
+Label_1_0103F245:
+ BYTE   N15  Gn3  v060
+ BYTE   N15  An3
+ BYTE   N15  Dn4
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   N15  An3
+ BYTE   N15  Dn4
+ BYTE   W24
+ BYTE   N08  Gn3
+ BYTE   N08  An3
+ BYTE   N08  Dn4
+ BYTE   W12
+ BYTE   Gn3
+ BYTE   N08  An3
+ BYTE   N08  Dn4
+ BYTE   W12
+ BYTE   N07  Gn3
+ BYTE   N07  An3
+ BYTE   N07  Dn4
+ BYTE   W08
+ BYTE   As3
+ BYTE   N07  Cn4
+ BYTE   N07  Fn4
+ BYTE   W08
+ BYTE   As3
+ BYTE   N07  Cn4
+ BYTE   N07  Fn4
+ BYTE   W08
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_0103F245
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_1_0103F200
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+SuperMarioBros3AirshipThemeMrGreen3339_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioBros3AirshipThemeMrGreen3339_key+0
+ BYTE   VOICE   48
+ BYTE   VOL   65*SuperMarioBros3AirshipThemeMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+Label_2_0103F290:
+ BYTE   N96  Fn2  v060
+ BYTE   N96  Cn3
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   Fn3
+ BYTE   N96  Cn4
+ BYTE   W96
+// 006   ----------------------------------------
+Label_2_0103F29A:
+ BYTE   TIE  En3  v060
+ BYTE   TIE  Bn3
+ BYTE   W96
+ BYTE   PEND 
+// 007   ----------------------------------------
+ BYTE   W66
+ BYTE   EOT
+ BYTE   En3  v071
+ BYTE   W06
+ BYTE   N20  En2
+ BYTE   N20  Bn2
+ BYTE   W24
+// 008   ----------------------------------------
+ BYTE   N96  Fn2
+ BYTE   N96  Cn3
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   Fn3
+ BYTE   N96  Cn4
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_2_0103F29A
+// 010   ----------------------------------------
+ BYTE   W66
+ BYTE   EOT
+ BYTE   En3  v071
+ BYTE   W06
+ BYTE   N20  En3  v060
+ BYTE   N20  Bn3
+ BYTE   W24
+// 011   ----------------------------------------
+Label_2_0103F2C4:
+ BYTE   N15  Ds3  v060
+ BYTE   N15  Gs3
+ BYTE   W24
+ BYTE   Ds3
+ BYTE   N15  Gs3
+ BYTE   W24
+ BYTE   N08  Ds3
+ BYTE   N08  Gs3
+ BYTE   W12
+ BYTE   Ds3
+ BYTE   N08  Gs3
+ BYTE   W12
+ BYTE   N07  Ds3
+ BYTE   N07  Gs3
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   N07  Bn3
+ BYTE   W08
+ BYTE   Fs3
+ BYTE   N07  Bn3
+ BYTE   W08
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_0103F2C4
+// 012   ----------------------------------------
+Label_2_0103F2EA:
+ BYTE   N15  An3  v060
+ BYTE   N15  Dn4
+ BYTE   W24
+ BYTE   An3
+ BYTE   N15  Dn4
+ BYTE   W24
+ BYTE   N08  An3
+ BYTE   N08  Dn4
+ BYTE   W12
+ BYTE   An3
+ BYTE   N08  Dn4
+ BYTE   W12
+ BYTE   N07  An3
+ BYTE   N07  Dn4
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   N07  Fn4
+ BYTE   W08
+ BYTE   Cn4
+ BYTE   N07  Fn4
+ BYTE   W08
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_0103F2EA
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_2_0103F290
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+SuperMarioBros3AirshipThemeMrGreen3339_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioBros3AirshipThemeMrGreen3339_key+0
+ BYTE   VOICE   60
+ BYTE   VOL   65*SuperMarioBros3AirshipThemeMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+Label_3_0103F328:
+ BYTE   N90  Fn2  v076
+ BYTE   W96
+// 005   ----------------------------------------
+Label_3_0103F32C:
+ BYTE   N20  Fn3  v076
+ BYTE   W24
+ BYTE   Cn3
+ BYTE   W24
+ BYTE   Fn3
+ BYTE   W24
+ BYTE   Cn4
+ BYTE   W24
+ BYTE   PEND 
+// 006   ----------------------------------------
+ BYTE   N90  Bn3
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   En3
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   Fn2
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_3_0103F32C
+// 009   ----------------------------------------
+ BYTE   N90  Bn3  v076
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   En4
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   N20  Gs3
+ BYTE   W24
+ BYTE   Ds3
+ BYTE   W24
+ BYTE   N42  Gs3
+ BYTE   W48
+// 012   ----------------------------------------
+ BYTE   N20
+ BYTE   W24
+ BYTE   Ds3
+ BYTE   W24
+ BYTE   Gs3
+ BYTE   W24
+ BYTE   Bn3
+ BYTE   W24
+// 013   ----------------------------------------
+ BYTE   N42  Dn4
+ BYTE   W48
+ BYTE   N15  Cs4
+ BYTE   W16
+ BYTE   Dn4
+ BYTE   W16
+ BYTE   En4
+ BYTE   W16
+// 014   ----------------------------------------
+ BYTE   N90  Dn4
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_3_0103F328
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+SuperMarioBros3AirshipThemeMrGreen3339_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioBros3AirshipThemeMrGreen3339_key+0
+ BYTE   VOICE   127
+ BYTE   VOL   65*SuperMarioBros3AirshipThemeMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N90  Cs2  v060
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   N90
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+Label_4_0103F380:
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   N90  Cs2  v060
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   N90
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W48
+ BYTE   N42
+ BYTE   W48
+// 013   ----------------------------------------
+ BYTE   W48
+ BYTE   N42
+ BYTE   W48
+// 014   ----------------------------------------
+ BYTE   W48
+ BYTE   N42
+ BYTE   W48
+// 015   ----------------------------------------
+ BYTE   W48
+ BYTE   N15
+ BYTE   W16
+ BYTE   N15
+ BYTE   W16
+ BYTE   N15
+ BYTE   W16
+// 016   ----------------------------------------
+ BYTE   N90
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   N90
+ BYTE   W96
+// 019   ----------------------------------------
+ BYTE   W96
+// 020   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_4_0103F380
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+SuperMarioBros3AirshipThemeMrGreen3339_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioBros3AirshipThemeMrGreen3339_key+0
+ BYTE   VOICE   127
+ BYTE   VOL   65*SuperMarioBros3AirshipThemeMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N07  En1  v032
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N20
+ BYTE   W24
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+// 001   ----------------------------------------
+Label_5_0103F3C6:
+ BYTE   N07  En1  v032
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N20
+ BYTE   W24
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   PEND 
+// 002   ----------------------------------------
+Label_5_0103F3E7:
+ BYTE   N07  En1  v032
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N20
+ BYTE   W24
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_0103F3E7
+// 003   ----------------------------------------
+Label_5_0103F403:
+ BYTE   PATT
+  POIN2 Label_5_0103F3E7
+ BYTE   PATT
+  POIN2 Label_5_0103F3C6
+ BYTE   PATT
+  POIN2 Label_5_0103F3E7
+ BYTE   PATT
+  POIN2 Label_5_0103F3E7
+ BYTE   PATT
+  POIN2 Label_5_0103F3E7
+ BYTE   PATT
+  POIN2 Label_5_0103F3C6
+ BYTE   PATT
+  POIN2 Label_5_0103F3E7
+ BYTE   PATT
+  POIN2 Label_5_0103F3E7
+// 004   ----------------------------------------
+Label_5_0103F42B:
+ BYTE   N07  En1  v032
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N20
+ BYTE   W24
+ BYTE   N20
+ BYTE   W24
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   N07
+ BYTE   W08
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_0103F42B
+ BYTE   PATT
+  POIN2 Label_5_0103F42B
+ BYTE   PATT
+  POIN2 Label_5_0103F42B
+ BYTE   PATT
+  POIN2 Label_5_0103F3E7
+ BYTE   PATT
+  POIN2 Label_5_0103F3C6
+ BYTE   PATT
+  POIN2 Label_5_0103F3E7
+ BYTE   PATT
+  POIN2 Label_5_0103F3E7
+// 005   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_5_0103F403
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+SuperMarioBros3AirshipThemeMrGreen3339_007:
+// 000   ----------------------------------------
+ BYTE   KEYSH   SuperMarioBros3AirshipThemeMrGreen3339_key+0
+ BYTE   VOICE   14
+ BYTE   VOL   65*SuperMarioBros3AirshipThemeMrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+Label_6_0103F474:
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   N90  Bn3  v092
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   N90
+ BYTE   W96
+// 012   ----------------------------------------
+Label_6_0103F480:
+ BYTE   N20  Gs3  v092
+ BYTE   W24
+ BYTE   N20
+ BYTE   W24
+ BYTE   N42
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_6_0103F480
+// 013   ----------------------------------------
+Label_6_0103F48E:
+ BYTE   N20  Dn4  v092
+ BYTE   W24
+ BYTE   N20
+ BYTE   W24
+ BYTE   N42
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_6_0103F48E
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+ BYTE   W96
+// 016   ----------------------------------------
+ BYTE   W96
+// 017   ----------------------------------------
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_6_0103F474
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+SuperMarioBros3AirshipThemeMrGreen3339:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	SuperMarioBros3AirshipThemeMrGreen3339_pri	// Priority
+	BYTE	SuperMarioBros3AirshipThemeMrGreen3339_rev	// Reverb.
+    
+	POIN2	SuperMarioBros3AirshipThemeMrGreen3339_grp
+    
+	POIN2	SuperMarioBros3AirshipThemeMrGreen3339_001
+	POIN2	SuperMarioBros3AirshipThemeMrGreen3339_002
+	POIN2	SuperMarioBros3AirshipThemeMrGreen3339_003
+	POIN2	SuperMarioBros3AirshipThemeMrGreen3339_004
+	POIN2	SuperMarioBros3AirshipThemeMrGreen3339_005
+	POIN2	SuperMarioBros3AirshipThemeMrGreen3339_006
+	POIN2	SuperMarioBros3AirshipThemeMrGreen3339_007
+
+	

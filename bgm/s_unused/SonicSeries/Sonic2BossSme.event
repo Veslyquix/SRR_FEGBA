@@ -1,0 +1,948 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	Sonic2BossSme_grp  voicegroup000
+	#define	Sonic2BossSme_pri  0
+	#define	Sonic2BossSme_rev  0
+	#define	Sonic2BossSme_mvl  85
+	#define	Sonic2BossSme_key  0
+	#define	Sonic2BossSme_tbs  1
+	#define	Sonic2BossSme_exg  0
+	#define	Sonic2BossSme_cmp  1
+
+	// .rodata
+	//	Sonic2BossSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+Sonic2BossSme_1:
+	BYTE	KEYSH   Sonic2BossSme_key+0
+Sonic2BossSme_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   130*Sonic2BossSme_tbs/2
+	BYTE		VOICE   41
+	BYTE		PAN     c_v+18
+	BYTE		VOL     71*Sonic2BossSme_mvl/mxv
+	BYTE		N08     An3   v096
+	BYTE		N08     Cn4 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N08     An3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N08     An3 
+	BYTE	W12
+	BYTE		N08   
+	BYTE		N08     Cn4 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N08     An3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N08     An3 
+	BYTE	W12
+	BYTE		N08   
+	BYTE		N08     Cn4 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N08     An3 
+	BYTE	W12
+// 001   ----------------------------------------
+Sonic2BossSme_1_001:
+	BYTE		N20     Gs3   v096
+	BYTE		N20     Bn3 
+	BYTE	W24
+	BYTE		        Gs3 
+	BYTE		N20     Bn3 
+	BYTE	W24
+	BYTE		        Gs3 
+	BYTE		N20     Bn3 
+	BYTE	W24
+	BYTE		        Gs3 
+	BYTE		N20     Bn3 
+	BYTE	W24
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE		N08     An3 
+	BYTE		N08     Cn4 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N08     An3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N08     An3 
+	BYTE	W12
+	BYTE		N08   
+	BYTE		N08     Cn4 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N08     An3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N08     An3 
+	BYTE	W12
+	BYTE		N08   
+	BYTE		N08     Cn4 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N08     An3 
+	BYTE	W12
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_1_001
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	Sonic2BossSme_1_B1
+Sonic2BossSme_1_B2:
+// 020   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+Sonic2BossSme_2:
+	BYTE	KEYSH   Sonic2BossSme_key+0
+Sonic2BossSme_2_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   63
+	BYTE		PAN     c_v-16
+	BYTE		VOL     67*Sonic2BossSme_mvl/mxv
+	BYTE	W84
+	BYTE		N05     Dn4   v096
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+// 001   ----------------------------------------
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N23     En4 
+	BYTE	W24
+// 002   ----------------------------------------
+	BYTE	W84
+	BYTE		N05     Dn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+// 003   ----------------------------------------
+	BYTE		N11     Fn4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		N23     Gs4 
+	BYTE	W24
+	BYTE		        En4 
+	BYTE	W24
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+Sonic2BossSme_2_012:
+	BYTE		N05     An3   v096
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		N20     Cn4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE	PEND
+// 013   ----------------------------------------
+	BYTE		N05     Bn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		N20     Gn3 
+	BYTE	W24
+	BYTE		N08     En3 
+	BYTE	W12
+	BYTE		N20     Gn3 
+	BYTE	W24
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_2_012
+// 015   ----------------------------------------
+	BYTE		N05     Bn3   v096
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE		N08     En4 
+	BYTE	W48
+// 016   ----------------------------------------
+Sonic2BossSme_2_016:
+	BYTE		N05     An3   v096
+	BYTE		N05     Cn4 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE		N05     Dn4 
+	BYTE	W12
+	BYTE		N20     Cn4 
+	BYTE		N20     En4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE		N20     Fn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE		N20     En4 
+	BYTE	W24
+	BYTE	PEND
+// 017   ----------------------------------------
+	BYTE		N05     Bn3 
+	BYTE		N05     Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N05     En4 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE		N05     Dn4 
+	BYTE	W12
+	BYTE		N20     Gn3 
+	BYTE		N20     Bn3 
+	BYTE	W24
+	BYTE		N08     En3 
+	BYTE		N08     Gn3 
+	BYTE	W12
+	BYTE		N20   
+	BYTE		N20     Bn3 
+	BYTE	W24
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_2_016
+// 019   ----------------------------------------
+	BYTE		N05     Bn3   v096
+	BYTE		N05     Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N05     En4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE		N05     Fn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE		N05     Gn4 
+	BYTE	W12
+	BYTE		N08     En4 
+	BYTE		N08     Gs4 
+	BYTE	W48
+	BYTE	GoTo
+	 POIN2	Sonic2BossSme_2_B1
+Sonic2BossSme_2_B2:
+// 020   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+Sonic2BossSme_3:
+	BYTE	KEYSH   Sonic2BossSme_key+0
+Sonic2BossSme_3_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   50
+	BYTE		PAN     c_v+18
+	BYTE		VOL     52*Sonic2BossSme_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+Sonic2BossSme_3_008:
+	BYTE		N68     Cn3   v080
+	BYTE	W72
+	BYTE		N11     Dn3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE	PEND
+// 009   ----------------------------------------
+	BYTE		N44     Bn2 
+	BYTE	W48
+	BYTE		        Gn2 
+	BYTE	W48
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_3_008
+// 011   ----------------------------------------
+	BYTE		N44     Bn2   v080
+	BYTE	W48
+	BYTE		        Gs2 
+	BYTE	W48
+// 012   ----------------------------------------
+Sonic2BossSme_3_012:
+	BYTE		N68     Cn3   v080
+	BYTE		N68     Cn4 
+	BYTE	W72
+	BYTE		N11     Dn3 
+	BYTE		N11     Dn4 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N11     Cn4 
+	BYTE	W12
+	BYTE	PEND
+// 013   ----------------------------------------
+	BYTE		N44     Bn2 
+	BYTE		N44     Bn3 
+	BYTE	W48
+	BYTE		        Gn2 
+	BYTE		N44     Gn3 
+	BYTE	W48
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_3_012
+// 015   ----------------------------------------
+	BYTE		N44     Bn2   v080
+	BYTE		N44     Bn3 
+	BYTE	W48
+	BYTE		        Gs2 
+	BYTE		N44     Gs3 
+	BYTE	W48
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	Sonic2BossSme_3_B1
+Sonic2BossSme_3_B2:
+// 020   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+Sonic2BossSme_4:
+	BYTE	KEYSH   Sonic2BossSme_key+0
+Sonic2BossSme_4_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   34
+	BYTE		PAN     c_v+8
+	BYTE		VOL     43*Sonic2BossSme_mvl/mxv
+	BYTE		N11     An1   v096
+	BYTE	W36
+	BYTE		N11   
+	BYTE	W36
+	BYTE		N11   
+	BYTE	W24
+// 001   ----------------------------------------
+	BYTE		        En1 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        En1 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		        An1 
+	BYTE	W36
+	BYTE		N11   
+	BYTE	W36
+	BYTE		N11   
+	BYTE	W24
+// 003   ----------------------------------------
+	BYTE		        En1 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+	BYTE		        Fs1 
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE	W12
+// 004   ----------------------------------------
+Sonic2BossSme_4_004:
+	BYTE		N11     An1   v096
+	BYTE	W12
+	BYTE		N05     An2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     An1 
+	BYTE	W12
+	BYTE		N05     An2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     An1 
+	BYTE	W12
+	BYTE		N05     An2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     An1 
+	BYTE	W12
+	BYTE		N05     An2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE	PEND
+// 005   ----------------------------------------
+Sonic2BossSme_4_005:
+	BYTE		N11     Gn1   v096
+	BYTE	W12
+	BYTE		N05     Gn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Gn1 
+	BYTE	W12
+	BYTE		N05     Gn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Gn1 
+	BYTE	W12
+	BYTE		N05     Gn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Gn1 
+	BYTE	W12
+	BYTE		N05     Gn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE	PEND
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_004
+// 007   ----------------------------------------
+Sonic2BossSme_4_007:
+	BYTE		N11     Gn1   v096
+	BYTE	W12
+	BYTE		N05     Gn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Gn1 
+	BYTE	W12
+	BYTE		N05     Gn2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     En1 
+	BYTE	W12
+	BYTE		N05     En2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     En1 
+	BYTE	W12
+	BYTE		N05     En2 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_004
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_005
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_004
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_007
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_005
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_004
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_007
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_004
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_005
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_004
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_4_007
+	BYTE	GoTo
+	 POIN2	Sonic2BossSme_4_B1
+Sonic2BossSme_4_B2:
+// 020   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+Sonic2BossSme_5:
+	BYTE	KEYSH   Sonic2BossSme_key+0
+Sonic2BossSme_5_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		PAN     c_v-9
+	BYTE		VOL     62*Sonic2BossSme_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+Sonic2BossSme_5_001:
+	BYTE		N11     Bn1   v072
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_5_001
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+Sonic2BossSme_5_005:
+	BYTE	W84
+	BYTE		N05     Bn1   v072
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE	PEND
+// 006   ----------------------------------------
+	BYTE		N11     Gn1 
+	BYTE	W96
+// 007   ----------------------------------------
+Sonic2BossSme_5_007:
+	BYTE	W60
+	BYTE		N05     Bn1   v072
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Gn1 
+	BYTE	W12
+	BYTE		N05     Bn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE		N11     Gn1 
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_5_005
+// 010   ----------------------------------------
+	BYTE		N11     Gn1   v072
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_5_007
+// 012   ----------------------------------------
+	BYTE		N11     Gn1   v072
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_5_005
+// 014   ----------------------------------------
+	BYTE		N11     Gn1   v072
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_5_007
+// 016   ----------------------------------------
+	BYTE		N11     Gn1   v072
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_5_005
+// 018   ----------------------------------------
+	BYTE		N11     Gn1   v072
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N05     Bn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Gn1 
+	BYTE	W12
+	BYTE		N05     Bn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Gn1 
+	BYTE	W12
+	BYTE		N05     Bn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Gn1 
+	BYTE	W12
+	BYTE		N05     Bn1 
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE	GoTo
+	 POIN2	Sonic2BossSme_5_B1
+Sonic2BossSme_5_B2:
+// 020   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+Sonic2BossSme_6:
+	BYTE	KEYSH   Sonic2BossSme_key+0
+Sonic2BossSme_6_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   123
+	BYTE		VOL     37*Sonic2BossSme_mvl/mxv
+	BYTE		N11     Dn1   v127
+	BYTE		N32     Fs2   v072
+	BYTE	W12
+	BYTE		N11     Dn1   v127
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE		N32     Fs2   v072
+	BYTE	W12
+	BYTE		N11     Dn1   v127
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE		N23     Fs2   v072
+	BYTE	W12
+	BYTE		N11     Dn1   v127
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE		N11   
+	BYTE		N32     Fs2   v072
+	BYTE	W12
+	BYTE		N11     Dn1   v127
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE		N32     Fs2   v072
+	BYTE	W12
+	BYTE		N11     Dn1   v127
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W12
+	BYTE		N11   
+	BYTE		N23     Fs2   v072
+	BYTE	W12
+	BYTE		N11     Dn1   v127
+	BYTE	W12
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+Sonic2BossSme_6_004:
+	BYTE		N11     Cn1   v127
+	BYTE		N23     Fs2   v072
+	BYTE	W12
+	BYTE		N05     Dn1   v127
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Cn1 
+	BYTE		N23     Fs2   v072
+	BYTE	W12
+	BYTE		N05     Dn1   v127
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Cn1 
+	BYTE		N23     Fs2   v072
+	BYTE	W12
+	BYTE		N05     Dn1   v127
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE		N11     Cn1 
+	BYTE		N23     Fs2   v072
+	BYTE	W12
+	BYTE		N05     Dn1   v127
+	BYTE	W06
+	BYTE		N05   
+	BYTE	W06
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_6_004
+	BYTE	GoTo
+	 POIN2	Sonic2BossSme_6_B1
+Sonic2BossSme_6_B2:
+// 020   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+Sonic2BossSme_7:
+	BYTE	KEYSH   Sonic2BossSme_key+0
+Sonic2BossSme_7_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   59
+	BYTE		PAN     c_v-12
+	BYTE		VOL     95*Sonic2BossSme_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+Sonic2BossSme_7_004:
+	BYTE		N05     An2   v096
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		N20     Cn3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE	W24
+	BYTE		        Cn3 
+	BYTE	W24
+	BYTE	PEND
+// 005   ----------------------------------------
+Sonic2BossSme_7_005:
+	BYTE		N05     Bn2   v096
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		N20     Gn2 
+	BYTE	W24
+	BYTE		N08     En2 
+	BYTE	W12
+	BYTE		N20     Gn2 
+	BYTE	W24
+	BYTE	PEND
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_004
+// 007   ----------------------------------------
+Sonic2BossSme_7_007:
+	BYTE		N05     Bn2   v096
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		N08     En3 
+	BYTE	W48
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_004
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_005
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_004
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_007
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_005
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_004
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_007
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_004
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_005
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_004
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	Sonic2BossSme_7_007
+	BYTE	GoTo
+	 POIN2	Sonic2BossSme_7_B1
+Sonic2BossSme_7_B2:
+// 020   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+Sonic2BossSme:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	Sonic2BossSme_pri	// Priority
+	BYTE	Sonic2BossSme_rev	// Reverb.
+
+	POIN2	Sonic2BossSme_grp
+
+	POIN2	Sonic2BossSme_1
+	POIN2	Sonic2BossSme_2
+	POIN2	Sonic2BossSme_3
+	POIN2	Sonic2BossSme_4
+	POIN2	Sonic2BossSme_5
+	POIN2	Sonic2BossSme_6
+	POIN2	Sonic2BossSme_7
+
+	

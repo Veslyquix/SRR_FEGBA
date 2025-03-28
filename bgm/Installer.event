@@ -40,7 +40,7 @@ ORG $14dd8
 POIN NewSongTable
 ORG $40230 
 POIN NewSongTable
-ORG $67558 
+ORG $67758 
 POIN NewSongTable
 ORG $6779c 
 POIN NewSongTable
@@ -92,8 +92,7 @@ POP
 
 ALIGN 4 
 NewSongTable: 
-WORD EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 
-BYTE $00 00 00 00 00 00 00 40 0 // Febuilder terminator 
+WORD EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 EmptyTrack_256 
 ORG NewSongTable 
 #ifdef _FE8_ 
 #incbin "fe8_vanilla_track_table.dmp"

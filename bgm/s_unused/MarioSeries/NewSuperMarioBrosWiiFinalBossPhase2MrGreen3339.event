@@ -1,0 +1,1191 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_grp  voicegroup000
+	#define	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_pri  0
+	#define	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_rev  0
+	#define	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl  127
+	#define	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_key  0
+	#define	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_tbs  1
+	#define	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_exg  0
+	#define	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_cmp  1
+
+	// .rodata
+	//	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_001:
+// 000   ----------------------------------------
+ BYTE   KEYSH   NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_key+0
+ BYTE   TEMPO   78*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_tbs/2
+ BYTE   VOICE   19
+ BYTE   VOL   51*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W24
+ BYTE   W24
+ BYTE   N23  En2  v080
+ BYTE   N23  En3
+ BYTE   W24
+ BYTE   Ds2
+ BYTE   N23  Fs3
+ BYTE   W24
+// 001   ----------------------------------------
+ BYTE   Dn2
+ BYTE   N23  Gn3
+ BYTE   W24
+ BYTE   Cn2
+ BYTE   N23  An3
+ BYTE   W24
+ BYTE   Bn1
+ BYTE   N23  Bn3
+ BYTE   W24
+ BYTE   An1
+ BYTE   N23  Cs4
+ BYTE   W24
+// 002   ----------------------------------------
+ BYTE   N11  Gn1
+ BYTE   N23  Ds4
+ BYTE   W12
+ BYTE   N11  Fs1
+ BYTE   W12
+ BYTE   N92  En1
+ BYTE   N92  En4
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+Label_0_01432EBB:
+ BYTE   N32  Gn2  v064
+ BYTE   N32  Gn3
+ BYTE   W36
+ BYTE   N11  Gn2
+ BYTE   N11  Gn3
+ BYTE   W12
+ BYTE   N44  Fs2
+ BYTE   N44  Fs3
+ BYTE   W48
+ BYTE   PEND 
+// 016   ----------------------------------------
+Label_0_01432ECC:
+ BYTE   N32  Gn2  v064
+ BYTE   N32  Gn3
+ BYTE   W42
+ BYTE   N05  Gn2
+ BYTE   N05  Gn3
+ BYTE   W06
+ BYTE   N44  Fs2
+ BYTE   N44  Fs3
+ BYTE   W48
+ BYTE   PEND 
+// 017   ----------------------------------------
+Label_0_01432EDD:
+ BYTE   N32  Gn2  v064
+ BYTE   N32  Gn3
+ BYTE   W42
+ BYTE   N05  An2
+ BYTE   N05  An3
+ BYTE   W06
+ BYTE   N23  Bn2
+ BYTE   N23  Bn3
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   N23  Dn3
+ BYTE   W24
+ BYTE   PEND 
+// 018   ----------------------------------------
+Label_0_01432EF2:
+ BYTE   N23  En2  v064
+ BYTE   N23  En3
+ BYTE   W24
+ BYTE   Fs2
+ BYTE   N23  Fs3
+ BYTE   W24
+ BYTE   N44  Gn2
+ BYTE   N44  Gn3
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_0_01432EBB
+ BYTE   PATT
+  POIN2 Label_0_01432ECC
+ BYTE   PATT
+  POIN2 Label_0_01432EDD
+ BYTE   PATT
+  POIN2 Label_0_01432EF2
+ BYTE   PATT
+  POIN2 Label_0_01432EBB
+ BYTE   PATT
+  POIN2 Label_0_01432ECC
+ BYTE   PATT
+  POIN2 Label_0_01432EDD
+ BYTE   PATT
+  POIN2 Label_0_01432EF2
+ BYTE   PATT
+  POIN2 Label_0_01432EBB
+ BYTE   PATT
+  POIN2 Label_0_01432ECC
+ BYTE   PATT
+  POIN2 Label_0_01432EDD
+// 019   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_0_01432EBB
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_002:
+// 000   ----------------------------------------
+ BYTE   KEYSH   NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_key+0
+ BYTE   VOICE   48
+ BYTE   VOL   51*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W24
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+Label_1_01432F50:
+ BYTE   N32  Gn3  v096
+ BYTE   W36
+ BYTE   N11
+ BYTE   W12
+ BYTE   N44  Fs3
+ BYTE   W48
+ BYTE   PEND 
+// 008   ----------------------------------------
+Label_1_01432F5A:
+ BYTE   N32  Gn3  v096
+ BYTE   W42
+ BYTE   N05
+ BYTE   W06
+ BYTE   N44  Fs3
+ BYTE   W48
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_1_01432F64:
+ BYTE   N32  Gn3  v096
+ BYTE   W42
+ BYTE   N05  An3
+ BYTE   W06
+ BYTE   N23  Bn3
+ BYTE   W24
+ BYTE   Dn3
+ BYTE   W24
+ BYTE   PEND 
+// 010   ----------------------------------------
+Label_1_01432F71:
+ BYTE   N23  En3  v096
+ BYTE   W24
+ BYTE   Fs3
+ BYTE   W24
+ BYTE   N44  Gn3
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_1_01432F50
+ BYTE   PATT
+  POIN2 Label_1_01432F5A
+ BYTE   PATT
+  POIN2 Label_1_01432F64
+ BYTE   PATT
+  POIN2 Label_1_01432F71
+// 011   ----------------------------------------
+Label_1_01432F8F:
+ BYTE   PATT
+  POIN2 Label_1_01432F50
+ BYTE   PATT
+  POIN2 Label_1_01432F5A
+ BYTE   PATT
+  POIN2 Label_1_01432F64
+ BYTE   PATT
+  POIN2 Label_1_01432F71
+ BYTE   PATT
+  POIN2 Label_1_01432F50
+ BYTE   PATT
+  POIN2 Label_1_01432F5A
+ BYTE   PATT
+  POIN2 Label_1_01432F64
+ BYTE   PATT
+  POIN2 Label_1_01432F71
+ BYTE   PATT
+  POIN2 Label_1_01432F50
+ BYTE   PATT
+  POIN2 Label_1_01432F5A
+ BYTE   PATT
+  POIN2 Label_1_01432F64
+ BYTE   PATT
+  POIN2 Label_1_01432F71
+ BYTE   PATT
+  POIN2 Label_1_01432F50
+ BYTE   PATT
+  POIN2 Label_1_01432F5A
+ BYTE   PATT
+  POIN2 Label_1_01432F64
+// 012   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_1_01432F8F
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_003:
+// 000   ----------------------------------------
+ BYTE   KEYSH   NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_key+0
+ BYTE   VOICE   48
+ BYTE   VOL   51*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W24
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+Label_2_01432FF0:
+ BYTE   N44  En2  v096
+ BYTE   W48
+ BYTE   An2
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+// 008   ----------------------------------------
+Label_2_01432FFC:
+ BYTE   N44  En2  v096
+ BYTE   W48
+ BYTE   N23  Gn2
+ BYTE   W24
+ BYTE   Dn2
+ BYTE   W24
+ BYTE   PEND 
+// 009   ----------------------------------------
+Label_2_01433006:
+ BYTE   N23  Cn2  v096
+ BYTE   W24
+ BYTE   Fs2
+ BYTE   W24
+ BYTE   N44  En2
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+ BYTE   PATT
+  POIN2 Label_2_01432FFC
+ BYTE   PATT
+  POIN2 Label_2_01433006
+// 010   ----------------------------------------
+Label_2_01433024:
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+ BYTE   PATT
+  POIN2 Label_2_01432FFC
+ BYTE   PATT
+  POIN2 Label_2_01433006
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+ BYTE   PATT
+  POIN2 Label_2_01432FFC
+ BYTE   PATT
+  POIN2 Label_2_01433006
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+ BYTE   PATT
+  POIN2 Label_2_01432FFC
+ BYTE   PATT
+  POIN2 Label_2_01433006
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+ BYTE   PATT
+  POIN2 Label_2_01432FF0
+ BYTE   PATT
+  POIN2 Label_2_01432FFC
+// 011   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_2_01433024
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_004:
+// 000   ----------------------------------------
+ BYTE   KEYSH   NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_key+0
+ BYTE   VOICE   52
+ BYTE   VOL   51*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W24
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+Label_3_01433090:
+ BYTE   N32  Gn4  v080
+ BYTE   W36
+ BYTE   N11
+ BYTE   W12
+ BYTE   N44  Fs4
+ BYTE   W48
+ BYTE   PEND 
+// 016   ----------------------------------------
+Label_3_0143309A:
+ BYTE   N32  Gn4  v080
+ BYTE   W42
+ BYTE   N05
+ BYTE   W06
+ BYTE   N44  Fs4
+ BYTE   W48
+ BYTE   PEND 
+// 017   ----------------------------------------
+Label_3_014330A4:
+ BYTE   N32  Gn4  v080
+ BYTE   W42
+ BYTE   N05  An4
+ BYTE   W06
+ BYTE   N23  Bn4
+ BYTE   W24
+ BYTE   Dn4
+ BYTE   W24
+ BYTE   PEND 
+// 018   ----------------------------------------
+Label_3_014330B1:
+ BYTE   N23  En4  v080
+ BYTE   W24
+ BYTE   Fs4
+ BYTE   W24
+ BYTE   N44  Gn4
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_3_01433090
+ BYTE   PATT
+  POIN2 Label_3_0143309A
+ BYTE   PATT
+  POIN2 Label_3_014330A4
+ BYTE   PATT
+  POIN2 Label_3_014330B1
+ BYTE   PATT
+  POIN2 Label_3_01433090
+ BYTE   PATT
+  POIN2 Label_3_0143309A
+ BYTE   PATT
+  POIN2 Label_3_014330A4
+ BYTE   PATT
+  POIN2 Label_3_014330B1
+ BYTE   PATT
+  POIN2 Label_3_01433090
+ BYTE   PATT
+  POIN2 Label_3_0143309A
+ BYTE   PATT
+  POIN2 Label_3_014330A4
+// 019   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_3_01433090
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_005:
+// 000   ----------------------------------------
+ BYTE   KEYSH   NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_key+0
+ BYTE   VOICE   52
+ BYTE   VOL   51*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W24
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+Label_4_01433110:
+ BYTE   N11  En2  v112
+ BYTE   W24
+ BYTE   N08  Bn2
+ BYTE   W18
+ BYTE   N05
+ BYTE   W06
+ BYTE   An2
+ BYTE   W06
+ BYTE   Bn2
+ BYTE   W06
+ BYTE   N11  An2
+ BYTE   W24
+ BYTE   N05  Bn2
+ BYTE   W12
+ BYTE   PEND 
+// 016   ----------------------------------------
+Label_4_01433124:
+ BYTE   N11  En2  v112
+ BYTE   W24
+ BYTE   N08  Bn2
+ BYTE   W18
+ BYTE   N05
+ BYTE   W06
+ BYTE   An2
+ BYTE   W06
+ BYTE   Bn2
+ BYTE   W06
+ BYTE   N11  Cn3
+ BYTE   W24
+ BYTE   N05  Dn3
+ BYTE   W12
+ BYTE   PEND 
+// 017   ----------------------------------------
+Label_4_01433138:
+ BYTE   N11  En3  v112
+ BYTE   W24
+ BYTE   N08  Bn2
+ BYTE   W18
+ BYTE   N05
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   PEND 
+// 018   ----------------------------------------
+Label_4_0143314A:
+ BYTE   N08  Gn2  v112
+ BYTE   W18
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   N08  En2
+ BYTE   W18
+ BYTE   N05  Gn2
+ BYTE   W06
+ BYTE   N11  En2
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_4_01433110
+ BYTE   PATT
+  POIN2 Label_4_01433124
+// 019   ----------------------------------------
+Label_4_01433165:
+ BYTE   N11  En3  v112
+ BYTE   W24
+ BYTE   N08
+ BYTE   W18
+ BYTE   N05  Fs3
+ BYTE   W06
+ BYTE   Gn3
+ BYTE   W12
+ BYTE   Fs3
+ BYTE   W12
+ BYTE   En3
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   PEND 
+// 020   ----------------------------------------
+ BYTE   N08  Cn3
+ BYTE   W18
+ BYTE   N05  Bn2
+ BYTE   W06
+ BYTE   An2
+ BYTE   W06
+ BYTE   Dn3
+ BYTE   W06
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   N11  En3
+ BYTE   W48
+ BYTE   PATT
+  POIN2 Label_4_01433110
+ BYTE   PATT
+  POIN2 Label_4_01433124
+ BYTE   PATT
+  POIN2 Label_4_01433138
+ BYTE   PATT
+  POIN2 Label_4_0143314A
+ BYTE   PATT
+  POIN2 Label_4_01433110
+ BYTE   PATT
+  POIN2 Label_4_01433124
+ BYTE   PATT
+  POIN2 Label_4_01433165
+// 021   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_4_01433110
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_006:
+// 000   ----------------------------------------
+ BYTE   KEYSH   NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_key+0
+ BYTE   VOICE   52
+ BYTE   VOL   51*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W24
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   W96
+// 004   ----------------------------------------
+ BYTE   W96
+// 005   ----------------------------------------
+ BYTE   W96
+// 006   ----------------------------------------
+ BYTE   W96
+// 007   ----------------------------------------
+ BYTE   W96
+// 008   ----------------------------------------
+ BYTE   W96
+// 009   ----------------------------------------
+ BYTE   W96
+// 010   ----------------------------------------
+ BYTE   W96
+// 011   ----------------------------------------
+ BYTE   W96
+// 012   ----------------------------------------
+ BYTE   W96
+// 013   ----------------------------------------
+ BYTE   W96
+// 014   ----------------------------------------
+ BYTE   W96
+// 015   ----------------------------------------
+Label_5_014331C8:
+ BYTE   N11  En1  v112
+ BYTE   W24
+ BYTE   N08  Bn1
+ BYTE   W18
+ BYTE   N05
+ BYTE   W06
+ BYTE   An1
+ BYTE   W06
+ BYTE   Bn1
+ BYTE   W06
+ BYTE   N11  An1
+ BYTE   W24
+ BYTE   N05  Bn1
+ BYTE   W12
+ BYTE   PEND 
+// 016   ----------------------------------------
+Label_5_014331DC:
+ BYTE   N11  En1  v112
+ BYTE   W24
+ BYTE   N08  Bn1
+ BYTE   W18
+ BYTE   N05
+ BYTE   W06
+ BYTE   An1
+ BYTE   W06
+ BYTE   Bn1
+ BYTE   W06
+ BYTE   N11  Cn2
+ BYTE   W24
+ BYTE   N05  Dn2
+ BYTE   W12
+ BYTE   PEND 
+// 017   ----------------------------------------
+Label_5_014331F0:
+ BYTE   N11  En2  v112
+ BYTE   W24
+ BYTE   N08  Bn1
+ BYTE   W18
+ BYTE   N05
+ BYTE   W06
+ BYTE   Dn2
+ BYTE   W12
+ BYTE   Cn2
+ BYTE   W12
+ BYTE   Bn1
+ BYTE   W12
+ BYTE   An1
+ BYTE   W12
+ BYTE   PEND 
+// 018   ----------------------------------------
+Label_5_01433202:
+ BYTE   N08  Gn1  v112
+ BYTE   W18
+ BYTE   N05  Fs1
+ BYTE   W06
+ BYTE   N08  En1
+ BYTE   W18
+ BYTE   N05  Dn1
+ BYTE   W06
+ BYTE   N11  En1
+ BYTE   W48
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_5_014331C8
+ BYTE   PATT
+  POIN2 Label_5_014331DC
+// 019   ----------------------------------------
+Label_5_0143321D:
+ BYTE   N11  En2  v112
+ BYTE   W24
+ BYTE   N08
+ BYTE   W18
+ BYTE   N05  Fs2
+ BYTE   W06
+ BYTE   Gn2
+ BYTE   W12
+ BYTE   Fs2
+ BYTE   W12
+ BYTE   En2
+ BYTE   W12
+ BYTE   Dn2
+ BYTE   W12
+ BYTE   PEND 
+// 020   ----------------------------------------
+ BYTE   N08  Cn2
+ BYTE   W18
+ BYTE   N05  Bn1
+ BYTE   W06
+ BYTE   An1
+ BYTE   W06
+ BYTE   Dn2
+ BYTE   W06
+ BYTE   Bn1
+ BYTE   W12
+ BYTE   N11  En2
+ BYTE   W48
+ BYTE   PATT
+  POIN2 Label_5_014331C8
+ BYTE   PATT
+  POIN2 Label_5_014331DC
+ BYTE   PATT
+  POIN2 Label_5_014331F0
+ BYTE   PATT
+  POIN2 Label_5_01433202
+ BYTE   PATT
+  POIN2 Label_5_014331C8
+ BYTE   PATT
+  POIN2 Label_5_014331DC
+ BYTE   PATT
+  POIN2 Label_5_0143321D
+// 021   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_5_014331C8
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_007:
+// 000   ----------------------------------------
+ BYTE   KEYSH   NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_key+0
+ BYTE   VOICE   14
+ BYTE   VOL   51*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   W24
+ BYTE   N92  En3  v096
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   W96
+// 003   ----------------------------------------
+ BYTE   N92
+ BYTE   W96
+// 004   ----------------------------------------
+Label_6_01433279:
+ BYTE   W48
+ BYTE   N23  Cn3  v096
+ BYTE   W24
+ BYTE   Gn3
+ BYTE   W24
+ BYTE   PEND 
+// 005   ----------------------------------------
+ BYTE   N92  En3
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 006   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 007   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 008   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 009   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 010   ----------------------------------------
+Label_6_014332AD:
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 011   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 012   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 013   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 014   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 015   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 016   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+ BYTE   PATT
+  POIN2 Label_6_01433279
+// 017   ----------------------------------------
+ BYTE   N92  En3  v096
+ BYTE   W96
+// 018   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_6_014332AD
+ BYTE   FINE
+
+//**************** Track 8 (Midi-Chn.7) ****************//
+
+NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_008:
+// 000   ----------------------------------------
+ BYTE   KEYSH   NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_key+0
+ BYTE   VOICE   47
+ BYTE   VOL   51*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N02  Bn1  v052
+ BYTE   W03
+ BYTE   Bn1  v056
+ BYTE   W03
+ BYTE   Bn1  v060
+ BYTE   W03
+ BYTE   Bn1  v068
+ BYTE   W03
+ BYTE   Bn1  v072
+ BYTE   W03
+ BYTE   Bn1  v080
+ BYTE   W03
+ BYTE   Bn1  v084
+ BYTE   W03
+ BYTE   Bn1  v092
+ BYTE   W03
+ BYTE   N23  En2  v096
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   En1
+ BYTE   W42
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   N23  Bn1
+ BYTE   W30
+ BYTE   N02  Bn1  v064
+ BYTE   W03
+ BYTE   Bn1  v072
+ BYTE   W03
+ BYTE   Bn1  v080
+ BYTE   W03
+ BYTE   Bn1  v088
+ BYTE   W03
+ BYTE   Bn1  v096
+ BYTE   W03
+ BYTE   Bn1  v104
+ BYTE   W03
+// 003   ----------------------------------------
+Label_7_0143333A:
+ BYTE   N23  En1  v112
+ BYTE   W24
+ BYTE   N11  Bn1
+ BYTE   W12
+ BYTE   N05  En1
+ BYTE   W06
+ BYTE   Bn1
+ BYTE   W06
+ BYTE   N23  En1
+ BYTE   W24
+ BYTE   N11  Bn1
+ BYTE   W24
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+// 004   ----------------------------------------
+Label_7_01433384:
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+ BYTE   PATT
+  POIN2 Label_7_0143333A
+// 005   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_7_01433384
+ BYTE   FINE
+
+//**************** Track 9 (Midi-Chn.8) ****************//
+
+NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_009:
+// 000   ----------------------------------------
+ BYTE   KEYSH   NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_key+0
+ BYTE   VOICE   127
+ BYTE   VOL   51*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   VOL   51*NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_mvl/mxv
+ BYTE   PAN   c_v-4
+ BYTE   W24
+ BYTE   N23  An2  v096
+ BYTE   W96
+// 001   ----------------------------------------
+ BYTE   W96
+// 002   ----------------------------------------
+ BYTE   Dn1
+ BYTE   W54
+ BYTE   N05  Dn1  v052
+ BYTE   W06
+ BYTE   Dn1  v056
+ BYTE   W06
+ BYTE   Dn1  v064
+ BYTE   W06
+ BYTE   Dn1  v072
+ BYTE   W06
+ BYTE   Dn1  v076
+ BYTE   W06
+ BYTE   Dn1  v084
+ BYTE   W06
+ BYTE   Dn1  v092
+ BYTE   W06
+// 003   ----------------------------------------
+ BYTE   N11  Dn1  v096
+ BYTE   W12
+ BYTE   N05  Dn1  v080
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   N05
+ BYTE   W06
+// 004   ----------------------------------------
+Label_8_01433422:
+ BYTE   N11  Dn1  v080
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_8_01433422
+ BYTE   PATT
+  POIN2 Label_8_01433422
+// 005   ----------------------------------------
+Label_8_0143344B:
+ BYTE   N11  Dn1  v080
+ BYTE   N23  An2  v096
+ BYTE   W12
+ BYTE   N05  Dn1  v080
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N11
+ BYTE   W12
+ BYTE   N11
+ BYTE   N23  An2  v064
+ BYTE   W12
+ BYTE   N05  Dn1  v080
+ BYTE   W06
+ BYTE   N05
+ BYTE   W06
+ BYTE   N05
+ BYTE   N23  An2
+ BYTE   W06
+ BYTE   N05  Dn1
+ BYTE   W06
+ BYTE   N02
+ BYTE   W03
+ BYTE   N02
+ BYTE   W03
+ BYTE   N05
+ BYTE   W06
+ BYTE   PEND 
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+// 006   ----------------------------------------
+Label_8_0143349A:
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+ BYTE   PATT
+  POIN2 Label_8_0143344B
+// 007   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_8_0143349A
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339:
+	BYTE	9	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_pri	// Priority
+	BYTE	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_rev	// Reverb.
+    
+	POIN2	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_grp
+    
+	POIN2	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_001
+	POIN2	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_002
+	POIN2	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_003
+	POIN2	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_004
+	POIN2	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_005
+	POIN2	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_006
+	POIN2	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_007
+	POIN2	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_008
+	POIN2	NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339_009
+
+	

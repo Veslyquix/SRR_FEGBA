@@ -1,0 +1,6492 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	UndertaleMegalovaniaSme_grp  voicegroup000
+	#define	UndertaleMegalovaniaSme_pri  0
+	#define	UndertaleMegalovaniaSme_rev  0
+	#define	UndertaleMegalovaniaSme_mvl  85
+	#define	UndertaleMegalovaniaSme_key  0
+	#define	UndertaleMegalovaniaSme_tbs  1
+	#define	UndertaleMegalovaniaSme_exg  0
+	#define	UndertaleMegalovaniaSme_cmp  1
+
+	// .rodata
+	//	UndertaleMegalovaniaSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+UndertaleMegalovaniaSme_1:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   120*UndertaleMegalovaniaSme_tbs/2
+	BYTE		VOICE   30
+	BYTE		VOL     81*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v+2
+	BYTE		BEND    c_v+0
+	BYTE		N06     Dn3   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+// 001   ----------------------------------------
+UndertaleMegalovaniaSme_1_001:
+	BYTE		N06     Cn3   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 002   ----------------------------------------
+UndertaleMegalovaniaSme_1_002:
+	BYTE		N06     Bn2   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 003   ----------------------------------------
+UndertaleMegalovaniaSme_1_003:
+	BYTE		N06     As2   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 004   ----------------------------------------
+UndertaleMegalovaniaSme_1_004:
+	BYTE		N06     Dn3   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_003
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_004
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_001
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_002
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_003
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_004
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_001
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_002
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_003
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_004
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_001
+// 054   ----------------------------------------
+UndertaleMegalovaniaSme_1_054:
+	BYTE	W12
+	BYTE		N06     Fn2   v100
+	BYTE		N06     Fn3 
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE		N06     En3 
+	BYTE		N06     En4 
+	BYTE	W18
+	BYTE		        Cn2 
+	BYTE		N06     Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE		N06     En3 
+	BYTE		N06     En4 
+	BYTE	W11
+	BYTE		        Dn2 
+	BYTE		N06     Dn3 
+	BYTE		N06     Dn4 
+	BYTE	W13
+	BYTE		        An1 
+	BYTE		N06     An2 
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE		N06     Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE		N06     Dn3 
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE	PEND
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_054
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_004
+// 071   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_004
+// 072   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_003
+// 073   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_001
+// 074   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_004
+// 075   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_004
+// 076   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_003
+// 077   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_1_001
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_1_B1
+UndertaleMegalovaniaSme_1_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+UndertaleMegalovaniaSme_2:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_2_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   29
+	BYTE		VOL     79*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v+3
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+UndertaleMegalovaniaSme_2_008:
+	BYTE		N06     Dn2   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 009   ----------------------------------------
+UndertaleMegalovaniaSme_2_009:
+	BYTE		N06     Cn2   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 010   ----------------------------------------
+UndertaleMegalovaniaSme_2_010:
+	BYTE		N06     Bn1   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 011   ----------------------------------------
+UndertaleMegalovaniaSme_2_011:
+	BYTE		N06     As1   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_011
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_010
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_011
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_010
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_011
+// 024   ----------------------------------------
+UndertaleMegalovaniaSme_2_024:
+	BYTE		N06     As1   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 027   ----------------------------------------
+UndertaleMegalovaniaSme_2_027:
+	BYTE		N06     Cs2   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_024
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_027
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_024
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_027
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_024
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_027
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_024
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_010
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_010
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_024
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_024
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_010
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_010
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_024
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_009
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_008
+// 056   ----------------------------------------
+UndertaleMegalovaniaSme_2_056:
+	BYTE		N06     As1   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        As0 
+	BYTE	W06
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        As0 
+	BYTE	W06
+	BYTE		        As1 
+	BYTE	W06
+	BYTE		        As2 
+	BYTE	W06
+	BYTE	PEND
+// 057   ----------------------------------------
+UndertaleMegalovaniaSme_2_057:
+	BYTE		N06     Cn2   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE	W06
+	BYTE	PEND
+// 058   ----------------------------------------
+UndertaleMegalovaniaSme_2_058:
+	BYTE		N06     Dn2   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Cs2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Cs1 
+	BYTE	W06
+	BYTE		        Cs2 
+	BYTE	W06
+	BYTE		        Cs3 
+	BYTE	W06
+	BYTE	PEND
+// 059   ----------------------------------------
+UndertaleMegalovaniaSme_2_059:
+	BYTE		N06     Cn2   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Bn0 
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		        Bn2 
+	BYTE	W06
+	BYTE	PEND
+// 060   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_056
+// 061   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_057
+// 062   ----------------------------------------
+UndertaleMegalovaniaSme_2_062:
+	BYTE		N06     Dn2   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_062
+// 064   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_056
+// 065   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_057
+// 066   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_058
+// 067   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_059
+// 068   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_056
+// 069   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_057
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_062
+// 071   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_2_062
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_2_B1
+UndertaleMegalovaniaSme_2_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+UndertaleMegalovaniaSme_3:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_3_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   36
+	BYTE		VOL     81*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v-13
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE		N06     Dn2   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+// 005   ----------------------------------------
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+// 006   ----------------------------------------
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+// 007   ----------------------------------------
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+// 008   ----------------------------------------
+UndertaleMegalovaniaSme_3_008:
+	BYTE		N06     Dn2   v100
+	BYTE		N96     Dn3 
+	BYTE	W12
+	BYTE		N06     Dn2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 009   ----------------------------------------
+UndertaleMegalovaniaSme_3_009:
+	BYTE		N06     Cn2   v100
+	BYTE		N96     Cn3 
+	BYTE	W12
+	BYTE		N06     Cn2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 010   ----------------------------------------
+UndertaleMegalovaniaSme_3_010:
+	BYTE		N06     Bn1   v100
+	BYTE		N96     Bn2 
+	BYTE	W12
+	BYTE		N06     Bn1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 011   ----------------------------------------
+UndertaleMegalovaniaSme_3_011:
+	BYTE		N06     As1   v100
+	BYTE		N48     As2 
+	BYTE	W12
+	BYTE		N06     As1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N48     Cn3 
+	BYTE	W06
+	BYTE		N06     Cn2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_011
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_009
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_010
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_011
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_009
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_010
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_011
+// 024   ----------------------------------------
+UndertaleMegalovaniaSme_3_024:
+	BYTE		N06     As1   v100
+	BYTE		N96     As2 
+	BYTE	W12
+	BYTE		N06     As1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_009
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 027   ----------------------------------------
+UndertaleMegalovaniaSme_3_027:
+	BYTE		N06     Cs2   v100
+	BYTE		N48     Cs3 
+	BYTE	W12
+	BYTE		N06     Cs2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N48     Ds3 
+	BYTE	W06
+	BYTE		N06     Ds2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_024
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_009
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_027
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_024
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_009
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_027
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_024
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_009
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_027
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_024
+// 041   ----------------------------------------
+UndertaleMegalovaniaSme_3_041:
+	BYTE		N06     Cn2   v100
+	BYTE		N96     Cn3 
+	BYTE	W12
+	BYTE		N06     Cn2 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W05
+	BYTE		        Bn1 
+	BYTE		N96     Bn2 
+	BYTE	W01
+	BYTE	PEND
+// 042   ----------------------------------------
+UndertaleMegalovaniaSme_3_042:
+	BYTE	W11
+	BYTE		N06     Bn1   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE		N96     Bn2 
+	BYTE	W01
+	BYTE	PEND
+// 043   ----------------------------------------
+UndertaleMegalovaniaSme_3_043:
+	BYTE	W11
+	BYTE		N06     Bn1   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W07
+	BYTE	PEND
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_024
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_009
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_024
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_041
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_042
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_043
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_024
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_009
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_3_008
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_3_B1
+UndertaleMegalovaniaSme_3_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+UndertaleMegalovaniaSme_4:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_4_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   49
+	BYTE		VOL     97*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v+11
+	BYTE		        c_v-13
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+UndertaleMegalovaniaSme_4_008:
+	BYTE		N06     Dn4   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W18
+	BYTE		        Gs4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N12     Fn4 
+	BYTE	W12
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE	PEND
+// 009   ----------------------------------------
+UndertaleMegalovaniaSme_4_009:
+	BYTE		N06     Cn4   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W18
+	BYTE		        Gs4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N12     Fn4 
+	BYTE	W12
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE	PEND
+// 010   ----------------------------------------
+UndertaleMegalovaniaSme_4_010:
+	BYTE		N06     Bn3   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W18
+	BYTE		        Gs4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N12     Fn4 
+	BYTE	W12
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE	PEND
+// 011   ----------------------------------------
+UndertaleMegalovaniaSme_4_011:
+	BYTE		N06     As3   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W18
+	BYTE		        Gs4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		N12     Fn4 
+	BYTE	W12
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_011
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+UndertaleMegalovaniaSme_4_024:
+	BYTE	W48
+	BYTE		N02     Fn4   v100
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Gs4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE	PEND
+// 025   ----------------------------------------
+UndertaleMegalovaniaSme_4_025:
+	BYTE		N01     Gs4   v100
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W03
+	BYTE		        Fn4 
+	BYTE	W03
+	BYTE		        Dn4 
+	BYTE	W03
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE		N56     Gn4 
+	BYTE	W56
+	BYTE	W01
+	BYTE		N06     Gs4 
+	BYTE	W09
+	BYTE		N03     An4 
+	BYTE	W06
+	BYTE	PEND
+// 026   ----------------------------------------
+UndertaleMegalovaniaSme_4_026:
+	BYTE		N06     Cn5   v100
+	BYTE	W12
+	BYTE		N03     An4 
+	BYTE	W06
+	BYTE		        Gs4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N06     En4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE	PEND
+// 027   ----------------------------------------
+UndertaleMegalovaniaSme_4_027:
+	BYTE		N12     Cs5   v100
+	BYTE	W12
+	BYTE		N06     Gs4 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N54     Gn4 
+	BYTE	W54
+	BYTE	PEND
+// 028   ----------------------------------------
+UndertaleMegalovaniaSme_4_028:
+	BYTE		N06     Fn3   v100
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		N24     En4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE	PEND
+// 029   ----------------------------------------
+UndertaleMegalovaniaSme_4_029:
+	BYTE		N24     En4   v100
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		        Gn4 
+	BYTE	W24
+	BYTE		        En4 
+	BYTE	W24
+	BYTE	PEND
+// 030   ----------------------------------------
+	BYTE		N42     An4 
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE		        Cs4 
+	BYTE	W06
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W07
+	BYTE		N48     Ds4 
+	BYTE	W48
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_024
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_025
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_026
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_027
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_028
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_029
+// 038   ----------------------------------------
+	BYTE		N42     An4   v100
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE		        Cs4 
+	BYTE	W07
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W06
+	BYTE		N48     Ds4 
+	BYTE	W48
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+UndertaleMegalovaniaSme_4_054:
+	BYTE	W12
+	BYTE		N06     Fn3   v100
+	BYTE		N06     Fn4 
+	BYTE		N06     Fn5 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N06     En4 
+	BYTE		N06     En5 
+	BYTE	W18
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE		N06     En4 
+	BYTE		N06     En5 
+	BYTE	W11
+	BYTE		        Dn3 
+	BYTE		N06     Dn4 
+	BYTE		N06     Dn5 
+	BYTE	W13
+	BYTE		        An2 
+	BYTE		N06     An3 
+	BYTE		N06     An4 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE		N06     Dn4 
+	BYTE		N06     Dn5 
+	BYTE	W06
+	BYTE	PEND
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_4_054
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_4_B1
+UndertaleMegalovaniaSme_4_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+UndertaleMegalovaniaSme_5:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_5_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   61
+	BYTE		VOL     78*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v-15
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+UndertaleMegalovaniaSme_5_008:
+	BYTE		N06     Dn2   v100
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		N06   
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE		N06     An3 
+	BYTE	W18
+	BYTE		        Gs2 
+	BYTE		N06     Gs3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE		N12     Fn2 
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn2 
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 009   ----------------------------------------
+UndertaleMegalovaniaSme_5_009:
+	BYTE		N06     Cn2   v100
+	BYTE		N06     Cn3 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE		N06     Cn3 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE		N06     An3 
+	BYTE	W18
+	BYTE		        Gs2 
+	BYTE		N06     Gs3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE		N12     Fn2 
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn2 
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 010   ----------------------------------------
+UndertaleMegalovaniaSme_5_010:
+	BYTE		N06     Bn1   v100
+	BYTE		N06     Bn2 
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE		N06     Bn2 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE		N06     An3 
+	BYTE	W18
+	BYTE		        Gs2 
+	BYTE		N06     Gs3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE		N12     Fn2 
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn2 
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 011   ----------------------------------------
+UndertaleMegalovaniaSme_5_011:
+	BYTE		N06     As1   v100
+	BYTE		N06     As2 
+	BYTE	W06
+	BYTE		        As1 
+	BYTE		N06     As2 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE		N06     An3 
+	BYTE	W18
+	BYTE		        Gs2 
+	BYTE		N06     Gs3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE		N12     Fn2 
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn2 
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_5_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_5_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_5_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_5_011
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+UndertaleMegalovaniaSme_5_024:
+	BYTE	W48
+	BYTE		N02     Fn2   v100
+	BYTE		N02     Fn3 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE		N02     Dn3 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N02     Fn3 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE		N02     Gn3 
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE		N02     Gs3 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE		N02     Gn3 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N02     Fn3 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE		N02     Dn3 
+	BYTE	W06
+	BYTE	PEND
+// 025   ----------------------------------------
+UndertaleMegalovaniaSme_5_025:
+	BYTE		N01     Gs2   v100
+	BYTE		N01     Gs3 
+	BYTE	W03
+	BYTE		        Gn2 
+	BYTE		N01     Gn3 
+	BYTE	W03
+	BYTE		        Fn2 
+	BYTE		N01     Fn3 
+	BYTE	W03
+	BYTE		        Dn2 
+	BYTE		N01     Dn3 
+	BYTE	W03
+	BYTE		N06     Fn2 
+	BYTE		N06     Fn3 
+	BYTE	W12
+	BYTE		N56     Gn2 
+	BYTE		N56     Gn3 
+	BYTE	W56
+	BYTE	W01
+	BYTE		N06     Gs2 
+	BYTE		N06     Gs3 
+	BYTE	W09
+	BYTE		N03     An2 
+	BYTE		N03     An3 
+	BYTE	W06
+	BYTE	PEND
+// 026   ----------------------------------------
+UndertaleMegalovaniaSme_5_026:
+	BYTE		N06     Cn3   v100
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		N03     An2 
+	BYTE		N03     An3 
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE		N03     Gs3 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE		N03     Gn3 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N03     Fn3 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE		N03     Dn3 
+	BYTE	W06
+	BYTE		N06     En2 
+	BYTE		N06     En3 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N06     Fn3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE		N06     An3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE	PEND
+// 027   ----------------------------------------
+	BYTE		N12     Cs3 
+	BYTE		N12     Cs4 
+	BYTE	W12
+	BYTE		N06     Gs2 
+	BYTE		N06     Gs3 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		N54     Gn2 
+	BYTE		N54     Gn3 
+	BYTE	W42
+	BYTE	W01
+	BYTE		BEND    c_v-5
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-16
+	BYTE	W01
+	BYTE		        c_v-22
+	BYTE	W01
+	BYTE		        c_v-28
+	BYTE	W01
+	BYTE		        c_v-33
+	BYTE	W01
+	BYTE		        c_v-39
+	BYTE	W01
+	BYTE		        c_v-45
+	BYTE	W01
+	BYTE		        c_v-50
+	BYTE	W01
+	BYTE		        c_v-56
+	BYTE	W01
+	BYTE		        c_v-62
+	BYTE	W01
+// 028   ----------------------------------------
+UndertaleMegalovaniaSme_5_028:
+	BYTE		BEND    c_v+0
+	BYTE		N06     Fn1   v100
+	BYTE		N06     Fn2 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE		N06     Gn2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE		N06     An2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE		N06     Fn3 
+	BYTE	W12
+	BYTE		N24     En2 
+	BYTE		N24     En3 
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE		N24     Dn3 
+	BYTE	W24
+	BYTE	PEND
+// 029   ----------------------------------------
+UndertaleMegalovaniaSme_5_029:
+	BYTE		N24     En2   v100
+	BYTE		N24     En3 
+	BYTE	W24
+	BYTE		        Fn2 
+	BYTE		N24     Fn3 
+	BYTE	W24
+	BYTE		        Gn2 
+	BYTE		N24     Gn3 
+	BYTE	W24
+	BYTE		        En2 
+	BYTE		N24     En3 
+	BYTE	W24
+	BYTE	PEND
+// 030   ----------------------------------------
+	BYTE		N42     An2 
+	BYTE		N42     An3 
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE		        Cs2 
+	BYTE		N42     Cs3 
+	BYTE	W06
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W06
+	BYTE		N48     Ds2 
+	BYTE		N48     Ds3 
+	BYTE	W48
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_5_024
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_5_025
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_5_026
+// 035   ----------------------------------------
+	BYTE		N12     Cs3   v100
+	BYTE		N12     Cs4 
+	BYTE	W12
+	BYTE		N06     Gs2 
+	BYTE		N06     Gs3 
+	BYTE	W12
+	BYTE		        Gs2 
+	BYTE		N06     Gs3 
+	BYTE	W06
+	BYTE		        Gn2 
+	BYTE		N06     Gn3 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		N54     Gn2 
+	BYTE		N54     Gn3 
+	BYTE	W42
+	BYTE		BEND    c_v-2
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-13
+	BYTE	W01
+	BYTE		        c_v-19
+	BYTE	W01
+	BYTE		        c_v-25
+	BYTE	W01
+	BYTE		        c_v-30
+	BYTE	W01
+	BYTE		        c_v-36
+	BYTE	W01
+	BYTE		        c_v-42
+	BYTE	W01
+	BYTE		        c_v-47
+	BYTE	W01
+	BYTE		        c_v-53
+	BYTE	W01
+	BYTE		        c_v-59
+	BYTE	W01
+	BYTE		        c_v-64
+	BYTE	W01
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_5_028
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_5_029
+// 038   ----------------------------------------
+	BYTE		N42     An2   v100
+	BYTE		N42     An3 
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE		        Cs2 
+	BYTE		N42     Cs3 
+	BYTE	W06
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W06
+	BYTE		N48     Ds2 
+	BYTE		N48     Ds3 
+	BYTE	W48
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+UndertaleMegalovaniaSme_5_054:
+	BYTE	W12
+	BYTE		N06     Fn2   v100
+	BYTE		N06     Fn3 
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE		N06     En3 
+	BYTE		N06     En4 
+	BYTE	W18
+	BYTE		        Cn2 
+	BYTE		N06     Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE		N06     En3 
+	BYTE		N06     En4 
+	BYTE	W11
+	BYTE		        Dn2 
+	BYTE		N06     Dn3 
+	BYTE		N06     Dn4 
+	BYTE	W13
+	BYTE		        An1 
+	BYTE		N06     An2 
+	BYTE		N06     An3 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE		N06     Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE		N06     Dn3 
+	BYTE		N06     Dn4 
+	BYTE	W06
+	BYTE	PEND
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_5_054
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_5_B1
+UndertaleMegalovaniaSme_5_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+UndertaleMegalovaniaSme_6:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_6_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		VOL     77*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v-11
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W72
+	BYTE		N24     Cn3   v100
+	BYTE	W03
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+5
+	BYTE	W01
+	BYTE		        c_v+6
+	BYTE	W01
+	BYTE		        c_v+8
+	BYTE	W01
+	BYTE		        c_v+9
+	BYTE	W01
+	BYTE		        c_v+10
+	BYTE	W01
+	BYTE		        c_v+12
+	BYTE	W01
+	BYTE		        c_v+13
+	BYTE	W01
+	BYTE		        c_v+14
+	BYTE	W01
+	BYTE		        c_v+16
+	BYTE	W01
+	BYTE		        c_v+17
+	BYTE	W01
+	BYTE		        c_v+18
+	BYTE	W01
+	BYTE		        c_v+19
+	BYTE	W01
+	BYTE		        c_v+21
+	BYTE	W01
+	BYTE		        c_v+22
+	BYTE	W01
+	BYTE		        c_v+23
+	BYTE	W01
+	BYTE		        c_v+25
+	BYTE	W01
+	BYTE		        c_v+26
+	BYTE	W01
+// 016   ----------------------------------------
+	BYTE		        c_v+0
+	BYTE		N04     Fn3 
+	BYTE	W10
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W12
+	BYTE		BEND    c_v+2
+	BYTE		N06   
+	BYTE	W01
+	BYTE		BEND    c_v+4
+	BYTE	W01
+	BYTE		        c_v+5
+	BYTE	W04
+	BYTE		        c_v+0
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		N24   
+	BYTE	W30
+// 017   ----------------------------------------
+	BYTE		N03     Fn3 
+	BYTE	W12
+	BYTE		N03   
+	BYTE	W06
+	BYTE		N03   
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N12     Gs3 
+	BYTE	W12
+	BYTE		N01     Gn3 
+	BYTE	W01
+	BYTE		        Fn3 
+	BYTE	W02
+	BYTE		        Gs3 
+	BYTE	W01
+	BYTE		        Gn3 
+	BYTE	W02
+	BYTE		N03     Fn3 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		N06     Fn3 
+	BYTE	W06
+	BYTE		N03     Gn3 
+	BYTE	W18
+// 018   ----------------------------------------
+	BYTE		N04     Fn3 
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N18     An3 
+	BYTE	W18
+// 019   ----------------------------------------
+	BYTE		N04     Dn4 
+	BYTE	W10
+	BYTE		N04   
+	BYTE	W14
+	BYTE		N04   
+	BYTE	W06
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N54     Cn4 
+	BYTE	W54
+// 020   ----------------------------------------
+	BYTE		N04     An3 
+	BYTE	W10
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N24   
+	BYTE	W30
+// 021   ----------------------------------------
+	BYTE		N04     An3 
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		N12     Gn3 
+	BYTE	W12
+// 022   ----------------------------------------
+	BYTE		N04     Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+// 023   ----------------------------------------
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		        En3 
+	BYTE	W13
+	BYTE		        Fn3 
+	BYTE	W11
+	BYTE		N48     Cn4 
+	BYTE	W54
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_6_B1
+UndertaleMegalovaniaSme_6_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+UndertaleMegalovaniaSme_7:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_7_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   57
+	BYTE		VOL     84*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v+16
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+UndertaleMegalovaniaSme_7_024:
+	BYTE	W48
+	BYTE		N02     Fn4   v100
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Gs4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE	PEND
+// 025   ----------------------------------------
+UndertaleMegalovaniaSme_7_025:
+	BYTE		N01     Gs4   v100
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W03
+	BYTE		        Fn4 
+	BYTE	W03
+	BYTE		        Dn4 
+	BYTE	W03
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE		N56     Gn4 
+	BYTE	W56
+	BYTE	W01
+	BYTE		N06     Gs4 
+	BYTE	W09
+	BYTE		N03     An4 
+	BYTE	W06
+	BYTE	PEND
+// 026   ----------------------------------------
+UndertaleMegalovaniaSme_7_026:
+	BYTE		N06     Cn5   v100
+	BYTE	W12
+	BYTE		N03     An4 
+	BYTE	W06
+	BYTE		        Gs4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		N06     En4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE	PEND
+// 027   ----------------------------------------
+	BYTE		N12     Cs5 
+	BYTE	W12
+	BYTE		N06     Gs4 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N54     Gn4 
+	BYTE	W42
+	BYTE		BEND    c_v-3
+	BYTE	W01
+	BYTE		        c_v-9
+	BYTE	W01
+	BYTE		        c_v-14
+	BYTE	W01
+	BYTE		        c_v-20
+	BYTE	W01
+	BYTE		        c_v-26
+	BYTE	W01
+	BYTE		        c_v-31
+	BYTE	W01
+	BYTE		        c_v-37
+	BYTE	W01
+	BYTE		        c_v-42
+	BYTE	W01
+	BYTE		        c_v-48
+	BYTE	W01
+	BYTE		        c_v-53
+	BYTE	W01
+	BYTE		        c_v-59
+	BYTE	W01
+	BYTE		        c_v-64
+	BYTE	W01
+// 028   ----------------------------------------
+	BYTE		        c_v+0
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+UndertaleMegalovaniaSme_7_030:
+	BYTE	W48
+	BYTE		N03     An4   v100
+	BYTE	W06
+	BYTE		        Gs4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fs4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Ds4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE	PEND
+// 031   ----------------------------------------
+	BYTE		N42     Cs4 
+	BYTE	W07
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+5
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W06
+	BYTE		N48     Ds4 
+	BYTE	W48
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_7_024
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_7_025
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_7_026
+// 035   ----------------------------------------
+	BYTE		N12     Cs5   v100
+	BYTE	W12
+	BYTE		N06     Gs4 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N54     Gn4 
+	BYTE	W42
+	BYTE	W01
+	BYTE		BEND    c_v-2
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-14
+	BYTE	W01
+	BYTE		        c_v-20
+	BYTE	W01
+	BYTE		        c_v-26
+	BYTE	W01
+	BYTE		        c_v-32
+	BYTE	W01
+	BYTE		        c_v-39
+	BYTE	W01
+	BYTE		        c_v-45
+	BYTE	W01
+	BYTE		        c_v-51
+	BYTE	W01
+	BYTE		        c_v-57
+	BYTE	W01
+	BYTE		        c_v-63
+	BYTE	W01
+// 036   ----------------------------------------
+	BYTE		        c_v+0
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_7_030
+// 039   ----------------------------------------
+	BYTE		N42     Cs4   v100
+	BYTE	W08
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W06
+	BYTE		N48     Ds4 
+	BYTE	W48
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_7_B1
+UndertaleMegalovaniaSme_7_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+UndertaleMegalovaniaSme_8:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_8_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   52
+	BYTE		VOL     92*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v+13
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+UndertaleMegalovaniaSme_8_040:
+	BYTE		N72     As1   v100
+	BYTE	W72
+	BYTE		N24     Fn2 
+	BYTE	W24
+	BYTE	PEND
+// 041   ----------------------------------------
+UndertaleMegalovaniaSme_8_041:
+	BYTE		N48     En2   v100
+	BYTE	W48
+	BYTE		        Dn2 
+	BYTE	W48
+	BYTE	PEND
+// 042   ----------------------------------------
+	BYTE		TIE     Fn2 
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_8_040
+// 045   ----------------------------------------
+UndertaleMegalovaniaSme_8_045:
+	BYTE		N48     En2   v100
+	BYTE	W48
+	BYTE		N44     Dn2 
+	BYTE	W48
+	BYTE	PEND
+// 046   ----------------------------------------
+	BYTE		TIE   
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE		BEND    c_v-1
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-4
+	BYTE	W01
+	BYTE		        c_v-4
+	BYTE	W01
+	BYTE		        c_v-5
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W01
+	BYTE		        c_v-7
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-9
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-11
+	BYTE	W01
+	BYTE		        c_v-12
+	BYTE	W01
+	BYTE		        c_v-12
+	BYTE	W01
+	BYTE		        c_v-13
+	BYTE	W01
+	BYTE		        c_v-14
+	BYTE	W01
+	BYTE		        c_v-14
+	BYTE	W01
+	BYTE		        c_v-15
+	BYTE	W01
+	BYTE		        c_v-16
+	BYTE	W01
+	BYTE		        c_v-16
+	BYTE	W01
+	BYTE		        c_v-17
+	BYTE	W01
+	BYTE		        c_v-18
+	BYTE	W01
+	BYTE		        c_v-18
+	BYTE	W01
+	BYTE		        c_v-19
+	BYTE	W01
+	BYTE		        c_v-19
+	BYTE	W01
+	BYTE		        c_v-20
+	BYTE	W01
+	BYTE		        c_v-21
+	BYTE	W01
+	BYTE		        c_v-22
+	BYTE	W01
+	BYTE		        c_v-22
+	BYTE	W01
+	BYTE		        c_v-23
+	BYTE	W01
+	BYTE		        c_v-23
+	BYTE	W01
+	BYTE		        c_v-24
+	BYTE	W01
+	BYTE		        c_v-25
+	BYTE	W01
+	BYTE		        c_v-25
+	BYTE	W01
+	BYTE		        c_v-26
+	BYTE	W01
+	BYTE		        c_v-27
+	BYTE	W01
+	BYTE		        c_v-27
+	BYTE	W01
+	BYTE		        c_v-28
+	BYTE	W01
+	BYTE		        c_v-29
+	BYTE	W01
+	BYTE		        c_v-29
+	BYTE	W01
+	BYTE		        c_v-30
+	BYTE	W01
+	BYTE		        c_v-31
+	BYTE	W01
+	BYTE		        c_v-31
+	BYTE	W01
+	BYTE		        c_v-32
+	BYTE	W01
+	BYTE		        c_v-33
+	BYTE	W01
+	BYTE		        c_v-33
+	BYTE	W01
+	BYTE		        c_v-34
+	BYTE	W01
+	BYTE		        c_v-35
+	BYTE	W01
+	BYTE		        c_v-35
+	BYTE	W01
+	BYTE		        c_v-36
+	BYTE	W01
+	BYTE		        c_v-37
+	BYTE	W01
+	BYTE		        c_v-37
+	BYTE	W01
+	BYTE		        c_v-38
+	BYTE	W01
+	BYTE		        c_v-39
+	BYTE	W01
+	BYTE		        c_v-39
+	BYTE	W01
+	BYTE		        c_v-40
+	BYTE	W01
+	BYTE		        c_v-41
+	BYTE	W01
+	BYTE		        c_v-41
+	BYTE	W01
+	BYTE		        c_v-42
+	BYTE	W01
+	BYTE		        c_v-43
+	BYTE	W01
+	BYTE		        c_v-43
+	BYTE	W01
+	BYTE		        c_v-44
+	BYTE	W01
+	BYTE		        c_v-45
+	BYTE	W01
+	BYTE		        c_v-45
+	BYTE	W01
+	BYTE		        c_v-46
+	BYTE	W01
+	BYTE		        c_v-47
+	BYTE	W01
+	BYTE		        c_v-47
+	BYTE	W01
+	BYTE		        c_v-48
+	BYTE	W01
+	BYTE		        c_v-49
+	BYTE	W01
+	BYTE		        c_v-49
+	BYTE	W01
+	BYTE		        c_v-50
+	BYTE	W01
+	BYTE		        c_v-51
+	BYTE	W01
+	BYTE		        c_v-51
+	BYTE	W01
+	BYTE		        c_v-52
+	BYTE	W01
+	BYTE		        c_v-53
+	BYTE	W01
+	BYTE		        c_v-53
+	BYTE	W01
+	BYTE		        c_v-54
+	BYTE	W01
+	BYTE		        c_v-55
+	BYTE	W01
+	BYTE		        c_v-55
+	BYTE	W01
+	BYTE		        c_v-56
+	BYTE	W01
+	BYTE		        c_v-57
+	BYTE	W01
+	BYTE		        c_v-57
+	BYTE	W01
+	BYTE		        c_v-58
+	BYTE	W01
+	BYTE		        c_v-59
+	BYTE	W01
+	BYTE		        c_v-59
+	BYTE	W01
+	BYTE		        c_v-60
+	BYTE	W01
+	BYTE		        c_v-60
+	BYTE	W01
+	BYTE		        c_v-61
+	BYTE	W01
+	BYTE		        c_v-62
+	BYTE	W01
+	BYTE		        c_v-63
+	BYTE	W01
+	BYTE		        c_v-64
+	BYTE	W01
+	BYTE		        c_v-64
+	BYTE	W01
+	BYTE		EOT   
+// 048   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE		N72     As1 
+	BYTE	W72
+	BYTE		N24     Fn2 
+	BYTE	W24
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_8_041
+// 050   ----------------------------------------
+	BYTE		TIE     Fn2   v100
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_8_040
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_8_045
+// 054   ----------------------------------------
+	BYTE		TIE     Dn2   v100
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE		BEND    c_v-1
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-4
+	BYTE	W01
+	BYTE		        c_v-4
+	BYTE	W01
+	BYTE		        c_v-5
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W01
+	BYTE		        c_v-7
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-9
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-11
+	BYTE	W01
+	BYTE		        c_v-12
+	BYTE	W01
+	BYTE		        c_v-12
+	BYTE	W01
+	BYTE		        c_v-13
+	BYTE	W01
+	BYTE		        c_v-14
+	BYTE	W01
+	BYTE		        c_v-14
+	BYTE	W01
+	BYTE		        c_v-15
+	BYTE	W01
+	BYTE		        c_v-16
+	BYTE	W01
+	BYTE		        c_v-16
+	BYTE	W01
+	BYTE		        c_v-17
+	BYTE	W01
+	BYTE		        c_v-18
+	BYTE	W01
+	BYTE		        c_v-18
+	BYTE	W01
+	BYTE		        c_v-19
+	BYTE	W01
+	BYTE		        c_v-20
+	BYTE	W01
+	BYTE		        c_v-20
+	BYTE	W01
+	BYTE		        c_v-21
+	BYTE	W01
+	BYTE		        c_v-22
+	BYTE	W01
+	BYTE		        c_v-22
+	BYTE	W01
+	BYTE		        c_v-23
+	BYTE	W01
+	BYTE		        c_v-24
+	BYTE	W01
+	BYTE		        c_v-24
+	BYTE	W01
+	BYTE		        c_v-25
+	BYTE	W01
+	BYTE		        c_v-26
+	BYTE	W01
+	BYTE		        c_v-26
+	BYTE	W01
+	BYTE		        c_v-27
+	BYTE	W01
+	BYTE		        c_v-28
+	BYTE	W01
+	BYTE		        c_v-28
+	BYTE	W01
+	BYTE		        c_v-29
+	BYTE	W01
+	BYTE		        c_v-30
+	BYTE	W01
+	BYTE		        c_v-30
+	BYTE	W01
+	BYTE		        c_v-31
+	BYTE	W01
+	BYTE		        c_v-32
+	BYTE	W01
+	BYTE		        c_v-32
+	BYTE	W01
+	BYTE		        c_v-33
+	BYTE	W01
+	BYTE		        c_v-34
+	BYTE	W01
+	BYTE		        c_v-34
+	BYTE	W01
+	BYTE		        c_v-35
+	BYTE	W01
+	BYTE		        c_v-36
+	BYTE	W01
+	BYTE		        c_v-36
+	BYTE	W01
+	BYTE		        c_v-37
+	BYTE	W01
+	BYTE		        c_v-38
+	BYTE	W01
+	BYTE		        c_v-38
+	BYTE	W01
+	BYTE		        c_v-39
+	BYTE	W01
+	BYTE		        c_v-40
+	BYTE	W01
+	BYTE		        c_v-40
+	BYTE	W01
+	BYTE		        c_v-41
+	BYTE	W01
+	BYTE		        c_v-42
+	BYTE	W01
+	BYTE		        c_v-42
+	BYTE	W01
+	BYTE		        c_v-43
+	BYTE	W01
+	BYTE		        c_v-44
+	BYTE	W01
+	BYTE		        c_v-44
+	BYTE	W01
+	BYTE		        c_v-45
+	BYTE	W01
+	BYTE		        c_v-46
+	BYTE	W01
+	BYTE		        c_v-46
+	BYTE	W01
+	BYTE		        c_v-47
+	BYTE	W01
+	BYTE		        c_v-48
+	BYTE	W01
+	BYTE		        c_v-48
+	BYTE	W01
+	BYTE		        c_v-49
+	BYTE	W01
+	BYTE		        c_v-50
+	BYTE	W01
+	BYTE		        c_v-51
+	BYTE	W01
+	BYTE		        c_v-51
+	BYTE	W01
+	BYTE		        c_v-52
+	BYTE	W01
+	BYTE		        c_v-52
+	BYTE	W01
+	BYTE		        c_v-53
+	BYTE	W01
+	BYTE		        c_v-54
+	BYTE	W01
+	BYTE		        c_v-55
+	BYTE	W01
+	BYTE		        c_v-55
+	BYTE	W01
+	BYTE		        c_v-56
+	BYTE	W01
+	BYTE		        c_v-57
+	BYTE	W01
+	BYTE		        c_v-57
+	BYTE	W01
+	BYTE		        c_v-58
+	BYTE	W01
+	BYTE		        c_v-59
+	BYTE	W01
+	BYTE		        c_v-59
+	BYTE	W01
+	BYTE		        c_v-60
+	BYTE	W01
+	BYTE		        c_v-61
+	BYTE	W01
+	BYTE		        c_v-61
+	BYTE	W01
+	BYTE		        c_v-62
+	BYTE	W01
+	BYTE		        c_v-63
+	BYTE	W01
+	BYTE		        c_v-63
+	BYTE	W01
+	BYTE		        c_v-64
+	BYTE	W01
+	BYTE		        c_v-64
+	BYTE	W01
+	BYTE		EOT   
+// 056   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_8_B1
+UndertaleMegalovaniaSme_8_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 9 (Midi-Chn.9) ****************//
+
+UndertaleMegalovaniaSme_9:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_9_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   54
+	BYTE		VOL     81*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v-10
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+UndertaleMegalovaniaSme_9_040:
+	BYTE		N72     As1   v100
+	BYTE	W72
+	BYTE		N24     Fn2 
+	BYTE	W24
+	BYTE	PEND
+// 041   ----------------------------------------
+UndertaleMegalovaniaSme_9_041:
+	BYTE		N48     En2   v100
+	BYTE	W48
+	BYTE		        Dn2 
+	BYTE	W48
+	BYTE	PEND
+// 042   ----------------------------------------
+	BYTE		TIE     Fn2 
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_9_040
+// 045   ----------------------------------------
+UndertaleMegalovaniaSme_9_045:
+	BYTE		N48     En2   v100
+	BYTE	W48
+	BYTE		N44     Dn2 
+	BYTE	W48
+	BYTE	PEND
+// 046   ----------------------------------------
+	BYTE		TIE   
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE		BEND    c_v-1
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-4
+	BYTE	W01
+	BYTE		        c_v-4
+	BYTE	W01
+	BYTE		        c_v-5
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W01
+	BYTE		        c_v-7
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-9
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-11
+	BYTE	W01
+	BYTE		        c_v-12
+	BYTE	W01
+	BYTE		        c_v-12
+	BYTE	W01
+	BYTE		        c_v-13
+	BYTE	W01
+	BYTE		        c_v-14
+	BYTE	W01
+	BYTE		        c_v-15
+	BYTE	W01
+	BYTE		        c_v-15
+	BYTE	W01
+	BYTE		        c_v-16
+	BYTE	W01
+	BYTE		        c_v-17
+	BYTE	W01
+	BYTE		        c_v-17
+	BYTE	W01
+	BYTE		        c_v-18
+	BYTE	W01
+	BYTE		        c_v-19
+	BYTE	W01
+	BYTE		        c_v-19
+	BYTE	W01
+	BYTE		        c_v-20
+	BYTE	W01
+	BYTE		        c_v-21
+	BYTE	W01
+	BYTE		        c_v-21
+	BYTE	W01
+	BYTE		        c_v-22
+	BYTE	W01
+	BYTE		        c_v-23
+	BYTE	W01
+	BYTE		        c_v-23
+	BYTE	W01
+	BYTE		        c_v-24
+	BYTE	W01
+	BYTE		        c_v-25
+	BYTE	W01
+	BYTE		        c_v-25
+	BYTE	W01
+	BYTE		        c_v-26
+	BYTE	W01
+	BYTE		        c_v-27
+	BYTE	W01
+	BYTE		        c_v-27
+	BYTE	W01
+	BYTE		        c_v-28
+	BYTE	W01
+	BYTE		        c_v-29
+	BYTE	W01
+	BYTE		        c_v-29
+	BYTE	W01
+	BYTE		        c_v-30
+	BYTE	W01
+	BYTE		        c_v-31
+	BYTE	W01
+	BYTE		        c_v-31
+	BYTE	W01
+	BYTE		        c_v-32
+	BYTE	W01
+	BYTE		        c_v-33
+	BYTE	W01
+	BYTE		        c_v-33
+	BYTE	W01
+	BYTE		        c_v-34
+	BYTE	W01
+	BYTE		        c_v-35
+	BYTE	W01
+	BYTE		        c_v-35
+	BYTE	W01
+	BYTE		        c_v-36
+	BYTE	W01
+	BYTE		        c_v-37
+	BYTE	W01
+	BYTE		        c_v-38
+	BYTE	W01
+	BYTE		        c_v-38
+	BYTE	W01
+	BYTE		        c_v-39
+	BYTE	W01
+	BYTE		        c_v-40
+	BYTE	W01
+	BYTE		        c_v-40
+	BYTE	W01
+	BYTE		        c_v-41
+	BYTE	W01
+	BYTE		        c_v-42
+	BYTE	W01
+	BYTE		        c_v-42
+	BYTE	W01
+	BYTE		        c_v-43
+	BYTE	W01
+	BYTE		        c_v-44
+	BYTE	W01
+	BYTE		        c_v-44
+	BYTE	W01
+	BYTE		        c_v-45
+	BYTE	W01
+	BYTE		        c_v-46
+	BYTE	W01
+	BYTE		        c_v-46
+	BYTE	W01
+	BYTE		        c_v-47
+	BYTE	W01
+	BYTE		        c_v-48
+	BYTE	W01
+	BYTE		        c_v-48
+	BYTE	W01
+	BYTE		        c_v-49
+	BYTE	W01
+	BYTE		        c_v-50
+	BYTE	W01
+	BYTE		        c_v-50
+	BYTE	W01
+	BYTE		        c_v-51
+	BYTE	W01
+	BYTE		        c_v-52
+	BYTE	W01
+	BYTE		        c_v-52
+	BYTE	W01
+	BYTE		        c_v-53
+	BYTE	W01
+	BYTE		        c_v-54
+	BYTE	W01
+	BYTE		        c_v-54
+	BYTE	W01
+	BYTE		        c_v-55
+	BYTE	W01
+	BYTE		        c_v-56
+	BYTE	W01
+	BYTE		        c_v-56
+	BYTE	W01
+	BYTE		        c_v-57
+	BYTE	W01
+	BYTE		        c_v-58
+	BYTE	W01
+	BYTE		        c_v-58
+	BYTE	W01
+	BYTE		        c_v-59
+	BYTE	W01
+	BYTE		        c_v-60
+	BYTE	W01
+	BYTE		        c_v-60
+	BYTE	W01
+	BYTE		        c_v-61
+	BYTE	W01
+	BYTE		        c_v-62
+	BYTE	W01
+	BYTE		        c_v-63
+	BYTE	W01
+	BYTE		        c_v-63
+	BYTE	W01
+	BYTE		        c_v-64
+	BYTE	W01
+	BYTE		        c_v-64
+	BYTE	W02
+	BYTE		EOT   
+// 048   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE		N72     As1 
+	BYTE	W72
+	BYTE		N24     Fn2 
+	BYTE	W24
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_9_041
+// 050   ----------------------------------------
+	BYTE		TIE     Fn2   v100
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_9_040
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_9_045
+// 054   ----------------------------------------
+	BYTE		TIE     Dn2   v100
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE		BEND    c_v-1
+	BYTE	W01
+	BYTE		        c_v-2
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-3
+	BYTE	W01
+	BYTE		        c_v-4
+	BYTE	W01
+	BYTE		        c_v-5
+	BYTE	W01
+	BYTE		        c_v-5
+	BYTE	W01
+	BYTE		        c_v-6
+	BYTE	W01
+	BYTE		        c_v-7
+	BYTE	W01
+	BYTE		        c_v-7
+	BYTE	W01
+	BYTE		        c_v-8
+	BYTE	W01
+	BYTE		        c_v-9
+	BYTE	W01
+	BYTE		        c_v-9
+	BYTE	W01
+	BYTE		        c_v-10
+	BYTE	W01
+	BYTE		        c_v-11
+	BYTE	W01
+	BYTE		        c_v-11
+	BYTE	W01
+	BYTE		        c_v-12
+	BYTE	W01
+	BYTE		        c_v-13
+	BYTE	W01
+	BYTE		        c_v-13
+	BYTE	W01
+	BYTE		        c_v-14
+	BYTE	W01
+	BYTE		        c_v-15
+	BYTE	W01
+	BYTE		        c_v-15
+	BYTE	W01
+	BYTE		        c_v-16
+	BYTE	W01
+	BYTE		        c_v-17
+	BYTE	W01
+	BYTE		        c_v-17
+	BYTE	W01
+	BYTE		        c_v-18
+	BYTE	W01
+	BYTE		        c_v-19
+	BYTE	W01
+	BYTE		        c_v-19
+	BYTE	W01
+	BYTE		        c_v-20
+	BYTE	W01
+	BYTE		        c_v-21
+	BYTE	W01
+	BYTE		        c_v-21
+	BYTE	W01
+	BYTE		        c_v-22
+	BYTE	W01
+	BYTE		        c_v-23
+	BYTE	W01
+	BYTE		        c_v-23
+	BYTE	W01
+	BYTE		        c_v-24
+	BYTE	W01
+	BYTE		        c_v-25
+	BYTE	W01
+	BYTE		        c_v-25
+	BYTE	W01
+	BYTE		        c_v-26
+	BYTE	W01
+	BYTE		        c_v-27
+	BYTE	W01
+	BYTE		        c_v-27
+	BYTE	W01
+	BYTE		        c_v-28
+	BYTE	W01
+	BYTE		        c_v-29
+	BYTE	W01
+	BYTE		        c_v-29
+	BYTE	W01
+	BYTE		        c_v-30
+	BYTE	W01
+	BYTE		        c_v-31
+	BYTE	W01
+	BYTE		        c_v-31
+	BYTE	W01
+	BYTE		        c_v-32
+	BYTE	W01
+	BYTE		        c_v-33
+	BYTE	W01
+	BYTE		        c_v-33
+	BYTE	W01
+	BYTE		        c_v-34
+	BYTE	W01
+	BYTE		        c_v-35
+	BYTE	W01
+	BYTE		        c_v-35
+	BYTE	W01
+	BYTE		        c_v-36
+	BYTE	W01
+	BYTE		        c_v-36
+	BYTE	W01
+	BYTE		        c_v-37
+	BYTE	W01
+	BYTE		        c_v-38
+	BYTE	W01
+	BYTE		        c_v-38
+	BYTE	W01
+	BYTE		        c_v-39
+	BYTE	W01
+	BYTE		        c_v-40
+	BYTE	W01
+	BYTE		        c_v-40
+	BYTE	W01
+	BYTE		        c_v-41
+	BYTE	W01
+	BYTE		        c_v-42
+	BYTE	W01
+	BYTE		        c_v-42
+	BYTE	W01
+	BYTE		        c_v-43
+	BYTE	W01
+	BYTE		        c_v-44
+	BYTE	W01
+	BYTE		        c_v-44
+	BYTE	W01
+	BYTE		        c_v-45
+	BYTE	W01
+	BYTE		        c_v-46
+	BYTE	W01
+	BYTE		        c_v-46
+	BYTE	W01
+	BYTE		        c_v-47
+	BYTE	W01
+	BYTE		        c_v-48
+	BYTE	W01
+	BYTE		        c_v-48
+	BYTE	W01
+	BYTE		        c_v-49
+	BYTE	W01
+	BYTE		        c_v-50
+	BYTE	W01
+	BYTE		        c_v-50
+	BYTE	W01
+	BYTE		        c_v-51
+	BYTE	W01
+	BYTE		        c_v-52
+	BYTE	W01
+	BYTE		        c_v-52
+	BYTE	W01
+	BYTE		        c_v-53
+	BYTE	W01
+	BYTE		        c_v-54
+	BYTE	W01
+	BYTE		        c_v-54
+	BYTE	W01
+	BYTE		        c_v-55
+	BYTE	W01
+	BYTE		        c_v-56
+	BYTE	W01
+	BYTE		        c_v-56
+	BYTE	W01
+	BYTE		        c_v-57
+	BYTE	W01
+	BYTE		        c_v-58
+	BYTE	W01
+	BYTE		        c_v-58
+	BYTE	W01
+	BYTE		        c_v-59
+	BYTE	W01
+	BYTE		        c_v-60
+	BYTE	W01
+	BYTE		        c_v-60
+	BYTE	W01
+	BYTE		        c_v-61
+	BYTE	W01
+	BYTE		        c_v-62
+	BYTE	W01
+	BYTE		        c_v-62
+	BYTE	W01
+	BYTE		        c_v-63
+	BYTE	W01
+	BYTE		        c_v-64
+	BYTE	W01
+	BYTE		        c_v-64
+	BYTE	W01
+	BYTE		EOT   
+// 056   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_9_B1
+UndertaleMegalovaniaSme_9_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 10 (Midi-Chn.11) ****************//
+
+UndertaleMegalovaniaSme_10:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_10_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   2
+	BYTE		VOL     75*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v-13
+	BYTE		        c_v-14
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE		N04     Fn4   v100
+	BYTE	W10
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		N24   
+	BYTE	W30
+// 021   ----------------------------------------
+	BYTE		N04     Fn4 
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W06
+	BYTE		N04   
+	BYTE	W12
+	BYTE		N04   
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		N12     Dn4 
+	BYTE	W12
+// 022   ----------------------------------------
+	BYTE		N04     Dn5 
+	BYTE	W06
+	BYTE		        An4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+// 023   ----------------------------------------
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W13
+	BYTE		        Cn4 
+	BYTE	W11
+	BYTE		N48     Gn4 
+	BYTE	W54
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W06
+	BYTE		N03     An3 
+	BYTE	W06
+	BYTE		        Fn4 
+	BYTE	W06
+	BYTE		        En4 
+	BYTE	W06
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Fn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		N12     An3 
+	BYTE	W12
+	BYTE		N03     Gn3 
+	BYTE	W06
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE	W06
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_10_B1
+UndertaleMegalovaniaSme_10_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 11 (Midi-Chn.12) ****************//
+
+UndertaleMegalovaniaSme_11:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_11_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   10
+	BYTE		VOL     75*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v+12
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+UndertaleMegalovaniaSme_11_054:
+	BYTE	W12
+	BYTE		N06     Fn3   v100
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W18
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W11
+	BYTE		        Dn3 
+	BYTE	W13
+	BYTE		        An2 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE	PEND
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_11_054
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_11_B1
+UndertaleMegalovaniaSme_11_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 12 (Midi-Chn.13) ****************//
+
+UndertaleMegalovaniaSme_12:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_12_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		VOL     79*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v+10
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W72
+	BYTE		        c_v+1
+	BYTE		N24     Fn4   v100
+	BYTE	W01
+	BYTE		BEND    c_v+3
+	BYTE	W01
+	BYTE		        c_v+5
+	BYTE	W01
+	BYTE		        c_v+8
+	BYTE	W01
+	BYTE		        c_v+10
+	BYTE	W01
+	BYTE		        c_v+10
+	BYTE	W19
+// 020   ----------------------------------------
+	BYTE		        c_v+0
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_12_B1
+UndertaleMegalovaniaSme_12_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 13 (Midi-Chn.14) ****************//
+
+UndertaleMegalovaniaSme_13:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_13_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   30
+	BYTE		VOL     74*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v-7
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+UndertaleMegalovaniaSme_13_008:
+	BYTE		N06     Dn1   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 009   ----------------------------------------
+UndertaleMegalovaniaSme_13_009:
+	BYTE		N06     Cn1   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 010   ----------------------------------------
+UndertaleMegalovaniaSme_13_010:
+	BYTE		N06     Bn0   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 011   ----------------------------------------
+UndertaleMegalovaniaSme_13_011:
+	BYTE		N06     As0   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_011
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_010
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_011
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_010
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_011
+// 024   ----------------------------------------
+UndertaleMegalovaniaSme_13_024:
+	BYTE		N06     As0   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 027   ----------------------------------------
+UndertaleMegalovaniaSme_13_027:
+	BYTE		N06     Cs1   v100
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_024
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_027
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_024
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_027
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_024
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_027
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_024
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_010
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_010
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_024
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_024
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_010
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_010
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_024
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_009
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_13_008
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_13_B1
+UndertaleMegalovaniaSme_13_B2:
+// 078   ----------------------------------------
+	BYTE		VOICE   30
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 14 (Midi-Chn.15) ****************//
+
+UndertaleMegalovaniaSme_14:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_14_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   67
+	BYTE		VOL     74*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v+11
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+UndertaleMegalovaniaSme_14_008:
+	BYTE		N06     Dn3   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 009   ----------------------------------------
+UndertaleMegalovaniaSme_14_009:
+	BYTE		N06     Cn3   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 010   ----------------------------------------
+UndertaleMegalovaniaSme_14_010:
+	BYTE		N06     Bn2   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 011   ----------------------------------------
+UndertaleMegalovaniaSme_14_011:
+	BYTE		N06     As2   v100
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W18
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_14_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_14_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_14_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_14_011
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+UndertaleMegalovaniaSme_14_024:
+	BYTE	W48
+	BYTE		N02     Fn3   v100
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		        Gs3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE	PEND
+// 025   ----------------------------------------
+UndertaleMegalovaniaSme_14_025:
+	BYTE		N01     Gs3   v100
+	BYTE	W03
+	BYTE		        Gn3 
+	BYTE	W03
+	BYTE		        Fn3 
+	BYTE	W03
+	BYTE		        Dn3 
+	BYTE	W03
+	BYTE		N06     Fn3 
+	BYTE	W12
+	BYTE		N56     Gn3 
+	BYTE	W56
+	BYTE	W01
+	BYTE		N06     Gs3 
+	BYTE	W09
+	BYTE		N03     An3 
+	BYTE	W06
+	BYTE	PEND
+// 026   ----------------------------------------
+UndertaleMegalovaniaSme_14_026:
+	BYTE		N06     Cn4   v100
+	BYTE	W12
+	BYTE		N03     An3 
+	BYTE	W06
+	BYTE		        Gs3 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE		N06     En3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE	PEND
+// 027   ----------------------------------------
+UndertaleMegalovaniaSme_14_027:
+	BYTE		N12     Cs4   v100
+	BYTE	W12
+	BYTE		N06     Gs3 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE	W06
+	BYTE		N54     Gn3 
+	BYTE	W54
+	BYTE	PEND
+// 028   ----------------------------------------
+UndertaleMegalovaniaSme_14_028:
+	BYTE		N06     Fn2   v100
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		N24     En3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE	W24
+	BYTE	PEND
+// 029   ----------------------------------------
+UndertaleMegalovaniaSme_14_029:
+	BYTE		N24     En3   v100
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE	W24
+	BYTE		        En3 
+	BYTE	W24
+	BYTE	PEND
+// 030   ----------------------------------------
+	BYTE		N42     An3 
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE		        Cs3 
+	BYTE	W09
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W06
+	BYTE		N48     Ds3 
+	BYTE	W48
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_14_024
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_14_025
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_14_026
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_14_027
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_14_028
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_14_029
+// 038   ----------------------------------------
+	BYTE		N42     An3   v100
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		BEND    c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+1
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+2
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+3
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+4
+	BYTE	W01
+	BYTE		        c_v+0
+	BYTE	W06
+	BYTE		N48     Ds3 
+	BYTE	W48
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_14_B1
+UndertaleMegalovaniaSme_14_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//**************** Track 15 (Midi-Chn.16) ****************//
+
+UndertaleMegalovaniaSme_15:
+	BYTE	KEYSH   UndertaleMegalovaniaSme_key+0
+UndertaleMegalovaniaSme_15_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   123
+	BYTE		VOL     79*UndertaleMegalovaniaSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		BEND    c_v+0
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE		N06     Cn1   v100
+	BYTE		N06     Gs1 
+	BYTE		N24     Cs2 
+	BYTE		N24     Gn2 
+	BYTE	W12
+	BYTE		N06     Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Gs1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Gs1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		N06   
+	BYTE		N06     Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+// 009   ----------------------------------------
+UndertaleMegalovaniaSme_15_009:
+	BYTE		N06     Cn1   v100
+	BYTE		N06     Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Gs1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Gs1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		N06   
+	BYTE		N06     Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 011   ----------------------------------------
+UndertaleMegalovaniaSme_15_011:
+	BYTE		N06     Cn1   v100
+	BYTE		N06     Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Gs1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE		N12     Cs2 
+	BYTE	W06
+	BYTE		N06     Cn1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE		N12     Cs2 
+	BYTE	W06
+	BYTE		N06     Cn1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE		N06     Dn1 
+	BYTE		N12     Cs2 
+	BYTE	W06
+	BYTE		N06     Cn1 
+	BYTE		N06     Dn1 
+	BYTE	W06
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_011
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_011
+// 020   ----------------------------------------
+	BYTE		N06     Cn1   v100
+	BYTE		N06     Gs1 
+	BYTE		N24     Cs2 
+	BYTE	W12
+	BYTE		N06     Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Gs1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Gs1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		N06   
+	BYTE		N06     Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_011
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 027   ----------------------------------------
+	BYTE		N06     Cn1   v100
+	BYTE		N06     Gs1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		N06   
+	BYTE		N06     Gs1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Dn1 
+	BYTE		N12     Cs2 
+	BYTE	W06
+	BYTE		N06     Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Dn1 
+	BYTE		N12     Cs2 
+	BYTE	W06
+	BYTE		N06     Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Dn1 
+	BYTE		N12     Cs2 
+	BYTE	W06
+	BYTE		N06     Dn1 
+	BYTE	W06
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_011
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_011
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_011
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W48
+	BYTE		N06     Dn1   v100
+	BYTE		N12     Cs2 
+	BYTE	W06
+	BYTE		N06     Cn1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE		N12     Cs2 
+	BYTE	W06
+	BYTE		N06     Cn1 
+	BYTE		N06     Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Dn1 
+	BYTE		N12     Cs2 
+	BYTE	W06
+	BYTE		N06     Cn1 
+	BYTE		N06     Dn1 
+	BYTE	W06
+// 056   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 057   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 058   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 059   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 060   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 061   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 062   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 064   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 065   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 066   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 067   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 068   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 069   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 071   ----------------------------------------
+	BYTE	PATT
+	 POIN2	UndertaleMegalovaniaSme_15_009
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	UndertaleMegalovaniaSme_15_B1
+UndertaleMegalovaniaSme_15_B2:
+// 078   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+UndertaleMegalovaniaSme:
+	BYTE	15	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	UndertaleMegalovaniaSme_pri	// Priority
+	BYTE	UndertaleMegalovaniaSme_rev	// Reverb.
+
+	POIN2	UndertaleMegalovaniaSme_grp
+
+	POIN2	UndertaleMegalovaniaSme_1
+	POIN2	UndertaleMegalovaniaSme_2
+	POIN2	UndertaleMegalovaniaSme_3
+	POIN2	UndertaleMegalovaniaSme_4
+	POIN2	UndertaleMegalovaniaSme_5
+	POIN2	UndertaleMegalovaniaSme_6
+	POIN2	UndertaleMegalovaniaSme_7
+	POIN2	UndertaleMegalovaniaSme_8
+	POIN2	UndertaleMegalovaniaSme_9
+	POIN2	UndertaleMegalovaniaSme_10
+	POIN2	UndertaleMegalovaniaSme_11
+	POIN2	UndertaleMegalovaniaSme_12
+	POIN2	UndertaleMegalovaniaSme_13
+	POIN2	UndertaleMegalovaniaSme_14
+	POIN2	UndertaleMegalovaniaSme_15
+
+	
