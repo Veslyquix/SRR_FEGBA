@@ -137,6 +137,7 @@ BYTE 0x5a 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x64 0x65 0x66 0x67 0x96 
 #define NeverChangeChars(id1, id2) "PUSH; ORG CharExceptions + (id1 * 2); FILL((id2-id1)*2) 0x1; POP" 
 
 #define NeverUseBGM(id) "PUSH; ORG BGMExceptions + id; BYTE 1; POP" 
+#define NeverUseBGMs(id1, id2) "PUSH; ORG BGMExceptions + id1; FILL(id2-id1); POP" 
 
 #define IgnoreTextID(id) "PUSH; ORG TextIDExceptionTable + (id); BYTE 1; POP" 
 #define IgnoreTextIDRange(id1, id2) "PUSH; ORG TextIDExceptionTable + (id1); FILL(id2-id1) 0x1; POP" 
@@ -158,6 +159,10 @@ ALIGN 4
 TextIDExceptionTable: 
 FILL(0x2000) // max id 0x2000
 
+#ifdef VeslyBuildfile
+NeverUseBGMs(0x80, 0x3A2) // sound fx etc 
+NeverUseBGMs(0x3A4, 0x3E6)
+#endif 
  
 IgnoreTextIDRange(0x813, 0x814) // uses SetName idk 
 // shops & misc 
