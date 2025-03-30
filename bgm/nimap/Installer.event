@@ -15,13 +15,14 @@ voicegroup000:
     #include "fe7nimap2.event" 
     #include "FE7_Drumfix_bad/Installer.event" // this just replaces the dummy sounds from 40 - 80 with a generic percussive sound 
 PUSH
-// 16 tracks fix  
+// 16 tracks / 12 sounds fix  
+// Credits: Agro/Brendor
 ORG $3FCD 
 BYTE 0xD0 
 ORG $3ff6 
 BYTE $08 $29 $02 $D0 $08
 ORG $69d668 
-BYTE $10 $5B $00 $03 $28 $16 $00 $03 $0C $00 $00 $00 $20 $5D $00 $03 $B0 $67 $00 $03 $0C $00 $00 $00 $60 $5D $00 $03 $28 $1B $00 $03 $02 $00 $01 $00 $30 $5E $00 $03 $C8 $1B $00 $03 $02 $00 $01 $00 $A0 $5D $00 $03 $68 $1C $00 $03 $04 $00 $01 $00 $90 $5A $00 $03 $A8 $1D $00 $03 $04 $00 $01 $00 $D0 $5A $00 $03 $E8 $1E $00 $03 $05 $00 $01 $00 $E0 $5C $00 $03 $78 $20 $00 $03 $04 $00 $01 $00 $F0 $5D $00 $03 $B8 $21 $00 $03 $02 $00 $01 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+BYTE $10 $5B $00 $03 $28 $16 $00 $03 $0F $00 $00 $00 $20 $5D $00 $03 $B0 $67 $00 $03 $0F $00 $00 $00 $60 $5D $00 $03 $28 $1B $00 $03 $02 $00 $01 $00 $30 $5E $00 $03 $C8 $1B $00 $03 $02 $00 $01 $00 $A0 $5D $00 $03 $68 $1C $00 $03 $04 $00 $01 $00 $90 $5A $00 $03 $A8 $1D $00 $03 $04 $00 $01 $00 $D0 $5A $00 $03 $E8 $1E $00 $03 $05 $00 $01 $00 $E0 $5C $00 $03 $78 $20 $00 $03 $04 $00 $01 $00 $F0 $5D $00 $03 $B8 $21 $00 $03 $02 $00 $01 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
 POP 
 
 #endif 
@@ -30,33 +31,19 @@ POP
     // no 16 tracks fix 
     #include "FE6_Drumfix_bad/Installer.event" // this just replaces the dummy sounds from 40 - 80 with a generic percussive sound
 PUSH 
-ORG $9c844 // in m4aSoundInit, the only place where MAXCHN is set in fe6 
-WORD 0x94DF00 // vanilla is 0x94D700 as max 7(?) tracks 
-ORG $399470 // in 39946c / fe8 224404 gMPlayTable
-WORD 0x3001578 // vanilla value: translation changed this fsr 
-ORG $399474 
-SHORT $10 0 // 16 tracks instead of 8 
-WORD 0x30064f0 // ram of where to use (vanilla)
-WORD 0x3006650 //(vanilla + 0x160) instead of 0x30017f8 
-SHORT $10 0 // 16 tracks instead of 8 
-// WORD 0x30067b0 
-// WORD 0x3006910
-// 0x3006530 ?? 
-// 0x3001A78 ?? 
-// fe6 105Eb0 has 0x300151B  
-// fe6 121cA4 has 0x3001576  
-// fe6 18388C has 0x3001553 
-// fe6 1c3168 has 0x3001541
-// fe6 1eb268 has 0x3001503
-// fe6 318C60 has 0x3001500
-
+ORG $9c844 // in 9C7DC m4aSoundInit, the only place where MAXCHN is set in fe6 - // m4aSoundMode 0x809cd78 maxChannels 
+WORD 0x94DC00 // vanilla is 0x94D700 as max 8 channels / sounds 
+ORG $399474 // in 39946c / fe8 224404 gMPlayTable
+SHORT $F 0 // 16 tracks instead of 8 
+WORD 0x30064f0 // vanilla ram of where to use 
+WORD 0x30067B0 // changed ram instead of 0x30017f8 
+SHORT $F 0 // 16 tracks instead of 8 
 // vanilla fe8: 03001e38 B gMPlayTrack_BGM1 size 0x280 
 //030020b8 B gMPlayTrack_BGM2 becomes 0x30067B0 
-
 POP 
 
 #endif 
-// m4aSoundMode 0x809cd78 maxChannels 
+// 
 
 // fe6 drum sets: 
 // 83931AC, 83933EC,  
