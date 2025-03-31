@@ -65,6 +65,8 @@ STRING "Abel" "FE6TR" ; BYTE 0
 //#define NeverRandomizeMusic // comment this out if you want music randomized 
 // it only knows of vanilla song IDs though 
 ALIGN 4 
+CharConfirmPage:
+WORD 1 
 RNTable:
 #incbin "RNTable.dmp" 
 ALIGN  4
@@ -572,6 +574,14 @@ VramDest_DebugFont:
 WORD 0xd800 // in glowy or 0x3000 ? // 0x4800 
 
 PUSH 
+
+#ifdef USE_CHAR_CONFIRM_PAGE 
+// Kill BWL DeployAmt and SquaresMoved 
+ORG $84BEC // PidStatsAddDeployAmt
+SHORT $4770 
+ORG $84C30 //PidStatsAddSquaresMoved
+SHORT $4770 
+#endif 
 
 // Melee and magic fix fe6 
 ORG 0x18188

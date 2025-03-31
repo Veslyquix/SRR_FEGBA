@@ -70,6 +70,8 @@ String("Reconfigure the randomizer.") ; BYTE 0
 SetText(0x119f, ConfigText)
 SetText(0x11a0, ConfigDescText)
 ALIGN 4 
+CharConfirmPage:
+WORD 1 
 RNTable:
 #incbin "RNTable.dmp" 
 ALIGN  4
@@ -262,6 +264,16 @@ WORD 0 //90
 
 
 PUSH 
+
+#ifdef USE_CHAR_CONFIRM_PAGE 
+// Kill BWL DeployAmt and SquaresMoved 
+ORG $9FFEC // PidStatsAddDeployAmt
+SHORT $4770 
+ORG $A003C //PidStatsAddSquaresMoved
+SHORT $4770 
+#endif 
+
+
 // checksum testing stuff 
 //ORG $9f924 
 //SHORT $4770 // bx lr 

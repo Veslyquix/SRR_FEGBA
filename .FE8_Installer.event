@@ -72,7 +72,11 @@
 #define PROC_CALL_ROUTINE_2(aprRoutine)              "SHORT 0x16 0; POIN aprRoutine"
 #endif 
 
+#define USE_CHAR_CONFIRM_PAGE True 
+
 ALIGN 4 
+CharConfirmPage:
+WORD USE_CHAR_CONFIRM_PAGE 
 RNTable:
 #incbin "RNTable.dmp" 
 ALIGN  4
@@ -389,7 +393,15 @@ BYTE $10 $A0 $00 $00 $00 $55 $53 $FF $7F $FF $6B $1F $4B $00 $18 $2A $2E $19 $B3
 
 PUSH 
 
-
+#ifdef USE_CHAR_CONFIRM_PAGE 
+// Kill BWL DeployAmt and SquaresMoved 
+// 809FFEC fe7, $84BEC fe6 
+ORG $a47cc // PidStatsAddDeployAmt
+SHORT $4770 
+// 0A003C fe7, 8084C30 fe6 
+ORG $a481c //PidStatsAddSquaresMoved
+SHORT $4770 
+#endif 
 
 ORG $E834 
 callHackNew(RandBGsFe8)
