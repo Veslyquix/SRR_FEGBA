@@ -160,4 +160,88 @@ int CountProcs(const struct ProcCmd * script);
 void Proc_FindBegin(struct ProcFindIterator* it, const struct ProcCmd* script);
 ProcPtr Proc_FindNext(struct ProcFindIterator* it);
 
+
+#define ApplyPalettes(aSrc, aPalId, aPalCount) CopyToPaletteBuffer((aSrc), 0x20 * (aPalId), 0x20 * (aPalCount))
+#define ApplyPalette(aSrc, aPalId) ApplyPalettes((aSrc), (aPalId), 1)
+
+#define SetDispEnable(bg0, bg1, bg2, bg3, obj) \
+{ \
+    gLCDControlBuffer.dispcnt.bg0_on = (bg0); \
+    gLCDControlBuffer.dispcnt.bg1_on = (bg1); \
+    gLCDControlBuffer.dispcnt.bg2_on = (bg2); \
+    gLCDControlBuffer.dispcnt.bg3_on = (bg3); \
+    gLCDControlBuffer.dispcnt.obj_on = (obj); \
+}
+
+#define SetWinEnable(win0, win1, objwin) \
+{ \
+    gLCDControlBuffer.dispcnt.win0_on = (win0); \
+    gLCDControlBuffer.dispcnt.win1_on = (win1); \
+    gLCDControlBuffer.dispcnt.objWin_on = (objwin); \
+}
+
+#define SetWin0Box(left, top, right, bottom) \
+{ \
+    gLCDControlBuffer.win0_left = (left); \
+    gLCDControlBuffer.win0_top = (top); \
+    gLCDControlBuffer.win0_right = (right); \
+    gLCDControlBuffer.win0_bottom = (bottom); \
+}
+
+#define SetWin1Box(left, top, right, bottom) \
+{ \
+    gLCDControlBuffer.win1_left = (left); \
+    gLCDControlBuffer.win1_top = (top); \
+    gLCDControlBuffer.win1_right = (right); \
+    gLCDControlBuffer.win1_bottom = (bottom); \
+}
+
+#define SetWin0Layers(bg0, bg1, bg2, bg3, obj) \
+{ \
+    gLCDControlBuffer.wincnt.win0_enableBg0 = (bg0); \
+    gLCDControlBuffer.wincnt.win0_enableBg1 = (bg1); \
+    gLCDControlBuffer.wincnt.win0_enableBg2 = (bg2); \
+    gLCDControlBuffer.wincnt.win0_enableBg3 = (bg3); \
+    gLCDControlBuffer.wincnt.win0_enableObj = (obj); \
+}
+
+#define SetWin1Layers(bg0, bg1, bg2, bg3, obj) \
+{ \
+    gLCDControlBuffer.wincnt.win1_enableBg0 = (bg0); \
+    gLCDControlBuffer.wincnt.win1_enableBg1 = (bg1); \
+    gLCDControlBuffer.wincnt.win1_enableBg2 = (bg2); \
+    gLCDControlBuffer.wincnt.win1_enableBg3 = (bg3); \
+    gLCDControlBuffer.wincnt.win1_enableObj = (obj); \
+}
+
+#define SetWObjLayers(bg0, bg1, bg2, bg3, obj) \
+{ \
+    gLCDControlBuffer.wincnt.wobj_enableBg0 = (bg0); \
+    gLCDControlBuffer.wincnt.wobj_enableBg1 = (bg1); \
+    gLCDControlBuffer.wincnt.wobj_enableBg2 = (bg2); \
+    gLCDControlBuffer.wincnt.wobj_enableBg3 = (bg3); \
+    gLCDControlBuffer.wincnt.wobj_enableObj = (obj); \
+}
+
+#define SetWOutLayers(bg0, bg1, bg2, bg3, obj) \
+{ \
+    gLCDControlBuffer.wincnt.wout_enableBg0 = (bg0); \
+    gLCDControlBuffer.wincnt.wout_enableBg1 = (bg1); \
+    gLCDControlBuffer.wincnt.wout_enableBg2 = (bg2); \
+    gLCDControlBuffer.wincnt.wout_enableBg3 = (bg3); \
+    gLCDControlBuffer.wincnt.wout_enableObj = (obj); \
+}
+
+#define SetBlendAlpha(ca, cb) \
+    SetSpecialColorEffectsParameters(BLEND_EFFECT_ALPHA, (ca), (cb), 0)
+
+#define SetBlendBrighten(cy) \
+    SetSpecialColorEffectsParameters(BLEND_EFFECT_BRIGHTEN, 0, 0, (cy))
+
+#define SetBlendDarken(cy) \
+    SetSpecialColorEffectsParameters(BLEND_EFFECT_DARKEN, 0, 0, (cy))
+
+#define SetBlendNone() \
+    SetSpecialColorEffectsParameters(BLEND_EFFECT_NONE, 0x10, 0, 0)
+
 #endif  // GUARD_PROC_H

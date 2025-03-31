@@ -319,7 +319,7 @@ int GetPreviousAlwaysSkill(int id)
     }
     return 0;
 }
-
+extern int CharConfirmPage;
 #ifdef FE6
 #define MAX_CHAR_ID 0xE2
 #endif
@@ -495,6 +495,18 @@ int IsCharIdPastLimit(int charId)
     return false;
 }
 
+void LoopCharConfirmPage(ConfigMenuProc * proc)
+{
+    if (!CharConfirmPage)
+    {
+        Proc_Break(proc);
+    }
+    if (sKeyStatusBuffer.newKeys & 1)
+    {
+        Proc_Break(proc);
+    }
+}
+
 extern void BreakWithValue(int a, int b, int c);
 #ifdef FE6
 const struct FE8CharacterData *
@@ -610,6 +622,129 @@ const struct FE8CharacterData *
     return table;
 }
 
+extern void ClearBg0Bg1();
+extern void EnablePaletteSync();
+extern void TileMap_CopyRect(u16 * src, u16 * dst, int width, int height);
+extern void PutFaceChibi(int, u16 *, int, int, s8);
+extern void InitStatScreenText(void); // fe6 806eaf0 T InitStatScreenText
+extern void InitTextFont(void * font, void * draw_dest, int chr, int palid);
+extern void ChapterStatus_SetupFont(int zero); // 8086E60
+extern void SetFontGlyphSet(int a);            // 8005410
+extern void InitSystemTextFont(void);          // 8005A40
+extern void RegisterBlankTile(int a);
+extern u16 gUiTmScratchA[0x280];
+void CallSetupBackgrounds(ConfigMenuProc * proc);
+extern void SetupBackgrounds(u16 * bgConfig);
+void DrawCharPreview(int x, int y, int charID, int palID);
+const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table);
+void DrawCharConfirmPage(ConfigMenuProc * proc)
+{
+    if (!CharConfirmPage)
+    {
+        return;
+    }
+    RegisterBlankTile(0); // so bg fill works I guess
+    SetupBackgrounds(0);
+    SetDispEnable(1, 1, 1, 1, 1);
+    // gLCDControlBuffer.dispcnt.forcedBlank = 1;
+    SetWinEnable(1, 1, 1);
+    BG_Fill(gBG0TilemapBuffer, 0);
+    BG_Fill(gBG1TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
+
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+    SetTextFont(0);
+    InitSystemTextFont();
+
+    ResetText();                         // need this
+    struct Text * th = gStatScreen.text; // max 34
+    for (int i = 0; i < 34; ++i)
+    {
+        InitText(&th[i], 8);
+    }
+
+    // int faceId = 2;
+    // int x = 1;
+    // int y = 0;
+    // void PutFaceChibi(int fid, u16 * tm, int chr, int pal, s8 isFlipped)
+    // TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(30, 20), 0, 0, 0);
+    // int ID = 1;
+    GetReorderedCharacter(GetCharacterData(1));
+    RecruitValues->pauseNameReplace = true;
+    DrawCharPreview(1, 0, 1, 3);
+    DrawCharPreview(1, 5, 2, 4);
+    int palID = 2;
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
+    EnablePaletteSync();
+}
+struct FaceData
+{
+    /* 00 */ const u8 * img;
+    /* 04 */ const u8 * imgChibi;
+    /* 08 */ const u16 * pal;
+    /* 0C */ const u8 * imgMouth;
+    /* 10 */ const u8 * imgCard;
+    /* 14 */ u8 xMouth, yMouth;
+    /* 16 */ u8 xEyes, yEyes;
+    /* 18 */ u8 blinkKind;
+};
+extern const struct FaceData * GetPortraitData(int fid);
+extern void Decompress(const void * src, void * dst);
+extern void CpuFastSet(const void * src, void * dest, u32 control);
+extern void CopyToPaletteBuffer(const void * src, int b, int size);
+extern void PutFaceTm(u16 * tm, u8 * data, int tileref, s8 isFlipped);
+#define CpuFastCopy(src, dest, size) CpuFastSet(src, dest, ((size) / (32 / 8) & 0x1FFFFF))
+void UnpackFaceChibiGraphics_Bulk(int fid, int chr, int pal)
+{
+    const struct FaceData * info = GetPortraitData(fid);
+    // int BufferToUse = Mod(pal, 8);
+    u8 buffer[0x200];
+    Decompress(info->imgChibi, buffer);
+
+    CpuFastCopy(buffer + 0x00, (void *)(chr * CHR_SIZE + VRAM), 0x80);
+    CpuFastCopy(buffer + 0x80, (void *)((chr + 0x04) * CHR_SIZE + VRAM), 0x80);
+    CpuFastCopy(buffer + 0x100, (void *)((chr + 0x08) * CHR_SIZE + VRAM), 0x80);
+    CpuFastCopy(buffer + 0x180, (void *)((chr + 0x0C) * CHR_SIZE + VRAM), 0x80);
+    // CpuFastCopy(buffer + 0x80, (void *)((chr + 0x20) * 0x20 + VRAM), 0x80);
+    // CpuFastCopy(buffer + 0x100, (void *)((chr + 0x04) * 0x20 + VRAM), 0x80);
+    // CpuFastCopy(buffer + 0x180, (void *)((chr + 0x24) * 0x20 + VRAM), 0x80);
+    // Decompress(info->imgChibi, (void *)(chr * CHR_SIZE + VRAM));
+    ApplyPalette(info->pal, pal);
+}
+extern u8 const gUnknown_085911C4;
+extern u8 const * sUnknown_085911C4; // 0x59C8
+// [] = {    4, 4, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,};
+void PutFaceChibi_Bulk(int fid, u16 * tm, int chr, int pal, s8 isFlipped)
+{
+    UnpackFaceChibiGraphics_Bulk(fid, chr, pal);
+
+    chr &= 0x3FF;
+    PutFaceTm(tm, sUnknown_085911C4, TILEREF(chr, pal), isFlipped);
+
+    return;
+}
+
+void DrawCharPreview(int x, int y, int charID, int palID)
+{
+    palID <<= 1; // since two entries are being drawn
+    struct FE8CharacterData * table;
+    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
+    table = (struct FE8CharacterData *)GetCharacterData(charID);
+    PutDrawText(
+        gStatScreen.text + palID, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y), gold, 0, 0,
+        GetStringFromIndex(table->nameTextId));
+    PutFaceChibi_Bulk(table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y), 0x150 + (palID * 0x10), palID, 0);
+
+    table = (struct FE8CharacterData *)NewGetCharacterData(pidStats->moveAmt, pidStats->deployAmt);
+    PutDrawText(
+        gStatScreen.text + palID + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y + 2), gold, 0, 0,
+        GetStringFromIndex(table->nameTextId));
+    PutFaceChibi_Bulk(
+        table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, y), 0x160 + (palID * 0x10), palID + 1, 0);
+}
+
 extern u8 ReplacePortraitTable[];
 int GetUnitIdOfPortrait(int portraitID)
 {
@@ -638,8 +773,6 @@ int GetUnitIdOfPortrait(int portraitID)
 
     return 0;
 }
-
-extern int CharConfirmPage;
 
 // /* 056 */ unsigned deployAmt   : 6;
 // /* 062 */ unsigned moveAmt     : 10;
@@ -672,6 +805,7 @@ void ClearPlayerBWL(void)
         pidStats->moveAmt = 0;
     }
 }
+
 const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table)
 {
     if (!table->portraitId)
@@ -7051,7 +7185,6 @@ void ApplyUnitDefaultPromotion(struct Unit * unit)
 }
 #endif
 
-extern void SetupBackgrounds(u16 * bgConfig);
 extern void SaveMenu_Init(ProcPtr proc);
 extern void ProcSaveMenu_InitScreen(ProcPtr proc);
 extern void SaveMenu_LoadExtraMenuGraphics(ProcPtr proc);
@@ -7116,6 +7249,11 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(InitDraw),
     PROC_CALL(EnableBG0Display),
     PROC_REPEAT(ConfigMenuLoop),
+    PROC_LABEL(1),
+    PROC_CALL(DrawCharConfirmPage),
+    PROC_REPEAT(LoopCharConfirmPage),
+
+    PROC_LABEL(99),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
     PROC_CALL(ReloadAllUnits),
@@ -7443,13 +7581,6 @@ static const LocationTable SRR_CursorLocationTable[] = {
     { MENU_X, MENU_Y + (16 * 8) }                                                                //,
     // {10, 0x88} //leave room for a description?
 };
-
-extern void InitStatScreenText(void); // fe6 806eaf0 T InitStatScreenText
-extern void InitTextFont(void * font, void * draw_dest, int chr, int palid);
-extern void ChapterStatus_SetupFont(int zero); // 8086E60
-extern void SetFontGlyphSet(int a);            // 8005410
-extern void InitSystemTextFont(void);          // 8005A40
-extern void RegisterBlankTile(int a);
 
 struct ReplaceTextStruct
 {

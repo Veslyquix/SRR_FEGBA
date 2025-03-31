@@ -227,6 +227,7 @@ SET_FUNC HbPopulate_SSCharacter, 0x80816FD
 
 .endif 
 .if FE8 == true 
+SET_DATA sUnknown_085911C4, 0x80059C8
 @SET_DATA textHandles, 0x201117c @ gPrepMainMenuTexts
 SET_DATA getSoundRoom, 0x80AECA8 
 SET_DATA getSongTable, 0x080458E0 
