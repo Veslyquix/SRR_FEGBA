@@ -639,24 +639,6 @@ int GetUnitIdOfPortrait(int portraitID)
     return 0;
 }
 
-//
-struct PidStatsFE6
-{
-    u32 loss_count : 8;
-    u32 act_count : 8;
-    u32 stat_view_count : 8;
-    u32 defeat_chapter : 6;
-    u32 defeat_turn : 10;
-    u32 deploy_count : 6;
-    u32 move_count : 10;
-    u32 defeat_cause : 4;
-    u32 exp_gained : 12;
-    u32 win_count : 10;
-    u32 battle_count : 12;
-    u32 killer_pid : 9;
-    u32 : 0; // unused/padding (15 bits)
-};
-
 extern int CharConfirmPage;
 
 // /* 056 */ unsigned deployAmt   : 6;
@@ -671,6 +653,25 @@ void EndAllRecruitmentProcs(void)
     Proc_EndEach(RecruitmentProcCmd4);
 }
 
+void ClearPlayerBWL(void)
+{
+    if (!CharConfirmPage)
+    {
+        return;
+    }
+    struct PidStatsChar * pidStats;
+    for (int i = 1; i < 0x46; ++i)
+    {
+        pidStats = (struct PidStatsChar *)GetPidStats(i);
+        if ((void *)pidStats == (void *)RandValues)
+        {
+            continue;
+        }
+
+        pidStats->deployAmt = 0x3F;
+        pidStats->moveAmt = 0;
+    }
+}
 const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table)
 {
     if (!table->portraitId)
@@ -683,7 +684,18 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     {
         return GetCharacterData(id);
     }
-    int tableID = GetCharTableID(table->portraitId);
+    int tableID = GetCharTableID(table->portraitId); // default
+    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(table->number);
+    if (CharConfirmPage)
+    {
+        if (pidStats)
+        {
+            if (pidStats->deployAmt < NumberOfCharTables)
+            {
+                tableID = pidStats->deployAmt;
+            }
+        }
+    }
 
     int procID = id >> 6; // 0, 1, 2, or 3
 
@@ -722,10 +734,26 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     {
         unitID = id;
     }
+    if (CharConfirmPage)
+    {
+        if (pidStats->deployAmt < NumberOfCharTables)
+        {
+            tableID = pidStats->deployAmt;
+        }
+        if (pidStats->moveAmt)
+        {
+            unitID = pidStats->moveAmt;
+        }
+    }
     const struct CharacterData * result = (struct CharacterData *)NewGetCharacterData(unitID, tableID);
     if (!result->portraitId)
     {
         result = table;
+    }
+    if (CharConfirmPage)
+    {
+        pidStats->deployAmt = tableID;
+        pidStats->moveAmt = unitID;
     }
     return result;
 }
@@ -8568,10 +8596,14 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             proc->reloadEnemies = true;
         }
 
+        if (proc->reloadPlayers)
+        {
+            ClearPlayerBWL();
+        }
         if (proc->reloadPlayers || proc->reloadEnemies)
         {
-            *MaxClasses = 0;
-        } // recalc this
+            *MaxClasses = 0; // recalc this
+        }
 
         RandValues->seed = proc->seed;
         RandValues->variance = proc->Option[0];
@@ -9479,6 +9511,10 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         if (RandValues->seed)
         {
             proc->freezeSeed = true;
+        }
+        else
+        {
+            ClearPlayerBWL();
         }
         proc->seed = GetInitialSeed(2, proc);
         proc->digit = 0;
