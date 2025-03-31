@@ -494,7 +494,9 @@ int IsCharIdPastLimit(int charId)
 #endif
     return false;
 }
-
+extern void DisplayUiVArrow(int, int, u16, int);
+void EndGreenText(void);
+extern void UnpackUiVArrowGfx(int, int);
 void LoopCharConfirmPage(ConfigMenuProc * proc)
 {
     if (!CharConfirmPage)
@@ -505,6 +507,14 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     {
         Proc_Break(proc);
     }
+    DisplayUiVArrow(56, 13, 0x3240, 0);
+    DisplayUiVArrow(56, 53, 0x3240, 0);
+    DisplayUiVArrow(56, 93, 0x3240, 0);
+    DisplayUiVArrow(56, 133, 0x3240, 0);
+    DisplayUiVArrow(176, 13, 0x3240, 0);
+    DisplayUiVArrow(176, 53, 0x3240, 0);
+    DisplayUiVArrow(176, 93, 0x3240, 0);
+    DisplayUiVArrow(176, 133, 0x3240, 0);
 }
 
 extern void BreakWithValue(int a, int b, int c);
@@ -643,6 +653,7 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     {
         return;
     }
+    EndGreenText();
     RegisterBlankTile(0); // so bg fill works I guess
     SetupBackgrounds(0);
     SetDispEnable(1, 1, 1, 1, 1);
@@ -663,6 +674,8 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     {
         InitText(&th[i], 8);
     }
+    LoadObjUIGfx();
+    UnpackUiVArrowGfx(0x240, 3);
 
     // int faceId = 2;
     // int x = 1;
@@ -672,9 +685,15 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     // int ID = 1;
     GetReorderedCharacter(GetCharacterData(1));
     RecruitValues->pauseNameReplace = true;
-    DrawCharPreview(1, 0, 1, 3);
-    DrawCharPreview(1, 5, 2, 4);
-    int palID = 2;
+    // character reorders
+    // DrawCharPreview(1, 0, 1, 1);
+    DrawCharPreview(1, 5, 2, 1);
+    DrawCharPreview(1, 10, 3, 2);
+    DrawCharPreview(1, 15, 4, 3);
+    DrawCharPreview(16, 0, 5, 4);
+    DrawCharPreview(16, 5, 6, 5);
+    DrawCharPreview(16, 10, 7, 6);
+    DrawCharPreview(16, 15, 8, 7);
 
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
     EnablePaletteSync();
@@ -726,23 +745,32 @@ void PutFaceChibi_Bulk(int fid, u16 * tm, int chr, int pal, s8 isFlipped)
     return;
 }
 
+int GetStringTextCenteredPos(int x, const char * str);
+void PutDrawCenteredText(struct Text * text, u16 * dest, int textID, int col)
+{
+    char * str = GetStringFromIndex(textID);
+    int position = GetStringTextCenteredPos(48, str);
+
+    ClearText(text);
+    PutDrawText(text, dest, col, position, 0, str);
+}
+
 void DrawCharPreview(int x, int y, int charID, int palID)
 {
     palID <<= 1; // since two entries are being drawn
     struct FE8CharacterData * table;
     struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
     table = (struct FE8CharacterData *)GetCharacterData(charID);
-    PutDrawText(
-        gStatScreen.text + palID, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y), gold, 0, 0,
-        GetStringFromIndex(table->nameTextId));
-    PutFaceChibi_Bulk(table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y), 0x150 + (palID * 0x10), palID, 0);
+    PutDrawCenteredText(
+        gStatScreen.text + palID, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y), table->nameTextId, gold);
+
+    PutFaceChibi_Bulk(table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y), 0x180 + (palID * 0x10), palID, 0);
 
     table = (struct FE8CharacterData *)NewGetCharacterData(pidStats->moveAmt, pidStats->deployAmt);
-    PutDrawText(
-        gStatScreen.text + palID + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y + 2), gold, 0, 0,
-        GetStringFromIndex(table->nameTextId));
+    PutDrawCenteredText(
+        gStatScreen.text + palID + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y + 2), table->nameTextId, gold);
     PutFaceChibi_Bulk(
-        table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, y), 0x160 + (palID * 0x10), palID + 1, 0);
+        table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, y), 0x190 + (palID * 0x10), palID + 1, 0);
 }
 
 extern u8 ReplacePortraitTable[];
@@ -8528,8 +8556,6 @@ void PlayTitleBGM(void)
 }
 
 extern int NumberOfSkills;
-extern void DisplayUiVArrow(int, int, u16, int);
-extern void UnpackUiVArrowGfx(int, int);
 extern void CallEndEvent(void); // (806b5b0) 8079A38 8083280
 extern void CallEndEvent_FE6(void);
 extern void UpdateMapViewWithFog(int level); // 801C6C4 801DB58
