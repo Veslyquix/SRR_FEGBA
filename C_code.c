@@ -497,26 +497,6 @@ int IsCharIdPastLimit(int charId)
 extern void DisplayUiVArrow(int, int, u16, int);
 void EndGreenText(void);
 extern void UnpackUiVArrowGfx(int, int);
-void LoopCharConfirmPage(ConfigMenuProc * proc)
-{
-    if (!CharConfirmPage)
-    {
-        Proc_Break(proc);
-    }
-    if (sKeyStatusBuffer.newKeys & 1)
-    {
-        Proc_Break(proc);
-    }
-    DisplayUiVArrow(56, 13, 0x3240, 0);
-    DisplayUiVArrow(56, 53, 0x3240, 0);
-    DisplayUiVArrow(56, 93, 0x3240, 0);
-    DisplayUiVArrow(56, 133, 0x3240, 0);
-    DisplayUiVArrow(176, 13, 0x3240, 0);
-    DisplayUiVArrow(176, 53, 0x3240, 0);
-    DisplayUiVArrow(176, 93, 0x3240, 0);
-    DisplayUiVArrow(176, 133, 0x3240, 0);
-}
-
 extern void BreakWithValue(int a, int b, int c);
 #ifdef FE6
 const struct FE8CharacterData *
@@ -645,20 +625,14 @@ extern void RegisterBlankTile(int a);
 extern u16 gUiTmScratchA[0x280];
 void CallSetupBackgrounds(ConfigMenuProc * proc);
 extern void SetupBackgrounds(u16 * bgConfig);
-void DrawCharPreview(int x, int y, int charID, int palID);
+void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth);
 const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table);
-void DrawCharConfirmPage(ConfigMenuProc * proc)
+
+void ClearConfigGfx(ConfigMenuProc * proc)
 {
-    if (!CharConfirmPage)
-    {
-        return;
-    }
+
     EndGreenText();
     RegisterBlankTile(0); // so bg fill works I guess
-    SetupBackgrounds(0);
-    SetDispEnable(1, 1, 1, 1, 1);
-    // gLCDControlBuffer.dispcnt.forcedBlank = 1;
-    SetWinEnable(1, 1, 1);
     BG_Fill(gBG0TilemapBuffer, 0);
     BG_Fill(gBG1TilemapBuffer, 0);
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
@@ -667,37 +641,63 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     SetTextFontGlyphs(0);
     SetTextFont(0);
     InitSystemTextFont();
+}
 
-    ResetText();                         // need this
+void DrawCharConfirmPage(ConfigMenuProc * proc)
+{
+    if (!CharConfirmPage)
+    {
+        return;
+    }
+
+    ResetText(); // need this
+    int maxWidth = 6;
     struct Text * th = gStatScreen.text; // max 34
     for (int i = 0; i < 34; ++i)
     {
-        InitText(&th[i], 8);
+        InitText(&th[i], maxWidth);
     }
     LoadObjUIGfx();
     UnpackUiVArrowGfx(0x240, 3);
 
-    // int faceId = 2;
-    // int x = 1;
-    // int y = 0;
-    // void PutFaceChibi(int fid, u16 * tm, int chr, int pal, s8 isFlipped)
-    // TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(30, 20), 0, 0, 0);
-    // int ID = 1;
     GetReorderedCharacter(GetCharacterData(1));
-    RecruitValues->pauseNameReplace = true;
-    // character reorders
-    // DrawCharPreview(1, 0, 1, 1);
-    DrawCharPreview(1, 5, 2, 1);
-    DrawCharPreview(1, 10, 3, 2);
-    DrawCharPreview(1, 15, 4, 3);
-    DrawCharPreview(16, 0, 5, 4);
-    DrawCharPreview(16, 5, 6, 5);
-    DrawCharPreview(16, 10, 7, 6);
-    DrawCharPreview(16, 15, 8, 7);
+
+    int xTile = 0; // Left side
+    u8 charID[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+    for (int i = 0; i < 4; ++i)
+    {
+        DrawCharPreview(xTile, (5 * i) + (i >> 1), charID[i], i + 1, maxWidth);
+    }
+    xTile = 16; // Right side
+    for (int i = 4; i < 7; ++i)
+    {
+        DrawCharPreview(xTile, 5 * (i - 4) + ((i - 4) >> 1), charID[i], i + 1, maxWidth);
+    }
 
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
     EnablePaletteSync();
 }
+void LoopCharConfirmPage(ConfigMenuProc * proc)
+{
+    if (!CharConfirmPage)
+    {
+        Proc_Break(proc);
+    }
+    if (sKeyStatusBuffer.newKeys & 1)
+    {
+        Proc_Break(proc);
+    }
+    DisplayUiVArrow(48, 13, 0x3240, 0);
+    DisplayUiVArrow(48, 53, 0x3240, 0);
+    DisplayUiVArrow(48, 93, 0x3240, 0);
+    DisplayUiVArrow(48, 133, 0x3240, 0);
+    DisplayUiVArrow(176, 13, 0x3240, 0);
+    DisplayUiVArrow(176, 53, 0x3240, 0);
+    DisplayUiVArrow(176, 93, 0x3240, 0);
+    DisplayUiVArrow(176, 133, 0x3240, 0);
+}
+
 struct FaceData
 {
     /* 00 */ const u8 * img;
@@ -718,7 +718,6 @@ extern void PutFaceTm(u16 * tm, u8 * data, int tileref, s8 isFlipped);
 void UnpackFaceChibiGraphics_Bulk(int fid, int chr, int pal)
 {
     const struct FaceData * info = GetPortraitData(fid);
-    // int BufferToUse = Mod(pal, 8);
     u8 buffer[0x200];
     Decompress(info->imgChibi, buffer);
 
@@ -726,10 +725,6 @@ void UnpackFaceChibiGraphics_Bulk(int fid, int chr, int pal)
     CpuFastCopy(buffer + 0x80, (void *)((chr + 0x04) * CHR_SIZE + VRAM), 0x80);
     CpuFastCopy(buffer + 0x100, (void *)((chr + 0x08) * CHR_SIZE + VRAM), 0x80);
     CpuFastCopy(buffer + 0x180, (void *)((chr + 0x0C) * CHR_SIZE + VRAM), 0x80);
-    // CpuFastCopy(buffer + 0x80, (void *)((chr + 0x20) * 0x20 + VRAM), 0x80);
-    // CpuFastCopy(buffer + 0x100, (void *)((chr + 0x04) * 0x20 + VRAM), 0x80);
-    // CpuFastCopy(buffer + 0x180, (void *)((chr + 0x24) * 0x20 + VRAM), 0x80);
-    // Decompress(info->imgChibi, (void *)(chr * CHR_SIZE + VRAM));
     ApplyPalette(info->pal, pal);
 }
 extern u8 const gUnknown_085911C4;
@@ -740,35 +735,42 @@ void PutFaceChibi_Bulk(int fid, u16 * tm, int chr, int pal, s8 isFlipped)
     UnpackFaceChibiGraphics_Bulk(fid, chr, pal);
 
     chr &= 0x3FF;
-    PutFaceTm(tm, sUnknown_085911C4, TILEREF(chr, pal), isFlipped);
+    PutFaceTm(tm, (void *)sUnknown_085911C4, TILEREF(chr, pal), isFlipped);
 
     return;
 }
 
+char * GetStringFromIndexInBufferWithoutReplacing(int index, char * buffer);
 int GetStringTextCenteredPos(int x, const char * str);
-void PutDrawCenteredText(struct Text * text, u16 * dest, int textID, int col)
+void PutDrawCenteredText(struct Text * text, u16 * dest, int textID, int maxWidth, int col)
 {
-    char * str = GetStringFromIndex(textID);
-    int position = GetStringTextCenteredPos(48, str);
+    char buffer[32];
+    char * str = GetStringFromIndexInBufferWithoutReplacing(textID, buffer);
+    int position = GetStringTextCenteredPos(maxWidth * 8, str);
 
     ClearText(text);
     PutDrawText(text, dest, col, position, 0, str);
 }
 
-void DrawCharPreview(int x, int y, int charID, int palID)
+void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
 {
+    if (!charID)
+    {
+        return;
+    }
     palID <<= 1; // since two entries are being drawn
     struct FE8CharacterData * table;
-    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
+    // struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
     table = (struct FE8CharacterData *)GetCharacterData(charID);
     PutDrawCenteredText(
-        gStatScreen.text + palID, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y), table->nameTextId, gold);
+        gStatScreen.text + palID, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y), table->nameTextId, maxWidth, gold);
 
     PutFaceChibi_Bulk(table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y), 0x180 + (palID * 0x10), palID, 0);
 
-    table = (struct FE8CharacterData *)NewGetCharacterData(pidStats->moveAmt, pidStats->deployAmt);
+    table = (struct FE8CharacterData *)GetReorderedCharacter((const struct CharacterData *)table);
     PutDrawCenteredText(
-        gStatScreen.text + palID + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y + 2), table->nameTextId, gold);
+        gStatScreen.text + palID + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y + 2), table->nameTextId, maxWidth,
+        gold);
     PutFaceChibi_Bulk(
         table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, y), 0x190 + (palID * 0x10), palID + 1, 0);
 }
@@ -7278,6 +7280,12 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(EnableBG0Display),
     PROC_REPEAT(ConfigMenuLoop),
     PROC_LABEL(1),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
     PROC_CALL(DrawCharConfirmPage),
     PROC_REPEAT(LoopCharConfirmPage),
 
@@ -9621,8 +9629,10 @@ void InitDraw(ConfigMenuProc * proc)
 }
 
 extern void StartGreenText(ProcPtr parent);
+extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 ConfigMenuProc * StartConfigMenu(ProcPtr parent)
 {
+    Proc_EndEach(gProcScr_HelpPromptSpr);
     RecruitValues->pauseNameReplace = true;
     ConfigMenuProc * proc;
     if (parent)
