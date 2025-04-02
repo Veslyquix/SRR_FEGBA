@@ -637,10 +637,10 @@ const unsigned char greyTile[32] = {
 };
 extern void RegisterDataMove(const void * a, void * b, int c);
 extern void TileMap_FillRect(u16 * dest, int width, int height, int fillValue);
+int GetReviseCharID(ConfigMenuProc * proc);
+int GetCharIDTopOfPage(ConfigMenuProc * proc);
 void ClearConfigGfx(ConfigMenuProc * proc)
 {
-    proc->previewPage = 0;
-    proc->previewId = 0;
     // EndGreenText();
     RegisterBlankTile(0); // so bg fill works I guess
     gLCDControlBuffer.dispcnt.bg1_on = true;
@@ -703,6 +703,8 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
 
     PutDrawText(&th[16], TILEMAP_LOCATED(gBG0TilemapBuffer, 4, 9), green, 0, 0, "Reroll Page");
     PutDrawText(&th[17], TILEMAP_LOCATED(gBG0TilemapBuffer, 0x14, 9), green, 0, 0, "Reset Page");
+    PutDrawText(&th[18], TILEMAP_LOCATED(gBG0TilemapBuffer, 0x14, 16), green, 0, 0, "Confirm");
+    PutDrawText(&th[19], TILEMAP_LOCATED(gBG0TilemapBuffer, 0x14, 18), green, 0, 0, "Page");
 
     // 0x13, 9
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
@@ -726,18 +728,84 @@ void DecrementCharPreviewPage(ConfigMenuProc * proc)
     }
     DrawCharConfirmPage(proc);
 }
+#define NumberOfOptions_CharPreview 11
 int PosToChangePage(ConfigMenuProc * proc)
 {
 
-    return proc->previewId > NumberOfCharsPerPage;
+    return proc->previewId == NumberOfOptions_CharPreview - 1;
 }
 typedef const struct
 {
     u32 x;
     u32 y;
 } LocationTable;
-static const LocationTable CharPreviewLoc[] = { { 38, 8 },  { 166, 8 },  { 38, 40 },  { 166, 40 },
-                                                { 38, 80 }, { 166, 80 }, { 38, 120 }, { 166, 120 } };
+static const LocationTable CharPreviewLoc[NumberOfOptions_CharPreview] = {
+    { 38, 8 },    { 166, 8 },  { 38, 48 },  { 166, 48 }, // upper portraits
+    { 26, 71 },   { 156, 71 },                           // middle options
+    { 38, 96 },   { 166, 96 }, { 38, 136 },              // lower portraits
+    { 150, 128 }, { 150, 144 }                           // bottom right options
+};
+void EndAllRecruitmentProcs(void)
+{
+    Proc_EndEach(RecruitmentProcCmd1);
+    Proc_EndEach(RecruitmentProcCmd2);
+    Proc_EndEach(RecruitmentProcCmd3);
+    Proc_EndEach(RecruitmentProcCmd4);
+}
+#define RerollCommandID 4
+#define ResetPageCommandID 5
+#define ConfirmCommandID 9
+#define PageCommandID 10
+void ClearPlayerBWL(void);
+void RerollPage(ConfigMenuProc * proc)
+{
+    struct PidStatsChar * pidStats;
+    int id = GetCharIDTopOfPage(proc);
+    for (int i = id; i <= (id + NumberOfCharsPerPage); ++i)
+    {
+        pidStats = (struct PidStatsChar *)GetPidStats(i);
+        if ((void *)pidStats == (void *)RandValues)
+        {
+            continue;
+        }
+        if (!pidStats)
+        {
+            break;
+        }
+
+        pidStats->deployAmt = 0x3F;
+        pidStats->moveAmt = 0;
+    }
+    RandValues->seed++;
+    EndAllRecruitmentProcs();
+}
+void ResetPage(ConfigMenuProc * proc)
+{
+    struct PidStatsChar * pidStats;
+    int id = GetCharIDTopOfPage(proc);
+    for (int i = id; i <= (id + NumberOfCharsPerPage); ++i)
+    {
+        pidStats = (struct PidStatsChar *)GetPidStats(i);
+        if ((void *)pidStats == (void *)RandValues)
+        {
+            continue;
+        }
+        if (!pidStats)
+        {
+            break;
+        }
+
+        pidStats->deployAmt = 0;
+        pidStats->moveAmt = i;
+    }
+}
+
+#define ReviseCharProcLabel 10
+void ReviseRandomizedCharacter(ConfigMenuProc * proc)
+{
+    Proc_Goto(proc, ReviseCharProcLabel);
+}
+
 void LoopCharConfirmPage(ConfigMenuProc * proc)
 {
     if (!CharConfirmPage)
@@ -747,7 +815,31 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
     if (keys & A_BUTTON)
     {
-        Proc_Break(proc);
+        if (proc->previewId == ConfirmCommandID)
+        {
+            Proc_Break(proc);
+            return;
+        }
+        if (proc->previewId == RerollCommandID)
+        {
+            RerollPage(proc);
+            DrawCharConfirmPage(proc);
+            return;
+        }
+        if (proc->previewId == ResetPageCommandID)
+        {
+            ResetPage(proc);
+            DrawCharConfirmPage(proc);
+            return;
+        }
+        if (proc->previewId == PageCommandID)
+        {
+            return;
+        }
+        else
+        {
+            ReviseRandomizedCharacter(proc);
+        }
     }
     if (PosToChangePage(proc))
     {
@@ -765,29 +857,51 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
 
         if (keys & DPAD_RIGHT)
         {
-            proc->previewId++;
+            // If previewId is even, ++
+            if (Mod(proc->previewId, 2) == 0)
+                proc->previewId++;
+            else
+                proc->previewId--;
         }
         if (keys & DPAD_LEFT)
         {
-            proc->previewId--;
+            // If previewId is even, ++
+            if (Mod(proc->previewId, 2) == 0)
+                proc->previewId++;
+            else
+                proc->previewId--;
         }
-        if (keys & DPAD_DOWN)
+    }
+    if (keys & DPAD_DOWN)
+    {
+        if (proc->previewId > NumberOfCharsPerPage + 1)
+        {
+            proc->previewId++;
+        }
+        else
         {
             proc->previewId += 2;
         }
-        if (keys & DPAD_UP)
+    }
+    if (keys & DPAD_UP)
+    {
+        if (proc->previewId > NumberOfCharsPerPage + 2)
+        {
+            proc->previewId--;
+        }
+        else
         {
             proc->previewId -= 2;
         }
+    }
 
-        if (proc->previewId > NumberOfCharsPerPage)
-        {
-            proc->previewId = 0;
-        }
-        if (proc->previewId < 0)
-        {
-            proc->previewId = NumberOfCharsPerPage - 1;
-        }
+    if (proc->previewId >= NumberOfOptions_CharPreview)
+    {
+        proc->previewId = 0;
+    }
+    if (proc->previewId < 0)
+    {
+        proc->previewId = NumberOfOptions_CharPreview - 1;
     }
     DisplayUiHand(CharPreviewLoc[proc->previewId].x, CharPreviewLoc[proc->previewId].y);
     DisplayUiVArrow(48, 13, 0x3240, 0);
@@ -864,6 +978,53 @@ int GetHiddenCharPreviewOffset(int charID)
     }
     return 0;
 }
+enum
+{
+    FACE_64x80,
+    FACE_64x80_FLIPPED,
+    FACE_96x80,
+    FACE_96x80_FLIPPED,
+    FACE_64x72,
+    FACE_64x72_FLIPPED,
+};
+
+int GetReviseCharID(ConfigMenuProc * proc)
+{
+    u8 base_charID[10] = { 1, 2, 3, 4, 4, 4, 5, 6, 7, 8 };
+    int charID = base_charID[proc->previewId] + proc->previewPage * NumberOfCharsPerPage;
+    charID = GetHiddenCharPreviewOffset(charID);
+    return charID;
+}
+int GetCharIDTopOfPage(ConfigMenuProc * proc)
+{
+    int charID = 1 + proc->previewPage * NumberOfCharsPerPage;
+    charID = GetHiddenCharPreviewOffset(charID);
+    return charID;
+}
+extern struct FaceProc * StartFaceAuto(int fid, int x, int y, int disp);
+void DrawReviseCharPage(ConfigMenuProc * proc)
+{
+    int charID = GetReviseCharID(proc);
+    struct FE8CharacterData * table = (struct FE8CharacterData *)GetCharacterData(charID);
+    int faceDisp = FACE_96x80;
+    StartFaceAuto(table->portraitId, 0, 0, faceDisp);
+}
+#define PreviewCharLabel 1
+extern void EndFaceById(int faceSlot);
+void LoopReviseCharPage(ConfigMenuProc * proc)
+{
+    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
+    if (keys & B_BUTTON)
+    {
+        Proc_Goto(proc, PreviewCharLabel);
+        EndFaceById(0);
+    }
+    if (keys & A_BUTTON)
+    {
+        // save some change
+        // Proc_Goto(proc, PreviewCharLabel);
+    }
+}
 
 int DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
 {
@@ -925,14 +1086,6 @@ int GetUnitIdOfPortrait(int portraitID)
 // /* 056 */ unsigned deployAmt   : 6;
 // /* 062 */ unsigned moveAmt     : 10;
 // enemies - supports?
-
-void EndAllRecruitmentProcs(void)
-{
-    Proc_EndEach(RecruitmentProcCmd1);
-    Proc_EndEach(RecruitmentProcCmd2);
-    Proc_EndEach(RecruitmentProcCmd3);
-    Proc_EndEach(RecruitmentProcCmd4);
-}
 
 void ClearPlayerBWL(void)
 {
@@ -7397,7 +7550,8 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(InitDraw),
     PROC_CALL(EnableBG0Display),
     PROC_REPEAT(ConfigMenuLoop),
-    PROC_LABEL(1),
+
+    PROC_LABEL(PreviewCharLabel),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
     PROC_YIELD,
@@ -7406,6 +7560,16 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_REPEAT(WaitForFade),
     PROC_CALL(DrawCharConfirmPage),
     PROC_REPEAT(LoopCharConfirmPage),
+
+    PROC_LABEL(ReviseCharProcLabel),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(DrawReviseCharPage),
+    PROC_REPEAT(LoopReviseCharPage),
 
     PROC_LABEL(99),
     PROC_CALL(StartFastFadeToBlack),
@@ -9768,6 +9932,8 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
             proc->Option[10] = 1; // Random BGM
             proc->Option[11] = 0; // Random Colours off by default now
         }
+        proc->previewPage = 0;
+        proc->previewId = 0;
         proc->globalChecksum = 0;
         proc->id = 1;
         proc->calledFromChapter = false;
