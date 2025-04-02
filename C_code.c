@@ -638,6 +638,7 @@ const unsigned char greyTile[32] = {
 extern void RegisterDataMove(const void * a, void * b, int c);
 extern void TileMap_FillRect(u16 * dest, int width, int height, int fillValue);
 int GetReviseCharID(ConfigMenuProc * proc);
+extern int SetActiveTalkFace(int slot);
 int GetCharIDTopOfPage(ConfigMenuProc * proc);
 void ClearConfigGfx(ConfigMenuProc * proc)
 {
@@ -655,6 +656,7 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     LoadObjUIGfx();
     UnpackUiVArrowGfx(0x240, 3);
     RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
+    ResetFaces(); // without this, it was duplicating the face on both sides
     GetReorderedCharacter(GetCharacterData(1));
 }
 
@@ -817,7 +819,7 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     {
         if (proc->previewId == ConfirmCommandID)
         {
-            Proc_Break(proc);
+            Proc_Goto(proc, 99);
             return;
         }
         if (proc->previewId == RerollCommandID)
@@ -987,27 +989,75 @@ enum
     FACE_64x72,
     FACE_64x72_FLIPPED,
 };
+#define FACE_DISP_FLIPPED (1 << 0)
+#define FACE_DISP_KIND(kind) ((kind) & 7)
+#define FACE_DISP_KIND_MASK FACE_DISP_KIND(-1)
+#define FACE_DISP_SMILE (1 << 3)
+#define FACE_DISP_TALK_1 (1 << 4)
+#define FACE_DISP_TALK_2 (1 << 5)
+#define FACE_DISP_HLAYER(layer) (((layer) & 0xF) << 6)
+#define FACE_DISP_HLAYER_MASK FACE_DISP_HLAYER(-1)
+#define FACE_DISP_BLEND (1 << 10)
+#define FACE_DISP_BIT_12 (1 << 12)
+#define FACE_DISP_BIT_13 (1 << 13)
+#define FACE_DISP_HIDDEN (1 << 14)
 
 int GetReviseCharID(ConfigMenuProc * proc)
 {
     u8 base_charID[10] = { 1, 2, 3, 4, 4, 4, 5, 6, 7, 8 };
     int charID = base_charID[proc->previewId] + proc->previewPage * NumberOfCharsPerPage;
-    charID = GetHiddenCharPreviewOffset(charID);
+    charID += GetHiddenCharPreviewOffset(charID);
     return charID;
 }
 int GetCharIDTopOfPage(ConfigMenuProc * proc)
 {
     int charID = 1 + proc->previewPage * NumberOfCharsPerPage;
-    charID = GetHiddenCharPreviewOffset(charID);
+    charID += GetHiddenCharPreviewOffset(charID);
     return charID;
 }
-extern struct FaceProc * StartFaceAuto(int fid, int x, int y, int disp);
+#define OPT2NUM 13
+const char Option2[OPT2NUM][32];
+extern void SetFaceBlinkControlById(int, int);
+extern struct FaceProc * StartFace(int faceSlot, int portraitId, int x, int y, int displayType);
+extern struct FaceProc * StartFace2(int faceSlot, int portraitId, int x, int y, int displayType);
+extern struct FaceProc * StartFaceAuto(int portraitId, int x, int y, int displayType);
+extern ProcPtr StartTalkFace(int faceId, int x, int y, int disp, int talkFace);
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
     int charID = GetReviseCharID(proc);
+    int tableID = 0;
+    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
+    if (CharConfirmPage)
+    {
+        if (pidStats)
+        {
+            if (pidStats->deployAmt < NumberOfCharTables)
+            {
+                tableID = pidStats->deployAmt;
+            }
+        }
+    }
+    int maxWidth = 6;
+    int x = 4;
+    int y = 12;
     struct FE8CharacterData * table = (struct FE8CharacterData *)GetCharacterData(charID);
-    int faceDisp = FACE_96x80;
-    StartFaceAuto(table->portraitId, 0, 0, faceDisp);
+    StartFace2(0, table->portraitId, 64, 0, 3 | FACE_DISP_FLIPPED);
+    // StartFaceAuto(table->portraitId, 64, 0, 3);
+    PutDrawCenteredText(
+        gStatScreen.text + 20, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y), table->nameTextId, maxWidth, gold);
+    table = (struct FE8CharacterData *)GetReorderedCharacter((struct CharacterData *)table);
+    StartFace2(1, table->portraitId, 186, 0, 2);
+    // StartFaceAuto(table->portraitId, 186, 0, 2);
+    PutDrawCenteredText(
+        gStatScreen.text + 21, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y), table->nameTextId, maxWidth, gold);
+    TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, 2, y - 2), 11, 0, 0x380);
+    TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, x + 13, y - 2), 11, 0, 0x380);
+    PutDrawText(gStatScreen.text + 22, TILEMAP_LOCATED(gBG0TilemapBuffer, 0x9, 18), green, 0, 0, "From Game: ");
+    PutDrawText(gStatScreen.text + 23, TILEMAP_LOCATED(gBG0TilemapBuffer, 0x10, 18), green, 0, 0, Option2[tableID]);
+    SetFaceBlinkControlById(0, 5);
+    SetFaceBlinkControlById(1, 5);
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
+    EnablePaletteSync();
 }
 #define PreviewCharLabel 1
 extern void EndFaceById(int faceSlot);
@@ -1018,6 +1068,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     {
         Proc_Goto(proc, PreviewCharLabel);
         EndFaceById(0);
+        EndFaceById(1);
     }
     if (keys & A_BUTTON)
     {
