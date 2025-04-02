@@ -44,6 +44,8 @@ typedef struct
     u8 choosingSkill;
     u8 clear;
     u16 globalChecksum;
+    s8 previewPage;
+    s8 previewId;
     s8 Option[26];
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
@@ -134,6 +136,7 @@ struct ExceptionsStruct
 extern struct ExceptionsStruct ItemExceptions[];
 extern struct ExceptionsStruct ClassExceptions[];
 extern struct ExceptionsStruct CharExceptions[];
+extern struct ExceptionsStruct HideCharPreviewExceptions[];
 extern struct ExceptionsStruct SkillExceptions[];
 extern int SkillSysInstalled;
 extern int StrMagInstalled;
@@ -625,14 +628,22 @@ extern void RegisterBlankTile(int a);
 extern u16 gUiTmScratchA[0x280];
 void CallSetupBackgrounds(ConfigMenuProc * proc);
 extern void SetupBackgrounds(u16 * bgConfig);
-void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth);
+int DrawCharPreview(int x, int y, int charID, int palID, int maxWidth);
 const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table);
-
+const unsigned char greyTile[32] = {
+    0x11, 0x11, 0x11, 0x11, // Row 0: 8 pixels of color index 4
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+extern void RegisterDataMove(const void * a, void * b, int c);
+extern void TileMap_FillRect(u16 * dest, int width, int height, int fillValue);
 void ClearConfigGfx(ConfigMenuProc * proc)
 {
-
-    EndGreenText();
+    proc->previewPage = 0;
+    proc->previewId = 0;
+    // EndGreenText();
     RegisterBlankTile(0); // so bg fill works I guess
+    gLCDControlBuffer.dispcnt.bg1_on = true;
     BG_Fill(gBG0TilemapBuffer, 0);
     BG_Fill(gBG1TilemapBuffer, 0);
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
@@ -641,7 +652,24 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     SetTextFontGlyphs(0);
     SetTextFont(0);
     InitSystemTextFont();
+    LoadObjUIGfx();
+    UnpackUiVArrowGfx(0x240, 3);
+    RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
+    GetReorderedCharacter(GetCharacterData(1));
 }
+
+#define A_BUTTON 0x0001
+#define B_BUTTON 0x0002
+#define SELECT_BUTTON 0x0004
+#define START_BUTTON 0x0008
+#define DPAD_RIGHT 0x0010
+#define DPAD_LEFT 0x0020
+#define DPAD_UP 0x0040
+#define DPAD_DOWN 0x0080
+#define R_BUTTON 0x0100
+#define L_BUTTON 0x0200
+#define NumberOfCharsPerPage 7
+#define MaxCharPreviewID 0x22
 
 void DrawCharConfirmPage(ConfigMenuProc * proc)
 {
@@ -649,7 +677,8 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     {
         return;
     }
-
+    BG_Fill(gBG0TilemapBuffer, 0);
+    BG_Fill(gBG1TilemapBuffer, 0);
     ResetText(); // need this
     int maxWidth = 6;
     struct Text * th = gStatScreen.text; // max 34
@@ -657,45 +686,118 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     {
         InitText(&th[i], maxWidth);
     }
-    LoadObjUIGfx();
-    UnpackUiVArrowGfx(0x240, 3);
-
-    GetReorderedCharacter(GetCharacterData(1));
 
     int xTile = 0; // Left side
+
     u8 charID[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+    int offset = proc->previewPage * NumberOfCharsPerPage;
 
-    for (int i = 0; i < 4; ++i)
+    int y = 0;
+    int exceptionsOffset = 0;
+    for (int i = 0; i < NumberOfCharsPerPage; ++i)
     {
-        DrawCharPreview(xTile, (5 * i) + (i >> 1), charID[i], i + 1, maxWidth);
-    }
-    xTile = 16; // Right side
-    for (int i = 4; i < 7; ++i)
-    {
-        DrawCharPreview(xTile, 5 * (i - 4) + ((i - 4) >> 1), charID[i], i + 1, maxWidth);
+        y = Mod(i, 4);
+        exceptionsOffset += DrawCharPreview(
+            xTile + (16 * (i > 3)), (5 * y) + (y >> 1), charID[i] + offset + exceptionsOffset, i + 1, maxWidth);
     }
 
+    PutDrawText(&th[16], TILEMAP_LOCATED(gBG0TilemapBuffer, 4, 9), green, 0, 0, "Reroll Page");
+    PutDrawText(&th[17], TILEMAP_LOCATED(gBG0TilemapBuffer, 0x14, 9), green, 0, 0, "Reset Page");
+
+    // 0x13, 9
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
     EnablePaletteSync();
 }
+void IncrementCharPreviewPage(ConfigMenuProc * proc)
+{
+    proc->previewPage++;
+    if ((proc->previewPage * 7) > MaxCharPreviewID)
+    {
+        proc->previewPage = 0;
+    }
+    DrawCharConfirmPage(proc);
+}
+void DecrementCharPreviewPage(ConfigMenuProc * proc)
+{
+    proc->previewPage--;
+    if (proc->previewPage < 0)
+    {
+        proc->previewPage = MaxCharPreviewID / 7;
+    }
+    DrawCharConfirmPage(proc);
+}
+int PosToChangePage(ConfigMenuProc * proc)
+{
+
+    return proc->previewId > NumberOfCharsPerPage;
+}
+typedef const struct
+{
+    u32 x;
+    u32 y;
+} LocationTable;
+static const LocationTable CharPreviewLoc[] = { { 38, 8 },  { 166, 8 },  { 38, 40 },  { 166, 40 },
+                                                { 38, 80 }, { 166, 80 }, { 38, 120 }, { 166, 120 } };
 void LoopCharConfirmPage(ConfigMenuProc * proc)
 {
     if (!CharConfirmPage)
     {
         Proc_Break(proc);
     }
-    if (sKeyStatusBuffer.newKeys & 1)
+    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
+    if (keys & A_BUTTON)
     {
         Proc_Break(proc);
     }
+    if (PosToChangePage(proc))
+    {
+        if (keys & DPAD_RIGHT)
+        {
+            IncrementCharPreviewPage(proc);
+        }
+        if (keys & DPAD_LEFT)
+        {
+            DecrementCharPreviewPage(proc);
+        }
+    }
+    else
+    {
+
+        if (keys & DPAD_RIGHT)
+        {
+            proc->previewId++;
+        }
+        if (keys & DPAD_LEFT)
+        {
+            proc->previewId--;
+        }
+        if (keys & DPAD_DOWN)
+        {
+            proc->previewId += 2;
+        }
+        if (keys & DPAD_UP)
+        {
+            proc->previewId -= 2;
+        }
+
+        if (proc->previewId > NumberOfCharsPerPage)
+        {
+            proc->previewId = 0;
+        }
+        if (proc->previewId < 0)
+        {
+            proc->previewId = NumberOfCharsPerPage - 1;
+        }
+    }
+    DisplayUiHand(CharPreviewLoc[proc->previewId].x, CharPreviewLoc[proc->previewId].y);
     DisplayUiVArrow(48, 13, 0x3240, 0);
     DisplayUiVArrow(48, 53, 0x3240, 0);
-    DisplayUiVArrow(48, 93, 0x3240, 0);
-    DisplayUiVArrow(48, 133, 0x3240, 0);
+    DisplayUiVArrow(48, 101, 0x3240, 0);
+    DisplayUiVArrow(48, 141, 0x3240, 0);
     DisplayUiVArrow(176, 13, 0x3240, 0);
     DisplayUiVArrow(176, 53, 0x3240, 0);
-    DisplayUiVArrow(176, 93, 0x3240, 0);
-    DisplayUiVArrow(176, 133, 0x3240, 0);
+    DisplayUiVArrow(176, 101, 0x3240, 0);
+    // DisplayUiVArrow(176, 141, 0x3240, 0);
 }
 
 struct FaceData
@@ -751,13 +853,28 @@ void PutDrawCenteredText(struct Text * text, u16 * dest, int textID, int maxWidt
     ClearText(text);
     PutDrawText(text, dest, col, position, 0, str);
 }
-
-void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
+int GetHiddenCharPreviewOffset(int charID)
 {
-    if (!charID)
+    for (int i = 0; (i + charID) < 255; ++i)
     {
-        return;
+        if (!HideCharPreviewExceptions[charID + i].NeverChangeFrom)
+        {
+            return i;
+        }
     }
+    return 0;
+}
+
+int DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
+{
+    if (!charID || charID > MaxCharPreviewID)
+    {
+        return 0;
+    }
+    int offset = GetHiddenCharPreviewOffset(charID);
+    charID += offset;
+
+    TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, x, y + 4), 13, 0, 0x380);
     palID <<= 1; // since two entries are being drawn
     struct FE8CharacterData * table;
     // struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
@@ -773,6 +890,7 @@ void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
         gold);
     PutFaceChibi_Bulk(
         table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, y), 0x190 + (palID * 0x10), palID + 1, 0);
+    return offset;
 }
 
 extern u8 ReplacePortraitTable[];
@@ -7602,11 +7720,6 @@ const u8 OptionAmounts[] = { OPT0NUM,  OPT1NUM,  OPT2NUM,  OPT3NUM,  OPT4NUM,  O
 
 #define MENU_X 18
 #define MENU_Y 8
-typedef const struct
-{
-    u32 x;
-    u32 y;
-} LocationTable;
 
 extern void PutNumber(u16 *, int, int); // 80061D8
 static const LocationTable SRR_CursorLocationTable[] = {
@@ -8400,17 +8513,6 @@ void DisplayHand(int x, int y, int type)
         DisplayUiHand(x, y);
     }
 }
-
-#define A_BUTTON 0x0001
-#define B_BUTTON 0x0002
-#define SELECT_BUTTON 0x0004
-#define START_BUTTON 0x0008
-#define DPAD_RIGHT 0x0010
-#define DPAD_LEFT 0x0020
-#define DPAD_UP 0x0040
-#define DPAD_DOWN 0x0080
-#define R_BUTTON 0x0100
-#define L_BUTTON 0x0200
 
 LocationTable CursorLocationTable[] = {
     { (NUMBER_X * 8) - (0 * 8) - 4, (Y_HAND * 8) - 8 }, { (NUMBER_X * 8) - (1 * 8) - 4, (Y_HAND * 8) - 8 },

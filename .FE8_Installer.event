@@ -206,6 +206,9 @@ BYTE 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x64 0x65 0x66 0x67 0x68 0x88 
 #define IgnoreTextID(id) "PUSH; ORG TextIDExceptionTable + (id); BYTE 1; POP" 
 #define IgnoreTextIDRange(id1, id2) "PUSH; ORG TextIDExceptionTable + (id1); FILL(id2-id1) 0x1; POP" 
 
+#define NeverPreviewChar(id) "PUSH; ORG HideCharPreviewExceptions + (id * 2); BYTE 1 1; POP" 
+#define NeverPreviewChars(id1, id2) "PUSH; ORG HideCharPreviewExceptions + (id1 * 2); FILL((id2-id1)*2) 0x1; POP" 
+
 ALIGN 4 
 ItemExceptions:
 FILL(256*2)
@@ -221,6 +224,12 @@ FILL(0x1000) // probably not more than this many tracks
 ALIGN 4 
 TextIDExceptionTable: 
 FILL(0x2000) // max id 0x2000
+ALIGN 4 
+HideCharPreviewExceptions:
+FILL(256*2) 
+
+NeverPreviewChar(0x1B) // Unused enemy char 
+
 
 #ifdef VeslyBuildfile
 NeverUseBGMs(0x47, 0x53)
