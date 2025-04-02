@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.9.4"
+#define VersionNumber " SRR V1.9.5"
 // 547282
 
 #ifdef FE8
@@ -46,6 +46,7 @@ typedef struct
     u16 globalChecksum;
     s8 previewPage;
     s8 previewId;
+    s8 changingGame;
     s8 Option[26];
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
@@ -637,6 +638,7 @@ const unsigned char greyTile[32] = {
 };
 extern void RegisterDataMove(const void * a, void * b, int c);
 extern void TileMap_FillRect(u16 * dest, int width, int height, int fillValue);
+extern void ResetFaces();
 int GetReviseCharID(ConfigMenuProc * proc);
 extern int SetActiveTalkFace(int slot);
 int GetCharIDTopOfPage(ConfigMenuProc * proc);
@@ -656,6 +658,7 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     LoadObjUIGfx();
     UnpackUiVArrowGfx(0x240, 3);
     RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
+    ResetText();  // need this
     ResetFaces(); // without this, it was duplicating the face on both sides
     GetReorderedCharacter(GetCharacterData(1));
 }
@@ -692,6 +695,7 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     int xTile = 0; // Left side
 
     u8 charID[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+    // u8 base_charID[10] = { 1, 5, 2, 6, 3, 7, 4, 8 };
     int offset = proc->previewPage * NumberOfCharsPerPage;
 
     int y = 0;
@@ -1004,7 +1008,7 @@ enum
 
 int GetReviseCharID(ConfigMenuProc * proc)
 {
-    u8 base_charID[10] = { 1, 2, 3, 4, 4, 4, 5, 6, 7, 8 };
+    u8 base_charID[10] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8 };
     int charID = base_charID[proc->previewId] + proc->previewPage * NumberOfCharsPerPage;
     charID += GetHiddenCharPreviewOffset(charID);
     return charID;
@@ -1017,6 +1021,7 @@ int GetCharIDTopOfPage(ConfigMenuProc * proc)
 }
 #define OPT2NUM 13
 const char Option2[OPT2NUM][32];
+extern void EndFaceById(int faceSlot);
 extern void SetFaceBlinkControlById(int, int);
 extern struct FaceProc * StartFace(int faceSlot, int portraitId, int x, int y, int displayType);
 extern struct FaceProc * StartFace2(int faceSlot, int portraitId, int x, int y, int displayType);
@@ -1025,6 +1030,7 @@ extern ProcPtr StartTalkFace(int faceId, int x, int y, int disp, int talkFace);
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
     int charID = GetReviseCharID(proc);
+    ResetText();
     int tableID = 0;
     struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
     if (CharConfirmPage)
@@ -1040,6 +1046,8 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     int maxWidth = 6;
     int x = 4;
     int y = 12;
+    // EndFaceById(0);
+    EndFaceById(1);
     struct FE8CharacterData * table = (struct FE8CharacterData *)GetCharacterData(charID);
     StartFace2(0, table->portraitId, 64, 0, 3 | FACE_DISP_FLIPPED);
     // StartFaceAuto(table->portraitId, 64, 0, 3);
@@ -1052,28 +1060,106 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
         gStatScreen.text + 21, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y), table->nameTextId, maxWidth, gold);
     TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, 2, y - 2), 11, 0, 0x380);
     TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, x + 13, y - 2), 11, 0, 0x380);
-    PutDrawText(gStatScreen.text + 22, TILEMAP_LOCATED(gBG0TilemapBuffer, 0x9, 18), green, 0, 0, "From Game: ");
-    PutDrawText(gStatScreen.text + 23, TILEMAP_LOCATED(gBG0TilemapBuffer, 0x10, 18), green, 0, 0, Option2[tableID]);
-    SetFaceBlinkControlById(0, 5);
-    SetFaceBlinkControlById(1, 5);
+    PutDrawText(gStatScreen.text + 22, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 18), green, 0, 0, "From Game: ");
+    ClearText(gStatScreen.text + 23);
+    InitText(gStatScreen.text + 23, 15);
+    PutDrawText(gStatScreen.text + 23, TILEMAP_LOCATED(gBG0TilemapBuffer, 12, 18), green, 0, 0, Option2[tableID]);
+    // SetFaceBlinkControlById(0, 5);
+    // SetFaceBlinkControlById(1, 5);
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
     EnablePaletteSync();
 }
 #define PreviewCharLabel 1
-extern void EndFaceById(int faceSlot);
+void DisplayVertUiHand(int x, int y);
+
 void LoopReviseCharPage(ConfigMenuProc * proc)
 {
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
-    if (keys & B_BUTTON)
+    if (keys & (B_BUTTON | A_BUTTON))
     {
         Proc_Goto(proc, PreviewCharLabel);
         EndFaceById(0);
         EndFaceById(1);
+        return;
     }
     if (keys & A_BUTTON)
     {
-        // save some change
+        // save some change?
         // Proc_Goto(proc, PreviewCharLabel);
+    }
+    int charID = GetReviseCharID(proc);
+    // int tableID = 0;
+    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
+
+    int tmp = 0;
+    int changed = false;
+
+    if (keys & (DPAD_UP | DPAD_DOWN))
+    {
+        proc->changingGame ^= 1;
+    }
+
+    if (proc->changingGame)
+    {
+        if (keys & DPAD_LEFT)
+        {
+            tmp = pidStats->deployAmt - 1;
+            changed = true;
+        }
+        if (keys & DPAD_RIGHT)
+        {
+            tmp = pidStats->deployAmt + 1;
+            changed = true;
+        }
+        if (changed)
+        {
+
+            if (tmp > NumberOfCharTables)
+            {
+                tmp = 0;
+            }
+            if (tmp < 0)
+            {
+                tmp = NumberOfCharTables - 1;
+            }
+            pidStats->deployAmt = tmp;
+            DrawReviseCharPage(proc);
+        }
+    }
+    else
+    {
+        if (keys & DPAD_LEFT)
+        {
+            tmp = pidStats->moveAmt - 1;
+            changed = true;
+        }
+        if (keys & DPAD_RIGHT)
+        {
+            tmp = pidStats->moveAmt + 1;
+            changed = true;
+        }
+        if (tmp < 1)
+        {
+            tmp = MAX_CHAR_ID;
+        }
+        if (tmp > MAX_CHAR_ID)
+        {
+            tmp = 1;
+        }
+        if (changed)
+        {
+            pidStats->moveAmt = tmp;
+            DrawReviseCharPage(proc);
+        }
+    }
+
+    if (proc->changingGame)
+    {
+        DisplayVertUiHand(144, 136);
+    }
+    else
+    {
+        DisplayVertUiHand(175, 88);
     }
 }
 
@@ -8715,7 +8801,6 @@ void DrawConfigMenu(ConfigMenuProc * proc)
     BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
 
-void DisplayVertUiHand(int x, int y);
 void DisplayHand(int x, int y, int type)
 {
     //  type is 0 (horizontal) or 1 (vertical) if I make it
