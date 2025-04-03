@@ -10070,6 +10070,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         }
         proc->previewPage = 0;
         proc->previewId = 0;
+        proc->changingGame = 0;
         proc->globalChecksum = 0;
         proc->id = 1;
         proc->calledFromChapter = false;
