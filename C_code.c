@@ -1439,13 +1439,16 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
     }
     if (CharConfirmPage)
     {
-        if (pidStats->deployAmt < NumberOfCharTables)
+        if (pidStats)
         {
-            tableID = pidStats->deployAmt;
-        }
-        if (pidStats->moveAmt)
-        {
-            unitID = pidStats->moveAmt;
+            if (pidStats->deployAmt < NumberOfCharTables)
+            {
+                tableID = pidStats->deployAmt;
+            }
+            if (pidStats->moveAmt)
+            {
+                unitID = pidStats->moveAmt;
+            }
         }
     }
     const struct CharacterData * result = (struct CharacterData *)NewGetCharacterData(unitID, tableID);
@@ -1455,8 +1458,11 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
     }
     if (CharConfirmPage)
     {
-        pidStats->deployAmt = tableID;
-        pidStats->moveAmt = unitID;
+        if (pidStats)
+        {
+            pidStats->deployAmt = tableID;
+            pidStats->moveAmt = unitID;
+        }
     }
     return result;
 }
