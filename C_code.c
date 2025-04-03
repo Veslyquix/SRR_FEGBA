@@ -629,8 +629,10 @@ extern void RegisterBlankTile(int a);
 extern u16 gUiTmScratchA[0x280];
 void CallSetupBackgrounds(ConfigMenuProc * proc);
 extern void SetupBackgrounds(u16 * bgConfig);
-int DrawCharPreview(int x, int y, int charID, int palID, int maxWidth);
+void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth);
 const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table);
+const struct CharacterData *
+GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidStatsChar * pidStats);
 const unsigned char greyTile[32] = {
     0x11, 0x11, 0x11, 0x11, // Row 0: 8 pixels of color index 4
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -699,12 +701,10 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     int offset = proc->previewPage * NumberOfCharsPerPage;
 
     int y = 0;
-    int exceptionsOffset = 0;
     for (int i = 0; i < NumberOfCharsPerPage; ++i)
     {
         y = Mod(i, 4);
-        exceptionsOffset += DrawCharPreview(
-            xTile + (16 * (i > 3)), (5 * y) + (y >> 1), charID[i] + offset + exceptionsOffset, i + 1, maxWidth);
+        DrawCharPreview(xTile + (16 * (i > 3)), (5 * y) + (y >> 1), charID[i] + offset, i + 1, maxWidth);
     }
 
     PutDrawText(&th[16], TILEMAP_LOCATED(gBG0TilemapBuffer, 4, 9), green, 0, 0, "Reroll Page");
@@ -809,7 +809,10 @@ void ResetPage(ConfigMenuProc * proc)
 #define ReviseCharProcLabel 10
 void ReviseRandomizedCharacter(ConfigMenuProc * proc)
 {
-    Proc_Goto(proc, ReviseCharProcLabel);
+    if (GetReviseCharID(proc) <= MaxCharPreviewID)
+    {
+        Proc_Goto(proc, ReviseCharProcLabel);
+    }
 }
 
 void LoopCharConfirmPage(ConfigMenuProc * proc)
@@ -975,14 +978,15 @@ void PutDrawCenteredText(struct Text * text, u16 * dest, int textID, int maxWidt
 }
 int GetHiddenCharPreviewOffset(int charID)
 {
-    for (int i = 0; (i + charID) < 255; ++i)
+    int c = 0;
+    for (int i = 1; i <= charID; ++i)
     {
-        if (!HideCharPreviewExceptions[charID + i].NeverChangeFrom)
+        if (HideCharPreviewExceptions[i].NeverChangeFrom)
         {
-            return i;
+            c++;
         }
     }
-    return 0;
+    return c;
 }
 enum
 {
@@ -1008,7 +1012,7 @@ enum
 
 int GetReviseCharID(ConfigMenuProc * proc)
 {
-    u8 base_charID[10] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8 };
+    u8 base_charID[10] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8 }; // because of menu options ordering lol
     int charID = base_charID[proc->previewId] + proc->previewPage * NumberOfCharsPerPage;
     charID += GetHiddenCharPreviewOffset(charID);
     return charID;
@@ -1072,6 +1076,73 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
 #define PreviewCharLabel 1
 void DisplayVertUiHand(int x, int y);
 
+void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
+{
+    int startingID = pidStats->moveAmt;
+    const struct CharacterData * table = GetCharacterData(id);
+    const struct CharacterData * table2;
+    for (int i = startingID + 1; i < MAX_CHAR_ID; i++)
+    {
+        pidStats->moveAmt = i;
+        table2 = GetReorderedCharacterByPIDStats(table, pidStats);
+        if (i == id)
+        { // so they *can* become themself with the vanilla table
+            return;
+        }
+        if ((void *)table != (void *)table2)
+        {
+            return; // pidStats->moveAmt is already updated
+        }
+    }
+    for (int i = 1; i < startingID; i++)
+    {
+        pidStats->moveAmt = i;
+        table2 = GetReorderedCharacterByPIDStats(table, pidStats);
+        if (i == id)
+        { // so they *can* become themself with the vanilla table
+            return;
+        }
+        if ((void *)table != (void *)table2)
+        {
+            return; // pidStats->moveAmt is already updated
+        }
+    }
+    pidStats->moveAmt = startingID + 1; // should never reach this
+}
+void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
+{
+    int startingID = pidStats->moveAmt;
+    const struct CharacterData * table = GetCharacterData(id);
+    const struct CharacterData * table2;
+    for (int i = startingID - 1; i > 0; i--)
+    {
+        pidStats->moveAmt = i;
+        table2 = GetReorderedCharacterByPIDStats(table, pidStats);
+        if (i == id)
+        { // so they *can* become themself with the vanilla table
+            return;
+        }
+        if ((void *)table != (void *)table2)
+        {
+            return;
+        }
+    }
+    for (int i = MAX_CHAR_ID; i > startingID; i--)
+    {
+        pidStats->moveAmt = i;
+        table2 = GetReorderedCharacterByPIDStats(table, pidStats);
+        if (i == id)
+        { // so they *can* become themself with the vanilla table
+            return;
+        }
+        if ((void *)table != (void *)table2)
+        {
+            return;
+        }
+    }
+    pidStats->moveAmt = startingID - 1; // should never reach this
+}
+
 void LoopReviseCharPage(ConfigMenuProc * proc)
 {
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
@@ -1130,25 +1201,17 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     {
         if (keys & DPAD_LEFT)
         {
-            tmp = pidStats->moveAmt - 1;
+            SetPrevValidCharID(charID, pidStats);
             changed = true;
         }
         if (keys & DPAD_RIGHT)
         {
-            tmp = pidStats->moveAmt + 1;
+            SetNextValidCharID(charID, pidStats);
             changed = true;
         }
-        if (tmp < 1)
-        {
-            tmp = MAX_CHAR_ID;
-        }
-        if (tmp > MAX_CHAR_ID)
-        {
-            tmp = 1;
-        }
+
         if (changed)
         {
-            pidStats->moveAmt = tmp;
             DrawReviseCharPage(proc);
         }
     }
@@ -1163,14 +1226,13 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     }
 }
 
-int DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
+void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
 {
+    charID += GetHiddenCharPreviewOffset(charID);
     if (!charID || charID > MaxCharPreviewID)
     {
-        return 0;
+        return;
     }
-    int offset = GetHiddenCharPreviewOffset(charID);
-    charID += offset;
 
     TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, x, y + 4), 13, 0, 0x380);
     palID <<= 1; // since two entries are being drawn
@@ -1188,7 +1250,6 @@ int DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
         gold);
     PutFaceChibi_Bulk(
         table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, y), 0x190 + (palID * 0x10), palID + 1, 0);
-    return offset;
 }
 
 extern u8 ReplacePortraitTable[];
@@ -1244,7 +1305,8 @@ void ClearPlayerBWL(void)
     }
 }
 
-const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table)
+const struct CharacterData *
+GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidStatsChar * pidStats)
 {
     if (!table->portraitId)
     {
@@ -1257,7 +1319,7 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
         return GetCharacterData(id);
     }
     int tableID = GetCharTableID(table->portraitId); // default
-    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(table->number);
+
     if (CharConfirmPage)
     {
         if (pidStats)
@@ -1329,6 +1391,13 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     }
     return result;
 }
+
+const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table)
+{
+    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(table->number);
+    return GetReorderedCharacterByPIDStats(table, pidStats);
+}
+
 // each vanilla portrait is assigned to a new portrait from any char table
 // text replace must search all tables
 const struct CharacterData * GetReorderedUnit(struct Unit * unit)
