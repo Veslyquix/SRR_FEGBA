@@ -1,7 +1,10 @@
 from PIL import Image
+from pathlib import Path
 import numpy
 import os
 import struct
+import time
+
 
 READ_AHEAD_BUFFER_SIZE = 0x00000012
 SLIDING_WINDOW_SIZE = 0x00001000
@@ -97,14 +100,8 @@ def palette_to_bytes(palette):
         buffer += struct.pack("<H", v)
     return buffer
 
-header ="""{
-#ifndef __mx_mug
-#define __mx_mug(mugEntry, mugLocation)"PUSH; ORG PortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; WORD 0; "
-#endif
 
-"""
-
-HEADER = bytes([0x00, 0x04, 0x10, 0x00])
+HEADER = bytes([0x00, 0x04, 0x10, 0x00]) # uncompressed data 
 
 
 def cut_image(arr):
@@ -142,20 +139,21 @@ def cut_image(arr):
     return portrait, frames, minimug
 
 
-SEARCH_RANGE = 1, 7
+SEARCH_RANGE = 0, 7
 
 
 def cv_locate_eye_mouse_pos(arr):
-    eye = arr[48: 64, 96: 128]
-    mouth = arr[80: 96, 96: 128]
-    face = arr[:80, :96]
+    eye = arr[48: 64, 96: 128].astype('int16')
+    mouth = arr[80: 96, 96: 128].astype('int16')
+    face = arr[:80, :96].astype('int16')
     min_eye = 0, 0
     min_mouth = 0, 0
     min_eye_diff = 512
     min_mouth_diff = 512
     for i in range(SEARCH_RANGE[0], SEARCH_RANGE[1] + 1):
         for j in range(SEARCH_RANGE[0], SEARCH_RANGE[1] + 1):
-            slice = face[8 * i: 8 * i + 16, 8 * j: 8 * j + 32]
+            slice = face[8 * i: 8 * i + 16, 8 * j: 8 * j + 32].astype('int16')
+            
             eye_diff = numpy.sum(numpy.sign(numpy.abs(slice - eye)))
             mouth_diff = numpy.sum(numpy.sign(numpy.abs(slice - mouth)))
             if eye_diff < min_eye_diff:
@@ -168,16 +166,28 @@ def cv_locate_eye_mouse_pos(arr):
 
 
 def portrait_to_dmp(image_file):
-    dump_file = f"{image_file[:-4]}.dmp"
-    pos_file = f"{image_file[:-4]}.pos.dmp"
+    portrait_dmp = image_file.with_name(f"{image_file.stem}_mug.dmp")
+    if portrait_dmp.exists():
+        original_mtime = image_file.stat().st_mtime
+        destination_mtime = portrait_dmp.stat().st_mtime
+
+        if original_mtime <= destination_mtime:
+            return True # Skip if not newer
+
+    palette_dmp = image_file.with_name(f"{image_file.stem}_palette.dmp")
+    frames_dmp = image_file.with_name(f"{image_file.stem}_frames.dmp")
+    minimug_dmp = image_file.with_name(f"{image_file.stem}_minimug.dmp")
+    minimug_dmp_fe6 = image_file.with_name(f"{image_file.stem}_minimugfe6.dmp")
+    
     image: Image.Image = Image.open(image_file)
     try:
-        palette = image.palette.colors
-        if len(palette) > 17:
-            image = image.quantize(16)
+        palette_raw = image.getpalette()
+        palette = [(palette_raw[i], palette_raw[i+1], palette_raw[i+2]) for i in range(0, len(palette_raw), 3) if i // 3 < 16]
     except AttributeError:
         image = image.quantize(16)
-    palette = [i for i in image.palette.colors][:16]
+        palette_raw = image.getpalette()
+        palette = [(palette_raw[i], palette_raw[i+1], palette_raw[i+2]) for i in range(0, len(palette_raw), 3) if i // 3 < 16]
+
     arr = numpy.array(image.getdata(), dtype='<u1').reshape((112, 128))
     transparent = arr[0][0]
     if transparent != 0:
@@ -187,33 +197,108 @@ def portrait_to_dmp(image_file):
         arr = arr - (arr == 20) * (20 - transparent)
     portrait, frames, minimug = cut_image(arr)
 
-    portrait = HEADER + to_gba(portrait).tobytes()
+#    portrait = HEADER + to_gba(portrait).tobytes()
+    portrait = compress(to_gba(portrait).tobytes())
     frames = to_gba(frames).tobytes()
+    minimugfe6 = to_gba(minimug).tobytes()
     minimug = compress(to_gba(minimug).tobytes())
     palette = palette_to_bytes(palette)
-    buffer = portrait + frames + palette + minimug
+    with open(portrait_dmp, "wb") as file:
+        file.write(portrait)
+    with open(palette_dmp, "wb") as file:
+        file.write(palette)
+    with open(frames_dmp, "wb") as file:
+        file.write(frames)
+    with open(minimug_dmp, "wb") as file:
+        file.write(minimug)
+    with open(minimug_dmp_fe6, "wb") as file:
+        file.write(minimugfe6)
+    return False 
+
+def print_progress_bar(current, total, milestones_shown=set()):
+    percent = int((current / total) * 100)
+
+    # Round down to nearest 10%
+    milestone = (percent // 10) * 10
+
+    # Only print if we haven't printed this milestone before
+    if milestone not in milestones_shown:
+        milestones_shown.add(milestone)
+        length = 30
+        filled = int(length * (milestone / 100))
+        bar = "█" * filled + "-" * (length - filled)
+        print(f"[{bar}] {milestone}% ({current}/{total} files)")
+    
+    return milestones_shown
+
+
+# main 
+start = time.time()
+# Setting up output file
+installer = open("Generated.event", "w")
+
+# Writing header for the installer
+installer.write("//Generated! Do not edit!\n\n")
+
+# Find all .png files recursively in the `png` folder
+png_files = list(Path("png").rglob("*.png"))
+milestones = set()
+
+# Initialize counter
+c = 0
+i = 0
+
+total_files = len(png_files)
+
+for file in png_files:
+##    elapsed = time.time() - start
+##    avg_time = elapsed / (c+1)
+##    remaining = avg_time * (total_files - c)
+##    print(f"⏱️ Elapsed: {elapsed:.1f}s | ⌛ ETA: {remaining:.1f}s", end='\n\n')
+    milestones = print_progress_bar(c, total_files, milestones)
+    mug_path = file
+    mug_name = mug_path.stem
+    i += portrait_to_dmp(file)
+    # Extract file path and name information
+
+    base_name = mug_name.split("_")[0]  # Get the first part before the first `_`
+    relative_path = mug_path.parent
+
+    # Normalize paths to use forward slashes
+    normalized_relative_path = relative_path.as_posix()
+
+    # Write labels and #incbin directives using the base name
+    installer.write("ALIGN 4\n")
+    installer.write(f"{base_name}MugData:\n")
+    installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_mug.dmp\"\n")
+    installer.write(f"{base_name}FramesData:\n")
+    installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_frames.dmp\"\n")
+    installer.write(f"{base_name}PaletteData:\n")
+    installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_palette.dmp\"\n")
+    installer.write(f"{base_name}MinimugData:\n")
+    installer.write(f"#ifdef _FE6_\n")
+    installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_minimugfe6.dmp\"\n")
+    installer.write(f"#else\n")
+    installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_minimug.dmp\"\n")
+    installer.write(f"#endif\n")
+    # Define mug ID if not already defined
+    installer.write(f"#ifndef {base_name}Mug\n  #define {base_name}Mug (FirstMugID+{c})\n#endif\n")
+
+    # Process the image to locate the eye and mouse positions
+    image = Image.open(mug_path).quantize(16)
+    arr = numpy.array(image.getdata(), dtype="<u1").reshape((112, 128))
     x1, y1, x2, y2 = cv_locate_eye_mouse_pos(arr)
-    mouse_eye_pos = x1.to_bytes(1, "little") + y1.to_bytes(1, "little") + x2.to_bytes(1, "little") + y2.to_bytes(1, "little")
-    with open(dump_file, "wb") as file:
-        file.write(buffer)
-    with open(pos_file, "wb") as file:
-        file.write(mouse_eye_pos)
+    installer.write(f"MugEntry({base_name}Mug, {base_name}MugData, {base_name}MinimugData, {base_name}FramesData, {base_name}PaletteData,  {x1}, {y1}, {x2}, {y2})\n\n")
 
-installer = header
-for file in os.listdir("."):
-    if not file.endswith(".png"):
-        continue
-    portrait_to_dmp(file)
-    installer += f"""    {{
-        __mx_mug({file[:-4]}Mug, __mug_dmp)
-        #incbin "{file[:-4]}.pos.dmp"
-        BYTE 1 0 0 0; POP;
-        align 4
-        __mug_dmp:
-            #incbin "{file[:-4]}.dmp"
-    }}\n
-"""
+    # Increment the counter and handle cases where `c` is a multiple of 256
+    c += 1
+    if c % 256 == 0:
+        c += 1
 
-installer += "}\n"
-with open("Installer.event", "w") as file:
-    file.write(installer)
+# Closing the installer file
+installer.close()
+end = time.time()
+print(f"Skipped {i} images that have not been modified since last processed.") 
+print(f"⏱️ Finished in {end - start:.2f} seconds")
+
+
