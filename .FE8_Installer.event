@@ -410,7 +410,13 @@ SHORT $4770
 // 0A003C fe7, 8084C30 fe6 
 ORG $a481c //PidStatsAddSquaresMoved
 SHORT $4770 
+
+ORG $cc904 // restore PromoHandler_SetInitStat to vanilla 
+BYTE $30 $30 0 $21 $01 $70 0 $20 $70 $47 0 0 $10 $b5 $04 $1c $30 $34 $21 $78 $01 $29 $0d $d0 $01 $29 $02 $dc 
+// skillsys turned pidStats->mvtAmt into LevelsGained 
 #endif 
+
+
 
 ORG $E834 
 callHackNew(RandBGsFe8)
