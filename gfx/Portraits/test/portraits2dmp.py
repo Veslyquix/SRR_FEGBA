@@ -4,6 +4,7 @@ import numpy
 import os
 import struct
 import time
+import matplotlib.pyplot as plt
 
 
 READ_AHEAD_BUFFER_SIZE = 0x00000012
@@ -107,6 +108,7 @@ HEADER = bytes([0x00, 0x04, 0x10, 0x00]) # uncompressed data
 def cut_image(arr):
     portrait = numpy.zeros((32, 256))
     frames = numpy.zeros((8, 384))
+    framesfe6 = numpy.zeros((8, 384))
 
     minimug = arr[16: 48, 96: 128]
 
@@ -117,26 +119,42 @@ def cut_image(arr):
     portrait[0: 16, 128: 160] = arr[64: 80, 16: 48]
     portrait[16: 32, 128: 160] = arr[64: 80, 48: 80]
 
-    portrait[0: 16, 192: 224] = arr[48: 64, 96: 128]
-    portrait[16: 32, 192: 224] = arr[64: 80, 96: 128]
-    portrait[0: 16, 224: 256] = arr[80: 96, 96: 128]
-    portrait[16: 32, 224: 256] = arr[96: 112, 96: 128]
+##    portrait[0: 16, 192: 224] = arr[48: 64, 96: 128] # half blink 
+##    portrait[16: 32, 192: 224] = arr[64: 80, 96: 128] # blink 
+##    portrait[0: 16, 224: 256] = arr[80: 96, 96: 128] # neutral mouth 
+##    portrait[16: 32, 224: 256] = arr[96: 112, 96: 128] # empty / portrait extension 
 
-    frames[:, 0: 32] = arr[80: 88, 0: 32]
+    frames[:, 0: 32] = arr[80: 88, 0: 32] # smile  
     frames[:, 32: 64] = arr[88: 96, 0: 32]
-    frames[:, 64: 96] = arr[80: 88, 32: 64]
+    frames[:, 64: 96] = arr[80: 88, 32: 64] # half smile 
     frames[:, 96: 128] = arr[88: 96, 32: 64]
-    frames[:, 128: 160] = arr[80: 88, 64: 96]
+    frames[:, 128: 160] = arr[80: 88, 64: 96] # closed mouth 
     frames[:, 160: 192] = arr[88: 96, 64: 96]
 
-    frames[:, 192: 224] = arr[96: 104, 0: 32]
+    frames[:, 192: 224] = arr[96: 104, 0: 32] # bottom smile 
     frames[:, 224: 256] = arr[104: 112, 0: 32]
-    frames[:, 256: 288] = arr[96: 104, 32: 64]
+    frames[:, 256: 288] = arr[96: 104, 32: 64] # bottom half smile 
     frames[:, 288: 320] = arr[104: 112, 32: 64]
-    frames[:, 320: 352] = arr[96: 104, 64: 96]
+    frames[:, 320: 352] = arr[96: 104, 64: 96] # bottom closed mouth 
     frames[:, 352: 384] = arr[104: 112, 64: 96]
+
+    framesfe6[:, 0: 32] = arr[80: 88, 0: 32] # smile  
+    framesfe6[:, 32: 64] = arr[88: 96, 0: 32]
+    framesfe6[:, 64: 96] = arr[80: 88, 32: 64] # half smile 
+    framesfe6[:, 96: 128] = arr[88: 96, 32: 64]
+    framesfe6[:, 128: 160] = arr[96: 104, 0: 32] # bottom smile 
+    framesfe6[:, 160: 192] = arr[104: 112, 0: 32]
+    framesfe6[:, 192: 224] = arr[96: 104, 32: 64] # bottom half smile 
+    framesfe6[:, 224: 256] = arr[104: 112, 32: 64]
+    framesfe6[:, 256: 288] = arr[80: 88, 64: 96] # closed mouth 
+    framesfe6[:, 288: 320] = arr[88: 96, 64: 96]
+    framesfe6[:, 320: 352] = arr[96: 104, 64: 96] # bottom closed mouth / chin? 
+    framesfe6[:, 352: 384] = arr[104: 112, 64: 96]
+    plt.imshow(stacked, cmap="gray")
+    plt.show()
+
     
-    return portrait, frames, minimug
+    return portrait, frames, minimug, framesfe6
 
 
 SEARCH_RANGE = 0, 7
@@ -171,22 +189,35 @@ def portrait_to_dmp(image_file):
         original_mtime = image_file.stat().st_mtime
         destination_mtime = portrait_dmp.stat().st_mtime
 
-        if original_mtime <= destination_mtime:
-            return True # Skip if not newer
+        #if original_mtime <= destination_mtime:
+            #return True # Skip if not newer
 
     palette_dmp = image_file.with_name(f"{image_file.stem}_palette.dmp")
     frames_dmp = image_file.with_name(f"{image_file.stem}_frames.dmp")
+    portrait_frames_fe6 = image_file.with_name(f"{image_file.stem}_portrait_frames_fe6.dmp") 
     minimug_dmp = image_file.with_name(f"{image_file.stem}_minimug.dmp")
     minimug_dmp_fe6 = image_file.with_name(f"{image_file.stem}_minimugfe6.dmp")
     
     image: Image.Image = Image.open(image_file)
-    try:
-        palette_raw = image.getpalette()
-        palette = [(palette_raw[i], palette_raw[i+1], palette_raw[i+2]) for i in range(0, len(palette_raw), 3) if i // 3 < 16]
-    except AttributeError:
+
+    # Ensure image is in palette mode (P) with max 16 colors
+    if image.mode != "P":
         image = image.quantize(16)
-        palette_raw = image.getpalette()
-        palette = [(palette_raw[i], palette_raw[i+1], palette_raw[i+2]) for i in range(0, len(palette_raw), 3) if i // 3 < 16]
+
+    # Try getting the palette
+    palette_raw = image.getpalette()
+
+    # Handle case where palette is still None
+    if not palette_raw:
+        raise ValueError(f"Image {image_file} has no palette after quantizing.")
+
+    # Build the RGB palette list
+    palette = [
+        (palette_raw[i], palette_raw[i+1], palette_raw[i+2])
+        for i in range(0, len(palette_raw), 3)
+        if i // 3 < 16
+    ]
+
 
     arr = numpy.array(image.getdata(), dtype='<u1').reshape((112, 128))
     transparent = arr[0][0]
@@ -195,9 +226,10 @@ def portrait_to_dmp(image_file):
         arr = arr + (arr == 0) * 20
         arr = arr - (arr == transparent) * transparent
         arr = arr - (arr == 20) * (20 - transparent)
-    portrait, frames, minimug = cut_image(arr)
+    portrait, frames, minimug, framesfe6 = cut_image(arr)
 
 #    portrait = HEADER + to_gba(portrait).tobytes()
+    portraitandframesfe6 = to_gba(portrait).tobytes() + to_gba(framesfe6).tobytes()
     portrait = compress(to_gba(portrait).tobytes())
     frames = to_gba(frames).tobytes()
     minimugfe6 = to_gba(minimug).tobytes()
@@ -207,6 +239,8 @@ def portrait_to_dmp(image_file):
         file.write(portrait)
     with open(palette_dmp, "wb") as file:
         file.write(palette)
+    with open(portrait_frames_fe6, "wb") as file:
+        file.write(portraitandframesfe6)
     with open(frames_dmp, "wb") as file:
         file.write(frames)
     with open(minimug_dmp, "wb") as file:
@@ -270,7 +304,11 @@ for file in png_files:
     # Write labels and #incbin directives using the base name
     installer.write("ALIGN 4\n")
     installer.write(f"{base_name}MugData:\n")
+    installer.write(f"#ifdef _FE6_\n")
+    installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_portrait_frames_fe6.dmp\"\n")
+    installer.write(f"#else\n")
     installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_mug.dmp\"\n")
+    installer.write(f"#endif\n")
     installer.write(f"{base_name}FramesData:\n")
     installer.write(f"#incbin \"{normalized_relative_path}/{mug_name}_frames.dmp\"\n")
     installer.write(f"{base_name}PaletteData:\n")
