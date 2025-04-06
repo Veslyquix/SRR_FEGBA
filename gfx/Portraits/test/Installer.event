@@ -10,16 +10,18 @@ NewPortraitTable:
 
 POP 
 #ifdef _FE6_ 
-#define MugEntry(mugID, mug, minimug, frames, palette, mouthX, mouthY, eyeX, eyeY)"PUSH; ORG NewPortraitTable+mugID*0x10; POIN mug; POIN minimug; POIN palette; BYTE mouthX mouthY eyeX eyeY; POP"
-// mug includes eye frames immediately after 
+#define MugEntry(mugID, mug, minimug, palette, mouthX, mouthY, eyeX, eyeY)"ORG NewPortraitTable+mugID*0x10; POIN mug; POIN minimug; POIN palette; BYTE mouthX mouthY eyeX eyeY; "
 #else 
-#define MugEntry(mugID, mug, minimug, frames, palette, mouthX, mouthY, eyeX, eyeY)"PUSH; ORG NewPortraitTable+mugID*0x1C; POIN mug; POIN minimug; POIN palette; POIN frames; BYTE 0 0 0 0; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; POP"
+#define MugEntry(mugID, mug, minimug, frames, palette, mouthX, mouthY, eyeX, eyeY)"ORG NewPortraitTable+mugID*0x1C; POIN mug; POIN minimug; POIN palette; POIN frames; BYTE 0 0 0 0; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; "
 #endif 
 
 // #define FirstMugID 0xAC
-#define FirstMugID 0x1
+#define FirstMugID 0x100
 
+#ifdef _FE6_ 
+#include "Generated_FE6.event" 
+#else 
 #include "Generated.event" 
-
+#endif 
 
 

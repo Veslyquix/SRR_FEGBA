@@ -1,17 +1,9 @@
 
  
 #ifdef _FE6_ 
-// #define MugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE mouthX mouthY eyeX eyeY; POP"
-// #define MugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; BYTE mouthX mouthY eyeX eyeY; POP"
-#define MugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY) "PUSH; ORG PortraitTable+mugEntry*0x10; POIN mugLocation; POIN mugLocation+0x1404; POIN mugLocation+0x1604; BYTE mouthX mouthY 0 1; POP"
-// 0x1104, 0x1404 mouth 
-#endif 
-
-#ifndef _FE6_ 
-#ifdef MugEntry 
-	#undef MugEntry
-#endif 	
-#define MugEntry(mugEntry, mugLocation, mouthX, mouthY, eyeX, eyeY)"PUSH; ORG NewPortraitTable+mugEntry*0x1C; POIN mugLocation; POIN mugLocation+0x1624; POIN mugLocation+0x1604; POIN mugLocation+0x1004; BYTE 0 0 0 0; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; POP"
+#define MugEntry(mugID, mug, minimug, palette, mouthX, mouthY, eyeX, eyeY)"ORG NewPortraitTable+mugID*0x10; POIN mug; POIN minimug; POIN palette; BYTE mouthX mouthY eyeX eyeY; "
+#else 
+#define MugEntry(mugID, mug, minimug, frames, palette, mouthX, mouthY, eyeX, eyeY)"ORG NewPortraitTable+mugID*0x1C; POIN mug; POIN minimug; POIN palette; POIN frames; BYTE 0 0 0 0; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; "
 #endif 
 
 // #define FirstMugID 0xAC
@@ -31,7 +23,11 @@ ORG NewPortraitTable
 
 ORG NewPortraitTable + (0x1C*0x400)
 ALIGN 4 
+#ifdef _FE6_ 
+#include "Generated_FE6.event" 
+#else 
 #include "Generated.event" 
+#endif 
 
 PUSH 
 #ifdef _FE8_
@@ -51,10 +47,8 @@ POP
 
 // Vanilla portraits that need minimugs added 
 
+PUSH 
 #ifdef _FE6_ 
-
-// portrait formatter doesn't work properly for fe6 anyway
-// so todo if that ever works 
 // MugEntry(EliwoodMug, EliwoodMugData, 2, 5, 2, 3)
 // MugEntry(HectorMug, HectorMugData, 2, 5, 2, 3)
 
@@ -71,9 +65,9 @@ MugEntry(0x5C, BramimondMugData, 2, 6, 3, 3)
 
 
 #ifdef _FE8_ 
-MugEntry(0x55, DaraMugData, 2, 7, 3, 5)
+// MugEntry(0x55, DaraMugData, 2, 7, 3, 5)
 #endif 
-
+POP 
 
 
 

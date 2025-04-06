@@ -1,13 +1,5 @@
-@echo off
-@fixfilenames.py 
-@echo making stuff 
-make
+@echo off 
 
+portraits2dmp.py 
 
-@echo generating installer 
-@fastmuggen.py
-
-
-echo Done!
-
-pause
+pause 

@@ -1,112 +1,71 @@
 //Generated! Do not edit!
 
-ALIGN 4
-AbelMugData:
-#ifdef _FE6_
-#incbin "png/FE16/Abel_Luminescent_Blade_portrait_frames_fe6.dmp"
-#else
-#incbin "png/FE16/Abel_Luminescent_Blade_mug.dmp"
-#endif
-AbelFramesData:
-#incbin "png/FE16/Abel_Luminescent_Blade_frames.dmp"
-AbelPaletteData:
-#incbin "png/FE16/Abel_Luminescent_Blade_palette.dmp"
-AbelMinimugData:
-#ifdef _FE6_
-#incbin "png/FE16/Abel_Luminescent_Blade_minimugfe6.dmp"
-#else
-#incbin "png/FE16/Abel_Luminescent_Blade_minimug.dmp"
-#endif
 #ifndef AbelMug
   #define AbelMug (FirstMugID+0)
 #endif
-MugEntry(AbelMug, AbelMugData, AbelMinimugData, AbelFramesData, AbelPaletteData,  3, 5, 3, 3)
 
-ALIGN 4
-ArlenMugData:
-#ifdef _FE6_
-#incbin "png/FE16/Arlen_Kanna_portrait_frames_fe6.dmp"
-#else
-#incbin "png/FE16/Arlen_Kanna_mug.dmp"
-#endif
-ArlenFramesData:
-#incbin "png/FE16/Arlen_Kanna_frames.dmp"
-ArlenPaletteData:
-#incbin "png/FE16/Arlen_Kanna_palette.dmp"
-ArlenMinimugData:
-#ifdef _FE6_
-#incbin "png/FE16/Arlen_Kanna_minimugfe6.dmp"
-#else
-#incbin "png/FE16/Arlen_Kanna_minimug.dmp"
-#endif
 #ifndef ArlenMug
   #define ArlenMug (FirstMugID+1)
 #endif
-MugEntry(ArlenMug, ArlenMugData, ArlenMinimugData, ArlenFramesData, ArlenPaletteData,  3, 4, 3, 2)
 
-ALIGN 4
-ArranMugData:
-#ifdef _FE6_
-#incbin "png/FE16/Arran_Thorn_portrait_frames_fe6.dmp"
-#else
-#incbin "png/FE16/Arran_Thorn_mug.dmp"
-#endif
-ArranFramesData:
-#incbin "png/FE16/Arran_Thorn_frames.dmp"
-ArranPaletteData:
-#incbin "png/FE16/Arran_Thorn_palette.dmp"
-ArranMinimugData:
-#ifdef _FE6_
-#incbin "png/FE16/Arran_Thorn_minimugfe6.dmp"
-#else
-#incbin "png/FE16/Arran_Thorn_minimug.dmp"
-#endif
 #ifndef ArranMug
   #define ArranMug (FirstMugID+2)
 #endif
-MugEntry(ArranMug, ArranMugData, ArranMinimugData, ArranFramesData, ArranPaletteData,  3, 5, 3, 3)
 
-ALIGN 4
-AstramMugData:
-#ifdef _FE6_
-#incbin "png/FE16/Astram_GratedShtick_Cardcafe_Nickt_Cranjam_portrait_frames_fe6.dmp"
-#else
-#incbin "png/FE16/Astram_GratedShtick_Cardcafe_Nickt_Cranjam_mug.dmp"
-#endif
-AstramFramesData:
-#incbin "png/FE16/Astram_GratedShtick_Cardcafe_Nickt_Cranjam_frames.dmp"
-AstramPaletteData:
-#incbin "png/FE16/Astram_GratedShtick_Cardcafe_Nickt_Cranjam_palette.dmp"
-AstramMinimugData:
-#ifdef _FE6_
-#incbin "png/FE16/Astram_GratedShtick_Cardcafe_Nickt_Cranjam_minimugfe6.dmp"
-#else
-#incbin "png/FE16/Astram_GratedShtick_Cardcafe_Nickt_Cranjam_minimug.dmp"
-#endif
 #ifndef AstramMug
   #define AstramMug (FirstMugID+3)
 #endif
+
+
+PUSH
+MugEntry(AbelMug, AbelMugData, AbelMinimugData, AbelFramesData, AbelPaletteData,  3, 5, 3, 3)
+MugEntry(ArlenMug, ArlenMugData, ArlenMinimugData, ArlenFramesData, ArlenPaletteData,  3, 4, 3, 2)
+MugEntry(ArranMug, ArranMugData, ArranMinimugData, ArranFramesData, ArranPaletteData,  3, 5, 3, 3)
 MugEntry(AstramMug, AstramMugData, AstramMinimugData, AstramFramesData, AstramPaletteData,  3, 6, 3, 4)
+POP
+
 
 ALIGN 4
-EliceMugData:
-#ifdef _FE6_
-#incbin "png/FE16/Elice_Thorn_portrait_frames_fe6.dmp"
-#else
-#incbin "png/FE16/Elice_Thorn_mug.dmp"
-#endif
-EliceFramesData:
-#incbin "png/FE16/Elice_Thorn_frames.dmp"
-ElicePaletteData:
-#incbin "png/FE16/Elice_Thorn_palette.dmp"
-EliceMinimugData:
-#ifdef _FE6_
-#incbin "png/FE16/Elice_Thorn_minimugfe6.dmp"
-#else
-#incbin "png/FE16/Elice_Thorn_minimug.dmp"
-#endif
-#ifndef EliceMug
-  #define EliceMug (FirstMugID+4)
-#endif
-MugEntry(EliceMug, EliceMugData, EliceMinimugData, EliceFramesData, ElicePaletteData,  2, 6, 2, 4)
+AbelMugData:
+#incbin "png/FE1FE3FE11FE12/Abel_Luminescent_Blade_mug.dmp"
+ALIGN 4
+AbelFramesData:
+#incbin "png/FE1FE3FE11FE12/Abel_Luminescent_Blade_frames.dmp"
+AbelPaletteData:
+#incbin "png/FE1FE3FE11FE12/Abel_Luminescent_Blade_palette.dmp"
+AbelMinimugData:
+#incbin "png/FE1FE3FE11FE12/Abel_Luminescent_Blade_minimug.dmp"
+
+ALIGN 4
+ArlenMugData:
+#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_mug.dmp"
+ALIGN 4
+ArlenFramesData:
+#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_frames.dmp"
+ArlenPaletteData:
+#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_palette.dmp"
+ArlenMinimugData:
+#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_minimug.dmp"
+
+ALIGN 4
+ArranMugData:
+#incbin "png/FE1FE3FE11FE12/Arran_Thorn_mug.dmp"
+ALIGN 4
+ArranFramesData:
+#incbin "png/FE1FE3FE11FE12/Arran_Thorn_frames.dmp"
+ArranPaletteData:
+#incbin "png/FE1FE3FE11FE12/Arran_Thorn_palette.dmp"
+ArranMinimugData:
+#incbin "png/FE1FE3FE11FE12/Arran_Thorn_minimug.dmp"
+
+ALIGN 4
+AstramMugData:
+#incbin "png/FE1FE3FE11FE12/Astram_GratedShtick_Cardcafe_Nickt_Cranjam_mug.dmp"
+ALIGN 4
+AstramFramesData:
+#incbin "png/FE1FE3FE11FE12/Astram_GratedShtick_Cardcafe_Nickt_Cranjam_frames.dmp"
+AstramPaletteData:
+#incbin "png/FE1FE3FE11FE12/Astram_GratedShtick_Cardcafe_Nickt_Cranjam_palette.dmp"
+AstramMinimugData:
+#incbin "png/FE1FE3FE11FE12/Astram_GratedShtick_Cardcafe_Nickt_Cranjam_minimug.dmp"
 
