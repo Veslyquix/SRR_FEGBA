@@ -642,8 +642,8 @@ extern void RegisterDataMove(const void * a, void * b, int c);
 extern void TileMap_FillRect(u16 * dest, int width, int height, int fillValue);
 extern void ResetFaces();
 int GetReviseCharID(ConfigMenuProc * proc);
+int GetReviseCharByID(int id);
 extern int SetActiveTalkFace(int slot);
-int GetCharIDTopOfPage(ConfigMenuProc * proc);
 void ClearConfigGfx(ConfigMenuProc * proc)
 {
     // EndGreenText();
@@ -676,7 +676,8 @@ void ClearConfigGfx(ConfigMenuProc * proc)
 #define R_BUTTON 0x0100
 #define L_BUTTON 0x0200
 #define NumberOfCharsPerPage 7
-#define MaxCharPreviewID 0x22
+
+extern int MaxCharPreviewID;
 
 #define OPT2NUM 13
 #ifdef FE6
@@ -719,15 +720,16 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
 
     int xTile = 0; // Left side
 
-    u8 charID[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+    // u8 charID[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
     // u8 base_charID[10] = { 1, 5, 2, 6, 3, 7, 4, 8 };
     int offset = proc->previewPage * NumberOfCharsPerPage;
+    // int offset = proc->previewPage * NumberOfCharsPerPage;
 
     int y = 0;
     for (int i = 0; i < NumberOfCharsPerPage; ++i)
     {
         y = Mod(i, 4);
-        DrawCharPreview(xTile + (16 * (i > 3)), (5 * y) + (y >> 1), charID[i] + offset, i + 1, maxWidth);
+        DrawCharPreview(xTile + (16 * (i > 3)), (5 * y) + (y >> 1), GetReviseCharByID(i + offset), i + 1, maxWidth);
     }
 
     PutDrawText(
@@ -802,10 +804,10 @@ void ClearPlayerBWL(void);
 void RerollPage(ConfigMenuProc * proc)
 {
     struct PidStatsChar * pidStats;
-    int id = GetCharIDTopOfPage(proc);
-    for (int i = id; i <= (id + NumberOfCharsPerPage); ++i)
+    int offset = proc->previewPage * NumberOfCharsPerPage;
+    for (int i = 0; i < NumberOfCharsPerPage; ++i)
     {
-        pidStats = (struct PidStatsChar *)GetPidStats(i);
+        pidStats = (struct PidStatsChar *)GetPidStats(GetReviseCharByID(offset + i));
         if ((void *)pidStats == (void *)RandValues)
         {
             continue;
@@ -824,10 +826,10 @@ void RerollPage(ConfigMenuProc * proc)
 void ResetPage(ConfigMenuProc * proc)
 {
     struct PidStatsChar * pidStats;
-    int id = GetCharIDTopOfPage(proc);
-    for (int i = id; i <= (id + NumberOfCharsPerPage); ++i)
+    int offset = proc->previewPage * NumberOfCharsPerPage;
+    for (int i = 0; i < NumberOfCharsPerPage; ++i)
     {
-        pidStats = (struct PidStatsChar *)GetPidStats(i);
+        pidStats = (struct PidStatsChar *)GetPidStats(GetReviseCharByID(offset + i));
         if ((void *)pidStats == (void *)RandValues)
         {
             continue;
@@ -1133,16 +1135,20 @@ enum
 #define FACE_DISP_BIT_13 (1 << 13)
 #define FACE_DISP_HIDDEN (1 << 14)
 
+int GetReviseCharByID(int id)
+{
+    // u8 base_charID[8] = { 1, 5, 2, 6, 3, 7, 8, 4 }; // because of menu options ordering lol
+    u8 base_charID[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+    int rem = Mod(id, NumberOfCharsPerPage);
+    int charID = base_charID[rem] + (id - rem);
+    charID += GetHiddenCharPreviewOffset(charID);
+    return charID;
+}
+
 int GetReviseCharID(ConfigMenuProc * proc)
 {
     u8 base_charID[11] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8, 4 }; // because of menu options ordering lol
     int charID = base_charID[proc->previewId] + proc->previewPage * NumberOfCharsPerPage;
-    charID += GetHiddenCharPreviewOffset(charID);
-    return charID;
-}
-int GetCharIDTopOfPage(ConfigMenuProc * proc)
-{
-    int charID = 1 + proc->previewPage * NumberOfCharsPerPage;
     charID += GetHiddenCharPreviewOffset(charID);
     return charID;
 }
@@ -1353,7 +1359,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 
 void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
 {
-    charID += GetHiddenCharPreviewOffset(charID);
+    // charID += GetHiddenCharPreviewOffset(charID);
     if (!charID || charID > MaxCharPreviewID)
     {
         return;

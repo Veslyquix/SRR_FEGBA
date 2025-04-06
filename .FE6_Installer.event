@@ -147,6 +147,8 @@ BYTE 0x56 0x57 0x58 0x59 0x5a 0x5b 0x5c 0x5d 0x5e 0x5f 0x60 0x61 0x62 0x63 0x5f 
 
 #define IgnoreTextID(id) "PUSH; ORG TextIDExceptionTable + (id); BYTE 1; POP" 
 #define IgnoreTextIDRange(id1, id2) "PUSH; ORG TextIDExceptionTable + (id1); FILL(id2-id1) 0x1; POP" 
+#define NeverPreviewChar(id) "PUSH; ORG HideCharPreviewExceptions + (id * 2); BYTE 1 1; POP" 
+#define NeverPreviewChars(id1, id2) "PUSH; ORG HideCharPreviewExceptions + (id1 * 2); FILL((id2-id1)*2) 0x1; POP" 
 
 
 ALIGN 4 
@@ -167,6 +169,24 @@ FILL(0x2000) // max id 0x2000
 ALIGN 4 
 HideCharPreviewExceptions:
 FILL(256*2) 
+
+#ifdef VeslyBuildfile
+NeverPreviewChar(0x7) // Cutscene duplicate without supports 
+NeverPreviewChar(0xC) // Cutscene duplicate without supports 
+NeverPreviewChar(0x13) // 
+NeverPreviewChar(0x24) // 
+NeverPreviewChar(0x29) // 
+NeverPreviewChar(0x2D) // 
+NeverPreviewChar(0x2F) // 
+NeverPreviewChar(0x30) // 
+NeverPreviewChar(0x33) // enemy (Galle) 
+NeverPreviewChar(0x39) // 
+NeverPreviewChar(0x3E) // 
+NeverPreviewChar(0x41) // 
+#endif 
+ALIGN 4 
+MaxCharPreviewID: 
+WORD 0x42 
 
 #ifdef VeslyBuildfile
 NeverUseBGMs(0x4B, 0x3E6)

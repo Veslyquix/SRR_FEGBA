@@ -228,8 +228,12 @@ ALIGN 4
 HideCharPreviewExceptions:
 FILL(256*2) 
 
+#ifdef VeslyBuildfile
 NeverPreviewChar(0x1B) // Unused enemy char 
-
+#endif 
+ALIGN 4 
+MaxCharPreviewID: 
+WORD 0x22 
 
 #ifdef VeslyBuildfile
 NeverUseBGMs(0x47, 0x53)
