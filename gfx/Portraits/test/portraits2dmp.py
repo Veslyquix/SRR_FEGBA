@@ -1,10 +1,10 @@
 from PIL import Image
 from pathlib import Path
-import numpy
+import numpy as np
+import numpy 
 import os
 import struct
 import time
-import matplotlib.pyplot as plt
 
 
 READ_AHEAD_BUFFER_SIZE = 0x00000012
@@ -104,20 +104,86 @@ def palette_to_bytes(palette):
 
 HEADER = bytes([0x00, 0x04, 0x10, 0x00]) # uncompressed data 
 
+def tile_debug_array(tiles, tiles_per_row=8):
+    max_height = max(tile.shape[0] for tile in tiles)
+    max_width = max(tile.shape[1] for tile in tiles)
 
-def cut_image(arr):
+    # Pad all tiles to same size
+    padded = [np.pad(tile,
+                     ((0, max_height - tile.shape[0]),
+                      (0, max_width - tile.shape[1])),
+                     mode='constant')
+              for tile in tiles]
+
+    rows = []
+    for i in range(0, len(padded), tiles_per_row):
+        row = np.hstack(padded[i:i+tiles_per_row])
+        rows.append(row)
+
+    full_arr = np.vstack(rows)
+    return full_arr.astype(np.uint8)
+
+
+def debug_image_with_palette(indexed_arr, palette):
+    img = Image.fromarray(indexed_arr, mode='P')
+    img.putpalette(palette_to_flat(palette))
+    return img
+
+def palette_to_flat(palette):
+    flat = []
+    for (r, g, b) in palette:
+        flat.extend([r, g, b])
+    while len(flat) < 768:  # pad to 256 colors (256 * 3 = 768)
+        flat.extend([0, 0, 0])
+    return flat
+
+def cut_image(arr, palette):
+    
     portrait = numpy.zeros((32, 256))
     frames = numpy.zeros((8, 384))
-    framesfe6 = numpy.zeros((8, 384))
+    fe6portrait = numpy.zeros((40, 256))
 
     minimug = arr[16: 48, 96: 128]
 
-    portrait[0: 32, 160: 176] = arr[48: 80, 0: 16]
-    portrait[0: 32, 176: 192] = arr[48: 80, 80: 96]
-    portrait[0: 32, 0: 64] = arr[0: 32, 16: 80]
-    portrait[0: 32, 64: 128] = arr[32: 64, 16: 80]
-    portrait[0: 16, 128: 160] = arr[64: 80, 16: 48]
-    portrait[16: 32, 128: 160] = arr[64: 80, 48: 80]
+    portrait[0: 32, 0: 64] = arr[0: 32, 16: 80] # hair
+    portrait[0: 32, 64: 128] = arr[32: 64, 16: 80] # face
+    portrait[0: 16, 128: 160] = arr[64: 80, 16: 48] #shoulders1
+    portrait[16: 32, 128: 160] = arr[64: 80, 48: 80] #shoulders2
+    portrait[0: 32, 160: 176] = arr[48: 80, 0: 16] # shoulders3 
+    portrait[0: 32, 176: 192] = arr[48: 80, 80: 96] # shoulders4
+
+##    portrait[0: 16, 192: 224] = arr[48: 64, 96: 128] # half blink 
+##    portrait[16: 32, 192: 224] = arr[64: 80, 96: 128] # blink 
+##    portrait[0: 16, 224: 256] = arr[80: 96, 96: 128] # neutral mouth 
+##    portrait[16: 32, 224: 256] = arr[96: 112, 96: 128] # empty / portrait extension 
+    
+    
+    # fe6
+    fe6portrait[0: 32, 0: 64] = arr[0: 32, 16: 80] # hair
+    fe6portrait[0: 32, 64: 128] = arr[32: 64, 16: 80] # face
+    fe6portrait[0: 16, 128: 160] = arr[64: 80, 16: 48] #shoulders1
+    fe6portrait[16: 32, 128: 160] = arr[64: 80, 48: 80] #shoulders2
+    fe6portrait[0: 32, 160: 176] = arr[48: 80, 0: 16] # shoulders3 
+    fe6portrait[0: 32, 176: 192] = arr[48: 80, 80: 96] # shoulders4
+    
+    fe6portrait[0:8, 192: 224] = arr[80: 88, 0: 32] # smile  
+    fe6portrait[8:16, 192: 224] = arr[88: 96, 0: 32]
+    fe6portrait[0:8, 224: 256] = arr[80: 88, 32: 64] # half smile 
+    fe6portrait[8:16, 224: 256] = arr[88: 96, 32: 64]
+    fe6portrait[16:24, 192: 224] = arr[96: 104, 0: 32] # bottom smile 
+    fe6portrait[24:32, 192: 224] = arr[104: 112, 0: 32]
+    fe6portrait[16:24, 224: 256] = arr[96: 104, 32: 64] # bottom half smile 
+    fe6portrait[24:32, 224: 256] = arr[104: 112, 32: 64]
+    fe6portrait[32:40, 0: 32] = arr[80: 88, 96: 128] # closed mouth 
+    fe6portrait[32:40, 32: 64] = arr[88: 96, 64: 96]
+    #portrait[32:40, 64: 96] = arr[96: 104, 64: 96] # bottom closed mouth / chin? 
+    #portrait[32:40, 96: 128] = arr[104: 112, 64: 96]
+    
+##    debug_arr = tile_debug_array([portrait], tiles_per_row=8)
+##    debug_img = debug_image_with_palette(debug_arr, palette)
+##    debug_img.show()
+    
+
 
 ##    portrait[0: 16, 192: 224] = arr[48: 64, 96: 128] # half blink 
 ##    portrait[16: 32, 192: 224] = arr[64: 80, 96: 128] # blink 
@@ -138,23 +204,22 @@ def cut_image(arr):
     frames[:, 320: 352] = arr[96: 104, 64: 96] # bottom closed mouth 
     frames[:, 352: 384] = arr[104: 112, 64: 96]
 
-    framesfe6[:, 0: 32] = arr[80: 88, 0: 32] # smile  
-    framesfe6[:, 32: 64] = arr[88: 96, 0: 32]
-    framesfe6[:, 64: 96] = arr[80: 88, 32: 64] # half smile 
-    framesfe6[:, 96: 128] = arr[88: 96, 32: 64]
-    framesfe6[:, 128: 160] = arr[96: 104, 0: 32] # bottom smile 
-    framesfe6[:, 160: 192] = arr[104: 112, 0: 32]
-    framesfe6[:, 192: 224] = arr[96: 104, 32: 64] # bottom half smile 
-    framesfe6[:, 224: 256] = arr[104: 112, 32: 64]
-    framesfe6[:, 256: 288] = arr[80: 88, 64: 96] # closed mouth 
-    framesfe6[:, 288: 320] = arr[88: 96, 64: 96]
-    framesfe6[:, 320: 352] = arr[96: 104, 64: 96] # bottom closed mouth / chin? 
-    framesfe6[:, 352: 384] = arr[104: 112, 64: 96]
-    plt.imshow(stacked, cmap="gray")
-    plt.show()
+##    framesfe6[:, 0: 32] = arr[80: 88, 0: 32] # smile  
+##    framesfe6[:, 32: 64] = arr[88: 96, 0: 32]
+##    framesfe6[:, 64: 96] = arr[80: 88, 32: 64] # half smile 
+##    framesfe6[:, 96: 128] = arr[88: 96, 32: 64]
+##    framesfe6[:, 128: 160] = arr[96: 104, 0: 32] # bottom smile 
+##    framesfe6[:, 160: 192] = arr[104: 112, 0: 32]
+##    framesfe6[:, 192: 224] = arr[96: 104, 32: 64] # bottom half smile 
+##    framesfe6[:, 224: 256] = arr[104: 112, 32: 64]
+##    framesfe6[:, 256: 288] = arr[80: 88, 64: 96] # closed mouth 
+##    framesfe6[:, 288: 320] = arr[88: 96, 64: 96]
+##    framesfe6[:, 320: 352] = arr[96: 104, 64: 96] # bottom closed mouth / chin? 
+##    framesfe6[:, 352: 384] = arr[104: 112, 64: 96]
+
 
     
-    return portrait, frames, minimug, framesfe6
+    return portrait, frames, minimug, fe6portrait
 
 
 SEARCH_RANGE = 0, 7
@@ -226,10 +291,10 @@ def portrait_to_dmp(image_file):
         arr = arr + (arr == 0) * 20
         arr = arr - (arr == transparent) * transparent
         arr = arr - (arr == 20) * (20 - transparent)
-    portrait, frames, minimug, framesfe6 = cut_image(arr)
+    portrait, frames, minimug, framesfe6 = cut_image(arr, palette)
 
 #    portrait = HEADER + to_gba(portrait).tobytes()
-    portraitandframesfe6 = to_gba(portrait).tobytes() + to_gba(framesfe6).tobytes()
+    portraitandframesfe6 = compress(to_gba(framesfe6).tobytes())
     portrait = compress(to_gba(portrait).tobytes())
     frames = to_gba(frames).tobytes()
     minimugfe6 = to_gba(minimug).tobytes()
