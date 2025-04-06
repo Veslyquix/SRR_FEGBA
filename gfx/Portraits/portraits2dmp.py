@@ -194,6 +194,15 @@ def cut_image(arr):
     fe6portrait[24:32, 224: 256] = arr[104: 112, 32: 64]
     fe6portrait[32:40, 0: 32] = arr[80: 88, 96: 128] # closed mouth 
     fe6portrait[32:40, 32: 64] = arr[88: 96, 64: 96]
+
+    
+    #fe6portrait[0:8, 256: 272] = arr[80: 88, 96: 112] # closed mouth
+    #fe6portrait[8:16, 256: 272] = arr[80: 88, 112: 128] # closed mouth 
+    #fe6portrait[16:24, 256: 272] = arr[88: 96, 64: 80]
+    #fe6portrait[24:32, 256: 272] = arr[88: 96, 80: 96]
+    
+    #fe6portrait[32:40, 0: 32] = arr[80: 88, 96: 128] # closed mouth 
+    #fe6portrait[32:40, 32: 64] = arr[88: 96, 64: 96]
     #portrait[32:40, 64: 96] = arr[96: 104, 64: 96] # bottom closed mouth / chin? 
     #portrait[32:40, 96: 128] = arr[104: 112, 64: 96]
     
@@ -291,7 +300,8 @@ def portrait_to_dmp(image_file):
     portrait, frames, minimug, framesfe6 = cut_image(arr)
 
 #    portrait = HEADER + to_gba(portrait).tobytes()
-    portraitandframesfe6 = compress(to_gba(framesfe6).tobytes())
+
+    portraitandframesfe6 = compress(to_gba(framesfe6).tobytes()[:-768])
     portrait = compress(to_gba(portrait).tobytes())
     frames = to_gba(frames).tobytes()
     minimugfe6 = to_gba(minimug).tobytes()

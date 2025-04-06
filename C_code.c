@@ -678,12 +678,35 @@ void ClearConfigGfx(ConfigMenuProc * proc)
 #define NumberOfCharsPerPage 7
 #define MaxCharPreviewID 0x22
 
+#define OPT2NUM 13
+#ifdef FE6
+extern const char GameText;
+extern const char Option2[OPT2NUM][64]; // do align 16 before each?
+char * PutStringInBuffer(const char * str, int huffman);
+extern const char RerollText;
+extern const char SetAllText;
+extern const char ResetPageText;
+extern const char ConfirmText;
+extern const char PageText;
+#else
+const char Option2[OPT2NUM][32];
+const char GameText[] = { "From Game" };
+const char * PutStringInBuffer(const char * str, int huffman);
+const char RerollText[] = { "Reroll Page" };
+const char SetAllText[] = { "Set All" };
+const char ResetPageText[] = { "Reset Page" };
+const char ConfirmText[] = { "Confirm" };
+const char PageText[] = { "Page" };
+#endif
+
 void DrawCharConfirmPage(ConfigMenuProc * proc)
 {
     if (!CharConfirmPage)
     {
         return;
     }
+
+    int huffman = 0;
     BG_Fill(gBG0TilemapBuffer, 0);
     BG_Fill(gBG1TilemapBuffer, 0);
     ResetText(); // need this
@@ -707,15 +730,24 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
         DrawCharPreview(xTile + (16 * (i > 3)), (5 * y) + (y >> 1), charID[i] + offset, i + 1, maxWidth);
     }
 
-    PutDrawText(&th[16], TILEMAP_LOCATED(gBG0TilemapBuffer, 4, 9), green, 0, 0, "Reroll Page");
-    PutDrawText(&th[17], TILEMAP_LOCATED(gBG0TilemapBuffer, 0xD, 9), green, 0, 0, "Set All");
-    PutDrawText(&th[18], TILEMAP_LOCATED(gBG0TilemapBuffer, 0x14, 9), green, 0, 0, "Reset Page");
-    PutDrawText(&th[19], TILEMAP_LOCATED(gBG0TilemapBuffer, 0x14, 16), green, 0, 0, "Confirm");
-    PutDrawText(&th[20], TILEMAP_LOCATED(gBG0TilemapBuffer, 0x14, 18), green, 0, 0, "Page");
-
+    PutDrawText(
+        &th[16], TILEMAP_LOCATED(gBG0TilemapBuffer, 4, 9), green, 0, 0,
+        PutStringInBuffer((const char *)&RerollText, huffman));
+    PutDrawText(
+        &th[17], TILEMAP_LOCATED(gBG0TilemapBuffer, 0xD, 9), green, 0, 0,
+        PutStringInBuffer((const char *)&SetAllText, huffman));
+    PutDrawText(
+        &th[18], TILEMAP_LOCATED(gBG0TilemapBuffer, 0x14, 9), green, 0, 0,
+        PutStringInBuffer((const char *)&ResetPageText, huffman));
+    PutDrawText(
+        &th[19], TILEMAP_LOCATED(gBG0TilemapBuffer, 0x14, 16), green, 0, 0,
+        PutStringInBuffer((const char *)&ConfirmText, huffman));
+    PutDrawText(
+        &th[20], TILEMAP_LOCATED(gBG0TilemapBuffer, 0x14, 18), green, 0, 0,
+        PutStringInBuffer((const char *)&PageText, huffman));
     // 0x13, 9
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
-    EnablePaletteSync();
+    // EnablePaletteSync();
 }
 void IncrementCharPreviewPage(ConfigMenuProc * proc)
 {
@@ -1012,16 +1044,22 @@ extern void PutFaceTm(u16 * tm, u8 * data, int tileref, s8 isFlipped);
 void UnpackFaceChibiGraphics_Bulk(int fid, int chr, int pal)
 {
     const struct FaceData * info = GetPortraitData(fid);
+
+#ifdef FE6
+    CpuFastCopy(info->imgChibi, (void *)(chr * CHR_SIZE + VRAM), 0x200);
+#else
     u8 buffer[0x200];
     Decompress(info->imgChibi, buffer);
-
     CpuFastCopy(buffer + 0x00, (void *)(chr * CHR_SIZE + VRAM), 0x80);
     CpuFastCopy(buffer + 0x80, (void *)((chr + 0x04) * CHR_SIZE + VRAM), 0x80);
     CpuFastCopy(buffer + 0x100, (void *)((chr + 0x08) * CHR_SIZE + VRAM), 0x80);
     CpuFastCopy(buffer + 0x180, (void *)((chr + 0x0C) * CHR_SIZE + VRAM), 0x80);
+#endif
     ApplyPalette(info->pal, pal);
 }
-extern u8 const gUnknown_085911C4;
+u8 const gUnknown_085911C4_dont_repoint[] = {
+    4, 4, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+};
 extern u8 const * sUnknown_085911C4; // 0x59C8
 // [] = {    4, 4, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,};
 void PutFaceChibi_Bulk(int fid, u16 * tm, int chr, int pal, s8 isFlipped)
@@ -1029,21 +1067,37 @@ void PutFaceChibi_Bulk(int fid, u16 * tm, int chr, int pal, s8 isFlipped)
     UnpackFaceChibiGraphics_Bulk(fid, chr, pal);
 
     chr &= 0x3FF;
+#ifdef FE8
     PutFaceTm(tm, (void *)sUnknown_085911C4, TILEREF(chr, pal), isFlipped);
+#else
+    PutFaceTm(tm, (void *)gUnknown_085911C4_dont_repoint, TILEREF(chr, pal), isFlipped);
+#endif
 
     return;
 }
 
+extern int GetStringTextLen(const char * str);
 char * GetStringFromIndexInBufferWithoutReplacing(int index, char * buffer);
-int GetStringTextCenteredPos(int x, const char * str);
+#ifdef FE6
+int GetStringTextCenteredPos_FE6(int area_length, char const * str)
+{
+    return (area_length - (GetStringTextLen(str))) / 2;
+}
+#endif
+extern int GetStringTextCenteredPos(int x, const char * str);
 void PutDrawCenteredText(struct Text * text, u16 * dest, int textID, int maxWidth, int col)
 {
     char buffer[32];
     char * str = GetStringFromIndexInBufferWithoutReplacing(textID, buffer);
-    int position = GetStringTextCenteredPos(maxWidth * 8, str);
+#ifdef FE6
 
+    int position = GetStringTextCenteredPos_FE6(maxWidth * 8, str);
+#else
+    int position = GetStringTextCenteredPos(maxWidth * 8, str);
+#endif
     ClearText(text);
     PutDrawText(text, dest, col, position, 0, str);
+    // PutDrawText(text, dest, col, 0, 0, str);
 }
 int GetHiddenCharPreviewOffset(int charID)
 {
@@ -1092,8 +1146,7 @@ int GetCharIDTopOfPage(ConfigMenuProc * proc)
     charID += GetHiddenCharPreviewOffset(charID);
     return charID;
 }
-#define OPT2NUM 13
-const char Option2[OPT2NUM][32];
+
 extern void EndFaceById(int faceSlot);
 extern void SetFaceBlinkControlById(int, int);
 extern struct FaceProc * StartFace(int faceSlot, int portraitId, int x, int y, int displayType);
@@ -1133,14 +1186,17 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
         gStatScreen.text + 22, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y), table->nameTextId, maxWidth, gold);
     TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, 2, y - 2), 11, 0, 0x380);
     TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, x + 13, y - 2), 11, 0, 0x380);
-    PutDrawText(gStatScreen.text + 23, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 18), green, 0, 0, "From Game: ");
+    PutDrawText(
+        gStatScreen.text + 23, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 18), green, 0, 0,
+        PutStringInBuffer((const char *)&GameText, 0));
     ClearText(gStatScreen.text + 24);
     InitText(gStatScreen.text + 24, 15);
-    PutDrawText(gStatScreen.text + 24, TILEMAP_LOCATED(gBG0TilemapBuffer, 12, 18), green, 0, 0, Option2[tableID]);
+    PutDrawText(
+        gStatScreen.text + 24, TILEMAP_LOCATED(gBG0TilemapBuffer, 12, 18), green, 0, 0, (void *)Option2[tableID]);
     // SetFaceBlinkControlById(0, 5);
     // SetFaceBlinkControlById(1, 5);
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
-    EnablePaletteSync();
+    // EnablePaletteSync();
 }
 #define PreviewCharLabel 1
 void DisplayVertUiHand(int x, int y);
@@ -9760,7 +9816,7 @@ extern const char RandomizerText;
 const char SeedText[] = { "Seed" };
 const char VarianceText[] = { "Variance" };
 const char CharactersText[] = { "Characters" };
-const char GameText[] = { "From Game" };
+// const char GameText[] = { "From Game" };
 const char BaseStatsText[] = { "Base Stats" };
 const char GrowthsText[] = { "Growths" };
 const char LevelupsText[] = { "Levelups" };
@@ -10178,7 +10234,9 @@ extern void StartGreenText(ProcPtr parent);
 extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 ConfigMenuProc * StartConfigMenu(ProcPtr parent)
 {
+#ifdef FE8
     Proc_EndEach(gProcScr_HelpPromptSpr);
+#endif
     RecruitValues->pauseNameReplace = true;
     ConfigMenuProc * proc;
     if (parent)

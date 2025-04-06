@@ -120,8 +120,33 @@ SET_FUNC GetUnitBestWRankType, 0x8029965
 SET_DATA gProcScr_ArenaUiMain, 0x86911AC
 SET_FUNC SetupDebugFontForOBJ, 0x8005471
 SET_FUNC PrintDebugStringAsOBJ, 0x8005551
+SET_FUNC GetPortraitData, 0x8007fc1
+SET_FUNC GetStringTextLen, 0x8005b95
+SET_FUNC PutFaceTm, 0x8008729 @ maybe ? 
+SET_FUNC ResetFaces, 0x8008001
+@SET_FUNC GetStringTextCenteredPos, 0x80056A9
+@SET_FUNC EnablePaletteSync, 
+@SET_DATA sUnknown_085911C4, 0x80059C8
+SET_FUNC StartFace2, 0x800830D @ really StartFace 
+SET_FUNC CpuFastSet, 0x809DCD9
+SET_FUNC CopyToPaletteBuffer, 0x800105D
+SET_FUNC RegisterDataMove, 0x8002B05
+SET_FUNC EndFaceById, 0x8008581
 .endif 
 .if FE7 == true 
+@SET_FUNC ClearText, 0x80054E1, 55fc 
+@SET_DATA sUnknown_085911C4, 0x80059C8
+@SET_DATA gProcScr_HelpPromptSpr, 0x80059C8
+@SET_FUNC EnablePaletteSync, 
+SET_FUNC StartFace2, 0x8007BCD
+SET_FUNC EndFaceById, 0x8006D51
+SET_FUNC GetStringTextCenteredPos, 0x80056A9
+SET_FUNC ResetFaces, 0x8006B35
+SET_FUNC RegisterDataMove, 0x8003079
+SET_FUNC PutFaceTm, 0x8006E8D
+SET_FUNC CpuFastSet, 0x80BFA0D
+SET_FUNC CopyToPaletteBuffer, 0x8001085
+SET_FUNC GetPortraitData, 0x8006B21
 SET_FUNC GetPidStats, 0x80A0551
 SET_FUNC ReadGlobalSaveInfo, 0x809E4F1
 SET_FUNC StartBgmExt, 0x80038AD

@@ -10,6 +10,30 @@
 #define FirstMugID 0x100
 
 
+// Vanilla portraits that need minimugs added 
+#ifdef _FE6_ 
+#define EliwoodFE6Mug 0x56
+#define HectorFE6Mug 0x58
+#endif 
+#ifdef _FE7_ 
+#define UtherMug 0x4E 
+#define LeilaMug 0x57 
+#define EleanoraMug 0x4c
+#define ElbertMug 0x4f
+#define BramimondMug 0x5c 
+#endif 
+
+
+#ifdef _FE8_ 
+#define DaraMug 0x55 
+#endif 
+
+
+
+
+
+
+
 ALIGN 4 
 NewPortraitTable: 
 #undef PortraitTable 
@@ -45,29 +69,6 @@ POP
 
 
 
-// Vanilla portraits that need minimugs added 
-
-PUSH 
-#ifdef _FE6_ 
-// MugEntry(EliwoodMug, EliwoodMugData, 2, 5, 2, 3)
-// MugEntry(HectorMug, HectorMugData, 2, 5, 2, 3)
-
-#endif 
-
-#ifdef _FE7_ 
-MugEntry(0x4E, UtherMugData, 3, 4, 4, 2)
-MugEntry(0x57, LeilaMugData, 2, 6, 3, 4)
-MugEntry(0x4C, EleanoraMugData, 1, 5, 2, 3)
-MugEntry(0x4F, ElbertMugData, 2, 5, 3, 3)
-MugEntry(0x5C, BramimondMugData, 2, 6, 3, 3)
-#endif 
-
-
-
-#ifdef _FE8_ 
-// MugEntry(0x55, DaraMugData, 2, 7, 3, 5)
-#endif 
-POP 
 
 
 

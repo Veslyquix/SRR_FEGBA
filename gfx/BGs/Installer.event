@@ -1,4 +1,5 @@
 
+#ifdef _FE8_ 
 
 #include "src/src.event"
 
@@ -65,3 +66,5 @@ SHORT 0x4418 0x4008 0x21D8
 SHORT 0x4418 0x4028 0x21D9
 
 
+
+#endif 

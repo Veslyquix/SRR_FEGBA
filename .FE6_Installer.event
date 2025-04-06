@@ -1,7 +1,7 @@
 #ifndef callHackNew 
 	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 #endif 
-// PROTECT $39946C $399480
+
 
 #ifdef VeslyBuildfile 
 #include "TextFE6/repointedTextTable.event"
@@ -64,9 +64,10 @@ STRING "Abel" "FE6TR" ; BYTE 0
 
 //#define NeverRandomizeMusic // comment this out if you want music randomized 
 // it only knows of vanilla song IDs though 
+#define USE_CHAR_CONFIRM_PAGE True 
 ALIGN 4 
 CharConfirmPage:
-WORD 1 
+WORD USE_CHAR_CONFIRM_PAGE 
 RNTable:
 #incbin "RNTable.dmp" 
 ALIGN  4
@@ -163,6 +164,9 @@ FILL(0x1000) // probably not more than this many tracks
 ALIGN 4 
 TextIDExceptionTable: 
 FILL(0x2000) // max id 0x2000
+ALIGN 4 
+HideCharPreviewExceptions:
+FILL(256*2) 
 
 #ifdef VeslyBuildfile
 NeverUseBGMs(0x4B, 0x3E6)
@@ -241,6 +245,17 @@ NeverChangeChar(0xE1) // arena enemy randomized breaks things
 #else 
 	#define SetName(id) "ALIGN 32"
 #endif 
+
+RerollText: 
+STRING "Reroll Page" "FE6TR" ; BYTE 0 0 
+SetAllText: 
+STRING "Set All" "FE6TR" ; BYTE 0 0 
+ResetPageText: 
+STRING "Reset Page" "FE6TR" ; BYTE 0 0 
+ConfirmText: 
+STRING "Confirm" "FE6TR" ; BYTE 0 0 
+PageText: 
+STRING "Page" "FE6TR" ; BYTE 0 0 
 
 
 ALIGN 4 
@@ -642,7 +657,8 @@ ORG $17BEC
   jumpToHack(CasualMode)
   
 ORG $28f72 // in 28ef0
-SHORT $22c0 $4311 // default game/text speed fast 
+// SHORT $22C0 $4311 // default game/text speed fast 
+SHORT $21C0 $21C0 // default game/text speed fast 
 
 #ifndef JankyPalettes
 ORG $4a4A0 
@@ -768,9 +784,9 @@ SHORT $880A // ldrh r2, [r1]
 // TEMPORARY (hopefully...)
 // kill UpdateFaceTalk (called from Face_OnIdle) 
 // so no mouth frames appear for portraits > 0x100 
-ORG $82B8
-callHackNew(DisableMouthFrames_FE6) 
-SHORT $46c0 
+// ORG $82B8
+// callHackNew(DisableMouthFrames_FE6) 
+// SHORT $46c0 
 
 // make supports appear in febuilder 
 ORG $6afDE 
