@@ -754,7 +754,8 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
 void IncrementCharPreviewPage(ConfigMenuProc * proc)
 {
     proc->previewPage++;
-    if ((proc->previewPage * 7) > MaxCharPreviewID)
+    int id = GetReviseCharByID(proc->previewPage * NumberOfCharsPerPage);
+    if (id > MaxCharPreviewID)
     {
         proc->previewPage = 0;
     }
@@ -762,10 +763,13 @@ void IncrementCharPreviewPage(ConfigMenuProc * proc)
 }
 void DecrementCharPreviewPage(ConfigMenuProc * proc)
 {
+    // int id = proc->previewPage;
     proc->previewPage--;
+
     if (proc->previewPage < 0)
     {
-        proc->previewPage = MaxCharPreviewID / 7;
+        proc->previewPage = MaxCharPreviewID / NumberOfCharsPerPage -
+            ((GetReviseCharByID(MaxCharPreviewID) - (MaxCharPreviewID - 6)) / NumberOfCharsPerPage);
     }
     DrawCharConfirmPage(proc);
 }
@@ -805,9 +809,11 @@ void RerollPage(ConfigMenuProc * proc)
 {
     struct PidStatsChar * pidStats;
     int offset = proc->previewPage * NumberOfCharsPerPage;
+    int id;
     for (int i = 0; i < NumberOfCharsPerPage; ++i)
     {
-        pidStats = (struct PidStatsChar *)GetPidStats(GetReviseCharByID(offset + i));
+        id = GetReviseCharByID(offset + i);
+        pidStats = (struct PidStatsChar *)GetPidStats(id);
         if ((void *)pidStats == (void *)RandValues)
         {
             continue;
@@ -827,9 +833,11 @@ void ResetPage(ConfigMenuProc * proc)
 {
     struct PidStatsChar * pidStats;
     int offset = proc->previewPage * NumberOfCharsPerPage;
+    int id;
     for (int i = 0; i < NumberOfCharsPerPage; ++i)
     {
-        pidStats = (struct PidStatsChar *)GetPidStats(GetReviseCharByID(offset + i));
+        id = GetReviseCharByID(offset + i);
+        pidStats = (struct PidStatsChar *)GetPidStats(id);
         if ((void *)pidStats == (void *)RandValues)
         {
             continue;
@@ -840,7 +848,7 @@ void ResetPage(ConfigMenuProc * proc)
         }
 
         pidStats->deployAmt = 0;
-        pidStats->moveAmt = i;
+        pidStats->moveAmt = id;
     }
 }
 void SetAllCharConfirm(ConfigMenuProc * proc)
@@ -1104,7 +1112,7 @@ void PutDrawCenteredText(struct Text * text, u16 * dest, int textID, int maxWidt
 int GetHiddenCharPreviewOffset(int charID)
 {
     int c = 0;
-    for (int i = 1; i <= charID; ++i)
+    for (int i = 1; i <= (charID + c); ++i)
     {
         if (HideCharPreviewExceptions[i].NeverChangeFrom)
         {
@@ -1138,11 +1146,11 @@ enum
 int GetReviseCharByID(int id)
 {
     // u8 base_charID[8] = { 1, 5, 2, 6, 3, 7, 8, 4 }; // because of menu options ordering lol
-    u8 base_charID[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
-    int rem = Mod(id, NumberOfCharsPerPage);
-    int charID = base_charID[rem] + (id - rem);
-    charID += GetHiddenCharPreviewOffset(charID);
-    return charID;
+    // u8 base_charID[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+    // int rem = Mod(id, NumberOfCharsPerPage);
+    // int charID = base_charID[rem] + (id - rem);
+    id += GetHiddenCharPreviewOffset(id + 1) + 1; // +1 because we count from 0
+    return id;
 }
 
 int GetReviseCharID(ConfigMenuProc * proc)
