@@ -195,7 +195,7 @@ struct Unit
     /* 1A */ s8 conBonus;
     /* 1B */ u8 rescue;
 #ifdef FE6
-s8 movBonusA; // used 
+s8 movBonus; // used 
 s8 movBonusB; // displayed on stat screen
 #endif 
 #ifndef FE6
