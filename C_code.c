@@ -874,6 +874,28 @@ void SetAllCharConfirm(ConfigMenuProc * proc)
     }
 }
 
+int GetAdjustedCharacterID(const struct CharacterData * table);
+void CopyBWLForCharDuplicates(void)
+{
+
+    const struct CharacterData * table;
+    struct PidStatsChar * pidStatsA;
+    struct PidStatsChar * pidStatsB;
+    int num;
+    for (int i = 1; i <= 0x45; ++i)
+    {
+        table = GetCharacterData(i); // check for morphs and duplicates in vanilla table
+        num = GetAdjustedCharacterID(table);
+        if (num != (i) && num <= 0x45)
+        {
+            pidStatsA = (void *)GetPidStats(i);
+            pidStatsB = (void *)GetPidStats(num);
+            pidStatsA->moveAmt = pidStatsB->moveAmt;
+            pidStatsA->deployAmt = pidStatsB->deployAmt;
+        }
+    }
+}
+
 #define ReviseCharProcLabel 10
 void ReviseRandomizedCharacter(ConfigMenuProc * proc)
 {
@@ -894,6 +916,7 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     {
         if (proc->previewId == ConfirmCommandID)
         {
+            CopyBWLForCharDuplicates();
             Proc_Goto(proc, 99);
             return;
         }
