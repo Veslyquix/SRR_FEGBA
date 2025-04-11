@@ -112,7 +112,7 @@ struct GrowthBonusValues
     u8 player : 4;
     u8 enemy : 4;
     u8 ForcedCharTable : 5;
-    u8 Backgrounds;
+    u8 Backgrounds : 1;
     u8 pad : 2;
 };
 
@@ -605,6 +605,7 @@ const struct FE8CharacterData *
         }
         table = cData[tableID] + (newCharId);
     }
+
     if ((!table->portraitId))
     {
         BreakWithValue(charId, newCharId, tableID);
@@ -1517,7 +1518,7 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
             }
             if (pidStats->moveAmt)
             {
-                unitID = pidStats->moveAmt;
+                unitID = pidStats->moveAmt & 0xFF;
             }
         }
     }
@@ -1531,7 +1532,7 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
         if (pidStats)
         {
             pidStats->deployAmt = tableID;
-            pidStats->moveAmt = unitID;
+            pidStats->moveAmt = unitID & 0xFF;
         }
     }
     return result;
