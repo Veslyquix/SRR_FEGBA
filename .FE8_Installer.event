@@ -1182,6 +1182,11 @@ DisplayRandomSkillsOption:
 	WORD 0 
 #endif 
 
+
+ALIGN 4 
+gSRRMenuText: 
+FILL(256 * 4) 
+
 ALIGN 4 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic

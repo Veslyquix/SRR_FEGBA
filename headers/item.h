@@ -253,7 +253,7 @@ extern void PutDrawText(struct Text* text, u16* dest, int colorId, int x, int ti
 extern void ClearText(struct Text* text); // 80054E0
 extern void InitText(struct Text* text, int width); // 8005474
 extern void ResetText(void); //80053B0
-extern void SetTextFontGlyphs(struct Font *); //8005410
+extern void SetTextFontGlyphs(int); //8005410
 extern void SetTextFont(struct Font *); // 8005450
 extern void ResetTextFont(void); //8005438
 extern char *GetStringFromIndex(int index);

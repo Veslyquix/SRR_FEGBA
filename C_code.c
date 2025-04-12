@@ -47,6 +47,7 @@ typedef struct
     s8 previewPage;
     s8 previewId;
     s8 changingGame;
+    s8 helpBox;
     s8 Option[26];
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
@@ -142,6 +143,7 @@ extern struct ExceptionsStruct SkillExceptions[];
 extern int SkillSysInstalled;
 extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
+void StartHelpBoxString(int x, int y, char * string);
 
 #define SET_TEXT_USED
 // #define STRINGS_IN_ROM // faster if defined, but gotta write all the names in the installer
@@ -9219,6 +9221,25 @@ extern int StephanoStyleFlag;
 extern int GammaStyleFlag;
 extern int PikminStyleFlag;
 #endif
+// void SRRHbKeyListener_Loop(ProcPtr proc)
+// {
+// u16 keys = sKeyStatusBuffer.newKeys;
+// if (keys & (A_BUTTON | B_BUTTON | DPAD_ANY))
+// {
+// CloseHelpBox();
+// Proc_Break(proc);
+// }
+
+// return;
+// }
+
+// struct ProcCmd CONST_DATA gProcScr_SRRHelpboxListener[] = {
+// PROC_SLEEP(1),
+// PROC_REPEAT(SRRHbKeyListener_Loop),
+
+// PROC_END,
+// };
+void ClearHelpBoxText2(void);
 void ConfigMenuLoop(ConfigMenuProc * proc)
 {
 
@@ -9240,6 +9261,23 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     int id = proc->id;
     int offset = proc->offset;
+    if (proc->helpBox)
+    {
+        if (keys & B_BUTTON)
+        {
+            proc->helpBox = false;
+            CloseHelpBox();
+            // ClearHelpBoxText2();
+        }
+        return;
+    }
+    if (keys & R_BUTTON)
+    {
+        StartHelpBoxString(30, 54, " test");
+        proc->helpBox = true;
+        // Proc_StartBlocking(gProcScr_SRRHelpboxListener, proc);
+        return;
+    }
 
     if ((keys & START_BUTTON) || (keys & A_BUTTON))
     { // press A or Start to continue
@@ -10267,11 +10305,12 @@ void InitDraw(ConfigMenuProc * proc)
     // StartGreenText(proc);
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
-
+extern void LoadHelpBoxGfx(void * vram, int palId);
 extern void StartGreenText(ProcPtr parent);
 extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 ConfigMenuProc * StartConfigMenu(ProcPtr parent)
 {
+    LoadHelpBoxGfx(NULL, -1);
 #ifdef FE8
     Proc_EndEach(gProcScr_HelpPromptSpr);
 #endif
@@ -10291,6 +10330,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         {
             proc->Option[i] = 0;
         }
+        proc->helpBox = false;
         proc->reloadPlayers = false;
         proc->reloadEnemies = false;
         if (!DefaultConfigToVanilla)
@@ -12366,3 +12406,354 @@ void C_SS_ComputeBattleUnitWeaponRankBonuses(struct BattleUnit * bu)
     }
 }
 #endif
+
+struct ProcHelpBoxIntroString
+{
+    /* 00 */ PROC_HEADER;
+
+    /* 29 */ u8 _pad[0x54 - 0x29];
+    /* 54 */ char * string;
+
+    /* 58 */ int item;
+    /* 5C */ int msg;
+    /* 60 */ int unk_60;
+    /* 64 */ s16 pretext_lines; /* lines for  prefix */
+};
+struct HelpBoxSt
+{
+    /* 00 */ struct Font font;
+    /* 16 */ struct Text text[3];
+    /* 30 */ u16 oam2_base;
+};
+struct HelpBoxScrollProc
+{
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ const char * string;
+    /* 30 */ struct Font * font;
+
+    /* 34 */ struct Text * texts[9]; // unknown size; 3?
+
+    /* 58 */ int unk_58;
+    /* 5C */ s16 pretext_lines;
+    /* 5E */ s16 step;
+    /* 60 */ u16 speed;
+    /* 62 */ s16 chars_per_step;
+    /* 64 */ s16 unk_64;
+};
+struct HelpBoxInfo
+{
+    /* 00 */ const struct HelpBoxInfo * adjUp;
+    /* 04 */ const struct HelpBoxInfo * adjDown;
+    /* 08 */ const struct HelpBoxInfo * adjLeft;
+    /* 0C */ const struct HelpBoxInfo * adjRight;
+    /* 10 */ u8 xDisplay;
+    /* 11 */ u8 yDisplay;
+    /* 12 */ u16 mid;
+    /* 14 */ void (*redirect)(struct HelpBoxProc * proc);
+    /* 18 */ void (*populate)(struct HelpBoxProc * proc);
+};
+struct ProcHelpBoxIntro
+{
+    /* 00 */ PROC_HEADER;
+
+    /* 29 */ u8 _pad[0x58 - 0x29];
+
+    /* 58 */ int item;
+    /* 5C */ int msg;
+    /* 60 */ int unk_60;
+    /* 64 */ s16 pretext_lines; /* lines for  prefix */
+};
+extern struct HelpBoxSt gHelpBoxSt;
+extern struct ProcCmd ProcHelpBoxIntro[];
+extern struct ProcCmd gProcScr_HelpBoxTextScroll[];
+extern struct ProcCmd ProcScr_HelpBoxIntro[];
+extern struct ProcCmd gProcScr_HelpBox[];
+extern void SetHelpBoxInitPosition(struct HelpBoxProc * proc, int x, int y);
+extern void ApplyHelpBoxContentSize(struct HelpBoxProc * proc, int width, int height);
+extern void ApplyHelpBoxPosition(struct HelpBoxProc * proc, int x, int y);
+extern void ResetHelpBoxInitSize(struct HelpBoxProc * proc);
+extern char * StringInsertSpecialPrefixByCtrl(void);
+extern int GetHelpBoxItemInfoKind(int item);
+extern void GetStringTextBox(const char * str, int * outWidth, int * outHeight);
+extern struct HelpBoxInfo sMutableHbi;
+extern const struct HelpBoxInfo * sLastHbi;
+extern struct Vec2 sHbOrigin;
+extern void SpriteText_DrawBackground(struct Text *);
+extern void Text_SetColor(struct Text * th, int colorId);
+extern void HelpBoxSetupstringLines(struct ProcHelpBoxIntro * proc);
+extern void HelpBoxDrawstring(struct ProcHelpBoxIntro * proc);
+void HelpBoxIntroDrawTextsString(struct ProcHelpBoxIntroString * proc);
+
+struct ProcCmd const ProcScr_HelpBoxIntroString[] = {
+    PROC_SLEEP(6),
+
+    PROC_REPEAT(HelpBoxSetupstringLines),
+    PROC_REPEAT(HelpBoxDrawstring),
+
+    PROC_CALL(HelpBoxIntroDrawTextsString),
+
+    PROC_END,
+};
+
+void ClearHelpBoxText2(void)
+{ //
+
+    SetTextFont(&gHelpBoxSt.font);
+
+    SpriteText_DrawBackground(&gHelpBoxSt.text[0]);
+    SpriteText_DrawBackground(&gHelpBoxSt.text[1]);
+    SpriteText_DrawBackground(&gHelpBoxSt.text[2]);
+
+    Proc_EndEach(gProcScr_HelpBoxTextScroll);
+    Proc_EndEach(ProcScr_HelpBoxIntro);
+    Proc_EndEach(ProcScr_HelpBoxIntroString);
+
+    SetTextFont(0);
+
+    return;
+}
+
+void StartHelpBoxTextInitWithString(int item, int msgId, char * string)
+{
+    struct ProcHelpBoxIntroString * proc = Proc_Start(ProcScr_HelpBoxIntroString, PROC_TREE_3);
+
+    proc->item = item;
+    proc->msg = msgId;
+    proc->string = string;
+}
+
+extern int sActiveMsg;
+void LoadStringIntoBuffer(char * a)
+{
+    sActiveMsg = 0;
+    for (int i = 0; i < 50; ++i)
+    {
+        sMsgString[i] = a[i];
+        if (!a[i])
+        {
+            break;
+        }
+    }
+    SetMsgTerminator(sMsgString);
+}
+
+void HelpBoxIntroDrawTextsString(struct ProcHelpBoxIntroString * proc)
+{
+    struct HelpBoxScrollProc * otherProc;
+    int textSpeed;
+
+    SetTextFont(&gHelpBoxSt.font);
+
+    SetTextFontGlyphs(1);
+
+    Text_SetColor(&gHelpBoxSt.text[0], 6);
+    Text_SetColor(&gHelpBoxSt.text[1], 6);
+    Text_SetColor(&gHelpBoxSt.text[2], 6);
+
+    SetTextFont(0);
+
+    Proc_EndEach(gProcScr_HelpBoxTextScroll);
+
+    otherProc = Proc_Start(gProcScr_HelpBoxTextScroll, PROC_TREE_3);
+    otherProc->font = &gHelpBoxSt.font;
+
+    otherProc->texts[0] = &gHelpBoxSt.text[0];
+    otherProc->texts[1] = &gHelpBoxSt.text[1];
+    otherProc->texts[2] = &gHelpBoxSt.text[2];
+
+    otherProc->pretext_lines = proc->pretext_lines;
+
+    // GetStringFromIndex(0x505);
+    LoadStringIntoBuffer(proc->string);
+
+    otherProc->string = StringInsertSpecialPrefixByCtrl();
+    otherProc->chars_per_step = 1;
+    otherProc->step = 0;
+
+    textSpeed = 2; // gPlaySt.config.textSpeed;
+    switch (textSpeed)
+    {
+        case 0: /* default speed */
+            otherProc->speed = 2;
+            break;
+
+        case 1: /* slow */
+            otherProc->speed = textSpeed;
+            break;
+
+        case 2: /* fast */
+            otherProc->speed = 1;
+            otherProc->chars_per_step = textSpeed;
+            break;
+
+        case 3: /* draw all at once */
+            otherProc->speed = 0;
+            otherProc->chars_per_step = 0x7f;
+            break;
+    }
+}
+
+void ApplyHelpBoxContentSizeString(struct HelpBoxProc * proc, int width, int height, char * string)
+{
+    width = 0xF0 & (width + 15); // align to 16 pixel multiple
+
+    switch (GetHelpBoxItemInfoKind(proc->item))
+    {
+
+        case 1: // weapon
+            if (width < 0x90)
+                width = 0x90;
+
+            if (GetStringTextLen(string) > 8)
+                height += 0x20;
+            else
+                height += 0x10;
+
+            break;
+
+        case 2: // staff
+            if (width < 0x60)
+                width = 0x60;
+
+            height += 0x10;
+
+            break;
+
+        case 3: // save stuff
+            width = 0x80;
+            height += 0x10;
+
+            break;
+
+    } // switch (GetHelpBoxItemInfoKind(proc->item))
+
+    proc->wBoxFinal = width;
+    proc->hBoxFinal = height;
+}
+
+void StartHelpBoxString(int x, int y, char * string)
+{
+    sMutableHbi.adjUp = NULL;
+    sMutableHbi.adjDown = NULL;
+    sMutableHbi.adjLeft = NULL;
+    sMutableHbi.adjRight = NULL;
+
+    sMutableHbi.xDisplay = x;
+    sMutableHbi.yDisplay = y;
+    sMutableHbi.mid = 0x505; // default text ID
+
+    sMutableHbi.redirect = NULL;
+    sMutableHbi.populate = NULL;
+
+    sHbOrigin.x = 0;
+    sHbOrigin.y = 0;
+
+    const struct HelpBoxInfo * info = &sMutableHbi;
+    struct HelpBoxProc * proc;
+    int wContent, hContent;
+    LoadStringIntoBuffer(string);
+
+    proc = (void *)Proc_Find(gProcScr_HelpBox);
+
+    if (!proc)
+    {
+        proc = (void *)Proc_Start(gProcScr_HelpBox, PROC_TREE_3);
+
+        proc->unk52 = false;
+
+        SetHelpBoxInitPosition(proc, info->xDisplay, info->yDisplay);
+        ResetHelpBoxInitSize(proc);
+    }
+    else
+    {
+        proc->xBoxInit = proc->xBox;
+        proc->yBoxInit = proc->yBox;
+
+        proc->wBoxInit = proc->wBox;
+        proc->hBoxInit = proc->hBox;
+    }
+
+    proc->info = info;
+
+    proc->timer = 0;
+    proc->timerMax = 12;
+
+    proc->item = 0;
+    proc->mid = info->mid;
+
+    if (proc->info->populate)
+        proc->info->populate(proc);
+
+    SetTextFontGlyphs(1);
+    GetStringTextBox(string, &wContent, &hContent);
+    SetTextFontGlyphs(0);
+
+    ApplyHelpBoxContentSizeString(proc, wContent, hContent, string);
+    ApplyHelpBoxPosition(proc, info->xDisplay, info->yDisplay);
+
+    ClearHelpBoxText2();
+    StartHelpBoxTextInitWithString(proc->item, proc->mid, string);
+
+    sLastHbi = info;
+}
+
+extern char * gSRRMenuText[];
+
+// extern const struct MenuItemDef * ggSRRMenuItems[];
+
+int CountDebuggerMenuItems(int page)
+{
+    return 0;
+}
+// {
+// int result = 0;
+// for (int i = 0; i < page; ++i)
+// {
+// for (int c = 0; c < 255; ++c)
+// {
+// if (!ggSRRMenuItems[i][c].name)
+// {
+// break;
+// }
+// result++;
+// }
+// }
+// return result + page; // avoid the word 0 terminator offset
+// }
+
+char * GetSRRMenuText(ConfigMenuProc * proc, int index)
+{
+    // index += proc->page * NumberOfOptions;
+    // index += CountDebuggerMenuItems(proc->page);
+    index += CountDebuggerMenuItems(0);
+    return gSRRMenuText[index * 2];
+}
+char * GetSRRMenuDesc(ConfigMenuProc * proc, int index)
+{
+    // index += CountDebuggerMenuItems(proc->page);
+    index += CountDebuggerMenuItems(0);
+    return gSRRMenuText[(index * 2) + 1];
+}
+
+// in Menu
+// int SRRMenuItemDraw(struct MenuProc * menu, struct MenuItemProc * menuItem)
+// {
+// if (menuItem->availability == MENU_DISABLED)
+// {
+// Text_SetColor(&menuItem->text, 1);
+// }
+// ConfigMenuProc * proc = Proc_Find((ProcPtr)&ConfigMenuProcCmd);
+
+// Text_DrawString(&menuItem->text, GetSRRMenuText(proc, menuItem->itemNumber));
+// PutText(&menuItem->text, BG_GetMapBuffer(menu->frontBg) + TILEMAP_INDEX(menuItem->xTile, menuItem->yTile));
+// return 0;
+// }
+
+// in MenuDef
+// u8 SRRHelpBox(struct MenuProc * menu, struct MenuItemProc * item)
+// {
+// ConfigMenuProc * proc = Proc_Find((ProcPtr)&ConfigMenuProcCmd);
+// StartHelpBoxString(item->xTile * 8, item->yTile * 8, GetSRRMenuDesc(proc, item->itemNumber));
+// return 0;
+// }

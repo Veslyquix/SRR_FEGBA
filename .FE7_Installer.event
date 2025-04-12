@@ -1147,6 +1147,9 @@ WORD 1
 #else 
 WORD 0
 #endif  
+ALIGN 4 
+gSRRMenuText: 
+FILL(256 * 4) 
 // NOTE: AsmHooks NewClearBWLFunction_FE7 assumes this data is all in a row 
 ALIGN 4 
 RandValues:
