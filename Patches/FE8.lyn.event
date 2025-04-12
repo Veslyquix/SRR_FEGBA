@@ -225,7 +225,7 @@ PUSH
 ORG CURRENTOFFSET+$1;LoopRandomRecruitmentProc:
 ORG CURRENTOFFSET+$4;EnableBG0Display:
 ORG CURRENTOFFSET+$10;RestoreBackgrounds:
-ORG CURRENTOFFSET+$2c0;HelpBoxIntroDrawTextsString:
+ORG CURRENTOFFSET+$2c0;HelpBoxIntroDrawTextsString_SRR:
 ORG CURRENTOFFSET+$ec;MaybeForceHardModeFE8:
 ORG CURRENTOFFSET+$14;ShouldRandomizeRecruitment:
 ORG CURRENTOFFSET+$10;ShouldRandomizeRecruitmentForUnitID:
@@ -486,11 +486,11 @@ ORG CURRENTOFFSET+$90;GetUnitKeyItemSlotForTerrain:
 ORG CURRENTOFFSET+$58;IsItemDisplayUsable:
 ORG CURRENTOFFSET+$b4;ArenaIsUnitAllowed:
 ORG CURRENTOFFSET+$38;C_SS_ComputeBattleUnitWeaponRankBonuses:
-ORG CURRENTOFFSET+$50;ClearHelpBoxText2:
-ORG CURRENTOFFSET+$64;StartHelpBoxTextInitWithString:
-ORG CURRENTOFFSET+$28;LoadStringIntoBuffer:
-ORG CURRENTOFFSET+$38;ApplyHelpBoxContentSizeString:
-ORG CURRENTOFFSET+$78;StartHelpBoxString:
+ORG CURRENTOFFSET+$50;ClearHelpBoxText_SRR:
+ORG CURRENTOFFSET+$64;StartHelpBoxTextInitWithString_SRR:
+ORG CURRENTOFFSET+$28;LoadStringIntoBuffer_SRR:
+ORG CURRENTOFFSET+$38;ApplyHelpBoxContentSizeString_SRR:
+ORG CURRENTOFFSET+$78;StartHelpBoxString_SRR:
 ORG CURRENTOFFSET+$144;ConfigMenuLoop:
 ORG CURRENTOFFSET+$c3c;CountDebuggerMenuItems:
 ORG CURRENTOFFSET+$4;GetSRRMenuText:

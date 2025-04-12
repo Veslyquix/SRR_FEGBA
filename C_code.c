@@ -143,7 +143,7 @@ extern struct ExceptionsStruct SkillExceptions[];
 extern int SkillSysInstalled;
 extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
-void StartHelpBoxString(int x, int y, char * string);
+void StartHelpBoxString_SRR(int x, int y, char * string);
 
 #define SET_TEXT_USED
 // #define STRINGS_IN_ROM // faster if defined, but gotta write all the names in the installer
@@ -9239,7 +9239,8 @@ extern int PikminStyleFlag;
 
 // PROC_END,
 // };
-void ClearHelpBoxText2(void);
+extern void CloseHelpBox(void);
+void ClearHelpBoxText_SRR(void);
 void ConfigMenuLoop(ConfigMenuProc * proc)
 {
 
@@ -9267,13 +9268,13 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             proc->helpBox = false;
             CloseHelpBox();
-            // ClearHelpBoxText2();
+            // ClearHelpBoxText_SRR();
         }
         return;
     }
     if (keys & R_BUTTON)
     {
-        StartHelpBoxString(30, 54, " test");
+        StartHelpBoxString_SRR(30, 54, " test");
         proc->helpBox = true;
         // Proc_StartBlocking(gProcScr_SRRHelpboxListener, proc);
         return;
@@ -12483,7 +12484,7 @@ extern void SpriteText_DrawBackground(struct Text *);
 extern void Text_SetColor(struct Text * th, int colorId);
 extern void HelpBoxSetupstringLines(struct ProcHelpBoxIntro * proc);
 extern void HelpBoxDrawstring(struct ProcHelpBoxIntro * proc);
-void HelpBoxIntroDrawTextsString(struct ProcHelpBoxIntroString * proc);
+void HelpBoxIntroDrawTextsString_SRR(struct ProcHelpBoxIntroString * proc);
 
 struct ProcCmd const ProcScr_HelpBoxIntroString[] = {
     PROC_SLEEP(6),
@@ -12491,12 +12492,12 @@ struct ProcCmd const ProcScr_HelpBoxIntroString[] = {
     PROC_REPEAT(HelpBoxSetupstringLines),
     PROC_REPEAT(HelpBoxDrawstring),
 
-    PROC_CALL(HelpBoxIntroDrawTextsString),
+    PROC_CALL(HelpBoxIntroDrawTextsString_SRR),
 
     PROC_END,
 };
 
-void ClearHelpBoxText2(void)
+void ClearHelpBoxText_SRR(void)
 { //
 
     SetTextFont(&gHelpBoxSt.font);
@@ -12514,7 +12515,7 @@ void ClearHelpBoxText2(void)
     return;
 }
 
-void StartHelpBoxTextInitWithString(int item, int msgId, char * string)
+void StartHelpBoxTextInitWithString_SRR(int item, int msgId, char * string)
 {
     struct ProcHelpBoxIntroString * proc = Proc_Start(ProcScr_HelpBoxIntroString, PROC_TREE_3);
 
@@ -12524,7 +12525,7 @@ void StartHelpBoxTextInitWithString(int item, int msgId, char * string)
 }
 
 extern int sActiveMsg;
-void LoadStringIntoBuffer(char * a)
+void LoadStringIntoBuffer_SRR(char * a)
 {
     sActiveMsg = 0;
     for (int i = 0; i < 50; ++i)
@@ -12538,7 +12539,7 @@ void LoadStringIntoBuffer(char * a)
     SetMsgTerminator(sMsgString);
 }
 
-void HelpBoxIntroDrawTextsString(struct ProcHelpBoxIntroString * proc)
+void HelpBoxIntroDrawTextsString_SRR(struct ProcHelpBoxIntroString * proc)
 {
     struct HelpBoxScrollProc * otherProc;
     int textSpeed;
@@ -12565,7 +12566,7 @@ void HelpBoxIntroDrawTextsString(struct ProcHelpBoxIntroString * proc)
     otherProc->pretext_lines = proc->pretext_lines;
 
     // GetStringFromIndex(0x505);
-    LoadStringIntoBuffer(proc->string);
+    LoadStringIntoBuffer_SRR(proc->string);
 
     otherProc->string = StringInsertSpecialPrefixByCtrl();
     otherProc->chars_per_step = 1;
@@ -12594,7 +12595,7 @@ void HelpBoxIntroDrawTextsString(struct ProcHelpBoxIntroString * proc)
     }
 }
 
-void ApplyHelpBoxContentSizeString(struct HelpBoxProc * proc, int width, int height, char * string)
+void ApplyHelpBoxContentSizeString_SRR(struct HelpBoxProc * proc, int width, int height, char * string)
 {
     width = 0xF0 & (width + 15); // align to 16 pixel multiple
 
@@ -12632,7 +12633,7 @@ void ApplyHelpBoxContentSizeString(struct HelpBoxProc * proc, int width, int hei
     proc->hBoxFinal = height;
 }
 
-void StartHelpBoxString(int x, int y, char * string)
+void StartHelpBoxString_SRR(int x, int y, char * string)
 {
     sMutableHbi.adjUp = NULL;
     sMutableHbi.adjDown = NULL;
@@ -12652,7 +12653,7 @@ void StartHelpBoxString(int x, int y, char * string)
     const struct HelpBoxInfo * info = &sMutableHbi;
     struct HelpBoxProc * proc;
     int wContent, hContent;
-    LoadStringIntoBuffer(string);
+    LoadStringIntoBuffer_SRR(string);
 
     proc = (void *)Proc_Find(gProcScr_HelpBox);
 
@@ -12689,11 +12690,11 @@ void StartHelpBoxString(int x, int y, char * string)
     GetStringTextBox(string, &wContent, &hContent);
     SetTextFontGlyphs(0);
 
-    ApplyHelpBoxContentSizeString(proc, wContent, hContent, string);
+    ApplyHelpBoxContentSizeString_SRR(proc, wContent, hContent, string);
     ApplyHelpBoxPosition(proc, info->xDisplay, info->yDisplay);
 
-    ClearHelpBoxText2();
-    StartHelpBoxTextInitWithString(proc->item, proc->mid, string);
+    ClearHelpBoxText_SRR();
+    StartHelpBoxTextInitWithString_SRR(proc->item, proc->mid, string);
 
     sLastHbi = info;
 }
