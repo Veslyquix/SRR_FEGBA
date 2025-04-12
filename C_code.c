@@ -9239,7 +9239,15 @@ extern int PikminStyleFlag;
 
 // PROC_END,
 // };
+LocationTable RText_LocationTable[] = {
+    { (NUMBER_X * 8) - (0 * 8) - 4, (Y_HAND * 8) - 8 }, { (NUMBER_X * 8) - (1 * 8) - 4, (Y_HAND * 8) - 8 },
+    { (NUMBER_X * 8) - (2 * 8) - 4, (Y_HAND * 8) - 8 }, { (NUMBER_X * 8) - (3 * 8) - 4, (Y_HAND * 8) - 8 },
+    { (NUMBER_X * 8) - (4 * 8) - 4, (Y_HAND * 8) - 8 }, { (NUMBER_X * 8) - (5 * 8) - 4, (Y_HAND * 8) - 8 },
+    { (NUMBER_X * 8) - (6 * 8) - 4, (Y_HAND * 8) - 8 }, { (NUMBER_X * 8) - (7 * 8) - 4, (Y_HAND * 8) - 8 },
+    { (NUMBER_X * 8) - (8 * 8) - 4, (Y_HAND * 8) - 8 },
+};
 extern void CloseHelpBox(void);
+char * GetSRRMenuDesc(ConfigMenuProc * proc, int index);
 void ClearHelpBoxText_SRR(void);
 void ConfigMenuLoop(ConfigMenuProc * proc)
 {
@@ -9274,7 +9282,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     if (keys & R_BUTTON)
     {
-        StartHelpBoxString_SRR(30, 54, " test");
+        StartHelpBoxString_SRR(RText_LocationTable[id].x, RText_LocationTable[id].y, GetSRRMenuDesc(proc, offset + id));
         proc->helpBox = true;
         // Proc_StartBlocking(gProcScr_SRRHelpboxListener, proc);
         return;
@@ -12486,7 +12494,7 @@ extern void HelpBoxSetupstringLines(struct ProcHelpBoxIntro * proc);
 extern void HelpBoxDrawstring(struct ProcHelpBoxIntro * proc);
 void HelpBoxIntroDrawTextsString_SRR(struct ProcHelpBoxIntroString * proc);
 
-struct ProcCmd const ProcScr_HelpBoxIntroString[] = {
+struct ProcCmd const ProcScr_HelpBoxIntroString_SRR[] = {
     PROC_SLEEP(6),
 
     PROC_REPEAT(HelpBoxSetupstringLines),
@@ -12508,7 +12516,7 @@ void ClearHelpBoxText_SRR(void)
 
     Proc_EndEach(gProcScr_HelpBoxTextScroll);
     Proc_EndEach(ProcScr_HelpBoxIntro);
-    Proc_EndEach(ProcScr_HelpBoxIntroString);
+    Proc_EndEach(ProcScr_HelpBoxIntroString_SRR);
 
     SetTextFont(0);
 
@@ -12517,7 +12525,7 @@ void ClearHelpBoxText_SRR(void)
 
 void StartHelpBoxTextInitWithString_SRR(int item, int msgId, char * string)
 {
-    struct ProcHelpBoxIntroString * proc = Proc_Start(ProcScr_HelpBoxIntroString, PROC_TREE_3);
+    struct ProcHelpBoxIntroString * proc = Proc_Start(ProcScr_HelpBoxIntroString_SRR, PROC_TREE_3);
 
     proc->item = item;
     proc->msg = msgId;
@@ -12703,7 +12711,7 @@ extern char * gSRRMenuText[];
 
 // extern const struct MenuItemDef * ggSRRMenuItems[];
 
-int CountDebuggerMenuItems(int page)
+int CountSRRMenuItems(ConfigMenuProc * proc)
 {
     return 0;
 }
@@ -12726,14 +12734,12 @@ int CountDebuggerMenuItems(int page)
 char * GetSRRMenuText(ConfigMenuProc * proc, int index)
 {
     // index += proc->page * NumberOfOptions;
-    // index += CountDebuggerMenuItems(proc->page);
-    index += CountDebuggerMenuItems(0);
+    index += CountSRRMenuItems(proc);
     return gSRRMenuText[index * 2];
 }
 char * GetSRRMenuDesc(ConfigMenuProc * proc, int index)
 {
-    // index += CountDebuggerMenuItems(proc->page);
-    index += CountDebuggerMenuItems(0);
+    index += CountSRRMenuItems(proc);
     return gSRRMenuText[(index * 2) + 1];
 }
 

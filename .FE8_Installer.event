@@ -1182,10 +1182,27 @@ DisplayRandomSkillsOption:
 	WORD 0 
 #endif 
 
+#define SRRMenu(id) "{ ALIGN 32; addr: ; PUSH; ORG gSRRMenuText + (id * 8); POIN addr addr+32; POP }"
+// #define SetName(id) "{ addr: ; setText(id, addr) ; }"
+// ALIGN 16 ; SetName(0x0212); String("Eirika"); 
 
-ALIGN 4 
+
+
+#inctbl "FE6TR" "EventAssembler/fe6_tr.tbl"
+#define SText(string2) String(string2); 
+// #define SText(string2) STRING string2 "FE6TR"; // fe6 version 
+
+ALIGN 32 
 gSRRMenuText: 
-FILL(256 * 4) 
+FILL(256 * 8) 
+
+SRRMenu(0); SText("Bern"); ALIGN 32; SText("Bern"); 
+SRRMenu(1); SText("Bern"); ALIGN 32; SText("Bern"); 
+// SRRMenu(1); STRING "Bern" "FE6TR"; ALIGN 32; STRING "Bern4" "FE6TR"; 
+
+
+
+
 
 ALIGN 4 
 NeverRandomizeBGM:
