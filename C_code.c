@@ -9078,7 +9078,7 @@ static int GetMaxDigits(int number)
     }
     return result;
 }
-
+const u16 sSprite_HorHand[] = { 1, 0x0002, 0x4000, 0x0000 };
 const u16 sSprite_VertHand[] = { 1, 0x0002, 0x4000, 0x0006 };
 const u8 sHandVOffsetLookup[] = {
     0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1,
@@ -9240,11 +9240,11 @@ extern int PikminStyleFlag;
 // PROC_END,
 // };
 LocationTable RText_LocationTable[] = {
-    { (NUMBER_X * 8) - (0 * 8) - 4, (Y_HAND * 8) - 8 }, { (NUMBER_X * 8) - (1 * 8) - 4, (Y_HAND * 8) - 8 },
-    { (NUMBER_X * 8) - (2 * 8) - 4, (Y_HAND * 8) - 8 }, { (NUMBER_X * 8) - (3 * 8) - 4, (Y_HAND * 8) - 8 },
-    { (NUMBER_X * 8) - (4 * 8) - 4, (Y_HAND * 8) - 8 }, { (NUMBER_X * 8) - (5 * 8) - 4, (Y_HAND * 8) - 8 },
-    { (NUMBER_X * 8) - (6 * 8) - 4, (Y_HAND * 8) - 8 }, { (NUMBER_X * 8) - (7 * 8) - 4, (Y_HAND * 8) - 8 },
-    { (NUMBER_X * 8) - (8 * 8) - 4, (Y_HAND * 8) - 8 },
+    { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (0 * 8) },  { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (2 * 8) },
+    { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (4 * 8) },  { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (6 * 8) },
+    { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (8 * 8) },  { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (10 * 8) },
+    { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (12 * 8) }, { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (14 * 8) },
+    { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (16 * 8) },
 };
 extern void CloseHelpBox(void);
 char * GetSRRMenuDesc(ConfigMenuProc * proc, int index);
@@ -9272,12 +9272,66 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     int offset = proc->offset;
     if (proc->helpBox)
     {
+        keys |= sKeyStatusBuffer.repeatedKeys;
+        PutSprite(2, SRR_CursorLocationTable[id].x - 8, SRR_CursorLocationTable[id].y, sSprite_HorHand, 0);
+        // DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0);
         if (keys & B_BUTTON)
         {
             proc->helpBox = false;
             CloseHelpBox();
+            return;
             // ClearHelpBoxText_SRR();
         }
+        if (keys & DPAD_DOWN)
+        {
+            if (id < SRR_MAXDISP)
+            {
+                proc->id++;
+            }
+            else if ((id + offset) < SRR_TotalOptions)
+            {
+                proc->offset++;
+                proc->redraw = RedrawAll;
+            }
+            else
+            {
+                proc->id = 0;
+                proc->offset = 0;
+                proc->redraw = RedrawAll;
+            }
+            StartHelpBoxString_SRR(
+                RText_LocationTable[proc->id].x, RText_LocationTable[proc->id].y,
+                GetSRRMenuDesc(proc, proc->offset + proc->id));
+        }
+
+        else if (keys & DPAD_UP)
+        {
+            if ((id + offset) <= 0)
+            {
+                proc->id = SRR_MAXDISP;
+                proc->offset = SRR_TotalOptions - SRR_MAXDISP;
+                proc->redraw = RedrawAll;
+            }
+            else if ((!id) && (offset))
+            {
+                proc->offset--;
+                proc->redraw = RedrawAll;
+            }
+            else
+            {
+                proc->id--;
+            }
+            StartHelpBoxString_SRR(
+                RText_LocationTable[proc->id].x, RText_LocationTable[proc->id].y,
+                GetSRRMenuDesc(proc, proc->offset + proc->id));
+            // proc->redraw = true;
+        }
+        if (proc->redraw == RedrawAll)
+        {
+            proc->redraw = RedrawNone;
+            RedrawAllText(proc);
+        }
+
         return;
     }
     if (keys & R_BUTTON)
@@ -12731,16 +12785,27 @@ int CountSRRMenuItems(ConfigMenuProc * proc)
 // return result + page; // avoid the word 0 terminator offset
 // }
 
+extern char blankString;
 char * GetSRRMenuText(ConfigMenuProc * proc, int index)
 {
     // index += proc->page * NumberOfOptions;
     index += CountSRRMenuItems(proc);
-    return gSRRMenuText[index * 2];
+    char * result = gSRRMenuText[index * 2];
+    if (!result)
+    {
+        return &blankString;
+    }
+    return result;
 }
 char * GetSRRMenuDesc(ConfigMenuProc * proc, int index)
 {
     index += CountSRRMenuItems(proc);
-    return gSRRMenuText[(index * 2) + 1];
+    char * result = gSRRMenuText[(index * 2) + 1];
+    if (!result)
+    {
+        return &blankString;
+    }
+    return result;
 }
 
 // in Menu

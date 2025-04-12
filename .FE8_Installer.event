@@ -1182,7 +1182,7 @@ DisplayRandomSkillsOption:
 	WORD 0 
 #endif 
 
-#define SRRMenu(id) "{ ALIGN 32; addr: ; PUSH; ORG gSRRMenuText + (id * 8); POIN addr addr+32; POP }"
+#define SRRMenu(id) "{ ALIGN 64; addr: ; PUSH; ORG gSRRMenuText + (id * 8); POIN addr addr+64; POP }"
 // #define SetName(id) "{ addr: ; setText(id, addr) ; }"
 // ALIGN 16 ; SetName(0x0212); String("Eirika"); 
 
@@ -1191,16 +1191,22 @@ DisplayRandomSkillsOption:
 // #inctbl "FE6TR" "EventAssembler/fe6_tr.tbl"
 #inctbl "FE8TR" "EventAssembler/fe8_tr.tbl"
 
-#define txt(string2) ALIGN 32; STRING string2 "FE8TR"; BYTE 0 0; 
+#define txt(string2) ALIGN 64; STRING string2 "FE8TR"; BYTE 0 0; 
 // #define txt(string2) STRING string2 "FE6TR"; // fe6 version 
 
-ALIGN 32 
+blankString:
+txt(" "); 
+
+ALIGN 64 
 gSRRMenuText: 
 FILL(256 * 8) 
 
 
 SRRMenu(0); txt("Seed"); txt("Random Numbers are generated\using this seed."); 
-SRRMenu(1); txt("Seed"); txt("Random Numbers are generated\using this seed."); 
+SRRMenu(1); txt("Variance"); txt("Stats/Growths will vary +/-\this much. 50% var: 8 into 4 to 12."); 
+SRRMenu(1); txt("Variance"); txt("Stats/Growths will vary +/-\this much. 50% var: 8 into 4 to 12."); 
+SRRMenu(1); txt("Variance"); txt("Stats/Growths will vary +/-\this much. 50% var: 8 into 4 to 12."); 
+SRRMenu(1); txt("Variance"); txt("Stats/Growths will vary +/-\this much. 50% var: 8 into 4 to 12."); 
 
 
 
