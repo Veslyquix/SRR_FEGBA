@@ -1,3 +1,7 @@
+
+#define ALIGN(m) __attribute__((aligned (m)))
+#define BITPACKED __attribute__((aligned(4), packed))
+
 enum { UNIT_LEVEL_MAX = 20 };
 enum { UNIT_ITEM_COUNT = 5 };
 enum { UNIT_DEFINITION_ITEM_COUNT = 4 };
@@ -533,7 +537,7 @@ struct PidStatsChar
     u32 battle_count : 12;
     u32 killer_pid : 9;
     u32 : 0; // unused/padding (15 bits)
-};
+}BITPACKED;
 #else 
     struct PidStatsChar {
     /* 000 */ unsigned lossAmt     : 8;
@@ -551,7 +555,7 @@ struct PidStatsChar
     /* 110 */ unsigned killerPid   : 9;
     /* 119 */ unsigned deathSkirm  : 1;
     /* 120 */ /* 8bit pad */
-};
+}BITPACKED; 
 #endif 
 struct UnitUsageStats* GetPidStats(u8 pid);
 
