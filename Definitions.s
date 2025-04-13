@@ -132,8 +132,83 @@ SET_FUNC CpuFastSet, 0x809DCD9
 SET_FUNC CopyToPaletteBuffer, 0x800105D
 SET_FUNC RegisterDataMove, 0x8002B05
 SET_FUNC EndFaceById, 0x8008581
+
+SET_FUNC MU_EndAll, 0x80608D5 
+SET_FUNC HideUnitSprite, 0x8022A39
+SET_FUNC MU_Exists, 0x800C2C9
+SET_FUNC MU_SetDefaultFacing_Auto, 0x805FC55
+SET_FUNC MU_Create, 0x805F875
+@SET_FUNC MenuAutoHelpBoxSelect, 0x804a9D5
+SET_FUNC StartOrphanMenuAdjusted, 0x80417E9
+SET_FUNC SetAllUnitNotBackSprite, 0x801809D
+SET_DATA gActiveUnitMoveOrigin, 0x202AB74 
+SET_DATA gActiveUnitId, 0x202AB70
+SET_DATA gBmMapSize, 0x202D200
+SET_DATA gActionData, 0x203956C
+SET_FUNC EnsureCameraOntoPosition, 0x80161C1
+SET_FUNC SetCursorMapPosition, 0x801600D
+SET_FUNC HideMoveRangeGraphics, 0x801C061
+SET_FUNC RefreshEntityBmMaps, 0x80190F5
+SET_FUNC RefreshUnitSprites, 0x8022095
+@SET_FUNC NewBMXFADE, 0x801C39D
+SET_FUNC DoesBMXFADEExist, 0x8093445
+SET_FUNC Proc_End, 0x8004265
+SET_FUNC HandlePlayerCursorMovement, 0x801B04D
+SET_FUNC IsUnitSpriteHoverEnabledAt, 0x8022725
+SET_FUNC PutMapCursor, 0x8015F1D
+SET_FUNC Text_DrawString, 0x8005da5
+@ PlayerPhase_ApplyUnitMovement 1BAF0 
+SET_FUNC UnitFinalizeMovement, 0x8017C61
+SET_FUNC ResetUnitSpriteHover, 0x8022629
+SET_FUNC sub_802C334, 0x8025781
+SET_DATA gProcScr_TerrainDisplay, 0x8678174
+SET_DATA gProcScr_PlayerPhase, 0x85C56A8
+SET_DATA gKeyStatusPtr, 0x858E578
+SET_DATA gUnknown_08A02274, 0x83080D0
+
+SET_FUNC HelpBoxIntroDrawTexts, 0x8071411
+SET_FUNC ApplyHelpBoxContentSize, 0x8070a31
 .endif 
 .if FE7 == true 
+SET_FUNC HelpBoxIntroDrawTexts, 0x8082C8d
+SET_FUNC ApplyHelpBoxContentSize, 0x8081CDD
+SET_DATA gUnknown_08A02274, 0x83FCE8C
+SET_FUNC MU_EndAll, 0x806CCB9 
+SET_FUNC HideUnitSprite, 0x8026575
+SET_FUNC MU_Exists, 0x8009FB9
+SET_FUNC MU_SetDefaultFacing_Auto, 0x806BFE1
+SET_FUNC MU_Create, 0x806BAF1
+SET_FUNC MenuAutoHelpBoxSelect, 0x804a9D5
+SET_FUNC StartOrphanMenuAdjusted, 0x804a225
+SET_FUNC SetAllUnitNotBackSprite, 0x80183F5
+SET_DATA gActiveUnitMoveOrigin, 0x202BBF8
+SET_DATA gActiveUnitId, 0x202BD48
+SET_DATA gBmMapSize, 0x202E3D8
+SET_DATA gActionData, 0x203A85C
+SET_FUNC EnsureCameraOntoPosition, 0x8015CE1
+SET_FUNC SetCursorMapPosition, 	0x8015A91
+SET_FUNC HideMoveRangeGraphics, 	0x801D2D5
+SET_FUNC RefreshEntityBmMaps, 	0x8019abd
+SET_FUNC RefreshUnitSprites, 0x8025725
+SET_FUNC DoesBMXFADEExist, 0x801D635
+SET_FUNC Proc_End, 0x800486D
+SET_FUNC HandlePlayerCursorMovement, 0x801C195
+SET_FUNC IsUnitSpriteHoverEnabledAt, 0x8026065
+SET_FUNC PutMapCursor, 0x801596D
+SET_FUNC Text_DrawString, 0x8005719
+SET_FUNC UnitFinalizeMovement, 0x8017F29
+SET_FUNC ResetUnitSpriteHover, 0x8025F9D
+SET_FUNC sub_802C334, 0x8029D6D
+SET_FUNC PutText, 0x8005591
+SET_FUNC Text_SetColor, 0x8005581
+SET_DATA gProcScr_TerrainDisplay, 0x8CC2C00
+SET_DATA gProcScr_PlayerPhase, 0x8B93374
+SET_DATA gKeyStatusPtr, 0x8B857F8
+@ 
+@ 80180EC UnitBeginAction for ram 
+
+
+
 @SET_FUNC ClearText, 0x80054E1, 55fc 
 @SET_DATA sUnknown_085911C4, 0x80059C8
 @SET_DATA gProcScr_HelpPromptSpr, 0x80059C8
@@ -252,6 +327,24 @@ SET_FUNC HbPopulate_SSCharacter, 0x80816FD
 
 .endif 
 .if FE8 == true 
+SET_DATA pPromoJidLut, 0x80cc7d0 
+SET_DATA Pal_SpinningArrow, 0x8a1a084 
+SET_DATA PrepItemSuppyTexts, 0x2013648
+SET_FUNC SetBlendConfig, 0x8001ea1
+SET_DATA gProcScr_TerrainDisplay, 0x8a018ac
+SET_DATA sTilesetConfig, 0x2030b8c
+SET_FUNC __aeabi_idiv,    __divsi3
+SET_FUNC __aeabi_idivmod, __modsi3
+SET_FUNC Div, __divsi3
+SET_FUNC Mod, __modsi3
+SET_FUNC GetSoloAnimPreconfType, 0x802ca71
+SET_DATA gEfxHpLutOff, 0x203e152
+SET_DATA gEkrGaugeDmg, 0x203e1bc
+SET_DATA gProcScr_efxHPBar, 0x8052354
+SET_DATA gProcScr_efxHPBarResire, 0x8052624
+SET_DATA classTablePoin, 0x8017AB8 
+SET_DATA gBanimExpGain, 0x203e1c8
+
 SET_DATA sUnknown_085911C4, 0x80059C8
 @SET_DATA textHandles, 0x201117c @ gPrepMainMenuTexts
 SET_DATA getSoundRoom, 0x80AECA8 
@@ -289,8 +382,6 @@ dat 0x085922D0, ProcScr_GotItem
 dat 0x08592300, PopupScr_GotGold
 dat 0x08592348, PopupScr_GoldWasStole
 SET_FUNC UnitLoadStatsFromCharacter, 0x8017e35 
-SET_FUNC __aeabi_idiv,    __divsi3
-@SET_FUNC __aeabi_idivmod, __modsi3
 @SET_FUNC Div, __divsi3
 @SET_FUNC Mod, __modsi3
 SET_DATA weatherId, 0x202BD05
@@ -310,6 +401,7 @@ SET_FUNC __aeabi_idiv, 0x809DCE1
 @SET_FUNC Mod, 0x809DCE5
 SET_FUNC SetFlag, 0x806BA49
 SET_FUNC UnsetFlag, 0x806BA75
+SET_FUNC ClearFlag, 0x806BA75
 SET_FUNC CheckFlag, 0x806bA5D
  
 SET_FUNC GetItemMight, 0x80171e9
@@ -432,6 +524,7 @@ SET_DATA gUiTmScratchA, 0x2003238 @ might be wrong
 SET_DATA gUiTmScratchC, 0x2003C38 
 SET_FUNC DrawStatBarGfx, 0x806E999
 SET_DATA gActiveUnit, 0x30044B0
+SET_DATA gActiveUnit_, 0x30044B0
 @ 202AA08 gBmSt https://github.com/StanHash/fe6/blob/5430c7ea15313a5754ddb466916b1d2946e72c4a/include/bm.h#L90C8-L90C12
 @ 801E2C0	801FFE0	801FB78	0	0	ChapterIntro_InitMapDisplay
 SET_DATA weatherId, 0x202AA5D
@@ -447,10 +540,30 @@ SET_FUNC StartBlockingPrepShop, 0x8095df1
 SET_FUNC ApplyUnitDefaultPromotion, 0x8029819
 SET_FUNC Decompress, 0x8013CA5
 SET_FUNC memcpy, 0x809F991
+SET_FUNC ClearBg0Bg1, 0x8041679
+SET_FUNC UnitRemoveInvalidItems, 0x80174cd
+SET_FUNC Text_GetColor, 0x8005a61
+SET_FUNC PutUiWindowFrame, 0x8041359
+SET_FUNC DrawIcon, 0x8004cf9
+SET_FUNC GetItemIconId, 0x80172d9
+SET_FUNC LoadIconPalettes, 0x8004aa5
+SET_FUNC ResetIconGraphics, 0x8004a55
+@SET_DATA sStatusNameTextIdLookup, 0x85C526C
+
+
 .endif
 
 
 .if FE7 == true 
+@ SET_DATA sStatusNameTextIdLookup, 0x85C526C 
+SET_FUNC ResetIconGraphics, 0x8004ce9
+SET_FUNC LoadIconPalettes, 0x8004d2d
+SET_FUNC GetItemIconId, 0x8017401
+SET_FUNC DrawIcon, 0x8004e29 @ maybe 
+SET_FUNC PutUiWindowFrame, 0x8049CE5
+SET_FUNC Text_GetColor, 0x8005585
+SET_FUNC UnitRemoveInvalidItems, 0x8017689
+SET_FUNC ClearBg0Bg1, 0x804a041
 SET_FUNC ApplyUnitDefaultPromotion, 0x8029819
 SET_DATA TacticianName, 0x202BC18
 SET_FUNC __aeabi_idiv, 0x80BFA15 
@@ -458,6 +571,7 @@ SET_FUNC __aeabi_idiv, 0x80BFA15
 @SET_FUNC Mod, 0x80BFA19
 SET_FUNC SetFlag, 0x80798E5 
 SET_FUNC UnsetFlag, 0x8079911 
+SET_FUNC ClearFlag, 0x8079911 
 SET_FUNC CheckFlag, 0x80798F9
 SET_FUNC GetItemMight, 0x80172E1
 SET_FUNC GetItemHit, 0x80172F9
@@ -600,6 +714,7 @@ SET_FUNC DrawStatBarGfx, 0x807F849 @ 806E998
 SET_DATA gLCDControlBuffer, 0x3002870
 SET_DATA ProcScr_GotItem, 0x8B91DC4
 SET_DATA gActiveUnit, 0x3004690
+SET_DATA gActiveUnit_, 0x3004690
 SET_DATA gProcScr_Shop, 0x8CE6FC0
 SET_DATA gLCGRNValue, 0x3000008 
 SET_DATA sPrevHandClockFrame, 0x203DCF0

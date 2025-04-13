@@ -9239,12 +9239,11 @@ extern int PikminStyleFlag;
 
 // PROC_END,
 // };
+#define RTextLoc 56
 LocationTable RText_LocationTable[] = {
-    { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (0 * 8) },  { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (2 * 8) },
-    { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (4 * 8) },  { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (6 * 8) },
-    { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (8 * 8) },  { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (10 * 8) },
-    { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (12 * 8) }, { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (14 * 8) },
-    { (NUMBER_X * 8) - 8, (Y_HAND * 8) + (16 * 8) },
+    { RTextLoc, (Y_HAND * 8) + (0 * 8) },  { RTextLoc, (Y_HAND * 8) + (2 * 8) },  { RTextLoc, (Y_HAND * 8) + (4 * 8) },
+    { RTextLoc, (Y_HAND * 8) + (6 * 8) },  { RTextLoc, (Y_HAND * 8) + (8 * 8) },  { RTextLoc, (Y_HAND * 8) + (10 * 8) },
+    { RTextLoc, (Y_HAND * 8) + (12 * 8) }, { RTextLoc, (Y_HAND * 8) + (14 * 8) }, { RTextLoc, (Y_HAND * 8) + (16 * 8) },
 };
 extern void CloseHelpBox(void);
 char * GetSRRMenuDesc(ConfigMenuProc * proc, int index);
@@ -12680,7 +12679,8 @@ void HelpBoxIntroDrawTextsString_SRR(struct ProcHelpBoxIntroString * proc)
     otherProc->chars_per_step = 1;
     otherProc->step = 0;
 
-    textSpeed = 2; // gPlaySt.config.textSpeed;
+    // textSpeed = 2; // gPlaySt.config.textSpeed;
+    textSpeed = 3; // gPlaySt.config.textSpeed;
     switch (textSpeed)
     {
         case 0: /* default speed */
@@ -12854,6 +12854,10 @@ char * GetSRRMenuDesc(ConfigMenuProc * proc, int index)
 {
     index += CountSRRMenuItems(proc);
     int opt = proc->Option[index - 1] + 1;
+    if (!index)
+    {
+        opt = proc->Option[index] + 1;
+    }
     // asm("mov r11, r11");
     if (opt > MaxRTextOptions)
     {
