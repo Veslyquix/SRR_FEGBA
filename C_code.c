@@ -6718,7 +6718,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 
 #ifdef FE6
     unit->conBonus = 0;
-    unit->movBonusA = 0;
+    unit->movBonus = 0;
     unit->movBonusB = 0;
 #endif
 #ifndef FE6
@@ -6736,9 +6736,9 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
                 if (unit->pClassData->baseMov < 7)
                 {
 #ifdef FE6
-                    unit->movBonusA =
+                    unit->movBonus =
                         MovModifiers[HashByte_Global(3, sizeof(MovModifiers), noise, 14)]; // num, max, noise, offset
-                    unit->movBonusB = unit->movBonusA;
+                    unit->movBonusB = unit->movBonus;
 #endif
 #ifndef FE6
                     unit->movBonus =
@@ -7721,8 +7721,8 @@ void UnitCheckStatCaps(struct Unit * unit)
         unit->movBonus = (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit));
 #endif
 #ifdef FE6
-    if (unit->movBonusA > (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit)))
-        unit->movBonusA = (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit));
+    if (unit->movBonus > (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit)))
+        unit->movBonus = (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit));
     if (unit->movBonusB > (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit)))
         unit->movBonusB = (UNIT_MOV_MAX(unit) - UNIT_MOV_BASE(unit));
 #endif
@@ -12680,7 +12680,11 @@ void HelpBoxIntroDrawTextsString_SRR(struct ProcHelpBoxIntroString * proc)
     // GetStringFromIndex(0x505);
     LoadStringIntoBuffer_SRR(proc->string);
 
+#ifdef FE6
+    otherProc->string = proc->string;
+#else
     otherProc->string = StringInsertSpecialPrefixByCtrl();
+#endif
     otherProc->chars_per_step = 1;
     otherProc->step = 0;
 
@@ -12807,7 +12811,7 @@ void StartHelpBoxString_SRR(ConfigMenuProc * SRRproc, int x, int y, char * strin
     SetTextFontGlyphs(1);
     GetStringTextBox(string, &wContent, &hContent);
     SetTextFontGlyphs(0);
-#ifdef FE7
+#ifndef FE8
     wContent += 16; // I don't know why
 #endif
 

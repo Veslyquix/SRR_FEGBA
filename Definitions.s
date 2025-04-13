@@ -166,19 +166,27 @@ SET_DATA gProcScr_PlayerPhase, 0x85C56A8
 SET_DATA gKeyStatusPtr, 0x858E578
 SET_DATA gUnknown_08A02274, 0x83080D0
 
-SET_FUNC HelpBoxIntroDrawTexts, 0x8071411
+SET_DATA sMutableHbi, 0x0203D3E0 @ in StartHelpBox 
+SET_DATA sLastHbi, 0x203D3FC 
+SET_DATA sHbOrigin, 0x203D400 @ in StartHelpBox 
+
+SET_DATA gHelpBoxSt, 0x203D40C
+SET_DATA gProcScr_HelpBox, 0x8677720  @ StartHelpBox
+SET_DATA ProcScr_HelpBoxIntro, 0x8677FF8 @ StartHelpBox
 SET_FUNC ApplyHelpBoxContentSize, 0x8070a31
 @SET_FUNC StringInsertSpecialPrefixByCtrl, 0x8012CBD
-@SET_DATA gProcScr_HelpBoxTextScroll, 0x8CC2994
+SET_FUNC GetHelpBoxItemInfoKind, 0x8070b31
 SET_FUNC LoadHelpBoxGfx, 0x8070E71
 SET_FUNC SpriteText_DrawBackground, 0x80066f9
 SET_FUNC GetStringTextBox, 0x8005D05
-SET_FUNC ApplyHelpBoxPosition, 0x8070A70
+SET_FUNC ApplyHelpBoxPosition, 0x8070A71
 SET_FUNC SetHelpBoxInitPosition, 0x8070AFD
 SET_FUNC ResetHelpBoxInitSize, 0x8070B21
 SET_FUNC CloseHelpBox, 0x807089D
 SET_FUNC HelpBoxSetupstringLines, 0x08071375 @ ? 
 SET_FUNC HelpBoxDrawstring, 0x080713dd @? 
+SET_FUNC HelpBoxIntroDrawTexts, 0x8071411
+SET_DATA gProcScr_HelpBoxTextScroll, 0x8677FD0
 
 
 .endif 
