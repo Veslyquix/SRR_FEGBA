@@ -1148,19 +1148,7 @@ WORD 1
 ALIGN 4
 IconOrr:
 WORD IconOrrValue
-SRR_TotalOptions:
-#ifdef VeslyBuildfile 
-    #ifdef C_SKILLSYS 
-    WORD 24 
-    #endif 
-    #ifdef SKILLSYS_INSTALLED 
-    WORD 26
-    #else 
-    WORD 25
-    #endif  
-#else 
-WORD 23
-#endif 
+
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:
@@ -1182,16 +1170,20 @@ DisplayRandomSkillsOption:
 	WORD 0 
 #endif 
 
-#define SRRMenu(id) "{ ALIGN 64; addr: ; PUSH; ORG gSRRMenuText + (id * 8); POIN addr addr+64; POP }"
-// #define SetName(id) "{ addr: ; setText(id, addr) ; }"
-// ALIGN 16 ; SetName(0x0212); String("Eirika"); 
+#define MaxRTextOpt 7 
+#define SRRMenu(id) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4); POIN addr; POP }"
+#define SRRDesc(id) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4) + 4; POIN addr; POP }"
+#define SRRDesc(id, opt) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4) + (4*(opt+1)); POIN addr; POP }"
 
+ALIGN 4 
+MaxRTextOptions:
+WORD MaxRTextOpt 
 
 #define NewlineChar "\"
 // #inctbl "FE6TR" "EventAssembler/fe6_tr.tbl"
 #inctbl "FE8TR" "EventAssembler/fe8_tr.tbl"
 
-#define txt(string2) ALIGN 64; STRING string2 "FE8TR"; BYTE 0 0; 
+#define txt(string2) STRING string2 "FE8TR"; BYTE 0 0; 
 // #define txt(string2) STRING string2 "FE6TR"; // fe6 version 
 
 blankString:
@@ -1199,19 +1191,109 @@ txt(" ");
 
 ALIGN 64 
 gSRRMenuText: 
-FILL(256 * 8) 
+FILL(256 * MaxRTextOpt) 
+
+#define SeedOpt 0 
+#define VarianceOpt 1 
+#define CharactersOpt 2 
+#define FromGameOpt 3 
+#define BaseStatsOpt 4 
+#define GrowthsOpt 5 
+#define LevelupsOpt 6 
+#define StatCapsOpt 7 
+#define ClassOpt 8 
+#define ItemOpt 9
+#define ModeOpt 10 
+#define MusicOpt 11 
+#define ColoursOpt 12 
+#define DurabilityOpt 13 
+#define PlayerBonusOpt 14 
+#define PlayerBonusGrowthOpt 15 
+#define EnemyBonusOpt 16
+#define EnemyBonusGrowthOpt 17 
+#define FogOpt 18
+#define SoftlockOpt 19 
+#define SkipChOpt 20
+#define ReloadUnitsOpt 21 
+#define UiOpt 22
+#define DebuggerOpt 23 
+#define BGOpt 24
+#define SkillsOpt 25 
+#define TimedHitsOpt 26 
 
 
-SRRMenu(0); txt("Seed"); txt("Random Numbers are generated\using this seed."); 
-SRRMenu(1); txt("Variance"); txt("Stats/Growths will vary +/-\this much. 50% var: 8 into 4 to 12."); 
-SRRMenu(1); txt("Variance"); txt("Stats/Growths will vary +/-\this much. 50% var: 8 into 4 to 12."); 
-SRRMenu(1); txt("Variance"); txt("Stats/Growths will vary +/-\this much. 50% var: 8 into 4 to 12."); 
-SRRMenu(1); txt("Variance"); txt("Stats/Growths will vary +/-\this much. 50% var: 8 into 4 to 12."); 
 
+SRRMenu(SeedOpt);               txt("Seed")
+SRRDesc(SeedOpt,0); txt("Random Numbers are generated\using this seed."); 
+SRRMenu(VarianceOpt);           txt("Variance")
+SRRDesc(VarianceOpt); txt("Stats/Growths will vary +/-\this much."); 
+SRRMenu(CharactersOpt);         txt("Characters")
+SRRDesc(CharactersOpt); txt("Characters can be swapped\around for a unique experience."); 
+SRRMenu(FromGameOpt);           txt("From Game")
+SRRDesc(FromGameOpt); txt("Recruitable units can be from\specific or random FE games."); 
+SRRMenu(BaseStatsOpt);          txt("Base Stats")
+SRRDesc(BaseStatsOpt); txt("Determines units starting\stats on their initial appearance.\Stat +/- (Stat*Variance)."); 
+SRRMenu(GrowthsOpt);            txt("Growths")
+SRRDesc(GrowthsOpt,0); txt("Character's original growth."); 
+SRRDesc(GrowthsOpt,1); txt("Randomize character's growths.\Original Growth +/- (Growth*Variance)."); 
+SRRDesc(GrowthsOpt,2); txt("Always 0%. Good luck."); 
+SRRDesc(GrowthsOpt,3); txt("100% growths, you cheater.\Stats always increase on levelup."); 
+SRRDesc(GrowthsOpt,4); txt("50/50 odds - a coin flip."); 
+SRRMenu(LevelupsOpt);           txt("Levelups")
+SRRDesc(LevelupsOpt,0); txt("Calls NextRN, which advances\by arrow wiggling or playing.\Easily abusable with savestates."); 
+SRRDesc(LevelupsOpt,1); txt("Stats will increase based on\your seed. Consistent and\can't be abused with savestates."); 
+SRRDesc(LevelupsOpt,2); txt("Stats will levelup based on\the average at that level.\No blessed/statscrewed levelups."); 
+SRRMenu(StatCapsOpt);           txt("Stat Inflation/Caps") 
+SRRDesc(StatCapsOpt,0); txt("Stats mostly cap between\20 and 30."); 
+SRRDesc(StatCapsOpt,1); txt("Stats randomly cap between\0 and 30, but rarely\very low."); 
+SRRDesc(StatCapsOpt,2); txt("Stats always cap at 0.\Good luck lol."); 
+SRRDesc(StatCapsOpt,3); txt("Stats always cap at 15.\Stats/growths are a little lower."); 
+SRRDesc(StatCapsOpt,4); txt("Stats always cap at 30.\Stats/growths are normal."); 
+SRRDesc(StatCapsOpt,5); txt("Stats always cap at 45.\Stats/growths are a little higher."); 
+SRRDesc(StatCapsOpt,6); txt("Stats always cap at 60.\Stats/growths are higher than normal."); 
+SRRMenu(ClassOpt);              txt("Class") 
+SRRDesc(ClassOpt,0); txt("Characters start in their\original class."); 
+SRRDesc(ClassOpt,1); txt("Starting class is randomized\from the vanilla list."); 
+SRRDesc(ClassOpt,2); txt("Starting class for players is\randomized from the vanilla list."); 
+SRRDesc(ClassOpt,3); txt("Starting class for enemies is\randomized from the vanilla list."); 
+SRRDesc(ClassOpt,4); txt("Starting class is randomized\and includes classes designed\by the hacking community."); 
+SRRDesc(ClassOpt,5); txt("Starting class for players is\randomized and includes classes designed\by the hacking community."); 
+SRRDesc(ClassOpt,6); txt("Starting class for enemies is\randomized and includes classes designed\by the hacking community."); 
+SRRMenu(ItemOpt);               txt("Items")
+SRRMenu(ModeOpt);               txt("Mode")
+SRRMenu(MusicOpt);              txt("Music")
+SRRMenu(ColoursOpt);            txt("Colours")
+SRRMenu(DurabilityOpt);         txt("Item Uses")
+SRRMenu(PlayerBonusOpt);        txt("Player Bonus")
+SRRMenu(PlayerBonusGrowthOpt);  txt("Player Growth Bonus")
+SRRMenu(EnemyBonusOpt);         txt("Enemy Diff. Bonus")
+SRRMenu(PlayerBonusGrowthOpt);  txt("Enemy Growth Bonus")
+SRRMenu(FogOpt);                txt("Fog")
+SRRMenu(SoftlockOpt);           txt("Override AI")
+SRRMenu(SkipChOpt);             txt("Skip chapter")
+SRRMenu(ReloadUnitsOpt);        txt("Reload units")
+SRRMenu(UiOpt);                 txt("User Interface")
+SRRMenu(DebuggerOpt);           txt("Debugger")
+SRRMenu(BGOpt);                 txt("Backgrounds")
+SRRMenu(SkillsOpt);             txt("Skills")
+SRRMenu(TimedHitsOpt);          txt("Timed Hits") 
 
 
 
 ALIGN 4 
+SRR_TotalOptions:
+#ifdef VeslyBuildfile 
+    #ifdef C_SKILLSYS 
+    WORD 24 
+    #endif 
+    #ifdef SKILLSYS_INSTALLED 
+    WORD 26
+    #else 
+    WORD 25
+    #endif  
+#else 
+WORD 23
+#endif 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
 WORD 1

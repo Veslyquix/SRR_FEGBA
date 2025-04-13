@@ -47,7 +47,7 @@ typedef struct
     s8 previewPage;
     s8 previewId;
     s8 changingGame;
-    s8 helpBox;
+    char * helpBox;
     s8 Option[26];
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
@@ -143,7 +143,7 @@ extern struct ExceptionsStruct SkillExceptions[];
 extern int SkillSysInstalled;
 extern int StrMagInstalled;
 extern int DefaultConfigToVanilla;
-void StartHelpBoxString_SRR(int x, int y, char * string);
+void StartHelpBoxString_SRR(ConfigMenuProc * proc, int x, int y, char * string);
 
 #define SET_TEXT_USED
 // #define STRINGS_IN_ROM // faster if defined, but gotta write all the names in the installer
@@ -9273,11 +9273,11 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     if (proc->helpBox)
     {
         keys |= sKeyStatusBuffer.repeatedKeys;
-        PutSprite(2, SRR_CursorLocationTable[id].x - 8, SRR_CursorLocationTable[id].y, sSprite_HorHand, 0);
+        PutSprite(2, SRR_CursorLocationTable[id].x - 9, SRR_CursorLocationTable[id].y, sSprite_HorHand, 0);
         // DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0);
         if (keys & B_BUTTON)
         {
-            proc->helpBox = false;
+            proc->helpBox = NULL;
             CloseHelpBox();
             return;
             // ClearHelpBoxText_SRR();
@@ -9299,9 +9299,6 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
                 proc->offset = 0;
                 proc->redraw = RedrawAll;
             }
-            StartHelpBoxString_SRR(
-                RText_LocationTable[proc->id].x, RText_LocationTable[proc->id].y,
-                GetSRRMenuDesc(proc, proc->offset + proc->id));
         }
 
         else if (keys & DPAD_UP)
@@ -9321,10 +9318,56 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             {
                 proc->id--;
             }
-            StartHelpBoxString_SRR(
-                RText_LocationTable[proc->id].x, RText_LocationTable[proc->id].y,
-                GetSRRMenuDesc(proc, proc->offset + proc->id));
             // proc->redraw = true;
+        }
+        else if (keys & DPAD_RIGHT)
+        {
+            id--;
+            id += offset;
+            if (proc->Option[id] < (OptionAmounts[id] - 1))
+            {
+                proc->Option[id]++;
+            }
+            else
+            {
+                proc->Option[id] = 0;
+            }
+            proc->redraw = RedrawSome;
+            proc->clear = true;
+            id++;
+            id -= offset;
+        }
+        else if (keys & DPAD_LEFT)
+        {
+            id--;
+            id += offset;
+            if (proc->Option[id] > 0)
+            {
+                proc->Option[id]--;
+            }
+            else
+            {
+                proc->Option[id] = OptionAmounts[id] - 1;
+            }
+            proc->redraw = RedrawSome;
+            proc->clear = true;
+            id++;
+            id -= offset;
+        }
+        if (keys & 0xF0) // #define DPAD_ANY        0x00F0
+        {
+            StartHelpBoxString_SRR(
+                proc, RText_LocationTable[proc->id].x, RText_LocationTable[proc->id].y,
+                GetSRRMenuDesc(proc, proc->offset + proc->id));
+        }
+        if (proc->redraw == RedrawSome)
+        {
+            // if (((id + offset) == 26) && (proc->Option[25] == 3))
+            // {
+            // proc->choosingSkill = true;
+            // }
+            proc->redraw = RedrawNone;
+            DrawConfigMenu(proc);
         }
         if (proc->redraw == RedrawAll)
         {
@@ -9336,8 +9379,10 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     if (keys & R_BUTTON)
     {
-        StartHelpBoxString_SRR(RText_LocationTable[id].x, RText_LocationTable[id].y, GetSRRMenuDesc(proc, offset + id));
-        proc->helpBox = true;
+        proc->helpBox = (void *)-1;
+        StartHelpBoxString_SRR(
+            proc, RText_LocationTable[id].x, RText_LocationTable[id].y, GetSRRMenuDesc(proc, offset + id));
+
         // Proc_StartBlocking(gProcScr_SRRHelpboxListener, proc);
         return;
     }
@@ -10393,7 +10438,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         {
             proc->Option[i] = 0;
         }
-        proc->helpBox = false;
+        proc->helpBox = NULL;
         proc->reloadPlayers = false;
         proc->reloadEnemies = false;
         if (!DefaultConfigToVanilla)
@@ -12590,11 +12635,12 @@ extern int sActiveMsg;
 void LoadStringIntoBuffer_SRR(char * a)
 {
     sActiveMsg = 0;
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < 500; ++i)
     {
         sMsgString[i] = a[i];
         if (!a[i])
         {
+            sMsgString[i + 1] = 0;
             break;
         }
     }
@@ -12695,8 +12741,13 @@ void ApplyHelpBoxContentSizeString_SRR(struct HelpBoxProc * proc, int width, int
     proc->hBoxFinal = height;
 }
 
-void StartHelpBoxString_SRR(int x, int y, char * string)
+void StartHelpBoxString_SRR(ConfigMenuProc * SRRproc, int x, int y, char * string)
 {
+    if (string == SRRproc->helpBox)
+    {
+        return;
+    }
+    SRRproc->helpBox = string;
     sMutableHbi.adjUp = NULL;
     sMutableHbi.adjDown = NULL;
     sMutableHbi.adjLeft = NULL;
@@ -12762,6 +12813,7 @@ void StartHelpBoxString_SRR(int x, int y, char * string)
 }
 
 extern char * gSRRMenuText[];
+// POIN nameTextId genericDescId opt1DescId opt2DescId etc
 
 // extern const struct MenuItemDef * ggSRRMenuItems[];
 
@@ -12786,11 +12838,12 @@ int CountSRRMenuItems(ConfigMenuProc * proc)
 // }
 
 extern char blankString;
+extern int MaxRTextOptions;
 char * GetSRRMenuText(ConfigMenuProc * proc, int index)
 {
     // index += proc->page * NumberOfOptions;
     index += CountSRRMenuItems(proc);
-    char * result = gSRRMenuText[index * 2];
+    char * result = gSRRMenuText[index * (MaxRTextOptions + 1)];
     if (!result)
     {
         return &blankString;
@@ -12800,7 +12853,18 @@ char * GetSRRMenuText(ConfigMenuProc * proc, int index)
 char * GetSRRMenuDesc(ConfigMenuProc * proc, int index)
 {
     index += CountSRRMenuItems(proc);
-    char * result = gSRRMenuText[(index * 2) + 1];
+    int opt = proc->Option[index - 1] + 1;
+    // asm("mov r11, r11");
+    if (opt > MaxRTextOptions)
+    {
+        opt = 1;
+    }
+    char * result =
+        gSRRMenuText[(index * (MaxRTextOptions + 1)) + opt]; // specific r text for that option eg. Fixed levelups
+    if (!result)
+    {
+        result = gSRRMenuText[(index * (MaxRTextOptions + 1)) + 1]; // default r text
+    }
     if (!result)
     {
         return &blankString;
