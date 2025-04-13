@@ -1147,9 +1147,16 @@ WORD 1
 #else 
 WORD 0
 #endif  
-ALIGN 4 
-gSRRMenuText: 
-FILL(256 * 4) 
+
+
+// #inctbl "FE6TR" "EventAssembler/fe6_tr.tbl"
+#inctbl "FE8TR" "EventAssembler/fe8_tr.tbl"
+
+#define txt(string2) STRING string2 "FE8TR"; BYTE 0 0; 
+// #define txt(string2) STRING string2 "FE6TR"; // fe6 version 
+
+#include "SRR_Menu.event" 
+
 // NOTE: AsmHooks NewClearBWLFunction_FE7 assumes this data is all in a row 
 ALIGN 4 
 RandValues:

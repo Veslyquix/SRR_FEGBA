@@ -12532,7 +12532,7 @@ struct HelpBoxSt
     /* 16 */ struct Text text[3];
     /* 30 */ u16 oam2_base;
 };
-struct HelpBoxScrollProc
+struct HelpBoxScrollProc // identical to fe6
 {
     /* 00 */ PROC_HEADER;
 
@@ -12548,7 +12548,7 @@ struct HelpBoxScrollProc
     /* 62 */ s16 chars_per_step;
     /* 64 */ s16 unk_64;
 };
-struct HelpBoxInfo
+struct HelpBoxInfo // identical to fe6
 {
     /* 00 */ const struct HelpBoxInfo * adjUp;
     /* 04 */ const struct HelpBoxInfo * adjDown;
@@ -12560,7 +12560,7 @@ struct HelpBoxInfo
     /* 14 */ void (*redirect)(struct HelpBoxProc * proc);
     /* 18 */ void (*populate)(struct HelpBoxProc * proc);
 };
-struct ProcHelpBoxIntro
+struct ProcHelpBoxIntro // only used for extern declaration
 {
     /* 00 */ PROC_HEADER;
 
@@ -12591,6 +12591,7 @@ extern void Text_SetColor(struct Text * th, int colorId);
 extern void HelpBoxSetupstringLines(struct ProcHelpBoxIntro * proc);
 extern void HelpBoxDrawstring(struct ProcHelpBoxIntro * proc);
 void HelpBoxIntroDrawTextsString_SRR(struct ProcHelpBoxIntroString * proc);
+extern void HelpBoxIntroDrawTexts(struct ProcHelpBoxIntroString * proc);
 
 struct ProcCmd const ProcScr_HelpBoxIntroString_SRR[] = {
     PROC_SLEEP(6),
@@ -12599,6 +12600,7 @@ struct ProcCmd const ProcScr_HelpBoxIntroString_SRR[] = {
     PROC_REPEAT(HelpBoxDrawstring),
 
     PROC_CALL(HelpBoxIntroDrawTextsString_SRR),
+    // PROC_CALL(HelpBoxIntroDrawTexts),
 
     PROC_END,
 };
@@ -12640,10 +12642,13 @@ void LoadStringIntoBuffer_SRR(char * a)
         if (!a[i])
         {
             sMsgString[i + 1] = 0;
+            sMsgString[i + 2] = 0;
             break;
         }
     }
+#ifdef FE8
     SetMsgTerminator(sMsgString);
+#endif
 }
 
 void HelpBoxIntroDrawTextsString_SRR(struct ProcHelpBoxIntroString * proc)
@@ -12802,6 +12807,9 @@ void StartHelpBoxString_SRR(ConfigMenuProc * SRRproc, int x, int y, char * strin
     SetTextFontGlyphs(1);
     GetStringTextBox(string, &wContent, &hContent);
     SetTextFontGlyphs(0);
+#ifdef FE7
+    wContent += 16; // I don't know why
+#endif
 
     ApplyHelpBoxContentSizeString_SRR(proc, wContent, hContent, string);
     ApplyHelpBoxPosition(proc, info->xDisplay, info->yDisplay);

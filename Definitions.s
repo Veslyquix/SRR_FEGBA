@@ -168,10 +168,43 @@ SET_DATA gUnknown_08A02274, 0x83080D0
 
 SET_FUNC HelpBoxIntroDrawTexts, 0x8071411
 SET_FUNC ApplyHelpBoxContentSize, 0x8070a31
+@SET_FUNC StringInsertSpecialPrefixByCtrl, 0x8012CBD
+@SET_DATA gProcScr_HelpBoxTextScroll, 0x8CC2994
+SET_FUNC LoadHelpBoxGfx, 0x8070E71
+SET_FUNC SpriteText_DrawBackground, 0x80066f9
+SET_FUNC GetStringTextBox, 0x8005D05
+SET_FUNC ApplyHelpBoxPosition, 0x8070A70
+SET_FUNC SetHelpBoxInitPosition, 0x8070AFD
+SET_FUNC ResetHelpBoxInitSize, 0x8070B21
+SET_FUNC CloseHelpBox, 0x807089D
+SET_FUNC HelpBoxSetupstringLines, 0x08071375 @ ? 
+SET_FUNC HelpBoxDrawstring, 0x080713dd @? 
+
+
 .endif 
 .if FE7 == true 
+SET_DATA sMutableHbi, 0x203E674 @ in StartHelpBox 
+SET_DATA sLastHbi, 0x203E690 
+SET_DATA sHbOrigin, 0x203E694 @ in StartHelpBox 
+SET_DATA gHelpBoxSt, 0x203E6A0
+SET_DATA gProcScr_HelpBox, 0x8CC2014 @ StartHelpBox
+SET_DATA ProcScr_HelpBoxIntro, 0x8CC29BC @ StartHelpBox
 SET_FUNC HelpBoxIntroDrawTexts, 0x8082C8d
 SET_FUNC ApplyHelpBoxContentSize, 0x8081CDD
+SET_FUNC StringInsertSpecialPrefixByCtrl, 0x8012CBD
+SET_FUNC GetHelpBoxItemInfoKind, 0x8081E01
+@SET_FUNC SetMsgTerminator, 0x8012c11
+SET_FUNC LoadHelpBoxGfx, 0x8082529
+SET_FUNC SpriteText_DrawBackground, 0x8005C99
+SET_FUNC GetStringTextLen, 0x80055FD
+SET_FUNC GetStringTextBox, 0x80056C5
+SET_FUNC ApplyHelpBoxPosition, 0x8081D41
+SET_FUNC SetHelpBoxInitPosition, 0x8081DCD
+SET_FUNC ResetHelpBoxInitSize, 0x8081DF1
+SET_FUNC CloseHelpBox, 0x8081B45
+SET_FUNC HelpBoxSetupstringLines, 0x8082BD9
+SET_FUNC HelpBoxDrawstring, 0x8082C4D
+SET_DATA gProcScr_HelpBoxTextScroll, 0x8CC2994
 SET_DATA gUnknown_08A02274, 0x83FCE8C
 SET_FUNC MU_EndAll, 0x806CCB9 
 SET_FUNC HideUnitSprite, 0x8026575
