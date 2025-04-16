@@ -807,6 +807,16 @@ void EndAllRecruitmentProcs(void)
     Proc_EndEach(RecruitmentProcCmd4);
 }
 
+struct PidStatsChar * GetPidStatsSafe(int i)
+{
+    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(i);
+    if ((void *)pidStats == (void *)RandValues)
+    {
+        return NULL;
+    }
+    return pidStats;
+}
+
 void ClearPlayerBWL(void);
 void RerollPage(ConfigMenuProc * proc)
 {
@@ -816,14 +826,10 @@ void RerollPage(ConfigMenuProc * proc)
     for (int i = 0; i < NumberOfCharsPerPage; ++i)
     {
         id = GetReviseCharByID(offset + i);
-        pidStats = (struct PidStatsChar *)GetPidStats(id);
-        if ((void *)pidStats == (void *)RandValues)
-        {
-            continue;
-        }
+        pidStats = GetPidStatsSafe(id);
         if (!pidStats)
         {
-            break;
+            continue;
         }
 
         pidStats->deployAmt = 0x3F;
@@ -840,32 +846,30 @@ void ResetPage(ConfigMenuProc * proc)
     for (int i = 0; i < NumberOfCharsPerPage; ++i)
     {
         id = GetReviseCharByID(offset + i);
-        pidStats = (struct PidStatsChar *)GetPidStats(id);
-        if ((void *)pidStats == (void *)RandValues)
-        {
-            continue;
-        }
+        pidStats = GetPidStatsSafe(id);
         if (!pidStats)
         {
-            break;
+            continue;
         }
 
         pidStats->deployAmt = 0;
         pidStats->moveAmt = id;
     }
 }
+
 void SetAllCharConfirm(ConfigMenuProc * proc)
 {
-    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(1);
+    struct PidStatsChar * pidStats = GetPidStatsSafe(1);
+    if (!pidStats)
+    {
+        return;
+    }
     int id = pidStats->moveAmt;
     int game = pidStats->deployAmt;
     for (int i = 2; i <= 0x45; ++i)
     {
-        pidStats = (struct PidStatsChar *)GetPidStats(i);
-        if ((void *)pidStats == (void *)RandValues)
-        {
-            continue;
-        }
+        pidStats = GetPidStatsSafe(i);
+
         if (!pidStats)
         {
             continue;
@@ -890,8 +894,12 @@ void CopyBWLForCharDuplicates(void)
         num = GetAdjustedCharacterID(table);
         if (num != (i) && num <= 0x45)
         {
-            pidStatsA = (void *)GetPidStats(i);
-            pidStatsB = (void *)GetPidStats(num);
+            pidStatsA = GetPidStatsSafe(i);
+            pidStatsB = GetPidStatsSafe(num);
+            if (!pidStatsA || !pidStatsB)
+            {
+                continue;
+            }
             pidStatsA->moveAmt = pidStatsB->moveAmt;
             pidStatsA->deployAmt = pidStatsB->deployAmt;
         }
@@ -1198,7 +1206,7 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     int charID = GetReviseCharID(proc);
     ResetText();
     int tableID = 0;
-    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
+    struct PidStatsChar * pidStats = GetPidStatsSafe(charID);
     if (CharConfirmPage)
     {
         if (pidStats)
@@ -1243,6 +1251,10 @@ void DisplayVertUiHand(int x, int y);
 
 void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
 {
+    if (!pidStats)
+    {
+        return;
+    }
     int startingID = pidStats->moveAmt;
     const struct CharacterData * table = GetCharacterData(id);
     const struct CharacterData * table2;
@@ -1276,6 +1288,10 @@ void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
 }
 void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
 {
+    if (!pidStats)
+    {
+        return;
+    }
     int startingID = pidStats->moveAmt;
     const struct CharacterData * table = GetCharacterData(id);
     const struct CharacterData * table2;
@@ -1325,7 +1341,11 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     }
     int charID = GetReviseCharID(proc);
     // int tableID = 0;
-    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
+    struct PidStatsChar * pidStats = GetPidStatsSafe(charID);
+    if (!pidStats)
+    {
+        return;
+    }
 
     int tmp = 0;
     int changed = false;
@@ -1402,7 +1422,7 @@ void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
     TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, x, y + 4), 13, 0, 0x380);
     palID <<= 1; // since two entries are being drawn
     struct FE8CharacterData * table;
-    // struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(charID);
+    // struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStatsSafe(charID);
     table = (struct FE8CharacterData *)GetCharacterData(charID);
     PutDrawCenteredText(
         gStatScreen.text + palID, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y), table->nameTextId, maxWidth, gold);
@@ -1459,8 +1479,8 @@ void ClearPlayerBWL(void)
     struct PidStatsChar * pidStats;
     for (int i = 1; i < 0x46; ++i)
     {
-        pidStats = (struct PidStatsChar *)GetPidStats(i);
-        if ((void *)pidStats == (void *)RandValues)
+        pidStats = GetPidStatsSafe(i);
+        if (!pidStats)
         {
             continue;
         }
@@ -1565,7 +1585,7 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
 
 const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table)
 {
-    struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(table->number);
+    struct PidStatsChar * pidStats = GetPidStatsSafe(table->number);
     return GetReorderedCharacterByPIDStats(table, pidStats);
 }
 
@@ -3166,7 +3186,7 @@ int GetMaxItems(void)
     {
         return MaxItems_Link;
     }
-    if (*MaxItems > 1)
+    if (*MaxItems > 32)
     {
         return *MaxItems;
     }
@@ -3198,7 +3218,7 @@ int GetMaxClasses(void)
     {
         return MaxClasses_Link;
     }
-    if (*MaxClasses > 1)
+    if (*MaxClasses > 32)
     {
         return *MaxClasses;
     }
