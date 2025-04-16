@@ -868,7 +868,7 @@ void SetAllCharConfirm(ConfigMenuProc * proc)
         }
         if (!pidStats)
         {
-            break;
+            continue;
         }
 
         pidStats->deployAmt = game;
