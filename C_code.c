@@ -1800,7 +1800,7 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
         unitID = id;
     }
 
-    if (id <= 0x40)
+    if (id < 0x40)
     {
         int tmp = tableID_proc->id[(id & 0x3F) - 1];
         if (tmp < NumberOfCharTables)
@@ -2125,14 +2125,36 @@ struct Vec2u
     u16 x, y;
 };
 
-#define UnitListSize 80
+#define UnitListSize 200
 #define BossListSize 80
 
-void InitFilteredRecruitmentProc(
-    struct Vec2u * counter, u8 * unit, u8 * bosses, u8 * tableID, RecruitmentProc * proc1, RecruitmentProc * proc2,
+int FilterCharOut(const struct CharacterData * table, const struct ClassData * ctable)
+{
+    u32 tagVal = TagValues->tags;
+    u8 ranks = (tagVal & 0xFF00) >> 8;
+
+    int classRanks = 0;
+    for (int i = 0; i < 8; ++i)
+    {
+        if (ctable->baseRanks[i])
+        {
+            classRanks |= (1 << i);
+        }
+    }
+    if (ranks & classRanks)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+void BuildFilteredCharsList(
+    struct Vec2u * counter, u8 * unit, u8 * bosses, u8 * tables, RecruitmentProc * proc1, RecruitmentProc * proc2,
     RecruitmentProc * proc3, RecruitmentProc * proc4)
 {
     const struct CharacterData * table = GetCharacterData(1);
+
     RecruitmentProc * proc = proc1;
     int boss;
     int b = 0;
@@ -2161,6 +2183,7 @@ void InitFilteredRecruitmentProc(
     proc = proc1;
 
     for (int t = 0; t < NumberOfCharTables; ++t)
+    // for (int t = 0; t < 1; ++t)
     {
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
@@ -2175,6 +2198,7 @@ void InitFilteredRecruitmentProc(
                 continue;
             } // Morphs
 #endif
+
             boss = table->attributes & (CA_BOSS);
             switch (GetUnitListToUse(table, boss, true))
             {
@@ -2189,6 +2213,11 @@ void InitFilteredRecruitmentProc(
                     {
                         continue;
                     }
+                    if (FilterCharOut(table, GetClassData(table->defaultClass)))
+                    {
+                        continue;
+                    }
+                    tables[c] = t;
                     unit[c] = i;
                     c++;
                     break;
@@ -2309,7 +2338,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
 
     if (TagValues->tags != 0xFFFF)
     {
-        InitFilteredRecruitmentProc(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
+        BuildFilteredCharsList(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
     }
     else
     {
@@ -2389,9 +2418,8 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                 }
                 num = HashByte_Simple(rn, c);
                 proc->id[(i & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                if (i <= 0x40)
+                if (i < 0x40)
                 {
-                    asm("mov r11, r11");
                     if (tables[num] != 0xFF)
                     {
                         proc5->id[(i & 0x3F) - 1] = tables[num];
