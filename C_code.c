@@ -6337,7 +6337,7 @@ int CanClassPromote(const struct ClassData * data)
 {
     if (!(data->attributes & CA_PROMOTED)) // unpromoted
     {
-        if (data->number)
+        if (data->promotion)
         {
             return true;
         } // has something to promote into
