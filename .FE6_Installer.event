@@ -960,7 +960,15 @@ NeverRandomizeBGM:
 WORD 1
 #else 
 WORD 0
-#endif     
+#endif   
+// #inctbl "FE6TR" "EventAssembler/fe6_tr.tbl"
+// #inctbl "FE8TR" "EventAssembler/fe8_tr.tbl"
+
+// #define txt(string2) STRING string2 "FE8TR"; BYTE 0 0; 
+#define txt(string2) STRING string2 "FE6TR"; BYTE 0 0; // fe6 version 
+
+#include "SRR_Menu.event" 
+ 
 ALIGN 4 
 RandValues:
 WORD 0x203D974 // Bandit unitID + 0x45 BWL data

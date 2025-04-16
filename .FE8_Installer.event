@@ -1148,19 +1148,7 @@ WORD 1
 ALIGN 4
 IconOrr:
 WORD IconOrrValue
-SRR_TotalOptions:
-#ifdef VeslyBuildfile 
-    #ifdef C_SKILLSYS 
-    WORD 24 
-    #endif 
-    #ifdef SKILLSYS_INSTALLED 
-    WORD 26
-    #else 
-    WORD 25
-    #endif  
-#else 
-WORD 23
-#endif 
+
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:
@@ -1182,7 +1170,30 @@ DisplayRandomSkillsOption:
 	WORD 0 
 #endif 
 
+
+// #inctbl "FE6TR" "EventAssembler/fe6_tr.tbl"
+#inctbl "FE8TR" "EventAssembler/fe8_tr.tbl"
+
+#define txt(string2) STRING string2 "FE8TR"; BYTE 0 0; 
+// #define txt(string2) STRING string2 "FE6TR"; // fe6 version 
+
+#include "SRR_Menu.event" 
+
+
 ALIGN 4 
+SRR_TotalOptions:
+#ifdef VeslyBuildfile 
+    #ifdef C_SKILLSYS 
+    WORD 24 
+    #endif 
+    #ifdef SKILLSYS_INSTALLED 
+    WORD 26
+    #else 
+    WORD 25
+    #endif  
+#else 
+WORD 23
+#endif 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
 WORD 1
