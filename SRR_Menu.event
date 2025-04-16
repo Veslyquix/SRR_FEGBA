@@ -1,6 +1,7 @@
 
 #define MaxRTextOpt 7 
 #define SRRMenu(id) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4); POIN addr; POP }"
+#define tag(id) "{ addr: ; PUSH; ORG tags + (id * 4); POIN addr; POP }"
 #define SRRDesc(id) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4) + 4; POIN addr; POP }"
 #define SRRDesc(id, opt) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4) + (4*(opt+1)); POIN addr; POP }"
 
@@ -45,6 +46,51 @@ FILL((MaxRTextOpt+1) * 4 * 30) // max 30 options
 #define BGOpt 24
 #define TimedHitsOpt 25 
 #define SkillsOpt 26 
+
+
+ALIGN 64 
+tags: 
+FILL(4 * 32) 
+
+
+tag(0); txt("Unpromoted");
+tag(1); txt("Promoted");
+tag(2); txt("Male");
+tag(3); txt("Female");
+tag(4); txt("Unmounted");
+tag(5); txt("Mounted");
+tag(6); txt("--");
+tag(7); txt("--");
+
+
+
+tag(08); txt("Swords");
+tag(09); txt("Lances");
+tag(10); txt("Axes");
+tag(11); txt("Bows");
+tag(12); txt("Staves");
+tag(13); txt("Anima");
+tag(14); txt("Light");
+tag(15); txt("Dark");
+
+tag(16); txt("Lord");
+tag(17); txt("Thief");
+tag(18); txt("Dancer");
+tag(19); txt("Manakete"); // tag(12); txt("Trainee");
+tag(20); txt("--");
+tag(21); txt("--");
+tag(22); txt("--");
+tag(23); txt("--");
+
+tag(24); txt("Bulky");
+tag(25); txt("Tanky");
+tag(26); txt("Powerful");
+tag(27); txt("Quick");
+tag(28); txt("--");
+tag(29); txt("--");
+tag(30); txt("--");
+tag(31); txt("--");
+
 
 
 

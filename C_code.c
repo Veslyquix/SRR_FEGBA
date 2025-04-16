@@ -24,6 +24,14 @@
 extern int maxStat;
 extern int C_SKILLSYS_INSTALL;
 int GetGlobalStatCap(void);
+// struct ProcCmd ConfigMenuProcCmd[];
+
+#define ConfigMenuLabel 0
+#define FilterUnitsLabel 1
+#define PreviewCharLabel 2
+#define ReviseCharProcLabel 3
+
+#define EndLabel 99
 
 #include "headers/gbafe.h"
 #define PUREFUNC __attribute__((pure))
@@ -48,7 +56,8 @@ typedef struct
     s8 previewId;
     s8 changingGame;
     char * helpBox;
-    s8 Option[26];
+    s8 Option[26]; // ends around 5C
+    u32 tags;
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -116,6 +125,10 @@ struct GrowthBonusValues
     u8 Backgrounds : 1;
     u8 pad : 2;
 };
+struct TagsStruct
+{
+    u16 tags;
+};
 
 extern struct TimedHitsDifficultyStruct * TimedHitsDifficultyRam;
 
@@ -124,6 +137,7 @@ extern struct RecruitmentValues * RecruitValues;
 extern struct RandomizerSettings * RandBitflags;
 extern struct RandomizerValues * RandValues;
 extern struct GrowthBonusValues * GrowthValues;
+extern struct TagsStruct * TagValues;
 
 extern u8 * MaxItems;
 extern int MaxItems_Link;
@@ -647,6 +661,14 @@ extern void ResetFaces();
 int GetReviseCharID(ConfigMenuProc * proc);
 int GetReviseCharByID(int id);
 extern int SetActiveTalkFace(int slot);
+void EndAllRecruitmentProcs(void)
+{
+    Proc_EndEach(RecruitmentProcCmd1);
+    Proc_EndEach(RecruitmentProcCmd2);
+    Proc_EndEach(RecruitmentProcCmd3);
+    Proc_EndEach(RecruitmentProcCmd4);
+}
+void ClearPlayerBWL(void);
 void ClearConfigGfx(ConfigMenuProc * proc)
 {
     // EndGreenText();
@@ -665,6 +687,8 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
     ResetText();  // need this
     ResetFaces(); // without this, it was duplicating the face on both sides
+    EndAllRecruitmentProcs();
+    // ClearPlayerBWL();
     GetReorderedCharacter(GetCharacterData(1));
 }
 
@@ -799,13 +823,6 @@ static const LocationTable CharPreviewLoc[NumberOfOptions_CharPreview] = {
     { 38, 96 },   { 166, 96 },  { 38, 136 },              // lower portraits
     { 150, 128 }, { 150, 144 }, { 98, 71 },               // bottom right options
 };
-void EndAllRecruitmentProcs(void)
-{
-    Proc_EndEach(RecruitmentProcCmd1);
-    Proc_EndEach(RecruitmentProcCmd2);
-    Proc_EndEach(RecruitmentProcCmd3);
-    Proc_EndEach(RecruitmentProcCmd4);
-}
 
 struct PidStatsChar * GetPidStatsSafe(int i)
 {
@@ -817,7 +834,6 @@ struct PidStatsChar * GetPidStatsSafe(int i)
     return pidStats;
 }
 
-void ClearPlayerBWL(void);
 void RerollPage(ConfigMenuProc * proc)
 {
     struct PidStatsChar * pidStats;
@@ -906,7 +922,6 @@ void CopyBWLForCharDuplicates(void)
     }
 }
 
-#define ReviseCharProcLabel 10
 void ReviseRandomizedCharacter(ConfigMenuProc * proc)
 {
     if (GetReviseCharID(proc) <= MaxCharPreviewID)
@@ -922,12 +937,18 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
         Proc_Break(proc);
     }
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
+    if (keys & B_BUTTON)
+    {
+        CopyBWLForCharDuplicates();
+        Proc_Goto(proc, ConfigMenuLabel);
+        return;
+    }
     if (keys & A_BUTTON)
     {
         if (proc->previewId == ConfirmCommandID)
         {
             CopyBWLForCharDuplicates();
-            Proc_Goto(proc, 99);
+            Proc_Goto(proc, EndLabel);
             return;
         }
         if (proc->previewId == RerollCommandID)
@@ -1246,7 +1267,223 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
     // EnablePaletteSync();
 }
-#define PreviewCharLabel 1
+
+extern void Text_DrawString(struct Text * th, const char * str);
+extern void PutText(struct Text * th, u16 * dest);
+extern void Text_SetColor(struct Text * th, int colorId);
+extern int Text_GetColor(struct Text * th);
+#define NumberOfTags 32
+#define TagWidth 7
+extern const char * tags[];
+
+#ifdef FE8
+extern void DrawUiFrame(u16 * tilemap, int x, int y, int width, int height, int tilebase, int style);
+#else
+void PutUiWindowFrame(int x, int y, int width, int height, int window_kind);
+void DrawUiFrame(u16 * tilemap, int x, int y, int width, int height, int tilebase, int style)
+{
+    PutUiWindowFrame(x, y, width, height, style);
+}
+#endif
+
+u16 * const BgTilemapBuffers[] = {
+    gBG0TilemapBuffer,
+    gBG1TilemapBuffer,
+    gBG2TilemapBuffer,
+    gBG3TilemapBuffer,
+};
+
+u16 * BG_GetMapBuffer(int bg)
+{
+    if (bg > 3)
+    {
+        bg = 0;
+    }
+    return BgTilemapBuffers[bg];
+}
+
+void DrawFilterCharPage(ConfigMenuProc * proc);
+void FilterCharInit(ConfigMenuProc * proc)
+{
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+
+    BG_Fill(gBG0TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+    SetTextFont(0);
+    ClearBg0Bg1();
+    ResetText();
+
+    int x = 1;
+    int y = 1;
+    int w = 29; // StatWidth + (START_X - NUMBER_X) + 3;
+    int h = 18; //(NumberOfOptions * 2) + 2;
+
+    DrawUiFrame(
+        BG_GetMapBuffer(1),            // back BG
+        x, y, w, h, TILEREF(0, 0), 0); // style as 0 ?
+
+    // ClearUiFrame(
+    //     BG_GetMapBuffer(1), // front BG
+    //     x, y, w, h);
+
+    struct Text * th = gStatScreen.text;
+
+    for (int i = 0; i < NumberOfTags; ++i)
+    {
+        InitText(&th[i], TagWidth);
+        Text_DrawString(&th[i], tags[i]);
+    }
+    // StartGreenText(proc);
+    DrawFilterCharPage(proc);
+}
+
+void DrawFilterCharPage(ConfigMenuProc * proc)
+{
+    // TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(15, 2), 9, 2 * 9, 0);
+    int c = 0;
+    struct Text * th = gStatScreen.text;
+
+    u32 curTags = proc->tags;
+
+    for (int i = 0; i < NumberOfTags; ++i)
+    {
+        c = curTags & (1 << i);
+        if (c)
+        {
+            c = gold;
+        }
+
+        if (Text_GetColor(&th[i]) != c)
+        {
+            ClearText(&th[i]);
+            Text_SetColor(&th[i], c);
+            Text_DrawString(&th[i], tags[i]);
+        }
+    }
+    c = 0;
+    int x = 2;
+    int y = 2;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    x += TagWidth;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    x += TagWidth;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    x += TagWidth;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+static LocationTable TagsCursorLocationTable[] = {
+    //{(NUMBER_X*8) - (0 * 8) - 4, Y_HAND*8},
+    { 8, 16 },
+    { 8, 32 },
+    { 8, 48 },
+    { 8, 64 },
+    { 8, 80 },
+    { 8, 96 },
+    { 8, 112 },
+    { 8, 128 },
+    { 8 + (8 * TagWidth), 16 },
+    { 8 + (8 * TagWidth), 32 },
+    { 8 + (8 * TagWidth), 48 },
+    { 8 + (8 * TagWidth), 64 },
+    { 8 + (8 * TagWidth), 80 },
+    { 8 + (8 * TagWidth), 96 },
+    { 8 + (8 * TagWidth), 112 },
+    { 8 + (8 * TagWidth), 128 },
+    { 8 + (16 * TagWidth), 16 },
+    { 8 + (16 * TagWidth), 32 },
+    { 8 + (16 * TagWidth), 48 },
+    { 8 + (16 * TagWidth), 64 },
+    { 8 + (16 * TagWidth), 80 },
+    { 8 + (16 * TagWidth), 96 },
+    { 8 + (16 * TagWidth), 112 },
+    { 8 + (16 * TagWidth), 128 },
+    { 8 + (24 * TagWidth), 16 },
+    { 8 + (24 * TagWidth), 32 },
+    { 8 + (24 * TagWidth), 48 },
+    { 8 + (24 * TagWidth), 64 },
+    { 8 + (24 * TagWidth), 80 },
+    { 8 + (24 * TagWidth), 96 },
+    { 8 + (24 * TagWidth), 112 },
+    { 8 + (24 * TagWidth), 128 },
+};
+
+void LoopFilterCharPage(ConfigMenuProc * proc)
+{
+    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
+    if ((keys & START_BUTTON) || (keys & B_BUTTON))
+    { // press B or Start to update tags and continue
+
+        // Proc_Goto(proc, ConfigMenuLabel);
+        TagValues->tags = proc->tags;
+        Proc_Goto(proc, PreviewCharLabel);
+        proc->previewId = ConfirmCommandID;
+        return;
+    }
+    u32 id = proc->previewId;
+    if ((keys & A_BUTTON))
+    {
+        proc->tags ^= (1 << id);
+        DrawFilterCharPage(proc);
+    }
+
+    DisplayUiHand(TagsCursorLocationTable[id].x, TagsCursorLocationTable[id].y);
+
+    if (keys & DPAD_RIGHT)
+    {
+        id += 8;
+    }
+    if (keys & DPAD_LEFT)
+    {
+        id -= 8;
+    }
+    if (keys & DPAD_UP)
+    {
+        if (!(id % 8))
+        {
+            id += 8;
+        }
+        id--;
+    }
+    if (keys & DPAD_DOWN)
+    {
+
+        id++;
+        if (!(id % 8))
+        {
+            id -= 8;
+        }
+    }
+
+    if (id != (int)proc->id)
+    {
+        id %= 32;
+        proc->previewId = id;
+        DrawFilterCharPage(proc);
+    }
+}
+
 void DisplayVertUiHand(int x, int y);
 
 void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
@@ -1860,38 +2097,27 @@ int CallGetUnitListToUse(const struct CharacterData * table, int boss, int exclu
     return result;
 }
 
-// RecruitmentProc * InitAllGamesRandomRecruitmentProc(int procID)
-// {
-
-// }
-
-// #define REVERSE_ORDER
-RecruitmentProc * InitRandomRecruitmentProc(int procID)
+struct Vec2
 {
-    // if (ShouldRandomizeUsedCharTable())
-    // {
-    // InitAllGamesRandomRecruitmentProc(procID);
-    // return;
-    // }
+    short x, y;
+};
+struct Vec2u
+{
+    u16 x, y;
+};
 
-    u8 unit[80];
-    u8 bosses[80];
+void InitFilteredRecruitmentProc(
+    struct Vec2u * counter, u8 * unit, u8 * bosses, RecruitmentProc * proc1, RecruitmentProc * proc2,
+    RecruitmentProc * proc3, RecruitmentProc * proc4)
+{
+    asm("mov r11, r11");
     const struct CharacterData * table = GetCharacterData(1);
-    int c = 0;
-    int b = 0; // bosses count
-    int seed = RandValues->seed;
-
-    RecruitmentProc * proc1 = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3);
-    RecruitmentProc * proc2 = Proc_Start(RecruitmentProcCmd2, PROC_TREE_3);
-    RecruitmentProc * proc3 = Proc_Start(RecruitmentProcCmd3, PROC_TREE_3);
-    RecruitmentProc * proc4 = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3);
     RecruitmentProc * proc = proc1;
     int boss;
-    proc->id[0] = 0;
-    // table--;
+    int b = 0;
+    int c = 0;
     for (int i = 1; i <= MAX_CHAR_ID; ++i)
-    { // all available units
-        // table = GetCharacterData(i);
+    {
         table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
 
         // table++;
@@ -1937,6 +2163,115 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             default:
         }
     }
+    counter->x = c;
+    counter->y = b;
+    asm("mov r11, r11");
+}
+
+void BuildRecruitableCharsList(
+    struct Vec2u * counter, u8 * unit, u8 * bosses, RecruitmentProc * proc1, RecruitmentProc * proc2,
+    RecruitmentProc * proc3, RecruitmentProc * proc4)
+{
+    asm("mov r11, r11");
+    const struct CharacterData * table = GetCharacterData(1);
+    RecruitmentProc * proc = proc1;
+    int boss;
+    int b = 0;
+    int c = 0;
+    for (int i = 1; i <= MAX_CHAR_ID; ++i)
+    {
+        table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
+
+        // table++;
+        if (i == 0x40)
+        {
+            proc = proc2;
+        }
+        if (i == 0x80)
+        {
+            proc = proc3;
+        }
+        if (i == 0xC0)
+        {
+            proc = proc4;
+        }
+        proc->id[i & 0x3F] = 0x0;
+#ifdef FE7
+        if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
+        {
+            continue;
+        } // Morphs
+#endif
+        boss = table->attributes & (CA_BOSS);
+        switch (GetUnitListToUse(table, boss, true))
+        {
+            case 0: // eg no portrait
+            {
+                continue;
+                break;
+            }
+            case 1:
+            {
+                unit[c] = i;
+                c++;
+                break;
+            }
+            case 2:
+            {
+                bosses[b] = i;
+                b++;
+                break;
+            }
+            default:
+        }
+    }
+    counter->x = c;
+    counter->y = b;
+    asm("mov r11, r11");
+}
+
+// #define REVERSE_ORDER
+RecruitmentProc * InitRandomRecruitmentProc(int procID)
+{
+    // if (ShouldRandomizeUsedCharTable())
+    // {
+    // InitAllGamesRandomRecruitmentProc(procID);
+    // return;
+    // }
+
+    u8 unit[80];
+    u8 bosses[80];
+    const struct CharacterData * table = GetCharacterData(1);
+    int c = 0;
+    int b = 0; // bosses count
+    int seed = RandValues->seed;
+
+    RecruitmentProc * proc1 = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3);
+    RecruitmentProc * proc2 = Proc_Start(RecruitmentProcCmd2, PROC_TREE_3);
+    RecruitmentProc * proc3 = Proc_Start(RecruitmentProcCmd3, PROC_TREE_3);
+    RecruitmentProc * proc4 = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3);
+    RecruitmentProc * proc = proc1;
+    int boss;
+    proc->id[0] = 0;
+
+    struct Vec2u counter_val = { 0, 0 };
+    struct Vec2u * counter = &counter_val;
+
+    counter->x = c;
+    counter->y = b;
+
+    if (TagValues->tags != 0xFFFF)
+    {
+        InitFilteredRecruitmentProc(counter, unit, bosses, proc1, proc2, proc3, proc4);
+    }
+    else
+    {
+        BuildRecruitableCharsList(counter, unit, bosses, proc1, proc2, proc3, proc4);
+    }
+    c = counter->x;
+    b = counter->y;
+    // table--;
+
     // proc->count = c;
 
     int c_max = c; // count of characters to randomize from
@@ -7938,10 +8273,11 @@ void RedrawAllText(ConfigMenuProc * proc);
 const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(LockGame),
     PROC_CALL(BMapDispSuspend),
+    PROC_LABEL(ConfigMenuLabel),
     PROC_CALL(StartFastFadeToBlack),
-    //	PROC_CALL(StartFastFadeFromBlack),
     PROC_REPEAT(WaitForFade),
     PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
     PROC_CALL(StartFastFadeFromBlack),
     PROC_REPEAT(WaitForFade),
     PROC_CALL(InitDraw),
@@ -7968,7 +8304,18 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(DrawReviseCharPage),
     PROC_REPEAT(LoopReviseCharPage),
 
-    PROC_LABEL(99),
+    PROC_LABEL(FilterUnitsLabel),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(FilterCharInit),
+    PROC_CALL(DrawFilterCharPage),
+    PROC_REPEAT(LoopFilterCharPage),
+
+    PROC_LABEL(EndLabel),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
     PROC_CALL(ReloadAllUnits),
@@ -9109,14 +9456,7 @@ const u8 sHandVOffsetLookup[] = {
 
 extern void PutSprite(int layer, int x, int y, const u16 * object, int oam2); // 80069F4
 #define ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
-struct Vec2
-{
-    short x, y;
-};
-struct Vec2u
-{
-    u16 x, y;
-};
+
 void DisplayVertUiHand(int x, int y)
 {
     if ((GetGameClock() - 1) == sPrevHandClockFrame)
@@ -9685,7 +10025,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             }
         }
 #endif
-
+        int fogChange = false;
         if (RandBitflags->fog != proc->Option[17])
         {
             if ((proc->Option[17] == 1) && proc->calledFromChapter)
@@ -9700,6 +10040,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             {
                 UpdateMapViewWithFog(-1);
             }
+            fogChange = true;
         }
         RandBitflags->fog = proc->Option[17];
 
@@ -9733,7 +10074,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 #endif
             if (proc->calledFromChapter)
             {
-                Proc_Goto(proc, 99);
+                Proc_Goto(proc, EndLabel);
 // clear MU, refresh fog, update gfx, sms update
 // 6CCB8 8019ABC 8019504 8025724
 #ifdef FE6
@@ -9750,8 +10091,20 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         // for (int i = 0; i < 50; ++i) {
         //	ClearText(&th[i]);
         //}
-
-        Proc_Break((ProcPtr)proc);
+        if (fogChange)
+        {
+            Proc_Goto(proc, EndLabel);
+        }
+        else if (1)
+        {
+            Proc_Goto(proc, FilterUnitsLabel);
+        }
+        else
+        {
+            proc->previewId = ConfirmCommandID;
+            Proc_Goto(proc, PreviewCharLabel);
+        }
+        // Proc_Break((ProcPtr)proc);
         return;
         // BG_SetPosition(BG_3, 0, 0);
         // gLCDControlBuffer.dispcnt.bg3_on = 1; // don't display bg3
@@ -10475,6 +10828,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
             proc->Option[10] = 1; // Random BGM
             proc->Option[11] = 0; // Random Colours off by default now
         }
+        proc->tags = 0xFFFFFFFF; // everything default
         proc->previewPage = 0;
         proc->previewId = 0;
         proc->changingGame = 0;
@@ -10539,6 +10893,7 @@ int MenuStartConfigMenu(ProcPtr parent)
     proc->calledFromChapter = true;
 
     // pull up your previously saved options
+    proc->tags = TagValues->tags;
     proc->Option[0] = RandValues->variance;
     proc->Option[1] = RecruitValues->recruitment;
     proc->Option[2] = GrowthValues->ForcedCharTable;
