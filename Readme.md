@@ -347,21 +347,21 @@ Ethlin portrait by WAve
 Fin portrait by Melia     
 Lex portrait by Sterling Glovner     
 Azel portrait by WAve     
-Midayle portrait by Zoisite     
+Midir portrait by WAve     
 Edain portrait by TAS20XX     
 Dew portrait by Glaceo      
 Ayra portrait by LuminescentBlade     
 Deirdre portrait by Atey, Wasdye     
 Jamka portrait by Nobody     
-Holyn portrait by Atey, Melia, Renoud     
-Lachesis portrait by Obsidian_Daddy     
-Levin portrait by Atey     
+Chulainn portrait by Sterling_Glovner      
+Lachesis portrait by Garytop     
+Lewyn portrait by Freefall, AthenaBaer     
 Sylvia portrait by TAS20XX     
 Fury portrait by Sterling Glovner     
 Beowolf portrait by Eden     
-Briggid portrait by Redbean     
+Brigid portrait by Sterling_Glovner     
 Claude portrait by Atey     
-Tiltyu portrait by Atey     
+Tine portrait by BuskHusker     
 Mana portrait by Melia     
 Creidne portrait by Melia     
 Roddlevan portrait by Melia     
@@ -394,7 +394,6 @@ Arthur portrait by Melia
 Patty portrait by Melia  
 Larcei portrait by Melia  
 Lana portrait by Melia  
-Tine  
 Lene portrait by Melia  
 Aida portrait by Eden  
 Augury portrait by Eden  
@@ -446,7 +445,7 @@ Misha portrait by claire45
 Sara portrait by Eden   
 Shannam portrait by Sterling_Glovner, Eden    
 Miranda portrait by Sterling_Glovner     
-Xavier portrait by TheGreatNothing     
+Xavier portrait by TheGreatNothing, StitchBeef     
 Amalda portrait by Sterling_Glovner     
 Conomor portrait by Sterling_Glovner     
 Diarmuid portrait by Melia     
@@ -657,22 +656,23 @@ Mozu portrait by Nobody
 Kana_M portrait by Azbel     
 Kana_F portrait by Sterling_Glovner    
 Shigure portrait by Lenh     
+Dwyer portrait by jotenks4     
 Dwyer (no art credited)     
 Sophie portrait by Sterling_Glovner     
 Midori portrait by Nobody     
 Shiro (no art credited)     
 Kiragi portrait by Sterling_Glovner     
-Asugi (no art credited)     
+Asugi portrait by Garytop          
 Selkie portrait by Sterling_Glovner     
 Hisame portrait by Renoud     
 Mitama portrait by Sterling_Glovner     
-Caeldori (no art credited)     
-Rhajat (no art credited)     
+Caeldori portrait by Garytop     
+Rhajat portrait by Garytop      
 Siegbert (no art credited)     
 Forrest portrait by Scraiza     
 Ignatius portrait by JeyTheCount     
 Velouria (no art credited)     
-Percy (no art credited)     
+Percy portrait by Garytop       
 Ophelia (no art credited)     
 Soleil portrait by Zorua     
 Nina portrait by JeyTheCount     

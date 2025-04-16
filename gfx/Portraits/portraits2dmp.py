@@ -1,11 +1,13 @@
+import numba 
 from PIL import Image
+import unicodedata
+import re 
 from pathlib import Path
 import numpy as np
 import numpy 
 import os
 import struct
 import time
-from numba import njit
 from concurrent.futures import ProcessPoolExecutor
 
 
@@ -13,10 +15,33 @@ READ_AHEAD_BUFFER_SIZE = 0x00000012
 SLIDING_WINDOW_SIZE = 0x00001000
 
 
+# Function to clean filenames but keep extensions intact
+def clean_name(name):
+    # Extract the file extension
+    name_without_extension, extension = Path(name).stem, Path(name).suffix
+    
+    # Normalize the name to remove accents
+    name_without_extension = unicodedata.normalize('NFD', name_without_extension)  # Decompose characters into base + accent
+    name_without_extension = ''.join([c for c in name_without_extension if unicodedata.category(c) != 'Mn'])  # Remove accents
+    
+    # Find and replace the first unwanted character with _
+    # Unwanted characters: (), {}, [], , - spaces, %, ', !, ", .
+    match = re.search(r"[()\[\]{}\,\-\s%!'\".]", name_without_extension)
+    if match:
+        index = match.start()
+        name_without_extension = (
+            name_without_extension[:index] + "_" +
+            re.sub(r"[()\[\]{}\,\-\s%!'\".]", "", name_without_extension[index+1:])
+        )
+    else:
+        name_without_extension = name_without_extension
+    return name_without_extension + extension
+
+
 def b(v: int):
     return v.to_bytes(1, "little")
 
-@njit
+@numba.njit
 def length_of_match(data, x, y):
     """Calculates the number of consecutive characters that are the same starting at x and y in data."""
     for c in range(READ_AHEAD_BUFFER_SIZE):
@@ -26,7 +51,7 @@ def length_of_match(data, x, y):
             return c
     return READ_AHEAD_BUFFER_SIZE
 
-@njit
+@numba.njit
 def search(data, position):
     length = len(data)
     if (position < 3) or ((length - position) < 3):
@@ -79,7 +104,7 @@ try:
 except ImportError:
     pass
 
-@njit
+@numba.njit
 def pack_4bit(buffer):
     out = np.empty(len(buffer) // 2, dtype=np.uint8)
     for i in range(0, len(buffer), 2):
@@ -361,6 +386,12 @@ i = 0
 total_files = len(png_files)
 
 for file in png_files:
+    cleaned_filename = clean_name(file.name)
+    if cleaned_filename != file.name:
+        new_path = file.with_name(cleaned_filename)
+        file.rename(new_path)
+        print(f"Renamed: {file} → {new_path}")
+        file = new_path
 ##    elapsed = time.time() - start
 ##    avg_time = elapsed / (c+1)
 ##    remaining = avg_time * (total_files - c)
