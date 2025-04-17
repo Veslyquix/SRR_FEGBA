@@ -696,7 +696,6 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     ResetFaces(); // without this, it was duplicating the face on both sides
     EndAllRecruitmentProcs();
     // ClearPlayerBWL();
-    GetReorderedCharacter(GetCharacterData(1));
 }
 
 #define A_BUTTON 0x0001
@@ -740,6 +739,7 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     {
         return;
     }
+    GetReorderedCharacter(GetCharacterData(1));
 
     int huffman = 0;
     BG_Fill(gBG0TilemapBuffer, 0);
@@ -1231,6 +1231,7 @@ extern struct FaceProc * StartFaceAuto(int portraitId, int x, int y, int display
 extern ProcPtr StartTalkFace(int faceId, int x, int y, int disp, int talkFace);
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
+    GetReorderedCharacter(GetCharacterData(1));
     int charID = GetReviseCharID(proc);
     ResetText();
     int tableID = 0;
@@ -1337,12 +1338,15 @@ void FilterCharInit(ConfigMenuProc * proc)
     //     x, y, w, h);
 
     struct Text * th = gStatScreen.text;
-
+    InitText(&th[32], 12);
     for (int i = 0; i < NumberOfTags; ++i)
     {
         InitText(&th[i], TagWidth);
         Text_DrawString(&th[i], tags[i]);
     }
+
+    Text_SetColor(&th[32], green);
+    Text_DrawString(&th[32], tags[32]); // "Filter Characters"
     // StartGreenText(proc);
     DrawFilterCharPage(proc);
 }
@@ -1396,6 +1400,7 @@ void DrawFilterCharPage(ConfigMenuProc * proc)
         PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
         c++;
     }
+    PutText(&th[32], gBG0TilemapBuffer + TILEMAP_INDEX(10, 0));
 
     BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
@@ -1456,7 +1461,6 @@ void LoopFilterCharPage(ConfigMenuProc * proc)
     }
 
     DisplayUiHand(TagsCursorLocationTable[id].x, TagsCursorLocationTable[id].y);
-
     if (keys & DPAD_RIGHT)
     {
         id += 8;
@@ -1475,7 +1479,6 @@ void LoopFilterCharPage(ConfigMenuProc * proc)
     }
     if (keys & DPAD_DOWN)
     {
-
         id++;
         if (!(id % 8))
         {
@@ -1483,7 +1486,7 @@ void LoopFilterCharPage(ConfigMenuProc * proc)
         }
     }
 
-    if (id != (int)proc->id)
+    if (id != (int)proc->previewId)
     {
         id %= 32;
         proc->previewId = id;
@@ -2192,6 +2195,8 @@ void BuildFilteredCharsList(
                 break;
             }
             table = (const struct CharacterData *)NewGetCharacterData(i, t);
+            // if (table->portraitId == 0xFF) { break; } // ignore characters past the character with this portrait ID
+            // when creating a list of playables
 #ifdef FE7
             if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
             {
@@ -2310,8 +2315,9 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     // }
 
     u8 unit[UnitListSize];
-    u8 bosses[BossListSize];
     u8 tables[UnitListSize];
+    u8 bosses[BossListSize];
+
     for (int i = 0; i < UnitListSize; ++i)
     {
         tables[i] = 0xFF;

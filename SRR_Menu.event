@@ -50,7 +50,7 @@ FILL((MaxRTextOpt+1) * 4 * 30) // max 30 options
 
 ALIGN 64 
 tags: 
-FILL(4 * 32) 
+FILL(4 * 40) 
 
 
 tag(0); txt("Unpromoted");
@@ -90,6 +90,7 @@ tag(28); txt("--");
 tag(29); txt("--");
 tag(30); txt("--");
 tag(31); txt("--");
+tag(32); txt("Filter Characters");
 
 
 
