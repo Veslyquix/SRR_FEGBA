@@ -131,15 +131,16 @@ struct TagsStruct
     u8 Promoted : 1;
     u8 Male : 1;
     u8 Female : 1;
-    u8 Unmounted : 1;
-    u8 Mounted : 1;
-    u8 Pad : 2;
+    u8 Pad : 4;
     u8 wexp;
     u8 Lord : 1;
     u8 Thief : 1;
     u8 Dancer : 1;
     u8 Manakete : 1;
-    u8 Pad2 : 4;
+    u8 Pegasi : 1;
+    u8 Wyvern : 1;
+    u8 Mounted : 1;
+    u8 Armoured : 1;
     u8 Bulky : 1;
     u8 Tanky : 1;
     u8 Powerful : 1;
@@ -780,6 +781,11 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     // u8 charID[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
     // u8 base_charID[10] = { 1, 5, 2, 6, 3, 7, 4, 8 };
     int offset = proc->previewPage * NumberOfCharsPerPage;
+
+    for (int i = 1; i < 0x46; ++i)
+    {
+        GetReorderedCharacter(GetCharacterData(i)); // set bwl ram, otherwise it may not match the preview
+    }
     // int offset = proc->previewPage * NumberOfCharsPerPage;
 
     int y = 0;
@@ -973,7 +979,7 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
     if (keys & B_BUTTON)
     {
-        CopyBWLForCharDuplicates();
+        // CopyBWLForCharDuplicates();
         Proc_Goto(proc, ConfigMenuLabel);
         return;
     }
@@ -2191,28 +2197,29 @@ int DoesCharMatchPromotion(const struct CharacterData * table, const struct Clas
     // Match based on tag
     return (isPromoted && tags.Promoted) || (!isPromoted && tags.Unpromoted);
 }
-int DoesCharMatchMount(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
-{
-    u32 attr = table->attributes | ctable->attributes;
-    if ((tags.Mounted && tags.Unmounted) || (!tags.Mounted && !tags.Unmounted))
-    {
-        return true;
-    }
-    if ((attr & CA_MOUNTEDAID) && tags.Mounted)
-    {
-        return true;
-    }
-    if ((!(attr & CA_MOUNTEDAID)) && tags.Unmounted)
-    {
-        return true;
-    }
+// int DoesCharMatchMount(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+// {
+// u32 attr = table->attributes | ctable->attributes;
+// if ((tags.Mounted && tags.Unmounted) || (!tags.Mounted && !tags.Unmounted))
+// {
+// return true;
+// }
+// if ((attr & CA_MOUNTEDAID) && tags.Mounted)
+// {
+// return true;
+// }
+// if ((!(attr & CA_MOUNTEDAID)) && tags.Unmounted)
+// {
+// return true;
+// }
 
-    return false;
-}
+// return false;
+// }
 
 int HasAllClassTags(struct TagsStruct tags)
 {
-    if (tags.Dancer && tags.Lord && tags.Manakete && tags.Thief)
+    if (tags.Dancer && tags.Lord && tags.Manakete && tags.Thief && tags.Pegasi && tags.Wyvern && tags.Mounted &&
+        tags.Armoured)
     {
         return true;
     }
@@ -2220,7 +2227,8 @@ int HasAllClassTags(struct TagsStruct tags)
 }
 int HasNoClassTags(struct TagsStruct tags)
 {
-    if (!tags.Dancer && !tags.Lord && !tags.Manakete && !tags.Thief)
+    if (!tags.Dancer && !tags.Lord && !tags.Manakete && !tags.Thief && !tags.Pegasi && !tags.Wyvern && !tags.Mounted &&
+        !tags.Armoured)
     {
         return true;
     }
@@ -2312,6 +2320,72 @@ int DoesCharMatchDancer(const struct CharacterData * table, const struct ClassDa
     return isDancer && tags.Dancer;
 }
 
+int DoesCharMatchPegasi(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    u32 attr = table->attributes | ctable->attributes;
+    int isPegasi = attr & CA_PEGASUS;
+
+    if (HasNoClassTags(tags))
+        return !isPegasi;
+
+    return isPegasi && tags.Pegasi;
+}
+int DoesCharMatchWyvern(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    u32 attr = table->attributes | ctable->attributes;
+    int isWyvern = attr & CA_WYVERN;
+
+    if (HasNoClassTags(tags))
+        return !isWyvern;
+
+    return isWyvern && tags.Wyvern;
+}
+
+int DoesCharMatchMount(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    u32 attr = table->attributes | ctable->attributes;
+    int isMount = attr & CA_MOUNTED;
+
+    if (HasNoClassTags(tags))
+        return !isMount;
+
+    return isMount && tags.Mounted;
+}
+
+extern u8 FilterArmourClasses[];
+int DoesCharMatchArmour(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    int isArmour = false;
+    int classID = ctable->number;
+    u8 * armourClasses = FilterArmourClasses;
+    while (*armourClasses)
+    {
+        if (*armourClasses == classID)
+        {
+            isArmour = true;
+            break;
+        }
+        ++armourClasses;
+    }
+
+    if (HasNoClassTags(tags))
+        return !isArmour;
+
+    return isArmour && tags.Armoured;
+}
+
 int FilterCharOut(const struct CharacterData * table, const struct ClassData * ctable)
 {
     struct TagsStruct tags = TagValues->tags;
@@ -2319,12 +2393,15 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     result = DoesCharMatchWexp(table, ctable, tags);
     result = result && DoesCharMatchGender(table, ctable, tags);
     result = result && DoesCharMatchPromotion(table, ctable, tags);
-    result = result && DoesCharMatchMount(table, ctable, tags);
 
     u32 attrTags = DoesCharMatchThief(table, ctable, tags);
     attrTags |= DoesCharMatchLord(table, ctable, tags);
     attrTags |= DoesCharMatchMonster(table, ctable, tags);
     attrTags |= DoesCharMatchDancer(table, ctable, tags);
+    attrTags |= DoesCharMatchPegasi(table, ctable, tags);
+    attrTags |= DoesCharMatchWyvern(table, ctable, tags);
+    attrTags |= DoesCharMatchMount(table, ctable, tags);
+    attrTags |= DoesCharMatchArmour(table, ctable, tags);
 
     result = result && attrTags;
 
@@ -11114,7 +11191,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
             proc->Option[10] = 1; // Random BGM
             proc->Option[11] = 0; // Random Colours off by default now
         }
-        proc->tags = 0xFFFFFFFF; // everything default
+        proc->tags = 0xFF02FFFF; // everything default
         proc->previewPage = 0;
         proc->previewId = 0;
         proc->changingGame = 0;

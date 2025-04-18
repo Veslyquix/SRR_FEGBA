@@ -57,8 +57,8 @@ tag(0); txt("Unpromoted");
 tag(1); txt("Promoted");
 tag(2); txt("Male");
 tag(3); txt("Female");
-tag(4); txt("Unmounted");
-tag(5); txt("Mounted");
+tag(4); txt("--");
+tag(5); txt("--");
 tag(6); txt("--");
 tag(7); txt("--");
 
@@ -77,15 +77,19 @@ tag(16); txt("Lord");
 tag(17); txt("Thief");
 tag(18); txt("Dancer");
 tag(19); txt("Manakete"); // tag(12); txt("Trainee");
-tag(20); txt("--");
-tag(21); txt("--");
-tag(22); txt("--");
-tag(23); txt("--");
+tag(20); txt("Pegasi");
+tag(21); txt("Wyvern");
+tag(22); txt("Mount");
+tag(23); txt("Armour");
 
-tag(24); txt("Bulky");
-tag(25); txt("Tanky");
-tag(26); txt("Powerful");
-tag(27); txt("Quick");
+tag(24); txt("--");
+tag(25); txt("--");
+tag(26); txt("--");
+tag(27); txt("--");
+// tag(24); txt("Bulky");
+// tag(25); txt("Tanky");
+// tag(26); txt("Powerful");
+// tag(27); txt("Quick");
 tag(28); txt("--");
 tag(29); txt("--");
 tag(30); txt("--");
@@ -93,7 +97,10 @@ tag(31); txt("--");
 tag(32); txt("Filter Characters");
 
 
-
+ALIGN 4 
+FilterArmourClasses: 
+BYTE Knight Knight_F General General_F 
+BYTE 0 // Terminator 
 
 
 SRRMenu(SeedOpt);               txt("Seed")
