@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.9.5"
+#define VersionNumber " SRR V1.9.6"
 // 547282
 
 #ifdef FE8
@@ -2160,24 +2160,6 @@ struct Vec2u
 #define UnitListSize 600
 #define BossListSize 80
 
-int DoesCharMatchWexp(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
-{
-    int ranks = tags.wexp;
-    int classRanks = 0;
-    for (int i = 0; i < 8; ++i)
-    {
-        if (ctable->baseRanks[i])
-        {
-            classRanks |= (1 << i);
-        }
-    }
-    if (ranks & classRanks)
-    {
-        return true;
-    }
-    return false;
-}
-
 int DoesCharMatchGender(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
 {
     u32 attr = table->attributes | ctable->attributes;
@@ -2239,6 +2221,35 @@ int HasAllClassTags(struct TagsStruct tags)
 int HasNoClassTags(struct TagsStruct tags)
 {
     if (!tags.Dancer && !tags.Lord && !tags.Manakete && !tags.Thief)
+    {
+        return true;
+    }
+    return false;
+}
+
+int DoesCharMatchWexp(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    u32 attr = table->attributes | ctable->attributes;
+    int isDancer = attr & (CA_PLAY | CA_DANCE);
+    int isMonster = attr & CA_LOCK_3;
+    if (tags.Dancer && isDancer)
+    {
+        return true;
+    }
+    if (tags.Manakete && isMonster)
+    {
+        return true;
+    }
+    int ranks = tags.wexp;
+    int classRanks = 0;
+    for (int i = 0; i < 8; ++i)
+    {
+        if (ctable->baseRanks[i])
+        {
+            classRanks |= (1 << i);
+        }
+    }
+    if (ranks & classRanks)
     {
         return true;
     }
@@ -2309,10 +2320,13 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     result = result && DoesCharMatchGender(table, ctable, tags);
     result = result && DoesCharMatchPromotion(table, ctable, tags);
     result = result && DoesCharMatchMount(table, ctable, tags);
-    // result = result && DoesCharMatchMonster(table, ctable, tags);
-    result = result && DoesCharMatchThief(table, ctable, tags);
-    // result = result && DoesCharMatchLord(table, ctable, tags);
-    // result = result && DoesCharMatchDancer(table, ctable, tags);
+
+    u32 attrTags = DoesCharMatchThief(table, ctable, tags);
+    attrTags |= DoesCharMatchLord(table, ctable, tags);
+    attrTags |= DoesCharMatchMonster(table, ctable, tags);
+    attrTags |= DoesCharMatchDancer(table, ctable, tags);
+
+    result = result && attrTags;
 
     return !result;
 }
