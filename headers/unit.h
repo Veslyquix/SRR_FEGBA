@@ -530,7 +530,8 @@ struct PidStatsChar
     u32 defeat_chapter : 6;
     u32 defeat_turn : 10;
     u32 deployAmt : 6;
-    u32 moveAmt : 10;
+    u32 moveAmt : 9;
+    u32 selected : 1; 
     u32 defeat_cause : 4;
     u32 exp_gained : 12;
     u32 win_count : 10;
@@ -547,7 +548,8 @@ struct PidStatsChar
     /* 040 */ unsigned deathLoc    : 6;
     /* 046 */ unsigned deathTurn   : 10;
     /* 056 */ unsigned deployAmt   : 6;
-    /* 062 */ unsigned moveAmt     : 10;
+    /* 062 */ unsigned moveAmt     : 9;
+    /* 062 */ unsigned selected     : 1;
     /* 072 */ unsigned deathCause  : 4;
     /* 076 */ unsigned expGained   : 12;
     /* 088 */ unsigned winAmt      : 10;

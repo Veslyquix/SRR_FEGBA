@@ -127,8 +127,32 @@ struct GrowthBonusValues
 };
 struct TagsStruct
 {
-    u16 tags;
+    u8 Unpromoted : 1;
+    u8 Promoted : 1;
+    u8 Male : 1;
+    u8 Female : 1;
+    u8 Unmounted : 1;
+    u8 Mounted : 1;
+    u8 Pad : 2;
+    u8 wexp;
+    u8 Lord : 1;
+    u8 Thief : 1;
+    u8 Dancer : 1;
+    u8 Manakete : 1;
+    u8 Pad2 : 4;
+    u8 Bulky : 1;
+    u8 Tanky : 1;
+    u8 Powerful : 1;
+    u8 Quick : 1;
+    u8 Pad3 : 4;
 };
+// extern struct TagsStruct * TagValues;
+union TagUnion
+{
+    struct TagsStruct tags;
+    u32 raw;
+};
+extern union TagUnion * TagValues;
 
 extern struct TimedHitsDifficultyStruct * TimedHitsDifficultyRam;
 
@@ -137,7 +161,6 @@ extern struct RecruitmentValues * RecruitValues;
 extern struct RandomizerSettings * RandBitflags;
 extern struct RandomizerValues * RandValues;
 extern struct GrowthBonusValues * GrowthValues;
-extern struct TagsStruct * TagValues;
 
 extern u8 * MaxItems;
 extern int MaxItems_Link;
@@ -695,7 +718,8 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     ResetText();  // need this
     ResetFaces(); // without this, it was duplicating the face on both sides
     EndAllRecruitmentProcs();
-    // ClearPlayerBWL();
+    ClearPlayerBWL();
+    GetReorderedCharacter(GetCharacterData(1));
 }
 
 #define A_BUTTON 0x0001
@@ -739,7 +763,6 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     {
         return;
     }
-    GetReorderedCharacter(GetCharacterData(1));
 
     int huffman = 0;
     BG_Fill(gBG0TilemapBuffer, 0);
@@ -835,6 +858,10 @@ struct PidStatsChar * GetPidStatsSafe(int i)
 {
     struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(i);
     if ((void *)pidStats == (void *)RandValues)
+    {
+        return NULL;
+    }
+    if ((void *)pidStats == (void *)TagValues)
     {
         return NULL;
     }
@@ -1448,7 +1475,7 @@ void LoopFilterCharPage(ConfigMenuProc * proc)
     { // press B or Start to update tags and continue
 
         // Proc_Goto(proc, ConfigMenuLabel);
-        TagValues->tags = proc->tags;
+        TagValues->raw = proc->tags;
         Proc_Goto(proc, PreviewCharLabel);
         proc->previewId = ConfirmCommandID;
         return;
@@ -1574,7 +1601,9 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
 void LoopReviseCharPage(ConfigMenuProc * proc)
 {
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
-    if (keys & (B_BUTTON | A_BUTTON))
+    int charID = GetReviseCharID(proc);
+    struct PidStatsChar * pidStats = GetPidStatsSafe(charID);
+    if (keys & (B_BUTTON | A_BUTTON) || !pidStats)
     {
         Proc_Goto(proc, PreviewCharLabel);
         EndFaceById(0);
@@ -1583,16 +1612,12 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     }
     if (keys & A_BUTTON)
     {
+        pidStats->selected = true;
         // save some change?
         // Proc_Goto(proc, PreviewCharLabel);
     }
-    int charID = GetReviseCharID(proc);
+
     // int tableID = 0;
-    struct PidStatsChar * pidStats = GetPidStatsSafe(charID);
-    if (!pidStats)
-    {
-        return;
-    }
 
     int tmp = 0;
     int changed = false;
@@ -1728,6 +1753,10 @@ void ClearPlayerBWL(void)
     {
         pidStats = GetPidStatsSafe(i);
         if (!pidStats)
+        {
+            continue;
+        }
+        if (pidStats->selected)
         {
             continue;
         }
@@ -2128,14 +2157,12 @@ struct Vec2u
     u16 x, y;
 };
 
-#define UnitListSize 200
+#define UnitListSize 600
 #define BossListSize 80
 
-int FilterCharOut(const struct CharacterData * table, const struct ClassData * ctable)
+int DoesCharMatchWexp(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
 {
-    u32 tagVal = TagValues->tags;
-    u8 ranks = (tagVal & 0xFF00) >> 8;
-
+    int ranks = tags.wexp;
     int classRanks = 0;
     for (int i = 0; i < 8; ++i)
     {
@@ -2146,10 +2173,148 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     }
     if (ranks & classRanks)
     {
-        return false;
+        return true;
+    }
+    return false;
+}
+
+int DoesCharMatchGender(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    u32 attr = table->attributes | ctable->attributes;
+    if ((tags.Male && tags.Female) || (!tags.Male && !tags.Female))
+    {
+        return true;
+    }
+    if ((attr & CA_FEMALE) && tags.Female)
+    {
+        return true;
+    }
+    if ((!(attr & CA_FEMALE)) && tags.Male)
+    {
+        return true;
     }
 
-    return true;
+    return false;
+}
+
+int DoesCharMatchPromotion(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    u32 attr = table->attributes | ctable->attributes;
+    int isPromoted = (attr & CA_PROMOTED) != 0;
+
+    // If both or neither promotion flags are set, accept anything
+    if (tags.Promoted == tags.Unpromoted)
+        return true;
+
+    // Match based on tag
+    return (isPromoted && tags.Promoted) || (!isPromoted && tags.Unpromoted);
+}
+int DoesCharMatchMount(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    u32 attr = table->attributes | ctable->attributes;
+    if ((tags.Mounted && tags.Unmounted) || (!tags.Mounted && !tags.Unmounted))
+    {
+        return true;
+    }
+    if ((attr & CA_MOUNTEDAID) && tags.Mounted)
+    {
+        return true;
+    }
+    if ((!(attr & CA_MOUNTEDAID)) && tags.Unmounted)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+int HasAllClassTags(struct TagsStruct tags)
+{
+    if (tags.Dancer && tags.Lord && tags.Manakete && tags.Thief)
+    {
+        return true;
+    }
+    return false;
+}
+int HasNoClassTags(struct TagsStruct tags)
+{
+    if (!tags.Dancer && !tags.Lord && !tags.Manakete && !tags.Thief)
+    {
+        return true;
+    }
+    return false;
+}
+
+int DoesCharMatchMonster(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    u32 attr = table->attributes | ctable->attributes;
+    int isManakete = attr & CA_LOCK_3;
+
+    if (HasNoClassTags(tags))
+        return !isManakete;
+
+    return isManakete && tags.Manakete;
+}
+
+int DoesCharMatchThief(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    u32 attr = table->attributes | ctable->attributes;
+    int isThief = attr & CA_THIEF;
+
+    if (HasNoClassTags(tags))
+        return !isThief;
+
+    return isThief && tags.Thief;
+}
+
+int DoesCharMatchLord(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    u32 attr = table->attributes | ctable->attributes;
+    int isLord = attr & CA_LORD;
+
+    if (HasNoClassTags(tags))
+        return !isLord;
+
+    return isLord && tags.Lord;
+}
+
+int DoesCharMatchDancer(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    u32 attr = table->attributes | ctable->attributes;
+    int isDancer = attr & (CA_DANCE | CA_PLAY);
+
+    if (HasNoClassTags(tags))
+        return !isDancer;
+
+    return isDancer && tags.Dancer;
+}
+
+int FilterCharOut(const struct CharacterData * table, const struct ClassData * ctable)
+{
+    struct TagsStruct tags = TagValues->tags;
+    u32 result = false;
+    result = DoesCharMatchWexp(table, ctable, tags);
+    result = result && DoesCharMatchGender(table, ctable, tags);
+    result = result && DoesCharMatchPromotion(table, ctable, tags);
+    result = result && DoesCharMatchMount(table, ctable, tags);
+    // result = result && DoesCharMatchMonster(table, ctable, tags);
+    result = result && DoesCharMatchThief(table, ctable, tags);
+    // result = result && DoesCharMatchLord(table, ctable, tags);
+    // result = result && DoesCharMatchDancer(table, ctable, tags);
+
+    return !result;
 }
 
 void BuildFilteredCharsList(
@@ -2184,8 +2349,15 @@ void BuildFilteredCharsList(
     }
 
     proc = proc1;
+    int t = GetForcedCharTable();
+    int end = t + 1;
+    if (t >= NumberOfCharTables)
+    {
+        t = 0;
+        end = NumberOfCharTables;
+    }
 
-    for (int t = 0; t < NumberOfCharTables; ++t)
+    for (; t < end; ++t)
     // for (int t = 0; t < 1; ++t)
     {
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
@@ -2195,8 +2367,11 @@ void BuildFilteredCharsList(
                 break;
             }
             table = (const struct CharacterData *)NewGetCharacterData(i, t);
-            // if (table->portraitId == 0xFF) { break; } // ignore characters past the character with this portrait ID
-            // when creating a list of playables
+            if (table->portraitId == 0xFF)
+            {
+                break;
+            } // ignore characters past the character with this portrait ID
+              // when creating a list of playables
 #ifdef FE7
             if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
             {
@@ -2342,13 +2517,14 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     counter->x = c;
     counter->y = b;
 
-    if (TagValues->tags != 0xFFFF)
+    if (TagValues->raw != 0xFFFFFFFF)
     {
         BuildFilteredCharsList(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
     }
     else
     {
-        BuildRecruitableCharsList(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
+        // BuildFilteredCharsList(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
+        BuildFilteredCharsList(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
     }
     c = counter->x;
     b = counter->y;
@@ -10989,7 +11165,7 @@ int MenuStartConfigMenu(ProcPtr parent)
     proc->calledFromChapter = true;
 
     // pull up your previously saved options
-    proc->tags = TagValues->tags;
+    proc->tags = TagValues->raw;
     proc->Option[0] = RandValues->variance;
     proc->Option[1] = RecruitValues->recruitment;
     proc->Option[2] = GrowthValues->ForcedCharTable;
