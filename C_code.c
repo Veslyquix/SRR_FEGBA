@@ -889,6 +889,7 @@ void RerollPage(ConfigMenuProc * proc)
         }
 
         pidStats->deployAmt = 0x3F;
+        pidStats->selected = false;
         pidStats->moveAmt = 0;
     }
     RandValues->seed++;
@@ -909,6 +910,7 @@ void ResetPage(ConfigMenuProc * proc)
         }
 
         pidStats->deployAmt = 0;
+        pidStats->selected = false;
         pidStats->moveAmt = id;
     }
 }
@@ -932,6 +934,7 @@ void SetAllCharConfirm(ConfigMenuProc * proc)
         }
 
         pidStats->deployAmt = game;
+        pidStats->selected = false;
         pidStats->moveAmt = id;
     }
 }
@@ -1264,7 +1267,7 @@ extern struct FaceProc * StartFaceAuto(int portraitId, int x, int y, int display
 extern ProcPtr StartTalkFace(int faceId, int x, int y, int disp, int talkFace);
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
-    GetReorderedCharacter(GetCharacterData(1));
+    // GetReorderedCharacter(GetCharacterData(1));
     int charID = GetReviseCharID(proc);
     ResetText();
     int tableID = 0;
@@ -1608,6 +1611,8 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 {
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
     int charID = GetReviseCharID(proc);
+    // struct RecruitmentProc* proc1 = Proc_Find(RecruitmentProcCmd1);
+    // struct RecruitmentProc* proc5 = Proc_Find(RecruitmentProcCmd5);
     struct PidStatsChar * pidStats = GetPidStatsSafe(charID);
     if (keys & (B_BUTTON | A_BUTTON) || !pidStats)
     {
@@ -1657,6 +1662,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
                 tmp = NumberOfCharTables - 1;
             }
             pidStats->deployAmt = tmp;
+            pidStats->selected = true;
             DrawReviseCharPage(proc);
         }
     }
@@ -1675,6 +1681,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 
         if (changed)
         {
+            pidStats->selected = true;
             DrawReviseCharPage(proc);
         }
     }
@@ -1787,17 +1794,6 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
         return GetCharacterData(id);
     }
     int tableID = GetCharTableID(table->portraitId); // default
-
-    if (CharConfirmPage)
-    {
-        if (pidStats)
-        {
-            if (pidStats->deployAmt < NumberOfCharTables)
-            {
-                tableID = pidStats->deployAmt;
-            }
-        }
-    }
 
     int procID = id >> 6; // 0, 1, 2, or 3
 
