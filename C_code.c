@@ -1532,16 +1532,55 @@ void LoopFilterCharPage(ConfigMenuProc * proc)
 
 void DisplayVertUiHand(int x, int y);
 
+#define TerminatorPortrait 0xFF
+
+int GetMaxCharIdByTable(int tableID)
+{
+    for (int i = 1; i < MAX_CHAR_ID; ++i)
+    {
+        if (NewGetCharacterData(i, tableID)->portraitId == TerminatorPortrait)
+        {
+            return i - 1;
+        }
+    }
+    return MAX_CHAR_ID;
+}
+
+void EnsureNewCharInRange(struct PidStatsChar * pidStats, int highest, int tableID)
+{
+    if (tableID > NumberOfCharTables)
+    {
+        tableID = 0;
+    }
+    if (tableID < 0)
+    {
+        tableID = NumberOfCharTables - 1;
+    }
+    pidStats->deployAmt = tableID;
+    int charID = pidStats->moveAmt;
+    int finalCharId = GetMaxCharIdByTable(tableID);
+    if (charID > finalCharId)
+    {
+        if (highest)
+            pidStats->moveAmt = finalCharId - 1;
+
+        else
+            pidStats->moveAmt = 1;
+    }
+}
+
 void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
 {
     if (!pidStats)
     {
         return;
     }
+    int maxID = GetMaxCharIdByTable(pidStats->deployAmt);
+
     int startingID = pidStats->moveAmt;
     const struct CharacterData * table = GetCharacterData(id);
     const struct CharacterData * table2;
-    for (int i = startingID + 1; i < MAX_CHAR_ID; i++)
+    for (int i = startingID + 1; i <= maxID; i++)
     {
         pidStats->moveAmt = i;
         table2 = GetReorderedCharacterByPIDStats(table, pidStats);
@@ -1575,6 +1614,7 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
     {
         return;
     }
+    int maxID = GetMaxCharIdByTable(pidStats->deployAmt);
     int startingID = pidStats->moveAmt;
     const struct CharacterData * table = GetCharacterData(id);
     const struct CharacterData * table2;
@@ -1591,7 +1631,7 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
             return;
         }
     }
-    for (int i = MAX_CHAR_ID; i > startingID; i--)
+    for (int i = maxID; i > startingID; i--)
     {
         pidStats->moveAmt = i;
         table2 = GetReorderedCharacterByPIDStats(table, pidStats);
@@ -1643,26 +1683,19 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         if (keys & DPAD_LEFT)
         {
             tmp = pidStats->deployAmt - 1;
+            EnsureNewCharInRange(pidStats, 1, tmp);
             changed = true;
         }
-        if (keys & DPAD_RIGHT)
+        else if (keys & DPAD_RIGHT)
         {
             tmp = pidStats->deployAmt + 1;
+            EnsureNewCharInRange(pidStats, 1, tmp);
             changed = true;
         }
         if (changed)
         {
-
-            if (tmp > NumberOfCharTables)
-            {
-                tmp = 0;
-            }
-            if (tmp < 0)
-            {
-                tmp = NumberOfCharTables - 1;
-            }
-            pidStats->deployAmt = tmp;
             pidStats->selected = true;
+
             DrawReviseCharPage(proc);
         }
     }
@@ -1671,11 +1704,13 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         if (keys & DPAD_LEFT)
         {
             SetPrevValidCharID(charID, pidStats);
+            EnsureNewCharInRange(pidStats, 1, pidStats->deployAmt); // not past 0xFF portrait
             changed = true;
         }
-        if (keys & DPAD_RIGHT)
+        else if (keys & DPAD_RIGHT)
         {
             SetNextValidCharID(charID, pidStats);
+            EnsureNewCharInRange(pidStats, 0, pidStats->deployAmt); // not past 0xFF portrait
             changed = true;
         }
 
@@ -2454,7 +2489,7 @@ void BuildFilteredCharsList(
                 break;
             }
             table = (const struct CharacterData *)NewGetCharacterData(i, t);
-            if (table->portraitId == 0xFF)
+            if (table->portraitId == TerminatorPortrait)
             {
                 break;
             } // ignore characters past the character with this portrait ID
@@ -2507,6 +2542,7 @@ void BuildFilteredCharsList(
     counter->y = b;
 }
 
+/*
 void BuildRecruitableCharsList(
     struct Vec2u * counter, u8 * unit, u8 * bosses, u8 * tableID, RecruitmentProc * proc1, RecruitmentProc * proc2,
     RecruitmentProc * proc3, RecruitmentProc * proc4)
@@ -2566,6 +2602,7 @@ void BuildRecruitableCharsList(
     counter->x = c;
     counter->y = b;
 }
+*/
 
 // #define REVERSE_ORDER
 RecruitmentProc * InitRandomRecruitmentProc(int procID)
