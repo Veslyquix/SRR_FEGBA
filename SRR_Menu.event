@@ -15,9 +15,7 @@ WORD MaxRTextOpt
 blankString:
 txt(" "); 
 
-ALIGN 64 
-gSRRMenuText: 
-FILL((MaxRTextOpt+1) * 4 * 30) // max 30 options 
+
 
 #define SeedOpt 0 
 #define VarianceOpt 1 
@@ -46,6 +44,224 @@ FILL((MaxRTextOpt+1) * 4 * 30) // max 30 options
 #define BGOpt 24
 #define TimedHitsOpt 25 
 #define SkillsOpt 26 
+
+ALIGN 64 
+gSRRMenuText: 
+FILL((MaxRTextOpt+1) * 4 * 30) // max 30 options 
+
+
+#define SRRHeader(id) "header: ; PUSH; ORG SRRText_POIN + (id * 4); POIN header; POP ;" 
+ALIGN 4 
+SRRText_POIN:
+FILL(4 * 30) 
+
+
+{
+t0:  txt(" ");  
+ALIGN 4; SRRHeader(SeedOpt)
+POIN t0
+}
+
+
+{
+t0:  txt("0%");   t1:  txt("5%");   t2:  txt("10%");  t3:  txt("15%");  t4:  txt("20%");
+t5:  txt("25%");  t6:  txt("30%");  t7:  txt("35%");  t8:  txt("40%");  t9:  txt("45%");
+t10: txt("50%");  t11: txt("55%");  t12: txt("60%");  t13: txt("65%");  t14: txt("70%");
+t15: txt("75%");  t16: txt("80%");  t17: txt("85%");  t18: txt("90%");  t19: txt("95%");
+t20: txt("100%");
+ALIGN 4; SRRHeader(VarianceOpt)
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20
+}
+
+
+{
+t0:  txt("Vanilla");                     t1:  txt("Players reordered");           t2:  txt("Bosses reordered");
+t3:  txt("Players & Bosses reordered");  t4:  txt("Players and Bosses swap");
+t5:  txt("Random");
+ALIGN 4; SRRHeader(CharactersOpt)
+POIN t0 t1 t2 t3 t4 t5
+}
+
+
+
+{
+t0:  txt("Vanilla");                      t1:  txt("FE1/3: Shadow Dragon");         t2:  txt("FE4: Genealogy/Holy War"); 
+t3:  txt("FE5: Thracia 776");             
+#ifdef _FE8_ 
+t4:  txt("FE6: The Binding Blade");
+t5:  txt("FE7: The Blazing Blade");  
+#endif 
+#ifdef _FE7_ 
+t4:  txt("FE6: The Binding Blade");
+t5:  txt("FE8: Sacred Stones");  
+#endif 
+#ifdef _FE6_ 
+t4:  txt("FE7: The Blazing Blade");
+t5:  txt("FE8: Sacred Stones");  
+#endif 
+t6:  txt("FE9/FE10: Radiant Dawn");       t7:  txt("FE13: Awakening"); 
+t8:  txt("FE14: Fates");                  t9:  txt("FE2/15: Echoes");
+t10: txt("FE16: Three Houses");           t11: txt("FE17: Engage");                 t12: txt("Random");
+ALIGN 4; SRRHeader(FromGameOpt)
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12
+}
+
+{
+t0:  txt("Vanilla");  t1:  txt("Random");
+ALIGN 4; SRRHeader(BaseStatsOpt)
+POIN t0 t1
+}
+
+{
+t0:  txt("Vanilla");  t1:  txt("Random");  t2:  txt("0%"); 
+t3:  txt("100%");     t4:  txt("50%");
+ALIGN 4; SRRHeader(GrowthsOpt)
+POIN t0 t1 t2 t3 t4
+}
+
+{
+t0:  txt("Vanilla");   t1:  txt("Based on seed");   t2:  txt("Fixed");
+ALIGN 4; SRRHeader(LevelupsOpt)
+POIN t0 t1 t2
+}
+
+{
+t0:  txt("Vanilla");   t1:  txt("Random");   t2:  txt("0"); 
+t3:  txt("15");        t4:  txt("30");        t5:  txt("45"); 
+t6:  txt("60");
+ALIGN 4; SRRHeader(StatCapsOpt)
+POIN t0 t1 t2 t3 t4 t5 t6
+}
+
+{
+t0:  txt("Vanilla");              t1:  txt("Random vanilla classes");       t2:  txt("Random for players");
+t3:  txt("Random for enemies");   t4:  txt("Random with new classes");     t5:  txt("New rand player classes");
+t6:  txt("New rand enemy classes");
+ALIGN 4; SRRHeader(ClassOpt)
+POIN t0 t1 t2 t3 t4 t5 t6
+}
+
+
+{
+t0:  txt("Vanilla");               t1:  txt("Random");  
+t2:  txt("Random found items only"); t3:  txt("Random item stats only");
+ALIGN 4; SRRHeader(ItemOpt)
+POIN t0 t1 t2 t3
+}
+
+{
+t0:  txt("Classic");  t1:  txt("Casual");
+ALIGN 4; SRRHeader(ModeOpt)
+POIN t0 t1
+}
+
+{
+t0:  txt("Vanilla BGM");  t1:  txt("Random BGM");
+ALIGN 4; SRRHeader(MusicOpt)
+POIN t0 t1
+}
+
+{
+t0:  txt("Vanilla Colours");  t1:  txt("Random");  t2:  txt("Janky");  t3:  txt("Portraits only");
+ALIGN 4; SRRHeader(ColoursOpt)
+POIN t0 t1 t2 t3
+}
+
+{
+t0:  txt("Vanilla");        t1:  txt("Infinite basics");  t2:  txt("Infinite weapons");  
+t3:  txt("Infinite items");
+ALIGN 4; SRRHeader(DurabilityOpt)
+POIN t0 t1 t2 t3
+}
+
+
+{
+t0:  txt("Vanilla");           t1:  txt("+1 hidden level");  t2:  txt("+2 hidden levels");  
+t3:  txt("+3 hidden levels");  t4:  txt("+4 hidden levels"); t5:  txt("+5 hidden levels");  
+t6:  txt("+6 hidden levels");  t7:  txt("+7 hidden levels"); t8:  txt("+8 hidden levels");  
+t9:  txt("+9 hidden levels");  t10: txt("+10 hidden levels"); t11: txt("+11 hidden levels");  
+t12: txt("+12 hidden levels"); t13: txt("+13 hidden levels"); t14: txt("+14 hidden levels");  
+t15: txt("+15 hidden levels"); t16: txt("+16 hidden levels"); t17: txt("+17 hidden levels");  
+t18: txt("+18 hidden levels"); t19: txt("+19 hidden levels"); t20: txt("+20 hidden levels");  
+t21: txt("-10 hidden levels"); t22: txt("-9 hidden levels");  t23: txt("-8 hidden levels");  
+t24: txt("-7 hidden levels");  t25: txt("-6 hidden levels");  t26: txt("-5 hidden levels");  
+t27: txt("-4 hidden levels");  t28: txt("-3 hidden levels");  t29: txt("-2 hidden levels");  
+t30: txt("-1 hidden level");
+
+ALIGN 4; header: ; PUSH; ORG SRRText_POIN + (PlayerBonusOpt * 4); POIN header; POP ;
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30
+PUSH; ORG SRRText_POIN + (EnemyBonusOpt * 4); POIN header; POP ;
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30
+}
+
+{
+t0:  txt("Vanilla");   t1:  txt("+10%");  t2:  txt("+20%");  t3:  txt("+30%");  t4:  txt("+40%");  
+t5:  txt("+50%");      t6:  txt("+60%");  t7:  txt("+70%");  t8:  txt("+80%");  t9:  txt("+90%");  
+t10: txt("+100%");     t11: txt("-10%");   t12: txt("-20%");  t13: txt("-30%");  t14: txt("-40%");  
+t15: txt("-50%");
+
+ALIGN 4; header: ; PUSH; ORG SRRText_POIN + (PlayerBonusGrowthOpt * 4); POIN header; POP ;
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15
+PUSH; ORG SRRText_POIN + (EnemyBonusGrowthOpt * 4); POIN header; POP ;
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15
+}
+
+{
+t0:  txt("Vanilla");    t1:  txt("Always off");   t2:  txt("Always on");
+ALIGN 4; SRRHeader(FogOpt)
+POIN t0 t1 t2
+}
+
+{
+t0:  txt("Vanilla");           t1:  txt("Charge towards you");    t2:  txt("Gradually charge");
+ALIGN 4; SRRHeader(SoftlockOpt)
+POIN t0 t1 t2
+}
+
+{
+t0:  txt("Vanilla");    t1:  txt("Press A");
+ALIGN 4; SRRHeader(SkipChOpt)
+POIN t0 t1
+}
+
+{
+t0:  txt("None");    t1:  txt("All");    t2:  txt("Players");  t3:  txt("Enemies");
+ALIGN 4; SRRHeader(ReloadUnitsOpt)
+POIN t0 t1 t2 t3
+}
+
+{
+t0:  txt("Vanilla");             t1:  txt("Stephano / Sokaballa");    t2:  txt("Hypergammaspaces");  
+t3:  txt("Pikmin / Fenreir");
+ALIGN 4; SRRHeader(UiOpt)
+POIN t0 t1 t2 t3
+}
+
+{
+t0:  txt("Disabled");    t1:  txt("Press B on unit");
+ALIGN 4; SRRHeader(DebuggerOpt)
+POIN t0 t1
+}
+
+{
+t0:  txt("Vanilla");    t1:  txt("Random");
+ALIGN 4; SRRHeader(BGOpt)
+POIN t0 t1
+}
+
+{
+t0:  txt("Off");    t1:  txt("Easy");    t2:  txt("Normal");  t3:  txt("Hard");
+ALIGN 4; SRRHeader(TimedHitsOpt)
+POIN t0 t1 t2 t3
+}
+
+{
+t0:  txt("Vanilla");   t1:  txt("Random");    t2:  txt("Fixed");    t3:  txt("Random &");
+ALIGN 4; SRRHeader(SkillsOpt)
+POIN t0 t1 t2 t3
+}
+
+
 
 
 ALIGN 64 
@@ -196,4 +412,67 @@ SRRMenu(TimedHitsOpt);          txt("Timed Hits")
 SRRDesc(TimedHitsOpt,0); txt("Battles are normal."); 
 SRRDesc(TimedHitsOpt,1); txt("Mario RPG moment.\Pressing A at the right time\improves your success in battles."); 
 SRRDesc(TimedHitsOpt,2); SRRDesc(TimedHitsOpt,3); txt("Mario RPG moment.\Pressing buttons at the right time\improves your success in battles."); 
+
+
+
+
+ALIGN 4 
+SeedOption:
+WORD SeedOpt 
+VarianceOption:
+WORD VarianceOpt 
+CharactersOption:
+WORD CharactersOpt
+FromGameOption:
+WORD FromGameOpt
+BaseStatsOption:
+WORD BaseStatsOpt
+GrowthsOption:
+WORD GrowthsOpt
+LevelupsOption:
+WORD LevelupsOpt
+StatCapsOption:
+WORD StatCapsOpt
+ClassOption:
+WORD ClassOpt
+ItemOption:
+WORD ItemOpt
+ModeOption:
+WORD ModeOpt
+MusicOption:
+WORD MusicOpt
+ColoursOption:
+WORD ColoursOpt
+DurabilityOption:
+WORD DurabilityOpt
+PlayerBonusOption:
+WORD PlayerBonusOpt
+PlayerBonusGrowthOption:
+WORD PlayerBonusGrowthOpt
+EnemyBonusOption:
+WORD EnemyBonusOpt
+EnemyBonusGrowthOption:
+WORD EnemyBonusGrowthOpt
+FogOption:
+WORD FogOpt
+SoftlockOption:
+WORD SoftlockOpt
+SkipChOption:
+WORD SkipChOpt
+ReloadUnitsOption:
+WORD ReloadUnitsOpt
+UiOption:
+WORD UiOpt
+DebuggerOption:
+WORD DebuggerOpt
+BGOption:
+WORD BGOpt
+TimedHitsOption:
+WORD TimedHitsOpt
+SkillsOption:
+WORD SkillsOpt
+
+
+
+
 

@@ -277,6 +277,34 @@ int ShouldRandomizeBG(void)
 extern u8 VanillaSkill[];
 extern int NumberOfSkills;
 extern u8 * AlwaysSkill;
+extern const int SeedOption;
+extern const int VarianceOption;
+extern const int CharactersOption;
+extern const int FromGameOption;
+extern const int BaseStatsOption;
+extern const int GrowthsOption;
+extern const int LevelupsOption;
+extern const int StatCapsOption;
+extern const int ClassOption;
+extern const int ItemOption;
+extern const int ModeOption;
+extern const int MusicOption;
+extern const int ColoursOption;
+extern const int DurabilityOption;
+extern const int PlayerBonusOption;
+extern const int PlayerBonusGrowthOption;
+extern const int EnemyBonusOption;
+extern const int EnemyBonusGrowthOption;
+extern const int FogOption;
+extern const int SoftlockOption;
+extern const int SkipChOption;
+extern const int ReloadUnitsOption;
+extern const int UiOption;
+extern const int DebuggerOption;
+extern const int BGOption;
+extern const int TimedHitsOption;
+extern const int SkillsOption;
+
 void EnableRandSkills(void)
 {
     RandValues->skills = 1;
@@ -8770,6 +8798,7 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
 };
 
 #define OPT0NUM 21
+
 #ifdef FE6
 extern const char Option0[OPT0NUM][16]; // do align 16 before each?
 #else
@@ -8848,7 +8877,7 @@ extern const char Option5[OPT5NUM][32]; // do align 16 before each?
 const char Option5[OPT5NUM][15] = {
     // Levelups
     "Vanilla",
-    "Based on seed", // Seeded if randomizer is on, vanilla otherwise
+    "Based on seed",
     "Fixed",
 };
 #endif
@@ -9059,6 +9088,8 @@ const char Option25[OPT25NUM][10] = {
     "Fixed",
     "Random &",
 };
+
+extern void * SRRText_POIN[];
 
 const u8 OptionAmounts[] = { OPT0NUM,  OPT1NUM,  OPT2NUM,  OPT3NUM,  OPT4NUM,  OPT5NUM,  OPT6NUM,
                              OPT7NUM,  OPT8NUM,  OPT9NUM,  OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM,
@@ -9530,6 +9561,24 @@ const u8 tWidths[] = { 3, 5, 7, 4, 6, 5, 5, 6, 3, 3, 3, 3, 4, 6, 7, 11, 10, 11, 
 // const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 5, 13, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 8, 4, 16 };
 const u8 RtWidths[] = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
                         16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
+
+void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
+{
+    if (i + offset == SeedOption)
+    {
+        TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 7, Y_HAND), 9, 2, 0); // seed first
+        PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 1, 3 + ((i) * 2)), white, proc->seed);
+        return;
+    }
+
+    const char ** textEntry = SRRText_POIN[i];
+    const char * string = textEntry[proc->Option[i + offset - 1]];
+    struct Text * th = gStatScreen.text;
+    PutDrawText(
+        &th[i + SRR_NUMBERDISP], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+        PutStringInBuffer(string, UseHuffmanEncoding));
+}
+
 void DrawConfigMenu(ConfigMenuProc * proc)
 {
     // return;
@@ -9540,7 +9589,7 @@ void DrawConfigMenu(ConfigMenuProc * proc)
     //&gPrepUnitTexts[ilist],
     // GetStringFromIndex(unit->pClassData->nameTextId)
     struct Text * th = gStatScreen.text; // max 34
-    int i = 0;
+    // int i = 0;
     int offset2 = proc->offset;
     int offset = 0;
     // int hOff = sizeof(tWidths); // handle offset
@@ -9566,283 +9615,286 @@ void DrawConfigMenu(ConfigMenuProc * proc)
     Max Growth: 100
     */
 
-    i = 0;
-    switch (offset2)
+    for (int i = 0; i < SRR_MAXDISP; ++i)
     {
-        case 0:
-            TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 7, Y_HAND), 9, 2, 0); // seed first
-            PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 1, 3 + ((i) * 2)), white, proc->seed);
-            i++;
-        case 1:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option0[proc->Option[0]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 2:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 3:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 4:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 5:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 6:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 7:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 8:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 9:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 10:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 11:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 12:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 13:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 14:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 15:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 16:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 17:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 18:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 19:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option18[proc->Option[18]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 20:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option19[proc->Option[19]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 21:
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-#ifdef FE8
-        case 22:
+        DrawSRRText(proc, i, offset2);
+    }
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+    /*
+        i = 0;
+        switch (offset2)
         {
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option21[proc->Option[21]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        }
-        case 23:
-        {
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option22[proc->Option[22]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        }
-        case 24:
-        {
-            PutDrawText(
-                &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                PutStringInBuffer(Option23[proc->Option[23]], UseHuffmanEncoding));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        }
-        case 25:
-        {
-            if (DisplayTimedHitsOption)
+            case 0:
+                TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 7, Y_HAND), 9, 2, 0); // seed first
+                PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 1, 3 + ((i) * 2)), white, proc->seed);
+                i++;
+            case 1:
+                DrawSRRText(proc, i);
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 2:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option1[proc->Option[1]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 3:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option2[proc->Option[2]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 4:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option3[proc->Option[3]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 5:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option4[proc->Option[4]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 6:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option5[proc->Option[5]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 7:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option6[proc->Option[6]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 8:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option7[proc->Option[7]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 9:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option8[proc->Option[8]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 10:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option9[proc->Option[9]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 11:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option10[proc->Option[10]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 12:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option11[proc->Option[11]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 13:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option12[proc->Option[12]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 14:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option13[proc->Option[13]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 15:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option14[proc->Option[14]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 16:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option15[proc->Option[15]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 17:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option16[proc->Option[16]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 18:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option17[proc->Option[17]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 19:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option18[proc->Option[18]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 20:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option19[proc->Option[19]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            case 21:
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option20[proc->Option[20]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+    #ifdef FE8
+            case 22:
             {
                 PutDrawText(
                     &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                    PutStringInBuffer(Option24[proc->Option[24]], UseHuffmanEncoding));
+                    PutStringInBuffer(Option21[proc->Option[21]], UseHuffmanEncoding));
                 i++;
                 if (i > SRR_MAXDISP)
                 {
                     break;
                 }
             }
-        }
-        case 26:
-        {
-            if (DisplayRandomSkillsOption)
+            case 23:
             {
-                if ((proc->Option[25] != 3) || (!IsSkill(proc->skill)))
-                {
-                    PutDrawText(
-                        &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                        PutStringInBuffer(Option25[proc->Option[25]], UseHuffmanEncoding));
-                    i++;
-                }
-                else
-                {
-                    char string[30];
-                    PutDrawText(
-                        &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                        GetCombinedString(Option25[proc->Option[25]], GetSkillName(proc->skill), string));
-                    i++;
-                    // DrawIcon(
-                    // gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
-                    // SKILL_ICON(proc->skill), TILEREF(0, 4));
-                }
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option22[proc->Option[22]], UseHuffmanEncoding));
+                i++;
                 if (i > SRR_MAXDISP)
                 {
                     break;
                 }
             }
-        }
+            case 24:
+            {
+                PutDrawText(
+                    &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(Option23[proc->Option[23]], UseHuffmanEncoding));
+                i++;
+                if (i > SRR_MAXDISP)
+                {
+                    break;
+                }
+            }
+            case 25:
+            {
+                if (DisplayTimedHitsOption)
+                {
+                    PutDrawText(
+                        &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                        PutStringInBuffer(Option24[proc->Option[24]], UseHuffmanEncoding));
+                    i++;
+                    if (i > SRR_MAXDISP)
+                    {
+                        break;
+                    }
+                }
+            }
+            case 26:
+            {
+                if (DisplayRandomSkillsOption)
+                {
+                    if ((proc->Option[25] != 3) || (!IsSkill(proc->skill)))
+                    {
+                        PutDrawText(
+                            &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
+    MaxRTW, PutStringInBuffer(Option25[proc->Option[25]], UseHuffmanEncoding)); i++;
+                    }
+                    else
+                    {
+                        char string[30];
+                        PutDrawText(
+                            &th[i + offset + hOff], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0,
+    MaxRTW, GetCombinedString(Option25[proc->Option[25]], GetSkillName(proc->skill), string)); i++;
+                        // DrawIcon(
+                        // gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
+                        // SKILL_ICON(proc->skill), TILEREF(0, 4));
+                    }
+                    if (i > SRR_MAXDISP)
+                    {
+                        break;
+                    }
+                }
+            }
 
-#endif
-        default:
-    }
-    // BG_EnableSyncByMask(BG0_SYNC_BIT); return;
+    #endif
+            default:
+        }
+        // BG_EnableSyncByMask(BG0_SYNC_BIT); return;
+        */
 
     BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
