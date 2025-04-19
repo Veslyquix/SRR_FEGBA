@@ -548,6 +548,32 @@ extern void DisplayUiVArrow(int, int, u16, int);
 void EndGreenText(void);
 extern void UnpackUiVArrowGfx(int, int);
 extern void BreakWithValue(int a, int b, int c);
+
+#ifdef FE6
+const struct FE8CharacterData *
+#endif
+#ifndef FE6
+    const struct CharacterData *
+#endif
+    NewGetCharacterDataEvenIfInvalid(int charId, int tableID)
+{
+#ifdef FE6
+    const struct FE8CharacterData * table = NULL;
+#else
+    const struct CharacterData * table = NULL;
+#endif
+    table = cData[tableID] + (charId - 1);
+    if (!tableID)
+    {
+#ifdef FE6
+        return (const struct FE8CharacterData *)GetCharacterData(charId);
+#else
+        return GetCharacterData(charId);
+#endif
+    }
+    return table;
+}
+
 #ifdef FE6
 const struct FE8CharacterData *
 #endif
@@ -1538,8 +1564,9 @@ int GetMaxCharIdByTable(int tableID)
 {
     for (int i = 1; i < MAX_CHAR_ID; ++i)
     {
-        if (NewGetCharacterData(i, tableID)->portraitId == TerminatorPortrait)
+        if (NewGetCharacterDataEvenIfInvalid(i, tableID)->portraitId == TerminatorPortrait)
         {
+
             return i - 1;
         }
     }
@@ -1562,11 +1589,23 @@ void EnsureNewCharInRange(struct PidStatsChar * pidStats, int highest, int table
     if (charID > finalCharId)
     {
         if (highest)
-            pidStats->moveAmt = finalCharId - 1;
+            pidStats->moveAmt = finalCharId;
 
         else
             pidStats->moveAmt = 1;
     }
+}
+
+int NewCharIdInIgnoredRange(int i, int tableID)
+{
+    if (!tableID)
+    {
+        return false;
+    }
+    if (i >= 0x3B && i <= 0x6D)
+        return true;
+
+    return false;
 }
 
 void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
@@ -1575,13 +1614,17 @@ void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
     {
         return;
     }
-    int maxID = GetMaxCharIdByTable(pidStats->deployAmt);
-
+    int tableID = pidStats->deployAmt;
+    int maxID = GetMaxCharIdByTable(tableID);
     int startingID = pidStats->moveAmt;
     const struct CharacterData * table = GetCharacterData(id);
     const struct CharacterData * table2;
     for (int i = startingID + 1; i <= maxID; i++)
     {
+        if (NewCharIdInIgnoredRange(i, tableID))
+        {
+            continue;
+        }
         pidStats->moveAmt = i;
         table2 = GetReorderedCharacterByPIDStats(table, pidStats);
         if (i == id)
@@ -1614,12 +1657,19 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
     {
         return;
     }
-    int maxID = GetMaxCharIdByTable(pidStats->deployAmt);
+    int tableID = pidStats->deployAmt;
+    asm("mov r11, r11");
+    int maxID = GetMaxCharIdByTable(tableID);
+    asm("mov r11, r11");
     int startingID = pidStats->moveAmt;
     const struct CharacterData * table = GetCharacterData(id);
     const struct CharacterData * table2;
     for (int i = startingID - 1; i > 0; i--)
     {
+        if (NewCharIdInIgnoredRange(i, tableID))
+        {
+            continue;
+        }
         pidStats->moveAmt = i;
         table2 = GetReorderedCharacterByPIDStats(table, pidStats);
         if (i == id)
@@ -1704,13 +1754,11 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         if (keys & DPAD_LEFT)
         {
             SetPrevValidCharID(charID, pidStats);
-            EnsureNewCharInRange(pidStats, 1, pidStats->deployAmt); // not past 0xFF portrait
             changed = true;
         }
         else if (keys & DPAD_RIGHT)
         {
             SetNextValidCharID(charID, pidStats);
-            EnsureNewCharInRange(pidStats, 0, pidStats->deployAmt); // not past 0xFF portrait
             changed = true;
         }
 

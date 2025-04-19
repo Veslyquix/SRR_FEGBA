@@ -429,6 +429,7 @@ for file in png_files:
     incbins.append(f"{base_name}MinimugData:\n")
     incbins.append(f"#incbin \"{normalized_relative_path}/{mug_name}_minimug.dmp\"\n\n")
     # Define mug ID if not already defined
+    ##definitions.append(f"#ifndef {base_name}Mug\n  #define {base_name}Mug (FirstMugID+{c})\n#else \nMESSAGE {base_name}_Mug previously defined\n#endif\n")
     definitions.append(f"#ifndef {base_name}Mug\n  #define {base_name}Mug (FirstMugID+{c})\n#endif\n")
 
     # Process the image to locate the eye and mouse positions
