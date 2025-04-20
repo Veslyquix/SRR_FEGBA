@@ -33,33 +33,9 @@ PageText:
 txt("Page")
 
 
-#define SeedOpt 0 
-#define VarianceOpt 1 
-#define CharactersOpt 2 
-#define FromGameOpt 3 
-#define BaseStatsOpt 4 
-#define GrowthsOpt 5 
-#define LevelupsOpt 6 
-#define StatCapsOpt 7 
-#define ClassOpt 8 
-#define ItemOpt 9
-#define ModeOpt 10 
-#define MusicOpt 11 
-#define ColoursOpt 12 
-#define DurabilityOpt 13 
-#define PlayerBonusOpt 14 
-#define PlayerBonusGrowthOpt 15 
-#define EnemyBonusOpt 16
-#define EnemyBonusGrowthOpt 17 
-#define FogOpt 18
-#define SoftlockOpt 19 
-#define SkipChOpt 20
-#define DebuggerOpt 21 
-#define ReloadUnitsOpt 22 
-#define UiOpt 23
-#define BGOpt 24
-#define TimedHitsOpt 25 
-#define SkillsOpt 26 
+
+
+#include "SRR_Menu_defs.enu.event" 
 
 // #define SeedOption 0 
 // #define VarianceOption 1 
@@ -152,6 +128,19 @@ t10: txt("FE16: Three Houses");           t11: txt("FE17: Engage");             
 ALIGN 4; SRRHeader(FromGameOpt)
 POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 0
 }
+
+{
+t0:  txt(" ");  
+ALIGN 4; SRRHeader(FilterCharsOpt)
+POIN t0 0
+}
+
+{
+t0:  txt(" ");
+ALIGN 4; SRRHeader(PreviewCharsOpt)
+POIN t0 0
+}
+
 
 {
 t0:  txt("Vanilla");  t1:  txt("Random");
@@ -374,6 +363,11 @@ SRRMenu(CharactersOpt);         txt("Characters")
 SRRDesc(CharactersOpt); txt("Characters can be swapped\around for a unique experience."); 
 SRRMenu(FromGameOpt);           txt("From Game")
 SRRDesc(FromGameOpt); txt("Recruitable units can be from\specific or random FE games."); 
+SRRMenu(FilterCharsOpt);           txt("Filter Characters")
+SRRDesc(FilterCharsOpt); txt("Only include characters with\specific weapon types or traits."); 
+SRRMenu(PreviewCharsOpt);           txt("Preview Characters")
+SRRDesc(PreviewCharsOpt); txt("Preview who your recruitable\characters will turn into."); 
+
 SRRMenu(BaseStatsOpt);          txt("Base Stats")
 SRRDesc(BaseStatsOpt); txt("Determines units starting\stats on their initial appearance.\Stat +/- (Stat*Variance)."); 
 SRRMenu(GrowthsOpt);            txt("Growths")
@@ -472,6 +466,10 @@ CharactersOption:
 WORD CharactersOpt
 FromGameOption:
 WORD FromGameOpt
+FilterCharsOption:
+WORD FilterCharsOpt 
+PreviewCharsOption: 
+WORD PreviewCharsOpt 
 BaseStatsOption:
 WORD BaseStatsOpt
 GrowthsOption:

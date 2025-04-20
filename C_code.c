@@ -57,7 +57,7 @@ typedef struct
     s8 previewId;
     s8 changingGame;
     char * helpBox;
-    s8 Option[26]; // ends around 5C
+    s8 Option[30]; // ends around 60
     u32 tags;
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
@@ -282,6 +282,8 @@ extern const int SeedOption;
 extern const int VarianceOption;
 extern const int CharactersOption;
 extern const int FromGameOption;
+extern const int FilterCharsOption;
+extern const int PreviewCharsOption;
 extern const int BaseStatsOption;
 extern const int GrowthsOption;
 extern const int LevelupsOption;
@@ -1037,7 +1039,6 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     {
         if (proc->previewId == ConfirmCommandID)
         {
-            CopyBWLForCharDuplicates();
             Proc_Goto(proc, EndLabel);
             return;
         }
@@ -2490,6 +2491,10 @@ int DoesCharMatchArmour(const struct CharacterData * table, const struct ClassDa
 
 int FilterCharOut(const struct CharacterData * table, const struct ClassData * ctable)
 {
+    if (TagValues->raw == 0xFFFFFFFF)
+    {
+        return false;
+    }
     struct TagsStruct tags = TagValues->tags;
     u32 result = false;
     result = DoesCharMatchWexp(table, ctable, tags);
@@ -2544,6 +2549,7 @@ void BuildFilteredCharsList(
     proc = proc1;
     int t = GetForcedCharTable();
     int end = t + 1;
+    brk;
     if (t >= NumberOfCharTables)
     {
         t = 0;
@@ -2560,6 +2566,7 @@ void BuildFilteredCharsList(
                 break;
             }
             table = (const struct CharacterData *)NewGetCharacterData(i, t);
+            brk;
             if (table->portraitId == TerminatorPortrait)
             {
                 break;
@@ -2590,6 +2597,7 @@ void BuildFilteredCharsList(
                     {
                         continue;
                     }
+                    brk;
                     tables[c] = t;
                     unit[c] = i;
                     c++;
@@ -8780,6 +8788,8 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_LABEL(EndLabel),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
+    PROC_CALL(DrawCharConfirmPage), // to init ram..
+    PROC_CALL(CopyBWLForCharDuplicates),
     PROC_CALL(ReloadAllUnits),
     PROC_CALL(RestoreBackgrounds),
     PROC_CALL(UnlockGame),
@@ -9546,8 +9556,8 @@ enum
     RedrawSome,
     RedrawAll
 };
-#ifdef FE8
 extern int DebuggerTurnedOff_Flag;
+#ifdef FE8
 extern int StephanoStyleFlag;
 extern int GammaStyleFlag;
 extern int PikminStyleFlag;
@@ -9827,8 +9837,8 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             {
                 if ((id + offset) != SkipChOption)
                 {
-                    proc->id = 7;
-                    proc->offset = 14;
+                    proc->id = SRR_MAXDISP; // SRR_NUMBERDISP
+                    proc->offset = SkipChOption - 5;
                     proc->redraw = RedrawAll;
                     proc->Option[ReloadUnitsOption] = 0;
                     if (reloadPlayers)
@@ -9924,6 +9934,14 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         GrowthValues->enemy = proc->Option[EnemyBonusGrowthOption];
         RecruitValues->ai = proc->Option[SoftlockOption];
         RandBitflags->disp = 1;
+        if (proc->Option[DebuggerOption] == 0)
+        {
+            SetFlag(DebuggerTurnedOff_Flag);
+        }
+        else
+        {
+            UnsetFlag(DebuggerTurnedOff_Flag);
+        }
 #ifdef FE8
         UnsetFlag(StephanoStyleFlag);
         UnsetFlag(GammaStyleFlag);
@@ -9946,15 +9964,6 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
                 break;
             }
             default:
-        }
-
-        if (proc->Option[DebuggerOption] == 0)
-        {
-            SetFlag(DebuggerTurnedOff_Flag);
-        }
-        else
-        {
-            UnsetFlag(DebuggerTurnedOff_Flag);
         }
         GrowthValues->Backgrounds = proc->Option[BGOption];
 
@@ -9988,7 +9997,6 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             }
         }
 #endif
-        int fogChange = false;
         if (RandBitflags->fog != proc->Option[FogOption])
         {
             if ((proc->Option[FogOption] == 1) && proc->calledFromChapter)
@@ -10003,7 +10011,6 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             {
                 UpdateMapViewWithFog(-1);
             }
-            fogChange = true;
         }
         RandBitflags->fog = proc->Option[FogOption];
 
@@ -10059,20 +10066,18 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         // for (int i = 0; i < 50; ++i) {
         //	ClearText(&th[i]);
         //}
-        if (fogChange)
-        {
-            Proc_Goto(proc, EndLabel);
-        }
-        else if (1)
+        if (proc->id == FilterCharsOption)
         {
             Proc_Goto(proc, FilterUnitsLabel);
+            return;
         }
-        else
+        if (proc->id == PreviewCharsOption)
         {
             proc->previewId = ConfirmCommandID;
             Proc_Goto(proc, PreviewCharLabel);
+            return;
         }
-        // Proc_Break((ProcPtr)proc);
+        Proc_Goto(proc, EndLabel);
         return;
         // BG_SetPosition(BG_3, 0, 0);
         // gLCDControlBuffer.dispcnt.bg3_on = 1; // don't display bg3
@@ -10464,6 +10469,8 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         {
             proc->Option[i] = 0;
         }
+        TagValues->raw = 0xFFFFFFFF; // default
+        proc->tags = 0xFFFFFFFF;     // everything default
         proc->helpBox = NULL;
         proc->reloadPlayers = false;
         proc->reloadEnemies = false;
@@ -10482,7 +10489,8 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
             proc->Option[MusicOption] = 1;   // Random BGM
             proc->Option[ColoursOption] = 0; // Random Colours off by default now
         }
-        proc->tags = 0xFF02FFFF; // everything default
+
+        // proc->tags = 0xFF02FFFF; // everything default
         proc->previewPage = 0;
         proc->previewId = 0;
         proc->changingGame = 0;
@@ -10583,7 +10591,7 @@ int MenuStartConfigMenu(ProcPtr parent)
     proc->Option[EnemyBonusGrowthOption] = GrowthValues->enemy;
     proc->Option[FogOption] = RandBitflags->fog;
     proc->Option[SoftlockOption] = RecruitValues->ai;
-
+    proc->Option[DebuggerOption] = !CheckFlag(DebuggerTurnedOff_Flag);
 #ifdef FE8
     proc->Option[UiOption] = 0;
     if (CheckFlag(StephanoStyleFlag))
@@ -10599,7 +10607,6 @@ int MenuStartConfigMenu(ProcPtr parent)
         proc->Option[UiOption] = 3;
     }
 
-    proc->Option[DebuggerOption] = !CheckFlag(DebuggerTurnedOff_Flag);
     proc->Option[BGOption] = GrowthValues->Backgrounds;
     if (DisplayTimedHitsOption)
     {
