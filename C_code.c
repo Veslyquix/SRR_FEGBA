@@ -792,10 +792,8 @@ void ClearConfigGfx(ConfigMenuProc * proc)
 
 extern int MaxCharPreviewID;
 
-#define OPT2NUM 13
 #ifdef FE6
 extern const char GameText;
-extern const char Option2[OPT2NUM][64]; // do align 16 before each?
 char * PutStringInBuffer(const char * str, int huffman);
 extern const char RerollText;
 extern const char SetAllText;
@@ -803,7 +801,6 @@ extern const char ResetPageText;
 extern const char ConfirmText;
 extern const char PageText;
 #else
-const char Option2[OPT2NUM][32];
 const char GameText[] = { "From Game" };
 const char * PutStringInBuffer(const char * str, int huffman);
 const char RerollText[] = { "Reroll Page" };
@@ -1306,6 +1303,7 @@ int GetReviseCharByID(int id)
     return id;
 }
 
+const char * GetSRRText(int id1, int id2);
 int GetReviseCharID(ConfigMenuProc * proc)
 {
     u8 base_charID[11] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8, 4 }; // because of menu options ordering lol
@@ -1360,7 +1358,8 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     ClearText(gStatScreen.text + 24);
     InitText(gStatScreen.text + 24, 15);
     PutDrawText(
-        gStatScreen.text + 24, TILEMAP_LOCATED(gBG0TilemapBuffer, 12, 18), green, 0, 0, (void *)Option2[tableID]);
+        gStatScreen.text + 24, TILEMAP_LOCATED(gBG0TilemapBuffer, 12, 18), green, 0, 0,
+        (void *)GetSRRText(FromGameOption, tableID));
     // SetFaceBlinkControlById(0, 5);
     // SetFaceBlinkControlById(1, 5);
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
@@ -9280,11 +9279,22 @@ extern const int SRR_TotalOptions;
 #define MaxTW 11
 #define MaxRTW 16
 
+const char * GetSRRText(int id1, int id2)
+{
+    const char ** textEntry = SRRText_POIN[id1];
+    const char * string = textEntry[id2];
+    if (!textEntry || !string)
+    {
+        string = NULL;
+    }
+    return string;
+}
+
 void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
 {
     struct Text * th = gStatScreen.text;
-    const char ** textEntry = SRRText_POIN[i + offset];
-    const char * string = textEntry[proc->Option[i + offset]];
+    // const char ** textEntry = SRRText_POIN[i + offset];
+    const char * string = GetSRRText(i + offset, proc->Option[i + offset]);
 
     if (i + offset == SeedOption)
     {
@@ -9319,7 +9329,7 @@ void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
     }
 #endif
 
-    if (!textEntry || !string)
+    if (!string)
     {
         brk;
         return;
