@@ -792,22 +792,17 @@ void ClearConfigGfx(ConfigMenuProc * proc)
 
 extern int MaxCharPreviewID;
 
-#ifdef FE6
 extern const char GameText;
-char * PutStringInBuffer(const char * str, int huffman);
 extern const char RerollText;
 extern const char SetAllText;
 extern const char ResetPageText;
 extern const char ConfirmText;
 extern const char PageText;
+
+#ifdef FE6
+char * PutStringInBuffer(const char * str, int huffman);
 #else
-const char GameText[] = { "From Game" };
 const char * PutStringInBuffer(const char * str, int huffman);
-const char RerollText[] = { "Reroll Page" };
-const char SetAllText[] = { "Set All" };
-const char ResetPageText[] = { "Reset Page" };
-const char ConfirmText[] = { "Confirm" };
-const char PageText[] = { "Page" };
 #endif
 
 void DrawCharConfirmPage(ConfigMenuProc * proc)
@@ -9582,7 +9577,7 @@ LocationTable RText_LocationTable[] = {
     { RTextLoc, (Y_HAND * 8) + (12 * 8) }, { RTextLoc, (Y_HAND * 8) + (14 * 8) }, { RTextLoc, (Y_HAND * 8) + (16 * 8) },
 };
 extern void CloseHelpBox(void);
-char * GetSRRMenuDesc(ConfigMenuProc * proc, int index);
+const char * GetSRRMenuDesc(ConfigMenuProc * proc, int index);
 void ClearHelpBoxText_SRR(void);
 void ConfigMenuLoop(ConfigMenuProc * proc)
 {
@@ -9689,7 +9684,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             StartHelpBoxString_SRR(
                 proc, RText_LocationTable[proc->id].x, RText_LocationTable[proc->id].y,
-                GetSRRMenuDesc(proc, proc->offset + proc->id));
+                (void *)GetSRRMenuDesc(proc, proc->offset + proc->id));
         }
         if (proc->redraw == RedrawSome)
         {
@@ -9708,7 +9703,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     {
         proc->helpBox = (void *)-1;
         StartHelpBoxString_SRR(
-            proc, RText_LocationTable[id].x, RText_LocationTable[id].y, GetSRRMenuDesc(proc, offset + id));
+            proc, RText_LocationTable[id].x, RText_LocationTable[id].y, (void *)GetSRRMenuDesc(proc, offset + id));
 
         // Proc_StartBlocking(gProcScr_SRRHelpboxListener, proc);
         return;
@@ -10305,60 +10300,15 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
 }
 
-#ifdef FE6
-extern const char SeedText;
-extern const char VarianceText;
-extern const char CharactersText;
-extern const char GameText;
-extern const char BaseStatsText;
-extern const char GrowthsText;
-extern const char LevelupsText;
-extern const char StatCapsText;
-extern const char ClassText;
-extern const char ItemsText;
-extern const char ModeText;
-extern const char MusicText;
-extern const char ColoursText;
-extern const char ItemDurabilityText;
-extern const char PlayerBonusText;
-extern const char PlayerGrowthBonusText;
-extern const char EnemyDiffBonusText;
-extern const char EnemyGrowthBonusText;
-extern const char FogText;
-extern const char SoftlockPreventionText;
-extern const char SkipChapterText;
-extern const char ReloadUnitsText;
-extern const char RandomizerText;
-#else
-const char SeedText[] = { "Seed" };
-const char VarianceText[] = { "Variance" };
-const char CharactersText[] = { "Characters" };
-// const char GameText[] = { "From Game" };
-const char BaseStatsText[] = { "Base Stats" };
-const char GrowthsText[] = { "Growths" };
-const char LevelupsText[] = { "Levelups" };
-const char StatCapsText[] = { "Stat Inflation/Caps" };
-const char ClassText[] = { "Class" };
-const char ItemsText[] = { "Items" };
-const char ModeText[] = { "Mode" };
-const char MusicText[] = { "Music" };
-const char ColoursText[] = { "Colours" };
-const char ItemDurabilityText[] = { "Item Uses" };
-const char PlayerBonusText[] = { "Player Bonus" };
-const char PlayerGrowthBonusText[] = { "Player Growth Bonus" };
-const char EnemyDiffBonusText[] = { "Enemy Diff. Bonus" };
-const char EnemyGrowthBonusText[] = { "Enemy Growth Bonus" };
-const char FogText[] = { "Fog" };
-const char SoftlockPreventionText[] = { "Override AI" };
-const char SkipChapterText[] = { "Skip chapter" };
-const char ReloadUnitsText[] = { "Reload units" };
-const char UIText[] = { "User Interface" };
-const char DebuggerText[] = { "Debugger" };
-const char BGText[] = { "Backgrounds" };
-const char SkillsText[] = { "Skills" };
-const char TimedHitsText[] = { "Timed Hits" };
-const char RandomizerText[] = { "Randomizer" };
-#endif
+extern const char * RandomizerText;
+const char * GetSRRMenuText(ConfigMenuProc * proc, int index);
+void DrawSRRHeader(ConfigMenuProc * proc, int id, int offset2)
+{
+    struct Text * th = gStatScreen.text; // max 34 normally
+    PutDrawText(
+        &th[id], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((id) * 2)), gold, 0, MaxTW,
+        PutStringInBuffer((void *)GetSRRMenuText(proc, id + offset2), false));
+}
 
 void RedrawAllText(ConfigMenuProc * proc)
 {
@@ -10368,272 +10318,15 @@ void RedrawAllText(ConfigMenuProc * proc)
         ClearText(&th[i]);
     }
     TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, 0, 0), 0x1d, 0x13, 0); // all
-    int i = 0;
     int offset2 = proc->offset;
-    int offset = 0;
 
     // PutDrawText(&th[i+offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 1+(i*2)), gold, 0, 5, "Variance"); i++;
     // PutDrawText(&th[0], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3), gold, 0, tWidths[0],
     // PutStringInBuffer(&VarianceText, 0));
-    i = 0;
-    switch (offset2)
+
+    for (int i = 0; i < SRR_NUMBERDISP; ++i)
     {
-        case 0:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&SeedText, false));
-            i++; // Classic/Casual
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 1:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&VarianceText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 2:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&CharactersText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 3:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&GameText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 4:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&BaseStatsText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 5:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&GrowthsText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 6:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&LevelupsText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 7:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&StatCapsText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 8:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&ClassText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 9:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&ItemsText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 10:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&ModeText, false));
-            i++; // Classic/Casual
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 11:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&MusicText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 12:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&ColoursText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 13:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&ItemDurabilityText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 14:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&PlayerBonusText, false));
-            i++; // make players have bonus levels
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 15:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&PlayerGrowthBonusText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 16:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&EnemyDiffBonusText, false));
-            i++; // make enemies have more bonus levels
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 17:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&EnemyGrowthBonusText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 18:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&FogText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 19:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&SoftlockPreventionText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 20:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&SkipChapterText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 21:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&ReloadUnitsText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-#ifdef FE8
-        case 22:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&UIText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 23:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&DebuggerText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 24:
-            PutDrawText(
-                &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                PutStringInBuffer((const char *)&BGText, false));
-            i++;
-            if (i > SRR_MAXDISP)
-            {
-                break;
-            }
-        case 25:
-        {
-            if (DisplayTimedHitsOption)
-            {
-                PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                    PutStringInBuffer((const char *)&TimedHitsText, false));
-                i++;
-                if (i > SRR_MAXDISP)
-                {
-                    break;
-                }
-            }
-        }
-        case 26:
-        {
-            if (DisplayRandomSkillsOption)
-            {
-                PutDrawText(
-                    &th[i + offset], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), gold, 0, MaxTW,
-                    PutStringInBuffer((const char *)&SkillsText, false));
-                i++;
-                if (i > SRR_MAXDISP)
-                {
-                    break;
-                }
-            }
-        }
-#endif
-        default:
+        DrawSRRHeader(proc, i, offset2);
     }
 
     DrawConfigMenu(proc);
@@ -13183,7 +12876,7 @@ int CountSRRMenuItems(ConfigMenuProc * proc)
 
 extern char blankString;
 extern int MaxRTextOptions;
-char * GetSRRMenuText(ConfigMenuProc * proc, int index)
+const char * GetSRRMenuText(ConfigMenuProc * proc, int index)
 {
     // index += proc->page * NumberOfOptions;
     index += CountSRRMenuItems(proc);
@@ -13194,7 +12887,7 @@ char * GetSRRMenuText(ConfigMenuProc * proc, int index)
     }
     return result;
 }
-char * GetSRRMenuDesc(ConfigMenuProc * proc, int index)
+const char * GetSRRMenuDesc(ConfigMenuProc * proc, int index)
 {
     index += CountSRRMenuItems(proc);
     int opt = proc->Option[index] + 1;

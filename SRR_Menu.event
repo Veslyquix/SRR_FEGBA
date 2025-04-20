@@ -15,6 +15,22 @@ WORD MaxRTextOpt
 blankString:
 txt(" "); 
 
+RandomizerText: 
+txt("Randomizer")
+
+
+GameText: 
+txt("From Game")
+RerollText:
+txt("Reroll Page")
+SetAllText:
+txt("Set All")
+ResetPageText:
+txt("Reset Page")
+ConfirmText:
+txt("Confirm")
+PageText:
+txt("Page")
 
 
 #define SeedOpt 0 
@@ -38,9 +54,9 @@ txt(" ");
 #define FogOpt 18
 #define SoftlockOpt 19 
 #define SkipChOpt 20
-#define ReloadUnitsOpt 21 
-#define UiOpt 22
-#define DebuggerOpt 23 
+#define DebuggerOpt 21 
+#define ReloadUnitsOpt 22 
+#define UiOpt 23
 #define BGOpt 24
 #define TimedHitsOpt 25 
 #define SkillsOpt 26 

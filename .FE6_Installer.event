@@ -267,65 +267,6 @@ NeverChangeChar(0xE1) // arena enemy randomized breaks things
 	#define SetName(id) "ALIGN 32"
 #endif 
 
-RerollText: 
-STRING "Reroll Page" "FE6TR" ; BYTE 0 0 
-SetAllText: 
-STRING "Set All" "FE6TR" ; BYTE 0 0 
-ResetPageText: 
-STRING "Reset Page" "FE6TR" ; BYTE 0 0 
-ConfirmText: 
-STRING "Confirm" "FE6TR" ; BYTE 0 0 
-PageText: 
-STRING "Page" "FE6TR" ; BYTE 0 0 
-
-
-ALIGN 4 
-SeedText: 
-STRING "Seed" "FE6TR" ; BYTE 0
-VarianceText: 
-STRING "Variance" "FE6TR" ; BYTE 0
-CharactersText: 
-STRING "Characters" "FE6TR" ; BYTE 0 0 
-GameText: 
-STRING "From Game" "FE6TR" ; BYTE 0 0 
-BaseStatsText: 
-STRING "Base Stats" "FE6TR" ; BYTE 0
-GrowthsText: 
-STRING "Growths" "FE6TR" ; BYTE 0
-LevelupsText:
-STRING "Levelups" "FE6TR" ; BYTE 0
-StatCapsText: 
-STRING "Stat Inflation/Caps" "FE6TR" ; BYTE 0
-ClassText: 
-STRING "Class" "FE6TR" ; BYTE 0
-ItemsText: 
-STRING "Items" "FE6TR" ; BYTE 0
-ModeText: 
-STRING "Mode" "FE6TR" ; BYTE 0
-MusicText:
-STRING "Music" "FE6TR" ; BYTE 0
-ColoursText:
-STRING "Colours" "FE6TR" ; BYTE 0
-ItemDurabilityText:
-STRING "Item Uses" "FE6TR" ; BYTE 0
-PlayerBonusText:
-STRING "Player Bonus" "FE6TR" ; BYTE 0
-PlayerGrowthBonusText:
-STRING "Player Growth Bonus" "FE6TR" ; BYTE 0
-EnemyDiffBonusText: 
-STRING "Enemy Diff. Bonus" "FE6TR" ; BYTE 0
-EnemyGrowthBonusText:
-STRING "Enemy Growth Bonus" "FE6TR" ; BYTE 0
-RandomizerText: 
-STRING "Randomizer" "FE6TR" ; BYTE 0
-FogText:
-STRING "Fog" "FE6TR" ; BYTE 0
-SoftlockPreventionText:
-STRING "Override AI" "FE6TR" ; BYTE 0
-SkipChapterText:
-STRING "Skip Chapter" "FE6TR" ; BYTE 0
-ReloadUnitsText:
-STRING "Reload units" "FE6TR" ; BYTE 0
 
 
 
@@ -696,7 +637,7 @@ ALIGN 4
 IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
-WORD 21
+WORD 22
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:
