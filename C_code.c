@@ -9835,26 +9835,29 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         { // are you sure units should be reloaded?
             if ((id + offset) != ReloadUnitsOption)
             {
-                if ((id + offset) != SkipChOption)
+                if (((id + offset) != FilterCharsOption) && ((id + offset) != PreviewCharsOption))
                 {
-                    proc->id = SRR_MAXDISP; // SRR_NUMBERDISP
-                    proc->offset = SkipChOption - 5;
-                    proc->redraw = RedrawAll;
-                    proc->Option[ReloadUnitsOption] = 0;
-                    if (reloadPlayers)
+                    if ((id + offset) != SkipChOption)
                     {
-                        proc->Option[ReloadUnitsOption] = 2;
+                        proc->id = SRR_MAXDISP; // SRR_NUMBERDISP
+                        proc->offset = SkipChOption - 5;
+                        proc->redraw = RedrawAll;
+                        proc->Option[ReloadUnitsOption] = 0;
+                        if (reloadPlayers)
+                        {
+                            proc->Option[ReloadUnitsOption] = 2;
+                        }
+                        if (reloadEnemies)
+                        {
+                            proc->Option[ReloadUnitsOption] = 3;
+                        }
+                        if (reloadPlayers && reloadEnemies)
+                        {
+                            proc->Option[ReloadUnitsOption] = 1;
+                        }
+                        DrawConfigMenu(proc);
+                        return;
                     }
-                    if (reloadEnemies)
-                    {
-                        proc->Option[ReloadUnitsOption] = 3;
-                    }
-                    if (reloadPlayers && reloadEnemies)
-                    {
-                        proc->Option[ReloadUnitsOption] = 1;
-                    }
-                    DrawConfigMenu(proc);
-                    return;
                 }
             }
         }
