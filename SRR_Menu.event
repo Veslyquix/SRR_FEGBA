@@ -59,7 +59,7 @@ FILL(4 * 30)
 {
 t0:  txt(" ");  
 ALIGN 4; SRRHeader(SeedOpt)
-POIN t0
+POIN t0 0 
 }
 
 
@@ -70,7 +70,7 @@ t10: txt("50%");  t11: txt("55%");  t12: txt("60%");  t13: txt("65%");  t14: txt
 t15: txt("75%");  t16: txt("80%");  t17: txt("85%");  t18: txt("90%");  t19: txt("95%");
 t20: txt("100%");
 ALIGN 4; SRRHeader(VarianceOpt)
-POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 0 
 }
 
 
@@ -79,7 +79,7 @@ t0:  txt("Vanilla");                     t1:  txt("Players reordered");         
 t3:  txt("Players & Bosses reordered");  t4:  txt("Players and Bosses swap");
 t5:  txt("Random");
 ALIGN 4; SRRHeader(CharactersOpt)
-POIN t0 t1 t2 t3 t4 t5
+POIN t0 t1 t2 t3 t4 t5 0
 }
 
 
@@ -103,26 +103,26 @@ t6:  txt("FE9/FE10: Radiant Dawn");       t7:  txt("FE13: Awakening");
 t8:  txt("FE14: Fates");                  t9:  txt("FE2/15: Echoes");
 t10: txt("FE16: Three Houses");           t11: txt("FE17: Engage");                 t12: txt("Random");
 ALIGN 4; SRRHeader(FromGameOpt)
-POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 0
 }
 
 {
 t0:  txt("Vanilla");  t1:  txt("Random");
 ALIGN 4; SRRHeader(BaseStatsOpt)
-POIN t0 t1
+POIN t0 t1 0
 }
 
 {
 t0:  txt("Vanilla");  t1:  txt("Random");  t2:  txt("0%"); 
 t3:  txt("100%");     t4:  txt("50%");
 ALIGN 4; SRRHeader(GrowthsOpt)
-POIN t0 t1 t2 t3 t4
+POIN t0 t1 t2 t3 t4 0
 }
 
 {
 t0:  txt("Vanilla");   t1:  txt("Based on seed");   t2:  txt("Fixed");
 ALIGN 4; SRRHeader(LevelupsOpt)
-POIN t0 t1 t2
+POIN t0 t1 t2 0
 }
 
 {
@@ -130,7 +130,7 @@ t0:  txt("Vanilla");   t1:  txt("Random");   t2:  txt("0");
 t3:  txt("15");        t4:  txt("30");        t5:  txt("45"); 
 t6:  txt("60");
 ALIGN 4; SRRHeader(StatCapsOpt)
-POIN t0 t1 t2 t3 t4 t5 t6
+POIN t0 t1 t2 t3 t4 t5 t6 0
 }
 
 {
@@ -138,7 +138,7 @@ t0:  txt("Vanilla");              t1:  txt("Random vanilla classes");       t2: 
 t3:  txt("Random for enemies");   t4:  txt("Random with new classes");     t5:  txt("New rand player classes");
 t6:  txt("New rand enemy classes");
 ALIGN 4; SRRHeader(ClassOpt)
-POIN t0 t1 t2 t3 t4 t5 t6
+POIN t0 t1 t2 t3 t4 t5 t6 0
 }
 
 
@@ -146,32 +146,32 @@ POIN t0 t1 t2 t3 t4 t5 t6
 t0:  txt("Vanilla");               t1:  txt("Random");  
 t2:  txt("Random found items only"); t3:  txt("Random item stats only");
 ALIGN 4; SRRHeader(ItemOpt)
-POIN t0 t1 t2 t3
+POIN t0 t1 t2 t3 0
 }
 
 {
 t0:  txt("Classic");  t1:  txt("Casual");
 ALIGN 4; SRRHeader(ModeOpt)
-POIN t0 t1
+POIN t0 t1 0
 }
 
 {
 t0:  txt("Vanilla BGM");  t1:  txt("Random BGM");
 ALIGN 4; SRRHeader(MusicOpt)
-POIN t0 t1
+POIN t0 t1 0
 }
 
 {
 t0:  txt("Vanilla Colours");  t1:  txt("Random");  t2:  txt("Janky");  t3:  txt("Portraits only");
 ALIGN 4; SRRHeader(ColoursOpt)
-POIN t0 t1 t2 t3
+POIN t0 t1 t2 t3 0
 }
 
 {
 t0:  txt("Vanilla");        t1:  txt("Infinite basics");  t2:  txt("Infinite weapons");  
 t3:  txt("Infinite items");
 ALIGN 4; SRRHeader(DurabilityOpt)
-POIN t0 t1 t2 t3
+POIN t0 t1 t2 t3 0
 }
 
 
@@ -189,9 +189,9 @@ t27: txt("-4 hidden levels");  t28: txt("-3 hidden levels");  t29: txt("-2 hidde
 t30: txt("-1 hidden level");
 
 ALIGN 4; header: ; PUSH; ORG SRRText_POIN + (PlayerBonusOpt * 4); POIN header; POP ;
-POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30 0
 PUSH; ORG SRRText_POIN + (EnemyBonusOpt * 4); POIN header; POP ;
-POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30 0
 }
 
 {
@@ -201,64 +201,64 @@ t10: txt("+100%");     t11: txt("-10%");   t12: txt("-20%");  t13: txt("-30%"); 
 t15: txt("-50%");
 
 ALIGN 4; header: ; PUSH; ORG SRRText_POIN + (PlayerBonusGrowthOpt * 4); POIN header; POP ;
-POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 0
 PUSH; ORG SRRText_POIN + (EnemyBonusGrowthOpt * 4); POIN header; POP ;
-POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 0
 }
 
 {
 t0:  txt("Vanilla");    t1:  txt("Always off");   t2:  txt("Always on");
 ALIGN 4; SRRHeader(FogOpt)
-POIN t0 t1 t2
+POIN t0 t1 t2 0
 }
 
 {
 t0:  txt("Vanilla");           t1:  txt("Charge towards you");    t2:  txt("Gradually charge");
 ALIGN 4; SRRHeader(SoftlockOpt)
-POIN t0 t1 t2
+POIN t0 t1 t2 0
 }
 
 {
 t0:  txt("Vanilla");    t1:  txt("Press A");
 ALIGN 4; SRRHeader(SkipChOpt)
-POIN t0 t1
+POIN t0 t1 0
 }
 
 {
 t0:  txt("None");    t1:  txt("All");    t2:  txt("Players");  t3:  txt("Enemies");
 ALIGN 4; SRRHeader(ReloadUnitsOpt)
-POIN t0 t1 t2 t3
+POIN t0 t1 t2 t3 0
 }
 
 {
 t0:  txt("Vanilla");             t1:  txt("Stephano / Sokaballa");    t2:  txt("Hypergammaspaces");  
 t3:  txt("Pikmin / Fenreir");
 ALIGN 4; SRRHeader(UiOpt)
-POIN t0 t1 t2 t3
+POIN t0 t1 t2 t3 0
 }
 
 {
 t0:  txt("Disabled");    t1:  txt("Press B on unit");
 ALIGN 4; SRRHeader(DebuggerOpt)
-POIN t0 t1
+POIN t0 t1 0
 }
 
 {
 t0:  txt("Vanilla");    t1:  txt("Random");
 ALIGN 4; SRRHeader(BGOpt)
-POIN t0 t1
+POIN t0 t1 0
 }
 
 {
 t0:  txt("Off");    t1:  txt("Easy");    t2:  txt("Normal");  t3:  txt("Hard");
 ALIGN 4; SRRHeader(TimedHitsOpt)
-POIN t0 t1 t2 t3
+POIN t0 t1 t2 t3 0
 }
 
 {
 t0:  txt("Vanilla");   t1:  txt("Random");    t2:  txt("Fixed");    t3:  txt("Random &");
 ALIGN 4; SRRHeader(SkillsOpt)
-POIN t0 t1 t2 t3
+POIN t0 t1 t2 t3 0
 }
 
 

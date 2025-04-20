@@ -9092,10 +9092,21 @@ const char Option25[OPT25NUM][10] = {
 
 extern void * SRRText_POIN[];
 
-const u8 OptionAmounts[] = { OPT0NUM,  OPT1NUM,  OPT2NUM,  OPT3NUM,  OPT4NUM,  OPT5NUM,  OPT6NUM,
-                             OPT7NUM,  OPT8NUM,  OPT9NUM,  OPT10NUM, OPT11NUM, OPT12NUM, OPT13NUM,
-                             OPT14NUM, OPT15NUM, OPT16NUM, OPT17NUM, OPT18NUM, OPT19NUM, OPT20NUM,
-                             OPT21NUM, OPT22NUM, OPT23NUM, OPT24NUM, OPT25NUM, 0,        0 };
+int CountOptionAmount(int id)
+{
+    const char ** textEntry = SRRText_POIN[id + 1];
+    const char * string;
+    int i = 0;
+    for (; i < 255; ++i)
+    {
+        string = textEntry[i];
+        if (!string)
+        {
+            break;
+        }
+    }
+    return i - 1;
+}
 
 #define MENU_X 18
 #define MENU_Y 8
@@ -9539,9 +9550,11 @@ char * GetCombinedString(const char * a, char * b, char * c)
         c[i + d] = b[d];
         if (!b[d])
         {
+            c[i + d + 1] = 0;
             break;
         }
     }
+    brk;
     return c;
 }
 
@@ -9558,21 +9571,14 @@ const int SRR_NUMBERDISP = 8;
 extern const int SRR_TotalOptions;
 #define MaxTW 11
 #define MaxRTW 16
-const u8 tWidths[] = { 3, 5, 7, 4, 6, 5, 5, 6, 3, 3, 3, 3, 4, 6, 7, 11, 10, 11, 2, 6, 7, 7, 7, 5, 6, 4 };
+// const u8 tWidths[] = { 3, 5, 7, 4, 6, 5, 5, 6, 3, 3, 3, 3, 4, 6, 7, 11, 10, 11, 2, 6, 7, 7, 7, 5, 6, 4 };
 // const u8 RtWidths[] = { 0, 4, 15, 5, 5, 8, 5, 13, 13, 4, 7, 8, 9, 10, 5, 10, 5, 6, 11, 5, 5, 8, 4, 16 };
-const u8 RtWidths[] = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
-                        16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
+// const u8 RtWidths[] = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
+// 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
 
 void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
 {
     struct Text * th = gStatScreen.text;
-    if (offset)
-    {
-        if (i + offset == VarianceOption)
-        {
-            brk
-        }
-    }
     const char ** textEntry = SRRText_POIN[i + offset];
     const char * string = textEntry[proc->Option[i + offset - 1]];
 
@@ -9586,7 +9592,7 @@ void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
     {
         if (DisplayRandomSkillsOption)
         {
-            if ((proc->Option[SkillsOption] != 3) || (!IsSkill(proc->skill)))
+            if ((proc->Option[SkillsOption - 1] != 3) || (!IsSkill(proc->skill)))
             {
                 PutDrawText(
                     &th[i + SRR_NUMBERDISP], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
@@ -9597,7 +9603,8 @@ void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
                 char string2[30];
                 PutDrawText(
                     &th[i + SRR_NUMBERDISP], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
-                    GetCombinedString(string, GetSkillName(proc->skill), string2));
+                    PutStringInBuffer(
+                        GetCombinedString(string, GetSkillName(proc->skill), string2), UseHuffmanEncoding));
                 // DrawIcon(
                 // gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
                 // SKILL_ICON(proc->skill), TILEREF(0, 4));
@@ -10213,7 +10220,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             id--;
             id += offset;
-            if (proc->Option[id] < (OptionAmounts[id] - 1))
+            if (proc->Option[id] < (CountOptionAmount(id)))
             {
                 proc->Option[id]++;
             }
@@ -10236,7 +10243,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             }
             else
             {
-                proc->Option[id] = OptionAmounts[id] - 1;
+                proc->Option[id] = CountOptionAmount(id);
             }
             proc->redraw = RedrawSome;
             proc->clear = true;
@@ -10757,18 +10764,10 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         else if (keys & DPAD_RIGHT)
         {
             proc->choosingSkill = false;
-            // id--; id += offset;
-            // if (proc->Option[id] < (OptionAmounts[id]-1)) { proc->Option[id]++; }
-            // else { proc->Option[id] = 0;  }
-            // proc->redraw = RedrawSome; id++; id -= offset;
         }
         else if (keys & DPAD_LEFT)
         {
             proc->choosingSkill = false;
-            // id--; id += offset;
-            // if (proc->Option[id] > 0) { proc->Option[id]--; }
-            // else { proc->Option[id] = OptionAmounts[id] - 1;  }
-            // proc->redraw = RedrawSome; id++; id -= offset;
         }
         if (proc->choosingSkill)
         {
@@ -10832,7 +10831,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     {
         id--;
         id += offset;
-        if (proc->Option[id] < (OptionAmounts[id] - 1))
+        if (proc->Option[id] < (CountOptionAmount(id)))
         {
             proc->Option[id]++;
         }
@@ -10855,7 +10854,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         else
         {
-            proc->Option[id] = OptionAmounts[id] - 1;
+            proc->Option[id] = CountOptionAmount(id);
         }
         proc->redraw = RedrawSome;
         proc->clear = true;
@@ -11350,7 +11349,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         proc->reloadEnemies = false;
         if (!DefaultConfigToVanilla)
         {
-            proc->Option[0] = OptionAmounts[0] - 1; // start on 100%
+            proc->Option[0] = CountOptionAmount(0); // start on 100%
             proc->Option[1] = 1;
             proc->Option[2] = 0; // Fe8 game
             proc->Option[3] = 1;
