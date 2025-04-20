@@ -2551,7 +2551,6 @@ void BuildFilteredCharsList(
     proc = proc1;
     int t = GetForcedCharTable();
     int end = t + 1;
-    brk;
     if (t >= NumberOfCharTables)
     {
         t = 0;
@@ -2568,7 +2567,6 @@ void BuildFilteredCharsList(
                 break;
             }
             table = (const struct CharacterData *)NewGetCharacterData(i, t);
-            brk;
             if (table->portraitId == TerminatorPortrait)
             {
                 break;
@@ -2599,7 +2597,6 @@ void BuildFilteredCharsList(
                     {
                         continue;
                     }
-                    brk;
                     tables[c] = t;
                     unit[c] = i;
                     c++;
@@ -8740,6 +8737,7 @@ void EnableBG0Display(void)
 {
     gLCDControlBuffer.dispcnt.bg0_on = 1;
     gLCDControlBuffer.dispcnt.bg1_on = 1;
+    gLCDControlBuffer.dispcnt.bg2_on = 1;
 }
 void InitDraw(ConfigMenuProc * proc);
 void RedrawAllText(ConfigMenuProc * proc);
@@ -9269,7 +9267,6 @@ char * GetCombinedString(const char * a, char * b, char * c)
             break;
         }
     }
-    brk;
     return c;
 }
 
@@ -9284,8 +9281,8 @@ extern int DisplayTimedHitsOption;
 const int SRR_MAXDISP = 7;
 const int SRR_NUMBERDISP = 8;
 extern const int SRR_TotalOptions;
-#define MaxTW 11
-#define MaxRTW 16
+#define MaxTW 8
+#define MaxRTW 14
 
 const char * GetSRRText(int id1, int id2)
 {
@@ -9584,6 +9581,8 @@ extern int PikminStyleFlag;
 
 // PROC_END,
 // };
+extern void StartQuintessenceStealEffect(ConfigMenuProc * proc);
+extern void EndQuintessenceStealEffect(void);
 #define RTextLoc 56
 LocationTable RText_LocationTable[] = {
     { RTextLoc, (Y_HAND * 8) + (0 * 8) },  { RTextLoc, (Y_HAND * 8) + (2 * 8) },  { RTextLoc, (Y_HAND * 8) + (4 * 8) },
@@ -10056,6 +10055,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 #endif
             if (proc->calledFromChapter)
             {
+                EndQuintessenceStealEffect();
                 Proc_Goto(proc, EndLabel);
 // clear MU, refresh fog, update gfx, sms update
 // 6CCB8 8019ABC 8019504 8025724
@@ -10073,6 +10073,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         // for (int i = 0; i < 50; ++i) {
         //	ClearText(&th[i]);
         //}
+        EndQuintessenceStealEffect();
         if (proc->id == FilterCharsOption)
         {
             Proc_Goto(proc, FilterUnitsLabel);
@@ -10316,9 +10317,14 @@ extern const char * RandomizerText;
 const char * GetSRRMenuText(ConfigMenuProc * proc, int index);
 void DrawSRRHeader(ConfigMenuProc * proc, int id, int offset2)
 {
+    int colour = gold;
+    if ((id + offset2 == FilterCharsOption) || (id + offset2 == PreviewCharsOption))
+    {
+        colour = white;
+    }
     struct Text * th = gStatScreen.text; // max 34 normally
     PutDrawText(
-        &th[id], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((id) * 2)), gold, 0, MaxTW,
+        &th[id], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((id) * 2)), colour, 0, MaxTW,
         PutStringInBuffer((void *)GetSRRMenuText(proc, id + offset2), false));
 }
 
@@ -10370,11 +10376,11 @@ void InitDraw(ConfigMenuProc * proc)
     InitSystemTextFont();
 
     ResetText(); // need this
-    brk;
     ApplyUiWindowFramePal(1);
     UnpackUiWindowFrameImg2(0);
-    DrawUiFrame(BG_GetMapBuffer(1), 2, 2, 12, 18, TILEREF(0, 0), 0);
-    DrawUiFrame(BG_GetMapBuffer(1), 14, 2, 16, 18, TILEREF(0, 0), 0);
+    // DrawUiFrame(BG_GetMapBuffer(1), 2, 2, 12, 18, TILEREF(0, 0), 0);
+    // DrawUiFrame(BG_GetMapBuffer(1), 14, 2, 16, 18, TILEREF(0, 0), 0);
+    StartQuintessenceStealEffect(proc);
 
     struct Text * th = gStatScreen.text; // max 34
     for (int i = 0; i < SRR_NUMBERDISP; ++i)

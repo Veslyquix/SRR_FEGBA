@@ -363,9 +363,9 @@ SRRMenu(CharactersOpt);         txt("Characters")
 SRRDesc(CharactersOpt); txt("Characters can be swapped\around for a unique experience."); 
 SRRMenu(FromGameOpt);           txt("From Game")
 SRRDesc(FromGameOpt); txt("Recruitable units can be from\specific or random FE games."); 
-SRRMenu(FilterCharsOpt);           txt("Filter Characters")
+SRRMenu(FilterCharsOpt);           txt("Filter Units")
 SRRDesc(FilterCharsOpt); txt("Only include characters with\specific weapon types or traits."); 
-SRRMenu(PreviewCharsOpt);           txt("Preview Characters")
+SRRMenu(PreviewCharsOpt);           txt("Preview Units")
 SRRDesc(PreviewCharsOpt); txt("Preview who your recruitable\characters will turn into."); 
 
 SRRMenu(BaseStatsOpt);          txt("Base Stats")
@@ -380,7 +380,8 @@ SRRMenu(LevelupsOpt);           txt("Levelups")
 SRRDesc(LevelupsOpt,0); txt("Levelups calls NextRN, which advances\by arrow wiggling or playing.\Easily abusable with savestates."); 
 SRRDesc(LevelupsOpt,1); txt("Stats will increase based on\your seed. Consistent and\can't be abused with savestates."); 
 SRRDesc(LevelupsOpt,2); txt("Stats will levelup based on\the average at that level.\No blessed/statscrewed levelups."); 
-SRRMenu(StatCapsOpt);           txt("Stat Inflation/Caps") 
+// SRRMenu(StatCapsOpt);           txt("Stat Inflation/Caps") 
+SRRMenu(StatCapsOpt);           txt("Stat Caps") 
 SRRDesc(StatCapsOpt,0); txt("Stats mostly cap between\20 and 30."); 
 SRRDesc(StatCapsOpt,1); txt("Stats randomly cap between\0 and 30, but rarely\very low."); 
 SRRDesc(StatCapsOpt,2); txt("Stats always cap at 0.\Good luck lol."); 
@@ -418,11 +419,11 @@ SRRDesc(DurabilityOpt,2); txt("Consumable items have infinite uses!");
 SRRDesc(DurabilityOpt,3); txt("You don't want items/weapons\to break? MAKE IT INFINITE!"); 
 SRRMenu(PlayerBonusOpt);        txt("Player Bonus")
 SRRDesc(PlayerBonusOpt); txt("Player starting stats will increase or\decrease as if they had this many\extra/fewer levels."); 
-SRRMenu(PlayerBonusGrowthOpt);  txt("Player Growth Bonus")
+SRRMenu(PlayerBonusGrowthOpt);  txt("Growth Bonus")
 SRRDesc(PlayerBonusGrowthOpt); txt("Increase or decrease all\player growths."); 
-SRRMenu(EnemyBonusOpt);         txt("Enemy Diff. Bonus")
+SRRMenu(EnemyBonusOpt);         txt("Enemy Bonus")
 SRRDesc(EnemyBonusOpt); txt("Enemy starting stats will increase or\decrease as if they had this many\extra/fewer levels."); 
-SRRMenu(EnemyBonusGrowthOpt);  txt("Enemy Growth Bonus")
+SRRMenu(EnemyBonusGrowthOpt);  txt("Growth Bonus")
 SRRDesc(EnemyBonusGrowthOpt); txt("Increase or decrease all\enemy growths."); 
 SRRMenu(FogOpt);                txt("Fog")
 SRRDesc(FogOpt,0); txt("Fog of war is unchanged."); 

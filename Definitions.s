@@ -371,6 +371,8 @@ SET_FUNC HbPopulate_SSCharacter, 0x80816FD
 
 .endif 
 .if FE8 == true 
+SET_FUNC UnpackUiWindowFrameImg2, 0x804E169
+SET_FUNC ApplyUiWindowFramePal, 0x804E0A9
 SET_DATA pPromoJidLut, 0x80cc7d0 
 SET_DATA Pal_SpinningArrow, 0x8a1a084 
 SET_DATA PrepItemSuppyTexts, 0x2013648
