@@ -1379,6 +1379,8 @@ void DrawUiFrame(u16 * tilemap, int x, int y, int width, int height, int tilebas
     PutUiWindowFrame(x, y, width, height, style);
 }
 #endif
+extern void UnpackUiWindowFrameImg2(int style);
+extern void ApplyUiWindowFramePal(int pal);
 
 u16 * const BgTilemapBuffers[] = {
     gBG0TilemapBuffer,
@@ -8737,6 +8739,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc);
 void EnableBG0Display(void)
 {
     gLCDControlBuffer.dispcnt.bg0_on = 1;
+    gLCDControlBuffer.dispcnt.bg1_on = 1;
 }
 void InitDraw(ConfigMenuProc * proc);
 void RedrawAllText(ConfigMenuProc * proc);
@@ -9348,6 +9351,7 @@ void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
 
 void DrawConfigMenu(ConfigMenuProc * proc)
 {
+
     // return;
     // BG_EnableSyncByMask(BG0_SYNC_BIT);
     // ResetText();
@@ -10366,33 +10370,12 @@ void InitDraw(ConfigMenuProc * proc)
     InitSystemTextFont();
 
     ResetText(); // need this
-#ifdef FE6
-#define FE6_ASCII_TEST
-#ifdef FE6_ASCII_TEST
-    // ResetTextEn();
-    // char const * const SystemLabel_EquipRange[2] =
-    //{
-    //	[0] = JTEXT("射程"),
-    //	[1] = TEXT("rng", "rng"),
-    // };
-    //
-    // const char Opti[3] = { // Items
-    // 0xA0,
-    // 0x82,
-    ////0x82A0,
-    // 0,
-    // };
-    // int test = 0xA082;
-    // u8 someText[] = { 0x5D, 0x8F, 0x9C, 0x2D, 0xC8, 0x7C, 0x2F, 0, 0, 0 };
-    // extern u8 someText;
+    brk;
+    ApplyUiWindowFramePal(1);
+    UnpackUiWindowFrameImg2(0);
+    DrawUiFrame(BG_GetMapBuffer(1), 2, 2, 12, 18, TILEREF(0, 0), 0);
+    DrawUiFrame(BG_GetMapBuffer(1), 14, 2, 16, 18, TILEREF(0, 0), 0);
 
-#endif
-#endif
-    // InitTextFont(NULL, (u8 *) 0x6000000 + 0x20*0x200, 0x200, 0);
-    // InitTextFont(0x3007D10, (u8 *) 0x6000000 + 0x20*0x200, 0x200, 0);
-
-    // return;
-    //  [2000444+0xC]!!
     struct Text * th = gStatScreen.text; // max 34
     for (int i = 0; i < SRR_NUMBERDISP; ++i)
     {
@@ -10453,6 +10436,8 @@ extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 ConfigMenuProc * StartConfigMenu(ProcPtr parent)
 {
     LoadHelpBoxGfx(NULL, -1);
+    LoadObjUIGfx();
+
 #ifdef FE8
     Proc_EndEach(gProcScr_HelpPromptSpr);
 #endif

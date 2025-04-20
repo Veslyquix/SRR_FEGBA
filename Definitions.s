@@ -187,10 +187,13 @@ SET_FUNC HelpBoxSetupstringLines, 0x08071375 @ ?
 SET_FUNC HelpBoxDrawstring, 0x080713dd @? 
 SET_FUNC HelpBoxIntroDrawTexts, 0x8071411
 SET_DATA gProcScr_HelpBoxTextScroll, 0x8677FD0
-
+SET_FUNC UnpackUiWindowFrameImg2, 0x8041309
+SET_FUNC ApplyUiWindowFramePal, 0x8041285
 
 .endif 
 .if FE7 == true 
+SET_FUNC ApplyUiWindowFramePal, 0x8049A95
+SET_FUNC UnpackUiWindowFrameImg, 0x8049B25
 SET_DATA sMutableHbi, 0x203E674 @ in StartHelpBox 
 SET_DATA sLastHbi, 0x203E690 
 SET_DATA sHbOrigin, 0x203E694 @ in StartHelpBox 
