@@ -1,6 +1,7 @@
 
 // #define FORCE_SPECIFIC_SEED
 #define VersionNumber " SRR V1.9.6"
+#define brk asm("mov r11, r11");
 // 547282
 
 #ifdef FE8
@@ -9564,19 +9565,57 @@ const u8 RtWidths[] = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
 
 void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
 {
+    struct Text * th = gStatScreen.text;
+    if (offset)
+    {
+        if (i + offset == VarianceOption)
+        {
+            brk
+        }
+    }
+    const char ** textEntry = SRRText_POIN[i + offset];
+    const char * string = textEntry[proc->Option[i + offset - 1]];
+
     if (i + offset == SeedOption)
     {
         TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 7, Y_HAND), 9, 2, 0); // seed first
         PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 1, 3 + ((i) * 2)), white, proc->seed);
         return;
     }
+    if (i + offset == SkillsOption)
+    {
+        if (DisplayRandomSkillsOption)
+        {
+            if ((proc->Option[SkillsOption] != 3) || (!IsSkill(proc->skill)))
+            {
+                PutDrawText(
+                    &th[i + SRR_NUMBERDISP], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    PutStringInBuffer(string, UseHuffmanEncoding));
+            }
+            else
+            {
+                char string2[30];
+                PutDrawText(
+                    &th[i + SRR_NUMBERDISP], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
+                    GetCombinedString(string, GetSkillName(proc->skill), string2));
+                // DrawIcon(
+                // gBG0TilemapBuffer + TILEMAP_INDEX(18, 3+((i)*2)),
+                // SKILL_ICON(proc->skill), TILEREF(0, 4));
+            }
+            return;
+        }
+    }
 
-    const char ** textEntry = SRRText_POIN[i];
-    const char * string = textEntry[proc->Option[i + offset - 1]];
-    struct Text * th = gStatScreen.text;
+    if (!textEntry || !string)
+    {
+        brk;
+        return;
+    }
+
     PutDrawText(
         &th[i + SRR_NUMBERDISP], TILEMAP_LOCATED(gBG0TilemapBuffer, 15, 3 + ((i) * 2)), white, 0, MaxRTW,
         PutStringInBuffer(string, UseHuffmanEncoding));
+    // th 0 to 7 are used for option names like "Seed", "Variance", "Characters", etc.
 }
 
 void DrawConfigMenu(ConfigMenuProc * proc)
@@ -9615,7 +9654,7 @@ void DrawConfigMenu(ConfigMenuProc * proc)
     Max Growth: 100
     */
 
-    for (int i = 0; i < SRR_MAXDISP; ++i)
+    for (int i = 0; i < SRR_NUMBERDISP; ++i)
     {
         DrawSRRText(proc, i, offset2);
     }
