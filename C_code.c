@@ -756,6 +756,7 @@ void EndAllRecruitmentProcs(void)
     Proc_EndEach(RecruitmentProcCmd4);
     Proc_EndEach(RecruitmentProcCmd5);
 }
+extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 void ClearPlayerBWL(void);
 void ClearConfigGfx(ConfigMenuProc * proc)
 {
@@ -778,6 +779,9 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     EndAllRecruitmentProcs();
     ClearPlayerBWL();
     GetReorderedCharacter(GetCharacterData(1));
+#ifndef FE6
+    Proc_EndEach(gProcScr_HelpPromptSpr);
+#endif
 }
 
 #define A_BUTTON 0x0001
@@ -9285,7 +9289,7 @@ const int SRR_MAXDISP = 7;
 const int SRR_NUMBERDISP = 8;
 extern const int SRR_TotalOptions;
 #define MaxTW 8
-#define MaxRTW 14
+#define MaxRTW 16
 
 const char * GetSRRText(int id1, int id2)
 {
@@ -10377,6 +10381,9 @@ void InitDraw(ConfigMenuProc * proc)
     SetTextFont(0);
     InitSystemTextFont();
 
+#ifndef FE6
+    Proc_Start(gProcScr_HelpPromptSpr, (void *)3);
+#endif
     ResetText(); // need this
     ApplyUiWindowFramePal(1);
     UnpackUiWindowFrameImg2(0);
@@ -10440,15 +10447,11 @@ void InitDraw(ConfigMenuProc * proc)
 }
 extern void LoadHelpBoxGfx(void * vram, int palId);
 extern void StartGreenText(ProcPtr parent);
-extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 ConfigMenuProc * StartConfigMenu(ProcPtr parent)
 {
     LoadHelpBoxGfx(NULL, -1);
     LoadObjUIGfx();
 
-#ifdef FE8
-    Proc_EndEach(gProcScr_HelpPromptSpr);
-#endif
     RecruitValues->pauseNameReplace = true;
     ConfigMenuProc * proc;
     if (parent)
@@ -12946,12 +12949,6 @@ struct CloudsFxProc
     /* 5C */ int bg3_offset;
 };
 
-void CloudsFxBg_Init(struct CloudsFxProc * proc)
-{
-    proc->bg2_offset = 0;
-    proc->bg3_offset = 0;
-}
-
 void CloudsFxBg_Loop(struct CloudsFxProc * proc)
 {
     proc->bg2_offset++;
@@ -12959,16 +12956,6 @@ void CloudsFxBg_Loop(struct CloudsFxProc * proc)
     BG_SetPosition(BG_2, proc->bg2_offset >> 2, proc->bg2_offset >> 1);
     BG_SetPosition(BG_3, proc->bg3_offset >> 2, proc->bg2_offset >> 1);
 }
-
-// clang-format off
-
-const struct ProcCmd ProcScr_CloudsFxBgScroll[] = {
-    PROC_CALL(CloudsFxBg_Init),
-    PROC_REPEAT(CloudsFxBg_Loop),
-    PROC_END,
-};
-
-// clang-format on
 
 extern u8 const Grey_Clouds[];
 extern u8 const White_Clouds[];
@@ -13008,6 +12995,12 @@ __attribute__((optimize("no-strict-aliasing"))) void SetBlendTargetB(int bg0, in
 }
 #endif
 
+void CloudsFx_DisableBGs(struct CloudsFxProc * proc)
+{
+    gLCDControlBuffer.dispcnt.bg1_on = 0;
+    gLCDControlBuffer.dispcnt.bg2_on = 0;
+    gLCDControlBuffer.dispcnt.bg3_on = 0;
+}
 void CloudsFx_Init_Main(struct CloudsFxProc * proc)
 {
     gLCDControlBuffer.bldcnt.effect = 1;
@@ -13062,31 +13055,17 @@ void CloudsFx_Init_Main(struct CloudsFxProc * proc)
 
     CloudsFx_ResetBlend(proc);
 
+    gLCDControlBuffer.dispcnt.bg1_on = 0;
+
     // InitScanline();
 
     // SetPrimaryHBlankHandler(CloudsFx_OnHBlank);
-    struct CloudsFxProc * proc_scrolling = Proc_Find(ProcScr_CloudsFxBgScroll);
-    if (proc_scrolling)
-    {
-        Proc_End(proc_scrolling);
-    }
-    Proc_Start(ProcScr_CloudsFxBgScroll, PROC_TREE_VSYNC);
 }
 
-void CloudsFx_Loop_B(struct CloudsFxProc * proc)
-{
-    return;
-}
-
+extern void SetPrimaryHBlankHandler(void (*hblankHandler)(void));
 void CloudsFx_OnEnd(void)
 {
-    struct CloudsFxProc * proc = Proc_Find(ProcScr_CloudsFxBgScroll);
-    if (proc)
-    {
-        Proc_End(proc);
-    }
     // SetPrimaryHBlankHandler(NULL);
-
     SetBackgroundTileDataOffset(BG_2, 0x4000);
     SetBackgroundTileDataOffset(BG_3, 0x8000);
     BG_SetPosition(BG_2, 0, 0);
@@ -13107,8 +13086,11 @@ void CloudsFx_OnEnd(void)
 
 const struct ProcCmd ProcScr_CloudsFx[] = {
     PROC_SET_END_CB(CloudsFx_OnEnd),
+    PROC_CALL(CloudsFx_DisableBGs),
+    PROC_SLEEP(1),
+    
     PROC_CALL(CloudsFx_Init_Main),
-    PROC_REPEAT(CloudsFx_Loop_B),
+    PROC_REPEAT(CloudsFxBg_Loop),
     PROC_END,
 };
 
@@ -13116,22 +13098,14 @@ const struct ProcCmd ProcScr_CloudsFx[] = {
 
 void StartCloudsEffect(ConfigMenuProc * parent)
 {
-    struct CloudsFxProc * proc = Proc_Find(ProcScr_CloudsFx);
-    if (proc)
-    {
-        Proc_End(proc);
-    }
-    Proc_Start(ProcScr_CloudsFx, parent);
+    Proc_EndEach(ProcScr_CloudsFx);
+    Proc_Start(ProcScr_CloudsFx, (void *)0);
 }
 
 void EndCloudsEffect(void)
 {
-    struct Proc * proc = Proc_Find(ProcScr_CloudsFx);
-    if (proc)
-    {
-        Proc_End(proc);
-        gLCDControlBuffer.dispcnt.bg2_on = 0;
-        gLCDControlBuffer.dispcnt.bg3_on = 0;
-    }
+    Proc_EndEach(ProcScr_CloudsFx);
+    gLCDControlBuffer.dispcnt.bg2_on = 0;
+    gLCDControlBuffer.dispcnt.bg3_on = 0;
     CloudsFx_OnEnd();
 }

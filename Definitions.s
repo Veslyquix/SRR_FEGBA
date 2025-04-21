@@ -190,10 +190,12 @@ SET_DATA gProcScr_HelpBoxTextScroll, 0x8677FD0
 SET_FUNC UnpackUiWindowFrameImg2, 0x8041309
 SET_FUNC ApplyUiWindowFramePal, 0x8041285
 SET_FUNC SetBackgroundTileDataOffset, 0x8001351
+SET_FUNC SetPrimaryHBlankHandler, 0x8002A29
 
 .endif 
 .if FE7 == true 
-
+SET_DATA gProcScr_HelpPromptSpr, 0x8CC209C 
+SET_FUNC SetPrimaryHBlankHandler, 0x8002F15
 SET_FUNC SetBackgroundTileDataOffset, 0x8001435
 SET_FUNC ApplyUiWindowFramePal, 0x8049A95
 SET_FUNC UnpackUiWindowFrameImg2, 0x8049B25
