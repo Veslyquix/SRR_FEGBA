@@ -42,6 +42,7 @@ typedef struct
 {
     /* 00 */ PROC_HEADER;
     /* 2c */ int seed;
+    u16 globalChecksum;
     s8 id; // menu id
     u8 offset;
     u8 redraw;
@@ -53,12 +54,13 @@ typedef struct
     u8 skill;
     u8 choosingSkill;
     u8 clear;
-    u16 globalChecksum;
     s8 previewPage;
+
     s8 previewId;
     s8 changingGame;
+    s8 Option[30]; // ends around 60
     char * helpBox;
-    s8 Option[28]; // ends around 60
+
     u32 tags;
     u32 classtags; // should be full about now...
 } ConfigMenuProc;
@@ -10654,6 +10656,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
             proc->Option[i] = 0;
         }
         TagValues->raw = 0xFFFFFFFF;  // default
+        ClassTags->raw = 0xFFFFFFFF;  // default
         proc->tags = 0xFFFFFFFF;      // everything default
         proc->classtags = 0xFFFFFFFF; // everything default
         proc->helpBox = NULL;
