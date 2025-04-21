@@ -8730,10 +8730,11 @@ void RestoreBackgrounds(ConfigMenuProc * proc)
             gLCDControlBuffer.dispcnt.bg3_on = 1;// display bg3
     */
 }
-
+void StartCloudsEffect(ConfigMenuProc * proc);
+void EndCloudsEffect(void);
 void EndAllMenus(void); // 804A490 8041A38
 void ConfigMenuLoop(ConfigMenuProc * proc);
-void EnableBG0Display(void)
+void EnableBGDisplay(void)
 {
     gLCDControlBuffer.dispcnt.bg0_on = 1;
     gLCDControlBuffer.dispcnt.bg1_on = 1;
@@ -8753,7 +8754,7 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(StartFastFadeFromBlack),
     PROC_REPEAT(WaitForFade),
     PROC_CALL(InitDraw),
-    PROC_CALL(EnableBG0Display),
+    PROC_CALL(EnableBGDisplay),
     PROC_REPEAT(ConfigMenuLoop),
 
     PROC_LABEL(PreviewCharLabel),
@@ -8788,6 +8789,7 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_REPEAT(LoopFilterCharPage),
 
     PROC_LABEL(EndLabel),
+    PROC_CALL(EndCloudsEffect),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
     PROC_CALL(DrawCharConfirmPage), // to init ram..
@@ -9582,8 +9584,7 @@ extern int PikminStyleFlag;
 
 // PROC_END,
 // };
-extern void StartCloudsEffect(ConfigMenuProc * proc);
-extern void EndCloudsEffect(void);
+
 #define RTextLoc 56
 LocationTable RText_LocationTable[] = {
     { RTextLoc, (Y_HAND * 8) + (0 * 8) },  { RTextLoc, (Y_HAND * 8) + (2 * 8) },  { RTextLoc, (Y_HAND * 8) + (4 * 8) },
@@ -12988,6 +12989,25 @@ void CloudsFx_ResetBlend(struct CloudsFxProc * proc)
     proc->timer = 0;
 }
 
+#ifndef FE8
+#define BLDCNT_TARGETA(bg0, bg1, bg2, bg3, obj)                                                                        \
+    (((bg0) << 0) | ((bg1) << 1) | ((bg2) << 2) | ((bg3) << 3) | ((obj) << 4))
+#define BLDCNT_TARGETB(bg0, bg1, bg2, bg3, obj)                                                                        \
+    (((bg0) << 8) | ((bg1) << 9) | ((bg2) << 10) | ((bg3) << 11) | ((obj) << 12))
+#define BLDCNT_EFFECT(n) (((n) & 3) << 6)
+__attribute__((optimize("no-strict-aliasing"))) void SetBlendTargetA(int bg0, int bg1, int bg2, int bg3, int obj)
+{
+    *((u16 *)(void *)&gLCDControlBuffer.bldcnt) &= ~BLDCNT_TARGETA(1, 1, 1, 1, 1);
+    *((u16 *)(void *)&gLCDControlBuffer.bldcnt) |= BLDCNT_TARGETA(bg0, bg1, bg2, bg3, obj);
+}
+
+__attribute__((optimize("no-strict-aliasing"))) void SetBlendTargetB(int bg0, int bg1, int bg2, int bg3, int obj)
+{
+    *((u16 *)(void *)&gLCDControlBuffer.bldcnt) &= ~BLDCNT_TARGETB(1, 1, 1, 1, 1);
+    *((u16 *)(void *)&gLCDControlBuffer.bldcnt) |= BLDCNT_TARGETB(bg0, bg1, bg2, bg3, obj);
+}
+#endif
+
 void CloudsFx_Init_Main(struct CloudsFxProc * proc)
 {
     gLCDControlBuffer.bldcnt.effect = 1;
@@ -13039,12 +13059,17 @@ void CloudsFx_Init_Main(struct CloudsFxProc * proc)
     proc->timer = 0;
     proc->bg2_offset = 0;
     proc->bg3_offset = 0;
+
     CloudsFx_ResetBlend(proc);
 
     // InitScanline();
 
     // SetPrimaryHBlankHandler(CloudsFx_OnHBlank);
-
+    struct CloudsFxProc * proc_scrolling = Proc_Find(ProcScr_CloudsFxBgScroll);
+    if (proc_scrolling)
+    {
+        Proc_End(proc_scrolling);
+    }
     Proc_Start(ProcScr_CloudsFxBgScroll, PROC_TREE_VSYNC);
 }
 
@@ -13055,8 +13080,11 @@ void CloudsFx_Loop_B(struct CloudsFxProc * proc)
 
 void CloudsFx_OnEnd(void)
 {
-    Proc_End(Proc_Find(ProcScr_CloudsFxBgScroll));
-
+    struct CloudsFxProc * proc = Proc_Find(ProcScr_CloudsFxBgScroll);
+    if (proc)
+    {
+        Proc_End(proc);
+    }
     // SetPrimaryHBlankHandler(NULL);
 
     SetBackgroundTileDataOffset(BG_2, 0x4000);
@@ -13072,7 +13100,7 @@ void CloudsFx_OnEnd(void)
     gLCDControlBuffer.bg0cnt.priority = 0;
     gLCDControlBuffer.bg1cnt.priority = 1;
     gLCDControlBuffer.bg2cnt.priority = 2;
-    gLCDControlBuffer.bg2cnt.priority = 3;
+    gLCDControlBuffer.bg3cnt.priority = 3;
 }
 
 // clang-format off
@@ -13081,14 +13109,18 @@ const struct ProcCmd ProcScr_CloudsFx[] = {
     PROC_SET_END_CB(CloudsFx_OnEnd),
     PROC_CALL(CloudsFx_Init_Main),
     PROC_REPEAT(CloudsFx_Loop_B),
-    // PROC_BLOCK,
     PROC_END,
 };
 
 // clang-format on
 
-void StartCloudsEffect(struct Proc * parent)
+void StartCloudsEffect(ConfigMenuProc * parent)
 {
+    struct CloudsFxProc * proc = Proc_Find(ProcScr_CloudsFx);
+    if (proc)
+    {
+        Proc_End(proc);
+    }
     Proc_Start(ProcScr_CloudsFx, parent);
 }
 
@@ -13098,5 +13130,8 @@ void EndCloudsEffect(void)
     if (proc)
     {
         Proc_End(proc);
+        gLCDControlBuffer.dispcnt.bg2_on = 0;
+        gLCDControlBuffer.dispcnt.bg3_on = 0;
     }
+    CloudsFx_OnEnd();
 }

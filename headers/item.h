@@ -197,24 +197,24 @@ void WaitForFade(ProcPtr); //8014298
 #define TILEMAP_LOCATED(aMap, aX, aY) (TILEMAP_INDEX((aX), (aY)) + (aMap))
 #define TILEREF(aChar, aPal) ((aChar) + ((aPal) << 12))
 void BG_Fill(void *dest, int b); //8001810
-extern u16 gBG0TilemapBuffer[32 * 32]; //2022C60
-extern u16 gBG1TilemapBuffer[32 * 32]; //2023460
-extern u16 gBG2TilemapBuffer[32 * 32]; //2023C60
-extern u16 gBG3TilemapBuffer[32 * 32]; //2024460
-#define BG_SYNC_BIT(aBg) (1 << (aBg))
-enum {
-    BG_0 = 0,
-    BG_1,
-    BG_2,
-    BG_3,
-};
+// extern u16 gBG0TilemapBuffer[32 * 32]; //2022C60
+// extern u16 gBG1TilemapBuffer[32 * 32]; //2023460
+// extern u16 gBG2TilemapBuffer[32 * 32]; //2023C60
+// extern u16 gBG3TilemapBuffer[32 * 32]; //2024460
+// #define BG_SYNC_BIT(aBg) (1 << (aBg))
+// enum {
+    // BG_0 = 0,
+    // BG_1,
+    // BG_2,
+    // BG_3,
+// };
 
-enum {
-    BG0_SYNC_BIT = BG_SYNC_BIT(0),
-    BG1_SYNC_BIT = BG_SYNC_BIT(1),
-    BG2_SYNC_BIT = BG_SYNC_BIT(2),
-    BG3_SYNC_BIT = BG_SYNC_BIT(3),
-};
+// enum {
+    // BG0_SYNC_BIT = BG_SYNC_BIT(0),
+    // BG1_SYNC_BIT = BG_SYNC_BIT(1),
+    // BG2_SYNC_BIT = BG_SYNC_BIT(2),
+    // BG3_SYNC_BIT = BG_SYNC_BIT(3),
+// };
 
 #define white 0
 #define gray 1
@@ -225,19 +225,19 @@ enum {
 #define black 5
 
 // current unit 3004690
-struct KeyStatusBuffer {
-    /* 00 */ u8 repeatDelay;     // initial delay before generating auto-repeat presses
-    /* 01 */ u8 repeatInterval;  // time between auto-repeat presses
-    /* 02 */ u8 repeatTimer;     // (decreased by one each frame, reset to repeatDelay when Presses change and repeatInterval when reaches 0)
-    /* 04 */ u16 heldKeys;       // keys that are currently held down
-    /* 06 */ u16 repeatedKeys;   // auto-repeated keys
-    /* 08 */ u16 newKeys;        // keys that went down this frame
-    /* 0A */ u16 prevKeys;       // keys that were held down last frame
-    /* 0C */ u16 LastPressState;
-    /* 0E */ u16 ABLRPressed; // 1 for Release (A B L R Only), 0 Otherwise
-    /* 10 */ u16 newKeys2;
-    /* 12 */ u16 TimeSinceStartSelect; // Time since last Non-Start Non-Select Button was pressed
-};
+// struct KeyStatusBuffer {
+    // /* 00 */ u8 repeatDelay;     // initial delay before generating auto-repeat presses
+    // /* 01 */ u8 repeatInterval;  // time between auto-repeat presses
+    // /* 02 */ u8 repeatTimer;     // (decreased by one each frame, reset to repeatDelay when Presses change and repeatInterval when reaches 0)
+    // /* 04 */ u16 heldKeys;       // keys that are currently held down
+    // /* 06 */ u16 repeatedKeys;   // auto-repeated keys
+    // /* 08 */ u16 newKeys;        // keys that went down this frame
+    // /* 0A */ u16 prevKeys;       // keys that were held down last frame
+    // /* 0C */ u16 LastPressState;
+    // /* 0E */ u16 ABLRPressed; // 1 for Release (A B L R Only), 0 Otherwise
+    // /* 10 */ u16 newKeys2;
+    // /* 12 */ u16 TimeSinceStartSelect; // Time since last Non-Start Non-Select Button was pressed
+// };
 
 extern struct KeyStatusBuffer sKeyStatusBuffer; // 2024C78
 extern void BG_EnableSyncByMask(int bg); // 0x8000FFC 
@@ -284,55 +284,55 @@ extern struct StatScreenSt gStatScreen; //0x200310C
 
 
 
-struct DispCnt {
-    /* bit  0 */ u16 mode : 3;
-    /* bit  3 */ u16 cgbMode : 1; // reserved, do not use
-    /* bit  4 */ u16 bmpFrameNum : 1;
-    /* bit  5 */ u16 hblankIntervalFree : 1;
-    /* bit  6 */ u16 obj1dMap : 1;
-    /* bit  7 */ u16 forcedBlank : 1;
-    /* bit  8 */ u16 bg0_on : 1;
-    /* bit  9 */ u16 bg1_on : 1;
-    /* bit 10 */ u16 bg2_on : 1;
-    /* bit 11 */ u16 bg3_on : 1;
-    /* bit 12 */ u16 obj_on : 1;
-    /* bit 13 */ u16 win0_on : 1;
-    /* bit 14 */ u16 win1_on : 1;
-    /* bit 15 */ u16 objWin_on : 1;
-    //STRUCT_PAD(0x02, 0x04);
-};
-struct DispStat {
-    /* bit  0 */ u16 vblankFlag : 1;
-    /* bit  1 */ u16 hblankFlag : 1;
-    /* bit  2 */ u16 vcountFlag : 1;
-    /* bit  3 */ u16 vblankIrqEnable : 1;
-    /* bit  4 */ u16 hblankIrqEnable : 1;
-    /* bit  5 */ u16 vcountIrqEnable : 1;
-    /* bit  6 */ u16 dummy : 2;
-    /* bit  8 */ u16 vcountCompare : 8;
-    STRUCT_PAD(0x02, 0x04);
-};
+// struct DispCnt {
+    // /* bit  0 */ u16 mode : 3;
+    // /* bit  3 */ u16 cgbMode : 1; // reserved, do not use
+    // /* bit  4 */ u16 bmpFrameNum : 1;
+    // /* bit  5 */ u16 hblankIntervalFree : 1;
+    // /* bit  6 */ u16 obj1dMap : 1;
+    // /* bit  7 */ u16 forcedBlank : 1;
+    // /* bit  8 */ u16 bg0_on : 1;
+    // /* bit  9 */ u16 bg1_on : 1;
+    // /* bit 10 */ u16 bg2_on : 1;
+    // /* bit 11 */ u16 bg3_on : 1;
+    // /* bit 12 */ u16 obj_on : 1;
+    // /* bit 13 */ u16 win0_on : 1;
+    // /* bit 14 */ u16 win1_on : 1;
+    // /* bit 15 */ u16 objWin_on : 1;
+    // STRUCT_PAD(0x02, 0x04);
+// };
+// struct DispStat {
+    // /* bit  0 */ u16 vblankFlag : 1;
+    // /* bit  1 */ u16 hblankFlag : 1;
+    // /* bit  2 */ u16 vcountFlag : 1;
+    // /* bit  3 */ u16 vblankIrqEnable : 1;
+    // /* bit  4 */ u16 hblankIrqEnable : 1;
+    // /* bit  5 */ u16 vcountIrqEnable : 1;
+    // /* bit  6 */ u16 dummy : 2;
+    // /* bit  8 */ u16 vcountCompare : 8;
+    // STRUCT_PAD(0x02, 0x04);
+// };
 
-struct BgCnt {
-    /* bit  0 */ u16 priority : 2;
-    /* bit  2 */ u16 charBaseBlock : 2;
-    /* bit  4 */ u16 dummy : 2;
-    /* bit  6 */ u16 mosaic : 1;
-    /* bit  7 */ u16 colorMode : 1;
-    /* bit  8 */ u16 screenBaseBlock : 5;
-    /* bit 13 */ u16 areaOverflowMode : 1;
-    /* bit 14 */ u16 screenSize : 2;
-    STRUCT_PAD(0x02, 0x04);
-};
+// struct BgCnt {
+    // /* bit  0 */ u16 priority : 2;
+    // /* bit  2 */ u16 charBaseBlock : 2;
+    // /* bit  4 */ u16 dummy : 2;
+    // /* bit  6 */ u16 mosaic : 1;
+    // /* bit  7 */ u16 colorMode : 1;
+    // /* bit  8 */ u16 screenBaseBlock : 5;
+    // /* bit 13 */ u16 areaOverflowMode : 1;
+    // /* bit 14 */ u16 screenSize : 2;
+    // STRUCT_PAD(0x02, 0x04);
+// };
 
-struct LCDControlBuffer {
-    /* 00 */ struct DispCnt dispcnt;
-    /* 04 */ struct DispStat dispstat;
-    /* 08 */ u32 pad;
-    /* 0C */ struct BgCnt bg0cnt;
-    /* 10 */ struct BgCnt bg1cnt;
-    /* 14 */ struct BgCnt bg2cnt;
-    /* 18 */ struct BgCnt bg3cnt;
+// struct LCDControlBuffer {
+    // /* 00 */ struct DispCnt dispcnt;
+    // /* 04 */ struct DispStat dispstat;
+    // /* 08 */ u32 pad;
+    // /* 0C */ struct BgCnt bg0cnt;
+    // /* 10 */ struct BgCnt bg1cnt;
+    // /* 14 */ struct BgCnt bg2cnt;
+    // /* 18 */ struct BgCnt bg3cnt;
     ///* 1C */ struct BgCoords bgoffset[4];
     ///* 2C */ u8 win0_right, win0_left;
     ///* 2C */ u8 win1_right, win1_left;
@@ -358,8 +358,8 @@ struct LCDControlBuffer {
     ///* 60 */ u32 bg3x;
     ///* 64 */ u32 bg3y;
     ///* 68 */ s8 colorAddition;
-};
-extern struct LCDControlBuffer gLCDControlBuffer;
+// };
+// extern struct LCDControlBuffer gLCDControlBuffer;
 
 
 #ifdef FE8 
