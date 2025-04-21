@@ -557,7 +557,7 @@ WORD 0
 PortraitColoursPastThisAreNotSkin:
 WORD 5 // vanilla portraits use the first few colours for skin 
 IncludeMonstersWithoutWEXP:
-WORD 0 
+WORD 1 
 
 ALIGN 4 
 SkillExceptions:
@@ -637,7 +637,7 @@ ALIGN 4
 IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
-WORD 24
+WORD 25
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:
@@ -686,6 +686,8 @@ GrowthValues:
 WORD 0x203D980 
 TagValues:
 WORD 0x203D904 // Echidna 2 
+ClassTags: 
+WORD 0x203D908 
 
 ALIGN 32
 NameStrings: 

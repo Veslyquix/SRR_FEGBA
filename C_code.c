@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.9.6"
+#define VersionNumber " SRR V1.9.7"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -29,8 +29,9 @@ int GetGlobalStatCap(void);
 
 #define ConfigMenuLabel 0
 #define FilterUnitsLabel 1
-#define PreviewCharLabel 2
-#define ReviseCharProcLabel 3
+#define FilterClassesLabel 2
+#define PreviewCharLabel 3
+#define ReviseCharProcLabel 4
 
 #define EndLabel 99
 
@@ -57,8 +58,9 @@ typedef struct
     s8 previewId;
     s8 changingGame;
     char * helpBox;
-    s8 Option[30]; // ends around 60
+    s8 Option[28]; // ends around 60
     u32 tags;
+    u32 classtags; // should be full about now...
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -155,6 +157,7 @@ union TagUnion
     u32 raw;
 };
 extern union TagUnion * TagValues;
+extern union TagUnion * ClassTags;
 
 extern struct TimedHitsDifficultyStruct * TimedHitsDifficultyRam;
 
@@ -289,6 +292,7 @@ extern const int GrowthsOption;
 extern const int LevelupsOption;
 extern const int StatCapsOption;
 extern const int ClassOption;
+extern const int FilterClassOption;
 extern const int ItemOption;
 extern const int ModeOption;
 extern const int MusicOption;
@@ -1403,6 +1407,7 @@ u16 * BG_GetMapBuffer(int bg)
 }
 
 void DrawFilterCharPage(ConfigMenuProc * proc);
+void DrawFilterClassPage(ConfigMenuProc * proc);
 void FilterCharInit(ConfigMenuProc * proc)
 {
     ResetTextFont();
@@ -1442,7 +1447,45 @@ void FilterCharInit(ConfigMenuProc * proc)
     // StartGreenText(proc);
     DrawFilterCharPage(proc);
 }
+void FilterClassInit(ConfigMenuProc * proc)
+{
+    ResetTextFont();
+    SetTextFontGlyphs(0);
 
+    BG_Fill(gBG0TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+    SetTextFont(0);
+    ClearBg0Bg1();
+    ResetText();
+
+    int x = 1;
+    int y = 1;
+    int w = 29; // StatWidth + (START_X - NUMBER_X) + 3;
+    int h = 18; //(NumberOfOptions * 2) + 2;
+
+    DrawUiFrame(
+        BG_GetMapBuffer(1),            // back BG
+        x, y, w, h, TILEREF(0, 0), 0); // style as 0 ?
+
+    // ClearUiFrame(
+    //     BG_GetMapBuffer(1), // front BG
+    //     x, y, w, h);
+
+    struct Text * th = gStatScreen.text;
+    InitText(&th[32], 12);
+    for (int i = 0; i < NumberOfTags; ++i)
+    {
+        InitText(&th[i], TagWidth);
+        Text_DrawString(&th[i], tags[i]);
+    }
+
+    Text_SetColor(&th[32], green);
+    Text_DrawString(&th[32], tags[33]); // "Filter Classes"
+    // StartGreenText(proc);
+    DrawFilterClassPage(proc);
+}
 void DrawFilterCharPage(ConfigMenuProc * proc)
 {
     // TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(15, 2), 9, 2 * 9, 0);
@@ -1450,6 +1493,60 @@ void DrawFilterCharPage(ConfigMenuProc * proc)
     struct Text * th = gStatScreen.text;
 
     u32 curTags = proc->tags;
+
+    for (int i = 0; i < NumberOfTags; ++i)
+    {
+        c = curTags & (1 << i);
+        if (c)
+        {
+            c = gold;
+        }
+
+        if (Text_GetColor(&th[i]) != c)
+        {
+            ClearText(&th[i]);
+            Text_SetColor(&th[i], c);
+            Text_DrawString(&th[i], tags[i]);
+        }
+    }
+    c = 0;
+    int x = 2;
+    int y = 2;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    x += TagWidth;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    x += TagWidth;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    x += TagWidth;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    PutText(&th[32], gBG0TilemapBuffer + TILEMAP_INDEX(10, 0));
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+void DrawFilterClassPage(ConfigMenuProc * proc)
+{
+    // TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(15, 2), 9, 2 * 9, 0);
+    int c = 0;
+    struct Text * th = gStatScreen.text;
+
+    u32 curTags = proc->classtags;
 
     for (int i = 0; i < NumberOfTags; ++i)
     {
@@ -1583,6 +1680,59 @@ void LoopFilterCharPage(ConfigMenuProc * proc)
         id %= 32;
         proc->previewId = id;
         DrawFilterCharPage(proc);
+    }
+}
+
+void LoopFilterClassPage(ConfigMenuProc * proc)
+{
+    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
+    if ((keys & START_BUTTON) || (keys & B_BUTTON))
+    { // press B or Start to update tags and continue
+
+        // Proc_Goto(proc, ConfigMenuLabel);
+        ClassTags->raw = proc->classtags;
+        Proc_Goto(proc, ConfigMenuLabel);
+        proc->previewId = ConfirmCommandID;
+        return;
+    }
+    u32 id = proc->previewId;
+    if ((keys & A_BUTTON))
+    {
+        proc->classtags ^= (1 << id);
+        DrawFilterClassPage(proc);
+    }
+
+    DisplayUiHand(TagsCursorLocationTable[id].x, TagsCursorLocationTable[id].y);
+    if (keys & DPAD_RIGHT)
+    {
+        id += 8;
+    }
+    if (keys & DPAD_LEFT)
+    {
+        id -= 8;
+    }
+    if (keys & DPAD_UP)
+    {
+        if (!(id % 8))
+        {
+            id += 8;
+        }
+        id--;
+    }
+    if (keys & DPAD_DOWN)
+    {
+        id++;
+        if (!(id % 8))
+        {
+            id -= 8;
+        }
+    }
+
+    if (id != (int)proc->previewId)
+    {
+        id %= 32;
+        proc->previewId = id;
+        DrawFilterClassPage(proc);
     }
 }
 
@@ -2278,9 +2428,8 @@ struct Vec2u
 #define UnitListSize 600
 #define BossListSize 80
 
-int DoesCharMatchGender(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchGender(u32 attr, struct TagsStruct tags)
 {
-    u32 attr = table->attributes | ctable->attributes;
     if ((tags.Male && tags.Female) || (!tags.Male && !tags.Female))
     {
         return true;
@@ -2297,9 +2446,8 @@ int DoesCharMatchGender(const struct CharacterData * table, const struct ClassDa
     return false;
 }
 
-int DoesCharMatchPromotion(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchPromotion(u32 attr, struct TagsStruct tags)
 {
-    u32 attr = table->attributes | ctable->attributes;
     int isPromoted = (attr & CA_PROMOTED) != 0;
 
     // If both or neither promotion flags are set, accept anything
@@ -2329,9 +2477,8 @@ int HasNoClassTags(struct TagsStruct tags)
     return false;
 }
 
-int DoesCharMatchWexp(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchWexp(u32 attr, const struct ClassData * ctable, struct TagsStruct tags)
 {
-    u32 attr = table->attributes | ctable->attributes;
     int isDancer = attr & (CA_PLAY | CA_DANCE);
     int isMonster = attr & CA_LOCK_3;
     if (tags.Dancer && isDancer)
@@ -2358,12 +2505,11 @@ int DoesCharMatchWexp(const struct CharacterData * table, const struct ClassData
     return false;
 }
 
-int DoesCharMatchMonster(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchMonster(u32 attr, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
 
-    u32 attr = table->attributes | ctable->attributes;
     int isManakete = attr & CA_LOCK_3;
 
     if (HasNoClassTags(tags))
@@ -2372,12 +2518,11 @@ int DoesCharMatchMonster(const struct CharacterData * table, const struct ClassD
     return isManakete && tags.Manakete;
 }
 
-int DoesCharMatchThief(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchThief(u32 attr, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
 
-    u32 attr = table->attributes | ctable->attributes;
     int isThief = attr & CA_THIEF;
 
     if (HasNoClassTags(tags))
@@ -2386,12 +2531,11 @@ int DoesCharMatchThief(const struct CharacterData * table, const struct ClassDat
     return isThief && tags.Thief;
 }
 
-int DoesCharMatchLord(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchLord(u32 attr, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
 
-    u32 attr = table->attributes | ctable->attributes;
     int isLord = attr & CA_LORD;
 
     if (HasNoClassTags(tags))
@@ -2400,12 +2544,11 @@ int DoesCharMatchLord(const struct CharacterData * table, const struct ClassData
     return isLord && tags.Lord;
 }
 
-int DoesCharMatchDancer(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchDancer(u32 attr, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
 
-    u32 attr = table->attributes | ctable->attributes;
     int isDancer = attr & (CA_DANCE | CA_PLAY);
 
     if (HasNoClassTags(tags))
@@ -2414,12 +2557,11 @@ int DoesCharMatchDancer(const struct CharacterData * table, const struct ClassDa
     return isDancer && tags.Dancer;
 }
 
-int DoesCharMatchPegasi(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchPegasi(u32 attr, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
 
-    u32 attr = table->attributes | ctable->attributes;
     int isPegasi = attr & CA_PEGASUS;
 
     if (HasNoClassTags(tags))
@@ -2427,12 +2569,11 @@ int DoesCharMatchPegasi(const struct CharacterData * table, const struct ClassDa
 
     return isPegasi && tags.Pegasi;
 }
-int DoesCharMatchWyvern(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchWyvern(u32 attr, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
 
-    u32 attr = table->attributes | ctable->attributes;
     int isWyvern = attr & CA_WYVERN;
 
     if (HasNoClassTags(tags))
@@ -2441,12 +2582,11 @@ int DoesCharMatchWyvern(const struct CharacterData * table, const struct ClassDa
     return isWyvern && tags.Wyvern;
 }
 
-int DoesCharMatchMount(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchMount(u32 attr, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
 
-    u32 attr = table->attributes | ctable->attributes;
     int isMount = attr & CA_MOUNTED;
 
     if (HasNoClassTags(tags))
@@ -2456,7 +2596,7 @@ int DoesCharMatchMount(const struct CharacterData * table, const struct ClassDat
 }
 
 extern u8 FilterArmourClasses[];
-int DoesCharMatchArmour(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchArmour(const struct ClassData * ctable, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
@@ -2486,20 +2626,48 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     {
         return false;
     }
+    u32 attr = table->attributes | ctable->attributes;
     struct TagsStruct tags = TagValues->tags;
     u32 result = false;
-    result = DoesCharMatchWexp(table, ctable, tags);
-    result = result && DoesCharMatchGender(table, ctable, tags);
-    result = result && DoesCharMatchPromotion(table, ctable, tags);
+    result = DoesCharMatchWexp(attr, ctable, tags);
+    result = result && DoesCharMatchGender(attr, tags);
+    result = result && DoesCharMatchPromotion(attr, tags);
 
-    u32 attrTags = DoesCharMatchThief(table, ctable, tags);
-    attrTags |= DoesCharMatchLord(table, ctable, tags);
-    attrTags |= DoesCharMatchMonster(table, ctable, tags);
-    attrTags |= DoesCharMatchDancer(table, ctable, tags);
-    attrTags |= DoesCharMatchPegasi(table, ctable, tags);
-    attrTags |= DoesCharMatchWyvern(table, ctable, tags);
-    attrTags |= DoesCharMatchMount(table, ctable, tags);
-    attrTags |= DoesCharMatchArmour(table, ctable, tags);
+    u32 attrTags = DoesCharMatchThief(attr, tags);
+    attrTags |= DoesCharMatchLord(attr, tags);
+    attrTags |= DoesCharMatchMonster(attr, tags);
+    attrTags |= DoesCharMatchDancer(attr, tags);
+    attrTags |= DoesCharMatchPegasi(attr, tags);
+    attrTags |= DoesCharMatchWyvern(attr, tags);
+    attrTags |= DoesCharMatchMount(attr, tags);
+    attrTags |= DoesCharMatchArmour(ctable, tags);
+
+    result = result && attrTags;
+
+    return !result;
+}
+
+int FilterClassOut(const struct ClassData * ctable)
+{
+    if (ClassTags->raw == 0xFFFFFFFF)
+    {
+        return false;
+    }
+    u32 attr = ctable->attributes;
+    struct TagsStruct tags = ClassTags->tags;
+    u32 result = false;
+    result = DoesCharMatchWexp(attr, ctable, tags);
+    result = result && DoesCharMatchGender(attr, tags);
+    result = result && DoesCharMatchPromotion(attr, tags);
+
+    u32 attrTags = DoesCharMatchThief(attr, tags);
+    attrTags |= DoesCharMatchLord(attr, tags);
+    attrTags |= DoesCharMatchMonster(attr, tags);
+    attrTags |= DoesCharMatchDancer(attr, tags);
+    attrTags |= DoesCharMatchPegasi(attr, tags);
+    attrTags |= DoesCharMatchWyvern(attr, tags);
+    attrTags |= DoesCharMatchMount(attr, tags);
+    attrTags |= DoesCharMatchArmour(ctable, tags);
 
     result = result && attrTags;
 
@@ -4532,7 +4700,7 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
 {
 
     list[0] = 0; // count
-    int attrExceptions = CA_DANCE | CA_PLAY;
+    // int attrExceptions = CA_DANCE | CA_PLAY;
     int attr;
     // issues: 0x4D, 0x52, 0x53 prince has A rank swords ? (does he have anim?)
     // 0x56 fallen warrior has axes
@@ -4579,12 +4747,16 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
         }
 
         if (!allegiance)
-        { // no enemy bards / dancers
-            if (attrExceptions & attr)
+        {
+            if (FilterClassOut(table))
             {
-                list[0]++;
-                list[list[0]] = i;
+                continue;
             }
+            // if (attrExceptions & attr) // no enemy bards / dancers
+            // {
+            // list[0]++;
+            // list[list[0]] = i;
+            // }
         }
 
         int wexp = table->baseRanks[0];
@@ -8777,6 +8949,17 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(DrawFilterCharPage),
     PROC_REPEAT(LoopFilterCharPage),
 
+    PROC_LABEL(FilterClassesLabel),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(FilterClassInit),
+    PROC_CALL(DrawFilterClassPage),
+    PROC_REPEAT(LoopFilterClassPage),
+
     PROC_LABEL(EndLabel),
     PROC_CALL(EndCloudsEffect),
     PROC_CALL(StartFastFadeToBlack),
@@ -9829,7 +10012,8 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         { // are you sure units should be reloaded?
             if ((id + offset) != ReloadUnitsOption)
             {
-                if (((id + offset) != FilterCharsOption) && ((id + offset) != PreviewCharsOption))
+                if (((id + offset) != FilterCharsOption) && ((id + offset) != PreviewCharsOption) &&
+                    ((id + offset) != FilterClassOption))
                 {
                     if ((id + offset) != SkipChOption)
                     {
@@ -10065,15 +10249,21 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         //	ClearText(&th[i]);
         //}
         EndCloudsEffect();
-        if (proc->id == FilterCharsOption)
+        if ((proc->id + proc->offset) == FilterCharsOption)
         {
             Proc_Goto(proc, FilterUnitsLabel);
             return;
         }
-        if (proc->id == PreviewCharsOption)
+        if ((proc->id + proc->offset) == PreviewCharsOption)
         {
             proc->previewId = ConfirmCommandID;
             Proc_Goto(proc, PreviewCharLabel);
+            return;
+        }
+        if ((proc->id + proc->offset) == FilterClassOption)
+        {
+            brk;
+            Proc_Goto(proc, FilterClassesLabel);
             return;
         }
         Proc_Goto(proc, EndLabel);
@@ -10309,7 +10499,8 @@ const char * GetSRRMenuText(ConfigMenuProc * proc, int index);
 void DrawSRRHeader(ConfigMenuProc * proc, int id, int offset2)
 {
     int colour = gold;
-    if ((id + offset2 == FilterCharsOption) || (id + offset2 == PreviewCharsOption))
+    if ((id + offset2 == FilterCharsOption) || (id + offset2 == PreviewCharsOption) ||
+        (id + offset2 == FilterClassOption))
     {
         colour = white;
     }
@@ -10345,6 +10536,11 @@ void RedrawAllText(ConfigMenuProc * proc)
 
     // BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
+#ifdef FE8
+extern struct Proc * StartHelpPromptSprite(int x, int y, int palid, ProcPtr parent);
+#else
+extern struct Proc * StartHelpPromptSprite(int x, int y, ProcPtr parent);
+#endif
 
 void InitDraw(ConfigMenuProc * proc)
 {
@@ -10366,8 +10562,12 @@ void InitDraw(ConfigMenuProc * proc)
     SetTextFont(0);
     InitSystemTextFont();
 
-#ifndef FE6
-    Proc_Start(gProcScr_HelpPromptSpr, (void *)3);
+#ifdef FE8
+    StartHelpPromptSprite(200, 16, 8, proc);
+#endif
+#ifdef FE7
+    StartHelpPromptSprite(180, 8, proc);
+    // Proc_Start(gProcScr_HelpPromptSpr, (void *)3);
 #endif
     ResetText(); // need this
     ApplyUiWindowFramePal(1);
@@ -10387,7 +10587,7 @@ void InitDraw(ConfigMenuProc * proc)
     {
         InitText(&th[i + hOff], MaxRTW);
     }
-    InitText(&th[SRR_NUMBERDISP * 2], 6); // "Randomizer" title
+    InitText(&th[SRR_NUMBERDISP * 2], 7); // "Randomizer" title
 
     // LoadUiFrameGraphics();
     LoadObjUIGfx();
@@ -10453,8 +10653,9 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         {
             proc->Option[i] = 0;
         }
-        TagValues->raw = 0xFFFFFFFF; // default
-        proc->tags = 0xFFFFFFFF;     // everything default
+        TagValues->raw = 0xFFFFFFFF;  // default
+        proc->tags = 0xFFFFFFFF;      // everything default
+        proc->classtags = 0xFFFFFFFF; // everything default
         proc->helpBox = NULL;
         proc->reloadPlayers = false;
         proc->reloadEnemies = false;
@@ -10536,6 +10737,7 @@ int MenuStartConfigMenu(ProcPtr parent)
 
     // pull up your previously saved options
     proc->tags = TagValues->raw;
+    proc->classtags = ClassTags->raw;
     proc->Option[VarianceOption] = RandValues->variance;
     proc->Option[CharactersOption] = RecruitValues->recruitment;
     proc->Option[FromGameOption] = GrowthValues->ForcedCharTable;
@@ -13089,6 +13291,9 @@ void StartCloudsEffect(ConfigMenuProc * parent)
 
 void EndCloudsEffect(void)
 {
+#ifndef FE6
+    Proc_EndEach(gProcScr_HelpPromptSpr);
+#endif
     Proc_EndEach(ProcScr_CloudsFx);
     gLCDControlBuffer.dispcnt.bg2_on = 0;
     gLCDControlBuffer.dispcnt.bg3_on = 0;

@@ -177,6 +177,13 @@ ALIGN 4; SRRHeader(ClassOpt)
 POIN t0 t1 t2 t3 t4 t5 t6 0
 }
 
+{
+t0:  txt(" ");     
+ALIGN 4; SRRHeader(FilterClassOpt)
+POIN t0 0
+}
+
+
 
 {
 t0:  txt("Vanilla");               t1:  txt("Random");  
@@ -347,6 +354,7 @@ tag(29); txt("--");
 tag(30); txt("--");
 tag(31); txt("--");
 tag(32); txt("Filter Characters");
+tag(33); txt("Filter Classes");
 
 
 ALIGN 4 
@@ -397,6 +405,8 @@ SRRDesc(ClassOpt,3); txt("Starting class for enemies is\randomized from the vani
 SRRDesc(ClassOpt,4); txt("Starting class is randomized\and includes classes designed\by the hacking community."); 
 SRRDesc(ClassOpt,5); txt("Starting class for players is\randomized and includes classes designed\by the hacking community."); 
 SRRDesc(ClassOpt,6); txt("Starting class for enemies is\randomized and includes classes designed\by the hacking community."); 
+SRRMenu(FilterClassOpt);        txt("Filter Classes") 
+SRRDesc(FilterClassOpt);        txt("Randomized classes can be limited\to specific types.")
 SRRMenu(ItemOpt);               txt("Items")
 SRRDesc(ItemOpt,0); txt("Weapon stats and items found\will not change."); 
 SRRDesc(ItemOpt,1); txt("Weapon stats will vary and\items found will be random."); 
@@ -481,6 +491,8 @@ StatCapsOption:
 WORD StatCapsOpt
 ClassOption:
 WORD ClassOpt
+FilterClassOption:
+WORD FilterClassOpt 
 ItemOption:
 WORD ItemOpt
 ModeOption:

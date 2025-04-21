@@ -158,7 +158,7 @@ WORD 0
 MaxWeaponHitrate:
 WORD 250 // make this 125 if you like 
 IncludeMonstersWithoutWEXP:
-WORD 0
+WORD 1
 #define statCap 60 
 maxStat:
 WORD statCap 
@@ -1183,15 +1183,15 @@ ALIGN 4
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
     #ifdef C_SKILLSYS 
-    WORD 26
+    WORD 27
     #endif 
     #ifdef SKILLSYS_INSTALLED 
-    WORD 28
+    WORD 29
     #else 
-    WORD 27
+    WORD 28
     #endif  
 #else 
-WORD 25
+WORD 26
 #endif 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
@@ -1222,6 +1222,8 @@ WORD 0
 #else 
 WORD 0x203EC24 
 #endif 
+ClassTags:
+WORD 0x203EC28 
 
 ALIGN 32 
 WORD 0 0 0 0 0 0 0 0 

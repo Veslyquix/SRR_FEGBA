@@ -273,7 +273,7 @@ AlwaysSkillTable:
 FILL 256 
 ALIGN 4 
 SRR_TotalOptions:
-WORD 24
+WORD 25
 
 ALIGN 4 
 MaxItems_Link: 
@@ -873,7 +873,7 @@ WORD 0
 PortraitColoursPastThisAreNotSkin:
 WORD 5 // vanilla portraits use the first few colours for skin 
 IncludeMonstersWithoutWEXP:
-WORD 0 
+WORD 1
 
 ALIGN 4 
 NewChMenu:
@@ -1175,6 +1175,8 @@ GrowthValues:
 WORD 0x203eb3c 
 TagValues:
 WORD 0x203ebC0
+ClassTags:
+WORD 0x203EBC4 
 
 ALIGN 32 
 WORD 0 0 0 0 0 0 0 0 

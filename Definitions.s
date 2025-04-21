@@ -194,6 +194,7 @@ SET_FUNC SetPrimaryHBlankHandler, 0x8002A29
 
 .endif 
 .if FE7 == true 
+SET_FUNC StartHelpPromptSprite, 0x8081FBD
 SET_DATA gProcScr_HelpPromptSpr, 0x8CC209C 
 SET_FUNC SetPrimaryHBlankHandler, 0x8002F15
 SET_FUNC SetBackgroundTileDataOffset, 0x8001435
