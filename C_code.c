@@ -8738,6 +8738,7 @@ void EnableBG0Display(void)
     gLCDControlBuffer.dispcnt.bg0_on = 1;
     gLCDControlBuffer.dispcnt.bg1_on = 1;
     gLCDControlBuffer.dispcnt.bg2_on = 1;
+    gLCDControlBuffer.dispcnt.bg3_on = 1;
 }
 void InitDraw(ConfigMenuProc * proc);
 void RedrawAllText(ConfigMenuProc * proc);
@@ -9581,8 +9582,8 @@ extern int PikminStyleFlag;
 
 // PROC_END,
 // };
-extern void StartQuintessenceStealEffect(ConfigMenuProc * proc);
-extern void EndQuintessenceStealEffect(void);
+extern void StartCloudsEffect(ConfigMenuProc * proc);
+extern void EndCloudsEffect(void);
 #define RTextLoc 56
 LocationTable RText_LocationTable[] = {
     { RTextLoc, (Y_HAND * 8) + (0 * 8) },  { RTextLoc, (Y_HAND * 8) + (2 * 8) },  { RTextLoc, (Y_HAND * 8) + (4 * 8) },
@@ -10055,7 +10056,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 #endif
             if (proc->calledFromChapter)
             {
-                EndQuintessenceStealEffect();
+                EndCloudsEffect();
                 Proc_Goto(proc, EndLabel);
 // clear MU, refresh fog, update gfx, sms update
 // 6CCB8 8019ABC 8019504 8025724
@@ -10073,7 +10074,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         // for (int i = 0; i < 50; ++i) {
         //	ClearText(&th[i]);
         //}
-        EndQuintessenceStealEffect();
+        EndCloudsEffect();
         if (proc->id == FilterCharsOption)
         {
             Proc_Goto(proc, FilterUnitsLabel);
@@ -10380,7 +10381,7 @@ void InitDraw(ConfigMenuProc * proc)
     UnpackUiWindowFrameImg2(0);
     // DrawUiFrame(BG_GetMapBuffer(1), 2, 2, 12, 18, TILEREF(0, 0), 0);
     // DrawUiFrame(BG_GetMapBuffer(1), 14, 2, 16, 18, TILEREF(0, 0), 0);
-    StartQuintessenceStealEffect(proc);
+    StartCloudsEffect(proc);
 
     struct Text * th = gStatScreen.text; // max 34
     for (int i = 0; i < SRR_NUMBERDISP; ++i)
@@ -12930,3 +12931,172 @@ const char * GetSRRMenuDesc(ConfigMenuProc * proc, int index)
 // StartHelpBoxString(item->xTile * 8, item->yTile * 8, GetSRRMenuDesc(proc, item->itemNumber));
 // return 0;
 // }
+
+struct CloudsFxProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x4C);
+
+    /* 4C */ s16 timer;
+
+    /* 4E */ STRUCT_PAD(0x4E, 0x58);
+
+    /* 58 */ int bg2_offset;
+    /* 5C */ int bg3_offset;
+};
+
+void CloudsFxBg_Init(struct CloudsFxProc * proc)
+{
+    proc->bg2_offset = 0;
+    proc->bg3_offset = 0;
+}
+
+void CloudsFxBg_Loop(struct CloudsFxProc * proc)
+{
+    proc->bg2_offset++;
+    proc->bg3_offset--;
+    BG_SetPosition(BG_2, proc->bg2_offset >> 2, proc->bg2_offset >> 1);
+    BG_SetPosition(BG_3, proc->bg3_offset >> 2, proc->bg2_offset >> 1);
+}
+
+// clang-format off
+
+const struct ProcCmd ProcScr_CloudsFxBgScroll[] = {
+    PROC_CALL(CloudsFxBg_Init),
+    PROC_REPEAT(CloudsFxBg_Loop),
+    PROC_END,
+};
+
+// clang-format on
+
+extern u8 const Grey_Clouds[];
+extern u8 const White_Clouds[];
+extern u16 const Grey_Clouds_pal[];
+extern u16 const White_Clouds_pal[];
+
+void CloudsFx_ResetBlend(struct CloudsFxProc * proc)
+{
+    gLCDControlBuffer.bldcnt.effect = 1;
+
+    gLCDControlBuffer.blendCoeffA = 8;
+    gLCDControlBuffer.blendCoeffB = 8;
+    gLCDControlBuffer.blendY = 0;
+
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 1);
+
+    proc->timer = 0;
+}
+
+void CloudsFx_Init_Main(struct CloudsFxProc * proc)
+{
+    gLCDControlBuffer.bldcnt.effect = 1;
+
+    gLCDControlBuffer.blendCoeffA = 0;
+    gLCDControlBuffer.blendCoeffB = 16;
+    gLCDControlBuffer.blendY = 0;
+
+    SetBlendTargetA(0, 0, 1, 0, 0);
+    SetBlendTargetB(0, 0, 0, 1, 0);
+
+    // ApplyPalette(Pal_CloudsFx, 5);
+    // Decompress(Img_ChapterIntroFog, (void *)0x06004000);
+    // CallARM_FillTileRect(gBG2TilemapBuffer, Tsa_CloudsFx, 0x5200);
+    // CallARM_FillTileRect(gBG2TilemapBuffer, gUnknown_085A647C, 0x5200);
+    // CallARM_FillTileRect(gBG2TilemapBuffer, Tsa_OpAnimWorldMapFog, tileref);
+
+    int palNum = 5;
+    ApplyPalette(Grey_Clouds_pal, palNum);
+    ApplyPalette(White_Clouds_pal, palNum + 1);
+    SetBackgroundTileDataOffset(BG_2, 0x8000);
+    SetBackgroundTileDataOffset(BG_3, 0xC000);
+    // SetBackgroundMapDataOffset(BG_2, 0x7000); // ?
+    // SetBackgroundScreenSize(BG_2, 0);
+    // BG_SetPosition(BG_2, 0, 0);
+    CpuFastCopy(Grey_Clouds, (void *)0x6008000, 0x4000);
+    CpuFastCopy(White_Clouds, (void *)0x600C000, 0x4000);
+    // CpuFastCopy(Grey_Clouds, (void *)0x600C000, 0x4000);
+    int tileref = 0x00 | (palNum << 12);
+
+    u16 * vram = (void *)gBG2TilemapBuffer;
+    for (int i = 0; i < 0x400; ++i)
+    {
+        *vram = tileref + (i & 0x1FF);
+        vram++;
+    }
+    tileref = 0x00 | ((palNum + 1) << 12);
+    vram = (void *)gBG3TilemapBuffer;
+    for (int i = 0; i < 0x400; ++i)
+    {
+        *vram = tileref + (i & 0x1FF);
+        vram++;
+    }
+
+    BG_EnableSyncByMask(BG2_SYNC_BIT | BG3_SYNC_BIT);
+    BG_SetPosition(BG_2, 0, 0);
+    BG_SetPosition(BG_3, 0, 0);
+
+    proc->timer = 0;
+    proc->bg2_offset = 0;
+    proc->bg3_offset = 0;
+    CloudsFx_ResetBlend(proc);
+
+    // InitScanline();
+
+    // SetPrimaryHBlankHandler(CloudsFx_OnHBlank);
+
+    Proc_Start(ProcScr_CloudsFxBgScroll, PROC_TREE_VSYNC);
+}
+
+void CloudsFx_Loop_B(struct CloudsFxProc * proc)
+{
+    return;
+}
+
+void CloudsFx_OnEnd(void)
+{
+    Proc_End(Proc_Find(ProcScr_CloudsFxBgScroll));
+
+    // SetPrimaryHBlankHandler(NULL);
+
+    SetBackgroundTileDataOffset(BG_2, 0x4000);
+    SetBackgroundTileDataOffset(BG_3, 0x8000);
+    BG_SetPosition(BG_2, 0, 0);
+    BG_SetPosition(BG_3, 0, 0);
+    // RegisterBlankTile(0x400);
+    BG_Fill(gBG2TilemapBuffer, 0);
+    BG_Fill(gBG3TilemapBuffer, 0);
+
+    BG_EnableSyncByMask(BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    gLCDControlBuffer.bg0cnt.priority = 0;
+    gLCDControlBuffer.bg1cnt.priority = 1;
+    gLCDControlBuffer.bg2cnt.priority = 2;
+    gLCDControlBuffer.bg2cnt.priority = 3;
+}
+
+// clang-format off
+
+const struct ProcCmd ProcScr_CloudsFx[] = {
+    PROC_SET_END_CB(CloudsFx_OnEnd),
+    PROC_CALL(CloudsFx_Init_Main),
+    PROC_REPEAT(CloudsFx_Loop_B),
+    // PROC_BLOCK,
+    PROC_END,
+};
+
+// clang-format on
+
+void StartCloudsEffect(struct Proc * parent)
+{
+    Proc_Start(ProcScr_CloudsFx, parent);
+}
+
+void EndCloudsEffect(void)
+{
+    struct Proc * proc = Proc_Find(ProcScr_CloudsFx);
+    if (proc)
+    {
+        Proc_End(proc);
+    }
+}

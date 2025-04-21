@@ -8,4 +8,18 @@ ALIGN 4
 Tsa_QuintessenceFx: 
 #incbin "FE7J_Tsa_081BD6E4TSA.dmp"
 
+ALIGN 4 
+Grey_Clouds_pal:
+BYTE $A0 $39 $94 $52 $9C $73 $39 $67 $31 $46 $DE $7B $DE $7B $18 $63 $5A $6B $BD $77 $D6 $5A $7B $6F $39 $67 $FF $7F $00 $00 $EE $7F
+Grey_Clouds:
+#incbin "grey_clouds.dmp" 
+
+ALIGN 4 
+White_Clouds_pal:
+BYTE $00 $00 $67 $79 $CA $79 $38 $7F $BD $7F $D3 $7E $2D $7A $89 $79 $BB $7F $0C $7E $92 $7E $7A $7F $EB $7D $F5 $7E $50 $7E $FF $7F
+White_Clouds:
+#incbin "white_clouds.dmp" 
+
+
+// golden sun TLA: 2A9D4 - r0=0x6004000 
 
