@@ -9624,7 +9624,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         keys |= sKeyStatusBuffer.repeatedKeys;
         PutSprite(2, SRR_CursorLocationTable[id].x - 9, SRR_CursorLocationTable[id].y, sSprite_HorHand, 0);
         // DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0);
-        if (keys & B_BUTTON)
+        if (keys & (B_BUTTON | R_BUTTON))
         {
             proc->helpBox = NULL;
             CloseHelpBox();
