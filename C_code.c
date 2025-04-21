@@ -58,11 +58,8 @@ typedef struct
 
     s8 previewId;
     s8 changingGame;
-    s8 Option[30]; // ends around 60
-    char * helpBox;
-
-    u32 tags;
-    u32 classtags; // should be full about now...
+    s8 Option[30];
+    char * helpBox; // ends around 0x60 - about space for 8 more
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -1494,7 +1491,7 @@ void DrawFilterCharPage(ConfigMenuProc * proc)
     int c = 0;
     struct Text * th = gStatScreen.text;
 
-    u32 curTags = proc->tags;
+    u32 curTags = TagValues->raw;
 
     for (int i = 0; i < NumberOfTags; ++i)
     {
@@ -1548,7 +1545,7 @@ void DrawFilterClassPage(ConfigMenuProc * proc)
     int c = 0;
     struct Text * th = gStatScreen.text;
 
-    u32 curTags = proc->classtags;
+    u32 curTags = ClassTags->raw;
 
     for (int i = 0; i < NumberOfTags; ++i)
     {
@@ -1638,8 +1635,6 @@ void LoopFilterCharPage(ConfigMenuProc * proc)
     if ((keys & START_BUTTON) || (keys & B_BUTTON))
     { // press B or Start to update tags and continue
 
-        // Proc_Goto(proc, ConfigMenuLabel);
-        TagValues->raw = proc->tags;
         Proc_Goto(proc, PreviewCharLabel);
         proc->previewId = ConfirmCommandID;
         return;
@@ -1647,7 +1642,7 @@ void LoopFilterCharPage(ConfigMenuProc * proc)
     u32 id = proc->previewId;
     if ((keys & A_BUTTON))
     {
-        proc->tags ^= (1 << id);
+        TagValues->raw ^= (1 << id);
         DrawFilterCharPage(proc);
     }
 
@@ -1692,7 +1687,6 @@ void LoopFilterClassPage(ConfigMenuProc * proc)
     { // press B or Start to update tags and continue
 
         // Proc_Goto(proc, ConfigMenuLabel);
-        ClassTags->raw = proc->classtags;
         Proc_Goto(proc, ConfigMenuLabel);
         proc->previewId = ConfirmCommandID;
         return;
@@ -1700,7 +1694,7 @@ void LoopFilterClassPage(ConfigMenuProc * proc)
     u32 id = proc->previewId;
     if ((keys & A_BUTTON))
     {
-        proc->classtags ^= (1 << id);
+        ClassTags->raw ^= (1 << id);
         DrawFilterClassPage(proc);
     }
 
@@ -10655,10 +10649,8 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         {
             proc->Option[i] = 0;
         }
-        TagValues->raw = 0xFFFFFFFF;  // default
-        ClassTags->raw = 0xFFFFFFFF;  // default
-        proc->tags = 0xFFFFFFFF;      // everything default
-        proc->classtags = 0xFFFFFFFF; // everything default
+        TagValues->raw = 0xFFFFFFFF; // default
+        ClassTags->raw = 0xFFFFFFFF; // default
         proc->helpBox = NULL;
         proc->reloadPlayers = false;
         proc->reloadEnemies = false;
@@ -10678,7 +10670,6 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
             proc->Option[ColoursOption] = 0; // Random Colours off by default now
         }
 
-        // proc->tags = 0xFF02FFFF; // everything default
         proc->previewPage = 0;
         proc->previewId = 0;
         proc->changingGame = 0;
@@ -10735,12 +10726,15 @@ int MenuStartConfigMenu(ProcPtr parent)
     gLCDControlBuffer.dispcnt.bg1_on = 0;
     gLCDControlBuffer.dispcnt.bg2_on = 0;
     gLCDControlBuffer.dispcnt.bg3_on = 0;
+    u32 tags = TagValues->raw;
+    u32 classtags = ClassTags->raw;
+
     ConfigMenuProc * proc = StartConfigMenu(parent);
     proc->calledFromChapter = true;
 
     // pull up your previously saved options
-    proc->tags = TagValues->raw;
-    proc->classtags = ClassTags->raw;
+    TagValues->raw = tags;
+    ClassTags->raw = classtags;
     proc->Option[VarianceOption] = RandValues->variance;
     proc->Option[CharactersOption] = RecruitValues->recruitment;
     proc->Option[FromGameOption] = GrowthValues->ForcedCharTable;
