@@ -1635,6 +1635,9 @@ int NewCharIdInIgnoredRange(int i, int tableID)
     if (i >= 0x3B && i <= 0x6D)
         return true;
 
+    if (i >= 0x7F && i <= 0x94)
+        return true;
+
     return false;
 }
 
@@ -2306,24 +2309,6 @@ int DoesCharMatchPromotion(const struct CharacterData * table, const struct Clas
     // Match based on tag
     return (isPromoted && tags.Promoted) || (!isPromoted && tags.Unpromoted);
 }
-// int DoesCharMatchMount(const struct CharacterData * table, const struct ClassData * ctable, struct TagsStruct tags)
-// {
-// u32 attr = table->attributes | ctable->attributes;
-// if ((tags.Mounted && tags.Unmounted) || (!tags.Mounted && !tags.Unmounted))
-// {
-// return true;
-// }
-// if ((attr & CA_MOUNTEDAID) && tags.Mounted)
-// {
-// return true;
-// }
-// if ((!(attr & CA_MOUNTEDAID)) && tags.Unmounted)
-// {
-// return true;
-// }
-
-// return false;
-// }
 
 int HasAllClassTags(struct TagsStruct tags)
 {
