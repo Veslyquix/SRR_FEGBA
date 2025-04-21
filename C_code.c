@@ -4764,7 +4764,7 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
         wexp |= table->baseRanks[6];
         wexp |= table->baseRanks[7];
 
-        if (IncludeMonstersWithoutWEXP)
+        if (IncludeMonstersWithoutWEXP && (!allegiance))
         {
             if ((!wexp) && (!(attr & CA_LOCK_3)))
             { // Dragons or Monster depending of game
