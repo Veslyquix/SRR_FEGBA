@@ -316,30 +316,28 @@ tag(0); txt("Unpromoted");
 tag(1); txt("Promoted");
 tag(2); txt("Male");
 tag(3); txt("Female");
-tag(4); txt("--");
-tag(5); txt("--");
-tag(6); txt("--");
-tag(7); txt("--");
+tag(4); txt("Lord");
+tag(5); txt("Thief");
+tag(6); txt("Dancer");
+tag(7); txt("Armour");
+tag(8); txt("Pegasi");
+tag(9); txt("Wyvern");
+tag(10); txt("Mount");
+tag(11); txt("Unmounted");
+tag(12); txt("Trainee");
+tag(13); txt("Civilian");
+tag(14); txt("Manakete"); 
+tag(15); txt("Monster"); 
 
+tag(16); txt("Swords");
+tag(17); txt("Lances");
+tag(18); txt("Axes");
+tag(19); txt("Bows");
+tag(20); txt("Staves");
+tag(21); txt("Anima");
+tag(22); txt("Light");
+tag(23); txt("Dark");
 
-
-tag(08); txt("Swords");
-tag(09); txt("Lances");
-tag(10); txt("Axes");
-tag(11); txt("Bows");
-tag(12); txt("Staves");
-tag(13); txt("Anima");
-tag(14); txt("Light");
-tag(15); txt("Dark");
-
-tag(16); txt("Lord");
-tag(17); txt("Thief");
-tag(18); txt("Dancer");
-tag(19); txt("Manakete"); // tag(12); txt("Trainee");
-tag(20); txt("Pegasi");
-tag(21); txt("Wyvern");
-tag(22); txt("Mount");
-tag(23); txt("Armour");
 
 tag(24); txt("--");
 tag(25); txt("--");
@@ -360,6 +358,16 @@ tag(33); txt("Filter Player Classes");
 ALIGN 4 
 FilterArmourClasses: 
 BYTE Knight Knight_F General General_F 
+BYTE 0 // Terminator 
+ALIGN 4 
+FilterTraineeClasses: 
+BYTE Soldier 
+#ifdef _FE8_ 
+BYTE Pupil_1 Pupil_2 Pupil_3 Journeyman_1 Journeyman_2 Journeyman_3 Recruit_1 Recruit_2 Recruit_3 
+#endif 
+#ifdef VeslyBuildfile 
+BYTE Pupil2 
+#endif 
 BYTE 0 // Terminator 
 
 

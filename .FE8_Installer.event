@@ -1156,7 +1156,14 @@ WORD 60
 EnemyBossMaxHP:
 WORD 80
 EnemyMaxHP:
-WORD 60  
+WORD 60 
+DragonClasses: 
+BYTE 0x3B 0x3C 0x65 0x66 
+#ifdef VeslyBuildfile 
+BYTE Fellbeast BlackDragon 
+#endif 
+BYTE 0 // Terminator  
+ALIGN 4 
 NumberOfSkills:
 WORD 0xDE
 DisplayRandomSkillsOption:

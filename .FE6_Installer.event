@@ -562,7 +562,13 @@ WORD 1
 ALIGN 4 
 SkillExceptions:
 FILL 256*2
-
+DragonClasses: 
+BYTE 0x38 0x39 0x4a 0x3b 0x3C 
+#ifdef VeslyBuildfile 
+BYTE Fellbeast BlackDragon 
+#endif 
+BYTE 0 // Terminator 
+ALIGN 4 
 NumberOfSkills:
 WORD 0xE3
 DisplayRandomSkillsOption:

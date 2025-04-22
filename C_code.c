@@ -133,16 +133,19 @@ struct TagsStruct
     u8 Promoted : 1;
     u8 Male : 1;
     u8 Female : 1;
-    u8 Pad : 4;
-    u8 wexp;
     u8 Lord : 1;
     u8 Thief : 1;
     u8 Dancer : 1;
-    u8 Manakete : 1;
+    u8 Armoured : 1;
     u8 Pegasi : 1;
     u8 Wyvern : 1;
     u8 Mounted : 1;
-    u8 Armoured : 1;
+    u8 Unmounted : 1;
+    u8 Trainee : 1;
+    u8 Civilian : 1;
+    u8 Manakete : 1;
+    u8 Monster : 1;
+    u8 wexp;
     u8 Bulky : 1;
     u8 Tanky : 1;
     u8 Powerful : 1;
@@ -2442,9 +2445,29 @@ int DoesCharMatchGender(u32 attr, struct TagsStruct tags)
     return false;
 }
 
-int DoesCharMatchPromotion(u32 attr, struct TagsStruct tags)
+extern const u8 DragonClasses[];
+int IsClassDragon(u32 attr, const struct ClassData * ctable)
 {
+    int id = ctable->number;
+    for (int i = 0; i < 255; ++i)
+    {
+        if (DragonClasses[i] == id)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+int DoesCharMatchPromotion(u32 attr, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    int isDragon = IsClassDragon(attr, ctable);
+
     int isPromoted = (attr & CA_PROMOTED) != 0;
+
+    // if (isPromoted && isDragon)
+    if (isDragon)
+        return true;
 
     // If both or neither promotion flags are set, accept anything
     if (tags.Promoted == tags.Unpromoted)
@@ -2456,8 +2479,9 @@ int DoesCharMatchPromotion(u32 attr, struct TagsStruct tags)
 
 int HasAllClassTags(struct TagsStruct tags)
 {
+
     if (tags.Dancer && tags.Lord && tags.Manakete && tags.Thief && tags.Pegasi && tags.Wyvern && tags.Mounted &&
-        tags.Armoured)
+        tags.Armoured && tags.Unmounted && tags.Trainee && tags.Civilian && tags.Monster)
     {
         return true;
     }
@@ -2466,7 +2490,7 @@ int HasAllClassTags(struct TagsStruct tags)
 int HasNoClassTags(struct TagsStruct tags)
 {
     if (!tags.Dancer && !tags.Lord && !tags.Manakete && !tags.Thief && !tags.Pegasi && !tags.Wyvern && !tags.Mounted &&
-        !tags.Armoured)
+        !tags.Armoured && !tags.Unmounted && !tags.Trainee && !tags.Civilian && !tags.Monster)
     {
         return true;
     }
@@ -2494,19 +2518,39 @@ int DoesCharMatchWexp(u32 attr, const struct ClassData * ctable, struct TagsStru
             classRanks |= (1 << i);
         }
     }
+
+    int result = false;
     if (ranks & classRanks)
     {
-        return true;
+        result = true;
     }
-    return false;
+    if (tags.Civilian && !result)
+    {
+        return !result;
+    }
+
+    return result;
 }
 
-int DoesCharMatchMonster(u32 attr, struct TagsStruct tags)
+int DoesCharMatchMonster(u32 attr, const struct ClassData * ctable, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
 
-    int isManakete = attr & CA_LOCK_3;
+    int isMonster = (attr & CA_LOCK_3) && (!IsClassDragon(attr, ctable));
+
+    if (HasNoClassTags(tags))
+        return !isMonster;
+
+    return isMonster && tags.Monster;
+}
+
+int DoesCharMatchManakete(u32 attr, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    int isManakete = IsClassDragon(attr, ctable);
 
     if (HasNoClassTags(tags))
         return !isManakete;
@@ -2590,6 +2634,44 @@ int DoesCharMatchMount(u32 attr, struct TagsStruct tags)
 
     return isMount && tags.Mounted;
 }
+int DoesCharMatchUnmounted(u32 attr, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    if ((tags.Mounted && tags.Unmounted) || (!tags.Mounted && !tags.Unmounted))
+    {
+        return true;
+    }
+
+    int isUnmounted = !(attr & (CA_MOUNTED | CA_PEGASUS | CA_WYVERN));
+
+    if (HasNoClassTags(tags))
+        return !isUnmounted;
+
+    return isUnmounted && tags.Unmounted;
+}
+
+int DoesCharMatchCivilian(const struct ClassData * ctable, struct TagsStruct tags)
+{
+
+    if (HasAllClassTags(tags))
+        return true;
+
+    int isCivilian = 0;
+    for (int i = 0; i < 8; ++i)
+    {
+        if (ctable->baseRanks[i])
+        {
+            isCivilian |= (1 << i);
+        }
+    }
+
+    if (HasNoClassTags(tags))
+        return isCivilian;
+
+    return (!isCivilian) && tags.Civilian;
+}
 
 extern u8 FilterArmourClasses[];
 int DoesCharMatchArmour(const struct ClassData * ctable, struct TagsStruct tags)
@@ -2615,6 +2697,30 @@ int DoesCharMatchArmour(const struct ClassData * ctable, struct TagsStruct tags)
 
     return isArmour && tags.Armoured;
 }
+extern u8 FilterTraineeClasses[];
+int DoesCharMatchTrainee(const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    int isTrainee = false;
+    int classID = ctable->number;
+    u8 * traineeClasses = FilterTraineeClasses;
+    while (*traineeClasses)
+    {
+        if (*traineeClasses == classID)
+        {
+            isTrainee = true;
+            break;
+        }
+        ++traineeClasses;
+    }
+
+    if (HasNoClassTags(tags))
+        return !isTrainee;
+
+    return isTrainee && tags.Trainee;
+}
 
 int FilterCharOut(const struct CharacterData * table, const struct ClassData * ctable)
 {
@@ -2627,16 +2733,20 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     u32 result = false;
     result = DoesCharMatchWexp(attr, ctable, tags);
     result = result && DoesCharMatchGender(attr, tags);
-    result = result && DoesCharMatchPromotion(attr, tags);
+    result = result && DoesCharMatchPromotion(attr, ctable, tags);
+    result = result && DoesCharMatchUnmounted(attr, tags);
 
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
-    attrTags |= DoesCharMatchMonster(attr, tags);
+    attrTags |= DoesCharMatchMonster(attr, ctable, tags);
+    attrTags |= DoesCharMatchManakete(attr, ctable, tags);
     attrTags |= DoesCharMatchDancer(attr, tags);
     attrTags |= DoesCharMatchPegasi(attr, tags);
     attrTags |= DoesCharMatchWyvern(attr, tags);
     attrTags |= DoesCharMatchMount(attr, tags);
     attrTags |= DoesCharMatchArmour(ctable, tags);
+    attrTags |= DoesCharMatchTrainee(ctable, tags);
+    attrTags |= DoesCharMatchCivilian(ctable, tags);
 
     result = result && attrTags;
 
@@ -2654,16 +2764,20 @@ int FilterClassOut(const struct ClassData * ctable)
     u32 result = false;
     result = DoesCharMatchWexp(attr, ctable, tags);
     result = result && DoesCharMatchGender(attr, tags);
-    result = result && DoesCharMatchPromotion(attr, tags);
+    result = result && DoesCharMatchPromotion(attr, ctable, tags);
+    result = result && DoesCharMatchUnmounted(attr, tags);
 
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
-    attrTags |= DoesCharMatchMonster(attr, tags);
+    attrTags |= DoesCharMatchMonster(attr, ctable, tags);
+    attrTags |= DoesCharMatchManakete(attr, ctable, tags);
     attrTags |= DoesCharMatchDancer(attr, tags);
     attrTags |= DoesCharMatchPegasi(attr, tags);
     attrTags |= DoesCharMatchWyvern(attr, tags);
     attrTags |= DoesCharMatchMount(attr, tags);
     attrTags |= DoesCharMatchArmour(ctable, tags);
+    attrTags |= DoesCharMatchTrainee(ctable, tags);
+    attrTags |= DoesCharMatchCivilian(ctable, tags);
 
     result = result && attrTags;
 
@@ -4729,51 +4843,40 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
             continue;
         }
 
-        attr = table->attributes;
-        if (!promotedBitflag)
-        {
-            if (attr & CA_PROMOTED)
-            {
-                continue;
-            }
-        }
-        else if (!(attr & CA_PROMOTED))
-        {
-            continue;
-        }
-
         if (!allegiance)
         {
-            if (FilterClassOut(table))
+            if (FilterClassOut(table)) // Players
             {
                 continue;
             }
-            // if (attrExceptions & attr) // no enemy bards / dancers
-            // {
-            // list[0]++;
-            // list[list[0]] = i;
-            // }
         }
-
-        int wexp = table->baseRanks[0];
-        wexp |= table->baseRanks[1];
-        wexp |= table->baseRanks[2];
-        wexp |= table->baseRanks[3];
-        wexp |= table->baseRanks[4];
-        wexp |= table->baseRanks[5];
-        wexp |= table->baseRanks[6];
-        wexp |= table->baseRanks[7];
-
-        if (IncludeMonstersWithoutWEXP && (!allegiance))
+        else if (allegiance)
         {
-            if ((!wexp) && (!(attr & CA_LOCK_3)))
-            { // Dragons or Monster depending of game
+            attr = table->attributes;
+            if (!promotedBitflag)
+            {
+                if (attr & CA_PROMOTED)
+                {
+                    continue;
+                }
+            }
+            else if (!(attr & CA_PROMOTED))
+            {
                 continue;
             }
-        }
-        else if (!wexp)
-        {
-            continue;
+            int wexp = table->baseRanks[0];
+            wexp |= table->baseRanks[1];
+            wexp |= table->baseRanks[2];
+            wexp |= table->baseRanks[3];
+            wexp |= table->baseRanks[4];
+            wexp |= table->baseRanks[5];
+            wexp |= table->baseRanks[6];
+            wexp |= table->baseRanks[7];
+
+            if (!wexp)
+            {
+                continue; // Enemies won't be no wexp classes
+            }
         }
         // if class has any base wexp, it's good
         list[0]++;
@@ -4782,7 +4885,6 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
     return list;
 }
 
-// now replaced with randclass2
 int RandClass(int id, int noise[], struct Unit * unit)
 {
     if (!ShouldRandomizeClass(unit))
@@ -4800,6 +4902,7 @@ int RandClass(int id, int noise[], struct Unit * unit)
     int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes) & CA_PROMOTED;
 
     BuildAvailableClassList(list, promotedBitflag, allegiance);
+
     id = HashByte_Global(id, list[0] + 1, noise, 0);
     if (!id)
     {
@@ -4812,6 +4915,7 @@ int RandClass(int id, int noise[], struct Unit * unit)
     return list[id];
 }
 
+// unused currently
 int RandClass2(int id, u8 noise[], struct Unit * unit)
 {
     // return 0x52;
@@ -5059,6 +5163,19 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
 #ifdef FE6
     }
 #endif
+    if (!list[0])
+    {
+        list[0] = 1;
+#ifdef FE8
+        list[1] = 0x7A; // Mine
+#endif
+#ifdef FE7
+        list[1] = 0x79; // Mine
+#endif
+#ifdef FE6
+        list[1] = 0x7B; // Red Gem since Mine doesn't exist
+#endif
+    }
     return list;
 }
 
@@ -5607,12 +5724,12 @@ int AdjustGrowthForStatInflation(int growth)
         }
         case 5:
         {
-            result = ((5 * growth) / 4) + 10;
+            result = ((10 * growth) / 9) + 5;
             break;
         }
         case 6:
         {
-            result = ((6 * growth) / 4) + 20;
+            result = ((5 * growth) / 4) + 10;
             break;
         }
     }
@@ -5709,12 +5826,12 @@ int AdjustStatForInflatedNumbers(int stat)
         }
         case 5:
         {
-            result = ((5 * stat) / 4) + 1;
+            result = ((9 * stat) / 8) + 0;
             break;
         }
         case 6:
         {
-            result = ((6 * stat) / 4) + 2;
+            result = ((10 * stat) / 8) + 1;
             break;
         }
     }
@@ -5757,12 +5874,12 @@ int SlightlyAdjustStatForInflatedNumbers(int stat)
         }
         case 5:
         {
-            result = ((9 * stat) / 8) + 0;
+            result = ((12 * stat) / 11) + 0;
             break;
         }
         case 6:
         {
-            result = ((10 * stat) / 8) + 1;
+            result = ((8 * stat) / 7) + 1;
             break;
         }
     }
@@ -10258,7 +10375,6 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         if ((proc->id + proc->offset) == FilterClassOption)
         {
-            brk;
             Proc_Goto(proc, FilterClassesLabel);
             return;
         }
@@ -10657,13 +10773,14 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         if (!DefaultConfigToVanilla)
         {
             proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
+            // proc->Option[VarianceOption] = 10; // start on 50%
             proc->Option[CharactersOption] = 1;
             proc->Option[FromGameOption] = 0; // Fe8 game
             proc->Option[BaseStatsOption] = 1;
             proc->Option[GrowthsOption] = 1;
             proc->Option[LevelupsOption] = 1;
             proc->Option[StatCapsOption] = 1;
-            proc->Option[ClassOption] = 1;
+            proc->Option[ClassOption] = 4;
             proc->Option[ItemOption] = 1;
             proc->Option[ModeOption] = 0;    // Classic
             proc->Option[MusicOption] = 1;   // Random BGM
