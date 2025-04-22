@@ -267,6 +267,13 @@ BYTE 0x46 //0x55 Ninian
 BYTE Fellbeast BlackDragon 
 #endif 
 BYTE 0 // Terminator 
+earlyPossibleFliers: 
+BYTE Florina Sain Kent Wil Lyn 0 
+earlyPossibleHealers: 
+BYTE Dorcas Serra Erk 0 
+earlyPossibleThieves: 
+BYTE Matthew 0 
+
 ALIGN 4 
 NumberOfSkills:
 WORD 0xE3

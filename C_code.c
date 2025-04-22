@@ -146,11 +146,14 @@ struct TagsStruct
     u8 Manakete : 1;
     u8 Monster : 1;
     u8 wexp;
+    u8 earlyThief : 1;
+    u8 earlyHealer : 1;
+    u8 earlyFlier : 1;
     u8 Bulky : 1;
     u8 Tanky : 1;
     u8 Powerful : 1;
     u8 Quick : 1;
-    u8 Pad3 : 4;
+    u8 Pad3 : 1;
 };
 // extern struct TagsStruct * TagValues;
 union TagUnion
@@ -1511,6 +1514,14 @@ void DrawFilterCharPage(ConfigMenuProc * proc)
             Text_DrawString(&th[i], tags[i]);
         }
     }
+
+    ClearText(&th[24]);
+    ClearText(&th[25]);
+    ClearText(&th[26]);
+    Text_DrawString(&th[24], tags[27]); // no early flier etc
+    Text_DrawString(&th[25], tags[27]);
+    Text_DrawString(&th[26], tags[27]);
+
     c = 0;
     int x = 2;
     int y = 2;
@@ -2451,6 +2462,10 @@ int IsClassDragon(u32 attr, const struct ClassData * ctable)
     int id = ctable->number;
     for (int i = 0; i < 255; ++i)
     {
+        if (!DragonClasses[i])
+        {
+            break;
+        }
         if (DragonClasses[i] == id)
         {
             return true;
@@ -2561,6 +2576,7 @@ int DoesCharMatchMonster(u32 attr, const struct ClassData * ctable, struct TagsS
     if (HasNoClassTags(tags))
         return !isMonster;
 
+    brk;
     return isMonster && tags.Monster;
 }
 
@@ -2659,6 +2675,12 @@ int DoesCharMatchUnmounted(u32 attr, const struct ClassData * ctable, struct Tag
         return true;
 
     if ((tags.Mounted && tags.Unmounted) || (!tags.Mounted && !tags.Unmounted))
+    {
+        return true;
+    }
+
+    int isMounted = (attr & (CA_MOUNTED));
+    if (isMounted && tags.Mounted)
     {
         return true;
     }
@@ -2792,6 +2814,7 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     attrTags |= DoesCharMatchArmour(ctable, tags);
     attrTags |= DoesCharMatchTrainee(ctable, tags);
     attrTags |= DoesCharMatchCivilian(ctable, tags);
+
     if (!attrTags)
     {
         attrTags = DoesCharMatchUnmountedWexp(attr, ctable, tags);
@@ -3047,15 +3070,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     counter->x = c;
     counter->y = b;
 
-    if (TagValues->raw != 0xFFFFFFFF)
-    {
-        BuildFilteredCharsList(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
-    }
-    else
-    {
-        // BuildFilteredCharsList(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
-        BuildFilteredCharsList(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
-    }
+    BuildFilteredCharsList(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
     c = counter->x;
     b = counter->y;
     // table--;
@@ -4963,6 +4978,10 @@ int RandClass(int id, int noise[], struct Unit * unit)
         return id;
     }
     int allegiance = (unit->index) >> 6;
+    if (IsUnitAlliedOrPlayable(unit))
+    {
+        allegiance = 0;
+    }
     // if (allegiance && (id == 0x3C)) { return id; }
     u8 list[255];
     list[0] = 99;
@@ -5045,7 +5064,7 @@ int GetUsedWexpMask(struct Unit * unit)
 
 extern int WepLockExInstalled;
 extern int AllEnemiesCanUseWepLocks;
-
+extern u8 ChickenClass;
 u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
 {
     int wexpMask = GetUsedWexpMask(unit); // only goes up to dark wexp
@@ -5243,6 +5262,12 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
         list[1] = 0x7B; // Red Gem since Mine doesn't exist
 #endif
     }
+    if (unit->pClassData->number == ChickenClass)
+    {
+        list[0] = 1;
+        list[1] = 1; // Iron Sword
+    }
+
     return list;
 }
 
@@ -7564,6 +7589,136 @@ int GetUnpromotedClass(const struct ClassData * data)
     return fallback; // only reach this if everything else failed
 }
 
+extern const u8 earlyPossibleFliers[];
+extern const u8 earlyPossibleHealers[];
+extern const u8 earlyPossibleThieves[];
+
+int IsUnitEarlygame(struct Unit * unit)
+{
+    int uid = unit->pCharacterData->number;
+    int allegiance = (unit->index & 0xFF) >> 6;
+    if (allegiance && (uid > 0x46))
+    {
+        return false;
+    }
+    u32 tags = 0;
+    // tags = TagValues->tags.earlyThief | TagValues->tags.earlyHealer | TagValues->tags.earlyFlier;
+    tags |= ClassTags->tags.earlyThief | ClassTags->tags.earlyHealer | ClassTags->tags.earlyFlier;
+    if (!tags)
+    {
+        return false;
+    }
+
+    const u8 * list = earlyPossibleThieves;
+    while (*list)
+    {
+        if (*list == uid)
+        {
+            return true;
+        }
+        list++;
+    }
+    list = earlyPossibleHealers;
+    while (*list)
+    {
+        if (*list == uid)
+        {
+            return true;
+        }
+        list++;
+    }
+    list = earlyPossibleFliers;
+    while (*list)
+    {
+        if (*list == uid)
+        {
+            return true;
+        }
+        list++;
+    }
+    return false;
+}
+extern u8 ThiefClass;
+extern u8 HealerClass;
+extern u8 FlierClass;
+
+void ForceEarlygameClasses(struct Unit * unit, int * noise, int offset)
+{
+    if (!IsUnitEarlygame(unit))
+    {
+        return;
+    }
+    int uid = unit->pCharacterData->number;
+    u8 list[20];
+    int count = 0;
+    for (int i = 0; i < 20; ++i)
+    {
+        list[i] = 0;
+    }
+    const u8 * classes = earlyPossibleThieves;
+    while (*classes)
+    {
+        count++;
+        classes++;
+    }
+    int thiefCharId = earlyPossibleThieves[HashByte_Global(0, count, noise, offset)];
+    count = 0;
+    classes = earlyPossibleFliers;
+    while (*classes)
+    {
+        if (*classes == thiefCharId)
+        {
+            classes++;
+            continue;
+        }
+        list[count] = *classes;
+        count++;
+        classes++;
+    }
+    int flierCharId = list[HashByte_Global(0, count, noise, offset + 5)];
+    count = 0;
+    classes = earlyPossibleHealers;
+    while (*classes)
+    {
+        if (*classes == thiefCharId)
+        {
+            classes++;
+            continue;
+        }
+        if (*classes == flierCharId)
+        {
+            classes++;
+            continue;
+        }
+        list[count] = *classes;
+        count++;
+        classes++;
+    }
+    int healerCharId = list[HashByte_Global(0, count, noise, offset + 11)];
+
+    if (uid == thiefCharId)
+    {
+        if (ClassTags->tags.earlyThief)
+        {
+            unit->pClassData = GetClassData(ThiefClass);
+        }
+    }
+    if (uid == flierCharId)
+    {
+        if (ClassTags->tags.earlyFlier)
+        {
+            unit->pClassData = GetClassData(FlierClass);
+        }
+    }
+    if (uid == healerCharId)
+    {
+        if (ClassTags->tags.earlyHealer)
+        {
+            unit->pClassData = GetClassData(HealerClass);
+        }
+    }
+}
+
 extern int ChanceToDemote;
 void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uDef)
 {
@@ -7748,6 +7903,9 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
             }
         }
     }
+
+    int noise2[4] = { 0, 0, 0, 0 };
+    ForceEarlygameClasses(unit, noise2, 0);
 
     int wexp = 0;
     int tmp = 0;
@@ -10832,8 +10990,8 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         {
             proc->Option[i] = 0;
         }
-        TagValues->raw = 0xFFFFFFFF; // default
-        ClassTags->raw = 0xFFFFFFFF; // default
+        TagValues->raw = 0xFFFFCFFF; // default: no civilians
+        ClassTags->raw = 0xFFFFDFFF; // default
         proc->helpBox = NULL;
         proc->reloadPlayers = false;
         proc->reloadEnemies = false;

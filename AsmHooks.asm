@@ -43,6 +43,8 @@ mov r11, r11
 bx lr 
 .ltorg 
 
+
+
 @ FE8U = 0x0800E7D0
 @ in @u8 EventShowTextBgDirect(u8 mode, u16 bgIndex)
 .global RandBGsFe8

@@ -17,6 +17,22 @@
 .endm
 
 .if FE6 == true 
+
+.global strlen 
+.type strlen, %function 
+strlen: 
+@mov r11, r11 
+mov r2, #0 
+loop_strlen:
+ldrb r1, [r0, r2]
+add r2, #1  
+cmp r1, #0 
+bne loop_strlen 
+sub r2, #1 
+mov r0, r2 
+bx lr 
+
+
 SET_FUNC GetPidStats, 0x8084F4D
 SET_FUNC ReadGlobalSaveInfo, 0x80842E9
 SET_FUNC StartBgmExt, 0x809C8D9
@@ -195,6 +211,7 @@ SET_FUNC SetPrimaryHBlankHandler, 0x8002A29
 .endif 
 .if FE7 == true 
 SET_FUNC StartHelpPromptSprite, 0x8081FBD
+SET_FUNC strlen, 0x80C0115
 SET_DATA gProcScr_HelpPromptSpr, 0x8CC209C 
 SET_FUNC SetPrimaryHBlankHandler, 0x8002F15
 SET_FUNC SetBackgroundTileDataOffset, 0x8001435

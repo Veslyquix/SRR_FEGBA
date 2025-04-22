@@ -1163,6 +1163,13 @@ BYTE 0x3B 0x3C 0x65 0x66
 BYTE Fellbeast BlackDragon 
 #endif 
 BYTE 0 // Terminator  
+earlyPossibleFliers: 
+BYTE Eirika Seth Gilliam Franz Moulder Vanessa 0 
+earlyPossibleHealers: 
+BYTE Eirika Seth Gilliam Franz Moulder Vanessa Ross Neimi Colm Garcia 0 
+earlyPossibleThieves: 
+BYTE Eirika Seth Gilliam Franz Moulder Vanessa Ross Neimi Colm Garcia 0 
+
 ALIGN 4 
 NumberOfSkills:
 WORD 0xDE
