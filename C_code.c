@@ -2550,6 +2550,12 @@ int DoesCharMatchMonster(u32 attr, const struct ClassData * ctable, struct TagsS
     if (HasAllClassTags(tags))
         return true;
 
+#ifdef FE7
+    if (ctable->number == 0x55) // no Ninian
+    {
+        return false;
+    }
+#endif
     int isMonster = (attr & CA_LOCK_3) && (!IsClassDragon(attr, ctable));
 
     if (HasNoClassTags(tags))
@@ -5964,7 +5970,7 @@ void NewDrawStatWithBar(int num, int x, int y, int base, int total, int max)
 
     PutNumberOrBlank(gUiTmScratchA + TILEMAP_INDEX(x, y), (base == max) ? green : blue, base);
 
-    NewPutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x, y), base);
+    NewPutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x - 1, y), base);
 
     if (total > globalCap)
     {
