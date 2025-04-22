@@ -2477,11 +2477,15 @@ int DoesCharMatchPromotion(u32 attr, const struct ClassData * ctable, struct Tag
     return (isPromoted && tags.Promoted) || (!isPromoted && tags.Unpromoted);
 }
 
+// Gender, Promoted or not, and Unmounted are deliberately not considered class tags
+// otherwise, all classes would match some attribute, as they all are either
+// male or female, promoted or not, and mounted or not
 int HasAllClassTags(struct TagsStruct tags)
 {
 
     if (tags.Dancer && tags.Lord && tags.Manakete && tags.Thief && tags.Pegasi && tags.Wyvern && tags.Mounted &&
-        tags.Armoured && tags.Unmounted && tags.Trainee && tags.Civilian && tags.Monster)
+        // tags.Armoured && tags.Trainee && tags.Civilian && tags.Monster)
+        tags.Armoured && tags.Trainee && tags.Civilian && tags.Monster && tags.Unmounted)
     {
         return true;
     }
@@ -2490,7 +2494,8 @@ int HasAllClassTags(struct TagsStruct tags)
 int HasNoClassTags(struct TagsStruct tags)
 {
     if (!tags.Dancer && !tags.Lord && !tags.Manakete && !tags.Thief && !tags.Pegasi && !tags.Wyvern && !tags.Mounted &&
-        !tags.Armoured && !tags.Unmounted && !tags.Trainee && !tags.Civilian && !tags.Monster)
+        // !tags.Armoured && !tags.Trainee && !tags.Civilian && !tags.Monster)
+        !tags.Armoured && !tags.Trainee && !tags.Civilian && !tags.Monster && !tags.Unmounted)
     {
         return true;
     }
@@ -2505,7 +2510,7 @@ int DoesCharMatchWexp(u32 attr, const struct ClassData * ctable, struct TagsStru
     {
         return true;
     }
-    if (tags.Manakete && isMonster)
+    if ((tags.Monster | tags.Manakete) && isMonster)
     {
         return true;
     }
@@ -2520,14 +2525,22 @@ int DoesCharMatchWexp(u32 attr, const struct ClassData * ctable, struct TagsStru
     }
 
     int result = false;
-    if (ranks & classRanks)
+    if (ranks & classRanks) // non zero
     {
-        result = true;
+        // must match ALL weapon types
+        if ((ranks & classRanks) == classRanks)
+        {
+            result = true;
+        }
     }
-    if (tags.Civilian && !result)
+    // if we accept civilians, then we accept units without weapon ranks that aren't monsters
+    if ((tags.Civilian && !classRanks) && !isMonster) // only if the class had no wexp
     {
+
         return !result;
     }
+
+    //
 
     return result;
 }
@@ -2634,7 +2647,7 @@ int DoesCharMatchMount(u32 attr, struct TagsStruct tags)
 
     return isMount && tags.Mounted;
 }
-int DoesCharMatchUnmounted(u32 attr, struct TagsStruct tags)
+int DoesCharMatchUnmounted(u32 attr, const struct ClassData * ctable, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
@@ -2647,7 +2660,34 @@ int DoesCharMatchUnmounted(u32 attr, struct TagsStruct tags)
     int isUnmounted = !(attr & (CA_MOUNTED | CA_PEGASUS | CA_WYVERN));
 
     if (HasNoClassTags(tags))
-        return !isUnmounted;
+        return isUnmounted;
+
+    return isUnmounted && tags.Unmounted;
+}
+
+int DoesCharMatchUnmountedWexp(u32 attr, const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    if (!tags.Unmounted)
+    {
+        return false;
+    }
+
+    int isUnmounted = !(attr & (CA_MOUNTED | CA_PEGASUS | CA_WYVERN));
+    int hasWexp = 0;
+    for (int i = 0; i < 8; ++i)
+    {
+        if (ctable->baseRanks[i])
+        {
+            hasWexp |= (1 << i);
+        }
+    }
+    isUnmounted = isUnmounted && hasWexp;
+
+    if (HasNoClassTags(tags))
+        return isUnmounted;
 
     return isUnmounted && tags.Unmounted;
 }
@@ -2734,7 +2774,6 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     result = DoesCharMatchWexp(attr, ctable, tags);
     result = result && DoesCharMatchGender(attr, tags);
     result = result && DoesCharMatchPromotion(attr, ctable, tags);
-    result = result && DoesCharMatchUnmounted(attr, tags);
 
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
@@ -2747,7 +2786,14 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     attrTags |= DoesCharMatchArmour(ctable, tags);
     attrTags |= DoesCharMatchTrainee(ctable, tags);
     attrTags |= DoesCharMatchCivilian(ctable, tags);
-
+    if (!attrTags)
+    {
+        attrTags = DoesCharMatchUnmountedWexp(attr, ctable, tags);
+    }
+    else
+    {
+        attrTags &= DoesCharMatchUnmounted(attr, ctable, tags);
+    }
     result = result && attrTags;
 
     return !result;
@@ -2765,7 +2811,7 @@ int FilterClassOut(const struct ClassData * ctable)
     result = DoesCharMatchWexp(attr, ctable, tags);
     result = result && DoesCharMatchGender(attr, tags);
     result = result && DoesCharMatchPromotion(attr, ctable, tags);
-    result = result && DoesCharMatchUnmounted(attr, tags);
+    // result = result && DoesCharMatchUnmounted(attr, tags);
 
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
@@ -2778,6 +2824,15 @@ int FilterClassOut(const struct ClassData * ctable)
     attrTags |= DoesCharMatchArmour(ctable, tags);
     attrTags |= DoesCharMatchTrainee(ctable, tags);
     attrTags |= DoesCharMatchCivilian(ctable, tags);
+
+    if (!attrTags)
+    {
+        attrTags = DoesCharMatchUnmountedWexp(attr, ctable, tags);
+    }
+    else
+    {
+        attrTags &= DoesCharMatchUnmounted(attr, ctable, tags);
+    }
 
     result = result && attrTags;
 
@@ -4804,7 +4859,7 @@ int GetItemWeight(int item)
 }
 
 // extern bool UnitAddItem(struct Unit* unit, int item);
-
+extern u8 DefaultClassID;
 extern int IncludeMonstersWithoutWEXP;
 u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
 {
@@ -4882,6 +4937,12 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
         list[0]++;
         list[list[0]] = i;
     }
+    if (!list[0])
+    {
+        list[0] = 1;
+        list[1] = DefaultClassID;
+    }
+
     return list;
 }
 

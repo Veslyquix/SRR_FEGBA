@@ -369,7 +369,13 @@ BYTE Pupil_1 Pupil_2 Pupil_3 Journeyman_1 Journeyman_2 Journeyman_3 Recruit_1 Re
 BYTE Pupil2 
 #endif 
 BYTE 0 // Terminator 
-
+DefaultClassID: // If no valid class is found, become this 
+#ifndef VeslyBuildfile 
+BYTE Soldier 
+#else 
+BYTE Chicken 
+#endif 
+ALIGN 4 
 
 SRRMenu(SeedOpt);               txt("Seed")
 SRRDesc(SeedOpt,0); txt("Random Numbers are generated\using this seed."); 
