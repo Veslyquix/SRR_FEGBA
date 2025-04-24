@@ -2282,6 +2282,7 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
 #define reviseMagOption 9
 #define reviseClassIdOption 10
 #define reviseGameIdOption 11
+int GetMaxClasses(void);
 void LoopReviseCharPage(ConfigMenuProc * proc)
 {
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
@@ -2394,7 +2395,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         case reviseLckOption : { pidStats->lckGrowth += dir; changed = true; break; } 
         case reviseMagOption : { pidStats->magGrowth += dir; changed = true; break; } 
         case reviseClassIdOption : { pidStats->forcedClass += dir; 
-            if (!pidStats->forcedClass) { pidStats->forcedClass += dir; } changed = true; break; } 
+            if (!pidStats->forcedClass) { pidStats->forcedClass = 1; } changed = true; break; } 
         case reviseGameIdOption : { ; break; } 
         default: 
     } 
