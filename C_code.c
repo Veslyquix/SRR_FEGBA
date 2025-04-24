@@ -1336,11 +1336,7 @@ extern void PutNumber(u16 *, int, int); // 80061D8
 extern ProcPtr StartTalkFace(int faceId, int x, int y, int disp, int talkFace);
 extern const char * growth_names[];
 const s16 GrowthNumbers[] = { (-1), 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250 };
-extern int StartUiSMS(int smsId, int frameId);
-extern void ResetUnitSprites(void);
-extern void ResetUnitSpriteHover(void);
-extern void ForceSyncUnitSpriteSheet(void);
-extern void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int class);
+
 int GetCharOverwrittenClassID(struct PidStatsChar * pidStats)
 {
     if (!pidStats)
@@ -1349,16 +1345,28 @@ int GetCharOverwrittenClassID(struct PidStatsChar * pidStats)
     }
     return pidStats->forcedClass;
 }
+
+// #define ReviseChar_MapSprites
+#ifdef ReviseChar_MapSprites
 extern void SetupMapSpritesPalettes(void); // ApplyUnitSpritePalettes
+extern int StartUiSMS(int smsId, int frameId);
+extern void ResetUnitSprites(void);
+extern void ResetUnitSpriteHover(void);
+extern void ForceSyncUnitSpriteSheet(void);
+extern void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int class);
+#endif
+
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
     // GetReorderedCharacter(GetCharacterData(1));
     int charID = GetReviseCharID(proc);
     ResetText();
 
+#ifdef ReviseChar_MapSprites
     ResetUnitSprites();
     ResetUnitSpriteHover();
     SetupMapSpritesPalettes();
+#endif
 
     int maxWidth = 6;
     int x = 4;
@@ -1420,7 +1428,10 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     PutDrawText(
         gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 14, 16), gold, 0, 0,
         GetStringFromIndex(GetClassData(classID)->nameTextId)); // Class name
+
+#ifdef ReviseChar_MapSprites
     StartUiSMS(GetClassData(classID)->SMSId, 0);
+#endif
     x = 2;
     y = 12;
     int val;
@@ -2283,8 +2294,10 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     {
         classID = table->defaultClass;
     }
+#ifdef ReviseChar_MapSprites
     ForceSyncUnitSpriteSheet();
     PutUnitSpriteForClassId(0, 212, 138, 0xC800, classID);
+#endif
 
     if (keys & (B_BUTTON | A_BUTTON) || !pidStats)
     {
@@ -2320,7 +2333,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     }
 
     int menuID = proc->reviseMenuId;
-    if (menuID == reviseNewCharIdOption)
+    if (menuID == reviseGameIdOption)
     {
         if (keys & DPAD_LEFT)
         {
@@ -2341,7 +2354,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
             DrawReviseCharPage(proc);
         }
     }
-    if (menuID == reviseGameIdOption)
+    if (menuID == reviseNewCharIdOption)
     {
         if (keys & DPAD_LEFT)
         {
