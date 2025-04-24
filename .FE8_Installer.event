@@ -424,6 +424,31 @@ ORG $a4732
 SHORT $46c0 
 
 
+
+ORG $a474c
+SHORT $4770 //PidStatsAddActAmt
+ORG $a478c
+SHORT $4770 //PidStatsAddStatViewAmt
+ORG $a481c
+SHORT $4770 //PidStatsAddSquaresMoved
+ORG $a487c
+SHORT $4770 //PidStatsAddExpGained
+ORG $a48dc
+SHORT $4770 //PidStatsSubFavval08
+ORG $a48f0
+SHORT $4770 //PidStatsSubFavval100
+ORG $a4978
+SHORT $2001 $4770 //PidStatsGetTotalLevel
+ORG $a49a4
+SHORT $2001 $4770 //PidStatsGetTotalExpGain
+ORG $a49c8
+SHORT $2000 $4770 //PidStatsGetExpGain
+ORG $a49fc
+SHORT $2001 $4770 //PidStatsGetFavval
+ORG $a4a34
+SHORT $4770 //PidStatsAddFavval
+
+
 ORG $cc904 // restore PromoHandler_SetInitStat to vanilla 
 BYTE $30 $30 0 $21 $01 $70 0 $20 $70 $47 0 0 $10 $b5 $04 $1c $30 $34 $21 $78 $01 $29 $0d $d0 $01 $29 $02 $dc 
 // skillsys turned pidStats->mvtAmt into LevelsGained 

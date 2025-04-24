@@ -59,7 +59,7 @@ typedef struct
     s8 previewPage;
 
     s8 previewId;
-    s8 reviseMenuId;
+    u8 reviseMenuId;
     s8 Option[32];
     // ends around 0x62 - about space for 6 more
 } ConfigMenuProc;
@@ -1349,6 +1349,7 @@ int GetCharOverwrittenClassID(struct PidStatsChar * pidStats)
     }
     return pidStats->forcedClass;
 }
+extern void SetupMapSpritesPalettes(void); // ApplyUnitSpritePalettes
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
     // GetReorderedCharacter(GetCharacterData(1));
@@ -1357,6 +1358,7 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
 
     ResetUnitSprites();
     ResetUnitSpriteHover();
+    SetupMapSpritesPalettes();
 
     int maxWidth = 6;
     int x = 4;
@@ -1416,7 +1418,7 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
         classID = table->defaultClass;
     }
     PutDrawText(
-        gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 14, 16), green, 0, 0,
+        gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 14, 16), gold, 0, 0,
         GetStringFromIndex(GetClassData(classID)->nameTextId)); // Class name
     StartUiSMS(GetClassData(classID)->SMSId, 0);
     x = 2;
@@ -1434,8 +1436,8 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
             gStatScreen.text + i + 7, TILEMAP_LOCATED(gBG0TilemapBuffer, x + Mod(i, 4) * 7, y + Div(i, 4) * 2), blue, 0,
             0, (void *)growth_names[i + 2]);
         PutNumber(
-            TILEMAP_LOCATED(gBG0TilemapBuffer, x + 5 + Mod(i, 4) * 7, y + Div(i, 4) * 2), (val < 0) ? white : gold,
-            val);
+            TILEMAP_LOCATED(gBG0TilemapBuffer, x + 5 + Mod(i, 4) * 7, y + Div(i, 4) * 2),
+            (GetCharOverwrittenGrowth(i, pidStats) < 0) ? white : gold, val);
     }
     // SetFaceBlinkControlById(0, 5);
     // SetFaceBlinkControlById(1, 5);
@@ -1484,7 +1486,7 @@ int GetDefaultGrowthByIndex(int i, struct FE8CharacterData * table)
         }
         case 7:
         {
-            return table->growthPow;
+            return table->growthPow; // mag
             break;
         }
         default:
@@ -1494,6 +1496,10 @@ int GetDefaultGrowthByIndex(int i, struct FE8CharacterData * table)
 
 int GetCharOverwrittenGrowth(int i, struct PidStatsChar * pidStats)
 {
+    if (!pidStats)
+    {
+        return (-1);
+    }
     int statIndex = 0;
     switch (i)
     {
@@ -2300,13 +2306,17 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     int changed = false;
     if (keys & DPAD_UP)
     {
-        proc->reviseMenuId--;
-        proc->reviseMenuId = Mod((u32)proc->reviseMenuId, 12);
+        tmp = proc->reviseMenuId - 1;
+        if (tmp < 0)
+        {
+            tmp = 11;
+        }
+        proc->reviseMenuId = Mod(tmp, 12);
     }
     if (keys & DPAD_DOWN)
     {
         proc->reviseMenuId++;
-        proc->reviseMenuId = Mod((u32)proc->reviseMenuId, 12);
+        proc->reviseMenuId = Mod(proc->reviseMenuId, 12);
     }
 
     int menuID = proc->reviseMenuId;
@@ -2370,7 +2380,8 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         case reviseResOption : { pidStats->resGrowth += dir; changed = true; break; } 
         case reviseLckOption : { pidStats->lckGrowth += dir; changed = true; break; } 
         case reviseMagOption : { pidStats->magGrowth += dir; changed = true; break; } 
-        case reviseClassIdOption : { pidStats->forcedClass += dir; changed = true; break; } 
+        case reviseClassIdOption : { pidStats->forcedClass += dir; 
+            if (!pidStats->forcedClass) { pidStats->forcedClass += dir; } changed = true; break; } 
         case reviseGameIdOption : { ; break; } 
         default: 
     } 
@@ -2383,7 +2394,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     switch (menuID) { 
 
         case reviseOldCharIdOption: { DisplayUiHand(40, 80); break; } 
-        case reviseNewCharIdOption: { DisplayUiHand(160, 80); break; } 
+        case reviseNewCharIdOption: { DisplayUiHand(164, 80); break; } 
         case reviseHPOption  : { DisplayUiHand(42, 96); break; } 
         case reviseStrOption : { DisplayUiHand(98, 96); break; } 
         case reviseSklOption : { DisplayUiHand(154, 96); break; } 
@@ -2393,7 +2404,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         case reviseLckOption : { DisplayUiHand(154, 112); break; } 
         case reviseMagOption : { DisplayUiHand(210, 112); break; } 
         case reviseClassIdOption : { DisplayUiHand(104, 128); break; } 
-        case reviseGameIdOption : { DisplayUiHand(36, 140); break; } 
+        case reviseGameIdOption : { DisplayUiHand(34, 144); break; } 
         default: 
     } 
 
@@ -6639,7 +6650,10 @@ int GetClassMagGrowth(struct Unit * unit, int modifiersBool)
 }
 int GetUnitMagGrowth(struct Unit * unit, int modifiersBool)
 {
-    int baseGrowth = 0;
+    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
+    int baseGrowth = GetCharOverwrittenGrowth(7, pidStats); 
+    if (baseGrowth != (-1)) { return baseGrowth; } 
+    baseGrowth = 0; 
     int add = 0;
     if (modifiersBool)
     {
@@ -7013,8 +7027,12 @@ int GetClassLckGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitHPGrowth(struct Unit * unit, int modifiersBool)
 {
-    int baseGrowth = 0;
+    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
+    int baseGrowth = GetCharOverwrittenGrowth(0, pidStats); 
+    if (baseGrowth != (-1)) { return baseGrowth; } 
+    baseGrowth = 0; 
     int add = 0;
+
     if (modifiersBool)
     {
         add = GetGrowthModifiers(unit);
@@ -7084,7 +7102,10 @@ int GetUnitHPGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitPowGrowth(struct Unit * unit, int modifiersBool)
 {
-    int baseGrowth = 0;
+    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
+    int baseGrowth = GetCharOverwrittenGrowth(1, pidStats); 
+    if (baseGrowth != (-1)) { return baseGrowth; } 
+    baseGrowth = 0; 
     int add = 0;
     if (modifiersBool)
     {
@@ -7154,7 +7175,10 @@ int GetUnitPowGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitSklGrowth(struct Unit * unit, int modifiersBool)
 {
-    int baseGrowth = 0;
+    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
+    int baseGrowth = GetCharOverwrittenGrowth(2, pidStats); 
+    if (baseGrowth != (-1)) { return baseGrowth; } 
+    baseGrowth = 0; 
     int add = 0;
     if (modifiersBool)
     {
@@ -7224,7 +7248,10 @@ int GetUnitSklGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitSpdGrowth(struct Unit * unit, int modifiersBool)
 {
-    int baseGrowth = 0;
+    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
+    int baseGrowth = GetCharOverwrittenGrowth(3, pidStats); 
+    if (baseGrowth != (-1)) { return baseGrowth; } 
+    baseGrowth = 0; 
     int add = 0;
     if (modifiersBool)
     {
@@ -7294,7 +7321,10 @@ int GetUnitSpdGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitDefGrowth(struct Unit * unit, int modifiersBool)
 {
-    int baseGrowth = 0;
+    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
+    int baseGrowth = GetCharOverwrittenGrowth(4, pidStats); 
+    if (baseGrowth != (-1)) { return baseGrowth; } 
+    baseGrowth = 0; 
     int add = 0;
     if (modifiersBool)
     {
@@ -7364,7 +7394,10 @@ int GetUnitDefGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitResGrowth(struct Unit * unit, int modifiersBool)
 {
-    int baseGrowth = 0;
+    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
+    int baseGrowth = GetCharOverwrittenGrowth(5, pidStats); 
+    if (baseGrowth != (-1)) { return baseGrowth; } 
+    baseGrowth = 0; 
     int add = 0;
     if (modifiersBool)
     {
@@ -7434,7 +7467,10 @@ int GetUnitResGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitLckGrowth(struct Unit * unit, int modifiersBool)
 {
-    int baseGrowth = 0;
+    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
+    int baseGrowth = GetCharOverwrittenGrowth(6, pidStats); 
+    if (baseGrowth != (-1)) { return baseGrowth; } 
+    baseGrowth = 0; 
     int add = 0;
     if (modifiersBool)
     {
@@ -14140,6 +14176,7 @@ void EndCloudsEffect(void)
     CloudsFx_OnEnd();
 }
 
+#ifndef FE8
 void PidStatsAddActAmt(u8 pid)
 {
 }
@@ -14189,4 +14226,5 @@ int PidStatsGetFavval(u8 pid)
 void PidStatsAddFavval(u8 pid, int val)
 {
 }
+#endif
 #endif
