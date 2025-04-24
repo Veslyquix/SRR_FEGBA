@@ -2,6 +2,7 @@
 #define MaxRTextOpt 7 
 #define SRRMenu(id) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4); POIN addr; POP }"
 #define tag(id) "{ addr: ; PUSH; ORG tags + (id * 4); POIN addr; POP }"
+#define growth_entry(id) "{ addr: ; PUSH; ORG growth_names + (id * 4); POIN addr; POP }"
 #define SRRDesc(id) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4) + 4; POIN addr; POP }"
 #define SRRDesc(id, opt) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4) + (4*(opt+1)); POIN addr; POP }"
 
@@ -358,6 +359,24 @@ tag(31); txt("--");
 tag(32); txt("Filter Characters");
 tag(33); txt("Filter Player Classes");
 tag(34); txt("Filter Enemy Classes");
+
+ALIGN 4 
+growth_names: 
+FILL(4 * 40) 
+
+
+growth_entry(0); txt("Growths");
+growth_entry(1); txt("Class");
+growth_entry(2); txt("HP");
+growth_entry(3); txt("Str");
+growth_entry(4); txt("Skl");
+growth_entry(5); txt("Spd");
+growth_entry(6); txt("Def");
+growth_entry(7); txt("Res");
+growth_entry(8); txt("Luk");
+growth_entry(9); txt("Mag");
+
+
 
 
 ALIGN 4 

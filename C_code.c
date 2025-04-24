@@ -1330,7 +1330,12 @@ extern void SetFaceBlinkControlById(int, int);
 extern struct FaceProc * StartFace(int faceSlot, int portraitId, int x, int y, int displayType);
 extern struct FaceProc * StartFace2(int faceSlot, int portraitId, int x, int y, int displayType);
 extern struct FaceProc * StartFaceAuto(int portraitId, int x, int y, int displayType);
+int GetDefaultGrowthByIndex(int i, struct FE8CharacterData * table);
+int GetCharOverwrittenGrowth(int i, struct PidStatsChar * pidStats);
+extern void PutNumber(u16 *, int, int); // 80061D8
 extern ProcPtr StartTalkFace(int faceId, int x, int y, int disp, int talkFace);
+extern const char * growth_names[];
+const s16 GrowthNumbers[] = { (-1), 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250 };
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
     // GetReorderedCharacter(GetCharacterData(1));
@@ -1339,26 +1344,32 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
 
     int maxWidth = 6;
     int x = 4;
-    int y = 12;
+    int y = 10;
     // EndFaceById(0);
+    for (int i = 0; i < 15; ++i)
+    {
+        InitText(gStatScreen.text + i, 8);
+        ClearText(gStatScreen.text + i);
+    }
+    InitText(gStatScreen.text, 15);
+    ClearText(gStatScreen.text);
     EndFaceById(1);
     struct FE8CharacterData * table = (struct FE8CharacterData *)GetCharacterData(charID);
     StartFace2(0, table->portraitId, 64, 0, 3 | FACE_DISP_FLIPPED);
     // StartFaceAuto(table->portraitId, 64, 0, 3);
     PutDrawCenteredText(
-        gStatScreen.text + 21, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y), table->nameTextId, maxWidth, gold);
+        gStatScreen.text + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y), table->nameTextId, maxWidth, gold);
     table = (struct FE8CharacterData *)GetReorderedCharacter((struct CharacterData *)table);
     StartFace2(1, table->portraitId, 186, 0, 2);
     // StartFaceAuto(table->portraitId, 186, 0, 2);
     PutDrawCenteredText(
-        gStatScreen.text + 22, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y), table->nameTextId, maxWidth, gold);
-    TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, 2, y - 2), 11, 0, 0x380);
-    TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, x + 13, y - 2), 11, 0, 0x380);
+        gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y), table->nameTextId, maxWidth, gold);
+    TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, 2, y), 11, 0, 0x380);
+    TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, x + 13, y), 11, 0, 0x380);
     PutDrawText(
-        gStatScreen.text + 23, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 18), green, 0, 0,
+        gStatScreen.text + 3, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 18), green, 0, 0,
         PutStringInBuffer((const char *)&GameText, 0));
-    ClearText(gStatScreen.text + 24);
-    InitText(gStatScreen.text + 24, 15);
+
     int tableID = 0;
     struct PidStatsChar * pidStats = GetPidStatsSafe(charID);
     if (CharConfirmPage)
@@ -1372,12 +1383,140 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
         }
     }
     PutDrawText(
-        gStatScreen.text + 24, TILEMAP_LOCATED(gBG0TilemapBuffer, 12, 18), green, 0, 0,
+        gStatScreen.text, TILEMAP_LOCATED(gBG0TilemapBuffer, 12, 18), green, 0, 0,
         (void *)GetSRRText(FromGameOption, tableID));
+
+    PutDrawText(
+        gStatScreen.text + 4, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y), green, 0, 0,
+        (void *)growth_names[0]); // Growths
+
+    PutDrawText(
+        gStatScreen.text + 5, TILEMAP_LOCATED(gBG0TilemapBuffer, x, 16), green, 0, 0,
+        (void *)growth_names[1]); // Class
+    PutDrawText(
+        gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, 16), green, 0, 0,
+        GetStringFromIndex(GetClassData(table->defaultClass)->nameTextId)); // Class name
+    x = 2;
+    y = 12;
+    int val;
+    for (int i = 0; i < 8; ++i)
+    {
+        val = GetCharOverwrittenGrowth(i, pidStats);
+        if (val < 0)
+        {
+            val = GetDefaultGrowthByIndex(i, table);
+        }
+
+        PutDrawText(
+            gStatScreen.text + i + 7, TILEMAP_LOCATED(gBG0TilemapBuffer, x + Mod(i, 4) * 7, y + Div(i, 4) * 2), blue, 0,
+            0, (void *)growth_names[i + 2]);
+        PutNumber(
+            TILEMAP_LOCATED(gBG0TilemapBuffer, x + 5 + Mod(i, 4) * 7, y + Div(i, 4) * 2), (val < 0) ? white : gold,
+            val);
+    }
     // SetFaceBlinkControlById(0, 5);
     // SetFaceBlinkControlById(1, 5);
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
     // EnablePaletteSync();
+}
+
+int GetDefaultGrowthByIndex(int i, struct FE8CharacterData * table)
+{
+    switch (i)
+    {
+        case 0:
+        {
+            return table->growthHP;
+            break;
+        }
+        case 1:
+        {
+            return table->growthPow;
+            break;
+        }
+        case 2:
+        {
+            return table->growthSkl;
+            break;
+        }
+        case 3:
+        {
+            return table->growthSpd;
+            break;
+        }
+        case 4:
+        {
+            return table->growthDef;
+            break;
+        }
+        case 5:
+        {
+            return table->growthRes;
+            break;
+        }
+        case 6:
+        {
+            return table->growthLck;
+            break;
+        }
+        case 7:
+        {
+            return table->growthPow;
+            break;
+        }
+        default:
+    }
+    return 0;
+}
+
+int GetCharOverwrittenGrowth(int i, struct PidStatsChar * pidStats)
+{
+    int statIndex = 0;
+    switch (i)
+    {
+        case 0:
+        {
+            statIndex = pidStats->hpGrowth;
+            break;
+        }
+        case 1:
+        {
+            statIndex = pidStats->powGrowth;
+            break;
+        }
+        case 2:
+        {
+            statIndex = pidStats->sklGrowth;
+            break;
+        }
+        case 3:
+        {
+            statIndex = pidStats->spdGrowth;
+            break;
+        }
+        case 4:
+        {
+            statIndex = pidStats->defGrowth;
+            break;
+        }
+        case 5:
+        {
+            statIndex = pidStats->resGrowth;
+            break;
+        }
+        case 6:
+        {
+            statIndex = pidStats->lckGrowth;
+            break;
+        }
+        case 7:
+        {
+            statIndex = pidStats->magGrowth;
+            break;
+        }
+        default:
+    }
+    return GrowthNumbers[statIndex];
 }
 
 extern void Text_DrawString(struct Text * th, const char * str);
@@ -2051,9 +2190,7 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
         return;
     }
     int tableID = pidStats->charTableID;
-    asm("mov r11, r11");
     int maxID = GetMaxCharIdByTable(tableID);
-    asm("mov r11, r11");
     int startingID = pidStats->newCharID;
     const struct CharacterData * table = GetCharacterData(id);
     const struct CharacterData * table2;
@@ -9590,7 +9727,6 @@ int CountOptionAmount(int id)
 #define MENU_X 18
 #define MENU_Y 8
 
-extern void PutNumber(u16 *, int, int); // 80061D8
 static const LocationTable SRR_CursorLocationTable[] = {
     //{MENU_X, MENU_Y + (16*0)},
     { MENU_X, MENU_Y + (16 * 1) }, { MENU_X, MENU_Y + (16 * 2) }, { MENU_X, MENU_Y + (16 * 3) },
