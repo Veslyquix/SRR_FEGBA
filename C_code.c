@@ -950,9 +950,9 @@ void RerollPage(ConfigMenuProc * proc)
             continue;
         }
 
-        pidStats->deployAmt = 0x3F;
+        pidStats->charTableID = 0x3F;
         pidStats->selected = false;
-        pidStats->moveAmt = 0;
+        pidStats->newCharID = 0;
     }
     RandValues->seed++;
     EndAllRecruitmentProcs();
@@ -971,9 +971,9 @@ void ResetPage(ConfigMenuProc * proc)
             continue;
         }
 
-        pidStats->deployAmt = 0;
+        pidStats->charTableID = 0;
         pidStats->selected = false;
-        pidStats->moveAmt = id;
+        pidStats->newCharID = id;
     }
 }
 
@@ -984,8 +984,8 @@ void SetAllCharConfirm(ConfigMenuProc * proc)
     {
         return;
     }
-    int id = pidStats->moveAmt;
-    int game = pidStats->deployAmt;
+    int id = pidStats->newCharID;
+    int game = pidStats->charTableID;
     for (int i = 2; i <= 0x45; ++i)
     {
         pidStats = GetPidStatsSafe(i);
@@ -995,9 +995,9 @@ void SetAllCharConfirm(ConfigMenuProc * proc)
             continue;
         }
 
-        pidStats->deployAmt = game;
+        pidStats->charTableID = game;
         pidStats->selected = false;
-        pidStats->moveAmt = id;
+        pidStats->newCharID = id;
     }
 }
 
@@ -1021,8 +1021,8 @@ void CopyBWLForCharDuplicates(void)
             {
                 continue;
             }
-            pidStatsA->moveAmt = pidStatsB->moveAmt;
-            pidStatsA->deployAmt = pidStatsB->deployAmt;
+            pidStatsA->newCharID = pidStatsB->newCharID;
+            pidStatsA->charTableID = pidStatsB->charTableID;
         }
     }
 }
@@ -1338,9 +1338,9 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     {
         if (pidStats)
         {
-            if (pidStats->deployAmt < NumberOfCharTables)
+            if (pidStats->charTableID < NumberOfCharTables)
             {
-                tableID = pidStats->deployAmt;
+                tableID = pidStats->charTableID;
             }
         }
     }
@@ -1773,16 +1773,16 @@ void EnsureNewCharInRange(struct PidStatsChar * pidStats, int highest, int table
     {
         tableID = NumberOfCharTables - 1;
     }
-    pidStats->deployAmt = tableID;
-    int charID = pidStats->moveAmt;
+    pidStats->charTableID = tableID;
+    int charID = pidStats->newCharID;
     int finalCharId = GetMaxCharIdByTable(tableID);
     if (charID > finalCharId)
     {
         if (highest)
-            pidStats->moveAmt = finalCharId;
+            pidStats->newCharID = finalCharId;
 
         else
-            pidStats->moveAmt = 1;
+            pidStats->newCharID = 1;
     }
 }
 
@@ -1807,9 +1807,9 @@ void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
     {
         return;
     }
-    int tableID = pidStats->deployAmt;
+    int tableID = pidStats->charTableID;
     int maxID = GetMaxCharIdByTable(tableID);
-    int startingID = pidStats->moveAmt;
+    int startingID = pidStats->newCharID;
     const struct CharacterData * table = GetCharacterData(id);
     const struct CharacterData * table2;
     for (int i = startingID + 1; i <= maxID; i++)
@@ -1818,7 +1818,7 @@ void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
         {
             continue;
         }
-        pidStats->moveAmt = i;
+        pidStats->newCharID = i;
         table2 = GetReorderedCharacterByPIDStats(table, pidStats);
         if (i == id)
         { // so they *can* become themself with the vanilla table
@@ -1826,12 +1826,12 @@ void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
         }
         if ((void *)table != (void *)table2)
         {
-            return; // pidStats->moveAmt is already updated
+            return; // pidStats->newCharID is already updated
         }
     }
     for (int i = 1; i < startingID; i++)
     {
-        pidStats->moveAmt = i;
+        pidStats->newCharID = i;
         table2 = GetReorderedCharacterByPIDStats(table, pidStats);
         if (i == id)
         { // so they *can* become themself with the vanilla table
@@ -1839,10 +1839,10 @@ void SetNextValidCharID(int id, struct PidStatsChar * pidStats)
         }
         if ((void *)table != (void *)table2)
         {
-            return; // pidStats->moveAmt is already updated
+            return; // pidStats->newCharID is already updated
         }
     }
-    pidStats->moveAmt = startingID + 1; // should never reach this
+    pidStats->newCharID = startingID + 1; // should never reach this
 }
 void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
 {
@@ -1850,11 +1850,11 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
     {
         return;
     }
-    int tableID = pidStats->deployAmt;
+    int tableID = pidStats->charTableID;
     asm("mov r11, r11");
     int maxID = GetMaxCharIdByTable(tableID);
     asm("mov r11, r11");
-    int startingID = pidStats->moveAmt;
+    int startingID = pidStats->newCharID;
     const struct CharacterData * table = GetCharacterData(id);
     const struct CharacterData * table2;
     for (int i = startingID - 1; i > 0; i--)
@@ -1863,7 +1863,7 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
         {
             continue;
         }
-        pidStats->moveAmt = i;
+        pidStats->newCharID = i;
         table2 = GetReorderedCharacterByPIDStats(table, pidStats);
         if (i == id)
         { // so they *can* become themself with the vanilla table
@@ -1876,7 +1876,7 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
     }
     for (int i = maxID; i > startingID; i--)
     {
-        pidStats->moveAmt = i;
+        pidStats->newCharID = i;
         table2 = GetReorderedCharacterByPIDStats(table, pidStats);
         if (i == id)
         { // so they *can* become themself with the vanilla table
@@ -1887,7 +1887,7 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
             return;
         }
     }
-    pidStats->moveAmt = startingID - 1; // should never reach this
+    pidStats->newCharID = startingID - 1; // should never reach this
 }
 
 void LoopReviseCharPage(ConfigMenuProc * proc)
@@ -1925,13 +1925,13 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     {
         if (keys & DPAD_LEFT)
         {
-            tmp = pidStats->deployAmt - 1;
+            tmp = pidStats->charTableID - 1;
             EnsureNewCharInRange(pidStats, 1, tmp);
             changed = true;
         }
         else if (keys & DPAD_RIGHT)
         {
-            tmp = pidStats->deployAmt + 1;
+            tmp = pidStats->charTableID + 1;
             EnsureNewCharInRange(pidStats, 1, tmp);
             changed = true;
         }
@@ -2027,8 +2027,8 @@ int GetUnitIdOfPortrait(int portraitID)
     return 0;
 }
 
-// /* 056 */ unsigned deployAmt   : 6;
-// /* 062 */ unsigned moveAmt     : 10;
+// /* 056 */ unsigned charTableID   : 6;
+// /* 062 */ unsigned newCharID     : 10;
 // enemies - supports?
 
 void ClearPlayerBWL(void)
@@ -2050,8 +2050,8 @@ void ClearPlayerBWL(void)
             continue;
         }
 
-        pidStats->deployAmt = 0x3F;
-        pidStats->moveAmt = 0;
+        pidStats->charTableID = 0x3F;
+        pidStats->newCharID = 0;
     }
 }
 
@@ -2123,13 +2123,13 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
     {
         if (pidStats)
         {
-            if (pidStats->deployAmt < NumberOfCharTables)
+            if (pidStats->charTableID < NumberOfCharTables)
             {
-                tableID = pidStats->deployAmt;
+                tableID = pidStats->charTableID;
             }
-            if (pidStats->moveAmt)
+            if (pidStats->newCharID)
             {
-                unitID = pidStats->moveAmt & 0xFF;
+                unitID = pidStats->newCharID & 0xFF;
             }
         }
     }
@@ -2142,8 +2142,8 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
     {
         if (pidStats)
         {
-            pidStats->deployAmt = tableID;
-            pidStats->moveAmt = unitID & 0xFF;
+            pidStats->charTableID = tableID;
+            pidStats->newCharID = unitID & 0xFF;
         }
     }
     return result;
@@ -13647,7 +13647,7 @@ void PidStatsAddStatViewAmt(u8 pid)
 {
 }
 
-void PidStatsAddDeployAmt(u8 pid)
+void PidStatsAddcharTableID(u8 pid)
 {
 }
 
@@ -13658,7 +13658,16 @@ void PidStatsAddSquaresMoved(u8 pid, int amount)
 void PidStatsAddExpGained(u8 pid, int expGain)
 {
 }
+int PidStatsGetExpGain(u8 pid)
+{
+    return 0;
+}
+int PidStatsGetTotalLevel(void)
+{
+    return 1;
+}
 
+#ifndef FE6
 void PidStatsSubFavval08(u8 pid)
 {
 }
@@ -13666,18 +13675,7 @@ void PidStatsSubFavval08(u8 pid)
 void PidStatsSubFavval100(u8 pid)
 {
 }
-
-int PidStatsGetTotalLevel(void)
-{
-    return 1;
-}
-
 int PidStatsGetTotalExpGain(void)
-{
-    return 0;
-}
-
-int PidStatsGetExpGain(u8 pid)
 {
     return 0;
 }
@@ -13690,31 +13688,4 @@ int PidStatsGetFavval(u8 pid)
 void PidStatsAddFavval(u8 pid, int val)
 {
 }
-
-void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause)
-{
-    int type;
-    struct UnitUsageStats * bwl = GetPidStats(pid);
-    if (NULL == bwl)
-        return;
-
-    type = GetBattleMapKind();
-    switch (type)
-    {
-        case BATTLEMAP_KIND_SKIRMISH:
-            bwl->deathSkirm = true;
-            bwl->deathLoc = gGMData.units[0].location;
-            break;
-
-        case BATTLEMAP_KIND_STORY:
-        case BATTLEMAP_KIND_DUNGEON:
-        default:
-            bwl->deathSkirm = false;
-            bwl->deathLoc = gPlaySt.chapterIndex;
-            break;
-    }
-
-    // bwl->deathTurn = gPlaySt.chapterTurnNumber;
-    // bwl->killerPid = killerPid;
-    // bwl->deathCause = deathCause;
-}
+#endif

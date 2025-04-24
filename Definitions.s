@@ -207,9 +207,33 @@ SET_FUNC UnpackUiWindowFrameImg2, 0x8041309
 SET_FUNC ApplyUiWindowFramePal, 0x8041285
 SET_FUNC SetBackgroundTileDataOffset, 0x8001351
 SET_FUNC SetPrimaryHBlankHandler, 0x8002A29
+SET_FUNC PidStatsAddActAmt, 0x8084b85 
+SET_FUNC PidStatsAddStatViewAmt, 0x8084bb9 
+SET_FUNC PidStatsAddDeployAmt, 0x8084bed
+SET_FUNC PidStatsAddSquaresMoved, 0x8084c31 
+SET_FUNC PidStatsAddExpGained, 0x8084c85 
+@ 08084cd8 T PidStatsCountTotalBattles	/Users/laqieer/Projects/FEHRR/include/decomp/src/save_stats.c:282
+@ 08084cfc T PidStatsCountTotalWins	/Users/laqieer/Projects/FEHRR/include/decomp/src/save_stats.c:292
+@ 08084d1c T PidStatsCountTotalLosses	/Users/laqieer/Projects/FEHRR/include/decomp/src/save_stats.c:302
+SET_FUNC PidStatsGetTotalLevel, 0x8084d35 
+@ 08084d64 T PidStatsUpdateFromBattleOutcome	/Users/laqieer/Projects/FEHRR/include/decomp/src/save_stats.c:322
+
 
 .endif 
 .if FE7 == true 
+SET_FUNC PidStatsAddActAmt, 0x809FF6D
+SET_FUNC PidStatsAddStatViewAmt, 0x80A91D1 
+SET_FUNC PidStatsAddDeployAmt, 0x809FFED
+SET_FUNC PidStatsAddSquaresMoved, 0x80A003D
+SET_FUNC PidStatsAddExpGained, 0x80A009D
+SET_FUNC PidStatsSubFavval08, 0x80A00FD
+SET_FUNC PidStatsSubFavval100, 0x80A0111
+SET_FUNC PidStatsGetTotalLevel, 0x80A0191
+SET_FUNC PidStatsGetTotalExpGain, 0x80A01BD @ ? 
+SET_FUNC PidStatsGetExpGain, 0x80A01DD
+SET_FUNC PidStatsGetFavval, 0x80A0211
+SET_FUNC PidStatsAddFavval, 0x80A0249
+
 SET_FUNC StartHelpPromptSprite, 0x8081FBD
 SET_FUNC strlen, 0x80C0115
 SET_DATA gProcScr_HelpPromptSpr, 0x8CC209C 

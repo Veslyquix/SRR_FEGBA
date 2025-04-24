@@ -530,7 +530,13 @@ enum
 struct PidStatsChar // total size 0x10 
 {
     u8 lossAmt : 8; 
-    u8 skills[3]; 
+    #ifdef FE6 
+    u8 skill1; 
+    #else 
+    u8 skill1; 
+    u8 skill2; 
+    u8 skill3; 
+    #endif 
     u32 skill4 : 8; 
     u32 deathLoc : 6; // should be bit 40
     u32 hpGrowth : 4; 
@@ -541,14 +547,18 @@ struct PidStatsChar // total size 0x10
     u32 resGrowth : 4; 
     u32 lckGrowth : 4; 
     u32 magGrowth : 4; 
-    u32 deployAmt : 6;
+    u32 charTableID : 6;
     u32 pad : 4; 
 	u32 winAmt    : 10; // should be bit 088 
 	u32 battleAmt : 12;
     u32 forcedClass : 8; 
     u32 selected     : 1;
     u32 deathSkirm  : 1; // should be bit 119 
-    u32 moveAmt : 8; 
+    u32 newCharID : 8; 
+    #ifdef FE6 
+    u32 skill2 : 8;
+    u32 skill3 : 8; 
+    #endif 
 }BITPACKED; 
 
 /*
@@ -565,8 +575,8 @@ struct PidStatsChar
     u32 selected : 1; 
     u32 defeat_cause : 4;
     u32 exp_gained : 12;
-    u32 win_count : 10;
-    u32 battle_count : 12;
+    u32 win_count : 10; // should be bit 72
+    u32 battle_count : 12; 
     u32 killer_pid : 9;
     u32 : 0; // unused/padding (15 bits)
 }BITPACKED;
