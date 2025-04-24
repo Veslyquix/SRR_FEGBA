@@ -1332,18 +1332,7 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     // GetReorderedCharacter(GetCharacterData(1));
     int charID = GetReviseCharID(proc);
     ResetText();
-    int tableID = 0;
-    struct PidStatsChar * pidStats = GetPidStatsSafe(charID);
-    if (CharConfirmPage)
-    {
-        if (pidStats)
-        {
-            if (pidStats->charTableID < NumberOfCharTables)
-            {
-                tableID = pidStats->charTableID;
-            }
-        }
-    }
+
     int maxWidth = 6;
     int x = 4;
     int y = 12;
@@ -1366,6 +1355,18 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
         PutStringInBuffer((const char *)&GameText, 0));
     ClearText(gStatScreen.text + 24);
     InitText(gStatScreen.text + 24, 15);
+    int tableID = 0;
+    struct PidStatsChar * pidStats = GetPidStatsSafe(charID);
+    if (CharConfirmPage)
+    {
+        if (pidStats)
+        {
+            if (pidStats->charTableID < NumberOfCharTables)
+            {
+                tableID = pidStats->charTableID;
+            }
+        }
+    }
     PutDrawText(
         gStatScreen.text + 24, TILEMAP_LOCATED(gBG0TilemapBuffer, 12, 18), green, 0, 0,
         (void *)GetSRRText(FromGameOption, tableID));
@@ -1444,8 +1445,17 @@ void FilterCharInit(ConfigMenuProc * proc)
     for (int i = 0; i < NumberOfTags; ++i)
     {
         InitText(&th[i], TagWidth);
+        Text_SetColor(&th[i], gray);
+        if ((i >= 24) && (i <= 26))
+        {
+            continue;
+        }
         Text_DrawString(&th[i], tags[i]);
     }
+
+    Text_DrawString(&th[24], tags[27]); // no early flier etc
+    Text_DrawString(&th[25], tags[27]);
+    Text_DrawString(&th[26], tags[27]);
 
     Text_SetColor(&th[32], green);
     Text_DrawString(&th[32], tags[32]); // "Filter Characters"
@@ -1483,6 +1493,7 @@ void FilterClassInit(ConfigMenuProc * proc)
     for (int i = 0; i < NumberOfTags; ++i)
     {
         InitText(&th[i], TagWidth);
+        Text_SetColor(&th[i], gray);
         Text_DrawString(&th[i], tags[i]);
     }
 
@@ -1504,13 +1515,21 @@ void DrawFilterCharPage(ConfigMenuProc * proc)
         c = curTags & (1 << i);
         if (c)
         {
-            c = gold;
+            c = blue;
+        }
+        else
+        {
+            c = grey;
         }
 
         if (Text_GetColor(&th[i]) != c)
         {
             ClearText(&th[i]);
             Text_SetColor(&th[i], c);
+            if ((i >= 24) && (i <= 26))
+            {
+                continue;
+            }
             Text_DrawString(&th[i], tags[i]);
         }
     }
@@ -1566,7 +1585,11 @@ void DrawFilterClassPage(ConfigMenuProc * proc)
         c = curTags & (1 << i);
         if (c)
         {
-            c = gold;
+            c = blue;
+        }
+        else
+        {
+            c = grey;
         }
 
         if (Text_GetColor(&th[i]) != c)
@@ -2576,7 +2599,6 @@ int DoesCharMatchMonster(u32 attr, const struct ClassData * ctable, struct TagsS
     if (HasNoClassTags(tags))
         return !isMonster;
 
-    brk;
     return isMonster && tags.Monster;
 }
 
