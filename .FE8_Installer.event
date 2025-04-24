@@ -53,6 +53,7 @@
 
 #include "../ASM/EndBattleIfBroken/Installer.event" 
 #include "../ASM/BGOnlyDisplayInConvos/Installer.event" 
+#include "../ASM/ExtendWeaponDescBox/Installer.event" // for monster weapons 
 #ifndef C_SKILLSYS // already included 
     #include "../ASM/Debugger/Installer.event" 
     CMagCharTable:
@@ -672,6 +673,17 @@ ORG $59D21C
 POIN NewChMenu
 #endif 
 
+// Monster Wep Fix by Brendor 
+ORG 0x0892f2; BYTE 0x6
+
+ORG 0x01e7fc; BYTE 0xC
+
+ORG 0x016e22; BYTE 0x0B 0x28 0x04 0xD0 0x09 0x49 0x80 0x00 0x08 0x18 0x00 0x68 0x06 0xE0 0x80 0x20 0x80 0x00 0x6B 0x30 0x02 0xE0
+
+ORG 0x016E42; BYTE 0xC0 0x46
+
+
+
 POP 
 
 #ifdef RepointChMenu 
@@ -1205,15 +1217,15 @@ ALIGN 4
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
     #ifdef C_SKILLSYS 
-    WORD 27
+    WORD 28
     #endif 
     #ifdef SKILLSYS_INSTALLED 
-    WORD 29
+    WORD 30
     #else 
-    WORD 28
+    WORD 29
     #endif  
 #else 
-WORD 26
+WORD 27
 #endif 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
@@ -1246,6 +1258,8 @@ WORD 0x203EC24
 #endif 
 ClassTags:
 WORD 0x203EC28 
+EnemyClassTags:
+WORD 0x203EC2C
 
 ALIGN 32 
 WORD 0 0 0 0 0 0 0 0 

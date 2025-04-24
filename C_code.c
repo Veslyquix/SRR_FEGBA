@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.9.7"
+#define VersionNumber " SRR V1.9.8"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -30,8 +30,9 @@ int GetGlobalStatCap(void);
 #define ConfigMenuLabel 0
 #define FilterUnitsLabel 1
 #define FilterClassesLabel 2
-#define PreviewCharLabel 3
-#define ReviseCharProcLabel 4
+#define FilterEnemyClassesLabel 3
+#define PreviewCharLabel 4
+#define ReviseCharProcLabel 5
 
 #define EndLabel 99
 
@@ -42,6 +43,7 @@ typedef struct
 {
     /* 00 */ PROC_HEADER;
     /* 2c */ int seed;
+    char * helpBox;
     u16 globalChecksum;
     s8 id; // menu id
     u8 offset;
@@ -58,8 +60,8 @@ typedef struct
 
     s8 previewId;
     s8 changingGame;
-    s8 Option[30];
-    char * helpBox; // ends around 0x60 - about space for 8 more
+    s8 Option[32];
+    // ends around 0x62 - about space for 6 more
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -163,6 +165,7 @@ union TagUnion
 };
 extern union TagUnion * TagValues;
 extern union TagUnion * ClassTags;
+extern union TagUnion * EnemyClassTags;
 
 extern struct TimedHitsDifficultyStruct * TimedHitsDifficultyRam;
 
@@ -298,6 +301,7 @@ extern const int LevelupsOption;
 extern const int StatCapsOption;
 extern const int ClassOption;
 extern const int FilterClassOption;
+extern const int FilterEnemyClassOption;
 extern const int ItemOption;
 extern const int ModeOption;
 extern const int MusicOption;
@@ -1414,6 +1418,7 @@ u16 * BG_GetMapBuffer(int bg)
 
 void DrawFilterCharPage(ConfigMenuProc * proc);
 void DrawFilterClassPage(ConfigMenuProc * proc);
+void DrawFilterEnemyClassPage(ConfigMenuProc * proc);
 void FilterCharInit(ConfigMenuProc * proc)
 {
     ResetTextFont();
@@ -1498,10 +1503,60 @@ void FilterClassInit(ConfigMenuProc * proc)
     }
 
     Text_SetColor(&th[32], green);
-    Text_DrawString(&th[32], tags[33]); // "Filter Classes"
+    Text_DrawString(&th[32], tags[33]); // "Filter Player Classes"
     // StartGreenText(proc);
     DrawFilterClassPage(proc);
 }
+
+void FilterEnemyClassInit(ConfigMenuProc * proc)
+{
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+
+    BG_Fill(gBG0TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+    SetTextFont(0);
+    ClearBg0Bg1();
+    ResetText();
+
+    int x = 1;
+    int y = 1;
+    int w = 29; // StatWidth + (START_X - NUMBER_X) + 3;
+    int h = 18; //(NumberOfOptions * 2) + 2;
+
+    DrawUiFrame(
+        BG_GetMapBuffer(1),            // back BG
+        x, y, w, h, TILEREF(0, 0), 0); // style as 0 ?
+
+    // ClearUiFrame(
+    //     BG_GetMapBuffer(1), // front BG
+    //     x, y, w, h);
+
+    struct Text * th = gStatScreen.text;
+    InitText(&th[32], 12);
+    for (int i = 0; i < NumberOfTags; ++i)
+    {
+        InitText(&th[i], TagWidth);
+        Text_SetColor(&th[i], gray);
+        if ((i >= 24) && (i <= 26))
+        {
+            continue;
+        }
+        Text_DrawString(&th[i], tags[i]);
+    }
+
+    Text_DrawString(&th[24], tags[27]); // no early flier etc
+    Text_DrawString(&th[25], tags[27]);
+    Text_DrawString(&th[26], tags[27]);
+
+    Text_SetColor(&th[32], green);
+    Text_DrawString(&th[32], tags[34]); // "Filter Enemy Classes"
+    // StartGreenText(proc);
+    DrawFilterEnemyClassPage(proc);
+}
+
 void DrawFilterCharPage(ConfigMenuProc * proc)
 {
     // TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(15, 2), 9, 2 * 9, 0);
@@ -1599,6 +1654,76 @@ void DrawFilterClassPage(ConfigMenuProc * proc)
             Text_DrawString(&th[i], tags[i]);
         }
     }
+    c = 0;
+    int x = 2;
+    int y = 2;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    x += TagWidth;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    x += TagWidth;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    x += TagWidth;
+    for (int i = 0; i < 8; ++i)
+    {
+        PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+        c++;
+    }
+    PutText(&th[32], gBG0TilemapBuffer + TILEMAP_INDEX(10, 0));
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+void DrawFilterEnemyClassPage(ConfigMenuProc * proc)
+{
+    // TileMap_FillRect(gBG0TilemapBuffer + TILEMAP_INDEX(15, 2), 9, 2 * 9, 0);
+    int c = 0;
+    struct Text * th = gStatScreen.text;
+
+    u32 curTags = EnemyClassTags->raw;
+
+    for (int i = 0; i < NumberOfTags; ++i)
+    {
+        c = curTags & (1 << i);
+        if (c)
+        {
+            c = blue;
+        }
+        else
+        {
+            c = grey;
+        }
+
+        if (Text_GetColor(&th[i]) != c)
+        {
+            ClearText(&th[i]);
+            Text_SetColor(&th[i], c);
+            if ((i >= 24) && (i <= 26))
+            {
+                continue;
+            }
+            Text_DrawString(&th[i], tags[i]);
+        }
+    }
+
+    ClearText(&th[24]);
+    ClearText(&th[25]);
+    ClearText(&th[26]);
+    Text_DrawString(&th[24], tags[27]); // no early flier etc
+    Text_DrawString(&th[25], tags[27]);
+    Text_DrawString(&th[26], tags[27]);
+
     c = 0;
     int x = 2;
     int y = 2;
@@ -1766,6 +1891,58 @@ void LoopFilterClassPage(ConfigMenuProc * proc)
         id %= 32;
         proc->previewId = id;
         DrawFilterClassPage(proc);
+    }
+}
+
+void LoopFilterEnemyClassPage(ConfigMenuProc * proc)
+{
+    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
+    if ((keys & START_BUTTON) || (keys & B_BUTTON))
+    { // press B or Start to update tags and continue
+
+        // Proc_Goto(proc, ConfigMenuLabel);
+        Proc_Goto(proc, ConfigMenuLabel);
+        proc->previewId = ConfirmCommandID;
+        return;
+    }
+    u32 id = proc->previewId;
+    if ((keys & A_BUTTON))
+    {
+        EnemyClassTags->raw ^= (1 << id);
+        DrawFilterEnemyClassPage(proc);
+    }
+
+    DisplayUiHand(TagsCursorLocationTable[id].x, TagsCursorLocationTable[id].y);
+    if (keys & DPAD_RIGHT)
+    {
+        id += 8;
+    }
+    if (keys & DPAD_LEFT)
+    {
+        id -= 8;
+    }
+    if (keys & DPAD_UP)
+    {
+        if (!(id % 8))
+        {
+            id += 8;
+        }
+        id--;
+    }
+    if (keys & DPAD_DOWN)
+    {
+        id++;
+        if (!(id % 8))
+        {
+            id -= 8;
+        }
+    }
+
+    if (id != (int)proc->previewId)
+    {
+        id %= 32;
+        proc->previewId = id;
+        DrawFilterEnemyClassPage(proc);
     }
 }
 
@@ -2497,19 +2674,23 @@ int IsClassDragon(u32 attr, const struct ClassData * ctable)
     return false;
 }
 
-int DoesCharMatchPromotion(u32 attr, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchPromotion(
+    u32 attr, const struct ClassData * ctable, struct TagsStruct tags, int promotedBitflag, int allegiance)
 {
     int isDragon = IsClassDragon(attr, ctable);
 
     int isPromoted = (attr & CA_PROMOTED) != 0;
+    if (promotedBitflag == (-1))
+    {
+        promotedBitflag = isPromoted;
+    } // characters don't need to match promotion, only classes
 
-    // if (isPromoted && isDragon)
-    if (isDragon)
+    if (!allegiance && isDragon)
         return true;
 
-    // If both or neither promotion flags are set, accept anything
+    // If both or neither promotion flags are set, match whether the original class was promoted or not
     if (tags.Promoted == tags.Unpromoted)
-        return true;
+        return isPromoted == promotedBitflag;
 
     // Match based on tag
     return (isPromoted && tags.Promoted) || (!isPromoted && tags.Unpromoted);
@@ -2823,7 +3004,8 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     u32 result = false;
     result = DoesCharMatchWexp(attr, ctable, tags);
     result = result && DoesCharMatchGender(attr, tags);
-    result = result && DoesCharMatchPromotion(attr, ctable, tags);
+    int promotedBitflag = -1;
+    result = result && DoesCharMatchPromotion(attr, ctable, tags, promotedBitflag, 0);
 
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
@@ -2850,7 +3032,7 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     return !result;
 }
 
-int FilterClassOut(const struct ClassData * ctable)
+int FilterClassOut(const struct ClassData * ctable, int promotedBitflag)
 {
     if (ClassTags->raw == 0xFFFFFFFF)
     {
@@ -2861,7 +3043,48 @@ int FilterClassOut(const struct ClassData * ctable)
     u32 result = false;
     result = DoesCharMatchWexp(attr, ctable, tags);
     result = result && DoesCharMatchGender(attr, tags);
-    result = result && DoesCharMatchPromotion(attr, ctable, tags);
+    result = result && DoesCharMatchPromotion(attr, ctable, tags, promotedBitflag, 0);
+
+    // result = result && DoesCharMatchUnmounted(attr, tags);
+
+    u32 attrTags = DoesCharMatchThief(attr, tags);
+    attrTags |= DoesCharMatchLord(attr, tags);
+    attrTags |= DoesCharMatchMonster(attr, ctable, tags);
+    attrTags |= DoesCharMatchManakete(attr, ctable, tags);
+    attrTags |= DoesCharMatchDancer(attr, tags);
+    attrTags |= DoesCharMatchPegasi(attr, tags);
+    attrTags |= DoesCharMatchWyvern(attr, tags);
+    attrTags |= DoesCharMatchMount(attr, tags);
+    attrTags |= DoesCharMatchArmour(ctable, tags);
+    attrTags |= DoesCharMatchTrainee(ctable, tags);
+    attrTags |= DoesCharMatchCivilian(ctable, tags);
+
+    if (!attrTags)
+    {
+        attrTags = DoesCharMatchUnmountedWexp(attr, ctable, tags);
+    }
+    else
+    {
+        attrTags &= DoesCharMatchUnmounted(attr, ctable, tags);
+    }
+
+    result = result && attrTags;
+
+    return !result;
+}
+
+int FilterEnemyClassOut(const struct ClassData * ctable, int promotedBitflag)
+{
+    if (EnemyClassTags->raw == 0xFFFFFFFF)
+    {
+        return false;
+    }
+    u32 attr = ctable->attributes;
+    struct TagsStruct tags = EnemyClassTags->tags;
+    u32 result = false;
+    result = DoesCharMatchWexp(attr, ctable, tags);
+    result = result && DoesCharMatchGender(attr, tags);
+    result = result && DoesCharMatchPromotion(attr, ctable, tags, promotedBitflag, 1);
     // result = result && DoesCharMatchUnmounted(attr, tags);
 
     u32 attrTags = DoesCharMatchThief(attr, tags);
@@ -4909,7 +5132,7 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
 
     list[0] = 0; // count
     // int attrExceptions = CA_DANCE | CA_PLAY;
-    int attr;
+    // u32 attr;
     // issues: 0x4D, 0x52, 0x53 prince has A rank swords ? (does he have anim?)
     // 0x56 fallen warrior has axes
     // no playable manaketes in fe7, but otherwise units without wexp but
@@ -4943,38 +5166,31 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
 
         if (!allegiance)
         {
-            if (FilterClassOut(table)) // Players
+            if (FilterClassOut(table, promotedBitflag)) // Players
             {
                 continue;
             }
         }
         else if (allegiance)
         {
-            attr = table->attributes;
-            if (!promotedBitflag)
-            {
-                if (attr & CA_PROMOTED)
-                {
-                    continue;
-                }
-            }
-            else if (!(attr & CA_PROMOTED))
+            if (FilterEnemyClassOut(table, promotedBitflag))
             {
                 continue;
             }
-            int wexp = table->baseRanks[0];
-            wexp |= table->baseRanks[1];
-            wexp |= table->baseRanks[2];
-            wexp |= table->baseRanks[3];
-            wexp |= table->baseRanks[4];
-            wexp |= table->baseRanks[5];
-            wexp |= table->baseRanks[6];
-            wexp |= table->baseRanks[7];
 
-            if (!wexp)
-            {
-                continue; // Enemies won't be no wexp classes
-            }
+            // int wexp = table->baseRanks[0];
+            // wexp |= table->baseRanks[1];
+            // wexp |= table->baseRanks[2];
+            // wexp |= table->baseRanks[3];
+            // wexp |= table->baseRanks[4];
+            // wexp |= table->baseRanks[5];
+            // wexp |= table->baseRanks[6];
+            // wexp |= table->baseRanks[7];
+
+            // if (!wexp)
+            // {
+            // continue; // Enemies won't be no wexp classes
+            // }
         }
         // if class has any base wexp, it's good
         list[0]++;
@@ -5090,7 +5306,11 @@ extern u8 ChickenClass;
 u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
 {
     int wexpMask = GetUsedWexpMask(unit); // only goes up to dark wexp
-
+    int playableUnit = 0;
+    if (IsUnitAlliedOrPlayable(unit))
+    {
+        playableUnit = 1;
+    }
     // iterate through all items
     struct ItemData * table;
     int rank, type, attr, badAttr;
@@ -5102,7 +5322,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
     badAttr = IA_LOCK_1 | IA_LOCK_2 | IA_LOCK_3 | IA_LOCK_4 | IA_LOCK_5 | IA_LOCK_6 | IA_LOCK_7 | IA_UNCOUNTERABLE;
 #endif
     attr = unit->pCharacterData->attributes | unit->pClassData->attributes;
-    if ((IsUnitAlliedOrPlayable(unit)) || (attr & CA_BOSS) || AllEnemiesCanUseWepLocks)
+    if ((playableUnit) || (attr & CA_BOSS) || AllEnemiesCanUseWepLocks)
     { // only player units / bosses can start with wep locked weps
         if (attr & CA_LOCK_1)
         {
@@ -9320,6 +9540,17 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(DrawFilterClassPage),
     PROC_REPEAT(LoopFilterClassPage),
 
+    PROC_LABEL(FilterEnemyClassesLabel),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(FilterEnemyClassInit),
+    PROC_CALL(DrawFilterEnemyClassPage),
+    PROC_REPEAT(LoopFilterEnemyClassPage),
+
     PROC_LABEL(EndLabel),
     PROC_CALL(EndCloudsEffect),
     PROC_CALL(StartFastFadeToBlack),
@@ -10373,7 +10604,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             if ((id + offset) != ReloadUnitsOption)
             {
                 if (((id + offset) != FilterCharsOption) && ((id + offset) != PreviewCharsOption) &&
-                    ((id + offset) != FilterClassOption))
+                    ((id + offset) != FilterClassOption) && ((id + offset) != FilterEnemyClassOption))
                 {
                     if ((id + offset) != SkipChOption)
                     {
@@ -10625,6 +10856,11 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             Proc_Goto(proc, FilterClassesLabel);
             return;
         }
+        if ((proc->id + proc->offset) == FilterEnemyClassOption)
+        {
+            Proc_Goto(proc, FilterEnemyClassesLabel);
+            return;
+        }
         Proc_Goto(proc, EndLabel);
         return;
         // BG_SetPosition(BG_3, 0, 0);
@@ -10859,7 +11095,7 @@ void DrawSRRHeader(ConfigMenuProc * proc, int id, int offset2)
 {
     int colour = gold;
     if ((id + offset2 == FilterCharsOption) || (id + offset2 == PreviewCharsOption) ||
-        (id + offset2 == FilterClassOption))
+        (id + offset2 == FilterClassOption) || (id + offset2 == FilterEnemyClassOption))
     {
         colour = white;
     }
@@ -11012,8 +11248,10 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         {
             proc->Option[i] = 0;
         }
-        TagValues->raw = 0xFFFFCFFF; // default: no civilians
-        ClassTags->raw = 0xFFFFDFFF; // default
+        TagValues->raw = 0xFFFFDFFF;      // default: no civilians
+        ClassTags->raw = 0xFFFFDFFF;      // default
+        EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
+        // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
         proc->helpBox = NULL;
         proc->reloadPlayers = false;
         proc->reloadEnemies = false;
@@ -11092,6 +11330,7 @@ int MenuStartConfigMenu(ProcPtr parent)
     gLCDControlBuffer.dispcnt.bg3_on = 0;
     u32 tags = TagValues->raw;
     u32 classtags = ClassTags->raw;
+    u32 enemyclasstags = EnemyClassTags->raw;
 
     ConfigMenuProc * proc = StartConfigMenu(parent);
     proc->calledFromChapter = true;
@@ -11099,6 +11338,7 @@ int MenuStartConfigMenu(ProcPtr parent)
     // pull up your previously saved options
     TagValues->raw = tags;
     ClassTags->raw = classtags;
+    EnemyClassTags->raw = enemyclasstags;
     proc->Option[VarianceOption] = RandValues->variance;
     proc->Option[CharactersOption] = RecruitValues->recruitment;
     proc->Option[FromGameOption] = GrowthValues->ForcedCharTable;

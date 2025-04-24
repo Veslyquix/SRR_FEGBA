@@ -657,7 +657,7 @@ ALIGN 4
 IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
-WORD 25
+WORD 26
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:
@@ -708,6 +708,8 @@ TagValues:
 WORD 0x203D904 // Echidna 2 
 ClassTags: 
 WORD 0x203D908 
+EnemyClassTags:
+WORD 0x203D90C
 
 ALIGN 32
 NameStrings: 

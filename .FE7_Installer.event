@@ -287,7 +287,7 @@ AlwaysSkillTable:
 FILL 256 
 ALIGN 4 
 SRR_TotalOptions:
-WORD 25
+WORD 26
 
 ALIGN 4 
 MaxItems_Link: 
@@ -1198,6 +1198,8 @@ TagValues:
 WORD 0x203ebC0
 ClassTags:
 WORD 0x203EBC4 
+EnemyClassTags:
+WORD 0x203EBC8 
 
 ALIGN 32 
 WORD 0 0 0 0 0 0 0 0 

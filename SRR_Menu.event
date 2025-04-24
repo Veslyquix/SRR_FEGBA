@@ -70,13 +70,13 @@ txt("Page")
 
 ALIGN 64 
 gSRRMenuText: 
-FILL((MaxRTextOpt+1) * 4 * 30) // max 30 options 
+FILL((MaxRTextOpt+1) * 4 * 40) // max 40 options 
 
 
 #define SRRHeader(id) "header: ; PUSH; ORG SRRText_POIN + (id * 4); POIN header; POP ;" 
 ALIGN 4 
 SRRText_POIN:
-FILL(4 * 30) 
+FILL(4 * 40) 
 
 
 {
@@ -182,7 +182,11 @@ t0:  txt(" ");
 ALIGN 4; SRRHeader(FilterClassOpt)
 POIN t0 0
 }
-
+{
+t0:  txt(" ");     
+ALIGN 4; SRRHeader(FilterEnemyClassOpt)
+POIN t0 0
+}
 
 
 {
@@ -353,6 +357,7 @@ tag(30); txt("--");
 tag(31); txt("--");
 tag(32); txt("Filter Characters");
 tag(33); txt("Filter Player Classes");
+tag(34); txt("Filter Enemy Classes");
 
 
 ALIGN 4 
@@ -430,8 +435,10 @@ SRRDesc(ClassOpt,3); txt("Starting class for enemies is\randomized from the vani
 SRRDesc(ClassOpt,4); txt("Starting class is randomized\and includes classes designed\by the hacking community."); 
 SRRDesc(ClassOpt,5); txt("Starting class for players is\randomized and includes classes designed\by the hacking community."); 
 SRRDesc(ClassOpt,6); txt("Starting class for enemies is\randomized and includes classes designed\by the hacking community."); 
-SRRMenu(FilterClassOpt);        txt("Filter Classes") 
+SRRMenu(FilterClassOpt);        txt("Player Classes") 
 SRRDesc(FilterClassOpt);        txt("Randomized player classes can\be limited to specific types.")
+SRRMenu(FilterEnemyClassOpt);        txt("Enemy Classes") 
+SRRDesc(FilterEnemyClassOpt);        txt("Randomized enemy classes can\be limited to specific types.")
 SRRMenu(ItemOpt);               txt("Items")
 SRRDesc(ItemOpt,0); txt("Weapon stats and items found\will not change."); 
 SRRDesc(ItemOpt,1); txt("Weapon stats will vary and\items found will be random."); 
@@ -518,6 +525,8 @@ ClassOption:
 WORD ClassOpt
 FilterClassOption:
 WORD FilterClassOpt 
+FilterEnemyClassOption:
+WORD FilterEnemyClassOpt 
 ItemOption:
 WORD ItemOpt
 ModeOption:
