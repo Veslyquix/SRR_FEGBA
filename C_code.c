@@ -59,7 +59,7 @@ typedef struct
     s8 previewPage;
 
     s8 previewId;
-    s8 changingGame;
+    s8 reviseMenuId;
     s8 Option[32];
     // ends around 0x62 - about space for 6 more
 } ConfigMenuProc;
@@ -1336,11 +1336,27 @@ extern void PutNumber(u16 *, int, int); // 80061D8
 extern ProcPtr StartTalkFace(int faceId, int x, int y, int disp, int talkFace);
 extern const char * growth_names[];
 const s16 GrowthNumbers[] = { (-1), 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250 };
+extern int StartUiSMS(int smsId, int frameId);
+extern void ResetUnitSprites(void);
+extern void ResetUnitSpriteHover(void);
+extern void ForceSyncUnitSpriteSheet(void);
+extern void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int class);
+int GetCharOverwrittenClassID(struct PidStatsChar * pidStats)
+{
+    if (!pidStats)
+    {
+        return 0;
+    }
+    return pidStats->forcedClass;
+}
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
     // GetReorderedCharacter(GetCharacterData(1));
     int charID = GetReviseCharID(proc);
     ResetText();
+
+    ResetUnitSprites();
+    ResetUnitSpriteHover();
 
     int maxWidth = 6;
     int x = 4;
@@ -1391,11 +1407,18 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
         (void *)growth_names[0]); // Growths
 
     PutDrawText(
-        gStatScreen.text + 5, TILEMAP_LOCATED(gBG0TilemapBuffer, x, 16), green, 0, 0,
+        gStatScreen.text + 5, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, 16), green, 0, 0,
         (void *)growth_names[1]); // Class
+
+    int classID = GetCharOverwrittenClassID(pidStats);
+    if (!classID)
+    {
+        classID = table->defaultClass;
+    }
     PutDrawText(
-        gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, 16), green, 0, 0,
-        GetStringFromIndex(GetClassData(table->defaultClass)->nameTextId)); // Class name
+        gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 14, 16), green, 0, 0,
+        GetStringFromIndex(GetClassData(classID)->nameTextId)); // Class name
+    StartUiSMS(GetClassData(classID)->SMSId, 0);
     x = 2;
     y = 12;
     int val;
@@ -1539,6 +1562,7 @@ void DrawUiFrame(u16 * tilemap, int x, int y, int width, int height, int tilebas
 extern void UnpackUiWindowFrameImg2(int style);
 extern void ApplyUiWindowFramePal(int pal);
 
+#ifndef FE8
 u16 * const BgTilemapBuffers[] = {
     gBG0TilemapBuffer,
     gBG1TilemapBuffer,
@@ -1554,6 +1578,9 @@ u16 * BG_GetMapBuffer(int bg)
     }
     return BgTilemapBuffers[bg];
 }
+#else
+extern u16 * BG_GetMapBuffer(int bg);
+#endif
 
 void DrawFilterCharPage(ConfigMenuProc * proc);
 void DrawFilterClassPage(ConfigMenuProc * proc);
@@ -2226,14 +2253,33 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
     }
     pidStats->newCharID = startingID - 1; // should never reach this
 }
-
+#define reviseOldCharIdOption 0
+#define reviseNewCharIdOption 1
+#define reviseHPOption 2
+#define reviseStrOption 3
+#define reviseSklOption 4
+#define reviseSpdOption 5
+#define reviseDefOption 6
+#define reviseResOption 7
+#define reviseLckOption 8
+#define reviseMagOption 9
+#define reviseClassIdOption 10
+#define reviseGameIdOption 11
 void LoopReviseCharPage(ConfigMenuProc * proc)
 {
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
     int charID = GetReviseCharID(proc);
-    // struct RecruitmentProc* proc1 = Proc_Find(RecruitmentProcCmd1);
-    // struct RecruitmentProc* proc5 = Proc_Find(RecruitmentProcCmd5);
+    struct FE8CharacterData * table = (struct FE8CharacterData *)GetCharacterData(charID);
+    table = (struct FE8CharacterData *)GetReorderedCharacter((struct CharacterData *)table);
     struct PidStatsChar * pidStats = GetPidStatsSafe(charID);
+    int classID = GetCharOverwrittenClassID(pidStats);
+    if (!classID)
+    {
+        classID = table->defaultClass;
+    }
+    ForceSyncUnitSpriteSheet();
+    PutUnitSpriteForClassId(0, 212, 138, 0xC800, classID);
+
     if (keys & (B_BUTTON | A_BUTTON) || !pidStats)
     {
         Proc_Goto(proc, PreviewCharLabel);
@@ -2252,13 +2298,19 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 
     int tmp = 0;
     int changed = false;
-
-    if (keys & (DPAD_UP | DPAD_DOWN))
+    if (keys & DPAD_UP)
     {
-        proc->changingGame ^= 1;
+        proc->reviseMenuId--;
+        proc->reviseMenuId = Mod((u32)proc->reviseMenuId, 12);
+    }
+    if (keys & DPAD_DOWN)
+    {
+        proc->reviseMenuId++;
+        proc->reviseMenuId = Mod((u32)proc->reviseMenuId, 12);
     }
 
-    if (proc->changingGame)
+    int menuID = proc->reviseMenuId;
+    if (menuID == reviseNewCharIdOption)
     {
         if (keys & DPAD_LEFT)
         {
@@ -2279,7 +2331,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
             DrawReviseCharPage(proc);
         }
     }
-    else
+    if (menuID == reviseGameIdOption)
     {
         if (keys & DPAD_LEFT)
         {
@@ -2298,15 +2350,55 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
             DrawReviseCharPage(proc);
         }
     }
+    changed = false;
 
-    if (proc->changingGame)
-    {
-        DisplayVertUiHand(144, 136);
-    }
-    else
-    {
-        DisplayVertUiHand(175, 88);
-    }
+    // clang-format off
+
+    int dir = (keys & DPAD_LEFT) ? -1 : 0;
+    dir |= (keys & DPAD_RIGHT) ? 1 : 0;
+
+
+    switch (menuID) { 
+
+        case reviseOldCharIdOption: { ; break; } 
+        case reviseNewCharIdOption: { ; break; } 
+        case reviseHPOption  : { pidStats->hpGrowth  += dir; changed = true; break; } 
+        case reviseStrOption : { pidStats->powGrowth += dir; changed = true; break; } 
+        case reviseSklOption : { pidStats->sklGrowth += dir; changed = true; break; } 
+        case reviseSpdOption : { pidStats->spdGrowth += dir; changed = true; break; } 
+        case reviseDefOption : { pidStats->defGrowth += dir; changed = true; break; } 
+        case reviseResOption : { pidStats->resGrowth += dir; changed = true; break; } 
+        case reviseLckOption : { pidStats->lckGrowth += dir; changed = true; break; } 
+        case reviseMagOption : { pidStats->magGrowth += dir; changed = true; break; } 
+        case reviseClassIdOption : { pidStats->forcedClass += dir; changed = true; break; } 
+        case reviseGameIdOption : { ; break; } 
+        default: 
+    } 
+
+    if (dir) { 
+    DrawReviseCharPage(proc);
+    } 
+
+
+    switch (menuID) { 
+
+        case reviseOldCharIdOption: { DisplayUiHand(40, 80); break; } 
+        case reviseNewCharIdOption: { DisplayUiHand(160, 80); break; } 
+        case reviseHPOption  : { DisplayUiHand(42, 96); break; } 
+        case reviseStrOption : { DisplayUiHand(98, 96); break; } 
+        case reviseSklOption : { DisplayUiHand(154, 96); break; } 
+        case reviseSpdOption : { DisplayUiHand(210, 96); break; } 
+        case reviseDefOption : { DisplayUiHand(42, 112); break; } 
+        case reviseResOption : { DisplayUiHand(98, 112); break; } 
+        case reviseLckOption : { DisplayUiHand(154, 112); break; } 
+        case reviseMagOption : { DisplayUiHand(210, 112); break; } 
+        case reviseClassIdOption : { DisplayUiHand(104, 128); break; } 
+        case reviseGameIdOption : { DisplayUiHand(36, 140); break; } 
+        default: 
+    } 
+
+// clang-format on 
+
 }
 
 void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
@@ -5197,9 +5289,9 @@ inline int IsUnitAlliedOrPlayable(struct Unit * unit)
 {
     int result = false;
     int uid = unit->pCharacterData->number;
-    if (UNIT_FACTION(unit) != FACTION_RED)
+    if (UNIT_FACTION(unit) == FACTION_RED)
     {
-        return true;
+        return false;
     }
 #ifdef FE6
     if (uid < 0x45)
@@ -7975,11 +8067,6 @@ extern const u8 earlyPossibleThieves[];
 int IsUnitEarlygame(struct Unit * unit)
 {
     int uid = unit->pCharacterData->number;
-    int allegiance = (unit->index & 0xFF) >> 6;
-    if (allegiance && (uid > 0x46))
-    {
-        return false;
-    }
     u32 tags = 0;
     // tags = TagValues->tags.earlyThief | TagValues->tags.earlyHealer | TagValues->tags.earlyFlier;
     tags |= ClassTags->tags.earlyThief | ClassTags->tags.earlyHealer | ClassTags->tags.earlyFlier;
@@ -8023,6 +8110,22 @@ extern u8 FlierClass;
 
 void ForceEarlygameClasses(struct Unit * unit, int * noise, int offset)
 {
+    if (!IsUnitAlliedOrPlayable(unit))
+    {
+        return;
+    }
+
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    if (pidStats)
+    {
+        int classID = GetCharOverwrittenClassID(pidStats);
+        if (classID)
+        {
+            unit->pClassData = GetClassData(classID);
+            return;
+        }
+    }
+
     if (!IsUnitEarlygame(unit))
     {
         return;
@@ -11410,7 +11513,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
 
         proc->previewPage = 0;
         proc->previewId = 0;
-        proc->changingGame = 0;
+        proc->reviseMenuId = 0;
         proc->globalChecksum = 0;
         proc->id = 1;
         proc->calledFromChapter = false;
@@ -12802,7 +12905,7 @@ void NewDisplayPage0(void)
 }
 #endif
 
-u16 const gDefaultShopInventory[] = {
+u16 const gNewDefaultShopInventory[] = {
     VULNERARY, IRON_SWORD, IRON_LANCE, IRON_AXE, IRON_BOW, FIRE, LIGHT, FLUX, HEAL, 0, 0,
 };
 
@@ -12860,7 +12963,7 @@ void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr p
     }
     proc->unit = unit;
 
-    shopItems = gDefaultShopInventory;
+    shopItems = gNewDefaultShopInventory;
     if (inventory != 0)
     {
         shopItems = inventory;

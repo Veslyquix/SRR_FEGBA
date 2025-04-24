@@ -221,6 +221,7 @@ SET_FUNC PidStatsGetTotalLevel, 0x8084d35
 
 .endif 
 .if FE7 == true 
+@ SET_FUNC StartUiSMS, 0x80266f1 
 SET_FUNC PidStatsAddActAmt, 0x809FF6D
 SET_FUNC PidStatsAddStatViewAmt, 0x80A91D1 
 SET_FUNC PidStatsAddDeployAmt, 0x809FFED
@@ -418,6 +419,7 @@ SET_FUNC HbPopulate_SSCharacter, 0x80816FD
 
 .endif 
 .if FE8 == true 
+SET_FUNC StartUiSMS, 0x80266f1
 SET_FUNC UnpackUiWindowFrameImg2, 0x804E169
 SET_FUNC ApplyUiWindowFramePal, 0x804E0A9
 SET_DATA pPromoJidLut, 0x80cc7d0 
