@@ -521,6 +521,37 @@ enum
     CA_TRIANGLEATTACK_ANY = CA_TRIANGLEATTACK_ARMORS | CA_TRIANGLEATTACK_PEGASI,
 };
 
+    // #ifdef FE6 
+    // u8 skills[2];
+    // #else 
+    // u8 skills[4]; 
+    // #endif 
+
+struct PidStatsChar // total size 0x10 
+{
+    u8 lossAmt : 8; 
+    u8 skills[3]; 
+    u32 skill4 : 8; 
+    u32 deathLoc : 6; // should be bit 40
+    u32 hpGrowth : 4; 
+    u32 powGrowth : 4; 
+    u32 sklGrowth : 4; 
+    u32 spdGrowth : 4; 
+    u32 defGrowth : 4; 
+    u32 resGrowth : 4; 
+    u32 lckGrowth : 4; 
+    u32 magGrowth : 4; 
+    u32 deployAmt : 6;
+    u32 pad : 4; 
+	u32 winAmt    : 10; // should be bit 088 
+	u32 battleAmt : 12;
+    u32 forcedClass : 8; 
+    u32 selected     : 1;
+    u32 deathSkirm  : 1; // should be bit 119 
+    u32 moveAmt : 8; 
+}BITPACKED; 
+
+/*
 #ifdef FE6 
 struct PidStatsChar
 {
@@ -541,24 +572,26 @@ struct PidStatsChar
 }BITPACKED;
 #else 
     struct PidStatsChar {
-    /* 000 */ unsigned lossAmt     : 8;
-    /* 008 */ unsigned favval      : 16;
-    /* 024 */ unsigned actAmt      : 8;
-    /* 032 */ unsigned statViewAmt : 8;
-    /* 040 */ unsigned deathLoc    : 6;
-    /* 046 */ unsigned deathTurn   : 10;
-    /* 056 */ unsigned deployAmt   : 6;
-    /* 062 */ unsigned moveAmt     : 9;
-    /* 062 */ unsigned selected     : 1;
-    /* 072 */ unsigned deathCause  : 4;
-    /* 076 */ unsigned expGained   : 12;
-    /* 088 */ unsigned winAmt      : 10;
-    /* 098 */ unsigned battleAmt   : 12;
-    /* 110 */ unsigned killerPid   : 9;
-    /* 119 */ unsigned deathSkirm  : 1;
-    /* 120 */ /* 8bit pad */
+     unsigned lossAmt     : 8;    // 000 
+     unsigned favval      : 16;   // 008 
+     unsigned actAmt      : 8;    // 024 
+     unsigned statViewAmt : 8;    // 032 
+     unsigned deathLoc    : 6;    // 040 
+     unsigned deathTurn   : 10;   // 046 
+     unsigned deployAmt   : 6;    // 056 
+     unsigned moveAmt     : 9;    // 062 
+     unsigned selected     : 1;   // 062 
+     unsigned deathCause  : 4;    // 072 
+     unsigned expGained   : 12;   // 076 
+     unsigned winAmt      : 10;   // 088 
+     unsigned battleAmt   : 12;   // 098 
+     unsigned killerPid   : 9;    // 110 
+     unsigned deathSkirm  : 1;    // 119 
+     // 8bit pad                // 120 
 }BITPACKED; 
 #endif 
+*/
+
 struct UnitUsageStats* GetPidStats(u8 pid);
 
 int GetUnitMaxHp(struct Unit* unit); // 8018AB0

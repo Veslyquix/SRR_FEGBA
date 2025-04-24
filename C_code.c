@@ -13638,3 +13638,83 @@ void EndCloudsEffect(void)
     gLCDControlBuffer.dispcnt.bg3_on = 0;
     CloudsFx_OnEnd();
 }
+
+void PidStatsAddActAmt(u8 pid)
+{
+}
+
+void PidStatsAddStatViewAmt(u8 pid)
+{
+}
+
+void PidStatsAddDeployAmt(u8 pid)
+{
+}
+
+void PidStatsAddSquaresMoved(u8 pid, int amount)
+{
+}
+
+void PidStatsAddExpGained(u8 pid, int expGain)
+{
+}
+
+void PidStatsSubFavval08(u8 pid)
+{
+}
+
+void PidStatsSubFavval100(u8 pid)
+{
+}
+
+int PidStatsGetTotalLevel(void)
+{
+    return 1;
+}
+
+int PidStatsGetTotalExpGain(void)
+{
+    return 0;
+}
+
+int PidStatsGetExpGain(u8 pid)
+{
+    return 0;
+}
+
+int PidStatsGetFavval(u8 pid)
+{
+    return 0;
+}
+
+void PidStatsAddFavval(u8 pid, int val)
+{
+}
+
+void PidStatsRecordDefeatInfo(u8 pid, u8 killerPid, int deathCause)
+{
+    int type;
+    struct UnitUsageStats * bwl = GetPidStats(pid);
+    if (NULL == bwl)
+        return;
+
+    type = GetBattleMapKind();
+    switch (type)
+    {
+        case BATTLEMAP_KIND_SKIRMISH:
+            bwl->deathSkirm = true;
+            bwl->deathLoc = gGMData.units[0].location;
+            break;
+
+        case BATTLEMAP_KIND_STORY:
+        case BATTLEMAP_KIND_DUNGEON:
+        default:
+            bwl->deathSkirm = false;
+            bwl->deathLoc = gPlaySt.chapterIndex;
+            break;
+    }
+
+    // bwl->deathTurn = gPlaySt.chapterTurnNumber;
+    // bwl->killerPid = killerPid;
+    // bwl->deathCause = deathCause;
+}
