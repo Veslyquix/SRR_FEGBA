@@ -888,8 +888,14 @@ void IncrementCharPreviewPage(ConfigMenuProc * proc)
     {
         proc->previewPage = 0;
     }
+}
+
+void IncrementAndDrawCharPreviewPage(ConfigMenuProc * proc)
+{
+    IncrementCharPreviewPage(proc);
     DrawCharConfirmPage(proc);
 }
+
 void DecrementCharPreviewPage(ConfigMenuProc * proc)
 {
     // int id = proc->previewPage;
@@ -900,8 +906,13 @@ void DecrementCharPreviewPage(ConfigMenuProc * proc)
         proc->previewPage = MaxCharPreviewID / NumberOfCharsPerPage -
             ((GetReviseCharByID(MaxCharPreviewID) - (MaxCharPreviewID - 6)) / NumberOfCharsPerPage);
     }
+}
+void DecrementAndDrawCharPreviewPage(ConfigMenuProc * proc)
+{
+    DecrementCharPreviewPage(proc);
     DrawCharConfirmPage(proc);
 }
+
 #define NumberOfOptions_CharPreview 12
 #define RerollCommandID 4
 #define ResetPageCommandID 5
@@ -1090,11 +1101,11 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     {
         if (keys & DPAD_RIGHT)
         {
-            IncrementCharPreviewPage(proc);
+            IncrementAndDrawCharPreviewPage(proc);
         }
         if (keys & DPAD_LEFT)
         {
-            DecrementCharPreviewPage(proc);
+            DecrementAndDrawCharPreviewPage(proc);
         }
     }
     else
@@ -1370,7 +1381,7 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     int maxWidth = 6;
     int x = 4;
     int y = 10;
-    // EndFaceById(0);
+    EndFaceById(0);
     for (int i = 0; i < 15; ++i)
     {
         InitText(gStatScreen.text + i, 8);
@@ -2281,7 +2292,169 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
 #define reviseMagOption 9
 #define reviseClassIdOption 10
 #define reviseGameIdOption 11
+inline int IsClassInvalid(int i)
+{
+    return ClassExceptions[i].NeverChangeInto;
+}
 int GetMaxClasses(void);
+void SetNextClass(struct PidStatsChar * pidStats, int dir)
+{
+    int classID = pidStats->forcedClass;
+    if (!dir)
+    {
+        return;
+    }
+    // dir is either +1 or -1
+    if (!(classID + dir))
+    {
+        pidStats->forcedClass = 0; // compiler reasons?? can remove later
+        // return;
+    } // so we can return to our vanilla class
+
+    int max = GetMaxClasses();
+    const struct ClassData * table;
+    int prevName = 0;
+    int curName = 0;
+    int prevSMS = 0;
+    int curSMS = 0;
+
+    if (dir > 0)
+    {
+        for (int i = classID + 1; i < max; i++)
+        {
+            table = GetClassData(i);
+            prevName = curName;
+            curName = table->nameTextId;
+            prevSMS = curSMS;
+            curSMS = table->SMSId;
+            if (curName)
+            {
+                if ((curName == prevName) && (curSMS == prevSMS))
+                {
+                    continue;
+                } // ignore duplicate classes (same name / same SMS in a row)
+            }
+            else
+            { // skip classes that have no name
+                continue;
+            }
+            if (IsClassInvalid(i))
+            {
+                continue;
+            }
+            pidStats->forcedClass = i;
+            return;
+        }
+        for (int i = 0; i < classID; i++)
+        {
+            table = GetClassData(i);
+            prevName = curName;
+            curName = table->nameTextId;
+            prevSMS = curSMS;
+            curSMS = table->SMSId;
+            if (curName)
+            {
+                if ((curName == prevName) && (curSMS == prevSMS))
+                {
+                    continue;
+                } // ignore duplicate classes (same name / same SMS in a row)
+            }
+            else
+            { // skip classes that have no name
+                continue;
+            }
+            if (IsClassInvalid(i))
+            {
+                continue;
+            }
+            pidStats->forcedClass = i;
+            return;
+        }
+    }
+    else
+    {
+        for (int i = classID - 1; i >= 0; i--)
+        {
+            table = GetClassData(i);
+            prevName = curName;
+            curName = table->nameTextId;
+            prevSMS = curSMS;
+            curSMS = table->SMSId;
+            if (curName)
+            {
+                if ((curName == prevName) && (curSMS == prevSMS))
+                {
+                    continue;
+                } // ignore duplicate classes (same name / same SMS in a row)
+            }
+            else
+            { // skip classes that have no name
+                continue;
+            }
+            if (IsClassInvalid(i))
+            {
+                continue;
+            }
+            pidStats->forcedClass = i;
+            return;
+        }
+        for (int i = max; i > classID; i--)
+        {
+            table = GetClassData(i);
+            prevName = curName;
+            curName = table->nameTextId;
+            prevSMS = curSMS;
+            curSMS = table->SMSId;
+            if (curName)
+            {
+                if ((curName == prevName) && (curSMS == prevSMS))
+                {
+                    continue;
+                } // ignore duplicate classes (same name / same SMS in a row)
+            }
+            else
+            { // skip classes that have no name
+                continue;
+            }
+            if (IsClassInvalid(i))
+            {
+                continue;
+            }
+            pidStats->forcedClass = i;
+            return;
+        }
+    }
+
+    // for (u8 i = classID + dir; (((i & 0xFF) < max) && (i >= 0)); i += dir)
+    // {
+    // if (i & 0xFF)
+    // {
+    // table = GetClassData(i & 0xFF);
+    // prevName = curName;
+    // curName = table->nameTextId;
+    // prevSMS = curSMS;
+    // curSMS = table->SMSId;
+    // if (curName)
+    // {
+    // if ((curName == prevName) && (curSMS == prevSMS))
+    // {
+    // continue;
+    // } // ignore duplicate classes (same name / same SMS in a row)
+    // }
+    // else
+    // { // skip classes that have no name
+    // continue;
+    // }
+    // if (IsClassInvalid(i & 0xFF))
+    // {
+    // continue;
+    // }
+    // }
+    // pidStats->forcedClass = i & 0xFF;
+    // break;
+    // }
+}
+
 void LoopReviseCharPage(ConfigMenuProc * proc)
 {
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
@@ -2373,6 +2546,42 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
             DrawReviseCharPage(proc);
         }
     }
+
+    // u8 base_charID[11] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8, 4 };
+    // Get the next or previous id that corresponds with +1 / -1
+    // 3rd entry is 2, +1 is 3
+    // so
+
+    if (menuID == reviseOldCharIdOption)
+    {
+        if (keys & DPAD_LEFT)
+        {
+            tmp = proc->previewId - 1;
+            if (tmp < 0)
+            {
+                tmp = NumberOfCharsPerPage;
+                DecrementCharPreviewPage(proc);
+            }
+            proc->previewId = tmp;
+            changed = true;
+        }
+        else if (keys & DPAD_RIGHT)
+        {
+            tmp = proc->previewId + 1;
+            if (tmp > NumberOfCharsPerPage)
+            {
+                tmp = 0;
+                IncrementCharPreviewPage(proc);
+            }
+            proc->previewId = tmp;
+            changed = true;
+        }
+
+        if (changed)
+        {
+            DrawReviseCharPage(proc);
+        }
+    }
     changed = false;
 
     // clang-format off
@@ -2393,8 +2602,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         case reviseResOption : { pidStats->resGrowth += dir; changed = true; break; } 
         case reviseLckOption : { pidStats->lckGrowth += dir; changed = true; break; } 
         case reviseMagOption : { pidStats->magGrowth += dir; changed = true; break; } 
-        case reviseClassIdOption : { pidStats->forcedClass += dir; 
-            if (!pidStats->forcedClass) { pidStats->forcedClass = 1; } changed = true; break; } 
+        case reviseClassIdOption : { SetNextClass(pidStats, dir); changed = true; break; } 
         case reviseGameIdOption : { ; break; } 
         default: 
     } 
@@ -4727,10 +4935,7 @@ int MaybeRandomizeColours(void)
     return result;
 }
 
-inline int IsClassInvalid(int i)
-{
-    return ClassExceptions[i].NeverChangeInto;
-}
+
 int ShouldRandomizeGrowth(struct Unit * unit)
 {
     if ((!RandBitflags->growth) && (!RandBitflags->grow50))
