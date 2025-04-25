@@ -1346,7 +1346,7 @@ int GetCharOverwrittenClassID(struct PidStatsChar * pidStats)
     return pidStats->forcedClass;
 }
 
-// #define ReviseChar_MapSprites
+#define ReviseChar_MapSprites
 #ifdef ReviseChar_MapSprites
 extern void SetupMapSpritesPalettes(void); // ApplyUnitSpritePalettes
 extern int StartUiSMS(int smsId, int frameId);
