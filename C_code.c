@@ -1346,14 +1346,14 @@ int GetCharOverwrittenClassID(struct PidStatsChar * pidStats)
     return pidStats->forcedClass;
 }
 
-#define ReviseChar_MapSprites
+// #define ReviseChar_MapSprites
 #ifdef ReviseChar_MapSprites
-extern void SetupMapSpritesPalettes(void); // ApplyUnitSpritePalettes
-extern int StartUiSMS(int smsId, int frameId);
-extern void ResetUnitSprites(void);
-extern void ResetUnitSpriteHover(void);
-extern void ForceSyncUnitSpriteSheet(void);
-extern void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int class);
+void SetupMapSpritesPalettes(void);      // ApplyUnitSpritePalettes
+int SMS_80266F0(int smsId, int frameId); // StartUiSMS
+void ResetUnitSprites(void);
+void ResetUnitSpriteHover(void);
+void ForceSyncUnitSpriteSheet(void);
+void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int class);
 #endif
 
 void DrawReviseCharPage(ConfigMenuProc * proc)
@@ -1361,7 +1361,6 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     // GetReorderedCharacter(GetCharacterData(1));
     int charID = GetReviseCharID(proc);
     ResetText();
-
 #ifdef ReviseChar_MapSprites
     ResetUnitSprites();
     ResetUnitSpriteHover();
@@ -1430,7 +1429,7 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
         GetStringFromIndex(GetClassData(classID)->nameTextId)); // Class name
 
 #ifdef ReviseChar_MapSprites
-    StartUiSMS(GetClassData(classID)->SMSId, 0);
+    SMS_80266F0(GetClassData(classID)->SMSId, 0);
 #endif
     x = 2;
     y = 12;

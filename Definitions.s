@@ -419,7 +419,7 @@ SET_FUNC HbPopulate_SSCharacter, 0x80816FD
 
 .endif 
 .if FE8 == true 
-SET_FUNC StartUiSMS, 0x80266f1
+@SET_FUNC StartUiSMS, 0x80266f1
 SET_FUNC UnpackUiWindowFrameImg2, 0x804E169
 SET_FUNC ApplyUiWindowFramePal, 0x804E0A9
 SET_DATA pPromoJidLut, 0x80cc7d0 
