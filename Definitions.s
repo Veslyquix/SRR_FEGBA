@@ -217,11 +217,22 @@ SET_FUNC PidStatsAddExpGained, 0x8084c85
 @ 08084d1c T PidStatsCountTotalLosses	/Users/laqieer/Projects/FEHRR/include/decomp/src/save_stats.c:302
 SET_FUNC PidStatsGetTotalLevel, 0x8084d35 
 @ 08084d64 T PidStatsUpdateFromBattleOutcome	/Users/laqieer/Projects/FEHRR/include/decomp/src/save_stats.c:322
-
+SET_FUNC SetupMapSpritesPalettes, 0x8021B99 
+SET_FUNC ResetUnitSprites, 0x8021BD1 
+SET_FUNC ResetUnitSpriteHover, 0x8022629  
+SET_FUNC ForceSyncUnitSpriteSheet, 0x8021FE9   
+SET_FUNC PutBlendWindowUnitSprite, 0x8022941 
+SET_FUNC UseUnitSprite, 0x8021C39 
+SET_FUNC func_fe6_08022A2C, 0x8022A2D 
 
 .endif 
 .if FE7 == true 
-@ SET_FUNC StartUiSMS, 0x80266f1 
+SET_FUNC PutUnitSpriteForClassId, 0x802619D   
+SET_FUNC ForceSyncUnitSpriteSheet, 0x8025581   
+SET_FUNC ResetUnitSpriteHover, 0x8025F9D  
+SET_FUNC ResetUnitSprites, 0x8024CF9  
+SET_FUNC StartUiSMS, 0x8024D61 
+SET_FUNC SetupMapSpritesPalettes, 0x8024C99 
 SET_FUNC PidStatsAddActAmt, 0x809FF6D
 SET_FUNC PidStatsAddStatViewAmt, 0x80A91D1 
 SET_FUNC PidStatsAddDeployAmt, 0x809FFED
@@ -419,7 +430,7 @@ SET_FUNC HbPopulate_SSCharacter, 0x80816FD
 
 .endif 
 .if FE8 == true 
-@SET_FUNC StartUiSMS, 0x80266f1
+SET_FUNC StartUiSMS, 0x80266f1
 SET_FUNC UnpackUiWindowFrameImg2, 0x804E169
 SET_FUNC ApplyUiWindowFramePal, 0x804E0A9
 SET_DATA pPromoJidLut, 0x80cc7d0 

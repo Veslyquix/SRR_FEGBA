@@ -25,7 +25,7 @@ CFLAGS := $(ARCH) -Wall -mtune=arm7tdmi -O2 -mlong-calls
 %.lyn.event: %.o *.c
 	$(MAKE) $(dir $<)FE8_defs.o
 	$(LYN) "$<" "$(dir $<)FE8_defs.o" > "$@"
-	rm $(dir $<)FE8_defs.o
+	
 	
 # ASM to OBJ
 %.o: %.s *.s

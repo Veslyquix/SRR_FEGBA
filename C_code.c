@@ -1357,14 +1357,17 @@ int GetCharOverwrittenClassID(struct PidStatsChar * pidStats)
     return pidStats->forcedClass;
 }
 
-// #define ReviseChar_MapSprites
+#define ReviseChar_MapSprites
 #ifdef ReviseChar_MapSprites
-void SetupMapSpritesPalettes(void);      // ApplyUnitSpritePalettes
-int SMS_80266F0(int smsId, int frameId); // StartUiSMS
+void SetupMapSpritesPalettes(void); // ApplyUnitSpritePalettes
+int StartUiSMS(int smsId, int frameId);
+int UseUnitSprite(int smsId);
+void func_fe6_08022A2C(void);
 void ResetUnitSprites(void);
 void ResetUnitSpriteHover(void);
 void ForceSyncUnitSpriteSheet(void);
 void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int class);
+void PutBlendWindowUnitSprite(int layer, int x, int y, u16 oam2, struct Unit * unit);
 #endif
 
 void DrawReviseCharPage(ConfigMenuProc * proc)
@@ -1440,7 +1443,12 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
         GetStringFromIndex(GetClassData(classID)->nameTextId)); // Class name
 
 #ifdef ReviseChar_MapSprites
-    SMS_80266F0(GetClassData(classID)->SMSId, 0);
+#ifdef FE6
+    func_fe6_08022A2C();
+    UseUnitSprite(GetClassData(classID)->SMSId);
+#else
+    StartUiSMS(GetClassData(classID)->SMSId, 0);
+#endif
 #endif
     x = 2;
     y = 12;
@@ -1454,10 +1462,10 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
         }
 
         PutDrawText(
-            gStatScreen.text + i + 7, TILEMAP_LOCATED(gBG0TilemapBuffer, x + Mod(i, 4) * 7, y + Div(i, 4) * 2), blue, 0,
-            0, (void *)growth_names[i + 2]);
+            gStatScreen.text + i + 7, TILEMAP_LOCATED(gBG0TilemapBuffer, x + Mod(i, 4) * 7, y + Div1(i, 4) * 2), blue,
+            0, 0, (void *)growth_names[i + 2]);
         PutNumber(
-            TILEMAP_LOCATED(gBG0TilemapBuffer, x + 5 + Mod(i, 4) * 7, y + Div(i, 4) * 2),
+            TILEMAP_LOCATED(gBG0TilemapBuffer, x + 5 + Mod(i, 4) * 7, y + Div1(i, 4) * 2),
             (GetCharOverwrittenGrowth(i, pidStats) < 0) ? white : gold, val);
     }
     // SetFaceBlinkControlById(0, 5);
@@ -2304,12 +2312,6 @@ void SetNextClass(struct PidStatsChar * pidStats, int dir)
     {
         return;
     }
-    // dir is either +1 or -1
-    if (!(classID + dir))
-    {
-        pidStats->forcedClass = 0; // compiler reasons?? can remove later
-        // return;
-    } // so we can return to our vanilla class
 
     int max = GetMaxClasses();
     const struct ClassData * table;
@@ -2467,8 +2469,16 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     {
         classID = table->defaultClass;
     }
-#ifdef ReviseChar_MapSprites
+
     ForceSyncUnitSpriteSheet();
+#ifdef FE6
+    struct Unit unit;
+    unit.pCharacterData = (void *)table;
+    unit.pClassData = GetClassData(classID);
+    unit.xPos = 0;
+    unit.yPos = 0;
+    PutBlendWindowUnitSprite(0, 212, 138, 0xC800, &unit);
+#else
     PutUnitSpriteForClassId(0, 212, 138, 0xC800, classID);
 #endif
 
@@ -2523,6 +2533,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         if (changed)
         {
             pidStats->selected = true;
+            pidStats->forcedClass = 0;
 
             DrawReviseCharPage(proc);
         }
@@ -2543,6 +2554,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         if (changed)
         {
             pidStats->selected = true;
+            pidStats->forcedClass = 0;
             DrawReviseCharPage(proc);
         }
     }
@@ -2557,6 +2569,10 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         if (keys & DPAD_LEFT)
         {
             tmp = proc->previewId - 1;
+            if (tmp == 5)
+            {
+                tmp = 4;
+            }
             if (tmp < 0)
             {
                 tmp = NumberOfCharsPerPage;
@@ -2568,6 +2584,10 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         else if (keys & DPAD_RIGHT)
         {
             tmp = proc->previewId + 1;
+            if (tmp == 5)
+            {
+                tmp = 6;
+            }
             if (tmp > NumberOfCharsPerPage)
             {
                 tmp = 0;
