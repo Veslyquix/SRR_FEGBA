@@ -54,15 +54,17 @@ Reclass(CursedSword, LivingArmor, Djinn, SupplierAnna)
 ReclassEx(AlmT1, IkeRanger, LeifLord, EirikaLord, EphraimLord) // some of these classes do not reclass back into the same group, so ReclassEx is used 
 ReclassEx(IkeRanger, AlmT1, LeifLord, EirikaLord, EphraimLord)
 ReclassEx(LeifLord, AlmT1, IkeRanger, EirikaLord, EphraimLord)
-ReclassEx(Arcanist, Miko, RedMage, BlackDragon)
-ReclassEx(Miko, Arcanist, RedMage, BlackDragon)
+ReclassEx(Arcanist2, Miko, RedMage,RedMage2 )
+ReclassEx(Miko, Arcanist2, RedMage, RedMage2)
 
-Reclass(DarkPrince, Cantor, Magician, Occultist, Pupil2)
+Reclass(DarkPrince, Cantor,Occultist, Pupil2)
 Reclass(RedMage, RedMage2, Tactician2)
 Reclass(Brighid, FlailKnight, Mercenary2, WarCleric, Phantom)
-Reclass(AlmT2, IkeRanger, SeliphLord)
-Reclass(Slime, Witch, Tome, BlackDragon)
-Reclass(MerlinusTransport, Hunter, Adventurer, MarthLord, AlmT1)
+Reclass(AlmT2, IkeLord, SeliphLord)
+Reclass(Slime, Witch, Tome,Magician)
+Reclass(MerlinusTransport, Hunter, Adventurer)
+
+Reclass(Dancer2,GaidenPriestess,MagicSeal2,Parson,Ninjas)
 
 Reclass(Angel, DreadFighter, Warbird, Adventurer, GrandMahout)
 Reclass(Revenant, Bonewalker, Bonewalker_Bow)
@@ -71,7 +73,6 @@ Reclass(Bael, Cyclops, Mauthedoog)
 Reclass(ElderBael, Gwyllgi)
 Reclass(Gorgon, Gargoyle, Mogall, Tarvos)
 Reclass(Maelduin, ArchMogall, Deathgoyle)
-
 
 
 
