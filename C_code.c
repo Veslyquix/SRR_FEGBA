@@ -5823,7 +5823,6 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
             list[1] = DefaultClassID_VanillaOnly; // Soldier
         }
     }
-
     return list;
 }
 
@@ -5845,7 +5844,7 @@ int RandClass(int id, int noise[], struct Unit * unit)
     // if (allegiance && (id == 0x3C)) { return id; }
     u8 list[255];
     list[0] = 99;
-    int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes) & CA_PROMOTED;
+    int promotedBitflag = ((unit->pCharacterData->attributes | GetClassData(id)->attributes) & CA_PROMOTED) != 0;
 
     BuildAvailableClassList(list, promotedBitflag, allegiance);
 
@@ -5877,8 +5876,7 @@ int RandClass2(int id, u8 noise[], struct Unit * unit)
     // if (allegiance && (id == 0x3C)) { return id; }
     u8 list[255];
     list[0] = 99;
-    int promotedBitflag = (unit->pCharacterData->attributes | GetClassData(id)->attributes) & CA_PROMOTED;
-
+    int promotedBitflag = ((unit->pCharacterData->attributes | GetClassData(id)->attributes) & CA_PROMOTED) != 0;
     BuildAvailableClassList(list, promotedBitflag, allegiance);
     id = HashByte_Class(id, list[0] + 1, noise, 0);
     if (!id)
