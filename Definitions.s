@@ -224,9 +224,13 @@ SET_FUNC ForceSyncUnitSpriteSheet, 0x8021FE9
 SET_FUNC PutBlendWindowUnitSprite, 0x8022941 
 SET_FUNC UseUnitSprite, 0x8021C39 
 SET_FUNC func_fe6_08022A2C, 0x8022A2D 
+SET_FUNC ReadLastGameSaveId, 0x8084f95  
+SET_FUNC ReadGameSave, 0x80851b5  
 
 .endif 
 .if FE7 == true 
+SET_FUNC ReadGameSave, 0x80A08ED  
+SET_FUNC ReadLastGameSaveId, 0x80A05F5  
 SET_FUNC PutUnitSpriteForClassId, 0x802619D   
 SET_FUNC ForceSyncUnitSpriteSheet, 0x8025581   
 SET_FUNC ResetUnitSpriteHover, 0x8025F9D  

@@ -11748,118 +11748,11 @@ void InitDraw(ConfigMenuProc * proc)
 }
 extern void LoadHelpBoxGfx(void * vram, int palId);
 extern void StartGreenText(ProcPtr parent);
-ConfigMenuProc * StartConfigMenu(ProcPtr parent)
-{
-    LoadHelpBoxGfx(NULL, -1);
-    LoadObjUIGfx();
 
-    RecruitValues->pauseNameReplace = true;
-    ConfigMenuProc * proc;
-    if (parent)
-    {
-        proc = (ConfigMenuProc *)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent);
-    }
-    else
-    {
-        proc = (ConfigMenuProc *)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3);
-    }
-    if (proc)
-    {
-        for (int i = 0; i <= SRR_TotalOptions; i++)
-        {
-            proc->Option[i] = 0;
-        }
-        TagValues->raw = 0xFFFFDFFF;      // default: no civilians
-        ClassTags->raw = 0xFFFFDFFF;      // default
-        EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
-        // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
-        proc->helpBox = NULL;
-        proc->reloadPlayers = false;
-        proc->reloadEnemies = false;
-        if (!DefaultConfigToVanilla)
-        {
-            proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
-            // proc->Option[VarianceOption] = 10; // start on 50%
-            proc->Option[CharactersOption] = 1;
-            proc->Option[FromGameOption] = 0; // Fe8 game
-            proc->Option[BaseStatsOption] = 1;
-            proc->Option[GrowthsOption] = 1;
-            proc->Option[LevelupsOption] = 1;
-            proc->Option[StatCapsOption] = 1;
-            proc->Option[ClassOption] = 4;
-            proc->Option[ItemOption] = 1;
-            proc->Option[ModeOption] = 0;    // Classic
-            proc->Option[MusicOption] = 1;   // Random BGM
-            proc->Option[ColoursOption] = 0; // Random Colours off by default now
-        }
 
-        proc->previewPage = 0;
-        proc->previewId = 0;
-        proc->reviseMenuId = 0;
-        proc->globalChecksum = 0;
-        proc->id = 1;
-        proc->calledFromChapter = false;
-        proc->offset = 0;
-        proc->redraw = 0;
-        proc->clear = false;
-        proc->skill = GetNextAlwaysSkill(0);
-        proc->choosingSkill = 0;
-        proc->freezeSeed = false;
-        if (RandValues->seed)
-        {
-            proc->freezeSeed = true;
-        }
-        else
-        {
-            ClearPlayerBWL();
-        }
-        proc->seed = GetInitialSeed(2, proc);
-        proc->digit = 0;
-        StartGreenText(proc);
-        proc->Option[UiOption] = 3;       // ui default: pikmin style
-        proc->Option[DebuggerOption] = 1; // debugger
-        proc->Option[BGOption] = 0;       // BGs
-
-        proc->Option[TimedHitsOption] = 1; // timed hits
-#ifdef FORCE_SPECIFIC_SEED
-        proc->seed = 387508;
-        proc->freezeSeed = true;
-#endif
-    }
-    return proc;
-}
-
-enum MenuEffect
-{
-    //
-    ME_NONE = 0,
-
-    ME_DISABLE = (1 << 0),
-    ME_END = (1 << 1),
-    ME_PLAY_BEEP = (1 << 2),
-    ME_PLAY_BOOP = (1 << 3),
-    ME_CLEAR_GFX = (1 << 4),
-    ME_END_FACE0 = (1 << 5),
-    ME_END_AFTER = (1 << 7),
-};
-
-int MenuStartConfigMenu(ProcPtr parent)
-{
-    gLCDControlBuffer.dispcnt.bg0_on = 0;
-    gLCDControlBuffer.dispcnt.bg1_on = 0;
-    gLCDControlBuffer.dispcnt.bg2_on = 0;
-    gLCDControlBuffer.dispcnt.bg3_on = 0;
-    u32 tags = TagValues->raw;
-    u32 classtags = ClassTags->raw;
-    u32 enemyclasstags = EnemyClassTags->raw;
-
-    ConfigMenuProc * proc = StartConfigMenu(parent);
-    proc->calledFromChapter = true;
-
+void RestoreConfigOptions( ConfigMenuProc * proc) { 
     // pull up your previously saved options
-    TagValues->raw = tags;
-    ClassTags->raw = classtags;
-    EnemyClassTags->raw = enemyclasstags;
+
     proc->Option[VarianceOption] = RandValues->variance;
     proc->Option[CharactersOption] = RecruitValues->recruitment;
     proc->Option[FromGameOption] = GrowthValues->ForcedCharTable;
@@ -11939,6 +11832,175 @@ int MenuStartConfigMenu(ProcPtr parent)
         proc->Option[SkillsOption] = RandValues->skills;
         proc->skill = AlwaysSkill[0];
     }
+
+
+} 
+extern int ReadLastGameSaveId(void); 
+extern void ReadGameSave(int slot); 
+extern void ReadSuspendSave(int slot); 
+
+extern struct UnitUsageStats *gPidStatsSaveLoc;
+
+extern int ReadConfigFromSRAM;  
+extern void ReadPidStats(void *sram_src); 
+const int suspendPidStats = 0xE000370; 
+// 203e890 gPidStatsSaveLoc  203EA34
+
+
+extern void ClearPidStats(void); 
+// clang-format on 
+void SetDefaultTagValues(void) { 
+
+        TagValues->raw = 0xFFFFDFFF;      // default: no civilians
+        ClassTags->raw = 0xFFFFDFFF;      // default
+        EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
+        // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
+} 
+
+ConfigMenuProc * StartConfigMenu(ProcPtr parent); 
+ConfigMenuProc * StartConfigMenu_NewGame(ProcPtr parent)
+{
+    ConfigMenuProc * proc;
+    // ReadGameSave(ReadLastGameSaveId()); 
+    // ReadSuspendSave(ReadLastGameSaveId()); 
+    if (ReadConfigFromSRAM) { 
+        ReadPidStats((void*)suspendPidStats); 
+    } 
+    int tags = TagValues->raw; 
+    int classtags = ClassTags->raw; 
+    int enemyclasstags = EnemyClassTags->raw; 
+    
+    int isSuspendValid = (tags!=(-1)) && (classtags!=(-1)) && (enemyclasstags!=(-1));
+    
+    proc = StartConfigMenu(parent); 
+    if (isSuspendValid) { 
+        RestoreConfigOptions(proc); 
+        ClearPidStats(); 
+        TagValues->raw = tags;
+        ClassTags->raw = classtags;
+        EnemyClassTags->raw = enemyclasstags;
+        
+        proc->seed = 0; 
+    } 
+    else { 
+        ClearPidStats(); 
+        SetDefaultTagValues(); 
+    } 
+    
+    return proc; 
+} 
+
+ConfigMenuProc * StartConfigMenu(ProcPtr parent)
+{
+    LoadHelpBoxGfx(NULL, -1);
+    LoadObjUIGfx();
+
+    RecruitValues->pauseNameReplace = true;
+    ConfigMenuProc * proc;
+    if (parent)
+    {
+        proc = (ConfigMenuProc *)Proc_StartBlocking((ProcPtr)&ConfigMenuProcCmd, parent);
+    }
+    else
+    {
+        proc = (ConfigMenuProc *)Proc_Start((ProcPtr)&ConfigMenuProcCmd, PROC_TREE_3);
+    }
+    if (proc)
+    {
+        for (int i = 0; i <= SRR_TotalOptions; i++)
+        {
+            proc->Option[i] = 0;
+        }
+        SetDefaultTagValues(); 
+        
+        proc->helpBox = NULL;
+        proc->reloadPlayers = false;
+        proc->reloadEnemies = false;
+        if (!DefaultConfigToVanilla)
+        {
+            proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
+            // proc->Option[VarianceOption] = 10; // start on 50%
+            proc->Option[CharactersOption] = 1;
+            proc->Option[FromGameOption] = 0; // Fe8 game
+            proc->Option[BaseStatsOption] = 1;
+            proc->Option[GrowthsOption] = 1;
+            proc->Option[LevelupsOption] = 1;
+            proc->Option[StatCapsOption] = 1;
+            proc->Option[ClassOption] = 4;
+            proc->Option[ItemOption] = 1;
+            proc->Option[ModeOption] = 0;    // Classic
+            proc->Option[MusicOption] = 1;   // Random BGM
+            proc->Option[ColoursOption] = 0; // Random Colours off by default now
+        }
+
+        proc->previewPage = 0;
+        proc->previewId = 0;
+        proc->reviseMenuId = 0;
+        proc->globalChecksum = 0;
+        proc->id = 1;
+        proc->calledFromChapter = false;
+        proc->offset = 0;
+        proc->redraw = 0;
+        proc->clear = false;
+        proc->skill = GetNextAlwaysSkill(0);
+        proc->choosingSkill = 0;
+        proc->freezeSeed = false;
+        if (RandValues->seed)
+        {
+            proc->freezeSeed = true;
+        }
+        else
+        {
+            ClearPlayerBWL();
+        }
+        proc->seed = GetInitialSeed(2, proc);
+        proc->digit = 0;
+        StartGreenText(proc);
+        proc->Option[UiOption] = 3;       // ui default: pikmin style
+        proc->Option[DebuggerOption] = 1; // debugger
+        proc->Option[BGOption] = 0;       // BGs
+
+        proc->Option[TimedHitsOption] = 1; // timed hits
+#ifdef FORCE_SPECIFIC_SEED
+        proc->seed = 387508;
+        proc->freezeSeed = true;
+#endif
+    }
+    return proc;
+}
+
+enum MenuEffect
+{
+    //
+    ME_NONE = 0,
+
+    ME_DISABLE = (1 << 0),
+    ME_END = (1 << 1),
+    ME_PLAY_BEEP = (1 << 2),
+    ME_PLAY_BOOP = (1 << 3),
+    ME_CLEAR_GFX = (1 << 4),
+    ME_END_FACE0 = (1 << 5),
+    ME_END_AFTER = (1 << 7),
+};
+
+
+
+int MenuStartConfigMenu(ProcPtr parent)
+{
+    gLCDControlBuffer.dispcnt.bg0_on = 0;
+    gLCDControlBuffer.dispcnt.bg1_on = 0;
+    gLCDControlBuffer.dispcnt.bg2_on = 0;
+    gLCDControlBuffer.dispcnt.bg3_on = 0;
+    u32 tags = TagValues->raw;
+    u32 classtags = ClassTags->raw;
+    u32 enemyclasstags = EnemyClassTags->raw;
+
+    ConfigMenuProc * proc = StartConfigMenu(parent);
+    proc->calledFromChapter = true;
+    RestoreConfigOptions(proc); 
+    TagValues->raw = tags;
+    ClassTags->raw = classtags;
+    EnemyClassTags->raw = enemyclasstags;
 
     gLCDControlBuffer.dispcnt.bg0_on = 0;
     return ME_DISABLE | ME_PLAY_BEEP; // | ME_CLEAR_GFX;

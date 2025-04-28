@@ -65,8 +65,13 @@
 //#include "../ASM/UnitExpansion/Installer.event" 
 //#endif 
 
+
+ALIGN 4 
+ReadConfigFromSRAM:
 #ifdef VeslyBuildfile 
-// #include "gfx/Portraits/Installer.event" 
+WORD True 
+#else 
+WORD False 
 #endif 
 
 #ifndef PROC_CALL_ROUTINE_2

@@ -1464,7 +1464,7 @@ cmp r0, #0
 bne ExitFe8 
 
 mov r0, r4 
-bl StartConfigMenu
+bl StartConfigMenu_NewGame
 ExitFe8: 
 mov r0, #0 
 pop {r4}  
