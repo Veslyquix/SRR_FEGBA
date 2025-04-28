@@ -6085,7 +6085,7 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
                     continue;
                 }
             }
-            if ((!allowStatBoosts) && (table->pStatBonuses))
+            if ((!allowStatBoosts) && (table->pStatBonuses) && list[0]) // allow stat boosts until valid weapons found
             {
                 continue;
             }
