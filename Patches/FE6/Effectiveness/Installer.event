@@ -1,0 +1,172 @@
+
+#include "EAstdlib.event" 
+#define Armorslayer ArmourKiller 
+#define Horseslayer HorseKiller 
+#define BindingBlade SwordofSeals 
+#define Divinestone DivineDragonStone 
+#define Maltet Maltae 
+#define Mulagir Miugre 
+#define Longbow LongBow 
+#define Ballista LongArch 
+#define IronBallista IronArch 
+#define KillerBallista KillerArch 
+#define Dragonaxe DragonAxe 
+#define Windsword WindSword 
+
+
+
+
+
+
+
+
+
+#ifndef AddedClasses 
+    #define AddedClasses 
+#endif 
+ 
+#ifndef NewItemTable 
+    #define ItemTableOrg 0x60B648 
+#else 
+    #define ItemTableOrg NewItemTable 
+#endif 
+
+#define ItemEff(id, list) "PUSH; ORG ItemTableOrg+(id * 0x20) + 0x10; POIN list; POP" 
+
+KnightList: 
+BYTE 0x0C //0C Knight
+BYTE 0x0E //0E General
+BYTE 0x0D //0D Knight
+BYTE 0x0F //0F General
+#ifdef AddedClasses 
+BYTE Baron
+BYTE LegionKing
+BYTE LivingArmor
+#endif 
+BYTE 0 
+
+ItemEff(Armorslayer, KnightList) 
+ItemEff(Hammer, KnightList) 
+
+HorseKnightList: 
+BYTE 0x0C //0C Knight
+BYTE 0x0E //0E General
+BYTE 0x0D //0D Knight
+BYTE 0x0F //0F General
+#ifdef AddedClasses 
+BYTE Baron
+BYTE LegionKing
+BYTE LivingArmor
+#endif 
+HorseList:
+BYTE 0x20 //20 Cavalier
+BYTE 0x21 //21 
+BYTE 0x22 //22 Paladin
+BYTE 0x23 //23 
+#ifdef AddedClasses 
+BYTE SeliphLord 
+BYTE Marauder 
+#endif 
+BYTE 0 
+
+ItemEff(Rapier, HorseKnightList) 
+ItemEff(Horseslayer, HorseList) 
+ItemEff(Halberd, HorseList) 
+
+DragonList:
+BYTE 0x38 //38 Manakete
+BYTE 0x3B //3B Divine Dragon
+BYTE 0x3C //3C Demon Drgn
+BYTE 0x3A //3A Fire Dragon
+#ifdef AddedClasses 
+// Monsters & dragons I guess 
+BYTE SkeletonRider
+BYTE Chicken
+BYTE Mosquito
+BYTE Sandworm
+BYTE Slime
+BYTE CursedSword
+BYTE Fellbeast
+BYTE BlackDragon
+BYTE GrandMahout
+BYTE Djinn
+BYTE LivingArmor
+#endif 
+BYTE 0 
+ItemEff(BindingBlade, DragonList) 
+ItemEff(Divinestone, DragonList) 
+
+WyvernList: // F, 3C, 59, 84, 85, 8C 
+BYTE 0x3A //3A Fire Dragon
+BYTE 0x2C //2C Wyvern Rider
+BYTE 0x2D //2D Wyvern Rider
+BYTE 0x2E //2E Wyvern Lord
+BYTE 0x2F //2F Wyvern Lord
+BYTE 0x38 //38 Manakete
+#ifdef AddedClasses 
+// Monsters & dragons I guess 
+BYTE SkeletonRider
+BYTE Chicken
+BYTE Mosquito
+BYTE Sandworm
+BYTE Slime
+BYTE CursedSword
+BYTE Fellbeast
+BYTE BlackDragon
+BYTE GrandMahout
+BYTE Djinn
+BYTE LivingArmor
+#endif 
+BYTE 0 
+
+ItemEff(Durandal, WyvernList) 
+ItemEff(Maltet, WyvernList) 
+ItemEff(Armads, WyvernList) 
+ItemEff(Mulagir, WyvernList) 
+ItemEff(Forblaze, WyvernList) 
+ItemEff(Aureola, WyvernList) 
+ItemEff(Apocalypse, WyvernList) 
+ItemEff(Wyrmslayer, WyvernList) 
+
+
+FlierList:
+BYTE 0x2A //2A Peg Knight
+BYTE 0x2B //2B Falcoknight
+BYTE 0x2C //2C Wyvern Rider
+BYTE 0x2D //2D Wyvern Rider
+BYTE 0x2E //2E Wyvern Lord
+BYTE 0x2F //2F Wyvern Lord
+#ifdef AddedClasses 
+BYTE Warbird 
+BYTE Angel 
+#endif 
+BYTE 0 
+
+ItemEff(IronBow, FlierList)
+ItemEff(SteelBow, FlierList)
+ItemEff(SilverBow, FlierList)
+ItemEff(PoisonBow, FlierList)
+ItemEff(KillerBow, FlierList)
+ItemEff(BraveBow, FlierList)
+ItemEff(ShortBow, FlierList)
+ItemEff(Longbow, FlierList)
+ItemEff(Ballista, FlierList)
+ItemEff(IronBallista, FlierList)
+ItemEff(KillerBallista, FlierList)
+ItemEff(Aircalibur, FlierList)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
