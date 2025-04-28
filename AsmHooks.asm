@@ -1407,6 +1407,24 @@ pop {r1}
 bx r1 
 .ltorg 
 
+.global FE7_SkipLynModeCredits
+.type FE7_SkipLynModeCredits, %function 
+FE7_SkipLynModeCredits: 
+push {lr} 
+mov r0, r4 
+bl StartKeyPressed 
+
+mov r1, #0 
+ldsh r6, [r4, r1] 
+ldr r0, =0x2000884 
+ldr r1, [r0] 
+lsl r0, r1, #3 
+add r0, r1 
+pop {r3} 
+bx r3 
+.ltorg 
+
+
 
 .global FE7_StartDifficultySelection
 .type FE7_StartDifficultySelection, %function 
@@ -1940,14 +1958,28 @@ bx    r0
 .type NewClearBWLFunction_FE7, %function 
 NewClearBWLFunction_FE7:
 push {r4-r7, lr} 
-
+mov r4, r8 
+mov r5, r9 
+mov r6, r10 
+mov r7, r11 
+push {r4-r7} 
 @ added - save BWL+some person as randomizer data 
-ldr r7, =RandValues
-ldr r7, [r7] @ probably 0x203eb30 
-ldr r4, [r7] @ values 
-ldr r5, [r7, #4] 
-ldr r6, [r7, #8] 
-ldr r7, [r7, #12] 
+ldr r3, =RandValues
+ldr r3, [r3] @ probably 0x203eb30 
+ldr r4, [r3] @ values 
+ldr r5, [r3, #4] 
+ldr r6, [r3, #8] 
+ldr r7, [r3, #12] 
+mov r8, r4 
+mov r9, r5 
+mov r10, r6 
+mov r11, r7 
+ldr r3, =TagValues
+ldr r3, [r3] 
+ldr r4, [r3] 
+ldr r5, [r3, #4] 
+ldr r6, [r3, #8] 
+ldr r7, [r3, #12] 
 @ added 
 
 sub sp, #4 
@@ -1959,6 +1991,17 @@ ldr r2, =0x1000230
 blh 0x80BFA10 @ CpuSet 
 
 @ added - restore randomizer values 
+ldr r3, =TagValues 
+ldr r3, [r3] 
+str r4, [r3, #0] 
+str r5, [r3, #4] 
+str r6, [r3, #8] 
+str r7, [r3, #12] 
+mov r4, r8 
+mov r5, r9 
+mov r6, r10 
+mov r7, r11 
+
 ldr r3, =RandValues 
 ldr r3, [r3] 
 str r4, [r3, #0] 
@@ -1987,6 +2030,13 @@ str r0, [r4, #0x34]
 blh 0x8017120 
 str r0, [r4, #0x30] 
 add sp, #4 
+
+pop {r4-r7} 
+mov r8, r4
+mov r9, r5
+mov r10, r6
+mov r11, r7
+
 pop {r4-r7} 
 pop {r0} 
 bx r0 

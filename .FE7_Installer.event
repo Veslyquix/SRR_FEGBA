@@ -331,6 +331,8 @@ SHORT $e013 // b End
 
 #endif 
 
+ORG $b78ec 
+callHackNew(FE7_SkipLynModeCredits) 
 
 // checksum testing stuff 
 //ORG $9f924 

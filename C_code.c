@@ -11009,6 +11009,22 @@ extern int StephanoStyleFlag;
 extern int GammaStyleFlag;
 extern int PikminStyleFlag;
 #endif
+
+int StartKeyPressed(ProcPtr proc)
+{
+    u16 keys = sKeyStatusBuffer.newKeys;
+    if (keys & (START_BUTTON | B_BUTTON))
+    {
+        Proc_Goto(proc, 99);
+        return 0x3000;
+    }
+    // if (keys & (A_BUTTON | B_BUTTON | 0xF0))
+    // {
+    // return 4;
+    // }
+    return false;
+}
+
 // void SRRHbKeyListener_Loop(ProcPtr proc)
 // {
 // u16 keys = sKeyStatusBuffer.newKeys;
