@@ -71,7 +71,7 @@ ReadConfigFromSRAM:
 #ifdef VeslyBuildfile 
 WORD True 
 #else 
-WORD False 
+WORD 0 
 #endif 
 
 #ifndef PROC_CALL_ROUTINE_2

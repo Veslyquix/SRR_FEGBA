@@ -72,6 +72,13 @@ SetText(0x119f, ConfigText)
 SetText(0x11a0, ConfigDescText)
 #define USE_CHAR_CONFIRM_PAGE True 
 ALIGN 4 
+ReadConfigFromSRAM:
+#ifdef VeslyBuildfile 
+WORD False  
+#else 
+WORD 0 
+#endif 
+ALIGN 4 
 CharConfirmPage:
 WORD USE_CHAR_CONFIRM_PAGE 
 RNTable:

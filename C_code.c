@@ -5251,10 +5251,33 @@ u16 GetNthRN(int n, int seed)
 
 struct GlobalSaveInfo2
 {
-    u8 _pad_[0x60];
+    u8 _pad_[0x50];
+    int pad2[4]; 
     /* 60 */ u16 checksum;
 };
+void CpuSet(const void *src, void *dest, u32 control);
+#define CPU_SET_16BIT     0x00000000
+#define CPU_COPY(src, dest, size, bit) CpuSet(src, dest, CPU_SET_##bit##BIT | ((size)/(bit/8) & 0x1FFFFF))
+
+#define CpuCopy16(src, dest, size) CPU_COPY(src, dest, size, 16)
 extern bool ReadGlobalSaveInfo(struct GlobalSaveInfo2 * buf); // 80842E8 809E4F0
+extern int ReadConfigFromSRAM;  
+extern void WriteGlobalSaveInfoNoChecksum(struct GlobalSaveInfo2 *header);
+int LoadLastUsedConfig() { 
+    if (!ReadConfigFromSRAM) { return false; } 
+    struct GlobalSaveInfo2 info;
+    ReadGlobalSaveInfo(&info);
+    if (!info.pad2[0] || (info.pad2[0] == (-1))) { return false; } 
+    CpuCopy16(&info.pad2[0], (void*)RandValues, 16); 
+    return true; 
+} 
+void SaveLastUsedConfig() { 
+    if (!ReadConfigFromSRAM) { return; } 
+    struct GlobalSaveInfo2 info;
+    ReadGlobalSaveInfo(&info);
+    CpuCopy16((void*)RandValues, &info.pad2[0], 16); 
+    WriteGlobalSaveInfoNoChecksum(&info);
+} 
 // no$gba -> utility -> binarydump -> saveas RNTable.dmp
 /*
 u32 * mainTest(u32 * result)
@@ -10074,6 +10097,7 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_REPEAT(LoopFilterEnemyClassPage),
 
     PROC_LABEL(EndLabel),
+    PROC_CALL(SaveLastUsedConfig), 
     PROC_CALL(EndCloudsEffect),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
@@ -11841,7 +11865,7 @@ extern void ReadSuspendSave(int slot);
 
 extern struct UnitUsageStats *gPidStatsSaveLoc;
 
-extern int ReadConfigFromSRAM;  
+
 extern void ReadPidStats(void *sram_src); 
 const int suspendPidStats = 0xE000370; 
 // 203e890 gPidStatsSaveLoc  203EA34
@@ -11857,7 +11881,21 @@ void SetDefaultTagValues(void) {
         // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
 } 
 
+
+
 ConfigMenuProc * StartConfigMenu(ProcPtr parent); 
+
+
+ConfigMenuProc * StartConfigMenu_NewGame(ProcPtr parent)
+{
+    ConfigMenuProc * proc;
+    proc = StartConfigMenu(parent); 
+    if (LoadLastUsedConfig()) { RestoreConfigOptions(proc); } 
+    
+    return proc; 
+} 
+
+/*
 ConfigMenuProc * StartConfigMenu_NewGame(ProcPtr parent)
 {
     ConfigMenuProc * proc;
@@ -11888,7 +11926,7 @@ ConfigMenuProc * StartConfigMenu_NewGame(ProcPtr parent)
     } 
     
     return proc; 
-} 
+} */
 
 ConfigMenuProc * StartConfigMenu(ProcPtr parent)
 {

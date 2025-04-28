@@ -67,6 +67,13 @@ STRING "Abel" "FE6TR" ; BYTE 0
 // it only knows of vanilla song IDs though 
 #define USE_CHAR_CONFIRM_PAGE True 
 ALIGN 4 
+ReadConfigFromSRAM:
+#ifdef VeslyBuildfile 
+WORD False 
+#else 
+WORD 0 
+#endif 
+ALIGN 4 
 CharConfirmPage:
 WORD USE_CHAR_CONFIRM_PAGE 
 RNTable:

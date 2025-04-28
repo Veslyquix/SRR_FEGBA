@@ -226,9 +226,13 @@ SET_FUNC UseUnitSprite, 0x8021C39
 SET_FUNC func_fe6_08022A2C, 0x8022A2D 
 SET_FUNC ReadLastGameSaveId, 0x8084f95  
 SET_FUNC ReadGameSave, 0x80851b5  
+SET_FUNC CpuSet, 0x809DCDD 
+SET_FUNC WriteGlobalSaveInfoNoChecksum, 0x8084389  
 
 .endif 
 .if FE7 == true 
+SET_FUNC WriteGlobalSaveInfoNoChecksum, 0x809EFB1 
+SET_FUNC CpuSet, 0x80BFA11 
 SET_FUNC ReadGameSave, 0x80A08ED  
 SET_FUNC ReadLastGameSaveId, 0x80A05F5  
 SET_FUNC PutUnitSpriteForClassId, 0x802619D   
