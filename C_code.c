@@ -2604,53 +2604,154 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     }
     changed = false;
 
-    // clang-format off
-
     int dir = (keys & DPAD_LEFT) ? -1 : 0;
     dir |= (keys & DPAD_RIGHT) ? 1 : 0;
 
+    switch (menuID)
+    {
 
-    switch (menuID) { 
+        case reviseOldCharIdOption:
+        {
+            ;
+            break;
+        }
+        case reviseNewCharIdOption:
+        {
+            ;
+            break;
+        }
+        case reviseHPOption:
+        {
+            pidStats->hpGrowth += dir;
+            changed = true;
+            break;
+        }
+        case reviseStrOption:
+        {
+            pidStats->powGrowth += dir;
+            changed = true;
+            break;
+        }
+        case reviseSklOption:
+        {
+            pidStats->sklGrowth += dir;
+            changed = true;
+            break;
+        }
+        case reviseSpdOption:
+        {
+            pidStats->spdGrowth += dir;
+            changed = true;
+            break;
+        }
+        case reviseDefOption:
+        {
+            pidStats->defGrowth += dir;
+            changed = true;
+            break;
+        }
+        case reviseResOption:
+        {
+            pidStats->resGrowth += dir;
+            changed = true;
+            break;
+        }
+        case reviseLckOption:
+        {
+            pidStats->lckGrowth += dir;
+            changed = true;
+            break;
+        }
+        case reviseMagOption:
+        {
+            pidStats->magGrowth += dir;
+            changed = true;
+            break;
+        }
+        case reviseClassIdOption:
+        {
+            SetNextClass(pidStats, dir);
+            changed = true;
+            break;
+        }
+        case reviseGameIdOption:
+        {
+            ;
+            break;
+        }
+        default:
+    }
 
-        case reviseOldCharIdOption: { ; break; } 
-        case reviseNewCharIdOption: { ; break; } 
-        case reviseHPOption  : { pidStats->hpGrowth  += dir; changed = true; break; } 
-        case reviseStrOption : { pidStats->powGrowth += dir; changed = true; break; } 
-        case reviseSklOption : { pidStats->sklGrowth += dir; changed = true; break; } 
-        case reviseSpdOption : { pidStats->spdGrowth += dir; changed = true; break; } 
-        case reviseDefOption : { pidStats->defGrowth += dir; changed = true; break; } 
-        case reviseResOption : { pidStats->resGrowth += dir; changed = true; break; } 
-        case reviseLckOption : { pidStats->lckGrowth += dir; changed = true; break; } 
-        case reviseMagOption : { pidStats->magGrowth += dir; changed = true; break; } 
-        case reviseClassIdOption : { SetNextClass(pidStats, dir); changed = true; break; } 
-        case reviseGameIdOption : { ; break; } 
-        default: 
-    } 
+    if (dir)
+    {
+        DrawReviseCharPage(proc);
+    }
 
-    if (dir) { 
-    DrawReviseCharPage(proc);
-    } 
+    switch (menuID)
+    {
 
-
-    switch (menuID) { 
-
-        case reviseOldCharIdOption: { DisplayUiHand(40, 80); break; } 
-        case reviseNewCharIdOption: { DisplayUiHand(164, 80); break; } 
-        case reviseHPOption  : { DisplayUiHand(42, 96); break; } 
-        case reviseStrOption : { DisplayUiHand(98, 96); break; } 
-        case reviseSklOption : { DisplayUiHand(154, 96); break; } 
-        case reviseSpdOption : { DisplayUiHand(210, 96); break; } 
-        case reviseDefOption : { DisplayUiHand(42, 112); break; } 
-        case reviseResOption : { DisplayUiHand(98, 112); break; } 
-        case reviseLckOption : { DisplayUiHand(154, 112); break; } 
-        case reviseMagOption : { DisplayUiHand(210, 112); break; } 
-        case reviseClassIdOption : { DisplayUiHand(104, 128); break; } 
-        case reviseGameIdOption : { DisplayUiHand(34, 144); break; } 
-        default: 
-    } 
-
-// clang-format on 
-
+        case reviseOldCharIdOption:
+        {
+            DisplayUiHand(40, 80);
+            break;
+        }
+        case reviseNewCharIdOption:
+        {
+            DisplayUiHand(164, 80);
+            break;
+        }
+        case reviseHPOption:
+        {
+            DisplayUiHand(42, 96);
+            break;
+        }
+        case reviseStrOption:
+        {
+            DisplayUiHand(98, 96);
+            break;
+        }
+        case reviseSklOption:
+        {
+            DisplayUiHand(154, 96);
+            break;
+        }
+        case reviseSpdOption:
+        {
+            DisplayUiHand(210, 96);
+            break;
+        }
+        case reviseDefOption:
+        {
+            DisplayUiHand(42, 112);
+            break;
+        }
+        case reviseResOption:
+        {
+            DisplayUiHand(98, 112);
+            break;
+        }
+        case reviseLckOption:
+        {
+            DisplayUiHand(154, 112);
+            break;
+        }
+        case reviseMagOption:
+        {
+            DisplayUiHand(210, 112);
+            break;
+        }
+        case reviseClassIdOption:
+        {
+            DisplayUiHand(104, 128);
+            break;
+        }
+        case reviseGameIdOption:
+        {
+            DisplayUiHand(34, 144);
+            break;
+        }
+        default:
+    }
 }
 
 void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
@@ -4955,7 +5056,6 @@ int MaybeRandomizeColours(void)
     return result;
 }
 
-
 int ShouldRandomizeGrowth(struct Unit * unit)
 {
     if ((!RandBitflags->growth) && (!RandBitflags->grow50))
@@ -5252,32 +5352,43 @@ u16 GetNthRN(int n, int seed)
 struct GlobalSaveInfo2
 {
     u8 _pad_[0x50];
-    int pad2[4]; 
+    int pad2[4];
     /* 60 */ u16 checksum;
 };
-void CpuSet(const void *src, void *dest, u32 control);
-#define CPU_SET_16BIT     0x00000000
-#define CPU_COPY(src, dest, size, bit) CpuSet(src, dest, CPU_SET_##bit##BIT | ((size)/(bit/8) & 0x1FFFFF))
+void CpuSet(const void * src, void * dest, u32 control);
+#define CPU_SET_16BIT 0x00000000
+#define CPU_COPY(src, dest, size, bit) CpuSet(src, dest, CPU_SET_##bit##BIT | ((size) / (bit / 8) & 0x1FFFFF))
 
 #define CpuCopy16(src, dest, size) CPU_COPY(src, dest, size, 16)
 extern bool ReadGlobalSaveInfo(struct GlobalSaveInfo2 * buf); // 80842E8 809E4F0
-extern int ReadConfigFromSRAM;  
-extern void WriteGlobalSaveInfoNoChecksum(struct GlobalSaveInfo2 *header);
-int LoadLastUsedConfig() { 
-    if (!ReadConfigFromSRAM) { return false; } 
+extern int ReadConfigFromSRAM;
+extern void WriteGlobalSaveInfoNoChecksum(struct GlobalSaveInfo2 * header);
+int LoadLastUsedConfig()
+{
+    if (!ReadConfigFromSRAM)
+    {
+        return false;
+    }
     struct GlobalSaveInfo2 info;
     ReadGlobalSaveInfo(&info);
-    if (!info.pad2[0] || (info.pad2[0] == (-1))) { return false; } 
-    CpuCopy16(&info.pad2[0], (void*)RandValues, 16); 
-    return true; 
-} 
-void SaveLastUsedConfig() { 
-    if (!ReadConfigFromSRAM) { return; } 
+    if (!info.pad2[0] || (info.pad2[0] == (-1)))
+    {
+        return false;
+    }
+    CpuCopy16(&info.pad2[0], (void *)RandValues, 16);
+    return true;
+}
+void SaveLastUsedConfig()
+{
+    if (!ReadConfigFromSRAM)
+    {
+        return;
+    }
     struct GlobalSaveInfo2 info;
     ReadGlobalSaveInfo(&info);
-    CpuCopy16((void*)RandValues, &info.pad2[0], 16); 
+    CpuCopy16((void *)RandValues, &info.pad2[0], 16);
     WriteGlobalSaveInfoNoChecksum(&info);
-} 
+}
 // no$gba -> utility -> binarydump -> saveas RNTable.dmp
 /*
 u32 * mainTest(u32 * result)
@@ -5701,14 +5812,16 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
     }
     if (!list[0])
     {
-        
+
         list[0] = 1;
-        if (maxClasses > 127) { 
-        list[1] = DefaultClassID; // Chicken 
-        } 
-        else { 
-        list[1] = DefaultClassID_VanillaOnly; // Soldier 
-        } 
+        if (maxClasses > 127)
+        {
+            list[1] = DefaultClassID; // Chicken
+        }
+        else
+        {
+            list[1] = DefaultClassID_VanillaOnly; // Soldier
+        }
     }
 
     return list;
@@ -6919,10 +7032,13 @@ int GetClassMagGrowth(struct Unit * unit, int modifiersBool)
 }
 int GetUnitMagGrowth(struct Unit * unit, int modifiersBool)
 {
-    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
-    int baseGrowth = GetCharOverwrittenGrowth(7, pidStats); 
-    if (baseGrowth != (-1)) { return baseGrowth; } 
-    baseGrowth = 0; 
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    int baseGrowth = GetCharOverwrittenGrowth(7, pidStats);
+    if (baseGrowth != (-1))
+    {
+        return baseGrowth;
+    }
+    baseGrowth = 0;
     int add = 0;
     if (modifiersBool)
     {
@@ -7296,10 +7412,13 @@ int GetClassLckGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitHPGrowth(struct Unit * unit, int modifiersBool)
 {
-    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
-    int baseGrowth = GetCharOverwrittenGrowth(0, pidStats); 
-    if (baseGrowth != (-1)) { return baseGrowth; } 
-    baseGrowth = 0; 
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    int baseGrowth = GetCharOverwrittenGrowth(0, pidStats);
+    if (baseGrowth != (-1))
+    {
+        return baseGrowth;
+    }
+    baseGrowth = 0;
     int add = 0;
 
     if (modifiersBool)
@@ -7371,10 +7490,13 @@ int GetUnitHPGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitPowGrowth(struct Unit * unit, int modifiersBool)
 {
-    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
-    int baseGrowth = GetCharOverwrittenGrowth(1, pidStats); 
-    if (baseGrowth != (-1)) { return baseGrowth; } 
-    baseGrowth = 0; 
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    int baseGrowth = GetCharOverwrittenGrowth(1, pidStats);
+    if (baseGrowth != (-1))
+    {
+        return baseGrowth;
+    }
+    baseGrowth = 0;
     int add = 0;
     if (modifiersBool)
     {
@@ -7444,10 +7566,13 @@ int GetUnitPowGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitSklGrowth(struct Unit * unit, int modifiersBool)
 {
-    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
-    int baseGrowth = GetCharOverwrittenGrowth(2, pidStats); 
-    if (baseGrowth != (-1)) { return baseGrowth; } 
-    baseGrowth = 0; 
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    int baseGrowth = GetCharOverwrittenGrowth(2, pidStats);
+    if (baseGrowth != (-1))
+    {
+        return baseGrowth;
+    }
+    baseGrowth = 0;
     int add = 0;
     if (modifiersBool)
     {
@@ -7517,10 +7642,13 @@ int GetUnitSklGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitSpdGrowth(struct Unit * unit, int modifiersBool)
 {
-    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
-    int baseGrowth = GetCharOverwrittenGrowth(3, pidStats); 
-    if (baseGrowth != (-1)) { return baseGrowth; } 
-    baseGrowth = 0; 
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    int baseGrowth = GetCharOverwrittenGrowth(3, pidStats);
+    if (baseGrowth != (-1))
+    {
+        return baseGrowth;
+    }
+    baseGrowth = 0;
     int add = 0;
     if (modifiersBool)
     {
@@ -7590,10 +7718,13 @@ int GetUnitSpdGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitDefGrowth(struct Unit * unit, int modifiersBool)
 {
-    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
-    int baseGrowth = GetCharOverwrittenGrowth(4, pidStats); 
-    if (baseGrowth != (-1)) { return baseGrowth; } 
-    baseGrowth = 0; 
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    int baseGrowth = GetCharOverwrittenGrowth(4, pidStats);
+    if (baseGrowth != (-1))
+    {
+        return baseGrowth;
+    }
+    baseGrowth = 0;
     int add = 0;
     if (modifiersBool)
     {
@@ -7663,10 +7794,13 @@ int GetUnitDefGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitResGrowth(struct Unit * unit, int modifiersBool)
 {
-    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
-    int baseGrowth = GetCharOverwrittenGrowth(5, pidStats); 
-    if (baseGrowth != (-1)) { return baseGrowth; } 
-    baseGrowth = 0; 
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    int baseGrowth = GetCharOverwrittenGrowth(5, pidStats);
+    if (baseGrowth != (-1))
+    {
+        return baseGrowth;
+    }
+    baseGrowth = 0;
     int add = 0;
     if (modifiersBool)
     {
@@ -7736,10 +7870,13 @@ int GetUnitResGrowth(struct Unit * unit, int modifiersBool)
 
 int GetUnitLckGrowth(struct Unit * unit, int modifiersBool)
 {
-    struct PidStatsChar* pidStats = GetPidStatsSafe(unit->pCharacterData->number); 
-    int baseGrowth = GetCharOverwrittenGrowth(6, pidStats); 
-    if (baseGrowth != (-1)) { return baseGrowth; } 
-    baseGrowth = 0; 
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    int baseGrowth = GetCharOverwrittenGrowth(6, pidStats);
+    if (baseGrowth != (-1))
+    {
+        return baseGrowth;
+    }
+    baseGrowth = 0;
     int add = 0;
     if (modifiersBool)
     {
@@ -10097,7 +10234,7 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_REPEAT(LoopFilterEnemyClassPage),
 
     PROC_LABEL(EndLabel),
-    PROC_CALL(SaveLastUsedConfig), 
+    PROC_CALL(SaveLastUsedConfig),
     PROC_CALL(EndCloudsEffect),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
@@ -11773,8 +11910,8 @@ void InitDraw(ConfigMenuProc * proc)
 extern void LoadHelpBoxGfx(void * vram, int palId);
 extern void StartGreenText(ProcPtr parent);
 
-
-void RestoreConfigOptions( ConfigMenuProc * proc) { 
+void RestoreConfigOptions(ConfigMenuProc * proc)
+{
     // pull up your previously saved options
 
     proc->Option[VarianceOption] = RandValues->variance;
@@ -11856,76 +11993,72 @@ void RestoreConfigOptions( ConfigMenuProc * proc) {
         proc->Option[SkillsOption] = RandValues->skills;
         proc->skill = AlwaysSkill[0];
     }
+}
+extern int ReadLastGameSaveId(void);
+extern void ReadGameSave(int slot);
+extern void ReadSuspendSave(int slot);
 
+extern struct UnitUsageStats * gPidStatsSaveLoc;
 
-} 
-extern int ReadLastGameSaveId(void); 
-extern void ReadGameSave(int slot); 
-extern void ReadSuspendSave(int slot); 
-
-extern struct UnitUsageStats *gPidStatsSaveLoc;
-
-
-extern void ReadPidStats(void *sram_src); 
-const int suspendPidStats = 0xE000370; 
+extern void ReadPidStats(void * sram_src);
+const int suspendPidStats = 0xE000370;
 // 203e890 gPidStatsSaveLoc  203EA34
 
+extern void ClearPidStats(void);
+void SetDefaultTagValues(void)
+{
 
-extern void ClearPidStats(void); 
-// clang-format on 
-void SetDefaultTagValues(void) { 
+    TagValues->raw = 0xFFFFDFFF;      // default: no civilians
+    ClassTags->raw = 0xFFFFDFFF;      // default
+    EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
+    // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
+}
 
-        TagValues->raw = 0xFFFFDFFF;      // default: no civilians
-        ClassTags->raw = 0xFFFFDFFF;      // default
-        EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
-        // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
-} 
-
-
-
-ConfigMenuProc * StartConfigMenu(ProcPtr parent); 
-
+ConfigMenuProc * StartConfigMenu(ProcPtr parent);
 
 ConfigMenuProc * StartConfigMenu_NewGame(ProcPtr parent)
 {
     ConfigMenuProc * proc;
-    proc = StartConfigMenu(parent); 
-    if (LoadLastUsedConfig()) { RestoreConfigOptions(proc); } 
-    
-    return proc; 
-} 
+    proc = StartConfigMenu(parent);
+    if (LoadLastUsedConfig())
+    {
+        RestoreConfigOptions(proc);
+    }
+
+    return proc;
+}
 
 /*
 ConfigMenuProc * StartConfigMenu_NewGame(ProcPtr parent)
 {
     ConfigMenuProc * proc;
-    // ReadGameSave(ReadLastGameSaveId()); 
-    // ReadSuspendSave(ReadLastGameSaveId()); 
-    if (ReadConfigFromSRAM) { 
-        ReadPidStats((void*)suspendPidStats); 
-    } 
-    int tags = TagValues->raw; 
-    int classtags = ClassTags->raw; 
-    int enemyclasstags = EnemyClassTags->raw; 
-    
+    // ReadGameSave(ReadLastGameSaveId());
+    // ReadSuspendSave(ReadLastGameSaveId());
+    if (ReadConfigFromSRAM) {
+        ReadPidStats((void*)suspendPidStats);
+    }
+    int tags = TagValues->raw;
+    int classtags = ClassTags->raw;
+    int enemyclasstags = EnemyClassTags->raw;
+
     int isSuspendValid = (tags!=(-1)) && (classtags!=(-1)) && (enemyclasstags!=(-1));
-    
-    proc = StartConfigMenu(parent); 
-    if (isSuspendValid) { 
-        RestoreConfigOptions(proc); 
-        ClearPidStats(); 
+
+    proc = StartConfigMenu(parent);
+    if (isSuspendValid) {
+        RestoreConfigOptions(proc);
+        ClearPidStats();
         TagValues->raw = tags;
         ClassTags->raw = classtags;
         EnemyClassTags->raw = enemyclasstags;
-        
-        proc->seed = 0; 
-    } 
-    else { 
-        ClearPidStats(); 
-        SetDefaultTagValues(); 
-    } 
-    
-    return proc; 
+
+        proc->seed = 0;
+    }
+    else {
+        ClearPidStats();
+        SetDefaultTagValues();
+    }
+
+    return proc;
 } */
 
 ConfigMenuProc * StartConfigMenu(ProcPtr parent)
@@ -11949,8 +12082,8 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         {
             proc->Option[i] = 0;
         }
-        SetDefaultTagValues(); 
-        
+        SetDefaultTagValues();
+
         proc->helpBox = NULL;
         proc->reloadPlayers = false;
         proc->reloadEnemies = false;
@@ -12021,8 +12154,6 @@ enum MenuEffect
     ME_END_AFTER = (1 << 7),
 };
 
-
-
 int MenuStartConfigMenu(ProcPtr parent)
 {
     gLCDControlBuffer.dispcnt.bg0_on = 0;
@@ -12035,7 +12166,7 @@ int MenuStartConfigMenu(ProcPtr parent)
 
     ConfigMenuProc * proc = StartConfigMenu(parent);
     proc->calledFromChapter = true;
-    RestoreConfigOptions(proc); 
+    RestoreConfigOptions(proc);
     TagValues->raw = tags;
     ClassTags->raw = classtags;
     EnemyClassTags->raw = enemyclasstags;
