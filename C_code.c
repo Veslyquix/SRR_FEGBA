@@ -12019,6 +12019,23 @@ const int suspendPidStats = 0xE000370;
 // 203e890 gPidStatsSaveLoc  203EA34
 
 extern void ClearPidStats(void);
+void FE7_ClearPidStats() // ClearPidStats
+{
+    struct PidStatsChar * pidStats;
+    for (int i = 1; i <= 0x45; ++i)
+    {
+        pidStats = GetPidStatsSafe(i);
+        if (pidStats)
+        {
+
+            pidStats->lossAmt = 0;
+            pidStats->deathLoc = 0;
+            pidStats->winAmt = 0;
+            pidStats->battleAmt = 0;
+        }
+    }
+}
+
 void SetDefaultTagValues(void)
 {
 

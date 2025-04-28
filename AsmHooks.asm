@@ -1958,58 +1958,7 @@ bx    r0
 .type NewClearBWLFunction_FE7, %function 
 NewClearBWLFunction_FE7:
 push {r4-r7, lr} 
-mov r4, r8 
-mov r5, r9 
-mov r6, r10 
-mov r7, r11 
-push {r4-r7} 
-@ added - save BWL+some person as randomizer data 
-ldr r3, =RandValues
-ldr r3, [r3] @ probably 0x203eb30 
-ldr r4, [r3] @ values 
-ldr r5, [r3, #4] 
-ldr r6, [r3, #8] 
-ldr r7, [r3, #12] 
-mov r8, r4 
-mov r9, r5 
-mov r10, r6 
-mov r11, r7 
-ldr r3, =TagValues
-ldr r3, [r3] 
-ldr r4, [r3] 
-ldr r5, [r3, #4] 
-ldr r6, [r3, #8] 
-ldr r7, [r3, #12] 
-@ added 
-
-sub sp, #4 
-mov r0, sp 
-mov r3, #0 
-strh r3, [r0] 
-ldr r1, =0x203E7A0
-ldr r2, =0x1000230 
-blh 0x80BFA10 @ CpuSet 
-
-@ added - restore randomizer values 
-ldr r3, =TagValues 
-ldr r3, [r3] 
-str r4, [r3, #0] 
-str r5, [r3, #4] 
-str r6, [r3, #8] 
-str r7, [r3, #12] 
-mov r4, r8 
-mov r5, r9 
-mov r6, r10 
-mov r7, r11 
-
-ldr r3, =RandValues 
-ldr r3, [r3] 
-str r4, [r3, #0] 
-str r5, [r3, #4] 
-str r6, [r3, #8] 
-str r7, [r3, #12] 
-@ added 
-
+bl FE7_ClearPidStats 
 ldr r4, =0x202BBF8
 ldr r0, [r4, #0x38] 
 ldr r1, =0xF00000FF
@@ -2029,14 +1978,6 @@ and r0, r1
 str r0, [r4, #0x34] 
 blh 0x8017120 
 str r0, [r4, #0x30] 
-add sp, #4 
-
-pop {r4-r7} 
-mov r8, r4
-mov r9, r5
-mov r10, r6
-mov r11, r7
-
 pop {r4-r7} 
 pop {r0} 
 bx r0 
