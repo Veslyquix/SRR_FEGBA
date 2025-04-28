@@ -5604,6 +5604,7 @@ int GetItemWeight(int item)
 
 // extern bool UnitAddItem(struct Unit* unit, int item);
 extern u8 DefaultClassID;
+extern u8 DefaultClassID_VanillaOnly;
 extern int IncludeMonstersWithoutWEXP;
 u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
 {
@@ -5619,7 +5620,8 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
     int curName = 0;
     int prevSMS = 0;
     int curSMS = 0;
-    for (int i = 1; i <= GetMaxClasses(); i++)
+    int maxClasses = GetMaxClasses();
+    for (int i = 1; i <= maxClasses; i++)
     {
         const struct ClassData * table = GetClassData(i);
         prevName = curName;
@@ -5676,8 +5678,14 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
     }
     if (!list[0])
     {
+        
         list[0] = 1;
-        list[1] = DefaultClassID;
+        if (maxClasses > 127) { 
+        list[1] = DefaultClassID; // Chicken 
+        } 
+        else { 
+        list[1] = DefaultClassID_VanillaOnly; // Soldier 
+        } 
     }
 
     return list;

@@ -405,11 +405,11 @@ BYTE Pupil2
 #endif 
 BYTE 0 // Terminator 
 DefaultClassID: // If no valid class is found, become this 
-#ifndef VeslyBuildfile 
-BYTE Soldier 
-#else 
+#ifdef VeslyBuildfile 
 BYTE Chicken 
 #endif 
+DefaultClassID_VanillaOnly:
+BYTE Soldier 
 ALIGN 4 
 
 SRRMenu(SeedOpt);               txt("Seed")
