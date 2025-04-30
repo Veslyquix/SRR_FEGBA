@@ -5385,7 +5385,7 @@ int LoadLastUsedConfig()
     {
         return false;
     }
-    CpuCopy16(&info.pad2[0], (void *)RandValues, 16);
+    CpuCopy16(&info.pad2[0], (void *)RandValues, 15);
     return true;
 }
 void SaveLastUsedConfig()
@@ -5396,7 +5396,7 @@ void SaveLastUsedConfig()
     }
     struct GlobalSaveInfo2 info;
     ReadGlobalSaveInfo(&info);
-    CpuCopy16((void *)RandValues, &info.pad2[0], 16);
+    CpuCopy16((void *)RandValues, &info.pad2[0], 15);
     WriteGlobalSaveInfoNoChecksum(&info);
 }
 // no$gba -> utility -> binarydump -> saveas RNTable.dmp
