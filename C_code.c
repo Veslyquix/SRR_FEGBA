@@ -1038,6 +1038,16 @@ void CopyBWLForCharDuplicates(void)
             }
             pidStatsA->newCharID = pidStatsB->newCharID;
             pidStatsA->charTableID = pidStatsB->charTableID;
+            pidStatsA->selected = pidStatsB->selected;
+            pidStatsA->forcedClass = pidStatsB->forcedClass;
+            pidStatsA->hpGrowth = pidStatsB->hpGrowth;
+            pidStatsA->powGrowth = pidStatsB->powGrowth;
+            pidStatsA->sklGrowth = pidStatsB->sklGrowth;
+            pidStatsA->spdGrowth = pidStatsB->spdGrowth;
+            pidStatsA->defGrowth = pidStatsB->defGrowth;
+            pidStatsA->resGrowth = pidStatsB->resGrowth;
+            pidStatsA->lckGrowth = pidStatsB->lckGrowth;
+            pidStatsA->magGrowth = pidStatsB->magGrowth;
         }
     }
 }
