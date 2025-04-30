@@ -5678,14 +5678,9 @@ s16 HashWeight(int number, int noise[])
     return HashByTwoThirdsPercent(number, noise, 0);
 }
 
-inline int IsUnitAlliedOrPlayable(struct Unit * unit)
+inline int IsUIDAlliedOrPlayable(int uid)
 {
     int result = false;
-    int uid = unit->pCharacterData->number;
-    if (UNIT_FACTION(unit) == FACTION_RED)
-    {
-        return false;
-    }
 #ifdef FE6
     if (uid < 0x45)
     {
@@ -5705,6 +5700,17 @@ inline int IsUnitAlliedOrPlayable(struct Unit * unit)
     }
 #endif
     return result;
+}
+
+inline int IsUnitAlliedOrPlayable(struct Unit * unit)
+{
+    int uid = unit->pCharacterData->number;
+    if (UNIT_FACTION(unit) == FACTION_RED)
+    {
+        return false;
+    }
+
+    return IsUIDAlliedOrPlayable(uid);
 }
 
 // Random:
@@ -8076,6 +8082,17 @@ void UnitCheckStatMins(struct Unit * unit)
                 }
             }
         } // _u3A is unsigned
+    }
+
+    int minHP = 10;
+    if (IsUnitAlliedOrPlayable(unit))
+    {
+        minHP = 15;
+    }
+    if (unit->maxHP < minHP)
+    {
+        unit->maxHP = minHP;
+        unit->curHP = minHP;
     }
 }
 
