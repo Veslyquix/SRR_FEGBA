@@ -318,8 +318,8 @@ PUSH
 
 #ifdef USE_CHAR_CONFIRM_PAGE 
 // Kill BWL DeployAmt and SquaresMoved 
-// ORG $9FFEC // PidStatsAddDeployAmt
-// SHORT $4770 
+ORG $9FFEC // PidStatsAddDeployAmt
+SHORT $4770 
 // ORG $A003C //PidStatsAddSquaresMoved
 // SHORT $4770 
 
