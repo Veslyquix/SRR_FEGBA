@@ -56,6 +56,7 @@
 #include "../ASM/ExtendWeaponDescBox/Installer.event" // for monster weapons 
 #ifndef C_SKILLSYS // already included 
     #include "../ASM/Debugger/Installer.event" 
+    ALIGN 4 
     CMagCharTable:
     WORD 0 
 #endif 

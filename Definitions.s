@@ -229,8 +229,58 @@ SET_FUNC ReadGameSave, 0x80851b5
 SET_FUNC CpuSet, 0x809DCDD 
 SET_FUNC WriteGlobalSaveInfoNoChecksum, 0x8084389  
 
-.endif 
+SET_FUNC RenderBmMapOnBg2, 0x8018E11 
+SET_FUNC MoveActiveUnit, 0x801BAF1
+SET_FUNC NewBMXFADE, 0x801C39D
+SET_FUNC HandlePostActionTraps, 0x80273BD
+SET_FUNC RunPotentialWaitEvents, 0x801B9B1
+SET_FUNC EnsureCameraOntoActiveUnitPosition, 0x801B9CD
+@SET_FUNC StartBmPromotion, 0x802529D @ UnitPromote ?? 
+SET_FUNC StartBmPromotion, 0x08027ccd
+SET_FUNC StartArenaScreen, 0x8097e85
+SET_FUNC GetUnitEquippedWeapon, 0x8016959
+SET_FUNC InitBattleUnit, 0x80243F9
+SET_FUNC SetupMapBattleAnim, 0x8062891
+SET_FUNC UnitBeginAction, 0x8017df9
+SET_DATA gProcScr_CamMove, 0x85c5234 
+SET_DATA gManimSt, 0x203cde4 @ from MapAnimProc_DisplayExpBar
+SET_DATA gBattleHitArray, 0x203930C  @ from SetupMapBattleAnim 
+
+@ ProcScr_BattleManim 664DA4 
+@ ProcScr_EndManim 664E4C @ https://github.com/FireEmblemUniverse/fireemblem6j/blob/c0065f139f1cbe2aa974046448898427ecc5a021/src/manim.c#L159
+
+SET_FUNC BattleEventEngineExists, 0x8011f71
+SET_FUNC DeleteBattleAnimInfoThing, 0x8062cf1
+SET_FUNC MapAnimProc_DisplayExpBar, 0x8061d01
+SET_FUNC MapAnim_MoveCameraOntoSubject, 0x8061B81
+SET_FUNC MapAnim_Cleanup, 0x80619b1
+SET_FUNC UpdateActorFromBattle, 0x80254CD @ BattleApplyUnitUpdates
+
+.endif     
 .if FE7 == true 
+SET_FUNC RenderBmMapOnBg2, 0x8019585  
+SET_FUNC MoveActiveUnit, 0x801CDBD 
+SET_FUNC NewBMXFADE, 0x8082015
+SET_FUNC HandlePostActionTraps, 0x8034521
+SET_FUNC RunPotentialWaitEvents, 0x801CC4D
+SET_FUNC EnsureCameraOntoActiveUnitPosition, 0x801CC69
+SET_FUNC StartBmPromotion, 0x0802cc69 
+SET_FUNC StartArenaScreen, 0x80b267D
+SET_FUNC GetUnitEquippedWeapon, 0x8016765
+SET_FUNC InitBattleUnit, 0x80285D5
+SET_FUNC SetupMapBattleAnim, 0x806F30D
+SET_FUNC UnitBeginAction, 0x80180ED 
+SET_DATA gProcScr_CamMove, 0x8B92E38 
+SET_DATA gManimSt, 0x203e0fc @ from MapAnimProc_DisplayExpBar
+SET_DATA gBattleHitArray, 0x203a4f0  @ from SetupMapBattleAnim 
+
+SET_FUNC BattleEventEngineExists, 0x800F08D
+@SET_FUNC EventEngineExists, 0x8001BC9
+SET_FUNC DeleteBattleAnimInfoThing, 0x806F76D
+SET_FUNC MapAnimProc_DisplayExpBar, 0x806E7C5
+SET_FUNC MapAnim_MoveCameraOntoSubject, 0x806E645
+SET_FUNC MapAnim_Cleanup, 0x806E475
+SET_FUNC UpdateActorFromBattle, 0x8029A71 @ BattleApplyUnitUpdates 
 SET_FUNC WriteGlobalSaveInfoNoChecksum, 0x809EFB1 
 SET_FUNC CpuSet, 0x80BFA11 
 SET_FUNC ReadGameSave, 0x80A08ED  
