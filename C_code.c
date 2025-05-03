@@ -82,7 +82,7 @@ extern int CasualModeFlag;
 
 struct RandomizerSettings
 {
-    u32 base : 2;     // vanilla, random
+    u32 base : 2;     // vanilla, random, zero, max
     u32 growth : 2;   // vanilla, randomized, 0%, 100%
     u32 levelups : 2; // vanilla, seeded, fixed, pad
     u32 caps : 3;     // vanilla, randomized, 0, 15, 30, 45, 60
@@ -6902,9 +6902,18 @@ int RandHPStat(struct Unit * unit, int stat, int noise[], int offset, int promot
     {
         return stat;
     }
+    if (RandBitflags->base == 3)
+    {
+        return 60;
+    }
     int result = HashStat(stat, noise, offset, 3); // by 2/3rds percent
     if (IsUnitAlliedOrPlayable(unit))
-    { // if below average player, reroll once
+    {
+        if (RandBitflags->base == 2)
+        {
+            return 15;
+        }
+        // if below average player, reroll once
         if (result < stat)
         {
             stat = HashStat(result, noise, offset + 13, 3);
@@ -6927,9 +6936,19 @@ int RandStat(struct Unit * unit, int stat, int noise[], int offset, int promoted
     {
         return stat;
     }
+    if (RandBitflags->base == 3)
+    {
+        return 99;
+    }
+
     int result = HashStat(stat, noise, offset, promoted);
     if (IsUnitAlliedOrPlayable(unit))
-    { // if below average player, reroll once
+    {
+        if (RandBitflags->base == 2)
+        {
+            return 0;
+        }
+        // if below average player, reroll once
         if (result < stat)
         {
             stat = HashStat(result, noise, offset + 13, promoted);
@@ -9161,6 +9180,30 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         }
     }
 #endif
+
+    if (IsUnitAlliedOrPlayable(unit))
+    {
+        if (RandBitflags->base == 2)
+        {
+            unit->maxHP = 15;
+            unit->pow = 0;
+            unit->skl = 0;
+            unit->spd = 0;
+            unit->def = 0;
+            unit->lck = 0;
+            unit->res = 0;
+        }
+    }
+    if (RandBitflags->base == 3)
+    {
+        unit->maxHP = 60;
+        unit->pow = 99;
+        unit->skl = 99;
+        unit->spd = 99;
+        unit->def = 99;
+        unit->lck = 99;
+        unit->res = 99;
+    }
 
     if (UNIT_FACTION(unit) != FACTION_RED)
     {
@@ -14739,6 +14782,10 @@ int PidStatsGetTotalLevel(void)
 {
     return 1;
 }
+
+// 8024a88
+// 203930C is gBattleHits[0]
+//[2039202..2039203]! is gBattleSt.damage;
 
 #ifndef FE6
 void PidStatsSubFavval08(u8 pid)

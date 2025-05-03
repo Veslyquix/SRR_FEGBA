@@ -144,9 +144,9 @@ POIN t0 0
 
 
 {
-t0:  txt("Vanilla");  t1:  txt("Random");
+t0:  txt("Vanilla");  t1:  txt("Random"); t2: txt("Zero"); t3: txt("Maxed"); 
 ALIGN 4; SRRHeader(BaseStatsOpt)
-POIN t0 t1 0
+POIN t0 t1 t2 t3 0
 }
 
 {
@@ -427,6 +427,8 @@ SRRDesc(PreviewCharsOpt); txt("Preview who your recruitable\characters will turn
 
 SRRMenu(BaseStatsOpt);          txt("Base Stats")
 SRRDesc(BaseStatsOpt); txt("Determines units starting\stats on their initial appearance.\Stat +/- (Stat*Variance)."); 
+SRRDesc(BaseStatsOpt, 2); txt("Player stats start at 0."); 
+SRRDesc(BaseStatsOpt, 3); txt("All units have maxed stats."); 
 SRRMenu(GrowthsOpt);            txt("Growths")
 SRRDesc(GrowthsOpt,0); txt("Characters' original growth."); 
 SRRDesc(GrowthsOpt,1); txt("Randomize characters' growths.\Original Growth +/- (Growth*Variance)."); 
