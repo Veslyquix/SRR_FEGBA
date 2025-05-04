@@ -109,7 +109,7 @@ struct RandomizerValues
 
 struct RecruitmentValues
 {
-    u8 recruitment : 3;
+    u8 recruitment : 3; // vanilla, players reordered, bosses, players&bosses reordered, swap, reverse, random
     u8 pauseNameReplace : 1;
     u8 newClasses : 2;
     u8 ai : 2;
@@ -252,7 +252,7 @@ void MaybeForceHardModeFE8(void)
 
 int ShouldRandomizeRecruitment(void)
 {
-    return RecruitValues->recruitment;
+    return RecruitValues->recruitment | GrowthValues->ForcedCharTable;
 }
 int ShouldRandomizeRecruitmentForUnitID(int id)
 {
@@ -3041,7 +3041,7 @@ int CanCharacterBecomeBoss(const struct CharacterData * table)
     // if (table->number > 0x40
     int boss;
     boss = table->attributes & (CA_BOSS);
-    if ((RecruitValues->recruitment == 5))
+    if ((RecruitValues->recruitment == 6))
     {
         return false;
     }
@@ -3059,7 +3059,7 @@ int MustCharacterBecomeBoss(const struct CharacterData * table)
 {
     int boss;
     boss = table->attributes & (CA_BOSS);
-    if ((RecruitValues->recruitment == 5))
+    if ((RecruitValues->recruitment == 6))
     {
         return false;
     }
@@ -3150,12 +3150,16 @@ int GetUnitListToUse(const struct CharacterData * table, int boss, int excludeNo
     }
     if (result == 2)
     {
-        if (RecruitValues->recruitment == 1)
+        if (RecruitValues->recruitment <= 1)
+        {
+            result = 0;
+        }
+        if (RecruitValues->recruitment == 5)
         {
             result = 0;
         }
     }
-    if (RecruitValues->recruitment < 4)
+    if ((RecruitValues->recruitment < 4) || (RecruitValues->recruitment == 5))
     {
         if (result == 1) // players reordered
         {
@@ -3193,7 +3197,7 @@ int GetUnitListToUse(const struct CharacterData * table, int boss, int excludeNo
             }
         }
     }
-    if (RecruitValues->recruitment == 5)
+    if (RecruitValues->recruitment == 6)
     {
         result = 1;
     }
@@ -3705,6 +3709,323 @@ int FilterEnemyClassOut(const struct ClassData * ctable, int promotedBitflag)
     return !result;
 }
 
+#define Eliwood 0x01
+#define Hector 0x02
+#define Lyn_t 0x03
+#define Raven 0x04
+#define Geitz 0x05
+#define Guy 0x06
+#define Karel 0x07
+#define Dorcas 0x08
+#define Bartre 0x09
+#define Citizen 0x0A
+#define Oswin 0x0B
+#define Fargus 0x0C
+#define Wil_t 0x0D
+#define Rebecca 0x0E
+#define Louise 0x0F
+#define Lucius 0x10
+#define Serra 0x11
+#define Renault 0x12
+#define Erk 0x13
+#define Nino 0x14
+#define Pent 0x15
+#define Canas 0x16
+#define Kent_t 0x17
+#define Sain_t 0x18
+#define Lowen 0x19
+#define Marcus 0x1A
+#define Priscilla 0x1B
+#define Rath_t 0x1C
+#define Florina_t 0x1D
+#define Fiora 0x1E
+#define Farina 0x1F
+#define Heath 0x20
+#define Vaida 0x21
+#define Hawkeye 0x22
+#define Matthew 0x23
+#define Jaffar 0x24
+#define Ninian 0x25
+#define Nils 0x26
+#define Athos 0x27
+#define Merlinus 0x28
+#define Nils_Final_Chapter 0x29
+#define Uther 0x2A
+#define Vaida_Boss 0x2B
+#define Wallace 0x2C
+#define Lyn 0x2D
+#define Wil 0x2E
+#define Kent 0x2F
+#define Sain 0x30
+#define Florina 0x31
+#define Rath 0x32
+#define Dart 0x33
+#define Isadora 0x34
+#define Elenora 0x35
+#define Legault 0x36
+#define Karla 0x37
+#define Harken 0x38
+
+#define Roy 0x01
+#define Clarine 0x02
+#define Fa 0x03
+#define Shin 0x04
+#define Sue 0x05
+#define Dayan 0x06
+#define Dayan_NPC 0x07
+#define Barth 0x08
+#define Bors 0x09
+#define Wendy 0x0A
+#define Douglas 0x0B
+#define Douglas_Enemy 0x0C
+#define Wolt 0x0D
+#define Dorothy 0x0E
+#define Klein 0x0F
+#define Saul 0x10
+#define Ellen 0x11
+#define Yodel 0x12
+#define Yodel_NPC 0x13
+#define Chad 0x14
+#define Karel_FE6 0x15
+#define Fir 0x16
+#define Rutger 0x17
+#define Dieck 0x18
+#define Oujay 0x19
+#define Garret 0x1A
+#define Alen 0x1B
+#define Alan 0x1B
+#define Allen 0x1B
+#define Lance 0x1C
+#define Percival 0x1D
+#define Igrene 0x1E
+#define Marcus_FE6 0x1F
+#define Ashtol 0x20
+#define Wade 0x21
+#define Lot 0x22
+#define Bartre_FE6 0x23
+#define Bartre_NPC 0x24
+#define Lugh 0x25
+#define Lilina 0x26
+#define Hugh 0x27
+#define Niime 0x28
+#define Niime_NPC 0x29
+#define Ray 0x2A
+#define Lalum 0x2B
+#define Juno 0x2C
+#define Junno_NPC 0x2D
+#define Tate 0x2E
+#define Tate_Enemy 0x2F
+#define Tate_NPC 0x30
+#define Thany 0x31
+#define Zeiss 0x32
+#define Gale 0x33
+#define Elfin 0x34
+#define Cath 0x35
+#define Sophia 0x36
+#define Miledy 0x37
+#define Gonzales_RouteA 0x38
+#define Gonzales_RouteB 0x39
+#define Noah 0x3A
+#define Treck 0x3B
+#define Zealot 0x3C
+#define Echidna 0x3D
+#define Echidna_NPC 0x3E
+#define Cecilia 0x3F
+#define Geese 0x40
+#define Geese_NPC 0x41
+#define Merlinus_FE6 0x42
+#define Guinevere 0x44
+
+const u8 FE6_RecruitmentOrder[] = {
+    Roy,        // 1
+    Marcus_FE6, // 1F
+    Allen,      // 1B
+    Lance,      // 1C
+    Wolt,
+    Bors,
+    Merlinus_FE6,
+    Ellen,
+    Dieck,
+    Wade,
+    Lot,
+    Thany,
+    Chad,
+    Lugh,
+    Clarine,
+    Rutger,
+    Saul,
+    Dorothy,
+    Sue,
+    Zealot,
+    Treck,
+    Noah,
+    Ashtol,
+    Lilina,
+    Wendy,
+    Barth,
+    Oujay,
+    Fir,
+    Shin,
+    Gonzales_RouteA,
+    Geese,
+    Klein,
+    Tate,
+    Lalum,
+    Echidna,
+    Elfin,
+    Bartre_FE6,
+    Ray,
+    Cath,
+    Miledy,
+    Percival,
+    Cecilia,
+    Sophia,
+    Igrene,
+    Garret,
+    Fa,
+    Hugh,
+    Zeiss,
+    Douglas,
+    Niime,
+    Juno,
+    Dayan,
+    Yodel,
+    Karel_FE6,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+
+};
+const u8 FE7_RecruitmentOrder[] = {
+    Lyn,     Sain,    Kent,   Florina, Wil,     Dorcas,  Serra, Erk,    Rath,     Matthew,   Nils,  Lucius, Wallace,
+    Eliwood, Marcus,  Lowen,  Rebecca, Bartre,  Hector,  Oswin, Guy,    Merlinus, Priscilla, Raven, Canas,  Dart,
+    Fiora,   Legault, Ninian, Isadora, Heath,   Hawkeye, Geitz, Farina, Pent,     Louise,    Karel, Harken, Nino,
+    Jaffar,  Vaida,   Nils,   Karla,   Renault, Athos,   0,     0,      0,        0,         0,     0,      0,
+    0,       0,       0,      0,       0,       0,       0,     0,      0,        0,         0,     0,      0,
+    0,       0,       0,      0,       0,       0,       0,     0,      0,        0,         0,     0,      0,
+    0,       0,       0,      0,       0,       0,       0,     0,      0,        0,         0,     0,      0,
+    0,       0,       0,      0,       0,       0,       0,     0,      0,        0,
+
+};
+// extern const u8 FE8_RecruitmentOrder[];
+// const u8 FE8_RecruitmentOrder[] = { }
+int GetRecruitmentOrder(int id, int t)
+{
+    int result = id;
+    return id;
+    if (id > 0x45)
+    {
+        return id;
+    }
+    switch (t)
+    {
+        case 0:
+        {
+            return id;
+            break;
+        } // vanilla
+#ifdef FE6
+        case 4:
+        {
+            result = FE7_RecruitmentOrder[id];
+            break;
+        } // fe7
+        case 5:
+        {
+            return id;
+            break;
+        } // fe8
+#endif
+#ifdef FE7
+        case 4:
+        {
+            result = FE6_RecruitmentOrder[id];
+            break;
+        } // fe6
+        case 5:
+        {
+            return id;
+            break;
+        } // fe8
+#endif
+#ifdef FE8
+        case 4:
+        {
+            result = FE6_RecruitmentOrder[id];
+            break;
+        } // fe6
+        case 5:
+        {
+            result = FE7_RecruitmentOrder[id];
+            break;
+        } // fe7
+#endif
+        default:
+        {
+            return id;
+            break;
+        }
+    }
+    if (!result)
+    {
+        return result;
+    }
+    return result;
+}
+
 void BuildFilteredCharsList(
     struct Vec2u * counter, u8 * unit, u8 * bosses, u8 * tables, RecruitmentProc * proc1, RecruitmentProc * proc2,
     RecruitmentProc * proc3, RecruitmentProc * proc4)
@@ -3718,9 +4039,6 @@ void BuildFilteredCharsList(
 
     for (int i = 1; i <= MAX_CHAR_ID; ++i)
     {
-        table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
-
-        // table++;
         if (i == 0x40)
         {
             proc = proc2;
@@ -3745,6 +4063,7 @@ void BuildFilteredCharsList(
         end = NumberOfCharTables;
     }
 
+    int id = 0;
     for (; t < end; ++t)
     // for (int t = 0; t < 1; ++t)
     {
@@ -3781,12 +4100,14 @@ void BuildFilteredCharsList(
                     {
                         continue;
                     }
+                    id = GetRecruitmentOrder(c, t);
+                    // table = (const struct CharacterData *)NewGetCharacterData(id, t);
                     if (FilterCharOut(table, GetClassData(table->defaultClass)))
                     {
                         continue;
                     }
                     tables[c] = t;
-                    unit[c] = i;
+                    unit[c] = id;
                     c++;
                     break;
                 }
@@ -3807,68 +4128,6 @@ void BuildFilteredCharsList(
     counter->x = c;
     counter->y = b;
 }
-
-/*
-void BuildRecruitableCharsList(
-    struct Vec2u * counter, u8 * unit, u8 * bosses, u8 * tableID, RecruitmentProc * proc1, RecruitmentProc * proc2,
-    RecruitmentProc * proc3, RecruitmentProc * proc4)
-{
-    const struct CharacterData * table = GetCharacterData(1);
-    RecruitmentProc * proc = proc1;
-    int boss;
-    int b = 0;
-    int c = 0;
-    for (int i = 1; i <= MAX_CHAR_ID; ++i)
-    {
-        table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
-
-        // table++;
-        if (i == 0x40)
-        {
-            proc = proc2;
-        }
-        if (i == 0x80)
-        {
-            proc = proc3;
-        }
-        if (i == 0xC0)
-        {
-            proc = proc4;
-        }
-        proc->id[i & 0x3F] = 0x0;
-#ifdef FE7
-        if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
-        {
-            continue;
-        } // Morphs
-#endif
-        boss = table->attributes & (CA_BOSS);
-        switch (GetUnitListToUse(table, boss, true))
-        {
-            case 0: // eg no portrait
-            {
-                continue;
-                break;
-            }
-            case 1:
-            {
-                unit[c] = i;
-                c++;
-                break;
-            }
-            case 2:
-            {
-                bosses[b] = i;
-                b++;
-                break;
-            }
-            default:
-        }
-    }
-    counter->x = c;
-    counter->y = b;
-}
-*/
 
 // #define REVERSE_ORDER
 RecruitmentProc * InitRandomRecruitmentProc(int procID)
@@ -3974,6 +4233,8 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             }
             case 1:
             {
+                // entry you used goes to the end so that you don't use it again
+                //
                 rn = GetNthRN_Simple(i - 1, seed, rn);
                 c--;
                 if (c < 0)
@@ -3981,6 +4242,14 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     c = c_max - 1;
                 }
                 num = HashByte_Simple(rn, c);
+                if (!RecruitValues->recruitment)
+                {
+                    num = c_max - c; // vanilla table order
+                }
+                if (RecruitValues->recruitment == 5)
+                {
+                    num = c; // reverse, so always last in list
+                }
                 proc->id[(i & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
                 if (i < 0x40)
                 {
@@ -12124,6 +12393,7 @@ ConfigMenuProc * StartConfigMenu_NewGame(ProcPtr parent)
     if (LoadLastUsedConfig())
     {
         RestoreConfigOptions(proc);
+        proc->seed = 0;
     }
 
     return proc;
@@ -12747,6 +13017,11 @@ void DrawBarsOrGrowths(void)
             case 5:
             {
                 PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "5Seed");
+                break;
+            }
+            case 6:
+            {
+                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "6Seed");
                 break;
             }
             default:
@@ -13462,6 +13737,11 @@ void DrawBarsOrGrowths(void)
             case 5:
             {
                 PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "5Seed");
+                break;
+            }
+            case 6:
+            {
+                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "6Seed");
                 break;
             }
             default:
