@@ -292,7 +292,7 @@ SET_FUNC ResetUnitSprites, 0x8024CF9
 SET_FUNC StartUiSMS, 0x8024D61 
 SET_FUNC SetupMapSpritesPalettes, 0x8024C99 
 SET_FUNC PidStatsAddActAmt, 0x809FF6D
-SET_FUNC PidStatsAddStatViewAmt, 0x80A91D1 
+SET_FUNC PidStatsAddStatViewAmt, 0x809FFAD 
 SET_FUNC PidStatsAddDeployAmt, 0x809FFED
 SET_FUNC PidStatsAddSquaresMoved, 0x80A003D
 SET_FUNC PidStatsAddExpGained, 0x80A009D
