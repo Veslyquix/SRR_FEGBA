@@ -4236,7 +4236,6 @@ void BuildFilteredCharsList(
     counter->y = b;
 }
 
-// #define REVERSE_ORDER
 RecruitmentProc * InitRandomRecruitmentProc(int procID)
 {
     // if (ShouldRandomizeUsedCharTable())
@@ -4284,25 +4283,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     int b_max = b;
     int num;
     u32 rn = 0;
-#ifdef REVERSE_ORDER
-    proc = proc4;
-    // table = GetCharacterData(MAX_CHAR_ID);
-    for (int i = MAX_CHAR_ID; i > 0; --i)
-    { // reordered at random
-        // table--;
-        if (i <= 0xBF)
-        {
-            proc = proc3;
-        }
-        if (i <= 0x7F)
-        {
-            proc = proc2;
-        }
-        if (i <= 0x3F)
-        {
-            proc = proc1;
-        }
-#else
     proc = proc1;
     for (int i = 1; i < MAX_CHAR_ID; ++i)
     {
@@ -4318,8 +4298,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         {
             proc = proc4;
         }
-
-#endif
         table = GetCharacterData(i);
 #ifdef FE7
         if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
@@ -4389,26 +4367,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             default:
         }
     }
-
-// #ifndef FE8 // breaks with skillsys atm
-#ifdef REVERSE_ORDER
-    proc = proc4;
-    for (int i = MAX_CHAR_ID; i > 0; --i)
-    {
-        // table--;
-        if (i <= 0xBF)
-        {
-            proc = proc3;
-        }
-        if (i <= 0x7F)
-        {
-            proc = proc2;
-        }
-        if (i <= 0x3F)
-        {
-            proc = proc1;
-        }
-#else
     proc = proc1;
     for (int i = 1; i < MAX_CHAR_ID; ++i)
     {
@@ -4424,7 +4382,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         {
             proc = proc4;
         }
-#endif
         table = GetCharacterData(i); // check for morphs and duplicates in vanilla table
         boss = table->attributes & (CA_BOSS);
         // if (GetUnitListToUse(table, boss, false)) {
