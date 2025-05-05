@@ -3950,14 +3950,14 @@ const u8 FE6_RecruitmentOrder[] = {
 
 };
 const u8 FE7_RecruitmentOrder[] = {
-    Lyn,     Sain,    Kent,   Florina, Wil,     Dorcas,  Serra, Erk,    Rath,     Matthew,   Nils,  Lucius, Wallace,
-    Eliwood, Marcus,  Lowen,  Rebecca, Bartre,  Hector,  Oswin, Guy,    Merlinus, Priscilla, Raven, Canas,  Dart,
-    Fiora,   Legault, Ninian, Isadora, Heath,   Hawkeye, Geitz, Farina, Pent,     Louise,    Karel, Harken, Nino,
-    Jaffar,  Vaida,   Nils,   Karla,   Renault, Athos,   0,     0,      0,        0,         0,     0,      0,
-    0,       0,       0,      0,       0,       0,       0,     0,      0,        0,         0,     0,      0,
-    0,       0,       0,      0,       0,       0,       0,     0,      0,        0,         0,     0,      0,
-    0,       0,       0,      0,       0,       0,       0,     0,      0,        0,         0,     0,      0,
-    0,       0,       0,      0,       0,       0,       0,     0,      0,        0,
+    Lyn,     Sain,    Kent,   Florina, Wil,    Dorcas,  Serra, Erk,    Rath,     Matthew,   Nils,  Lucius, Wallace,
+    Eliwood, Marcus,  Lowen,  Rebecca, Bartre, Hector,  Oswin, Guy,    Merlinus, Priscilla, Raven, Canas,  Dart,
+    Fiora,   Legault, Ninian, Isadora, Heath,  Hawkeye, Geitz, Farina, Pent,     Louise,    Karel, Harken, Nino,
+    Jaffar,  Vaida,   Karla,  Renault, Athos,  0,       0,     0,      0,        0,         0,     0,      0,
+    0,       0,       0,      0,       0,      0,       0,     0,      0,        0,         0,     0,      0,
+    0,       0,       0,      0,       0,      0,       0,     0,      0,        0,         0,     0,      0,
+    0,       0,       0,      0,       0,      0,       0,     0,      0,        0,         0,     0,      0,
+    0,       0,       0,      0,       0,      0,       0,     0,      0,
 
 };
 
@@ -3977,7 +3977,7 @@ const u8 * GetRecruitmentTable(int t)
         case 0:
         {
 #ifdef FE6
-            table = FE7_RecruitmentOrder;
+            table = FE6_RecruitmentOrder;
 
 #endif
 #ifdef FE7
@@ -3985,45 +3985,8 @@ const u8 * GetRecruitmentTable(int t)
 #endif
             break;
         }
-#ifdef FE6
-        case 4:
-        {
-            table = FE7_RecruitmentOrder;
-            break;
-        } // fe7
-        case 5:
-        {
-            table = FE8_RecruitmentOrder;
-            break;
-        } // fe8
-#endif
-#ifdef FE7
-        case 4:
-        {
-            table = FE6_RecruitmentOrder;
-            break;
-        } // fe6
-        case 5:
-        {
-            table = FE8_RecruitmentOrder;
-            break;
-        } // fe8
-#endif
-#ifdef FE8
-        case 4:
-        {
-            table = FE6_RecruitmentOrder;
-            break;
-        }
-        case 5:
-        {
-            table = FE7_RecruitmentOrder;
-            break;
-        }
-#endif
         default:
         {
-            table = FE8_RecruitmentOrder;
             break;
         }
     }
@@ -4054,72 +4017,6 @@ void BuildRecruitmentOrderList(u8 * list, int t)
             list[c++] = i;
         }
     }
-}
-
-// extern const u8 FE8_RecruitmentOrder[];
-// const u8 FE8_RecruitmentOrder[] = { }
-int GetRecruitmentOrder(int id, int t)
-{
-    int result = id;
-    return id;
-    if (id > 0x45)
-    {
-        return id;
-    }
-    switch (t)
-    {
-        case 0:
-        {
-            return id;
-            break;
-        } // vanilla
-#ifdef FE6
-        case 4:
-        {
-            result = FE7_RecruitmentOrder[id];
-            break;
-        } // fe7
-        case 5:
-        {
-            return id;
-            break;
-        } // fe8
-#endif
-#ifdef FE7
-        case 4:
-        {
-            result = FE6_RecruitmentOrder[id];
-            break;
-        } // fe6
-        case 5:
-        {
-            return id;
-            break;
-        } // fe8
-#endif
-#ifdef FE8
-        case 4:
-        {
-            result = FE6_RecruitmentOrder[id];
-            break;
-        } // fe6
-        case 5:
-        {
-            result = FE7_RecruitmentOrder[id];
-            break;
-        } // fe7
-#endif
-        default:
-        {
-            return id;
-            break;
-        }
-    }
-    if (!result)
-    {
-        return result;
-    }
-    return result;
 }
 
 void BuildFilteredCharsList(
@@ -4159,30 +4056,15 @@ void BuildFilteredCharsList(
         end = NumberOfCharTables;
     }
 
-    int id = 0;
-
-    u8 recruitmentOrder[0x45] = { 0 };
-
     for (; t < end; ++t)
-    // for (int t = 0; t < 1; ++t)
     {
-        BuildRecruitmentOrderList(recruitmentOrder, t);
-        for (int i = 0; i < MAX_CHAR_ID; ++i)
+        for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
-            if (i < 0x45)
-            {
-                id = recruitmentOrder[i];
-            }
-            else
-            {
-                id = i + 1; // our list counts from 0, while char IDs count from 1
-            }
-
             if (b >= BossListSize && c >= UnitListSize)
             {
                 break;
             }
-            table = (const struct CharacterData *)NewGetCharacterData(id, t);
+            table = (const struct CharacterData *)NewGetCharacterData(i, t);
             if (table->portraitId == TerminatorPortrait)
             {
                 break;
@@ -4214,7 +4096,7 @@ void BuildFilteredCharsList(
                         continue;
                     }
                     tables[c] = t;
-                    unit[c] = id;
+                    unit[c] = i;
                     c++;
                     break;
                 }
@@ -4284,21 +4166,37 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     int num;
     u32 rn = 0;
     proc = proc1;
-    for (int i = 1; i < MAX_CHAR_ID; ++i)
+    int id = 0;
+    u8 recruitmentOrder[0x45] = { 0 };
+    BuildRecruitmentOrderList(recruitmentOrder, 0);
+    for (int i = 0; i < MAX_CHAR_ID; ++i)
     {
-        if (i >= 0x40)
+        if (i < 0x45)
+        {
+            id = recruitmentOrder[i];
+        }
+        else
+        {
+            id = i + 1;
+        }
+
+        if (id < 0x40)
+        {
+            proc = proc1;
+        }
+        if (id >= 0x40)
         {
             proc = proc2;
         }
-        if (i >= 0x80)
+        if (id >= 0x80)
         {
             proc = proc3;
         }
-        if (i >= 0xC0)
+        if (id >= 0xC0)
         {
             proc = proc4;
         }
-        table = GetCharacterData(i);
+        table = GetCharacterData(id);
 #ifdef FE7
         if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
         {
@@ -4320,7 +4218,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             {
                 // entry you used goes to the end so that you don't use it again
                 //
-                rn = GetNthRN_Simple(i - 1, seed, rn);
+                rn = GetNthRN_Simple(id - 1, seed, rn);
                 c--;
                 if (c < 0)
                 {
@@ -4329,29 +4227,29 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                 num = HashByte_Simple(rn, c);
                 if (!RecruitValues->recruitment)
                 {
-                    num = c_max - c; // vanilla table order
+                    num = c_max - (c + 1); // vanilla table order
                 }
                 if (RecruitValues->recruitment == 5)
                 {
                     num = c; // reverse, so always last in list
                 }
-                proc->id[(i & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                if (i < 0x40)
+                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                if (id < 0x40)
                 {
                     if (tables[num] != 0xFF)
                     {
-                        proc5->id[(i & 0x3F) - 1] = tables[num];
+                        proc5->id[(id & 0x3F) - 1] = tables[num];
                         tables[num] = tables[c];
-                        tables[c] = proc5->id[(i & 0x3F) - 1];
+                        tables[c] = proc5->id[(id & 0x3F) - 1];
                     }
                 }
                 unit[num] = unit[c]; // move last entry to one we just used
-                unit[c] = proc->id[(i & 0x3F) - 1];
+                unit[c] = proc->id[(id & 0x3F) - 1];
                 break;
             }
             case 2:
             {
-                rn = GetNthRN_Simple(i - 1, seed, rn);
+                rn = GetNthRN_Simple(id - 1, seed, rn);
                 b--;
                 if (b < 0)
                 {
@@ -4359,15 +4257,17 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                 }
                 // if (b < 0) { proc->id[(i&0x3F)-1] = 0xFD; continue; }
                 num = HashByte_Simple(rn, b);
-                proc->id[(i & 0x3F) - 1] = bosses[num];
+                proc->id[(id & 0x3F) - 1] = bosses[num];
                 bosses[num] = bosses[b]; // move last entry to one we just used
-                bosses[b] = proc->id[(i & 0x3F) - 1];
+                bosses[b] = proc->id[(id & 0x3F) - 1];
                 break;
             }
             default:
         }
     }
     proc = proc1;
+
+    // now copy stuff over to account for duplicate characters
     for (int i = 1; i < MAX_CHAR_ID; ++i)
     {
         if (i >= 0x40)
