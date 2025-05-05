@@ -3960,6 +3960,102 @@ const u8 FE7_RecruitmentOrder[] = {
     0,       0,       0,      0,       0,       0,       0,     0,      0,        0,
 
 };
+
+const u8 FE8_RecruitmentOrder[] = {
+    1,  2,  3,  4,  5,  6,  7,  8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+    30, 31, 32, 33, 34, 35, 36, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+    0,  0,  0,  0,  0,  0,  0,  0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+
+};
+
+const u8 * GetRecruitmentTable(int t)
+{
+    const u8 * table = FE8_RecruitmentOrder;
+
+    switch (t)
+    {
+        case 0:
+        {
+#ifdef FE6
+            table = FE7_RecruitmentOrder;
+
+#endif
+#ifdef FE7
+            table = FE7_RecruitmentOrder;
+#endif
+            break;
+        }
+#ifdef FE6
+        case 4:
+        {
+            table = FE7_RecruitmentOrder;
+            break;
+        } // fe7
+        case 5:
+        {
+            table = FE8_RecruitmentOrder;
+            break;
+        } // fe8
+#endif
+#ifdef FE7
+        case 4:
+        {
+            table = FE6_RecruitmentOrder;
+            break;
+        } // fe6
+        case 5:
+        {
+            table = FE8_RecruitmentOrder;
+            break;
+        } // fe8
+#endif
+#ifdef FE8
+        case 4:
+        {
+            table = FE6_RecruitmentOrder;
+            break;
+        }
+        case 5:
+        {
+            table = FE7_RecruitmentOrder;
+            break;
+        }
+#endif
+        default:
+        {
+            table = FE8_RecruitmentOrder;
+            break;
+        }
+    }
+    return table;
+}
+
+void BuildRecruitmentOrderList(u8 * list, int t)
+{
+
+    const u8 * table = GetRecruitmentTable(t);
+    u8 isInTable[0x45] = { 0 }; // Tracks which IDs were in the table
+
+    int c = 0;
+    for (; c < 0x45; ++c)
+    {
+        if (!table[c])
+            break;
+
+        list[c] = table[c];
+        isInTable[table[c]] = true;
+    }
+
+    // Append skipped IDs
+    for (int i = 0; i < 0x45; ++i)
+    {
+        if (!isInTable[i])
+        {
+            list[c++] = i;
+        }
+    }
+}
+
 // extern const u8 FE8_RecruitmentOrder[];
 // const u8 FE8_RecruitmentOrder[] = { }
 int GetRecruitmentOrder(int id, int t)
@@ -4064,16 +4160,29 @@ void BuildFilteredCharsList(
     }
 
     int id = 0;
+
+    u8 recruitmentOrder[0x45] = { 0 };
+
     for (; t < end; ++t)
     // for (int t = 0; t < 1; ++t)
     {
-        for (int i = 1; i <= MAX_CHAR_ID; ++i)
+        BuildRecruitmentOrderList(recruitmentOrder, t);
+        for (int i = 0; i < MAX_CHAR_ID; ++i)
         {
+            if (i < 0x45)
+            {
+                id = recruitmentOrder[i];
+            }
+            else
+            {
+                id = i + 1; // our list counts from 0, while char IDs count from 1
+            }
+
             if (b >= BossListSize && c >= UnitListSize)
             {
                 break;
             }
-            table = (const struct CharacterData *)NewGetCharacterData(i, t);
+            table = (const struct CharacterData *)NewGetCharacterData(id, t);
             if (table->portraitId == TerminatorPortrait)
             {
                 break;
@@ -4100,8 +4209,6 @@ void BuildFilteredCharsList(
                     {
                         continue;
                     }
-                    id = GetRecruitmentOrder(c, t);
-                    // table = (const struct CharacterData *)NewGetCharacterData(id, t);
                     if (FilterCharOut(table, GetClassData(table->defaultClass)))
                     {
                         continue;
