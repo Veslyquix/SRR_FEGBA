@@ -290,6 +290,8 @@ extern u8 VanillaSkill[];
 extern int NumberOfSkills;
 extern u8 * AlwaysSkill;
 extern const int SeedOption;
+extern const int SaveOption;
+extern const int SettingsOption;
 extern const int VarianceOption;
 extern const int CharactersOption;
 extern const int FromGameOption;
@@ -11328,24 +11330,73 @@ int StartKeyPressed(ProcPtr proc)
     return false;
 }
 
-// void SRRHbKeyListener_Loop(ProcPtr proc)
-// {
-// u16 keys = sKeyStatusBuffer.newKeys;
-// if (keys & (A_BUTTON | B_BUTTON | DPAD_ANY))
-// {
-// CloseHelpBox();
-// Proc_Break(proc);
-// }
+void SetDefaultTagValues(void)
+{
 
-// return;
-// }
+    TagValues->raw = 0xFFFFDFFF;      // default: no civilians
+    ClassTags->raw = 0xFFFFDFFF;      // default
+    EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
+    // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
+}
+void RestoreConfigOptions(ConfigMenuProc * proc);
+void SaveConfigOptions(ConfigMenuProc * proc)
+{
+    SaveLastUsedConfig();
+    return;
+}
+void LoadConfigOptions(ConfigMenuProc * proc)
+{
+    RestoreConfigOptions(proc);
+    return;
+}
+void SetAllConfigOptionsToVanilla(ConfigMenuProc * proc)
+{
+    SetDefaultTagValues();
+    for (int i = 0; i < SRR_TotalOptions; ++i)
+    {
+        proc->Option[i] = 0;
+    }
+    return;
+}
 
-// struct ProcCmd CONST_DATA gProcScr_SRRHelpboxListener[] = {
-// PROC_SLEEP(1),
-// PROC_REPEAT(SRRHbKeyListener_Loop),
+void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
+{
 
-// PROC_END,
-// };
+    for (int i = 3; i <= SRR_TotalOptions; i++)
+    {
+        proc->Option[i] = 0;
+    }
+    SetDefaultTagValues();
+    proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
+    // proc->Option[VarianceOption] = 10; // start on 50%
+    proc->Option[CharactersOption] = 1;
+    proc->Option[FromGameOption] = 0; // Fe8 game
+    proc->Option[BaseStatsOption] = 1;
+    proc->Option[GrowthsOption] = 1;
+    proc->Option[LevelupsOption] = 1;
+    proc->Option[StatCapsOption] = 1;
+    proc->Option[ClassOption] = 4;
+    proc->Option[ItemOption] = 1;
+    proc->Option[ModeOption] = 0;    // Classic
+    proc->Option[MusicOption] = 1;   // Random BGM
+    proc->Option[ColoursOption] = 0; // Random Colours off by default now
+    proc->skill = GetNextAlwaysSkill(0);
+    proc->Option[UiOption] = 3;       // ui default: pikmin style
+    proc->Option[DebuggerOption] = 1; // debugger
+    proc->Option[BGOption] = 0;       // BGs
+
+    proc->Option[TimedHitsOption] = 1; // timed hits
+    return;
+}
+void SetAllConfigOptionsToRandom(ConfigMenuProc * proc)
+{
+    for (int i = 3; i < SRR_TotalOptions; ++i)
+    {
+
+        proc->Option[i] = NextRN_N(CountOptionAmount(i) + 1);
+    }
+    return;
+}
 
 #define RTextLoc 56
 LocationTable RText_LocationTable[] = {
@@ -11488,6 +11539,37 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
     if ((keys & START_BUTTON) || (keys & A_BUTTON))
     { // press A or Start to continue
+
+        if ((id + offset) == SaveOption)
+        {
+            if (proc->Option[SaveOption] == 0)
+            {
+                SaveConfigOptions(proc);
+            }
+            if (proc->Option[SaveOption] == 1)
+            {
+                LoadConfigOptions(proc);
+            }
+            RedrawAllText(proc);
+            return;
+        }
+        if ((id + offset) == SettingsOption)
+        {
+            if (proc->Option[SettingsOption] == 0)
+            {
+                SetAllConfigOptionsToVanilla(proc);
+            }
+            if (proc->Option[SettingsOption] == 1)
+            {
+                SetAllConfigOptionsToDefault(proc);
+            }
+            if (proc->Option[SettingsOption] == 2)
+            {
+                SetAllConfigOptionsToRandom(proc);
+            }
+            RedrawAllText(proc);
+            return;
+        }
 
         // see if anything changed
         int reloadPlayers = false;
@@ -12339,15 +12421,6 @@ void FE7_ClearPidStats() // ClearPidStats
     }
 }
 
-void SetDefaultTagValues(void)
-{
-
-    TagValues->raw = 0xFFFFDFFF;      // default: no civilians
-    ClassTags->raw = 0xFFFFDFFF;      // default
-    EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
-    // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
-}
-
 ConfigMenuProc * StartConfigMenu(ProcPtr parent);
 
 ConfigMenuProc * StartConfigMenu_NewGame(ProcPtr parent)
@@ -12413,31 +12486,11 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
     }
     if (proc)
     {
-        for (int i = 0; i <= SRR_TotalOptions; i++)
-        {
-            proc->Option[i] = 0;
-        }
-        SetDefaultTagValues();
+        SetAllConfigOptionsToDefault(proc);
 
         proc->helpBox = NULL;
         proc->reloadPlayers = false;
         proc->reloadEnemies = false;
-        if (!DefaultConfigToVanilla)
-        {
-            proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
-            // proc->Option[VarianceOption] = 10; // start on 50%
-            proc->Option[CharactersOption] = 1;
-            proc->Option[FromGameOption] = 0; // Fe8 game
-            proc->Option[BaseStatsOption] = 1;
-            proc->Option[GrowthsOption] = 1;
-            proc->Option[LevelupsOption] = 1;
-            proc->Option[StatCapsOption] = 1;
-            proc->Option[ClassOption] = 4;
-            proc->Option[ItemOption] = 1;
-            proc->Option[ModeOption] = 0;    // Classic
-            proc->Option[MusicOption] = 1;   // Random BGM
-            proc->Option[ColoursOption] = 0; // Random Colours off by default now
-        }
 
         proc->previewPage = 0;
         proc->previewId = 0;
@@ -12448,7 +12501,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         proc->offset = 0;
         proc->redraw = 0;
         proc->clear = false;
-        proc->skill = GetNextAlwaysSkill(0);
+
         proc->choosingSkill = 0;
         proc->freezeSeed = false;
         if (RandValues->seed)
@@ -12462,11 +12515,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         proc->seed = GetInitialSeed(2, proc);
         proc->digit = 0;
         StartGreenText(proc);
-        proc->Option[UiOption] = 3;       // ui default: pikmin style
-        proc->Option[DebuggerOption] = 1; // debugger
-        proc->Option[BGOption] = 0;       // BGs
 
-        proc->Option[TimedHitsOption] = 1; // timed hits
 #ifdef FORCE_SPECIFIC_SEED
         proc->seed = 387508;
         proc->freezeSeed = true;

@@ -664,7 +664,7 @@ ALIGN 4
 IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
-WORD 26
+WORD 28
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:
@@ -695,7 +695,7 @@ WORD 0
 #define txt(string2) STRING string2 "FE6TR"; BYTE 0 0; // fe6 version 
 
 #include "SRR_Menu.event" 
- 
+ // r0=0x6016800
 ALIGN 4 
 RandValues:
 WORD 0x203D974 // Bandit unitID + 0x45 BWL data

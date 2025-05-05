@@ -71,7 +71,7 @@ txt("Page")
 
 ALIGN 64 
 gSRRMenuText: 
-FILL((MaxRTextOpt+1) * 4 * 40) // max 40 options 
+FILL((MaxRTextOpt+1) * 4 * 42) // max 42 options 
 
 
 #define SRRHeader(id) "header: ; PUSH; ORG SRRText_POIN + (id * 4); POIN header; POP ;" 
@@ -86,6 +86,18 @@ ALIGN 4; SRRHeader(SeedOpt)
 POIN t0 0 
 }
 
+
+{
+t0:  txt("Save settings"); t1: txt("Load settings"); 
+ALIGN 4; SRRHeader(SaveOpt)
+POIN t0 t1 0 
+}
+
+{
+t0:  txt("Set all to Vanilla");                     t1:  txt("Set all to Defaults");           t2:  txt("Randomize settings");
+ALIGN 4; SRRHeader(SettingsOpt)
+POIN t0 t1 t2 0 
+}
 
 {
 t0:  txt("0%");   t1:  txt("5%");   t2:  txt("10%");  t3:  txt("15%");  t4:  txt("20%");
@@ -414,6 +426,14 @@ ALIGN 4
 
 SRRMenu(SeedOpt);               txt("Seed")
 SRRDesc(SeedOpt,0); txt("Random Numbers are generated\using this seed."); 
+SRRMenu(SaveOpt); txt("Press A to:")
+SRRDesc(SaveOpt,0); txt("Save your settings to use\as a default."); 
+SRRDesc(SaveOpt,1); txt("Load previously saved settings."); 
+SRRMenu(SettingsOpt);           txt(" ")
+SRRDesc(SettingsOpt,0); txt("Change all settings to vanilla."); 
+SRRDesc(SettingsOpt,1); txt("Change all settings to the defaults."); 
+SRRDesc(SettingsOpt,2); txt("Randomize all settings."); 
+
 SRRMenu(VarianceOpt);           txt("Variance")
 SRRDesc(VarianceOpt); txt("Diversity of gameplay.\Stats/Growths will vary +/-\this much."); 
 SRRMenu(CharactersOpt);         txt("Characters")
@@ -524,6 +544,10 @@ SRRDesc(TimedHitsOpt,2); SRRDesc(TimedHitsOpt,3); txt("Mario RPG moment.\Pressin
 ALIGN 4 
 SeedOption:
 WORD SeedOpt 
+SaveOption:
+WORD SaveOpt
+SettingsOption:
+WORD SettingsOpt 
 VarianceOption:
 WORD VarianceOpt 
 CharactersOption:
