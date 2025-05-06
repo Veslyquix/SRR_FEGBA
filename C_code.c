@@ -5608,8 +5608,26 @@ void CpuSet(const void * src, void * dest, u32 control);
 extern bool ReadGlobalSaveInfo(struct GlobalSaveInfo2 * buf); // 80842E8 809E4F0
 extern int ReadConfigFromSRAM;
 extern void WriteGlobalSaveInfoNoChecksum(struct GlobalSaveInfo2 * header);
+
+#define CART_SRAM_ADDR 0x0E000000
+#define CART_SRAM_SIZE 0x00008000
+#define CART_SRAM ((void *)CART_SRAM_ADDR)
+
+extern void (*ReadSramFast)(void const * src, void * dest, u32 size);
+u32 WriteAndVerifySramFast(void const * src, void * dest, u32 size);
+
+#define ConfigSRAM ((void *)CART_SRAM_ADDR + CART_SRAM_SIZE - 0x20)
+
 int LoadLastUsedConfig()
 {
+    u8 tmp[0x20] = { 0 };
+
+    ReadSramFast(ConfigSRAM, (void *)tmp, 0x20);
+    // CpuCopy16(ConfigSRAM, (void *)tmp, 0x20);
+    CpuCopy16(tmp, (void *)RandValues, 16);
+    CpuCopy16(&tmp[0x10], (void *)TagValues, 16);
+    return true;
+
     if (!ReadConfigFromSRAM)
     {
         return false;
@@ -5623,12 +5641,19 @@ int LoadLastUsedConfig()
     CpuCopy16(&info.pad2[0], (void *)RandValues, 15);
     return true;
 }
+
 void SaveLastUsedConfig()
 {
+    u8 tmp[0x20] = { 0 };
+    CpuCopy16((void *)RandValues, (void *)tmp, 16);
+    CpuCopy16((void *)TagValues, (void *)&tmp[0x10], 16);
+    WriteAndVerifySramFast((void *)tmp, ConfigSRAM, 0x20);
+
     if (!ReadConfigFromSRAM)
     {
         return;
     }
+
     struct GlobalSaveInfo2 info;
     ReadGlobalSaveInfo(&info);
     CpuCopy16((void *)RandValues, &info.pad2[0], 15);
@@ -10537,7 +10562,7 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_REPEAT(LoopFilterEnemyClassPage),
 
     PROC_LABEL(EndLabel),
-    PROC_CALL(SaveLastUsedConfig),
+    // PROC_CALL(SaveLastUsedConfig),
     PROC_CALL(EndCloudsEffect),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
@@ -11346,6 +11371,10 @@ void SaveConfigOptions(ConfigMenuProc * proc)
 }
 void LoadConfigOptions(ConfigMenuProc * proc)
 {
+    if (!LoadLastUsedConfig())
+    {
+        return;
+    }
     RestoreConfigOptions(proc);
     return;
 }
@@ -12311,6 +12340,7 @@ extern void StartGreenText(ProcPtr parent);
 
 void RestoreConfigOptions(ConfigMenuProc * proc)
 {
+
     // pull up your previously saved options
 
     proc->Option[VarianceOption] = RandValues->variance;
@@ -12427,12 +12457,8 @@ ConfigMenuProc * StartConfigMenu_NewGame(ProcPtr parent)
 {
     ConfigMenuProc * proc;
     proc = StartConfigMenu(parent);
-    if (LoadLastUsedConfig())
-    {
-        RestoreConfigOptions(proc);
-        proc->seed = 0;
-    }
-
+    LoadConfigOptions(proc);
+    proc->seed = 0;
     return proc;
 }
 

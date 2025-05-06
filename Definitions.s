@@ -255,9 +255,14 @@ SET_FUNC MapAnimProc_DisplayExpBar, 0x8061d01
 SET_FUNC MapAnim_MoveCameraOntoSubject, 0x8061B81
 SET_FUNC MapAnim_Cleanup, 0x80619b1
 SET_FUNC UpdateActorFromBattle, 0x80254CD @ BattleApplyUnitUpdates
+SET_FUNC ReadSramFast, 0x3006640
+SET_FUNC WriteAndVerifySramFast, 0x809DE9D 
 
 .endif     
 .if FE7 == true 
+SET_FUNC ReadSramFast, 0x3005E70  
+SET_FUNC WriteAndVerifySramFast, 0x80BFBD9  
+
 SET_FUNC RenderBmMapOnBg2, 0x8019585  
 SET_FUNC MoveActiveUnit, 0x801CDBD 
 SET_FUNC NewBMXFADE, 0x8082015
