@@ -4058,6 +4058,8 @@ void BuildFilteredCharsList(
         end = NumberOfCharTables;
     }
 
+    int useVanillaTableNow = false;
+
     for (; t < end; ++t)
     {
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
@@ -4066,12 +4068,21 @@ void BuildFilteredCharsList(
             {
                 break;
             }
-            table = (const struct CharacterData *)NewGetCharacterData(i, t);
+            if (useVanillaTableNow)
+            {
+                table = GetCharacterData(i);
+            }
+            else
+            {
+                table = (const struct CharacterData *)NewGetCharacterData(i, t);
+            }
             if (table->portraitId == TerminatorPortrait)
             {
-                break;
+                useVanillaTableNow = true;
+                continue;
             } // ignore characters past the character with this portrait ID
               // when creating a list of playables
+
 #ifdef FE7
             if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
             {
