@@ -427,7 +427,7 @@ ALIGN 4
 SRRMenu(SeedOpt);               txt("Seed")
 SRRDesc(SeedOpt,0); txt("Random Numbers are generated\using this seed."); 
 SRRMenu(SaveOpt); txt("Press A to:")
-SRRDesc(SaveOpt,0); txt("Save your settings to use\as a default."); 
+SRRDesc(SaveOpt,0); txt("Save your settings to use\for future runs."); 
 SRRDesc(SaveOpt,1); txt("Load previously saved settings."); 
 SRRMenu(SettingsOpt);           txt(" ")
 SRRDesc(SettingsOpt,0); txt("Change all settings to vanilla."); 

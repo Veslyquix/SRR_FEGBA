@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V1.9.8"
+#define VersionNumber " SRR V1.9.9"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -11809,10 +11809,13 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
 }
 void SetAllConfigOptionsToRandom(ConfigMenuProc * proc)
 {
+    int seed = proc->globalChecksum + GetNthRN(GetGameClock(), proc->globalChecksum);
+    int rn = 0;
+
     for (int i = 3; i < SRR_TotalOptions; ++i)
     {
-
-        proc->Option[i] = NextRN_N(CountOptionAmount(i) + 1);
+        rn = GetNthRN_Simple(seed, RandValues->seed, rn);
+        proc->Option[i] = HashByte_Simple(rn, CountOptionAmount(i) + 1);
     }
     return;
 }
@@ -12480,8 +12483,8 @@ ConfigMenuProc * StartConfigMenu_NewGame(ProcPtr parent)
 {
     ConfigMenuProc * proc;
     proc = StartConfigMenu(parent);
-    LoadConfigOptions(proc);
-    proc->seed = 0;
+    // LoadConfigOptions(proc);
+    // proc->seed = 0;
     return proc;
 }
 
