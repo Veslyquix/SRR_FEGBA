@@ -69,7 +69,7 @@ STRING "Abel" "FE6TR" ; BYTE 0
 ALIGN 4 
 ReadConfigFromSRAM:
 #ifdef VeslyBuildfile 
-WORD False 
+WORD True 
 #else 
 WORD 0 
 #endif 

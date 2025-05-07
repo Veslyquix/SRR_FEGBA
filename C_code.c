@@ -5620,44 +5620,38 @@ u32 WriteAndVerifySramFast(void const * src, void * dest, u32 size);
 
 int LoadLastUsedConfig()
 {
-    u8 tmp[0x20] = { 0 };
-
-    ReadSramFast(ConfigSRAM, (void *)tmp, 0x20);
-    // CpuCopy16(ConfigSRAM, (void *)tmp, 0x20);
-    CpuCopy16(tmp, (void *)RandValues, 16);
-    CpuCopy16(&tmp[0x10], (void *)TagValues, 16);
-    return true;
-
     if (!ReadConfigFromSRAM)
     {
         return false;
     }
-    struct GlobalSaveInfo2 info;
-    ReadGlobalSaveInfo(&info);
-    if (!info.pad2[0] || (info.pad2[0] == (-1)))
+    u8 tmp[0x20] = { 0 };
+
+    ReadSramFast(ConfigSRAM, (void *)tmp, 0x20);
+    if (tmp[12] == 0xFF)
     {
-        return false;
+        return false; // don't use default 0xFFFFFFFF sram
     }
-    CpuCopy16(&info.pad2[0], (void *)RandValues, 15);
+
+    // CpuCopy16(ConfigSRAM, (void *)tmp, 0x20);
+    CpuCopy16(tmp, (void *)RandValues, 16);
+    CpuCopy16(&tmp[0x10], (void *)TagValues, 16);
+    // if (GrowthValues->ForcedCharTable > (NumberOfCharTables + 1))
+    // {
+    // return false; // don't use default 0xFFFFFFFF sram
+    // }
     return true;
 }
 
 void SaveLastUsedConfig(ConfigMenuProc * proc)
 {
-    u8 tmp[0x20] = { 0 };
-    CpuCopy16((void *)RandValues, (void *)tmp, 16);
-    CpuCopy16((void *)TagValues, (void *)&tmp[0x10], 16);
-    WriteAndVerifySramFast((void *)tmp, ConfigSRAM, 0x20);
-
     if (!ReadConfigFromSRAM)
     {
         return;
     }
-
-    struct GlobalSaveInfo2 info;
-    ReadGlobalSaveInfo(&info);
-    CpuCopy16((void *)RandValues, &info.pad2[0], 15);
-    WriteGlobalSaveInfoNoChecksum(&info);
+    u8 tmp[0x20] = { 0 };
+    CpuCopy16((void *)RandValues, (void *)tmp, 16);
+    CpuCopy16((void *)TagValues, (void *)&tmp[0x10], 16);
+    WriteAndVerifySramFast((void *)tmp, ConfigSRAM, 0x20);
 }
 // no$gba -> utility -> binarydump -> saveas RNTable.dmp
 /*
@@ -11754,14 +11748,14 @@ void SaveConfigOptions(ConfigMenuProc * proc)
     SaveLastUsedConfig(proc);
     return;
 }
-void LoadConfigOptions(ConfigMenuProc * proc)
+int LoadConfigOptions(ConfigMenuProc * proc)
 {
     if (!LoadLastUsedConfig())
     {
-        return;
+        return false;
     }
     RestoreConfigOptions(proc);
-    return;
+    return true;
 }
 void SetAllConfigOptionsToVanilla(ConfigMenuProc * proc)
 {
@@ -11953,22 +11947,28 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
     if ((keys & START_BUTTON) || (keys & A_BUTTON))
     { // press A or Start to continue
-        CopyConfigProcIntoRam(proc);
+
         if ((id + offset) == SaveOption)
         {
             if (proc->Option[SaveOption] == 0)
             {
+                CopyConfigProcIntoRam(proc);
                 SaveConfigOptions(proc);
+                RedrawAllText(proc);
+                return;
             }
             if (proc->Option[SaveOption] == 1)
             {
-                LoadConfigOptions(proc);
+                if (LoadConfigOptions(proc))
+                {
+                    RedrawAllText(proc);
+                    return;
+                }
             }
-            RedrawAllText(proc);
-            return;
         }
         if ((id + offset) == SettingsOption)
         {
+            CopyConfigProcIntoRam(proc);
             if (proc->Option[SettingsOption] == 0)
             {
                 SetAllConfigOptionsToVanilla(proc);
@@ -11985,13 +11985,12 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             return;
         }
 
-        return;
-        // BG_SetPosition(BG_3, 0, 0);
-        // gLCDControlBuffer.dispcnt.bg3_on = 1; // don't display bg3
-        // gLCDControlBuffer.dispcnt.bg0_on = 0; // don't display bg3
-
-        // m4aSongNumStart(0x2D9); // idk which to use
-    };
+        if (((id + offset) != SaveOption) && (id + offset) != SettingsOption)
+        {
+            CopyConfigProcIntoRam(proc);
+            return;
+        }
+    }
 
     if (!keys)
     {
