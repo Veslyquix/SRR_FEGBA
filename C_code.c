@@ -5642,7 +5642,7 @@ int LoadLastUsedConfig()
     return true;
 }
 
-void SaveLastUsedConfig()
+void SaveLastUsedConfig(ConfigMenuProc * proc)
 {
     u8 tmp[0x20] = { 0 };
     CpuCopy16((void *)RandValues, (void *)tmp, 16);
@@ -11364,9 +11364,394 @@ void SetDefaultTagValues(void)
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
 }
 void RestoreConfigOptions(ConfigMenuProc * proc);
+
+void CopyConfigProcIntoRam(ConfigMenuProc * proc)
+{
+    int id = proc->id;
+    int offset = proc->offset;
+    // see if anything changed
+    int reloadPlayers = false;
+    int reloadEnemies = false;
+    int reloadUnits = false; // both
+    if (RandValues->seed != proc->seed)
+    {
+        reloadUnits = true;
+    }
+    if (RandValues->variance != proc->Option[VarianceOption])
+    {
+        reloadUnits = true;
+    }
+    if (RecruitValues->recruitment != proc->Option[CharactersOption])
+    {
+        if (proc->Option[CharactersOption] == 1)
+        {
+            reloadPlayers = true;
+        }
+        if (proc->Option[CharactersOption] == 2)
+        {
+            reloadEnemies = true;
+        }
+        if (proc->Option[CharactersOption] >= 3)
+        {
+            reloadUnits = true;
+        }
+        if (proc->Option[CharactersOption] == 0)
+        {
+            reloadUnits = true;
+        }
+    }
+    if (GrowthValues->ForcedCharTable != proc->Option[FromGameOption])
+    {
+        reloadUnits = true;
+    }
+
+    if (RandBitflags->base != proc->Option[BaseStatsOption])
+    {
+        reloadUnits = true;
+    }
+    if (RandBitflags->growth != proc->Option[GrowthsOption])
+    {
+        reloadUnits = true;
+    }
+    if (RandBitflags->levelups != proc->Option[LevelupsOption])
+    {
+        reloadUnits = true;
+    }
+    if (RandBitflags->caps != proc->Option[StatCapsOption])
+    {
+        reloadUnits = true;
+    }
+    if (RandBitflags->class != proc->Option[ClassOption])
+    {
+        if (proc->Option[ClassOption] == 2)
+        {
+            reloadPlayers = true;
+        }
+        if (proc->Option[ClassOption] == 3)
+        {
+            reloadEnemies = true;
+        }
+        if (proc->Option[ClassOption] == 1)
+        {
+            reloadUnits = true;
+        }
+        if (proc->Option[ClassOption] == 0)
+        {
+            reloadUnits = true;
+        }
+    }
+    if (RandBitflags->playerBonus != proc->Option[PlayerBonusOption])
+    {
+        reloadPlayers = true;
+    }
+    if (GrowthValues->player != proc->Option[PlayerBonusGrowthOption])
+    {
+        reloadPlayers = true;
+    }
+    if (RandValues->bonus != proc->Option[EnemyBonusOption])
+    {
+        reloadEnemies = true;
+    }
+    if (GrowthValues->enemy != proc->Option[EnemyBonusGrowthOption])
+    {
+        reloadEnemies = true;
+    }
+    if (DisplayRandomSkillsOption)
+    {
+        if (RandValues->skills != proc->Option[SkillsOption])
+        {
+            reloadUnits = true;
+        }
+    }
+
+    if (reloadUnits)
+    {
+        reloadPlayers = true;
+        reloadEnemies = true;
+    }
+    if (reloadPlayers)
+    {
+        proc->reloadPlayers = true;
+    }
+    if (reloadEnemies)
+    {
+        proc->reloadEnemies = true;
+    }
+
+    if (proc->calledFromChapter)
+    { // are you sure units should be reloaded?
+        if ((id + offset) != ReloadUnitsOption)
+        {
+            if (((id + offset) != FilterCharsOption) && ((id + offset) != PreviewCharsOption) &&
+                ((id + offset) != FilterClassOption) && ((id + offset) != FilterEnemyClassOption))
+            {
+                if ((id + offset) != SkipChOption)
+                {
+                    proc->id = SRR_MAXDISP; // SRR_NUMBERDISP
+                    proc->offset = SkipChOption - 5;
+                    proc->redraw = RedrawAll;
+                    proc->Option[ReloadUnitsOption] = 0;
+                    if (reloadPlayers)
+                    {
+                        proc->Option[ReloadUnitsOption] = 2;
+                    }
+                    if (reloadEnemies)
+                    {
+                        proc->Option[ReloadUnitsOption] = 3;
+                    }
+                    if (reloadPlayers && reloadEnemies)
+                    {
+                        proc->Option[ReloadUnitsOption] = 1;
+                    }
+                    DrawConfigMenu(proc);
+                    return;
+                }
+            }
+        }
+    }
+    if (proc->Option[ReloadUnitsOption] == 0)
+    {
+        proc->reloadPlayers = false;
+        proc->reloadEnemies = false;
+    } // player chooses
+    if (proc->Option[ReloadUnitsOption] == 1)
+    {
+        proc->reloadPlayers = true;
+        proc->reloadEnemies = true;
+    }
+    if (proc->Option[ReloadUnitsOption] == 2)
+    {
+        proc->reloadPlayers = true;
+        proc->reloadEnemies = false;
+    }
+    if (proc->Option[ReloadUnitsOption] == 3)
+    {
+        proc->reloadPlayers = false;
+        proc->reloadEnemies = true;
+    }
+
+    if (proc->reloadPlayers)
+    {
+        ClearPlayerBWL();
+    }
+    if (proc->reloadPlayers || proc->reloadEnemies)
+    {
+        *MaxClasses = 0; // recalc this
+    }
+
+    RandValues->seed = proc->seed;
+    RandValues->variance = proc->Option[VarianceOption];
+    RecruitValues->recruitment = proc->Option[CharactersOption];
+    GrowthValues->ForcedCharTable = proc->Option[FromGameOption];
+    RecruitValues->pauseNameReplace = false;
+    RandBitflags->base = proc->Option[BaseStatsOption];
+    RandBitflags->growth = proc->Option[GrowthsOption];
+    if (proc->Option[GrowthsOption] > 3)
+    {
+        RandBitflags->grow50 = true;
+    }
+    else
+    {
+        RandBitflags->grow50 = false;
+    }
+    RandBitflags->levelups = proc->Option[LevelupsOption];
+    RandBitflags->caps = proc->Option[StatCapsOption];
+    RandBitflags->class = proc->Option[ClassOption];
+    RecruitValues->newClasses = 0;
+    if (proc->Option[ClassOption] >= 4)
+    {
+        RandBitflags->class = proc->Option[ClassOption] - 3;
+        RecruitValues->newClasses = 1;
+    }
+
+    RandBitflags->itemStats = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 3));
+    RandBitflags->foundItems = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 2));
+    RandBitflags->shopItems = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 2));
+    if (proc->Option[ModeOption] == 1)
+    {
+        SetFlag(CasualModeFlag);
+    }
+    else
+    {
+        UnsetFlag(CasualModeFlag);
+    }
+
+    RandBitflags->randMusic = proc->Option[MusicOption];
+    RandBitflags->colours = proc->Option[ColoursOption];
+    RandBitflags->itemDur = proc->Option[DurabilityOption];
+    RandBitflags->playerBonus = proc->Option[PlayerBonusOption];
+    GrowthValues->player = proc->Option[PlayerBonusGrowthOption];
+    RandValues->bonus = proc->Option[EnemyBonusOption];
+    GrowthValues->enemy = proc->Option[EnemyBonusGrowthOption];
+    RecruitValues->ai = proc->Option[SoftlockOption];
+    RandBitflags->disp = 1;
+    if (proc->Option[DebuggerOption] == 0)
+    {
+        SetFlag(DebuggerTurnedOff_Flag);
+    }
+    else
+    {
+        UnsetFlag(DebuggerTurnedOff_Flag);
+    }
+#ifdef FE8
+    UnsetFlag(StephanoStyleFlag);
+    UnsetFlag(GammaStyleFlag);
+    UnsetFlag(PikminStyleFlag);
+    switch (proc->Option[UiOption])
+    {
+        case 1:
+        {
+            SetFlag(StephanoStyleFlag);
+            break;
+        }
+        case 2:
+        {
+            SetFlag(GammaStyleFlag);
+            break;
+        }
+        case 3:
+        {
+            SetFlag(PikminStyleFlag);
+            break;
+        }
+        default:
+    }
+    GrowthValues->Backgrounds = proc->Option[BGOption];
+
+    if (DisplayRandomSkillsOption)
+    {
+        RandValues->skills = proc->Option[SkillsOption];
+        AlwaysSkill[0] = proc->skill;
+    }
+
+    if (DisplayTimedHitsOption)
+    {
+        int timedHits = proc->Option[TimedHitsOption];
+        TimedHitsDifficultyRam->off = false;
+        TimedHitsDifficultyRam->alwaysA = false;
+        TimedHitsDifficultyRam->difficulty = 0;
+        if (timedHits == 0)
+        {
+            TimedHitsDifficultyRam->off = true;
+        }
+        if (timedHits == 1)
+        {
+            TimedHitsDifficultyRam->alwaysA = true;
+        }
+        if (timedHits == 2)
+        {
+            TimedHitsDifficultyRam->difficulty = 2;
+        }
+        if (timedHits == 3)
+        {
+            TimedHitsDifficultyRam->difficulty = 3;
+        }
+    }
+#endif
+    int fog = proc->Option[FogOption];
+    RandBitflags->fog = proc->Option[FogOption];
+    if (((id + offset) == SaveOption) || ((id + offset) == SettingsOption))
+    {
+        return; // done copying to ram
+    }
+
+    if (RandBitflags->fog != fog)
+    {
+        if ((proc->Option[FogOption] == 1) && proc->calledFromChapter)
+        {
+            UpdateMapViewWithFog(0);
+        }
+        if ((proc->Option[FogOption] == 2) && proc->calledFromChapter)
+        {
+            UpdateMapViewWithFog(3);
+        }
+        if ((proc->Option[FogOption] == 0) && proc->calledFromChapter)
+        {
+            UpdateMapViewWithFog(-1);
+        }
+    }
+
+    RecruitmentProc * recruitmentProc = Proc_Find(RecruitmentProcCmd1);
+    if (recruitmentProc)
+    {
+        Proc_Break(recruitmentProc);
+    }
+    recruitmentProc = Proc_Find(RecruitmentProcCmd2);
+    if (recruitmentProc)
+    {
+        Proc_Break(recruitmentProc);
+    }
+    recruitmentProc = Proc_Find(RecruitmentProcCmd3);
+    if (recruitmentProc)
+    {
+        Proc_Break(recruitmentProc);
+    }
+    recruitmentProc = Proc_Find(RecruitmentProcCmd4);
+    if (recruitmentProc)
+    {
+        Proc_Break(recruitmentProc);
+    }
+    recruitmentProc = Proc_Find(RecruitmentProcCmd5);
+    if (recruitmentProc)
+    {
+        Proc_Break(recruitmentProc);
+    }
+
+#ifdef FE8
+    if (proc->Option[SkipChOption] && ((id + offset) == SkipChOption))
+    {
+#else
+    if (proc->Option[SkipChOption] && ((id + offset) == SkipChOption))
+    {
+#endif
+        if (proc->calledFromChapter)
+        {
+            EndCloudsEffect();
+            Proc_Goto(proc, EndLabel);
+// clear MU, refresh fog, update gfx, sms update
+// 6CCB8 8019ABC 8019504 8025724
+#ifdef FE6
+            CallEndEvent_FE6();
+#else
+            CallEndEvent();
+#endif
+            return;
+        }
+    } // win chapter
+
+    // fe6 temporarily shows wrong char name sometimes without this
+    // struct Text* th = gStatScreen.text; // max 34
+    // for (int i = 0; i < 50; ++i) {
+    //	ClearText(&th[i]);
+    //}
+    EndCloudsEffect();
+    if ((proc->id + proc->offset) == FilterCharsOption)
+    {
+        Proc_Goto(proc, FilterUnitsLabel);
+        return;
+    }
+    if ((proc->id + proc->offset) == PreviewCharsOption)
+    {
+        proc->previewId = ConfirmCommandID;
+        Proc_Goto(proc, PreviewCharLabel);
+        return;
+    }
+    if ((proc->id + proc->offset) == FilterClassOption)
+    {
+        Proc_Goto(proc, FilterClassesLabel);
+        return;
+    }
+    if ((proc->id + proc->offset) == FilterEnemyClassOption)
+    {
+        Proc_Goto(proc, FilterEnemyClassesLabel);
+        return;
+    }
+    Proc_Goto(proc, EndLabel);
+}
+
 void SaveConfigOptions(ConfigMenuProc * proc)
 {
-    SaveLastUsedConfig();
+    SaveLastUsedConfig(proc);
     return;
 }
 void LoadConfigOptions(ConfigMenuProc * proc)
@@ -11568,7 +11953,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
     if ((keys & START_BUTTON) || (keys & A_BUTTON))
     { // press A or Start to continue
-
+        CopyConfigProcIntoRam(proc);
         if ((id + offset) == SaveOption)
         {
             if (proc->Option[SaveOption] == 0)
@@ -11600,378 +11985,6 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             return;
         }
 
-        // see if anything changed
-        int reloadPlayers = false;
-        int reloadEnemies = false;
-        int reloadUnits = false; // both
-        if (RandValues->seed != proc->seed)
-        {
-            reloadUnits = true;
-        }
-        if (RandValues->variance != proc->Option[VarianceOption])
-        {
-            reloadUnits = true;
-        }
-        if (RecruitValues->recruitment != proc->Option[CharactersOption])
-        {
-            if (proc->Option[CharactersOption] == 1)
-            {
-                reloadPlayers = true;
-            }
-            if (proc->Option[CharactersOption] == 2)
-            {
-                reloadEnemies = true;
-            }
-            if (proc->Option[CharactersOption] >= 3)
-            {
-                reloadUnits = true;
-            }
-            if (proc->Option[CharactersOption] == 0)
-            {
-                reloadUnits = true;
-            }
-        }
-        if (GrowthValues->ForcedCharTable != proc->Option[FromGameOption])
-        {
-            reloadUnits = true;
-        }
-
-        if (RandBitflags->base != proc->Option[BaseStatsOption])
-        {
-            reloadUnits = true;
-        }
-        if (RandBitflags->growth != proc->Option[GrowthsOption])
-        {
-            reloadUnits = true;
-        }
-        if (RandBitflags->levelups != proc->Option[LevelupsOption])
-        {
-            reloadUnits = true;
-        }
-        if (RandBitflags->caps != proc->Option[StatCapsOption])
-        {
-            reloadUnits = true;
-        }
-        if (RandBitflags->class != proc->Option[ClassOption])
-        {
-            if (proc->Option[ClassOption] == 2)
-            {
-                reloadPlayers = true;
-            }
-            if (proc->Option[ClassOption] == 3)
-            {
-                reloadEnemies = true;
-            }
-            if (proc->Option[ClassOption] == 1)
-            {
-                reloadUnits = true;
-            }
-            if (proc->Option[ClassOption] == 0)
-            {
-                reloadUnits = true;
-            }
-        }
-        if (RandBitflags->playerBonus != proc->Option[PlayerBonusOption])
-        {
-            reloadPlayers = true;
-        }
-        if (GrowthValues->player != proc->Option[PlayerBonusGrowthOption])
-        {
-            reloadPlayers = true;
-        }
-        if (RandValues->bonus != proc->Option[EnemyBonusOption])
-        {
-            reloadEnemies = true;
-        }
-        if (GrowthValues->enemy != proc->Option[EnemyBonusGrowthOption])
-        {
-            reloadEnemies = true;
-        }
-        if (DisplayRandomSkillsOption)
-        {
-            if (RandValues->skills != proc->Option[SkillsOption])
-            {
-                reloadUnits = true;
-            }
-        }
-
-        if (reloadUnits)
-        {
-            reloadPlayers = true;
-            reloadEnemies = true;
-        }
-        if (reloadPlayers)
-        {
-            proc->reloadPlayers = true;
-        }
-        if (reloadEnemies)
-        {
-            proc->reloadEnemies = true;
-        }
-
-        if (proc->calledFromChapter)
-        { // are you sure units should be reloaded?
-            if ((id + offset) != ReloadUnitsOption)
-            {
-                if (((id + offset) != FilterCharsOption) && ((id + offset) != PreviewCharsOption) &&
-                    ((id + offset) != FilterClassOption) && ((id + offset) != FilterEnemyClassOption))
-                {
-                    if ((id + offset) != SkipChOption)
-                    {
-                        proc->id = SRR_MAXDISP; // SRR_NUMBERDISP
-                        proc->offset = SkipChOption - 5;
-                        proc->redraw = RedrawAll;
-                        proc->Option[ReloadUnitsOption] = 0;
-                        if (reloadPlayers)
-                        {
-                            proc->Option[ReloadUnitsOption] = 2;
-                        }
-                        if (reloadEnemies)
-                        {
-                            proc->Option[ReloadUnitsOption] = 3;
-                        }
-                        if (reloadPlayers && reloadEnemies)
-                        {
-                            proc->Option[ReloadUnitsOption] = 1;
-                        }
-                        DrawConfigMenu(proc);
-                        return;
-                    }
-                }
-            }
-        }
-        if (proc->Option[ReloadUnitsOption] == 0)
-        {
-            proc->reloadPlayers = false;
-            proc->reloadEnemies = false;
-        } // player chooses
-        if (proc->Option[ReloadUnitsOption] == 1)
-        {
-            proc->reloadPlayers = true;
-            proc->reloadEnemies = true;
-        }
-        if (proc->Option[ReloadUnitsOption] == 2)
-        {
-            proc->reloadPlayers = true;
-            proc->reloadEnemies = false;
-        }
-        if (proc->Option[ReloadUnitsOption] == 3)
-        {
-            proc->reloadPlayers = false;
-            proc->reloadEnemies = true;
-        }
-
-        if (proc->reloadPlayers)
-        {
-            ClearPlayerBWL();
-        }
-        if (proc->reloadPlayers || proc->reloadEnemies)
-        {
-            *MaxClasses = 0; // recalc this
-        }
-
-        RandValues->seed = proc->seed;
-        RandValues->variance = proc->Option[VarianceOption];
-        RecruitValues->recruitment = proc->Option[CharactersOption];
-        GrowthValues->ForcedCharTable = proc->Option[FromGameOption];
-        RecruitValues->pauseNameReplace = false;
-        RandBitflags->base = proc->Option[BaseStatsOption];
-        RandBitflags->growth = proc->Option[GrowthsOption];
-        if (proc->Option[GrowthsOption] > 3)
-        {
-            RandBitflags->grow50 = true;
-        }
-        else
-        {
-            RandBitflags->grow50 = false;
-        }
-        RandBitflags->levelups = proc->Option[LevelupsOption];
-        RandBitflags->caps = proc->Option[StatCapsOption];
-        RandBitflags->class = proc->Option[ClassOption];
-        RecruitValues->newClasses = 0;
-        if (proc->Option[ClassOption] >= 4)
-        {
-            RandBitflags->class = proc->Option[ClassOption] - 3;
-            RecruitValues->newClasses = 1;
-        }
-
-        RandBitflags->itemStats = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 3));
-        RandBitflags->foundItems = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 2));
-        RandBitflags->shopItems = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 2));
-        if (proc->Option[ModeOption] == 1)
-        {
-            SetFlag(CasualModeFlag);
-        }
-        else
-        {
-            UnsetFlag(CasualModeFlag);
-        }
-
-        RandBitflags->randMusic = proc->Option[MusicOption];
-        RandBitflags->colours = proc->Option[ColoursOption];
-        RandBitflags->itemDur = proc->Option[DurabilityOption];
-        RandBitflags->playerBonus = proc->Option[PlayerBonusOption];
-        GrowthValues->player = proc->Option[PlayerBonusGrowthOption];
-        RandValues->bonus = proc->Option[EnemyBonusOption];
-        GrowthValues->enemy = proc->Option[EnemyBonusGrowthOption];
-        RecruitValues->ai = proc->Option[SoftlockOption];
-        RandBitflags->disp = 1;
-        if (proc->Option[DebuggerOption] == 0)
-        {
-            SetFlag(DebuggerTurnedOff_Flag);
-        }
-        else
-        {
-            UnsetFlag(DebuggerTurnedOff_Flag);
-        }
-#ifdef FE8
-        UnsetFlag(StephanoStyleFlag);
-        UnsetFlag(GammaStyleFlag);
-        UnsetFlag(PikminStyleFlag);
-        switch (proc->Option[UiOption])
-        {
-            case 1:
-            {
-                SetFlag(StephanoStyleFlag);
-                break;
-            }
-            case 2:
-            {
-                SetFlag(GammaStyleFlag);
-                break;
-            }
-            case 3:
-            {
-                SetFlag(PikminStyleFlag);
-                break;
-            }
-            default:
-        }
-        GrowthValues->Backgrounds = proc->Option[BGOption];
-
-        if (DisplayRandomSkillsOption)
-        {
-            RandValues->skills = proc->Option[SkillsOption];
-            AlwaysSkill[0] = proc->skill;
-        }
-
-        if (DisplayTimedHitsOption)
-        {
-            int timedHits = proc->Option[TimedHitsOption];
-            TimedHitsDifficultyRam->off = false;
-            TimedHitsDifficultyRam->alwaysA = false;
-            TimedHitsDifficultyRam->difficulty = 0;
-            if (timedHits == 0)
-            {
-                TimedHitsDifficultyRam->off = true;
-            }
-            if (timedHits == 1)
-            {
-                TimedHitsDifficultyRam->alwaysA = true;
-            }
-            if (timedHits == 2)
-            {
-                TimedHitsDifficultyRam->difficulty = 2;
-            }
-            if (timedHits == 3)
-            {
-                TimedHitsDifficultyRam->difficulty = 3;
-            }
-        }
-#endif
-        if (RandBitflags->fog != proc->Option[FogOption])
-        {
-            if ((proc->Option[FogOption] == 1) && proc->calledFromChapter)
-            {
-                UpdateMapViewWithFog(0);
-            }
-            if ((proc->Option[FogOption] == 2) && proc->calledFromChapter)
-            {
-                UpdateMapViewWithFog(3);
-            }
-            if ((proc->Option[FogOption] == 0) && proc->calledFromChapter)
-            {
-                UpdateMapViewWithFog(-1);
-            }
-        }
-        RandBitflags->fog = proc->Option[FogOption];
-
-        RecruitmentProc * recruitmentProc = Proc_Find(RecruitmentProcCmd1);
-        if (recruitmentProc)
-        {
-            Proc_Break(recruitmentProc);
-        }
-        recruitmentProc = Proc_Find(RecruitmentProcCmd2);
-        if (recruitmentProc)
-        {
-            Proc_Break(recruitmentProc);
-        }
-        recruitmentProc = Proc_Find(RecruitmentProcCmd3);
-        if (recruitmentProc)
-        {
-            Proc_Break(recruitmentProc);
-        }
-        recruitmentProc = Proc_Find(RecruitmentProcCmd4);
-        if (recruitmentProc)
-        {
-            Proc_Break(recruitmentProc);
-        }
-        recruitmentProc = Proc_Find(RecruitmentProcCmd5);
-        if (recruitmentProc)
-        {
-            Proc_Break(recruitmentProc);
-        }
-
-#ifdef FE8
-        if (proc->Option[SkipChOption] && ((id + offset) == SkipChOption))
-        {
-#else
-        if (proc->Option[SkipChOption] && ((id + offset) == SkipChOption))
-        {
-#endif
-            if (proc->calledFromChapter)
-            {
-                EndCloudsEffect();
-                Proc_Goto(proc, EndLabel);
-// clear MU, refresh fog, update gfx, sms update
-// 6CCB8 8019ABC 8019504 8025724
-#ifdef FE6
-                CallEndEvent_FE6();
-#else
-                CallEndEvent();
-#endif
-                return;
-            }
-        } // win chapter
-
-        // fe6 temporarily shows wrong char name sometimes without this
-        // struct Text* th = gStatScreen.text; // max 34
-        // for (int i = 0; i < 50; ++i) {
-        //	ClearText(&th[i]);
-        //}
-        EndCloudsEffect();
-        if ((proc->id + proc->offset) == FilterCharsOption)
-        {
-            Proc_Goto(proc, FilterUnitsLabel);
-            return;
-        }
-        if ((proc->id + proc->offset) == PreviewCharsOption)
-        {
-            proc->previewId = ConfirmCommandID;
-            Proc_Goto(proc, PreviewCharLabel);
-            return;
-        }
-        if ((proc->id + proc->offset) == FilterClassOption)
-        {
-            Proc_Goto(proc, FilterClassesLabel);
-            return;
-        }
-        if ((proc->id + proc->offset) == FilterEnemyClassOption)
-        {
-            Proc_Goto(proc, FilterEnemyClassesLabel);
-            return;
-        }
-        Proc_Goto(proc, EndLabel);
         return;
         // BG_SetPosition(BG_3, 0, 0);
         // gLCDControlBuffer.dispcnt.bg3_on = 1; // don't display bg3
