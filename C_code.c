@@ -4067,7 +4067,7 @@ void BuildFilteredCharsList(
             {
                 break;
             }
-            if (useVanillaTableNow)
+            if (useVanillaTableNow && (IsCharIdInvalidForGame(i)))
             {
                 table = GetCharacterData(i);
             }
@@ -4108,7 +4108,6 @@ void BuildFilteredCharsList(
                         continue;
                     }
                     tables[c] = t;
-
                     unit[c] = i;
                     c++;
                     break;
@@ -4252,12 +4251,19 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     if (tables[num] != 0xFF)
                     {
                         proc5->id[(id & 0x3F) - 1] = tables[num];
-                        tables[num] = tables[c];
-                        tables[c] = proc5->id[(id & 0x3F) - 1];
                     }
                 }
                 if ((RecruitValues->recruitment != 0) && (RecruitValues->recruitment != 5))
                 {
+                    if (id < 0x40)
+                    {
+                        if (tables[num] != 0xFF)
+                        {
+                            proc5->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[c];
+                            tables[c] = proc5->id[(id & 0x3F) - 1];
+                        }
+                    }
                     unit[num] = unit[c]; // move last entry to one we just used
                     unit[c] = proc->id[(id & 0x3F) - 1];
                 }
