@@ -1295,18 +1295,7 @@ void PutDrawCenteredText(struct Text * text, u16 * dest, int textID, int maxWidt
     PutDrawText(text, dest, col, position, 0, str);
     // PutDrawText(text, dest, col, 0, 0, str);
 }
-int GetHiddenCharPreviewOffset(int charID)
-{
-    int c = 0;
-    for (int i = 1; i <= (charID + c); ++i)
-    {
-        if (HideCharPreviewExceptions[i].NeverChangeFrom)
-        {
-            c++;
-        }
-    }
-    return c;
-}
+
 enum
 {
     FACE_64x80,
@@ -1328,7 +1317,19 @@ enum
 #define FACE_DISP_BIT_12 (1 << 12)
 #define FACE_DISP_BIT_13 (1 << 13)
 #define FACE_DISP_HIDDEN (1 << 14)
-
+void BuildRecruitmentOrderList(u8 * list, int t);
+int GetHiddenCharPreviewOffset(int charID)
+{
+    int c = 0;
+    for (int i = 1; i <= (charID + c); ++i)
+    {
+        if (HideCharPreviewExceptions[i].NeverChangeFrom)
+        {
+            c++;
+        }
+    }
+    return c;
+}
 int GetReviseCharByID(int id)
 {
     // u8 base_charID[8] = { 1, 5, 2, 6, 3, 7, 8, 4 }; // because of menu options ordering lol
