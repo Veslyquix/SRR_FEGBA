@@ -4111,21 +4111,33 @@ void BuildFilteredCharsList(
 
     int useVanillaTableNow = false;
 
+    u8 recruitmentOrder[0x45] = { 0 };
+    BuildRecruitmentOrderList(recruitmentOrder, 0);
+    int id;
+
     for (; t < end; ++t)
     {
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
+            id = i;
+            if ((RecruitValues->recruitment == 5) && (!GrowthValues->ForcedCharTable))
+            {
+                if (i < 0x45)
+                {
+                    id = recruitmentOrder[i];
+                }
+            }
             if (b >= BossListSize && c >= UnitListSize)
             {
                 break;
             }
-            if (useVanillaTableNow && (IsCharIdInvalidForGame(i)))
+            if (useVanillaTableNow && (IsCharIdInvalidForGame(id)))
             {
-                table = GetCharacterData(i);
+                table = GetCharacterData(id);
             }
             else
             {
-                table = (const struct CharacterData *)NewGetCharacterData(i, t);
+                table = (const struct CharacterData *)NewGetCharacterData(id, t);
             }
             if (table->portraitId == TerminatorPortrait)
             {
@@ -4160,7 +4172,7 @@ void BuildFilteredCharsList(
                         continue;
                     }
                     tables[c] = t;
-                    unit[c] = i;
+                    unit[c] = id;
                     c++;
                     break;
                 }
@@ -4170,7 +4182,7 @@ void BuildFilteredCharsList(
                     {
                         continue;
                     }
-                    bosses[b] = i;
+                    bosses[b] = id;
                     b++;
                     break;
                 }
