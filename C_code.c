@@ -4010,9 +4010,8 @@ void BuildRecruitmentOrderList(u8 * list, int t)
         list[c] = table[c];
         isInTable[table[c]] = true;
     }
-
     // Append skipped IDs
-    for (int i = 0; i < 0x45; ++i)
+    for (int i = 1; i < 0x45; ++i)
     {
         if (!isInTable[i])
         {
@@ -4109,6 +4108,7 @@ void BuildFilteredCharsList(
                         continue;
                     }
                     tables[c] = t;
+
                     unit[c] = i;
                     c++;
                     break;
@@ -4256,8 +4256,11 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         tables[c] = proc5->id[(id & 0x3F) - 1];
                     }
                 }
-                unit[num] = unit[c]; // move last entry to one we just used
-                unit[c] = proc->id[(id & 0x3F) - 1];
+                if ((RecruitValues->recruitment != 0) && (RecruitValues->recruitment != 5))
+                {
+                    unit[num] = unit[c]; // move last entry to one we just used
+                    unit[c] = proc->id[(id & 0x3F) - 1];
+                }
                 break;
             }
             case 2:
