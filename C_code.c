@@ -11862,6 +11862,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             proc->helpBox = NULL;
             CloseHelpBox();
+            LoadObjUIGfx();
             return;
             // ClearHelpBoxText_SRR();
         }
@@ -12541,6 +12542,9 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
     }
     if (proc)
     {
+        proc->Option[SeedOption] = 0;
+        proc->Option[SaveOption] = 0;
+        proc->Option[SettingsOption] = 0;
         SetAllConfigOptionsToDefault(proc);
 
         proc->helpBox = NULL;
