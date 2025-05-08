@@ -882,11 +882,12 @@ void DrawCharConfirmPage(ConfigMenuProc * proc)
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
     // EnablePaletteSync();
 }
+int CountRecruitableCharacters(void);
 void IncrementCharPreviewPage(ConfigMenuProc * proc)
 {
     proc->previewPage++;
-    int id = GetReviseCharByID(proc->previewPage * NumberOfCharsPerPage);
-    if (id > MaxCharPreviewID)
+    int id = (proc->previewPage * NumberOfCharsPerPage);
+    if (id > CountRecruitableCharacters())
     {
         proc->previewPage = 0;
     }
@@ -905,8 +906,10 @@ void DecrementCharPreviewPage(ConfigMenuProc * proc)
 
     if (proc->previewPage < 0)
     {
-        proc->previewPage = MaxCharPreviewID / NumberOfCharsPerPage -
-            ((GetReviseCharByID(MaxCharPreviewID) - (MaxCharPreviewID - 6)) / NumberOfCharsPerPage);
+        int count = CountRecruitableCharacters();
+        proc->previewPage = (count / NumberOfCharsPerPage);
+        // proc->previewPage = MaxCharPreviewID / NumberOfCharsPerPage -
+        // ((GetReviseCharByID(MaxCharPreviewID) - (MaxCharPreviewID - 6)) / NumberOfCharsPerPage);
     }
 }
 void DecrementAndDrawCharPreviewPage(ConfigMenuProc * proc)
@@ -1318,34 +1321,45 @@ enum
 #define FACE_DISP_BIT_13 (1 << 13)
 #define FACE_DISP_HIDDEN (1 << 14)
 void BuildRecruitmentOrderList(u8 * list, int t);
-int GetHiddenCharPreviewOffset(int charID)
-{
-    int c = 0;
-    for (int i = 1; i <= (charID + c); ++i)
-    {
-        if (HideCharPreviewExceptions[i].NeverChangeFrom)
-        {
-            c++;
-        }
-    }
-    return c;
-}
+void BuildRecruitmentOrderList_Terminator(u8 * list, int t);
 int GetReviseCharByID(int id)
 {
     // u8 base_charID[8] = { 1, 5, 2, 6, 3, 7, 8, 4 }; // because of menu options ordering lol
     // u8 base_charID[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
     // int rem = Mod(id, NumberOfCharsPerPage);
     // int charID = base_charID[rem] + (id - rem);
-    id += GetHiddenCharPreviewOffset(id + 1) + 1; // +1 because we count from 0
+    // id += GetHiddenCharPreviewOffset(id + 1) + 1; // +1 because we count from 0
+    u8 list[0x45] = { 0 };
+    BuildRecruitmentOrderList_Terminator(list, 0);
+    id = list[id];
+    if (!id)
+    {
+        return 0xFF;
+    }
     return id;
 }
 
 const char * GetSRRText(int id1, int id2);
 int GetReviseCharID(ConfigMenuProc * proc)
 {
-    u8 base_charID[11] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8, 4 }; // because of menu options ordering lol
-    int charID = base_charID[proc->previewId] + proc->previewPage * NumberOfCharsPerPage;
-    charID += GetHiddenCharPreviewOffset(charID);
+    // u8 base_charID[11] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8, 4 }; // because of menu options ordering lol
+    u8 menuOrder[11] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8, 4 }; // because of menu options ordering lol
+
+    int id = proc->previewId;
+    int charID = menuOrder[id] - 1 + (proc->previewPage * NumberOfCharsPerPage);
+    if (charID > 0x44)
+    {
+        return 0xFF;
+    }
+    u8 list[0x45] = { 0 };
+    BuildRecruitmentOrderList_Terminator(list, 0);
+    charID = list[charID];
+    if (!charID)
+    {
+        return 0xFF;
+    }
+
+    // charID += GetHiddenCharPreviewOffset(charID);
     return charID;
 }
 
@@ -2769,7 +2783,6 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 
 void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
 {
-    // charID += GetHiddenCharPreviewOffset(charID);
     if (!charID || charID > MaxCharPreviewID)
     {
         return;
@@ -4019,6 +4032,44 @@ void BuildRecruitmentOrderList(u8 * list, int t)
             list[c++] = i;
         }
     }
+}
+
+void BuildRecruitmentOrderList_Terminator(u8 * list, int t)
+{
+
+    const u8 * table = GetRecruitmentTable(t);
+    u8 isInTable[0x45] = { 0 }; // Tracks which IDs were in the table
+
+    int c = 0;
+    for (; c < 0x45; ++c)
+    {
+        if (!table[c])
+            break;
+
+        list[c] = table[c];
+        isInTable[table[c]] = true;
+    }
+    // Append skipped IDs
+    for (int i = 1; i < 0x45; ++i)
+    {
+        if (!isInTable[i])
+        {
+            list[c++] = 0;
+        }
+    }
+}
+
+int CountRecruitableCharacters(void)
+{
+    const u8 * table = GetRecruitmentTable(0);
+    int c = 0;
+    for (; c < 0x45; ++c)
+    {
+        if (!table[c])
+            break;
+    }
+    // MaxCharPreviewID ?
+    return c;
 }
 
 void BuildFilteredCharsList(
