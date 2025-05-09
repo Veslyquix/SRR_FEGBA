@@ -3829,10 +3829,10 @@ int FilterEnemyClassOut(const struct ClassData * ctable, int promotedBitflag)
 #define Lalum 0x2B
 #define Juno 0x2C
 #define Junno_NPC 0x2D
-#define Tate 0x2E
+#define Thea 0x2E
 #define Tate_Enemy 0x2F
 #define Tate_NPC 0x30
-#define Thany 0x31
+#define Shanna 0x31
 #define Zeiss 0x32
 #define Gale 0x33
 #define Elfin 0x34
@@ -3852,6 +3852,40 @@ int FilterEnemyClassOut(const struct ClassData * ctable, int promotedBitflag)
 #define Merlinus_FE6 0x42
 #define Guinevere 0x44
 
+#define Eirika 0x01
+#define Seth 0x02
+#define Gilliam 0x03
+#define Franz 0x04
+#define Moulder 0x05
+#define Vanessa 0x06
+#define Ross 0x07
+#define Neimi 0x08
+#define Colm 0x09
+#define Garcia 0x0A
+#define Innes 0x0B
+#define Lute 0x0C
+#define Natasha 0x0D
+#define Cormag 0x0E
+#define Ephraim 0x0F
+#define Forde 0x10
+#define Kyle 0x11
+#define Amelia 0x12
+#define Artur 0x13
+#define Gerik 0x14
+#define Tethys 0x15
+#define Marisa 0x16
+#define Saleh 0x17
+#define Ewan 0x18
+#define LArachel 0x19
+#define Dozla 0x1A
+#define Rennac 0x1C
+#define Duessel 0x1D
+#define Myrrh 0x1E
+#define Knoll 0x1F
+#define Joshua 0x20
+#define Syrene 0x21
+#define Tana 0x22
+
 const u8 FE6_RecruitmentOrder[] = {
     Roy,        // 1
     Marcus_FE6, // 1F
@@ -3864,7 +3898,7 @@ const u8 FE6_RecruitmentOrder[] = {
     Dieck,
     Wade,
     Lot,
-    Thany,
+    Thea,
     Chad,
     Lugh,
     Clarine,
@@ -3885,7 +3919,7 @@ const u8 FE6_RecruitmentOrder[] = {
     Gonzales_RouteA,
     Geese,
     Klein,
-    Tate,
+    Shanna,
     Lalum,
     Echidna,
     Elfin,
@@ -3978,9 +4012,12 @@ const u8 FE7_RecruitmentOrder[] = {
 };
 
 const u8 FE8_RecruitmentOrder[] = {
-    1,  2,  3,  4,  5,  6,  7,  8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
-    30, 31, 32, 33, 34, 35, 36, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-    0,  0,  0,  0,  0,  0,  0,  0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+    Eirika,  Seth,    Franz, Gilliam, Vanessa, Moulder, Ross,  Garcia, Neimi,  Colm,     Artur, Lute,  Natasha, Joshua,
+    Ephraim, Forde,   Kyle,  Tana,    Amelia,  Innes,   Gerik, Tethys, Marisa, LArachel, Dozla, Saleh, Ewan,    Cormag,
+    Rennac,  Duessel, Knoll, Myrrh,   Syrene,  0,       0,     0,      0,      0,        0,     0,     0,       0,
+    0,       0,       0,     0,       0,       0,       0,     0,      0,      0,        0,     0,     0,       0,
+    0,       0,       0,     0,       0,       0,       0,     0,      0,      0,        0,     0,     0,       0,
+    0,       0,       0,     0,       0,       0,       0,     0,      0,      0,        0,
 
 };
 
