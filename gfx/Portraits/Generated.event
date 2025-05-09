@@ -460,8 +460,8 @@
   #define TakumiMug (FirstMugID+114)
 #endif
 
-#ifndef VelouraMug
-  #define VelouraMug (FirstMugID+115)
+#ifndef VelouriaMug
+  #define VelouriaMug (FirstMugID+115)
 #endif
 
 #ifndef XanderMug
@@ -3157,7 +3157,7 @@ MugEntry(SoleilMug, SoleilMugData, SoleilMinimugData, SoleilFramesData, SoleilPa
 MugEntry(SophieMug, SophieMugData, SophieMinimugData, SophieFramesData, SophiePaletteData,  3, 5, 3, 3)
 MugEntry(SubakiMug, SubakiMugData, SubakiMinimugData, SubakiFramesData, SubakiPaletteData,  2, 5, 3, 3)
 MugEntry(TakumiMug, TakumiMugData, TakumiMinimugData, TakumiFramesData, TakumiPaletteData,  3, 6, 3, 4)
-MugEntry(VelouraMug, VelouraMugData, VelouraMinimugData, VelouraFramesData, VelouraPaletteData,  3, 6, 3, 4)
+MugEntry(VelouriaMug, VelouriaMugData, VelouriaMinimugData, VelouriaFramesData, VelouriaPaletteData,  3, 6, 3, 4)
 MugEntry(XanderMug, XanderMugData, XanderMinimugData, XanderFramesData, XanderPaletteData,  3, 5, 3, 3)
 MugEntry(YukimuraMug, YukimuraMugData, YukimuraMinimugData, YukimuraFramesData, YukimuraPaletteData,  3, 5, 3, 3)
 MugEntry(AloisMug, AloisMugData, AloisMinimugData, AloisFramesData, AloisPaletteData,  2, 5, 2, 3)
@@ -5071,15 +5071,15 @@ TakumiMinimugData:
 #incbin "png/FE14/Takumi_Fenriel_minimug.dmp"
 
 ALIGN 4
-VelouraMugData:
-#incbin "png/FE14/Veloura_Garytop_mug.dmp"
+VelouriaMugData:
+#incbin "png/FE14/Velouria_Garytop_mug.dmp"
 ALIGN 4
-VelouraFramesData:
-#incbin "png/FE14/Veloura_Garytop_frames.dmp"
-VelouraPaletteData:
-#incbin "png/FE14/Veloura_Garytop_palette.dmp"
-VelouraMinimugData:
-#incbin "png/FE14/Veloura_Garytop_minimug.dmp"
+VelouriaFramesData:
+#incbin "png/FE14/Velouria_Garytop_frames.dmp"
+VelouriaPaletteData:
+#incbin "png/FE14/Velouria_Garytop_palette.dmp"
+VelouriaMinimugData:
+#incbin "png/FE14/Velouria_Garytop_minimug.dmp"
 
 ALIGN 4
 XanderMugData:
