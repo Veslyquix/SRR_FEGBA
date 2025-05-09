@@ -999,14 +999,18 @@ void ResetPage(ConfigMenuProc * proc)
 
 void SetAllCharConfirm(ConfigMenuProc * proc)
 {
-    struct PidStatsChar * pidStats = GetPidStatsSafe(1);
+    int firstChar = 1;
+#ifdef FE7
+    firstChar = 3; // Lyn as first character
+#endif
+    struct PidStatsChar * pidStats = GetPidStatsSafe(firstChar);
     if (!pidStats)
     {
         return;
     }
     int id = pidStats->newCharID;
     int game = pidStats->charTableID;
-    for (int i = 2; i <= 0x45; ++i)
+    for (int i = 1; i <= 0x45; ++i)
     {
         pidStats = GetPidStatsSafe(i);
 
