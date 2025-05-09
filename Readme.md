@@ -335,6 +335,8 @@ Reiden portrait by HunterAurzo
 Roberto portrait by HunterAurzo   
 Roderick portrait by HunterAurzo   
 Ryan portrait by HunterAurzo   
+Clarisse portrait by Obsidian_Daddy   
+Eremiya portrait by WAve   
 
    
 // fe4    
@@ -467,7 +469,7 @@ Hellene minimug by redlightning
 Hannah minimug by topazlight  
 Guinevere minimug by redlightning  
 EphidelCloaked minimug by redlightning  
-Eleanora minimug by redlightning  
+Eleanora minimug by redlightning, feier   
 Elbert minimug by Levin64  
 Durban minimug by redlightning  
 Bramimond minimug by Levin64  
@@ -549,11 +551,13 @@ Caineghis portrait by Nickt, Stitch
 Kurthnaga portrait by Nickt, Stitch     
 Gareth portrait by Nickt, Stitch     
 Meg portrait by Nickt, Stitch     
-Volug portrait by Nickt, Stitch     
+Volug portrait by Nickt, Stitch  
+Black Knight portrait by Garytop      
    
 // fe13    
    
-Robin portrait by Lonkfromcalifornia     
+RobinF portrait by Garytop   
+RobinM portrait by Garytop        
 Chrom portrait by Atey, Wasdye     
 Frederick portrait by Garytop     
 Lissa portrait by Garytop     
@@ -601,6 +605,7 @@ Emmeryn portrait by Garytop
 Yen'fay portrait by Garytop     
 Aversa portrait by Garytop     
 Priam portrait by Garytop     
+Anna portrait by Garytop  
    
    
 // fe14    
@@ -671,7 +676,7 @@ Rhajat portrait by Garytop
 Siegbert (no art credited)     
 Forrest portrait by Scraiza     
 Ignatius portrait by JeyTheCount     
-Velouria (no art credited)     
+Velouria portrait by Garytop        
 Percy portrait by Garytop       
 Ophelia (no art credited)     
 Soleil portrait by Zorua     
