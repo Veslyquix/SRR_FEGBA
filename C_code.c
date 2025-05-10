@@ -2600,13 +2600,10 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         if (keys & DPAD_LEFT)
         {
             tmp = proc->previewId - 1;
-            if (tmp == 5)
-            {
-                tmp = 4;
-            }
             if (tmp < 0)
             {
-                tmp = NumberOfCharsPerPage;
+                tmp = 0; // NumberOfCharsPerPage - 1;
+                proc->previewId = tmp;
                 DecrementCharPreviewPage(proc);
             }
             proc->previewId = tmp;
@@ -2614,17 +2611,22 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         }
         else if (keys & DPAD_RIGHT)
         {
-            tmp = proc->previewId + 1;
-            if (tmp == 5)
+            // brk;
+            proc->previewId++;
+
+            if (proc->previewId >= NumberOfCharsPerPage)
             {
-                tmp = 6;
-            }
-            if (tmp > NumberOfCharsPerPage)
-            {
-                tmp = 0;
+                proc->previewId = 0;
                 IncrementCharPreviewPage(proc);
             }
-            proc->previewId = tmp;
+            int count = CountRecruitableCharacters();
+            // brk; // 2 fe6 1 fe7 ?
+            if (proc->previewId + (proc->previewPage * NumberOfCharsPerPage) >= (count - 3))
+            {
+                proc->previewId = 0;
+                proc->previewPage = 0;
+            }
+
             changed = true;
         }
 
