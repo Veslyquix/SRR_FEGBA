@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.0.0"
+#define VersionNumber " SRR V2.0.1"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -2597,7 +2597,15 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 
     if (menuID == reviseOldCharIdOption) // todo fix this
     {
-
+        int count = 0;
+        // int rem = 1;
+        tmp = proc->previewId;
+        int charPageAndId = 0;
+        if (keys & (DPAD_LEFT | DPAD_RIGHT))
+        {
+            count = CountRecruitableCharacters();
+            // rem = count - (Div1(count, NumberOfCharsPerPage) * NumberOfCharsPerPage);
+        }
         if (keys & DPAD_RIGHT)
         {
             changed = true;
@@ -2605,11 +2613,9 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
             switch (proc->previewId)
             {
                 case 0:
-                // case 2:
-                case 6:
                 case 1:
-
                 case 5:
+                case 6:
                 {
                     proc->previewId += 2;
                     break;
@@ -2635,101 +2641,88 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 
                 default:
             }
-
-            // if (proc->previewId == RerollCommandID)
-            // {
-            // proc->previewId = SetAllCommandID;
-            // }
-            // else if (proc->previewId == SetAllCommandID)
-            // {
-            // proc->previewId = ResetPageCommandID;
-            // }
-            // If previewId is even, ++
-            // else if (Mod(proc->previewId, 2) == 0)
-            // proc->previewId += 2;
-            // else
-            // proc->previewId--;
+            charPageAndId = (proc->previewPage * NumberOfCharsPerPage);
+            u8 remTable[11] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8, 4 };
+            if ((remTable[proc->previewId] + charPageAndId) > count)
+            {
+                proc->previewId = 0;
+                proc->previewPage = 0;
+            }
         }
+
         if (keys & DPAD_LEFT)
         {
             changed = true;
-            if (proc->previewId == RerollCommandID)
-            {
-                proc->previewId = SetAllCommandID;
-            }
-            else if (proc->previewId == SetAllCommandID)
-            {
-                proc->previewId = RerollCommandID;
-            }
-            // If previewId is even, ++
-            else if (Mod(proc->previewId, 2) == 0)
-                proc->previewId += 2;
-            else
-                proc->previewId--;
-        }
 
-        /*
-            u8 remTable[11] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8, 4 };
-            int count = 0;
-            int rem = 1;
-            tmp = proc->previewId;
-            if (keys & (DPAD_LEFT | DPAD_RIGHT))
+            switch (proc->previewId)
             {
-                count = CountRecruitableCharacters();
-                rem = count - (Div1(count, NumberOfCharsPerPage) * NumberOfCharsPerPage);
-                count--;
-            }
-
-            if (keys & DPAD_LEFT)
-            {
-                if (tmp == 5)
+                case 2:
+                case 3:
+                case 5:
+                case 8:
                 {
-                    tmp--;
+                    proc->previewId -= 2;
+                    break;
                 }
-                tmp--;
-                if (tmp < 0)
-                { // todo
-                    tmp = NumberOfCharsPerPage;
+                case 6:
+                case 7:
+                {
+                    proc->previewId -= 4;
+                    break;
+                }
+
+                case 0:
+                {
+                    proc->previewId = 7;
                     DecrementCharPreviewPage(proc);
+                    break;
                 }
-                if (tmp + (proc->previewPage * NumberOfCharsPerPage) >= count)
+                case 1:
                 {
-
-                    tmp = remTable[rem];
+                    proc->previewId = 8;
+                    break;
                 }
-                // else if (tmp + (proc->previewPage * NumberOfCharsPerPage) == count)
-                // {
-                // brk;
-                // tmp = rem - 2; // ???
-                // }
-                changed = true;
+
+                default:
             }
-            else if (keys & DPAD_RIGHT)
+            charPageAndId = (proc->previewPage * NumberOfCharsPerPage);
+            u8 remTable[11] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8, 4 };
+
+            while ((remTable[proc->previewId] + charPageAndId) > count)
             {
-                if (tmp == 4)
+                switch (proc->previewId)
                 {
-                    tmp++;
-                }
-                tmp++;
-                if (tmp > NumberOfCharsPerPage)
-                {
-                    tmp = 0;
-                    IncrementCharPreviewPage(proc);
-                }
-                if (tmp + (proc->previewPage * NumberOfCharsPerPage) > count)
-                {
-                    tmp = 0;
-                    proc->previewPage = 0;
-                }
-                // else if (tmp + (proc->previewPage * NumberOfCharsPerPage) == count)
-                // {
+                    case 2:
+                    case 3:
+                    case 5:
+                    case 8:
+                    {
+                        proc->previewId -= 2;
+                        break;
+                    }
+                    case 6:
+                    case 7:
+                    {
+                        proc->previewId -= 4;
+                        break;
+                    }
 
-                // tmp = remTable[rem];
+                    case 0:
+                    {
+                        proc->previewId = 7;
+                        DecrementCharPreviewPage(proc);
+                        break;
+                    }
+                    case 1:
+                    {
+                        proc->previewId = 8;
+                        break;
+                    }
 
-                // }
-                changed = true;
+                    default:
+                }
             }
-            */
+        }
         if (changed)
         {
             // proc->previewId = tmp;
@@ -15111,8 +15104,8 @@ const char * GetSRRMenuDesc(ConfigMenuProc * proc, int index)
     {
         opt = 1;
     }
-    char * result =
-        gSRRMenuText[(index * (MaxRTextOptions + 1)) + opt]; // specific r text for that option eg. Fixed levelups
+    char * result = gSRRMenuText[(index * (MaxRTextOptions + 1)) + opt]; // specific r text for that option eg.
+                                                                         // Fixed levelups
     if (!result)
     {
         result = gSRRMenuText[(index * (MaxRTextOptions + 1)) + 1]; // default r text
