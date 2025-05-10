@@ -2597,41 +2597,47 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 
     if (menuID == reviseOldCharIdOption) // todo fix this
     {
+        int count = 0;
+        int rem = 1;
+        tmp = proc->previewId;
+        if (keys & (DPAD_LEFT | DPAD_RIGHT))
+        {
+            count = CountRecruitableCharacters();
+            rem = count - (Div1(count, NumberOfCharsPerPage) * NumberOfCharsPerPage);
+        }
+
         if (keys & DPAD_LEFT)
         {
-            tmp = proc->previewId - 1;
+            tmp--;
             if (tmp < 0)
             {
-                tmp = 0; // NumberOfCharsPerPage - 1;
-                proc->previewId = tmp;
+                tmp = NumberOfCharsPerPage - 1;
                 DecrementCharPreviewPage(proc);
             }
-            proc->previewId = tmp;
+            if (tmp + (proc->previewPage * NumberOfCharsPerPage) >= count)
+            {
+                tmp = rem;
+            }
             changed = true;
         }
         else if (keys & DPAD_RIGHT)
         {
-            // brk;
-            proc->previewId++;
-
-            if (proc->previewId >= NumberOfCharsPerPage)
+            tmp++;
+            if (tmp >= NumberOfCharsPerPage)
             {
-                proc->previewId = 0;
+                tmp = 0;
                 IncrementCharPreviewPage(proc);
             }
-            int count = CountRecruitableCharacters();
-            // brk; // 2 fe6 1 fe7 ?
-            if (proc->previewId + (proc->previewPage * NumberOfCharsPerPage) >= (count - 3))
+            if (tmp + (proc->previewPage * NumberOfCharsPerPage) >= count)
             {
-                proc->previewId = 0;
+                tmp = 0;
                 proc->previewPage = 0;
             }
-
             changed = true;
         }
-
         if (changed)
         {
+            proc->previewId = tmp;
             DrawReviseCharPage(proc);
         }
     }
@@ -4484,14 +4490,14 @@ void HbPopulate_SSCharacter(struct HelpBoxProc * proc) // fe7 0x80816FC fe6 0x80
         }
         else
         {
-#ifdef FE8                     // +0x4C
-            proc->mid = 0x6BE; // TODO: mid constants
+#ifdef FE8 // +0x4C
+            proc->mid = 0x6BE;
 #endif
-#ifdef FE7                     // +0x4C
-            proc->mid = 0x396; // TODO: mid constants
+#ifdef FE7 // +0x4C
+            proc->mid = 0x396;
 #endif
-#ifdef FE6                     // +0x4C
-            proc->mid = 0x66d; // TODO: mid constants
+#ifdef FE6 // +0x4C
+            proc->mid = 0x66d;
 #endif
         }
         return;
@@ -4505,14 +4511,14 @@ void HbPopulate_SSCharacter(struct HelpBoxProc * proc) // fe7 0x80816FC fe6 0x80
     }
     else
     {
-#ifdef FE8                 // +0x4C
-        proc->mid = 0x6BE; // TODO: mid constants
+#ifdef FE8 // +0x4C
+        proc->mid = 0x6BE;
 #endif
-#ifdef FE7                 // +0x4C
-        proc->mid = 0x396; // TODO: mid constants
+#ifdef FE7 // +0x4C
+        proc->mid = 0x396;
 #endif
-#ifdef FE6                 // +0x4C
-        proc->mid = 0x66d; // TODO: mid constants
+#ifdef FE6 // +0x4C
+        proc->mid = 0x66d;
 #endif
     }
     return;
