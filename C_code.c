@@ -2597,68 +2597,142 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 
     if (menuID == reviseOldCharIdOption) // todo fix this
     {
-        int count = 0;
-        int rem = 1;
-        tmp = proc->previewId;
-        if (keys & (DPAD_LEFT | DPAD_RIGHT))
-        {
-            count = CountRecruitableCharacters();
-            rem = count - (Div1(count, NumberOfCharsPerPage) * NumberOfCharsPerPage);
-            count--;
-        }
 
+        if (keys & DPAD_RIGHT)
+        {
+            changed = true;
+
+            switch (proc->previewId)
+            {
+                case 0:
+                // case 2:
+                case 6:
+                case 1:
+
+                case 5:
+                {
+                    proc->previewId += 2;
+                    break;
+                }
+                case 2:
+                case 3:
+                {
+                    proc->previewId += 4;
+                    break;
+                }
+
+                case 7:
+                {
+                    proc->previewId = 0;
+                    IncrementCharPreviewPage(proc);
+                    break;
+                }
+                case 8:
+                {
+                    proc->previewId = 1;
+                    break;
+                }
+
+                default:
+            }
+
+            // if (proc->previewId == RerollCommandID)
+            // {
+            // proc->previewId = SetAllCommandID;
+            // }
+            // else if (proc->previewId == SetAllCommandID)
+            // {
+            // proc->previewId = ResetPageCommandID;
+            // }
+            // If previewId is even, ++
+            // else if (Mod(proc->previewId, 2) == 0)
+            // proc->previewId += 2;
+            // else
+            // proc->previewId--;
+        }
         if (keys & DPAD_LEFT)
         {
-            if (tmp == 5)
+            changed = true;
+            if (proc->previewId == RerollCommandID)
             {
+                proc->previewId = SetAllCommandID;
+            }
+            else if (proc->previewId == SetAllCommandID)
+            {
+                proc->previewId = RerollCommandID;
+            }
+            // If previewId is even, ++
+            else if (Mod(proc->previewId, 2) == 0)
+                proc->previewId += 2;
+            else
+                proc->previewId--;
+        }
+
+        /*
+            u8 remTable[11] = { 1, 5, 2, 6, 4, 4, 3, 7, 4, 8, 4 };
+            int count = 0;
+            int rem = 1;
+            tmp = proc->previewId;
+            if (keys & (DPAD_LEFT | DPAD_RIGHT))
+            {
+                count = CountRecruitableCharacters();
+                rem = count - (Div1(count, NumberOfCharsPerPage) * NumberOfCharsPerPage);
+                count--;
+            }
+
+            if (keys & DPAD_LEFT)
+            {
+                if (tmp == 5)
+                {
+                    tmp--;
+                }
                 tmp--;
-            }
-            tmp--;
-            if (tmp < 0)
-            { // todo
-                tmp = NumberOfCharsPerPage;
-                DecrementCharPreviewPage(proc);
-            }
-            if (tmp + (proc->previewPage * NumberOfCharsPerPage) > count)
-            {
+                if (tmp < 0)
+                { // todo
+                    tmp = NumberOfCharsPerPage;
+                    DecrementCharPreviewPage(proc);
+                }
+                if (tmp + (proc->previewPage * NumberOfCharsPerPage) >= count)
+                {
 
-                tmp = rem;
-            }
-            else if (tmp + (proc->previewPage * NumberOfCharsPerPage) == count)
-            {
+                    tmp = remTable[rem];
+                }
+                // else if (tmp + (proc->previewPage * NumberOfCharsPerPage) == count)
+                // {
                 // brk;
-                tmp = rem - 2; // ???
+                // tmp = rem - 2; // ???
+                // }
+                changed = true;
             }
-            changed = true;
-        }
-        else if (keys & DPAD_RIGHT)
-        {
-            if (tmp == 4)
+            else if (keys & DPAD_RIGHT)
             {
+                if (tmp == 4)
+                {
+                    tmp++;
+                }
                 tmp++;
-            }
-            tmp++;
-            if (tmp > NumberOfCharsPerPage)
-            {
-                tmp = 0;
-                IncrementCharPreviewPage(proc);
-            }
-            if (tmp + (proc->previewPage * NumberOfCharsPerPage) > count)
-            {
-                tmp = 0;
-                proc->previewPage = 0;
-            }
-            else if (tmp + (proc->previewPage * NumberOfCharsPerPage) == count)
-            {
+                if (tmp > NumberOfCharsPerPage)
+                {
+                    tmp = 0;
+                    IncrementCharPreviewPage(proc);
+                }
+                if (tmp + (proc->previewPage * NumberOfCharsPerPage) > count)
+                {
+                    tmp = 0;
+                    proc->previewPage = 0;
+                }
+                // else if (tmp + (proc->previewPage * NumberOfCharsPerPage) == count)
+                // {
 
-                tmp++;
-                // proc->previewPage = 0;
+                // tmp = remTable[rem];
+
+                // }
+                changed = true;
             }
-            changed = true;
-        }
+            */
         if (changed)
         {
-            proc->previewId = tmp;
+            // proc->previewId = tmp;
             DrawReviseCharPage(proc);
         }
     }
@@ -4807,10 +4881,10 @@ int RandomizeBattleMusic(int id)
     // return SoundRoomTable[NextRN_N(52)].songID; // before game over at 53 I guess
 #endif
 #ifdef FE7 // #99 is max
-    // return SoundRoomTable[NextRN_N(90)].songID; // before game over at 91
+           // return SoundRoomTable[NextRN_N(90)].songID; // before game over at 91
 #endif
 #ifdef FE8 // #68 is max
-    // return SoundRoomTable[NextRN_N(63)].songID; // before game over at 64
+           // return SoundRoomTable[NextRN_N(63)].songID; // before game over at 64
 #endif
 };
 
