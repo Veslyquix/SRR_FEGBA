@@ -2604,34 +2604,55 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         {
             count = CountRecruitableCharacters();
             rem = count - (Div1(count, NumberOfCharsPerPage) * NumberOfCharsPerPage);
+            count--;
         }
 
         if (keys & DPAD_LEFT)
         {
+            if (tmp == 5)
+            {
+                tmp--;
+            }
             tmp--;
             if (tmp < 0)
-            {
-                tmp = NumberOfCharsPerPage - 1;
+            { // todo
+                tmp = NumberOfCharsPerPage;
                 DecrementCharPreviewPage(proc);
             }
-            if (tmp + (proc->previewPage * NumberOfCharsPerPage) >= count)
+            if (tmp + (proc->previewPage * NumberOfCharsPerPage) > count)
             {
+
                 tmp = rem;
+            }
+            else if (tmp + (proc->previewPage * NumberOfCharsPerPage) == count)
+            {
+                // brk;
+                tmp = rem - 2; // ???
             }
             changed = true;
         }
         else if (keys & DPAD_RIGHT)
         {
+            if (tmp == 4)
+            {
+                tmp++;
+            }
             tmp++;
-            if (tmp >= NumberOfCharsPerPage)
+            if (tmp > NumberOfCharsPerPage)
             {
                 tmp = 0;
                 IncrementCharPreviewPage(proc);
             }
-            if (tmp + (proc->previewPage * NumberOfCharsPerPage) >= count)
+            if (tmp + (proc->previewPage * NumberOfCharsPerPage) > count)
             {
                 tmp = 0;
                 proc->previewPage = 0;
+            }
+            else if (tmp + (proc->previewPage * NumberOfCharsPerPage) == count)
+            {
+
+                tmp++;
+                // proc->previewPage = 0;
             }
             changed = true;
         }
