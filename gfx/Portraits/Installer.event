@@ -38,14 +38,14 @@ ALIGN 4
 NewPortraitTable: 
 #undef PortraitTable 
 #define PortraitTable NewPortraitTable 
-FILL(0x1C*0x400) 0 
+FILL(0x1C*0x500) 0 
 ORG NewPortraitTable 
 #include "VanillaData.event" 
 #include "VanillaData.event" 
 
 
 
-ORG NewPortraitTable + (0x1C*0x400)
+ORG NewPortraitTable + (0x1C*0x500)
 ALIGN 4 
 #ifdef _FE6_ 
 #include "Generated_FE6.event" 
