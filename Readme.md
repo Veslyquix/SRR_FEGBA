@@ -552,7 +552,16 @@ Kurthnaga portrait by Nickt, Stitch
 Gareth portrait by Nickt, Stitch     
 Meg portrait by Nickt, Stitch     
 Volug portrait by Nickt, Stitch  
-Black Knight portrait by Garytop      
+Black Knight portrait by Garytop  
+Skrimir portrait by Quotedotlass  
+Sigrun portrait by Nickt, Stitch  
+Sephiran portrait by Nickt, Stitch  
+Seliph portrait by Melia  
+Sanaki portrait by MeatOfJustice  
+Renning portrait by Nickt, Stitch  
+Oliver portrait by Nickt, Stitch  
+Nealuchi portrait by Nickt, Stitch  
+Hermina portrait by Melia      
    
 // fe13    
    
@@ -665,7 +674,7 @@ Dwyer portrait by jotenks4
 Dwyer (no art credited)     
 Sophie portrait by Sterling_Glovner     
 Midori portrait by Nobody     
-Shiro (no art credited)     
+Shiro portrait by Garytop       
 Kiragi portrait by Sterling_Glovner     
 Asugi portrait by Garytop          
 Selkie portrait by Sterling_Glovner     
