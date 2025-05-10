@@ -2595,7 +2595,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     // 3rd entry is 2, +1 is 3
     // so
 
-    if (menuID == reviseOldCharIdOption)
+    if (menuID == reviseOldCharIdOption) // todo fix this
     {
         if (keys & DPAD_LEFT)
         {
@@ -9254,7 +9254,10 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     }
 
     int noise2[4] = { 0, 0, 0, 0 };
-    ForceEarlygameClasses(unit, noise2, 0);
+    if (ShouldRandomizeClass(unit))
+    {
+        ForceEarlygameClasses(unit, noise2, 0);
+    }
 
     int wexp = 0;
     int tmp = 0;
