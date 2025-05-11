@@ -2335,7 +2335,7 @@ inline int IsClassInvalid(int i)
 {
     return ClassExceptions[i].NeverChangeInto;
 }
-int GetMaxClasses(void);
+int GetMaxClasses(int);
 void SetNextClass(struct PidStatsChar * pidStats, int dir)
 {
     int classID = pidStats->forcedClass;
@@ -2344,7 +2344,7 @@ void SetNextClass(struct PidStatsChar * pidStats, int dir)
         return;
     }
 
-    int max = GetMaxClasses();
+    int max = GetMaxClasses(true);
     const struct ClassData * table;
     int prevName = 0;
     int curName = 0;
@@ -5648,36 +5648,42 @@ int GetMaxItems(void)
     *MaxItems = c;
     return c;
 }
-int GetMaxClasses(void)
+int GetMaxClasses(int alwaysShowAddedClasses)
 {
     if (MaxClasses_Link)
     {
         return MaxClasses_Link;
     }
-    if (*MaxClasses > 32)
+    if (!alwaysShowAddedClasses)
     {
-        return *MaxClasses;
+        if (*MaxClasses > 32)
+        {
+            return *MaxClasses;
+        }
     }
     const struct ClassData * table = GetClassData(1);
     int c = 256;
-#ifdef FE6
-    if (!RecruitValues->newClasses)
+    if (!alwaysShowAddedClasses)
     {
-        c = 67;
-    }
+#ifdef FE6
+        if (!RecruitValues->newClasses)
+        {
+            c = 67;
+        }
 #endif
 #ifdef FE7
-    if (!RecruitValues->newClasses)
-    {
-        c = 90;
-    }
+        if (!RecruitValues->newClasses)
+        {
+            c = 90;
+        }
 #endif
 #ifdef FE8
-    if (!RecruitValues->newClasses)
-    {
-        c = 126;
-    }
+        if (!RecruitValues->newClasses)
+        {
+            c = 126;
+        }
 #endif
+    }
     for (int i = 1; i <= c; i++)
     {
         if (table->number != i)
@@ -5696,7 +5702,10 @@ int GetMaxClasses(void)
     {
         c = 1;
     }
-    *MaxClasses = c;
+    if (!alwaysShowAddedClasses)
+    {
+        *MaxClasses = c;
+    }
     return c;
 }
 
@@ -6245,7 +6254,7 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
     int curName = 0;
     int prevSMS = 0;
     int curSMS = 0;
-    int maxClasses = GetMaxClasses();
+    int maxClasses = GetMaxClasses(false);
     for (int i = 1; i <= maxClasses; i++)
     {
         const struct ClassData * table = GetClassData(i);
