@@ -9095,6 +9095,10 @@ void ForceEarlygameClasses(struct Unit * unit, int * noise, int offset)
             return;
         }
     }
+    if (!ShouldRandomizeClass(unit))
+    {
+        return;
+    }
 
     if (!IsUnitEarlygame(unit))
     {
@@ -9357,10 +9361,8 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     }
 
     int noise2[4] = { 0, 0, 0, 0 };
-    if (ShouldRandomizeClass(unit))
-    {
-        ForceEarlygameClasses(unit, noise2, 0);
-    }
+
+    ForceEarlygameClasses(unit, noise2, 0);
 
     int wexp = 0;
     int tmp = 0;
