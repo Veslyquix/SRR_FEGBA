@@ -90,11 +90,8 @@ ALIGN 4
 MaxItems_Link:
 WORD 0 // If 0, it'll read through your item editor and count 
 // until it finds an item with an ID that does not match (eg. says 0) 
-MaxClasses_Link:
-#ifndef VeslyBuildfile 
+MaxClasses_Link: 
 WORD 0 // If 0, it'll read through your class editor and count
-#endif 
-WORD 0 //67 
 // until it finds a class with an ID that does not match (eg. says 0) 
 ALIGN 4
 BonusItemChance: 

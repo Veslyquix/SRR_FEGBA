@@ -50,7 +50,6 @@ MESSAGE Graphics end at currentoffset
 #include "Patches/FE7_AsmHooks.lyn.event" 
 #include "../ASM/Debugger/Installer.event" 
 
-//#define TLP // to use this installer on TLP 
 
 //#define JankyPalettes // Uncomment if you want to always use char palettes, even with classes randomized 
 
@@ -105,9 +104,6 @@ WORD 0xA0
 RandomizePrepShop:
 WORD 1 // If true, randomize prep shop if player randomizes found items 
 MinClassBase:
-#ifdef TLP 
-WORD 1 
-#endif 
 WORD 0 // If true, stats won't go lower than class bases 
 RandomizeMovConBonus:
 WORD 1 
@@ -230,7 +226,7 @@ IgnoreTextIDRange(0x117b, 0x1195)
 IgnoreTextIDRange(0x1225, 0x12CD) 
 // sound room below 
 
-#ifndef TLP 
+
 NeverChangeIntoClass(4) // 4, 5, 6 are duplicate promoted lords 
 NeverChangeIntoClass(5)
 NeverChangeIntoClass(6)
@@ -251,7 +247,7 @@ NeverChangeIntoClass(0x35)
 NeverChangeIntoClass(0x37)
 NeverChangeIntoClass(0x3D)
 NeverChangeIntoClass(0x5A) // 3rd sage 
-#endif 
+ 
 NeverChangeIntoClass(0x4D)
 NeverChangeIntoClass(0x52)
 NeverChangeIntoClass(0x53)
@@ -298,19 +294,10 @@ WORD 28
 
 ALIGN 4 
 MaxItems_Link: 
-#ifdef TLP 
-WORD 0xDC 
-#endif 
 WORD 0 // If 0, it'll read through your item editor and count 
 // until it finds an item with an ID that does not match (eg. says 0) 
 MaxClasses_Link:
-#ifdef TLP 
-WORD 0x5A 
-#endif 
-#ifndef VeslyBuildfile 
 WORD 0 // If 0, it'll read through your class editor and count
-#endif 
-WORD 0 //90 
 // until it finds a class with an ID that does not match (eg. says 0) 
 
 
@@ -368,11 +355,9 @@ ORG $17E9E // by Circles
 byte 0x00 0x00
 jumpToHack(CasualMode)
 
-#ifndef TLP 
 ORG $9E9FC // Select any mode on new game 
 // by Doesnt 
 BYTE $1F $20 $70 $47 
-#endif 
 
 //ORG $A06E2 
 //SHORT $46c0 $46c0 // don't reset game time on new game 
