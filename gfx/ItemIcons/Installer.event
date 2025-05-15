@@ -1,0 +1,61 @@
+//#include "Icon Definitions.event"
+// Included in custom definitions so it'll come before our tables now 
+
+
+
+ALIGN 4
+NewItemIcons:
+
+#ifdef _FE8_ 
+#incbin "fe8_icons.dmp"
+#endif 
+
+
+#define ItemIconEntry(ItemIconID) "ORG NewItemIcons + (ItemIconID*128)"
+
+
+// #include "GeneratedInstaller.event"
+
+
+PUSH
+#ifdef _FE8_ 
+ORG $36B4
+POIN NewItemIcons
+ORG $3788
+POIN NewItemIcons
+#endif 
+
+
+#ifdef _FE7_ 
+ORG $4D20
+SHORT $1FE $100 
+WORD 0x2026D90 // originally 0x2026D10 
+//BYTE  $FE $01 $00 $01 $90 $6D $02 $02; // fix for item icons? 
+
+// 7743 changed the ram address of IconGFXIDLookupTable 
+// I guess to make space for DrawnIconLookupTable 
+// https://github.com/laqieer/fireemblem8u/blob/master/src/icon.c#L11 
+ 
+
+ORG $4E20
+POIN NewItemIcons
+ORG $4EF4
+POIN NewItemIcons
+#endif 
+
+
+#ifdef _FE6_ 
+
+ORG $4A98 
+SHORT $1FE $100 
+// WORD 0x2025B6C 
+WORD 0x2022B08 //gBG2TilemapBuffer
+// This might break something 
+
+ORG $4CEC
+POIN NewItemIcons
+ORG $4E54
+POIN NewItemIcons
+#endif 
+
+POP
