@@ -9,12 +9,18 @@ NewItemIcons:
 #ifdef _FE8_ 
 #incbin "fe8_icons.dmp"
 #endif 
+#ifdef _FE7_ 
+#incbin "fe7_icons.dmp"
+#endif 
+#ifdef _FE6_ 
+#incbin "fe6_icons.dmp"
+#endif 
 
 
 #define ItemIconEntry(ItemIconID) "ORG NewItemIcons + (ItemIconID*128)"
 
 
-// #include "GeneratedInstaller.event"
+#include "GeneratedInstaller.event"
 
 
 PUSH
