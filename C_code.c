@@ -3347,7 +3347,7 @@ struct Vec2u
     u16 x, y;
 };
 
-#define UnitListSize 600
+#define UnitListSize 800
 #define BossListSize 80
 
 int DoesCharMatchGender(u32 attr, struct TagsStruct tags)
