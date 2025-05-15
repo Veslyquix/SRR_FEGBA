@@ -1,5 +1,5 @@
 @echo off
-py pngs/Quantize_All.py
+
 @set "Png2Dmp=%~dp0/../../EventAssembler/Tools/Png2Dmp.exe"
 
 @dir *.png /b > png.txt
