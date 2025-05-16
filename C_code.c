@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.0.1"
+#define VersionNumber " SRR V2.0.2"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -3347,7 +3347,7 @@ struct Vec2u
     u16 x, y;
 };
 
-#define UnitListSize 600
+#define UnitListSize 800
 #define BossListSize 80
 
 int DoesCharMatchGender(u32 attr, struct TagsStruct tags)
@@ -7576,15 +7576,20 @@ int GetUnitMagGrowth(struct Unit * unit, int modifiersBool)
     {
         baseGrowth += MagClassTable[unit->pClassData->number].growth;
     }
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
-    {
-        return baseGrowth + add;
-    }
+
     int growth = CallGet_Mag_Growth(unit);
     // we only need growth for the modifiers, so replace `add` with the difference
+    if (!modifiersBool)
+    {
+        return baseGrowth;
+    }
     if (growth != (-1))
     {
         add = growth - originalGrowth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return baseGrowth + add;
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -7952,15 +7957,20 @@ int GetUnitHPGrowth(struct Unit * unit, int modifiersBool)
     {
         baseGrowth += unit->pClassData->growthHP;
     }
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
-    {
-        return baseGrowth + add;
-    }
+
     int growth = CallGet_Hp_Growth(unit);
     // we only need growth for the modifiers, so replace `add` with the difference
+    if (!modifiersBool)
+    {
+        return baseGrowth;
+    }
     if (growth != (-1))
     {
         add = growth - originalGrowth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return baseGrowth + add;
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -8029,14 +8039,19 @@ int GetUnitPowGrowth(struct Unit * unit, int modifiersBool)
     {
         baseGrowth += unit->pClassData->growthPow;
     }
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
-    {
-        return baseGrowth + add;
-    }
+
     int growth = CallGet_Str_Growth(unit);
+    if (!modifiersBool)
+    {
+        return baseGrowth;
+    }
     if (growth != (-1))
     {
         add = growth - originalGrowth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return baseGrowth + add;
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -8105,14 +8120,19 @@ int GetUnitSklGrowth(struct Unit * unit, int modifiersBool)
     {
         baseGrowth += unit->pClassData->growthSkl;
     }
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
-    {
-        return baseGrowth + add;
-    }
+
     int growth = CallGet_Skl_Growth(unit);
+    if (!modifiersBool)
+    {
+        return baseGrowth;
+    }
     if (growth != (-1))
     {
         add = growth - originalGrowth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return baseGrowth + add;
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -8181,14 +8201,19 @@ int GetUnitSpdGrowth(struct Unit * unit, int modifiersBool)
     {
         baseGrowth += unit->pClassData->growthSpd;
     }
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
-    {
-        return baseGrowth + add;
-    }
+
     int growth = CallGet_Spd_Growth(unit);
+    if (!modifiersBool)
+    {
+        return baseGrowth;
+    }
     if (growth != (-1))
     {
         add = growth - originalGrowth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return baseGrowth + add;
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -8257,14 +8282,19 @@ int GetUnitDefGrowth(struct Unit * unit, int modifiersBool)
     {
         baseGrowth += unit->pClassData->growthDef;
     }
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
-    {
-        return baseGrowth + add;
-    }
+
     int growth = CallGet_Def_Growth(unit);
+    if (!modifiersBool)
+    {
+        return baseGrowth;
+    }
     if (growth != (-1))
     {
         add = growth - originalGrowth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return baseGrowth + add;
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -8333,14 +8363,19 @@ int GetUnitResGrowth(struct Unit * unit, int modifiersBool)
     {
         baseGrowth += unit->pClassData->growthRes;
     }
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
-    {
-        return baseGrowth + add;
-    }
+
     int growth = CallGet_Res_Growth(unit);
+    if (!modifiersBool)
+    {
+        return baseGrowth;
+    }
     if (growth != (-1))
     {
         add = growth - originalGrowth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return baseGrowth + add;
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -8409,14 +8444,19 @@ int GetUnitLckGrowth(struct Unit * unit, int modifiersBool)
     {
         baseGrowth += unit->pClassData->growthLck;
     }
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
-    {
-        return baseGrowth + add;
-    }
+
     int growth = CallGet_Luk_Growth(unit);
+    if (!modifiersBool)
+    {
+        return baseGrowth;
+    }
     if (growth != (-1))
     {
         add = growth - originalGrowth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return baseGrowth + add;
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -14125,9 +14165,15 @@ extern void UpdateShopItemCounts(ProcPtr proc); // 80B0520
 extern struct ProcCmd gProcScr_Shop[];          // 8CE6FC0
 
 extern int RandomizePrepShop;
-extern void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent);
+
 // 	80B0454
+#ifdef FE8
+extern void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent);
 void MaybeStartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent)
+#else
+void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent)
+#endif
+
 {
     struct BmShopProc * proc;
     const u16 * shopItems;

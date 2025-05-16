@@ -434,6 +434,11 @@ ORG $b4248
 jumpToHack_r6(DecideToCallRandomizedShopScreenOrNot) 
 #endif 
 
+
+ORG $23174 // Make "Play" command act as "Dance" item instead of 0xCD's "Dummy" text 
+BYTE 0xA5 
+
+
 #ifdef USE_CHAR_CONFIRM_PAGE 
 // Kill BWL DeployAmt and SquaresMoved 
 // 809FFEC fe7, $84BEC fe6 
