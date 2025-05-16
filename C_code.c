@@ -147,7 +147,7 @@ struct TagsStruct
     u8 Civilian : 1;
     u8 Manakete : 1;
     u8 Monster : 1;
-    u8 wexp;
+    u8 wexp : 8;
     u8 earlyThief : 1;
     u8 earlyHealer : 1;
     u8 earlyFlier : 1;
@@ -3487,6 +3487,10 @@ int DoesCharMatchMonster(u32 attr, const struct ClassData * ctable, struct TagsS
         return false;
     }
 #endif
+    if (ctable->number == 0x55)
+    {
+        brk;
+    }
     int isMonster = (attr & CA_LOCK_3) && (!IsClassDragon(attr, ctable));
 
     if (HasNoClassTags(tags))
@@ -3608,8 +3612,22 @@ int DoesCharMatchUnmounted(u32 attr, const struct ClassData * ctable, struct Tag
     return isUnmounted && tags.Unmounted;
 }
 
+int DoesCharMatchMonster2(const struct ClassData * ctable, struct TagsStruct tags);
+
 int DoesCharMatchUnmountedWexp(u32 attr, const struct ClassData * ctable, struct TagsStruct tags)
 {
+
+    // int isDancer = attr & (CA_PLAY | CA_DANCE);
+    // int isMonster = DoesCharMatchMonster2(ctable, tags);
+    // if (tags.Dancer && isDancer)
+    // {
+    // return true;
+    // }
+    // if ((tags.Monster) && isMonster)
+    // {
+    // return true;
+    // }
+
     if (HasAllClassTags(tags))
         return true;
 
@@ -3654,6 +3672,31 @@ int DoesCharMatchCivilian(const struct ClassData * ctable, struct TagsStruct tag
         return isCivilian;
 
     return (!isCivilian) && tags.Civilian;
+}
+
+extern u8 FilterMonsterClasses[];
+int DoesCharMatchMonster2(const struct ClassData * ctable, struct TagsStruct tags)
+{
+    if (HasAllClassTags(tags))
+        return true;
+
+    int isMonster = false;
+    int classID = ctable->number;
+    u8 * monsterClasses = FilterMonsterClasses;
+    while (*monsterClasses)
+    {
+        if (*monsterClasses == classID)
+        {
+            isMonster = true;
+            break;
+        }
+        ++monsterClasses;
+    }
+
+    if (HasNoClassTags(tags))
+        return !isMonster;
+
+    return isMonster && tags.Monster;
 }
 
 extern u8 FilterArmourClasses[];
@@ -3721,12 +3764,12 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
 
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
-    attrTags |= DoesCharMatchMonster(attr, ctable, tags);
+    attrTags |= DoesCharMatchMonster2(ctable, tags);
     attrTags |= DoesCharMatchManakete(attr, ctable, tags);
     attrTags |= DoesCharMatchDancer(attr, tags);
     attrTags |= DoesCharMatchPegasi(attr, tags);
     attrTags |= DoesCharMatchWyvern(attr, tags);
-    attrTags |= DoesCharMatchMount(attr, tags);
+    // attrTags |= DoesCharMatchMount(attr, tags);
     attrTags |= DoesCharMatchArmour(ctable, tags);
     attrTags |= DoesCharMatchTrainee(ctable, tags);
     attrTags |= DoesCharMatchCivilian(ctable, tags);
@@ -3761,12 +3804,12 @@ int FilterClassOut(const struct ClassData * ctable, int promotedBitflag)
 
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
-    attrTags |= DoesCharMatchMonster(attr, ctable, tags);
+    attrTags |= DoesCharMatchMonster2(ctable, tags);
     attrTags |= DoesCharMatchManakete(attr, ctable, tags);
     attrTags |= DoesCharMatchDancer(attr, tags);
     attrTags |= DoesCharMatchPegasi(attr, tags);
     attrTags |= DoesCharMatchWyvern(attr, tags);
-    attrTags |= DoesCharMatchMount(attr, tags);
+    // attrTags |= DoesCharMatchMount(attr, tags);
     attrTags |= DoesCharMatchArmour(ctable, tags);
     attrTags |= DoesCharMatchTrainee(ctable, tags);
     attrTags |= DoesCharMatchCivilian(ctable, tags);
@@ -3801,12 +3844,12 @@ int FilterEnemyClassOut(const struct ClassData * ctable, int promotedBitflag)
 
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
-    attrTags |= DoesCharMatchMonster(attr, ctable, tags);
+    attrTags |= DoesCharMatchMonster2(ctable, tags);
     attrTags |= DoesCharMatchManakete(attr, ctable, tags);
     attrTags |= DoesCharMatchDancer(attr, tags);
     attrTags |= DoesCharMatchPegasi(attr, tags);
     attrTags |= DoesCharMatchWyvern(attr, tags);
-    attrTags |= DoesCharMatchMount(attr, tags);
+    // attrTags |= DoesCharMatchMount(attr, tags);
     attrTags |= DoesCharMatchArmour(ctable, tags);
     attrTags |= DoesCharMatchTrainee(ctable, tags);
     attrTags |= DoesCharMatchCivilian(ctable, tags);
