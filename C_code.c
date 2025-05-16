@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.0.1"
+#define VersionNumber " SRR V2.0.2"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -14165,9 +14165,15 @@ extern void UpdateShopItemCounts(ProcPtr proc); // 80B0520
 extern struct ProcCmd gProcScr_Shop[];          // 8CE6FC0
 
 extern int RandomizePrepShop;
-extern void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent);
+
 // 	80B0454
+#ifdef FE8
+extern void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent);
 void MaybeStartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent)
+#else
+void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent)
+#endif
+
 {
     struct BmShopProc * proc;
     const u16 * shopItems;
