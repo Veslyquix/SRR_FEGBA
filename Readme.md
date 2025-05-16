@@ -385,9 +385,9 @@ Asaello portrait by Melia
 Hawk portrait by Sterling Glovner     
 Hannibal portrait by Melia     
 Sharlow portrait by Melia     
-Seliph  
+Seliph portrait by Melia   
 Altena portrait by Melia  
-Hermina  
+Hermina portrait by Melia   
 Scathach portrait by Melia    
 Febail portrait by Melia  
 Coirpre portrait by Melia  
@@ -424,7 +424,7 @@ Nanna portrait by Zelkami
 Hicks portrait by Sterling_Glovner     
 Shiva portrait by Atey, Renoud     
 Carrion portrait by Ganondorf     
-Selphina portrait by Melia     
+Selphina portrait by TheGreatNothing     
 Cain2 portrait by Dongus     
 Alva portrait by Dongus     
 Robert portrait by Dongus     
@@ -664,14 +664,13 @@ Keaton portrait by Garytop
 Xander portrait by Garytop     
 Izana portrait by Garytop     
 Fuga portrait by Renoud     
-Yukimura Garytop   
+Yukimura portrait by Garytop   
 Flora portrait by Garytop   
 Mozu portrait by Nobody     
 Kana_M portrait by Azbel     
 Kana_F portrait by Sterling_Glovner    
 Shigure portrait by Lenh     
-Dwyer portrait by jotenks4     
-Dwyer (no art credited)     
+Dwyer portrait by jotenks4          
 Sophie portrait by Sterling_Glovner     
 Midori portrait by Nobody     
 Shiro portrait by Garytop       
@@ -682,12 +681,12 @@ Hisame portrait by Renoud
 Mitama portrait by Sterling_Glovner     
 Caeldori portrait by Garytop     
 Rhajat portrait by Garytop      
-Siegbert (no art credited)     
+Siegbert portrait by Garytop      
 Forrest portrait by Scraiza     
 Ignatius portrait by JeyTheCount     
 Velouria portrait by Garytop        
 Percy portrait by Garytop       
-Ophelia (no art credited)     
+Ophelia portrait by Garytop       
 Soleil portrait by Zorua     
 Nina portrait by JeyTheCount     
    
