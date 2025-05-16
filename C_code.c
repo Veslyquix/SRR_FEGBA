@@ -6521,6 +6521,10 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             continue;
         }
         table = GetItemData(i);
+        if (!table->nameTextId)
+        {
+            continue;
+        }
         attr = table->attributes;
 
         if ((attr & badAttr) || (!(attr & (IA_WEAPON | doWeHaveNonStaff))))
