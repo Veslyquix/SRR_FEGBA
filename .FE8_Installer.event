@@ -46,6 +46,13 @@
 #define gCharacterDataFE15 0x8803D64 
 #define gCharacterDataFE16 0x8803D64 
 #define gCharacterDataFE17 0x8803D64 
+
+
+    ALIGN 4 
+    MaxBGID:
+    WORD 0 
+#include "gfx/Clouds/Installer.event" 
+
 #endif 
 #include "FixMugs_FE8.event" 
 #include "Patches/FE8.lyn.event" 
@@ -63,7 +70,15 @@
 #endif 
 //#ifdef VeslyBuildfile 
 #include "../ASM/Reclass/Installer.event" 
+#ifndef NoAltUI 
 #include "../ASM/UI/Installer.event" 
+#else 
+ALIGN 4 
+StephanoStyleFlag: 
+GammaStyleFlag: 
+PikminStyleFlag: 
+WORD 0 
+#endif 
 //#include "../ASM/UnitExpansion/Installer.event" 
 //#endif 
 
@@ -71,9 +86,9 @@
 ALIGN 4 
 ReadConfigFromSRAM:
 #ifdef VeslyBuildfile 
-WORD True 
+WORD 1 
 #else 
-WORD 0 
+WORD 1 
 #endif 
 
 #ifndef PROC_CALL_ROUTINE_2
@@ -409,7 +424,15 @@ EirikaCharPalette:
 // BYTE $10 $80 $00 $00 $00 $55 $53 $FF $7F $FF $6B $1F $4B $00 $18 $2A $2E $19 $B3 $7F $89 $7A $00 $62 $5D $FF $1B $9E $1A $94 $01 $00 $1C $01 $76 $08 $6F $0C $A5 $14 $80 $90 $1F $99 $7F $92 $7E $6B $69 $9F $06 $42 $BD $29 $14 $0D $F0 $1F $B0 $3F $4D $06 $23 $6C $12 $86 $05 $F0 $1F $50 $1F $52 $00 $4A $8C $31 $C6 $18 $A5 $14 0 0 
 BYTE $10 $A0 $00 $00 $00 $55 $53 $FF $7F $FF $6B $1F $4B $00 $18 $2A $2E $19 $B3 $7F $89 $7A $00 $62 $5D $FF $1B $9E $1A $94 $01 $00 $1C $01 $76 $08 $6F $0C $A5 $14 $FE $F0 $1F $F0 $1F $F0 $1F $F0 $1F $F0 $1F $F0 $1F $F0 $1F $A5 $00 $14 $00 $00
 
+
 PUSH 
+
+#define jumpToHack_r6(offset) "BYTE 0x00 0x4E 0x30 0x47; POIN (offset|0x1); PROTECT CURRENTOFFSET-8 CURRENTOFFSET-1"
+
+#ifndef ShopExpansion_NoRandItems 
+ORG $b4248
+jumpToHack_r6(DecideToCallRandomizedShopScreenOrNot) 
+#endif 
 
 #ifdef USE_CHAR_CONFIRM_PAGE 
 // Kill BWL DeployAmt and SquaresMoved 
@@ -1280,11 +1303,7 @@ GrowthValues:
 WORD RandomizerRam+12 
 // WORD RandomizerRam+14 to +15 free 
 TagValues:
-#ifndef VeslyBuildfile 
-WORD 0 
-#else 
 WORD 0x203EC24 
-#endif 
 ClassTags:
 WORD 0x203EC28 
 EnemyClassTags:

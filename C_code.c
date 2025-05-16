@@ -14125,8 +14125,9 @@ extern void UpdateShopItemCounts(ProcPtr proc); // 80B0520
 extern struct ProcCmd gProcScr_Shop[];          // 8CE6FC0
 
 extern int RandomizePrepShop;
+extern void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent);
 // 	80B0454
-void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent)
+void MaybeStartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent)
 {
     struct BmShopProc * proc;
     const u16 * shopItems;
