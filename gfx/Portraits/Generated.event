@@ -3303,7 +3303,7 @@ MugEntry(SaphirMug, SaphirMugData, SaphirMinimugData, SaphirFramesData, SaphirPa
 MugEntry(VeyleMug, VeyleMugData, VeyleMinimugData, VeyleFramesData, VeylePaletteData,  4, 6, 4, 4)
 MugEntry(YunakaMug, YunakaMugData, YunakaMinimugData, YunakaFramesData, YunakaPaletteData,  3, 5, 3, 3)
 MugEntry(AbelMug, AbelMugData, AbelMinimugData, AbelFramesData, AbelPaletteData,  3, 5, 3, 3)
-MugEntry(ArlenMug, ArlenMugData, ArlenMinimugData, ArlenFramesData, ArlenPaletteData,  3, 4, 3, 2)
+MugEntry(ArlenMug, ArlenMugData, ArlenMinimugData, ArlenFramesData, ArlenPaletteData,  3, 4, 2, 2)
 MugEntry(ArranMug, ArranMugData, ArranMinimugData, ArranFramesData, ArranPaletteData,  3, 5, 3, 3)
 MugEntry(AstramMug, AstramMugData, AstramMinimugData, AstramFramesData, AstramPaletteData,  3, 6, 3, 4)
 MugEntry(AthenaMug, AthenaMugData, AthenaMinimugData, AthenaFramesData, AthenaPaletteData,  3, 5, 4, 3)
@@ -6210,14 +6210,14 @@ AbelMinimugData:
 
 ALIGN 4
 ArlenMugData:
-#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_mug.dmp"
+#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_AthenaBaer_mug.dmp"
 ALIGN 4
 ArlenFramesData:
-#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_frames.dmp"
+#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_AthenaBaer_frames.dmp"
 ArlenPaletteData:
-#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_palette.dmp"
+#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_AthenaBaer_palette.dmp"
 ArlenMinimugData:
-#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_minimug.dmp"
+#incbin "png/FE1FE3FE11FE12/Arlen_Kanna_AthenaBaer_minimug.dmp"
 
 ALIGN 4
 ArranMugData:

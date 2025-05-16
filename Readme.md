@@ -319,7 +319,7 @@ Jubelo portrait by Rohan
 Sirius portrait by Atey     
 Samuel portrait by Renoud, Xenith, Blueeyguy, Card, FEier, Nickt     
 Phina portrait by BatimaTheBat     
-Arlen portrait by Kanna     
+Arlen portrait by Kanna, AthenaBaer       
 Sheena portrait by BuskHusker     
 Frost portrait by SaintRubenio     
 Dice portrait by Emperor_Haardin     
