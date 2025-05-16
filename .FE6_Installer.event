@@ -42,6 +42,10 @@ MESSAGE Graphics end at currentoffset
 #define gCharacterDataFE15 0x86076D0 
 #define gCharacterDataFE16 0x86076D0 
 #define gCharacterDataFE17 0x86076D0 
+    ALIGN 4 
+    MaxBGID:
+    WORD 0 
+#include "gfx/Clouds/Installer.event" 
 #endif 
 #include "Patches/FE6.lyn.event" 
 #include "Patches/FE6_AsmHooks.lyn.event" 

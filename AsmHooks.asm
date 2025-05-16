@@ -43,6 +43,17 @@ mov r11, r11
 bx lr 
 .ltorg 
 
+.global DecideToCallRandomizedShopScreenOrNot
+.type DecideToCallRandomizedShopScreenOrNot, %function 
+DecideToCallRandomizedShopScreenOrNot: 
+bl MaybeStartShopScreen
+pop {r7} 
+mov r8, r7 
+pop {r4-r7} 
+pop {r0} 
+bx r0 
+.ltorg 
+
 
 
 @ FE8U = 0x0800E7D0

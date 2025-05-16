@@ -665,7 +665,7 @@ SET_FUNC PutSprite, 0x8007d3d
 SET_FUNC PrintDebugStringToBG, 0x8004f19
 SET_FUNC SetupDebugFontForBG, 0x8004e59 @ hook this 
 
-SET_FUNC StartShopScreen, 0x8095E91 
+SET_FUNC MaybeStartShopScreen, 0x8095E91 
 SET_FUNC EndPlayerPhaseSideWindows, 0x8073325 @ maybe EndMapUi 
 SET_FUNC UpdateShopItemCounts, 0x8095F5d
 	@SET_FUNC GetUnitMovementCost, @ dunno @ fe7 0x80187d5
@@ -829,7 +829,7 @@ SET_FUNC SetupDebugFontForBG, 0x8004EF9
 SET_FUNC StoreRNState, 0x8000D75
 SET_FUNC LoadRNState, 0x8000DD1
 
-SET_FUNC StartShopScreen, 0x80B0455 
+SET_FUNC MaybeStartShopScreen, 0x80B0455 
 SET_FUNC EndPlayerPhaseSideWindows, 0x8085C7D
 SET_FUNC UpdateShopItemCounts, 0x80B0521
 SET_FUNC GetUnitMovementCost, 0x80187d5
