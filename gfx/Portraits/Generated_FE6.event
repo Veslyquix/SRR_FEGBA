@@ -3151,7 +3151,7 @@ MugEntry(CamillaMug, CamillaMugData, CamillaMinimugData, CamillaPaletteData,  2,
 MugEntry(CharlotteMug, CharlotteMugData, CharlotteMinimugData, CharlottePaletteData,  3, 5, 3, 3)
 MugEntry(CorrinFMug, CorrinFMugData, CorrinFMinimugData, CorrinFPaletteData,  3, 7, 3, 5)
 MugEntry(CorrinMMug, CorrinMMugData, CorrinMMinimugData, CorrinMPaletteData,  2, 5, 2, 3)
-MugEntry(DwyerMug, DwyerMugData, DwyerMinimugData, DwyerPaletteData,  4, 6, 4, 4)
+MugEntry(DwyerMug, DwyerMugData, DwyerMinimugData, DwyerPaletteData,  3, 6, 3, 4)
 MugEntry(EffieMug, EffieMugData, EffieMinimugData, EffiePaletteData,  3, 5, 2, 3)
 MugEntry(EliseMug, EliseMugData, EliseMinimugData, ElisePaletteData,  3, 6, 3, 4)
 MugEntry(FeliciaMug, FeliciaMugData, FeliciaMinimugData, FeliciaPaletteData,  2, 6, 2, 4)
@@ -4416,12 +4416,12 @@ CorrinMMinimugData:
 
 ALIGN 4
 DwyerMugData:
-#incbin "png/FE14/Dwyer_jotenks4_portrait_frames_fe6.dmp"
+#incbin "png/FE14/Dwyer_Garytop_portrait_frames_fe6.dmp"
 ALIGN 4
 DwyerPaletteData:
-#incbin "png/FE14/Dwyer_jotenks4_palette.dmp"
+#incbin "png/FE14/Dwyer_Garytop_palette.dmp"
 DwyerMinimugData:
-#incbin "png/FE14/Dwyer_jotenks4_minimugfe6.dmp"
+#incbin "png/FE14/Dwyer_Garytop_minimugfe6.dmp"
 
 ALIGN 4
 EffieMugData:

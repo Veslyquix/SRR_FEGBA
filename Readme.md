@@ -670,7 +670,7 @@ Mozu portrait by Nobody
 Kana_M portrait by Azbel     
 Kana_F portrait by Sterling_Glovner    
 Shigure portrait by Lenh     
-Dwyer portrait by jotenks4          
+Dwyer portrait by Garytop          
 Sophie portrait by Sterling_Glovner     
 Midori portrait by Nobody     
 Shiro portrait by Garytop       
