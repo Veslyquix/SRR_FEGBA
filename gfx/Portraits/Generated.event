@@ -1520,8 +1520,8 @@
   #define EdaMug (FirstMugID+380)
 #endif
 
-#ifndef ErinrysMug
-  #define ErinrysMug (FirstMugID+381)
+#ifndef ErinysMug
+  #define ErinysMug (FirstMugID+381)
 #endif
 
 #ifndef EthlinMug
@@ -3462,7 +3462,7 @@ MugEntry(DimnaMug, DimnaMugData, DimnaMinimugData, DimnaFramesData, DimnaPalette
 MugEntry(DryasMug, DryasMugData, DryasMinimugData, DryasFramesData, DryasPaletteData,  3, 5, 3, 3)
 MugEntry(EdainMug, EdainMugData, EdainMinimugData, EdainFramesData, EdainPaletteData,  3, 5, 3, 3)
 MugEntry(EdaMug, EdaMugData, EdaMinimugData, EdaFramesData, EdaPaletteData,  3, 6, 3, 4)
-MugEntry(ErinrysMug, ErinrysMugData, ErinrysMinimugData, ErinrysFramesData, ErinrysPaletteData,  3, 5, 3, 3)
+MugEntry(ErinysMug, ErinysMugData, ErinysMinimugData, ErinysFramesData, ErinysPaletteData,  3, 5, 3, 3)
 MugEntry(EthlinMug, EthlinMugData, EthlinMinimugData, EthlinFramesData, EthlinPaletteData,  2, 6, 3, 4)
 MugEntry(EyvelMug, EyvelMugData, EyvelMinimugData, EyvelFramesData, EyvelPaletteData,  2, 5, 3, 3)
 MugEntry(FebailMug, FebailMugData, FebailMinimugData, FebailFramesData, FebailPaletteData,  3, 5, 3, 3)
@@ -8036,15 +8036,15 @@ EdaMinimugData:
 #incbin "png/FE4FE5/Eda_Atey_minimug.dmp"
 
 ALIGN 4
-ErinrysMugData:
-#incbin "png/FE4FE5/Erinrys_Freefall_mug.dmp"
+ErinysMugData:
+#incbin "png/FE4FE5/Erinys_Freefall_mug.dmp"
 ALIGN 4
-ErinrysFramesData:
-#incbin "png/FE4FE5/Erinrys_Freefall_frames.dmp"
-ErinrysPaletteData:
-#incbin "png/FE4FE5/Erinrys_Freefall_palette.dmp"
-ErinrysMinimugData:
-#incbin "png/FE4FE5/Erinrys_Freefall_minimug.dmp"
+ErinysFramesData:
+#incbin "png/FE4FE5/Erinys_Freefall_frames.dmp"
+ErinysPaletteData:
+#incbin "png/FE4FE5/Erinys_Freefall_palette.dmp"
+ErinysMinimugData:
+#incbin "png/FE4FE5/Erinys_Freefall_minimug.dmp"
 
 ALIGN 4
 EthlinMugData:

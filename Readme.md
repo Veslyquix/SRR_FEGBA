@@ -359,7 +359,7 @@ Chulainn portrait by Sterling_Glovner
 Lachesis portrait by Garytop     
 Lewyn portrait by Freefall, AthenaBaer     
 Sylvia portrait by TAS20XX     
-Fury portrait by Sterling Glovner     
+Erinys portrait by Freefall      
 Beowolf portrait by Eden     
 Brigid portrait by Sterling_Glovner     
 Claude portrait by Atey     
