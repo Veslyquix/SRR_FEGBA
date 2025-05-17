@@ -395,6 +395,16 @@ ALIGN 4
 FilterArmourClasses: 
 BYTE Knight Knight_F General General_F 
 BYTE 0 // Terminator 
+FilterMonsterClasses:
+    #ifdef VeslyBuildfile 
+    BYTE Tome Chicken Mosquito Sandworm Slime CursedSword Fellbeast BlackDragon Djinn LivingArmor
+    #endif 
+#ifdef _FE8_ 
+    BYTE Revenant Entombed Bonewalker Bonewalker_Bow Wight Wight_Bow Bael ElderBael Cyclops Mauthedoog Gwyllgi Tarvos Maelduin Mogall ArchMogall Gorgon 
+    BYTE Gargoyle Deathgoyle Cyclops_2 ElderBael_2 
+#endif 
+BYTE 0 // Terminator 
+
 ThiefClass:
 BYTE Thief 
 HealerClass:

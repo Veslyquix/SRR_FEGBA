@@ -545,7 +545,7 @@ Leanne portrait by Quotedotlass, Electric_Serge
 Vika portrait by Quotedotlass, Ghostblade     
 Nailah portrait by Nickt, Stitch     
 Rafiel portrait by Nickt, Stitch     
-Kyza portrait by Quotedotlass     
+Kyza portrait by Quotedotlass, AthenaBaer     
 Lyre portrait by Quotedotlass     
 Caineghis portrait by Nickt, Stitch     
 Kurthnaga portrait by Nickt, Stitch     
