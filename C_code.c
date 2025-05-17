@@ -3487,10 +3487,6 @@ int DoesCharMatchMonster(u32 attr, const struct ClassData * ctable, struct TagsS
         return false;
     }
 #endif
-    if (ctable->number == 0x55)
-    {
-        brk;
-    }
     int isMonster = (attr & CA_LOCK_3) && (!IsClassDragon(ctable));
 
     if (HasNoClassTags(tags))
