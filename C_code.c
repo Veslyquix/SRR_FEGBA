@@ -147,7 +147,7 @@ struct TagsStruct
     u8 Civilian : 1;
     u8 Manakete : 1;
     u8 Monster : 1;
-    u8 wexp : 8;
+    u8 wexp;
     u8 earlyThief : 1;
     u8 earlyHealer : 1;
     u8 earlyFlier : 1;
@@ -3369,7 +3369,7 @@ int DoesCharMatchGender(u32 attr, struct TagsStruct tags)
 }
 
 extern const u8 DragonClasses[];
-int IsClassDragon(const struct ClassData * ctable)
+int IsClassDragon(u32 attr, const struct ClassData * ctable)
 {
     int id = ctable->number;
     for (int i = 0; i < 255; ++i)
@@ -3389,7 +3389,7 @@ int IsClassDragon(const struct ClassData * ctable)
 int DoesCharMatchPromotion(
     u32 attr, const struct ClassData * ctable, struct TagsStruct tags, int promotedBitflag, int allegiance)
 {
-    int isDragon = IsClassDragon(ctable);
+    int isDragon = IsClassDragon(attr, ctable);
 
     int isPromoted = (attr & CA_PROMOTED) != 0;
     if (promotedBitflag == (-1))
@@ -3487,7 +3487,7 @@ int DoesCharMatchMonster(u32 attr, const struct ClassData * ctable, struct TagsS
         return false;
     }
 #endif
-    int isMonster = (attr & CA_LOCK_3) && (!IsClassDragon(ctable));
+    int isMonster = (attr & CA_LOCK_3) && (!IsClassDragon(attr, ctable));
 
     if (HasNoClassTags(tags))
         return !isMonster;
@@ -3500,7 +3500,7 @@ int DoesCharMatchManakete(u32 attr, const struct ClassData * ctable, struct Tags
     if (HasAllClassTags(tags))
         return true;
 
-    int isManakete = IsClassDragon(ctable);
+    int isManakete = IsClassDragon(attr, ctable);
 
     if (HasNoClassTags(tags))
         return !isManakete;
@@ -3608,18 +3608,10 @@ int DoesCharMatchUnmounted(u32 attr, const struct ClassData * ctable, struct Tag
     return isUnmounted && tags.Unmounted;
 }
 
-int DoesCharMatchMonster2(const struct ClassData * ctable, struct TagsStruct tags);
-
-int DoesCharMatchUnmountedOrCivilian(u32 attr, const struct ClassData * ctable, struct TagsStruct tags)
+int DoesCharMatchUnmountedWexp(u32 attr, const struct ClassData * ctable, struct TagsStruct tags)
 {
-
     if (HasAllClassTags(tags))
         return true;
-
-    if (tags.Unmounted && tags.Civilian)
-    {
-        return true;
-    }
 
     if (!tags.Unmounted)
     {
@@ -3664,42 +3656,12 @@ int DoesCharMatchCivilian(const struct ClassData * ctable, struct TagsStruct tag
     return (!isCivilian) && tags.Civilian;
 }
 
-extern u8 FilterMonsterClasses[];
-
-int IsClassMonster(const struct ClassData * ctable)
-{
-    int isMonster = false;
-    int classID = ctable->number;
-    u8 * monsterClasses = FilterMonsterClasses;
-    while (*monsterClasses)
-    {
-        if (*monsterClasses == classID)
-        {
-            isMonster = true;
-            break;
-        }
-        ++monsterClasses;
-    }
-    return isMonster;
-}
-
-int DoesCharMatchMonster2(const struct ClassData * ctable, struct TagsStruct tags)
+extern u8 FilterArmourClasses[];
+int DoesCharMatchArmour(const struct ClassData * ctable, struct TagsStruct tags)
 {
     if (HasAllClassTags(tags))
         return true;
 
-    int isMonster = IsClassMonster(ctable);
-
-    if (HasNoClassTags(tags))
-        return !isMonster;
-
-    return isMonster && tags.Monster;
-}
-
-extern u8 FilterArmourClasses[];
-
-int IsClassArmour(const struct ClassData * ctable)
-{
     int isArmour = false;
     int classID = ctable->number;
     u8 * armourClasses = FilterArmourClasses;
@@ -3712,15 +3674,6 @@ int IsClassArmour(const struct ClassData * ctable)
         }
         ++armourClasses;
     }
-    return isArmour;
-}
-
-int DoesCharMatchArmour(const struct ClassData * ctable, struct TagsStruct tags)
-{
-    if (HasAllClassTags(tags))
-        return true;
-
-    int isArmour = IsClassArmour(ctable);
 
     if (HasNoClassTags(tags))
         return !isArmour;
@@ -3728,8 +3681,11 @@ int DoesCharMatchArmour(const struct ClassData * ctable, struct TagsStruct tags)
     return isArmour && tags.Armoured;
 }
 extern u8 FilterTraineeClasses[];
-int IsClassTrainee(const struct ClassData * ctable)
+int DoesCharMatchTrainee(const struct ClassData * ctable, struct TagsStruct tags)
 {
+    if (HasAllClassTags(tags))
+        return true;
+
     int isTrainee = false;
     int classID = ctable->number;
     u8 * traineeClasses = FilterTraineeClasses;
@@ -3742,15 +3698,6 @@ int IsClassTrainee(const struct ClassData * ctable)
         }
         ++traineeClasses;
     }
-    return isTrainee;
-}
-
-int DoesCharMatchTrainee(const struct ClassData * ctable, struct TagsStruct tags)
-{
-    if (HasAllClassTags(tags))
-        return true;
-
-    int isTrainee = IsClassTrainee(ctable);
 
     if (HasNoClassTags(tags))
         return !isTrainee;
@@ -3767,16 +3714,14 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     u32 attr = table->attributes | ctable->attributes;
     struct TagsStruct tags = TagValues->tags;
     u32 result = false;
-
     result = DoesCharMatchWexp(attr, ctable, tags);
     result = result && DoesCharMatchGender(attr, tags);
     int promotedBitflag = -1;
     result = result && DoesCharMatchPromotion(attr, ctable, tags, promotedBitflag, 0);
 
-    // If class matches any of these tags, it's still valid
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
-    attrTags |= DoesCharMatchMonster2(ctable, tags);
+    attrTags |= DoesCharMatchMonster(attr, ctable, tags);
     attrTags |= DoesCharMatchManakete(attr, ctable, tags);
     attrTags |= DoesCharMatchDancer(attr, tags);
     attrTags |= DoesCharMatchPegasi(attr, tags);
@@ -3784,17 +3729,15 @@ int FilterCharOut(const struct CharacterData * table, const struct ClassData * c
     attrTags |= DoesCharMatchMount(attr, tags);
     attrTags |= DoesCharMatchArmour(ctable, tags);
     attrTags |= DoesCharMatchTrainee(ctable, tags);
+    attrTags |= DoesCharMatchCivilian(ctable, tags);
 
-    u32 classTags = attr & (CA_THIEF | CA_DANCE | CA_PLAY | CA_MOUNTED | CA_WYVERN | CA_PEGASUS | CA_LORD);
-    classTags |= IsClassArmour(ctable) || IsClassMonster(ctable) || IsClassTrainee(ctable) || IsClassDragon(ctable);
-    // For unmounted and civilians, we need to know if the class had any of these attrTags above
-    // if they don't, they're either unmounted (wexp) or a civilian (no wexp)
-
-    // attrTags |= DoesCharMatchCivilian(ctable, tags);
-
-    if (!classTags)
+    if (!attrTags)
     {
-        attrTags = DoesCharMatchUnmountedOrCivilian(attr, ctable, tags);
+        attrTags = DoesCharMatchUnmountedWexp(attr, ctable, tags);
+    }
+    else
+    {
+        attrTags &= DoesCharMatchUnmounted(attr, ctable, tags);
     }
     result = result && attrTags;
 
@@ -3810,18 +3753,15 @@ int FilterClassOut(const struct ClassData * ctable, int promotedBitflag)
     u32 attr = ctable->attributes;
     struct TagsStruct tags = ClassTags->tags;
     u32 result = false;
-
-    // All classes must match wexp, gender, and promotion filters
     result = DoesCharMatchWexp(attr, ctable, tags);
     result = result && DoesCharMatchGender(attr, tags);
     result = result && DoesCharMatchPromotion(attr, ctable, tags, promotedBitflag, 0);
 
     // result = result && DoesCharMatchUnmounted(attr, tags);
 
-    // If class matches any of these tags, it's still valid
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
-    attrTags |= DoesCharMatchMonster2(ctable, tags);
+    attrTags |= DoesCharMatchMonster(attr, ctable, tags);
     attrTags |= DoesCharMatchManakete(attr, ctable, tags);
     attrTags |= DoesCharMatchDancer(attr, tags);
     attrTags |= DoesCharMatchPegasi(attr, tags);
@@ -3829,17 +3769,15 @@ int FilterClassOut(const struct ClassData * ctable, int promotedBitflag)
     attrTags |= DoesCharMatchMount(attr, tags);
     attrTags |= DoesCharMatchArmour(ctable, tags);
     attrTags |= DoesCharMatchTrainee(ctable, tags);
+    attrTags |= DoesCharMatchCivilian(ctable, tags);
 
-    u32 classTags = attr & (CA_THIEF | CA_DANCE | CA_PLAY | CA_MOUNTED | CA_WYVERN | CA_PEGASUS | CA_LORD);
-    classTags |= IsClassArmour(ctable) || IsClassMonster(ctable) || IsClassTrainee(ctable) || IsClassDragon(ctable);
-    // For unmounted and civilians, we need to know if the class had any of these attrTags above
-    // if they don't, they're either unmounted (wexp) or a civilian (no wexp)
-
-    // attrTags |= DoesCharMatchCivilian(ctable, tags);
-
-    if (!classTags)
+    if (!attrTags)
     {
-        attrTags = DoesCharMatchUnmountedOrCivilian(attr, ctable, tags);
+        attrTags = DoesCharMatchUnmountedWexp(attr, ctable, tags);
+    }
+    else
+    {
+        attrTags &= DoesCharMatchUnmounted(attr, ctable, tags);
     }
 
     result = result && attrTags;
@@ -3861,10 +3799,9 @@ int FilterEnemyClassOut(const struct ClassData * ctable, int promotedBitflag)
     result = result && DoesCharMatchPromotion(attr, ctable, tags, promotedBitflag, 1);
     // result = result && DoesCharMatchUnmounted(attr, tags);
 
-    // If class matches any of these tags, it's still valid
     u32 attrTags = DoesCharMatchThief(attr, tags);
     attrTags |= DoesCharMatchLord(attr, tags);
-    attrTags |= DoesCharMatchMonster2(ctable, tags);
+    attrTags |= DoesCharMatchMonster(attr, ctable, tags);
     attrTags |= DoesCharMatchManakete(attr, ctable, tags);
     attrTags |= DoesCharMatchDancer(attr, tags);
     attrTags |= DoesCharMatchPegasi(attr, tags);
@@ -3872,17 +3809,15 @@ int FilterEnemyClassOut(const struct ClassData * ctable, int promotedBitflag)
     attrTags |= DoesCharMatchMount(attr, tags);
     attrTags |= DoesCharMatchArmour(ctable, tags);
     attrTags |= DoesCharMatchTrainee(ctable, tags);
+    attrTags |= DoesCharMatchCivilian(ctable, tags);
 
-    u32 classTags = attr & (CA_THIEF | CA_DANCE | CA_PLAY | CA_MOUNTED | CA_WYVERN | CA_PEGASUS | CA_LORD);
-    classTags |= IsClassArmour(ctable) || IsClassMonster(ctable) || IsClassTrainee(ctable) || IsClassDragon(ctable);
-    // For unmounted and civilians, we need to know if the class had any of these attrTags above
-    // if they don't, they're either unmounted (wexp) or a civilian (no wexp)
-
-    // attrTags |= DoesCharMatchCivilian(ctable, tags);
-
-    if (!classTags)
+    if (!attrTags)
     {
-        attrTags = DoesCharMatchUnmountedOrCivilian(attr, ctable, tags);
+        attrTags = DoesCharMatchUnmountedWexp(attr, ctable, tags);
+    }
+    else
+    {
+        attrTags &= DoesCharMatchUnmounted(attr, ctable, tags);
     }
 
     result = result && attrTags;
@@ -6586,10 +6521,6 @@ u8 * BuildAvailableWeaponList(u8 list[], struct Unit * unit)
             continue;
         }
         table = GetItemData(i);
-        if (!table->nameTextId)
-        {
-            continue;
-        }
         attr = table->attributes;
 
         if ((attr & badAttr) || (!(attr & (IA_WEAPON | doWeHaveNonStaff))))
@@ -9287,10 +9218,6 @@ void ForceEarlygameClasses(struct Unit * unit, int * noise, int offset)
 extern int ChanceToDemote;
 void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uDef)
 {
-    if ((void *)uDef == (void *)0x88BCA20)
-    {
-        brk;
-    }
     unit->pCharacterData = GetCharacterData(uDef->charIndex);
     const struct CharacterData * character = unit->pCharacterData;
     unit->level = uDef->level;
@@ -9833,10 +9760,6 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     }
 
     UnitCheckStatCaps(unit);
-    if ((void *)uDef == (void *)0x88BCA20)
-    {
-        brk;
-    }
 }
 
 #ifdef FE6
