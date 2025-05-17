@@ -9284,6 +9284,29 @@ void ForceEarlygameClasses(struct Unit * unit, int * noise, int offset)
     }
 }
 
+// struct Struct02024CD4 EWRAM_DATA gFrameTmRegisterConfig = { 0 };
+// struct TileDataTransfer EWRAM_DATA gFrameTmRegister[32] = { 0 };
+// 08002014
+// [2024e68]!!
+// gFrameTmRegisterConfig
+// [2024cd4]!!
+// RegisterDataMove is being called too many times by the SMS something
+// cause VRAM has been overfilled?
+void RegisterDataMove(const void * src, void * dst, int size)
+{
+    struct TileDataTransfer * ptr = &gFrameTmRegister[gFrameTmRegisterConfig.count];
+    if (gFrameTmRegisterConfig.count > 0x1F)
+    {
+        // brk;
+        return;
+    }
+    ptr->src = src;
+    ptr->dest = dst;
+    ptr->size = size;
+    ptr->mode = (size & 0x1F) ? 0 : 1;
+    gFrameTmRegisterConfig.size += size;
+    gFrameTmRegisterConfig.count++;
+}
 extern int ChanceToDemote;
 void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uDef)
 {

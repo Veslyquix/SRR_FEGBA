@@ -257,9 +257,15 @@ SET_FUNC MapAnim_Cleanup, 0x80619b1
 SET_FUNC UpdateActorFromBattle, 0x80254CD @ BattleApplyUnitUpdates
 SET_FUNC ReadSramFast, 0x3006640
 SET_FUNC WriteAndVerifySramFast, 0x809DE9D 
+SET_FUNC RegisterDataMove, 0x8002B05 
+SET_DATA gFrameTmRegisterConfig, 0x2023B34
+SET_DATA gFrameTmRegister, 0x2023B3C 
 
 .endif     
 .if FE7 == true 
+SET_DATA gFrameTmRegisterConfig, 0x2024C94  
+SET_DATA gFrameTmRegister, 0x2024C9C 
+SET_FUNC RegisterDataMove, 0x8003079
 SET_FUNC ReadSramFast, 0x3005E70  
 SET_FUNC WriteAndVerifySramFast, 0x80BFBD9  
 
