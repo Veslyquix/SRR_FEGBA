@@ -11720,7 +11720,7 @@ void SetDefaultTagValues(void)
 {
 
     TagValues->raw = 0xFFFFDFFF;      // default: no civilians
-    ClassTags->raw = 0xFFFFDFFF;      // default
+    ClassTags->raw = 0xF9FFDFFF;      // default: early thief only
     EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
 }
