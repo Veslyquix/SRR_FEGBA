@@ -131,6 +131,14 @@ WORD 1
 #else 
 WORD 0 
 #endif 
+ALIGN 4 
+ShopExpansionEnabled:
+#ifdef ShopExpansion_NoRandItems 
+WORD 1 
+#else 
+WORD 0 
+#endif 
+
 // Each shop will have one of these items at random
 RareItemTableSize:
 WORD 17 
