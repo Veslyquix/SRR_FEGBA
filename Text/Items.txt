@@ -77,32 +77,26 @@ evasion for a turn.[X]
 Wolf Beil[X]
 
 ## WolfBeil_Desc
-Effective on armored[NL]
-units and cavalry.[X]
-
+Effective against infantry.[X]
 
 ## ManiKatti_Name
 Mani Katti[X]
 
 ## ManiKatti_Desc
-Effective on armored[NL]
-units and cavalry.[X]
-
+Effective against infantry.[X]
 
 ## Reginleif_Name
 Reginleif[X]
 
 ## Reginleif_Desc
-Effective on armored[NL]
-units and cavalry.[X]
+Effective against infantry.[X]
 
 
 ## WingSpear_Name
 Wing Spear[X]
 
 ## WingSpear_Desc
-Effective on armored[NL]
-units and cavalry[X]
+Effective against infantry.[X]
 
 
 ## GlassSword_Name
@@ -137,39 +131,34 @@ Strong, yet frail.[X]
 King Sword[X]
 
 ## KingSword_Desc
-Grants Charisma.[NL]
-Can strike consecutively.[X]
+Grants Charisma. Brave.[X]
 
 
 ## RadiantBow_Name
 Radiant Bow[X]
 
 ## RadiantBow_Desc
-Magical Bow.[NL]
-Effective on fliers.[X]
+Effective on fliers. Hits RES.[X]
 
 
 ## FujinYumi_Name
 Fujin Yumi[X]
 
 ## FujinYumi_Desc
-Grants Acrobat.[NL]
-"This is for Mother!"[X]
+Grants Acrobat.[X]
 
 
 ## BrassYumi_Name
 Brass Yumi[X]
 
 ## BrassYumi_Desc
-Grants Acrobat.[NL]
-"I'm not crazy... I'm..."[X]
+Grants Acrobat.[X]
 
 
 ## WpnCatalog_Name
 Wpn Catalog[X]
 
 ## WpnCatalog_Desc
-"Silver Client Super-Bargain!"[NL]
 Targets DEF. Brave.[X]
 
 
@@ -177,38 +166,33 @@ Targets DEF. Brave.[X]
 Superior Axe[X]
 
 ## SuperiorAxe_Desc
-Grants Axebreaker.[NL]
-Double WTA effectiveness.[X]
+Grants Axebreaker. Double WT.[X]
 
 
 ## DualNaginata_Name
 Dual Naginata[X]
 
 ## DualNaginata_Desc
-Reverses and doubles[NL]
-WTA effects.[X]
+Reverses and doubles WT.[X]
 
 ## GrdNaginata_Name
 Grd Naginata[X]
 
 ## GrdNaginata_Desc
-Grants Defensive Boons.[N]
-Very heavy.[X]
+Heavy and defensive.[X]
 
 
 ## TakumiKatana_Name
 Takumi's Ktn[X]
 
 ## TakumiKatana_Desc
-Halves target's health.[NL]
-"You'll pay for this... with your life!"[X]
+Halves target's health.[X]
 
 
 ## IronKatana_Name
 Iron Katana[X]
 
 ## IronKatana_Desc
-Hoshido's Finest.[NL]
 +1 SPD -1 DEF/RES[X]
 
 
@@ -216,7 +200,6 @@ Hoshido's Finest.[NL]
 Steel Katana[X]
 
 ## SteelKatana_Desc
-Ironically, a single edged sword.[NL]
 +2 SPD -2 DEF/RES[X]
 
 
@@ -224,6 +207,151 @@ Ironically, a single edged sword.[NL]
 Silvr Katana[X]
 
 ## SilverKatana_Desc
-One of us will die.[NL]
 +3 SPD -3 DEF/RES[X]
 
+## BindingBlade_Name
+Binding Blade[X]
+## BindingBlade_Desc
+Increases Def and Res by 5 pts.[X]
+
+## Thani_Name
+Thani[X]
+## Thani_Desc
+Effective against infantry.[X]
+
+## OborosNaginata_Name
+Oboro's Ngnt[X]
+## OborosNaginata_Desc
+Grants Seal Strength.[X]
+
+## RinkahsClub_Name
+Rinkah's Club[X]
+## RinkahsClub_Desc
+Grants Fiery Blood.[X]
+
+## TitaniasAxe_Name
+Titania's Ax[X]
+## TitaniasAxe_Desc
+Grants Savior.[X]
+
+## BoltLance_Name
+Bolt Lance[X]
+## BoltLance_Desc
+Commands divine lightning.[X]
+
+## RegalSword_Name
+Regal Sword[X]
+## RegalSword_Desc
+Effective against infantry.[X]
+
+## LegRing_Name
+Leg Ring[X]
+## LegRing_Desc
++3 Movement pts.[X]
+
+## KnightRing_Name
+Knight Ring[X]
+## KnightRing_Desc
+Grants Canto+:[N]
+Can move again after[N]
+attacking and other actions.[X]
+
+## EliteRing_Name
+Elite Ring[X]
+## EliteRing_Desc
+Grants Paragon:[N]
+Experience gain is[N]
+doubled[X]
+
+## PrayerRing_Name
+Prayer Ring[X]
+## PrayerRing_Desc
+Grants Miracle:[N]
+Survive a lethal[N]
+attack if HP>50%[X]
+
+## LifeRing_Name
+Life Ring[X]
+## LifeRing_Desc
+Grants Renewal:[N]
+Restore 30% of max HP[N]
+at the start of each turn.[X]
+
+## Taurus_Name
+Taurus[X]
+## Taurus_Desc
+Boosts growth rates:[N]
++5 to all stats[X]
+
+## Saggitarius_Name
+Saggitarius[X]
+## Saggitarius_Desc
+Boosts growth rates:[N]
++40 POW +10 SPD[N]
+-10 HP[X]
+
+## Aries_Name
+Aries[X]
+## Aries_Desc
+Boosts growth rates:[N]
++40 LCK[X]
+
+## Gemini_Name
+Gemini[X]
+## Gemini_Desc
+Boosts growth rates:[N]
++30 POW +20 DEF[X]
+
+## Cancer_Name
+Cancer[X]
+## Cancer_Desc
+Boosts growth rates:[N]
++50 DEF[N]
+-10 POW[X]
+
+## Leo_Name
+Leo[X]
+## Leo_Desc
+Boosts growth rates:[N]
++50 POW[N]
+-10 DEF[X]
+
+## Virgo_Name
+Virgo[X]
+## Virgo_Desc
+Boosts growth rates:[N]
++30 RES[N]
+-10 DEF[X]
+
+## Libra_Name
+Libra[X]
+## Libra_Desc
+Boosts growth rates:[N]
++40 SPD +10 LCK[N]
+-10 HP/RES[X]
+
+## Scorpio_Name
+Scorpio[X]
+## Scorpio_Desc
+Boosts growth rates:[N]
++20 POW/SKL +10 SPD[N]
+-10 LCK[X]
+
+## Capricorn_Name
+Capricorn[X]
+## Capricorn_Desc
+Boosts growth rates:[N]
++20 HP +30 LCK +10 DEF[N]
+-10 SKL/SPD[X]
+
+## Aquarius_Name
+Aquarius[X]
+## Aquarius_Desc
+Boosts growth rates:[N]
++10 POW/SKL/SPD[X]
+
+## Pisces_Name
+Pisces[X]
+## Pisces_Desc
+Boosts growth rates:[N]
++10 HP/LCK/DEF/RES[X]
