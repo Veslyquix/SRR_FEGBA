@@ -764,20 +764,20 @@
   #define YuriMug (FirstMugID+190)
 #endif
 
-#ifndef AflredMug
-  #define AflredMug (FirstMugID+191)
-#endif
-
 #ifndef AlcrystMug
-  #define AlcrystMug (FirstMugID+192)
+  #define AlcrystMug (FirstMugID+191)
 #endif
 
 #ifndef AlearFMug
-  #define AlearFMug (FirstMugID+193)
+  #define AlearFMug (FirstMugID+192)
 #endif
 
 #ifndef AlearMMug
-  #define AlearMMug (FirstMugID+194)
+  #define AlearMMug (FirstMugID+193)
+#endif
+
+#ifndef AlfredMug
+  #define AlfredMug (FirstMugID+194)
 #endif
 
 #ifndef AmberMug
@@ -3325,10 +3325,10 @@ MugEntry(ThalesMug, ThalesMugData, ThalesMinimugData, ThalesFramesData, ThalesPa
 MugEntry(TomasFE16Mug, TomasFE16MugData, TomasFE16MinimugData, TomasFE16FramesData, TomasFE16PaletteData,  2, 6, 2, 4)
 MugEntry(WaldemarMug, WaldemarMugData, WaldemarMinimugData, WaldemarFramesData, WaldemarPaletteData,  2, 5, 2, 3)
 MugEntry(YuriMug, YuriMugData, YuriMinimugData, YuriFramesData, YuriPaletteData,  3, 5, 3, 3)
-MugEntry(AflredMug, AflredMugData, AflredMinimugData, AflredFramesData, AflredPaletteData,  3, 5, 3, 3)
 MugEntry(AlcrystMug, AlcrystMugData, AlcrystMinimugData, AlcrystFramesData, AlcrystPaletteData,  3, 5, 3, 3)
 MugEntry(AlearFMug, AlearFMugData, AlearFMinimugData, AlearFFramesData, AlearFPaletteData,  3, 5, 3, 3)
 MugEntry(AlearMMug, AlearMMugData, AlearMMinimugData, AlearMFramesData, AlearMPaletteData,  3, 5, 3, 3)
+MugEntry(AlfredMug, AlfredMugData, AlfredMinimugData, AlfredFramesData, AlfredPaletteData,  3, 5, 3, 3)
 MugEntry(AmberMug, AmberMugData, AmberMinimugData, AmberFramesData, AmberPaletteData,  3, 5, 3, 3)
 MugEntry(BoucheronMug, BoucheronMugData, BoucheronMinimugData, BoucheronFramesData, BoucheronPaletteData,  3, 5, 3, 3)
 MugEntry(ChloeMug, ChloeMugData, ChloeMinimugData, ChloeFramesData, ChloePaletteData,  3, 5, 3, 3)
@@ -6022,17 +6022,6 @@ YuriMinimugData:
 #incbin "png/FE16/Yuri_HyperGammaSpaces_minimug.dmp"
 
 ALIGN 4
-AflredMugData:
-#incbin "png/FE17/Aflred_SterlingGlover_mug.dmp"
-ALIGN 4
-AflredFramesData:
-#incbin "png/FE17/Aflred_SterlingGlover_frames.dmp"
-AflredPaletteData:
-#incbin "png/FE17/Aflred_SterlingGlover_palette.dmp"
-AflredMinimugData:
-#incbin "png/FE17/Aflred_SterlingGlover_minimug.dmp"
-
-ALIGN 4
 AlcrystMugData:
 #incbin "png/FE17/Alcryst_Rammerrush_mug.dmp"
 ALIGN 4
@@ -6064,6 +6053,17 @@ AlearMPaletteData:
 #incbin "png/FE17/AlearM_CavalryUnits_palette.dmp"
 AlearMMinimugData:
 #incbin "png/FE17/AlearM_CavalryUnits_minimug.dmp"
+
+ALIGN 4
+AlfredMugData:
+#incbin "png/FE17/Alfred_SterlingGlover_mug.dmp"
+ALIGN 4
+AlfredFramesData:
+#incbin "png/FE17/Alfred_SterlingGlover_frames.dmp"
+AlfredPaletteData:
+#incbin "png/FE17/Alfred_SterlingGlover_palette.dmp"
+AlfredMinimugData:
+#incbin "png/FE17/Alfred_SterlingGlover_minimug.dmp"
 
 ALIGN 4
 AmberMugData:
