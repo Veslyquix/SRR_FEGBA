@@ -868,8 +868,8 @@
   #define PanetteMug (FirstMugID+216)
 #endif
 
-#ifndef RosadaMug
-  #define RosadaMug (FirstMugID+217)
+#ifndef RosadoMug
+  #define RosadoMug (FirstMugID+217)
 #endif
 
 #ifndef SaphirMug
@@ -3363,7 +3363,7 @@ MugEntry(MauvierMug, MauvierMugData, MauvierMinimugData, MauvierPaletteData,  2,
 MugEntry(MerrinMug, MerrinMugData, MerrinMinimugData, MerrinPaletteData,  4, 5, 4, 3)
 MugEntry(PandreoMug, PandreoMugData, PandreoMinimugData, PandreoPaletteData,  4, 6, 4, 4)
 MugEntry(PanetteMug, PanetteMugData, PanetteMinimugData, PanettePaletteData,  3, 6, 3, 4)
-MugEntry(RosadaMug, RosadaMugData, RosadaMinimugData, RosadaPaletteData,  4, 6, 4, 4)
+MugEntry(RosadoMug, RosadoMugData, RosadoMinimugData, RosadoPaletteData,  4, 6, 4, 4)
 MugEntry(SaphirMug, SaphirMugData, SaphirMinimugData, SaphirPaletteData,  3, 5, 3, 3)
 MugEntry(SeadallMug, SeadallMugData, SeadallMinimugData, SeadallPaletteData,  3, 5, 3, 3)
 MugEntry(TimerraMug, TimerraMugData, TimerraMinimugData, TimerraPaletteData,  4, 6, 4, 4)
@@ -5889,13 +5889,13 @@ PanetteMinimugData:
 #incbin "png/FE17/Panette_Priestess_minimugfe6.dmp"
 
 ALIGN 4
-RosadaMugData:
-#incbin "png/FE17/Rosada_Saihua_portrait_frames_fe6.dmp"
+RosadoMugData:
+#incbin "png/FE17/Rosado_Saihua_portrait_frames_fe6.dmp"
 ALIGN 4
-RosadaPaletteData:
-#incbin "png/FE17/Rosada_Saihua_palette.dmp"
-RosadaMinimugData:
-#incbin "png/FE17/Rosada_Saihua_minimugfe6.dmp"
+RosadoPaletteData:
+#incbin "png/FE17/Rosado_Saihua_palette.dmp"
+RosadoMinimugData:
+#incbin "png/FE17/Rosado_Saihua_minimugfe6.dmp"
 
 ALIGN 4
 SaphirMugData:
