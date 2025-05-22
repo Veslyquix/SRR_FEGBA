@@ -363,7 +363,8 @@ Erinys portrait by Freefall
 Beowolf portrait by Eden     
 Brigid portrait by Sterling_Glovner     
 Claude portrait by Atey     
-Tine portrait by BuskHusker     
+Tine portrait by Melia     
+Tailtiu portrait by BuskHusker     
 Mana portrait by Melia     
 Creidne portrait by Melia     
 Roddlevan portrait by Melia     
@@ -836,8 +837,8 @@ Timerra portrait by Sterling_Glovner
 Panette portrait by Priestess       
 Merrin portrait by Tobiki     
 Hortensia portrait by Sterling_Glovner     
-Seadall (no art credited)     
-Rosado (no art credited)     
+Seadall portrait by Saihua   
+Rosado portrait by Saihua    
 Goldmary portrait by Stitch     
 Lindon portrait by FEier     
 Saphir portrait by Garytop     
