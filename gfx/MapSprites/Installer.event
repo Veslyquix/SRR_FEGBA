@@ -219,6 +219,7 @@ Cursed_SwordMMS
 #define WarCleric_F_Staff_SkidMarc25stand 204 
 #define Witch_F_Aruka_Kenpuhustand 205 
 #define Ninja_Derstand 206
+#define LynLordSMS 207
 
 
 /* 
@@ -352,7 +353,7 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Boxer_M_Bald_ShadowAllyXwalk 193 // BoxerMMS
 #define Enchanter_Aruka_Kenpuhuwalk 194 // EnchanterMMS
 #define Ninja_Derwalk 195 // NinjaMMS
-
+#define LynLordwalk 196 
 
 
 
@@ -550,6 +551,8 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 //Copy from here 
 PUSH 
 
+SetSMS(LynLordSMS, 0, LynLord_IntSysstand_Data) 
+
 SetSMS(Brighid_Hector_Axe_Shin19stand, 1, Brighid_Hector_Axe_Shin19stand_Data) 
 SetSMS(Cantor2_Norikins_stand, 0, Cantor2_Norikins_stand_Data) 
 SetSMS(Chicken_Pikmin1211_stand, 0, Chicken_Pikmin1211_stand_Data) 
@@ -638,6 +641,7 @@ SetSMS(Ninja_Derstand, 0, Ninja_Derstand_Data)
 
 
 
+SetMMS(LynLordwalk, LynLord_IntSyswalk_Data, DemonKingAP) 
 SetMMS(Brighid_Hector_Axe_Shin19walk, Brighid_Hector_Axe_Shin19walk_Data, DemonKingAP) 
 SetMMS(Cantor2_Norikins_move, Cantor2_Norikins_move_Data, DemonKingAP) 
 SetMMS(Chicken_Pikmin1211_walk, Chicken_Pikmin1211_walk_Data, DemonKingAP) 
