@@ -2976,6 +2976,12 @@ void ClearPlayerBWL(void)
 
         pidStats->charTableID = 0x3F;
         pidStats->newCharID = 0;
+#ifdef FE8
+        pidStats->skill1 = 0;
+        pidStats->skill2 = 0;
+        pidStats->skill3 = 0;
+        pidStats->skill4 = 0;
+#endif
     }
 }
 
