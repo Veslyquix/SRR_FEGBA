@@ -804,55 +804,52 @@ Tomas portrait by emkat, Eden
 Waldemar portrait by Maximus, Eden  
 ShezF portrait by Kanna  
 ShezM portrait by Blade  
-   
+Arval (no art credited)   
    
 // fe17    
    
 AlearM portrait by CavalryUnits     
 AlearF portrait by JeyTheCount     
-Vander (no art credited)     
+Vander portrait by Sterling_Glovner     
 Clanne portrait by Maximus03  
 Framme portrait by Maximus03, Norikins   
-Alfred (no art credited)     
+Alfred portrait by Sterling_Glovner   
 Etie portrait by KingCrimson, AthenaBaer     
-Boucheron (no art credited)     
+Boucheron portrait by Sterling_Glovner     
 Celine (no art credited)     
-Chloe (no art credited)     
-Louis (no art credited)     
+Chloe portrait by Sterling_Glovner     
+Louis portrait by Sterling_Glovner     
 Yunaka portrait by RedBean     
 Alcryst portrait by Rammerrush    
 Citrinne portrait by CavalryUnits     
 Lapis portrait by Thorn     
-Diamant (no art credited)     
+Diamant portrait by Sterling_Glovner     
 Amber portrait by Sterling_Glovner     
 Jade portrait by Sterling_Glovner     
 Ivy portrait by KingCrimson     
 Kagetsu portrait by Tobiki     
-Zelkov (no art credited)     
-Fogado (no art credited)     
+Zelkov portrait by Sterling_Glovner    
+Fogado portrait by Sterling_Glovner   
 Pandreo portrait by Priestess     
 Bunet (no art credited)     
-Timerra (no art credited)     
+Timerra portrait by Sterling_Glovner     
 Panette portrait by Priestess       
 Merrin portrait by Tobiki     
-Hortensia (no art credited)     
-Seadall (no art credited)     
-Rosado (no art credited)     
+Hortensia portrait by Sterling_Glovner    
+Seadall portrait by Sterling_Glovner     
+Rosado portrait by Sterling_Glovner     
 Goldmary portrait by Stitch     
 Lindon portrait by FEier     
 Saphir portrait by Garytop     
 Veyle portrait by Sterling_Glovner     
-Mauvier (no art credited)     
-Anna2 (no art credited)     
+Mauvier portrait by Sterling_Glovner    
+Anna2 portrait by Garytop  
 Jean portrait by Maximus03, Norikins     
-Nel (no art credited)     
-Rafal (no art credited)     
-Zelestia (no art credited)     
-Gregory (no art credited)     
-Madeline (no art credited)     
-Morva (no art credited)     
-   
-   
+Nel portrait by Sterling_Glovner    
+Rafal portrait by Sterling_Glovner     
+Zelestia portrait by Sterling_Glovner    
+Gregory portrait by Sterling_Glovner     
+Madeline portrait by Sterling_Glovner     
    
 Backgrounds (when random is enabled): 
 --   
