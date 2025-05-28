@@ -303,7 +303,13 @@ WORD 0 // If 0, it'll read through your item editor and count
 MaxClasses_Link:
 WORD 0 // If 0, it'll read through your class editor and count
 // until it finds a class with an ID that does not match (eg. says 0) 
-
+ALIGN 4 
+ShopExpansionEnabled:
+#ifdef ShopExpansion_NoRandItems 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 
 PUSH 
 

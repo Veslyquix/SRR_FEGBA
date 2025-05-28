@@ -311,7 +311,13 @@ SetTextWithHuffman(0xB80, MovText)
 SetTextWithHuffman(0xB81, HpText)
 SetTextWithHuffman(0xB82, MinusText)
 
-
+ALIGN 4 
+ShopExpansionEnabled:
+#ifdef ShopExpansion_NoRandItems 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 
 ALIGN 4 
 VramDest_DebugFont: 

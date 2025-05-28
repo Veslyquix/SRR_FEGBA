@@ -423,7 +423,13 @@ ALIGN 4
 EirikaCharPalette:
 // BYTE $10 $80 $00 $00 $00 $55 $53 $FF $7F $FF $6B $1F $4B $00 $18 $2A $2E $19 $B3 $7F $89 $7A $00 $62 $5D $FF $1B $9E $1A $94 $01 $00 $1C $01 $76 $08 $6F $0C $A5 $14 $80 $90 $1F $99 $7F $92 $7E $6B $69 $9F $06 $42 $BD $29 $14 $0D $F0 $1F $B0 $3F $4D $06 $23 $6C $12 $86 $05 $F0 $1F $50 $1F $52 $00 $4A $8C $31 $C6 $18 $A5 $14 0 0 
 BYTE $10 $A0 $00 $00 $00 $55 $53 $FF $7F $FF $6B $1F $4B $00 $18 $2A $2E $19 $B3 $7F $89 $7A $00 $62 $5D $FF $1B $9E $1A $94 $01 $00 $1C $01 $76 $08 $6F $0C $A5 $14 $FE $F0 $1F $F0 $1F $F0 $1F $F0 $1F $F0 $1F $F0 $1F $F0 $1F $A5 $00 $14 $00 $00
-
+ALIGN 4 
+ShopExpansionEnabled:
+#ifdef ShopExpansion_NoRandItems 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 
 PUSH 
 

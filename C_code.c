@@ -11756,7 +11756,7 @@ void SetDefaultTagValues(void)
 {
 
     TagValues->raw = 0xFFFFDFFF;      // default: no civilians
-    ClassTags->raw = 0xFFFFDFFF;      // default
+    ClassTags->raw = 0xF9FFDFFF;      // default: early thief only
     EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
 }
@@ -14293,7 +14293,7 @@ extern void UpdateShopItemCounts(ProcPtr proc); // 80B0520
 extern struct ProcCmd gProcScr_Shop[];          // 8CE6FC0
 
 extern int RandomizePrepShop;
-
+extern int ShopExpansionEnabled;
 // 	80B0454
 #ifdef FE8
 extern void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent);
@@ -14388,19 +14388,40 @@ void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr p
 // replacing 98F70
 void StartBlockingPrepShop(struct Unit * unit, ProcPtr parent)
 {
-    StartShopScreen(unit, 0, 10, parent);
+    if (ShopExpansionEnabled)
+    {
+        StartShopScreen(unit, 0, 0, parent);
+    }
+    else
+    {
+        StartShopScreen(unit, 0, 10, parent);
+    }
 }
 
 // 0x80B41E1 fe8
 void StartBlockingPrepVendor(struct Unit * unit, u16 * inventory, ProcPtr parent)
 {
-    StartShopScreen(unit, inventory, 10, parent);
+    if (ShopExpansionEnabled)
+    {
+        StartShopScreen(unit, inventory, 0, parent);
+    }
+    else
+    {
+        StartShopScreen(unit, inventory, 10, parent);
+    }
 }
 
 // 0x80B4201 fe8
 void StartBlockingPrepArmory(struct Unit * unit, u16 * inventory, ProcPtr parent)
 {
-    StartShopScreen(unit, inventory, 11, parent);
+    if (ShopExpansionEnabled)
+    {
+        StartShopScreen(unit, inventory, 1, parent);
+    }
+    else
+    {
+        StartShopScreen(unit, inventory, 11, parent);
+    }
 }
 
 enum
