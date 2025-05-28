@@ -846,13 +846,12 @@ Veyle portrait by Sterling_Glovner
 Mauvier portrait by Sterling_Glovner     
 Anna2 (no art credited)     
 Jean portrait by Maximus03, Norikins     
-Nel (no art credited)     
-Rafal (no art credited)     
-Zelestia (no art credited)     
-Gregory (no art credited)     
-Madeline (no art credited)     
-Morva (no art credited)     
-   
+Nel portrait by Sterling_Glovner  
+Rafal portrait by Sterling_Glovner  
+Zelestia portrait by Sterling_Glovner  
+Gregory portrait by Sterling_Glovner  
+Madeline portrait by Sterling_Glovner  
+    
    
    
 Backgrounds (when random is enabled): 
@@ -865,9 +864,24 @@ Fenreir
 WAve  
 ZoramineFae  
 For details on specific BGs, please see the files in gfx/BGs  
-    
   
+    
+    
+Item icons:  
+--   
+Batima  
+Zelix  
+FuriousHaunter  
+Alice  
+LisandraBrave  
+Glenn  
+Ereshkigal  
+Peerless  
+For details on specific icons, please see the files in gfx/ItemIcons   
+      
+    
 BGM (when random is enabled):  
+--   
 RandomWizard  
 AReliableChair  
 Tak  
