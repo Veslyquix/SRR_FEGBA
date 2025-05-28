@@ -328,6 +328,22 @@ void EnableRandSkills(void)
     RandValues->skills = 1;
 }
 
+int ValidateSkill(int id)
+{
+    if (!id || (id == 255))
+    {
+        return 0;
+    }
+    if (!RandValues->skills)
+    {
+        if (!VanillaSkill[id])
+        {
+            return 0;
+        }
+    }
+    return id;
+}
+
 int RandomizeSkill(int id, struct Unit * unit)
 {
     if (!id)
@@ -2960,6 +2976,12 @@ void ClearPlayerBWL(void)
 
         pidStats->charTableID = 0x3F;
         pidStats->newCharID = 0;
+#ifdef FE8
+        pidStats->skill1 = 0;
+        pidStats->skill2 = 0;
+        pidStats->skill3 = 0;
+        pidStats->skill4 = 0;
+#endif
     }
 }
 
@@ -9850,7 +9872,21 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
             UnitAutolevelCore(unit, unit->pClassData->number, bonusLevels);
         }
     }
-
+#ifdef FE8
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    if (pidStats)
+    {
+        if (RandValues->skills && (RandValues->skills != 2))
+        {
+            int skillID = RandomizeSkill(unit->pCharacterData->number, unit);
+            pidStats->skill1 = skillID;
+            skillID = RandomizeSkill(unit->pClassData->number + unit->pCharacterData->number, unit);
+            pidStats->skill2 = skillID;
+            pidStats->skill3 = 0;
+            pidStats->skill4 = 0;
+        }
+    }
+#endif
     UnitCheckStatCaps(unit);
 }
 
