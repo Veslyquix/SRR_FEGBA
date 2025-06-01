@@ -7,6 +7,9 @@ Credits
    
 By Vesly   
 -    
+
+
+Assets in the repo are not all F2U. Check with the artist if you'd like to use something they made.   
    
 Special thanks:    
 -   
