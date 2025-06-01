@@ -808,6 +808,8 @@ Tomas portrait by emkat, Eden
 Waldemar portrait by Maximus, Eden  
 ShezF portrait by Kanna  
 ShezM portrait by Blade  
+Arval portrait by Saihua  
+   
    
    
 // fe17    
@@ -820,7 +822,7 @@ Framme portrait by Maximus03, Norikins
 Alfred portrait by Sterling_Glovner     
 Etie portrait by KingCrimson, AthenaBaer     
 Boucheron portrait by Sterling_Glovner     
-Celine (no art credited)     
+Celine portrait by Saihua       
 Chloe portrait by Sterling_Glovner     
 Louis portrait by Sterling_Glovner     
 Yunaka portrait by RedBean     
@@ -835,7 +837,7 @@ Kagetsu portrait by Tobiki
 Zelkov portrait by Sterling_Glovner     
 Fogado portrait by Sterling_Glovner     
 Pandreo portrait by Priestess     
-Bunet (no art credited)     
+Bunet portrait by kildario     
 Timerra portrait by Sterling_Glovner     
 Panette portrait by Priestess       
 Merrin portrait by Tobiki     
@@ -847,7 +849,6 @@ Lindon portrait by FEier
 Saphir portrait by Garytop     
 Veyle portrait by Sterling_Glovner     
 Mauvier portrait by Sterling_Glovner     
-Anna2 (no art credited)     
 Jean portrait by Maximus03, Norikins     
 Nel portrait by Sterling_Glovner  
 Rafal portrait by Sterling_Glovner  
