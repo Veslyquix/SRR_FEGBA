@@ -29,8 +29,9 @@
 #endif 
 
 
+// #define HidePortraitTable // obscure from Febuilder 
 
-
+#define PortraitTableMaxEntries 2000
 
 
 
@@ -38,14 +39,14 @@ ALIGN 4
 NewPortraitTable: 
 #undef PortraitTable 
 #define PortraitTable NewPortraitTable 
-FILL(0x1C*0x500) 0 
+FILL(0x1C*PortraitTableMaxEntries) 0 
 ORG NewPortraitTable 
 #include "VanillaData.event" 
-#include "VanillaData.event" 
+// #include "VanillaData.event" 
 
 
 
-ORG NewPortraitTable + (0x1C*0x500)
+ORG NewPortraitTable + (0x1C*PortraitTableMaxEntries)
 ALIGN 4 
 #ifdef _FE6_ 
 #include "Generated_FE6.event" 
@@ -58,7 +59,19 @@ PUSH
 ORG $5524 
 #endif 
 #ifdef _FE7_
+
+#ifdef HidePortraitTable 
+ORG $6B28
+SHORT $4900 
+SHORT $e001 
+POIN NewPortraitTable 
+SHORT $1840 
+SHORT $4770 
+ORG $6b2C 
+#else 
 ORG $6B30 
+#endif 
+
 #endif 
 #ifdef _FE6_
 ORG $7FD8  
