@@ -245,15 +245,37 @@ Ninja
 
 
 
-// fe17 
-#define CelineMug BlankMug
-#define BunetMug BlankMug
-
-// FE16 
-#define ArvalMug BlankMug 
+// Bosses 
 
 
+#define ValkyrieStaffBRank 121  
+#define ValkyrieStaffARank 181  
 
+
+#ifdef _FE8_ 
+#define ValkyrieOrMageKnight_F MageKnight_F 
+#define RangerOrNomadicTrooper Ranger 
+#define ValkyrieLightBRank 121  
+#define ValkyrieLightARank 181  
+#define ValkyrieAnimaBRank 0  
+#define ValkyrieAnimaARank 0  
+#else 
+#define ValkyrieOrMageKnight_F Valkyrie 
+#define RangerOrNomadicTrooper NomadTrooper 
+#define ValkyrieLightBRank 0  
+#define ValkyrieLightARank 0  
+#define ValkyrieAnimaBRank 121  
+#define ValkyrieAnimaARank 181  
+#endif 
+
+
+#define LepusMug BlankMug 
+#define AnguillaMug BlankMug
+#define EquusMug BlankMug
+#define OvisMug BlankMug
+#define SimiaMug BlankMug
+#define GallusMug BlankMug
+#define CanisMug BlankMug
 
 
 
