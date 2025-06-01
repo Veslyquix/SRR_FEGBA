@@ -399,7 +399,11 @@ for file in png_files:
     milestones = print_progress_bar(c, total_files, milestones)
     mug_path = file
     mug_name = mug_path.stem
-    i += portrait_to_dmp(file)
+    try: 
+        i += portrait_to_dmp(file)
+    except:
+        print(f"Error with this portrait: {file.name}")
+        print(f"Try importing and exporting via FEBuilder.") 
     # Extract file path and name information
 
     base_name = mug_name.split("_")[0]  # Get the first part before the first `_`
