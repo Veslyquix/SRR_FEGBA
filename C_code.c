@@ -1037,7 +1037,7 @@ void ResetPage(ConfigMenuProc * proc)
         }
 
         pidStats->charTableID = 0;
-        pidStats->selected = false;
+        pidStats->selected = true;
         pidStats->newCharID = id;
     }
 }
