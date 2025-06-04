@@ -480,6 +480,7 @@ extern const struct CharacterData gCharacterDataFE7[];
 extern const struct CharacterData gCharacterDataFE8[];
 extern const struct CharacterData gCharacterDataFE10[];
 extern const struct CharacterData gCharacterDataFE13[];
+extern const struct CharacterData gCharacterDataFE13_Bosses[];
 extern const struct CharacterData gCharacterDataFE14[];
 extern const struct CharacterData gCharacterDataFE15[];
 extern const struct CharacterData gCharacterDataFE16[];
@@ -512,6 +513,33 @@ const struct FE8CharacterData
             gCharacterDataFE10, gCharacterDataFE13, gCharacterDataFE14,
             gCharacterDataFE15, gCharacterDataFE16, gCharacterDataFE17,
         };
+
+#ifdef FE6
+const struct FE8CharacterData
+#endif
+#ifndef FE6
+    const struct CharacterData
+#endif
+        * const cDataBosses[] = {
+#ifdef FE6
+            gCharacterDataFE6,
+#else
+    gCharacterData,
+#endif
+            gCharacterDataFE1,  gCharacterDataFE4,         gCharacterDataFE5,
+#ifdef FE8
+            gCharacterDataFE6,  gCharacterDataFE7,
+#endif
+#ifdef FE7
+            gCharacterDataFE6,  gCharacterDataFE8,
+#endif
+#ifdef FE6
+            gCharacterDataFE7,  gCharacterDataFE8,
+#endif
+            gCharacterDataFE10, gCharacterDataFE13_Bosses, gCharacterDataFE14,
+            gCharacterDataFE15, gCharacterDataFE16,        gCharacterDataFE17,
+        };
+
 const int NumberOfCharTables = 12;
 int ShouldRandomizeUsedCharTable(void)
 {
@@ -674,10 +702,11 @@ const struct FE8CharacterData *
     }
 #endif
 
-    if (!((cData[tableID] + (charId - 1))->number))
+    table = cData[tableID] + (charId - 1);
+
+    if (!table->number)
         return NULL;
 
-    table = cData[tableID] + (charId - 1);
     // if (charId == 0x19)
     // {
     // BreakWithValue(charId, charId, tableID);
