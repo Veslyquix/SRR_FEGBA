@@ -88,15 +88,16 @@ struct RandomizerSettings
     u32 caps : 3;     // vanilla, randomized, 0, 15, 30, 45, 60
     u32 class : 2;    // vanilla, randomized, players only, enemies only
     u32 shopItems : 1;
-    u32 foundItems : 2;  // vanilla, random
-    u32 randMusic : 2;   // vanilla, random
-    u32 colours : 3;     // vanilla, random, janky, portraits only
-    u32 itemStats : 2;   // vanilla, random
-    u32 itemDur : 2;     // vanilla, infinite E/D rank items, infinite weps, infinite
-    u32 playerBonus : 5; // +20 / -10 levels for players
-    u32 grow50 : 1;      // always 50%
-    u32 fog : 2;         // vanilla, always off, always on
-    u32 disp : 1;        // stat screen display
+    u32 foundItems : 1;   // vanilla, random
+    u32 vanillaItems : 1; // vanilla, include added items
+    u32 randMusic : 2;    // vanilla, random
+    u32 colours : 3;      // vanilla, random, janky, portraits only
+    u32 itemStats : 2;    // vanilla, random
+    u32 itemDur : 2;      // vanilla, infinite E/D rank items, infinite weps, infinite
+    u32 playerBonus : 5;  // +20 / -10 levels for players
+    u32 grow50 : 1;       // always 50%
+    u32 fog : 2;          // vanilla, always off, always on
+    u32 disp : 1;         // stat screen display
 }; // 32 / 32 bits used
 
 struct RandomizerValues
@@ -305,6 +306,7 @@ extern const int ClassOption;
 extern const int FilterClassOption;
 extern const int FilterEnemyClassOption;
 extern const int ItemOption;
+extern const int VanillaItemOption;
 extern const int ModeOption;
 extern const int MusicOption;
 extern const int ColoursOption;
@@ -837,7 +839,10 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     ResetText();  // need this
     ResetFaces(); // without this, it was duplicating the face on both sides
     EndAllRecruitmentProcs();
-    ClearPlayerBWL();
+    if (!proc->calledFromChapter)
+    {
+        ClearPlayerBWL();
+    }
     GetReorderedCharacter(GetCharacterData(1));
 #ifndef FE6
     Proc_EndEach(gProcScr_HelpPromptSpr);
@@ -5734,9 +5739,12 @@ void MaybeChangeAi2(void)
 
 int GetMaxItems(void)
 {
-    if (MaxItems_Link)
+    if (!RandBitflags->vanillaItems)
     {
-        return MaxItems_Link;
+        if (MaxItems_Link)
+        {
+            return MaxItems_Link;
+        }
     }
     if (*MaxItems > 32)
     {
@@ -11992,6 +12000,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 
     RandBitflags->itemStats = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 3));
     RandBitflags->foundItems = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 2));
+    RandBitflags->vanillaItems = proc->Option[VanillaItemOption];
     RandBitflags->shopItems = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 2));
     if (proc->Option[ModeOption] == 1)
     {
@@ -12217,6 +12226,7 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     proc->Option[StatCapsOption] = 1;
     proc->Option[ClassOption] = 4;
     proc->Option[ItemOption] = 1;
+    proc->Option[VanillaItemOption] = 1;
     proc->Option[ModeOption] = 0;    // Classic
     proc->Option[MusicOption] = 1;   // Random BGM
     proc->Option[ColoursOption] = 0; // Random Colours off by default now
@@ -12820,6 +12830,7 @@ void RestoreConfigOptions(ConfigMenuProc * proc)
     {
         proc->Option[ItemOption] = 0;
     }
+    proc->Option[VanillaItemOption] = RandBitflags->vanillaItems;
     proc->Option[ModeOption] = CheckFlag(CasualModeFlag);
     proc->Option[MusicOption] = RandBitflags->randMusic;
     proc->Option[ColoursOption] = RandBitflags->colours;

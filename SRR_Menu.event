@@ -210,6 +210,12 @@ POIN t0 t1 t2 t3 0
 }
 
 {
+t0:  txt("Vanilla");               t1:  txt("Added Items");  
+ALIGN 4; SRRHeader(VanillaItemOpt)
+POIN t0 t1 0
+}
+
+{
 t0:  txt("Classic");  t1:  txt("Casual");
 ALIGN 4; SRRHeader(ModeOpt)
 POIN t0 t1 0
@@ -495,6 +501,9 @@ SRRDesc(ItemOpt,0); txt("Weapon stats and items found\will not change.");
 SRRDesc(ItemOpt,1); txt("Weapon stats will vary and\items found will be random."); 
 SRRDesc(ItemOpt,2); txt("Items found will be random.\Weapon stats won't change."); 
 SRRDesc(ItemOpt,3); txt("Weapon stats will be random.\Items found won't change."); 
+SRRMenu(VanillaItemOpt); txt("Custom Items"); 
+SRRDesc(VanillaItemOpt,0); txt("Only items from the vanilla\game will show up."); 
+SRRDesc(VanillaItemOpt,1); txt("Items from various games\can also appear."); 
 SRRMenu(ModeOpt);               txt("Mode")
 SRRDesc(ModeOpt,0); txt("Units that reach 0 HP die\and cannot be used anymore."); 
 SRRDesc(ModeOpt,1); txt("Units that reach 0 HP retreat\and can be used in the future."); 
@@ -584,6 +593,8 @@ FilterEnemyClassOption:
 WORD FilterEnemyClassOpt 
 ItemOption:
 WORD ItemOpt
+VanillaItemOption:
+WORD VanillaItemOpt 
 ModeOption:
 WORD ModeOpt
 MusicOption:
