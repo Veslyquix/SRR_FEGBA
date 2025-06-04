@@ -19,7 +19,10 @@ for event_file in event_files:
     base_name = bgm_path.stem  # Keep original filename
     if base_name == "MPlayDef":
         continue
-    relative_path = bgm_path.parent
+    project_root = Path.cwd()
+    relative_path = bgm_path.relative_to(project_root).parent
+    print(relative_path)
+     
 
     # Normalize paths to use forward slashes
     normalized_relative_path = relative_path.as_posix()
