@@ -343,52 +343,52 @@ Eremiya portrait by WAve
 
    
 // fe4    
-Sigurd portrait by Atey    
-Naoise portrait by Obsidian_Daddy     
-Alec portrait by Atey     
-Arden portrait by Eden     
-Quan portrait by Garytop     
-Ethlin portrait by WAve     
-Fin portrait by Melia     
-Lex portrait by Sterling Glovner     
-Azel portrait by WAve     
-Midir portrait by WAve     
-Edain portrait by TAS20XX     
-Dew portrait by Glaceo      
-Ayra portrait by LuminescentBlade     
-Deirdre portrait by Atey, Wasdye     
-Jamka portrait by Nobody     
-Chulainn portrait by Sterling_Glovner      
-Lachesis portrait by Garytop     
-Lewyn portrait by Freefall, AthenaBaer     
-Sylvia portrait by TAS20XX     
-Erinys portrait by Freefall      
-Beowolf portrait by Eden     
-Brigid portrait by Sterling_Glovner     
-Claude portrait by Atey     
+Sigurd portrait by LittleKyng    
+Naoise portrait by LittleKyng     
+Alec portrait by LittleKyng     
+Arden portrait by LittleKyng     
+Quan portrait by LittleKyng     
+Ethlyn portrait by WAve     
+Finn portrait by LittleKyng     
+Lex portrait by LittleKyng     
+Azelle portrait by LittleKyng     
+Midir portrait by LittleKyng     
+Edain portrait by LittleKyng     
+Dew portrait by LittleKyng      
+Ayra portrait by Aeorys Kirru, edits by Eden     
+Deirdre portrait by LittleKyng     
+Jamke portrait by LittleKyng     
+Chulainn portrait by LittleKyng      
+Lachesis portrait by LittleKyng     
+Lewyn portrait by LittleKyng, edits by Eden 
+Silvia portrait by LittleKyng     
+Erinys portrait by LittleKyng      
+Beowolf portrait by LittleKyng     
+Brigid portrait by LittleKyng     
+Claud portrait by LittleKyng     
 Tine portrait by Melia     
-Tailtiu portrait by BuskHusker     
-Mana portrait by Melia     
+Tailtiu portrait by LittleKyng     
+Muirne portrait by Melia     
 Creidne portrait by Melia     
-Roddlevan portrait by Melia     
+Dalvin portrait by Melia     
 Oifey portrait by Melia     
 Tristan portrait by Melia     
-Dimna portrait by Melia     
+Deimne portrait by Melia     
 Julia portrait by Atey     
 Fee portrait by Melia     
 Amid portrait by Melia     
-Johan portrait by Melia     
-Johalva portrait by Melia     
-Shanan portrait by Melia     
+Iuchar portrait by Melia     
+Iucharba portrait by Melia     
+Shannan portrait by Melia     
 Daisy portrait by Melia     
 Jeanne portrait by Melia     
-Aless portrait by Melia     
+Ares portrait by Melia     
 Laylea portrait by Melia     
 Linda portrait by Gator     
 Asaello portrait by Melia     
 Hawk portrait by Sterling Glovner     
 Hannibal portrait by Melia     
-Sharlow portrait by Melia     
+Charlot portrait by Melia     
 Seliph portrait by Melia   
 Altena portrait by Melia  
 Hermina portrait by Melia   
@@ -401,7 +401,7 @@ Patty portrait by Melia
 Larcei portrait by Melia  
 Lana portrait by Melia  
 Lene portrait by Melia  
-Aida portrait by Eden  
+Aida portrait by LittleKyng  
 Augury portrait by Eden  
   
      
@@ -409,41 +409,41 @@ Augury portrait by Eden
 Leif portrait by Melia     
 Finn portrait by Melia     
 Eyvel portrait by Melia     
-Halvan portrait by Sterling Glovner     
-Osian portrait by Sterling Glovner     
-Dagdar portrait by CanDy     
-Tanya portrait by Wasdye     
-Marty portrait by Vilkalizer     
-Ronan portrait by Miguel Rojo     
+Halvan portrait by Melia     
+Osian portrait by Melia     
+Dagdar portrait by Melia     
+Tanya portrait by Melia     
+Marty portrait by Melia     
+Ronan portrait by Melia     
 Lifis portrait by Melia     
 Safy portrait by Melia     
-Brighton portrait by Sterling Glovner     
+Brighton portrait by Melia     
 Machyua portrait by Melia     
 Lara portrait by Melia     
-Fergus portrait by CranJam     
+Fergus portrait by Melia     
 Karin portrait by Melia     
 Dalsin portrait by Melia     
 Asbel portrait by Melia     
-Nanna portrait by Zelkami     
+Nanna portrait by Melia     
 Hicks portrait by Sterling_Glovner     
-Shiva portrait by Atey, Renoud     
-Carrion portrait by Ganondorf     
-Selphina portrait by TheGreatNothing     
+Shiva portrait by Sterling_Glovner     
+Carrion portrait by Frigid     
+Selphina portrait by Blademaster     
 Cain2 portrait by Dongus     
-Alva portrait by Dongus     
+Alva portrait by LittleKyng     
 Robert portrait by Dongus     
 Fred portrait by Melia     
 Olwen portrait by Garytop     
-Mareeta portrait by CavalryUnits     
-Salem portrait by TheGreatNothing   
+Mareeta portrait by Blademaster     
+Salem portrait by Bluey   
 Perne portrait by Sterling Glovner     
 Tina portrait by Eden     
 Troude portrait by Sterling Glovner     
 Glade portrait by Eden     
-Deen portrait by Atey     
-Eda portrait by Atey     
-Homer portrait by Wasdye     
-Linoan portrait by Linoan     
+Dean portrait by Sterling Glovner     
+Eda portrait by Sterling Glovner     
+Homer portrait by Sterling Glovner     
+Linoan portrait by MageKnight404     
 Ralph portrait by Sterling_Glovner     
 Ilios portrait by Obsidian_Daddy     
 Sleuf portrait by TheGreatNothing  
@@ -451,7 +451,7 @@ Misha portrait by claire45
 Sara portrait by Eden   
 Shannam portrait by Sterling_Glovner, Eden    
 Miranda portrait by Sterling_Glovner     
-Xavier portrait by TheGreatNothing, StitchBeef     
+Xavier portrait by Sterling Glovner     
 Amalda portrait by Sterling_Glovner     
 Conomor portrait by Sterling_Glovner     
 Diarmuid portrait by Melia     
