@@ -503,7 +503,7 @@ const struct FE8CharacterData
 #else
     gCharacterData,
 #endif
-            gCharacterDataFE1,  gCharacterDataFE4,  gCharacterDataFE5,
+            gCharacterDataFE1,  gCharacterDataFE4,         gCharacterDataFE5,
 #ifdef FE8
             gCharacterDataFE6,  gCharacterDataFE7,
 #endif
@@ -513,17 +513,10 @@ const struct FE8CharacterData
 #ifdef FE6
             gCharacterDataFE7,  gCharacterDataFE8,
 #endif
-            gCharacterDataFE10, gCharacterDataFE13, gCharacterDataFE14,
-            gCharacterDataFE15, gCharacterDataFE16, gCharacterDataFE17,
-        };
+            gCharacterDataFE10, gCharacterDataFE13,        gCharacterDataFE14,
+            gCharacterDataFE15, gCharacterDataFE16,        gCharacterDataFE17,
 
-#ifdef FE6
-const struct FE8CharacterData
-#endif
-#ifndef FE6
-    const struct CharacterData
-#endif
-        * const cDataBosses[] = {
+// bosses
 #ifdef FE6
             gCharacterDataFE6,
 #else
@@ -543,7 +536,7 @@ const struct FE8CharacterData
             gCharacterDataFE15, gCharacterDataFE16,        gCharacterDataFE17,
         };
 
-const int NumberOfCharTables = 12;
+const int NumberOfCharTables = 24;
 int ShouldRandomizeUsedCharTable(void)
 {
     int val = GrowthValues->ForcedCharTable;
@@ -2968,9 +2961,7 @@ int GetUnitIdOfPortrait(int portraitID)
         }
     }
     const struct CharacterData * table; // = GetCharacterData(1);
-    // int bankID = 0;
-    // while (bankID < NumberOfCharTables)
-    // {
+
     for (int i = 1; i <= MAX_CHAR_ID; i++)
     {
         table = GetCharacterData(i);
@@ -3405,7 +3396,7 @@ struct Vec2u
 };
 
 #define UnitListSize 800
-#define BossListSize 80
+#define BossListSize 800
 
 int DoesCharMatchGender(u32 attr, struct TagsStruct tags)
 {
@@ -4332,8 +4323,8 @@ int CountRecruitableCharacters(void)
 }
 
 void BuildFilteredCharsList(
-    struct Vec2u * counter, u8 * unit, u8 * bosses, u8 * tables, RecruitmentProc * proc1, RecruitmentProc * proc2,
-    RecruitmentProc * proc3, RecruitmentProc * proc4)
+    struct Vec2u * counter, u8 * unit, u8 * bosses, u8 * tables, u8 * boss_tables, RecruitmentProc * proc1,
+    RecruitmentProc * proc2, RecruitmentProc * proc3, RecruitmentProc * proc4)
 {
     const struct CharacterData * table = GetCharacterData(1);
 
@@ -4365,14 +4356,13 @@ void BuildFilteredCharsList(
     if (t >= NumberOfCharTables)
     {
         t = 0;
-        end = NumberOfCharTables;
+        end = NumberOfCharTables >> 1;
     }
-
-    int useVanillaTableNow = false;
 
     u8 recruitmentOrder[0x45] = { 0 };
     BuildRecruitmentOrderList(recruitmentOrder, 0);
     int id;
+    int tableID = t;
 
     for (; t < end; ++t)
     {
@@ -4386,22 +4376,14 @@ void BuildFilteredCharsList(
                     id = recruitmentOrder[i];
                 }
             }
-            if (b >= BossListSize && c >= UnitListSize)
+            if (c >= UnitListSize)
             {
                 break;
             }
-            if (useVanillaTableNow && (IsCharIdInvalidForGame(id)))
-            {
-                table = GetCharacterData(id);
-            }
-            else
-            {
-                table = (const struct CharacterData *)NewGetCharacterData(id, t);
-            }
+            table = (const struct CharacterData *)NewGetCharacterData(id, t);
             if (table->portraitId == TerminatorPortrait)
             {
-                useVanillaTableNow = true;
-                continue;
+                break;
             } // ignore characters past the character with this portrait ID
               // when creating a list of playables
 
@@ -4435,12 +4417,71 @@ void BuildFilteredCharsList(
                     c++;
                     break;
                 }
+                default:
+            }
+        }
+    }
+
+    // Now do the same for bosses, but using the boss tables
+
+    t = tableID + (NumberOfCharTables >> 1);
+    end += (NumberOfCharTables >> 1);
+    if (!tableID)
+    {
+        t = 0;
+        end = 1;
+    }
+
+    for (; t < end; ++t)
+    {
+        for (int i = 1; i <= MAX_CHAR_ID; ++i)
+        {
+            id = i;
+            if ((RecruitValues->recruitment == 5) && (!GrowthValues->ForcedCharTable))
+            {
+                if (i < 0x45)
+                {
+                    id = recruitmentOrder[i];
+                }
+            }
+            if (b >= BossListSize)
+            {
+                break;
+            }
+            table = (const struct CharacterData *)NewGetCharacterData(id, t);
+            if (table->portraitId == TerminatorPortrait)
+            {
+                break;
+            } // ignore characters past the character with this portrait ID
+              // when creating a list of playables
+
+#ifdef FE7
+            if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
+            {
+                continue;
+            } // Morphs
+#endif
+
+            boss = table->attributes & (CA_BOSS);
+
+            switch (GetUnitListToUse(table, boss, true))
+            {
+                case 0: // eg no portrait
+                {
+                    continue;
+                    break;
+                }
                 case 2:
                 {
                     if (b >= BossListSize)
                     {
                         continue;
                     }
+                    if (FilterCharOut(table, GetClassData(table->defaultClass)))
+                    {
+                        continue;
+                    }
+                    boss_tables[b] = t;
                     bosses[b] = id;
                     b++;
                     break;
@@ -4461,13 +4502,15 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     // return;
     // }
 
-    u8 unit[UnitListSize];
+    u8 unit[UnitListSize] = { 0 };
     u8 tables[UnitListSize];
-    u8 bosses[BossListSize];
+    u8 bosses[BossListSize] = { 0 };
+    u8 boss_tables[BossListSize];
 
     for (int i = 0; i < UnitListSize; ++i)
     {
         tables[i] = 0xFF;
+        boss_tables[i] = 0xFF;
     }
     const struct CharacterData * table = GetCharacterData(1);
     int c = 0;
@@ -4489,7 +4532,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     counter->x = c;
     counter->y = b;
 
-    BuildFilteredCharsList(counter, unit, bosses, tables, proc1, proc2, proc3, proc4);
+    BuildFilteredCharsList(counter, unit, bosses, tables, boss_tables, proc1, proc2, proc3, proc4);
     c = counter->x;
     b = counter->y;
     // table--;
@@ -4542,6 +4585,13 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         // don't use NewGetCharacterData - just replace vanilla chars now
         boss = table->attributes & (CA_BOSS);
 
+        // look at here next time maybe
+        // if the char table is >12, then maybe consider us a boss for this part ?
+        if (GrowthValues->ForcedCharTable >= (NumberOfCharTables >> 1))
+        {
+            boss = boss ^ CA_BOSS;
+        }
+
         switch (CallGetUnitListToUse(table, boss, true))
         {
             case 0:
@@ -4592,21 +4642,66 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                 }
                 break;
             }
+
             case 2:
             {
+                // entry you used goes to the end so that you don't use it again
+                //
                 rn = GetNthRN_Simple(id - 1, seed, rn);
                 b--;
                 if (b < 0)
                 {
                     b = b_max - 1;
                 }
-                // if (b < 0) { proc->id[(i&0x3F)-1] = 0xFD; continue; }
                 num = HashByte_Simple(rn, b);
-                proc->id[(id & 0x3F) - 1] = bosses[num];
-                bosses[num] = bosses[b]; // move last entry to one we just used
-                bosses[b] = proc->id[(id & 0x3F) - 1];
+                if (!RecruitValues->recruitment)
+                {
+                    num = b_max - (b + 1); // vanilla table order
+                }
+                if (RecruitValues->recruitment == 5)
+                {
+                    num = b; // reverse, so always last in list
+                }
+                proc->id[(id & 0x3F) - 1] = bosses[num]; // proc + offset set to nth char
+                if (id < 0x40)
+                {
+                    if (boss_tables[num] != 0xFF)
+                    {
+                        proc5->id[(id & 0x3F) - 1] = boss_tables[num];
+                    }
+                }
+                if ((RecruitValues->recruitment != 0) && (RecruitValues->recruitment != 5))
+                {
+                    if (id < 0x40)
+                    {
+                        if (boss_tables[num] != 0xFF)
+                        {
+                            proc5->id[(id & 0x3F) - 1] = boss_tables[num];
+                            boss_tables[num] = boss_tables[b];
+                            boss_tables[b] = proc5->id[(id & 0x3F) - 1];
+                        }
+                    }
+                    bosses[num] = bosses[b]; // move last entry to one we just used
+                    bosses[b] = proc->id[(id & 0x3F) - 1];
+                }
                 break;
             }
+
+                // case 2:
+                // {
+                // rn = GetNthRN_Simple(id - 1, seed, rn);
+                // b--;
+                // if (b < 0)
+                // {
+                // b = b_max - 1;
+                // }
+                //// if (b < 0) { proc->id[(i&0x3F)-1] = 0xFD; continue; }
+                // num = HashByte_Simple(rn, b);
+                // proc->id[(id & 0x3F) - 1] = bosses[num];
+                // bosses[num] = bosses[b]; // move last entry to one we just used
+                // bosses[b] = proc->id[(id & 0x3F) - 1];
+                // break;
+            // }
             default:
         }
     }
@@ -5990,10 +6085,6 @@ int LoadLastUsedConfig()
     // CpuCopy16(ConfigSRAM, (void *)tmp, 0x20);
     CpuCopy16(tmp, (void *)RandValues, 16);
     CpuCopy16(&tmp[0x10], (void *)TagValues, 16);
-    // if (GrowthValues->ForcedCharTable > (NumberOfCharTables + 1))
-    // {
-    // return false; // don't use default 0xFFFFFFFF sram
-    // }
     return true;
 }
 

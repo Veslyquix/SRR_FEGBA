@@ -137,9 +137,31 @@ t5:  txt("FE8: Sacred Stones");
 #endif 
 t6:  txt("FE9/FE10: Radiant Dawn");       t7:  txt("FE13: Awakening"); 
 t8:  txt("FE14: Fates");                  t9:  txt("FE2/15: Echoes");
-t10: txt("FE16: Three Houses");           t11: txt("FE17: Engage");                 t12: txt("Random");
+t10: txt("FE16: Three Houses");           t11: txt("FE17: Engage");                
+
+t12:  txt("Vanilla Bosses");                      t13:  txt("FE1/3: Shadow Drgn Bosses");         t14:  txt("FE4: Genealogy Bosses"); 
+t15:  txt("FE5: Thracia 776 Bosses");             
+#ifdef _FE8_ 
+t16:  txt("FE6: Binding Blade Bosses");
+t17:  txt("FE7: Blazing Blade Bosses");  
+#endif 
+#ifdef _FE7_ 
+t16:  txt("FE6: Binding Blade Bosses");
+t17:  txt("FE8: Sacred Stones Bosses");  
+#endif 
+#ifdef _FE6_ 
+t16:  txt("FE7: Blazing Blade Bosses");
+t17:  txt("FE8: Sacred Stones Bosses");  
+#endif 
+t18:  txt("FE9/FE10: Radiant Bosses");       t19:  txt("FE13: Awakening Bosses"); 
+t20:  txt("FE14: Fates Bosses");                  t21:  txt("FE2/15: Echoes Bosses");
+t22: txt("FE16: Three Houses Bosses");           t23: txt("FE17: Engage Bosses");                 t24: txt("Random");
+
+
+
+
 ALIGN 4; SRRHeader(FromGameOpt)
-POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 0
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 0
 }
 
 {
