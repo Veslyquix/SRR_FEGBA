@@ -467,6 +467,7 @@ extern const struct FE8CharacterData gCharacterDataFE7[];
 extern const struct FE8CharacterData gCharacterDataFE8[];
 extern const struct FE8CharacterData gCharacterDataFE10[];
 extern const struct FE8CharacterData gCharacterDataFE13[];
+extern const struct FE8CharacterData gCharacterDataFE13_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE14[];
 extern const struct FE8CharacterData gCharacterDataFE15[];
 extern const struct FE8CharacterData gCharacterDataFE16[];
