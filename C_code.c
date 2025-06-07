@@ -110,11 +110,42 @@ struct RandomizerValues
 
 struct RecruitmentValues
 {
-    u8 recruitment : 3; // vanilla, players reordered, bosses, players&bosses reordered, swap, reverse, random
+    // u8 recruitment : 3; // vanilla, players reordered, bosses, players&bosses reordered, swap, reverse, random
     u8 pauseNameReplace : 1;
     u8 newClasses : 2;
     u8 ai : 2;
+    u8 playerRecruitmentOrder : 2; // vanilla, reverse, random,
+    u8 playerIntoBosses : 2;       // no, yes, some
+    u8 enemyRecruitmentOrder : 2;  // vanilla, reverse, random,
+    u8 enemyIntoPlayer : 2;        // no, yes, some
 };
+
+#define RandomOrder 2
+int GetPlayerRecruitmentOrder(void)
+{
+    return RecruitValues->playerRecruitmentOrder;
+}
+int GetEnemyRecruitmentOrder(void)
+{
+    return RecruitValues->enemyRecruitmentOrder;
+}
+int CanPlayerBecomeBoss(void)
+{
+    return RecruitValues->playerIntoBosses;
+}
+int MustPlayerBecomeBoss(void)
+{
+    return RecruitValues->playerIntoBosses == 1;
+}
+int CanBossBecomePlayer(void)
+{
+    return RecruitValues->enemyIntoPlayer;
+}
+int MustBossBecomePlayer(void)
+{
+    return RecruitValues->enemyIntoPlayer == 1;
+}
+
 struct TimedHitsDifficultyStruct
 {
     u8 difficulty : 5;
@@ -251,9 +282,9 @@ void MaybeForceHardModeFE8(void)
     ForceHardModeFE8();
 }
 
-int ShouldRandomizeRecruitment(void)
+int ShouldReplaceCharacters(void)
 {
-    return RecruitValues->recruitment | GrowthValues->ForcedCharTable;
+    return GetPlayerRecruitmentOrder() | GetEnemyRecruitmentOrder() | GrowthValues->ForcedCharTable;
 }
 int ShouldRandomizeRecruitmentForUnitID(int id)
 {
@@ -261,7 +292,7 @@ int ShouldRandomizeRecruitmentForUnitID(int id)
     {
         return false;
     }
-    return ShouldRandomizeRecruitment();
+    return ShouldReplaceCharacters();
 }
 
 int ShouldRandomizeRecruitmentForPortraitID(int id)
@@ -271,7 +302,7 @@ int ShouldRandomizeRecruitmentForPortraitID(int id)
         return false;
     }
     // if (id > PlayerPortraitSize) { return false; } // players only atm
-    return ShouldRandomizeRecruitment();
+    return ShouldReplaceCharacters();
 }
 u16 HashByte_Global(int number, int max, int noise[], int offset);
 
@@ -4587,10 +4618,10 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
 
         // look at here next time maybe
         // if the char table is >12, then maybe consider us a boss for this part ?
-        if (GrowthValues->ForcedCharTable >= (NumberOfCharTables >> 1))
-        {
-            boss = boss ^ CA_BOSS;
-        }
+        // if (GrowthValues->ForcedCharTable >= (NumberOfCharTables >> 1))
+        // {
+        // boss = boss ^ CA_BOSS;
+        // }
 
         switch (CallGetUnitListToUse(table, boss, true))
         {
@@ -11464,7 +11495,7 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
 
     int length[1] = { 0 };
     length[0] = DecompText(a, b);
-    if (!ShouldRandomizeRecruitment())
+    if (!ShouldReplaceCharacters())
     {
         return;
     }
