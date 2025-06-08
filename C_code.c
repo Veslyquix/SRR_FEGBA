@@ -120,32 +120,6 @@ struct RecruitmentValues
     u8 enemyIntoPlayer : 2;        // no, yes, some
 };
 
-#define RandomOrder 2
-int GetPlayerRecruitmentOrder(void)
-{
-    return RecruitValues->playerRecruitmentOrder;
-}
-int GetEnemyRecruitmentOrder(void)
-{
-    return RecruitValues->enemyRecruitmentOrder;
-}
-int CanPlayerBecomeBoss(void)
-{
-    return RecruitValues->playerIntoBosses;
-}
-int MustPlayerBecomeBoss(void)
-{
-    return RecruitValues->playerIntoBosses == 1;
-}
-int CanBossBecomePlayer(void)
-{
-    return RecruitValues->enemyIntoPlayer;
-}
-int MustBossBecomePlayer(void)
-{
-    return RecruitValues->enemyIntoPlayer == 1;
-}
-
 struct TimedHitsDifficultyStruct
 {
     u8 difficulty : 5;
@@ -217,6 +191,59 @@ struct ExceptionsStruct
     u8 NeverChangeFrom;
     u8 NeverChangeInto;
 };
+
+#define VanillaOrder 0
+#define ReverseOrder 1
+#define RandomOrder 2
+
+#define NoPool 0
+#define PlayerPool 1
+#define EnemyPool 2
+#define CombinedPool 3
+
+int GetPlayerRecruitmentOrder(void)
+{
+    return RecruitValues->playerRecruitmentOrder;
+}
+int IsPlayerOrderRandom(void)
+{
+    return RecruitValues->playerRecruitmentOrder == RandomOrder;
+}
+
+int GetEnemyRecruitmentOrder(void)
+{
+    return RecruitValues->enemyRecruitmentOrder;
+}
+int IsEnemyOrderRandom(void)
+{
+    return RecruitValues->enemyRecruitmentOrder == RandomOrder;
+}
+
+int CanPlayerBecomeBoss(void)
+{
+    return RecruitValues->playerIntoBosses;
+}
+int MustPlayerBecomeBoss(void)
+{
+    return RecruitValues->playerIntoBosses == 1;
+}
+// int CanEnemyBecomePlayer(void)
+// {
+// return RecruitValues->enemyIntoPlayer;
+// }
+int MustEnemyBecomePlayer(void)
+{
+    return RecruitValues->enemyIntoPlayer == 1;
+}
+int CanEnemyStayBoss(void)
+{
+    return ((RecruitValues->enemyIntoPlayer == 0) || (RecruitValues->enemyIntoPlayer == 2));
+}
+int MustEnemyStayBoss(void)
+{
+    return (RecruitValues->enemyIntoPlayer == 0);
+}
+
 extern struct ExceptionsStruct ItemExceptions[];
 extern struct ExceptionsStruct ClassExceptions[];
 extern struct ExceptionsStruct CharExceptions[];
@@ -325,7 +352,11 @@ extern const int SeedOption;
 extern const int SaveOption;
 extern const int SettingsOption;
 extern const int VarianceOption;
-extern const int CharactersOption;
+extern const int PlayerRecruitmentOption;
+extern const int PlayerBossOption;
+extern const int EnemyRecruitmentOption;
+extern const int EnemyPlayerOption;
+
 extern const int FromGameOption;
 extern const int FilterCharsOption;
 extern const int PreviewCharsOption;
@@ -3233,39 +3264,24 @@ int GetNameTextIdOfRandomizedPortrait(int portraitID, int seed)
 
 int CanCharacterBecomeBoss(const struct CharacterData * table)
 {
-    // if (table->number > 0x40
-    int boss;
-    boss = table->attributes & (CA_BOSS);
-    if ((RecruitValues->recruitment == 6))
-    {
-        return false;
-    }
-    if ((!boss) && (RecruitValues->recruitment == 4))
-    {
-        return true;
-    } // players become bosses and vice versa
+    int boss = table->attributes & (CA_BOSS);
+    // if they start as a boss, they're an enemy
     if (boss)
     {
-        return true;
+        return CanEnemyStayBoss();
     }
-    return false;
+    return CanPlayerBecomeBoss();
 }
+
 int MustCharacterBecomeBoss(const struct CharacterData * table)
 {
-    int boss;
-    boss = table->attributes & (CA_BOSS);
-    if ((RecruitValues->recruitment == 6))
-    {
-        return false;
-    }
-    // if ((!boss) && (RecruitValues->recruitment == 4)) { return true; } // players become bosses and vice
-    // versa if ((boss) && (RecruitValues->recruitment == 4)) { return false; } // players become bosses and
-    // vice versa
+    int boss = table->attributes & (CA_BOSS);
+    // if they start as a boss, they're an enemy
     if (boss)
     {
-        return true;
+        return MustEnemyStayBoss();
     }
-    return false;
+    return MustPlayerBecomeBoss();
 }
 
 int GetAdjustedCharacterID(const struct CharacterData * table)
@@ -3306,16 +3322,21 @@ int GetAdjustedCharacterID(const struct CharacterData * table)
 }
 
 // lyn mode units have no support pointers, so perhaps use that?
-int GetUnitListToUse(const struct CharacterData * table, int boss, int excludeNoSupports)
+
+#define NoPool 0
+#define PlayersPool 1
+#define BossesPool 2
+#define CombinedPool 3
+
+int IsCharExcludedFromPool(const struct CharacterData * table, int IsEnemy, int excludeNoSupports)
 {
-    int result = 0;
     if (table->number > MAX_CHAR_ID)
     {
-        return result;
+        return true;
     }
     if (!table->portraitId)
     {
-        return result;
+        return true;
     }
 // look for duplicate units
 #ifndef FE8
@@ -3325,96 +3346,102 @@ int GetUnitListToUse(const struct CharacterData * table, int boss, int excludeNo
         {
             if (table->number != GetAdjustedCharacterID(table))
             {
-                return 0;
+                return true;
             }
         }
     }
 #endif
-    result = 1;
-    // if (boss && (CanCharacterBecomeBoss(table))) { result = 1; }
-    if (boss && (MustCharacterBecomeBoss(table)))
+    if (!IsEnemy)
     {
-        result = 2;
-    }
-    if (result == 1)
-    {
-        if (RecruitValues->recruitment == 2)
+        // there are some non-bosses with portraits below
+        // these need to be manually excluded
+        // these IDs would be excluded automatically in certain games
+        // so it's okay to manually exclude them in all the games
+        // issue: copy fe8 stuff to fix
+        if (table->number == 0x65) // Idunn, also 0x66
         {
-            result = 0;
+            return true;
         }
-    }
-    if (result == 2)
-    {
-        if (RecruitValues->recruitment <= 1)
+        if (table->number == 0x5a) // Maxime fe7
         {
-            result = 0;
+            return true;
         }
-        if (RecruitValues->recruitment == 5)
-        {
-            result = 0;
-        }
-    }
-    if ((RecruitValues->recruitment < 4) || (RecruitValues->recruitment == 5))
-    {
-        if (result == 1) // players reordered
-        {
-            // there are some non-bosses with portraits below
-            // these need to be manually excluded
-            // these IDs would be excluded automatically in certain games
-            // so it's okay to manually exclude them in all the games
-            // issue: copy fe8 stuff to fix
-            if (table->number == 0x65) // Idunn, also 0x66
-            {
-                return 0;
-            }
-            if (table->number == 0x5a) // Maxime fe7
-            {
-                return 0;
-            }
-            // 0x7A Zephiel, 0x7B Elbert, 0x9E Natalie are now valid in fe7 *shrugs*
+        // 0x7A Zephiel, 0x7B Elbert, 0x9E Natalie are now valid in fe7 *shrugs*
 
-            if (table->number == 0x54) // Pablo fe8
-            {
-                return 0;
-            }
-            if (table->number == 0x66) // bandit with portrait / Idunn
-            {
-                return 0;
-            }
-            if (table->number == 0x67) // bandit with portrait
-            {
-                return 0;
-            }
+        if (table->number == 0x54) // Pablo fe8
+        {
+            return true;
+        }
+        if (table->number == 0x66) // bandit with portrait / Idunn
+        {
+            return true;
+        }
+        if (table->number == 0x67) // bandit with portrait
+        {
+            return true;
+        }
 
-            if (table->number > 0xA6) // playables are below 0xA6 unit ID
-            {
-                return 0;
-            }
+        if (table->number > 0xA6) // playables are below 0xA6 unit ID
+        {
+            return true;
         }
     }
-    if (RecruitValues->recruitment == 6)
-    {
-        result = 1;
-    }
-    // if (!boss && (MustCharacterBecomeBoss(table))) { result = false; }
-    return result;
+
+    return false;
 }
 
-int CallGetUnitListToUse(const struct CharacterData * table, int boss, int excludeNoSupports)
+int GetCharOriginalPool(const struct CharacterData * table, int boss, int excludeNoSupports)
 {
-    int result = GetUnitListToUse(table, boss, excludeNoSupports);
-    if (RecruitValues->recruitment == 4)
+    int IsEnemy = boss;
+    if (IsCharExcludedFromPool(table, IsEnemy, excludeNoSupports))
     {
-        if (result == 1)
+        return NoPool;
+    }
+    if (IsEnemy)
+    {
+        return EnemyPool;
+    }
+    return PlayerPool;
+}
+int GetCharNewPool(const struct CharacterData * table, int boss, int excludeNoSupports)
+{
+    int IsEnemy = boss;
+    if (IsCharExcludedFromPool(table, IsEnemy, excludeNoSupports))
+    {
+        return NoPool;
+    }
+
+    if (IsEnemy)
+    {
+        if (MustEnemyStayBoss())
         {
-            return 2;
+            return BossesPool;
         }
-        else if (result == 2)
+        if (MustEnemyBecomePlayer())
         {
-            return 1;
+            return PlayerPool;
+        }
+        else
+        {
+            return CombinedPool;
         }
     }
-    return result;
+
+    // player
+    if (MustPlayerBecomeBoss())
+    {
+        return BossesPool;
+    }
+    if (CanPlayerBecomeBoss())
+    {
+        return CombinedPool;
+    }
+    else
+    {
+        return PlayerPool;
+    }
+
+    return NoPool;
 }
 
 struct Vec2
@@ -3426,8 +3453,7 @@ struct Vec2u
     u16 x, y;
 };
 
-#define UnitListSize 800
-#define BossListSize 800
+#define UnitListSize 1400
 
 int DoesCharMatchGender(u32 attr, struct TagsStruct tags)
 {
@@ -4354,8 +4380,8 @@ int CountRecruitableCharacters(void)
 }
 
 void BuildFilteredCharsList(
-    struct Vec2u * counter, u8 * unit, u8 * bosses, u8 * tables, u8 * boss_tables, RecruitmentProc * proc1,
-    RecruitmentProc * proc2, RecruitmentProc * proc3, RecruitmentProc * proc4)
+    struct Vec2u * counter, u8 * unit, u8 * tables, RecruitmentProc * proc1, RecruitmentProc * proc2,
+    RecruitmentProc * proc3, RecruitmentProc * proc4)
 {
     const struct CharacterData * table = GetCharacterData(1);
 
@@ -4400,8 +4426,8 @@ void BuildFilteredCharsList(
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
             id = i;
-            if ((RecruitValues->recruitment == 5) && (!GrowthValues->ForcedCharTable))
-            {
+            if (!GetPlayerRecruitmentOrder()) //&& (!GrowthValues->ForcedCharTable))
+            {                                 // vanilla order
                 if (i < 0x45)
                 {
                     id = recruitmentOrder[i];
@@ -4426,14 +4452,14 @@ void BuildFilteredCharsList(
 #endif
 
             boss = table->attributes & (CA_BOSS);
-            switch (GetUnitListToUse(table, boss, true))
+            switch (GetCharOriginalPool(table, boss, true))
             {
-                case 0: // eg no portrait
+                case NoPool: // eg no portrait
                 {
                     continue;
                     break;
                 }
-                case 1:
+                case PlayerPool:
                 {
                     if (c >= UnitListSize)
                     {
@@ -4468,14 +4494,14 @@ void BuildFilteredCharsList(
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
             id = i;
-            if ((RecruitValues->recruitment == 5) && (!GrowthValues->ForcedCharTable))
-            {
+            if (!GetPlayerRecruitmentOrder()) //&& (!GrowthValues->ForcedCharTable))
+            {                                 // vanilla order
                 if (i < 0x45)
                 {
                     id = recruitmentOrder[i];
                 }
             }
-            if (b >= BossListSize)
+            if ((c + b) >= UnitListSize)
             {
                 break;
             }
@@ -4495,7 +4521,7 @@ void BuildFilteredCharsList(
 
             boss = table->attributes & (CA_BOSS);
 
-            switch (GetUnitListToUse(table, boss, true))
+            switch (GetCharOriginalPool(table, boss, true))
             {
                 case 0: // eg no portrait
                 {
@@ -4504,7 +4530,7 @@ void BuildFilteredCharsList(
                 }
                 case 2:
                 {
-                    if (b >= BossListSize)
+                    if ((c + b) >= UnitListSize)
                     {
                         continue;
                     }
@@ -4512,8 +4538,8 @@ void BuildFilteredCharsList(
                     {
                         continue;
                     }
-                    boss_tables[b] = t;
-                    bosses[b] = id;
+                    tables[c + b] = t;
+                    unit[c + b] = id;
                     b++;
                     break;
                 }
@@ -4534,15 +4560,8 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     // }
 
     u8 unit[UnitListSize] = { 0 };
-    u8 tables[UnitListSize];
-    u8 bosses[BossListSize] = { 0 };
-    u8 boss_tables[BossListSize];
+    u8 tables[UnitListSize] = { 0xFF };
 
-    for (int i = 0; i < UnitListSize; ++i)
-    {
-        tables[i] = 0xFF;
-        boss_tables[i] = 0xFF;
-    }
     const struct CharacterData * table = GetCharacterData(1);
     int c = 0;
     int b = 0; // bosses count
@@ -4563,7 +4582,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     counter->x = c;
     counter->y = b;
 
-    BuildFilteredCharsList(counter, unit, bosses, tables, boss_tables, proc1, proc2, proc3, proc4);
+    BuildFilteredCharsList(counter, unit, tables, proc1, proc2, proc3, proc4);
     c = counter->x;
     b = counter->y;
     // table--;
@@ -4572,6 +4591,10 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
 
     int c_max = c; // count of characters to randomize from
     int b_max = b;
+    int d = c + b;
+    int d_max = d;
+    int playerOrder = GetPlayerRecruitmentOrder();
+    int enemyOrder = GetEnemyRecruitmentOrder();
     int num;
     u32 rn = 0;
     proc = proc1;
@@ -4623,14 +4646,14 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         // boss = boss ^ CA_BOSS;
         // }
 
-        switch (CallGetUnitListToUse(table, boss, true))
+        switch (GetCharNewPool(table, boss, true))
         {
-            case 0:
+            case NoPool:
             {
                 continue;
                 break;
             }
-            case 1:
+            case PlayerPool:
             {
                 // entry you used goes to the end so that you don't use it again
                 //
@@ -4641,11 +4664,11 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     c = c_max - 1;
                 }
                 num = HashByte_Simple(rn, c);
-                if (!RecruitValues->recruitment)
+                if (playerOrder == VanillaOrder)
                 {
                     num = c_max - (c + 1); // vanilla table order
                 }
-                if (RecruitValues->recruitment == 5)
+                if (playerOrder == ReverseOrder)
                 {
                     num = c; // reverse, so always last in list
                 }
@@ -4657,7 +4680,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         proc5->id[(id & 0x3F) - 1] = tables[num];
                     }
                 }
-                if ((RecruitValues->recruitment != 0) && (RecruitValues->recruitment != 5))
+                if (playerOrder == RandomOrder)
                 {
                     if (id < 0x40)
                     {
@@ -4674,7 +4697,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                 break;
             }
 
-            case 2:
+            case EnemyPool:
             {
                 // entry you used goes to the end so that you don't use it again
                 //
@@ -4684,36 +4707,107 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                 {
                     b = b_max - 1;
                 }
-                num = HashByte_Simple(rn, b);
-                if (!RecruitValues->recruitment)
+                num = HashByte_Simple(rn, b) + c_max;
+                if (enemyOrder == VanillaOrder)
                 {
-                    num = b_max - (b + 1); // vanilla table order
+                    num = b_max - (b + 1) + c_max; // vanilla table order
                 }
-                if (RecruitValues->recruitment == 5)
+                if (enemyOrder == ReverseOrder)
                 {
-                    num = b; // reverse, so always last in list
+                    num = b + c_max; // reverse, so always last in list
                 }
-                proc->id[(id & 0x3F) - 1] = bosses[num]; // proc + offset set to nth char
+                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
                 if (id < 0x40)
                 {
-                    if (boss_tables[num] != 0xFF)
+                    if (tables[num] != 0xFF)
                     {
-                        proc5->id[(id & 0x3F) - 1] = boss_tables[num];
+                        proc5->id[(id & 0x3F) - 1] = tables[num];
                     }
                 }
-                if ((RecruitValues->recruitment != 0) && (RecruitValues->recruitment != 5))
+                if (enemyOrder == RandomOrder)
                 {
                     if (id < 0x40)
                     {
-                        if (boss_tables[num] != 0xFF)
+                        if (tables[num] != 0xFF)
                         {
-                            proc5->id[(id & 0x3F) - 1] = boss_tables[num];
-                            boss_tables[num] = boss_tables[b];
-                            boss_tables[b] = proc5->id[(id & 0x3F) - 1];
+                            proc5->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[b + c_max];
+                            tables[b + c_max] = proc5->id[(id & 0x3F) - 1];
                         }
                     }
-                    bosses[num] = bosses[b]; // move last entry to one we just used
-                    bosses[b] = proc->id[(id & 0x3F) - 1];
+                    unit[num] = unit[b + c_max]; // move last entry to one we just used
+                    unit[b + c_max] = proc->id[(id & 0x3F) - 1];
+                }
+                break;
+            }
+
+            case CombinedPool:
+            {
+                // entry you used goes to the end so that you don't use it again
+                //
+                rn = GetNthRN_Simple(id - 1, seed, rn);
+                d--;
+                if (d < 0)
+                {
+                    d = d_max - 1;
+                }
+                num = HashByte_Simple(rn, d);
+                int RandomlyOrdered = true;
+                switch (GetCharOriginalPool(table, boss, true))
+                {
+
+                    case PlayerPool:
+                    {
+                        if (playerOrder == VanillaOrder)
+                        {
+                            num = d_max - (d + 1);
+                            RandomlyOrdered = false;
+                        }
+                        if (playerOrder == ReverseOrder)
+                        {
+                            num = d;
+                            RandomlyOrdered = false;
+                        }
+                        break;
+                    }
+                    case EnemyPool:
+                    {
+                        if (enemyOrder == VanillaOrder)
+                        {
+                            num = d_max - (d + 1);
+                            RandomlyOrdered = false;
+                        }
+                        if (enemyOrder == ReverseOrder)
+                        {
+                            num = d;
+                            RandomlyOrdered = false;
+                        }
+                        break;
+                    }
+                    default:
+                }
+
+                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                if (id < 0x40)
+                {
+                    if (tables[num] != 0xFF)
+                    {
+                        proc5->id[(id & 0x3F) - 1] = tables[num];
+                    }
+                }
+                if (RandomlyOrdered)
+                {
+                    if (id < 0x40)
+                    {
+                        if (tables[num] != 0xFF)
+                        {
+                            proc5->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[d];
+                            tables[d] = proc5->id[(id & 0x3F) - 1];
+                        }
+                    }
+                    unit[num] = unit[d]; // move last entry to one we just used
+                    unit[d] = proc->id[(id & 0x3F) - 1];
                 }
                 break;
             }
@@ -4755,7 +4849,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         }
         table = GetCharacterData(i); // check for morphs and duplicates in vanilla table
         boss = table->attributes & (CA_BOSS);
-        // if (GetUnitListToUse(table, boss, false)) {
         num = GetAdjustedCharacterID(table);
         if (num != (i + 1))
         {
@@ -5822,9 +5915,9 @@ int IsClassOrRecruitmentRandomized(struct Unit * unit)
 
 int IsAnythingRandomized(void)
 {
-    return RandBitflags->base | RecruitValues->recruitment | ((RandBitflags->growth != 4) && (RandBitflags->growth)) |
-        RandBitflags->caps | RandBitflags->itemStats | RandBitflags->class | RandBitflags->shopItems |
-        RandBitflags->foundItems;
+    return RandBitflags->base | RecruitValues->playerRecruitmentOrder |
+        ((RandBitflags->growth != 4) && (RandBitflags->growth)) | RandBitflags->caps | RandBitflags->itemStats |
+        RandBitflags->class | RandBitflags->shopItems | RandBitflags->foundItems;
 }
 
 u32 GetSeed(void)
@@ -11938,25 +12031,24 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     {
         reloadUnits = true;
     }
-    if (RecruitValues->recruitment != proc->Option[CharactersOption])
+    if (RecruitValues->playerRecruitmentOrder != proc->Option[PlayerRecruitmentOption])
     {
-        if (proc->Option[CharactersOption] == 1)
-        {
-            reloadPlayers = true;
-        }
-        if (proc->Option[CharactersOption] == 2)
-        {
-            reloadEnemies = true;
-        }
-        if (proc->Option[CharactersOption] >= 3)
-        {
-            reloadUnits = true;
-        }
-        if (proc->Option[CharactersOption] == 0)
-        {
-            reloadUnits = true;
-        }
+        reloadPlayers = true;
     }
+    if (RecruitValues->playerIntoBosses != proc->Option[PlayerBossOption])
+    {
+        reloadPlayers = true;
+    }
+
+    if (RecruitValues->enemyRecruitmentOrder != proc->Option[EnemyRecruitmentOption])
+    {
+        reloadEnemies = true;
+    }
+    if (RecruitValues->enemyIntoPlayer != proc->Option[EnemyPlayerOption])
+    {
+        reloadEnemies = true;
+    }
+
     if (GrowthValues->ForcedCharTable != proc->Option[FromGameOption])
     {
         reloadUnits = true;
@@ -12098,7 +12190,10 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 
     RandValues->seed = proc->seed;
     RandValues->variance = proc->Option[VarianceOption];
-    RecruitValues->recruitment = proc->Option[CharactersOption];
+    RecruitValues->playerRecruitmentOrder = proc->Option[PlayerRecruitmentOption];
+    RecruitValues->playerIntoBosses = proc->Option[PlayerBossOption];
+    RecruitValues->enemyRecruitmentOrder = proc->Option[EnemyRecruitmentOption];
+    RecruitValues->enemyIntoPlayer = proc->Option[EnemyPlayerOption];
     GrowthValues->ForcedCharTable = proc->Option[FromGameOption];
     RecruitValues->pauseNameReplace = false;
     RandBitflags->base = proc->Option[BaseStatsOption];
@@ -12341,7 +12436,10 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     SetDefaultTagValues();
     proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
     // proc->Option[VarianceOption] = 10; // start on 50%
-    proc->Option[CharactersOption] = 1;
+    proc->Option[PlayerRecruitmentOption] = RandomOrder;
+    proc->Option[EnemyRecruitmentOption] = VanillaOrder;
+    proc->Option[PlayerBossOption] = PlayerPool;
+    proc->Option[EnemyPlayerOption] = BossesPool;
     proc->Option[FromGameOption] = 0; // Fe8 game
     proc->Option[BaseStatsOption] = 1;
     proc->Option[GrowthsOption] = 1;
@@ -12925,7 +13023,10 @@ void RestoreConfigOptions(ConfigMenuProc * proc)
     // pull up your previously saved options
 
     proc->Option[VarianceOption] = RandValues->variance;
-    proc->Option[CharactersOption] = RecruitValues->recruitment;
+    proc->Option[PlayerRecruitmentOption] = RecruitValues->playerRecruitmentOrder;
+    proc->Option[EnemyRecruitmentOption] = RecruitValues->enemyRecruitmentOrder;
+    proc->Option[PlayerBossOption] = RecruitValues->playerIntoBosses;
+    proc->Option[EnemyPlayerOption] = RecruitValues->enemyIntoPlayer;
     proc->Option[FromGameOption] = GrowthValues->ForcedCharTable;
 
     proc->Option[BaseStatsOption] = RandBitflags->base;
@@ -13611,45 +13712,7 @@ void DrawBarsOrGrowths(void)
         SetupDebugFontForBG(0, VramDest_DebugFont);
 #endif
 
-        switch (RecruitValues->recruitment)
-        {
-            case 0:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "0Seed");
-                break;
-            }
-            case 1:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "1Seed");
-                break;
-            }
-            case 2:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "2Seed");
-                break;
-            }
-            case 3:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "3Seed");
-                break;
-            }
-            case 4:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "4Seed");
-                break;
-            }
-            case 5:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "5Seed");
-                break;
-            }
-            case 6:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "6Seed");
-                break;
-            }
-            default:
-        }
+        PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed");
         // PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x12), white, RandValues->seed);
         PrintDebugNumberToBG(0, 11, 0x13, RandValues->seed);
         // PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 13, 0x12), white, 123456);
@@ -14331,45 +14394,7 @@ void DrawBarsOrGrowths(void)
 // BG_EnableSyncByMask(BG3_SYNC_BIT);
 #endif
         SetupDebugFontForBG(0, VramDest_DebugFont);
-        switch (RecruitValues->recruitment)
-        {
-            case 0:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "0Seed");
-                break;
-            }
-            case 1:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "1Seed");
-                break;
-            }
-            case 2:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "2Seed");
-                break;
-            }
-            case 3:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "3Seed");
-                break;
-            }
-            case 4:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "4Seed");
-                break;
-            }
-            case 5:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "5Seed");
-                break;
-            }
-            case 6:
-            {
-                PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "6Seed");
-                break;
-            }
-            default:
-        }
+        PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed");
         PrintDebugNumberToBG(0, 11, 0x13, RandValues->seed);
     }
 }
