@@ -227,10 +227,10 @@ int MustPlayerBecomeBoss(void)
 {
     return RecruitValues->playerIntoBosses == 1;
 }
-// int CanEnemyBecomePlayer(void)
-// {
-// return RecruitValues->enemyIntoPlayer;
-// }
+int CanEnemyBecomePlayer(void)
+{
+    return RecruitValues->enemyIntoPlayer;
+}
 int MustEnemyBecomePlayer(void)
 {
     return RecruitValues->enemyIntoPlayer == 1;
@@ -311,7 +311,8 @@ void MaybeForceHardModeFE8(void)
 
 int ShouldReplaceCharacters(void)
 {
-    return GetPlayerRecruitmentOrder() | GetEnemyRecruitmentOrder() | GrowthValues->ForcedCharTable;
+    return GetPlayerRecruitmentOrder() || CanPlayerBecomeBoss() || GetEnemyRecruitmentOrder() ||
+        CanEnemyBecomePlayer() || GrowthValues->ForcedCharTable;
 }
 int ShouldRandomizeRecruitmentForUnitID(int id)
 {
