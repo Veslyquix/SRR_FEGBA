@@ -587,18 +587,18 @@ const struct FE8CharacterData
 #else
     gCharacterData,
 #endif
-            gCharacterDataFE1,  gCharacterDataFE4,         gCharacterDataFE5,
+            gCharacterDataFE1,         gCharacterDataFE4,         gCharacterDataFE5,
 #ifdef FE8
-            gCharacterDataFE6,  gCharacterDataFE7,
+            gCharacterDataFE6,         gCharacterDataFE7,
 #endif
 #ifdef FE7
-            gCharacterDataFE6,  gCharacterDataFE8,
+            gCharacterDataFE6,         gCharacterDataFE8,
 #endif
 #ifdef FE6
-            gCharacterDataFE7,  gCharacterDataFE8,
+            gCharacterDataFE7,         gCharacterDataFE8,
 #endif
-            gCharacterDataFE10, gCharacterDataFE13,        gCharacterDataFE14,
-            gCharacterDataFE15, gCharacterDataFE16,        gCharacterDataFE17,
+            gCharacterDataFE10,        gCharacterDataFE13,        gCharacterDataFE14,
+            gCharacterDataFE15,        gCharacterDataFE16,        gCharacterDataFE17,
 
 // bosses
 #ifdef FE6
@@ -606,18 +606,18 @@ const struct FE8CharacterData
 #else
     gCharacterData,
 #endif
-            gCharacterDataFE1,  gCharacterDataFE4,         gCharacterDataFE5,
+            gCharacterDataFE1_Bosses,  gCharacterDataFE4,         gCharacterDataFE5,
 #ifdef FE8
-            gCharacterDataFE6,  gCharacterDataFE7,
+            gCharacterDataFE6,         gCharacterDataFE7,
 #endif
 #ifdef FE7
-            gCharacterDataFE6,  gCharacterDataFE8,
+            gCharacterDataFE6,         gCharacterDataFE8_Bosses,
 #endif
 #ifdef FE6
-            gCharacterDataFE7,  gCharacterDataFE8,
+            gCharacterDataFE7,         gCharacterDataFE8,
 #endif
-            gCharacterDataFE10, gCharacterDataFE13_Bosses, gCharacterDataFE14,
-            gCharacterDataFE15, gCharacterDataFE16,        gCharacterDataFE17,
+            gCharacterDataFE10,        gCharacterDataFE13_Bosses, gCharacterDataFE14,
+            gCharacterDataFE15_Bosses, gCharacterDataFE16,        gCharacterDataFE17,
         };
 
 const int NumberOfCharTables = 24;
@@ -11283,6 +11283,10 @@ int CountOptionAmount(int id)
         {
             break;
         }
+    }
+    if (id == FromGameOption)
+    {
+        return (i >> 1) - 1;
     }
     return i - 1;
 }

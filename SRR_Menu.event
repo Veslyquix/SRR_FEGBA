@@ -117,7 +117,7 @@ POIN t0 t1 t2 0
 }
 
 {
-t0:  txt("Vanilla");                     t1:  txt("Players become bosses");           t2:  txt("Random");
+t0:  txt("Vanilla");                     t1:  txt("Playable bosses");           t2:  txt("Random");
 ALIGN 4; SRRHeader(PlayerBossOpt)
 POIN t0 t1 t2 0
 }
@@ -129,7 +129,7 @@ POIN t0 t1 t2 0
 }
 
 {
-t0:  txt("Vanilla");                     t1:  txt("Bosses are from your roster");           t2:  txt("Random");
+t0:  txt("Vanilla");                     t1:  txt("Enemy players");           t2:  txt("Random");
 ALIGN 4; SRRHeader(EnemyPlayerOpt)
 POIN t0 t1 t2 0
 }
@@ -497,24 +497,24 @@ SRRMenu(PlayerRecruitmentOpt);         txt("Recruitment")
 SRRDesc(PlayerRecruitmentOpt, 0); txt("Playable characters will be\recruited in the usual order."); 
 SRRDesc(PlayerRecruitmentOpt, 1); txt("Playable characters will be\recruited in reverse order."); 
 SRRDesc(PlayerRecruitmentOpt, 2); txt("Playable characters will be\recruited in random order."); 
-SRRMenu(PlayerBossOpt);         txt("Boss Swap")
+SRRMenu(PlayerBossOpt);         txt("Player Swap")
 SRRDesc(PlayerBossOpt,0); txt("Playable characters will be\from the pool of players."); 
 SRRDesc(PlayerBossOpt,1); txt("Playable characters will be\from the pool of bosses."); 
 SRRDesc(PlayerBossOpt,2); txt("Playable characters will be\from the pool of players and bosses."); 
-SRRMenu(EnemyRecruitmentOpt);         txt("Bosses")
-SRRDesc(EnemyRecruitmentOpt, 0); txt("Bosses will be encountered\in the usual order."); 
-SRRDesc(EnemyRecruitmentOpt, 1); txt("Bosses will be encountered\in reverse order."); 
-SRRDesc(EnemyRecruitmentOpt, 2); txt("Bosses will be encountered\in random order."); 
+SRRMenu(EnemyRecruitmentOpt);         txt("Boss Order")
+SRRDesc(EnemyRecruitmentOpt, 0); txt("Enemy bosses will be encountered\in the usual order."); 
+SRRDesc(EnemyRecruitmentOpt, 1); txt("Enemy bosses will be encountered\in reverse order."); 
+SRRDesc(EnemyRecruitmentOpt, 2); txt("Enemy bosses will be encountered\in random order."); 
 SRRMenu(EnemyPlayerOpt);         txt("Boss Swap")
-SRRDesc(EnemyPlayerOpt,0); txt("Playable characters will be\from the pool of players."); 
-SRRDesc(EnemyPlayerOpt,1); txt("Playable characters will be\from the pool of bosses."); 
-SRRDesc(EnemyPlayerOpt,2); txt("Playable characters will be\from the pool of players and bosses."); 
+SRRDesc(EnemyPlayerOpt,0); txt("Enemy bosses will be\from the pool of players."); 
+SRRDesc(EnemyPlayerOpt,1); txt("Enemy bosses will be\from the pool of bosses."); 
+SRRDesc(EnemyPlayerOpt,2); txt("Enemy bosses will be\from the pool of players and bosses."); 
 
 
 
 
 SRRMenu(FromGameOpt);           txt("From Game")
-SRRDesc(FromGameOpt); txt("Recruitable units can be from\specific or random FE games."); 
+SRRDesc(FromGameOpt); txt("Units can be from\specific or random FE games."); 
 SRRMenu(FilterCharsOpt);           txt("Filter Units")
 SRRDesc(FilterCharsOpt); txt("Only include characters with\specific weapon types or traits."); 
 SRRMenu(PreviewCharsOpt);           txt("Preview Units")

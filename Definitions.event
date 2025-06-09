@@ -1,8 +1,8 @@
 
 
 #define PortraitsRom 0x1030000 
-#define AnimsRom 0x1400000 
-#define EndOfAnimsRom 0x1A00000 
+#define AnimsRom 0x1500000 
+#define EndOfAnimsRom 0x1B00000 
 
 
 // New classes 
@@ -244,61 +244,9 @@ LynLord
 #define BlankMug 0
 #define EndMug 0xFF // don't look for characters past this 
 
-#define SlaydeMug    BlankMug 
-#define BarthMug     BlankMug 
-#define GarthMug     BlankMug 
-#define ZaksonMug    BlankMug 
-#define BerkutMug    BlankMug 
-#define WolffMug     BlankMug 
-#define DesaixMug    BlankMug 
-#define BlakeMug     BlankMug 
-#define LawsonMug    BlankMug 
-#define MikhailMug   BlankMug 
-#define GazelleMug   BlankMug 
-#define GriethMug    BlankMug 
-#define TatarrahMug  BlankMug 
-#define GarciaFE2Mug BlankMug 
-#define SeazasMug    BlankMug 
-#define XaizorMug    BlankMug 
-#define DolthMug     BlankMug 
-#define MarlaMug     BlankMug 
-#define NuibabaMug   BlankMug 
-#define JamilFE2Mug  BlankMug 
-#define JeromeMug    BlankMug 
-#define HestiaMug    BlankMug 
-#define MagnusMug    BlankMug 
-#define MuellerFE2Mug BlankMug 
-#define RudolfMug    BlankMug 
-#define RineaMug     BlankMug 
-#define HadesMug     BlankMug 
-#define CerberusMug  BlankMug 
-#define NaberiusMug  BlankMug 
-#define AurumMug     BlankMug 
-#define ArgentumMug  BlankMug 
-#define GharnMug     BlankMug 
-#define JedahMug     BlankMug 
-#define DumaMug      BlankMug 
 
 
-// #define GomerMug     BlankMug
-// #define HymanMug     BlankMug
-// #define MerachMug    BlankMug
-// #define HarmeinMug   BlankMug
-// #define KannivalMug  BlankMug
-// #define MannuMug     BlankMug
-// #define ZharovMug    BlankMug
-// #define KhozenMug    BlankMug
-// #define HeimlerMug   BlankMug
-// #define VolzhinMug   BlankMug
-// #define GrigasMug    BlankMug
-// #define JiolMug      BlankMug
-// #define HollstadtMug BlankMug
-// #define MorzasMug    BlankMug
-// #define SternlinMug  BlankMug
-// #define LarissaMug   BlankMug
-// #define OrridyonMug  BlankMug
-// #define XemcelMug    BlankMug
-// #define MedeusMug    BlankMug
+// fe1 
 #define LumelMug     BlankMug
 #define LykkeMug     BlankMug
 #define GailMug      BlankMug
