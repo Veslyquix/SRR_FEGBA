@@ -13,7 +13,6 @@
 
 
 #ifdef VeslyBuildfile 
-ORG 0x1030000
 #include "gfx/Installer.event"
 MESSAGE Graphics end at currentoffset 
 #include "bgm/Installer.event"
@@ -670,7 +669,7 @@ ALIGN 4
 IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
-WORD 29
+WORD 33
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:

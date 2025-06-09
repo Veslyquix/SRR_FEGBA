@@ -1,5 +1,4 @@
 
- 
 #ifdef _FE6_ 
 #define MugEntry(mugID, mug, minimug, palette, mouthX, mouthY, eyeX, eyeY)"ORG NewPortraitTable+mugID*0x10; POIN mug; POIN minimug; POIN palette; BYTE mouthX mouthY eyeX eyeY; "
 #else 
@@ -28,6 +27,7 @@
 #define DaraMug 0x55 
 #endif 
 
+#include "GeneratedDefs.event" 
 
 // #define HidePortraitTable // obscure from Febuilder 
 
@@ -39,19 +39,30 @@ ALIGN 4
 NewPortraitTable: 
 #undef PortraitTable 
 #define PortraitTable NewPortraitTable 
-FILL(0x1C*PortraitTableMaxEntries) 0 
-ORG NewPortraitTable 
-#include "VanillaData.event" 
-// #include "VanillaData.event" 
 
+#ifdef MAKE_CACHE_ROM
+    FILL(0x1C*PortraitTableMaxEntries) 0 
+    ORG NewPortraitTable 
+    #include "VanillaData.event" 
+    // #include "VanillaData.event" 
+#endif 
 
 
 ORG NewPortraitTable + (0x1C*PortraitTableMaxEntries)
-ALIGN 4 
-#ifdef _FE6_ 
-#include "Generated_FE6.event" 
+
+
+#ifdef MAKE_CACHE_ROM
+
+    ALIGN 4 
+    #ifdef _FE6_ 
+    #include "Generated_FE6.event" 
+    #else 
+    #include "Generated.event" 
+    #endif 
 #else 
-#include "Generated.event" 
+    MESSAGE CURRENTOFFSET test1 
+
+
 #endif 
 
 PUSH 

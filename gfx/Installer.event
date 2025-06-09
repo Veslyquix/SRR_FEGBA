@@ -1,5 +1,9 @@
-#include "Anims/Installer.event" 
+ORG PortraitsRom
 #include "Portraits/Installer.event" 
+
+ORG AnimsRom
+#include "Anims/Installer.event" 
+
 //#include "ClassCards/Installer.event" 
 #include "MapSprites/Installer.event" 
 #ifdef _FE8_

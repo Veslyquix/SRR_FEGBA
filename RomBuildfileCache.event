@@ -19,9 +19,14 @@
 #define MAKE_CACHE_ROM 
 #ifdef VeslyBuildfile 
     // ORG CURRENTOFFSET + 0x30000 // 0.2mb for text 
-    ORG 0x1030000 // 0.2mb for text 
-    // ORG 0 
-    #include "gfx/Anims/Installer.event"
+    ORG PortraitsRom // after 0.2mb for text 
+    #include "gfx/Portraits/Installer.event" 
+    MESSAGE CURRENTOFFSET Portraits end at CURRENTOFFSET
+    ASSERT AnimsRom - (CURRENTOFFSET&0x1FFFFFF)
+    ORG AnimsRom 
+        #include "gfx/Anims/Installer.event"
+    MESSAGE CURRENTOFFSET Anims end at CURRENTOFFSET
+    ASSERT EndOfAnimsRom - (CURRENTOFFSET&0x1FFFFFF) 
 #endif 
 
 

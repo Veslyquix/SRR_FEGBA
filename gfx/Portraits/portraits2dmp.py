@@ -367,7 +367,8 @@ def print_progress_bar(current, total, milestones_shown=set()):
 start = time.time()
 # Setting up output file
 installer = open("Generated.event", "w")
-installer_fe6 = open("Generated_FE6.event", "w") 
+installer_fe6 = open("Generated_FE6.event", "w")
+defs = open("GeneratedDefs.event", "w") 
 
 definitions = []
 table_entries = []
@@ -455,8 +456,7 @@ with open("Generated.event", "w") as installer:
     # Writing header for the installer
     installer.write("//Generated! Do not edit!\n\n")
     installer_fe6.write("//Generated! Do not edit!\n\n")
-    installer.write("\n".join(definitions) + "\n\n")
-    installer_fe6.write("\n".join(definitions) + "\n\n")
+    defs.write("\n".join(definitions) + "\n\n")
     installer.write("PUSH\n")
     installer.write("".join(table_entries))
     installer.write("POP\n\n\n")

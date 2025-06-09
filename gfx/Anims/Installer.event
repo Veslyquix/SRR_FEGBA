@@ -6,6 +6,7 @@
 // #define MAKE_CACHE_ROM
 
 MESSAGE CURRENTOFFSET "Installing Animations"
+
 ALIGN 0x10000 
 NewAnimTable: 
 MESSAGE CURRENTOFFSET 
@@ -15,13 +16,16 @@ MESSAGE CURRENTOFFSET
 #else 
 // ORG $600000 + CURRENTOFFSET
 #ifdef _FE6_ 
-#incbin "../../animsfe6cache.dmp" 
+ORG EndOfAnimsRom
+// #incbin "../../animsfe6cache.dmp" 
 #endif 
 #ifdef _FE7_ 
-#incbin "../../animsfe7cache.dmp" 
+ORG EndOfAnimsRom
+// #incbin "../../animsfe7cache.dmp" 
 #endif 
 #ifdef _FE8_ 
-#incbin "../../animsfe8cache.dmp" 
+ORG EndOfAnimsRom
+// #incbin "../../animsfe8cache.dmp" 
 #endif 
 #endif 
 MESSAGE CURRENTOFFSET 
