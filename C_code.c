@@ -522,34 +522,56 @@ extern const struct CharacterData gCharacterData[];
 
 #ifdef FE6
 extern const struct FE8CharacterData gCharacterDataFE1[];
+extern const struct FE8CharacterData gCharacterDataFE1_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE4[];
+extern const struct FE8CharacterData gCharacterDataFE4_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE5[];
+extern const struct FE8CharacterData gCharacterDataFE5_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE6[];
+extern const struct FE8CharacterData gCharacterDataFE6_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE7[];
+extern const struct FE8CharacterData gCharacterDataFE7_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE8[];
+extern const struct FE8CharacterData gCharacterDataFE8_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE10[];
+extern const struct FE8CharacterData gCharacterDataFE10_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE13[];
 extern const struct FE8CharacterData gCharacterDataFE13_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE14[];
+extern const struct FE8CharacterData gCharacterDataFE14_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE15[];
+extern const struct FE8CharacterData gCharacterDataFE15_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE16[];
+extern const struct FE8CharacterData gCharacterDataFE16_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE17[];
+extern const struct FE8CharacterData gCharacterDataFE17_Bosses[];
 #endif
 
 #ifndef FE6
 extern const struct CharacterData gCharacterDataFE1[];
+extern const struct CharacterData gCharacterDataFE1_Bosses[];
 extern const struct CharacterData gCharacterDataFE4[];
+extern const struct CharacterData gCharacterDataFE4_Bosses[];
 extern const struct CharacterData gCharacterDataFE5[];
+extern const struct CharacterData gCharacterDataFE5_Bosses[];
 extern const struct CharacterData gCharacterDataFE6[];
+extern const struct CharacterData gCharacterDataFE6_Bosses[];
 extern const struct CharacterData gCharacterDataFE7[];
+extern const struct CharacterData gCharacterDataFE7_Bosses[];
 extern const struct CharacterData gCharacterDataFE8[];
+extern const struct CharacterData gCharacterDataFE8_Bosses[];
 extern const struct CharacterData gCharacterDataFE10[];
+extern const struct CharacterData gCharacterDataFE10_Bosses[];
 extern const struct CharacterData gCharacterDataFE13[];
 extern const struct CharacterData gCharacterDataFE13_Bosses[];
 extern const struct CharacterData gCharacterDataFE14[];
+extern const struct CharacterData gCharacterDataFE14_Bosses[];
 extern const struct CharacterData gCharacterDataFE15[];
+extern const struct CharacterData gCharacterDataFE15_Bosses[];
 extern const struct CharacterData gCharacterDataFE16[];
+extern const struct CharacterData gCharacterDataFE16_Bosses[];
 extern const struct CharacterData gCharacterDataFE17[];
+extern const struct CharacterData gCharacterDataFE17_Bosses[];
 
 #endif
 
