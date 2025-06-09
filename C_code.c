@@ -4426,8 +4426,9 @@ void BuildFilteredCharsList(
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
             id = i;
-            if (!GetPlayerRecruitmentOrder()) //&& (!GrowthValues->ForcedCharTable))
-            {                                 // vanilla order
+            if (!GetPlayerRecruitmentOrder() &&
+                (!GrowthValues->ForcedCharTable)) // non-vanilla tables are sorted by recruitment order already
+            {                                     // vanilla order
                 if (i < 0x45)
                 {
                     id = recruitmentOrder[i];
@@ -4494,8 +4495,8 @@ void BuildFilteredCharsList(
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
             id = i;
-            if (!GetPlayerRecruitmentOrder()) //&& (!GrowthValues->ForcedCharTable))
-            {                                 // vanilla order
+            if (!GetPlayerRecruitmentOrder() && (!GrowthValues->ForcedCharTable))
+            { // vanilla order
                 if (i < 0x45)
                 {
                     id = recruitmentOrder[i];
@@ -4760,12 +4761,28 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     {
                         if (playerOrder == VanillaOrder)
                         {
-                            num = d_max - (d + 1);
+                            if (num & 1)
+                            { // combined pool but vanilla order lol
+                                // so randomly decide for each unit to be either player or boss
+                                num = d_max - (d + 1) + c_max; // boss order
+                            }
+
+                            else
+                            {
+                                num = d_max - (d + 1); // player order
+                            }
                             RandomlyOrdered = false;
                         }
                         if (playerOrder == ReverseOrder)
                         {
-                            num = d;
+                            if (num & 1)
+                            {
+                                num = (d_max - d) + c_max; // reverse boss, so always last in list
+                            }
+                            else
+                            {
+                                num = c_max - (d_max - d); // reverse player
+                            }
                             RandomlyOrdered = false;
                         }
                         break;
