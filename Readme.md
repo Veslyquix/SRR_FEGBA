@@ -126,6 +126,7 @@ Enchanter animation by Dora Drago
 Map sprites:    
 -    
    
+Alm sprites by Norikins  
 AngelSMS by Unknown     
 ArcanistSMS by Norikins      
 BaronSMS by Topazlight, Nuramon, Its_Just_Jay     
