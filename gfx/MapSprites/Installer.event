@@ -221,6 +221,13 @@ Cursed_SwordMMS
 #define Ninja_Derstand 206
 #define LynLordSMS 207
 
+// past 207 will require repointing ram for SMS, so let's procrastinate that a little 
+
+
+#define AlmFighter_M_Norikinsstand 107
+#define AlmHero_M_Norikinsstand 108 
+// up to 127 is free here in all 3 games 
+
 
 /* 
 Fencer, Sentinel, Brighid, Heavy Infantry, Legion King, 
@@ -279,10 +286,8 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Witch_F_Aruka_Kenpuhuwalk 174 
 */ 
 
-// Reordered by chatgpt to try and match classes 
-
-#define Lord_M_Roy_T1_ISwalk 127
-#define Lord_M_Roy_T2_ISwalk 128
+#define AlmFighter_M_Norikinswalk 127 
+#define AlmHero_M_Norikinswalk 128 
 #define Ike_Vanguard_M_Unknownwalk 129
 #define Ike_Vanguard_M_Unknownwalk2 130
 #define Lord_M_Sword_Generic_Leifwalk 131
@@ -354,7 +359,8 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Enchanter_Aruka_Kenpuhuwalk 194 // EnchanterMMS
 #define Ninja_Derwalk 195 // NinjaMMS
 #define LynLordwalk 196 
-
+#define Lord_M_Roy_T1_ISwalk 197 // in case RoyLord is added I guess 
+#define Lord_M_Roy_T2_ISwalk 198
 
 
 
@@ -372,8 +378,8 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
     #define Great_Lord_M_Hector_ISwalk 210
 
 
-#define AlmT1 (Lord_M_Roy_T1_ISwalk+1)
-#define AlmT2 (Lord_M_Roy_T2_ISwalk+1)
+#define AlmT1 (AlmFighter_M_Norikinswalk+1)
+#define AlmT2 (AlmHero_M_Norikinswalk+1)
 #define IkeLord (Ike_Vanguard_M_Unknownwalk+1)
 #define IkeRanger (Ike_Vanguard_M_Unknownwalk2+1)
 #define LeifLord (Lord_M_Sword_Generic_Leifwalk+1)
@@ -459,8 +465,8 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 
 
 
-#define Alm_T1SMS Lord_M_Roy_T1_ISstand
-#define Alm_T2SMS Lord_M_Roy_T2_ISstand
+#define Alm_T1SMS AlmFighter_M_Norikinsstand
+#define Alm_T2SMS AlmHero_M_Norikinsstand
 #define Ike_LordSMS Ike_Vanguard_M_Unknownstand
 #define Ike_RangerSMS Ike_Vanguard_M_Unknownstand
 #define Leif_LordSMS Lord_M_Sword_Generic_16x16_Leifstand
@@ -552,7 +558,8 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 PUSH 
 
 SetSMS(LynLordSMS, 0, LynLord_IntSysstand_Data) 
-
+SetSMS(AlmFighter_M_Norikinsstand, 1, AlmFighter_M_Norikinsstand_Data) 
+SetSMS(AlmHero_M_Norikinsstand, 1, AlmHero_M_Norikinsstand_Data) 
 SetSMS(Brighid_Hector_Axe_Shin19stand, 1, Brighid_Hector_Axe_Shin19stand_Data) 
 SetSMS(Cantor2_Norikins_stand, 0, Cantor2_Norikins_stand_Data) 
 SetSMS(Chicken_Pikmin1211_stand, 0, Chicken_Pikmin1211_stand_Data) 
@@ -642,6 +649,8 @@ SetSMS(Ninja_Derstand, 0, Ninja_Derstand_Data)
 
 
 SetMMS(LynLordwalk, LynLord_IntSyswalk_Data, DemonKingAP) 
+SetMMS(AlmFighter_M_Norikinswalk, AlmFighter_M_Norikinswalk_Data, DemonKingAP) 
+SetMMS(AlmHero_M_Norikinswalk, AlmHero_M_Norikinswalk_Data, DemonKingAP) 
 SetMMS(Brighid_Hector_Axe_Shin19walk, Brighid_Hector_Axe_Shin19walk_Data, DemonKingAP) 
 SetMMS(Cantor2_Norikins_move, Cantor2_Norikins_move_Data, DemonKingAP) 
 SetMMS(Chicken_Pikmin1211_walk, Chicken_Pikmin1211_walk_Data, DemonKingAP) 
