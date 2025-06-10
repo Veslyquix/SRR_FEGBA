@@ -341,6 +341,37 @@ Roderick portrait by HunterAurzo
 Ryan portrait by HunterAurzo   
 Clarisse portrait by Obsidian_Daddy   
 Eremiya portrait by WAve   
+  
+  
+Bathys portrait by Thorn   
+Bentheon portrait by Thorn   
+Dactyl portrait by Thorn   
+Dall portrait by Kanna   
+Dejanira portrait by Thorn   
+Emereus portrait by Thorn   
+Gazzak portrait by Thorn   
+Gharnef portrait by Thorn   
+Gomer portrait by Thorn   
+Grigas portrait by Thorn   
+Harmein portrait by Thorn   
+Heimler portrait by Thorn   
+Hollstadt portrait by Thorn   
+Hyman portrait by Thorn   
+Jiol portrait by Thorn   
+Kannival portrait by Thorn   
+Khozen portrait by Thorn   
+Larissa portrait by Thorn   
+Legion portrait by Glaceo       
+Mannu portrait by Thorn   
+Medeus portrait by Thorn   
+Merach portrait by Thorn   
+Morzas portrait by Thorn   
+Orridyon portrait by Thorn   
+Sternlin portrait by Thorn   
+Volzhin portrait by Thorn   
+Xemcel portrait by Thorn   
+Zharov portrait by Thorn   
+
 
    
 // fe4    
@@ -621,6 +652,47 @@ Aversa portrait by Garytop
 Priam portrait by Garytop     
 Anna portrait by Garytop  
    
+Algon portrait by Garytop  
+Adria portrait by Garytop  
+Bovis portrait by Stitch, Arcth    
+Campari portrait by Garytop  
+Cassius portrait by Garytop  
+Cervantes portrait by Garytop  
+Chalard portrait by Garytop  
+Dalen portrait by Garytop  
+Dalton portrait by Garytop  
+Draco portrait by Melia, Arcth  
+Excellus portrait by Garytop  
+Ezra portrait by Garytop  
+Farber portrait by Garytop  
+Garrick portrait by Garytop  
+Gecko portrait by Garytop  
+GrimaF portrait by Garytop  
+GrimaM portrait by Garytop  
+Gyral portrait by Garytop  
+Ignatius portrait by Garytop  
+Jamil portrait by Garytop  
+MaskedMarth portrait by Garytop  
+Morristan portrait by Garytop  
+Mus portrait by DerTheVaporeon, Arcth    
+Mustafa portrait by Garytop  
+Nelson portrait by Garytop  
+Nombry portrait by Garytop  
+Orton portrait by Garytop  
+Pheros portrait by Garytop  
+Porcus portrait by Garytop  
+Raimi portrait by Garytop  
+RisenChief portrait by Garytop  
+Roddick portrait by Garytop  
+Ruger portrait by Garytop  
+Tirgris portrait by RNGSOMEONE    
+Validar portrait by Garytop  
+Vasto portrait by Garytop  
+Victor portrait by Garytop  
+Vincent portrait by Garytop  
+Xalbador portrait by Garytop  
+Zanth portrait by Garytop  
+  
    
 // fe14    
    
@@ -735,7 +807,42 @@ Randal portrait by HyperGammaSpaces
 Emma portrait by HyperGammaSpaces     
 Yuzu portrait by HyperGammaSpaces     
 Shade portrait by HyperGammaSpaces     
-Fernand  portrait by HyperGammaSpaces     
+Fernand portrait by HyperGammaSpaces     
+
+Argentum portrait by HyperGammaSpaces     
+Aurum portrait by HyperGammaSpaces     
+Barth portrait by HyperGammaSpaces     
+Berkut portrait by HyperGammaSpaces     
+Blake portrait by HyperGammaSpaces     
+Cerberus portrait by HyperGammaSpaces     
+Desaix portrait by HyperGammaSpaces     
+Dolth portrait by HyperGammaSpaces     
+Duma portrait by L95     
+Garcia portrait by HyperGammaSpaces     
+Garth portrait by HyperGammaSpaces     
+Gazelle portrait by HyperGammaSpaces     
+Gharn portrait by HyperGammaSpaces     
+Grieth portrait by HyperGammaSpaces     
+Hades portrait by HyperGammaSpaces     
+Hestia portrait by HyperGammaSpaces     
+Jamil portrait by HyperGammaSpaces     
+Jedah portrait by L95     
+Jerome portrait by HyperGammaSpaces     
+Lawson portrait by HyperGammaSpaces     
+Magnus portrait by HyperGammaSpaces     
+Marla portrait by HyperGammaSpaces     
+Mikhail portrait by HyperGammaSpaces     
+Mueller portrait by HyperGammaSpaces     
+Naberius portrait by HyperGammaSpaces     
+Nuibaba portrait by HyperGammaSpaces     
+Rinea portrait by HyperGammaSpaces     
+Rudolf portrait by HyperGammaSpaces     
+Seazas portrait by HyperGammaSpaces     
+Slayde portrait by HyperGammaSpaces     
+Tatarrah portrait by HyperGammaSpaces     
+Wolff portrait by HyperGammaSpaces     
+Xaizor portrait by HyperGammaSpaces     
+Zakson  portrait by HyperGammaSpaces     
     
 // fe16    
    
