@@ -479,7 +479,7 @@ Distler portrait by Eden
 Dithorba portrait by VampireElf   
 Donovan portrait by SquareRootOfPi, Eden   
 Dryas portrait by Eden   
-Duvall portrait by LittleKyng   
+Dobarl portrait by LittleKyng   
 Dvorak portrait by Eden   
 Eichmann portrait by Eden   
 Eisenhower portrait by Eden   
@@ -505,7 +505,7 @@ Javarro portrait by LittleKyng
 Judah portrait by Eden   
 JuliusBoss portrait by LittleKyng   
 Julius portrait by Melia   
-Juphiel portrait by SterlingGlovner   
+Yupheel portrait by SterlingGlovner   
 Kanatz portrait by Eden   
 Kempf portrait by ObsidianDaddy   
 Kutuzov portrait by Eden   
