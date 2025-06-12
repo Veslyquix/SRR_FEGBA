@@ -436,6 +436,141 @@ Lene portrait by Melia
 Aida portrait by LittleKyng  
 Augury portrait by Eden  
   
+   
+// Fe4/5 bosses   
+
+Aida portrait by LittleKyng   
+Alphand portrait by Eden   
+Alva portrait by SterlingGlovner   
+Andrey portrait by LittleKyng, Eden   
+Annand portrait by SterlingGlovner   
+Arion portrait by Melia   
+Arvis2 portrait by Melia   
+Arvis portrait by LittleKyng   
+August portrait by SterlingGlovner   
+Banba portrait by Melia   
+Bandole portrait by Eden   
+Baran portrait by Eden   
+Barath portrait by ObsidianDaddy   
+Bardac portrait by Eden   
+Batu portrait by Eden   
+Bloom portrait by Melia   
+Boldor portrait by LittleKyng   
+Boyce portrait by SquareRootOfPi   
+Bramsel portrait by SterlingGlovner   
+Breg portrait by Melia   
+Brian portrait by Eden, SterlingGlovner   
+Brook portrait by Eden   
+Bucks portrait by CanDy   
+Byron portrait by LittleKyng   
+Chagall portrait by LittleKyng   
+Cimbaeth portrait by LittleKyng   
+Clement portrait by Melia   
+Codda portrait by Eden   
+Cohen portrait by Eden   
+Coruta portrait by SterlingGlovner, Eden   
+Cullough portrait by Eden   
+Cuvuli portrait by LittleKyng   
+Daccar portrait by LittleKyng   
+Dagon portrait by Eden   
+Danann portrait by Melia   
+Dimaggio portrait by WAve   
+Distler portrait by Eden   
+Dithorba portrait by VampireElf   
+Donovan portrait by SquareRootOfPi, Eden   
+Dryas portrait by Eden   
+Duvall portrait by LittleKyng   
+Dvorak portrait by Eden   
+Eichmann portrait by Eden   
+Eisenhower portrait by Eden   
+Eldigan portrait by LittleKyng   
+Eliu portrait by Melia   
+Elliot portrait by LittleKyng   
+Eva portrait by SterlingGlovner   
+Eve portrait by SterlingGlovner   
+Farden portrait by Eden   
+Felipe portrait by Eden   
+Fetra portrait by Melia   
+Fisher portrait by Eden   
+Fraus portrait by Eden   
+Gerrard portrait by LittleKyng   
+Gomez portrait by Eden   
+Gustaf portrait by Eden   
+Harold portrait by LittleKyng   
+HildaFE4 portrait by Melia   
+Ishtar portrait by Melia   
+Ishtore portrait by Melia   
+Jacobi portrait by SquareRootOfPi, Eden   
+Javarro portrait by LittleKyng   
+Judah portrait by Eden   
+JuliusBoss portrait by LittleKyng   
+Julius portrait by Melia   
+Juphiel portrait by SterlingGlovner   
+Kanatz portrait by Eden   
+Kempf portrait by ObsidianDaddy   
+Kutuzov portrait by Eden   
+Lahna portrait by AeorysKirru   
+Lamia portrait by LittleKyng   
+LargoFE5 portrait by Eden   
+Lewyn2 portrait by Melia   
+Liszt portrait by Eden   
+Liza portrait by LittleKyng   
+Lobos portrait by Eden   
+Lombard portrait by LittleKyng   
+Macbeth portrait by LittleKyng   
+Magorn portrait by SterlingGlovner   
+Maikov portrait by Eden   
+Manfroy portrait by Melia   
+McCloy portrait by Eden   
+Meibel portrait by Melia   
+Meng portrait by Melia   
+Merlock portrait by Eden   
+Moore portrait by Damo   
+Morrigan portrait by LittleKyng   
+MuellerFE5 portrait by Eden   
+Muhammad portrait by LittleKyng   
+Munnir portrait by LittleKyng   
+Musar portrait by WAve, Eden   
+Myos portrait by LittleKyng   
+Nikalaf portrait by Eden   
+Oifey portrait by LittleKyng   
+Oltoph portrait by SaintRubenio   
+Ovo portrait by SquareRootOfPi, Eden   
+Palman portrait by Eden   
+Palmarch portrait by Eden   
+Pamela portrait by VampireElf   
+Papilio portrait by NickT, Eden   
+Paulus portrait by Eden   
+Philip portrait by LittleKyng   
+Pizarl portrait by LittleKyng   
+Raydrik2 portrait by DerTheVaporeon   
+Raydrik portrait by Sterling_Glovner   
+Reinhardt portrait by HyperGammaSpaces, Eden   
+Reptor portrait by Axelloid, Eden   
+Riddale portrait by Garytop, Eden   
+Rinecock portrait by Eden   
+RobertoFE4 portrait by Eden   
+Rodan portrait by SterlingGlovner   
+Rumei portrait by CanDy   
+Sandima portrait by LittleKyng   
+Schmidt portrait by SterlingGlovner   
+Scipio portrait by Eden   
+Seimetol portrait by Eden   
+Shannan portrait by Eden   
+Slayder portrait by Eden   
+Travant2 portrait by Melia   
+Travant portrait by LittleKyng   
+Truman portrait by SterlingGlovner   
+Vaja portrait by SterlingGlovner   
+Veld portrait by SterlingGlovner   
+Voltz portrait by LittleKyng   
+Weissman portrait by SterlingGlovner   
+Wolffe portrait by Eden   
+Zagam portrait by Eden   
+Zaom portrait by Eden   
+Zyle portrait by Eden   
+Zyne portrait by AeorysKirru, LittleKyng, VampireElf, Eden, Vyland   
+    
      
 // fe5    
 Leif portrait by Melia     
