@@ -168,7 +168,6 @@ MugEntry(FacelessMug, FacelessMugData, FacelessMinimugData, FacelessPaletteData,
 MugEntry(GaronMug, GaronMugData, GaronMinimugData, GaronPaletteData,  4, 4, 4, 2)
 MugEntry(HaitakaMug, HaitakaMugData, HaitakaMinimugData, HaitakaPaletteData,  3, 5, 3, 3)
 MugEntry(KilmaMug, KilmaMugData, KilmaMinimugData, KilmaPaletteData,  3, 5, 3, 3)
-MugEntry(MikotoMug, MikotoMugData, MikotoMinimugData, MikotoPaletteData,  2, 6, 2, 4)
 MugEntry(AloisMug, AloisMugData, AloisMinimugData, AloisPaletteData,  2, 5, 2, 3)
 MugEntry(AnnetteMug, AnnetteMugData, AnnetteMinimugData, AnnettePaletteData,  3, 7, 3, 5)
 MugEntry(ArundelMug, ArundelMugData, ArundelMinimugData, ArundelPaletteData,  3, 5, 3, 3)
@@ -245,7 +244,7 @@ MugEntry(AelfricMug, AelfricMugData, AelfricMinimugData, AelfricPaletteData,  3,
 MugEntry(CorneliaMug, CorneliaMugData, CorneliaMinimugData, CorneliaPaletteData,  3, 5, 3, 3)
 MugEntry(FenjaMug, FenjaMugData, FenjaMinimugData, FenjaPaletteData,  3, 5, 3, 3)
 MugEntry(ImmaculateOneMug, ImmaculateOneMugData, ImmaculateOneMinimugData, ImmaculateOnePaletteData,  2, 6, 2, 4)
-MugEntry(KostasMug, KostasMugData, KostasMinimugData, KostasPaletteData,  2, 4, 2, 2)
+MugEntry(Kostas2Mug, Kostas2MugData, Kostas2MinimugData, Kostas2PaletteData,  2, 4, 2, 2)
 MugEntry(PallardoMug, PallardoMugData, PallardoMinimugData, PallardoPaletteData,  3, 5, 3, 3)
 MugEntry(AlcrystMug, AlcrystMugData, AlcrystMinimugData, AlcrystPaletteData,  3, 5, 3, 3)
 MugEntry(AlearFMug, AlearFMugData, AlearFMinimugData, AlearFPaletteData,  3, 5, 3, 3)
@@ -2572,15 +2571,6 @@ KilmaMinimugData:
 #incbin "png/FE14_Bosses/Kilma_GarytopF2E_minimugfe6.dmp"
 
 ALIGN 4
-MikotoMugData:
-#incbin "png/FE14_Bosses/Mikoto_FenrielF2E_portrait_frames_fe6.dmp"
-ALIGN 4
-MikotoPaletteData:
-#incbin "png/FE14_Bosses/Mikoto_FenrielF2E_palette.dmp"
-MikotoMinimugData:
-#incbin "png/FE14_Bosses/Mikoto_FenrielF2E_minimugfe6.dmp"
-
-ALIGN 4
 AloisMugData:
 #incbin "png/FE16/Alois_Emkat_Eden_v2_portrait_frames_fe6.dmp"
 ALIGN 4
@@ -3265,13 +3255,13 @@ ImmaculateOneMinimugData:
 #incbin "png/FE16_Bosses/ImmaculateOne_AugenisF2E_minimugfe6.dmp"
 
 ALIGN 4
-KostasMugData:
-#incbin "png/FE16_Bosses/Kostas_UltraxBladeF2E_portrait_frames_fe6.dmp"
+Kostas2MugData:
+#incbin "png/FE16_Bosses/Kostas2_UltraxBladeF2E_portrait_frames_fe6.dmp"
 ALIGN 4
-KostasPaletteData:
-#incbin "png/FE16_Bosses/Kostas_UltraxBladeF2E_palette.dmp"
-KostasMinimugData:
-#incbin "png/FE16_Bosses/Kostas_UltraxBladeF2E_minimugfe6.dmp"
+Kostas2PaletteData:
+#incbin "png/FE16_Bosses/Kostas2_UltraxBladeF2E_palette.dmp"
+Kostas2MinimugData:
+#incbin "png/FE16_Bosses/Kostas2_UltraxBladeF2E_minimugfe6.dmp"
 
 ALIGN 4
 PallardoMugData:
