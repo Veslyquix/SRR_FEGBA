@@ -1,0 +1,41 @@
+
+// 804AFFC	80547C0	8053FD8	805A740	805999C	GetBanimPalette
+
+// FE7 0x8054024, FE8 4B048
+
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+#endif 
+
+
+PUSH
+
+#ifdef _FE8_ 
+ORG 0x059ACC	//FE8U
+callHackNew(AutoGenLeftOAM_FE8)
+#endif 
+
+#ifdef _FE7_ 
+ORG $540CC 
+callHackNew(AutoGenLeftOAM_FE7) 
+#endif 
+
+#ifdef _FE6_ 
+ORG $4B0EC
+SHORT $E020 // B 0x804B130 
+ORG $4b130 
+callHackNew(AutoGenLeftOAM_FE6) 
+#endif 
+
+
+
+POP
+
+
+#include "AutoGenLeftOAM.lyn.event"
+
+ALIGN 4
+
+
+
+
