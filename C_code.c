@@ -11285,11 +11285,17 @@ int CountOptionAmount(int id)
             break;
         }
     }
+    return i - 1;
+}
+
+int CountDispOptionAmount(int id)
+{
+    int result = CountOptionAmount(id);
     if (id == FromGameOption)
     {
-        return (i >> 1) - 1;
+        return (result >> 1);
     }
-    return i - 1;
+    return result;
 }
 
 #define MENU_X 18
@@ -11770,6 +11776,13 @@ void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
     struct Text * th = gStatScreen.text;
     // const char ** textEntry = SRRText_POIN[i + offset];
     const char * string = GetSRRText(i + offset, proc->Option[i + offset]);
+    // if (i + offset == FromGameOption)
+    // {
+    // if (CountOptionAmount(i + offset) == proc->Option[i + offset])
+    // {
+    // string = GetSRRText(i + offset, proc->Option[i + offset] << 1);
+    // }
+    // }
 
     if (i + offset == SeedOption)
     {
@@ -12603,6 +12616,10 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             if (proc->Option[id] < (CountOptionAmount(id)))
             {
                 proc->Option[id]++;
+                if (proc->Option[id] == CountDispOptionAmount(id))
+                {
+                    proc->Option[id] = CountOptionAmount(id);
+                }
             }
             else
             {
@@ -12618,6 +12635,10 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             if (proc->Option[id] > 0)
             {
                 proc->Option[id]--;
+                if (proc->Option[id] > CountDispOptionAmount(id))
+                {
+                    proc->Option[id] = CountDispOptionAmount(id) - 1;
+                }
             }
             else
             {
@@ -12881,6 +12902,11 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         if (proc->Option[id] < (CountOptionAmount(id)))
         {
             proc->Option[id]++;
+            if (proc->Option[id] ==
+                CountDispOptionAmount(id)) // DispOptionAmount is for the FromGame to skip the bosses options
+            {
+                proc->Option[id] = CountOptionAmount(id);
+            }
         }
         else
         {
@@ -12896,6 +12922,10 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         if (proc->Option[id] > 0)
         {
             proc->Option[id]--;
+            if (proc->Option[id] > CountDispOptionAmount(id))
+            {
+                proc->Option[id] = CountDispOptionAmount(id) - 1;
+            }
         }
         else
         {
