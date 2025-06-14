@@ -3476,7 +3476,7 @@ struct Vec2u
     u16 x, y;
 };
 
-#define UnitListSize 800
+#define UnitListSize 1200
 
 int DoesCharMatchGender(u32 attr, struct TagsStruct tags)
 {
@@ -4575,6 +4575,7 @@ void BuildFilteredCharsList(
     counter->y = b;
 }
 
+u8 SRRBuffer[0x1500];
 RecruitmentProc * InitRandomRecruitmentProc(int procID)
 {
     // if (ShouldRandomizeUsedCharTable())
@@ -4582,9 +4583,17 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     // InitAllGamesRandomRecruitmentProc(procID);
     // return;
     // }
+    u8 * unit = SRRBuffer;
+    u8 * tables = &SRRBuffer[UnitListSize];
 
-    u8 unit[UnitListSize] = { 0 };
-    u8 tables[UnitListSize] = { 0xFF };
+    for (int i = 0; i < UnitListSize; ++i)
+    {
+        unit[i] = 0;
+        tables[i] = 0xFF;
+    }
+
+    // u8 unit[UnitListSize] = { 0 };
+    // u8 tables[UnitListSize] = { 0xFF };
 
     const struct CharacterData * table = GetCharacterData(1);
     int c = 0;
@@ -4619,6 +4628,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     int d_max = d;
     int playerOrder = GetPlayerRecruitmentOrder();
     int enemyOrder = GetEnemyRecruitmentOrder();
+    int order = 0;
     int num;
     u32 rn = 0;
     proc = proc1;
@@ -4688,11 +4698,24 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     c = c_max - 1;
                 }
                 num = HashByte_Simple(rn, c);
-                if (playerOrder == VanillaOrder)
+                switch (GetCharOriginalPool(table, boss, true))
+                {
+
+                    case PlayerPool:
+                    {
+                        order = playerOrder;
+                    }
+                    case EnemyPool:
+                    {
+                        order = enemyOrder;
+                    }
+                    default:
+                }
+                if (order == VanillaOrder)
                 {
                     num = c_max - (c + 1); // vanilla table order
                 }
-                if (playerOrder == ReverseOrder)
+                if (order == ReverseOrder)
                 {
                     num = c; // reverse, so always last in list
                 }
@@ -4704,7 +4727,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         proc5->id[(id & 0x3F) - 1] = tables[num];
                     }
                 }
-                if (playerOrder == RandomOrder)
+                if (order == RandomOrder)
                 {
                     if (id < 0x40)
                     {
@@ -4732,11 +4755,28 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     b = b_max - 1;
                 }
                 num = HashByte_Simple(rn, b) + c_max;
-                if (enemyOrder == VanillaOrder)
+
+                switch (GetCharOriginalPool(table, boss, true))
+                {
+
+                    case PlayerPool:
+                    {
+                        order = playerOrder;
+                        break;
+                    }
+                    case EnemyPool:
+                    {
+                        order = enemyOrder;
+                        break;
+                    }
+                    default:
+                }
+
+                if (order == VanillaOrder)
                 {
                     num = b_max - (b + 1) + c_max; // vanilla table order
                 }
-                if (enemyOrder == ReverseOrder)
+                if (order == ReverseOrder)
                 {
                     num = b + c_max; // reverse, so always last in list
                 }
@@ -4748,7 +4788,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         proc5->id[(id & 0x3F) - 1] = tables[num];
                     }
                 }
-                if (enemyOrder == RandomOrder)
+                if (order == RandomOrder)
                 {
                     if (id < 0x40)
                     {

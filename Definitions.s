@@ -16,6 +16,9 @@
 	.set    \name, \value
 .endm
 
+
+
+
 .if FE6 == true 
 
 .global strlen 
@@ -260,7 +263,7 @@ SET_FUNC WriteAndVerifySramFast, 0x809DE9D
 SET_FUNC RegisterDataMove, 0x8002B05 
 SET_DATA gFrameTmRegisterConfig, 0x2023B34
 SET_DATA gFrameTmRegister, 0x2023B3C 
-
+SET_DATA SRRBuffer, 0x2025B8C	@ normally used by debug printing 
 .endif     
 .if FE7 == true 
 SET_DATA gFrameTmRegisterConfig, 0x2024C94  
@@ -496,9 +499,12 @@ SET_DATA u32MsgString, 0x202A5B4
 SET_FUNC gARM_DecompText, 0x3003940 
 SET_FUNC CallARM_DecompText, 0x8004365 
 SET_FUNC HbPopulate_SSCharacter, 0x80816FD 
+SET_DATA SRRBuffer, 0x2026d30	@ normally used by debug printing 
 
 .endif 
 .if FE8 == true 
+SET_DATA SRRBuffer, 0x2026Ec0	@ size: 0x1f98	- normally used by debug printing
+
 SET_FUNC StartUiSMS, 0x80266f1
 SET_FUNC UnpackUiWindowFrameImg2, 0x804E169
 SET_FUNC ApplyUiWindowFramePal, 0x804E0A9
