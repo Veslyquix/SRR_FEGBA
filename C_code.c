@@ -637,21 +637,50 @@ int GetForcedCharTable(void)
     return GrowthValues->ForcedCharTable;
 }
 
-int GetCharTableID(int portraitID)
+int GetCharOriginalPool(const struct CharacterData * table, int boss, int excludeNoSupports);
+int GetCharTableID(const struct CharacterData * table)
 {
-    // if (!ShouldRandomizeUsedCharTable())
-    // {
-    // return 0;
-    // } // vanilla table only
+    int portraitID = table->portraitId;
     int result = GetForcedCharTable();
+    int isEnemy = GetCharOriginalPool(table, (table->attributes & CA_BOSS), true);
+    int randValue;
+    int noise[4] = { 5, 7, 9, 11 };
+
     if (result < NumberOfCharTables)
     {
+        if (isEnemy)
+        {
+            if (MustEnemyStayBoss())
+            {
+                result += (NumberOfCharTables >> 1); // always use boss table
+                return result;
+            }
+            if (!CanEnemyStayBoss())
+            {
+                return result; // never use boss table
+            }
+        }
+        else
+        {
+            if (MustPlayerBecomeBoss())
+            {
+                result += (NumberOfCharTables >> 1); // always use boss table
+                return result;
+            }
+            if (!CanPlayerBecomeBoss())
+            {
+                return result; // never use boss table
+            }
+        }
+        randValue = HashByte_Global(portraitID, 2, noise, portraitID);
+        if (randValue)
+        {
+            result += (NumberOfCharTables >> 1); // chance of using the boss table
+        }
         return result;
     }
-    int noise[4] = { 5, 7, 9, 11 };
-    result = HashByte_Global(portraitID, NumberOfCharTables, noise, portraitID);
     // randomize
-    return result;
+    return HashByte_Global(portraitID, NumberOfCharTables, noise, portraitID);
 }
 
 int IsCharIdInvalidForGame(int charId)
@@ -3110,7 +3139,7 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
     {
         return GetCharacterData(id);
     }
-    int tableID = GetCharTableID(table->portraitId); // default
+    int tableID = GetCharTableID(table); // default
 
     int procID = id >> 6; // 0, 1, 2, or 3
 
@@ -3208,7 +3237,6 @@ int GetReorderedUnitID(struct Unit * unit)
 }
 int GetReorderedCharacterPortraitByPortrait(int portraitID)
 {
-    // int tableID = GetCharTableID(portraitID);
     int result = GetUnitIdOfPortrait(portraitID);
     if (!result)
     {
@@ -4669,7 +4697,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             continue;
         } // Morphs
 #endif
-        // table = (const struct CharacterData *)NewGetCharacterData(i, GetCharTableID(table->portraitId));
+        // table = (const struct CharacterData *)
         // don't use NewGetCharacterData - just replace vanilla chars now
         boss = table->attributes & (CA_BOSS);
 
@@ -4704,10 +4732,12 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     case PlayerPool:
                     {
                         order = playerOrder;
+                        break;
                     }
                     case EnemyPool:
                     {
                         order = enemyOrder;
+                        break;
                     }
                     default:
                 }
