@@ -1305,13 +1305,13 @@ MaxItems:
 WORD RandomizerRam+8
 MaxClasses:
 WORD RandomizerRam+9
-RecruitValues:
+GrowthValues:
 WORD RandomizerRam+10
 AlwaysSkill:
 WORD RandomizerRam+11
-GrowthValues:
+RecruitValues:
 WORD RandomizerRam+12 
-// WORD RandomizerRam+14 to +15 free 
+// WORD RandomizerRam+15 free 
 TagValues:
 WORD 0x203EC24 
 ClassTags:

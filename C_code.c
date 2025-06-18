@@ -108,9 +108,9 @@ struct RandomizerValues
     u32 skills : 2;   // vanilla, random, fixed, rand + x skill
 };
 
-struct RecruitmentValues
+struct RecruitmentValues // 3 bytes
 {
-    // u8 recruitment : 3; // vanilla, players reordered, bosses, players&bosses reordered, swap, reverse, random
+    // u8 recruitment : 3; // old: vanilla, players reordered, bosses, players&bosses reordered, swap, reverse, random
     u8 pauseNameReplace : 1;
     u8 newClasses : 2;
     u8 ai : 2;
@@ -118,22 +118,22 @@ struct RecruitmentValues
     u8 playerIntoBosses : 2;       // no, yes, some
     u8 enemyRecruitmentOrder : 2;  // vanilla, reverse, random,
     u8 enemyIntoPlayer : 2;        // no, yes, some
+    u8 forcedCharTable : 5;        // 18 bits
+    u8 enemyCharTable : 5;         // 23 bits
+    u8 backgrounds : 1;
 };
 
-struct TimedHitsDifficultyStruct
+struct TimedHitsDifficultyStruct // 1 byte
 {
     u8 difficulty : 5;
     u8 alwaysA : 1;
     u8 off : 1;
     u8 cheats : 1;
 };
-struct GrowthBonusValues
+struct GrowthBonusValues // 1 byte
 {
     u8 player : 4;
     u8 enemy : 4;
-    u8 ForcedCharTable : 5;
-    u8 Backgrounds : 1;
-    u8 pad : 2;
 };
 struct TagsStruct
 {
@@ -312,7 +312,7 @@ void MaybeForceHardModeFE8(void)
 int ShouldReplaceCharacters(void)
 {
     return GetPlayerRecruitmentOrder() || CanPlayerBecomeBoss() || GetEnemyRecruitmentOrder() ||
-        CanEnemyBecomePlayer() || GrowthValues->ForcedCharTable;
+        CanEnemyBecomePlayer() || RecruitValues->forcedCharTable;
 }
 int ShouldRandomizeRecruitmentForUnitID(int id)
 {
@@ -343,7 +343,7 @@ u32 HashByte_Simple(u32 rn, int max)
 };
 int ShouldRandomizeBG(void)
 {
-    return GrowthValues->Backgrounds;
+    return RecruitValues->backgrounds;
 }
 
 extern u8 VanillaSkill[];
@@ -624,7 +624,7 @@ const struct FE8CharacterData
 const int NumberOfCharTables = 24;
 int ShouldRandomizeUsedCharTable(void)
 {
-    int val = GrowthValues->ForcedCharTable;
+    int val = RecruitValues->forcedCharTable;
     if (!val)
     {
         return val;
@@ -634,7 +634,7 @@ int ShouldRandomizeUsedCharTable(void)
 
 int GetForcedCharTable(void)
 {
-    return GrowthValues->ForcedCharTable;
+    return RecruitValues->forcedCharTable;
 }
 
 int GetCharOriginalPool(const struct CharacterData * table, int boss, int excludeNoSupports);
@@ -4478,8 +4478,8 @@ void BuildFilteredCharsList(
         {
             id = i;
             if (!GetPlayerRecruitmentOrder() &&
-                (!GrowthValues->ForcedCharTable)) // non-vanilla tables are sorted by recruitment order already
-            {                                     // vanilla order
+                (!RecruitValues->forcedCharTable)) // non-vanilla tables are sorted by recruitment order already
+            {                                      // vanilla order
                 if (i < 0x45)
                 {
                     id = recruitmentOrder[i];
@@ -4546,7 +4546,7 @@ void BuildFilteredCharsList(
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
             id = i;
-            if (!GetPlayerRecruitmentOrder() && (!GrowthValues->ForcedCharTable))
+            if (!GetPlayerRecruitmentOrder() && (!RecruitValues->forcedCharTable))
             { // vanilla order
                 if (i < 0x45)
                 {
@@ -4703,7 +4703,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
 
         // look at here next time maybe
         // if the char table is >12, then maybe consider us a boss for this part ?
-        // if (GrowthValues->ForcedCharTable >= (NumberOfCharTables >> 1))
+        // if (RecruitValues->forcedCharTable >= (NumberOfCharTables >> 1))
         // {
         // boss = boss ^ CA_BOSS;
         // }
@@ -12176,7 +12176,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
         reloadEnemies = true;
     }
 
-    if (GrowthValues->ForcedCharTable != proc->Option[FromGameOption])
+    if (RecruitValues->forcedCharTable != proc->Option[FromGameOption])
     {
         reloadUnits = true;
     }
@@ -12321,7 +12321,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     RecruitValues->playerIntoBosses = proc->Option[PlayerBossOption];
     RecruitValues->enemyRecruitmentOrder = proc->Option[EnemyRecruitmentOption];
     RecruitValues->enemyIntoPlayer = proc->Option[EnemyPlayerOption];
-    GrowthValues->ForcedCharTable = proc->Option[FromGameOption];
+    RecruitValues->forcedCharTable = proc->Option[FromGameOption];
     RecruitValues->pauseNameReplace = false;
     RandBitflags->base = proc->Option[BaseStatsOption];
     RandBitflags->growth = proc->Option[GrowthsOption];
@@ -12396,7 +12396,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
         }
         default:
     }
-    GrowthValues->Backgrounds = proc->Option[BGOption];
+    RecruitValues->backgrounds = proc->Option[BGOption];
 
     if (DisplayRandomSkillsOption)
     {
@@ -13171,7 +13171,7 @@ void RestoreConfigOptions(ConfigMenuProc * proc)
     proc->Option[EnemyRecruitmentOption] = RecruitValues->enemyRecruitmentOrder;
     proc->Option[PlayerBossOption] = RecruitValues->playerIntoBosses;
     proc->Option[EnemyPlayerOption] = RecruitValues->enemyIntoPlayer;
-    proc->Option[FromGameOption] = GrowthValues->ForcedCharTable;
+    proc->Option[FromGameOption] = RecruitValues->forcedCharTable;
 
     proc->Option[BaseStatsOption] = RandBitflags->base;
     proc->Option[GrowthsOption] = RandBitflags->growth + (RandBitflags->grow50 * 4);
@@ -13225,7 +13225,7 @@ void RestoreConfigOptions(ConfigMenuProc * proc)
         proc->Option[UiOption] = 3;
     }
 
-    proc->Option[BGOption] = GrowthValues->Backgrounds;
+    proc->Option[BGOption] = RecruitValues->backgrounds;
     if (DisplayTimedHitsOption)
     {
         proc->Option[TimedHitsOption] = 0;
