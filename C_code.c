@@ -312,7 +312,7 @@ void MaybeForceHardModeFE8(void)
 int ShouldReplaceCharacters(void)
 {
     return GetPlayerRecruitmentOrder() || CanPlayerBecomeBoss() || GetEnemyRecruitmentOrder() ||
-        CanEnemyBecomePlayer() || RecruitValues->forcedCharTable;
+        CanEnemyBecomePlayer() || RecruitValues->forcedCharTable || RecruitValues->enemyCharTable;
 }
 int ShouldRandomizeRecruitmentForUnitID(int id)
 {
@@ -359,6 +359,7 @@ extern const int EnemyRecruitmentOption;
 extern const int EnemyPlayerOption;
 
 extern const int FromGameOption;
+extern const int EnemyFromGameOption;
 extern const int FilterCharsOption;
 extern const int PreviewCharsOption;
 extern const int BaseStatsOption;
@@ -622,6 +623,7 @@ const struct FE8CharacterData
         };
 
 const int NumberOfCharTables = 24;
+// unused currently
 int ShouldRandomizeUsedCharTable(void)
 {
     int val = RecruitValues->forcedCharTable;
@@ -632,16 +634,24 @@ int ShouldRandomizeUsedCharTable(void)
     return (val < NumberOfCharTables);
 }
 
-int GetForcedCharTable(void)
+#define NoPool 0
+#define PlayersPool 1
+#define BossesPool 2
+#define CombinedPool 3
+int GetCharOriginalPool(const struct CharacterData * table, int boss, int excludeNoSupports);
+int GetForcedCharTable(const struct CharacterData * table)
 {
+    if (GetCharOriginalPool(table, table->attributes & CA_BOSS, true) == BossesPool)
+    {
+        return RecruitValues->enemyCharTable;
+    }
     return RecruitValues->forcedCharTable;
 }
 
-int GetCharOriginalPool(const struct CharacterData * table, int boss, int excludeNoSupports);
 int GetCharTableID(const struct CharacterData * table)
 {
     int portraitID = table->portraitId;
-    int result = GetForcedCharTable();
+    int result = GetForcedCharTable(table);
     int isEnemy = GetCharOriginalPool(table, (table->attributes & CA_BOSS), true);
     int randValue;
     int noise[4] = { 5, 7, 9, 11 };
@@ -3374,11 +3384,6 @@ int GetAdjustedCharacterID(const struct CharacterData * table)
 
 // lyn mode units have no support pointers, so perhaps use that?
 
-#define NoPool 0
-#define PlayersPool 1
-#define BossesPool 2
-#define CombinedPool 3
-
 int IsCharExcludedFromPool(const struct CharacterData * table, int IsEnemy, int excludeNoSupports)
 {
     if (table->number > MAX_CHAR_ID)
@@ -4459,7 +4464,9 @@ void BuildFilteredCharsList(
     }
 
     proc = proc1;
-    int t = GetForcedCharTable();
+    int t = RecruitValues->forcedCharTable;
+    int tEnemy = RecruitValues->enemyCharTable;
+    int curTable = 0;
     int end = t + 1;
     if (t >= NumberOfCharTables)
     {
@@ -4471,6 +4478,8 @@ void BuildFilteredCharsList(
     BuildRecruitmentOrderList(recruitmentOrder, 0);
     int id;
     int tableID = t;
+
+    // need to build a separate list for players and for enemies !!!
 
     for (; t < end; ++t)
     {
@@ -4489,7 +4498,20 @@ void BuildFilteredCharsList(
             {
                 break;
             }
-            table = (const struct CharacterData *)NewGetCharacterData(id, t);
+            if (i < 0x45)
+            { // players use t, enemies use tEnemy
+                curTable = t;
+            }
+            else
+            {
+                curTable = tEnemy;
+                if (tEnemy > NumberOfCharTables)
+                {
+                    curTable = t;
+                }
+            }
+
+            table = (const struct CharacterData *)NewGetCharacterData(id, curTable);
             if (table->portraitId == TerminatorPortrait)
             {
                 break;
@@ -4521,7 +4543,7 @@ void BuildFilteredCharsList(
                     {
                         continue;
                     }
-                    tables[c] = t;
+                    tables[c] = curTable;
                     unit[c] = id;
                     c++;
                     break;
@@ -4557,7 +4579,19 @@ void BuildFilteredCharsList(
             {
                 break;
             }
-            table = (const struct CharacterData *)NewGetCharacterData(id, t);
+            if (i < 0x45)
+            { // players use t, enemies use tEnemy
+                curTable = t;
+            }
+            else
+            {
+                curTable = tEnemy;
+                if (tEnemy > NumberOfCharTables)
+                {
+                    curTable = t;
+                }
+            }
+            table = (const struct CharacterData *)NewGetCharacterData(id, curTable);
             if (table->portraitId == TerminatorPortrait)
             {
                 break;
@@ -4590,7 +4624,7 @@ void BuildFilteredCharsList(
                     {
                         continue;
                     }
-                    tables[c + b] = t;
+                    tables[c + b] = curTable;
                     unit[c + b] = id;
                     b++;
                     break;
@@ -4613,6 +4647,11 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     // }
     u8 * unit = SRRBuffer;
     u8 * tables = &SRRBuffer[UnitListSize];
+
+    // u8 * combinedUnit = SRRBuffer;
+
+    // u8 player[0x100] = { 0 };
+    // u8 enemy[0x100] = { 0 };
 
     for (int i = 0; i < UnitListSize; ++i)
     {
@@ -11361,7 +11400,7 @@ int CountOptionAmount(int id)
 int CountDispOptionAmount(int id)
 {
     int result = CountOptionAmount(id);
-    if (id == FromGameOption)
+    if ((id == FromGameOption) || (id == EnemyFromGameOption))
     {
         return (result >> 1);
     }
@@ -12178,7 +12217,11 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 
     if (RecruitValues->forcedCharTable != proc->Option[FromGameOption])
     {
-        reloadUnits = true;
+        reloadPlayers = true;
+    }
+    if (RecruitValues->enemyCharTable != proc->Option[EnemyFromGameOption])
+    {
+        reloadEnemies = true;
     }
 
     if (RandBitflags->base != proc->Option[BaseStatsOption])
@@ -12322,6 +12365,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     RecruitValues->enemyRecruitmentOrder = proc->Option[EnemyRecruitmentOption];
     RecruitValues->enemyIntoPlayer = proc->Option[EnemyPlayerOption];
     RecruitValues->forcedCharTable = proc->Option[FromGameOption];
+    RecruitValues->enemyCharTable = proc->Option[EnemyFromGameOption];
     RecruitValues->pauseNameReplace = false;
     RandBitflags->base = proc->Option[BaseStatsOption];
     RandBitflags->growth = proc->Option[GrowthsOption];
@@ -12567,7 +12611,8 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     proc->Option[EnemyRecruitmentOption] = VanillaOrder;
     proc->Option[PlayerBossOption] = PlayerPool;
     proc->Option[EnemyPlayerOption] = BossesPool;
-    proc->Option[FromGameOption] = 0; // Fe8 game
+    proc->Option[FromGameOption] = 0;      // vanilla game
+    proc->Option[EnemyFromGameOption] = 0; // vanilla game
     proc->Option[BaseStatsOption] = 1;
     proc->Option[GrowthsOption] = 1;
     proc->Option[LevelupsOption] = 1;
@@ -13172,6 +13217,7 @@ void RestoreConfigOptions(ConfigMenuProc * proc)
     proc->Option[PlayerBossOption] = RecruitValues->playerIntoBosses;
     proc->Option[EnemyPlayerOption] = RecruitValues->enemyIntoPlayer;
     proc->Option[FromGameOption] = RecruitValues->forcedCharTable;
+    proc->Option[EnemyFromGameOption] = RecruitValues->enemyCharTable;
 
     proc->Option[BaseStatsOption] = RandBitflags->base;
     proc->Option[GrowthsOption] = RandBitflags->growth + (RandBitflags->grow50 * 4);

@@ -180,7 +180,10 @@ t22: txt("FE16: Three Houses Bosses");           t23: txt("FE17: Engage Bosses")
 
 ALIGN 4; SRRHeader(FromGameOpt)
 POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 0
+ALIGN 4; SRRHeader(EnemyFromGameOpt)
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 0
 }
+
 
 {
 t0:  txt(" ");  
@@ -513,8 +516,10 @@ SRRDesc(EnemyPlayerOpt,2); txt("Enemy bosses will be\from the pool of players an
 
 
 
-SRRMenu(FromGameOpt);           txt("From Game")
+SRRMenu(FromGameOpt);           txt("Players From")
 SRRDesc(FromGameOpt); txt("Units can be from\specific or random FE games."); 
+SRRMenu(EnemyFromGameOpt);           txt("Enemies From")
+SRRDesc(EnemyFromGameOpt); txt("Units can be from\specific or random FE games."); 
 SRRMenu(FilterCharsOpt);           txt("Filter Units")
 SRRDesc(FilterCharsOpt); txt("Only include characters with\specific weapon types or traits."); 
 SRRMenu(PreviewCharsOpt);           txt("Preview Units")
@@ -640,6 +645,8 @@ WORD EnemyPlayerOpt
 
 FromGameOption:
 WORD FromGameOpt
+EnemyFromGameOption:
+WORD EnemyFromGameOpt
 FilterCharsOption:
 WORD FilterCharsOpt 
 PreviewCharsOption: 
