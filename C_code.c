@@ -638,10 +638,10 @@ int ShouldRandomizeUsedCharTable(void)
 #define PlayersPool 1
 #define BossesPool 2
 #define CombinedPool 3
-int GetCharOriginalPool(const struct CharacterData * table, int boss, int excludeNoSupports);
+int GetCharOriginalPool(const struct CharacterData * table);
 int GetForcedCharTable(const struct CharacterData * table)
 {
-    if (GetCharOriginalPool(table, table->attributes & CA_BOSS, true) == BossesPool)
+    if (GetCharOriginalPool(table) == BossesPool)
     {
         return RecruitValues->enemyCharTable;
     }
@@ -652,7 +652,7 @@ int GetCharTableID(const struct CharacterData * table)
 {
     int portraitID = table->portraitId;
     int result = GetForcedCharTable(table);
-    int isEnemy = GetCharOriginalPool(table, (table->attributes & CA_BOSS), true);
+    int isEnemy = GetCharOriginalPool(table);
     int randValue;
     int noise[4] = { 5, 7, 9, 11 };
 
@@ -3446,10 +3446,10 @@ int IsCharExcludedFromPool(const struct CharacterData * table, int IsEnemy, int 
     return false;
 }
 
-int GetCharOriginalPool(const struct CharacterData * table, int boss, int excludeNoSupports)
+int GetCharOriginalPool(const struct CharacterData * table)
 {
-    int IsEnemy = boss;
-    if (IsCharExcludedFromPool(table, IsEnemy, excludeNoSupports))
+    int IsEnemy = table->attributes & CA_BOSS;
+    if (IsCharExcludedFromPool(table, IsEnemy, true))
     {
         return NoPool;
     }
@@ -3459,10 +3459,10 @@ int GetCharOriginalPool(const struct CharacterData * table, int boss, int exclud
     }
     return PlayerPool;
 }
-int GetCharNewPool(const struct CharacterData * table, int boss, int excludeNoSupports)
+int GetCharNewPool(const struct CharacterData * table)
 {
-    int IsEnemy = boss;
-    if (IsCharExcludedFromPool(table, IsEnemy, excludeNoSupports))
+    int IsEnemy = table->attributes & CA_BOSS;
+    if (IsCharExcludedFromPool(table, IsEnemy, true))
     {
         return NoPool;
     }
@@ -4436,13 +4436,12 @@ int CountRecruitableCharacters(void)
 }
 
 void BuildFilteredCharsList(
-    struct Vec2u * counter, u8 * unit, u8 * tables, RecruitmentProc * proc1, RecruitmentProc * proc2,
+    struct Vec2u * counter, u8 * unit, u8 * tables, int allegiance, RecruitmentProc * proc1, RecruitmentProc * proc2,
     RecruitmentProc * proc3, RecruitmentProc * proc4)
 {
     const struct CharacterData * table = GetCharacterData(1);
 
     RecruitmentProc * proc = proc1;
-    int boss;
     int b = 0;
     int c = 0;
 
@@ -4465,8 +4464,12 @@ void BuildFilteredCharsList(
 
     proc = proc1;
     int t = RecruitValues->forcedCharTable;
-    int tEnemy = RecruitValues->enemyCharTable;
-    int curTable = 0;
+    int order = GetPlayerRecruitmentOrder();
+    if (allegiance == BossesPool)
+    {
+        t = RecruitValues->enemyCharTable;
+        order = GetEnemyRecruitmentOrder();
+    }
     int end = t + 1;
     if (t >= NumberOfCharTables)
     {
@@ -4479,16 +4482,15 @@ void BuildFilteredCharsList(
     int id;
     int tableID = t;
 
-    // need to build a separate list for players and for enemies !!!
+    // pool of players
 
     for (; t < end; ++t)
     {
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
             id = i;
-            if (!GetPlayerRecruitmentOrder() &&
-                (!RecruitValues->forcedCharTable)) // non-vanilla tables are sorted by recruitment order already
-            {                                      // vanilla order
+            if (!order && (!t)) // non-vanilla tables are sorted by recruitment order already
+            {                   // vanilla order
                 if (i < 0x45)
                 {
                     id = recruitmentOrder[i];
@@ -4498,20 +4500,8 @@ void BuildFilteredCharsList(
             {
                 break;
             }
-            if (i < 0x45)
-            { // players use t, enemies use tEnemy
-                curTable = t;
-            }
-            else
-            {
-                curTable = tEnemy;
-                if (tEnemy > NumberOfCharTables)
-                {
-                    curTable = t;
-                }
-            }
 
-            table = (const struct CharacterData *)NewGetCharacterData(id, curTable);
+            table = (const struct CharacterData *)NewGetCharacterData(id, t);
             if (table->portraitId == TerminatorPortrait)
             {
                 break;
@@ -4525,8 +4515,7 @@ void BuildFilteredCharsList(
             } // Morphs
 #endif
 
-            boss = table->attributes & (CA_BOSS);
-            switch (GetCharOriginalPool(table, boss, true))
+            switch (GetCharOriginalPool(table))
             {
                 case NoPool: // eg no portrait
                 {
@@ -4543,7 +4532,7 @@ void BuildFilteredCharsList(
                     {
                         continue;
                     }
-                    tables[c] = curTable;
+                    tables[c] = t;
                     unit[c] = id;
                     c++;
                     break;
@@ -4568,7 +4557,7 @@ void BuildFilteredCharsList(
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
             id = i;
-            if (!GetPlayerRecruitmentOrder() && (!RecruitValues->forcedCharTable))
+            if (!order && !t)
             { // vanilla order
                 if (i < 0x45)
                 {
@@ -4579,19 +4568,7 @@ void BuildFilteredCharsList(
             {
                 break;
             }
-            if (i < 0x45)
-            { // players use t, enemies use tEnemy
-                curTable = t;
-            }
-            else
-            {
-                curTable = tEnemy;
-                if (tEnemy > NumberOfCharTables)
-                {
-                    curTable = t;
-                }
-            }
-            table = (const struct CharacterData *)NewGetCharacterData(id, curTable);
+            table = (const struct CharacterData *)NewGetCharacterData(id, t);
             if (table->portraitId == TerminatorPortrait)
             {
                 break;
@@ -4605,9 +4582,7 @@ void BuildFilteredCharsList(
             } // Morphs
 #endif
 
-            boss = table->attributes & (CA_BOSS);
-
-            switch (GetCharOriginalPool(table, boss, true))
+            switch (GetCharOriginalPool(table))
             {
                 case 0: // eg no portrait
                 {
@@ -4624,7 +4599,7 @@ void BuildFilteredCharsList(
                     {
                         continue;
                     }
-                    tables[c + b] = curTable;
+                    tables[c + b] = t;
                     unit[c + b] = id;
                     b++;
                     break;
@@ -4673,7 +4648,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     RecruitmentProc * proc4 = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3);
     RecruitmentProc * proc5 = Proc_Start(RecruitmentProcCmd5, PROC_TREE_3);
     RecruitmentProc * proc = proc1;
-    int boss;
     proc->id[0] = 0;
 
     struct Vec2u counter_val = { 0, 0 };
@@ -4682,7 +4656,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     counter->x = c;
     counter->y = b;
 
-    BuildFilteredCharsList(counter, unit, tables, proc1, proc2, proc3, proc4);
+    BuildFilteredCharsList(counter, unit, tables, PlayerPool, proc1, proc2, proc3, proc4);
     c = counter->x;
     b = counter->y;
     // table--;
@@ -4693,61 +4667,32 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     int b_max = b;
     int d = c + b;
     int d_max = d;
-    int playerOrder = GetPlayerRecruitmentOrder();
-    int enemyOrder = GetEnemyRecruitmentOrder();
-    int order = 0;
     int num;
     u32 rn = 0;
     proc = proc1;
     int id = 0;
     u8 recruitmentOrder[0x45] = { 0 };
     BuildRecruitmentOrderList(recruitmentOrder, 0);
-    for (int i = 0; i < MAX_CHAR_ID; ++i)
-    {
-        if (i < 0x45)
-        {
-            id = recruitmentOrder[i];
-        }
-        else
-        {
-            id = i + 1;
-        }
 
+    int order = GetPlayerRecruitmentOrder();
+    // players
+    for (int i = 0; i < 0x45; ++i)
+    {
+        id = recruitmentOrder[i];
         if (id < 0x40)
         {
             proc = proc1;
         }
-        if (id >= 0x40)
+        else
         {
             proc = proc2;
         }
-        if (id >= 0x80)
-        {
-            proc = proc3;
-        }
-        if (id >= 0xC0)
-        {
-            proc = proc4;
-        }
         table = GetCharacterData(id);
-#ifdef FE7
-        if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
+        if (GetCharOriginalPool(table) != PlayerPool)
         {
             continue;
-        } // Morphs
-#endif
-        // table = (const struct CharacterData *)
-        // don't use NewGetCharacterData - just replace vanilla chars now
-        boss = table->attributes & (CA_BOSS);
-
-        // look at here next time maybe
-        // if the char table is >12, then maybe consider us a boss for this part ?
-        // if (RecruitValues->forcedCharTable >= (NumberOfCharTables >> 1))
-        // {
-        // boss = boss ^ CA_BOSS;
-        // }
-
-        switch (GetCharNewPool(table, boss, true))
+        }
+        switch (GetCharNewPool(table))
         {
             case NoPool:
             {
@@ -4765,21 +4710,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     c = c_max - 1;
                 }
                 num = HashByte_Simple(rn, c);
-                switch (GetCharOriginalPool(table, boss, true))
-                {
-
-                    case PlayerPool:
-                    {
-                        order = playerOrder;
-                        break;
-                    }
-                    case EnemyPool:
-                    {
-                        order = enemyOrder;
-                        break;
-                    }
-                    default:
-                }
                 if (order == VanillaOrder)
                 {
                     num = c_max - (c + 1); // vanilla table order
@@ -4824,22 +4754,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     b = b_max - 1;
                 }
                 num = HashByte_Simple(rn, b) + c_max;
-
-                switch (GetCharOriginalPool(table, boss, true))
-                {
-
-                    case PlayerPool:
-                    {
-                        order = playerOrder;
-                        break;
-                    }
-                    case EnemyPool:
-                    {
-                        order = enemyOrder;
-                        break;
-                    }
-                    default:
-                }
 
                 if (order == VanillaOrder)
                 {
@@ -4886,54 +4800,31 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                 }
                 num = HashByte_Simple(rn, d);
                 int RandomlyOrdered = true;
-                switch (GetCharOriginalPool(table, boss, true))
+                if (order == VanillaOrder)
                 {
-
-                    case PlayerPool:
-                    {
-                        if (playerOrder == VanillaOrder)
-                        {
-                            if (num & 1)
-                            { // combined pool but vanilla order lol
-                                // so randomly decide for each unit to be either player or boss
-                                num = d_max - (d + 1) + c_max; // boss order
-                            }
-
-                            else
-                            {
-                                num = d_max - (d + 1); // player order
-                            }
-                            RandomlyOrdered = false;
-                        }
-                        if (playerOrder == ReverseOrder)
-                        {
-                            if (num & 1)
-                            {
-                                num = (d_max - d) + c_max; // reverse boss, so always last in list
-                            }
-                            else
-                            {
-                                num = c_max - (d_max - d); // reverse player
-                            }
-                            RandomlyOrdered = false;
-                        }
-                        break;
+                    if (num & 1)
+                    { // combined pool but vanilla order lol
+                        // so randomly decide for each unit to be either player or boss
+                        num = d_max - (d + 1) + c_max; // boss order
                     }
-                    case EnemyPool:
+
+                    else
                     {
-                        if (enemyOrder == VanillaOrder)
-                        {
-                            num = d_max - (d + 1);
-                            RandomlyOrdered = false;
-                        }
-                        if (enemyOrder == ReverseOrder)
-                        {
-                            num = d;
-                            RandomlyOrdered = false;
-                        }
-                        break;
+                        num = d_max - (d + 1); // player order
                     }
-                    default:
+                    RandomlyOrdered = false;
+                }
+                if (order == ReverseOrder)
+                {
+                    if (num & 1)
+                    {
+                        num = (d_max - d) + c_max; // reverse boss, so always last in list
+                    }
+                    else
+                    {
+                        num = c_max - (d_max - d); // reverse player
+                    }
+                    RandomlyOrdered = false;
                 }
 
                 proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
@@ -4960,6 +4851,218 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                 }
                 break;
             }
+            default:
+        }
+    }
+
+    // Now do it for enemies
+    for (int i = 0; i < UnitListSize; ++i)
+    {
+        unit[i] = 0;
+        tables[i] = 0xFF;
+    }
+    order = GetEnemyRecruitmentOrder();
+    counter->x = 0;
+    counter->y = 0;
+    BuildFilteredCharsList(counter, unit, tables, BossesPool, proc1, proc2, proc3, proc4);
+    c = counter->x;
+    b = counter->y;
+    c_max = c; // count of characters to randomize from
+    b_max = b;
+    d = c + b;
+    d_max = d;
+    for (int i = 0; i < MAX_CHAR_ID; ++i)
+    {
+        id = i + 1;
+
+        if (id < 0x40)
+        {
+            proc = proc1;
+        }
+        if (id >= 0x40)
+        {
+            proc = proc2;
+        }
+        if (id >= 0x80)
+        {
+            proc = proc3;
+        }
+        if (id >= 0xC0)
+        {
+            proc = proc4;
+        }
+        table = GetCharacterData(id);
+        if (GetCharOriginalPool(table) != BossesPool)
+        {
+            continue;
+        }
+#ifdef FE7
+        if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
+        {
+            continue;
+        } // Morphs
+#endif
+
+        switch (GetCharNewPool(table))
+        {
+            case NoPool:
+            {
+                continue;
+                break;
+            }
+            case PlayerPool:
+            {
+                // entry you used goes to the end so that you don't use it again
+                //
+                rn = GetNthRN_Simple(id - 1, seed, rn);
+                c--;
+                if (c < 0)
+                {
+                    c = c_max - 1;
+                }
+                num = HashByte_Simple(rn, c);
+                if (order == VanillaOrder)
+                {
+                    num = c_max - (c + 1); // vanilla table order
+                }
+                if (order == ReverseOrder)
+                {
+                    num = c; // reverse, so always last in list
+                }
+                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                if (id < 0x40)
+                {
+                    if (tables[num] != 0xFF)
+                    {
+                        proc5->id[(id & 0x3F) - 1] = tables[num];
+                    }
+                }
+                if (order == RandomOrder)
+                {
+                    if (id < 0x40)
+                    {
+                        if (tables[num] != 0xFF)
+                        {
+                            proc5->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[c];
+                            tables[c] = proc5->id[(id & 0x3F) - 1];
+                        }
+                    }
+                    unit[num] = unit[c]; // move last entry to one we just used
+                    unit[c] = proc->id[(id & 0x3F) - 1];
+                }
+                break;
+            }
+
+            case EnemyPool:
+            {
+                // entry you used goes to the end so that you don't use it again
+                //
+                rn = GetNthRN_Simple(id - 1, seed, rn);
+                b--;
+                if (b < 0)
+                {
+                    b = b_max - 1;
+                }
+                num = HashByte_Simple(rn, b) + c_max;
+
+                if (order == VanillaOrder)
+                {
+                    num = b_max - (b + 1) + c_max; // vanilla table order
+                }
+                if (order == ReverseOrder)
+                {
+                    num = b + c_max; // reverse, so always last in list
+                }
+                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                if (id < 0x40)
+                {
+                    if (tables[num] != 0xFF)
+                    {
+                        proc5->id[(id & 0x3F) - 1] = tables[num];
+                    }
+                }
+                if (order == RandomOrder)
+                {
+                    if (id < 0x40)
+                    {
+                        if (tables[num] != 0xFF)
+                        {
+                            proc5->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[b + c_max];
+                            tables[b + c_max] = proc5->id[(id & 0x3F) - 1];
+                        }
+                    }
+                    unit[num] = unit[b + c_max]; // move last entry to one we just used
+                    unit[b + c_max] = proc->id[(id & 0x3F) - 1];
+                }
+                break;
+            }
+
+            case CombinedPool:
+            {
+                // entry you used goes to the end so that you don't use it again
+                //
+                rn = GetNthRN_Simple(id - 1, seed, rn);
+                d--;
+                if (d < 0)
+                {
+                    d = d_max - 1;
+                }
+                num = HashByte_Simple(rn, d);
+                int RandomlyOrdered = true;
+                if (order == VanillaOrder)
+                {
+                    if (num & 1)
+                    { // combined pool but vanilla order lol
+                        // so randomly decide for each unit to be either player or boss
+                        num = d_max - (d + 1) + c_max; // boss order
+                    }
+
+                    else
+                    {
+                        num = d_max - (d + 1); // player order
+                    }
+                    RandomlyOrdered = false;
+                }
+                if (order == ReverseOrder)
+                {
+                    if (num & 1)
+                    {
+                        num = (d_max - d) + c_max; // reverse boss, so always last in list
+                    }
+                    else
+                    {
+                        num = c_max - (d_max - d); // reverse player
+                    }
+                    RandomlyOrdered = false;
+                }
+
+                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                if (id < 0x40)
+                {
+                    if (tables[num] != 0xFF)
+                    {
+                        proc5->id[(id & 0x3F) - 1] = tables[num];
+                    }
+                }
+                if (RandomlyOrdered)
+                {
+                    if (id < 0x40)
+                    {
+                        if (tables[num] != 0xFF)
+                        {
+                            proc5->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[d];
+                            tables[d] = proc5->id[(id & 0x3F) - 1];
+                        }
+                    }
+                    unit[num] = unit[d]; // move last entry to one we just used
+                    unit[d] = proc->id[(id & 0x3F) - 1];
+                }
+                break;
+            }
+            default:
 
                 // case 2:
                 // {
@@ -4975,8 +5078,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                 // bosses[num] = bosses[b]; // move last entry to one we just used
                 // bosses[b] = proc->id[(id & 0x3F) - 1];
                 // break;
-            // }
-            default:
+                // }
         }
     }
     proc = proc1;
@@ -4997,7 +5099,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             proc = proc4;
         }
         table = GetCharacterData(i); // check for morphs and duplicates in vanilla table
-        boss = table->attributes & (CA_BOSS);
         num = GetAdjustedCharacterID(table);
         if (num != (i + 1))
         {
