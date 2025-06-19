@@ -41,6 +41,20 @@ MESSAGE Graphics end at currentoffset
 #define gCharacterDataFE15 0x86076D0 
 #define gCharacterDataFE16 0x86076D0 
 #define gCharacterDataFE17 0x86076D0 
+
+#define gCharacterDataFE1_Bosses 0x86076D0 
+#define gCharacterDataFE4_Bosses 0x86076D0 
+#define gCharacterDataFE5_Bosses 0x86076D0 
+#define gCharacterDataFE6_Bosses 0x86076D0 
+#define gCharacterDataFE7_Bosses 0x86076D0 
+#define gCharacterDataFE8_Bosses 0x86076D0 
+#define gCharacterDataFE10_Bosses 0x86076D0 
+#define gCharacterDataFE13_Bosses 0x86076D0 
+#define gCharacterDataFE14_Bosses 0x86076D0 
+#define gCharacterDataFE15_Bosses 0x86076D0 
+#define gCharacterDataFE16_Bosses 0x86076D0 
+#define gCharacterDataFE17_Bosses 0x86076D0 
+
     ALIGN 4 
     MaxBGID:
     WORD 0 
@@ -322,6 +336,9 @@ VramDest_DebugFont:
 WORD 0xd800 // in glowy or 0x3000 ? // 0x4800 
 
 PUSH 
+
+ORG $84f62 
+SHORT $46c0 // GetPidStats even if no affinity 
 
 #ifdef USE_CHAR_CONFIRM_PAGE 
 // Kill BWL DeployAmt and SquaresMoved 

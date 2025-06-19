@@ -42,6 +42,7 @@ CALL :BUILDFUNC "TheDeepSea"
 CALL :BUILDFUNC "ShadowDragonFR"
 CALL :BUILDFUNC "BlessedHeart"
 CALL :BUILDFUNC "Holoemblem"
+CALL :BUILDFUNC "HagInWhite"
 
 set "vanilla_rom=%~dp0FE7.gba"
 CALL :BUILDFUNC "ElysiumAblaze"

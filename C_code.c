@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.0.3"
+#define VersionNumber " SRR V2.0.4"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -2680,8 +2680,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 #else
     PutUnitSpriteForClassId(0, 212, 138, 0xC800, classID);
 #endif
-
-    if (keys & (B_BUTTON | A_BUTTON) || !pidStats)
+    if (!pidStats)
     {
         Proc_Goto(proc, PreviewCharLabel);
         EndFaceById(0);
@@ -2693,6 +2692,13 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         pidStats->selected = true;
         // save some change?
         // Proc_Goto(proc, PreviewCharLabel);
+    }
+    if (keys & (B_BUTTON | A_BUTTON))
+    {
+        Proc_Goto(proc, PreviewCharLabel);
+        EndFaceById(0);
+        EndFaceById(1);
+        return;
     }
 
     // int tableID = 0;
@@ -2731,7 +2737,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         }
         if (changed)
         {
-            pidStats->selected = true;
+            // pidStats->selected = true;
             pidStats->forcedClass = 0;
 
             DrawReviseCharPage(proc);
@@ -2752,7 +2758,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 
         if (changed)
         {
-            pidStats->selected = true;
+            // pidStats->selected = true;
             pidStats->forcedClass = 0;
             DrawReviseCharPage(proc);
         }
@@ -4435,17 +4441,15 @@ int CountRecruitableCharacters(void)
     return c;
 }
 
-void BuildFilteredCharsList(
-    struct Vec2u * counter, u8 * unit, u8 * tables, int allegiance, RecruitmentProc * proc1, RecruitmentProc * proc2,
-    RecruitmentProc * proc3, RecruitmentProc * proc4)
+void BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int allegiance)
 {
     const struct CharacterData * table = GetCharacterData(1);
 
-    RecruitmentProc * proc = proc1;
+    // RecruitmentProc * proc = proc1;
     int b = 0;
     int c = 0;
 
-    proc = proc1;
+    // proc = proc1;
     int t = RecruitValues->forcedCharTable;
     int order = GetPlayerRecruitmentOrder();
     if (allegiance == BossesPool)
@@ -4657,7 +4661,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     counter->x = c;
     counter->y = b;
 
-    BuildFilteredCharsList(counter, unit, tables, PlayerPool, proc1, proc2, proc3, proc4);
+    BuildFilteredCharsList(counter, unit, tables, PlayerPool);
     c = counter->x;
     b = counter->y;
     // table--;
@@ -4865,7 +4869,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     order = GetEnemyRecruitmentOrder();
     counter->x = 0;
     counter->y = 0;
-    BuildFilteredCharsList(counter, unit, tables, BossesPool, proc1, proc2, proc3, proc4);
+    BuildFilteredCharsList(counter, unit, tables, BossesPool);
     c = counter->x;
     b = counter->y;
     c_max = c; // count of characters to randomize from

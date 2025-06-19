@@ -47,6 +47,19 @@
 #define gCharacterDataFE16 0x8803D64 
 #define gCharacterDataFE17 0x8803D64 
 
+#define gCharacterDataFE1_Bosses 0x8803D64 
+#define gCharacterDataFE4_Bosses 0x8803D64 
+#define gCharacterDataFE5_Bosses 0x8803D64 
+#define gCharacterDataFE6_Bosses 0x8803D64 
+#define gCharacterDataFE7_Bosses 0x8803D64 
+#define gCharacterDataFE8_Bosses 0x8803D64 
+#define gCharacterDataFE10_Bosses 0x8803D64 
+#define gCharacterDataFE13_Bosses 0x8803D64 
+#define gCharacterDataFE14_Bosses 0x8803D64 
+#define gCharacterDataFE15_Bosses 0x8803D64 
+#define gCharacterDataFE16_Bosses 0x8803D64 
+#define gCharacterDataFE17_Bosses 0x8803D64 
+
 
     ALIGN 4 
     MaxBGID:
@@ -61,7 +74,10 @@
 
 #include "../ASM/EndBattleIfBroken/Installer.event" 
 #include "../ASM/BGOnlyDisplayInConvos/Installer.event" 
+
+#ifdef VeslyBuildfile
 #include "../ASM/ExtendWeaponDescBox/Installer.event" // for monster weapons 
+#endif 
 #ifndef C_SKILLSYS // already included 
     #include "../ASM/Debugger/Installer.event" 
     ALIGN 4 
@@ -443,6 +459,8 @@ jumpToHack_r6(DecideToCallRandomizedShopScreenOrNot)
 ORG $23174 // Make "Play" command act as "Dance" item instead of 0xCD's "Dummy" text 
 BYTE 0xA5 
 
+ORG $a4d12 
+SHORT $46c0 // GetPidStats even if no affinity 
 
 #ifdef USE_CHAR_CONFIRM_PAGE 
 // Kill BWL DeployAmt and SquaresMoved 
