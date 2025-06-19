@@ -4445,23 +4445,6 @@ void BuildFilteredCharsList(
     int b = 0;
     int c = 0;
 
-    for (int i = 1; i <= MAX_CHAR_ID; ++i)
-    {
-        if (i == 0x40)
-        {
-            proc = proc2;
-        }
-        if (i == 0x80)
-        {
-            proc = proc3;
-        }
-        if (i == 0xC0)
-        {
-            proc = proc4;
-        }
-        proc->id[i & 0x3F] = 0x0;
-    }
-
     proc = proc1;
     int t = RecruitValues->forcedCharTable;
     int order = GetPlayerRecruitmentOrder();
@@ -4649,6 +4632,24 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     RecruitmentProc * proc5 = Proc_Start(RecruitmentProcCmd5, PROC_TREE_3);
     RecruitmentProc * proc = proc1;
     proc->id[0] = 0;
+
+    for (int i = 1; i <= MAX_CHAR_ID; ++i)
+    {
+        if (i == 0x40)
+        {
+            proc = proc2;
+        }
+        if (i == 0x80)
+        {
+            proc = proc3;
+        }
+        if (i == 0xC0)
+        {
+            proc = proc4;
+        }
+        proc->id[i & 0x3F] = 0x0;
+    }
+    proc = proc1;
 
     struct Vec2u counter_val = { 0, 0 };
     struct Vec2u * counter = &counter_val;
@@ -5081,6 +5082,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                 // }
         }
     }
+
     proc = proc1;
 
     // now copy stuff over to account for duplicate characters
