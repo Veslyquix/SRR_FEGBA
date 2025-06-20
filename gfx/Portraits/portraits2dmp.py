@@ -285,8 +285,8 @@ def portrait_to_dmp(image_file):
         original_mtime = image_file.stat().st_mtime
         destination_mtime = portrait_dmp.stat().st_mtime
 
-        if original_mtime <= destination_mtime:
-            return True # Skip if not newer
+        #if original_mtime <= destination_mtime:
+            #return True # Skip if not newer
 
     palette_dmp = image_file.with_name(f"{image_file.stem}_palette.dmp")
     frames_dmp = image_file.with_name(f"{image_file.stem}_frames.dmp")
@@ -298,7 +298,15 @@ def portrait_to_dmp(image_file):
 
     # Ensure image is in palette mode (P) with max 16 colors
     if image.mode != "P":
+        print(f"Image {image_file} palette not quantized.")
         image = image.quantize(16)
+##    if image.getcolors(maxcolors=16):
+##        print(f"Image {image_file} palette exceeds 16 colours.")
+##        image = image.quantize(16)
+
+#    image = image.quantize(colors=16, method=Image.none)
+
+    ##src_idx = image.getpixel((0, 0))  # Palette index of top-left pixel
 
     # Try getting the palette
     palette_raw = image.getpalette()
@@ -307,6 +315,23 @@ def portrait_to_dmp(image_file):
     if not palette_raw:
         raise ValueError(f"Image {image_file} has no palette after quantizing.")
 
+    # Swap the colors in palette_raw so that src_idx color is at index 0
+##    if src_idx != 0:
+##        i0, iSrc = 0, src_idx * 3
+##        palette_raw[i0:i0+3], palette_raw[iSrc:iSrc+3] = (
+##            palette_raw[iSrc:iSrc+3],
+##            palette_raw[i0:i0+3],
+##        )
+##        image.putpalette(palette_raw)
+##
+##        # Swap pixel indices in image data
+##        a = np.array(image)
+##        mask0, maskSrc = (a == 0), (a == src_idx)
+##        a[mask0], a[maskSrc] = src_idx, 0
+##        image = Image.fromarray(a, mode="P")
+##        image.putpalette(palette_raw)
+        
+
     # Build the RGB palette list
     palette = [
         (palette_raw[i], palette_raw[i+1], palette_raw[i+2])
@@ -314,10 +339,17 @@ def portrait_to_dmp(image_file):
         if i // 3 < 16
     ]
 
-
-    arr = numpy.array(image.getdata(), dtype='<u1').reshape((112, 128))
+    # maybe if debug mode? 
+    data = image.getdata()
+    if len(set(list(data))) > 16:
+        print(f"Image {image_file} palette exceeds 16 colours.")
+        image = image.quantize(16)
+        data = image.getdata()
+        
+    arr = numpy.array(data, dtype='<u1').reshape((112, 128))
     transparent = arr[0][0]
     if transparent != 0:
+        #print(f"Image {image_file} palette is incorrectly ordered. Defaulting to the top left pixel as the background colour.") 
         palette[0], palette[transparent] = palette[transparent], palette[0]
         arr = arr + (arr == 0) * 20
         arr = arr - (arr == transparent) * transparent
