@@ -86,7 +86,7 @@ set symcombo=%~dp0Tools\sym\SymCombo.exe
 
 echo Copying ROM
 
-copy "%source_rom%" "%target_rom%"
+copy /b "%source_rom%" + "null.bin" "%target_rom%"
 
 echo:
 echo Assembling "%target_rom%"
