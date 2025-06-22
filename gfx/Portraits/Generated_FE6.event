@@ -620,7 +620,7 @@ MugEntry(CuvuliMug, CuvuliMugData, CuvuliMinimugData, CuvuliPaletteData,  2, 5, 
 MugEntry(DaccarMug, DaccarMugData, DaccarMinimugData, DaccarPaletteData,  3, 5, 3, 3)
 MugEntry(DagonMug, DagonMugData, DagonMinimugData, DagonPaletteData,  2, 6, 2, 4)
 MugEntry(DanannMug, DanannMugData, DanannMinimugData, DanannPaletteData,  2, 4, 3, 2)
-MugEntry(DimaggioMug, DimaggioMugData, DimaggioMinimugData, DimaggioPaletteData,  3, 5, 3, 3)
+MugEntry(DiMaggioMug, DiMaggioMugData, DiMaggioMinimugData, DiMaggioPaletteData,  3, 5, 3, 3)
 MugEntry(DistlerMug, DistlerMugData, DistlerMinimugData, DistlerPaletteData,  2, 5, 2, 3)
 MugEntry(DithorbaMug, DithorbaMugData, DithorbaMinimugData, DithorbaPaletteData,  2, 6, 3, 4)
 MugEntry(DonovanMug, DonovanMugData, DonovanMinimugData, DonovanPaletteData,  3, 5, 3, 3)
@@ -6663,13 +6663,13 @@ DanannMinimugData:
 #incbin "png/FE4FE5_Bosses/Danann_Melia_minimugfe6.dmp"
 
 ALIGN 4
-DimaggioMugData:
-#incbin "png/FE4FE5_Bosses/Dimaggio_WAve_portrait_frames_fe6.dmp"
+DiMaggioMugData:
+#incbin "png/FE4FE5_Bosses/DiMaggio_WAve_portrait_frames_fe6.dmp"
 ALIGN 4
-DimaggioPaletteData:
-#incbin "png/FE4FE5_Bosses/Dimaggio_WAve_palette.dmp"
-DimaggioMinimugData:
-#incbin "png/FE4FE5_Bosses/Dimaggio_WAve_minimugfe6.dmp"
+DiMaggioPaletteData:
+#incbin "png/FE4FE5_Bosses/DiMaggio_WAve_palette.dmp"
+DiMaggioMinimugData:
+#incbin "png/FE4FE5_Bosses/DiMaggio_WAve_minimugfe6.dmp"
 
 ALIGN 4
 DistlerMugData:
