@@ -4488,7 +4488,7 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
             {                   // vanilla order
                 if (i < 0x45)
                 {
-                    id = recruitmentOrder[i];
+                    id = recruitmentOrder[i - 1];
                 }
             }
             if (c >= UnitListSize)
@@ -4557,7 +4557,7 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
             { // vanilla order
                 if (i < 0x45)
                 {
-                    id = recruitmentOrder[i];
+                    id = recruitmentOrder[i - 1];
                 }
             }
             if ((c + b) >= UnitListSize)
