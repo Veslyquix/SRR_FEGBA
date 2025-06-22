@@ -301,6 +301,9 @@ NeverChangeItem(0xB6) // Alacalibur has no sfx
  
 NeverChangeFromItem(0x6C) // Vulnerary 
 NeverChangeIntoItem(0xB5) // Stone 
+#ifdef VeslyBuildfile 
+NeverChangeIntoItem(0xA) // Mani Katti (Dummy)  
+#endif 
 NeverChangeClass(0x66) // Demon King 
 
 NeverChangeIntoClass(0xE) // Some manakete

@@ -412,6 +412,24 @@ ORG $22D94; SHORT $DD08
 ORG $21E3E; BYTE 0xC0 0x46 0xC0 0x46 // Merlinus can trade 
 ORG $23D08; BYTE 0xC0 0x46 0xC0 0x46 // Units can trade Merlinus 
 
+ORG $8EF16
+#define SupplyUnitID 0x28 // Merlinus //0x3 Lyn  
+SHORT $6800 $7900 $46c0 $46c0 $46c0 $46c0 $46c0; BYTE SupplyUnitID $28; SHORT $D003 
+// search for unit id instead of "supply" 0x200 bitflag 
+
+// in $2E818 
+ORG $2E838 // when inv full and sending an item 
+SHORT $46C0 $46C0 $46c0 $46c0 $46c0 $46c0 
+SHORT $7918; BYTE SupplyUnitID $28; 
+// search for unit id instead of "supply" 0x200 bitflag 
+ORG $8F076 
+BYTE SupplyUnitID $20;
+ORG $79d9e 
+BYTE SupplyUnitID $20;
+ORG $22d5a 
+BYTE SupplyUnitID $20;
+
+
 ORG $4049A0 // Don't draw "mov" 
 WORD 0 0 0 0
 //BYTE $94 $31 $00 $02 $0E $35 $00 $02 $03 $00 $00 $00 $24 $27 $CC $08
@@ -504,16 +522,6 @@ ORG $B7CF2A; BYTE $7E $1A $64 $12 // rename "Sell" into "Shop"
 // enable trnsfr 
 //ORG $92330; SHORT $46C0 
 // 91354 - [20252cc+0x2B]!!
-ORG $8EF16
-#define SupplyUnitID 0x28 // Merlinus //0x3 Lyn  
-SHORT $6800 $7900 $46c0 $46c0 $46c0 $46c0 $46c0; BYTE SupplyUnitID $28; SHORT $D003 
-// search for unit id instead of "supply" 0x200 bitflag 
-
-// in $2E818 
-ORG $2E838 // when inv full and sending an item 
-SHORT $46C0 $46C0 $46c0 $46c0 $46c0 $46c0 
-SHORT $7918; BYTE SupplyUnitID $28; 
-// search for unit id instead of "supply" 0x200 bitflag 
 
 // Anti-Huffman by Hextator & ported by 7743
 //ORG 0x4364; BYTE $00 $B5 $C2 $0F $00 $2A $02 $D0 $0E $F0 $86 $FC $03 $E0 $02 $4A $12 $68 $BB $F0 $6D $FC $00 $BD $40 $39 $00 $03
