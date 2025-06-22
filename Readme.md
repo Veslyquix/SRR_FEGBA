@@ -733,6 +733,82 @@ Renning portrait by Nickt, Stitch
 Oliver portrait by Nickt, Stitch  
 Nealuchi portrait by Nickt, Stitch  
 Hermina portrait by Melia      
+
+  
+    
+Agony portrait by Nickt       
+Ashnard portrait by Garytop     
+Ashera portrait by Nickt      
+Balmer portrait by Nickt      
+Bertram portrait by Nickt     
+Bryce portrait by Nickt       
+Burton portrait by Nickt      
+Callum portrait by Nickt      
+Catalena portrait by Nickt    
+Dakova portrait by Nickt      
+Danomill portrait by Nickt    
+Dheginsea portrait by Nickt, Stitch    
+Djur portrait by Nickt        
+Emil portrait by Nickt        
+Gashilama portrait by Nickt    
+Griel portrait by Nickt, Stitch  
+Goran portrait by Nickt       
+Gromell portrait by Der, Nickt     
+Hafedd portrait by Nickt      
+Havetti portrait by Nickt     
+Heddwyn portrait by SaintRubenio     
+Homasa portrait by Nickt      
+Hetzel portrait by quotedotlass      
+Ikanau portrait by Nickt      
+Isaiya portrait by Nickt      
+Istvan portrait by Nickt      
+Izuka portrait by Quotedotlass, Eden       
+Jarod portrait by Nickt       
+Kamura portrait by Nickt      
+Kasatai portrait by Nickt     
+Kayachey portrait by Nickt    
+Kezhda portrait by Canigetfrozen, Norikins      
+Kimaarsi portrait by Nickt    
+Kotaff portrait by Nickt      
+Laverton portrait by Nickt    
+Lekain portrait by quotedotlass      
+Levail portrait by Nickt      
+Lombroso portrait by Nickt    
+Ludveck portrait by Nickt     
+Maijin portrait by Nickt      
+Mackoya portrait by Nickt     
+Maraj portrait by Nickt       
+Nedata portrait by Nickt      
+Nickt portrait by Nickt       
+Norris portrait by Nickt      
+Numida portrait by Nickt      
+Pain portrait by Nickt        
+Petrine portrait by Garytop     
+Pugo portrait by Nickt, Cygnus        
+Radmin portrait by Nickt      
+Rikard portrait by Nickt      
+Roark portrait by Nickt       
+Rommit portrait by Nickt      
+Schaeffer portrait by Nickt    
+Seeker portrait by Nickt      
+Septimus portrait by Nickt    
+Sergei portrait by Nickt      
+Shiharam portrait by Nickt    
+Silvano portrait by Nickt     
+Tashoria portrait by Nickt    
+Tomenami portrait by Nickt    
+Valtome portrait by quotedotlass     
+Veyona portrait by Nickt      
+Wystan portrait by Nickt      
+Yeardley portrait by Nickt    
+Yuma portrait by Nickt        
+Zaitan portrait by DainnOfGungnir      
+Zawana portrait by Nickt      
+Zeffren portrait by Nickt     
+  
+  
+
+
    
 // fe13    
    

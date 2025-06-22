@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.0.4"
+#define VersionNumber " SRR V2.0.5"
 #define brk asm("mov r11, r11");
 // 547282
 
