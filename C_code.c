@@ -618,7 +618,7 @@ const struct FE8CharacterData
 #ifdef FE6
             gCharacterDataFE7,         gCharacterDataFE8_Bosses,
 #endif
-            gCharacterDataFE10,        gCharacterDataFE13_Bosses, gCharacterDataFE14,
+            gCharacterDataFE10_Bosses, gCharacterDataFE13_Bosses, gCharacterDataFE14,
             gCharacterDataFE15_Bosses, gCharacterDataFE16,        gCharacterDataFE17,
         };
 
@@ -655,6 +655,10 @@ int GetCharTableID(const struct CharacterData * table)
     int isEnemy = GetCharOriginalPool(table);
     int randValue;
     int noise[4] = { 5, 7, 9, 11 };
+    if (!result)
+    {
+        return result;
+    }
 
     if (result < NumberOfCharTables)
     {
@@ -4441,7 +4445,7 @@ int CountRecruitableCharacters(void)
     return c;
 }
 
-void BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int allegiance)
+int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int allegiance)
 {
     const struct CharacterData * table = GetCharacterData(1);
 
@@ -4456,6 +4460,10 @@ void BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int 
     {
         t = RecruitValues->enemyCharTable;
         order = GetEnemyRecruitmentOrder();
+    }
+    if (!t && !order)
+    {
+        return false;
     }
     int end = t + 1;
     if (t >= NumberOfCharTables)
@@ -4543,6 +4551,7 @@ void BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int 
     {
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
+
             id = i;
             if (!order && !t)
             { // vanilla order
@@ -4555,6 +4564,11 @@ void BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int 
             {
                 break;
             }
+            if (IsCharIdInvalidForGame(id) && t)
+            {
+                continue;
+            }
+
             table = (const struct CharacterData *)NewGetCharacterData(id, t);
             if (table->portraitId == TerminatorPortrait)
             {
@@ -4576,7 +4590,7 @@ void BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int 
                     continue;
                     break;
                 }
-                case 2:
+                case BossesPool:
                 {
                     if ((c + b) >= UnitListSize)
                     {
@@ -4597,6 +4611,7 @@ void BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int 
     }
     counter->x = c;
     counter->y = b;
+    return true;
 }
 
 u8 SRRBuffer[0x1500];
@@ -4661,7 +4676,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     counter->x = c;
     counter->y = b;
 
-    BuildFilteredCharsList(counter, unit, tables, PlayerPool);
+    int replaceChars = BuildFilteredCharsList(counter, unit, tables, PlayerPool);
     c = counter->x;
     b = counter->y;
     // table--;
@@ -4681,182 +4696,185 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
 
     int order = GetPlayerRecruitmentOrder();
     // players
-    for (int i = 0; i < 0x45; ++i)
+    if (replaceChars)
     {
-        id = recruitmentOrder[i];
-        if (id < 0x40)
+        for (int i = 0; i < 0x45; ++i)
         {
-            proc = proc1;
-        }
-        else
-        {
-            proc = proc2;
-        }
-        table = GetCharacterData(id);
-        if (GetCharOriginalPool(table) != PlayerPool)
-        {
-            continue;
-        }
-        switch (GetCharNewPool(table))
-        {
-            case NoPool:
+            id = recruitmentOrder[i];
+            if (id < 0x40)
+            {
+                proc = proc1;
+            }
+            else
+            {
+                proc = proc2;
+            }
+            table = GetCharacterData(id);
+            if (GetCharOriginalPool(table) != PlayerPool)
             {
                 continue;
-                break;
             }
-            case PlayerPool:
+            switch (GetCharNewPool(table))
             {
-                // entry you used goes to the end so that you don't use it again
-                //
-                rn = GetNthRN_Simple(id - 1, seed, rn);
-                c--;
-                if (c < 0)
+                case NoPool:
                 {
-                    c = c_max - 1;
+                    continue;
+                    break;
                 }
-                num = HashByte_Simple(rn, c);
-                if (order == VanillaOrder)
+                case PlayerPool:
                 {
-                    num = c_max - (c + 1); // vanilla table order
-                }
-                if (order == ReverseOrder)
-                {
-                    num = c; // reverse, so always last in list
-                }
-                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                if (id < 0x40)
-                {
-                    if (tables[num] != 0xFF)
+                    // entry you used goes to the end so that you don't use it again
+                    //
+                    rn = GetNthRN_Simple(id - 1, seed, rn);
+                    c--;
+                    if (c < 0)
                     {
-                        proc5->id[(id & 0x3F) - 1] = tables[num];
+                        c = c_max - 1;
                     }
-                }
-                if (order == RandomOrder)
-                {
+                    num = HashByte_Simple(rn, c);
+                    if (order == VanillaOrder)
+                    {
+                        num = c_max - (c + 1); // vanilla table order
+                    }
+                    if (order == ReverseOrder)
+                    {
+                        num = c; // reverse, so always last in list
+                    }
+                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
                     if (id < 0x40)
                     {
                         if (tables[num] != 0xFF)
                         {
                             proc5->id[(id & 0x3F) - 1] = tables[num];
-                            tables[num] = tables[c];
-                            tables[c] = proc5->id[(id & 0x3F) - 1];
                         }
                     }
-                    unit[num] = unit[c]; // move last entry to one we just used
-                    unit[c] = proc->id[(id & 0x3F) - 1];
-                }
-                break;
-            }
-
-            case EnemyPool:
-            {
-                // entry you used goes to the end so that you don't use it again
-                //
-                rn = GetNthRN_Simple(id - 1, seed, rn);
-                b--;
-                if (b < 0)
-                {
-                    b = b_max - 1;
-                }
-                num = HashByte_Simple(rn, b) + c_max;
-
-                if (order == VanillaOrder)
-                {
-                    num = b_max - (b + 1) + c_max; // vanilla table order
-                }
-                if (order == ReverseOrder)
-                {
-                    num = b + c_max; // reverse, so always last in list
-                }
-                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                if (id < 0x40)
-                {
-                    if (tables[num] != 0xFF)
+                    if (order == RandomOrder)
                     {
-                        proc5->id[(id & 0x3F) - 1] = tables[num];
+                        if (id < 0x40)
+                        {
+                            if (tables[num] != 0xFF)
+                            {
+                                proc5->id[(id & 0x3F) - 1] = tables[num];
+                                tables[num] = tables[c];
+                                tables[c] = proc5->id[(id & 0x3F) - 1];
+                            }
+                        }
+                        unit[num] = unit[c]; // move last entry to one we just used
+                        unit[c] = proc->id[(id & 0x3F) - 1];
                     }
+                    break;
                 }
-                if (order == RandomOrder)
+
+                case EnemyPool:
                 {
+                    // entry you used goes to the end so that you don't use it again
+                    //
+                    rn = GetNthRN_Simple(id - 1, seed, rn);
+                    b--;
+                    if (b < 0)
+                    {
+                        b = b_max - 1;
+                    }
+                    num = HashByte_Simple(rn, b) + c_max;
+
+                    if (order == VanillaOrder)
+                    {
+                        num = b_max - (b + 1) + c_max; // vanilla table order
+                    }
+                    if (order == ReverseOrder)
+                    {
+                        num = b + c_max; // reverse, so always last in list
+                    }
+                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
                     if (id < 0x40)
                     {
                         if (tables[num] != 0xFF)
                         {
                             proc5->id[(id & 0x3F) - 1] = tables[num];
-                            tables[num] = tables[b + c_max];
-                            tables[b + c_max] = proc5->id[(id & 0x3F) - 1];
                         }
                     }
-                    unit[num] = unit[b + c_max]; // move last entry to one we just used
-                    unit[b + c_max] = proc->id[(id & 0x3F) - 1];
-                }
-                break;
-            }
-
-            case CombinedPool:
-            {
-                // entry you used goes to the end so that you don't use it again
-                //
-                rn = GetNthRN_Simple(id - 1, seed, rn);
-                d--;
-                if (d < 0)
-                {
-                    d = d_max - 1;
-                }
-                num = HashByte_Simple(rn, d);
-                int RandomlyOrdered = true;
-                if (order == VanillaOrder)
-                {
-                    if (num & 1)
-                    { // combined pool but vanilla order lol
-                        // so randomly decide for each unit to be either player or boss
-                        num = d_max - (d + 1) + c_max; // boss order
-                    }
-
-                    else
+                    if (order == RandomOrder)
                     {
-                        num = d_max - (d + 1); // player order
+                        if (id < 0x40)
+                        {
+                            if (tables[num] != 0xFF)
+                            {
+                                proc5->id[(id & 0x3F) - 1] = tables[num];
+                                tables[num] = tables[b + c_max];
+                                tables[b + c_max] = proc5->id[(id & 0x3F) - 1];
+                            }
+                        }
+                        unit[num] = unit[b + c_max]; // move last entry to one we just used
+                        unit[b + c_max] = proc->id[(id & 0x3F) - 1];
                     }
-                    RandomlyOrdered = false;
-                }
-                if (order == ReverseOrder)
-                {
-                    if (num & 1)
-                    {
-                        num = (d_max - d) + c_max; // reverse boss, so always last in list
-                    }
-                    else
-                    {
-                        num = c_max - (d_max - d); // reverse player
-                    }
-                    RandomlyOrdered = false;
+                    break;
                 }
 
-                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                if (id < 0x40)
+                case CombinedPool:
                 {
-                    if (tables[num] != 0xFF)
+                    // entry you used goes to the end so that you don't use it again
+                    //
+                    rn = GetNthRN_Simple(id - 1, seed, rn);
+                    d--;
+                    if (d < 0)
                     {
-                        proc5->id[(id & 0x3F) - 1] = tables[num];
+                        d = d_max - 1;
                     }
-                }
-                if (RandomlyOrdered)
-                {
+                    num = HashByte_Simple(rn, d);
+                    int RandomlyOrdered = true;
+                    if (order == VanillaOrder)
+                    {
+                        if (num & 1)
+                        { // combined pool but vanilla order lol
+                            // so randomly decide for each unit to be either player or boss
+                            num = d_max - (d + 1) + c_max; // boss order
+                        }
+
+                        else
+                        {
+                            num = d_max - (d + 1); // player order
+                        }
+                        RandomlyOrdered = false;
+                    }
+                    if (order == ReverseOrder)
+                    {
+                        if (num & 1)
+                        {
+                            num = (d_max - d) + c_max; // reverse boss, so always last in list
+                        }
+                        else
+                        {
+                            num = c_max - (d_max - d); // reverse player
+                        }
+                        RandomlyOrdered = false;
+                    }
+
+                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
                     if (id < 0x40)
                     {
                         if (tables[num] != 0xFF)
                         {
                             proc5->id[(id & 0x3F) - 1] = tables[num];
-                            tables[num] = tables[d];
-                            tables[d] = proc5->id[(id & 0x3F) - 1];
                         }
                     }
-                    unit[num] = unit[d]; // move last entry to one we just used
-                    unit[d] = proc->id[(id & 0x3F) - 1];
+                    if (RandomlyOrdered)
+                    {
+                        if (id < 0x40)
+                        {
+                            if (tables[num] != 0xFF)
+                            {
+                                proc5->id[(id & 0x3F) - 1] = tables[num];
+                                tables[num] = tables[d];
+                                tables[d] = proc5->id[(id & 0x3F) - 1];
+                            }
+                        }
+                        unit[num] = unit[d]; // move last entry to one we just used
+                        unit[d] = proc->id[(id & 0x3F) - 1];
+                    }
+                    break;
                 }
-                break;
+                default:
             }
-            default:
         }
     }
 
@@ -4869,224 +4887,226 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     order = GetEnemyRecruitmentOrder();
     counter->x = 0;
     counter->y = 0;
-    BuildFilteredCharsList(counter, unit, tables, BossesPool);
+    replaceChars = BuildFilteredCharsList(counter, unit, tables, BossesPool);
     c = counter->x;
     b = counter->y;
     c_max = c; // count of characters to randomize from
     b_max = b;
     d = c + b;
     d_max = d;
-    for (int i = 0; i < MAX_CHAR_ID; ++i)
+    if (replaceChars)
     {
-        id = i + 1;
+        for (int i = 0; i < MAX_CHAR_ID; ++i)
+        {
+            id = i + 1;
 
-        if (id < 0x40)
-        {
-            proc = proc1;
-        }
-        if (id >= 0x40)
-        {
-            proc = proc2;
-        }
-        if (id >= 0x80)
-        {
-            proc = proc3;
-        }
-        if (id >= 0xC0)
-        {
-            proc = proc4;
-        }
-        table = GetCharacterData(id);
-        if (GetCharOriginalPool(table) != BossesPool)
-        {
-            continue;
-        }
-#ifdef FE7
-        if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
-        {
-            continue;
-        } // Morphs
-#endif
-
-        switch (GetCharNewPool(table))
-        {
-            case NoPool:
+            if (id < 0x40)
+            {
+                proc = proc1;
+            }
+            if (id >= 0x40)
+            {
+                proc = proc2;
+            }
+            if (id >= 0x80)
+            {
+                proc = proc3;
+            }
+            if (id >= 0xC0)
+            {
+                proc = proc4;
+            }
+            table = GetCharacterData(id);
+            if (GetCharOriginalPool(table) != BossesPool)
             {
                 continue;
-                break;
             }
-            case PlayerPool:
+#ifdef FE7
+            if ((table->attributes & CA_MAXLEVEL10) && (!(table->attributes & CA_BOSS)))
             {
-                // entry you used goes to the end so that you don't use it again
-                //
-                rn = GetNthRN_Simple(id - 1, seed, rn);
-                c--;
-                if (c < 0)
+                continue;
+            } // Morphs
+#endif
+
+            switch (GetCharNewPool(table))
+            {
+                case NoPool:
                 {
-                    c = c_max - 1;
+                    continue;
+                    break;
                 }
-                num = HashByte_Simple(rn, c);
-                if (order == VanillaOrder)
+                case PlayerPool:
                 {
-                    num = c_max - (c + 1); // vanilla table order
-                }
-                if (order == ReverseOrder)
-                {
-                    num = c; // reverse, so always last in list
-                }
-                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                if (id < 0x40)
-                {
-                    if (tables[num] != 0xFF)
+                    // entry you used goes to the end so that you don't use it again
+                    //
+                    rn = GetNthRN_Simple(id - 1, seed, rn);
+                    c--;
+                    if (c < 0)
                     {
-                        proc5->id[(id & 0x3F) - 1] = tables[num];
+                        c = c_max - 1;
                     }
-                }
-                if (order == RandomOrder)
-                {
+                    num = HashByte_Simple(rn, c);
+                    if (order == VanillaOrder)
+                    {
+                        num = c_max - (c + 1); // vanilla table order
+                    }
+                    if (order == ReverseOrder)
+                    {
+                        num = c; // reverse, so always last in list
+                    }
+                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
                     if (id < 0x40)
                     {
                         if (tables[num] != 0xFF)
                         {
                             proc5->id[(id & 0x3F) - 1] = tables[num];
-                            tables[num] = tables[c];
-                            tables[c] = proc5->id[(id & 0x3F) - 1];
                         }
                     }
-                    unit[num] = unit[c]; // move last entry to one we just used
-                    unit[c] = proc->id[(id & 0x3F) - 1];
-                }
-                break;
-            }
-
-            case EnemyPool:
-            {
-                // entry you used goes to the end so that you don't use it again
-                //
-                rn = GetNthRN_Simple(id - 1, seed, rn);
-                b--;
-                if (b < 0)
-                {
-                    b = b_max - 1;
-                }
-                num = HashByte_Simple(rn, b) + c_max;
-
-                if (order == VanillaOrder)
-                {
-                    num = b_max - (b + 1) + c_max; // vanilla table order
-                }
-                if (order == ReverseOrder)
-                {
-                    num = b + c_max; // reverse, so always last in list
-                }
-                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                if (id < 0x40)
-                {
-                    if (tables[num] != 0xFF)
+                    if (order == RandomOrder)
                     {
-                        proc5->id[(id & 0x3F) - 1] = tables[num];
+                        if (id < 0x40)
+                        {
+                            if (tables[num] != 0xFF)
+                            {
+                                proc5->id[(id & 0x3F) - 1] = tables[num];
+                                tables[num] = tables[c];
+                                tables[c] = proc5->id[(id & 0x3F) - 1];
+                            }
+                        }
+                        unit[num] = unit[c]; // move last entry to one we just used
+                        unit[c] = proc->id[(id & 0x3F) - 1];
                     }
+                    break;
                 }
-                if (order == RandomOrder)
+
+                case EnemyPool:
                 {
+                    // entry you used goes to the end so that you don't use it again
+                    //
+                    rn = GetNthRN_Simple(id - 1, seed, rn);
+                    b--;
+                    if (b < 0)
+                    {
+                        b = b_max - 1;
+                    }
+                    num = HashByte_Simple(rn, b) + c_max;
+
+                    if (order == VanillaOrder)
+                    {
+                        num = b_max - (b + 1) + c_max; // vanilla table order
+                    }
+                    if (order == ReverseOrder)
+                    {
+                        num = b + c_max; // reverse, so always last in list
+                    }
+                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
                     if (id < 0x40)
                     {
                         if (tables[num] != 0xFF)
                         {
                             proc5->id[(id & 0x3F) - 1] = tables[num];
-                            tables[num] = tables[b + c_max];
-                            tables[b + c_max] = proc5->id[(id & 0x3F) - 1];
                         }
                     }
-                    unit[num] = unit[b + c_max]; // move last entry to one we just used
-                    unit[b + c_max] = proc->id[(id & 0x3F) - 1];
-                }
-                break;
-            }
-
-            case CombinedPool:
-            {
-                // entry you used goes to the end so that you don't use it again
-                //
-                rn = GetNthRN_Simple(id - 1, seed, rn);
-                d--;
-                if (d < 0)
-                {
-                    d = d_max - 1;
-                }
-                num = HashByte_Simple(rn, d);
-                int RandomlyOrdered = true;
-                if (order == VanillaOrder)
-                {
-                    if (num & 1)
-                    { // combined pool but vanilla order lol
-                        // so randomly decide for each unit to be either player or boss
-                        num = d_max - (d + 1) + c_max; // boss order
-                    }
-
-                    else
+                    if (order == RandomOrder)
                     {
-                        num = d_max - (d + 1); // player order
+                        if (id < 0x40)
+                        {
+                            if (tables[num] != 0xFF)
+                            {
+                                proc5->id[(id & 0x3F) - 1] = tables[num];
+                                tables[num] = tables[b + c_max];
+                                tables[b + c_max] = proc5->id[(id & 0x3F) - 1];
+                            }
+                        }
+                        unit[num] = unit[b + c_max]; // move last entry to one we just used
+                        unit[b + c_max] = proc->id[(id & 0x3F) - 1];
                     }
-                    RandomlyOrdered = false;
-                }
-                if (order == ReverseOrder)
-                {
-                    if (num & 1)
-                    {
-                        num = (d_max - d) + c_max; // reverse boss, so always last in list
-                    }
-                    else
-                    {
-                        num = c_max - (d_max - d); // reverse player
-                    }
-                    RandomlyOrdered = false;
+                    break;
                 }
 
-                proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                if (id < 0x40)
+                case CombinedPool:
                 {
-                    if (tables[num] != 0xFF)
+                    // entry you used goes to the end so that you don't use it again
+                    //
+                    rn = GetNthRN_Simple(id - 1, seed, rn);
+                    d--;
+                    if (d < 0)
                     {
-                        proc5->id[(id & 0x3F) - 1] = tables[num];
+                        d = d_max - 1;
                     }
-                }
-                if (RandomlyOrdered)
-                {
+                    num = HashByte_Simple(rn, d);
+                    int RandomlyOrdered = true;
+                    if (order == VanillaOrder)
+                    {
+                        if (num & 1)
+                        { // combined pool but vanilla order lol
+                            // so randomly decide for each unit to be either player or boss
+                            num = d_max - (d + 1) + c_max; // boss order
+                        }
+
+                        else
+                        {
+                            num = d_max - (d + 1); // player order
+                        }
+                        RandomlyOrdered = false;
+                    }
+                    if (order == ReverseOrder)
+                    {
+                        if (num & 1)
+                        {
+                            num = (d_max - d) + c_max; // reverse boss, so always last in list
+                        }
+                        else
+                        {
+                            num = c_max - (d_max - d); // reverse player
+                        }
+                        RandomlyOrdered = false;
+                    }
+
+                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
                     if (id < 0x40)
                     {
                         if (tables[num] != 0xFF)
                         {
                             proc5->id[(id & 0x3F) - 1] = tables[num];
-                            tables[num] = tables[d];
-                            tables[d] = proc5->id[(id & 0x3F) - 1];
                         }
                     }
-                    unit[num] = unit[d]; // move last entry to one we just used
-                    unit[d] = proc->id[(id & 0x3F) - 1];
+                    if (RandomlyOrdered)
+                    {
+                        if (id < 0x40)
+                        {
+                            if (tables[num] != 0xFF)
+                            {
+                                proc5->id[(id & 0x3F) - 1] = tables[num];
+                                tables[num] = tables[d];
+                                tables[d] = proc5->id[(id & 0x3F) - 1];
+                            }
+                        }
+                        unit[num] = unit[d]; // move last entry to one we just used
+                        unit[d] = proc->id[(id & 0x3F) - 1];
+                    }
+                    break;
                 }
-                break;
-            }
-            default:
+                default:
 
-                // case 2:
-                // {
-                // rn = GetNthRN_Simple(id - 1, seed, rn);
-                // b--;
-                // if (b < 0)
-                // {
-                // b = b_max - 1;
-                // }
-                //// if (b < 0) { proc->id[(i&0x3F)-1] = 0xFD; continue; }
-                // num = HashByte_Simple(rn, b);
-                // proc->id[(id & 0x3F) - 1] = bosses[num];
-                // bosses[num] = bosses[b]; // move last entry to one we just used
-                // bosses[b] = proc->id[(id & 0x3F) - 1];
-                // break;
-                // }
+                    // case 2:
+                    // {
+                    // rn = GetNthRN_Simple(id - 1, seed, rn);
+                    // b--;
+                    // if (b < 0)
+                    // {
+                    // b = b_max - 1;
+                    // }
+                    //// if (b < 0) { proc->id[(i&0x3F)-1] = 0xFD; continue; }
+                    // num = HashByte_Simple(rn, b);
+                    // proc->id[(id & 0x3F) - 1] = bosses[num];
+                    // bosses[num] = bosses[b]; // move last entry to one we just used
+                    // bosses[b] = proc->id[(id & 0x3F) - 1];
+                    // break;
+                    // }
+            }
         }
     }
-
     proc = proc1;
 
     // now copy stuff over to account for duplicate characters
@@ -5135,6 +5155,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         }
         //}
     }
+
     // #endif
     switch (procID)
     {

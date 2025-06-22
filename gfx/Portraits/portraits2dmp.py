@@ -285,8 +285,8 @@ def portrait_to_dmp(image_file):
         original_mtime = image_file.stat().st_mtime
         destination_mtime = portrait_dmp.stat().st_mtime
 
-        #if original_mtime <= destination_mtime:
-            #return True # Skip if not newer
+        if original_mtime <= destination_mtime:
+            return True # Skip if not newer
 
     palette_dmp = image_file.with_name(f"{image_file.stem}_palette.dmp")
     frames_dmp = image_file.with_name(f"{image_file.stem}_frames.dmp")
