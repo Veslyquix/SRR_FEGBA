@@ -268,7 +268,8 @@ NeverPreviewChar(0x1B) // Unused enemy char
 #endif 
 ALIGN 4 
 MaxCharPreviewID: 
-WORD 0x22 
+WORD 0x22 // 0x22 tana 
+// 0x2C Hayden 
 
 #ifdef VeslyBuildfile
 NeverUseBGMs(0x47, 0x53)
