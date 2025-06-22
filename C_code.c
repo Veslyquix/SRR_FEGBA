@@ -16030,11 +16030,11 @@ void PidStatsAddExpGained(u8 pid, int expGain)
 }
 int PidStatsGetExpGain(u8 pid)
 {
-    return 0;
+    return 9999;
 }
 int PidStatsGetTotalLevel(void)
 {
-    return 1;
+    return 40;
 }
 
 // 8024a88
@@ -16051,7 +16051,7 @@ void PidStatsSubFavval100(u8 pid)
 }
 int PidStatsGetTotalExpGain(void)
 {
-    return 0;
+    return 9999;
 }
 
 int PidStatsGetFavval(u8 pid)

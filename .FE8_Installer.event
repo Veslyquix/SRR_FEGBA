@@ -496,11 +496,11 @@ SHORT $4770 //PidStatsSubFavval08
 ORG $a48f0
 SHORT $4770 //PidStatsSubFavval100
 ORG $a4978
-SHORT $2001 $4770 //PidStatsGetTotalLevel
+SHORT $20FF $4770 //PidStatsGetTotalLevel
 ORG $a49a4
-SHORT $2001 $4770 //PidStatsGetTotalExpGain
+SHORT $20FF $4770 //PidStatsGetTotalExpGain
 ORG $a49c8
-SHORT $2000 $4770 //PidStatsGetExpGain
+SHORT $20FF $4770 //PidStatsGetExpGain
 ORG $a49fc
 SHORT $2001 $4770 //PidStatsGetFavval
 ORG $a4a34
