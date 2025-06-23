@@ -1087,6 +1087,7 @@ MugEntry(VikaMug, VikaMugData, VikaMinimugData, VikaFramesData, VikaPaletteData,
 MugEntry(VolkeMug, VolkeMugData, VolkeMinimugData, VolkeFramesData, VolkePaletteData,  3, 5, 3, 3)
 MugEntry(VolugMug, VolugMugData, VolugMinimugData, VolugFramesData, VolugPaletteData,  3, 5, 3, 3)
 MugEntry(ZiharkMug, ZiharkMugData, ZiharkMinimugData, ZiharkFramesData, ZiharkPaletteData,  3, 5, 3, 3)
+MugEntry(AsheraMug, AsheraMugData, AsheraMinimugData, AsheraFramesData, AsheraPaletteData,  2, 6, 2, 4)
 MugEntry(AshnardMug, AshnardMugData, AshnardMinimugData, AshnardFramesData, AshnardPaletteData,  2, 4, 2, 2)
 MugEntry(BalmerMug, BalmerMugData, BalmerMinimugData, BalmerFramesData, BalmerPaletteData,  3, 4, 3, 2)
 MugEntry(BertramMug, BertramMugData, BertramMinimugData, BertramFramesData, BertramPaletteData,  3, 5, 3, 3)
@@ -13074,6 +13075,17 @@ ZiharkPaletteData:
 #incbin "png/FE9FE10/Zihark_Version_2_NickT_Stitch_palette.dmp"
 ZiharkMinimugData:
 #incbin "png/FE9FE10/Zihark_Version_2_NickT_Stitch_minimug.dmp"
+
+ALIGN 4
+AsheraMugData:
+#incbin "png/FE9FE10_Bosses/Ashera_Kanna_mug.dmp"
+ALIGN 4
+AsheraFramesData:
+#incbin "png/FE9FE10_Bosses/Ashera_Kanna_frames.dmp"
+AsheraPaletteData:
+#incbin "png/FE9FE10_Bosses/Ashera_Kanna_palette.dmp"
+AsheraMinimugData:
+#incbin "png/FE9FE10_Bosses/Ashera_Kanna_minimug.dmp"
 
 ALIGN 4
 AshnardMugData:

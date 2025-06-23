@@ -3,7 +3,7 @@ from pathlib import Path
 from PIL import Image
 import numpy as np
 
-input_dir = Path("png")
+input_dir = Path("temp")
 
 for image_path in input_dir.rglob("*.png"):
     image = Image.open(image_path).convert("RGB")

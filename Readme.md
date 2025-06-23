@@ -738,7 +738,7 @@ Hermina portrait by Melia
     
 Agony portrait by Nickt       
 Ashnard portrait by Garytop     
-Ashera portrait by Nickt      
+Ashera portrait by Kanna      
 Balmer portrait by Nickt      
 Bertram portrait by Nickt     
 Bryce portrait by Nickt       
