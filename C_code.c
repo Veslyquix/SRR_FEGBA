@@ -12246,6 +12246,7 @@ void ReloadAllUnits(ConfigMenuProc * proc)
         LoadUnit(&uDef);
         unit->state = state;
     }
+    ResetUnitSprites();
 }
 
 // extern void StartBgmExt(int songId, int speed, void * player); //800322C 80038AC
