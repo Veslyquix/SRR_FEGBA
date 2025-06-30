@@ -1192,7 +1192,7 @@ void SetAllCharConfirm(ConfigMenuProc * proc)
         }
 
         pidStats->charTableID = game;
-        pidStats->selected = false;
+        pidStats->selected = true;
         pidStats->newCharID = id;
     }
 }
@@ -11511,6 +11511,7 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(EndCloudsEffect),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
+    PROC_CALL(ClearConfigGfx),      // to init ram..
     PROC_CALL(DrawCharConfirmPage), // to init ram..
     PROC_CALL(CopyBWLForCharDuplicates),
     PROC_CALL(ReloadAllUnits),
@@ -12496,13 +12497,15 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
         proc->reloadEnemies = true;
     }
 
-    if (proc->reloadPlayers)
-    {
-        ClearPlayerBWL();
-    }
     if (proc->reloadPlayers || proc->reloadEnemies)
     {
         *MaxClasses = 0; // recalc this
+    }
+    if (proc->reloadPlayers)
+    {
+        EndAllRecruitmentProcs();
+        ClearPlayerBWL();
+        GetReorderedCharacter(GetCharacterData(1));
     }
 
     RandValues->seed = proc->seed;
