@@ -2128,9 +2128,9 @@ void DrawFilterEnemyClassPage(ConfigMenuProc * proc)
     ClearText(&th[24]);
     ClearText(&th[25]);
     ClearText(&th[26]);
-    Text_DrawString(&th[24], tags[27]); // no early flier etc
-    Text_DrawString(&th[25], tags[27]);
-    Text_DrawString(&th[26], tags[27]);
+    Text_DrawString(&th[24], tags[31]); // no early flier etc
+    Text_DrawString(&th[25], tags[31]);
+    Text_DrawString(&th[26], tags[31]);
 
     c = 0;
     int x = 2;
@@ -9695,6 +9695,28 @@ int GetUnpromotedClass(const struct ClassData * data)
     return fallback; // only reach this if everything else failed
 }
 
+int GetPromotedClass(const struct ClassData * data)
+{
+    int fallback = data->number;
+    if ((data->attributes & CA_PROMOTED))
+    {
+        return data->number;
+    }
+    data = GetClassData(data->promotion);
+    if ((data->attributes & CA_PROMOTED))
+    {
+        return data->number;
+    }
+    // search for class that promotes from starting class
+    int result = SearchForUnpromotedClass(fallback);
+    if (result)
+    {
+        return result;
+    }
+
+    return fallback; // only reach this if everything else failed
+}
+
 extern const u8 earlyPossibleFliers[];
 extern const u8 earlyPossibleHealers[];
 extern const u8 earlyPossibleThieves[];
@@ -10032,9 +10054,13 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         {
             if (((HashByte_Ch(noise[0], 100, noise, 3)) < (ChanceToDemote)) || !mayDemote)
             {
-                // no demotions allowed, or we rolled to not demote, so use original class for randclass instead
-                unit->pClassData = originalClass; // so RandClass will treat us as promoted or not based on that
-                unit->pClassData = GetClassData(RandClass(unit->pClassData->number, noise, unit));
+                int prepromoteClassId = GetPromotedClass(unit->pClassData); // idk if necessary tbh, up to ~15k cycles
+                if (prepromoteClassId)
+                {
+                    // no demotions allowed, or we rolled to not demote, so use original class for randclass instead
+                    unit->pClassData = originalClass; // so RandClass will treat us as promoted or not based on that
+                    unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise, unit));
+                }
             }
         }
 
