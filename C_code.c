@@ -157,8 +157,8 @@ struct TagsStruct
     u8 earlyThief : 1;
     u8 earlyHealer : 1;
     u8 earlyFlier : 1;
-    u8 Bulky : 1;
-    u8 Tanky : 1;
+    u8 mayDemote : 1;
+    u8 mayPromote : 1;
     u8 Powerful : 1;
     u8 Quick : 1;
     u8 Pad3 : 1;
@@ -1985,7 +1985,7 @@ void DrawFilterCharPage(ConfigMenuProc * proc)
         {
             ClearText(&th[i]);
             Text_SetColor(&th[i], c);
-            if ((i >= 24) && (i <= 26))
+            if ((i >= 24) && (i <= 28))
             {
                 continue;
             }
@@ -1996,9 +1996,13 @@ void DrawFilterCharPage(ConfigMenuProc * proc)
     ClearText(&th[24]);
     ClearText(&th[25]);
     ClearText(&th[26]);
-    Text_DrawString(&th[24], tags[27]); // no early flier etc
-    Text_DrawString(&th[25], tags[27]);
-    Text_DrawString(&th[26], tags[27]);
+    ClearText(&th[27]);
+    ClearText(&th[28]);
+    Text_DrawString(&th[24], tags[29]); // no early flier etc
+    Text_DrawString(&th[25], tags[29]);
+    Text_DrawString(&th[26], tags[29]);
+    Text_DrawString(&th[27], tags[29]);
+    Text_DrawString(&th[28], tags[29]);
 
     c = 0;
     int x = 2;
@@ -10014,13 +10018,31 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 #endif
     }
 
-    // make them the same level of promotion half the time when possible
     if (RandomizeRecruitment)
-    { // if we've turned them into a promoted class...
-        if ((!(originalClass->attributes & CA_PROMOTED)) && (unit->pClassData->attributes & CA_PROMOTED))
+    {
+        int mayPromote = EnemyClassTags->tags.mayPromote;
+        int mayDemote = EnemyClassTags->tags.mayDemote;
+        if (IsUnitAlliedOrPlayable(unit))
         {
-            if (((HashByte_Ch(noise[0], 100, noise, 3)) < (ChanceToDemote)))
-            { // 80%, as HashByte never returns the max number
+            mayPromote = ClassTags->tags.mayPromote;
+            mayDemote = ClassTags->tags.mayDemote;
+        }
+        // if new char demotes them
+        if (originalClass->attributes & CA_PROMOTED && (!(unit->pClassData->attributes & CA_PROMOTED)))
+        {
+            if (((HashByte_Ch(noise[0], 100, noise, 3)) < (ChanceToDemote)) || !mayDemote)
+            {
+                // no demotions allowed, or we rolled to not demote, so use original class for randclass instead
+                unit->pClassData = originalClass; // so RandClass will treat us as promoted or not based on that
+                unit->pClassData = GetClassData(RandClass(unit->pClassData->number, noise, unit));
+            }
+        }
+
+        // if new char promotes them
+        else if ((!(originalClass->attributes & CA_PROMOTED)) && (unit->pClassData->attributes & CA_PROMOTED))
+        {
+            if (((HashByte_Ch(noise[0], 100, noise, 3)) < (ChanceToDemote)) || !mayPromote)
+            {                                                                 // no promotions allowed, or
                 int prepromoteClassId = GetUnpromotedClass(unit->pClassData); // idk if necessary tbh, up to ~15k cycles
                 if (prepromoteClassId)
                 {
@@ -10030,11 +10052,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 #endif
 
                         unit->pClassData = originalClass; // so RandClass will treat us as promoted or not based on that
-#ifdef UseRandClass2
-                        unit->pClassData = GetClassData(RandClass2(prepromoteClassId, noise2, unit));
-#else
-                    unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise, unit));
-#endif
+                        unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise, unit));
 
 #ifdef FE6
                     }
@@ -12304,7 +12322,7 @@ void SetDefaultTagValues(void)
 {
 
     TagValues->raw = 0xFFFFDFFF;      // default: no civilians
-    ClassTags->raw = 0xF9FFDFFF;      // default: early thief only
+    ClassTags->raw = 0xF9FF9FFF;      // default: early thief, no civilians or manaketes
     EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
 }
