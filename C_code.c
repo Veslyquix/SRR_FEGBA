@@ -11858,7 +11858,8 @@ int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * re
 }
 
 #ifdef FE8
-#define TextBufferSize 0x555
+// #define TextBufferSize 0x555
+#define TextBufferSize 0x1000
 #else
 #define TextBufferSize 0x1000
 #endif
@@ -11866,15 +11867,15 @@ int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * re
 int DecompText(const char * a, char * b)
 {
     int length = 0;
+    int i = 0;
     if ((int)a & 0x80000000)
     { // anti huffman
         a = (const char *)((int)a & 0x7FFFFFFF);
-        for (int i = 0; i < TextBufferSize; ++i)
+        for (; i < TextBufferSize; ++i)
         {
             b[i] = a[i];
             if (!a[i])
             {
-                length = i;
                 break;
             }
         }
@@ -11894,6 +11895,10 @@ int DecompText(const char * a, char * b)
 #ifdef FE8
 // SetMsgTerminator(b);
 #endif
+    if (!length)
+    {
+        length = i;
+    }
     if (length < 0xFFF)
     {
         b[length] = 0;
