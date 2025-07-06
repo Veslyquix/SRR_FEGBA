@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.0.5"
+#define VersionNumber " SRR V2.0.6"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -311,8 +311,9 @@ void MaybeForceHardModeFE8(void)
 
 int ShouldReplaceCharacters(void)
 {
-    return GetPlayerRecruitmentOrder() || CanPlayerBecomeBoss() || GetEnemyRecruitmentOrder() ||
-        CanEnemyBecomePlayer() || RecruitValues->forcedCharTable || RecruitValues->enemyCharTable;
+    return true;
+    // return GetPlayerRecruitmentOrder() || CanPlayerBecomeBoss() || GetEnemyRecruitmentOrder() ||
+    // CanEnemyBecomePlayer() || RecruitValues->forcedCharTable || RecruitValues->enemyCharTable;
 }
 int ShouldRandomizeRecruitmentForUnitID(int id)
 {
@@ -12790,8 +12791,8 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     // proc->Option[VarianceOption] = 10; // start on 50%
     proc->Option[PlayerRecruitmentOption] = RandomOrder;
     proc->Option[EnemyRecruitmentOption] = VanillaOrder;
-    proc->Option[PlayerBossOption] = PlayerPool;
-    proc->Option[EnemyPlayerOption] = BossesPool;
+    proc->Option[PlayerBossOption] = 0;
+    proc->Option[EnemyPlayerOption] = 0;
     proc->Option[FromGameOption] = 0;      // vanilla game
     proc->Option[EnemyFromGameOption] = 0; // vanilla game
     proc->Option[BaseStatsOption] = 1;
