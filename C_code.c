@@ -323,6 +323,18 @@ int ShouldRandomizeRecruitmentForUnitID(int id)
     }
     return ShouldReplaceCharacters();
 }
+int ShouldChangeWeaponForUnit(struct Unit * unit)
+{
+    if (!unit->pCharacterData->portraitId)
+    {
+        return false;
+    }
+    if (UNIT_FACTION(unit) == FACTION_RED)
+    {
+        return GetEnemyRecruitmentOrder() || CanEnemyBecomePlayer() || RecruitValues->enemyCharTable;
+    }
+    return GetPlayerRecruitmentOrder() || CanPlayerBecomeBoss() || RecruitValues->forcedCharTable;
+}
 
 int ShouldRandomizeRecruitmentForPortraitID(int id)
 {
@@ -6191,7 +6203,7 @@ int ShouldRandomizeClass(struct Unit * unit)
 int IsClassOrRecruitmentRandomized(struct Unit * unit)
 {
     int result = ShouldRandomizeClass(unit);
-    result |= ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number);
+    result |= ShouldChangeWeaponForUnit(unit);
     return result;
 }
 
