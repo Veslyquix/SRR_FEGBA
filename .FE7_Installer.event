@@ -367,6 +367,11 @@ BYTE $11 $80 $00 $00 $49 $46 $08 $70 $2E $E0
 ORG $184dc
 BYTE $10 $B5 $04 $1C $FE $F7 $40 $F9 $00 $28 $04 $D1 $E0 $6A $00 $28 $06 $D0 $01 $20 $04 $E0 $FE $F7 $C3 $FE $02 $21 $08 $40 $40 $08 $10 $BD
 
+ORG $1c4de 
+SHORT $46c0 
+callHackNew(FE6_TilesMovedSafetyCheck)
+
+
 ORG $2cc88
 replaceWithHack(FE7PromoHook)
 

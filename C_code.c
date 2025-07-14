@@ -14859,6 +14859,10 @@ extern int ShopExpansionEnabled;
 extern void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent);
 void MaybeStartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent)
 #else
+void MaybeStartShopScreen(void)
+{
+    return;
+}
 void StartShopScreen(struct Unit * unit, u16 * inventory, u8 shopType, ProcPtr parent)
 #endif
 

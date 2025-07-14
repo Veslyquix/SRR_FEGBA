@@ -1,0 +1,27 @@
+
+
+
+#ifndef ItemAtMaxForgeCountRText  
+#define ItemAtMaxForgeCountRText 0xD53
+#define ItemCannotBeForgedRText 0xD54
+#define NotEnoughGoldToForgeItemRText 0xD55
+#endif 
+
+
+
+
+
+
+#include "../../../DragzAsm/Forging/Forging.event" 
+
+
+PUSH 
+ORG $9EF214
+SET_ACTIVE Eirika 
+ASMC CallForgeMenuASMC|1
+NoFade 
+ENDA 
+POP 
+
+
+

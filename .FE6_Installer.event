@@ -361,6 +361,9 @@ ORG 0x18188
 SHORT $b510 $1c04 $f7fe $fbe4 $2800 $d005 $f7fe $fffc 
 SHORT $2102 $4008 $0840 $e001 $342a $7820 $bc10 $bc02 $4708 
 
+ORG $1b374 
+callHackNew(FE6_TilesMovedSafetyCheck)
+SHORT $46c0 
 
 
 // make some enemies in first ch promoted for testing 

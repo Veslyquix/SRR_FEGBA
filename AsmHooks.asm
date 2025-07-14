@@ -54,6 +54,41 @@ pop {r0}
 bx r0 
 .ltorg 
 
+.global FE6_TilesMovedSafetyCheck 
+.type FE6_TilesMovedSafetyCheck, %function 
+FE6_TilesMovedSafetyCheck: 
+push {lr} 
+ldrb r1, [r1, #0x12] 
+add r1, r2 
+ldr r2, =gActionData @ gActionData 
+ldrb r2, [r2, #0x10] @ tiles moved 
+sub r1, r2 
+cmp r1, #0 
+bge FE6_TilesMovedSafetyCheck_NoFloor
+mov r1, #0 
+FE6_TilesMovedSafetyCheck_NoFloor: 
+pop {r3} 
+bx r3 
+.ltorg 
+
+.global FE8_TilesMovedSafetyCheck 
+.type FE8_TilesMovedSafetyCheck, %function 
+FE8_TilesMovedSafetyCheck: 
+push {lr} 
+mov r1, r0 
+ldr r0, [r5] 
+ldr r2, =gActionData 
+ldrb r2, [r2, #0x10] 
+sub r1, r2 
+cmp r1, #0 
+bge FE8_TilesMovedSafetyCheck_NoFloor
+mov r1, #0 
+FE8_TilesMovedSafetyCheck_NoFloor: 
+pop {r3} 
+bx r3 
+.ltorg 
+
+
 
 
 @ FE8U = 0x0800E7D0
