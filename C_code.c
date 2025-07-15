@@ -257,7 +257,7 @@ void StartHelpBoxString_SRR(ConfigMenuProc * proc, int x, int y, char * string);
 #define SET_TEXT_USED
 // #define STRINGS_IN_ROM // faster if defined, but gotta write all the names in the installer
 
-#define TempTextBufferSize 16
+#define TempTextBufferSize 14
 typedef struct
 {
     /* 00 */ PROC_HEADER;
@@ -1465,11 +1465,7 @@ void PutFaceChibi_Bulk(int fid, u16 * tm, int chr, int pal, s8 isFlipped)
 }
 
 extern int GetStringTextLen(const char * str);
-#ifdef FE6
-u16 * GetStringFromIndexInBufferWithoutReplacing(int index, u16 * buffer);
-#else
 char * GetStringFromIndexInBufferWithoutReplacing(int index, char * buffer);
-#endif
 #ifdef FE6
 int GetStringTextCenteredPos_FE6(int area_length, char const * str)
 {
@@ -1479,12 +1475,8 @@ int GetStringTextCenteredPos_FE6(int area_length, char const * str)
 extern int GetStringTextCenteredPos(int x, const char * str);
 void PutDrawCenteredText(struct Text * text, u16 * dest, int textID, int maxWidth, int col)
 {
-#ifdef FE6
-    u16 buffer[TempTextBufferSize] = { 0 };
-#else
-    char buffer[TempTextBufferSize] = { 0 };
-#endif
-    char * str = (void *)GetStringFromIndexInBufferWithoutReplacing(textID, buffer);
+    char buffer[32];
+    char * str = GetStringFromIndexInBufferWithoutReplacing(textID, buffer);
 #ifdef FE6
 
     int position = GetStringTextCenteredPos_FE6(maxWidth * 8, str);
@@ -11615,13 +11607,8 @@ static const LocationTable SRR_CursorLocationTable[] = {
 
 struct ReplaceTextStruct
 {
-#ifdef FE6
-    const u16 * find;
-    const u16 * replace;
-#else
     const char * find;
     const char * replace;
-#endif
 };
 int CountBWLUnits(void)
 {
@@ -11641,14 +11628,10 @@ int CountBWLUnits(void)
 extern int sActiveMsg;
 int DecompText(const char * a, char * b);
 extern const u8 *** const ggMsgStringTable; // a2a0 is POIN TextTable
-#ifdef FE6
-u16 * GetStringFromIndexInBufferWithoutReplacing(int index, u16 * buffer)
-#else
 char * GetStringFromIndexInBufferWithoutReplacing(int index, char * buffer)
-#endif
 {
     sActiveMsg = index;
-    int size = DecompText((void *)ggMsgStringTable[index], (void *)buffer);
+    int size = DecompText((void *)ggMsgStringTable[index], buffer);
     buffer[size] = 0;
     if (size > 100)
     {
@@ -11743,9 +11726,9 @@ void InitReplaceTextList( // unused
         {
             break;
         }
-        list[i].find = GetStringFromIndexInBufferWithoutReplacing(table->nameTextId, (void *)&buffer[i][0]);
+        list[i].find = GetStringFromIndexInBufferWithoutReplacing(table->nameTextId, &buffer[i][0]);
         list[i].replace = GetStringFromIndexInBufferWithoutReplacing(
-            GetNameTextIdOfRandomizedPortrait(table->portraitId, seed), (void *)&buffer2[i][0]);
+            GetNameTextIdOfRandomizedPortrait(table->portraitId, seed), &buffer2[i][0]);
         table++;
     }
     list[ListSize].find = NULL;
@@ -11757,11 +11740,7 @@ extern u32 u32MsgString[0x400];
 extern void SetMsgTerminator(char * str);
 extern int Arm_DecompText(const char *, char *, u32 addr);
 extern void (*gARM_DecompText)(const char *, char *); // fe8 3004150 fe7 3003940 fe6 3003780
-#ifdef FE6
-void CallARM_DecompText(const u16 * a, u16 * b);
-#else
-void CallARM_DecompText(const char * a, char * b); // 2ba4 // fe7 8004364 fe6 800384C
-#endif
+extern void CallARM_DecompText(const char * a, char * b);
 #define UseHuffmanEncoding 0
 #ifdef FE6
 char * PutStringInBuffer(const char * str, int huffman)
@@ -11781,11 +11760,7 @@ const char * PutStringInBuffer(const char * str, int huffman)
 }
 #endif
 
-#ifdef FE6
-int GetStringLength(const u16 * str)
-#else
 int GetStringLength(const char * str)
-#endif
 {
     for (int i = 0; i < 0x1000; ++i)
     {
@@ -11794,11 +11769,7 @@ int GetStringLength(const char * str)
     }
     return 0;
 }
-#ifdef FE6
-int GetEndOfBuffer(u16 * buffer)
-#else
 int GetEndOfBuffer(char * buffer)
-#endif
 {
     for (int i = 0; i < 0x1000; ++i)
     {
@@ -11809,11 +11780,8 @@ int GetEndOfBuffer(char * buffer)
     }
     return 0;
 }
-#ifdef FE6
-void ShiftDataInBuffer(u16 * buffer, int amount, int offset, int usedBufferLength[])
-#else
+
 void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLength[])
-#endif
 {
     if (amount == 0)
         return;
@@ -11876,18 +11844,10 @@ void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLeng
     usedBufferLength[0] = length + amount;
 }
 */
-#ifdef FE6
-int ReplaceIfMatching(int usedBufferLength[], const u16 * find, const u16 * replace, int c, u16 * b)
-#else
 int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * replace, int c, char * b)
-#endif
 {
     int i;
-#ifdef FE6
-    u16 * buffer = &b[c];
-#else
     char * buffer = &b[c];
-#endif
     for (i = 0; i < 255; ++i)
     {
         if (!find[i])
@@ -11965,7 +11925,7 @@ char * GetStringFromIndex(int index) // so we can set sActiveMsg as the index
     // if (index == sActiveMsg)
     // return sMsgString.buffer1;
     sActiveMsg = index;
-    CallARM_DecompText((void *)ggMsgStringTable[index], (void *)sMsgString);
+    CallARM_DecompText((void *)ggMsgStringTable[index], sMsgString);
 #ifdef FE8
     SetMsgTerminator(sMsgString);
 #endif
@@ -11973,15 +11933,11 @@ char * GetStringFromIndex(int index) // so we can set sActiveMsg as the index
 }
 
 extern u8 TextIDExceptionTable[];
-#ifdef FE6
-void CallARM_DecompText(const u16 * a, u16 * b)
-#else
 void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800384C
-#endif
 {
 
     int length[1] = { 0 };
-    length[0] = DecompText((void *)a, (void *)b);
+    length[0] = DecompText(a, b);
     if (!ShouldReplaceCharacters())
     {
         return;
