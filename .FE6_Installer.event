@@ -91,6 +91,12 @@ WORD True
 #else 
 WORD 0 
 #endif 
+VeslyBuildfile_Link:
+#ifdef VeslyBuildfile 
+WORD 1 
+#else 
+WORD 0 
+#endif 
 ALIGN 4 
 CharConfirmPage:
 WORD USE_CHAR_CONFIRM_PAGE 

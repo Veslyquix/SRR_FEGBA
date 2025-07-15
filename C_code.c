@@ -25,6 +25,7 @@
 extern int maxStat;
 extern int C_SKILLSYS_INSTALL;
 int GetGlobalStatCap(void);
+extern const int VeslyBuildfile_Link;
 // struct ProcCmd ConfigMenuProcCmd[];
 
 #define ConfigMenuLabel 0
@@ -955,6 +956,7 @@ void EndAllRecruitmentProcs(void)
 }
 extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 void ClearPlayerBWL(void);
+
 void ClearConfigGfx(ConfigMenuProc * proc)
 {
     // EndGreenText();
@@ -962,7 +964,8 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     gLCDControlBuffer.dispcnt.bg1_on = true;
     BG_Fill(gBG0TilemapBuffer, 0);
     BG_Fill(gBG1TilemapBuffer, 0);
-    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
+    BG_Fill(gBG2TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT);
 
     ResetTextFont();
     SetTextFontGlyphs(0);
@@ -970,10 +973,10 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     InitSystemTextFont();
     LoadObjUIGfx();
     UnpackUiVArrowGfx(0x240, 3);
-    RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
+
     ResetText();  // need this
     ResetFaces(); // without this, it was duplicating the face on both sides
-    EndAllRecruitmentProcs();
+
     if (!proc->calledFromChapter)
     {
         ClearPlayerBWL();
@@ -982,6 +985,12 @@ void ClearConfigGfx(ConfigMenuProc * proc)
 #ifndef FE6
     Proc_EndEach(gProcScr_HelpPromptSpr);
 #endif
+}
+
+void ClearConfigGfxAndRecruitmentProcs(ConfigMenuProc * proc)
+{
+    EndAllRecruitmentProcs();
+    ClearConfigGfx(proc);
 }
 
 #define A_BUTTON 0x0001
@@ -1588,6 +1597,7 @@ void PutBlendWindowUnitSprite(int layer, int x, int y, u16 oam2, struct Unit * u
 
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
+    RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
     // GetReorderedCharacter(GetCharacterData(1));
     int charID = GetReviseCharID(proc);
     ResetText();
@@ -3259,7 +3269,8 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
 const struct CharacterData * GetReorderedCharacter(const struct CharacterData * table)
 {
     struct PidStatsChar * pidStats = GetPidStatsSafe(table->number);
-    return GetReorderedCharacterByPIDStats(table, pidStats);
+    const struct CharacterData * result = GetReorderedCharacterByPIDStats(table, pidStats);
+    return result;
 }
 
 // each vanilla portrait is assigned to a new portrait from any char table
@@ -4374,10 +4385,18 @@ const u8 FE8_RecruitmentOrder[] = {
 
 };
 
+const u8 RomHackOrder[] = { 1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11, 12, 13, 14, 15, 16, 17, 18,
+                            19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,
+                            37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54,
+                            55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 0,  0 };
+
 const u8 * GetRecruitmentTable(int t)
 {
     const u8 * table = FE8_RecruitmentOrder;
-
+    if (!VeslyBuildfile_Link)
+    {
+        return RomHackOrder;
+    }
     switch (t)
     {
         case 0:
@@ -5810,9 +5829,10 @@ void AdjustNonSkinColours(
     }
 }
 
-extern struct ProcCmd const ProcScr_PrepUnitScreen[]; // 0x8A18E8C bgp 2 8CC4854 fe6 8678E38
-extern struct ProcCmd const ProcScr_PrepItemScreen[]; // 0x8A189A4  bgp 3 8CC4448
-extern struct ProcCmd const gProcScr_SupportScreen[]; // 0x8A1975C  bgp 2
+extern struct ProcCmd const ProcScr_PrepUnitScreen[];  // 0x8A18E8C bgp 2 8CC4854 fe6 8678E38
+extern struct ProcCmd const ProcScr_PrepItemScreen[];  // 0x8A189A4  bgp 3 8CC4448
+extern struct ProcCmd const gProcScr_SupportScreen[];  // 0x8A1975C  bgp 2
+extern struct ProcCmd const gProcScr_FortuneSubMenu[]; // fe8 0x8A1962c - Support, not fortune...
 struct PrepItemScreenProc
 {
     /* 00 */ PROC_HEADER;
@@ -6799,6 +6819,13 @@ s16 HashWeight(int number, int noise[])
 inline int IsUIDAlliedOrPlayable(int uid)
 {
     int result = false;
+    if (!VeslyBuildfile_Link)
+    {
+        if (uid <= 0x45)
+        {
+            return true;
+        }
+    }
 #ifdef FE6
     if (uid < 0x45)
     {
@@ -6823,10 +6850,10 @@ inline int IsUIDAlliedOrPlayable(int uid)
 inline int IsUnitAlliedOrPlayable(struct Unit * unit)
 {
     int uid = unit->pCharacterData->number;
-    if (UNIT_FACTION(unit) == FACTION_RED)
-    {
-        return false;
-    }
+    // if (UNIT_FACTION(unit) == FACTION_RED) // recruitable enemies
+    // {
+    // return false;
+    // }
 
     return IsUIDAlliedOrPlayable(uid);
 }
@@ -11496,7 +11523,7 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
     PROC_YIELD,
-    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(ClearConfigGfxAndRecruitmentProcs),
     PROC_CALL(StartFastFadeFromBlack),
     PROC_REPEAT(WaitForFade),
     PROC_CALL(DrawCharConfirmPage),
@@ -11550,8 +11577,8 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(EndCloudsEffect),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
-    PROC_CALL(ClearConfigGfx),      // to init ram..
-    PROC_CALL(DrawCharConfirmPage), // to init ram..
+    PROC_CALL(ClearConfigGfxAndRecruitmentProcs), // to init ram..
+    PROC_CALL(DrawCharConfirmPage),               // to init ram..
     PROC_CALL(CopyBWLForCharDuplicates),
     PROC_CALL(ReloadAllUnits),
     PROC_CALL(RestoreBackgrounds),
@@ -11680,11 +11707,47 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
     u32 value;
     u32 value2;
     table--;
-    for (int i = 0; i < MAX_CHAR_ID; ++i)
+    int end = MAX_CHAR_ID;
+#ifdef FE6
+    if (Proc_Find(ProcScr_PrepUnitScreen))
+    {
+        end = 0x45;
+    }
+#endif
+#ifdef FE7
+    if (Proc_Find(ProcScr_PrepUnitScreen) || Proc_Find(ProcScr_PrepItemScreen))
+    {
+        end = 0x45;
+    }
+#endif
+#ifdef FE8
+    if (Proc_Find(ProcScr_PrepUnitScreen) || Proc_Find(ProcScr_PrepItemScreen) || Proc_Find(gProcScr_FortuneSubMenu))
+    {
+        end = 0x45;
+    }
+#endif
+
+    // brk; // test case for speed / lag / frames
+    // for (int i = 0; i < end; ++i)
+    // {
+    // table++;
+    // table2 = GetReorderedCharacter(table);
+    // }
+    // brk;
+    // table = GetCharacterData(1);
+    // table--;
+
+    for (int i = 0; i < end; ++i)
     {
         // remove the 0x8------- from anti-huffman uncompressed text pointer
         table++;
+        if (!table->portraitId)
+        {
+            continue;
+        }
+
         table2 = GetReorderedCharacter(table);
+
         if (table->nameTextId == table2->nameTextId)
         {
             continue;
@@ -11693,8 +11756,8 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
         {
             break;
         }
-        value = (int)ggMsgStringTable[table->nameTextId];
-        value2 = (int)ggMsgStringTable[table2->nameTextId];
+        value = (u32)ggMsgStringTable[table->nameTextId];
+        value2 = (u32)ggMsgStringTable[table2->nameTextId];
         // if (((value >> 31) || (value2 >> 31))) { continue; } // text must not be huffman compressed
         if (!(value2 >> 31))
         {
@@ -11705,9 +11768,7 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
         c++;
     }
 
-    // c++;
     list[c].find = NULL;
-    // list[ListSize].replace = NULL;
 }
 
 // would need to be buffered: it's too slow
@@ -12045,7 +12106,6 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
     {
         return;
     }
-    brk;
     struct ReplaceTextStruct ReplaceTextList[ListSize + 1]; // +1 for terminator
 #ifdef SET_TEXT_USED
     InitReplaceTextListAntiHuffman(ReplaceTextList);
@@ -12067,14 +12127,12 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
     {
         if (!b[i])
         {
-            brk;
             return;
         }
         for (int c = 0; c < ListSize; ++c)
         {
             if (!b[i])
             {
-                brk;
                 return;
             }
             if (!ReplaceTextList[c].find)
@@ -13693,7 +13751,7 @@ ConfigMenuProc * StartConfigMenu(ProcPtr parent)
         proc->previewId = 0;
         proc->reviseMenuId = 0;
         proc->globalChecksum = 0;
-        proc->id = 1;
+        proc->id = 3;
         proc->calledFromChapter = false;
         proc->offset = 0;
         proc->redraw = 0;
@@ -16198,6 +16256,7 @@ void EndCloudsEffect(void)
     gLCDControlBuffer.dispcnt.bg2_on = 0;
     gLCDControlBuffer.dispcnt.bg3_on = 0;
     CloudsFx_OnEnd();
+    RegisterBlankTile(0);
 }
 
 #ifndef FE8
