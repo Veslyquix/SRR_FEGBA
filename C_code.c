@@ -11781,6 +11781,67 @@ int GetEndOfBuffer(char * buffer)
     return 0;
 }
 
+// #define USE_MEMMOVE
+
+#ifdef USE_MEMMOVE
+
+#include <string.h>
+
+#include <string.h>
+
+void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLength[])
+{
+    if (amount == 0)
+        return;
+
+    int length = usedBufferLength[0];
+
+    // Sanity check
+    if (offset < 0 || offset > length)
+        return;
+
+    if (amount < 0)
+    {
+        // Shifting left
+        int absAmount = -amount;
+
+        if (offset + absAmount > length)
+            return; // would read beyond valid data
+
+        int bytesToMove = length - (offset + absAmount);
+
+        memmove(&buffer[offset], &buffer[offset + absAmount], bytesToMove);
+
+        // Zero trailing garbage
+        // for (int i = length - absAmount; i < length; ++i)
+        // buffer[i] = 0;
+
+        usedBufferLength[0] -= absAmount;
+    }
+    else
+    {
+        // Shifting right
+        if (length + amount >= 0x1000)
+            return; // prevent overflow
+
+        int bytesToMove = length - offset;
+
+        // Perform move
+        memmove(&buffer[offset + amount], &buffer[offset], bytesToMove);
+
+        // Zero the gap where old data was shifted from
+        // for (int i = offset; i < offset + amount; ++i)
+        // buffer[i] = 0;
+
+        usedBufferLength[0] += amount;
+    }
+
+    // Optional: ensure null termination (for safety with strings)
+    buffer[usedBufferLength[0]] = 0;
+}
+
+#else
+
 void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLength[])
 {
     if (amount == 0)
@@ -11814,6 +11875,9 @@ void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLeng
         usedBufferLength[0] += amount;
     }
 }
+
+#endif
+
 /*
 void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLength[])
 {
@@ -11848,16 +11912,21 @@ int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * re
 {
     int i;
     char * buffer = &b[c];
-    for (i = 0; i < 255; ++i)
+    // for (i = 0; i < 255; ++i)
+    // {
+    // if (!find[i])
+    // {
+    // break;
+    // }
+    // if (buffer[i] != find[i])
+    // {
+    // return false;
+    // }
+    // }
+    for (i = 0; find[i]; ++i) // while find[i] is non-zero (eg. a character), compare
     {
-        if (!find[i])
-        {
-            break;
-        }
         if (buffer[i] != find[i])
-        {
-            return false;
-        }
+            return 0; // mismatch
     }
 
     int len2 = GetStringLength(replace);
@@ -11867,7 +11936,7 @@ int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * re
     {
         buffer[i] = replace[i];
     }
-    return true;
+    return len2;
 }
 
 #ifdef FE8
@@ -11950,6 +12019,7 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
     {
         return;
     }
+    brk;
     struct ReplaceTextStruct ReplaceTextList[ListSize + 1]; // +1 for terminator
 #ifdef SET_TEXT_USED
     InitReplaceTextListAntiHuffman(ReplaceTextList);
@@ -11965,6 +12035,7 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
     // InitReplaceTextList(ReplaceTextList, textBuffer, textBuffer2);
     // #endif
     // #endif
+    int replacedLen = 0;
 
     for (int i = 0; i < TextBufferSize; ++i)
     {
@@ -11983,12 +12054,15 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
                 break;
             }
 
-            if (ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b))
+            replacedLen = ReplaceIfMatching(length, ReplaceTextList[c].find, ReplaceTextList[c].replace, i, b);
+            if (replacedLen)
             {
+                i += replacedLen - 1;
                 break;
             };
         }
     }
+    brk;
 }
 
 #ifdef FE8
