@@ -11781,14 +11781,20 @@ int GetEndOfBuffer(char * buffer)
     return 0;
 }
 
-// #define USE_MEMMOVE
+#ifdef FE8
+// #define TextBufferSize 0x555
+#define TextBufferSize 0x1000
+#else
+#define TextBufferSize 0x1000
+#endif
+
+#define USE_MEMMOVE
 
 #ifdef USE_MEMMOVE
 
 #include <string.h>
 
-#include <string.h>
-
+// #define TextBufferSize 0x1000
 void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLength[])
 {
     if (amount == 0)
@@ -11802,47 +11808,105 @@ void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLeng
 
     if (amount < 0)
     {
-        // Shifting left
+        // Left shift
         int absAmount = -amount;
 
         if (offset + absAmount > length)
-            return; // would read beyond valid data
+            return; // Prevent invalid read
 
         int bytesToMove = length - (offset + absAmount);
 
-        memmove(&buffer[offset], &buffer[offset + absAmount], bytesToMove);
+        // Manual safe copy: shift left
+        for (int i = 0; i < bytesToMove; ++i)
+        {
+            buffer[offset + i] = buffer[offset + absAmount + i];
+        }
 
-        // Zero trailing garbage
-        // for (int i = length - absAmount; i < length; ++i)
-        // buffer[i] = 0;
+        // Zero the trailing garbage
+        for (int i = length - absAmount; i < length; ++i)
+        {
+            buffer[i] = 0;
+        }
 
         usedBufferLength[0] -= absAmount;
     }
     else
     {
-        // Shifting right
+        // Right shift
         if (length + amount >= 0x1000)
-            return; // prevent overflow
+            return;
 
         int bytesToMove = length - offset;
 
-        // Perform move
-        memmove(&buffer[offset + amount], &buffer[offset], bytesToMove);
+        // Manual safe copy: shift right (back to front to avoid overwrite)
+        for (int i = bytesToMove; i >= 0; --i)
+        {
+            buffer[offset + amount + i] = buffer[offset + i];
+        }
 
-        // Zero the gap where old data was shifted from
-        // for (int i = offset; i < offset + amount; ++i)
-        // buffer[i] = 0;
+        // Zero the gap we created
+        for (int i = offset; i < offset + amount; ++i)
+        {
+            buffer[i] = 0;
+        }
 
         usedBufferLength[0] += amount;
     }
 
-    // Optional: ensure null termination (for safety with strings)
+    // Optional: null-terminate buffer (if treated as a C string)
     buffer[usedBufferLength[0]] = 0;
 }
 
-#else
+void ShiftDataInBufferSmall(char * buffer, int amount, int offset, int usedBufferLength[])
+{
+    if (amount == 0)
+        return;
 
-void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLength[])
+    int length = usedBufferLength[0];
+
+    if (amount < 0)
+    {
+        int absAmount = -amount;
+
+        if (offset + absAmount > length)
+            return;
+
+        int bytesToMove = length - (offset + absAmount);
+        for (int i = 0; i < bytesToMove; ++i)
+        {
+            buffer[offset + i] = buffer[offset + absAmount + i];
+        }
+
+        for (int i = length - absAmount; i < length; ++i)
+        {
+            buffer[i] = 0;
+        }
+
+        usedBufferLength[0] -= absAmount;
+    }
+    else
+    {
+        if (length + amount >= 0x1000)
+            return;
+
+        for (int i = length; i >= offset; --i)
+        {
+            buffer[i + amount] = buffer[i];
+        }
+
+        for (int i = offset; i < offset + amount; ++i)
+        {
+            buffer[i] = 0;
+        }
+
+        usedBufferLength[0] += amount;
+    }
+}
+
+#endif
+
+/*
+void ShiftDataInBufferSmall(char * buffer, int amount, int offset, int usedBufferLength[])
 {
     if (amount == 0)
         return;
@@ -11875,54 +11939,12 @@ void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLeng
         usedBufferLength[0] += amount;
     }
 }
-
-#endif
-
-/*
-void ShiftDataInBuffer(char * buffer, int amount, int offset, int usedBufferLength[])
-{
-    if (!amount)
-    {
-        return;
-    }
-
-    // int length = GetEndOfBuffer(buffer);
-    int length = usedBufferLength[0];
-
-    int i;
-    if (amount < 0)
-    {
-        amount = ABS(amount);
-        for (i = offset; i < length; ++i)
-        {
-            buffer[i] = buffer[i + amount];
-        }
-    }
-    else
-    {
-        for (i = length; i >= offset; --i)
-        {
-            buffer[i + amount] = buffer[i];
-        }
-    }
-    usedBufferLength[0] = length + amount;
-}
 */
+
 int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * replace, int c, char * b)
 {
     int i;
     char * buffer = &b[c];
-    // for (i = 0; i < 255; ++i)
-    // {
-    // if (!find[i])
-    // {
-    // break;
-    // }
-    // if (buffer[i] != find[i])
-    // {
-    // return false;
-    // }
-    // }
     for (i = 0; find[i]; ++i) // while find[i] is non-zero (eg. a character), compare
     {
         if (buffer[i] != find[i])
@@ -11930,7 +11952,18 @@ int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * re
     }
 
     int len2 = GetStringLength(replace);
-    ShiftDataInBuffer(b, len2 - i, c, usedBufferLength);
+    int bufLength = usedBufferLength[0];
+    if (len2 != bufLength)
+    {
+        if (bufLength < 16)
+        {
+            ShiftDataInBufferSmall(b, len2 - i, c, usedBufferLength);
+        }
+        else
+        {
+            ShiftDataInBuffer(b, len2 - i, c, usedBufferLength);
+        }
+    }
 
     for (i = 0; i < len2; ++i)
     {
@@ -11938,13 +11971,6 @@ int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * re
     }
     return len2;
 }
-
-#ifdef FE8
-// #define TextBufferSize 0x555
-#define TextBufferSize 0x1000
-#else
-#define TextBufferSize 0x1000
-#endif
 
 int DecompText(const char * a, char * b)
 {
@@ -12041,12 +12067,14 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
     {
         if (!b[i])
         {
+            brk;
             return;
         }
         for (int c = 0; c < ListSize; ++c)
         {
             if (!b[i])
             {
+                brk;
                 return;
             }
             if (!ReplaceTextList[c].find)
@@ -12062,7 +12090,6 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
             };
         }
     }
-    brk;
 }
 
 #ifdef FE8
