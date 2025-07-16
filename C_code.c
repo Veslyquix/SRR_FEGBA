@@ -245,6 +245,63 @@ int MustEnemyStayBoss(void)
     return (RecruitValues->enemyIntoPlayer == 0);
 }
 
+void m4aSongNumStart(u16);
+
+#ifdef FE6
+#define SuccessSfx 0x6A
+#define BackSfx 0x6B
+#define ErrorSfx 0x6C
+#define ScrollSfx 0x66
+#endif
+
+#ifdef FE7
+#define SuccessSfx 906
+#define BackSfx 907
+#define ErrorSfx 908
+#define ScrollSfx 902
+#endif
+
+#ifdef FE8
+#define SuccessSfx 0x6A
+#define BackSfx 0x6B
+#define ErrorSfx 0x6C
+#define ScrollSfx 0x66
+#endif
+extern u8 gSound;
+
+inline int ShouldPlayBgm(void)
+{
+    return !(gSound & 1);
+}
+inline int ShouldPlaySfx(void)
+{
+    return !(gSound & 2);
+}
+
+void PlaySuccessSfx(void)
+{
+    if (ShouldPlaySfx())
+        m4aSongNumStart(SuccessSfx);
+}
+
+void PlayBackOutSfx(void)
+{
+    if (ShouldPlaySfx())
+        m4aSongNumStart(BackSfx);
+}
+
+void PlayErrorSfx(void)
+{
+    if (ShouldPlaySfx())
+        m4aSongNumStart(ErrorSfx);
+}
+
+void PlayScrollMenuSfx(void)
+{
+    if (ShouldPlaySfx())
+        m4aSongNumStart(ScrollSfx);
+}
+
 extern struct ExceptionsStruct ItemExceptions[];
 extern struct ExceptionsStruct ClassExceptions[];
 extern struct ExceptionsStruct CharExceptions[];
@@ -561,6 +618,7 @@ extern const struct FE8CharacterData gCharacterDataFE16[];
 extern const struct FE8CharacterData gCharacterDataFE16_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE17[];
 extern const struct FE8CharacterData gCharacterDataFE17_Bosses[];
+extern const struct FE8CharacterData gCharacterDataPlaceholder[];
 #endif
 
 #ifndef FE6
@@ -588,6 +646,7 @@ extern const struct CharacterData gCharacterDataFE16[];
 extern const struct CharacterData gCharacterDataFE16_Bosses[];
 extern const struct CharacterData gCharacterDataFE17[];
 extern const struct CharacterData gCharacterDataFE17_Bosses[];
+extern const struct CharacterData gCharacterDataPlaceholder[];
 
 #endif
 
@@ -624,16 +683,16 @@ const struct FE8CharacterData
 #endif
             gCharacterDataFE1_Bosses,  gCharacterDataFE4_Bosses,  gCharacterDataFE5_Bosses,
 #ifdef FE8
-            gCharacterDataFE6,         gCharacterDataFE7,
+            gCharacterDataPlaceholder, gCharacterDataPlaceholder, // fe6 / 7
 #endif
 #ifdef FE7
-            gCharacterDataFE6,         gCharacterDataFE8_Bosses,
+            gCharacterDataPlaceholder, gCharacterDataFE8_Bosses,
 #endif
 #ifdef FE6
-            gCharacterDataFE7,         gCharacterDataFE8_Bosses,
+            gCharacterDataPlaceholder, gCharacterDataFE8_Bosses,
 #endif
-            gCharacterDataFE10_Bosses, gCharacterDataFE13_Bosses, gCharacterDataFE14,
-            gCharacterDataFE15_Bosses, gCharacterDataFE16,        gCharacterDataFE17,
+            gCharacterDataFE10_Bosses, gCharacterDataFE13_Bosses, gCharacterDataPlaceholder,
+            gCharacterDataFE15_Bosses, gCharacterDataPlaceholder, gCharacterDataPlaceholder,
         };
 
 const int NumberOfCharTables = 24;
@@ -723,20 +782,22 @@ int IsCharIdInvalidForGame(int charId)
         return true;
     }
 #ifdef FE7 // use vanilla table for non-playables eg. bosses
-    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x9E) || (charId > 0x9E))
-    {
+    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA5) || (charId == 0x99) ||
+        (charId == 0x9F))
+    { // 0x9E is Natalie so idk
         return true;
     }
 #endif
 #ifdef FE6 // use vanilla table for non-playables eg. bosses
-    if ((charId > 0x44 && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA6))
+    if ((charId > 0x44 && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA5) || (charId == 0x99) ||
+        (charId == 0x9F))
     {
         return true;
     }
 #endif
 #ifdef FE8
-    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId > 0xA7 && charId < 0xC5) ||
-        (charId > 0xA7 && charId < 0xC5) || (charId == 0xC6) || (charId > 0xCC))
+    if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId == 0x99) || (charId == 0x9F) ||
+        (charId > 0xA5 && charId < 0xC5) || (charId > 0xA7 && charId < 0xC5) || (charId == 0xC6) || (charId > 0xCC))
     {
         return true;
     }
@@ -1257,10 +1318,18 @@ void CopyBWLForCharDuplicates(void)
 
 void ReviseRandomizedCharacter(ConfigMenuProc * proc)
 {
-    if (GetReviseCharID(proc) <= MaxCharPreviewID)
+    // if (GetReviseCharID(proc) <= MaxCharPreviewID)
+    // {
+    if (GetPidStatsSafe(GetReviseCharID(proc)))
     {
+        PlaySuccessSfx();
         Proc_Goto(proc, ReviseCharProcLabel);
     }
+    else
+    {
+        PlayErrorSfx();
+    }
+    // }
 }
 
 void LoopCharConfirmPage(ConfigMenuProc * proc)
@@ -1273,6 +1342,7 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     if (keys & B_BUTTON)
     {
         // CopyBWLForCharDuplicates();
+        PlayBackOutSfx();
         Proc_Goto(proc, ConfigMenuLabel);
         return;
     }
@@ -1280,29 +1350,34 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     {
         if (proc->previewId == ConfirmCommandID)
         {
+            PlaySuccessSfx();
             Proc_Goto(proc, EndLabel);
             return;
         }
         if (proc->previewId == RerollCommandID)
         {
+            PlaySuccessSfx();
             RerollPage(proc);
             DrawCharConfirmPage(proc);
             return;
         }
         if (proc->previewId == ResetPageCommandID)
         {
+            PlaySuccessSfx();
             ResetPage(proc);
             DrawCharConfirmPage(proc);
             return;
         }
         if (proc->previewId == SetAllCommandID)
         {
+            PlaySuccessSfx();
             SetAllCharConfirm(proc);
             DrawCharConfirmPage(proc);
             return;
         }
         if (proc->previewId == PageCommandID)
         {
+            PlayErrorSfx();
             return;
         }
         else
@@ -1314,10 +1389,12 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     {
         if (keys & DPAD_RIGHT)
         {
+            PlaySuccessSfx();
             IncrementAndDrawCharPreviewPage(proc);
         }
         if (keys & DPAD_LEFT)
         {
+            PlaySuccessSfx();
             DecrementAndDrawCharPreviewPage(proc);
         }
     }
@@ -1326,6 +1403,7 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
 
         if (keys & DPAD_RIGHT)
         {
+            PlayScrollMenuSfx();
             if (proc->previewId == RerollCommandID)
             {
                 proc->previewId = SetAllCommandID;
@@ -1342,6 +1420,7 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
         }
         if (keys & DPAD_LEFT)
         {
+            PlayScrollMenuSfx();
             if (proc->previewId == ResetPageCommandID)
             {
                 proc->previewId = SetAllCommandID;
@@ -1359,6 +1438,7 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     }
     if (keys & DPAD_DOWN)
     {
+        PlayScrollMenuSfx();
         if (proc->previewId == ConfirmCommandID)
         {
             proc->previewId = PageCommandID;
@@ -1381,6 +1461,7 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     }
     if (keys & DPAD_UP)
     {
+        PlayScrollMenuSfx();
         if (proc->previewId == PageCommandID)
         {
             proc->previewId = ConfirmCommandID;
@@ -1620,12 +1701,18 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     ClearText(gStatScreen.text);
     EndFaceById(1);
     struct FE8CharacterData * table = (struct FE8CharacterData *)GetCharacterData(charID);
-    StartFace2(0, table->portraitId, 64, 0, 3 | FACE_DISP_FLIPPED);
+    if (table->portraitId)
+    {
+        StartFace2(0, table->portraitId, 64, 0, 3 | FACE_DISP_FLIPPED);
+    }
     // StartFaceAuto(table->portraitId, 64, 0, 3);
     PutDrawCenteredText(
         gStatScreen.text + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y), table->nameTextId, maxWidth, gold);
     table = (struct FE8CharacterData *)GetReorderedCharacter((struct CharacterData *)table);
-    StartFace2(1, table->portraitId, 186, 0, 2);
+    if (table->portraitId)
+    {
+        StartFace2(1, table->portraitId, 186, 0, 2);
+    }
     // StartFaceAuto(table->portraitId, 186, 0, 2);
     PutDrawCenteredText(
         gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y), table->nameTextId, maxWidth, gold);
@@ -2230,6 +2317,7 @@ void LoopFilterCharPage(ConfigMenuProc * proc)
 
         Proc_Goto(proc, PreviewCharLabel);
         proc->previewId = ConfirmCommandID;
+        PlaySuccessSfx();
         return;
     }
     u32 id = proc->previewId;
@@ -2270,6 +2358,7 @@ void LoopFilterCharPage(ConfigMenuProc * proc)
         id %= 32;
         proc->previewId = id;
         DrawFilterCharPage(proc);
+        PlayScrollMenuSfx();
     }
 }
 
@@ -2280,6 +2369,7 @@ void LoopFilterClassPage(ConfigMenuProc * proc)
     { // press B or Start to update tags and continue
 
         // Proc_Goto(proc, ConfigMenuLabel);
+        PlaySuccessSfx();
         Proc_Goto(proc, ConfigMenuLabel);
         proc->previewId = ConfirmCommandID;
         return;
@@ -2322,6 +2412,7 @@ void LoopFilterClassPage(ConfigMenuProc * proc)
         id %= 32;
         proc->previewId = id;
         DrawFilterClassPage(proc);
+        PlayScrollMenuSfx();
     }
 }
 
@@ -2332,6 +2423,7 @@ void LoopFilterEnemyClassPage(ConfigMenuProc * proc)
     { // press B or Start to update tags and continue
 
         // Proc_Goto(proc, ConfigMenuLabel);
+        PlaySuccessSfx();
         Proc_Goto(proc, ConfigMenuLabel);
         proc->previewId = ConfirmCommandID;
         return;
@@ -2374,6 +2466,7 @@ void LoopFilterEnemyClassPage(ConfigMenuProc * proc)
         id %= 32;
         proc->previewId = id;
         DrawFilterEnemyClassPage(proc);
+        PlayScrollMenuSfx();
     }
 }
 
@@ -2713,6 +2806,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 #endif
     if (!pidStats)
     {
+        PlayErrorSfx();
         Proc_Goto(proc, PreviewCharLabel);
         EndFaceById(0);
         EndFaceById(1);
@@ -2721,11 +2815,13 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     if (keys & A_BUTTON)
     {
         pidStats->selected = true;
+        PlaySuccessSfx();
         // save some change?
         // Proc_Goto(proc, PreviewCharLabel);
     }
     if (keys & (B_BUTTON | A_BUTTON))
     {
+        PlayBackOutSfx();
         Proc_Goto(proc, PreviewCharLabel);
         EndFaceById(0);
         EndFaceById(1);
@@ -2744,11 +2840,13 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
             tmp = 11;
         }
         proc->reviseMenuId = Mod(tmp, 12);
+        PlayScrollMenuSfx();
     }
     if (keys & DPAD_DOWN)
     {
         proc->reviseMenuId++;
         proc->reviseMenuId = Mod(proc->reviseMenuId, 12);
+        PlayScrollMenuSfx();
     }
 
     int menuID = proc->reviseMenuId;
@@ -2770,7 +2868,6 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         {
             // pidStats->selected = true;
             pidStats->forcedClass = 0;
-
             DrawReviseCharPage(proc);
         }
     }
@@ -3017,6 +3114,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     if (dir)
     {
         DrawReviseCharPage(proc);
+        PlayScrollMenuSfx();
     }
 
     switch (menuID)
@@ -3088,6 +3186,10 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
 
 void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
 {
+    // if (!charID)
+    // {
+    // return;
+    // }
     if (!charID || charID > MaxCharPreviewID)
     {
         return;
@@ -3098,17 +3200,24 @@ void DrawCharPreview(int x, int y, int charID, int palID, int maxWidth)
     struct FE8CharacterData * table;
     // struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStatsSafe(charID);
     table = (struct FE8CharacterData *)GetCharacterData(charID);
+
     PutDrawCenteredText(
         gStatScreen.text + palID, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y), table->nameTextId, maxWidth, gold);
 
-    PutFaceChibi_Bulk(table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y), 0x180 + (palID * 0x10), palID, 0);
-
+    if (table->portraitId)
+    {
+        PutFaceChibi_Bulk(
+            table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y), 0x180 + (palID * 0x10), palID, 0);
+    }
     table = (struct FE8CharacterData *)GetReorderedCharacter((const struct CharacterData *)table);
     PutDrawCenteredText(
         gStatScreen.text + palID + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 4, y + 2), table->nameTextId, maxWidth,
         gold);
-    PutFaceChibi_Bulk(
-        table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, y), 0x190 + (palID * 0x10), palID + 1, 0);
+    if (table->portraitId)
+    {
+        PutFaceChibi_Bulk(
+            table->portraitId, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, y), 0x190 + (palID * 0x10), palID + 1, 0);
+    }
 }
 
 extern u8 ReplacePortraitTable[];
@@ -4477,7 +4586,6 @@ int CountRecruitableCharacters(void)
         if (!table[c])
             break;
     }
-    // MaxCharPreviewID ?
     return c;
 }
 
@@ -5535,7 +5643,6 @@ int RandomizeBattleMusic(int id)
 #endif
 };
 
-void m4aSongNumStart(u16);
 extern void StartBgm(int songId, struct Proc * proc);
 extern int GetCurrentBgmSong(void);
 extern void Sound_FadeOutBGM(int speed);
@@ -13042,6 +13149,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         if (keys & DPAD_DOWN)
         {
+            PlayScrollMenuSfx();
             if (id < SRR_MAXDISP)
             {
                 proc->id++;
@@ -13061,6 +13169,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
         else if (keys & DPAD_UP)
         {
+            PlayScrollMenuSfx();
             if ((id + offset) <= 0)
             {
                 proc->id = SRR_MAXDISP;
@@ -13080,6 +13189,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         else if (keys & DPAD_RIGHT)
         {
+            PlayScrollMenuSfx();
             id += offset;
             if (proc->Option[id] < (CountOptionAmount(id)))
             {
@@ -13099,6 +13209,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         else if (keys & DPAD_LEFT)
         {
+            PlayScrollMenuSfx();
             id += offset;
             if (proc->Option[id] > 0)
             {
@@ -13155,6 +13266,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
                 CopyConfigProcIntoRam(proc);
                 SaveConfigOptions(proc);
                 RedrawAllText(proc);
+                PlaySuccessSfx();
                 return;
             }
             if (proc->Option[SaveOption] == 1)
@@ -13162,6 +13274,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
                 if (LoadConfigOptions(proc))
                 {
                     RedrawAllText(proc);
+                    PlaySuccessSfx();
                     return;
                 }
             }
@@ -13181,6 +13294,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             {
                 SetAllConfigOptionsToRandom(proc);
             }
+            PlaySuccessSfx();
             RedrawAllText(proc);
             return;
         }
@@ -13188,6 +13302,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         if (((id + offset) != SaveOption) && (id + offset) != SettingsOption)
         {
             CopyConfigProcIntoRam(proc);
+            PlaySuccessSfx();
             return;
         }
     }
@@ -13214,6 +13329,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
         if (keys & DPAD_RIGHT)
         {
+            PlayScrollMenuSfx();
             if (proc->digit > 0)
             {
                 proc->digit--;
@@ -13225,6 +13341,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         if (keys & DPAD_LEFT)
         {
+            PlayScrollMenuSfx();
             if (proc->digit < (max_digits))
             {
                 proc->digit++;
@@ -13239,6 +13356,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             if (keys & DPAD_UP)
             {
+                PlayScrollMenuSfx();
                 if (proc->seed == max)
                 {
                     proc->seed = min;
@@ -13255,7 +13373,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             }
             if (keys & DPAD_DOWN)
             {
-
+                PlayScrollMenuSfx();
                 if (proc->seed == min)
                 {
                     proc->seed = max;
@@ -13288,22 +13406,26 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
         if (keys & DPAD_UP)
         {
+            PlayScrollMenuSfx();
             proc->skill = GetNextAlwaysSkill(proc->skill);
             proc->redraw = RedrawSome;
             proc->clear = true;
         }
         else if (keys & DPAD_DOWN)
         {
+            PlayScrollMenuSfx();
             proc->skill = GetPreviousAlwaysSkill(proc->skill);
             proc->redraw = RedrawSome;
             proc->clear = true;
         }
         else if (keys & DPAD_RIGHT)
         {
+            PlayScrollMenuSfx();
             proc->choosingSkill = false;
         }
         else if (keys & DPAD_LEFT)
         {
+            PlayScrollMenuSfx();
             proc->choosingSkill = false;
         }
         if (proc->choosingSkill)
@@ -13327,6 +13449,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
     if (keys & DPAD_DOWN)
     {
+        PlayScrollMenuSfx();
         if (id < SRR_MAXDISP)
         {
             proc->id++;
@@ -13346,6 +13469,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
     else if (keys & DPAD_UP)
     {
+        PlayScrollMenuSfx();
         if ((id + offset) <= 0)
         {
             proc->id = SRR_MAXDISP;
@@ -13366,6 +13490,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
     else if (keys & DPAD_RIGHT)
     {
+        PlayScrollMenuSfx();
         id += offset;
         if (proc->Option[id] < (CountOptionAmount(id)))
         {
@@ -13386,6 +13511,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     else if (keys & DPAD_LEFT)
     {
+        PlayScrollMenuSfx();
         id += offset;
         if (proc->Option[id] > 0)
         {

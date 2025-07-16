@@ -59,6 +59,7 @@
 #define gCharacterDataFE15_Bosses 0x8803D64 
 #define gCharacterDataFE16_Bosses 0x8803D64 
 #define gCharacterDataFE17_Bosses 0x8803D64 
+#define gCharacterDataPlaceholder 0x8803D64 
 
 
     ALIGN 4 
@@ -275,7 +276,11 @@ NeverPreviewChar(0x1B) // Unused enemy char
 #endif 
 ALIGN 4 
 MaxCharPreviewID: 
-WORD 0x22 // 0x22 tana 
+#ifdef VeslyBuildfile 
+WORD 0x22 // 0x22 tana
+#else 
+WORD 0x45 
+#endif  
 // 0x2C Hayden 
 
 #ifdef VeslyBuildfile

@@ -35,7 +35,7 @@ sub r2, #1
 mov r0, r2 
 bx lr 
 
-
+SET_DATA gSound, 0x202AA65 
 SET_FUNC GetPidStats, 0x8084F4D
 SET_FUNC ReadGlobalSaveInfo, 0x80842E9
 SET_FUNC StartBgmExt, 0x809C8D9
@@ -266,6 +266,7 @@ SET_DATA gFrameTmRegister, 0x2023B3C
 SET_DATA SRRBuffer, 0x2025B8C	@ normally used by debug printing 
 .endif     
 .if FE7 == true 
+SET_DATA gSound, 0x202Bc39 
 SET_DATA gFrameTmRegisterConfig, 0x2024C94  
 SET_DATA gFrameTmRegister, 0x2024C9C 
 SET_FUNC RegisterDataMove, 0x8003079
@@ -504,7 +505,7 @@ SET_DATA SRRBuffer, 0x2026d30	@ normally used by debug printing
 .endif 
 .if FE8 == true 
 SET_DATA SRRBuffer, 0x2026Ec0	@ size: 0x1f98	- normally used by debug printing
-
+SET_DATA gSound, 0x202BD31
 SET_FUNC StartUiSMS, 0x80266f1
 SET_FUNC UnpackUiWindowFrameImg2, 0x804E169
 SET_FUNC ApplyUiWindowFramePal, 0x804E0A9
