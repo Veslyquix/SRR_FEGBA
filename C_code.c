@@ -255,7 +255,7 @@ void m4aSongNumStart(u16);
 #endif
 
 #ifdef FE7
-#define SuccessSfx 906
+#define SuccessSfx 906 // https://www.sounds-resource.com/game_boy_advance/fireemblemtheblazingblade/sound/8833/
 #define BackSfx 907
 #define ErrorSfx 908
 #define ScrollSfx 902
