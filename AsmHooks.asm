@@ -1146,6 +1146,9 @@ mov r5, r0
 blh 0x804C500
 cmp r0, #1 
 beq ExitFE6RandBattleMusic_A
+bl ShouldUseBattleBGM 
+cmp r0, #0 
+beq ExitFE6RandBattleMusic_B
 blh 0x8042578 
 pop {r3} 
 bx r3 
@@ -1153,6 +1156,12 @@ bx r3
 ExitFE6RandBattleMusic_A: 
 mov r0, #1  
 pop {r3} 
+bx r3 
+.ltorg 
+
+ExitFE6RandBattleMusic_B: @ do not change track 
+pop {r3} 
+ldr r3, =0x805C72F
 bx r3 
 .ltorg 
 
@@ -1174,10 +1183,19 @@ ldr r3, =0x8067EB5
 bx r3 
 .ltorg 
 ExitFE7RandBattleMusic_A: 
+bl ShouldUseBattleBGM 
+cmp r0, #0 
+beq ExitFE7RandBattleMusic_B
 pop {r3} 
 ldr r3, =0x8067EAD
 bx r3 
 .ltorg 
+ExitFE7RandBattleMusic_B: @ do not change track 
+pop {r3} 
+ldr r3, =0x80680CF
+bx r3 
+.ltorg 
+
 
 
 .global FE8_RandBattleMusicHook
@@ -1196,11 +1214,18 @@ ldr r3, =0x8072711
 bx r3 
 .ltorg 
 ExitFE8RandBattleMusic_A: 
+bl ShouldUseBattleBGM 
+cmp r0, #0 
+beq ExitFE8RandBattleMusic_B
 pop {r3} 
 ldr r3, =0x8072709 
 bx r3 
 .ltorg 
-
+ExitFE8RandBattleMusic_B: @ do not change track 
+pop {r3} 
+ldr r3, =0x8072893
+bx r3 
+.ltorg 
 
 .global MaybeUseGenericPalette_FE6
 .type MaybeUseGenericPalette_FE6, %function 

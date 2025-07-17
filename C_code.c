@@ -110,7 +110,7 @@ struct RandomizerValues
     u32 skills : 2;   // vanilla, random, fixed, rand + x skill
 };
 
-struct RecruitmentValues // 3 bytes
+struct RecruitmentValues // 4 bytes
 {
     // u8 recruitment : 3; // old: vanilla, players reordered, bosses, players&bosses reordered, swap, reverse, random
     u8 pauseNameReplace : 1;
@@ -123,6 +123,7 @@ struct RecruitmentValues // 3 bytes
     u8 forcedCharTable : 5;        // 18 bits
     u8 enemyCharTable : 5;         // 23 bits
     u8 backgrounds : 1;
+    u8 battleBGM : 1; // 25/32 bits
 };
 
 struct TimedHitsDifficultyStruct // 1 byte
@@ -446,6 +447,7 @@ extern const int VanillaItemOption;
 extern const int ModeOption;
 extern const int DangerBonesOption;
 extern const int MusicOption;
+extern const int BattleBGMOption;
 extern const int ColoursOption;
 extern const int DurabilityOption;
 extern const int PlayerBonusOption;
@@ -5624,6 +5626,11 @@ typedef struct SoundRoomData
 #endif
 
 extern struct SoundRoomData * getSoundRoom[];
+
+int ShouldUseBattleBGM(void)
+{
+    return RecruitValues->battleBGM == 0;
+}
 
 extern int NextRN_N(int max);
 int RandomizeBattleMusic(int id)
@@ -12877,6 +12884,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     }
 
     RandBitflags->randMusic = proc->Option[MusicOption];
+    RecruitValues->battleBGM = proc->Option[BattleBGMOption];
     RandBitflags->colours = proc->Option[ColoursOption];
     RandBitflags->itemDur = proc->Option[DurabilityOption];
     RandBitflags->playerBonus = proc->Option[PlayerBonusOption];
@@ -13099,6 +13107,7 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     proc->Option[ModeOption] = 0;        // Classic
     proc->Option[DangerBonesOption] = 1; // On
     proc->Option[MusicOption] = 1;       // Random BGM
+    proc->Option[BattleBGMOption] = 0;   // Separate battle BGM
     proc->Option[ColoursOption] = 0;     // Random Colours off by default now
     proc->skill = GetNextAlwaysSkill(0);
     proc->Option[UiOption] = 0;       // ui default: vanilla style
@@ -13744,6 +13753,7 @@ void RestoreConfigOptions(ConfigMenuProc * proc)
     proc->Option[ModeOption] = CheckFlag(CasualModeFlag);
     proc->Option[DangerBonesOption] = CheckFlag(DangerBonesDisabledFlag) == 0;
     proc->Option[MusicOption] = RandBitflags->randMusic;
+    proc->Option[BattleBGMOption] = RecruitValues->battleBGM;
     proc->Option[ColoursOption] = RandBitflags->colours;
     proc->Option[DurabilityOption] = RandBitflags->itemDur;
     proc->Option[PlayerBonusOption] = RandBitflags->playerBonus;

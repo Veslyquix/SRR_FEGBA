@@ -1318,15 +1318,15 @@ ALIGN 4
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
     #ifdef C_SKILLSYS 
-    WORD 36
+    WORD 37
     #endif 
     #ifdef SKILLSYS_INSTALLED 
-    WORD 38
+    WORD 39
     #else 
-    WORD 37
+    WORD 38
     #endif  
 #else 
-WORD 35
+WORD 36
 #endif 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
@@ -1350,7 +1350,6 @@ AlwaysSkill:
 WORD RandomizerRam+11
 RecruitValues:
 WORD RandomizerRam+12 
-// WORD RandomizerRam+15 free 
 TagValues:
 WORD 0x203EC24 
 ClassTags:
