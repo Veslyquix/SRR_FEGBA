@@ -92,7 +92,7 @@ struct RandomizerSettings
     u32 shopItems : 1;
     u32 foundItems : 1;   // vanilla, random
     u32 vanillaItems : 1; // vanilla, include added items
-    u32 randMusic : 2;    // vanilla, random
+    u32 randMusic : 2;    // vanilla, random vanilla songs, random with added tracks
     u32 colours : 3;      // vanilla, random, janky, portraits only
     u32 itemStats : 2;    // vanilla, random
     u32 itemDur : 2;      // vanilla, infinite E/D rank items, infinite weps, infinite
@@ -5500,6 +5500,12 @@ u16 * BuildTracklist(u16 List[], int startingPoint, int priority)
     int i;
     int priority_A = priority & 0xFFFF;
     int priority_B = priority >> 16;
+    int endPoint = 2000;
+    if (RandBitflags->randMusic == 1)
+    {
+        endPoint = 999; // Vanilla only BGM
+        // startingPoint &= 0x7F; // max 127 as starting point with vanilla tracks
+    }
 
     // 0th entry of List is the count of available tracks
     for (i = 0; i < MaxNumberOfSongs; ++i)
@@ -5507,7 +5513,7 @@ u16 * BuildTracklist(u16 List[], int startingPoint, int priority)
         List[i] = 0;
     }
     struct Song * gST = *getSongTable;
-    for (i = startingPoint; i < 2000; ++i)
+    for (i = startingPoint; i < endPoint; ++i)
     {
         if (List[0] >= MaxNumberOfSongs)
         {

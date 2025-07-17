@@ -271,9 +271,9 @@ POIN t0 t1 0
 }
 
 {
-t0:  txt("Vanilla BGM");  t1:  txt("Random BGM");
+t0:  txt("Vanilla BGM");  t1:  txt("Random Vanilla BGM"); t2:  txt("Random Games BGM");
 ALIGN 4; SRRHeader(MusicOpt)
-POIN t0 t1 0
+POIN t0 t1 t2 0
 }
 
 {
@@ -581,7 +581,9 @@ SRRMenu(DangerBonesOpt);               txt("Danger Bones")
 SRRDesc(DangerBonesOpt,0); txt("Aggressive enemies will not\look any different."); 
 SRRDesc(DangerBonesOpt,1); txt("Enemies that can attack your\tile will look different."); 
 SRRMenu(MusicOpt);              txt("Music")
-SRRDesc(MusicOpt); txt("Ya wanna hear music from\everywhere or not?"); 
+SRRDesc(MusicOpt,0); txt("Background music will be\the normal tracks."); 
+SRRDesc(MusicOpt,1); txt("Background music will be\random tracks from the game."); 
+SRRDesc(MusicOpt,2); txt("Background music will be\random tracks from various games."); 
 SRRMenu(ColoursOpt);            txt("Colours")
 SRRDesc(ColoursOpt,0); txt("Colours are not changed."); 
 SRRDesc(ColoursOpt,1); txt("Units' battle sprites and portraits\have random colours."); 
