@@ -1318,7 +1318,11 @@ ALIGN 4
 EventScr_ErrorOccurred: 
 SCOORD sB [10, 4] 
 TUTORIALTEXTBOXSTART 
+#ifdef VeslyBuildfile 
 TEXTSHOW ErrorOccurredMessage
+#else 
+TEXTSHOW 0x9df 
+#endif 
 TEXTEND 
 REMA 
 NoFade 
