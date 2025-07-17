@@ -78,6 +78,7 @@ extern void SetFlag(int flag);                                 // 80798E4
 extern void UnsetFlag(int flag);
 extern int CheckFlag(int flag);
 extern int CasualModeFlag;
+extern int DangerBonesDisabledFlag;
 #define true 1
 #define false 0
 
@@ -443,6 +444,7 @@ extern const int FilterEnemyClassOption;
 extern const int ItemOption;
 extern const int VanillaItemOption;
 extern const int ModeOption;
+extern const int DangerBonesOption;
 extern const int MusicOption;
 extern const int ColoursOption;
 extern const int DurabilityOption;
@@ -12859,6 +12861,14 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     {
         UnsetFlag(CasualModeFlag);
     }
+    if (proc->Option[DangerBonesOption] == 0)
+    {
+        SetFlag(DangerBonesDisabledFlag);
+    }
+    else
+    {
+        UnsetFlag(DangerBonesDisabledFlag);
+    }
 
     RandBitflags->randMusic = proc->Option[MusicOption];
     RandBitflags->colours = proc->Option[ColoursOption];
@@ -13080,11 +13090,12 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     proc->Option[ClassOption] = 4;
     proc->Option[ItemOption] = 1;
     proc->Option[VanillaItemOption] = 1;
-    proc->Option[ModeOption] = 0;    // Classic
-    proc->Option[MusicOption] = 1;   // Random BGM
-    proc->Option[ColoursOption] = 0; // Random Colours off by default now
+    proc->Option[ModeOption] = 0;        // Classic
+    proc->Option[DangerBonesOption] = 1; // On
+    proc->Option[MusicOption] = 1;       // Random BGM
+    proc->Option[ColoursOption] = 0;     // Random Colours off by default now
     proc->skill = GetNextAlwaysSkill(0);
-    proc->Option[UiOption] = 3;       // ui default: pikmin style
+    proc->Option[UiOption] = 0;       // ui default: vanilla style
     proc->Option[DebuggerOption] = 1; // debugger
     proc->Option[BGOption] = 0;       // BGs
 
@@ -13725,6 +13736,7 @@ void RestoreConfigOptions(ConfigMenuProc * proc)
     }
     proc->Option[VanillaItemOption] = RandBitflags->vanillaItems;
     proc->Option[ModeOption] = CheckFlag(CasualModeFlag);
+    proc->Option[DangerBonesOption] = CheckFlag(DangerBonesDisabledFlag) == 0;
     proc->Option[MusicOption] = RandBitflags->randMusic;
     proc->Option[ColoursOption] = RandBitflags->colours;
     proc->Option[DurabilityOption] = RandBitflags->itemDur;

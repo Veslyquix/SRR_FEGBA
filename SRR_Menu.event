@@ -265,6 +265,12 @@ POIN t0 t1 0
 }
 
 {
+t0:  txt("Off");  t1:  txt("On");
+ALIGN 4; SRRHeader(DangerBonesOpt)
+POIN t0 t1 0
+}
+
+{
 t0:  txt("Vanilla BGM");  t1:  txt("Random BGM");
 ALIGN 4; SRRHeader(MusicOpt)
 POIN t0 t1 0
@@ -571,6 +577,9 @@ SRRDesc(VanillaItemOpt,1); txt("Items from various games\can also appear.");
 SRRMenu(ModeOpt);               txt("Mode")
 SRRDesc(ModeOpt,0); txt("Units that reach 0 HP die\and cannot be used anymore."); 
 SRRDesc(ModeOpt,1); txt("Units that reach 0 HP retreat\and can be used in the future."); 
+SRRMenu(DangerBonesOpt);               txt("Danger Bones")
+SRRDesc(DangerBonesOpt,0); txt("Aggressive enemies will not\look any different."); 
+SRRDesc(DangerBonesOpt,1); txt("Enemies that can attack your\tile will look different."); 
 SRRMenu(MusicOpt);              txt("Music")
 SRRDesc(MusicOpt); txt("Ya wanna hear music from\everywhere or not?"); 
 SRRMenu(ColoursOpt);            txt("Colours")
@@ -671,6 +680,8 @@ VanillaItemOption:
 WORD VanillaItemOpt 
 ModeOption:
 WORD ModeOpt
+DangerBonesOption:
+WORD DangerBonesOpt
 MusicOption:
 WORD MusicOpt
 ColoursOption:
