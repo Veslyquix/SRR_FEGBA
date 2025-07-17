@@ -334,7 +334,7 @@ extern void ClearBg0Bg1();
 extern void PutNumber(u16 *, int, int); // 80061D8
 extern void StartGreenText(ProcPtr parent);
 void EndGreenText(void);
-
+extern void BreakWithValue(int a, int b, int c);
 #ifdef FE8
 extern void PutNumberHex(u16 * tm, int color, int number);
 extern void * sProcAllocListHead;
@@ -388,11 +388,9 @@ const struct ProcCmd * Proc_FindMostCommonDuplicate(void)
             seenCount++;
         }
     }
-    // brk;
     return mostCommonCmd;
 }
 extern void EndPlayerPhaseSideWindows(void);
-extern void SomeMenuInit(void);
 void PrintErrorToScreen(ProcPtr * proc)
 {
 
@@ -431,14 +429,13 @@ void CheckForProcSpace(RecruitmentProc * proc)
 {
     if ((int)sProcAllocListHead > (int)&sProcAllocList[50])
     {
-        // brk;
         EndGreenText();
 
         LockGame();
         BMapDispSuspend();
         PrintErrorToScreen((void *)proc);
         CallEvent(EventScr_ErrorOccurred, 1);
-        Proc_Break((void *)proc);
+        Proc_Goto((void *)proc, 1);
     }
 }
 
@@ -446,14 +443,16 @@ const struct ProcCmd RecruitmentProcCmd1[] = {
     PROC_NAME("ReorderedRecruitment_One"),
     PROC_YIELD,
     PROC_REPEAT(CheckForProcSpace),
+    PROC_GOTO(EndLabel),
+    PROC_LABEL(1),
     PROC_SLEEP(10),
-    PROC_CALL(SomeMenuInit),
     PROC_REPEAT(PrintErrorNumberToScreen),
     // PROC_WHILE(),
     PROC_CALL(ClearBg0Bg1),
     PROC_CALL(UnlockGame),
     PROC_CALL(BMapDispResume),
     PROC_REPEAT(LoopRandomRecruitmentProc),
+    PROC_LABEL(EndLabel),
     PROC_END,
 };
 #else
@@ -970,7 +969,6 @@ int IsCharIdPastLimit(int charId)
 extern void DisplayUiVArrow(int, int, u16, int);
 
 extern void UnpackUiVArrowGfx(int, int);
-extern void BreakWithValue(int a, int b, int c);
 
 #ifdef FE6
 const struct FE8CharacterData *
