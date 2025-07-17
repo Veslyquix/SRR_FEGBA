@@ -1315,6 +1315,17 @@ DisplayRandomSkillsOption:
 #include "SRR_Menu.event" 
 
 ALIGN 4 
+EventScr_ErrorOccurred: 
+SCOORD sB [10, 4] 
+TUTORIALTEXTBOXSTART 
+TEXTSHOW ErrorOccurredMessage
+TEXTEND 
+REMA 
+NoFade 
+ENDA 
+
+
+ALIGN 4 
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
     #ifdef C_SKILLSYS 

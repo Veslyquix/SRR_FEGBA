@@ -329,12 +329,142 @@ void LoopRandomRecruitmentProc(RecruitmentProc * proc)
 {
     return;
 }
+extern void RegisterBlankTile(int a);
+extern void ClearBg0Bg1();
+extern void PutNumber(u16 *, int, int); // 80061D8
+extern void StartGreenText(ProcPtr parent);
+void EndGreenText(void);
+
+#ifdef FE8
+extern void PutNumberHex(u16 * tm, int color, int number);
+extern void * sProcAllocListHead;
+extern void CallEvent(const u16 * events, u8 execType);
+extern int EventEngineExists(void);
+extern const u16 EventScr_ErrorOccurred[];
+extern void * sProcAllocList[65];
+const struct ProcCmd * Proc_FindMostCommonDuplicate(void)
+{
+    int i, j;
+    struct Proc * proc;
+    const struct ProcCmd * mostCommonCmd = NULL;
+    int mostCommonCount = 0;
+
+    // We'll track seen ProcCmd pointers and their counts
+    const struct ProcCmd * seen[65] = { 0 };
+    int counts[65] = { 0 };
+    int seenCount = 0;
+
+    for (i = 64; i >= 0; i--)
+    {
+        proc = sProcAllocList[i];
+        if (!proc || !proc->proc_script)
+            continue;
+
+        // Check if we've seen this cmd before
+        for (j = 0; j < seenCount; j++)
+        {
+            if (seen[j] == proc->proc_script)
+            {
+                counts[j]++;
+                if (counts[j] > mostCommonCount)
+                {
+                    mostCommonCount = counts[j];
+                    mostCommonCmd = proc->proc_script;
+                }
+                break;
+            }
+        }
+
+        // If not seen, add to list
+        if (j == seenCount)
+        {
+            seen[seenCount] = proc->proc_script;
+            counts[seenCount] = 1;
+            if (mostCommonCount == 0)
+            {
+                mostCommonCount = 1;
+                mostCommonCmd = proc->proc_script;
+            }
+            seenCount++;
+        }
+    }
+    // brk;
+    return mostCommonCmd;
+}
+extern void EndPlayerPhaseSideWindows(void);
+extern void SomeMenuInit(void);
+void PrintErrorToScreen(ProcPtr * proc)
+{
+
+    EndPlayerPhaseSideWindows();
+
+    StartGreenText(proc);
+}
+
+void PrintErrorNumberToScreen(ProcPtr * proc)
+{
+    if (!EventEngineExists())
+    {
+        Proc_Break(proc);
+        return;
+    }
+    BG_Fill(gBG0TilemapBuffer, 0);
+    BG_Fill(gBG1TilemapBuffer, 0);
+    BG_Fill(gBG2TilemapBuffer, 0);
+    BG_Fill(gBG3TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+    SetTextFont(0);
+    RegisterBlankTile(0);
+    RegisterBlankTile(0x400);
+    int mostCommon = (int)Proc_FindMostCommonDuplicate();
+    PutNumberHex(TILEMAP_LOCATED(gBG0TilemapBuffer, 10, 6), green, mostCommon);
+    PutNumberHex(TILEMAP_LOCATED(gBG1TilemapBuffer, 10, 6), green, mostCommon);
+    PutNumberHex(TILEMAP_LOCATED(gBG2TilemapBuffer, 10, 6), green, mostCommon);
+    // PutNumberHex(TILEMAP_LOCATED(gBG1TilemapBuffer, 10, 6), green, mostCommon);
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT | BG2_SYNC_BIT | BG3_SYNC_BIT);
+}
+
+void CheckForProcSpace(RecruitmentProc * proc)
+{
+    if ((int)sProcAllocListHead > (int)&sProcAllocList[50])
+    {
+        // brk;
+        EndGreenText();
+
+        LockGame();
+        BMapDispSuspend();
+        PrintErrorToScreen((void *)proc);
+        CallEvent(EventScr_ErrorOccurred, 1);
+        Proc_Break((void *)proc);
+    }
+}
+
+const struct ProcCmd RecruitmentProcCmd1[] = {
+    PROC_NAME("ReorderedRecruitment_One"),
+    PROC_YIELD,
+    PROC_REPEAT(CheckForProcSpace),
+    PROC_SLEEP(10),
+    PROC_CALL(SomeMenuInit),
+    PROC_REPEAT(PrintErrorNumberToScreen),
+    // PROC_WHILE(),
+    PROC_CALL(ClearBg0Bg1),
+    PROC_CALL(UnlockGame),
+    PROC_CALL(BMapDispResume),
+    PROC_REPEAT(LoopRandomRecruitmentProc),
+    PROC_END,
+};
+#else
 const struct ProcCmd RecruitmentProcCmd1[] = {
     PROC_NAME("ReorderedRecruitment_One"),
     PROC_YIELD,
     PROC_REPEAT(LoopRandomRecruitmentProc),
     PROC_END,
 };
+
+#endif
 const struct ProcCmd RecruitmentProcCmd2[] = {
     PROC_NAME("ReorderedRecruitment_Two"),
     PROC_YIELD,
@@ -838,7 +968,7 @@ int IsCharIdPastLimit(int charId)
     return false;
 }
 extern void DisplayUiVArrow(int, int, u16, int);
-void EndGreenText(void);
+
 extern void UnpackUiVArrowGfx(int, int);
 extern void BreakWithValue(int a, int b, int c);
 
@@ -983,7 +1113,6 @@ const struct FE8CharacterData *
     return table;
 }
 
-extern void ClearBg0Bg1();
 extern void EnablePaletteSync();
 extern void TileMap_CopyRect(u16 * src, u16 * dst, int width, int height);
 extern void PutFaceChibi(int, u16 *, int, int, s8);
@@ -992,7 +1121,7 @@ extern void InitTextFont(void * font, void * draw_dest, int chr, int palid);
 extern void ChapterStatus_SetupFont(int zero); // 8086E60
 extern void SetFontGlyphSet(int a);            // 8005410
 extern void InitSystemTextFont(void);          // 8005A40
-extern void RegisterBlankTile(int a);
+
 extern u16 gUiTmScratchA[0x280];
 void CallSetupBackgrounds(ConfigMenuProc * proc);
 extern void SetupBackgrounds(u16 * bgConfig);
@@ -1653,7 +1782,7 @@ extern struct FaceProc * StartFace2(int faceSlot, int portraitId, int x, int y, 
 extern struct FaceProc * StartFaceAuto(int portraitId, int x, int y, int displayType);
 int GetDefaultGrowthByIndex(int i, struct FE8CharacterData * table);
 int GetCharOverwrittenGrowth(int i, struct PidStatsChar * pidStats);
-extern void PutNumber(u16 *, int, int); // 80061D8
+
 extern ProcPtr StartTalkFace(int faceId, int x, int y, int disp, int talkFace);
 extern const char * growth_names[];
 const s16 GrowthNumbers[] = { (-1), 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250 };
@@ -13709,7 +13838,6 @@ void InitDraw(ConfigMenuProc * proc)
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
 extern void LoadHelpBoxGfx(void * vram, int palId);
-extern void StartGreenText(ProcPtr parent);
 
 void RestoreConfigOptions(ConfigMenuProc * proc)
 {

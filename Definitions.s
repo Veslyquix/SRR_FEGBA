@@ -264,8 +264,21 @@ SET_FUNC RegisterDataMove, 0x8002B05
 SET_DATA gFrameTmRegisterConfig, 0x2023B34
 SET_DATA gFrameTmRegister, 0x2023B3C 
 SET_DATA SRRBuffer, 0x2025B8C	@ normally used by debug printing 
+SET_FUNC CallEvent, 0x800d979 
+
+
+
+
+
+
+
+
+
+
+
 .endif     
 .if FE7 == true 
+SET_FUNC CallEvent, 0x800af75
 SET_DATA gSound, 0x202Bc39 
 SET_DATA gFrameTmRegisterConfig, 0x2024C94  
 SET_DATA gFrameTmRegister, 0x2024C9C 
