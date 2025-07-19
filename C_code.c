@@ -11271,6 +11271,17 @@ void CheckBattleUnitLevelUp(struct BattleUnit * bu)
         bu->unit.exp -= 100;
         bu->unit.level++;
 
+#ifdef FE8
+        if (UNIT_CATTRIBUTES(&bu->unit) & CA_MAXLEVEL10)
+        {
+            if (bu->unit.level == 10)
+            {
+                bu->expGain -= bu->unit.exp;
+                bu->unit.exp = UNIT_EXP_DISABLED;
+            }
+        }
+#endif
+
         if (bu->unit.level == 20)
         {
             bu->expGain -= bu->unit.exp;
