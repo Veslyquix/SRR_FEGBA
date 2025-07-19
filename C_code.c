@@ -15450,6 +15450,33 @@ void StartBlockingPrepArmory(struct Unit * unit, u16 * inventory, ProcPtr parent
     }
 }
 
+int IsUnitPhantom(struct Unit * unit)
+{
+    // if (UNIT_IS_PHANTOM(unit)) { return true; }
+
+    if (unit && unit->pCharacterData)
+    {
+        int id = unit->pCharacterData->number;
+
+        if (id == 0x3B || id == 0x3E || id == 0x3F)
+            return true;
+    }
+    return false;
+}
+
+void ClearPhantoms_C(void)
+{
+    // Clear phantoms
+    for (int i = 1; i < 0x40; ++i)
+    {
+        struct Unit * unit = GetUnit(i);
+        if (IsUnitPhantom(unit))
+        {
+            ClearUnit(unit);
+        }
+    }
+}
+
 enum
 {
     // Terrain identifiers

@@ -471,6 +471,12 @@ ORG $b4248
 jumpToHack_r6(DecideToCallRandomizedShopScreenOrNot) 
 #endif 
 
+ORG $312E4 
+jumpToHack(ClearPhantomsNew) 
+
+ORG $1840C
+jumpToHack(PhantomDeathHook)
+
 
 ORG $23174 // Make "Play" command act as "Dance" item instead of 0xCD's "Dummy" text 
 BYTE 0xA5 

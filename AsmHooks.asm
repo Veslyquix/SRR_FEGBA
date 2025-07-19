@@ -54,6 +54,50 @@ pop {r0}
 bx r0 
 .ltorg 
 
+.global ClearPhantomsNew
+.type ClearPhantomsNew, %function 
+ClearPhantomsNew: 
+push {lr} 
+ldrb r1, [r2, #0x14] 
+mov r0, #0xef 
+and r0, r1 
+strb r0, [r2, #0x14] 
+bl ClearPhantoms_C
+pop {r3} 
+ldr r3, =0x80312ED 
+bx r3 
+.ltorg 
+
+.global PhantomDeathHook
+.type PhantomDeathHook, %function 
+PhantomDeathHook: 
+push {lr} 
+push {r2} 
+ldr r0, [r2, #4] 
+ldrb r0, [r0, #4] 
+cmp r0, #0x51 
+bne NotPhantomClass
+pop {r2} 
+YesPhantom: 
+str r1, [r2] 
+pop {r3} 
+ldr r3, =0x801842D 
+bx r3 
+.ltorg 
+NotPhantomClass: 
+mov r0, r2 
+bl IsUnitPhantom 
+mov r1, #0 
+pop {r2} 
+cmp r0, #0 
+bne YesPhantom
+pop {r3} 
+ldr r3, =0x8018419 
+bx r3 
+.ltorg 
+
+
+
 .global FE6_TilesMovedSafetyCheck 
 .type FE6_TilesMovedSafetyCheck, %function 
 FE6_TilesMovedSafetyCheck: 
