@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.0.6"
+#define VersionNumber " SRR V2.0.7"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -858,7 +858,7 @@ int GetCharTableID(const struct CharacterData * table)
 {
     int portraitID = table->portraitId;
     int result = GetForcedCharTable(table);
-    int isEnemy = GetCharOriginalPool(table);
+    int isEnemy = GetCharOriginalPool(table) == BossesPool;
     int randValue;
     int noise[4] = { 5, 7, 9, 11 };
     if (!result)
@@ -4741,6 +4741,8 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
         return false;
     }
     int end = t + 1;
+
+    int tableID = t;
     if (t >= NumberOfCharTables)
     {
         t = 0;
@@ -4750,7 +4752,6 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
     u8 recruitmentOrder[0x45] = { 0 };
     BuildRecruitmentOrderList(recruitmentOrder, 0);
     int id;
-    int tableID = t;
 
     // pool of players
 
@@ -4814,9 +4815,16 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
 
     // Now do the same for bosses, but using the boss tables
 
-    t = tableID + (NumberOfCharTables >> 1);
+    t = tableID + (NumberOfCharTables >> 1); // from specific game
     end += (NumberOfCharTables >> 1);
-    if (!tableID)
+
+    if (tableID >= NumberOfCharTables) // from game: random
+    {
+        t = (NumberOfCharTables >> 1);
+        // end += NumberOfCharTables >> 1;
+    }
+
+    if (!tableID) // from vanilla game
     {
         t = 0;
         end = 1;
@@ -4889,7 +4897,7 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
     return true;
 }
 
-u8 SRRBuffer[0x1500];
+u8 SRRBuffer[0x1500]; // 2025B8C + #1200 = 202603C
 RecruitmentProc * InitRandomRecruitmentProc(int procID)
 {
     // if (ShouldRandomizeUsedCharTable())
@@ -5382,6 +5390,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             }
         }
     }
+
     proc = proc1;
 
     // now copy stuff over to account for duplicate characters
