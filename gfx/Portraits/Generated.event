@@ -163,11 +163,22 @@ MugEntry(VelouriaMug, VelouriaMugData, VelouriaMinimugData, VelouriaFramesData, 
 MugEntry(XanderMug, XanderMugData, XanderMinimugData, XanderFramesData, XanderPaletteData,  3, 5, 3, 3)
 MugEntry(YukimuraMug, YukimuraMugData, YukimuraMinimugData, YukimuraFramesData, YukimuraPaletteData,  3, 5, 3, 3)
 MugEntry(AreteMug, AreteMugData, AreteMinimugData, AreteFramesData, AretePaletteData,  2, 6, 3, 4)
+MugEntry(CandaceMug, CandaceMugData, CandaceMinimugData, CandaceFramesData, CandacePaletteData,  3, 6, 3, 4)
+MugEntry(DaichiMug, DaichiMugData, DaichiMinimugData, DaichiFramesData, DaichiPaletteData,  3, 5, 3, 3)
 MugEntry(DanielaMug, DanielaMugData, DanielaMinimugData, DanielaFramesData, DanielaPaletteData,  5, 6, 5, 4)
 MugEntry(FacelessMug, FacelessMugData, FacelessMinimugData, FacelessFramesData, FacelessPaletteData,  2, 4, 2, 2)
+MugEntry(FunkeMug, FunkeMugData, FunkeMinimugData, FunkeFramesData, FunkePaletteData,  3, 5, 4, 3)
 MugEntry(GaronMug, GaronMugData, GaronMinimugData, GaronFramesData, GaronPaletteData,  4, 4, 4, 2)
-MugEntry(HaitakaMug, HaitakaMugData, HaitakaMinimugData, HaitakaFramesData, HaitakaPaletteData,  3, 5, 3, 3)
+MugEntry(GazakMug, GazakMugData, GazakMinimugData, GazakFramesData, GazakPaletteData,  3, 6, 3, 4)
+MugEntry(HaitakaMug, HaitakaMugData, HaitakaMinimugData, HaitakaFramesData, HaitakaPaletteData,  2, 6, 2, 4)
 MugEntry(KilmaMug, KilmaMugData, KilmaMinimugData, KilmaFramesData, KilmaPaletteData,  3, 5, 3, 3)
+MugEntry(KumageraMug, KumageraMugData, KumageraMinimugData, KumageraFramesData, KumageraPaletteData,  3, 6, 3, 4)
+MugEntry(LlewelynMug, LlewelynMugData, LlewelynMinimugData, LlewelynFramesData, LlewelynPaletteData,  5, 5, 5, 3)
+MugEntry(LloydFE14Mug, LloydFE14MugData, LloydFE14MinimugData, LloydFE14FramesData, LloydFE14PaletteData,  3, 5, 3, 3)
+MugEntry(NicholMug, NicholMugData, NicholMinimugData, NicholFramesData, NicholPaletteData,  2, 5, 2, 3)
+MugEntry(SennoMug, SennoMugData, SennoMinimugData, SennoFramesData, SennoPaletteData,  4, 7, 4, 5)
+MugEntry(TarbaMug, TarbaMugData, TarbaMinimugData, TarbaFramesData, TarbaPaletteData,  3, 4, 3, 2)
+MugEntry(ZharaMug, ZharaMugData, ZharaMinimugData, ZharaFramesData, ZharaPaletteData,  3, 5, 3, 3)
 MugEntry(AloisMug, AloisMugData, AloisMinimugData, AloisFramesData, AloisPaletteData,  2, 5, 2, 3)
 MugEntry(AnnetteMug, AnnetteMugData, AnnetteMinimugData, AnnetteFramesData, AnnettePaletteData,  3, 7, 3, 5)
 MugEntry(ArundelMug, ArundelMugData, ArundelMinimugData, ArundelFramesData, ArundelPaletteData,  3, 5, 3, 3)
@@ -1073,7 +1084,7 @@ MugEntry(SanakiMug, SanakiMugData, SanakiMinimugData, SanakiFramesData, SanakiPa
 MugEntry(SephiranMug, SephiranMugData, SephiranMinimugData, SephiranFramesData, SephiranPaletteData,  3, 4, 3, 2)
 MugEntry(ShinonMug, ShinonMugData, ShinonMinimugData, ShinonFramesData, ShinonPaletteData,  3, 5, 2, 3)
 MugEntry(SigrunMug, SigrunMugData, SigrunMinimugData, SigrunFramesData, SigrunPaletteData,  3, 5, 3, 3)
-MugEntry(SkrimirMug, SkrimirMugData, SkrimirMinimugData, SkrimirFramesData, SkrimirPaletteData,  3, 4, 5, 7)
+MugEntry(SkrimirMug, SkrimirMugData, SkrimirMinimugData, SkrimirFramesData, SkrimirPaletteData,  3, 5, 3, 3)
 MugEntry(SorenMug, SorenMugData, SorenMinimugData, SorenFramesData, SorenPaletteData,  4, 5, 4, 3)
 MugEntry(SotheMug, SotheMugData, SotheMinimugData, SotheFramesData, SothePaletteData,  4, 5, 3, 3)
 MugEntry(StefanMug, StefanMugData, StefanMinimugData, StefanFramesData, StefanPaletteData,  3, 5, 3, 3)
@@ -2913,6 +2924,28 @@ AreteMinimugData:
 #incbin "png/FE14_Bosses/Arete_HackboxincompatibleJeytheCountF2E_minimug.dmp"
 
 ALIGN 4
+CandaceMugData:
+#incbin "png/FE14_Bosses/Candace_Garytop_mug.dmp"
+ALIGN 4
+CandaceFramesData:
+#incbin "png/FE14_Bosses/Candace_Garytop_frames.dmp"
+CandacePaletteData:
+#incbin "png/FE14_Bosses/Candace_Garytop_palette.dmp"
+CandaceMinimugData:
+#incbin "png/FE14_Bosses/Candace_Garytop_minimug.dmp"
+
+ALIGN 4
+DaichiMugData:
+#incbin "png/FE14_Bosses/Daichi_Garytop_mug.dmp"
+ALIGN 4
+DaichiFramesData:
+#incbin "png/FE14_Bosses/Daichi_Garytop_frames.dmp"
+DaichiPaletteData:
+#incbin "png/FE14_Bosses/Daichi_Garytop_palette.dmp"
+DaichiMinimugData:
+#incbin "png/FE14_Bosses/Daichi_Garytop_minimug.dmp"
+
+ALIGN 4
 DanielaMugData:
 #incbin "png/FE14_Bosses/Daniela_GarytopF2E_mug.dmp"
 ALIGN 4
@@ -2935,6 +2968,17 @@ FacelessMinimugData:
 #incbin "png/FE14_Bosses/Faceless_CygnusL95F2E_minimug.dmp"
 
 ALIGN 4
+FunkeMugData:
+#incbin "png/FE14_Bosses/Funke_Garytop_mug.dmp"
+ALIGN 4
+FunkeFramesData:
+#incbin "png/FE14_Bosses/Funke_Garytop_frames.dmp"
+FunkePaletteData:
+#incbin "png/FE14_Bosses/Funke_Garytop_palette.dmp"
+FunkeMinimugData:
+#incbin "png/FE14_Bosses/Funke_Garytop_minimug.dmp"
+
+ALIGN 4
 GaronMugData:
 #incbin "png/FE14_Bosses/Garon_SaintRubenioF2E_mug.dmp"
 ALIGN 4
@@ -2946,15 +2990,26 @@ GaronMinimugData:
 #incbin "png/FE14_Bosses/Garon_SaintRubenioF2E_minimug.dmp"
 
 ALIGN 4
+GazakMugData:
+#incbin "png/FE14_Bosses/Gazak_Garytop_mug.dmp"
+ALIGN 4
+GazakFramesData:
+#incbin "png/FE14_Bosses/Gazak_Garytop_frames.dmp"
+GazakPaletteData:
+#incbin "png/FE14_Bosses/Gazak_Garytop_palette.dmp"
+GazakMinimugData:
+#incbin "png/FE14_Bosses/Gazak_Garytop_minimug.dmp"
+
+ALIGN 4
 HaitakaMugData:
-#incbin "png/FE14_Bosses/Haitaka_Cygnus_mug.dmp"
+#incbin "png/FE14_Bosses/Haitaka_Garytop_mug.dmp"
 ALIGN 4
 HaitakaFramesData:
-#incbin "png/FE14_Bosses/Haitaka_Cygnus_frames.dmp"
+#incbin "png/FE14_Bosses/Haitaka_Garytop_frames.dmp"
 HaitakaPaletteData:
-#incbin "png/FE14_Bosses/Haitaka_Cygnus_palette.dmp"
+#incbin "png/FE14_Bosses/Haitaka_Garytop_palette.dmp"
 HaitakaMinimugData:
-#incbin "png/FE14_Bosses/Haitaka_Cygnus_minimug.dmp"
+#incbin "png/FE14_Bosses/Haitaka_Garytop_minimug.dmp"
 
 ALIGN 4
 KilmaMugData:
@@ -2966,6 +3021,83 @@ KilmaPaletteData:
 #incbin "png/FE14_Bosses/Kilma_GarytopF2E_palette.dmp"
 KilmaMinimugData:
 #incbin "png/FE14_Bosses/Kilma_GarytopF2E_minimug.dmp"
+
+ALIGN 4
+KumageraMugData:
+#incbin "png/FE14_Bosses/Kumagera_Garytop_mug.dmp"
+ALIGN 4
+KumageraFramesData:
+#incbin "png/FE14_Bosses/Kumagera_Garytop_frames.dmp"
+KumageraPaletteData:
+#incbin "png/FE14_Bosses/Kumagera_Garytop_palette.dmp"
+KumageraMinimugData:
+#incbin "png/FE14_Bosses/Kumagera_Garytop_minimug.dmp"
+
+ALIGN 4
+LlewelynMugData:
+#incbin "png/FE14_Bosses/Llewelyn_Garytop_mug.dmp"
+ALIGN 4
+LlewelynFramesData:
+#incbin "png/FE14_Bosses/Llewelyn_Garytop_frames.dmp"
+LlewelynPaletteData:
+#incbin "png/FE14_Bosses/Llewelyn_Garytop_palette.dmp"
+LlewelynMinimugData:
+#incbin "png/FE14_Bosses/Llewelyn_Garytop_minimug.dmp"
+
+ALIGN 4
+LloydFE14MugData:
+#incbin "png/FE14_Bosses/LloydFE14_Garytop_mug.dmp"
+ALIGN 4
+LloydFE14FramesData:
+#incbin "png/FE14_Bosses/LloydFE14_Garytop_frames.dmp"
+LloydFE14PaletteData:
+#incbin "png/FE14_Bosses/LloydFE14_Garytop_palette.dmp"
+LloydFE14MinimugData:
+#incbin "png/FE14_Bosses/LloydFE14_Garytop_minimug.dmp"
+
+ALIGN 4
+NicholMugData:
+#incbin "png/FE14_Bosses/Nichol_Garytop_mug.dmp"
+ALIGN 4
+NicholFramesData:
+#incbin "png/FE14_Bosses/Nichol_Garytop_frames.dmp"
+NicholPaletteData:
+#incbin "png/FE14_Bosses/Nichol_Garytop_palette.dmp"
+NicholMinimugData:
+#incbin "png/FE14_Bosses/Nichol_Garytop_minimug.dmp"
+
+ALIGN 4
+SennoMugData:
+#incbin "png/FE14_Bosses/Senno_Garytop_mug.dmp"
+ALIGN 4
+SennoFramesData:
+#incbin "png/FE14_Bosses/Senno_Garytop_frames.dmp"
+SennoPaletteData:
+#incbin "png/FE14_Bosses/Senno_Garytop_palette.dmp"
+SennoMinimugData:
+#incbin "png/FE14_Bosses/Senno_Garytop_minimug.dmp"
+
+ALIGN 4
+TarbaMugData:
+#incbin "png/FE14_Bosses/Tarba_Garytop_mug.dmp"
+ALIGN 4
+TarbaFramesData:
+#incbin "png/FE14_Bosses/Tarba_Garytop_frames.dmp"
+TarbaPaletteData:
+#incbin "png/FE14_Bosses/Tarba_Garytop_palette.dmp"
+TarbaMinimugData:
+#incbin "png/FE14_Bosses/Tarba_Garytop_minimug.dmp"
+
+ALIGN 4
+ZharaMugData:
+#incbin "png/FE14_Bosses/Zhara_Garytop_mug.dmp"
+ALIGN 4
+ZharaFramesData:
+#incbin "png/FE14_Bosses/Zhara_Garytop_frames.dmp"
+ZharaPaletteData:
+#incbin "png/FE14_Bosses/Zhara_Garytop_palette.dmp"
+ZharaMinimugData:
+#incbin "png/FE14_Bosses/Zhara_Garytop_minimug.dmp"
 
 ALIGN 4
 AloisMugData:

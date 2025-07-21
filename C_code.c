@@ -752,7 +752,12 @@ int GetCharTableID(const struct CharacterData * table)
         return result;
     }
 
-    if (result < NumberOfCharTables)
+    if (result >= NumberOfCharTables)
+    { // Random char table
+        result = HashByte_Global(portraitID, NumberOfCharTables >> 1, noise, portraitID);
+    }
+
+    if (result < NumberOfCharTables) // Then force into boss or not
     {
         if (isEnemy)
         {
@@ -785,6 +790,8 @@ int GetCharTableID(const struct CharacterData * table)
         }
         return result;
     }
+
+    // never reach here
     // randomize
     return HashByte_Global(portraitID, NumberOfCharTables, noise, portraitID);
 }
@@ -13203,6 +13210,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             proc->helpBox = NULL;
             CloseHelpBox();
             LoadObjUIGfx();
+            UnpackUiVArrowGfx(0x240, 3);
             return;
             // ClearHelpBoxText_SRR();
         }

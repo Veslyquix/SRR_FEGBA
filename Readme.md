@@ -978,6 +978,26 @@ Ophelia portrait by Garytop
 Soleil portrait by Zorua     
 Nina portrait by JeyTheCount     
    
+Arete portrait by JeyTheCount  
+Candace portrait by Garytop  
+Daichi portrait by Garytop  
+Daniela portrait by Garytop  
+Faceless portrait by Cygnus, L95  
+Funke portrait by Garytop  
+Garon portrait by SaintRubenio  
+Gazak portrait by Garytop  
+Haitaka portrait by Garytop  
+Kilma portrait by Garytop  
+Kumagera portrait by Garytop  
+Llewelyn portrait by Garytop  
+Lloyd portrait by Garytop  
+Nichol portrait by Garytop  
+Senno portrait by Garytop  
+Tarba portrait by Garytop  
+Zhara portrait by Garytop  
+
+   
+   
 // fe15    
    
 Alm portrait by HyperGammaSpaces     
