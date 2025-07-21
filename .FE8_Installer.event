@@ -74,6 +74,7 @@
 
 
 #include "../ASM/EndBattleIfBroken/Installer.event" 
+#include "../ASM/ProcMonitor/Installer.event" 
 #include "../ASM/BGOnlyDisplayInConvos/Installer.event" 
 #include "../ASM/DangerBones/Installer.event" 
 
@@ -1320,19 +1321,6 @@ DisplayRandomSkillsOption:
 
 #include "SRR_Menu.event" 
 
-ALIGN 4 
-EventScr_ErrorOccurred: 
-SCOORD sB [10, 4] 
-TUTORIALTEXTBOXSTART 
-#ifdef VeslyBuildfile 
-TEXTSHOW ErrorOccurredMessage
-#else 
-TEXTSHOW 0x9df 
-#endif 
-TEXTEND 
-REMA 
-NoFade 
-ENDA 
 
 
 ALIGN 4 
