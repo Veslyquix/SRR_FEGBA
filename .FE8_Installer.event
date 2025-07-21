@@ -72,7 +72,7 @@
 #include "Patches/FE8.lyn.event" 
 #include "Patches/FE8_AsmHooks.lyn.event" 
 
-
+#inctext DateTimeSetter
 #include "../ASM/EndBattleIfBroken/Installer.event" 
 #include "../ASM/ProcMonitor/Installer.event" 
 #include "../ASM/BGOnlyDisplayInConvos/Installer.event" 
