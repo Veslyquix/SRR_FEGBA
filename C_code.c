@@ -1278,6 +1278,7 @@ void ResetPage(ConfigMenuProc * proc)
 
 void SetAllCharConfirm(ConfigMenuProc * proc)
 {
+
     int firstChar = 1;
 #ifdef FE7
     firstChar = 3; // Lyn as first character
@@ -6371,9 +6372,15 @@ int ShouldRandomizeClass(struct Unit * unit)
     // if (Proc_Find(gProcScr_ArenaUiMain)) { return false; }
     return !CharExceptions[unit->pCharacterData->number].NeverChangeFrom;
 }
-int IsClassOrRecruitmentRandomized(struct Unit * unit)
+int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
 {
     int result = ShouldRandomizeClass(unit);
+    struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
+    if (pidStats)
+    {
+        result |= pidStats->forcedClass;
+        result |= pidStats->newCharID;
+    }
     result |= ShouldChangeWeaponForUnit(unit);
     return result;
 }
