@@ -1281,7 +1281,7 @@ void SetAllCharConfirm(ConfigMenuProc * proc)
 
     int firstChar = 1;
 #ifdef FE7
-    firstChar = 3; // Lyn as first character
+    firstChar = 0x2d; // Lyn2 as first character
 #endif
     struct PidStatsChar * pidStats = GetPidStatsSafe(firstChar);
     if (!pidStats)
