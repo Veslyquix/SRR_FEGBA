@@ -73,6 +73,10 @@
 #include "Patches/FE8_AsmHooks.lyn.event" 
 
 #inctext DateTimeSetter
+#ifdef VeslyBuildfile 
+#define TimedHitsRam 0x202BD0F 
+#endif 
+#include "../ASM/AnimsFastForward/Installer.event" // Timed hits ram should be defined first 
 #include "../ASM/EndBattleIfBroken/Installer.event" 
 #include "../ASM/ProcMonitor/Installer.event" 
 #include "../ASM/BGOnlyDisplayInConvos/Installer.event" 
@@ -567,10 +571,7 @@ ORG $1cB80
 callHackNew(FE8_TilesMovedSafetyCheck)
 
 
-ORG 0x4FEC8 // fe8 
-// ORG $4b30c // fe7 
-// ORG $426E8 // fe6
-callHackNew(FastForwardBattles) 
+
 
 
 // test 

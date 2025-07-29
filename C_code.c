@@ -16495,69 +16495,6 @@ void EndCloudsEffect(void)
     RegisterBlankTile(0);
 }
 
-enum PlaySt_AnimConfType
-{
-    PLAY_ANIMCONF_ON = 0,
-    PLAY_ANIMCONF_OFF = 1,
-    PLAY_ANIMCONF_SOLO_ANIM = 2,
-    PLAY_ANIMCONF_ON_UNIQUE_BG = 3,
-};
-int GetSoloAnimPreconfType(struct Unit * unit)
-{
-    // TODO: battle anim type constants
-    int result = PLAY_ANIMCONF_OFF;
-
-    if (unit->state & US_SOLOANIM_1)
-        result = PLAY_ANIMCONF_ON;
-
-    if (unit->state & US_SOLOANIM_2)
-        result = PLAY_ANIMCONF_ON_UNIQUE_BG;
-
-    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
-    if (keys & L_BUTTON)
-    {
-        result = PLAY_ANIMCONF_OFF;
-    }
-    return result;
-}
-
-int GetBattleAnimPreconfType(void)
-{
-    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
-    if (keys & L_BUTTON)
-    {
-        return PLAY_ANIMCONF_OFF;
-    }
-
-    // If not solo anim, return global type
-    if (gPlaySt.config.animationType != PLAY_ANIMCONF_SOLO_ANIM)
-        return gPlaySt.config.animationType;
-
-    // If both units are players, use actor solo anim type
-    if (UNIT_FACTION(&gBattleActor.unit) == FACTION_BLUE)
-        if (UNIT_FACTION(&gBattleTarget.unit) == FACTION_BLUE)
-            return GetSoloAnimPreconfType(&gBattleActor.unit);
-
-    // If neither are players, return 1
-    if (UNIT_FACTION(&gBattleActor.unit) != FACTION_BLUE)
-        if (UNIT_FACTION(&gBattleTarget.unit) != FACTION_BLUE)
-            return PLAY_ANIMCONF_OFF;
-
-    // Return solo anim type for the one that is a player unit
-    if (UNIT_FACTION(&gBattleActor.unit) == FACTION_BLUE)
-        return GetSoloAnimPreconfType(&gBattleActor.unit);
-    else
-        return GetSoloAnimPreconfType(&gBattleTarget.unit);
-}
-
-extern void VBlankIntrWait(void);
-void FastForwardBattles(void)
-{
-    gBmSt.main_loop_ended = true;
-    gBmSt.prevVCount = REG_VCOUNT;
-    VBlankIntrWait();
-}
-
 #ifndef FE8
 void PidStatsAddActAmt(u8 pid)
 {

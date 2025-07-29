@@ -6,7 +6,7 @@
 .equ FE7, true
 .equ FE8, false 
 
-.include "Definitions.s" 
+.include "../ASM/Definitions.s" 
 
 
 
