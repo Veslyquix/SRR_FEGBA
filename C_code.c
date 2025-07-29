@@ -6378,8 +6378,16 @@ int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
     struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
     if (pidStats)
     {
-        result |= pidStats->forcedClass;
-        result |= pidStats->newCharID;
+        int forcedClass = pidStats->forcedClass;
+        if (unit->pCharacterData->defaultClass != forcedClass)
+        {
+            result |= forcedClass;
+        }
+        int newCharID = pidStats->newCharID;
+        if (unit->pCharacterData->number != newCharID)
+        {
+            result |= newCharID;
+        }
     }
     result |= ShouldChangeWeaponForUnit(unit);
     return result;
