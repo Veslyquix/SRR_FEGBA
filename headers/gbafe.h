@@ -10,7 +10,7 @@ typedef int16_t    s16;
 #include "proc.h" 
 #include "unit.h" 
 #include "item.h" 
-
+#include "io_reg.h" 
 #define ABS(aValue) ((aValue) >= 0 ? (aValue) : -(aValue))
 
 

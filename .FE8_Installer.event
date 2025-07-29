@@ -566,6 +566,13 @@ BYTE $10 $B5 $04 $1C $FE $F7 $64 $F8 $00 $28 $04 $D1 $E0 $6A $00 $28 $06 $D0 $01
 ORG $1cB80 
 callHackNew(FE8_TilesMovedSafetyCheck)
 
+
+ORG 0x4FEC8 // fe8 
+// ORG $4b30c // fe7 
+// ORG $426E8 // fe6
+callHackNew(FastForwardBattles) 
+
+
 // test 
  // ORG $9EEF50
  // LABEL 876 

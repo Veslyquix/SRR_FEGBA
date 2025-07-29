@@ -265,6 +265,8 @@ SET_DATA gFrameTmRegisterConfig, 0x2023B34
 SET_DATA gFrameTmRegister, 0x2023B3C 
 SET_DATA SRRBuffer, 0x2025B8C	@ normally used by debug printing 
 SET_FUNC CallEvent, 0x800d979 
+SET_FUNC GetSoloAnimPreconfType, 0x8025CD9
+SET_FUNC GetBattleAnimPreconfType, 0x8025CFD
 
 
 
@@ -278,6 +280,8 @@ SET_FUNC CallEvent, 0x800d979
 
 .endif     
 .if FE7 == true 
+SET_FUNC GetSoloAnimPreconfType, 0x802A40D
+SET_FUNC GetBattleAnimPreconfType, 0x802A431
 SET_FUNC CallEvent, 0x800af75
 SET_DATA gSound, 0x202Bc39 
 SET_DATA gFrameTmRegisterConfig, 0x2024C94  
@@ -517,6 +521,8 @@ SET_DATA SRRBuffer, 0x2026d30	@ normally used by debug printing
 
 .endif 
 .if FE8 == true 
+SET_FUNC GetSoloAnimPreconfType, 0x802CA71
+SET_FUNC GetBattleAnimPreconfType, 0x802CA99
 SET_DATA SRRBuffer, 0x2026Ec0	@ size: 0x1f98	- normally used by debug printing
 SET_DATA gSound, 0x202BD31
 SET_FUNC StartUiSMS, 0x80266f1
