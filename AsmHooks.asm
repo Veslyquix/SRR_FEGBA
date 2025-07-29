@@ -119,7 +119,6 @@ bx r3
 .type FE8_TilesMovedSafetyCheck, %function 
 FE8_TilesMovedSafetyCheck: 
 push {lr} 
-mov r1, r0 
 ldr r0, [r5] 
 ldr r2, =gActionData 
 ldrb r2, [r2, #0x10] 
