@@ -2,17 +2,19 @@
 // Include this in *before* text (and *before* Tool Helpers)
 
 #define TextTable NewTextTable // define to not conflict with Tool Helpers
-#define MaxTextEntries 0x2000
+// #define MaxTextEntries 0x2000
+// febuilder needs a default pointer for text, which for fe6 is 9FAC0
+// so in the fe6translationtexttable.dmp, we put a bunch of C0 FA 09 08 until the size of the dmp is 0x2000*4 aka 32kb 
 
 ALIGN 4
-TextTable:
+NewTextTable:
 #ifdef _FE7_ 
   #incbin "FE7TextTable.dmp"
   #endif 
   #ifdef _FE6_
     #incbin "FE6TranslationTextTable.dmp"
   #endif 
-  ORG TextTable + (MaxTextEntries) * 4
+  // ORG TextTable + (MaxTextEntries * 4) // don't use fill before the incbin 
 
 PUSH
 

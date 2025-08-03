@@ -4,6 +4,7 @@
 #define TextTable NewTextTable // define to not conflict with Tool Helpers
 #define MaxTextEntries 0x2000
 
+
 ALIGN 4
 TextTable:
 #ifdef _FE7_ 
@@ -12,7 +13,7 @@ TextTable:
   #ifdef _FE6_
     #incbin "FE6TranslationTextTable.dmp"
   #endif 
-  ORG TextTable + (MaxTextEntries) * 4
+  ORG TextTable + (MaxTextEntries * 4) // don't use fill before the incbin 
 
 PUSH
 
