@@ -6,11 +6,12 @@ import shutil
 png_files = list(Path("data").rglob("*.png"))
 
 # Initialize counter
-c = 1
+c = 0
 
 # Store BGEntry lines separately to write them at the start
 bg_entries = []
 incbin_lines = []
+definitions_lines = []
 
 for png_file in png_files:
     # Extract file path and name information
@@ -33,7 +34,7 @@ for png_file in png_files:
     incbin_lines.append(f'#incbin "{normalized_relative_path}/{base_name}Pal.dmp"')
 
     # Define mug ID if not already defined
-    incbin_lines.append(f"#ifndef {base_name}_BG\n  #define {base_name}_BG (FirstBG_ID+{c})\n#endif\n")
+    definitions_lines.append(f"#ifndef {base_name}_BG\n  #define {base_name}_BG (FirstBG_ID+{c})\n#endif\n")
 
     # Increment the counter
     c += 1
@@ -55,5 +56,8 @@ with open("Generated.event", "w") as installer:
 
     # Write all #incbin directives afterward
     installer.write("\n".join(incbin_lines) + "\n")
+with open("GeneratedDefinitions.event", "w") as definitions:
+    definitions.write("//Generated! Do not edit!\n\n")
+    definitions.write("\n".join(definitions_lines) + "\n\n")
 
 print("done")

@@ -6867,9 +6867,9 @@ s16 HashPercent(int number, int noise[], int offset, int global, int earlygamePr
         number = 0;
     int variation = (RandValues->variance) * 5;
     if (earlygamePromo == 3)
-    { // 2/3rds
-        variation += variation;
-        variation = variation / 3;
+    { // 1/2
+        // variation += variation;
+        variation = variation / 2;
     }
     int percentage = 0;
     if (global)
@@ -6913,7 +6913,7 @@ s16 HashByPercent(int number, int noise[], int offset)
     return HashPercent(number, noise, offset, true, false);
 };
 
-s16 HashByTwoThirdsPercent(int number, int noise[], int offset)
+s16 HashByHalfPercent(int number, int noise[], int offset)
 {
     return HashPercent(number, noise, offset, true, 3);
 };
@@ -6943,7 +6943,7 @@ s16 HashMight(int number, int noise[])
     {
         return number;
     } // eclipse
-    return HashByTwoThirdsPercent(number, noise, 0) + 2;
+    return HashByHalfPercent(number, noise, 0); //+ 2;
 }
 extern int MaxWeaponHitrate;
 s16 HashHit(int number, int noise[])
@@ -6952,7 +6952,7 @@ s16 HashHit(int number, int noise[])
     {
         return number;
     }
-    number = HashByTwoThirdsPercent(number, noise, 0);
+    number = HashByHalfPercent(number, noise, 0);
     if (number < 50)
         number += number + (noise[0] & 0x1F) + 30;
     if (number > MaxWeaponHitrate)
@@ -6979,7 +6979,7 @@ s16 HashWeight(int number, int noise[])
     {
         return number;
     }
-    return HashByTwoThirdsPercent(number, noise, 0);
+    return HashByHalfPercent(number, noise, 0);
 }
 
 inline int IsUIDAlliedOrPlayable(int uid)
@@ -9794,7 +9794,8 @@ int GetHPStatMaxBonus(struct Unit * unit, int stat, int avg)
     }
     return result;
 }
-#define StatMaxBonus 8
+// ensure stats are capped to (AvgOriginalStat + StatMaxBonus)
+#define StatMaxBonus 4 // 8
 int GetStatMaxBonus(struct Unit * unit, int stat, int avg)
 {
     int result = (stat + avg) / 2;
@@ -10263,9 +10264,18 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
                 int prepromoteClassId = GetPromotedClass(unit->pClassData); // idk if necessary tbh, up to ~15k cycles
                 if (prepromoteClassId)
                 {
+
                     // no demotions allowed, or we rolled to not demote, so use original class for randclass instead
                     unit->pClassData = originalClass; // so RandClass will treat us as promoted or not based on that
                     unit->pClassData = GetClassData(RandClass(prepromoteClassId, noise, unit));
+                }
+            }
+            else
+            { // they were demoted, so increase their starting level by 9
+                unit->level += 9;
+                if (unit->level > 20)
+                {
+                    unit->level = 20;
                 }
             }
         }
@@ -10290,6 +10300,15 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
                     }
 #endif
                 }
+            }
+            else
+            { // they were promoted, so reduce their starting level by 10 (if possible)
+                int level = unit->level - 10;
+                if (level < 1)
+                {
+                    level = 1;
+                }
+                unit->level = level;
             }
         }
     }
@@ -10543,9 +10562,12 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     int orgMag = 0;
     if (SkillSysInstalled)
     {
-        orgMag = GetBaseMag(unit->pCharacterData->number, originalClass->number);
-        avgStat += orgMag;
-        countOfStats++;
+        if (StrMagInstalled)
+        {
+            orgMag = GetBaseMag(unit->pCharacterData->number, originalClass->number);
+            avgStat += orgMag;
+            countOfStats++;
+        }
     }
 #endif
     avgStat = (avgStat + (countOfStats / 2)) / countOfStats;
@@ -10589,16 +10611,19 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 #ifdef FE8
     if (SkillSysInstalled)
     {
-        max = GetStatMaxBonus(unit, orgMag, avgStat);
-        if (unit->_u3A > max)
+        if (StrMagInstalled | C_SKILLSYS_INSTALL)
         {
-            unit->_u3A = max;
-        }
-        if (C_SKILLSYS_INSTALL)
-        {
-            if (unit->C_SKILLSYS_MAG_BYTE > max)
+            max = GetStatMaxBonus(unit, orgMag, avgStat);
+            if (unit->_u3A > max)
             {
-                unit->C_SKILLSYS_MAG_BYTE = max;
+                unit->_u3A = max;
+            }
+            if (C_SKILLSYS_INSTALL)
+            {
+                if (unit->C_SKILLSYS_MAG_BYTE > max)
+                {
+                    unit->C_SKILLSYS_MAG_BYTE = max;
+                }
             }
         }
     }
@@ -12701,8 +12726,8 @@ int StartKeyPressed(ProcPtr proc)
 
 void SetDefaultTagValues(void)
 {
-
-    TagValues->raw = 0xFFFFDFFF;      // default: no civilians
+    // TagValues->raw = 0xFFFFDFFF;      // default: no civilians
+    TagValues->raw = 0xFFFF9FFF;      // default: no civilians or manaketes
     ClassTags->raw = 0xF9FF9FFF;      // default: early thief, no civilians or manaketes
     EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
@@ -13144,8 +13169,8 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
         proc->Option[i] = 0;
     }
     SetDefaultTagValues();
-    proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
-    // proc->Option[VarianceOption] = 10; // start on 50%
+    // proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
+    proc->Option[VarianceOption] = 10; // start on 50%
     proc->Option[PlayerRecruitmentOption] = RandomOrder;
     proc->Option[EnemyRecruitmentOption] = VanillaOrder;
     proc->Option[PlayerBossOption] = 0;

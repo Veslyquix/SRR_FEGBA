@@ -7,13 +7,14 @@
 
 #define BGEntry(Img, TSA, Pal) "POIN Img; POIN TSA; POIN Pal"
 #define BGEntry(Img, Pal) "POIN Img; WORD 1; POIN Pal"
-#define FirstBG_ID 0x37
+#define FirstBG_ID 0x38
 ALIGN 12 // for easy feb terminator
 NewBGTable:
 FILL 12*200
 ORG NewBGTable
 #include "VanillaData.event"
 #include "Generated.event"
+#include "GeneratedDefinitions.event"
 // BGEntry(Sommie256BG, 0, Sommie256Pal ) // TSA == 0 indicates 256-colour BGs.
 // BGEntry(Sommie224BG, Sommie224Pal ) // TSA == 1 indicates 224-colour BGs.
 
