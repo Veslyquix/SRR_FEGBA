@@ -10233,7 +10233,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         noise[3] = character->affinity; // players don't use gCh anymore
     }
 
-    int RandomizeRecruitment = ShouldRandomizeRecruitmentForUnitID(unit->pCharacterData->number);
+    int RandomizeRecruitment = ShouldChangeWeaponForUnit(unit); // if we change their weapon, they're in a diff class
 
     if (RandomizeRecruitment)
     {
