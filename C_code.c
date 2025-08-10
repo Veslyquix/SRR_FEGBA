@@ -9795,12 +9795,19 @@ int GetHPStatMaxBonus(struct Unit * unit, int stat, int avg)
     return result;
 }
 // ensure stats are capped to (AvgOriginalStat + StatMaxBonus)
-#define StatMaxBonus 4 // 8
+// and no more than 2x the original stat (depending on variance)
+#define StatMaxBonus 8
 int GetStatMaxBonus(struct Unit * unit, int stat, int avg)
 {
     int result = (stat + avg) / 2;
     int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance) * 5)) / 100;
     result += bonus;
+    int hardCap = (SlightlyAdjustStatForInflatedNumbers(stat) * ((RandValues->variance) * 10)) / 100;
+    if (hardCap < stat)
+    {
+        hardCap = stat;
+    }
+
     if (result < stat)
     {
         result = stat;
@@ -9812,6 +9819,10 @@ int GetStatMaxBonus(struct Unit * unit, int stat, int avg)
     if (result < 0)
     {
         result = 0;
+    }
+    if (result > hardCap)
+    {
+        result = hardCap;
     }
     return result;
 }
