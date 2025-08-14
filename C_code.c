@@ -8352,9 +8352,13 @@ int GetClassMagGrowth(struct Unit * unit, int modifiersBool)
 {
     int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
     growth += MagClassTable[unit->pClassData->number].growth;
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
+    if (!modifiersBool)
     {
         return growth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return growth + GetBonusGrowth(unit);
     }
     int noise[4] = { 0, 0, 0, 0 };
     noise[0] = unit->pClassData->number;
@@ -8420,7 +8424,7 @@ int GetUnitMagGrowth(struct Unit * unit, int modifiersBool)
     }
     if (!ShouldRandomizeGrowth(unit))
     {
-        return baseGrowth + add;
+        return baseGrowth + add + GetBonusGrowth(unit);
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -8554,9 +8558,13 @@ int GetClassHPGrowth(struct Unit * unit, int modifiersBool)
 {
     int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
     growth += unit->pClassData->growthHP;
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
+    if (!modifiersBool)
     {
         return growth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return growth + GetBonusGrowth(unit);
     }
     int noise[4] = { 0, 0, 0, 0 };
     noise[0] = unit->pClassData->number;
@@ -8585,9 +8593,13 @@ int GetClassPowGrowth(struct Unit * unit, int modifiersBool)
 {
     int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
     growth += unit->pClassData->growthPow;
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
+    if (!modifiersBool)
     {
         return growth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return growth + GetBonusGrowth(unit);
     }
     int noise[4] = { 0, 0, 0, 0 };
     noise[0] = unit->pClassData->number;
@@ -8612,9 +8624,13 @@ int GetClassSklGrowth(struct Unit * unit, int modifiersBool)
 {
     int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
     growth += unit->pClassData->growthSkl;
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
+    if (!modifiersBool)
     {
         return growth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return growth + GetBonusGrowth(unit);
     }
     int noise[4] = { 0, 0, 0, 0 };
     noise[0] = unit->pClassData->number;
@@ -8643,9 +8659,13 @@ int GetClassSpdGrowth(struct Unit * unit, int modifiersBool)
 {
     int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
     growth += unit->pClassData->growthSpd;
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
+    if (!modifiersBool)
     {
         return growth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return growth + GetBonusGrowth(unit);
     }
     int noise[4] = { 0, 0, 0, 0 };
     noise[0] = unit->pClassData->number;
@@ -8674,9 +8694,13 @@ int GetClassDefGrowth(struct Unit * unit, int modifiersBool)
 {
     int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
     growth += unit->pClassData->growthDef;
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
+    if (!modifiersBool)
     {
         return growth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return growth + GetBonusGrowth(unit);
     }
     int noise[4] = { 0, 0, 0, 0 };
     noise[0] = unit->pClassData->number;
@@ -8705,9 +8729,13 @@ int GetClassResGrowth(struct Unit * unit, int modifiersBool)
 {
     int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
     growth += unit->pClassData->growthRes;
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
+    if (!modifiersBool)
     {
         return growth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return growth + GetBonusGrowth(unit);
     }
     int noise[4] = { 0, 0, 0, 0 };
     noise[0] = unit->pClassData->number;
@@ -8736,9 +8764,13 @@ int GetClassLckGrowth(struct Unit * unit, int modifiersBool)
 {
     int growth = 0; //(unit->state & US_GROWTH_BOOST) ? 5: 0;
     growth += unit->pClassData->growthLck;
-    if ((!ShouldRandomizeGrowth(unit)) || (!modifiersBool))
+    if (!modifiersBool)
     {
         return growth;
+    }
+    if (!ShouldRandomizeGrowth(unit))
+    {
+        return growth + GetBonusGrowth(unit);
     }
     int noise[4] = { 0, 0, 0, 0 };
     noise[0] = unit->pClassData->number;
@@ -8801,7 +8833,7 @@ int GetUnitHPGrowth(struct Unit * unit, int modifiersBool)
     }
     if (!ShouldRandomizeGrowth(unit))
     {
-        return baseGrowth + add;
+        return baseGrowth + add + GetBonusGrowth(unit);
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -8882,7 +8914,7 @@ int GetUnitPowGrowth(struct Unit * unit, int modifiersBool)
     }
     if (!ShouldRandomizeGrowth(unit))
     {
-        return baseGrowth + add;
+        return baseGrowth + add + GetBonusGrowth(unit);
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -8963,7 +8995,7 @@ int GetUnitSklGrowth(struct Unit * unit, int modifiersBool)
     }
     if (!ShouldRandomizeGrowth(unit))
     {
-        return baseGrowth + add;
+        return baseGrowth + add + GetBonusGrowth(unit);
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -9044,7 +9076,7 @@ int GetUnitSpdGrowth(struct Unit * unit, int modifiersBool)
     }
     if (!ShouldRandomizeGrowth(unit))
     {
-        return baseGrowth + add;
+        return baseGrowth + add + GetBonusGrowth(unit);
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -9125,7 +9157,7 @@ int GetUnitDefGrowth(struct Unit * unit, int modifiersBool)
     }
     if (!ShouldRandomizeGrowth(unit))
     {
-        return baseGrowth + add;
+        return baseGrowth + add + GetBonusGrowth(unit);
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -9206,7 +9238,7 @@ int GetUnitResGrowth(struct Unit * unit, int modifiersBool)
     }
     if (!ShouldRandomizeGrowth(unit))
     {
-        return baseGrowth + add;
+        return baseGrowth + add + GetBonusGrowth(unit);
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
@@ -9287,7 +9319,7 @@ int GetUnitLckGrowth(struct Unit * unit, int modifiersBool)
     }
     if (!ShouldRandomizeGrowth(unit))
     {
-        return baseGrowth + add;
+        return baseGrowth + add + GetBonusGrowth(unit);
     }
     growth = baseGrowth;
     int player = (UNIT_FACTION(unit) == FACTION_BLUE);
