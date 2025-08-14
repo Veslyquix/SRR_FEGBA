@@ -470,8 +470,18 @@ ALIGN 4
 #include "s/PokemonSeries/PokemonB2W2PWTFinalTak.event"
 }
 
+#ifndef PokemonDPPtApproachingCynthiaZoramineFaeID
+  #define PokemonDPPtApproachingCynthiaZoramineFaeID (FirstBGM_ID+95)
+#endif
+{
+SongTable(PokemonDPPtApproachingCynthiaZoramineFaeID, PokemonDPPtApproachingCynthiaZoramineFae, 0)
+SongTable((PokemonDPPtApproachingCynthiaZoramineFaeID+1), PokemonDPPtApproachingCynthiaZoramineFae, 1)
+ALIGN 4
+#include "s/PokemonSeries/PokemonDPPtApproachingCynthiaZoramineFae.event"
+}
+
 #ifndef PokemonFRLGToFuchsiaDonkinDoID
-  #define PokemonFRLGToFuchsiaDonkinDoID (FirstBGM_ID+95)
+  #define PokemonFRLGToFuchsiaDonkinDoID (FirstBGM_ID+97)
 #endif
 {
 SongTable(PokemonFRLGToFuchsiaDonkinDoID, PokemonFRLGToFuchsiaDonkinDo, 0)
@@ -481,23 +491,13 @@ ALIGN 4
 }
 
 #ifndef PokemonGSGoldenrodCityAReliableChairID
-  #define PokemonGSGoldenrodCityAReliableChairID (FirstBGM_ID+97)
+  #define PokemonGSGoldenrodCityAReliableChairID (FirstBGM_ID+99)
 #endif
 {
 SongTable(PokemonGSGoldenrodCityAReliableChairID, PokemonGSGoldenrodCityAReliableChair, 0)
 SongTable((PokemonGSGoldenrodCityAReliableChairID+1), PokemonGSGoldenrodCityAReliableChair, 1)
 ALIGN 4
 #include "s/PokemonSeries/PokemonGSGoldenrodCityAReliableChair.event"
-}
-
-#ifndef PokemonGSNationalParkPandanID
-  #define PokemonGSNationalParkPandanID (FirstBGM_ID+99)
-#endif
-{
-SongTable(PokemonGSNationalParkPandanID, PokemonGSNationalParkPandan, 0)
-SongTable((PokemonGSNationalParkPandanID+1), PokemonGSNationalParkPandan, 1)
-ALIGN 4
-#include "s/PokemonSeries/PokemonGSNationalParkPandan.event"
 }
 
 #ifndef PokemonHGSSGameCornerSmeID

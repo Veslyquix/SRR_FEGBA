@@ -744,7 +744,7 @@ Bertram portrait by Nickt
 Bryce portrait by Nickt       
 Burton portrait by Nickt      
 Callum portrait by Nickt      
-Catalena portrait by Nickt    
+Catalena portrait by SaintRubenio    
 Dakova portrait by Nickt      
 Danomill portrait by Nickt    
 Dheginsea portrait by Nickt, Stitch    
@@ -976,7 +976,9 @@ Velouria portrait by Garytop
 Percy portrait by Garytop       
 Ophelia portrait by Garytop       
 Soleil portrait by Zorua     
-Nina portrait by JeyTheCount     
+Nina portrait by JeyTheCount   
+Mikoto portrait by Garytop  
+Lilith portrait by Garytop    
    
 Arete portrait by JeyTheCount  
 Candace portrait by Garytop  
@@ -987,15 +989,18 @@ Funke portrait by Garytop
 Garon portrait by SaintRubenio  
 Gazak portrait by Garytop  
 Haitaka portrait by Garytop  
+Iago portrait by Garytop  
 Kilma portrait by Garytop  
+Kotaro portrait by Garytop  
 Kumagera portrait by Garytop  
 Llewelyn portrait by Garytop  
 Lloyd portrait by Garytop  
 Nichol portrait by Garytop  
+Omozu portrait by Garytop  
 Senno portrait by Garytop  
 Tarba portrait by Garytop  
 Zhara portrait by Garytop  
-
+Zola portrait by Garytop  
    
    
 // fe15    
