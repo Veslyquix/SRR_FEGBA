@@ -1,8 +1,10 @@
 
 #ifdef _FE6_ 
 #define MugEntry(mugID, mug, minimug, palette, mouthX, mouthY, eyeX, eyeY)"ORG NewPortraitTable+mugID*0x10; POIN mug; POIN minimug; POIN palette; BYTE mouthX mouthY eyeX eyeY; "
+#define MugEntry(mug, minimug, palette, mouthX, mouthY, eyeX, eyeY)"POIN mug; POIN minimug; POIN palette; BYTE mouthX mouthY eyeX eyeY; "
 #else 
 #define MugEntry(mugID, mug, minimug, frames, palette, mouthX, mouthY, eyeX, eyeY)"ORG NewPortraitTable+mugID*0x1C; POIN mug; POIN minimug; POIN palette; POIN frames; BYTE 0 0 0 0; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; "
+#define MugEntry(mug, minimug, frames, palette, mouthX, mouthY, eyeX, eyeY)"POIN mug; POIN minimug; POIN palette; POIN frames; BYTE 0 0 0 0; BYTE mouthX mouthY eyeX eyeY; BYTE 1 0 1 0; "
 #endif 
 
 // #define FirstMugID 0xAC

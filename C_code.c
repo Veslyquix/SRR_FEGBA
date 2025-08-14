@@ -369,7 +369,25 @@ const struct ProcCmd RecruitmentProcCmd4[] = {
     PROC_END,
 };
 const struct ProcCmd RecruitmentProcCmd5[] = {
-    PROC_NAME("TableID_Proc"),
+    PROC_NAME("TableID_Proc_One"),
+    PROC_YIELD,
+    PROC_REPEAT(LoopRandomRecruitmentProc),
+    PROC_END,
+};
+const struct ProcCmd RecruitmentProcCmd6[] = {
+    PROC_NAME("TableID_Proc_Two"),
+    PROC_YIELD,
+    PROC_REPEAT(LoopRandomRecruitmentProc),
+    PROC_END,
+};
+const struct ProcCmd RecruitmentProcCmd7[] = {
+    PROC_NAME("TableID_Proc_Three"),
+    PROC_YIELD,
+    PROC_REPEAT(LoopRandomRecruitmentProc),
+    PROC_END,
+};
+const struct ProcCmd RecruitmentProcCmd8[] = {
+    PROC_NAME("TableID_Proc_Four"),
     PROC_YIELD,
     PROC_REPEAT(LoopRandomRecruitmentProc),
     PROC_END,
@@ -1038,6 +1056,9 @@ void EndAllRecruitmentProcs(void)
     Proc_EndEach(RecruitmentProcCmd3);
     Proc_EndEach(RecruitmentProcCmd4);
     Proc_EndEach(RecruitmentProcCmd5);
+    Proc_EndEach(RecruitmentProcCmd6);
+    Proc_EndEach(RecruitmentProcCmd7);
+    Proc_EndEach(RecruitmentProcCmd8);
 }
 extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 void ClearPlayerBWL(void);
@@ -3320,7 +3341,7 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
     {
         return GetCharacterData(id);
     }
-    int tableID = GetCharTableID(table); // default
+    int tableID = 0; // GetCharTableID(table); // default
 
     int procID = id >> 6; // 0, 1, 2, or 3
 
@@ -3353,7 +3374,30 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
     {
         proc = InitRandomRecruitmentProc(procID);
     }
-    tableID_proc = Proc_Find(RecruitmentProcCmd5);
+    switch (procID)
+    {
+        case 0:
+        {
+            tableID_proc = Proc_Find(RecruitmentProcCmd5);
+            break;
+        }
+        case 1:
+        {
+            tableID_proc = Proc_Find(RecruitmentProcCmd6);
+            break;
+        }
+        case 2:
+        {
+            tableID_proc = Proc_Find(RecruitmentProcCmd7);
+            break;
+        }
+        case 3:
+        {
+            tableID_proc = Proc_Find(RecruitmentProcCmd8);
+            break;
+        }
+        default:
+    }
 
     int unitID = proc->id[(id & 0x3F) - 1];
     if (!unitID)
@@ -3361,13 +3405,10 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
         unitID = id;
     }
 
-    if (id < 0x40)
+    int tmp = tableID_proc->id[(id & 0x3F) - 1];
+    if (tmp < NumberOfCharTables)
     {
-        int tmp = tableID_proc->id[(id & 0x3F) - 1];
-        if (tmp < NumberOfCharTables)
-        {
-            tableID = tmp;
-        }
+        tableID = tmp;
     }
 
     if (CharConfirmPage)
@@ -4826,7 +4867,11 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     RecruitmentProc * proc3 = Proc_Start(RecruitmentProcCmd3, PROC_TREE_3);
     RecruitmentProc * proc4 = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3);
     RecruitmentProc * proc5 = Proc_Start(RecruitmentProcCmd5, PROC_TREE_3);
+    RecruitmentProc * proc6 = Proc_Start(RecruitmentProcCmd6, PROC_TREE_3);
+    RecruitmentProc * proc7 = Proc_Start(RecruitmentProcCmd7, PROC_TREE_3);
+    RecruitmentProc * proc8 = Proc_Start(RecruitmentProcCmd8, PROC_TREE_3);
     RecruitmentProc * proc = proc1;
+    RecruitmentProc * tableProc = proc5;
     proc->id[0] = 0;
 
     for (int i = 1; i <= MAX_CHAR_ID; ++i)
@@ -4834,14 +4879,17 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         if (i == 0x40)
         {
             proc = proc2;
+            tableProc = proc6;
         }
         if (i == 0x80)
         {
             proc = proc3;
+            tableProc = proc7;
         }
         if (i == 0xC0)
         {
             proc = proc4;
+            tableProc = proc8;
         }
         proc->id[i & 0x3F] = 0x0;
     }
@@ -4867,6 +4915,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     int num;
     u32 rn = 0;
     proc = proc1;
+    tableProc = proc5;
     int id = 0;
     u8 recruitmentOrder[0x45] = { 0 };
     BuildRecruitmentOrderList(recruitmentOrder, 0);
@@ -4881,10 +4930,12 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             if (id < 0x40)
             {
                 proc = proc1;
+                tableProc = proc5;
             }
             else
             {
                 proc = proc2;
+                tableProc = proc6;
             }
             table = GetCharacterData(id);
             if (GetCharOriginalPool(table) != PlayerPool)
@@ -4918,23 +4969,17 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         num = c; // reverse, so always last in list
                     }
                     proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                    if (id < 0x40)
+                    if (tables[num] != 0xFF)
                     {
-                        if (tables[num] != 0xFF)
-                        {
-                            proc5->id[(id & 0x3F) - 1] = tables[num];
-                        }
+                        tableProc->id[(id & 0x3F) - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
-                        if (id < 0x40)
+                        if (tables[num] != 0xFF)
                         {
-                            if (tables[num] != 0xFF)
-                            {
-                                proc5->id[(id & 0x3F) - 1] = tables[num];
-                                tables[num] = tables[c];
-                                tables[c] = proc5->id[(id & 0x3F) - 1];
-                            }
+                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[c];
+                            tables[c] = tableProc->id[(id & 0x3F) - 1];
                         }
                         unit[num] = unit[c]; // move last entry to one we just used
                         unit[c] = proc->id[(id & 0x3F) - 1];
@@ -4963,23 +5008,17 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         num = b + c_max; // reverse, so always last in list
                     }
                     proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                    if (id < 0x40)
+                    if (tables[num] != 0xFF)
                     {
-                        if (tables[num] != 0xFF)
-                        {
-                            proc5->id[(id & 0x3F) - 1] = tables[num];
-                        }
+                        tableProc->id[(id & 0x3F) - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
-                        if (id < 0x40)
+                        if (tables[num] != 0xFF)
                         {
-                            if (tables[num] != 0xFF)
-                            {
-                                proc5->id[(id & 0x3F) - 1] = tables[num];
-                                tables[num] = tables[b + c_max];
-                                tables[b + c_max] = proc5->id[(id & 0x3F) - 1];
-                            }
+                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[b + c_max];
+                            tables[b + c_max] = tableProc->id[(id & 0x3F) - 1];
                         }
                         unit[num] = unit[b + c_max]; // move last entry to one we just used
                         unit[b + c_max] = proc->id[(id & 0x3F) - 1];
@@ -5027,23 +5066,17 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     }
 
                     proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                    if (id < 0x40)
+                    if (tables[num] != 0xFF)
                     {
-                        if (tables[num] != 0xFF)
-                        {
-                            proc5->id[(id & 0x3F) - 1] = tables[num];
-                        }
+                        tableProc->id[(id & 0x3F) - 1] = tables[num];
                     }
                     if (RandomlyOrdered)
                     {
-                        if (id < 0x40)
+                        if (tables[num] != 0xFF)
                         {
-                            if (tables[num] != 0xFF)
-                            {
-                                proc5->id[(id & 0x3F) - 1] = tables[num];
-                                tables[num] = tables[d];
-                                tables[d] = proc5->id[(id & 0x3F) - 1];
-                            }
+                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[d];
+                            tables[d] = tableProc->id[(id & 0x3F) - 1];
                         }
                         unit[num] = unit[d]; // move last entry to one we just used
                         unit[d] = proc->id[(id & 0x3F) - 1];
@@ -5080,18 +5113,22 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
             if (id < 0x40)
             {
                 proc = proc1;
+                tableProc = proc5;
             }
             if (id >= 0x40)
             {
                 proc = proc2;
+                tableProc = proc6;
             }
             if (id >= 0x80)
             {
                 proc = proc3;
+                tableProc = proc7;
             }
             if (id >= 0xC0)
             {
                 proc = proc4;
+                tableProc = proc8;
             }
             table = GetCharacterData(id);
             if (GetCharOriginalPool(table) != BossesPool)
@@ -5132,23 +5169,17 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         num = c; // reverse, so always last in list
                     }
                     proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                    if (id < 0x40)
+                    if (tables[num] != 0xFF)
                     {
-                        if (tables[num] != 0xFF)
-                        {
-                            proc5->id[(id & 0x3F) - 1] = tables[num];
-                        }
+                        tableProc->id[(id & 0x3F) - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
-                        if (id < 0x40)
+                        if (tables[num] != 0xFF)
                         {
-                            if (tables[num] != 0xFF)
-                            {
-                                proc5->id[(id & 0x3F) - 1] = tables[num];
-                                tables[num] = tables[c];
-                                tables[c] = proc5->id[(id & 0x3F) - 1];
-                            }
+                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[c];
+                            tables[c] = tableProc->id[(id & 0x3F) - 1];
                         }
                         unit[num] = unit[c]; // move last entry to one we just used
                         unit[c] = proc->id[(id & 0x3F) - 1];
@@ -5177,23 +5208,17 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         num = b + c_max; // reverse, so always last in list
                     }
                     proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                    if (id < 0x40)
+                    if (tables[num] != 0xFF)
                     {
-                        if (tables[num] != 0xFF)
-                        {
-                            proc5->id[(id & 0x3F) - 1] = tables[num];
-                        }
+                        tableProc->id[(id & 0x3F) - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
-                        if (id < 0x40)
+                        if (tables[num] != 0xFF)
                         {
-                            if (tables[num] != 0xFF)
-                            {
-                                proc5->id[(id & 0x3F) - 1] = tables[num];
-                                tables[num] = tables[b + c_max];
-                                tables[b + c_max] = proc5->id[(id & 0x3F) - 1];
-                            }
+                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[b + c_max];
+                            tables[b + c_max] = tableProc->id[(id & 0x3F) - 1];
                         }
                         unit[num] = unit[b + c_max]; // move last entry to one we just used
                         unit[b + c_max] = proc->id[(id & 0x3F) - 1];
@@ -5241,24 +5266,20 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     }
 
                     proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
-                    if (id < 0x40)
+                    if (tables[num] != 0xFF)
+                    {
+                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                    }
+
+                    if (RandomlyOrdered)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            proc5->id[(id & 0x3F) - 1] = tables[num];
+                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            tables[num] = tables[d];
+                            tables[d] = tableProc->id[(id & 0x3F) - 1];
                         }
-                    }
-                    if (RandomlyOrdered)
-                    {
-                        if (id < 0x40)
-                        {
-                            if (tables[num] != 0xFF)
-                            {
-                                proc5->id[(id & 0x3F) - 1] = tables[num];
-                                tables[num] = tables[d];
-                                tables[d] = proc5->id[(id & 0x3F) - 1];
-                            }
-                        }
+
                         unit[num] = unit[d]; // move last entry to one we just used
                         unit[d] = proc->id[(id & 0x3F) - 1];
                     }
@@ -5286,6 +5307,7 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     }
 
     proc = proc1;
+    tableProc = proc5;
 
     // now copy stuff over to account for duplicate characters
     for (int i = 1; i < MAX_CHAR_ID; ++i)
@@ -5293,14 +5315,17 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         if (i >= 0x40)
         {
             proc = proc2;
+            tableProc = proc6;
         }
         if (i >= 0x80)
         {
             proc = proc3;
+            tableProc = proc7;
         }
         if (i >= 0xC0)
         {
             proc = proc4;
+            tableProc = proc8;
         }
         table = GetCharacterData(i); // check for morphs and duplicates in vanilla table
         num = GetAdjustedCharacterID(table);
@@ -13123,6 +13148,21 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
         Proc_Break(recruitmentProc);
     }
     recruitmentProc = Proc_Find(RecruitmentProcCmd5);
+    if (recruitmentProc)
+    {
+        Proc_Break(recruitmentProc);
+    }
+    recruitmentProc = Proc_Find(RecruitmentProcCmd6);
+    if (recruitmentProc)
+    {
+        Proc_Break(recruitmentProc);
+    }
+    recruitmentProc = Proc_Find(RecruitmentProcCmd7);
+    if (recruitmentProc)
+    {
+        Proc_Break(recruitmentProc);
+    }
+    recruitmentProc = Proc_Find(RecruitmentProcCmd8);
     if (recruitmentProc)
     {
         Proc_Break(recruitmentProc);
