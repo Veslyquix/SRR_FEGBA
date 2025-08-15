@@ -3327,20 +3327,33 @@ void ClearPlayerBWL(void)
     }
 }
 
-const struct CharacterData *
-GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidStatsChar * pidStats)
+struct Vec2
 {
+    short x, y;
+};
+struct Vec2u
+{
+    u16 x, y;
+};
+
+struct Vec2u GetReorderedCharIDAndTableIDByPIDStats(const struct CharacterData * table, struct PidStatsChar * pidStats)
+{
+    struct Vec2u result;
+    result.x = table->number; // character ID
+    result.y = 0;             // default table ID
+    int id = table->number;
     if (!table->portraitId)
     {
-        return table;
+        return result;
     }
-    RecruitmentProc * proc = NULL;
-    RecruitmentProc * tableID_proc = NULL;
-    int id = table->number;
     if (!ShouldRandomizeRecruitmentForUnitID(id))
     {
-        return GetCharacterData(id);
+        return result;
     }
+
+    RecruitmentProc * proc = NULL;
+    RecruitmentProc * tableID_proc = NULL;
+
     int tableID = 0; // GetCharTableID(table); // default
 
     int procID = id >> 6; // 0, 1, 2, or 3
@@ -3425,6 +3438,28 @@ GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidSt
             }
         }
     }
+    result.x = unitID;
+    result.y = tableID;
+
+    return result;
+}
+
+const struct CharacterData *
+GetReorderedCharacterByPIDStats(const struct CharacterData * table, struct PidStatsChar * pidStats)
+{
+    int id = table->number;
+    if (!table->portraitId)
+    {
+        return table;
+    }
+    if (!ShouldRandomizeRecruitmentForUnitID(id))
+    {
+        return GetCharacterData(id);
+    }
+    struct Vec2u combined = GetReorderedCharIDAndTableIDByPIDStats(table, pidStats);
+    int unitID = combined.x;
+    int tableID = combined.y;
+
     const struct CharacterData * result = (struct CharacterData *)NewGetCharacterData(unitID, tableID);
     if (!result->portraitId)
     {
@@ -3445,6 +3480,13 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
 {
     struct PidStatsChar * pidStats = GetPidStatsSafe(table->number);
     const struct CharacterData * result = GetReorderedCharacterByPIDStats(table, pidStats);
+    return result;
+}
+
+struct Vec2u GetReorderedCharIDAndTableID(const struct CharacterData * table)
+{
+    struct PidStatsChar * pidStats = GetPidStatsSafe(table->number);
+    struct Vec2u result = GetReorderedCharIDAndTableIDByPIDStats(table, pidStats);
     return result;
 }
 
@@ -3712,15 +3754,6 @@ int GetCharNewPool(const struct CharacterData * table)
 
     return NoPool;
 }
-
-struct Vec2
-{
-    short x, y;
-};
-struct Vec2u
-{
-    u16 x, y;
-};
 
 #define UnitListSize 1200
 
@@ -5437,6 +5470,10 @@ int ShouldDoJankyPalettes(void)
 {
     return RandBitflags->colours == 2;
 }
+int ShouldAlterPortraitColours(void)
+{
+    return RandBitflags->colours == 1 || RandBitflags->colours == 3;
+}
 
 u16 HashByte_Ch(int number, int max, int noise[], int offset);
 extern int NeverRandomizeBGM;
@@ -6099,7 +6136,11 @@ void PortraitAdjustNonSkinColours(
         AlwaysRandomizePastThisColour = 99;
         NeverRandomizeBeforeThisColour = 0;
     }
-    AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading);
+
+    if (ShouldAlterPortraitColours())
+    {
+        AdjustNonSkinColours(bank, id, AlwaysRandomizePastThisColour, NeverRandomizeBeforeThisColour, fading);
+    }
 }
 
 extern u8 gVision;
@@ -6352,6 +6393,95 @@ int MaybeRandomizeColours(void)
         }
     }
     return result;
+}
+
+void CpuSet(const void * src, void * dest, u32 control);
+#define CPU_SET_16BIT 0x00000000
+#define CPU_COPY(src, dest, size, bit) CpuSet(src, dest, CPU_SET_##bit##BIT | ((size) / (bit / 8) & 0x1FFFFF))
+
+#define CpuCopy16(src, dest, size) CPU_COPY(src, dest, size, 16)
+
+#define NumOfCharPals 11
+struct gCharPal_EntryStruct
+{
+    u8 charID;
+    u8 classID[NumOfCharPals];
+    const u16 * pal[NumOfCharPals];
+};
+
+extern const struct gCharPal_EntryStruct * const gCharPal[];
+
+const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit)
+{
+    const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
+    if (!entry) // no pointer
+    {
+        return NULL;
+    }
+
+    int classID = unit->pClassData->number;
+    while (entry->charID)
+    {
+        if (entry->charID == charID)
+        {
+            for (int i = 0; i < NumOfCharPals; ++i)
+            {
+                if (entry->classID[i] == classID)
+                    return entry->pal[i];
+            }
+        }
+        entry++;
+    }
+
+    return NULL;
+}
+
+#define EKR_POS_L 0
+extern struct BattleUnit * gpEkrBattleUnitLeft;
+extern struct BattleUnit * gpEkrBattleUnitRight;
+extern s16 gBanimUniquePaletteDisabled[2];
+// extern u16 gBanimPaletteLeft[0x50];
+// extern u16 gBanimPaletteRight[0x50];
+int MaybeApplyUniqueCharPal(u32 * buf, int pos)
+{
+    struct BattleUnit * bu;
+
+    if (EKR_POS_L == pos)
+        bu = gpEkrBattleUnitLeft;
+    else
+        bu = gpEkrBattleUnitRight;
+
+    struct Vec2u charTableID = GetReorderedCharIDAndTableID(bu->unit.pCharacterData);
+    const u16 * pal = GetUniqueCharPal(charTableID.x, charTableID.y, &bu->unit);
+    if (pal)
+    {
+        brk;
+        const u32 * pal32 = (const u32 *)pal;
+        for (int i = 0; i < 8; i++)
+            buf[i] = pal32[i];
+
+        // if (EKR_POS_L == pos)
+        // CpuCopy16(pal, gBanimPaletteLeft, 32);
+        // else
+        // CpuCopy16(pal, gBanimPaletteRight, 32);
+        return true;
+    }
+    return false;
+}
+
+void ApplyBanimUniquePalette(u32 * buf, int pos)
+{
+    u32 i;
+    if (MaybeApplyUniqueCharPal(buf, pos))
+    {
+        return;
+    }
+
+    if (gBanimUniquePaletteDisabled[pos] == 0)
+        return;
+
+    for (i = 0; i < 8; i++)
+        buf[i] = buf[i + 0x20];
 }
 
 int ShouldRandomizeGrowth(struct Unit * unit)
@@ -6679,11 +6809,7 @@ struct GlobalSaveInfo2
     int pad2[4];
     /* 60 */ u16 checksum;
 };
-void CpuSet(const void * src, void * dest, u32 control);
-#define CPU_SET_16BIT 0x00000000
-#define CPU_COPY(src, dest, size, bit) CpuSet(src, dest, CPU_SET_##bit##BIT | ((size) / (bit / 8) & 0x1FFFFF))
 
-#define CpuCopy16(src, dest, size) CPU_COPY(src, dest, size, 16)
 extern bool ReadGlobalSaveInfo(struct GlobalSaveInfo2 * buf); // 80842E8 809E4F0
 extern int ReadConfigFromSRAM;
 extern void WriteGlobalSaveInfoNoChecksum(struct GlobalSaveInfo2 * header);
