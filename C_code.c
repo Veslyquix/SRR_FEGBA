@@ -6469,7 +6469,7 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
         {
             if (RandBitflags->colours)
             {
-                pal = firstEntry
+                pal = entry
                           ->pal[0]; // default if none found, but only used if non-vanilla colours (eg. Janky) is chosen
             }
             for (int i = 0; i < NumOfCharPals; ++i)
