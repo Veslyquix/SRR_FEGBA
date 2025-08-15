@@ -640,18 +640,8 @@ ALIGN 4
 #include "s/GoldenSunSeries/GoldenSunDarkDawnBattle1MrGreen3339.event"
 }
 
-#ifndef GoldenSunFusionDragonBattleMrGreen3339ID
-  #define GoldenSunFusionDragonBattleMrGreen3339ID (FirstBGM_ID+129)
-#endif
-{
-SongTable(GoldenSunFusionDragonBattleMrGreen3339ID, GoldenSunFusionDragonBattleMrGreen3339, 0)
-SongTable((GoldenSunFusionDragonBattleMrGreen3339ID+1), GoldenSunFusionDragonBattleMrGreen3339, 1)
-ALIGN 4
-#include "s/GoldenSunSeries/GoldenSunFusionDragonBattleMrGreen3339.event"
-}
-
 #ifndef GoldenSunIsaacsBattleThemeMeatOfJusticeID
-  #define GoldenSunIsaacsBattleThemeMeatOfJusticeID (FirstBGM_ID+131)
+  #define GoldenSunIsaacsBattleThemeMeatOfJusticeID (FirstBGM_ID+129)
 #endif
 {
 SongTable(GoldenSunIsaacsBattleThemeMeatOfJusticeID, GoldenSunIsaacsBattleThemeMeatOfJustice, 0)
@@ -661,7 +651,7 @@ ALIGN 4
 }
 
 #ifndef GoldenSunMarsLighthouseAReliableChairID
-  #define GoldenSunMarsLighthouseAReliableChairID (FirstBGM_ID+133)
+  #define GoldenSunMarsLighthouseAReliableChairID (FirstBGM_ID+131)
 #endif
 {
 SongTable(GoldenSunMarsLighthouseAReliableChairID, GoldenSunMarsLighthouseAReliableChair, 0)
@@ -671,7 +661,7 @@ ALIGN 4
 }
 
 #ifndef GoldenSunSaturosandMenardiBattleMrGreen3339ID
-  #define GoldenSunSaturosandMenardiBattleMrGreen3339ID (FirstBGM_ID+135)
+  #define GoldenSunSaturosandMenardiBattleMrGreen3339ID (FirstBGM_ID+133)
 #endif
 {
 SongTable(GoldenSunSaturosandMenardiBattleMrGreen3339ID, GoldenSunSaturosandMenardiBattleMrGreen3339, 0)
@@ -681,7 +671,7 @@ ALIGN 4
 }
 
 #ifndef GoldenSunSaturosBattleTristanHollowID
-  #define GoldenSunSaturosBattleTristanHollowID (FirstBGM_ID+137)
+  #define GoldenSunSaturosBattleTristanHollowID (FirstBGM_ID+135)
 #endif
 {
 SongTable(GoldenSunSaturosBattleTristanHollowID, GoldenSunSaturosBattleTristanHollow, 0)
@@ -691,7 +681,7 @@ ALIGN 4
 }
 
 #ifndef GoldenSunVenusLighthouseAReliableChairID
-  #define GoldenSunVenusLighthouseAReliableChairID (FirstBGM_ID+139)
+  #define GoldenSunVenusLighthouseAReliableChairID (FirstBGM_ID+137)
 #endif
 {
 SongTable(GoldenSunVenusLighthouseAReliableChairID, GoldenSunVenusLighthouseAReliableChair, 0)
@@ -701,7 +691,7 @@ ALIGN 4
 }
 
 #ifndef GSTLAWalkingForwardWithDeterminationRandomWizardID
-  #define GSTLAWalkingForwardWithDeterminationRandomWizardID (FirstBGM_ID+141)
+  #define GSTLAWalkingForwardWithDeterminationRandomWizardID (FirstBGM_ID+139)
 #endif
 {
 SongTable(GSTLAWalkingForwardWithDeterminationRandomWizardID, GSTLAWalkingForwardWithDeterminationRandomWizard, 0)
@@ -711,7 +701,7 @@ ALIGN 4
 }
 
 #ifndef GuiltyGearXAdvanceKyKiskesThemeMeatOfJusticeID
-  #define GuiltyGearXAdvanceKyKiskesThemeMeatOfJusticeID (FirstBGM_ID+143)
+  #define GuiltyGearXAdvanceKyKiskesThemeMeatOfJusticeID (FirstBGM_ID+141)
 #endif
 {
 SongTable(GuiltyGearXAdvanceKyKiskesThemeMeatOfJusticeID, GuiltyGearXAdvanceKyKiskesThemeMeatOfJustice, 0)
@@ -721,7 +711,7 @@ ALIGN 4
 }
 
 #ifndef GuiltyGearXAdvanceSolBadguysThemeMeatOfJusticeID
-  #define GuiltyGearXAdvanceSolBadguysThemeMeatOfJusticeID (FirstBGM_ID+145)
+  #define GuiltyGearXAdvanceSolBadguysThemeMeatOfJusticeID (FirstBGM_ID+143)
 #endif
 {
 SongTable(GuiltyGearXAdvanceSolBadguysThemeMeatOfJusticeID, GuiltyGearXAdvanceSolBadguysThemeMeatOfJustice, 0)
@@ -731,7 +721,7 @@ ALIGN 4
 }
 
 #ifndef BerwickSagaTheKnightsPrideMrGreen3339ID
-  #define BerwickSagaTheKnightsPrideMrGreen3339ID (FirstBGM_ID+147)
+  #define BerwickSagaTheKnightsPrideMrGreen3339ID (FirstBGM_ID+145)
 #endif
 {
 SongTable(BerwickSagaTheKnightsPrideMrGreen3339ID, BerwickSagaTheKnightsPrideMrGreen3339, 0)
@@ -741,7 +731,7 @@ ALIGN 4
 }
 
 #ifndef TRSBerwickSagaBringtheWindRSflameID
-  #define TRSBerwickSagaBringtheWindRSflameID (FirstBGM_ID+149)
+  #define TRSBerwickSagaBringtheWindRSflameID (FirstBGM_ID+147)
 #endif
 {
 SongTable(TRSBerwickSagaBringtheWindRSflameID, TRSBerwickSagaBringtheWindRSflame, 0)
@@ -751,7 +741,7 @@ ALIGN 4
 }
 
 #ifndef KH2ScherzoDiNotteTristanHollowID
-  #define KH2ScherzoDiNotteTristanHollowID (FirstBGM_ID+151)
+  #define KH2ScherzoDiNotteTristanHollowID (FirstBGM_ID+149)
 #endif
 {
 SongTable(KH2ScherzoDiNotteTristanHollowID, KH2ScherzoDiNotteTristanHollow, 0)
@@ -761,7 +751,7 @@ ALIGN 4
 }
 
 #ifndef KHCoMNamineMycahelID
-  #define KHCoMNamineMycahelID (FirstBGM_ID+153)
+  #define KHCoMNamineMycahelID (FirstBGM_ID+151)
 #endif
 {
 SongTable(KHCoMNamineMycahelID, KHCoMNamineMycahel, 0)
@@ -771,7 +761,7 @@ ALIGN 4
 }
 
 #ifndef KHNightofFateRandomWizardID
-  #define KHNightofFateRandomWizardID (FirstBGM_ID+155)
+  #define KHNightofFateRandomWizardID (FirstBGM_ID+153)
 #endif
 {
 SongTable(KHNightofFateRandomWizardID, KHNightofFateRandomWizard, 0)
@@ -781,7 +771,7 @@ ALIGN 4
 }
 
 #ifndef KirbyDreamLandRippleField1PandanID
-  #define KirbyDreamLandRippleField1PandanID (FirstBGM_ID+157)
+  #define KirbyDreamLandRippleField1PandanID (FirstBGM_ID+155)
 #endif
 {
 SongTable(KirbyDreamLandRippleField1PandanID, KirbyDreamLandRippleField1Pandan, 0)
@@ -791,7 +781,7 @@ ALIGN 4
 }
 
 #ifndef KirbyMassAttackTimetoShineRSflameID
-  #define KirbyMassAttackTimetoShineRSflameID (FirstBGM_ID+159)
+  #define KirbyMassAttackTimetoShineRSflameID (FirstBGM_ID+157)
 #endif
 {
 SongTable(KirbyMassAttackTimetoShineRSflameID, KirbyMassAttackTimetoShineRSflame, 0)
@@ -801,7 +791,7 @@ ALIGN 4
 }
 
 #ifndef KirbySuperStarMetaKnightsthemeRSflame1ID
-  #define KirbySuperStarMetaKnightsthemeRSflame1ID (FirstBGM_ID+161)
+  #define KirbySuperStarMetaKnightsthemeRSflame1ID (FirstBGM_ID+159)
 #endif
 {
 SongTable(KirbySuperStarMetaKnightsthemeRSflame1ID, KirbySuperStarMetaKnightsthemeRSflame1, 0)
@@ -811,7 +801,7 @@ ALIGN 4
 }
 
 #ifndef KirbyTripleDeluxeBouncingBossBattleRandomWizardID
-  #define KirbyTripleDeluxeBouncingBossBattleRandomWizardID (FirstBGM_ID+163)
+  #define KirbyTripleDeluxeBouncingBossBattleRandomWizardID (FirstBGM_ID+161)
 #endif
 {
 SongTable(KirbyTripleDeluxeBouncingBossBattleRandomWizardID, KirbyTripleDeluxeBouncingBossBattleRandomWizard, 0)
@@ -821,7 +811,7 @@ ALIGN 4
 }
 
 #ifndef MarioKartWiiMapleTreewaySmeID
-  #define MarioKartWiiMapleTreewaySmeID (FirstBGM_ID+165)
+  #define MarioKartWiiMapleTreewaySmeID (FirstBGM_ID+163)
 #endif
 {
 SongTable(MarioKartWiiMapleTreewaySmeID, MarioKartWiiMapleTreewaySme, 0)
@@ -831,7 +821,7 @@ ALIGN 4
 }
 
 #ifndef MarioKartWiiMushroomGorgeSmeID
-  #define MarioKartWiiMushroomGorgeSmeID (FirstBGM_ID+167)
+  #define MarioKartWiiMushroomGorgeSmeID (FirstBGM_ID+165)
 #endif
 {
 SongTable(MarioKartWiiMushroomGorgeSmeID, MarioKartWiiMushroomGorgeSme, 0)
@@ -841,7 +831,7 @@ ALIGN 4
 }
 
 #ifndef MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23ID
-  #define MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23ID (FirstBGM_ID+169)
+  #define MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23ID (FirstBGM_ID+167)
 #endif
 {
 SongTable(MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23ID, MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23, 0)
@@ -851,7 +841,7 @@ ALIGN 4
 }
 
 #ifndef MLSuperstarSagaCacklettaBattleDolkarID
-  #define MLSuperstarSagaCacklettaBattleDolkarID (FirstBGM_ID+171)
+  #define MLSuperstarSagaCacklettaBattleDolkarID (FirstBGM_ID+169)
 #endif
 {
 SongTable(MLSuperstarSagaCacklettaBattleDolkarID, MLSuperstarSagaCacklettaBattleDolkar, 0)
@@ -861,7 +851,7 @@ ALIGN 4
 }
 
 #ifndef MLSuperstarSagaPoppleBattleSmeID
-  #define MLSuperstarSagaPoppleBattleSmeID (FirstBGM_ID+173)
+  #define MLSuperstarSagaPoppleBattleSmeID (FirstBGM_ID+171)
 #endif
 {
 SongTable(MLSuperstarSagaPoppleBattleSmeID, MLSuperstarSagaPoppleBattleSme, 0)
@@ -871,7 +861,7 @@ ALIGN 4
 }
 
 #ifndef NewSuperMarioBrosCastleRandomWizardID
-  #define NewSuperMarioBrosCastleRandomWizardID (FirstBGM_ID+175)
+  #define NewSuperMarioBrosCastleRandomWizardID (FirstBGM_ID+173)
 #endif
 {
 SongTable(NewSuperMarioBrosCastleRandomWizardID, NewSuperMarioBrosCastleRandomWizard, 0)
@@ -881,7 +871,7 @@ ALIGN 4
 }
 
 #ifndef NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339ID
-  #define NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339ID (FirstBGM_ID+177)
+  #define NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339ID (FirstBGM_ID+175)
 #endif
 {
 SongTable(NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339ID, NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339, 0)
@@ -891,7 +881,7 @@ ALIGN 4
 }
 
 #ifndef SuperMario3DLandAirshipMeteorSR23ID
-  #define SuperMario3DLandAirshipMeteorSR23ID (FirstBGM_ID+179)
+  #define SuperMario3DLandAirshipMeteorSR23ID (FirstBGM_ID+177)
 #endif
 {
 SongTable(SuperMario3DLandAirshipMeteorSR23ID, SuperMario3DLandAirshipMeteorSR23, 0)
@@ -901,7 +891,7 @@ ALIGN 4
 }
 
 #ifndef SuperMarioBros2OverworldPandanID
-  #define SuperMarioBros2OverworldPandanID (FirstBGM_ID+181)
+  #define SuperMarioBros2OverworldPandanID (FirstBGM_ID+179)
 #endif
 {
 SongTable(SuperMarioBros2OverworldPandanID, SuperMarioBros2OverworldPandan, 0)
@@ -911,7 +901,7 @@ ALIGN 4
 }
 
 #ifndef SuperMarioBros2UnderworldPandanID
-  #define SuperMarioBros2UnderworldPandanID (FirstBGM_ID+183)
+  #define SuperMarioBros2UnderworldPandanID (FirstBGM_ID+181)
 #endif
 {
 SongTable(SuperMarioBros2UnderworldPandanID, SuperMarioBros2UnderworldPandan, 0)
@@ -921,7 +911,7 @@ ALIGN 4
 }
 
 #ifndef SuperMarioBros3AirshipThemeMrGreen3339ID
-  #define SuperMarioBros3AirshipThemeMrGreen3339ID (FirstBGM_ID+185)
+  #define SuperMarioBros3AirshipThemeMrGreen3339ID (FirstBGM_ID+183)
 #endif
 {
 SongTable(SuperMarioBros3AirshipThemeMrGreen3339ID, SuperMarioBros3AirshipThemeMrGreen3339, 0)
@@ -931,7 +921,7 @@ ALIGN 4
 }
 
 #ifndef SuperMarioRPGBewaretheForestMushroomsPandanID
-  #define SuperMarioRPGBewaretheForestMushroomsPandanID (FirstBGM_ID+187)
+  #define SuperMarioRPGBewaretheForestMushroomsPandanID (FirstBGM_ID+185)
 #endif
 {
 SongTable(SuperMarioRPGBewaretheForestMushroomsPandanID, SuperMarioRPGBewaretheForestMushroomsPandan, 0)
@@ -941,7 +931,7 @@ ALIGN 4
 }
 
 #ifndef SuperSmashBrosMeleeMenuMrGreen3339ID
-  #define SuperSmashBrosMeleeMenuMrGreen3339ID (FirstBGM_ID+189)
+  #define SuperSmashBrosMeleeMenuMrGreen3339ID (FirstBGM_ID+187)
 #endif
 {
 SongTable(SuperSmashBrosMeleeMenuMrGreen3339ID, SuperSmashBrosMeleeMenuMrGreen3339, 0)
@@ -951,7 +941,7 @@ ALIGN 4
 }
 
 #ifndef MegamanBattleNetwork3BossThemeThegisID
-  #define MegamanBattleNetwork3BossThemeThegisID (FirstBGM_ID+191)
+  #define MegamanBattleNetwork3BossThemeThegisID (FirstBGM_ID+189)
 #endif
 {
 SongTable(MegamanBattleNetwork3BossThemeThegisID, MegamanBattleNetwork3BossThemeThegis, 0)
@@ -961,7 +951,7 @@ ALIGN 4
 }
 
 #ifndef MegamanXArmoredArmadilloRandomWizardID
-  #define MegamanXArmoredArmadilloRandomWizardID (FirstBGM_ID+193)
+  #define MegamanXArmoredArmadilloRandomWizardID (FirstBGM_ID+191)
 #endif
 {
 SongTable(MegamanXArmoredArmadilloRandomWizardID, MegamanXArmoredArmadilloRandomWizard, 0)
@@ -971,7 +961,7 @@ ALIGN 4
 }
 
 #ifndef MegamanXStormEagleAReliableChairID
-  #define MegamanXStormEagleAReliableChairID (FirstBGM_ID+195)
+  #define MegamanXStormEagleAReliableChairID (FirstBGM_ID+193)
 #endif
 {
 SongTable(MegamanXStormEagleAReliableChairID, MegamanXStormEagleAReliableChair, 0)
@@ -981,7 +971,7 @@ ALIGN 4
 }
 
 #ifndef MegamanZXAdventSoulAblazeTakID
-  #define MegamanZXAdventSoulAblazeTakID (FirstBGM_ID+197)
+  #define MegamanZXAdventSoulAblazeTakID (FirstBGM_ID+195)
 #endif
 {
 SongTable(MegamanZXAdventSoulAblazeTakID, MegamanZXAdventSoulAblazeTak, 0)
@@ -991,7 +981,7 @@ ALIGN 4
 }
 
 #ifndef MegamanZXDoomsdayDeviceAreaNTakID
-  #define MegamanZXDoomsdayDeviceAreaNTakID (FirstBGM_ID+199)
+  #define MegamanZXDoomsdayDeviceAreaNTakID (FirstBGM_ID+197)
 #endif
 {
 SongTable(MegamanZXDoomsdayDeviceAreaNTakID, MegamanZXDoomsdayDeviceAreaNTak, 0)
@@ -1001,7 +991,7 @@ ALIGN 4
 }
 
 #ifndef OgreBattle64WallofDefenseAlusqID
-  #define OgreBattle64WallofDefenseAlusqID (FirstBGM_ID+201)
+  #define OgreBattle64WallofDefenseAlusqID (FirstBGM_ID+199)
 #endif
 {
 SongTable(OgreBattle64WallofDefenseAlusqID, OgreBattle64WallofDefenseAlusq, 0)
@@ -1011,7 +1001,7 @@ ALIGN 4
 }
 
 #ifndef TacticsOgreTheKnightofLodisHeroinesThemePsycheID
-  #define TacticsOgreTheKnightofLodisHeroinesThemePsycheID (FirstBGM_ID+203)
+  #define TacticsOgreTheKnightofLodisHeroinesThemePsycheID (FirstBGM_ID+201)
 #endif
 {
 SongTable(TacticsOgreTheKnightofLodisHeroinesThemePsycheID, TacticsOgreTheKnightofLodisHeroinesThemePsyche, 0)
@@ -1021,7 +1011,7 @@ ALIGN 4
 }
 
 #ifndef PokemonB2W2PWTFinalTakID
-  #define PokemonB2W2PWTFinalTakID (FirstBGM_ID+205)
+  #define PokemonB2W2PWTFinalTakID (FirstBGM_ID+203)
 #endif
 {
 SongTable(PokemonB2W2PWTFinalTakID, PokemonB2W2PWTFinalTak, 0)
@@ -1031,7 +1021,7 @@ ALIGN 4
 }
 
 #ifndef PokemonDPPtApproachingCynthiaZoramineFaeID
-  #define PokemonDPPtApproachingCynthiaZoramineFaeID (FirstBGM_ID+207)
+  #define PokemonDPPtApproachingCynthiaZoramineFaeID (FirstBGM_ID+205)
 #endif
 {
 SongTable(PokemonDPPtApproachingCynthiaZoramineFaeID, PokemonDPPtApproachingCynthiaZoramineFae, 0)
@@ -1041,7 +1031,7 @@ ALIGN 4
 }
 
 #ifndef PokemonFRLGToFuchsiaDonkinDoID
-  #define PokemonFRLGToFuchsiaDonkinDoID (FirstBGM_ID+209)
+  #define PokemonFRLGToFuchsiaDonkinDoID (FirstBGM_ID+207)
 #endif
 {
 SongTable(PokemonFRLGToFuchsiaDonkinDoID, PokemonFRLGToFuchsiaDonkinDo, 0)
@@ -1051,7 +1041,7 @@ ALIGN 4
 }
 
 #ifndef PokemonGSGoldenrodCityAReliableChairID
-  #define PokemonGSGoldenrodCityAReliableChairID (FirstBGM_ID+211)
+  #define PokemonGSGoldenrodCityAReliableChairID (FirstBGM_ID+209)
 #endif
 {
 SongTable(PokemonGSGoldenrodCityAReliableChairID, PokemonGSGoldenrodCityAReliableChair, 0)
@@ -1061,7 +1051,7 @@ ALIGN 4
 }
 
 #ifndef PokemonHGSSGameCornerSmeID
-  #define PokemonHGSSGameCornerSmeID (FirstBGM_ID+213)
+  #define PokemonHGSSGameCornerSmeID (FirstBGM_ID+211)
 #endif
 {
 SongTable(PokemonHGSSGameCornerSmeID, PokemonHGSSGameCornerSme, 0)
@@ -1071,7 +1061,7 @@ ALIGN 4
 }
 
 #ifndef PokemonHGSSKantoBattlePandanID
-  #define PokemonHGSSKantoBattlePandanID (FirstBGM_ID+215)
+  #define PokemonHGSSKantoBattlePandanID (FirstBGM_ID+213)
 #endif
 {
 SongTable(PokemonHGSSKantoBattlePandanID, PokemonHGSSKantoBattlePandan, 0)
@@ -1081,7 +1071,7 @@ ALIGN 4
 }
 
 #ifndef PokemonMDExplorersBossBattleRandomWizardID
-  #define PokemonMDExplorersBossBattleRandomWizardID (FirstBGM_ID+217)
+  #define PokemonMDExplorersBossBattleRandomWizardID (FirstBGM_ID+215)
 #endif
 {
 SongTable(PokemonMDExplorersBossBattleRandomWizardID, PokemonMDExplorersBossBattleRandomWizard, 0)
@@ -1091,7 +1081,7 @@ ALIGN 4
 }
 
 #ifndef PokemonPinballBluePandanID
-  #define PokemonPinballBluePandanID (FirstBGM_ID+219)
+  #define PokemonPinballBluePandanID (FirstBGM_ID+217)
 #endif
 {
 SongTable(PokemonPinballBluePandanID, PokemonPinballBluePandan, 0)
@@ -1101,7 +1091,7 @@ ALIGN 4
 }
 
 #ifndef PokemonRSEBattleEliteFourMeatOfJusticeID
-  #define PokemonRSEBattleEliteFourMeatOfJusticeID (FirstBGM_ID+221)
+  #define PokemonRSEBattleEliteFourMeatOfJusticeID (FirstBGM_ID+219)
 #endif
 {
 SongTable(PokemonRSEBattleEliteFourMeatOfJusticeID, PokemonRSEBattleEliteFourMeatOfJustice, 0)
@@ -1111,7 +1101,7 @@ ALIGN 4
 }
 
 #ifndef PokemonRSERoute113PandanID
-  #define PokemonRSERoute113PandanID (FirstBGM_ID+223)
+  #define PokemonRSERoute113PandanID (FirstBGM_ID+221)
 #endif
 {
 SongTable(PokemonRSERoute113PandanID, PokemonRSERoute113Pandan, 0)
@@ -1121,7 +1111,7 @@ ALIGN 4
 }
 
 #ifndef PokemonSunandMoonEliteFourTakID
-  #define PokemonSunandMoonEliteFourTakID (FirstBGM_ID+225)
+  #define PokemonSunandMoonEliteFourTakID (FirstBGM_ID+223)
 #endif
 {
 SongTable(PokemonSunandMoonEliteFourTakID, PokemonSunandMoonEliteFourTak, 0)
@@ -1131,7 +1121,7 @@ ALIGN 4
 }
 
 #ifndef PokemonTCG2GrandmasterDuelPandanID
-  #define PokemonTCG2GrandmasterDuelPandanID (FirstBGM_ID+227)
+  #define PokemonTCG2GrandmasterDuelPandanID (FirstBGM_ID+225)
 #endif
 {
 SongTable(PokemonTCG2GrandmasterDuelPandanID, PokemonTCG2GrandmasterDuelPandan, 0)
@@ -1141,7 +1131,7 @@ ALIGN 4
 }
 
 #ifndef RomancingSaga3TheLastBattle7743ID
-  #define RomancingSaga3TheLastBattle7743ID (FirstBGM_ID+229)
+  #define RomancingSaga3TheLastBattle7743ID (FirstBGM_ID+227)
 #endif
 {
 SongTable(RomancingSaga3TheLastBattle7743ID, RomancingSaga3TheLastBattle7743, 0)
@@ -1151,7 +1141,7 @@ ALIGN 4
 }
 
 #ifndef RomancingSagaCoupdeGraceRSflameID
-  #define RomancingSagaCoupdeGraceRSflameID (FirstBGM_ID+231)
+  #define RomancingSagaCoupdeGraceRSflameID (FirstBGM_ID+229)
 #endif
 {
 SongTable(RomancingSagaCoupdeGraceRSflameID, RomancingSagaCoupdeGraceRSflame, 0)
@@ -1161,7 +1151,7 @@ ALIGN 4
 }
 
 #ifndef Sonic2BossSmeID
-  #define Sonic2BossSmeID (FirstBGM_ID+233)
+  #define Sonic2BossSmeID (FirstBGM_ID+231)
 #endif
 {
 SongTable(Sonic2BossSmeID, Sonic2BossSme, 0)
@@ -1171,7 +1161,7 @@ ALIGN 4
 }
 
 #ifndef Sonic2EmeraldHillZoneSmeID
-  #define Sonic2EmeraldHillZoneSmeID (FirstBGM_ID+235)
+  #define Sonic2EmeraldHillZoneSmeID (FirstBGM_ID+233)
 #endif
 {
 SongTable(Sonic2EmeraldHillZoneSmeID, Sonic2EmeraldHillZoneSme, 0)
@@ -1181,7 +1171,7 @@ ALIGN 4
 }
 
 #ifndef SonicAdvance3ChaosAngelAct1MeatOfJusticeID
-  #define SonicAdvance3ChaosAngelAct1MeatOfJusticeID (FirstBGM_ID+237)
+  #define SonicAdvance3ChaosAngelAct1MeatOfJusticeID (FirstBGM_ID+235)
 #endif
 {
 SongTable(SonicAdvance3ChaosAngelAct1MeatOfJusticeID, SonicAdvance3ChaosAngelAct1MeatOfJustice, 0)
@@ -1191,7 +1181,7 @@ ALIGN 4
 }
 
 #ifndef StreetFighter2KenThemeScraizaID
-  #define StreetFighter2KenThemeScraizaID (FirstBGM_ID+239)
+  #define StreetFighter2KenThemeScraizaID (FirstBGM_ID+237)
 #endif
 {
 SongTable(StreetFighter2KenThemeScraizaID, StreetFighter2KenThemeScraiza, 0)
@@ -1201,7 +1191,7 @@ ALIGN 4
 }
 
 #ifndef StreetFighter2RyusThemeMeatOfJusticeID
-  #define StreetFighter2RyusThemeMeatOfJusticeID (FirstBGM_ID+241)
+  #define StreetFighter2RyusThemeMeatOfJusticeID (FirstBGM_ID+239)
 #endif
 {
 SongTable(StreetFighter2RyusThemeMeatOfJusticeID, StreetFighter2RyusThemeMeatOfJustice, 0)
@@ -1211,7 +1201,7 @@ ALIGN 4
 }
 
 #ifndef StreetFighter33rdStikeJazzyNYC99AlexKenTakID
-  #define StreetFighter33rdStikeJazzyNYC99AlexKenTakID (FirstBGM_ID+243)
+  #define StreetFighter33rdStikeJazzyNYC99AlexKenTakID (FirstBGM_ID+241)
 #endif
 {
 SongTable(StreetFighter33rdStikeJazzyNYC99AlexKenTakID, StreetFighter33rdStikeJazzyNYC99AlexKenTak, 0)
@@ -1221,7 +1211,7 @@ ALIGN 4
 }
 
 #ifndef TalesofEterniaEternalMindSaXortheNobodyID
-  #define TalesofEterniaEternalMindSaXortheNobodyID (FirstBGM_ID+245)
+  #define TalesofEterniaEternalMindSaXortheNobodyID (FirstBGM_ID+243)
 #endif
 {
 SongTable(TalesofEterniaEternalMindSaXortheNobodyID, TalesofEterniaEternalMindSaXortheNobody, 0)
@@ -1231,7 +1221,7 @@ ALIGN 4
 }
 
 #ifndef TalesofPhantasiaMintsThemeAReliableChairID
-  #define TalesofPhantasiaMintsThemeAReliableChairID (FirstBGM_ID+247)
+  #define TalesofPhantasiaMintsThemeAReliableChairID (FirstBGM_ID+245)
 #endif
 {
 SongTable(TalesofPhantasiaMintsThemeAReliableChairID, TalesofPhantasiaMintsThemeAReliableChair, 0)
@@ -1241,7 +1231,7 @@ ALIGN 4
 }
 
 #ifndef TalesOfSymphoniaAnchoretAReliableChairID
-  #define TalesOfSymphoniaAnchoretAReliableChairID (FirstBGM_ID+249)
+  #define TalesOfSymphoniaAnchoretAReliableChairID (FirstBGM_ID+247)
 #endif
 {
 SongTable(TalesOfSymphoniaAnchoretAReliableChairID, TalesOfSymphoniaAnchoretAReliableChair, 0)
@@ -1251,7 +1241,7 @@ ALIGN 4
 }
 
 #ifndef TalesOfSymphoniaEncounterWithTheRenegadesAReliableChairID
-  #define TalesOfSymphoniaEncounterWithTheRenegadesAReliableChairID (FirstBGM_ID+251)
+  #define TalesOfSymphoniaEncounterWithTheRenegadesAReliableChairID (FirstBGM_ID+249)
 #endif
 {
 SongTable(TalesOfSymphoniaEncounterWithTheRenegadesAReliableChairID, TalesOfSymphoniaEncounterWithTheRenegadesAReliableChair, 0)
@@ -1261,7 +1251,7 @@ ALIGN 4
 }
 
 #ifndef UndertaleAnEndingAzulaID
-  #define UndertaleAnEndingAzulaID (FirstBGM_ID+253)
+  #define UndertaleAnEndingAzulaID (FirstBGM_ID+251)
 #endif
 {
 SongTable(UndertaleAnEndingAzulaID, UndertaleAnEndingAzula, 0)
@@ -1271,7 +1261,7 @@ ALIGN 4
 }
 
 #ifndef UndertaleMegalovaniaSmeID
-  #define UndertaleMegalovaniaSmeID (FirstBGM_ID+255)
+  #define UndertaleMegalovaniaSmeID (FirstBGM_ID+253)
 #endif
 {
 SongTable(UndertaleMegalovaniaSmeID, UndertaleMegalovaniaSme, 0)
@@ -1281,7 +1271,7 @@ ALIGN 4
 }
 
 #ifndef UndertaleSongThatMightPlayWhenYouFightSansSmeID
-  #define UndertaleSongThatMightPlayWhenYouFightSansSmeID (FirstBGM_ID+257)
+  #define UndertaleSongThatMightPlayWhenYouFightSansSmeID (FirstBGM_ID+255)
 #endif
 {
 SongTable(UndertaleSongThatMightPlayWhenYouFightSansSmeID, UndertaleSongThatMightPlayWhenYouFightSansSme, 0)
@@ -1291,7 +1281,7 @@ ALIGN 4
 }
 
 #ifndef Touhou4InanimateDreamZoramineFaeID
-  #define Touhou4InanimateDreamZoramineFaeID (FirstBGM_ID+259)
+  #define Touhou4InanimateDreamZoramineFaeID (FirstBGM_ID+257)
 #endif
 {
 SongTable(Touhou4InanimateDreamZoramineFaeID, Touhou4InanimateDreamZoramineFae, 0)
@@ -1301,7 +1291,7 @@ ALIGN 4
 }
 
 #ifndef Touhou5EndOfTheWorldZoramineFaeID
-  #define Touhou5EndOfTheWorldZoramineFaeID (FirstBGM_ID+261)
+  #define Touhou5EndOfTheWorldZoramineFaeID (FirstBGM_ID+259)
 #endif
 {
 SongTable(Touhou5EndOfTheWorldZoramineFaeID, Touhou5EndOfTheWorldZoramineFae, 0)
@@ -1311,7 +1301,7 @@ ALIGN 4
 }
 
 #ifndef Touhou6BelovedTomboyishGirlPikmin1211ID
-  #define Touhou6BelovedTomboyishGirlPikmin1211ID (FirstBGM_ID+263)
+  #define Touhou6BelovedTomboyishGirlPikmin1211ID (FirstBGM_ID+261)
 #endif
 {
 SongTable(Touhou6BelovedTomboyishGirlPikmin1211ID, Touhou6BelovedTomboyishGirlPikmin1211, 0)
@@ -1321,7 +1311,7 @@ ALIGN 4
 }
 
 #ifndef AdvanceWarsAndysThemeMrGreen3339ID
-  #define AdvanceWarsAndysThemeMrGreen3339ID (FirstBGM_ID+265)
+  #define AdvanceWarsAndysThemeMrGreen3339ID (FirstBGM_ID+263)
 #endif
 {
 SongTable(AdvanceWarsAndysThemeMrGreen3339ID, AdvanceWarsAndysThemeMrGreen3339, 0)
@@ -1331,7 +1321,7 @@ ALIGN 4
 }
 
 #ifndef AdvanceWarsDualStrikeJavierLemonTartID
-  #define AdvanceWarsDualStrikeJavierLemonTartID (FirstBGM_ID+267)
+  #define AdvanceWarsDualStrikeJavierLemonTartID (FirstBGM_ID+265)
 #endif
 {
 SongTable(AdvanceWarsDualStrikeJavierLemonTartID, AdvanceWarsDualStrikeJavierLemonTart, 0)
@@ -1341,7 +1331,7 @@ ALIGN 4
 }
 
 #ifndef SuperFamicomWarsFonRossoDerTheVaporeonID
-  #define SuperFamicomWarsFonRossoDerTheVaporeonID (FirstBGM_ID+269)
+  #define SuperFamicomWarsFonRossoDerTheVaporeonID (FirstBGM_ID+267)
 #endif
 {
 SongTable(SuperFamicomWarsFonRossoDerTheVaporeonID, SuperFamicomWarsFonRossoDerTheVaporeon, 0)
@@ -1351,7 +1341,7 @@ ALIGN 4
 }
 
 #ifndef Xenoblade2WantedNiaMonopolyRubixmidibyKianMID
-  #define Xenoblade2WantedNiaMonopolyRubixmidibyKianMID (FirstBGM_ID+271)
+  #define Xenoblade2WantedNiaMonopolyRubixmidibyKianMID (FirstBGM_ID+269)
 #endif
 {
 SongTable(Xenoblade2WantedNiaMonopolyRubixmidibyKianMID, Xenoblade2WantedNiaMonopolyRubixmidibyKianM, 0)
@@ -1361,7 +1351,7 @@ ALIGN 4
 }
 
 #ifndef XenobladeChroniclesTragicDecisionRandomWizardID
-  #define XenobladeChroniclesTragicDecisionRandomWizardID (FirstBGM_ID+273)
+  #define XenobladeChroniclesTragicDecisionRandomWizardID (FirstBGM_ID+271)
 #endif
 {
 SongTable(XenobladeChroniclesTragicDecisionRandomWizardID, XenobladeChroniclesTragicDecisionRandomWizard, 0)
@@ -1371,7 +1361,7 @@ ALIGN 4
 }
 
 #ifndef YggdraUnionGulcasaThemeShinKumaID
-  #define YggdraUnionGulcasaThemeShinKumaID (FirstBGM_ID+275)
+  #define YggdraUnionGulcasaThemeShinKumaID (FirstBGM_ID+273)
 #endif
 {
 SongTable(YggdraUnionGulcasaThemeShinKumaID, YggdraUnionGulcasaThemeShinKuma, 0)
@@ -1381,7 +1371,7 @@ ALIGN 4
 }
 
 #ifndef YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobodyID
-  #define YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobodyID (FirstBGM_ID+277)
+  #define YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobodyID (FirstBGM_ID+275)
 #endif
 {
 SongTable(YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobodyID, YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobody, 0)
@@ -1391,7 +1381,7 @@ ALIGN 4
 }
 
 #ifndef LoZBreathoftheWildCalamityGanonSmeID
-  #define LoZBreathoftheWildCalamityGanonSmeID (FirstBGM_ID+279)
+  #define LoZBreathoftheWildCalamityGanonSmeID (FirstBGM_ID+277)
 #endif
 {
 SongTable(LoZBreathoftheWildCalamityGanonSmeID, LoZBreathoftheWildCalamityGanonSme, 0)
@@ -1401,7 +1391,7 @@ ALIGN 4
 }
 
 #ifndef LoZFourSwordsBossThemeRandomWizardID
-  #define LoZFourSwordsBossThemeRandomWizardID (FirstBGM_ID+281)
+  #define LoZFourSwordsBossThemeRandomWizardID (FirstBGM_ID+279)
 #endif
 {
 SongTable(LoZFourSwordsBossThemeRandomWizardID, LoZFourSwordsBossThemeRandomWizard, 0)
@@ -1411,7 +1401,7 @@ ALIGN 4
 }
 
 #ifndef LoZIIBattlePandanID
-  #define LoZIIBattlePandanID (FirstBGM_ID+283)
+  #define LoZIIBattlePandanID (FirstBGM_ID+281)
 #endif
 {
 SongTable(LoZIIBattlePandanID, LoZIIBattlePandan, 0)
@@ -1421,7 +1411,7 @@ ALIGN 4
 }
 
 #ifndef LoZMajorasMaskMayorsThemePandanID
-  #define LoZMajorasMaskMayorsThemePandanID (FirstBGM_ID+285)
+  #define LoZMajorasMaskMayorsThemePandanID (FirstBGM_ID+283)
 #endif
 {
 SongTable(LoZMajorasMaskMayorsThemePandanID, LoZMajorasMaskMayorsThemePandan, 0)
@@ -1431,7 +1421,7 @@ ALIGN 4
 }
 
 #ifndef LoZOcarinaofTimeBoleroofFireRSflameID
-  #define LoZOcarinaofTimeBoleroofFireRSflameID (FirstBGM_ID+287)
+  #define LoZOcarinaofTimeBoleroofFireRSflameID (FirstBGM_ID+285)
 #endif
 {
 SongTable(LoZOcarinaofTimeBoleroofFireRSflameID, LoZOcarinaofTimeBoleroofFireRSflame, 0)
@@ -1441,7 +1431,7 @@ ALIGN 4
 }
 
 #ifndef LoZOcarinaofTimeGottheStoneRSflameID
-  #define LoZOcarinaofTimeGottheStoneRSflameID (FirstBGM_ID+289)
+  #define LoZOcarinaofTimeGottheStoneRSflameID (FirstBGM_ID+287)
 #endif
 {
 SongTable(LoZOcarinaofTimeGottheStoneRSflameID, LoZOcarinaofTimeGottheStoneRSflame, 0)
@@ -1451,7 +1441,7 @@ ALIGN 4
 }
 
 #ifndef LoZOcarinaofTimeLostWoodsAReliableChairID
-  #define LoZOcarinaofTimeLostWoodsAReliableChairID (FirstBGM_ID+291)
+  #define LoZOcarinaofTimeLostWoodsAReliableChairID (FirstBGM_ID+289)
 #endif
 {
 SongTable(LoZOcarinaofTimeLostWoodsAReliableChairID, LoZOcarinaofTimeLostWoodsAReliableChair, 0)
@@ -1461,7 +1451,7 @@ ALIGN 4
 }
 
 #ifndef LoZOcarinaofTimeNocturneofShadowRSflameID
-  #define LoZOcarinaofTimeNocturneofShadowRSflameID (FirstBGM_ID+293)
+  #define LoZOcarinaofTimeNocturneofShadowRSflameID (FirstBGM_ID+291)
 #endif
 {
 SongTable(LoZOcarinaofTimeNocturneofShadowRSflameID, LoZOcarinaofTimeNocturneofShadowRSflame, 0)
@@ -1471,7 +1461,7 @@ ALIGN 4
 }
 
 #ifndef LoZOcarinaofTimeRequiemofSpiritRSflameID
-  #define LoZOcarinaofTimeRequiemofSpiritRSflameID (FirstBGM_ID+295)
+  #define LoZOcarinaofTimeRequiemofSpiritRSflameID (FirstBGM_ID+293)
 #endif
 {
 SongTable(LoZOcarinaofTimeRequiemofSpiritRSflameID, LoZOcarinaofTimeRequiemofSpiritRSflame, 0)
@@ -1481,7 +1471,7 @@ ALIGN 4
 }
 
 #ifndef LoZOcarinaofTimeShopSmeID
-  #define LoZOcarinaofTimeShopSmeID (FirstBGM_ID+297)
+  #define LoZOcarinaofTimeShopSmeID (FirstBGM_ID+295)
 #endif
 {
 SongTable(LoZOcarinaofTimeShopSmeID, LoZOcarinaofTimeShopSme, 0)
@@ -1491,7 +1481,7 @@ ALIGN 4
 }
 
 #ifndef LoZOcarinaofTimeSongofTimeMysteriousDancerID
-  #define LoZOcarinaofTimeSongofTimeMysteriousDancerID (FirstBGM_ID+299)
+  #define LoZOcarinaofTimeSongofTimeMysteriousDancerID (FirstBGM_ID+297)
 #endif
 {
 SongTable(LoZOcarinaofTimeSongofTimeMysteriousDancerID, LoZOcarinaofTimeSongofTimeMysteriousDancer, 0)
@@ -1501,7 +1491,7 @@ ALIGN 4
 }
 
 #ifndef LoZPhantomHourglassBattleRSflameID
-  #define LoZPhantomHourglassBattleRSflameID (FirstBGM_ID+301)
+  #define LoZPhantomHourglassBattleRSflameID (FirstBGM_ID+299)
 #endif
 {
 SongTable(LoZPhantomHourglassBattleRSflameID, LoZPhantomHourglassBattleRSflame, 0)
@@ -1511,7 +1501,7 @@ ALIGN 4
 }
 
 #ifndef LoZPhantomHourglassLinebecksThemeSmeID
-  #define LoZPhantomHourglassLinebecksThemeSmeID (FirstBGM_ID+303)
+  #define LoZPhantomHourglassLinebecksThemeSmeID (FirstBGM_ID+301)
 #endif
 {
 SongTable(LoZPhantomHourglassLinebecksThemeSmeID, LoZPhantomHourglassLinebecksThemeSme, 0)
@@ -1521,7 +1511,7 @@ ALIGN 4
 }
 
 #ifndef LoZPhantomHourglassMercayIslandFeierID
-  #define LoZPhantomHourglassMercayIslandFeierID (FirstBGM_ID+305)
+  #define LoZPhantomHourglassMercayIslandFeierID (FirstBGM_ID+303)
 #endif
 {
 SongTable(LoZPhantomHourglassMercayIslandFeierID, LoZPhantomHourglassMercayIslandFeier, 0)
@@ -1531,7 +1521,7 @@ ALIGN 4
 }
 
 #ifndef LoZSongofHealingMysteriousDancerID
-  #define LoZSongofHealingMysteriousDancerID (FirstBGM_ID+307)
+  #define LoZSongofHealingMysteriousDancerID (FirstBGM_ID+305)
 #endif
 {
 SongTable(LoZSongofHealingMysteriousDancerID, LoZSongofHealingMysteriousDancer, 0)
@@ -1541,7 +1531,7 @@ ALIGN 4
 }
 
 #ifndef LoZSpiritTracksFullSteamAheadRSflameID
-  #define LoZSpiritTracksFullSteamAheadRSflameID (FirstBGM_ID+309)
+  #define LoZSpiritTracksFullSteamAheadRSflameID (FirstBGM_ID+307)
 #endif
 {
 SongTable(LoZSpiritTracksFullSteamAheadRSflameID, LoZSpiritTracksFullSteamAheadRSflame, 0)
@@ -1551,7 +1541,7 @@ ALIGN 4
 }
 
 #ifndef LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339ID
-  #define LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339ID (FirstBGM_ID+311)
+  #define LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339ID (FirstBGM_ID+309)
 #endif
 {
 SongTable(LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339ID, LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339, 0)
@@ -1561,7 +1551,7 @@ ALIGN 4
 }
 
 #ifndef LoZTwilightPrincessHiddenVillagePandanID
-  #define LoZTwilightPrincessHiddenVillagePandanID (FirstBGM_ID+313)
+  #define LoZTwilightPrincessHiddenVillagePandanID (FirstBGM_ID+311)
 #endif
 {
 SongTable(LoZTwilightPrincessHiddenVillagePandanID, LoZTwilightPrincessHiddenVillagePandan, 0)
@@ -1571,7 +1561,7 @@ ALIGN 4
 }
 
 #ifndef LoZWindWakerEarthGodsLyricPandanID
-  #define LoZWindWakerEarthGodsLyricPandanID (FirstBGM_ID+315)
+  #define LoZWindWakerEarthGodsLyricPandanID (FirstBGM_ID+313)
 #endif
 {
 SongTable(LoZWindWakerEarthGodsLyricPandanID, LoZWindWakerEarthGodsLyricPandan, 0)
@@ -1583,6 +1573,6 @@ ALIGN 4
 
 ALIGN 12
 MaxBGMID:
-WORD FirstBGM_ID+316
+WORD FirstBGM_ID+314
 
 
