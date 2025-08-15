@@ -5474,13 +5474,13 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
 int ShouldUnitDoJankyPalettes(struct BattleUnit * bunit)
 {
     int result = false;
+    if (RandBitflags->colours == 1 || RandBitflags->colours == 3) 
+    {
+        return false; 
+    }
     if (RandBitflags->colours == 2)
     {
         result = true;
-    }
-    else if (RandBitflags->colours)
-    {
-        result = false;
     }
     int pos = EKR_POS_L;
     struct BattleUnit * bu = gpEkrBattleUnitLeft;
