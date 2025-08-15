@@ -1,0 +1,1344 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	FE06TheLastDragonAlice_grp  voicegroup000
+	#define	FE06TheLastDragonAlice_pri  10
+	#define	FE06TheLastDragonAlice_rev  158
+	#define	FE06TheLastDragonAlice_mvl  127
+	#define	FE06TheLastDragonAlice_key  0
+	#define	FE06TheLastDragonAlice_tbs  1
+	#define	FE06TheLastDragonAlice_exg  0
+	#define	FE06TheLastDragonAlice_cmp  1
+
+	// .rodata
+	//	FE06TheLastDragonAlice
+	ALIGN 4
+
+
+//**************** Track 1 (Midi-Chn.0) ****************//
+
+FE06TheLastDragonAlice_001:
+//  #01 //000   ----------------------------------------
+ BYTE   KEYSH   FE06TheLastDragonAlice_key+0
+ BYTE   TEMPO   166*FE06TheLastDragonAlice_tbs/2
+ BYTE   VOICE   49
+ BYTE   VOL   59*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   PAN   c_v+4
+ BYTE   N92  Cn4  v080
+ BYTE   W96
+//  #01 //001   ----------------------------------------
+ BYTE   Bn3
+ BYTE   W96
+//  #01 //002   ----------------------------------------
+ BYTE   An3
+ BYTE   W96
+//  #01 //003   ----------------------------------------
+ BYTE   N80  Gs3
+ BYTE   W84
+ BYTE   N11  Gs3  v020
+ BYTE   W12
+//  #01 //004   ----------------------------------------
+Label_01020E29:
+ BYTE   W96
+//  #01 //005   ----------------------------------------
+ BYTE   W96
+//  #01 //006   ----------------------------------------
+ BYTE   W96
+//  #01 //007   ----------------------------------------
+ BYTE   W96
+//  #01 //008   ----------------------------------------
+ BYTE   W96
+//  #01 //009   ----------------------------------------
+ BYTE   W96
+//  #01 //010   ----------------------------------------
+ BYTE   W96
+//  #01 //011   ----------------------------------------
+ BYTE   W96
+//  #01 //012   ----------------------------------------
+ BYTE   W96
+//  #01 //013   ----------------------------------------
+ BYTE   W96
+//  #01 //014   ----------------------------------------
+ BYTE   W96
+//  #01 //015   ----------------------------------------
+ BYTE   W96
+//  #01 //016   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_01020E29
+ BYTE   FINE
+
+//**************** Track 2 (Midi-Chn.1) ****************//
+
+FE06TheLastDragonAlice_002:
+//  #02 //000   ----------------------------------------
+ BYTE   KEYSH   FE06TheLastDragonAlice_key+0
+ BYTE   VOICE   104
+ BYTE   VOL   84*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N88  En3  v064
+ BYTE   N92  Cn4  v072
+ BYTE   W96
+//  #02 //001   ----------------------------------------
+ BYTE   Ds3  v068
+ BYTE   N92  Bn3  v076
+ BYTE   W96
+//  #02 //002   ----------------------------------------
+ BYTE   Dn3  v084
+ BYTE   N92  An3  v088
+ BYTE   W96
+//  #02 //003   ----------------------------------------
+ BYTE   N80  Dn3  v084
+ BYTE   N80  Gs3  v096
+ BYTE   W84
+ BYTE   N11  Dn3  v016
+ BYTE   N11  Gs3  v024
+ BYTE   W12
+//  #02 //004   ----------------------------------------
+Label_01020E65:
+ BYTE   N48  Cn3  v096
+ BYTE   N54  En3
+ BYTE   W60
+ BYTE   N05  Bn2  v072
+ BYTE   N05  Dn3  v096
+ BYTE   W12
+ BYTE   N03  Cn3  v088
+ BYTE   N04  En3  v092
+ BYTE   W12
+ BYTE   N52  Dn3  v100
+ BYTE   N52  Fn3  v084
+ BYTE   W12
+//  #02 //005   ----------------------------------------
+ BYTE   W48
+ BYTE   N36  Cn3  v088
+ BYTE   N36  En3
+ BYTE   W48
+//  #02 //006   ----------------------------------------
+ BYTE   N52  Bn2  v084
+ BYTE   N52  Dn3  v096
+ BYTE   W60
+ BYTE   N05  An2  v076
+ BYTE   N05  Cn3  v088
+ BYTE   W12
+ BYTE   N04  Bn2
+ BYTE   N05  Dn3  v096
+ BYTE   W12
+ BYTE   N48  Cn3
+ BYTE   N48  En3  v092
+ BYTE   W12
+//  #02 //007   ----------------------------------------
+ BYTE   W48
+ BYTE   N40  Bn2  v096
+ BYTE   N40  Dn3  v104
+ BYTE   W48
+//  #02 //008   ----------------------------------------
+ BYTE   N09  Fn2  v092
+ BYTE   N10  Cn3  v104
+ BYTE   W12
+ BYTE   N15  Fn2  v016
+ BYTE   N16  Cn3  v020
+ BYTE   W72
+ BYTE   N06  An2  v100
+ BYTE   N07  Cn3  v112
+ BYTE   W12
+//  #02 //009   ----------------------------------------
+ BYTE   N06  An2  v008
+ BYTE   N07  Cn3  v012
+ BYTE   W36
+ BYTE   N06  An2  v100
+ BYTE   N07  Cn3  v112
+ BYTE   W12
+ BYTE   N06  An2  v008
+ BYTE   N07  Cn3  v012
+ BYTE   W36
+ BYTE   N08  An2  v092
+ BYTE   N08  Cn3  v100
+ BYTE   W12
+//  #02 //010   ----------------------------------------
+ BYTE   N07  Gn2  v096
+ BYTE   N08  Dn3  v112
+ BYTE   W12
+ BYTE   N07  Gn2  v004
+ BYTE   N08  Dn3  v012
+ BYTE   W72
+ BYTE   N06  Bn2  v100
+ BYTE   N07  Dn3  v112
+ BYTE   W12
+//  #02 //011   ----------------------------------------
+ BYTE   N06  Bn2  v008
+ BYTE   N07  Dn3  v012
+ BYTE   W12
+ BYTE   N06  Bn2  v104
+ BYTE   N07  Dn3  v112
+ BYTE   W12
+ BYTE   N06  Bn2  v012
+ BYTE   N07  Dn3
+ BYTE   W36
+ BYTE   N32  Gs2  v100
+ BYTE   N32  Dn3  v108
+ BYTE   W36
+//  #02 //012   ----------------------------------------
+ BYTE   N42  Fn2  v096
+ BYTE   N44  Cn3  v104
+ BYTE   W48
+ BYTE   An2  v084
+ BYTE   N44  Cn3  v088
+ BYTE   W48
+//  #02 //013   ----------------------------------------
+ BYTE   N42  An2  v096
+ BYTE   N42  Cn3  v100
+ BYTE   W48
+ BYTE   Gs2  v084
+ BYTE   N44  Bn2  v092
+ BYTE   W48
+//  #02 //014   ----------------------------------------
+ BYTE   N08  En2  v084
+ BYTE   N07  An2  v096
+ BYTE   W12
+ BYTE   N08  En2  v012
+ BYTE   N07  An2  v020
+ BYTE   W72
+ BYTE   N03  An2  v092
+ BYTE   N04  Dn3  v108
+ BYTE   W12
+//  #02 //015   ----------------------------------------
+ BYTE   N03  An2  v016
+ BYTE   N04  Dn3  v024
+ BYTE   W12
+ BYTE   N60  An2  v104
+ BYTE   N60  Cn3
+ BYTE   W84
+//  #02 //016   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_01020E65
+ BYTE   FINE
+
+//**************** Track 3 (Midi-Chn.2) ****************//
+
+FE06TheLastDragonAlice_003:
+//  #03 //000   ----------------------------------------
+ BYTE   KEYSH   FE06TheLastDragonAlice_key+0
+ BYTE   VOICE   48
+ BYTE   VOL   74*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   PAN   c_v+13
+ BYTE   N08  An2  v088
+ BYTE   W12
+ BYTE   VOL   59*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   N08  Cn3
+ BYTE   W06
+ BYTE   VOL   60*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   61*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   N08
+ BYTE   W06
+ BYTE   VOL   62*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   N08  An2
+ BYTE   W01
+ BYTE   VOL   62*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   63*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08
+ BYTE   W01
+ BYTE   VOL   64*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   65*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08  Cn3
+ BYTE   W01
+ BYTE   VOL   65*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   66*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08
+ BYTE   W02
+ BYTE   VOL   67*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   68*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W04
+ BYTE   N08  An2
+ BYTE   W02
+ BYTE   VOL   68*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   69*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W04
+//  #03 //001   ----------------------------------------
+ BYTE   N08
+ BYTE   W02
+ BYTE   VOL   70*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   71*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W04
+ BYTE   N08  Cn3
+ BYTE   W03
+ BYTE   VOL   71*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   72*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W03
+ BYTE   N08
+ BYTE   W03
+ BYTE   VOL   73*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   74*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W03
+ BYTE   N08  An2
+ BYTE   W03
+ BYTE   VOL   74*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W07
+ BYTE   VOL   75*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W02
+ BYTE   N08
+ BYTE   W04
+ BYTE   VOL   76*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   77*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W02
+ BYTE   N08  Cn3
+ BYTE   W04
+ BYTE   VOL   77*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   78*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W02
+ BYTE   N08
+ BYTE   W04
+ BYTE   VOL   79*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W07
+ BYTE   VOL   80*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W01
+ BYTE   N08  An2
+ BYTE   W05
+ BYTE   VOL   80*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   81*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W01
+//  #03 //002   ----------------------------------------
+ BYTE   N08
+ BYTE   W05
+ BYTE   VOL   82*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   83*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W01
+ BYTE   N08  Cn3
+ BYTE   W05
+ BYTE   VOL   83*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W07
+ BYTE   VOL   84*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   N08
+ BYTE   W06
+ BYTE   VOL   85*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   86*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   N08  An2
+ BYTE   W06
+ BYTE   VOL   86*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   87*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   N08
+ BYTE   W07
+ BYTE   VOL   88*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08  Cn3
+ BYTE   W01
+ BYTE   VOL   89*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   89*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08
+ BYTE   W01
+ BYTE   VOL   90*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   91*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08  An2
+ BYTE   W01
+ BYTE   VOL   92*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W07
+ BYTE   VOL   92*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W04
+//  #03 //003   ----------------------------------------
+ BYTE   N08
+ BYTE   W02
+ BYTE   VOL   94*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W10
+ BYTE   N08  Cn3
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   En2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+//  #03 //004   ----------------------------------------
+Label_01020B6C:
+ BYTE   N52  En3  v088
+ BYTE   W60
+ BYTE   N11  Dn3  v060
+ BYTE   W12
+ BYTE   En3  v072
+ BYTE   W12
+ BYTE   N52  Fn3  v084
+ BYTE   W12
+//  #03 //005   ----------------------------------------
+ BYTE   W48
+ BYTE   N40  En3  v080
+ BYTE   W48
+//  #03 //006   ----------------------------------------
+ BYTE   N52  Dn3  v092
+ BYTE   W60
+ BYTE   N11  Cn3  v080
+ BYTE   W12
+ BYTE   Dn3  v096
+ BYTE   W12
+ BYTE   N52  En3  v084
+ BYTE   W12
+//  #03 //007   ----------------------------------------
+ BYTE   W48
+ BYTE   N42  Dn3  v088
+ BYTE   W48
+//  #03 //008   ----------------------------------------
+ BYTE   N12  Cn3
+ BYTE   W24
+ BYTE   N07  Fn2  v084
+ BYTE   W12
+ BYTE   Fn2  v088
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   Fn3  v076
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+//  #03 //009   ----------------------------------------
+ BYTE   An3  v080
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W12
+ BYTE   Cn4  v096
+ BYTE   W12
+ BYTE   An3  v088
+ BYTE   W12
+ BYTE   Fn4  v084
+ BYTE   W12
+ BYTE   Fn4  v072
+ BYTE   W12
+ BYTE   Cn4  v084
+ BYTE   W12
+ BYTE   An4  v080
+ BYTE   W12
+//  #03 //010   ----------------------------------------
+ BYTE   W24
+ BYTE   En2  v088
+ BYTE   W12
+ BYTE   En2  v084
+ BYTE   W12
+ BYTE   Bn2  v088
+ BYTE   W12
+ BYTE   N07
+ BYTE   W12
+ BYTE   Bn2  v092
+ BYTE   W12
+ BYTE   Gn3  v080
+ BYTE   W12
+//  #03 //011   ----------------------------------------
+ BYTE   Gn3  v088
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+ BYTE   N07
+ BYTE   W12
+ BYTE   En4  v092
+ BYTE   W12
+ BYTE   En4  v096
+ BYTE   W12
+ BYTE   Gn4  v080
+ BYTE   W12
+ BYTE   VOICE   104
+ BYTE   VOL   74*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N07  Bn4  v092
+ BYTE   W12
+ BYTE   Dn5  v080
+ BYTE   W12
+//  #03 //012   ----------------------------------------
+ BYTE   N68  En3
+ BYTE   N68  An3
+ BYTE   W72
+ BYTE   N23  Gn3  v068
+ BYTE   N23  Bn3  v080
+ BYTE   W24
+//  #03 //013   ----------------------------------------
+ BYTE   N32  An3  v076
+ BYTE   N32  Cn4  v080
+ BYTE   W36
+ BYTE   N05  Gn3  v048
+ BYTE   N05  Bn3  v068
+ BYTE   W06
+ BYTE   Fs3  v064
+ BYTE   N05  An3  v080
+ BYTE   W06
+ BYTE   N40  Gs3  v068
+ BYTE   N40  Bn3  v056
+ BYTE   W48
+//  #03 //014   ----------------------------------------
+ BYTE   N32  En3  v080
+ BYTE   N32  An3
+ BYTE   W36
+ BYTE   N11  Gn3  v056
+ BYTE   N11  Bn3  v080
+ BYTE   W12
+ BYTE   N44  An3
+ BYTE   N44  Cn4
+ BYTE   W48
+//  #03 //015   ----------------------------------------
+ BYTE   N23  Bn3  v076
+ BYTE   N23  Dn4  v072
+ BYTE   W24
+ BYTE   Gn3  v064
+ BYTE   N23  Bn3  v072
+ BYTE   W24
+ BYTE   An3  v076
+ BYTE   N23  Cn4  v092
+ BYTE   W24
+ BYTE   En3  v064
+ BYTE   N23  An3  v072
+ BYTE   W24
+//  #03 //016   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_01020B6C
+ BYTE   FINE
+
+//**************** Track 4 (Midi-Chn.3) ****************//
+
+FE06TheLastDragonAlice_004:
+//  #04 //000   ----------------------------------------
+ BYTE   KEYSH   FE06TheLastDragonAlice_key+0
+ BYTE   VOICE   48
+ BYTE   VOL   74*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   PAN   c_v+13
+ BYTE   W06
+ BYTE   N08  Bn2  v088
+ BYTE   W06
+ BYTE   VOL   59*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   60*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   N08  Dn3
+ BYTE   W06
+ BYTE   VOL   61*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   62*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   N08  Bn2
+ BYTE   W07
+ BYTE   VOL   62*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08
+ BYTE   W01
+ BYTE   VOL   63*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   64*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08
+ BYTE   W01
+ BYTE   VOL   65*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   65*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08  Dn3
+ BYTE   W01
+ BYTE   VOL   66*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W07
+ BYTE   VOL   67*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W04
+ BYTE   N08  Bn2
+ BYTE   W02
+ BYTE   VOL   68*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   68*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W04
+ BYTE   N08
+ BYTE   W02
+ BYTE   VOL   69*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W04
+//  #04 //001   ----------------------------------------
+ BYTE   W02
+ BYTE   VOL   70*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W04
+ BYTE   N08
+ BYTE   W02
+ BYTE   VOL   71*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W07
+ BYTE   VOL   71*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W03
+ BYTE   N08  Dn3
+ BYTE   W03
+ BYTE   VOL   72*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   73*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W03
+ BYTE   N08  Bn2
+ BYTE   W03
+ BYTE   VOL   74*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   74*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W03
+ BYTE   N08
+ BYTE   W04
+ BYTE   VOL   75*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   76*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W02
+ BYTE   N08
+ BYTE   W04
+ BYTE   VOL   77*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   77*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W02
+ BYTE   N08  Dn3
+ BYTE   W04
+ BYTE   VOL   78*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   79*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W02
+ BYTE   N08  Bn2
+ BYTE   W05
+ BYTE   VOL   80*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   80*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W01
+ BYTE   N08
+ BYTE   W05
+ BYTE   VOL   81*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W01
+//  #04 //002   ----------------------------------------
+ BYTE   W05
+ BYTE   VOL   82*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W01
+ BYTE   N08
+ BYTE   W05
+ BYTE   VOL   83*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   83*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W01
+ BYTE   N08  Dn3
+ BYTE   W06
+ BYTE   VOL   84*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   85*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   N08  Bn2
+ BYTE   W06
+ BYTE   VOL   86*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   86*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   N08
+ BYTE   W06
+ BYTE   VOL   87*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   N08
+ BYTE   W01
+ BYTE   VOL   88*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   89*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08  Dn3
+ BYTE   W01
+ BYTE   VOL   89*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   90*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08  Bn2
+ BYTE   W01
+ BYTE   VOL   91*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W06
+ BYTE   VOL   92*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W05
+ BYTE   N08
+ BYTE   W02
+ BYTE   VOL   92*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W04
+//  #04 //003   ----------------------------------------
+ BYTE   W02
+ BYTE   VOL   94*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   W04
+ BYTE   N08
+ BYTE   W12
+ BYTE   Dn3
+ BYTE   W12
+ BYTE   Bn2
+ BYTE   W12
+ BYTE   Gs2
+ BYTE   W12
+ BYTE   Fs2
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   N05  En3
+ BYTE   W06
+//  #04 //004   ----------------------------------------
+Label_010203C9:
+ BYTE   W96
+//  #04 //005   ----------------------------------------
+ BYTE   W96
+//  #04 //006   ----------------------------------------
+ BYTE   W96
+//  #04 //007   ----------------------------------------
+ BYTE   W96
+//  #04 //008   ----------------------------------------
+ BYTE   VOICE   48
+ BYTE   VOL   74*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   PAN   c_v+13
+ BYTE   W30
+ BYTE   N07  An2  v100
+ BYTE   W12
+ BYTE   An2  v080
+ BYTE   W12
+ BYTE   Fn2  v072
+ BYTE   W12
+ BYTE   Cn3  v080
+ BYTE   W12
+ BYTE   An2
+ BYTE   W12
+ BYTE   Fn3
+ BYTE   W06
+//  #04 //009   ----------------------------------------
+ BYTE   W06
+ BYTE   Cn3
+ BYTE   W12
+ BYTE   An3  v084
+ BYTE   W12
+ BYTE   Fn3  v076
+ BYTE   W12
+ BYTE   Cn4  v080
+ BYTE   W12
+ BYTE   Cn4  v068
+ BYTE   W12
+ BYTE   An4  v084
+ BYTE   W12
+ BYTE   Fn4  v072
+ BYTE   W12
+ BYTE   Cn5  v076
+ BYTE   W06
+//  #04 //010   ----------------------------------------
+ BYTE   W30
+ BYTE   Gn2  v100
+ BYTE   W12
+ BYTE   Gn2  v072
+ BYTE   W12
+ BYTE   Gn2  v076
+ BYTE   W12
+ BYTE   En3  v084
+ BYTE   W12
+ BYTE   En3  v076
+ BYTE   W12
+ BYTE   N07
+ BYTE   W06
+//  #04 //011   ----------------------------------------
+ BYTE   W06
+ BYTE   En3  v088
+ BYTE   W12
+ BYTE   Gn3  v084
+ BYTE   W12
+ BYTE   Gn3  v076
+ BYTE   W12
+ BYTE   Bn3  v084
+ BYTE   W12
+ BYTE   N07
+ BYTE   W12
+ BYTE   En4  v088
+ BYTE   W12
+ BYTE   Cn5  v076
+ BYTE   W12
+ BYTE   Bn4  v084
+ BYTE   W06
+//  #04 //012   ----------------------------------------
+ BYTE   W96
+//  #04 //013   ----------------------------------------
+ BYTE   W96
+//  #04 //014   ----------------------------------------
+ BYTE   W96
+//  #04 //015   ----------------------------------------
+ BYTE   W96
+//  #04 //016   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_010203C9
+ BYTE   FINE
+
+//**************** Track 5 (Midi-Chn.4) ****************//
+
+FE06TheLastDragonAlice_005:
+//  #05 //000   ----------------------------------------
+ BYTE   KEYSH   FE06TheLastDragonAlice_key+0
+ BYTE   VOICE   33
+ BYTE   VOL   52*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   PAN   c_v+0
+ BYTE   N08  An3  v096
+ BYTE   W12
+ BYTE   An3  v088
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   An3  v092
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+//  #05 //001   ----------------------------------------
+ BYTE   An3  v100
+ BYTE   W12
+ BYTE   An3  v092
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   An3  v096
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+//  #05 //002   ----------------------------------------
+ BYTE   An3  v108
+ BYTE   W12
+ BYTE   An3  v096
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   An3  v100
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+//  #05 //003   ----------------------------------------
+ BYTE   An3  v112
+ BYTE   W12
+ BYTE   An3  v100
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   An3  v108
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   N08
+ BYTE   W12
+ BYTE   Bn3
+ BYTE   W12
+//  #05 //004   ----------------------------------------
+Label_01020701:
+ BYTE   N24  An3  v084
+ BYTE   W36
+ BYTE   N17
+ BYTE   W24
+ BYTE   N23  An3  v080
+ BYTE   W24
+ BYTE   N11  Gn3  v072
+ BYTE   W12
+//  #05 //005   ----------------------------------------
+ BYTE   N07  An3  v068
+ BYTE   W12
+ BYTE   N19  An3  v080
+ BYTE   W24
+ BYTE   N23
+ BYTE   W24
+ BYTE   N11  En3  v064
+ BYTE   W12
+ BYTE   An3  v072
+ BYTE   W12
+ BYTE   N10  En3  v076
+ BYTE   W12
+//  #05 //006   ----------------------------------------
+ BYTE   N24  An3
+ BYTE   W36
+ BYTE   N17  An3  v084
+ BYTE   W24
+ BYTE   N23  An3  v080
+ BYTE   W24
+ BYTE   N11  Bn3  v092
+ BYTE   W12
+//  #05 //007   ----------------------------------------
+ BYTE   N30  An3  v076
+ BYTE   W36
+ BYTE   N11  An3  v084
+ BYTE   W12
+ BYTE   N30  Gn3  v088
+ BYTE   W36
+ BYTE   N11  Gn3  v084
+ BYTE   W12
+//  #05 //008   ----------------------------------------
+ BYTE   N28  Fn3  v088
+ BYTE   W36
+ BYTE   N23  Fn3  v092
+ BYTE   W24
+ BYTE   N11  Cn3  v076
+ BYTE   W12
+ BYTE   Fn3  v084
+ BYTE   W12
+ BYTE   N22  Gn3
+ BYTE   W12
+//  #05 //009   ----------------------------------------
+ BYTE   W12
+ BYTE   N08  Fn3  v072
+ BYTE   W12
+ BYTE   N11  Gn3  v088
+ BYTE   W12
+ BYTE   N23  An3  v080
+ BYTE   W24
+ BYTE   N11  Gn3
+ BYTE   W12
+ BYTE   An3  v084
+ BYTE   W12
+ BYTE   Cn4  v088
+ BYTE   W12
+//  #05 //010   ----------------------------------------
+ BYTE   N24  En3  v080
+ BYTE   W36
+ BYTE   N21  En3  v084
+ BYTE   W24
+ BYTE   N23  Bn3  v100
+ BYTE   W24
+ BYTE   N15  En3  v088
+ BYTE   W12
+//  #05 //011   ----------------------------------------
+ BYTE   W12
+ BYTE   N10  En3  v080
+ BYTE   W12
+ BYTE   N11  Bn3  v096
+ BYTE   W12
+ BYTE   N23  En3  v084
+ BYTE   W24
+ BYTE   N11  Gn3
+ BYTE   W12
+ BYTE   An3  v080
+ BYTE   W12
+ BYTE   N10  Bn3  v088
+ BYTE   W12
+//  #05 //012   ----------------------------------------
+ BYTE   N28  Dn3  v092
+ BYTE   W36
+ BYTE   N19  Dn3  v096
+ BYTE   W24
+ BYTE   N11  Dn3  v088
+ BYTE   W12
+ BYTE   An3  v072
+ BYTE   W12
+ BYTE   Dn3  v076
+ BYTE   W12
+//  #05 //013   ----------------------------------------
+ BYTE   N24  En3  v088
+ BYTE   W36
+ BYTE   N19  En3  v092
+ BYTE   W24
+ BYTE   N11  En3  v072
+ BYTE   W12
+ BYTE   Bn3  v096
+ BYTE   W12
+ BYTE   En3  v076
+ BYTE   W12
+//  #05 //014   ----------------------------------------
+ BYTE   N24  An3  v088
+ BYTE   W36
+ BYTE   N14  An3  v080
+ BYTE   W24
+ BYTE   N23  An3  v088
+ BYTE   W24
+ BYTE   N08  Bn3  v092
+ BYTE   W12
+//  #05 //015   ----------------------------------------
+ BYTE   N24  An3  v072
+ BYTE   W36
+ BYTE   N23  An3  v076
+ BYTE   W24
+ BYTE   N11  Dn4  v088
+ BYTE   W12
+ BYTE   Cn4
+ BYTE   W12
+ BYTE   N06  Bn3
+ BYTE   W12
+//  #05 //016   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_01020701
+ BYTE   FINE
+
+//**************** Track 6 (Midi-Chn.5) ****************//
+
+FE06TheLastDragonAlice_006:
+//  #06 //000   ----------------------------------------
+ BYTE   KEYSH   FE06TheLastDragonAlice_key+0
+ BYTE   W96
+//  #06 //001   ----------------------------------------
+ BYTE   W96
+//  #06 //002   ----------------------------------------
+ BYTE   W72
+ BYTE   VOICE   47
+ BYTE   VOL   83*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   PAN   c_v-11
+ BYTE   W24
+//  #06 //003   ----------------------------------------
+ BYTE   W72
+ BYTE   N11  Gn1  v084
+ BYTE   W12
+ BYTE   Fn1  v080
+ BYTE   W12
+//  #06 //004   ----------------------------------------
+Label_01020448:
+ BYTE   N23  Gn1  v096
+ BYTE   W36
+ BYTE   Gn1  v100
+ BYTE   W60
+//  #06 //005   ----------------------------------------
+ BYTE   Gn1  v092
+ BYTE   W36
+ BYTE   N23
+ BYTE   W36
+ BYTE   Gn1  v088
+ BYTE   W24
+//  #06 //006   ----------------------------------------
+ BYTE   Gn1  v104
+ BYTE   W36
+ BYTE   Gn1  v100
+ BYTE   W60
+//  #06 //007   ----------------------------------------
+ BYTE   Gn1  v096
+ BYTE   W36
+ BYTE   N22  Gn1  v104
+ BYTE   W36
+ BYTE   N21  Gn1  v088
+ BYTE   W24
+//  #06 //008   ----------------------------------------
+ BYTE   N23  Gn1  v104
+ BYTE   W84
+ BYTE   N22  Gn1  v096
+ BYTE   W12
+//  #06 //009   ----------------------------------------
+ BYTE   W36
+ BYTE   Gn1  v104
+ BYTE   W48
+ BYTE   N11
+ BYTE   W12
+//  #06 //010   ----------------------------------------
+ BYTE   N24  Gn1  v112
+ BYTE   W84
+ BYTE   N23  Gn1  v104
+ BYTE   W12
+//  #06 //011   ----------------------------------------
+ BYTE   W12
+ BYTE   Gn1  v100
+ BYTE   W48
+ BYTE   N32  Gn1  v112
+ BYTE   W36
+//  #06 //012   ----------------------------------------
+ BYTE   N22  Gn1  v108
+ BYTE   W84
+ BYTE   N11  Fn1  v084
+ BYTE   W12
+//  #06 //013   ----------------------------------------
+ BYTE   N24  Gn1  v092
+ BYTE   W36
+ BYTE   N11  Gn1  v048
+ BYTE   W12
+ BYTE   Gn1  v088
+ BYTE   W12
+ BYTE   Fn1  v048
+ BYTE   W12
+ BYTE   Fn1  v060
+ BYTE   W12
+ BYTE   Gn1  v044
+ BYTE   W12
+//  #06 //014   ----------------------------------------
+ BYTE   N23  Gn1  v096
+ BYTE   W36
+ BYTE   Fn1  v088
+ BYTE   W36
+ BYTE   Gn1
+ BYTE   W24
+//  #06 //015   ----------------------------------------
+ BYTE   Gn1  v104
+ BYTE   W36
+ BYTE   N22  Gn1  v096
+ BYTE   W36
+ BYTE   N11  Gn1  v084
+ BYTE   W12
+ BYTE   Fn1  v080
+ BYTE   W12
+//  #06 //016   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_01020448
+ BYTE   FINE
+
+//**************** Track 7 (Midi-Chn.6) ****************//
+
+FE06TheLastDragonAlice_007:
+//  #07 //000   ----------------------------------------
+ BYTE   KEYSH   FE06TheLastDragonAlice_key+0
+ BYTE   W96
+//  #07 //001   ----------------------------------------
+ BYTE   W72
+ BYTE   VOICE   124
+ BYTE   VOL   47*FE06TheLastDragonAlice_mvl/mxv
+ BYTE   PAN   c_v-2
+ BYTE   W24
+//  #07 //002   ----------------------------------------
+ BYTE   N11  Gs4  v048
+ BYTE   W12
+ BYTE   Gs4  v036
+ BYTE   W12
+ BYTE   Gs4  v040
+ BYTE   W12
+ BYTE   Gs4  v044
+ BYTE   W12
+ BYTE   Gs4  v048
+ BYTE   W12
+ BYTE   Gs4  v044
+ BYTE   W12
+ BYTE   Gs4  v064
+ BYTE   W12
+ BYTE   Gs4  v048
+ BYTE   W12
+//  #07 //003   ----------------------------------------
+ BYTE   Gs4  v060
+ BYTE   W12
+ BYTE   Gs4  v056
+ BYTE   W12
+ BYTE   Gs4  v068
+ BYTE   W12
+ BYTE   Gs4  v052
+ BYTE   W12
+ BYTE   Gs4  v056
+ BYTE   W12
+ BYTE   Gs4  v060
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+ BYTE   Gs4  v040
+ BYTE   W12
+//  #07 //004   ----------------------------------------
+Label_0102081B:
+ BYTE   N23  Cs2  v088
+ BYTE   W24
+ BYTE   N11  Gs4  v072
+ BYTE   W12
+ BYTE   Gs4  v056
+ BYTE   W12
+ BYTE   Gs4  v064
+ BYTE   W12
+ BYTE   Gs4  v060
+ BYTE   W12
+ BYTE   Gs4  v064
+ BYTE   W12
+ BYTE   Gs4  v060
+ BYTE   W12
+//  #07 //005   ----------------------------------------
+Label_01020832:
+ BYTE   N11  Gs4  v056
+ BYTE   W12
+ BYTE   Gs4  v064
+ BYTE   W12
+ BYTE   Gs4  v068
+ BYTE   W12
+ BYTE   Gs4  v064
+ BYTE   W12
+ BYTE   Gs4  v052
+ BYTE   W12
+ BYTE   As1  v080
+ BYTE   W12
+ BYTE   Gs4  v044
+ BYTE   W12
+ BYTE   As1  v072
+ BYTE   W12
+ BYTE   PEND 
+//  #07 //006   ----------------------------------------
+ BYTE   Gs4
+ BYTE   W12
+ BYTE   Gs4  v028
+ BYTE   W12
+ BYTE   As1  v056
+ BYTE   W12
+ BYTE   Gs4  v028
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+ BYTE   Gs4  v036
+ BYTE   W12
+ BYTE   Gs4  v044
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+//  #07 //007   ----------------------------------------
+ BYTE   Gs4  v048
+ BYTE   W12
+ BYTE   Gs4  v036
+ BYTE   W12
+ BYTE   Gs4  v040
+ BYTE   W12
+ BYTE   Gs4  v044
+ BYTE   W12
+ BYTE   Gs4  v048
+ BYTE   W12
+ BYTE   As1  v044
+ BYTE   W12
+ BYTE   Gs4  v064
+ BYTE   W12
+ BYTE   As1  v048
+ BYTE   W12
+//  #07 //008   ----------------------------------------
+ BYTE   N22  Cs2  v080
+ BYTE   W24
+ BYTE   N11  Gs4  v068
+ BYTE   W12
+ BYTE   Gs4  v052
+ BYTE   W12
+ BYTE   Gs4  v056
+ BYTE   W12
+ BYTE   Gs4  v060
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+ BYTE   Gs4  v040
+ BYTE   W12
+//  #07 //009   ----------------------------------------
+ BYTE   Gs4  v032
+ BYTE   W12
+ BYTE   Gs4  v028
+ BYTE   W12
+ BYTE   Gs4  v052
+ BYTE   W12
+ BYTE   Gs4  v048
+ BYTE   W12
+ BYTE   Gs4  v056
+ BYTE   W12
+ BYTE   Gs4  v044
+ BYTE   W12
+ BYTE   Gs4  v052
+ BYTE   W12
+ BYTE   As1  v076
+ BYTE   W12
+//  #07 //010   ----------------------------------------
+ BYTE   N21  Cs2  v092
+ BYTE   W24
+ BYTE   N11  As1  v056
+ BYTE   W12
+ BYTE   Gs4  v048
+ BYTE   W12
+ BYTE   Gs4  v040
+ BYTE   W12
+ BYTE   As1  v052
+ BYTE   W12
+ BYTE   Gs4  v060
+ BYTE   W12
+ BYTE   Gs4  v052
+ BYTE   W12
+//  #07 //011   ----------------------------------------
+ BYTE   Gs4  v056
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+ BYTE   As1
+ BYTE   W12
+ BYTE   Gs4  v032
+ BYTE   W12
+ BYTE   Gs4  v052
+ BYTE   W12
+ BYTE   As1  v088
+ BYTE   W12
+ BYTE   Gs4  v048
+ BYTE   W12
+ BYTE   N11
+ BYTE   W12
+//  #07 //012   ----------------------------------------
+ BYTE   N22  Cs2  v100
+ BYTE   W24
+ BYTE   N11  As1  v048
+ BYTE   W12
+ BYTE   Gs4  v028
+ BYTE   W12
+ BYTE   Gs4  v044
+ BYTE   W12
+ BYTE   As1  v056
+ BYTE   W12
+ BYTE   Gs4  v040
+ BYTE   W12
+ BYTE   Gs4  v048
+ BYTE   W12
+//  #07 //013   ----------------------------------------
+ BYTE   Gs4  v052
+ BYTE   W12
+ BYTE   Gs4  v060
+ BYTE   W12
+ BYTE   As1  v072
+ BYTE   W12
+ BYTE   Gs4  v040
+ BYTE   W12
+ BYTE   Gs4  v056
+ BYTE   W12
+ BYTE   N23  As1  v076
+ BYTE   W24
+ BYTE   N11  Gs4  v064
+ BYTE   W12
+//  #07 //014   ----------------------------------------
+ BYTE   Gs4  v048
+ BYTE   W12
+ BYTE   Gs4  v064
+ BYTE   W12
+ BYTE   Gs4  v072
+ BYTE   W12
+ BYTE   Gs4  v056
+ BYTE   W12
+ BYTE   Gs4  v064
+ BYTE   W12
+ BYTE   Gs4  v060
+ BYTE   W12
+ BYTE   Gs4  v064
+ BYTE   W12
+ BYTE   Gs4  v060
+ BYTE   W12
+//  #07 //015   ----------------------------------------
+ BYTE   PATT
+  POIN2 Label_01020832
+//  #07 //016   ----------------------------------------
+ BYTE   GoTo
+  POIN2 Label_0102081B
+ BYTE   FINE
+
+//******************************************************//
+	ALIGN 4
+
+FE06TheLastDragonAlice:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	FE06TheLastDragonAlice_pri	// Priority
+	BYTE	FE06TheLastDragonAlice_rev	// Reverb.
+    
+	POIN2	FE06TheLastDragonAlice_grp
+    
+	POIN2	FE06TheLastDragonAlice_001
+	POIN2	FE06TheLastDragonAlice_002
+	POIN2	FE06TheLastDragonAlice_003
+	POIN2	FE06TheLastDragonAlice_004
+	POIN2	FE06TheLastDragonAlice_005
+	POIN2	FE06TheLastDragonAlice_006
+	POIN2	FE06TheLastDragonAlice_007
+
+	

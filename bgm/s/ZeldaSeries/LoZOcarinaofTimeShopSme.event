@@ -1,0 +1,1551 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	LoZOcarinaofTimeShopSme_grp  voicegroup000
+	#define	LoZOcarinaofTimeShopSme_pri  0
+	#define	LoZOcarinaofTimeShopSme_rev  0
+	#define	LoZOcarinaofTimeShopSme_mvl  75
+	#define	LoZOcarinaofTimeShopSme_key  0
+	#define	LoZOcarinaofTimeShopSme_tbs  1
+	#define	LoZOcarinaofTimeShopSme_exg  0
+	#define	LoZOcarinaofTimeShopSme_cmp  1
+
+	// .rodata
+	//	LoZOcarinaofTimeShopSme
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+LoZOcarinaofTimeShopSme_1:
+	BYTE	KEYSH   LoZOcarinaofTimeShopSme_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   140*LoZOcarinaofTimeShopSme_tbs/2
+	BYTE		VOICE   24
+	BYTE		VOL     127*LoZOcarinaofTimeShopSme_mvl/mxv
+	BYTE		PAN     c_v-9
+	BYTE		N09     Bn2   v096
+	BYTE		N09     Gn3 
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N09     Dn3   v088
+	BYTE	W12
+	BYTE		N07     Fn3   v096
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE		N08     Gn3   v092
+	BYTE	W36
+// 001   ----------------------------------------
+	BYTE	W12
+	BYTE		N09     Dn3   v104
+	BYTE	W24
+	BYTE		N12     Cn3   v092
+	BYTE	W12
+	BYTE		N17     Bn2   v100
+	BYTE	W24
+	BYTE		N10     Gn2   v092
+	BYTE	W24
+// 002   ----------------------------------------
+	BYTE		N11     Fn2   v088
+	BYTE	W12
+	BYTE		N80     Dn2 
+	BYTE	W84
+LoZOcarinaofTimeShopSme_1_B1:
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	LoZOcarinaofTimeShopSme_1_B1
+LoZOcarinaofTimeShopSme_1_B2:
+// 035   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+LoZOcarinaofTimeShopSme_2:
+	BYTE	KEYSH   LoZOcarinaofTimeShopSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   21
+	BYTE		VOL     108*LoZOcarinaofTimeShopSme_mvl/mxv
+	BYTE		PAN     c_v+6
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+LoZOcarinaofTimeShopSme_2_B1:
+// 003   ----------------------------------------
+	BYTE		N04     En2   v080
+	BYTE	W01
+	BYTE		N05     Gn2   v096
+	BYTE	W02
+	BYTE		N04     Cn3 
+	BYTE	W21
+	BYTE		N03     En2   v088
+	BYTE		N03     Gn2   v096
+	BYTE		N03     Cn3 
+	BYTE	W12
+	BYTE		        En2   v084
+	BYTE		N04     Gn2 
+	BYTE		N04     Cn3   v092
+	BYTE	W12
+	BYTE		        En2   v088
+	BYTE		N03     An2 
+	BYTE	W12
+	BYTE		N04     En2   v080
+	BYTE		N05     An2   v084
+	BYTE	W12
+	BYTE		N22     En2   v096
+	BYTE		N24     Gn2   v100
+	BYTE	W24
+// 004   ----------------------------------------
+LoZOcarinaofTimeShopSme_2_004:
+	BYTE	W12
+	BYTE		N03     En2   v092
+	BYTE		N04     Cn3   v104
+	BYTE	W12
+	BYTE		N03     En2   v088
+	BYTE		N03     Gn2   v092
+	BYTE	W12
+	BYTE		N02     En2   v076
+	BYTE		N04     Gn2   v088
+	BYTE	W12
+	BYTE		N03     En2 
+	BYTE		N02     Gn2 
+	BYTE		N04     An2 
+	BYTE	W12
+	BYTE		N03     En2   v076
+	BYTE		N03     Gn2   v088
+	BYTE		N04     An2 
+	BYTE	W12
+	BYTE		N03     En2 
+	BYTE		N01     Gn2   v092
+	BYTE		N04     Cn3   v104
+	BYTE	W12
+	BYTE		N05     En2   v080
+	BYTE		N04     Gn2   v088
+	BYTE		N03     Cn3   v092
+	BYTE	W12
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE		        Fn2 
+	BYTE	W02
+	BYTE		N04     Gn2   v100
+	BYTE	W01
+	BYTE		N03     Bn2 
+	BYTE	W21
+	BYTE		N01     Fn2   v080
+	BYTE		N03     Gn2   v096
+	BYTE		N03     Bn2 
+	BYTE	W12
+	BYTE		        Fn2   v084
+	BYTE		N06     Gn2   v088
+	BYTE		N05     Bn2   v100
+	BYTE	W12
+	BYTE		N03     Fn2   v088
+	BYTE		N03     An2 
+	BYTE	W12
+	BYTE		N04     Fn2   v084
+	BYTE		N05     An2   v088
+	BYTE	W12
+	BYTE		N40     Dn2   v080
+	BYTE		N42     Fn2   v076
+	BYTE		N42     Gn2   v092
+	BYTE	W24
+// 006   ----------------------------------------
+LoZOcarinaofTimeShopSme_2_006:
+	BYTE	W36
+	BYTE		N03     Dn2   v080
+	BYTE		N04     Fn2   v088
+	BYTE		N04     Gn2   v076
+	BYTE	W12
+	BYTE		N03     Dn2   v088
+	BYTE		N04     Fn2 
+	BYTE		N03     An2   v092
+	BYTE	W12
+	BYTE		        Dn2   v084
+	BYTE		N04     Fn2   v072
+	BYTE		N04     An2   v080
+	BYTE	W12
+	BYTE		N02     Dn2 
+	BYTE		N04     Fn2   v076
+	BYTE		N03     As2   v092
+	BYTE	W12
+	BYTE		N05     Dn2   v084
+	BYTE		N05     Fn2   v068
+	BYTE		N05     As2   v084
+	BYTE	W12
+	BYTE	PEND
+// 007   ----------------------------------------
+	BYTE		N03     Fn2   v092
+	BYTE	W01
+	BYTE		        Gn2   v100
+	BYTE		N01     Bn2   v096
+	BYTE	W23
+	BYTE		        Fn2   v076
+	BYTE		N03     Gn2   v092
+	BYTE		N03     Bn2   v096
+	BYTE	W12
+	BYTE		        Fn2   v084
+	BYTE		N03     Gn2 
+	BYTE		N03     Bn2   v080
+	BYTE	W12
+	BYTE		N02     Dn2   v084
+	BYTE		N03     Fn2   v088
+	BYTE		N03     An2   v092
+	BYTE	W12
+	BYTE		        Dn2   v088
+	BYTE		N03     Fn2   v080
+	BYTE		N05     An2   v088
+	BYTE	W12
+	BYTE		N36     Dn2 
+	BYTE		N42     Fn2   v092
+	BYTE		N42     Gn2   v096
+	BYTE	W24
+// 008   ----------------------------------------
+LoZOcarinaofTimeShopSme_2_008:
+	BYTE	W36
+	BYTE		N04     Dn2   v084
+	BYTE		N06     Fn2   v088
+	BYTE		N06     Bn2   v096
+	BYTE	W12
+	BYTE		N03     Dn2   v080
+	BYTE		N03     Fn2   v072
+	BYTE		N04     Gn2   v100
+	BYTE	W12
+	BYTE		        Dn2   v072
+	BYTE		N05     Fn2   v076
+	BYTE		N05     Gn2   v092
+	BYTE	W12
+	BYTE		N11     Dn2   v084
+	BYTE		N04     Fn2   v068
+	BYTE		N05     An2   v096
+	BYTE	W12
+	BYTE		        Bn2   v092
+	BYTE	W12
+	BYTE	PEND
+// 009   ----------------------------------------
+LoZOcarinaofTimeShopSme_2_009:
+	BYTE		N03     En2   v088
+	BYTE		N03     Gn2   v100
+	BYTE		N03     Cn3   v104
+	BYTE	W24
+	BYTE		        En2   v092
+	BYTE		N03     Gn2   v100
+	BYTE		N03     Cn3 
+	BYTE	W12
+	BYTE		        En2   v092
+	BYTE		N05     Gn2 
+	BYTE		N04     Cn3   v104
+	BYTE	W24
+	BYTE		N02     En2   v096
+	BYTE		N03     Gn2   v100
+	BYTE		N03     Cn3   v104
+	BYTE	W12
+	BYTE		        En2   v096
+	BYTE		N03     Gn2   v092
+	BYTE		N03     Cn3   v104
+	BYTE	W12
+	BYTE		        En2   v096
+	BYTE		N04     Gn2   v100
+	BYTE		N04     Cn3   v108
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE		        En2   v080
+	BYTE	W02
+	BYTE		N05     Gn2   v096
+	BYTE	W01
+	BYTE		N04     Cn3 
+	BYTE	W21
+	BYTE		N03     En2   v088
+	BYTE		N03     Gn2   v096
+	BYTE		N03     Cn3 
+	BYTE	W12
+	BYTE		        En2   v084
+	BYTE		N04     Gn2 
+	BYTE		N04     Cn3   v092
+	BYTE	W12
+	BYTE		        En2   v088
+	BYTE		N03     An2 
+	BYTE	W12
+	BYTE		N04     En2   v080
+	BYTE		N05     An2   v084
+	BYTE	W12
+	BYTE		N22     En2   v096
+	BYTE		N24     Gn2   v100
+	BYTE	W24
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_2_004
+// 013   ----------------------------------------
+	BYTE		N03     Fn2   v092
+	BYTE		N04     Gn2   v100
+	BYTE		N03     Bn2 
+	BYTE	W24
+	BYTE		N01     Fn2   v080
+	BYTE		N03     Gn2   v096
+	BYTE		N03     Bn2 
+	BYTE	W12
+	BYTE		        Fn2   v084
+	BYTE		N06     Gn2   v088
+	BYTE		N05     Bn2   v100
+	BYTE	W12
+	BYTE		N03     Fn2   v088
+	BYTE		N03     An2 
+	BYTE	W12
+	BYTE		N04     Fn2   v084
+	BYTE		N05     An2   v088
+	BYTE	W12
+	BYTE		N40     Dn2   v080
+	BYTE		N42     Fn2   v076
+	BYTE		N42     Gn2   v092
+	BYTE	W24
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_2_006
+// 015   ----------------------------------------
+	BYTE		N03     Fn2   v092
+	BYTE		N03     Gn2   v100
+	BYTE		N01     Bn2   v096
+	BYTE	W24
+	BYTE		        Fn2   v076
+	BYTE		N03     Gn2   v092
+	BYTE		N03     Bn2   v096
+	BYTE	W12
+	BYTE		        Fn2   v084
+	BYTE		N03     Gn2 
+	BYTE		N03     Bn2   v080
+	BYTE	W12
+	BYTE		N02     Dn2   v084
+	BYTE		N03     Fn2   v088
+	BYTE		N03     An2   v092
+	BYTE	W12
+	BYTE		        Dn2   v088
+	BYTE		N03     Fn2   v080
+	BYTE		N05     An2   v088
+	BYTE	W12
+	BYTE		N36     Dn2 
+	BYTE		N42     Fn2   v092
+	BYTE		N42     Gn2   v096
+	BYTE	W24
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_2_008
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_2_009
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	LoZOcarinaofTimeShopSme_2_B1
+LoZOcarinaofTimeShopSme_2_B2:
+// 035   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+LoZOcarinaofTimeShopSme_3:
+	BYTE	KEYSH   LoZOcarinaofTimeShopSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   36
+	BYTE		VOL     95*LoZOcarinaofTimeShopSme_mvl/mxv
+	BYTE		PAN     c_v-4
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+LoZOcarinaofTimeShopSme_3_B1:
+// 003   ----------------------------------------
+	BYTE		N15     Cn2   v116
+	BYTE	W36
+	BYTE		N15   
+	BYTE	W12
+	BYTE		N22     Gn2   v104
+	BYTE	W24
+	BYTE		N42     Gn1   v116
+	BYTE	W24
+// 004   ----------------------------------------
+	BYTE	W36
+	BYTE		N10   
+	BYTE	W12
+	BYTE		N22     Cn2   v120
+	BYTE	W24
+	BYTE		N20     Gn2   v116
+	BYTE	W24
+// 005   ----------------------------------------
+	BYTE	W36
+	BYTE		N13   
+	BYTE	W12
+	BYTE		N21     Bn1   v120
+	BYTE	W24
+	BYTE		N24     Dn2   v108
+	BYTE	W24
+// 006   ----------------------------------------
+	BYTE	W36
+	BYTE		N11     Gn1   v112
+	BYTE	W12
+	BYTE		N18     Gn2   v116
+	BYTE	W24
+	BYTE		N17     Fn2   v112
+	BYTE	W24
+// 007   ----------------------------------------
+	BYTE		N16     Dn2   v116
+	BYTE	W36
+	BYTE		N10     Gn1   v120
+	BYTE	W12
+	BYTE		N20     Bn1   v116
+	BYTE	W24
+	BYTE		N28     Dn2 
+	BYTE	W24
+// 008   ----------------------------------------
+	BYTE	W36
+	BYTE		N10     Bn1 
+	BYTE	W12
+	BYTE		N21     Dn2   v108
+	BYTE	W24
+	BYTE		N22     Gn1   v116
+	BYTE	W24
+// 009   ----------------------------------------
+	BYTE		        Cn2 
+	BYTE	W36
+	BYTE		N13     Cn2   v108
+	BYTE	W12
+	BYTE		N22     Gn2   v116
+	BYTE	W24
+	BYTE		N28     Gn1   v112
+	BYTE	W24
+// 010   ----------------------------------------
+	BYTE	W36
+	BYTE		N06     Gn1   v116
+	BYTE	W12
+	BYTE		N19     An1 
+	BYTE	W24
+	BYTE		N17     Bn1   v120
+	BYTE	W24
+// 011   ----------------------------------------
+	BYTE		N32     Cn2 
+	BYTE	W36
+	BYTE		N16     Gn2 
+	BYTE	W24
+	BYTE		N07     Gn2   v104
+	BYTE	W12
+	BYTE		N28     Gn1   v112
+	BYTE	W24
+// 012   ----------------------------------------
+	BYTE	W36
+	BYTE		N07     Cn2   v116
+	BYTE	W12
+	BYTE		N20     Gn2   v120
+	BYTE	W24
+	BYTE		N19     Gn1   v108
+	BYTE	W24
+// 013   ----------------------------------------
+	BYTE		N28     Bn1   v116
+	BYTE	W36
+	BYTE		N18     Gn2 
+	BYTE	W24
+	BYTE		N12     Gn2   v096
+	BYTE	W12
+	BYTE		N36     Fn2   v108
+	BYTE	W24
+// 014   ----------------------------------------
+	BYTE	W36
+	BYTE		N10     Dn2   v100
+	BYTE	W12
+	BYTE		N08     Bn1   v120
+	BYTE	W12
+	BYTE		N11     Bn1   v104
+	BYTE	W12
+	BYTE		N19     Dn2   v116
+	BYTE	W24
+// 015   ----------------------------------------
+	BYTE		N28     Gn1 
+	BYTE	W36
+	BYTE		N15     Gn2 
+	BYTE	W24
+	BYTE		N09     Gn2   v112
+	BYTE	W12
+	BYTE		N32     Fn2 
+	BYTE	W24
+// 016   ----------------------------------------
+	BYTE	W24
+	BYTE		N22     Dn2   v120
+	BYTE	W24
+	BYTE		N18     Gn1   v116
+	BYTE	W24
+	BYTE		N19     Bn1   v112
+	BYTE	W24
+// 017   ----------------------------------------
+	BYTE		N24     Cn2 
+	BYTE	W36
+	BYTE		N15     Cn2   v108
+	BYTE	W24
+	BYTE		        Gn2   v104
+	BYTE	W24
+	BYTE		N10     Gn2   v112
+	BYTE	W12
+// 018   ----------------------------------------
+	BYTE		N06     Cn2   v116
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N12     Cn2   v120
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE		N36     Fn1   v108
+	BYTE	W36
+	BYTE		N32     Cn2 
+	BYTE	W36
+	BYTE		N68     Fn2 
+	BYTE	W24
+// 020   ----------------------------------------
+	BYTE	W48
+	BYTE		N24     Cn2   v104
+	BYTE	W24
+	BYTE		N30     Fn2 
+	BYTE	W24
+// 021   ----------------------------------------
+	BYTE		        Gn1   v100
+	BYTE	W36
+	BYTE		N32     Cn2   v112
+	BYTE	W36
+	BYTE		N66     En2   v116
+	BYTE	W24
+// 022   ----------------------------------------
+	BYTE	W48
+	BYTE		N30     Cn2   v104
+	BYTE	W24
+	BYTE		N23     En2   v108
+	BYTE	W24
+// 023   ----------------------------------------
+	BYTE		N40     Gn1   v112
+	BYTE	W36
+	BYTE		N30     Bn1   v116
+	BYTE	W36
+	BYTE		N68     Dn2   v112
+	BYTE	W24
+// 024   ----------------------------------------
+	BYTE	W48
+	BYTE		N24     Gn1 
+	BYTE	W24
+	BYTE		N23     Dn2 
+	BYTE	W24
+// 025   ----------------------------------------
+	BYTE		N36     Cn2   v108
+	BYTE	W36
+	BYTE		N32     En2   v112
+	BYTE	W36
+	BYTE		N72     Gn1 
+	BYTE	W24
+// 026   ----------------------------------------
+	BYTE	W48
+	BYTE		N24     Cn2 
+	BYTE	W24
+	BYTE		N20     Gn2   v108
+	BYTE	W24
+// 027   ----------------------------------------
+	BYTE		N32     Fn1   v096
+	BYTE	W36
+	BYTE		        Cn2   v108
+	BYTE	W36
+	BYTE		N68     Fn2   v112
+	BYTE	W24
+// 028   ----------------------------------------
+	BYTE	W48
+	BYTE		N28     An1   v108
+	BYTE	W24
+	BYTE		N21     Fn2 
+	BYTE	W24
+// 029   ----------------------------------------
+	BYTE		N32     Gn1   v112
+	BYTE	W36
+	BYTE		        Cn2 
+	BYTE	W36
+	BYTE		N72     En2 
+	BYTE	W24
+// 030   ----------------------------------------
+	BYTE	W48
+	BYTE		N24     Cn2   v116
+	BYTE	W24
+	BYTE		N22     Gn2   v112
+	BYTE	W24
+// 031   ----------------------------------------
+	BYTE		N32     Gn1 
+	BYTE	W36
+	BYTE		        Bn1   v116
+	BYTE	W36
+	BYTE		N68     Dn2   v112
+	BYTE	W24
+// 032   ----------------------------------------
+	BYTE	W48
+	BYTE		N24     Gn1   v116
+	BYTE	W24
+	BYTE		N22     Bn1 
+	BYTE	W24
+// 033   ----------------------------------------
+	BYTE		N06     Cn2   v120
+	BYTE	W12
+	BYTE		        Cn2   v116
+	BYTE	W12
+	BYTE		N07     Cn2   v120
+	BYTE	W36
+	BYTE		        An1 
+	BYTE	W36
+// 034   ----------------------------------------
+	BYTE		N05     Cn2   v108
+	BYTE	W12
+	BYTE		        Cn2   v116
+	BYTE	W12
+	BYTE		N08     Cn2   v120
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	LoZOcarinaofTimeShopSme_3_B1
+LoZOcarinaofTimeShopSme_3_B2:
+// 035   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+LoZOcarinaofTimeShopSme_4:
+	BYTE	KEYSH   LoZOcarinaofTimeShopSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   68
+	BYTE		VOL     106*LoZOcarinaofTimeShopSme_mvl/mxv
+	BYTE		PAN     c_v+32
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+LoZOcarinaofTimeShopSme_4_B1:
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W60
+	BYTE		N13     Cn3   v100
+	BYTE	W12
+	BYTE		N11     Dn3   v096
+	BYTE	W12
+	BYTE		N13     En3 
+	BYTE	W12
+// 019   ----------------------------------------
+	BYTE		N32     An2   v084
+	BYTE		N30     Fn3   v100
+	BYTE	W36
+	BYTE		N32     Fn2   v096
+	BYTE		N32     Cn3   v100
+	BYTE	W36
+	BYTE		N60     Fn2   v084
+	BYTE		N64     An2   v096
+	BYTE	W24
+// 020   ----------------------------------------
+	BYTE	W48
+	BYTE		N20     Fn2   v080
+	BYTE		N21     An2   v076
+	BYTE	W24
+	BYTE		N20     An2   v096
+	BYTE		N16     Fn3   v100
+	BYTE	W24
+// 021   ----------------------------------------
+	BYTE		N32     Gn2   v096
+	BYTE		N32     En3 
+	BYTE	W36
+	BYTE		N30     En2   v092
+	BYTE		N30     Cn3   v084
+	BYTE	W36
+	BYTE		N76     En2   v088
+	BYTE		N76     Gn2   v096
+	BYTE	W24
+// 022   ----------------------------------------
+	BYTE	W60
+	BYTE		N14     Gn2   v100
+	BYTE	W12
+	BYTE		N13     An2   v088
+	BYTE	W12
+	BYTE		N10     As2   v092
+	BYTE	W12
+// 023   ----------------------------------------
+	BYTE		N30     Gn2   v104
+	BYTE		N32     Bn2   v100
+	BYTE	W36
+	BYTE		N24     Gn2 
+	BYTE		N24     An2   v092
+	BYTE	W36
+	BYTE		N52     Dn2   v096
+	BYTE		N54     Gn2   v104
+	BYTE	W24
+// 024   ----------------------------------------
+	BYTE	W48
+	BYTE		N20     Fn3   v088
+	BYTE	W24
+	BYTE		N09     En3   v096
+	BYTE	W12
+	BYTE		N10     Dn3   v088
+	BYTE	W12
+// 025   ----------------------------------------
+	BYTE		TIE     Gn2   v096
+	BYTE		TIE     En3 
+	BYTE	W48
+	BYTE	W48
+// 026   ----------------------------------------
+	BYTE	W40
+	BYTE		EOT   
+	BYTE	W06
+	BYTE		EOT     Gn2 
+	BYTE	W14
+	BYTE		N28     En2   v088
+	BYTE		N13     Cn3   v092
+	BYTE	W12
+	BYTE		N05     Dn3   v088
+	BYTE	W12
+	BYTE		N06     En3   v100
+	BYTE	W12
+// 027   ----------------------------------------
+	BYTE		N36     An2   v088
+	BYTE		N32     Fn3   v108
+	BYTE	W36
+	BYTE		N28     Fn2   v096
+	BYTE		N30     Cn3   v104
+	BYTE	W36
+	BYTE		N72     Fn2   v088
+	BYTE		N78     An2 
+	BYTE	W24
+// 028   ----------------------------------------
+	BYTE	W60
+	BYTE		N17     An2   v040
+	BYTE		N11     Fn3   v080
+	BYTE	W12
+	BYTE		N10     En3   v088
+	BYTE	W12
+	BYTE		N07     Dn3   v096
+	BYTE	W12
+// 029   ----------------------------------------
+	BYTE		N32     Gn2 
+	BYTE		N28     En3   v100
+	BYTE	W36
+	BYTE		N32     En2   v088
+	BYTE		N30     Cn3   v096
+	BYTE	W36
+	BYTE		N78     Cn2   v092
+	BYTE		N80     Gn2   v100
+	BYTE	W24
+// 030   ----------------------------------------
+	BYTE	W60
+	BYTE		N24     Cn2   v088
+	BYTE		N12     Gn2   v096
+	BYTE	W12
+	BYTE		N06     An2   v084
+	BYTE	W12
+	BYTE		        As2   v088
+	BYTE	W12
+// 031   ----------------------------------------
+	BYTE		N30     Dn2   v092
+	BYTE		N30     Bn2   v104
+	BYTE	W36
+	BYTE		        Dn2   v096
+	BYTE		N30     An2   v104
+	BYTE	W36
+	BYTE		N56     Dn2   v084
+	BYTE		N56     Gn2   v092
+	BYTE	W24
+// 032   ----------------------------------------
+	BYTE	W36
+	BYTE		N48     Gn2   v100
+	BYTE		N24     Bn2   v084
+	BYTE	W24
+	BYTE		N11     Dn3   v092
+	BYTE	W12
+	BYTE		N10     Cn3   v096
+	BYTE	W12
+	BYTE		        Bn2   v088
+	BYTE	W12
+// 033   ----------------------------------------
+	BYTE		TIE     En2   v084
+	BYTE		TIE     Cn3   v092
+	BYTE	W48
+	BYTE	W48
+// 034   ----------------------------------------
+	BYTE	W42
+	BYTE		EOT     En2 
+	BYTE	W04
+	BYTE		        Cn3 
+	BYTE	W48
+	BYTE	W02
+	BYTE	GoTo
+	 POIN2	LoZOcarinaofTimeShopSme_4_B1
+LoZOcarinaofTimeShopSme_4_B2:
+// 035   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+LoZOcarinaofTimeShopSme_5:
+	BYTE	KEYSH   LoZOcarinaofTimeShopSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   57
+	BYTE		VOL     120*LoZOcarinaofTimeShopSme_mvl/mxv
+	BYTE		PAN     c_v-28
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+LoZOcarinaofTimeShopSme_5_B1:
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W36
+	BYTE		N02     Fn3   v088
+	BYTE		N03     An3 
+	BYTE	W12
+	BYTE		N01     An3   v080
+	BYTE		N01     Cn4   v096
+	BYTE		N01     Fn4   v100
+	BYTE	W12
+	BYTE		        An3   v084
+	BYTE		N01     Cn4   v092
+	BYTE		N01     Fn4   v104
+	BYTE	W12
+	BYTE		        An3   v092
+	BYTE		N01     Cn4   v100
+	BYTE		N02     Fn4   v104
+	BYTE	W24
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W36
+	BYTE		        En3   v088
+	BYTE		N02     Gn3   v100
+	BYTE	W12
+	BYTE		N01   
+	BYTE		N02     Cn4 
+	BYTE		N02     En4   v104
+	BYTE	W12
+	BYTE		N01     Gn3   v096
+	BYTE		N02     Cn4   v084
+	BYTE		N02     En4   v100
+	BYTE	W12
+	BYTE		        Gn3   v104
+	BYTE		N02     Cn4   v096
+	BYTE		N02     En4   v104
+	BYTE	W24
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W36
+	BYTE		        Dn3   v088
+	BYTE		N03     Gn3   v096
+	BYTE	W12
+	BYTE		N02     Gn3   v104
+	BYTE		N01     Bn3   v080
+	BYTE		N02     Dn4   v100
+	BYTE	W12
+	BYTE		N01     Gn3   v108
+	BYTE		N02     Bn3   v096
+	BYTE		N02     Dn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE		N03     Bn3   v088
+	BYTE		N03     Dn4   v100
+	BYTE	W24
+// 025   ----------------------------------------
+	BYTE		N84     Gn3 
+	BYTE		N84     Cn4   v080
+	BYTE		N84     En4   v068
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W12
+	BYTE		N01     Gn3   v104
+	BYTE		N01     Cn4   v096
+	BYTE	W12
+	BYTE		        Gn3   v104
+	BYTE		N01     Cn4   v096
+	BYTE	W12
+	BYTE		        Gn3   v104
+	BYTE		N01     Cn4   v096
+	BYTE	W12
+	BYTE		        Gn3   v100
+	BYTE		N02     Dn4   v104
+	BYTE	W12
+	BYTE		N01     Gn3   v100
+	BYTE		N02     Dn4   v104
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE		N02     En4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE		N02     En4 
+	BYTE	W12
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W36
+	BYTE		N03     Fn3   v092
+	BYTE		N03     An3   v088
+	BYTE	W12
+	BYTE		N01     An3   v100
+	BYTE		N01     Cn4   v096
+	BYTE		N01     Fn4 
+	BYTE	W12
+	BYTE		N02     An3 
+	BYTE		N02     Cn4   v088
+	BYTE		N02     Fn4   v096
+	BYTE	W12
+	BYTE		        An3   v100
+	BYTE		N02     Cn4   v092
+	BYTE		N02     Fn4   v104
+	BYTE	W24
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W36
+	BYTE		N03     En3   v084
+	BYTE		N03     Gn3   v092
+	BYTE	W12
+	BYTE		N01     Gn3   v096
+	BYTE		N02     Cn4 
+	BYTE		N01     En4   v088
+	BYTE	W12
+	BYTE		        Gn3   v100
+	BYTE		N02     Cn4   v092
+	BYTE		N02     En4   v096
+	BYTE	W12
+	BYTE		        Gn3   v100
+	BYTE		N02     Cn4   v084
+	BYTE		N02     En4   v100
+	BYTE	W24
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W36
+	BYTE		        Dn3 
+	BYTE		N02     Gn3 
+	BYTE	W12
+	BYTE		        Fn3   v096
+	BYTE		N02     Bn3   v088
+	BYTE		N02     Dn4   v104
+	BYTE	W12
+	BYTE		N01     Fn3   v092
+	BYTE		N02     Bn3   v080
+	BYTE		N01     Dn4   v100
+	BYTE	W12
+	BYTE		N03     Fn3   v092
+	BYTE		N03     Bn3   v096
+	BYTE		N02     Dn4 
+	BYTE	W24
+// 033   ----------------------------------------
+	BYTE		        En3   v104
+	BYTE		N02     Gn3   v112
+	BYTE		N02     Cn4   v104
+	BYTE	W12
+	BYTE		        En3   v096
+	BYTE		N02     Gn3   v100
+	BYTE		N02     Cn4   v092
+	BYTE	W12
+	BYTE		        En3   v100
+	BYTE		N03     Gn3   v088
+	BYTE		N02     Cn4   v104
+	BYTE	W36
+	BYTE		        Fn3 
+	BYTE		N02     An3 
+	BYTE		N02     Cn4 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE		N02     Gs3 
+	BYTE		N02     Cn4 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE		N02     An3 
+	BYTE		N02     Cn4 
+	BYTE	W06
+// 034   ----------------------------------------
+	BYTE		        En3 
+	BYTE		N02     Gn3   v112
+	BYTE		N02     Cn4   v104
+	BYTE	W12
+	BYTE		        En3   v096
+	BYTE		N02     Gn3   v100
+	BYTE		N02     Cn4   v092
+	BYTE	W12
+	BYTE		        En3   v100
+	BYTE		N03     Gn3   v088
+	BYTE		N02     Cn4   v104
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	LoZOcarinaofTimeShopSme_5_B1
+LoZOcarinaofTimeShopSme_5_B2:
+// 035   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+LoZOcarinaofTimeShopSme_6:
+	BYTE	KEYSH   LoZOcarinaofTimeShopSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     103*LoZOcarinaofTimeShopSme_mvl/mxv
+	BYTE		PAN     c_v-54
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W44
+	BYTE	W03
+	BYTE		N01     Gs2   v124
+	BYTE	W06
+	BYTE		        Gs2   v092
+	BYTE	W06
+	BYTE		        Gs2   v100
+	BYTE	W05
+	BYTE		        Gs2   v112
+	BYTE	W06
+	BYTE		        Gs2   v127
+	BYTE	W24
+	BYTE	W02
+LoZOcarinaofTimeShopSme_6_B1:
+// 003   ----------------------------------------
+LoZOcarinaofTimeShopSme_6_003:
+	BYTE		N01     Gs2   v108
+	BYTE	W24
+	BYTE		N01   
+	BYTE	W24
+	BYTE		        Gs2   v104
+	BYTE	W24
+	BYTE		        Gs2   v112
+	BYTE	W13
+	BYTE		        Gs2   v100
+	BYTE	W11
+	BYTE	PEND
+// 004   ----------------------------------------
+LoZOcarinaofTimeShopSme_6_004:
+	BYTE		N01     Gs2   v108
+	BYTE	W24
+	BYTE	W01
+	BYTE		N01   
+	BYTE	W23
+	BYTE		        Gs2   v112
+	BYTE	W12
+	BYTE		        Gs2   v096
+	BYTE	W12
+	BYTE		        Gs2   v112
+	BYTE	W24
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_003
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_6_004
+// 033   ----------------------------------------
+	BYTE		N01     Gs2   v112
+	BYTE	W12
+	BYTE		        Gs2   v100
+	BYTE	W12
+	BYTE		        Gs2   v108
+	BYTE	W36
+	BYTE		        Gs2   v104
+	BYTE	W24
+	BYTE		        Gs2   v100
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE		        Gs2   v112
+	BYTE	W12
+	BYTE		        Gs2   v096
+	BYTE	W12
+	BYTE		        Gs2   v112
+	BYTE	W01
+	BYTE		        Gs2   v108
+	BYTE	W68
+	BYTE	W03
+	BYTE	GoTo
+	 POIN2	LoZOcarinaofTimeShopSme_6_B1
+LoZOcarinaofTimeShopSme_6_B2:
+// 035   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+LoZOcarinaofTimeShopSme_7:
+	BYTE	KEYSH   LoZOcarinaofTimeShopSme_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     81*LoZOcarinaofTimeShopSme_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		N01     An4   v100
+	BYTE	W12
+	BYTE		        An4   v096
+	BYTE	W06
+	BYTE		        An4   v072
+	BYTE	W05
+	BYTE		        An4   v100
+	BYTE	W13
+	BYTE		        An4   v120
+	BYTE	W12
+	BYTE		        An4   v100
+	BYTE	W13
+	BYTE		        An4   v092
+	BYTE	W11
+	BYTE		        An4   v100
+	BYTE	W11
+	BYTE		        An4   v104
+	BYTE	W13
+// 001   ----------------------------------------
+	BYTE		        An4   v100
+	BYTE	W12
+	BYTE		        An4   v096
+	BYTE	W06
+	BYTE		        An4   v072
+	BYTE	W05
+	BYTE		        An4   v100
+	BYTE	W13
+	BYTE		        An4   v120
+	BYTE	W12
+	BYTE		        An4   v100
+	BYTE	W13
+	BYTE		        An4   v092
+	BYTE	W11
+	BYTE		        An4   v100
+	BYTE	W11
+	BYTE		        An4   v104
+	BYTE	W13
+// 002   ----------------------------------------
+LoZOcarinaofTimeShopSme_7_002:
+	BYTE		N01     An4   v100
+	BYTE	W12
+	BYTE		        As2   v127
+	BYTE		N01     Cn3   v116
+	BYTE		N01     An4   v096
+	BYTE	W01
+	BYTE		        As2   v127
+	BYTE	W05
+	BYTE		        An4   v072
+	BYTE	W05
+	BYTE		        An4   v100
+	BYTE	W01
+	BYTE		        Ds2   v127
+	BYTE		N01     Fs2 
+	BYTE	W01
+	BYTE		        Ds2 
+	BYTE	W11
+	BYTE		        An4   v120
+	BYTE	W12
+	BYTE		        Fs2   v124
+	BYTE		N01     Cn3   v127
+	BYTE		N01     An4   v100
+	BYTE	W05
+	BYTE		        Fs2   v124
+	BYTE	W01
+	BYTE		        Cn3   v112
+	BYTE	W05
+	BYTE		        Cn3   v124
+	BYTE	W01
+	BYTE		        Fs2   v112
+	BYTE	W01
+	BYTE		        An4   v092
+	BYTE	W04
+	BYTE		        Fs2   v112
+	BYTE		N01     Cn3 
+	BYTE	W06
+	BYTE		        Fs2   v127
+	BYTE		N01     Cn3 
+	BYTE	W01
+	BYTE		        An4   v100
+	BYTE	W11
+	BYTE		        An4   v104
+	BYTE	W13
+	BYTE	PEND
+LoZOcarinaofTimeShopSme_7_B1:
+// 003   ----------------------------------------
+LoZOcarinaofTimeShopSme_7_003:
+	BYTE		N01     As2   v100
+	BYTE		N01     Ds3   v076
+	BYTE		N01     An4   v100
+	BYTE	W12
+	BYTE		        As2   v040
+	BYTE		N01     Ds3   v024
+	BYTE		N01     An4   v096
+	BYTE	W06
+	BYTE		        An4   v072
+	BYTE	W05
+	BYTE		        An4   v100
+	BYTE	W01
+	BYTE		        As2   v016
+	BYTE		N01     Ds3   v127
+	BYTE	W12
+	BYTE		        As2   v068
+	BYTE		N01     Ds3   v048
+	BYTE		N01     An4   v120
+	BYTE	W12
+	BYTE		        As2   v096
+	BYTE		N01     Ds3   v036
+	BYTE		N01     An4   v100
+	BYTE	W12
+	BYTE		        As2   v112
+	BYTE		N01     Ds3   v127
+	BYTE	W01
+	BYTE		        An4   v092
+	BYTE	W11
+	BYTE		        Fs2   v124
+	BYTE		N01     Cn3   v084
+	BYTE		N01     An4   v100
+	BYTE	W11
+	BYTE		        An4   v104
+	BYTE	W01
+	BYTE		        Fs2   v124
+	BYTE		N01     Cn3   v127
+	BYTE	W12
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_002
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_003
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	LoZOcarinaofTimeShopSme_7_002
+	BYTE	GoTo
+	 POIN2	LoZOcarinaofTimeShopSme_7_B1
+LoZOcarinaofTimeShopSme_7_B2:
+// 035   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+LoZOcarinaofTimeShopSme:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	LoZOcarinaofTimeShopSme_pri	// Priority
+	BYTE	LoZOcarinaofTimeShopSme_rev	// Reverb.
+
+	POIN2	LoZOcarinaofTimeShopSme_grp
+
+	POIN2	LoZOcarinaofTimeShopSme_1
+	POIN2	LoZOcarinaofTimeShopSme_2
+	POIN2	LoZOcarinaofTimeShopSme_3
+	POIN2	LoZOcarinaofTimeShopSme_4
+	POIN2	LoZOcarinaofTimeShopSme_5
+	POIN2	LoZOcarinaofTimeShopSme_6
+	POIN2	LoZOcarinaofTimeShopSme_7
+
+	
