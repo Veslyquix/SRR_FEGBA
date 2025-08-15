@@ -1350,7 +1350,8 @@ beq NoJanky_FE8
 cmp r0, r4 
 beq UseJankyPalette_FE8
 push {r0-r3} 
-bl ShouldDoJankyPalettes 
+mov r0, r9 @ dfdr 
+bl ShouldUnitDoJankyPalettes 
 mov r7, r0 
 pop {r0-r3} 
 cmp r7, #0 
@@ -1381,7 +1382,8 @@ cmp r0, r4
 beq UseJankyPalette2_FE8
 
 push {r0-r3} 
-bl ShouldDoJankyPalettes 
+mov r0, r10 @ atkr 
+bl ShouldUnitDoJankyPalettes 
 mov r7, r0 
 pop {r0-r3} 
 cmp r7, #0 
@@ -1431,7 +1433,8 @@ bl IsClassOrRecruitmentRandomized
 strh r0, [r4] 
 cmp r0, #0 
 beq DontOverwriteDfdr 
-bl ShouldDoJankyPalettes
+mov r0, r9 
+bl ShouldUnitDoJankyPalettes
 cmp r0, #0 
 bne DontOverwriteDfdr 
 mov r1, #0 
@@ -1446,7 +1449,8 @@ strh r0, [r4, #2]
 cmp r0, #0 
 beq DontOverwriteAtkr 
 push {r0} 
-bl ShouldDoJankyPalettes
+mov r0, r10 
+bl ShouldUnitDoJankyPalettes
 mov r2, r0 @ just in case r0 matters 
 pop {r0}
 cmp r2, #0 
@@ -1458,6 +1462,26 @@ DontOverwriteAtkr:
 
 ExitGenericPalette_FE8: 
 pop {r4-r5} 
+pop {r3} 
+bx r3 
+.ltorg 
+
+
+.global FE8_NewCharPalHook
+.type FE8_NewCharPalHook, %function 
+FE8_NewCharPalHook: 
+push {r4-r5, lr} 
+add r1, r2 
+mov r4, r0 
+mov r5, r1 
+@bl MaybeOverwriteCharPal 
+mov r0, r4 
+mov r1, r5 
+mov r2, #0x8 
+@blh CPUFastSet 
+ldr   r0, =gPaletteSyncFlag
+mov   r1, #0x1
+strb  r1, [r0]
 pop {r3} 
 bx r3 
 .ltorg 

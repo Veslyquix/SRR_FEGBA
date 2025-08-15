@@ -5466,9 +5466,50 @@ void HbPopulate_SSCharacter(struct HelpBoxProc * proc) // fe7 0x80816FC fe6 0x80
     return;
 }
 
+#define EKR_POS_L 0
+#define EKR_POS_R 1
+extern struct BattleUnit * gpEkrBattleUnitLeft;
+extern struct BattleUnit * gpEkrBattleUnitRight;
+const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos);
+int ShouldUnitDoJankyPalettes(struct BattleUnit * bunit)
+{
+    int result = false;
+    if (RandBitflags->colours == 2)
+    {
+        result = true;
+    }
+    else if (RandBitflags->colours)
+    {
+        result = false;
+    }
+    int pos = EKR_POS_L;
+    struct BattleUnit * bu = gpEkrBattleUnitLeft;
+    if (bu != bunit)
+    {
+        pos = EKR_POS_R;
+    }
+
+    struct Vec2u charTableID = GetReorderedCharIDAndTableID(bunit->unit.pCharacterData);
+    const u16 * pal = GetUniqueCharPal(charTableID.x, charTableID.y, &bunit->unit, pos);
+    if (pal)
+    {
+        return (int)pal;
+    }
+    return result;
+}
+
 int ShouldDoJankyPalettes(void)
 {
-    return RandBitflags->colours == 2;
+    if (RandBitflags->colours == 2)
+    {
+        return true;
+    }
+    if (RandBitflags->colours)
+    {
+        return false;
+    }
+
+    return false;
 }
 int ShouldAlterPortraitColours(void)
 {
@@ -6410,10 +6451,12 @@ struct gCharPal_EntryStruct
 };
 
 extern const struct gCharPal_EntryStruct * const gCharPal[];
-
-const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit)
+extern s16 gBanimUniquePal[2];
+const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
 {
     const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
+    const struct gCharPal_EntryStruct * firstEntry = entry;
+    const u16 * pal = NULL;
     if (!entry) // no pointer
     {
         return NULL;
@@ -6424,21 +6467,30 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit)
     {
         if (entry->charID == charID)
         {
+            if (RandBitflags->colours)
+            {
+                pal = firstEntry
+                          ->pal[0]; // default if none found, but only used if non-vanilla colours (eg. Janky) is chosen
+            }
             for (int i = 0; i < NumOfCharPals; ++i)
             {
                 if (entry->classID[i] == classID)
-                    return entry->pal[i];
+                {
+                    pal = entry->pal[i];
+                    break;
+                }
             }
         }
         entry++;
     }
+    if (pal)
+    {
+        gBanimUniquePal[pos] = 0;
+    }
 
-    return NULL;
+    return pal;
 }
 
-#define EKR_POS_L 0
-extern struct BattleUnit * gpEkrBattleUnitLeft;
-extern struct BattleUnit * gpEkrBattleUnitRight;
 extern s16 gBanimUniquePaletteDisabled[2];
 // extern u16 gBanimPaletteLeft[0x50];
 // extern u16 gBanimPaletteRight[0x50];
@@ -6452,10 +6504,9 @@ int MaybeApplyUniqueCharPal(u32 * buf, int pos)
         bu = gpEkrBattleUnitRight;
 
     struct Vec2u charTableID = GetReorderedCharIDAndTableID(bu->unit.pCharacterData);
-    const u16 * pal = GetUniqueCharPal(charTableID.x, charTableID.y, &bu->unit);
+    const u16 * pal = GetUniqueCharPal(charTableID.x, charTableID.y, &bu->unit, pos);
     if (pal)
     {
-        brk;
         const u32 * pal32 = (const u32 *)pal;
         for (int i = 0; i < 8; i++)
             buf[i] = pal32[i];

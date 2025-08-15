@@ -57,7 +57,7 @@ def process_csv(input_csv):
         for e in entries:
             cname = clean_name(e["Class Name"])
             if "Female" in (e["Character Notes"] or ""):
-                cname += "_F"
+                cname += ""
             class_names.append(cname)
 
             pname = clean_name(e["Character Name"])
