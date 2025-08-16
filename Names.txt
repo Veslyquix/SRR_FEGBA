@@ -1,0 +1,529 @@
+
+#include "FE1-5.txt"
+#include "FE6-10.txt"
+#include "FE13-14.txt"
+#include "FE15-17.txt"
+
+
+
+
+
+
+
+// ShieldGeneral ? 
+// fe10 knight? 
+
+// Classes 
+## Alm_T1Name
+Lord[X]
+## Alm_T1Desc
+A noble attached to a ruling[N]
+house. Has great potential.[N]
+Anim by Nuramon, HyperGammaSpaces[X]
+
+## Alm_T2Name
+Great Lord[X]
+## Alm_T2Desc
+A noble attached to a ruling[N]
+house. Leads with conviction.[N]
+Anim by Nuramon[X]
+
+## Ike_LordName
+Lord[X]
+## Ike_LordDesc
+A young mercenary leader.[N]
+Strong and dependable.[N]
+Anim by xxx_Drama[X]
+
+## Ike_RangerName
+Ranger[X]
+## Ike_RangerDesc
+A wandering swordsman.[N]
+Skilled and fearless.[N]
+Anim by Mikey, Khrene, Khardros[X]
+
+## Leif_LordName
+Lord[X]
+## Leif_LordDesc
+A prince striving to reclaim[N]
+his homeland. Determined.[N]
+Anim by Obsidian_Daddy, Jj09[X]
+
+## Marth_SlashName
+Lord[X]
+## Marth_SlashDesc
+The hero-king of legend.[N]
+Charismatic and skilled.[N]
+Anim by Caim Van Fang, Seliost1[X]
+
+## SeliphName
+Lord[X]
+## SeliphDesc
+A noble fighting for justice.[N]
+Leads with honor and strength.[N]
+Anim by Obsidian, Zoramine, Eretein[X]
+
+
+## T1_LancerName
+Lancer[X]
+## T1_LancerDesc
+A disciplined lancer. Known[N]
+for their steady spear work.[N]
+Anim by Memae, Skitty, BwdYeti, MOJ[X]
+
+## TruebladeName
+Trueblade[X]
+## TruebladeDesc
+An elite swordfighter. Sharp[N]
+and unmatched in technique.[N]
+Anim by Dinar87, RobertFPY[X]
+
+## Katarina_FencerName
+Fencer[X]
+## Katarina_FencerDesc
+A graceful duelist. Excels[N]
+in precise and elegant strikes.[N]
+Anim by GabrielKnight, 7743[X]
+
+## DragoonName
+Dragoon[X]
+## DragoonDesc
+A skilled knight who wields[N]
+lances with powerful charges.[N]
+Anim by MercLord, NYZGamer, Maiser6[X]
+
+
+## Lancer_by_SALVAGEDName
+Lancer[X]
+## Lancer_by_SALVAGEDDesc
+A skilled lancer with refined[N]
+techniques. Reliable in battle.[N]
+Anim by SALVAGED[X]
+
+## MilitiaName
+Militia[X]
+## MilitiaDesc
+A conscripted soldier. Fights[N]
+with determination and resolve.[N]
+Anim by Alusq[X]
+
+## HalberdierName
+Halberdier[X]
+## HalberdierDesc
+An expert in halberds. Balances[N]
+offense and defense seamlessly.[N]
+Anim by TheBlindArcher, Spud, MOJ[X]
+
+
+
+## Mounted_MarauderName
+Marauder[X]
+## Mounted_MarauderDesc
+A fierce raider who[N]
+devastates enemies with speed.[N]
+Anim by Spud[X]
+
+## SentinelName
+Sentinel[X]
+## SentinelDesc
+A stalwart defender. Known[N]
+for their resilience and bravery.[N]
+Anim by Nuramon, Craigrandall55[X]
+
+## WarbirdName
+Warbird[X]
+## WarbirdDesc
+A swift and deadly fighter.[N]
+Strikes with unmatched precision.[N]
+Anim by Alexsplode[X]
+
+## Supplier_AnnaName
+Supplier[X]
+## Supplier_AnnaDesc
+A clever merchant warrior.[N]
+Skilled in both trade and battle.[N]
+Anim by DAT, JonoTheRed, Sable Mage[X]
+
+
+
+## BaronName
+Baron[X]
+## BaronDesc
+A heavily armored knight.[N]
+A fortress on the battlefield.[N]
+Anim by TBA, St jack, Flasuban, Sax-M[X]
+
+## BrighidName
+Brighid[X]
+## BrighidDesc
+A fierce warrior with an[N]
+unyielding spirit. Fights valiantly.[N]
+Anim by Sphealnuke[X]
+
+## Flail_KnightName
+Flail Knight[X]
+## Flail_KnightDesc
+A brutal fighter wielding a deadly[N]
+flail. A force to be reckoned with.[N]
+Anim by JonoTheRed, ZoramineFae[X]
+
+## GladiatorName
+Gladiator[X]
+## GladiatorDesc
+A battle-hardened warrior.[N]
+Thrives in the arena and beyond.[N]
+Anim by Waleed, Pushwall, L_Tweed, Zane[X]
+
+## HarbingerName
+Harbinger[X]
+## HarbingerDesc
+A bringer of doom and destruction.[N]
+Terrifies foes with raw power.[N]
+Anim by Nuramon, Linkain, JJ09, Gabr[X]
+
+## Heavy_InfantryName
+Hvy Infantry[X]
+## Heavy_InfantryDesc
+A sturdy frontline soldier.[N]
+Built for endurance and strength.[N]
+Anim by Nuramon, Seliost1[X]
+
+## Legion_KingName
+Legion King[X]
+## Legion_KingDesc
+A commanding figure leading[N]
+a mighty host. Inspires fear and loyalty.[N]
+Anim by Huichelaar, Obsidian_Daddy[X]
+
+## Mercenary_by_SALVAGEDName
+Mercenary[X]
+## Mercenary_by_SALVAGEDDesc
+A versatile and skilled fighter.[N]
+Adaptable to any battlefield.[N]
+Anim by SALVAGED[X]
+
+## Phantom_by_TBAName
+Phantom[X]
+## Phantom_by_TBADesc
+An ethereal warrior summoned[N]
+from beyond. Strikes without warning.[N]
+Anim by TheBlindArcher, Arch, Skitty, Temp[X]
+
+## War_ClericName
+War Cleric[X]
+## War_ClericDesc
+A healer who wields weapons.[N]
+Balances combat and compassion.[N]
+Anim by SkidMarc25[X]
+
+## AdventurerName
+Adventurer[X]
+## AdventurerDesc
+An intrepid explorer skilled[N]
+in ranged combat and survival.[N]
+Anim by Itranc, Nuramon, Leo_Link[X]
+
+## FletchlingName
+Fletchling[X]
+## FletchlingDesc
+A nimble archer. Swiftly[N]
+strikes from a distance.[N]
+Anim by RenOokami, knabepicer[X]
+
+## HunterName
+Hunter[X]
+## HunterDesc
+A tracker and marksman.[N]
+Excels in pursuing prey.[N]
+Anim by RenOokami, Knabepicer[X]
+
+## Merlinus_TransportName
+Transport[X]
+## Merlinus_TransportDesc
+A resourceful support unit.[N]
+Carries supplies and defends when needed.[N]
+Anim by Spud, N426, knabepicer[X]
+
+## MikoName
+Miko[X]
+## MikoDesc
+A spiritual warrior. Combines[N]
+sacred magic with martial skills.[N]
+Anim by Red Bean, Sable Mage[X]
+
+## Skeleton_RiderName
+Skeleton Rdr[X]
+## Skeleton_RiderDesc
+A macabre knight who rides[N]
+into battle from the underworld.[N]
+Anim by Sme[X]
+
+## AngelName
+Angel[X]
+## AngelDesc
+A divine figure who wields[N]
+holy magic to protect and heal.[N]
+Anim by Atey, Reyk_Retro0337[X]
+
+## Arcanist_by_Devisian_NightsName
+Arcanist[X]
+## Arcanist_by_Devisian_NightsDesc
+A master of arcane arts.[N]
+Harnesses destructive spells.[N]
+Anim by Devisian_Nights, Jey the Count[X]
+
+## Arcanist_by_NuramonName
+Arcanist[X]
+## Arcanist_by_NuramonDesc
+A scholar of ancient magic.[N]
+Specializes in tactical spellcasting.[N]
+Anim by Nuramon[X]
+
+## Cantor_JedahName
+Cantor[X]
+## Cantor_JedahDesc
+A summoner with dark powers.[N]
+Commands spirits to fight for them.[N]
+Anim by Nuramon[X]
+
+## Cantor_byName
+Cantor[X]
+## Cantor_byDesc
+A summoner adept at raising[N]
+minions to overwhelm foes.[N]
+Anim by Nuramon, Leo_Link[X]
+
+## Dark_PrinceName
+Dark Prince[X]
+## Dark_PrinceDesc
+A royal figure shrouded in[N]
+mystery, wielding forbidden power.[N]
+Anim by Obsidian, Rexacuse, Leo Link[X]
+
+
+## Dread_FighterName
+Dread Fghtr[X]
+## Dread_FighterDesc
+A fearsome warrior. Combines[N]
+magic and melee combat seamlessly.[N]
+Anim by Nuramon[X]
+
+## ExecutionerName
+Executioner[X]
+## ExecutionerDesc
+A ruthless enforcer. Strikes[N]
+terror with brutal precision.[N]
+Anim by Huichelaar, Konami[X]
+
+## FE8_TethysName
+Dancer[X]
+## FE8_TethysDesc
+A graceful dancer who uses[N]
+magic and charm to inspire allies.[N]
+Anim by Circles, Marlon0024, Kao, Rubenio[X]
+
+## Gaiden_PriestessName
+Princess[X]
+## Gaiden_PriestessDesc
+A holy warrior trained in both[N]
+magic and martial combat.[N]
+Anim by HyperGammaSpace, Jono[X]
+
+## KishunaName
+Seal[X]
+## KishunaDesc
+A mysterious entity that[N]
+nullifies magic with its presence.[N]
+Anim by Spud, noonog[X]
+
+## MagicianName
+Magician[X]
+## MagicianDesc
+A master of elemental spells.[N]
+Wields fire, thunder, and wind.[N]
+Anim by Devisian_Nights, Pikmin1211[X]
+
+## OccultistName
+Occultist[X]
+## OccultistDesc
+A practitioner of forbidden arts.[N]
+Draws power from the shadows.[N]
+Anim by Devvy, Pikmin, Wan, Tsushima[X]
+
+## ParsonName
+Parson[X]
+## ParsonDesc
+A holy figure spreading[N]
+hope and wielding light magic.[N]
+Anim by Devisian_Nights[X]
+
+## PupilReskinName
+Pupil[X]
+## PupilReskinDesc
+A novice mage learning the[N]
+ways of magic. Full of potential.[N]
+Anim by Pikmin1211[X]
+
+## Red_Mage_by_ReykName
+Red Mage[X]
+## Red_Mage_by_ReykDesc
+A versatile spellcaster skilled[N]
+in both magic and swordplay.[N]
+Anim by Linkain, Reyk_Retro0337[X]
+
+## Red_mage_by_MycahelName
+Red Mage[X]
+## Red_mage_by_MycahelDesc
+A balanced warrior who wields[N]
+spells and blades with precision.[N]
+Anim by Mycahel, Dededester, 7743[X]
+
+## TacticianName
+Tactician[X]
+## TacticianDesc
+A master strategist skilled in[N]
+magic and commanding troops.[N]
+Anim by SALVAGED[X]
+
+## TomesName
+Tome[X]
+## TomesDesc
+A powerful grimoire.[N]
+Commands ancient spells with ease.[N]
+Anim by N426[X]
+
+## WitchName
+Witch[X]
+## WitchDesc
+A mysterious sorceress who[N]
+uses dark magic to manipulate foes.[N]
+Anim by HyperGammaSpaces, Nuramon[X]
+
+## EgyptianName
+Cleric[X]
+## EgyptianDesc
+A mystic steeped in ancient[N]
+knowledge and divine power.[N]
+Anim by Tarantino500, FahadRashid327[X]
+
+## Elffin_FancyName
+Performer[X]
+## Elffin_FancyDesc
+A refined performer who[N]
+inspires allies with grace.[N]
+Anim by MeatOfJustice[X]
+
+## ChickenName
+Chicken[X]
+## ChickenDesc
+A peculiar creature with[N]
+little strength in battle.[N]
+Anim by Eldritch[X]
+
+## MosquitoName
+Mosquito[X]
+## MosquitoDesc
+A pestilent monster that drains[N]
+life with every attack.[N]
+Anim by Suikoden, Dutch Introvert[X]
+
+## SandwormName
+Sandworm[X]
+## SandwormDesc
+A massive creature that burrows[N]
+beneath the earth to ambush foes.[N]
+Anim by Stephano, WayForward[X]
+
+## SlimeName
+Slime[X]
+## SlimeDesc
+A gelatinous monster that engulfs[N]
+and dissolves its enemies.[N]
+Anim by Yellowtoad[X]
+
+## Cursed_SwordName
+Cursed Sword[X]
+## Cursed_SwordDesc
+A malevolent weapon imbued with[N]
+dark energy, seeking a wielder.[N]
+Anim by DerTheVaporeon, SALVAGED[X]
+
+
+## FellbeastName
+Fellbeast[X]
+## FellbeastDesc
+A fearsome creature of darkness with[N]
+powerful, terrifying attacks.[N]
+Anim by Nuramon[X]
+
+## BlackDragonName
+BlackDragon[X]
+## BlackDragonDesc
+A mighty dragon with scales black as[N]
+night. Its flames scorch all in its path.[N]
+Anim by Nuramon[X]
+
+## GrandMahoutName
+GrandMahout[X]
+## GrandMahoutDesc
+A masterful rider with unmatched[N]
+control over mighty beasts. Commanding.[N]
+Anim by Orihara, SHYUTERz, Camus, DAT[X]
+
+
+## DjinnName
+Djinn[X]
+## DjinnDesc
+A mystical being of great power.[N]
+Unpredictable and formidable.[N]
+Anim by Alexsplode[X]
+
+## LivingArmorName
+LivingArmor[X]
+## LivingArmorDesc
+Enchanted armor brought to life.[N]
+Resilient and unyielding in combat.[N]
+Anim by Sphealnuke[X]
+
+## BoxerName
+Boxer[X]
+## BoxerDesc
+A trained fighter with fists like steel.[N]
+Quick, strong, and relentless.[N]
+Anim by ShadowAllyX, Neph[X]
+
+## EnchanterName
+Enchanter[X]
+## EnchanterDesc
+A spellcaster skilled in enchanting magic.[N]
+Supportive and strategic in battle.[N]
+Anim by Dora Drago[X]
+
+## NinjaName
+Ninja[X]
+## NinjaDesc
+A trained spy who strikes from[N]
+the shadows.[N]
+Anim by Pikmin, Der[X]
+
+## LynLordName
+Lord[X]
+## LynLordDesc
+A noble attached to a ruling[N]
+house. Has great potential.[N]
+Anim by IntSys[X]
+
+## PriestessT1Name
+Priestess[X]
+## PriestessDesc
+A holy warrior trained in both[N]
+magic and martial combat.[N]
+Anim by Blood, Redbean[X]
+
+
+## ErrorOccurredMessageID
+Please screenshot this error number:[A][X]
+
+#include "Items.txt" 
+
+
