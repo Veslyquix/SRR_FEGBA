@@ -6455,7 +6455,6 @@ extern s16 gBanimUniquePal[2];
 const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
 {
     const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
-    const struct gCharPal_EntryStruct * firstEntry = entry;
     const u16 * pal = NULL;
     if (!entry) // no pointer
     {

@@ -2,7 +2,7 @@
 ALIGN 4 
 gCharPal: 
 POIN 0 // Vanilla does nothing 
-POIN Pal_FE1 
+POIN processed_FE1_palettes 
 POIN Pal_FE4 
 POIN Pal_FE5 
 #ifndef _FE6_ 
@@ -16,7 +16,7 @@ POIN Pal_FE8
 #endif 
 POIN Pal_FE10 
 POIN Pal_FE13
-POIN Pal_FE14 
+POIN processed_FE14_palettes 
 POIN Pal_FE15 
 POIN Pal_FE16 
 POIN Pal_FE17 
@@ -75,14 +75,15 @@ WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator
 #define palEntry(unitID, class1, class2, class3, class4, class5, class6, class7, class8, class9, class1_pal, class2_pal, class3_pal, class4_pal, class5_pal, class6_pal, class7_pal, class8_pal, class9_pal) "palEntry(unitID, class1, class2, class3, class4, class5, class6, class7, class8, class9, 0, 0, class1_pal, class2_pal, class3_pal, class4_pal, class5_pal, class6_pal, class7_pal, class8_pal, class9_pal, 0, 0)"
 #define palEntry(unitID, class1, class2, class3, class4, class5, class6, class7, class8, class9, class10, class1_pal, class2_pal, class3_pal, class4_pal, class5_pal, class6_pal, class7_pal, class8_pal, class9_pal, class10_pal) "palEntry(unitID, class1, class2, class3, class4, class5, class6, class7, class8, class9, class10, 0, class1_pal, class2_pal, class3_pal, class4_pal, class5_pal, class6_pal, class7_pal, class8_pal, class9_pal, class10_pal, 0)"
 
-#define Tactician_F Tactician 
-#define NmdTrooper Ranger
-#define RedMage_F RedMage2
 
+
+#include "FE1_defs.event" 
 #include "FE13_defs.event" 
 #include "FE14_defs.event" 
-Pal_FE14:
-#include "processed_FE14_palettes.event"
+
+
+
+#include "master.event"
 
 
 

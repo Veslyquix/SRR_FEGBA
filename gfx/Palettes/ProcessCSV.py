@@ -2,6 +2,7 @@ import csv
 import re
 import os
 import glob
+from pathlib import Path
 
 # --- CONFIG ---
 id_suffix = ""                 # what to append to character names for IDs
@@ -106,6 +107,9 @@ if __name__ == "__main__":
     # Create master.event
     with open(master_filename, "w", encoding="utf-8") as f:
         for gen_file in generated_files:
+            base_name = Path(gen_file).stem
+            f.write(f'ALIGN 4\n')
+            f.write(f'{base_name}:\n')
             f.write(f'#include "{gen_file}"\n')
 
     print(f"\nAll done! Generated {len(generated_files)} files.")
