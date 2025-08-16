@@ -525,7 +525,7 @@ Sothis
     #define Mamkute Manakete_2_F 
 #endif 
 #define Ballistician Archer 
-#define Freelancer EphraimLord 
+#define Freelancer Bard2 
 #define Sorcerer Sage 
 
 
@@ -644,7 +644,11 @@ Sothis
 #ifndef _FE7_ 
 #define Tactician Mage 
 #endif 
-#define Taguel Mercenary 
+#ifdef _FE8_
+    #define Taguel Mauthedoog
+#else
+    #define Taguel Nomad
+#endif 
 #define Merchant Cavalier 
 #define DarkMage Shaman 
 #define Trickster Assassin 
@@ -659,13 +663,22 @@ Sothis
 #define OniSavage Fighter 
 #define ShrineMaiden Cleric 
 #define Songstress Dancer 
-#define Samurai Swordmaster 
+#define Samurai Myrmidon
 #define Diviner Monk 
 #define Diviner_F Mage_F
 #define SpearFighter Knight 
 #define Outlaw Thief 
-#define DarkKnight Druid 
-#define Wolfskin Mercenary 
+#define DarkKnight MageKnight
+#ifdef _FE8_
+    #define Wolfskin Mauthedoog
+#else
+    #define Wolfskin Nomad
+#endif 
+#ifdef _FE8_
+    #define Kitsune Mauthedoog
+#else
+    #define Kitsune Nomad
+#endif 
 #define MasterNinja Assassin 
 #define SkyKnight PegasusKnight 
 // #define Adventurer Rogue 
@@ -679,9 +692,9 @@ Sothis
 #define LanceArmor Knight  
 #define LanceCavalier Cavalier 
 #define SwordFighter Myrmidon 
-#define SentinelBow Archer 
-#define SentinelLance Knight 
-#define WolfKnight Cavalier 
+#define SentinelBow Ranger 
+#define SentinelLance Halberdier 
+#define WolfKnight Ranger 
 #define WindTamer Mage 
 #define RoyalKnight Paladin 
 
@@ -713,7 +726,7 @@ Sothis
 #endif 
 
 #define Wolfskin_F Wolfskin 
-#define SwordFighter_F Swordmaster 
+#define SwordFighter_F Myrmidon_F 
 
 #define DragonRider_F DragonRider 
 #define ChromLord Lord 
