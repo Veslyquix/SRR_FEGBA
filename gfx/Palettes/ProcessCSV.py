@@ -69,14 +69,70 @@ def process_csv(input_csv):
             palette_names.append(pname)
 
         # Store palEntry
-        pal_entries.append(f"palEntry({id_name}, {', '.join(class_names)},\\\n{', '.join(palette_names)})")
+        #pal_entries.append(f"palEntry({id_name}, {', '.join(class_names)},\\\n{', '.join(palette_names)})")
+
+        # Store palEntry with conditional guards
+        for e, cname, pname in zip(entries, class_names, palette_names):
+            fe6 = e["FE6 Hex Address"].strip()
+            fe7 = e["FE7 Hex Address"].strip()
+            fe8 = e["FE8 Hex Address"].strip()
+            # Add suffix when needed to prevent duplicate symbols
+            game_suffix = ""
+            guard_prefix = ""
+            guard_suffix = ""
+            
+
+            # Default: no suffix
+            game_suffix = ""
+
+            # Conditional wrapping with suffix support
+            if not fe6 and fe7 and fe8:  # missing FE6 only
+                pname_with_suffix = pname + "_FE7FE8"
+                entry_line = f"palEntry({id_name}, {cname}, {pname_with_suffix})"
+                pal_entries.append(f"#ifndef _FE6_\n{entry_line}\n#endif")
+
+            elif not fe7 and fe6 and fe8:  # missing FE7 only
+                pname_with_suffix = pname + "_FE6FE8"
+                entry_line = f"palEntry({id_name}, {cname}, {pname_with_suffix})"
+                pal_entries.append(f"#ifndef _FE7_\n{entry_line}\n#endif")
+
+            elif not fe8 and fe6 and fe7:  # missing FE8 only
+                pname_with_suffix = pname + "_FE6FE7"
+                entry_line = f"palEntry({id_name}, {cname}, {pname_with_suffix})"
+                pal_entries.append(f"#ifndef _FE8_\n{entry_line}\n#endif")
+
+            elif fe6 and not fe7 and not fe8:  # FE6 exclusive
+                pname_with_suffix = pname + "_FE6"
+                entry_line = f"palEntry({id_name}, {cname}, {pname_with_suffix})"
+                pal_entries.append(f"#ifdef _FE6_\n{entry_line}\n#endif")
+
+            elif fe7 and not fe6 and not fe8:  # FE7 exclusive
+                pname_with_suffix = pname + "_FE7"
+                entry_line = f"palEntry({id_name}, {cname}, {pname_with_suffix})"
+                pal_entries.append(f"#ifdef _FE7_\n{entry_line}\n#endif")
+
+            elif fe8 and not fe6 and not fe7:  # FE8 exclusive
+                pname_with_suffix = pname + "_FE8"
+                entry_line = f"palEntry({id_name}, {cname}, {pname_with_suffix})"
+                pal_entries.append(f"#ifdef _FE8_\n{entry_line}\n#endif")
+
+            else:  # default case (present everywhere or weird combo)
+                pname_with_suffix = pname
+                entry_line = f"palEntry({id_name}, {cname}, {pname_with_suffix})"
+                pal_entries.append(entry_line)
+
+
 
         # Store palette blocks
-        for e, pname in zip(entries, palette_names):
             formatted = format_palette(e["Palette Hex"])
-            if formatted:  # skip if no palette hex
-                block = f"{pname}:\n{formatted}"
+            if formatted:
+                block = f"{pname_with_suffix}:\n{formatted}"
                 palette_blocks.append(block)
+##        for e, pname in zip(entries, palette_names):
+##            formatted = format_palette(e["Palette Hex"])
+##            if formatted:  # skip if no palette hex
+##                block = f"{pname}:\n{formatted}"
+##                palette_blocks.append(block)
 
     pal_entries.append("palEntry(0, 0, 0)")
     # Save generated file

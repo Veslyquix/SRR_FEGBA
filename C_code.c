@@ -6573,6 +6573,7 @@ int ShouldRandomizeClass(struct Unit * unit)
 }
 int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
 {
+
     int result = ShouldRandomizeClass(unit);
     struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
     if (pidStats)
@@ -10022,24 +10023,27 @@ int GetHPStatMaxBonus(struct Unit * unit, int stat, int avg)
     return result;
 }
 // ensure stats are capped to (AvgOriginalStat + StatMaxBonus)
-// and no more than 2x the original stat (depending on variance)
+// and no more than 2x the original stat or 8 (eg. for bases below 4)  (depending on variance)
 #define StatMaxBonus 8
 int GetStatMaxBonus(struct Unit * unit, int stat, int avg)
 {
     int result = (stat + avg) / 2;
-    int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * ((RandValues->variance) * 5)) / 100;
+    int percentage = (RandValues->variance) * 5;
+    int bonus = (SlightlyAdjustStatForInflatedNumbers(StatMaxBonus) * (percentage)) / 100;
     result += bonus;
-    int hardCap = (SlightlyAdjustStatForInflatedNumbers(stat) * ((RandValues->variance) * 10)) / 100;
+    int hardCap = (SlightlyAdjustStatForInflatedNumbers(stat) * (percentage * 2)) / 100;
     if (hardCap < stat)
     {
         hardCap = stat;
     }
-    if (hardCap < 4)
+    // if (hardCap < ((StatMaxBonus * percentage) / 100))
+    // {
+    // hardCap = ((StatMaxBonus * percentage) / 100);
+    // }
+    if (hardCap < StatMaxBonus)
     {
-
-        hardCap = 4;
+        hardCap = StatMaxBonus;
     }
-
     if (result < stat)
     {
         result = stat;
@@ -10465,7 +10469,8 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         noise[3] = character->affinity; // players don't use gCh anymore
     }
 
-    int RandomizeRecruitment = ShouldChangeWeaponForUnit(unit); // if we change their weapon, they're in a diff class
+    int RandomizeRecruitment =
+        IsClassOrRecruitmentRandomized(unit); // did we change their class / weapon / recruitment?
 
     if (RandomizeRecruitment)
     {
