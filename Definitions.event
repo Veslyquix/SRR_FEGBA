@@ -506,7 +506,20 @@ Sothis
 #endif 
 
 
+#ifdef _FE6_ 
+#define Assassin_F Thief 
+#endif 
 
+#ifdef _FE7_ 
+#define Assassin_F Assassin 
+#endif 
+
+#ifndef _FE8_  
+#define Summoner_F Druid 
+#define GreatKnight_F Paladin 
+#define Mauthedoog Myrmidon 
+#define Gwyllgi Swordmaster 
+#endif 
 
 #define Villager Myrmidon 
 

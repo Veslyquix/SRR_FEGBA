@@ -5474,9 +5474,9 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
 int ShouldUnitDoJankyPalettes(struct BattleUnit * bunit)
 {
     int result = false;
-    if (RandBitflags->colours == 1 || RandBitflags->colours == 3) 
+    if (RandBitflags->colours == 1 || RandBitflags->colours == 3)
     {
-        return false; 
+        return false;
     }
     if (RandBitflags->colours == 2)
     {
@@ -6469,8 +6469,8 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
         {
             if (RandBitflags->colours)
             {
-                pal = entry
-                          ->pal[0]; // default if none found, but only used if non-vanilla colours (eg. Janky) is chosen
+                pal =
+                    entry->pal[0]; // default if none found, but only used if non-vanilla colours (eg. Janky) is chosen
             }
             for (int i = 0; i < NumOfCharPals; ++i)
             {
@@ -6492,8 +6492,6 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
 }
 
 extern s16 gBanimUniquePaletteDisabled[2];
-// extern u16 gBanimPaletteLeft[0x50];
-// extern u16 gBanimPaletteRight[0x50];
 int MaybeApplyUniqueCharPal(u32 * buf, int pos)
 {
     struct BattleUnit * bu;
@@ -6511,10 +6509,6 @@ int MaybeApplyUniqueCharPal(u32 * buf, int pos)
         for (int i = 0; i < 8; i++)
             buf[i] = pal32[i];
 
-        // if (EKR_POS_L == pos)
-        // CpuCopy16(pal, gBanimPaletteLeft, 32);
-        // else
-        // CpuCopy16(pal, gBanimPaletteRight, 32);
         return true;
     }
     return false;
@@ -10040,6 +10034,11 @@ int GetStatMaxBonus(struct Unit * unit, int stat, int avg)
     if (hardCap < stat)
     {
         hardCap = stat;
+    }
+    if (hardCap < 4)
+    {
+
+        hardCap = 4;
     }
 
     if (result < stat)

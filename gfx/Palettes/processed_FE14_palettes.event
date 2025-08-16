@@ -44,10 +44,10 @@ palEntry(Selena, Mercenary, Mercenary_F, Hero_F, Ranger_F,\
 SelenaPal_Mercenary, SelenaPal_Mercenary_F, SelenaPal_Hero_F, SelenaPal_Ranger_F)
 palEntry(Beruka, WyvernRider_F, WyvernLord_F, WyvernKnight_F,\
 BerukaPal_WyvernRider_F, BerukaPal_WyvernLord_F, BerukaPal_WyvernKnight_F)
-palEntry(Kaden, Cavalier, Paladin, GreatKnight,\
-KadenPal_Cavalier, KadenPal_Paladin, KadenPal_GreatKnight)
-palEntry(Keaton, Mercenary, Mercenary, Hero, Ranger,\
-KeatonPal_Mercenary, KeatonPal_Mercenary, KeatonPal_Hero, KeatonPal_Ranger)
+palEntry(Kaden, Cavalier, Paladin, GreatKnight, Mauthedoog, Gwyllgi,\
+KadenPal_Cavalier, KadenPal_Paladin, KadenPal_GreatKnight, KadenPal_Mauthedoog, KadenPal_Gwyllgi)
+palEntry(Keaton, Mercenary, Mercenary, Hero, Ranger, Mauthedoog, Gwyllgi,\
+KeatonPal_Mercenary, KeatonPal_Mercenary, KeatonPal_Hero, KeatonPal_Ranger, KeatonPal_Mauthedoog, KeatonPal_Gwyllgi)
 palEntry(Elise, Troubadour, Troubadour, Valkyrie, MageKnight_F,\
 ElisePal_Troubadour, ElisePal_Troubadour, ElisePal_Valkyrie, ElisePal_MageKnight_F)
 palEntry(Arthur, Fighter, Hero, Warrior,\
@@ -76,8 +76,8 @@ palEntry(Xander, Cavalier, Paladin, GreatKnight,\
 XanderPal_Cavalier, XanderPal_Paladin, XanderPal_GreatKnight)
 palEntry(Scarlet, WyvernRider_F, WyvernLord_F, WyvernKnight_F,\
 ScarletPal_WyvernRider_F, ScarletPal_WyvernLord_F, ScarletPal_WyvernKnight_F)
-palEntry(Leo, Shaman, Druid, Summoner,\
-LeoPal_Shaman, LeoPal_Druid, LeoPal_Summoner)
+palEntry(Leo, Shaman, Druid, Summoner, Mage, Mage, Sage, MageKnight,\
+LeoPal_Shaman, LeoPal_Druid, LeoPal_Summoner, LeoPal_Mage, LeoPal_Mage, LeoPal_Sage, LeoPal_MageKnight)
 palEntry(Odin, Shaman, Druid, Summoner,\
 OdinPal_Shaman, OdinPal_Druid, OdinPal_Summoner)
 palEntry(Laslow, Mercenary, Mercenary, Hero, Ranger,\
@@ -112,8 +112,8 @@ palEntry(Kiragi, Archer, Sniper, Ranger,\
 KiragiPal_Archer, KiragiPal_Sniper, KiragiPal_Ranger)
 palEntry(Asugi, Ninja, Thief, Thief, Assassin, Rogue,\
 AsugiPal_Ninja, AsugiPal_Thief, AsugiPal_Thief, AsugiPal_Assassin, AsugiPal_Rogue)
-palEntry(Selkie, Cavalier_F, Paladin_F, GreatKnight_F,\
-SelkiePal_Cavalier_F, SelkiePal_Paladin_F, SelkiePal_GreatKnight_F)
+palEntry(Selkie, Cavalier_F, Paladin_F, GreatKnight_F, Mauthedoog, Gwyllgi,\
+SelkiePal_Cavalier_F, SelkiePal_Paladin_F, SelkiePal_GreatKnight_F, SelkiePal_Mauthedoog, SelkiePal_Gwyllgi)
 palEntry(Hisame, Myrmidon, Assassin, Swordmaster,\
 HisamePal_Myrmidon, HisamePal_Assassin, HisamePal_Swordmaster)
 palEntry(Mitama, Cleric, Cleric, Bishop_F, Bishop_F, Valkyrie,\
@@ -128,8 +128,8 @@ palEntry(Forrest, Troubadour, Troubadour, Valkyrie, MageKnight_F,\
 ForrestPal_Troubadour, ForrestPal_Troubadour, ForrestPal_Valkyrie, ForrestPal_MageKnight_F)
 palEntry(Ignatius, Knight, General, GreatKnight,\
 IgnatiusPal_Knight, IgnatiusPal_General, IgnatiusPal_GreatKnight)
-palEntry(Velouria, Mercenary, Mercenary_F, Hero_F, Ranger_F,\
-VelouriaPal_Mercenary, VelouriaPal_Mercenary_F, VelouriaPal_Hero_F, VelouriaPal_Ranger_F)
+palEntry(Velouria, Mercenary, Mercenary_F, Hero_F, Ranger_F, Mauthedoog, Gwyllgi,\
+VelouriaPal_Mercenary, VelouriaPal_Mercenary_F, VelouriaPal_Hero_F, VelouriaPal_Ranger_F, VelouriaPal_Mauthedoog, VelouriaPal_Gwyllgi)
 palEntry(Percy, WyvernRider, WyvernLord, WyvernKnight,\
 PercyPal_WyvernRider, PercyPal_WyvernLord, PercyPal_WyvernKnight)
 palEntry(Ophelia, Shaman_F, Druid_F, Summoner_F,\
@@ -548,6 +548,14 @@ KadenPal_GreatKnight:
 BYTE $00 $7E $DE $7B $FF $5B $1F $4B $B2 $29 $F8 $52 $54 $42 $8E $29
 BYTE $C9 $18 $5A $7F $B5 $7E $CD $59 $B5 $7E $EF $61 $4A $41 $A5 $14
 
+KadenPal_Mauthedoog:
+BYTE $55 $53 $FF $7F $56 $7B $6F $5E $59 $29 $2F $08 $56 $7B $6F $5E
+BYTE $1F $7C $BF $12 $D4 $09 $EA $04 $9E $73 $54 $4A $0A $21 $A5 $14
+
+KadenPal_Gwyllgi:
+BYTE $55 $53 $B9 $7F $56 $7B $6F $5E $59 $29 $2F $08 $1F $00 $14 $00
+BYTE $0A $00 $BF $12 $D4 $09 $EA $04 $9E $73 $54 $4A $0A $21 $A5 $14
+
 KeatonPal_Mercenary:
 BYTE $55 $53 $FF $7F $C7 $18 $29 $21 $0C $52 $98 $77 $DE $7B $F9 $5E
 BYTE $F3 $6E $8D $31 $FF $6B $9E $4B $4F $19 $9C $42 $13 $42 $A5 $14
@@ -563,6 +571,14 @@ BYTE $98 $77 $F3 $6E $4E $5A $8D $31 $29 $21 $C7 $18 $37 $2E $A5 $14
 KeatonPal_Ranger:
 BYTE $55 $53 $FF $7F $FF $4B $BD $2E $F4 $1D $C7 $18 $DE $7B $13 $42
 BYTE $9D $73 $F8 $5E $32 $46 $09 $21 $FC $22 $8D $31 $2D $11 $A5 $14
+
+KeatonPal_Mauthedoog:
+BYTE $55 $53 $FF $7F $56 $7B $6F $5E $59 $29 $2F $08 $56 $7B $6F $5E
+BYTE $1F $7C $9C $7B $52 $52 $08 $29 $CE $3D $6B $31 $A5 $18 $A5 $14
+
+KeatonPal_Gwyllgi:
+BYTE $55 $53 $B9 $7F $56 $7B $6F $5E $59 $29 $2F $08 $4E $7D $E9 $50
+BYTE $65 $28 $9C $7B $52 $52 $08 $29 $CE $3D $6B $31 $A5 $18 $A5 $14
 
 ElisePal_Troubadour:
 BYTE $00 $7E $FF $7F $FF $6B $FE $3E $50 $1D $DE $2F $FE $5F $75 $2E
@@ -759,6 +775,22 @@ BYTE $1F $7F $5B $6D $AF $3C $0E $4E $49 $31 $06 $29 $62 $10 $A5 $14
 LeoPal_Summoner:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $FF $1B $9E $1A $3B $47
 BYTE $97 $32 $9E $79 $5B $6D $AF $3C $49 $31 $06 $29 $62 $10 $A5 $14
+
+LeoPal_Mage:
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $38 $36 $3B $47 $D2 $29
+BYTE $52 $52 $8C $39 $08 $29 $59 $65 $F4 $50 $AF $3C $6A $28 $A5 $14
+
+LeoPal_Mage:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $72 $56 $3B $47 $D2 $29
+BYTE $52 $52 $8C $39 $08 $29 $9C $77 $F4 $50 $AF $3C $6A $28 $A5 $14
+
+LeoPal_Sage:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $3B $47 $97 $32 $D2 $29
+BYTE $52 $52 $8C $39 $08 $29 $59 $65 $F4 $50 $AF $3C $6A $28 $A5 $14
+
+LeoPal_MageKnight:
+BYTE $00 $7E $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $3B $47 $97 $32
+BYTE $8C $39 $08 $29 $59 $65 $AF $3C $52 $52 $6B $35 $E7 $24 $A5 $14
 
 OdinPal_Shaman:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $D8 $18 $D2 $18 $31 $05
@@ -1024,6 +1056,14 @@ SelkiePal_GreatKnight_F:
 BYTE $00 $7E $DE $7B $5E $43 $99 $2E $B1 $25 $98 $73 $D1 $5E $0C $46
 BYTE $46 $29 $5A $7F $B5 $7E $CD $59 $3E $25 $D8 $18 $92 $10 $A5 $14
 
+SelkiePal_Mauthedoog:
+BYTE $55 $53 $FF $7F $56 $7B $6F $5E $96 $2B $2F $08 $56 $7B $6F $5E
+BYTE $1F $7C $9E $3F $74 $2A $2A $15 $BD $73 $73 $4A $29 $21 $A5 $14
+
+SelkiePal_Gwyllgi:
+BYTE $55 $53 $B9 $7F $56 $7B $6F $5E $96 $2B $2F $08 $1F $00 $14 $00
+BYTE $0A $00 $9E $3F $74 $2A $2A $15 $BD $73 $73 $4A $29 $21 $A5 $14
+
 HisamePal_Myrmidon:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $30 $19 $ED $14 $A9 $14
 BYTE $56 $7B $6F $5E $CA $49 $F2 $7F $0C $63 $49 $4A $86 $31 $A5 $14
@@ -1163,6 +1203,14 @@ BYTE $98 $77 $F3 $6E $4E $5A $5C $29 $F5 $1C $8E $14 $37 $2E $A5 $14
 VelouriaPal_Ranger_F:
 BYTE $55 $53 $FF $7F $FF $4B $BD $2E $F4 $1D $F7 $5E $F9 $5E $8D $31
 BYTE $1F $42 $5C $29 $F5 $1C $8E $14 $FC $22 $9C $73 $2D $11 $A5 $14
+
+VelouriaPal_Mauthedoog:
+BYTE $55 $53 $FF $7F $56 $7B $6F $5E $1C $42 $2F $08 $56 $7B $6F $5E
+BYTE $1F $7C $9E $73 $54 $4A $0A $21 $CF $39 $6C $2D $A6 $14 $A5 $14
+
+VelouriaPal_Gwyllgi:
+BYTE $55 $53 $B9 $7F $56 $7B $6F $5E $1C $42 $2F $08 $BF $30 $74 $1C
+BYTE $2A $0C $9E $73 $54 $4A $0A $21 $CF $39 $6C $2D $A6 $14 $A5 $14
 
 PercyPal_WyvernRider:
 BYTE $00 $7E $FF $7F $AC $04 $D1 $08 $18 $3A $1E $4B $B0 $2D $5A $4F

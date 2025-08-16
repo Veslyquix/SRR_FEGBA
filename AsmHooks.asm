@@ -1289,7 +1289,8 @@ mov r0, r4 @ unit
 bl IsClassOrRecruitmentRandomized
 cmp r0, #0 
 beq VanillaClassPaletteMethod_FE6 
-bl ShouldDoJankyPalettes
+mov r0, r4 
+bl ShouldUnitDoJankyPalettes
 cmp r0, #0 
 bne VanillaClassPaletteMethod_FE6
 mov r5, #0 @ always 0 if classes are randomized 
@@ -1322,7 +1323,8 @@ mov r0, r4 @ unit
 bl IsClassOrRecruitmentRandomized
 cmp r0, #0 
 beq VanillaClassPaletteMethod_FE7 
-bl ShouldDoJankyPalettes
+mov r0, r4 @ unit 
+bl ShouldUnitDoJankyPalettes
 cmp r0, #0 
 bne VanillaClassPaletteMethod_FE7
 mov r5, #0 @ always 0 if classes are randomized 
