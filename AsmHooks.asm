@@ -1309,9 +1309,8 @@ bx r3
 .global MaybeUseGenericPalette_FE7
 .type MaybeUseGenericPalette_FE7, %function 
 MaybeUseGenericPalette_FE7: 
-push {r4-r6, lr} 
+push {r4-r5, lr} 
 mov r4, r0
-mov r6, r3 
 ldr r1, [r0, #4]  
 ldr r0, [r2, #0x28] 
 ldr r1, [r1, #0x28] 
@@ -1331,19 +1330,17 @@ mov r0, r4 @ unit
 bl IsClassOrRecruitmentRandomized
 cmp r0, #0 
 beq VanillaClassPaletteMethod_FE7 
-
 mov r0, r4 @ unit 
 bl ShouldUnitDoJankyPalettes
 cmp r0, #0 
-beq FE7_DontUseCharPal
-b VanillaClassPaletteMethod_FE7
+bne VanillaClassPaletteMethod_FE7
 FE7_DontUseCharPal:
 mov r5, #0 @ always 0 if classes are randomized 
 VanillaClassPaletteMethod_FE7: 
-strh r5, [r6] 
+strh r5, [r3] 
 mov r0, r5 
 sub r0, #1 
-pop {r4-r6} 
+pop {r4-r5} 
 pop {r3} 
 bx r3 
 .ltorg 
@@ -1436,52 +1433,56 @@ bx r7
 MaybeUseGenericPalette_FE8: 
 push {r4-r5, lr} 
 
-ldr r5, =0x203E110 @ added (gBanimUniquePal)
+ldr r5, =0x203E110 @ added 
 ldr r1, =0x8057A14
 ldr r4, [r1] @ 203E1DC
-push {r0} 
-bl ShouldNeverUseCharPal 
-pop {r1}
-cmp r0, #0 
-bne NeverUseCharPalettes 
-
-cmp r1, #1 
-beq CheckForGenericPalette
+cmp r0, #1 
+beq GenericPaletteFalse
 ldr r0, =0x8057A10
-ldr r0, [r0] @ 202BCF0 gPlaySt.config.unitColor
+ldr r0, [r0] @ 202BCF0
 add r0, #0x40 
 ldrb r0, [r0] 
 lsl r0, #0x1f 
-lsr r0, #0x1f @ what to store into gBanimUniquePaletteDisabled 
 cmp r0, #0 
-bne NeverUseCharPalettes 
-
-b CheckForGenericPalette 
-
-NeverUseCharPalettes: 
-mov r0, #1
-strh r0, [r4] @ gBanimUniquePaletteDisabled[left]
-strh r0, [r4, #2] @ gBanimUniquePaletteDisabled[right] 
+beq GenericPaletteFalse
+GenericPaletteTrue: 
+mov r0, #1 
+strh r0, [r4] 
+strh r0, [r4, #2] 
 b ExitGenericPalette_FE8 
 
-CheckForGenericPalette: 
+GenericPaletteFalse: 
 mov r0, r9 @ dfdr 
+bl IsClassOrRecruitmentRandomized 
+strh r0, [r4] 
+cmp r0, #0 
+beq DontOverwriteDfdr 
+mov r0, r9 
 bl ShouldUnitDoJankyPalettes
-@cmp r0, #0 
-@bne DontOverwriteDfdr 
-@mov r1, #0 
-@sub r1, #1 
-@strh r1, [r5] @ gBanimUniquePal[left] = (-1); (disabled) 
-@DontOverwriteDfdr: 
+cmp r0, #0 
+bne DontOverwriteDfdr 
+mov r1, #0 
+sub r1, #1 
+strh r1, [r5] 
+DontOverwriteDfdr: 
 
+
+mov r0, r10 @ atkr 
+bl IsClassOrRecruitmentRandomized 
+strh r0, [r4, #2] 
+cmp r0, #0 
+beq DontOverwriteAtkr 
+push {r0} 
 mov r0, r10 
 bl ShouldUnitDoJankyPalettes
-@cmp r2, #0 
-@bne DontOverwriteAtkr
-@mov r1, #0 
-@sub r1, #1 
-@strh r1, [r5, #2] gBanimUniquePal[right] = (-1); (disabled) 
-@DontOverwriteAtkr: 
+mov r2, r0 @ just in case r0 matters 
+pop {r0}
+cmp r2, #0 
+bne DontOverwriteAtkr
+mov r1, #0 
+sub r1, #1 
+strh r1, [r5, #2] 
+DontOverwriteAtkr: 
 
 ExitGenericPalette_FE8: 
 pop {r4-r5} 
