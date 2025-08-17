@@ -74,20 +74,21 @@
 #define Noble_F_Blue_Edelgard_Redbeanstand 193 
 #define Parson_Priest_M_Caped_Staff_topazlightstand 194 
 #define Phantom_U_IS_Pushwallstand 195 
-#define Pupil_M_Evil_ArcherBiasstand 196 
-#define RedMage2_Sage_Hat_TopazlightUnknownstand 197 
-#define Sage_F_Magician_BBHood217stand 198 
-#define Sandworm_Norikins_stand 199 
-#define Sentinel_Halberdier_Aruka_Kenpuhustand 200 
-#define Shaman_M_Occultist_Devisian_Nights_Pikminstand 201 
-#define Slime_U_Yellowtoadstand 202 
-#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand 203 
-#define Tactician_U_SALVAGEDstand 204 
-#define Tome_U_Anima_N426stand 205 
-#define Transporter_Wagon_Standing_IS 206 
-#define Warbird_F_Unknown_Alexsplodestand 207 
-#define WarCleric_F_Staff_SkidMarc25stand 208 
-#define Witch_F_Aruka_Kenpuhustand 209 
+#define PriestessT1_Blood_Redbeanstand 196 
+#define Pupil_M_Evil_ArcherBiasstand 197 
+#define RedMage2_Sage_Hat_TopazlightUnknownstand 198 
+#define Sage_F_Magician_BBHood217stand 199 
+#define Sandworm_Norikins_stand 200 
+#define Sentinel_Halberdier_Aruka_Kenpuhustand 201 
+#define Shaman_M_Occultist_Devisian_Nights_Pikminstand 202 
+#define Slime_U_Yellowtoadstand 203 
+#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindostand 204 
+#define Tactician_U_SALVAGEDstand 205 
+#define Tome_U_Anima_N426stand 206 
+#define Transporter_Wagon_Standing_IS 207 
+#define Warbird_F_Unknown_Alexsplodestand 208 
+#define WarCleric_F_Staff_SkidMarc25stand 209 
+#define Witch_F_Aruka_Kenpuhustand 210 
  
  
 //First free MMS is 127 and will show up if you've expanded classes.
@@ -159,20 +160,21 @@
 #define Noble_F_Blue_Edelgard_Redbeanwalk 192 
 #define Parson_Priest_M_Caped_Staff_topazlightwalk 193 
 #define Phantom_U_ISwalk 194 
-#define Pupil_M_Evil_ArcherBiaswalk 195 
-#define RedMage2_Sage_Hat_TopazlightUnknownwalk 196 
-#define Sage_F_Magician_BBHood217walk 197 
-#define Sandworm_Norikins_move 198 
-#define Sentinel_Halberdier_Aruka_Kenpuhuwalk 199 
-#define Shaman_M_Occultist_Devisian_Nights_Pikminwalk 200 
-#define Slime_U_Yellowtoadwalk 201 
-#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk 202 
-#define Tactician_U_SALVAGEDwalk 203 
-#define Tome_U_Anima_N426walk 204 
-#define Transporter_Wagon_Moving_IS 205 
-#define Warbird_F_Unknown_Alexsplodewalk 206 
-#define WarCleric_F_Staff_SkidMarc25walk 207 
-#define Witch_F_Aruka_Kenpuhuwalk 208 
+#define PriestessT1_Blood_Redbeanwalk 195 
+#define Pupil_M_Evil_ArcherBiaswalk 196 
+#define RedMage2_Sage_Hat_TopazlightUnknownwalk 197 
+#define Sage_F_Magician_BBHood217walk 198 
+#define Sandworm_Norikins_move 199 
+#define Sentinel_Halberdier_Aruka_Kenpuhuwalk 200 
+#define Shaman_M_Occultist_Devisian_Nights_Pikminwalk 201 
+#define Slime_U_Yellowtoadwalk 202 
+#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk 203 
+#define Tactician_U_SALVAGEDwalk 204 
+#define Tome_U_Anima_N426walk 205 
+#define Transporter_Wagon_Moving_IS 206 
+#define Warbird_F_Unknown_Alexsplodewalk 207 
+#define WarCleric_F_Staff_SkidMarc25walk 208 
+#define Witch_F_Aruka_Kenpuhuwalk 209 
  
 */ 
  
@@ -250,6 +252,7 @@ SetSMS(Ninja_Derstand, 1, Ninja_Derstand_Data)
 SetSMS(Noble_F_Blue_Edelgard_Redbeanstand, 1, Noble_F_Blue_Edelgard_Redbeanstand_Data) 
 SetSMS(Parson_Priest_M_Caped_Staff_topazlightstand, 1, Parson_Priest_M_Caped_Staff_topazlightstand_Data) 
 SetSMS(Phantom_U_IS_Pushwallstand, 1, Phantom_U_IS_Pushwallstand_Data) 
+SetSMS(PriestessT1_Blood_Redbeanstand, 1, PriestessT1_Blood_Redbeanstand_Data) 
 SetSMS(Pupil_M_Evil_ArcherBiasstand, 1, Pupil_M_Evil_ArcherBiasstand_Data) 
 SetSMS(RedMage2_Sage_Hat_TopazlightUnknownstand, 1, RedMage2_Sage_Hat_TopazlightUnknownstand_Data) 
 SetSMS(Sage_F_Magician_BBHood217stand, 1, Sage_F_Magician_BBHood217stand_Data) 
@@ -334,6 +337,7 @@ SetMMS(Ninja_Derwalk, Ninja_Derwalk_Data, DemonKingAP)
 SetMMS(Noble_F_Blue_Edelgard_Redbeanwalk, Noble_F_Blue_Edelgard_Redbeanwalk_Data, DemonKingAP) 
 SetMMS(Parson_Priest_M_Caped_Staff_topazlightwalk, Parson_Priest_M_Caped_Staff_topazlightwalk_Data, DemonKingAP) 
 SetMMS(Phantom_U_ISwalk, Phantom_U_ISwalk_Data, DemonKingAP) 
+SetMMS(PriestessT1_Blood_Redbeanwalk, PriestessT1_Blood_Redbeanwalk_Data, DemonKingAP) 
 SetMMS(Pupil_M_Evil_ArcherBiaswalk, Pupil_M_Evil_ArcherBiaswalk_Data, DemonKingAP) 
 SetMMS(RedMage2_Sage_Hat_TopazlightUnknownwalk, RedMage2_Sage_Hat_TopazlightUnknownwalk_Data, DemonKingAP) 
 SetMMS(Sage_F_Magician_BBHood217walk, Sage_F_Magician_BBHood217walk_Data, DemonKingAP) 
@@ -627,6 +631,10 @@ Parson_Priest_M_Caped_Staff_topazlightstand_Data:
 ALIGN 4 
 Phantom_U_IS_Pushwallstand_Data: 
 #incbin "dmp/Phantom_U_IS_Pushwallstand.dmp" 
+ 
+ALIGN 4 
+PriestessT1_Blood_Redbeanstand_Data: 
+#incbin "dmp/PriestessT1_Blood_Redbeanstand.dmp" 
  
 ALIGN 4 
 Pupil_M_Evil_ArcherBiasstand_Data: 
@@ -960,6 +968,10 @@ Parson_Priest_M_Caped_Staff_topazlightwalk_Data:
 ALIGN 4 
 Phantom_U_ISwalk_Data: 
 #incbin "dmp/Phantom_U_ISwalk.dmp" 
+ 
+ALIGN 4 
+PriestessT1_Blood_Redbeanwalk_Data: 
+#incbin "dmp/PriestessT1_Blood_Redbeanwalk.dmp" 
  
 ALIGN 4 
 Pupil_M_Evil_ArcherBiaswalk_Data: 
