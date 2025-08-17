@@ -5467,6 +5467,11 @@ void HbPopulate_SSCharacter(struct HelpBoxProc * proc) // fe7 0x80816FC fe6 0x80
     return;
 }
 
+int ShouldNeverUseCharPal(void)
+{
+    return RandBitflags->portraits == 3;
+}
+
 int ShouldAlterPortraitColours(void)
 {
     return RandBitflags->portraits;
