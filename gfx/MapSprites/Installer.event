@@ -66,6 +66,7 @@ MosquitoSMS
 SandwormSMS
 SlimeSMS
 Cursed_SwordSMS
+PriestessT1SMS
 
 Alm_T1MMS
 Alm_T2MMS
@@ -129,6 +130,7 @@ MosquitoMMS
 SandwormMMS
 SlimeMMS
 Cursed_SwordMMS
+PriestessT1MMS
 
 
 */ 
@@ -225,7 +227,8 @@ Cursed_SwordMMS
 
 
 #define AlmFighter_M_Norikinsstand 107
-#define AlmHero_M_Norikinsstand 108 
+#define AlmHero_M_Norikinsstand 108
+#define PriestessT1_Blood_Redbeanstand 109 
 // up to 127 is free here in all 3 games 
 
 
@@ -361,6 +364,7 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define LynLordwalk 196 
 #define Lord_M_Roy_T1_ISwalk 197 // in case RoyLord is added I guess 
 #define Lord_M_Roy_T2_ISwalk 198
+#define PriestessT1_Blood_Redbeanwalk 199
 
 
 
@@ -447,6 +451,7 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Boxer (Boxer_M_Bald_ShadowAllyXwalk+1)
 #define Enchanter (Enchanter_Aruka_Kenpuhuwalk+1)
 #define Ninja (Ninja_Derwalk+1)
+#define PriestessT1 (PriestessT1_Blood_Redbeanwalk+1)
 
 
 // #define Ike_Lord IkeLord
@@ -535,6 +540,7 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define BoxerSMS Boxer_M_Bald_ShadowAllyXstand
 #define EnchanterSMS Enchanter_Aruka_Kenpuhustand
 #define NinjaSMS Ninja_Derstand
+#define PriestessT1SMS PriestessT1_Blood_Redbeanstand
 
 
 // #define Brighid_Hector_Axe_Shin19walk 
@@ -644,7 +650,8 @@ SetSMS(Transporter_Wagon_Standing_IS, 1, Transporter_Wagon_Standing_IS_Data)
 SetSMS(Warbird_F_Unknown_Alexsplodestand, 2, Warbird_F_Unknown_Alexsplodestand_Data) 
 // SetSMS(War_Monk_M_Axe_Derstand, 1, War_Monk_M_Axe_Derstand_Data) 
 SetSMS(Witch_F_Aruka_Kenpuhustand, 1, Witch_F_Aruka_Kenpuhustand_Data)
-SetSMS(Ninja_Derstand, 0, Ninja_Derstand_Data)  
+SetSMS(Ninja_Derstand, 0, Ninja_Derstand_Data)
+SetSMS(PriestessT1_Blood_Redbeanstand, 0, PriestessT1_Blood_Redbeanstand_Data)   
 
 
 
@@ -730,11 +737,12 @@ SetMMS(Shaman_M_Occultist_Devisian_Nights_Pikminwalk, Shaman_M_Occultist_Devisia
 SetMMS(Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk, Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk_Data, DemonKingAP) 
 SetMMS(Tactician_U_SALVAGEDwalk, Tactician_U_SALVAGEDwalk_Data, DemonKingAP) 
 SetMMS(Tome_U_Anima_N426walk, Tome_U_Anima_N426walk_Data, DemonKingAP) 
-SetMMS(Transporter_Wagon_Moving_IS, Transporter_Wagon_Moving_IS_Data, DemonKingAP) 
+SetMMS(Transporter_Wagon_Moving_IS, Transporter_Wagon_Moving_IS_Data, DaemonKingAP) 
 SetMMS(Warbird_F_Unknown_Alexsplodewalk, Warbird_F_Unknown_Alexsplodewalk_Data, DemonKingAP) 
 // SetMMS(War_Monk_M_Axe_Derwalk, War_Monk_M_Axe_Derwalk_Data, DemonKingAP) 
 SetMMS(Witch_F_Aruka_Kenpuhuwalk, Witch_F_Aruka_Kenpuhuwalk_Data, DemonKingAP) 
-SetMMS(Ninja_Derwalk, Ninja_Derwalk_Data, DemonKingAP) 
+SetMMS(Ninja_Derwalk, Ninja_Derwalk_Data, DemonKingAP)
+SetMMS(PriestessT1_Blood_Redbeanwalk, PriestessT1_Blood_Redbeanwalk_Data, DemonKingAP)
  
 POP 
 //Copy until here 
