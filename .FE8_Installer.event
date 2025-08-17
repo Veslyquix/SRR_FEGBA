@@ -1335,15 +1335,15 @@ ALIGN 4
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
     #ifdef C_SKILLSYS 
-    WORD 37
+    WORD 38
     #endif 
     #ifdef SKILLSYS_INSTALLED 
-    WORD 39
+    WORD 40 // 43+ will overflow, watch out 
     #else 
-    WORD 38
+    WORD 39
     #endif  
 #else 
-WORD 36
+WORD 37
 #endif 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic

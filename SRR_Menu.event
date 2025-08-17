@@ -282,7 +282,12 @@ POIN t0 t1 0
 }
 
 {
-t0:  txt("Vanilla Colours");  t1:  txt("Random");  t2:  txt("Janky");  t3:  txt("Portraits only");
+t0:  txt("Vanilla Colours");  t1:  txt("Random");
+ALIGN 4; SRRHeader(PortraitsOpt)
+POIN t0 t1 0
+}
+{
+t0:  txt("Vanilla Colours");  t1:  txt("Random");  t2:  txt("Janky");  t3:  txt("Generic");
 ALIGN 4; SRRHeader(ColoursOpt)
 POIN t0 t1 t2 t3 0
 }
@@ -592,11 +597,15 @@ SRRDesc(MusicOpt,2); txt("Background music will be\random tracks from various ga
 SRRMenu(BattleBGMOpt);              txt("Battle BGM")
 SRRDesc(BattleBGMOpt,0); txt("A different BGM track will\play during battles."); 
 SRRDesc(BattleBGMOpt,1); txt("The map's current BGM\will play during battles."); 
+SRRMenu(PortraitsOpt);            txt("Portraits")
+SRRDesc(PortraitsOpt,0); txt("Portraits have their usual colours."); 
+SRRDesc(PortraitsOpt,1); txt("Portraits have random colours."); 
 SRRMenu(ColoursOpt);            txt("Colours")
-SRRDesc(ColoursOpt,0); txt("Colours are not changed."); 
-SRRDesc(ColoursOpt,1); txt("Units' battle sprites and portraits\have random colours."); 
-SRRDesc(ColoursOpt,2); txt("Portraits have random colours.\Battle sprites use unit palettes\leading to interesting or broken colours."); 
-SRRDesc(ColoursOpt,3); txt("Portraits have random colours."); 
+SRRDesc(ColoursOpt,0); txt("Battle animation colours\are not changed."); 
+SRRDesc(ColoursOpt,1); txt("Battle animations have\random colours."); 
+SRRDesc(ColoursOpt,2); txt("Battle animations use character\palettes in any class leading to\interesting or sometimes broken colours."); 
+SRRDesc(ColoursOpt,3); txt("Battle animations always\use generic colours."); 
+
 SRRMenu(DurabilityOpt);         txt("Item Uses")
 SRRDesc(DurabilityOpt,0); txt("Items and weapons have\their standard number of uses."); 
 SRRDesc(DurabilityOpt,1); txt("E rank weapons and\vulneraries never break."); 
@@ -696,6 +705,8 @@ MusicOption:
 WORD MusicOpt
 BattleBGMOption:
 WORD BattleBGMOpt
+PortraitsOption:
+WORD PortraitsOpt
 ColoursOption:
 WORD ColoursOpt
 DurabilityOption:

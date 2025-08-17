@@ -43,12 +43,12 @@ extern const int VeslyBuildfile_Link;
 typedef struct
 {
     /* 00 */ PROC_HEADER;
-    /* 2c */ int seed;
-    char * helpBox;
-    u16 globalChecksum;
     s8 id; // menu id
     u8 offset;
     u8 redraw;
+    /* 2c */ int seed;
+    char * helpBox;
+    u16 globalChecksum;
     s8 digit;
     u8 freezeSeed;
     u8 calledFromChapter;
@@ -61,8 +61,7 @@ typedef struct
 
     s8 previewId;
     u8 reviseMenuId;
-    s8 Option[32];
-    // ends around 0x62 - about space for 6 more
+    s8 Option[40]; // max is 42. past that we'll overflow
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -93,7 +92,8 @@ struct RandomizerSettings
     u32 foundItems : 1;   // vanilla, random
     u32 vanillaItems : 1; // vanilla, include added items
     u32 randMusic : 2;    // vanilla, random vanilla songs, random with added tracks
-    u32 colours : 3;      // vanilla, random, janky, portraits only
+    u32 portraits : 1;    // vanilla, random colours
+    u32 colours : 2;      // vanilla, random, janky, generic
     u32 itemStats : 2;    // vanilla, random
     u32 itemDur : 2;      // vanilla, infinite E/D rank items, infinite weps, infinite
     u32 playerBonus : 5;  // +20 / -10 levels for players
@@ -481,6 +481,7 @@ extern const int ModeOption;
 extern const int DangerBonesOption;
 extern const int MusicOption;
 extern const int BattleBGMOption;
+extern const int PortraitsOption;
 extern const int ColoursOption;
 extern const int DurabilityOption;
 extern const int PlayerBonusOption;
@@ -5466,6 +5467,21 @@ void HbPopulate_SSCharacter(struct HelpBoxProc * proc) // fe7 0x80816FC fe6 0x80
     return;
 }
 
+int ShouldAlterPortraitColours(void)
+{
+    return RandBitflags->portraits;
+}
+extern int NeverRandomizeColours;
+extern int PortraitColoursPastThisAreNotSkin;
+int ShouldRandomizeColours(void)
+{
+    if (NeverRandomizeColours)
+    {
+        return false;
+    }
+    return true;
+}
+
 #define EKR_POS_L 0
 #define EKR_POS_R 1
 extern struct BattleUnit * gpEkrBattleUnitLeft;
@@ -5496,24 +5512,6 @@ int ShouldUnitDoJankyPalettes(struct BattleUnit * bunit)
         return (int)pal;
     }
     return result;
-}
-
-int ShouldDoJankyPalettes(void)
-{
-    if (RandBitflags->colours == 2)
-    {
-        return true;
-    }
-    if (RandBitflags->colours)
-    {
-        return false;
-    }
-
-    return false;
-}
-int ShouldAlterPortraitColours(void)
-{
-    return RandBitflags->colours == 1 || RandBitflags->colours == 3;
 }
 
 u16 HashByte_Ch(int number, int max, int noise[], int offset);
@@ -6020,20 +6018,6 @@ int GetAdjustedPortraitId(struct Unit * unit)
     return portraitID;
 }
 
-extern int NeverRandomizeColours;
-extern int PortraitColoursPastThisAreNotSkin;
-int ShouldRandomizeColours(void)
-{
-    if (NeverRandomizeColours)
-    {
-        return false;
-    }
-    if (RandBitflags->colours)
-    {
-        return true;
-    }
-    return false;
-}
 extern u16 gPaletteBuffer[];
 extern struct Unit gBattleActorUnit;
 extern struct Unit gBattleTargetUnit;
@@ -6210,163 +6194,124 @@ int MaybeRandomizeColours(void)
     int classCard = true;
     int id = 0;
     int palID = 0;
-    if (Proc_Find(gProcScr_StatScreen))
-    { // stat screen portrait
-        unit = gStatScreen.unit;
-        if (unit)
-        {
-            if (unit->pCharacterData->portraitId)
-            {
-                classCard = false;
-            }
-#ifndef FE8
-            PortraitAdjustNonSkinColours(
-                13, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
-#else
-            PortraitAdjustNonSkinColours(
-                11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
-#endif
-            return true; // so we don't alter prep palettes during stat screen
-        }
-    }
-    struct PlayerInterfaceProc * proc = Proc_Find((struct ProcCmd *)gProcScr_UnitDisplay_MinimugBox);
-    if (proc)
+    if (ShouldAlterPortraitColours())
     {
-        unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]);
-#ifdef FE7
-        if (!unit)
-        {
-            unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]);
+        if (Proc_Find(gProcScr_StatScreen))
+        { // stat screen portrait
+            unit = gStatScreen.unit;
+            if (unit)
+            {
+                if (unit->pCharacterData->portraitId)
+                {
+                    classCard = false;
+                }
+#ifndef FE8
+                PortraitAdjustNonSkinColours(
+                    13, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
+#else
+                PortraitAdjustNonSkinColours(
+                    11, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
+#endif
+                return true; // so we don't alter prep palettes during stat screen
+            }
         }
+        struct PlayerInterfaceProc * proc = Proc_Find((struct ProcCmd *)gProcScr_UnitDisplay_MinimugBox);
+        if (proc)
+        {
+            unit = GetUnit(gBmMapUnit[gCursorY][gCursorX]);
+#ifdef FE7
+            if (!unit)
+            {
+                unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]);
+            }
 #endif
 #ifdef FE8
-        // if (proc->unk_55) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); }
-        if (proc->isRetracting)
-        {
-            unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]);
-        }
+            // if (proc->unk_55) { unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]); }
+            if (proc->isRetracting)
+            {
+                unit = GetUnit(gBmMapUnit[proc->yCursorPrev][proc->xCursorPrev]);
+            }
 #endif
-        if (gActiveUnit->state & US_HIDDEN)
+            if (gActiveUnit->state & US_HIDDEN)
+            {
+                unit = gActiveUnit;
+            } // for frame we select unit
+            if (unit)
+            {
+                if (unit->pCharacterData->portraitId)
+                {
+                    classCard = false;
+                }
+                PortraitAdjustNonSkinColours(
+                    4, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
+                result = true;
+            }
+        }
+        //
+
+        // faces
+        for (int i = 0; i < 4; ++i)
         {
-            unit = gActiveUnit;
-        } // for frame we select unit
-        if (unit)
-        {
-            if (unit->pCharacterData->portraitId)
+            if (gFaces[i] == NULL)
+            {
+                continue;
+            }
+#ifdef FE6
+            if ((gFaces[i]->faceSlot < 0x99) || (gFaces[i]->faceSlot > 0xB8))
             {
                 classCard = false;
             }
+#endif
+#ifdef FE7
+            if ((gFaces[i]->faceId < 0xBE) || (gFaces[i]->faceId > 0xDE))
+            {
+                classCard = false;
+            }
+#endif
+#ifdef FE8
+            if (gFaces[i]->faceId < 0x72)
+            {
+                classCard = false;
+            }
+#endif
+
+#ifdef FE6
             PortraitAdjustNonSkinColours(
-                4, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
+                sFaceConfig[i].paletteId + 16, gFaces[i]->faceSlot, PortraitColoursPastThisAreNotSkin, 0, fading,
+                classCard);
+#else
+            PortraitAdjustNonSkinColours(
+                sFaceConfig[i].paletteId + 16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading,
+                classCard);
+#endif
             result = true;
         }
-    }
-    //
 
-    // faces
-    for (int i = 0; i < 4; ++i)
-    {
-        if (gFaces[i] == NULL)
+        struct PrepItemScreenProc * proc_2 = Proc_Find((struct ProcCmd *)ProcScr_PrepUnitScreen);
+        if (proc_2)
         {
-            continue;
-        }
+            palID = 2;
 #ifdef FE6
-        if ((gFaces[i]->faceSlot < 0x99) || (gFaces[i]->faceSlot > 0xB8))
-        {
-            classCard = false;
-        }
-#endif
-#ifdef FE7
-        if ((gFaces[i]->faceId < 0xBE) || (gFaces[i]->faceId > 0xDE))
-        {
-            classCard = false;
-        }
-#endif
-#ifdef FE8
-        if (gFaces[i]->faceId < 0x72)
-        {
-            classCard = false;
-        }
-#endif
+            id = proc_2->fe6ID;
+            // if (id == 0xFF) { id = proc_2->fe6ID; }
 
-#ifdef FE6
-        PortraitAdjustNonSkinColours(
-            sFaceConfig[i].paletteId + 16, gFaces[i]->faceSlot, PortraitColoursPastThisAreNotSkin, 0, fading,
-            classCard);
-#else
-        PortraitAdjustNonSkinColours(
-            sFaceConfig[i].paletteId + 16, gFaces[i]->faceId, PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
-#endif
-        result = true;
-    }
-
-    struct PrepItemScreenProc * proc_2 = Proc_Find((struct ProcCmd *)ProcScr_PrepUnitScreen);
-    if (proc_2)
-    {
-        palID = 2;
-#ifdef FE6
-        id = proc_2->fe6ID;
-        // if (id == 0xFF) { id = proc_2->fe6ID; }
-
-        if (*TILEMAP_LOCATED(gBG1TilemapBuffer, 1, 0) == 0x1001)
-        {
-            palID = 3;
-            id = proc_2->fe6_supportID;
-        }
+            if (*TILEMAP_LOCATED(gBG1TilemapBuffer, 1, 0) == 0x1001)
+            {
+                palID = 3;
+                id = proc_2->fe6_supportID;
+            }
 // else if ((int)proc_2->proc_scrCur == 0x8678E98) { palID = 3; }
 #else
-        id = proc_2->id;
-#endif
-        unit = GetUnitFromPrepList(id);
-#ifdef FE6
-        if (palID == 3)
-        {
-            unit = proc_2->unit;
-        }
-#endif
-
-        if (unit)
-        {
-            if (unit->pCharacterData->portraitId)
-            {
-                classCard = false;
-            }
-            PortraitAdjustNonSkinColours(
-                palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
-            result = true;
-        }
-    }
-#ifndef FE6
-    struct PrepItemScreenProc * proc_3 = Proc_Find((struct ProcCmd *)ProcScr_PrepItemScreen);
-    if (proc_3)
-    {
-#ifdef FE8
-        struct ProcPtr * proc_5 = Proc_Find((struct ProcCmd *)ProcScr_ekrsubAnimeEmulator);
-        if (!proc_5)
-        {
-#endif
-#ifdef FE8
-            palID = 3;
-#endif
-#ifdef FE7
-            palID = 2;
-#endif
-#ifndef FE8
-            id = proc_3->hoverUnitIdx;
-            if (id == 0xFF)
-            {
-                id = proc_3->unk_29;
-            }
-#endif
-
-#ifdef FE8
-            id = proc_3->selectedUnitIdx;
-            if (id == 0xFF)
-            {
-                id = proc_3->hoverUnitIdx;
-            }
+            id = proc_2->id;
 #endif
             unit = GetUnitFromPrepList(id);
+#ifdef FE6
+            if (palID == 3)
+            {
+                unit = proc_2->unit;
+            }
+#endif
+
             if (unit)
             {
                 if (unit->pCharacterData->portraitId)
@@ -6377,33 +6322,75 @@ int MaybeRandomizeColours(void)
                     palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
                 result = true;
             }
-#ifdef FE8
         }
-#endif
-    }
-#endif
-#ifdef FE8
-    struct SupportScreenProc * proc_4 = Proc_Find((struct ProcCmd *)gProcScr_SupportScreen);
-    if (proc_4)
-    {
-        unit = GetUnitFromPrepList(proc_4->curIndex);
-        if (unit)
+#ifndef FE6
+        struct PrepItemScreenProc * proc_3 = Proc_Find((struct ProcCmd *)ProcScr_PrepItemScreen);
+        if (proc_3)
         {
-            if (unit->pCharacterData->portraitId)
+#ifdef FE8
+            struct ProcPtr * proc_5 = Proc_Find((struct ProcCmd *)ProcScr_ekrsubAnimeEmulator);
+            if (!proc_5)
             {
-                classCard = false;
-            }
-            PortraitAdjustNonSkinColours(
-                2, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
-            result = true;
-        }
-    }
 #endif
+#ifdef FE8
+                palID = 3;
+#endif
+#ifdef FE7
+                palID = 2;
+#endif
+#ifndef FE8
+                id = proc_3->hoverUnitIdx;
+                if (id == 0xFF)
+                {
+                    id = proc_3->unk_29;
+                }
+#endif
+
+#ifdef FE8
+                id = proc_3->selectedUnitIdx;
+                if (id == 0xFF)
+                {
+                    id = proc_3->hoverUnitIdx;
+                }
+#endif
+                unit = GetUnitFromPrepList(id);
+                if (unit)
+                {
+                    if (unit->pCharacterData->portraitId)
+                    {
+                        classCard = false;
+                    }
+                    PortraitAdjustNonSkinColours(
+                        palID, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
+                    result = true;
+                }
+#ifdef FE8
+            }
+#endif
+        }
+#endif
+#ifdef FE8
+        struct SupportScreenProc * proc_4 = Proc_Find((struct ProcCmd *)gProcScr_SupportScreen);
+        if (proc_4)
+        {
+            unit = GetUnitFromPrepList(proc_4->curIndex);
+            if (unit)
+            {
+                if (unit->pCharacterData->portraitId)
+                {
+                    classCard = false;
+                }
+                PortraitAdjustNonSkinColours(
+                    2, GetAdjustedPortraitId(unit), PortraitColoursPastThisAreNotSkin, 0, fading, classCard);
+                result = true;
+            }
+        }
+#endif
+    }
 
     // battle animations
     if (RandBitflags->colours == 1)
-    { // if 3, it's portraits only. 2 is janky
-        // if (RandBitflags->colours != 3) { // if 3, it's portraits only. 2 is janky
+    { // if 3, it's generic palettes only. 2 is janky
         if (Proc_Find(gProc_ekrBattleDeamon))
         { // battle anim
             unit = &gBattleActorUnit;
@@ -6466,7 +6453,7 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
     {
         if (entry->charID == charID)
         {
-            if (RandBitflags->colours)
+            if (RandBitflags->colours == 2)
             {
                 pal =
                     entry->pal[0]; // default if none found, but only used if non-vanilla colours (eg. Janky) is chosen
@@ -13213,6 +13200,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 
     RandBitflags->randMusic = proc->Option[MusicOption];
     RecruitValues->battleBGM = proc->Option[BattleBGMOption];
+    RandBitflags->portraits = proc->Option[PortraitsOption];
     RandBitflags->colours = proc->Option[ColoursOption];
     RandBitflags->itemDur = proc->Option[DurabilityOption];
     RandBitflags->playerBonus = proc->Option[PlayerBonusOption];
@@ -13451,6 +13439,7 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     proc->Option[DangerBonesOption] = 1; // On
     proc->Option[MusicOption] = 1;       // Random BGM
     proc->Option[BattleBGMOption] = 0;   // Separate battle BGM
+    proc->Option[PortraitsOption] = 0;   // Random portrait colours off by default now
     proc->Option[ColoursOption] = 0;     // Random Colours off by default now
     proc->skill = GetNextAlwaysSkill(0);
     proc->Option[UiOption] = 0;       // ui default: vanilla style
@@ -14097,6 +14086,7 @@ void RestoreConfigOptions(ConfigMenuProc * proc)
     proc->Option[DangerBonesOption] = CheckFlag(DangerBonesDisabledFlag) == 0;
     proc->Option[MusicOption] = RandBitflags->randMusic;
     proc->Option[BattleBGMOption] = RecruitValues->battleBGM;
+    proc->Option[PortraitsOption] = RandBitflags->portraits;
     proc->Option[ColoursOption] = RandBitflags->colours;
     proc->Option[DurabilityOption] = RandBitflags->itemDur;
     proc->Option[PlayerBonusOption] = RandBitflags->playerBonus;
