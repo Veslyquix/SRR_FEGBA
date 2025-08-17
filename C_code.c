@@ -5469,7 +5469,7 @@ void HbPopulate_SSCharacter(struct HelpBoxProc * proc) // fe7 0x80816FC fe6 0x80
 
 int ShouldNeverUseCharPal(void)
 {
-    return RandBitflags->portraits == 3;
+    return RandBitflags->colours == 3;
 }
 
 int ShouldAlterPortraitColours(void)
@@ -5489,11 +5489,15 @@ int ShouldRandomizeColours(void)
 
 #define EKR_POS_L 0
 #define EKR_POS_R 1
+extern s16 gBanimUniquePal[2];
 extern struct BattleUnit * gpEkrBattleUnitLeft;
 extern struct BattleUnit * gpEkrBattleUnitRight;
 const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos);
+// returns GetUniqueCharPal if it gets anything
+// otherwise, returns vanilla palette for the character
 int ShouldUnitDoJankyPalettes(struct BattleUnit * bunit)
 {
+
     int result = false;
     if (RandBitflags->colours == 1 || RandBitflags->colours == 3)
     {
@@ -5514,8 +5518,10 @@ int ShouldUnitDoJankyPalettes(struct BattleUnit * bunit)
     const u16 * pal = GetUniqueCharPal(charTableID.x, charTableID.y, &bunit->unit, pos);
     if (pal)
     {
+        gBanimUniquePal[pos] = 0;
         return (int)pal;
     }
+
     return result;
 }
 
@@ -6443,7 +6449,7 @@ struct gCharPal_EntryStruct
 };
 
 extern const struct gCharPal_EntryStruct * const gCharPal[];
-extern s16 gBanimUniquePal[2];
+
 const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
 {
     const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
@@ -6473,10 +6479,6 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
             }
         }
         entry++;
-    }
-    if (pal)
-    {
-        gBanimUniquePal[pos] = 0;
     }
 
     return pal;
