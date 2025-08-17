@@ -158,6 +158,8 @@ BYTE Gargoyle
 // unpromoted classes 
 BYTE AlmT1
 BYTE IkeRanger
+BYTE LeifLord
+BYTE PriestessT1
 BYTE Fencer
 BYTE Lancer
 BYTE Lancer2
@@ -190,6 +192,7 @@ BYTE CursedSword // itself
 BYTE Djinn // Monk ?? 
 BYTE LivingArmor // Harbinger? 
 BYTE Boxer 
+BYTE Ninja
 
 #endif 
 BYTE 0 
@@ -198,7 +201,8 @@ OceanSealList:
 BYTE Brigand
 BYTE Pirate
 BYTE Thief
-#ifdef AddedClasses 
+#ifdef AddedClasses
+BYTE Ninja 
 
 
 #endif 
@@ -209,6 +213,8 @@ BYTE EirikaLord
 #ifdef AddedClasses 
 BYTE AlmT1
 BYTE IkeRanger
+BYTE LeifLord
+BYTE PriestessT1
 
 #endif 
 BYTE 0 
@@ -218,6 +224,8 @@ BYTE EphraimLord
 #ifdef AddedClasses 
 BYTE AlmT1
 BYTE IkeRanger
+BYTE LeifLord
+BYTE PriestessT1
 
 #endif 
 BYTE 0 
