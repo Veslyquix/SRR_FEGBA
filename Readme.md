@@ -989,6 +989,7 @@ Funke portrait by Garytop
 Garon portrait by SaintRubenio  
 Gazak portrait by Garytop  
 Haitaka portrait by Garytop  
+Hans portrait by Garytop  
 Iago portrait by Garytop  
 Kilma portrait by Garytop  
 Kotaro portrait by Garytop  

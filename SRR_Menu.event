@@ -282,12 +282,12 @@ POIN t0 t1 0
 }
 
 {
-t0:  txt("Vanilla Colours");  t1:  txt("Random");
+t0:  txt("Vanilla Colours");  t1:  txt("Random Colours");
 ALIGN 4; SRRHeader(PortraitsOpt)
 POIN t0 t1 0
 }
 {
-t0:  txt("Vanilla Colours");  t1:  txt("Random");  t2:  txt("Janky");  t3:  txt("Generic");
+t0:  txt("Vanilla Colours");  t1:  txt("Random Colours");  t2:  txt("Janky Colours");  t3:  txt("Generic Colours");
 ALIGN 4; SRRHeader(ColoursOpt)
 POIN t0 t1 t2 t3 0
 }
@@ -600,7 +600,7 @@ SRRDesc(BattleBGMOpt,1); txt("The map's current BGM\will play during battles.");
 SRRMenu(PortraitsOpt);            txt("Portraits")
 SRRDesc(PortraitsOpt,0); txt("Portraits have their usual colours."); 
 SRRDesc(PortraitsOpt,1); txt("Portraits have random colours."); 
-SRRMenu(ColoursOpt);            txt("Colours")
+SRRMenu(ColoursOpt);            txt("Animations")
 SRRDesc(ColoursOpt,0); txt("Battle animation colours\are not changed."); 
 SRRDesc(ColoursOpt,1); txt("Battle animations have\random colours."); 
 SRRDesc(ColoursOpt,2); txt("Battle animations use character\palettes in any class leading to\interesting or sometimes broken colours."); 

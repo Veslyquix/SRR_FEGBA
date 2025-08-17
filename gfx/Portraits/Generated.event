@@ -171,6 +171,7 @@ MugEntry(FunkeMug, FunkeMugData, FunkeMinimugData, FunkeFramesData, FunkePalette
 MugEntry(GaronMug, GaronMugData, GaronMinimugData, GaronFramesData, GaronPaletteData,  4, 4, 4, 2)
 MugEntry(GazakMug, GazakMugData, GazakMinimugData, GazakFramesData, GazakPaletteData,  3, 6, 3, 4)
 MugEntry(HaitakaMug, HaitakaMugData, HaitakaMinimugData, HaitakaFramesData, HaitakaPaletteData,  2, 6, 2, 4)
+MugEntry(HansMug, HansMugData, HansMinimugData, HansFramesData, HansPaletteData,  2, 5, 2, 3)
 MugEntry(IagoMug, IagoMugData, IagoMinimugData, IagoFramesData, IagoPaletteData,  3, 5, 3, 3)
 MugEntry(KilmaMug, KilmaMugData, KilmaMinimugData, KilmaFramesData, KilmaPaletteData,  3, 5, 3, 3)
 MugEntry(KotaroMug, KotaroMugData, KotaroMinimugData, KotaroFramesData, KotaroPaletteData,  3, 5, 3, 3)
@@ -3017,6 +3018,17 @@ HaitakaPaletteData:
 #incbin "png/FE14_Bosses/Haitaka_Garytop_palette.dmp"
 HaitakaMinimugData:
 #incbin "png/FE14_Bosses/Haitaka_Garytop_minimug.dmp"
+
+ALIGN 4
+HansMugData:
+#incbin "png/FE14_Bosses/Hans_Garytop_mug.dmp"
+ALIGN 4
+HansFramesData:
+#incbin "png/FE14_Bosses/Hans_Garytop_frames.dmp"
+HansPaletteData:
+#incbin "png/FE14_Bosses/Hans_Garytop_palette.dmp"
+HansMinimugData:
+#incbin "png/FE14_Bosses/Hans_Garytop_minimug.dmp"
 
 ALIGN 4
 IagoMugData:
