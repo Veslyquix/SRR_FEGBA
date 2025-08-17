@@ -1284,9 +1284,6 @@ and r0, r1
 add r2, #0x23 
 add r2, r0 
 ldrb r5, [r2] 
-bl ShouldNeverUseCharPal
-cmp r0, #0 
-bne FE6_DontUseCharPal
 
 mov r0, r4 @ unit 
 bl IsClassOrRecruitmentRandomized
@@ -1296,7 +1293,6 @@ mov r0, r4
 bl ShouldUnitDoJankyPalettes
 cmp r0, #0 
 bne VanillaClassPaletteMethod_FE6
-FE6_DontUseCharPal:
 mov r5, #0 @ always 0 if classes are randomized 
 VanillaClassPaletteMethod_FE6: 
 mov r0, r5 
@@ -1322,9 +1318,6 @@ and r0, r1
 add r2, #0x23 
 add r2, r0 
 ldrb r5, [r2] 
-bl ShouldNeverUseCharPal
-cmp r0, #0 
-bne FE7_DontUseCharPal
 
 mov r0, r4 @ unit 
 bl IsClassOrRecruitmentRandomized
@@ -1334,7 +1327,6 @@ mov r0, r4 @ unit
 bl ShouldUnitDoJankyPalettes
 cmp r0, #0 
 bne VanillaClassPaletteMethod_FE7
-FE7_DontUseCharPal:
 mov r5, #0 @ always 0 if classes are randomized 
 VanillaClassPaletteMethod_FE7: 
 strh r5, [r3] 
@@ -1355,15 +1347,8 @@ sub r6, r0, r2
 add r2, r1, r6 
 add r0, r2, r7 
 ldrb r0, [r0] 
-push {r0-r3} 
-bl ShouldNeverUseCharPal 
-mov r7, r0 
-pop {r0-r3} 
-cmp r7, #0 
-bne NoJanky_FE8
 cmp r0, #0 
 beq NoJanky_FE8
-
 cmp r0, r4 
 beq UseJankyPalette_FE8
 push {r0-r3} 
@@ -1392,20 +1377,13 @@ push {lr}
 ldr r7, =0x80575B4 
 ldr r7, [r7] 
 add r0, r2, r7 
-ldrb r0, [r0]
-push {r0-r3} 
-bl ShouldNeverUseCharPal 
-mov r7, r0 
-pop {r0-r3} 
-cmp r7, #0 
-bne NoJanky2_FE8 
+ldrb r0, [r0] 
 cmp r0, #0 
 beq NoJanky2_FE8
-
 cmp r0, r4 
 beq UseJankyPalette2_FE8
 
-push {r0-r3}
+push {r0-r3} 
 mov r0, r10 @ atkr 
 bl ShouldUnitDoJankyPalettes 
 mov r7, r0 
