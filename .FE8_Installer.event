@@ -71,6 +71,7 @@
 #include "FixMugs_FE8.event" 
 #include "Patches/FE8.lyn.event" 
 #include "Patches/FE8_AsmHooks.lyn.event" 
+#include "Patches/all/Installer.event"
 
 #inctext DateTimeSetter
 #ifdef VeslyBuildfile 
@@ -1359,8 +1360,7 @@ RandBitflags:
 WORD RandomizerRam+4
 MaxItems:
 WORD RandomizerRam+8
-MaxClasses:
-WORD RandomizerRam+9
+// 1 byte free here at +9 
 GrowthValues:
 WORD RandomizerRam+10
 AlwaysSkill:
@@ -1373,6 +1373,10 @@ ClassTags:
 WORD 0x203EC28 
 EnemyClassTags:
 WORD 0x203EC2C
+MaxClassesPlayer:
+WORD 0x203EC30
+MaxClassesEnemy:
+WORD 0x203EC31
 
 ALIGN 32 
 WORD 0 0 0 0 0 0 0 0 

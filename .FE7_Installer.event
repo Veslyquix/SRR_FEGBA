@@ -66,6 +66,7 @@ MESSAGE Graphics end at currentoffset
 #endif 
 #include "Patches/FE7.lyn.event" 
 #include "Patches/FE7_AsmHooks.lyn.event" 
+#include "Patches/all/Installer.event"
 #include "../ASM/Debugger/Installer.event" 
 #include "../ASM/DangerBones/Installer.event" 
 #include "../ASM/AnimsFastForward/Installer.event" 
@@ -1229,8 +1230,8 @@ RandBitflags:
 WORD 0x203eb34 // BWL + 0x3a Bramimond +4
 MaxItems:
 WORD 0x203eb38 // BWL + 0x3a Bramimond +8
-MaxClasses:
-WORD 0x203eb39
+// MaxClasses:
+// WORD 0x203eb39
 GrowthValues:
 WORD 0x203eb3a
 AlwaysSkill:
@@ -1243,6 +1244,10 @@ ClassTags:
 WORD 0x203EBC4 
 EnemyClassTags:
 WORD 0x203EBC8 
+MaxClassesPlayer:
+WORD 0x203EBCC
+MaxClassesEnemy:
+WORD 0x203EBCD
 
 ALIGN 32 
 WORD 0 0 0 0 0 0 0 0 

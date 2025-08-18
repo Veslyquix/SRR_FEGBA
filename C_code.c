@@ -114,7 +114,7 @@ struct RecruitmentValues // 4 bytes
 {
     // u8 recruitment : 3; // old: vanilla, players reordered, bosses, players&bosses reordered, swap, reverse, random
     u8 pauseNameReplace : 1;
-    u8 newClasses : 2;
+    u8 padding : 2; // newClasses - now unused
     u8 ai : 2;
     u8 playerRecruitmentOrder : 2; // vanilla, reverse, random,
     u8 playerIntoBosses : 2;       // no, yes, some
@@ -162,7 +162,7 @@ struct TagsStruct
     u8 earlyFlier : 1;
     u8 mayDemote : 1;
     u8 mayPromote : 1;
-    u8 Powerful : 1;
+    u8 NewClasses : 1;
     u8 Quick : 1;
     u8 Pad3 : 1;
 };
@@ -186,7 +186,8 @@ extern struct GrowthBonusValues * GrowthValues;
 
 extern u8 * MaxItems;
 extern int MaxItems_Link;
-extern u8 * MaxClasses;
+extern u8 * MaxClassesPlayer;
+extern u8 * MaxClassesEnemy;
 extern int MaxClasses_Link;
 
 struct ExceptionsStruct
@@ -1710,6 +1711,7 @@ int GetCharOverwrittenClassID(struct PidStatsChar * pidStats)
     return pidStats->forcedClass;
 }
 
+int VanillaClassFilter(u8 id, int player);
 #define ReviseChar_MapSprites
 #ifdef ReviseChar_MapSprites
 void SetupMapSpritesPalettes(void); // ApplyUnitSpritePalettes
@@ -1796,7 +1798,7 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     int classID = GetCharOverwrittenClassID(pidStats);
     if (!classID)
     {
-        classID = table->defaultClass;
+        classID = VanillaClassFilter(table->defaultClass, true);
     }
     PutDrawText(
         gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 14, 16), gold, 0, 0,
@@ -2012,16 +2014,13 @@ void FilterCharInit(ConfigMenuProc * proc)
     {
         InitText(&th[i], TagWidth);
         Text_SetColor(&th[i], gray);
-        if ((i >= 24) && (i <= 26))
+        if ((i >= 24) && (i <= 30))
         {
+            Text_DrawString(&th[i], tags[31]); // no early flier etc
             continue;
         }
         Text_DrawString(&th[i], tags[i]);
     }
-
-    Text_DrawString(&th[24], tags[27]); // no early flier etc
-    Text_DrawString(&th[25], tags[27]);
-    Text_DrawString(&th[26], tags[27]);
 
     Text_SetColor(&th[32], green);
     Text_DrawString(&th[32], tags[32]); // "Filter Characters"
@@ -2108,9 +2107,9 @@ void FilterEnemyClassInit(ConfigMenuProc * proc)
         Text_DrawString(&th[i], tags[i]);
     }
 
-    Text_DrawString(&th[24], tags[27]); // no early flier etc
-    Text_DrawString(&th[25], tags[27]);
-    Text_DrawString(&th[26], tags[27]);
+    Text_DrawString(&th[24], tags[31]); // no early flier etc
+    Text_DrawString(&th[25], tags[31]);
+    Text_DrawString(&th[26], tags[31]);
 
     Text_SetColor(&th[32], green);
     Text_DrawString(&th[32], tags[34]); // "Filter Enemy Classes"
@@ -2142,24 +2141,14 @@ void DrawFilterCharPage(ConfigMenuProc * proc)
         {
             ClearText(&th[i]);
             Text_SetColor(&th[i], c);
-            if ((i >= 24) && (i <= 28))
+            if ((i >= 24) && (i <= 31))
             {
+                Text_DrawString(&th[i], tags[31]); // no early flier etc
                 continue;
             }
             Text_DrawString(&th[i], tags[i]);
         }
     }
-
-    ClearText(&th[24]);
-    ClearText(&th[25]);
-    ClearText(&th[26]);
-    ClearText(&th[27]);
-    ClearText(&th[28]);
-    Text_DrawString(&th[24], tags[29]); // no early flier etc
-    Text_DrawString(&th[25], tags[29]);
-    Text_DrawString(&th[26], tags[29]);
-    Text_DrawString(&th[27], tags[29]);
-    Text_DrawString(&th[28], tags[29]);
 
     c = 0;
     int x = 2;
@@ -2417,6 +2406,7 @@ void LoopFilterClassPage(ConfigMenuProc * proc)
 
         // Proc_Goto(proc, ConfigMenuLabel);
         PlaySuccessSfx();
+        *MaxClassesPlayer = 0; // recalc this
         Proc_Goto(proc, ConfigMenuLabel);
         proc->previewId = ConfirmCommandID;
         return;
@@ -2470,6 +2460,7 @@ void LoopFilterEnemyClassPage(ConfigMenuProc * proc)
     { // press B or Start to update tags and continue
 
         // Proc_Goto(proc, ConfigMenuLabel);
+        *MaxClassesEnemy = 0; // recalc this
         PlaySuccessSfx();
         Proc_Goto(proc, ConfigMenuLabel);
         proc->previewId = ConfirmCommandID;
@@ -2674,7 +2665,7 @@ inline int IsClassInvalid(int i)
 {
     return ClassExceptions[i].NeverChangeInto;
 }
-int GetMaxClasses(int);
+int GetMaxClasses(int, int);
 void SetNextClass(struct PidStatsChar * pidStats, int dir)
 {
     int classID = pidStats->forcedClass;
@@ -2683,7 +2674,7 @@ void SetNextClass(struct PidStatsChar * pidStats, int dir)
         return;
     }
 
-    int max = GetMaxClasses(true);
+    int max = GetMaxClasses(true, 0);
     const struct ClassData * table;
     int prevName = 0;
     int curName = 0;
@@ -2837,7 +2828,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     int classID = GetCharOverwrittenClassID(pidStats);
     if (!classID)
     {
-        classID = table->defaultClass;
+        classID = VanillaClassFilter(table->defaultClass, true);
     }
 
     ForceSyncUnitSpriteSheet();
@@ -6560,7 +6551,6 @@ int ShouldRandomizeClass(struct Unit * unit)
 }
 int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
 {
-
     int result = ShouldRandomizeClass(unit);
     struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
     if (pidStats)
@@ -6575,6 +6565,8 @@ int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
         {
             result |= newCharID;
         }
+        int newTableID = pidStats->charTableID;
+        result |= newTableID;
     }
     result |= ShouldChangeWeaponForUnit(unit);
     return result;
@@ -6659,37 +6651,58 @@ int GetMaxItems(void)
     *MaxItems = c;
     return c;
 }
-int GetMaxClasses(int alwaysShowAddedClasses)
+int GetMaxClasses(int alwaysShowAddedClasses, int player)
 {
     if (MaxClasses_Link)
     {
         return MaxClasses_Link;
     }
+    int newClasses = false;
+    if (player)
+    {
+        newClasses = ClassTags->tags.NewClasses;
+    }
+    else
+    {
+        newClasses = EnemyClassTags->tags.NewClasses;
+    }
+
     if (!alwaysShowAddedClasses)
     {
-        if (*MaxClasses > 32)
+        if (player)
         {
-            return *MaxClasses;
+            if (*MaxClassesPlayer > 32)
+            {
+                return *MaxClassesPlayer;
+            }
+        }
+        else
+        {
+            if (*MaxClassesEnemy > 32)
+            {
+                return *MaxClassesEnemy;
+            }
         }
     }
     const struct ClassData * table = GetClassData(1);
     int c = 256;
     if (!alwaysShowAddedClasses)
     {
+
 #ifdef FE6
-        if (!RecruitValues->newClasses)
+        if (!newClasses)
         {
             c = 67;
         }
 #endif
 #ifdef FE7
-        if (!RecruitValues->newClasses)
+        if (!newClasses)
         {
             c = 90;
         }
 #endif
 #ifdef FE8
-        if (!RecruitValues->newClasses)
+        if (!newClasses)
         {
             c = 126;
         }
@@ -6715,7 +6728,14 @@ int GetMaxClasses(int alwaysShowAddedClasses)
     }
     if (!alwaysShowAddedClasses)
     {
-        *MaxClasses = c;
+        if (player)
+        {
+            *MaxClassesPlayer = c;
+        }
+        else
+        {
+            *MaxClassesEnemy = c;
+        }
     }
     return c;
 }
@@ -7264,7 +7284,7 @@ u8 * BuildAvailableClassList(u8 list[], int promotedBitflag, int allegiance)
     int curName = 0;
     int prevSMS = 0;
     int curSMS = 0;
-    int maxClasses = GetMaxClasses(false);
+    int maxClasses = GetMaxClasses(false, !allegiance); // allegiance uses IsUnitAlliedOrPlayable()
     for (int i = 1; i <= maxClasses; i++)
     {
         const struct ClassData * table = GetClassData(i);
@@ -10326,6 +10346,23 @@ void RegisterDataMove(const void * src, void * dst, int size)
     gFrameTmRegisterConfig.size += size;
     gFrameTmRegisterConfig.count++;
 }
+
+extern u8 gVanillaClassFilter[];
+// if vanilla classes are disabled, then replace non-vanilla classes from new chars with vanilla classes
+int VanillaClassFilter(u8 id, int player) //
+{
+    int result = gVanillaClassFilter[id];
+    if (!result)
+    {
+        return id;
+    }
+    if (id > GetMaxClasses(false, player))
+    {
+        return result;
+    }
+    return id;
+}
+
 extern int ChanceToDemote;
 void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uDef)
 {
@@ -10462,15 +10499,17 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     if (RandomizeRecruitment)
     {
         character = GetReorderedUnit(unit);
-        randCharOriginalClass = GetClassData(character->defaultClass);
+        randCharOriginalClass = GetClassData(VanillaClassFilter(character->defaultClass, IsUnitAlliedOrPlayable(unit)));
     }
 
     if ((!uDef->classIndex) || RandomizeRecruitment)
     {
 #ifdef UseRandClass2
-        unit->pClassData = GetClassData(RandClass2(character->defaultClass, noise2, unit));
+        unit->pClassData = GetClassData(
+            RandClass2(VanillaClassFilter(character->defaultClass, IsUnitAlliedOrPlayable(unit)), noise2, unit));
 #else
-        unit->pClassData = GetClassData(RandClass(character->defaultClass, noise, unit));
+        unit->pClassData = GetClassData(
+            RandClass(VanillaClassFilter(character->defaultClass, IsUnitAlliedOrPlayable(unit)), noise, unit));
 #endif
     }
     else
@@ -10478,7 +10517,8 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 #ifdef UseRandClass2
         unit->pClassData = GetClassData(RandClass2(uDef->classIndex, noise2, unit));
 #else
-        unit->pClassData = GetClassData(RandClass(uDef->classIndex, noise, unit));
+        unit->pClassData =
+            GetClassData(RandClass(VanillaClassFilter(uDef->classIndex, IsUnitAlliedOrPlayable(unit)), noise, unit));
 #endif
     }
 
@@ -12967,6 +13007,17 @@ void SetDefaultTagValues(void)
     EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
 }
+// same but vanilla classes only
+void SetVanillaTagValues(void)
+{
+    // TagValues->raw = 0xFFFFDFFF;      // default: no civilians
+    TagValues->raw = 0xFFFF9FFF; // default: no civilians or manaketes
+    ClassTags->raw = 0xC9FF9FFF; // default: early thief, no civilians or manaketes, and no non-vanilla classes
+    EnemyClassTags->raw =
+        0xCFFF1FBF; // default: no dancers, civilians, monsters, or manaketes, and no non-vanilla classes
+    // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
+}
+
 void RestoreConfigOptions(ConfigMenuProc * proc);
 
 void CopyConfigProcIntoRam(ConfigMenuProc * proc)
@@ -13139,7 +13190,8 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 
     if (proc->reloadPlayers || proc->reloadEnemies)
     {
-        *MaxClasses = 0; // recalc this
+        *MaxClassesPlayer = 0; // recalc this
+        *MaxClassesEnemy = 0;  // recalc this
     }
     if (proc->reloadPlayers)
     {
@@ -13170,12 +13222,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     RandBitflags->levelups = proc->Option[LevelupsOption];
     RandBitflags->caps = proc->Option[StatCapsOption];
     RandBitflags->class = proc->Option[ClassOption];
-    RecruitValues->newClasses = 0;
-    if (proc->Option[ClassOption] >= 4)
-    {
-        RandBitflags->class = proc->Option[ClassOption] - 3;
-        RecruitValues->newClasses = 1;
-    }
+    RandBitflags->class = proc->Option[ClassOption];
 
     RandBitflags->itemStats = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 3));
     RandBitflags->foundItems = ((proc->Option[ItemOption] == 1) || (proc->Option[ItemOption] == 2));
@@ -13404,7 +13451,7 @@ int LoadConfigOptions(ConfigMenuProc * proc)
 }
 void SetAllConfigOptionsToVanilla(ConfigMenuProc * proc)
 {
-    SetDefaultTagValues();
+    SetVanillaTagValues();
     for (int i = 0; i < SRR_TotalOptions; ++i)
     {
         proc->Option[i] = 0;
@@ -14061,10 +14108,6 @@ void RestoreConfigOptions(ConfigMenuProc * proc)
     proc->Option[LevelupsOption] = RandBitflags->levelups;
     proc->Option[StatCapsOption] = RandBitflags->caps;
     proc->Option[ClassOption] = RandBitflags->class;
-    if (RecruitValues->newClasses)
-    {
-        proc->Option[ClassOption] += 3;
-    }
     if (RandBitflags->itemStats && RandBitflags->foundItems)
     {
         proc->Option[ItemOption] = 1;

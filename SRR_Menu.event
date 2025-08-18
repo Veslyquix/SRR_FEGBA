@@ -226,11 +226,10 @@ POIN t0 t1 t2 t3 t4 t5 t6 0
 }
 
 {
-t0:  txt("Vanilla");              t1:  txt("Random vanilla classes");       t2:  txt("Random for players");
-t3:  txt("Random for enemies");   t4:  txt("Random with new classes");     t5:  txt("New rand player classes");
-t6:  txt("New rand enemy classes");
+t0:  txt("Vanilla");              t1:  txt("Random");       t2:  txt("Random for players");
+t3:  txt("Random for enemies"); 
 ALIGN 4; SRRHeader(ClassOpt)
-POIN t0 t1 t2 t3 t4 t5 t6 0
+POIN t0 t1 t2 t3 0
 }
 
 {
@@ -430,7 +429,7 @@ tag(27); txt("May demote");
 // tag(26); txt("Powerful");
 // tag(27); txt("Quick");
 tag(28); txt("May promote");
-tag(29); txt("--");
+tag(29); txt("New Classes");
 tag(30); txt("--");
 tag(31); txt("--");
 tag(32); txt("Filter Characters");
@@ -566,12 +565,12 @@ SRRDesc(StatCapsOpt,5); txt("Stats always cap at 45.\Stats/growths are a little 
 SRRDesc(StatCapsOpt,6); txt("Stats always cap at 60.\Stats/growths are higher than normal."); 
 SRRMenu(ClassOpt);              txt("Class") 
 SRRDesc(ClassOpt,0); txt("Characters start in their\original class."); 
-SRRDesc(ClassOpt,1); txt("Starting class is randomized\from the vanilla list."); 
-SRRDesc(ClassOpt,2); txt("Starting class for players is\randomized from the vanilla list."); 
-SRRDesc(ClassOpt,3); txt("Starting class for enemies is\randomized from the vanilla list."); 
-SRRDesc(ClassOpt,4); txt("Starting class is randomized\and includes classes designed\by the hacking community."); 
-SRRDesc(ClassOpt,5); txt("Starting class for players is\randomized and includes classes designed\by the hacking community."); 
-SRRDesc(ClassOpt,6); txt("Starting class for enemies is\randomized and includes classes designed\by the hacking community."); 
+SRRDesc(ClassOpt,1); txt("Starting class is randomized."); 
+SRRDesc(ClassOpt,2); txt("Starting class for players is\randomized."); 
+SRRDesc(ClassOpt,3); txt("Starting class for enemies is\randomized."); 
+// SRRDesc(ClassOpt,4); txt("Starting class is randomized\and includes classes designed\by the hacking community."); 
+// SRRDesc(ClassOpt,5); txt("Starting class for players is\randomized and includes classes designed\by the hacking community."); 
+// SRRDesc(ClassOpt,6); txt("Starting class for enemies is\randomized and includes classes designed\by the hacking community."); 
 SRRMenu(FilterClassOpt);        txt("Player Classes") 
 SRRDesc(FilterClassOpt);        txt("Randomized player classes can\be limited to specific types.")
 SRRMenu(FilterEnemyClassOpt);        txt("Enemy Classes") 
