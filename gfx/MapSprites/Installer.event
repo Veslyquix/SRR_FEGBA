@@ -66,7 +66,9 @@ MosquitoSMS
 SandwormSMS
 SlimeSMS
 Cursed_SwordSMS
+LynLordSMS
 PriestessT1SMS
+BladeLordSMS
 
 Alm_T1MMS
 Alm_T2MMS
@@ -221,14 +223,14 @@ PriestessT1MMS
 #define WarCleric_F_Staff_SkidMarc25stand 204 
 #define Witch_F_Aruka_Kenpuhustand 205 
 #define Ninja_Derstand 206
-#define LynLordSMS 207
+#define LynLord_IntSysstand 207
 
 // past 207 will require repointing ram for SMS, so let's procrastinate that a little 
 
 
 #define AlmFighter_M_Norikinsstand 107
 #define AlmHero_M_Norikinsstand 108
-#define PriestessT1_Blood_Redbeanstand 109 
+#define PriestessT1_Blood_Redbeanstand 109
 // up to 127 is free here in all 3 games 
 
 
@@ -361,7 +363,7 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Boxer_M_Bald_ShadowAllyXwalk 193 // BoxerMMS
 #define Enchanter_Aruka_Kenpuhuwalk 194 // EnchanterMMS
 #define Ninja_Derwalk 195 // NinjaMMS
-#define LynLordwalk 196 
+#define LynLord_IntSyswalk 196 
 #define PriestessT1_Blood_Redbeanwalk 197
 #define Lord_M_Roy_T1_ISwalk 198 // in case RoyLord is added I guess 
 #define Lord_M_Roy_T2_ISwalk 199
@@ -451,7 +453,9 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Boxer (Boxer_M_Bald_ShadowAllyXwalk+1)
 #define Enchanter (Enchanter_Aruka_Kenpuhuwalk+1)
 #define Ninja (Ninja_Derwalk+1)
+#define LynLord (LynLord_IntSyswalk+1)
 #define PriestessT1 (PriestessT1_Blood_Redbeanwalk+1)
+#define BladeLord (Blade_Lord_F_Lyn_Sword_ISwalk+1)
 
 
 // #define Ike_Lord IkeLord
@@ -540,7 +544,9 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define BoxerSMS Boxer_M_Bald_ShadowAllyXstand
 #define EnchanterSMS Enchanter_Aruka_Kenpuhustand
 #define NinjaSMS Ninja_Derstand
+#define LynLordSMS LynLord_IntSysstand
 #define PriestessT1SMS PriestessT1_Blood_Redbeanstand
+#define BladeLordSMS Blade_Lord_F_Lyn_Sword_ISstand
 
 
 // #define Brighid_Hector_Axe_Shin19walk 
@@ -651,11 +657,13 @@ SetSMS(Warbird_F_Unknown_Alexsplodestand, 2, Warbird_F_Unknown_Alexsplodestand_D
 // SetSMS(War_Monk_M_Axe_Derstand, 1, War_Monk_M_Axe_Derstand_Data) 
 SetSMS(Witch_F_Aruka_Kenpuhustand, 1, Witch_F_Aruka_Kenpuhustand_Data)
 SetSMS(Ninja_Derstand, 0, Ninja_Derstand_Data)
-SetSMS(PriestessT1_Blood_Redbeanstand, 0, PriestessT1_Blood_Redbeanstand_Data)   
+SetSMS(LynLord_IntSysstand, 0, LynLord_IntSysstand_Data)
+SetSMS(PriestessT1_Blood_Redbeanstand, 0, PriestessT1_Blood_Redbeanstand_Data)
+SetSMS(Blade_Lord_F_Lyn_Sword_ISstand, 0, Blade_Lord_F_Lyn_Sword_ISstand_Data)   
 
 
 
-SetMMS(LynLordwalk, LynLord_IntSyswalk_Data, DemonKingAP) 
+SetMMS(LynLord_IntSyswalk, LynLord_IntSyswalk_Data, DemonKingAP) 
 SetMMS(AlmFighter_M_Norikinswalk, AlmFighter_M_Norikinswalk_Data, DemonKingAP) 
 SetMMS(AlmHero_M_Norikinswalk, AlmHero_M_Norikinswalk_Data, DemonKingAP) 
 SetMMS(Brighid_Hector_Axe_Shin19walk, Brighid_Hector_Axe_Shin19walk_Data, DemonKingAP) 
@@ -743,6 +751,7 @@ SetMMS(Warbird_F_Unknown_Alexsplodewalk, Warbird_F_Unknown_Alexsplodewalk_Data, 
 SetMMS(Witch_F_Aruka_Kenpuhuwalk, Witch_F_Aruka_Kenpuhuwalk_Data, DemonKingAP) 
 SetMMS(Ninja_Derwalk, Ninja_Derwalk_Data, DemonKingAP)
 SetMMS(PriestessT1_Blood_Redbeanwalk, PriestessT1_Blood_Redbeanwalk_Data, DemonKingAP)
+SetMMS(Blade_Lord_F_Lyn_Sword_ISstand, Blade_Lord_F_Lyn_Sword_ISstand_Data, DemonKingAP)  
  
 POP 
 //Copy until here 
