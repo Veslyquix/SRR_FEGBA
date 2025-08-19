@@ -2,7 +2,7 @@
 
 #define PortraitsRom 0x1030000 
 #define AnimsRom 0x1500000 
-#define EndOfAnimsRom 0x1A20000 
+#define EndOfAnimsRom 0x1A21000 
 
 
 // New classes 
@@ -379,7 +379,6 @@ Sothis
 
 
 #ifndef _FE6_
-#define RoyLord Mercenary
 #define Mamkute_F Manakete_2_F
 #endif 
 
@@ -427,7 +426,6 @@ Sothis
 #define GreatKnight Paladin 
 
 #define EliwoodLord Mercenary
-#define LynLord Myrmidon_F
 #define HectorLord Knight
 #define KnightLord Mercenary
 #define BladeLord Swordmaster_F
@@ -544,7 +542,7 @@ Sothis
 
 
 // fe4/5 
-#define Lord Mercenary 
+#define Lord LeifLord 
 #define LordKnight SeliphLord
 #define SocialKnight Cavalier 
 #define FreeKnight Cavalier 
@@ -663,11 +661,11 @@ Sothis
 #else
     #define Taguel Nomad
 #endif 
-#define Merchant Cavalier 
-#define DarkMage Shaman 
-#define Trickster Assassin 
-#define Conqueror General 
-#define DarkFlier WyvernLord  
+#define Merchant Supplier 
+#define DarkMage Shaman
+#define Trickster Rogue 
+#define Conqueror GreatKnight 
+#define DarkFlier FalcoKnight  
 
 
 // fe14 
@@ -743,9 +741,10 @@ Sothis
 #define SwordFighter_F Myrmidon_F 
 
 #define DragonRider_F DragonRider 
-#define ChromLord Lord 
+#define ChromLord RoyLord 
 #define Taguel_F Taguel 
-#define LucinaLord Lord 
+#define LucinaLord MarthLord 
+
 
 
 
