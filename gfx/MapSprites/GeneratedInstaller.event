@@ -561,14 +561,6 @@ Lord_M_Marth_Dominus_Vobiscum_Snewpingstand_Data:
 #incbin "dmp/Lord_M_Marth_Dominus_Vobiscum_Snewpingstand.dmp" 
  
 ALIGN 4 
-Lord_M_Roy_T1_ISstand_Data: 
-#incbin "dmp/Lord_M_Roy_T1_ISstand.dmp" 
- 
-ALIGN 4 
-Lord_M_Roy_T2_ISstand_Data: 
-#incbin "dmp/Lord_M_Roy_T2_ISstand.dmp" 
- 
-ALIGN 4 
 Lord_M_Sword_Generic_16x16_Leifstand_Data: 
 #incbin "dmp/Lord_M_Sword_Generic_16x16_Leifstand.dmp" 
  
@@ -643,6 +635,14 @@ Pupil_M_Evil_ArcherBiasstand_Data:
 ALIGN 4 
 RedMage2_Sage_Hat_TopazlightUnknownstand_Data: 
 #incbin "dmp/RedMage2_Sage_Hat_TopazlightUnknownstand.dmp" 
+
+ALIGN 4
+RoyLord_ISstand_Data:
+#incbin "dmp/RoyLord_ISstand.dmp"
+
+ALIGN 4
+RoyMasterLord_ISstand_Data:
+#incbin "dmp/RoyMasterLord_ISstand.dmp"
  
 ALIGN 4 
 Sage_F_Magician_BBHood217stand_Data: 
@@ -898,14 +898,6 @@ Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk_Data:
 #incbin "dmp/Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk.dmp" 
  
 ALIGN 4 
-Lord_M_Roy_T1_ISwalk_Data: 
-#incbin "dmp/Lord_M_Roy_T1_ISwalk.dmp" 
- 
-ALIGN 4 
-Lord_M_Roy_T2_ISwalk_Data: 
-#incbin "dmp/Lord_M_Roy_T2_ISwalk.dmp" 
- 
-ALIGN 4 
 Lord_M_Sword_Generic_Leifwalk_Data: 
 #incbin "dmp/Lord_M_Sword_Generic_Leifwalk.dmp" 
  
@@ -980,7 +972,15 @@ Pupil_M_Evil_ArcherBiaswalk_Data:
 ALIGN 4 
 RedMage2_Sage_Hat_TopazlightUnknownwalk_Data: 
 #incbin "dmp/RedMage2_Sage_Hat_TopazlightUnknownwalk.dmp" 
- 
+
+ALIGN 4
+RoyLord_ISwalk_Data:
+#incbin "dmp/RoyLord_ISwalk.dmp"
+
+ALIGN 4
+RoyMasterLord_ISwalk_Data:
+#incbin "dmp/RoyMasterLord_ISwalk.dmp"
+
 ALIGN 4 
 Sage_F_Magician_BBHood217walk_Data: 
 #incbin "dmp/Sage_F_Magician_BBHood217walk.dmp" 

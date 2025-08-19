@@ -69,6 +69,8 @@ Cursed_SwordSMS
 LynLordSMS
 PriestessT1SMS
 BladeLordSMS
+RoyLordSMS
+MasterLordSMS
 
 Alm_T1MMS
 Alm_T2MMS
@@ -134,6 +136,7 @@ SlimeMMS
 Cursed_SwordMMS
 PriestessT1MMS
 BladeLordMMS
+MasterLordMMS
 
 
 */ 
@@ -193,8 +196,8 @@ BladeLordMMS
 #define Lord_M_Ephraim_Lance_ISstand 173 
 #define Lord_M_Hector_Axe_ISstand 174 
 #define Lord_M_Marth_Dominus_Vobiscum_Snewpingstand 175 
-#define Lord_M_Roy_T1_ISstand 176 
-#define Lord_M_Roy_T2_ISstand 177 
+#define RoyLord_ISstand 176 
+#define RoyMasterLord_ISstand 177 
 #define Lord_M_Sword_Generic_16x16_Leifstand 178 
 #define Mage_F_Awakening_bloodstand 179 
 #define Mage_F_GaidenStyle_16x16_TAS20XXstand 180 
@@ -269,8 +272,6 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Lord_M_Ephraim_Lance_ISwalk 152 
 #define Lord_M_Hector_Axe_ISwalk 153 
 #define Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk 154 
-#define Lord_M_Roy_T1_ISwalk 155 
-#define Lord_M_Roy_T2_ISwalk 156 
 #define Mage_F_GaidenStyle_TAS20XXwalk 157 
 #define Magic_Seal_M_Moving_IS 158 
 #define Marauder_M_Basic_Axe_Blademasterwalk 159 
@@ -366,8 +367,8 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define LynLord_IntSyswalk 196 
 #define PriestessT1_Blood_Redbeanwalk 197
 #define Blade_Lord_F_Lyn_Sword_ISwalk 198
-#define Lord_M_Roy_T1_ISwalk 199 // in case RoyLord is added I guess 
-#define Lord_M_Roy_T2_ISwalk 200
+#define RoyLord_ISwalk 199
+#define RoyMasterLord_ISwalk 200
 
 
 
@@ -456,6 +457,8 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define LynLord (LynLord_IntSyswalk+1)
 #define PriestessT1 (PriestessT1_Blood_Redbeanwalk+1)
 #define BladeLord (Blade_Lord_F_Lyn_Sword_ISwalk+1)
+#define RoyLord (RoyLord_ISwalk+1)
+#define MasterLord (RoyMasterLord_ISwalk+1)
 
 
 // #define Ike_Lord IkeLord
@@ -547,6 +550,8 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define LynLordSMS LynLord_IntSysstand
 #define PriestessT1SMS PriestessT1_Blood_Redbeanstand
 #define BladeLordSMS Blade_Lord_F_Lyn_Sword_ISstand
+#define RoyLordSMS RoyLord_ISstand
+#define MasterLordSMS RoyMasterLord_ISstand
 
 
 // #define Brighid_Hector_Axe_Shin19walk 
@@ -637,8 +642,6 @@ SetSMS(Lord_M_Eliwood_Sword_16x16_ISstand, 0, Lord_M_Eliwood_Sword_16x16_ISstand
 SetSMS(Lord_M_Ephraim_Lance_ISstand, 1, Lord_M_Ephraim_Lance_ISstand_Data) 
 SetSMS(Lord_M_Hector_Axe_ISstand, 1, Lord_M_Hector_Axe_ISstand_Data) 
 SetSMS(Lord_M_Marth_Dominus_Vobiscum_Snewpingstand, 1, Lord_M_Marth_Dominus_Vobiscum_Snewpingstand_Data) 
-SetSMS(Lord_M_Roy_T1_ISstand, 0, Lord_M_Roy_T1_ISstand_Data) 
-SetSMS(Lord_M_Roy_T2_ISstand, 1, Lord_M_Roy_T2_ISstand_Data) 
 SetSMS(Mage_F_GaidenStyle_16x16_TAS20XXstand, 0, Mage_F_GaidenStyle_16x16_TAS20XXstand_Data) 
 SetSMS(Magic_Seal_M_Standing_IS, 0, Magic_Seal_M_Standing_IS_Data) 
 SetSMS(Marauder_M_Basic_Axe_Blademasterstand, 2, Marauder_M_Basic_Axe_Blademasterstand_Data) 
@@ -659,7 +662,9 @@ SetSMS(Witch_F_Aruka_Kenpuhustand, 1, Witch_F_Aruka_Kenpuhustand_Data)
 SetSMS(Ninja_Derstand, 0, Ninja_Derstand_Data)
 SetSMS(LynLord_IntSysstand, 0, LynLord_IntSysstand_Data)
 SetSMS(PriestessT1_Blood_Redbeanstand, 0, PriestessT1_Blood_Redbeanstand_Data)
-SetSMS(Blade_Lord_F_Lyn_Sword_ISstand, 0, Blade_Lord_F_Lyn_Sword_ISstand_Data)   
+SetSMS(Blade_Lord_F_Lyn_Sword_ISstand, 0, Blade_Lord_F_Lyn_Sword_ISstand_Data)
+SetSMS(RoyLord_ISstand, 0, RoyLord_ISstand_Data)
+SetSMS(RoyMasterLord_ISstand, 1, RoyMasterLord_ISstand_Data) 
 
 
 
@@ -730,8 +735,8 @@ SetMMS(Lord_M_Eliwood_Sword_ISwalk, Lord_M_Eliwood_Sword_ISwalk_Data, DemonKingA
 SetMMS(Lord_M_Ephraim_Lance_ISwalk, Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
 SetMMS(Lord_M_Hector_Axe_ISwalk, Lord_M_Hector_Axe_ISwalk_Data, DemonKingAP) 
 SetMMS(Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk, Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk_Data, DemonKingAP) 
-SetMMS(Lord_M_Roy_T1_ISwalk, Lord_M_Roy_T1_ISwalk_Data, DemonKingAP) 
-SetMMS(Lord_M_Roy_T2_ISwalk, Lord_M_Roy_T2_ISwalk_Data, DemonKingAP) 
+SetMMS(RoyLord_ISwalk, RoyLord_ISwalk_Data, DemonKingAP) 
+SetMMS(RoyMasterLord_ISwalk, RoyMasterLord_ISwalk_Data, DemonKingAP) 
 SetMMS(Mage_F_GaidenStyle_TAS20XXwalk, Mage_F_GaidenStyle_TAS20XXwalk_Data, DemonKingAP) 
 SetMMS(Magic_Seal_M_Moving_IS, Magic_Seal_M_Moving_IS_Data, DemonKingAP) 
 SetMMS(Marauder_M_Basic_Axe_Blademasterwalk, Marauder_M_Basic_Axe_Blademasterwalk_Data, DemonKingAP) 
