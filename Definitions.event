@@ -2,7 +2,7 @@
 
 #define PortraitsRom 0x1030000 
 #define AnimsRom 0x1500000 
-#define EndOfAnimsRom 0x1A21000 
+#define EndOfAnimsRom 0x1A40000 
 
 
 // New classes 
@@ -423,16 +423,11 @@ Sothis
 #define MageKnight_F Valkyrie 
 
 #define Summoner Druid 
-#define GreatKnight Paladin 
 
 #define EliwoodLord Mercenary
 #define HectorLord Knight
 #define KnightLord Mercenary
-#define BladeLord Swordmaster_F
 #define GreatLord Knight
-#define Journeyman_1 Pirate 
-#define Pupil_1 Shaman 
-#define Recruit_1 Knight 
 #define Manakete Mamkute 
 #define Manakete_2_F Mamkute_F
 #define Manakete_F Mamkute_F
@@ -448,20 +443,16 @@ Sothis
 
 #ifdef _FE7_ 
 
-#undef Mercenary_F 
+#undef Mercenary_F // no MMS or something 
 #define Mercenary_F Mercenary 
 
 #define Priest Parson
-#define Journeyman_1 Pirate 
-#define Pupil_1 Shaman 
-#define Recruit_1 Knight 
 #define Manakete FireDragon 
 #define Manakete_2_F FireDragon
 #define EphraimLord EliwoodLord
 #define WyvernRider WyvernKnight
 #define EirikaLord LynLord
 #define Rogue Assassin 
-#define GreatKnight Paladin 
 #define Ranger NomadTrooper 
 #define MageKnight Valkyrie
 #define Dracoknight WyvernKnight  
@@ -488,7 +479,6 @@ Sothis
 #define HectorLord Knight
 
 #define KnightLord Mercenary
-#define BladeLord Swordmaster_F
 #define GreatLord Knight
 
 #define Thief_F Thief 
@@ -512,10 +502,47 @@ Sothis
 #endif 
 
 #ifndef _FE8_  
+
+#define Revenant Fighter
+#define Entombed Warrior 
+#define Bonewalker Myrmidon
+#define Bonewalker_Bow Archer
+#define Wight Swordmaster  
+#define Wight_Bow Sniper
+#define Bael Knight
+#define ElderBael General
+#define Cyclops General
+#define Mauthedoog Myrmidon
+#define Gwyllgi Swordmaster
+#define Tarvos Cavalier
+#define Maelduin Paladin
+#define Mogall Shaman
+#define ArchMogall Druid
+#define Gorgon Druid 
+#define Gargoyle WyvernRider
+#define Deathgoyle WyvernLord
+#define DracoZombie Manakete_2_F
+#define DemonKing Manakete_2_F
+
+
+#define Journeyman_1 Pirate 
+#define Journeyman_2 Pirate 
+#define Journeyman_3 Berserker 
+#define Pupil_1 Mage 
+#define Pupil_2 Mage 
+#define Pupil_3 Sage  
+#define Recruit_1 Knight 
+#define Recruit_2 Cavalier 
+#define Recruit_3 Paladin 
+
+#define GreatKnight Paladin 
 #define Summoner_F Druid 
 #define GreatKnight_F Paladin 
-#define Mauthedoog Myrmidon 
-#define Gwyllgi Swordmaster 
+
+
+
+
+
 #endif 
 
 #define Villager Myrmidon 

@@ -5,11 +5,10 @@
 
 // #define MAKE_CACHE_ROM
 
-MESSAGE CURRENTOFFSET "Installing Animations"
+MESSAGE Installing Animations at CURRENTOFFSET
 
 ALIGN 0x10000 
 NewAnimTable: 
-MESSAGE CURRENTOFFSET 
 #ifdef MAKE_CACHE_ROM
 #include "Internals.event" 
 #include "GeneratedInstaller.event" 
@@ -28,7 +27,7 @@ ORG EndOfAnimsRom
 // #incbin "../../animsfe8cache.dmp" 
 #endif 
 #endif 
-MESSAGE CURRENTOFFSET 
+MESSAGE Animations end at CURRENTOFFSET 
 
 #ifndef MAKE_CACHE_ROM
 

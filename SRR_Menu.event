@@ -74,7 +74,7 @@ gSRRMenuText:
 FILL((MaxRTextOpt+1) * 4 * 42) // max 42 options 
 
 
-#define SRRHeader(id) "header: ; PUSH; ORG SRRText_POIN + (id * 4); POIN header; POP ;" 
+#define SRRHeader(id) "{ ; header: ; PUSH; ORG SRRText_POIN + (id * 4); POIN header; POP ; } " 
 ALIGN 4 
 SRRText_POIN:
 FILL(4 * 40) 

@@ -729,10 +729,18 @@ WORD 0
 // #inctbl "FE8TR" "EventAssembler/fe8_tr.tbl"
 
 // #define txt(string2) STRING string2 "FE8TR"; BYTE 0 0; 
+#ifndef txt 
 #define txt(string2) STRING string2 "FE6TR"; BYTE 0 0; // fe6 version 
+#endif 
 
 #include "SRR_Menu.event" 
 
+
+ALIGN 4 
+PUSH; ORG CURRENTOFFSET+1; 
+strlen:
+POP 
+WORD $5C812200 $29003201 $3A01D1FB $47701C10
 
  // r0=0x6016800
 ALIGN 4 

@@ -385,6 +385,10 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
     #define Great_Lord_M_Hector_ISwalk 210
 
 
+
+// These class definitions are for convenience so we don't have to write 
+// AlmFighter_M_Norikinswalk every time we want to refer to AlmT1 class 
+
 #define AlmT1 (AlmFighter_M_Norikinswalk+1)
 #define AlmT2 (AlmHero_M_Norikinswalk+1)
 #define IkeLord (Ike_Vanguard_M_Unknownwalk+1)
@@ -454,11 +458,21 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Boxer (Boxer_M_Bald_ShadowAllyXwalk+1)
 #define Enchanter (Enchanter_Aruka_Kenpuhuwalk+1)
 #define Ninja (Ninja_Derwalk+1)
-#define LynLord (LynLord_IntSyswalk+1)
 #define PriestessT1 (PriestessT1_Blood_Redbeanwalk+1)
-#define BladeLord (Blade_Lord_F_Lyn_Sword_ISwalk+1)
-#define RoyLord (RoyLord_ISwalk+1)
-#define MasterLord (RoyMasterLord_ISwalk+1)
+
+
+// These are defined in EA standard library for their respective games already 
+#ifndef _FE7_ 
+    #define LynLord (LynLord_IntSyswalk+1)
+    #define BladeLord (Blade_Lord_F_Lyn_Sword_ISwalk+1)
+#endif 
+
+#ifndef _FE6_ 
+    #define RoyLord (RoyLord_ISwalk+1)
+    #define MasterLord (RoyMasterLord_ISwalk+1) 
+#else 
+    #define MasterLord RoyMasterLord // from ea std lib 
+#endif 
 
 
 // #define Ike_Lord IkeLord

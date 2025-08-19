@@ -56,27 +56,27 @@
 #define Lord_M_Ephraim_Lance_ISstand 175 
 #define Lord_M_Hector_Axe_ISstand 176 
 #define Lord_M_Marth_Dominus_Vobiscum_Snewpingstand 177 
-#define Lord_M_Roy_T1_ISstand 178 
-#define Lord_M_Roy_T2_ISstand 179 
-#define Lord_M_Sword_Generic_16x16_Leifstand 180 
-#define LynLord_IntSysstand 181 
-#define Mage_F_Awakening_bloodstand 182 
-#define Mage_F_GaidenStyle_16x16_TAS20XXstand 183 
-#define Magician_Eliwood_16x16_TyTheBubstand 184 
-#define Magic_Seal_M_Standing_IS 185 
-#define Marauder_M_Basic_Axe_Blademasterstand 186 
-#define Mercenary_M_Sword_Improved_Flasubanstand 187 
-#define Miko_Diviner_F_Orochi_Sphealnukestand 188 
-#define Militia_M_Deserter_Lance_Alusqstand 189 
-#define Mogall_U_Jockey_Bow_Haifriedstand 190 
-#define Mosquito_U_Dutch_Introvertstand 191 
-#define Ninja_Derstand 192 
-#define Noble_F_Blue_Edelgard_Redbeanstand 193 
-#define Parson_Priest_M_Caped_Staff_topazlightstand 194 
-#define Phantom_U_IS_Pushwallstand 195 
-#define PriestessT1_Blood_Redbeanstand 196 
-#define Pupil_M_Evil_ArcherBiasstand 197 
-#define RedMage2_Sage_Hat_TopazlightUnknownstand 198 
+#define Lord_M_Sword_Generic_16x16_Leifstand 178 
+#define LynLord_IntSysstand 179 
+#define Mage_F_Awakening_bloodstand 180 
+#define Mage_F_GaidenStyle_16x16_TAS20XXstand 181 
+#define Magician_Eliwood_16x16_TyTheBubstand 182 
+#define Magic_Seal_M_Standing_IS 183 
+#define Marauder_M_Basic_Axe_Blademasterstand 184 
+#define Mercenary_M_Sword_Improved_Flasubanstand 185 
+#define Miko_Diviner_F_Orochi_Sphealnukestand 186 
+#define Militia_M_Deserter_Lance_Alusqstand 187 
+#define Mogall_U_Jockey_Bow_Haifriedstand 188 
+#define Mosquito_U_Dutch_Introvertstand 189 
+#define Ninja_Derstand 190 
+#define Noble_F_Blue_Edelgard_Redbeanstand 191 
+#define Parson_Priest_M_Caped_Staff_topazlightstand 192 
+#define Phantom_U_IS_Pushwallstand 193 
+#define PriestessT1_Blood_Redbeanstand 194 
+#define Pupil_M_Evil_ArcherBiasstand 195 
+#define RedMage2_Sage_Hat_TopazlightUnknownstand 196 
+#define RoyLord_ISstand 197 
+#define RoyMasterLord_ISstand 198 
 #define Sage_F_Magician_BBHood217stand 199 
 #define Sandworm_Norikins_stand 200 
 #define Sentinel_Halberdier_Aruka_Kenpuhustand 201 
@@ -163,18 +163,20 @@
 #define PriestessT1_Blood_Redbeanwalk 195 
 #define Pupil_M_Evil_ArcherBiaswalk 196 
 #define RedMage2_Sage_Hat_TopazlightUnknownwalk 197 
-#define Sage_F_Magician_BBHood217walk 198 
-#define Sandworm_Norikins_move 199 
-#define Sentinel_Halberdier_Aruka_Kenpuhuwalk 200 
-#define Shaman_M_Occultist_Devisian_Nights_Pikminwalk 201 
-#define Slime_U_Yellowtoadwalk 202 
-#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk 203 
-#define Tactician_U_SALVAGEDwalk 204 
-#define Tome_U_Anima_N426walk 205 
-#define Transporter_Wagon_Moving_IS 206 
-#define Warbird_F_Unknown_Alexsplodewalk 207 
-#define WarCleric_F_Staff_SkidMarc25walk 208 
-#define Witch_F_Aruka_Kenpuhuwalk 209 
+#define RoyLord_ISwalk 198 
+#define RoyMasterLord_ISwalk 199 
+#define Sage_F_Magician_BBHood217walk 200 
+#define Sandworm_Norikins_move 201 
+#define Sentinel_Halberdier_Aruka_Kenpuhuwalk 202 
+#define Shaman_M_Occultist_Devisian_Nights_Pikminwalk 203 
+#define Slime_U_Yellowtoadwalk 204 
+#define Supplier_v2_Anna_F_Unarmed_N426_Erukolindowalk 205 
+#define Tactician_U_SALVAGEDwalk 206 
+#define Tome_U_Anima_N426walk 207 
+#define Transporter_Wagon_Moving_IS 208 
+#define Warbird_F_Unknown_Alexsplodewalk 209 
+#define WarCleric_F_Staff_SkidMarc25walk 210 
+#define Witch_F_Aruka_Kenpuhuwalk 211 
  
 */ 
  
@@ -234,8 +236,6 @@ SetSMS(Lord_M_Eliwood_Sword_16x16_ISstand, 1, Lord_M_Eliwood_Sword_16x16_ISstand
 SetSMS(Lord_M_Ephraim_Lance_ISstand, 1, Lord_M_Ephraim_Lance_ISstand_Data) 
 SetSMS(Lord_M_Hector_Axe_ISstand, 1, Lord_M_Hector_Axe_ISstand_Data) 
 SetSMS(Lord_M_Marth_Dominus_Vobiscum_Snewpingstand, 1, Lord_M_Marth_Dominus_Vobiscum_Snewpingstand_Data) 
-SetSMS(Lord_M_Roy_T1_ISstand, 1, Lord_M_Roy_T1_ISstand_Data) 
-SetSMS(Lord_M_Roy_T2_ISstand, 1, Lord_M_Roy_T2_ISstand_Data) 
 SetSMS(Lord_M_Sword_Generic_16x16_Leifstand, 1, Lord_M_Sword_Generic_16x16_Leifstand_Data) 
 SetSMS(LynLord_IntSysstand, 1, LynLord_IntSysstand_Data) 
 SetSMS(Mage_F_Awakening_bloodstand, 1, Mage_F_Awakening_bloodstand_Data) 
@@ -255,6 +255,8 @@ SetSMS(Phantom_U_IS_Pushwallstand, 1, Phantom_U_IS_Pushwallstand_Data)
 SetSMS(PriestessT1_Blood_Redbeanstand, 1, PriestessT1_Blood_Redbeanstand_Data) 
 SetSMS(Pupil_M_Evil_ArcherBiasstand, 1, Pupil_M_Evil_ArcherBiasstand_Data) 
 SetSMS(RedMage2_Sage_Hat_TopazlightUnknownstand, 1, RedMage2_Sage_Hat_TopazlightUnknownstand_Data) 
+SetSMS(RoyLord_ISstand, 1, RoyLord_ISstand_Data) 
+SetSMS(RoyMasterLord_ISstand, 1, RoyMasterLord_ISstand_Data) 
 SetSMS(Sage_F_Magician_BBHood217stand, 1, Sage_F_Magician_BBHood217stand_Data) 
 SetSMS(Sandworm_Norikins_stand, 1, Sandworm_Norikins_stand_Data) 
 SetSMS(Sentinel_Halberdier_Aruka_Kenpuhustand, 1, Sentinel_Halberdier_Aruka_Kenpuhustand_Data) 
@@ -340,6 +342,8 @@ SetMMS(Phantom_U_ISwalk, Phantom_U_ISwalk_Data, DemonKingAP)
 SetMMS(PriestessT1_Blood_Redbeanwalk, PriestessT1_Blood_Redbeanwalk_Data, DemonKingAP) 
 SetMMS(Pupil_M_Evil_ArcherBiaswalk, Pupil_M_Evil_ArcherBiaswalk_Data, DemonKingAP) 
 SetMMS(RedMage2_Sage_Hat_TopazlightUnknownwalk, RedMage2_Sage_Hat_TopazlightUnknownwalk_Data, DemonKingAP) 
+SetMMS(RoyLord_ISwalk, RoyLord_ISwalk_Data, DemonKingAP) 
+SetMMS(RoyMasterLord_ISwalk, RoyMasterLord_ISwalk_Data, DemonKingAP) 
 SetMMS(Sage_F_Magician_BBHood217walk, Sage_F_Magician_BBHood217walk_Data, DemonKingAP) 
 SetMMS(Sandworm_Norikins_move, Sandworm_Norikins_move_Data, DemonKingAP) 
 SetMMS(Sentinel_Halberdier_Aruka_Kenpuhuwalk, Sentinel_Halberdier_Aruka_Kenpuhuwalk_Data, DemonKingAP) 
@@ -635,14 +639,14 @@ Pupil_M_Evil_ArcherBiasstand_Data:
 ALIGN 4 
 RedMage2_Sage_Hat_TopazlightUnknownstand_Data: 
 #incbin "dmp/RedMage2_Sage_Hat_TopazlightUnknownstand.dmp" 
-
-ALIGN 4
-RoyLord_ISstand_Data:
-#incbin "dmp/RoyLord_ISstand.dmp"
-
-ALIGN 4
-RoyMasterLord_ISstand_Data:
-#incbin "dmp/RoyMasterLord_ISstand.dmp"
+ 
+ALIGN 4 
+RoyLord_ISstand_Data: 
+#incbin "dmp/RoyLord_ISstand.dmp" 
+ 
+ALIGN 4 
+RoyMasterLord_ISstand_Data: 
+#incbin "dmp/RoyMasterLord_ISstand.dmp" 
  
 ALIGN 4 
 Sage_F_Magician_BBHood217stand_Data: 
@@ -898,6 +902,14 @@ Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk_Data:
 #incbin "dmp/Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk.dmp" 
  
 ALIGN 4 
+Lord_M_Roy_T1_ISwalk_Data: 
+#incbin "dmp/Lord_M_Roy_T1_ISwalk.dmp" 
+ 
+ALIGN 4 
+Lord_M_Roy_T2_ISwalk_Data: 
+#incbin "dmp/Lord_M_Roy_T2_ISwalk.dmp" 
+ 
+ALIGN 4 
 Lord_M_Sword_Generic_Leifwalk_Data: 
 #incbin "dmp/Lord_M_Sword_Generic_Leifwalk.dmp" 
  
@@ -972,15 +984,15 @@ Pupil_M_Evil_ArcherBiaswalk_Data:
 ALIGN 4 
 RedMage2_Sage_Hat_TopazlightUnknownwalk_Data: 
 #incbin "dmp/RedMage2_Sage_Hat_TopazlightUnknownwalk.dmp" 
-
-ALIGN 4
-RoyLord_ISwalk_Data:
-#incbin "dmp/RoyLord_ISwalk.dmp"
-
-ALIGN 4
-RoyMasterLord_ISwalk_Data:
-#incbin "dmp/RoyMasterLord_ISwalk.dmp"
-
+ 
+ALIGN 4 
+RoyLord_ISwalk_Data: 
+#incbin "dmp/RoyLord_ISwalk.dmp" 
+ 
+ALIGN 4 
+RoyMasterLord_ISwalk_Data: 
+#incbin "dmp/RoyMasterLord_ISwalk.dmp" 
+ 
 ALIGN 4 
 Sage_F_Magician_BBHood217walk_Data: 
 #incbin "dmp/Sage_F_Magician_BBHood217walk.dmp" 

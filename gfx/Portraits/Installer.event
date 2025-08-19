@@ -36,7 +36,7 @@
 #define PortraitTableMaxEntries 2000
 
 
-
+MESSAGE Portraits start at CURRENTOFFSET
 ALIGN 4 
 NewPortraitTable: 
 #undef PortraitTable 
@@ -61,10 +61,7 @@ ORG NewPortraitTable + (0x1C*PortraitTableMaxEntries)
     #else 
     #include "Generated.event" 
     #endif 
-#else 
-    MESSAGE CURRENTOFFSET test1 
-
-
+    MESSAGE Portraits end at CURRENTOFFSET
 #endif 
 
 PUSH 

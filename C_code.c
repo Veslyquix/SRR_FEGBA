@@ -12630,7 +12630,7 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
 #ifdef FE8
 #define SKILL_ICON(aSkillId) ((1 << 8) + (aSkillId))
 extern const u16 SkillDescTable[];
-int IsSkill(int skillId)
+static int IsSkill(int skillId)
 {
     if (skillId == 0)
         return FALSE;
@@ -12640,7 +12640,7 @@ int IsSkill(int skillId)
 
     return !!SkillDescTable[skillId];
 }
-char * GetSkillName(int skillId)
+static char * GetSkillName(int skillId)
 {
     char * desc = GetStringFromIndex(SkillDescTable[skillId]);
 

@@ -1325,8 +1325,10 @@ DisplayRandomSkillsOption:
 // #inctbl "FE6TR" "EventAssembler/fe6_tr.tbl"
 #inctbl "FE8TR" "EventAssembler/fe8_tr.tbl"
 
+#ifndef txt 
 #define txt(string2) STRING string2 "FE8TR"; BYTE 0 0; 
 // #define txt(string2) STRING string2 "FE6TR"; // fe6 version 
+#endif 
 
 #include "SRR_Menu.event" 
 
