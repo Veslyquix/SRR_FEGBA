@@ -524,8 +524,8 @@ SRRDesc(EnemyRecruitmentOpt, 0); txt("Enemy bosses will be encountered\in the us
 SRRDesc(EnemyRecruitmentOpt, 1); txt("Enemy bosses will be encountered\in reverse order."); 
 SRRDesc(EnemyRecruitmentOpt, 2); txt("Enemy bosses will be encountered\in random order."); 
 SRRMenu(EnemyPlayerOpt);         txt("Boss Swap")
-SRRDesc(EnemyPlayerOpt,0); txt("Enemy bosses will be\from the pool of players."); 
-SRRDesc(EnemyPlayerOpt,1); txt("Enemy bosses will be\from the pool of bosses."); 
+SRRDesc(EnemyPlayerOpt,0); txt("Enemy bosses will be\from the pool of bosses."); 
+SRRDesc(EnemyPlayerOpt,1); txt("Enemy bosses will be\from the pool of players."); 
 SRRDesc(EnemyPlayerOpt,2); txt("Enemy bosses will be\from the pool of players and bosses."); 
 
 
