@@ -79,3 +79,14 @@ VCF(PriestessT1,	Mage_F)
 VCF(BladeLord,	Swordmaster_F)
 VCF(RoyLord, Mercenary)
 VCF(MasterLord, Hero)
+
+#ifdef _FE7_ 
+VCF(Cantor2,  DarkDruid)
+VCF(DarkPrince, DarkDruid)
+VCF(Parson, Monk)
+#endif
+
+#ifdef _FE6_
+VCF(Cantor2,  Druid)
+VCF(DarkPrince, Druid)
+#endif
