@@ -8,8 +8,27 @@ event_files = list(SRC_DIR.rglob("*.s"))
 
 # Initialize counter
 c = 1
-
+s = 0
 bgm_entries = []
+
+
+import re
+
+def shorten_name(base_name: str, max_len: int = 32) -> str:
+    if len(base_name) <= max_len:
+        return base_name
+
+    # Split into words by capital letters (e.g. "FireEmblemTheme" -> ["Fire", "Emblem", "Theme"])
+    words = re.findall(r'[A-Z][^A-Z]*', base_name)
+
+    result = ""
+    for word in words:
+        # Check if adding this word would go past max_len
+        if len(result + word) > max_len:
+            break
+        result += word
+
+    return result
 
 
 for event_file in event_files:
@@ -35,11 +54,17 @@ for event_file in event_files:
     bgm_entries.append(f"SongTable({base_name}ID, {base_name}, 0)")
     c+= 1
     bgm_entries.append(f"SongTable(({base_name}ID+1), {base_name}, 1)")
+    short_name = shorten_name(base_name)
+    bgm_entries.append(f"textHeader: ; txt(\"{short_name}\"); BYTE 0 0")
+    bgm_entries.append(f"setText((FirstSR_TextID+{s}), textHeader)")
+    bgm_entries.append(f"SoundRoom((FirstSoundRoom_ID+{s}), ({base_name}ID+1), (FirstSR_TextID+{s}))")
+    
     bgm_entries.append("ALIGN 4")
     bgm_entries.append(f'#include "{normalized_relative_path}/{base_name}.event"'+"\n}\n")
 
     # Increment the counter
     c += 1
+    s += 1
 
 # Append total count to the end
 bgm_entries.append("\nALIGN 12\nMaxBGMID:\nWORD FirstBGM_ID+{}\n".format(c - 1))  # c-1

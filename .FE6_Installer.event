@@ -730,7 +730,7 @@ WORD 0
 
 // #define txt(string2) STRING string2 "FE8TR"; BYTE 0 0; 
 #ifndef txt 
-#define txt(string2) STRING string2 "FE6TR"; BYTE 0 0; // fe6 version 
+    #define txt(string2) STRING string2 "FE6TR"; BYTE 0 0; // fe6 version 
 #endif 
 
 #include "SRR_Menu.event" 

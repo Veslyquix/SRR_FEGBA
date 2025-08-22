@@ -2,6 +2,18 @@
 #include "defs/defs.event" 
 #include "nimap/Installer.event" 
 
+#ifdef _FE6_ 
+    #ifndef txt 
+        #inctbl "FE6TR2" "fe6_tr.tbl"
+        #define txt(string2) STRING string2 "FE6TR2"; BYTE 0 0; // fe6 version 
+    #endif 
+#else 
+    #ifndef txt 
+        #inctbl "FE8TR" "fe8_tr.tbl"
+        #define txt(string2) STRING string2 "FE8TR"; BYTE 0 0; 
+    #endif 
+#endif 
+
 // Vanilla addresses for SongTable 
 // fe6 3994D8, fe7 69D6E0 fe8 224470 
 
@@ -9,6 +21,8 @@
 PUSH 
 #ifdef _FE8_ 
 #define EmptyTrack 0x82263B0 0 
+#define EmptySR 1 2640 0 0x78b 
+#define SRTerminator 0xFFFFFFFF 0 0 0
 ORG $28bc  
 POIN NewSongTable
 ORG $14b80  
@@ -31,9 +45,36 @@ ORG $d02f8
 POIN NewSongTable
 ORG $d032c 
 POIN NewSongTable
+
+ORG $1bc14 
+POIN NewSoundRoom 
+ORG $1bcc4 
+POIN NewSoundRoom 
+ORG $AECA8 
+POIN NewSoundRoom 
+ORG $aecd0 
+POIN NewSoundRoom 
+ORG $aed2c 
+POIN NewSoundRoom 
+ORG $aeebc 
+POIN NewSoundRoom 
+ORG $af438 
+POIN NewSoundRoom 
+ORG $af830 
+POIN NewSoundRoom 
+ORG $afe30 
+POIN NewSoundRoom 
+ORG $b0080 
+POIN NewSoundRoom 
+ORG $b042c 
+POIN NewSoundRoom 
 #endif 
+
+
 #ifdef _FE7_ 
 #define EmptyTrack 0x8ABC4AC 0 
+#define EmptySR 0x5C 4320 0 0x12D3 
+#define SRTerminator 0xFFFFFFFF 0 0 0
 ORG $3f50 
 POIN NewSongTable
 ORG $14dd8 
@@ -56,9 +97,51 @@ ORG $be690
 POIN NewSongTable
 ORG $be6c4 
 POIN NewSongTable
+
+//if (IsExtraSoundRoomEnabled() != 0)
+        // AddExtraMenuOption(proc, EXTRA_MENU_OPTION_SOUND_ROOM);
+ORG $A60EA // sound room always unlocked 
+SHORT $46C0 
+ORG $aadcc 
+SHORT $2001 $4770 // IsSoundRoomSongPlayable (always true) 
+ORG $aaefc 
+SHORT $46c0 $2064 // 100% completion always 
+
+ORG $1b468 
+POIN NewSoundRoom 
+ORG $1b520 
+POIN NewSoundRoom 
+ORG $1b554 
+POIN NewSoundRoom 
+ORG $aad8c 
+POIN NewSoundRoom 
+ORG $aadb0 
+POIN NewSoundRoom 
+ORG $aae08 
+POIN NewSoundRoom 
+ORG $aaf98 
+POIN NewSoundRoom 
+ORG $ab6c4 
+POIN NewSoundRoom 
+ORG $abaf0 
+POIN NewSoundRoom 
+ORG $ac1b0 
+POIN NewSoundRoom 
+ORG $ac3f0 
+POIN NewSoundRoom 
+ORG $ac774 
+POIN NewSoundRoom 
+
+
+
 #endif 
+
+
 #ifdef _FE6_
 #define EmptyTrack 0x839A840 0 
+#define EmptySR 1 0xC8A 0xCCC
+#define SRTerminator 0xFFFFFFFF 0 0 
+
 ORG $3748 
 POIN NewSongTable
 ORG $1544c 
@@ -81,14 +164,81 @@ ORG $9c95c
 POIN NewSongTable
 ORG $9c990
 POIN NewSongTable
+
+ORG $8a606 
+SHORT $46c0 // Unlock sound room 
+
+ORG $8b9c4 
+POIN NewSoundRoom 
+ORG $8bdf4 
+POIN NewSoundRoom 
+ORG $8bf94 
+POIN NewSoundRoom 
+ORG $8bfec 
+POIN NewSoundRoom 
 #endif 
+
+
 POP 
 
-#define SongTableSize 0x500 
+
+#ifdef _FE7_ 
+    #define FirstSoundRoom_ID 100
+    #define SoundRoomSize 255 // 256+ needs a patch? 
+#else 
+    #define SoundRoomSize 226 // 256+ needs a patch? 
+    #define FirstSoundRoom_ID 69 // fe6 and fe8 use this number 
+#endif 
+
+#define SongTableSize 0x550
+
+
+#ifdef _FE6_ 
+    #define SoundRoomEntrySize 12 
+#else 
+    #define SoundRoomEntrySize 16 
+#endif 
+
+#define FirstBGM_ID 0x3E6  
+
+
+
+#define FirstSR_TextID 0x1F00 
+
 #define EmptyTrack_16 "EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack" 
 #define EmptyTrack_256 "EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16" 
+#define EmptySR_16 "EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR EmptySR" 
+#define EmptySR_256 "EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16 EmptySR_16" 
 
+#ifdef _FE6_ 
+    #define SoundRoom(soundRoomID, index, textID) "PUSH; ORG NewSoundRoom+(SoundRoomEntrySize*soundRoomID); WORD index textID 0xCCC; POP"    
+#else 
+    #define SoundRoom(soundRoomID, index, length, textID) "PUSH; ORG NewSoundRoom+(SoundRoomEntrySize*soundRoomID); WORD index length 0 textID; POP" 
+    #define SoundRoom(soundRoomID, index, textID) "PUSH; ORG NewSoundRoom+(SoundRoomEntrySize*soundRoomID); WORD index 3600 0 textID; POP" // 60 seconds default 
+#endif 
 
+ALIGN 4 
+NewSoundRoom: 
+WORD EmptySR_256
+WORD SRTerminator
+ORG NewSoundRoom 
+#ifdef _FE8_ 
+#include "fe8_vanilla_sound_room.event" 
+#endif 
+#ifdef _FE7_ 
+#include "fe7_vanilla_sound_room.event" 
+WORD 0xFFFFFFFF 0 0 0 // Terminator 
+#endif 
+#ifdef _FE6_ 
+#include "fe6_vanilla_sound_room.event" 
+#endif 
+
+// FILL (SongTableSize - FirstBGM_ID) * 16
+// ORG NewSoundRoom + ((SongTableSize - FirstBGM_ID) * 16)
+ORG NewSoundRoom + (SoundRoomSize * SoundRoomEntrySize) 
+WORD 0xFFFFFFFF 0 0 0 // Terminator 
+
+FILL 16 // for fe7  
 
 ALIGN 4 
 NewSongTable: 
@@ -104,16 +254,24 @@ ORG NewSongTable
 #incbin "fe6_vanilla_track_table.dmp"
 #endif 
 ORG NewSongTable + (8 * (SongTableSize+1)) 
-FILL(256*8*16) 
-ORG NewSongTable + (8 * (SongTableSize+1)) 
+WORD 0 0 // Terminator 
+// FILL(256*8*16) // ensure it's 0
+// ORG NewSongTable + (8 * (SongTableSize+1)) 
 
-#define FirstBGM_ID 0x3E6  
+
+
 
 #define SongTableOffset NewSongTable
 #define SongTable(index,SongPointer,Group) "PUSH; ORG SongTableOffset+(8*index); POIN SongPointer; SHORT Group Group; POP"
 
 #include "Generated.event" 
 
+#ifdef _FE7_ // fe7 goes past 255
+PUSH 
+ORG NewSoundRoom + (SoundRoomSize * SoundRoomEntrySize) 
+WORD 0xFFFFFFFF 0 0 0 // Terminator 
+POP 
+#endif 
 
 
 
