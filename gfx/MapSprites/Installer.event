@@ -71,6 +71,8 @@ PriestessT1SMS
 BladeLordSMS
 RoyLordSMS
 MasterLordSMS
+EirikaLordSMS
+EirikaGreatSMS
 
 Alm_T1MMS
 Alm_T2MMS
@@ -137,6 +139,8 @@ Cursed_SwordMMS
 PriestessT1MMS
 BladeLordMMS
 MasterLordMMS
+EirikaLordMMS
+EirikaGreatMMS
 
 
 */ 
@@ -257,8 +261,7 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Executioner_U_Huichelaar_IS_Lexouwalk 137 
 #define FE15Myrmidon_U_Sword_Nuramonwalk 138 
 #define Fighter_M_Flail_Knight_L95_Stephanowalk 139 
-#define Gladiator_M_Sword_Pikmin_L95_Pushwallwalk 140 
-#define Great_Lord_F_Eirika_Sword_ISwalk 141 
+#define Gladiator_M_Sword_Pikmin_L95_Pushwallwalk 140
 #define Great_Lord_M_Ephraim_Lance_ISwalk 142 
 #define Great_Lord_M_HectorHarbinger_SD9Kwalk 143 
 #define Great_Lord_M_Hector_ISwalk 144 
@@ -266,7 +269,6 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Hunter_M_MeatOfJusticestyle_knabepicerwalk 146 
 #define Knight_Lord_M_Eliwood_Sword_ISwalk 147 
 #define Lancer_M_Brown_Hair_SALVAGEDwalk 148 
-#define Lord_F_Eirika_Sword_ISwalk 149 
 #define Lord_F_Lyn_Sword_ISwalk 150 
 #define Lord_M_Eliwood_Sword_ISwalk 151 
 #define Lord_M_Ephraim_Lance_ISwalk 152 
@@ -369,14 +371,14 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define Blade_Lord_F_Lyn_Sword_ISwalk 198
 #define RoyLord_ISwalk 199
 #define RoyMasterLord_ISwalk 200
+#define Lord_F_Eirika_Sword_ISwalk 201 
+#define Great_Lord_F_Eirika_Sword_ISwalk 202
+
 
 
 
 	// #define  189
 	// #define  190
-#define Lord_F_Eirika_Sword_ISwalk 201
-#define Lord_F_Lyn_Sword_ISwalk 202
-    #define Great_Lord_F_Eirika_Sword_ISwalk 203
 #define Lord_M_Ephraim_Lance_ISwalk 205
 #define Great_Lord_M_Ephraim_Lance_ISwalk 206
 #define Lord_M_Eliwood_Sword_ISwalk 207 
@@ -465,7 +467,7 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #ifndef _FE7_ 
     #define LynLord (LynLord_IntSyswalk+1)
     #define BladeLord (Blade_Lord_F_Lyn_Sword_ISwalk+1)
-#endif 
+#endif
 
 #ifndef _FE6_ 
     #define RoyLord (RoyLord_ISwalk+1)
@@ -474,6 +476,12 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
     #define MasterLord RoyMasterLord // from ea std lib 
 #endif 
 
+#ifndef _FE8_ 
+    #define EirikaLord (Lord_F_Eirika_Sword_ISwalk+1)
+    #define EirikaGreat (EirikaGreatLord_ISwalk+1) 
+#else 
+    #define EirikaGreat EirikaMasterLord // from ea std lib  
+#endif
 
 // #define Ike_Lord IkeLord
 // #define Alm_T2 AlmT2
@@ -566,6 +574,8 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #define BladeLordSMS Blade_Lord_F_Lyn_Sword_ISstand
 #define RoyLordSMS RoyLord_ISstand
 #define MasterLordSMS RoyMasterLord_ISstand
+#define EirikaLordSMS Lord_F_Eirika_Sword_ISstand 
+#define EirikaGreatSMS Great_Lord_F_Eirika_Sword_ISstand 
 
 
 // #define Brighid_Hector_Axe_Shin19walk 
@@ -642,7 +652,6 @@ SetSMS(Executioner_U_Huichelaar_IS_Lexoustand, 0, Executioner_U_Huichelaar_IS_Le
 SetSMS(FE15Myrmidon_U_Sword_Nuramonstand, 0, FE15Myrmidon_U_Sword_Nuramonstand_Data) 
 SetSMS(Fighter_M_Flail_Knight_L95_Stephanostand, 1, Fighter_M_Flail_Knight_L95_Stephanostand_Data) 
 SetSMS(Gladiator_M_Sword_Pikmin_L95_Pushwallstand, 0, Gladiator_M_Sword_Pikmin_L95_Pushwallstand_Data) 
-SetSMS(Great_Lord_F_Eirika_Sword_ISstand, 1, Great_Lord_F_Eirika_Sword_ISstand_Data) 
 SetSMS(Great_Lord_M_Ephraim_Lance_ISstand, 1, Great_Lord_M_Ephraim_Lance_ISstand_Data) 
 SetSMS(Great_Lord_M_HectorHarbinger_SD9Kstand, 1, Great_Lord_M_HectorHarbinger_SD9Kstand_Data) 
 SetSMS(Great_Lord_M_Hector_ISstand, 1, Great_Lord_M_Hector_ISstand_Data) 
@@ -650,7 +659,6 @@ SetSMS(Halberdier_M_2_0_TBAstand, 0, Halberdier_M_2_0_TBAstand_Data)
 SetSMS(Hunter_M_MeatOfJusticestyle_knabepicerstand, 0, Hunter_M_MeatOfJusticestyle_knabepicerstand_Data) 
 SetSMS(Knight_Lord_M_Eliwood_Sword_ISstand, 1, Knight_Lord_M_Eliwood_Sword_ISstand_Data) 
 SetSMS(Lancer_M_Brown_Hair_SALVAGEDstand, 0, Lancer_M_Brown_Hair_SALVAGEDstand_Data) 
-SetSMS(Lord_F_Eirika_Sword_ISstand, 0, Lord_F_Eirika_Sword_ISstand_Data) 
 SetSMS(Lord_F_Lyn_Sword_ISstand, 0, Lord_F_Lyn_Sword_ISstand_Data) 
 SetSMS(Lord_M_Eliwood_Sword_16x16_ISstand, 0, Lord_M_Eliwood_Sword_16x16_ISstand_Data) 
 SetSMS(Lord_M_Ephraim_Lance_ISstand, 1, Lord_M_Ephraim_Lance_ISstand_Data) 
@@ -678,7 +686,9 @@ SetSMS(LynLord_IntSysstand, 0, LynLord_IntSysstand_Data)
 SetSMS(PriestessT1_Blood_Redbeanstand, 0, PriestessT1_Blood_Redbeanstand_Data)
 SetSMS(Blade_Lord_F_Lyn_Sword_ISstand, 0, Blade_Lord_F_Lyn_Sword_ISstand_Data)
 SetSMS(RoyLord_ISstand, 0, RoyLord_ISstand_Data)
-SetSMS(RoyMasterLord_ISstand, 1, RoyMasterLord_ISstand_Data) 
+SetSMS(RoyMasterLord_ISstand, 1, RoyMasterLord_ISstand_Data)
+SetSMS(Lord_F_Eirika_Sword_ISstand, 0, Lord_F_Eirika_Sword_ISstand_Data)
+SetSMS(Great_Lord_F_Eirika_Sword_ISstand, 1, Great_Lord_F_Eirika_Sword_ISstand_Data) 
 
 
 
@@ -735,16 +745,13 @@ SetMMS(Executioner_U_Huichelaar_IS_Lexouwalk, Executioner_U_Huichelaar_IS_Lexouw
 SetMMS(FE15Myrmidon_U_Sword_Nuramonwalk, FE15Myrmidon_U_Sword_Nuramonwalk_Data, DemonKingAP) 
 SetMMS(Fighter_M_Flail_Knight_L95_Stephanowalk, Fighter_M_Flail_Knight_L95_Stephanowalk_Data, DemonKingAP) 
 SetMMS(Gladiator_M_Sword_Pikmin_L95_Pushwallwalk, Gladiator_M_Sword_Pikmin_L95_Pushwallwalk_Data, DemonKingAP) 
-SetMMS(Great_Lord_F_Eirika_Sword_ISwalk, Great_Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP) 
 SetMMS(Great_Lord_M_Ephraim_Lance_ISwalk, Great_Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
 SetMMS(Great_Lord_M_HectorHarbinger_SD9Kwalk, Great_Lord_M_HectorHarbinger_SD9Kwalk_Data, DemonKingAP) 
 SetMMS(Great_Lord_M_Hector_ISwalk, Great_Lord_M_Hector_ISwalk_Data, DemonKingAP) 
 SetMMS(Halberdier_M_2_0_TBAwalk, Halberdier_M_2_0_TBAwalk_Data, DemonKingAP) 
 SetMMS(Hunter_M_MeatOfJusticestyle_knabepicerwalk, Hunter_M_MeatOfJusticestyle_knabepicerwalk_Data, DemonKingAP) 
 SetMMS(Knight_Lord_M_Eliwood_Sword_ISwalk, Knight_Lord_M_Eliwood_Sword_ISwalk_Data, DemonKingAP) 
-SetMMS(Lancer_M_Brown_Hair_SALVAGEDwalk, Lancer_M_Brown_Hair_SALVAGEDwalk_Data, DemonKingAP) 
-SetMMS(Lord_F_Eirika_Sword_ISwalk, Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP) 
-SetMMS(Lord_F_Lyn_Sword_ISwalk, Lord_F_Lyn_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Lancer_M_Brown_Hair_SALVAGEDwalk, Lancer_M_Brown_Hair_SALVAGEDwalk_Data, DemonKingAP)  
 SetMMS(Lord_M_Eliwood_Sword_ISwalk, Lord_M_Eliwood_Sword_ISwalk_Data, DemonKingAP) 
 SetMMS(Lord_M_Ephraim_Lance_ISwalk, Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
 SetMMS(Lord_M_Hector_Axe_ISwalk, Lord_M_Hector_Axe_ISwalk_Data, DemonKingAP) 
@@ -770,7 +777,9 @@ SetMMS(Warbird_F_Unknown_Alexsplodewalk, Warbird_F_Unknown_Alexsplodewalk_Data, 
 SetMMS(Witch_F_Aruka_Kenpuhuwalk, Witch_F_Aruka_Kenpuhuwalk_Data, DemonKingAP) 
 SetMMS(Ninja_Derwalk, Ninja_Derwalk_Data, DemonKingAP)
 SetMMS(PriestessT1_Blood_Redbeanwalk, PriestessT1_Blood_Redbeanwalk_Data, DemonKingAP)
-SetMMS(Blade_Lord_F_Lyn_Sword_ISwalk, Blade_Lord_F_Lyn_Sword_ISwalk_Data, DemonKingAP)  
+SetMMS(Blade_Lord_F_Lyn_Sword_ISwalk, Blade_Lord_F_Lyn_Sword_ISwalk_Data, DemonKingAP)
+SetMMS(Lord_F_Eirika_Sword_ISwalk, Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP) 
+SetMMS(Great_Lord_F_Eirika_Sword_ISwalk, Great_Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP) 
  
 POP 
 //Copy until here 
