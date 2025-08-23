@@ -856,15 +856,15 @@ animEntry(BladeLordSword)
 weaponAnimEnd(4)
 
 RoyLord_Anim:
-SwordAnim(FE6_RoyLord_IntSys_Sword)
-UnarmedAnim(FE6_RoyLord_IntSys_Unarmed)
-animEntry(FE6_RoyLord_IntSys_Sword)
+SwordAnim(RoyLord_Sword)
+UnarmedAnim(RoyLord_Unarmed)
+animEntry(RoyLord_Sword)
 weaponAnimEnd(3)
 
 MasterLord_Anim:
-SwordAnim(FE6_RoyMasterLord_IntSys_Sword)
-UnarmedAnim(FE6_RoyMasterLord_IntSys_Unarmed)
-animEntry(FE6_RoyMasterLord_IntSys_Sword)
+SwordAnim(MasterLord_Sword)
+UnarmedAnim(MasterLord_Unarmed)
+animEntry(MasterLord_Sword)
 weaponAnimEnd(3)
 
 EirikaLord_Anim:
@@ -877,4 +877,16 @@ EirikaGreat_Anim:
 SwordAnim(EirikaGreatSword)
 UnarmedAnim(EirikaGreatUnarmed)
 animEntry(EirikaGreatSword)
+weaponAnimEnd(3)
+
+EphraimLord_Anim:
+LanceAnim(EphraimLord_Lance)
+UnarmedAnim(EphraimLord_Unarmed)
+animEntry(EphraimLord_Lance)
+weaponAnimEnd(3)
+
+EphraimGreat_Anim:
+LanceAnim(EphraimGreat_Lance)
+UnarmedAnim(EphraimGreat_Unarmed)
+animEntry(EphraimGreat_Lance)
 weaponAnimEnd(3)
