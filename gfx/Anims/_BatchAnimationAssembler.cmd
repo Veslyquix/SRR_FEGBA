@@ -1,9 +1,8 @@
 @echo off
-@rem @echo Renaming folders...
-@rem @call RenameFolders.cmd
-@rem @call RenameFolders.cmd
-@rem twice because this doesn't rename subfolders properly unless done repeatedly and I cba fixing that 
+@echo Renaming folders...
+py .renameThings.py 
 
+@echo Processing files... 
 @set "AnimationAssembler=%~dp0/../../Tools/AA/AA.exe"
 @rem @set "AnimationAssembler=%~dp0/AAA.py"
 
@@ -62,6 +61,10 @@ type %~dp0event\GeneratedInstaller.txt > %~dp0event\GeneratedInstaller.event
 
 @rem @del "%~dp0bin\*.event"
 
-@echo Done!
 
+@echo Setting IDs
+py .setID.py 
+py .setSameOAM.py
+
+@echo Done!
 pause

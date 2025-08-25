@@ -1397,9 +1397,6 @@ ALIGN 4
 
 { ; SongTable(LoZWindWakerEarthGodsLyricPandanID, LoZWindWakerEarthGodsLyricPandan, 0)
 SongTable((LoZWindWakerEarthGodsLyricPandanID+1), LoZWindWakerEarthGodsLyricPandan, 1)
-SoundRoom((FirstSoundRoom_ID+155), (LoZWindWakerEarthGodsLyricPandanID+1), (FirstSR_TextID+155))
-textHeader: ; txt("LoZWindWakerEarthGodsLyricPandan"); BYTE 0 0
-setText((FirstSR_TextID+155), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZWindWakerEarthGodsLyricPandan.event"
 }

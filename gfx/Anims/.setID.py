@@ -24,8 +24,8 @@ primary_keywords = ["Egyptian", "Cantor_by", "Cantor_Jedah", "Arcanist_by_Nuramo
     "Sandworm", "Cursed_Sword", "Tomes", "Mimic_Chest", "Mosquito", 
     "Phantom_by_TBA", "Slime", "Warbird", "Adventurer", "Grand_Mahout", "Brawler",
     "Enchanter", "Black_Dragon", "Djinn", "Living_Armor", "Fellbeast", "Brawler2", 
-    "LynLord", "PriestessT1", "BladeLord", "EirikaLord", "EirikaGreat", "EphraimLord,"
-    "EphraimGreat"]
+    "LynLord", "PriestessT1", "BladeLord", "EirikaLord", "EirikaGreat", "EphraimLord",
+    "EphraimGreatLord", "RoyLord", "RoyMasterLord"]
 
 # List of weapon types to append to the primary keyword
 weapon_keywords = ["Unarmed", "Knife", "Handaxe", "Magic", "Sword",  "Axe", "Bow", "Lance",  "Ranged", "Staff", "Refresh", "Monster", "Melee", "Supply"]
@@ -39,7 +39,7 @@ if not os.path.exists(directory):
 
 # Open the definitions file for writing
 with open(definitions_file, 'w') as definitions:
-    definitions.write("// Definitions for AnimTableEntries\n\n")
+    definitions.write("// Generated definitions for AnimTableEntries\n\n")
 
     # Iterate over all files in the directory
     for filename in os.listdir(directory):
@@ -60,7 +60,9 @@ with open(definitions_file, 'w') as definitions:
                 continue
 
             # Define the pattern to search for (match decimal or hexadecimal numbers)
-            pattern = r'AnimTableEntry\((0x[\da-fA-F]+|\d+|[a-zA-Z_][\w]*)\)'
+            pattern = r'AnimTableEntry\s*\(([^)]*)\)'
+
+            #pattern = r'AnimTableEntry\((0x[\da-fA-F]+|\d+|[a-zA-Z_][\w]*)\)'
             matches = re.findall(pattern, file_data)
 
             # Find a primary keyword in the filename
@@ -72,6 +74,7 @@ with open(definitions_file, 'w') as definitions:
 
             # Fallback: Use scrubbed filename if no primary keyword is found
             if not primary_keyword:
+                print(f"No keyword for {scrubbed_filename} found.")
                 scrubbed_filename2 = re.sub(r'[%_\[\]\s]\'', '', os.path.splitext(filename)[0])
                 primary_keyword = scrubbed_filename2
 
@@ -98,7 +101,7 @@ with open(definitions_file, 'w') as definitions:
             # Replace AnimTableEntry in the file content
             updated_file_data = file_data
             if matches:
-                print(f"{combined_keyword}")
+                #print(f"{combined_keyword}")
                 for match in matches:
                     updated_file_data = re.sub(
                         pattern,

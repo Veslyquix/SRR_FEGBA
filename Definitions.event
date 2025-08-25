@@ -2,7 +2,7 @@
 
 #define PortraitsRom 0x1030000 
 #define AnimsRom 0x1500000 
-#define EndOfAnimsRom 0x1B40000 
+#define EndOfAnimsRom 0x1A50000 
 
 
 // New classes 
@@ -77,8 +77,8 @@ Djinn
 LivingArmor
 Boxer
 Enchanter
-Ninja
-PriestessT1
+Ninja 
+LynLord 
 */ 
 
 
@@ -403,6 +403,8 @@ Sothis
 #define WyvernLord DragonMaster 
 #define WyvernLord_F DragonMaster_F
 #define WyvernKnight DragonMaster
+// #define EphraimLord RoyLord 
+// #define EirikaLord RoyLord 
 #define Myrmidon_F Swordfighter_F 
 #define Myrmidon Swordfighter
 #define Rogue Thief 
@@ -447,6 +449,8 @@ Sothis
 #define Priest Parson
 #define Manakete FireDragon 
 #define Manakete_2_F FireDragon
+// #define EphraimLord EliwoodLord
+// #define EirikaLord LynLord
 #define WyvernRider WyvernKnight
 #define Rogue Assassin 
 #define Ranger NomadTrooper 
@@ -534,7 +538,6 @@ Sothis
 #define GreatKnight Paladin 
 #define Summoner_F Druid 
 #define GreatKnight_F Paladin 
-#define EphraimLord EphraimLord
 
 
 

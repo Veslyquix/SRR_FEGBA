@@ -58,7 +58,7 @@ for event_file in event_files:
     
     
     # BGMEntry
-    if s > 155:
+    if s > 154:
         print(f"Skipped sound room entry for {base_name} as counter exceeds 255 in fe7")
     else:
         bgm_entries.append(f"SoundRoom((FirstSoundRoom_ID+{s}), ({base_name}ID+1), (FirstSR_TextID+{s}))")
@@ -75,8 +75,8 @@ for event_file in event_files:
 
 # Append total count to the end
 
-if s > 155:
-    s = 155 # vanilla sound room caps at 255, and fe7 starts with 100 tracks 
+if s > 154:
+    s = 154 # vanilla sound room caps at 255, and fe7 starts with 100 tracks 
 def_entries.append("\n#define NumberOfSoundRoomEntries (FirstSoundRoom_ID+{}+1)".format(s))
 def_entries.append("\n#define NumberOfTracks (FirstBGM_ID+{})".format(c))
 bgm_entries.append("\nALIGN 12\nMaxBGMID:\nWORD FirstBGM_ID+{}\n".format(c - 1))  # c-1

@@ -849,44 +849,44 @@ UnarmedAnim(LynLordUnarmed)
 weaponAnimEnd(2)
 
 BladeLord_Anim:
+animEntry(BladeLordSword)
 SwordAnim(BladeLordSword)
 BowAnim(BladeLordBow)
 UnarmedAnim(BladeLordUnarmed)
-animEntry(BladeLordSword)
 weaponAnimEnd(4)
 
 RoyLord_Anim:
-SwordAnim(RoyLord_Sword)
-UnarmedAnim(RoyLord_Unarmed)
-animEntry(RoyLord_Sword)
+animEntry(RoyLordSword)
+SwordAnim(RoyLordSword)
+UnarmedAnim(RoyLordUnarmed)
 weaponAnimEnd(3)
 
 MasterLord_Anim:
-SwordAnim(MasterLord_Sword)
-UnarmedAnim(MasterLord_Unarmed)
-animEntry(MasterLord_Sword)
+animEntry(RoyMasterLordSword)
+SwordAnim(RoyMasterLordSword)
+UnarmedAnim(RoyMasterLordUnarmed)
 weaponAnimEnd(3)
 
 EirikaLord_Anim:
+animEntry(EirikaLordSword)
 SwordAnim(EirikaLordSword)
 UnarmedAnim(EirikaLordUnarmed)
-animEntry(EirikaLordSword)
 weaponAnimEnd(3)
 
 EirikaGreat_Anim:
+animEntry(EirikaGreatSword)
 SwordAnim(EirikaGreatSword)
 UnarmedAnim(EirikaGreatUnarmed)
-animEntry(EirikaGreatSword)
 weaponAnimEnd(3)
 
 EphraimLord_Anim:
-LanceAnim(EphraimLord_Lance)
-UnarmedAnim(EphraimLord_Unarmed)
-animEntry(EphraimLord_Lance)
+animEntry(EphraimLordLance)
+LanceAnim(EphraimLordLance)
+UnarmedAnim(EphraimLordUnarmed)
 weaponAnimEnd(3)
 
 EphraimGreat_Anim:
-LanceAnim(EphraimGreat_Lance)
-UnarmedAnim(EphraimGreat_Unarmed)
-animEntry(EphraimGreat_Lance)
+animEntry(EphraimGreatLordLance) // animEntry goes first, I think 
+LanceAnim(EphraimGreatLordLance)
+UnarmedAnim(EphraimGreatLordUnarmed)
 weaponAnimEnd(3)
