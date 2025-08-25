@@ -1,6 +1,13 @@
 
 #include "defs/defs.event" 
 #include "nimap/Installer.event" 
+#include "GeneratedDefs.event" 
+// NumberOfSoundRoomEntries
+// NumberOfTracks 
+
+
+#define FirstBGM_ID 0x3E6  
+#define FirstSR_TextID 0x1F00 // Change this to the text ID you want sound room tracks to put their names at 
 
 #ifdef _FE6_ 
     #ifndef txt 
@@ -184,14 +191,9 @@ POP
 
 #ifdef _FE7_ 
     #define FirstSoundRoom_ID 100
-    #define SoundRoomSize 255 // 256+ needs a patch? 
 #else 
-    #define SoundRoomSize 226 // 256+ needs a patch? 
     #define FirstSoundRoom_ID 69 // fe6 and fe8 use this number 
 #endif 
-
-#define SongTableSize 0x550
-
 
 #ifdef _FE6_ 
     #define SoundRoomEntrySize 12 
@@ -199,11 +201,7 @@ POP
     #define SoundRoomEntrySize 16 
 #endif 
 
-#define FirstBGM_ID 0x3E6  
 
-
-
-#define FirstSR_TextID 0x1F00 
 
 #define EmptyTrack_16 "EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack EmptyTrack" 
 #define EmptyTrack_256 "EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16 EmptyTrack_16" 
@@ -220,25 +218,20 @@ POP
 ALIGN 4 
 NewSoundRoom: 
 WORD EmptySR_256
-WORD SRTerminator
 ORG NewSoundRoom 
 #ifdef _FE8_ 
 #include "fe8_vanilla_sound_room.event" 
 #endif 
 #ifdef _FE7_ 
 #include "fe7_vanilla_sound_room.event" 
-WORD 0xFFFFFFFF 0 0 0 // Terminator 
 #endif 
 #ifdef _FE6_ 
 #include "fe6_vanilla_sound_room.event" 
 #endif 
 
-// FILL (SongTableSize - FirstBGM_ID) * 16
-// ORG NewSoundRoom + ((SongTableSize - FirstBGM_ID) * 16)
-ORG NewSoundRoom + (SoundRoomSize * SoundRoomEntrySize) 
-WORD 0xFFFFFFFF 0 0 0 // Terminator 
+ORG NewSoundRoom + (NumberOfSoundRoomEntries * SoundRoomEntrySize) 
+WORD SRTerminator
 
-FILL 16 // for fe7  
 
 ALIGN 4 
 NewSongTable: 
@@ -253,10 +246,8 @@ ORG NewSongTable
 #ifdef _FE6_ 
 #incbin "fe6_vanilla_track_table.dmp"
 #endif 
-ORG NewSongTable + (8 * (SongTableSize+1)) 
+ORG NewSongTable + (8 * (NumberOfTracks)) 
 WORD 0 0 // Terminator 
-// FILL(256*8*16) // ensure it's 0
-// ORG NewSongTable + (8 * (SongTableSize+1)) 
 
 
 
@@ -266,12 +257,8 @@ WORD 0 0 // Terminator
 
 #include "Generated.event" 
 
-#ifdef _FE7_ // fe7 goes past 255
-PUSH 
-ORG NewSoundRoom + (SoundRoomSize * SoundRoomEntrySize) 
-WORD 0xFFFFFFFF 0 0 0 // Terminator 
-POP 
-#endif 
+
+
 
 
 
