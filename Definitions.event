@@ -98,6 +98,7 @@ EphraimGreat
 
 
 #ifdef _FE8_ 
+#define GenericClassCard 0x8b
 // Thanks, Norikins!
 #define UseMonsterWeapons 0x4 
 #define LordMovCost 0x880B808
@@ -159,6 +160,7 @@ EphraimGreat
 #endif 
 
 #ifdef _FE7_ 
+#define GenericClassCard 0xd7
 #define UseMonsterWeapons 0x4 
 #define LordMovCost 0x8BE3888
 #define LordRainMovCost 0x8BE3CD9
@@ -219,6 +221,7 @@ EphraimGreat
 #define gCharacterData 0x8BDCE4C
 #endif 
 #ifdef _FE6_ 
+#define GenericClassCard 0xb2
 #define UseMonsterWeapons 0x4 
 #define LordMovCost 0x860C648
 #define DefaultMovCost 0x860C67B
