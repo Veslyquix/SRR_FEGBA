@@ -162,12 +162,14 @@ MugEntry(TakumiMug, TakumiMugData, TakumiMinimugData, TakumiFramesData, TakumiPa
 MugEntry(VelouriaMug, VelouriaMugData, VelouriaMinimugData, VelouriaFramesData, VelouriaPaletteData,  3, 6, 3, 4)
 MugEntry(XanderMug, XanderMugData, XanderMinimugData, XanderFramesData, XanderPaletteData,  3, 5, 3, 3)
 MugEntry(YukimuraMug, YukimuraMugData, YukimuraMinimugData, YukimuraFramesData, YukimuraPaletteData,  3, 5, 3, 3)
+MugEntry(AnankosMug, AnankosMugData, AnankosMinimugData, AnankosFramesData, AnankosPaletteData,  2, 5, 2, 3)
 MugEntry(AreteMug, AreteMugData, AreteMinimugData, AreteFramesData, AretePaletteData,  2, 6, 3, 4)
 MugEntry(CandaceMug, CandaceMugData, CandaceMinimugData, CandaceFramesData, CandacePaletteData,  3, 6, 3, 4)
 MugEntry(DaichiMug, DaichiMugData, DaichiMinimugData, DaichiFramesData, DaichiPaletteData,  3, 5, 3, 3)
 MugEntry(DanielaMug, DanielaMugData, DanielaMinimugData, DanielaFramesData, DanielaPaletteData,  5, 6, 5, 4)
 MugEntry(FacelessMug, FacelessMugData, FacelessMinimugData, FacelessFramesData, FacelessPaletteData,  2, 4, 2, 2)
 MugEntry(FunkeMug, FunkeMugData, FunkeMinimugData, FunkeFramesData, FunkePaletteData,  3, 5, 4, 3)
+MugEntry(GaronVesselMug, GaronVesselMugData, GaronVesselMinimugData, GaronVesselFramesData, GaronVesselPaletteData,  4, 3, 5, 7)
 MugEntry(GaronMug, GaronMugData, GaronMinimugData, GaronFramesData, GaronPaletteData,  4, 4, 4, 2)
 MugEntry(GazakMug, GazakMugData, GazakMinimugData, GazakFramesData, GazakPaletteData,  3, 6, 3, 4)
 MugEntry(HaitakaMug, HaitakaMugData, HaitakaMinimugData, HaitakaFramesData, HaitakaPaletteData,  2, 6, 2, 4)
@@ -181,6 +183,8 @@ MugEntry(LloydFE14Mug, LloydFE14MugData, LloydFE14MinimugData, LloydFE14FramesDa
 MugEntry(NicholMug, NicholMugData, NicholMinimugData, NicholFramesData, NicholPaletteData,  2, 5, 2, 3)
 MugEntry(OmozuMug, OmozuMugData, OmozuMinimugData, OmozuFramesData, OmozuPaletteData,  4, 6, 4, 4)
 MugEntry(SennoMug, SennoMugData, SennoMinimugData, SennoFramesData, SennoPaletteData,  4, 7, 4, 5)
+MugEntry(SumeragiMug, SumeragiMugData, SumeragiMinimugData, SumeragiFramesData, SumeragiPaletteData,  3, 5, 3, 3)
+MugEntry(TakumiVesselMug, TakumiVesselMugData, TakumiVesselMinimugData, TakumiVesselFramesData, TakumiVesselPaletteData,  3, 6, 3, 4)
 MugEntry(TarbaMug, TarbaMugData, TarbaMinimugData, TarbaFramesData, TarbaPaletteData,  3, 4, 3, 2)
 MugEntry(ZharaMug, ZharaMugData, ZharaMinimugData, ZharaFramesData, ZharaPaletteData,  3, 5, 3, 3)
 MugEntry(ZolaMug, ZolaMugData, ZolaMinimugData, ZolaFramesData, ZolaPaletteData,  2, 6, 2, 4)
@@ -2921,6 +2925,17 @@ YukimuraMinimugData:
 #incbin "png/FE14/Yukimura_Garytop_minimug.dmp"
 
 ALIGN 4
+AnankosMugData:
+#incbin "png/FE14_Bosses/Anankos_Garytop_mug.dmp"
+ALIGN 4
+AnankosFramesData:
+#incbin "png/FE14_Bosses/Anankos_Garytop_frames.dmp"
+AnankosPaletteData:
+#incbin "png/FE14_Bosses/Anankos_Garytop_palette.dmp"
+AnankosMinimugData:
+#incbin "png/FE14_Bosses/Anankos_Garytop_minimug.dmp"
+
+ALIGN 4
 AreteMugData:
 #incbin "png/FE14_Bosses/Arete_HackboxincompatibleJeytheCountF2E_mug.dmp"
 ALIGN 4
@@ -2985,6 +3000,17 @@ FunkePaletteData:
 #incbin "png/FE14_Bosses/Funke_Garytop_palette.dmp"
 FunkeMinimugData:
 #incbin "png/FE14_Bosses/Funke_Garytop_minimug.dmp"
+
+ALIGN 4
+GaronVesselMugData:
+#incbin "png/FE14_Bosses/GaronVessel_Garytop_mug.dmp"
+ALIGN 4
+GaronVesselFramesData:
+#incbin "png/FE14_Bosses/GaronVessel_Garytop_frames.dmp"
+GaronVesselPaletteData:
+#incbin "png/FE14_Bosses/GaronVessel_Garytop_palette.dmp"
+GaronVesselMinimugData:
+#incbin "png/FE14_Bosses/GaronVessel_Garytop_minimug.dmp"
 
 ALIGN 4
 GaronMugData:
@@ -3128,6 +3154,28 @@ SennoPaletteData:
 #incbin "png/FE14_Bosses/Senno_Garytop_palette.dmp"
 SennoMinimugData:
 #incbin "png/FE14_Bosses/Senno_Garytop_minimug.dmp"
+
+ALIGN 4
+SumeragiMugData:
+#incbin "png/FE14_Bosses/Sumeragi_Garytop_mug.dmp"
+ALIGN 4
+SumeragiFramesData:
+#incbin "png/FE14_Bosses/Sumeragi_Garytop_frames.dmp"
+SumeragiPaletteData:
+#incbin "png/FE14_Bosses/Sumeragi_Garytop_palette.dmp"
+SumeragiMinimugData:
+#incbin "png/FE14_Bosses/Sumeragi_Garytop_minimug.dmp"
+
+ALIGN 4
+TakumiVesselMugData:
+#incbin "png/FE14_Bosses/TakumiVessel_Garytop_mug.dmp"
+ALIGN 4
+TakumiVesselFramesData:
+#incbin "png/FE14_Bosses/TakumiVessel_Garytop_frames.dmp"
+TakumiVesselPaletteData:
+#incbin "png/FE14_Bosses/TakumiVessel_Garytop_palette.dmp"
+TakumiVesselMinimugData:
+#incbin "png/FE14_Bosses/TakumiVessel_Garytop_minimug.dmp"
 
 ALIGN 4
 TarbaMugData:

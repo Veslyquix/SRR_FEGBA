@@ -162,12 +162,14 @@ MugEntry(TakumiMug, TakumiMugData, TakumiMinimugData, TakumiPaletteData,  3, 6, 
 MugEntry(VelouriaMug, VelouriaMugData, VelouriaMinimugData, VelouriaPaletteData,  3, 6, 3, 4)
 MugEntry(XanderMug, XanderMugData, XanderMinimugData, XanderPaletteData,  3, 5, 3, 3)
 MugEntry(YukimuraMug, YukimuraMugData, YukimuraMinimugData, YukimuraPaletteData,  3, 5, 3, 3)
+MugEntry(AnankosMug, AnankosMugData, AnankosMinimugData, AnankosPaletteData,  2, 5, 2, 3)
 MugEntry(AreteMug, AreteMugData, AreteMinimugData, AretePaletteData,  2, 6, 3, 4)
 MugEntry(CandaceMug, CandaceMugData, CandaceMinimugData, CandacePaletteData,  3, 6, 3, 4)
 MugEntry(DaichiMug, DaichiMugData, DaichiMinimugData, DaichiPaletteData,  3, 5, 3, 3)
 MugEntry(DanielaMug, DanielaMugData, DanielaMinimugData, DanielaPaletteData,  5, 6, 5, 4)
 MugEntry(FacelessMug, FacelessMugData, FacelessMinimugData, FacelessPaletteData,  2, 4, 2, 2)
 MugEntry(FunkeMug, FunkeMugData, FunkeMinimugData, FunkePaletteData,  3, 5, 4, 3)
+MugEntry(GaronVesselMug, GaronVesselMugData, GaronVesselMinimugData, GaronVesselPaletteData,  4, 3, 5, 7)
 MugEntry(GaronMug, GaronMugData, GaronMinimugData, GaronPaletteData,  4, 4, 4, 2)
 MugEntry(GazakMug, GazakMugData, GazakMinimugData, GazakPaletteData,  3, 6, 3, 4)
 MugEntry(HaitakaMug, HaitakaMugData, HaitakaMinimugData, HaitakaPaletteData,  2, 6, 2, 4)
@@ -181,6 +183,8 @@ MugEntry(LloydFE14Mug, LloydFE14MugData, LloydFE14MinimugData, LloydFE14PaletteD
 MugEntry(NicholMug, NicholMugData, NicholMinimugData, NicholPaletteData,  2, 5, 2, 3)
 MugEntry(OmozuMug, OmozuMugData, OmozuMinimugData, OmozuPaletteData,  4, 6, 4, 4)
 MugEntry(SennoMug, SennoMugData, SennoMinimugData, SennoPaletteData,  4, 7, 4, 5)
+MugEntry(SumeragiMug, SumeragiMugData, SumeragiMinimugData, SumeragiPaletteData,  3, 5, 3, 3)
+MugEntry(TakumiVesselMug, TakumiVesselMugData, TakumiVesselMinimugData, TakumiVesselPaletteData,  3, 6, 3, 4)
 MugEntry(TarbaMug, TarbaMugData, TarbaMinimugData, TarbaPaletteData,  3, 4, 3, 2)
 MugEntry(ZharaMug, ZharaMugData, ZharaMinimugData, ZharaPaletteData,  3, 5, 3, 3)
 MugEntry(ZolaMug, ZolaMugData, ZolaMinimugData, ZolaPaletteData,  2, 6, 2, 4)
@@ -2599,6 +2603,15 @@ YukimuraMinimugData:
 #incbin "png/FE14/Yukimura_Garytop_minimugfe6.dmp"
 
 ALIGN 4
+AnankosMugData:
+#incbin "png/FE14_Bosses/Anankos_Garytop_portrait_frames_fe6.dmp"
+ALIGN 4
+AnankosPaletteData:
+#incbin "png/FE14_Bosses/Anankos_Garytop_palette.dmp"
+AnankosMinimugData:
+#incbin "png/FE14_Bosses/Anankos_Garytop_minimugfe6.dmp"
+
+ALIGN 4
 AreteMugData:
 #incbin "png/FE14_Bosses/Arete_HackboxincompatibleJeytheCountF2E_portrait_frames_fe6.dmp"
 ALIGN 4
@@ -2651,6 +2664,15 @@ FunkePaletteData:
 #incbin "png/FE14_Bosses/Funke_Garytop_palette.dmp"
 FunkeMinimugData:
 #incbin "png/FE14_Bosses/Funke_Garytop_minimugfe6.dmp"
+
+ALIGN 4
+GaronVesselMugData:
+#incbin "png/FE14_Bosses/GaronVessel_Garytop_portrait_frames_fe6.dmp"
+ALIGN 4
+GaronVesselPaletteData:
+#incbin "png/FE14_Bosses/GaronVessel_Garytop_palette.dmp"
+GaronVesselMinimugData:
+#incbin "png/FE14_Bosses/GaronVessel_Garytop_minimugfe6.dmp"
 
 ALIGN 4
 GaronMugData:
@@ -2768,6 +2790,24 @@ SennoPaletteData:
 #incbin "png/FE14_Bosses/Senno_Garytop_palette.dmp"
 SennoMinimugData:
 #incbin "png/FE14_Bosses/Senno_Garytop_minimugfe6.dmp"
+
+ALIGN 4
+SumeragiMugData:
+#incbin "png/FE14_Bosses/Sumeragi_Garytop_portrait_frames_fe6.dmp"
+ALIGN 4
+SumeragiPaletteData:
+#incbin "png/FE14_Bosses/Sumeragi_Garytop_palette.dmp"
+SumeragiMinimugData:
+#incbin "png/FE14_Bosses/Sumeragi_Garytop_minimugfe6.dmp"
+
+ALIGN 4
+TakumiVesselMugData:
+#incbin "png/FE14_Bosses/TakumiVessel_Garytop_portrait_frames_fe6.dmp"
+ALIGN 4
+TakumiVesselPaletteData:
+#incbin "png/FE14_Bosses/TakumiVessel_Garytop_palette.dmp"
+TakumiVesselMinimugData:
+#incbin "png/FE14_Bosses/TakumiVessel_Garytop_minimugfe6.dmp"
 
 ALIGN 4
 TarbaMugData:

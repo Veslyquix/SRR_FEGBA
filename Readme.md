@@ -981,12 +981,14 @@ Mikoto portrait by Garytop
 Lilith portrait by Garytop    
    
 Arete portrait by JeyTheCount  
+Anankos portrait by Garytop  
 Candace portrait by Garytop  
 Daichi portrait by Garytop  
 Daniela portrait by Garytop  
 Faceless portrait by Cygnus, L95  
 Funke portrait by Garytop  
 Garon portrait by SaintRubenio  
+GaronEmptyVessel portrait by Garytop  
 Gazak portrait by Garytop  
 Haitaka portrait by Garytop  
 Hans portrait by Garytop  
@@ -999,7 +1001,9 @@ Lloyd portrait by Garytop
 Nichol portrait by Garytop  
 Omozu portrait by Garytop  
 Senno portrait by Garytop  
+Sumeragi portrait by Garytop  
 Tarba portrait by Garytop  
+TakumiEmptyVessel portrait by Garytop  
 Zhara portrait by Garytop  
 Zola portrait by Garytop  
    

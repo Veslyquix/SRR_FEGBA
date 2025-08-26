@@ -1,26 +1,26 @@
 	.include "MPlayDef.s"
 
-	.equ	FE09VstheBlackKnightwhattheshmitty_grp, voicegroup000
-	.equ	FE09VstheBlackKnightwhattheshmitty_pri, 0
-	.equ	FE09VstheBlackKnightwhattheshmitty_rev, 0
-	.equ	FE09VstheBlackKnightwhattheshmitty_mvl, 127
-	.equ	FE09VstheBlackKnightwhattheshmitty_key, 0
-	.equ	FE09VstheBlackKnightwhattheshmitty_tbs, 1
-	.equ	FE09VstheBlackKnightwhattheshmitty_exg, 0
-	.equ	FE09VstheBlackKnightwhattheshmitty_cmp, 1
+	.equ	FE09VstheBlackKnightWhattheshmitty_grp, voicegroup000
+	.equ	FE09VstheBlackKnightWhattheshmitty_pri, 0
+	.equ	FE09VstheBlackKnightWhattheshmitty_rev, 0
+	.equ	FE09VstheBlackKnightWhattheshmitty_mvl, 127
+	.equ	FE09VstheBlackKnightWhattheshmitty_key, 0
+	.equ	FE09VstheBlackKnightWhattheshmitty_tbs, 1
+	.equ	FE09VstheBlackKnightWhattheshmitty_exg, 0
+	.equ	FE09VstheBlackKnightWhattheshmitty_cmp, 1
 
 	.section .rodata
-	.global	FE09VstheBlackKnightwhattheshmitty
+	.global	FE09VstheBlackKnightWhattheshmitty
 	.align	2
 
 
 @**************** Track 1 (Midi-Chn.0) ****************@
 
-FE09VstheBlackKnightwhattheshmitty_001:
+FE09VstheBlackKnightWhattheshmitty_001:
 @  #01 @000   ----------------------------------------
- .byte   VOL , 80*FE09VstheBlackKnightwhattheshmitty_mvl/mxv
- .byte   KEYSH , FE09VstheBlackKnightwhattheshmitty_key+0
- .byte   TEMPO , 142*FE09VstheBlackKnightwhattheshmitty_tbs/2
+ .byte   VOL , 80*FE09VstheBlackKnightWhattheshmitty_mvl/mxv
+ .byte   KEYSH , FE09VstheBlackKnightWhattheshmitty_key+0
+ .byte   TEMPO , 142*FE09VstheBlackKnightWhattheshmitty_tbs/2
  .byte   VOICE , 62
  .byte   W72
  .byte   W72
@@ -449,10 +449,10 @@ Label_01E1D252:
 
 @**************** Track 2 (Midi-Chn.1) ****************@
 
-FE09VstheBlackKnightwhattheshmitty_002:
+FE09VstheBlackKnightWhattheshmitty_002:
 @  #02 @000   ----------------------------------------
- .byte   VOL , 80*FE09VstheBlackKnightwhattheshmitty_mvl/mxv
- .byte   KEYSH , FE09VstheBlackKnightwhattheshmitty_key+0
+ .byte   VOL , 80*FE09VstheBlackKnightWhattheshmitty_mvl/mxv
+ .byte   KEYSH , FE09VstheBlackKnightWhattheshmitty_key+0
  .byte   VOICE , 61
  .byte   W12
  .byte   N60 ,Gs2 ,v080
@@ -719,10 +719,10 @@ Label_01E1CDBC:
 
 @**************** Track 3 (Midi-Chn.2) ****************@
 
-FE09VstheBlackKnightwhattheshmitty_003:
+FE09VstheBlackKnightWhattheshmitty_003:
 @  #03 @000   ----------------------------------------
- .byte   VOL , 80*FE09VstheBlackKnightwhattheshmitty_mvl/mxv
- .byte   KEYSH , FE09VstheBlackKnightwhattheshmitty_key+0
+ .byte   VOL , 80*FE09VstheBlackKnightWhattheshmitty_mvl/mxv
+ .byte   KEYSH , FE09VstheBlackKnightWhattheshmitty_key+0
  .byte   VOICE , 56
  .byte   W72
  .byte   W72
@@ -988,10 +988,10 @@ Label_01E1CC7E:
 
 @**************** Track 4 (Midi-Chn.3) ****************@
 
-FE09VstheBlackKnightwhattheshmitty_004:
+FE09VstheBlackKnightWhattheshmitty_004:
 @  #04 @000   ----------------------------------------
- .byte   VOL , 80*FE09VstheBlackKnightwhattheshmitty_mvl/mxv
- .byte   KEYSH , FE09VstheBlackKnightwhattheshmitty_key+0
+ .byte   VOL , 80*FE09VstheBlackKnightWhattheshmitty_mvl/mxv
+ .byte   KEYSH , FE09VstheBlackKnightWhattheshmitty_key+0
  .byte   VOICE , 48
  .byte   W12
  .byte   N60 ,Gs2 ,v080
@@ -1453,10 +1453,10 @@ Label_01E1D028:
 
 @**************** Track 5 (Midi-Chn.4) ****************@
 
-FE09VstheBlackKnightwhattheshmitty_005:
+FE09VstheBlackKnightWhattheshmitty_005:
 @  #05 @000   ----------------------------------------
- .byte   VOL , 80*FE09VstheBlackKnightwhattheshmitty_mvl/mxv
- .byte   KEYSH , FE09VstheBlackKnightwhattheshmitty_key+0
+ .byte   VOL , 80*FE09VstheBlackKnightWhattheshmitty_mvl/mxv
+ .byte   KEYSH , FE09VstheBlackKnightWhattheshmitty_key+0
  .byte   VOICE , 121
  .byte   W12
  .byte   N60 ,Cs2 ,v080
@@ -1921,10 +1921,10 @@ Label_01E1D712:
 
 @**************** Track 6 (Midi-Chn.5) ****************@
 
-FE09VstheBlackKnightwhattheshmitty_006:
+FE09VstheBlackKnightWhattheshmitty_006:
 @  #06 @000   ----------------------------------------
- .byte   VOL , 80*FE09VstheBlackKnightwhattheshmitty_mvl/mxv
- .byte   KEYSH , FE09VstheBlackKnightwhattheshmitty_key+0
+ .byte   VOL , 80*FE09VstheBlackKnightWhattheshmitty_mvl/mxv
+ .byte   KEYSH , FE09VstheBlackKnightWhattheshmitty_key+0
  .byte   VOICE , 118
  .byte   W12
  .byte   N60 ,Gs1 ,v080
@@ -2293,19 +2293,19 @@ Label_01E1D483:
 @******************************************************@
 	.align	2
 
-FE09VstheBlackKnightwhattheshmitty:
+FE09VstheBlackKnightWhattheshmitty:
 	.byte	6	@ NumTrks
 	.byte	0	@ NumBlks
-	.byte	FE09VstheBlackKnightwhattheshmitty_pri	@ Priority
-	.byte	FE09VstheBlackKnightwhattheshmitty_rev	@ Reverb.
+	.byte	FE09VstheBlackKnightWhattheshmitty_pri	@ Priority
+	.byte	FE09VstheBlackKnightWhattheshmitty_rev	@ Reverb.
     
-	.word	FE09VstheBlackKnightwhattheshmitty_grp
+	.word	FE09VstheBlackKnightWhattheshmitty_grp
     
-	.word	FE09VstheBlackKnightwhattheshmitty_001
-	.word	FE09VstheBlackKnightwhattheshmitty_002
-	.word	FE09VstheBlackKnightwhattheshmitty_003
-	.word	FE09VstheBlackKnightwhattheshmitty_004
-	.word	FE09VstheBlackKnightwhattheshmitty_005
-	.word	FE09VstheBlackKnightwhattheshmitty_006
+	.word	FE09VstheBlackKnightWhattheshmitty_001
+	.word	FE09VstheBlackKnightWhattheshmitty_002
+	.word	FE09VstheBlackKnightWhattheshmitty_003
+	.word	FE09VstheBlackKnightWhattheshmitty_004
+	.word	FE09VstheBlackKnightWhattheshmitty_005
+	.word	FE09VstheBlackKnightWhattheshmitty_006
 
 	.end

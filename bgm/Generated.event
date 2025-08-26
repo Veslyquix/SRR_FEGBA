@@ -405,13 +405,13 @@ ALIGN 4
 #include "s/FireEmblemSeries/FE07RisetotheChallengeAlice.event"
 }
 
-{ ; SongTable(FE09VstheBlackKnightwhattheshmittyID, FE09VstheBlackKnightwhattheshmitty, 0)
-SongTable((FE09VstheBlackKnightwhattheshmittyID+1), FE09VstheBlackKnightwhattheshmitty, 1)
-SoundRoom((FirstSoundRoom_ID+45), (FE09VstheBlackKnightwhattheshmittyID+1), (FirstSR_TextID+45))
-textHeader: ; txt("FE09VstheBlack"); BYTE 0 0
+{ ; SongTable(FE09VstheBlackKnightWhattheshmittyID, FE09VstheBlackKnightWhattheshmitty, 0)
+SongTable((FE09VstheBlackKnightWhattheshmittyID+1), FE09VstheBlackKnightWhattheshmitty, 1)
+SoundRoom((FirstSoundRoom_ID+45), (FE09VstheBlackKnightWhattheshmittyID+1), (FirstSR_TextID+45))
+textHeader: ; txt("FE09VstheBlackKnight"); BYTE 0 0
 setText((FirstSR_TextID+45), textHeader)
 ALIGN 4
-#include "s/FireEmblemSeries/FE09VstheBlackKnightwhattheshmitty.event"
+#include "s/FireEmblemSeries/FE09VstheBlackKnightWhattheshmitty.event"
 }
 
 { ; SongTable(FE09WithUsSmeID, FE09WithUsSme, 0)
