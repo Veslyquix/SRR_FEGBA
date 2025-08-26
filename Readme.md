@@ -256,7 +256,7 @@ Portraits
 -   
    
 // fe1 / fe3 / remakes    
-Marth portrait by Lenh     
+Marth portrait by Lenh, Blaze, Nickt, AthenaBaer     
 Jagen portrait by Thorn     
 Caeda portrait by Nickt, Blueyguy     
 Cain portrait by Xenith, Nickt, Blaze     
@@ -265,17 +265,17 @@ Draug portrait by Thorn
 Gordin portrait by Thorn     
 Wrys portrait by Thorn     
 Ogma portrait by Thorn     
-Barst portrait by Thorn     
+Barst portrait by Nobody, Glaceo, Nickt, ReykRS, AthenaBaer     
 Bord portrait by Frigid, Nickt     
 Cord portrait by Frigid, Nickt, Glaceo     
 Darros portrait by FEier     
 Castor portrait by Thorn     
-Lena portrait by Thorn     
+Lena portrait by MK404, Nickt     
 Julian portrait by Thorn     
 Navarre portrait by BuskHusker     
 Matthis portrait by Thorn     
-Merric portrait by Thorn     
-Hardin portrait by Thorn     
+Merric portrait by Blaze, Nickt     
+Hardin portrait by Nickt     
 Wolf portrait by Thorn    
 Sedgar portrait by Thorn, AlemOwl     
 Roshea portrait by Thorn     
@@ -285,11 +285,11 @@ Rickard portrait by Thorn
 Bantu portrait by Thorn     
 Caesar portrait by Thorn     
 Radd portrait by Thorn     
-Roger portrait by Thorn     
-Jeorge portrait by Thorn     
+Roger portrait by StairFacts, Nickt, Lenh     
+Jeorge portrait by Glaceo     
 Maria portrait by BuskHusker     
 Minerva portrait by BuskHusker     
-Linde portrait by MK404     
+Linde portrait by MK404, Nickt     
 Jake portrait by Thorn     
 Boah portrait by Thorn     
 Tomas portrait by Thorn     
@@ -300,12 +300,12 @@ Beck portrait by Thorn
 Astram portrait by GratedShtick, Cardcafe, Nickt, CranJam     
 Palla portrait by RedBean     
 Catria portrait by RedBean     
-Samson portrait by Thorn     
+Samson portrait by Atey     
 Arran portrait by Thorn     
 Xane portrait by Thorn     
 Est portrait by RedBean     
 Tiki portrait by BatimaTheBat     
-Lorenz portrait by Sterling_Glovner     
+Lorenz portrait by Melia     
 Elice portrait by Thorn     
 Gotoh portrait by Thorn     
 Frey portrait by Thorn     
