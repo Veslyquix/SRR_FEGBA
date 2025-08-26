@@ -12,5 +12,17 @@
 #include "AircaliburEckesachsBindingBladeFix.event" // Thanks, Ditto 
 #include "Anim_AutoGenLeftOAM/Installer.event" 
 
+// Support viewer 100% / all unlocked 
+PUSH 
+// GetTotalGlobalSupportValue always 100% 
+ORG $a3500
+SHORT $20FF 
+SHORT $4770 
+
+// Unlock all supports in support viewer always 
+ORG 0xA36C4; BYTE 0x03 0x20	//必ず支援3まであると返す
+ORG 0xAB93A; BYTE 0x00 0x00	//必ずエクストラ支援画面を表示する
+ORG 0xA3824; BYTE 0x01		//GGM_IsCharacterKnown always 1
+POP 
 
 
