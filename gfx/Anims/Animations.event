@@ -1,139 +1,43 @@
 
-
-// might need to port generic handaxs patch to fe6 or add a case for tomahawk 0x7F wep 
-
 ALIGN 4 
 
-/*
-// Chat GPT prompt 
-// Please format my data as such: 
-// 1. Take the weapon type from this list off for the label name.
-// Sword, Lance, HandAxe, Axe, Bow, Staff, Anima, Light, Dark, Unarmed, Monster, Refresh  
-// Oni_ChieftainAxe becomes Oni_Chieftain_Anim: 
-// 2. "Oni_Chieftain" is used multiple times for different weapon types, so it is grouped together as part of "Oni_Chieftain_Anim:" 
-// 3. for each time it's used, add an entry using the relevant macro. Eg. "Oni_ChieftainAxe" becomes "AxeAnim(OniChieftainAxe)" 
-// When "Magic" is found in the definition, make an entry for "Anima", "Light", and "Dark" 
-// 4. Remove comments 
-// 5. If "Unarmed" is not found but "Magic" is, use "Unarmed" with the "Magic" definition. 
-// Example: 
+#ifdef _FE8_ 
+    #define WyvernRiderLanceID 0x58 // From Vanilla Battle Animations table 
+    #define WyvernRiderUnarmedID 0x59 
+    // more defs here 
 
-#define Oni_ChieftainAxe (StartingAnimID+2)
-#define Oni_ChieftainHandaxe (StartingAnimID+3)
-#define Oni_ChieftainMagic (StartingAnimID+4)
-
-// turns into: 
-
-Oni_Chieftain_Anim:
-animEntry(Oni_ChieftainAxe) 
-AxeAnim(Oni_ChieftainAxe) 
-HandAxeAnim(Oni_ChieftainHandaxe) 
-AnimaAnim(Oni_ChieftainMagic) 
-LightAnim(Oni_ChieftainMagic) 
-DarkAnim(Oni_ChieftainMagic) 
-UnarmedAnim(Oni_ChieftainMagic) 
-weaponAnimEnd(6) // 6 entries after "animEntry()", so "6" goes in "weaponAnimEnd" 
+#endif 
 
 
+#ifdef _FE7_ 
+    #define WyvernRiderLanceID 0x86 
+    #define WyvernRiderUnarmedID 0x87 
 
-// Data to format: 
-#define Grand_MahoutBow (StartingAnimID+62)
-#define Grand_MahoutLance (StartingAnimID+63)
-#define Grand_MahoutMonster (StartingAnimID+64)
-#define BrawlerMelee (StartingAnimID+61)
-#define EnchanterKnife (StartingAnimID+100)
-#define EnchanterMelee (StartingAnimID+101)
-#define Black_DragonMonster (StartingAnimID+162)
-#define Black_DragonUnarmed (StartingAnimID+163)
-#define DjinnMagic (StartingAnimID+171)
-#define DjinnSupply (StartingAnimID+172)
-#define DjinnSword (StartingAnimID+173)
-#define Living_ArmorAxe (StartingAnimID+174)
-#define Living_ArmorHandaxe (StartingAnimID+175)
-#define Living_ArmorSword (StartingAnimID+176)
-#define Living_ArmorUnarmed (StartingAnimID+177)
-#define FellbeastMonster (StartingAnimID+178)
-*/ 
-
-/* Classes (54) 
-//Swords:
-Alm_T1
-Alm_T2
-Ike_Lord
-Ike_Ranger
-Leif_Lord
-Marth_Slash
-Ninja
-Seliph
-T1_Lancer
-Trueblade
-Katarina_Fencer
-
-//Lances:
-Dragoon
-Lancer_by_SALVAGED
-Militia
-Halberdier
-Mounted_Marauder
-Sentinel
-Warbird
-Supplier_Anna
-
-//Axes:
-Baron
-Brighid
-Flail_Knight
-Gladiator
-Harbinger
-Heavy_Infantry
-Legion_King
-Mercenary_by_SALVAGED
-Phantom_by_TBA
-War_Cleric
-Mounted_Marauder
-
-//Bows:
-Adventurer
-Fletchling
-Hunter
-Merlinus_Transport
-Miko
-Skeleton_Rider
-
-//Magic:
-Angel
-Arcanist_by_Devisian_Nights
-Arcanist_by_Nuramon
-Cantor_Jedah
-Cantor_by
-Dark_Prince
-Dread_Fighter
-Executioner
-FE8_Tethys
-Gaiden_Priestess
-Kishuna
-Magician
-Occultist
-Parson
-PupilReskin
-Red_Mage_by_Reyk
-Red_mage_by_Mycahel
-Tactician
-Tomes
-Witch
-Egyptian
-Elffin_Fancy
-FE8_Tethys
+#endif 
 
 
-//Monsters:
-Chicken
-Mosquito
-Sandworm
-Slime
-Cursed_Sword
+#ifdef _FE6_ 
+    #define WyvernRiderLanceID 0x4d 
+    #define WyvernRiderUnarmedID 0x4e 
+
+#endif 
 
 
-*/ 
+WyvernRider_Anim: // This label goes into the class table 
+animEntry(WyvernRiderLanceID) // this makes it the default animation to use for all weapon types 
+LanceAnim(WyvernRiderLanceID) 
+// AxeAnim(WyvernRiderAxe) // optionally uncomment after adding an animation for this  
+UnarmedAnim(WyvernRiderUnarmedID)
+weaponAnimEnd(2)
+
+
+
+
+
+
+
+// Custom classes below 
+
 
 Fletchling_Anim:
 animEntry(FletchlingBow)
@@ -891,15 +795,3 @@ LanceAnim(EphraimGreatLordLance)
 UnarmedAnim(EphraimGreatLordUnarmed)
 weaponAnimEnd(3)
 
-
-#ifdef _FE8_ 
-#define WyvernRiderLanceID 0x58 // From Vanilla Battle Animations table 
-#define WyvernRiderUnarmedID 0x59 // From Vanilla Battle Animations table 
-
-WyvernRider_Anim:
-animEntry(WyvernRiderLanceID) 
-LanceAnim(WyvernRiderLanceID) 
-// AxeAnim(WyvernRiderAxe) // uncomment after adding an animation for this  
-UnarmedAnim(WyvernRiderUnarmedID)
-
-#endif 

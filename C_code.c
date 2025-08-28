@@ -6578,7 +6578,7 @@ int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
 {
     int result = ShouldRandomizeClass(unit);
     struct PidStatsChar * pidStats = GetPidStatsSafe(unit->pCharacterData->number);
-    if (pidStats)
+    if (pidStats && unit->pCharacterData->portraitId) // portrait Id too because generic brigands 0x42 in fe7
     {
         int forcedClass = pidStats->forcedClass;
         if (unit->pCharacterData->defaultClass != forcedClass)
@@ -10520,7 +10520,6 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 
     int RandomizeRecruitment =
         IsClassOrRecruitmentRandomized(unit); // did we change their class / weapon / recruitment?
-
     if (RandomizeRecruitment)
     {
         character = GetReorderedUnit(unit);
