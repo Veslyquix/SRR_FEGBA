@@ -4,7 +4,7 @@ gVanillaClassFilter:
 FILL 256 
 
 #define VCF(id, vanillaClassSubstituteID) "PUSH; ORG gVanillaClassFilter + id; BYTE vanillaClassSubstituteID; POP" 
-
+#ifdef VeslyBuildfile 
 VCF(AlmT1,	Mercenary)
 VCF(AlmT2,	Hero)
 VCF(IkeLord,	Hero)
@@ -94,3 +94,7 @@ VCF(DarkPrince, Druid)
 VCF(EirikaLord, Myrmidon_F)
 VCF(EphraimLord, RoyLord)
 #endif
+#endif 
+
+
+

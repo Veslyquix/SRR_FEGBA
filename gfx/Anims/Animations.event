@@ -890,3 +890,16 @@ animEntry(EphraimGreatLordLance) // animEntry goes first, I think
 LanceAnim(EphraimGreatLordLance)
 UnarmedAnim(EphraimGreatLordUnarmed)
 weaponAnimEnd(3)
+
+
+#ifdef _FE8_ 
+#define WyvernRiderLanceID 0x58 // From Vanilla Battle Animations table 
+#define WyvernRiderUnarmedID 0x59 // From Vanilla Battle Animations table 
+
+WyvernRider_Anim:
+animEntry(WyvernRiderLanceID) 
+LanceAnim(WyvernRiderLanceID) 
+// AxeAnim(WyvernRiderAxe) // uncomment after adding an animation for this  
+UnarmedAnim(WyvernRiderUnarmedID)
+
+#endif 

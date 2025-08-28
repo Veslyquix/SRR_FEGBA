@@ -6453,6 +6453,10 @@ extern const struct gCharPal_EntryStruct * const gCharPal[];
 extern s16 gBanimUniquePal[2];
 const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
 {
+    if (!VeslyBuildfile_Link)
+    {
+        return NULL;
+    }
     const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
     const u16 * pal = NULL;
     if (!entry) // no pointer
