@@ -27,6 +27,7 @@ MugEntry(LonquMug, LonquMugData, LonquMinimugData, LonquFramesData, LonquPalette
 MugEntry(LucinaMug, LucinaMugData, LucinaMinimugData, LucinaFramesData, LucinaPaletteData,  4, 6, 4, 4)
 MugEntry(MaribelleMug, MaribelleMugData, MaribelleMinimugData, MaribelleFramesData, MaribellePaletteData,  3, 6, 3, 4)
 MugEntry(MirielMug, MirielMugData, MirielMinimugData, MirielFramesData, MirielPaletteData,  3, 5, 3, 3)
+MugEntry(MorganFMug, MorganFMugData, MorganFMinimugData, MorganFFramesData, MorganFPaletteData,  3, 6, 3, 4)
 MugEntry(MorganMug, MorganMugData, MorganMinimugData, MorganFramesData, MorganPaletteData,  3, 6, 3, 4)
 MugEntry(NahMug, NahMugData, NahMinimugData, NahFramesData, NahPaletteData,  3, 7, 3, 5)
 MugEntry(NoireMug, NoireMugData, NoireMinimugData, NoireFramesData, NoirePaletteData,  3, 6, 3, 4)
@@ -413,6 +414,7 @@ MugEntry(KannivalMug, KannivalMugData, KannivalMinimugData, KannivalFramesData, 
 MugEntry(KhozenMug, KhozenMugData, KhozenMinimugData, KhozenFramesData, KhozenPaletteData,  4, 6, 4, 4)
 MugEntry(LarissaMug, LarissaMugData, LarissaMinimugData, LarissaFramesData, LarissaPaletteData,  2, 4, 2, 2)
 MugEntry(LegionMug, LegionMugData, LegionMinimugData, LegionFramesData, LegionPaletteData,  2, 5, 2, 3)
+MugEntry(LumelMug, LumelMugData, LumelMinimugData, LumelFramesData, LumelPaletteData,  3, 5, 3, 3)
 MugEntry(MannuMug, MannuMugData, MannuMinimugData, MannuFramesData, MannuPaletteData,  3, 6, 2, 4)
 MugEntry(MedeusMug, MedeusMugData, MedeusMinimugData, MedeusFramesData, MedeusPaletteData,  6, 4, 6, 2)
 MugEntry(MerachMug, MerachMugData, MerachMinimugData, MerachFramesData, MerachPaletteData,  2, 5, 3, 2)
@@ -1440,15 +1442,26 @@ MirielMinimugData:
 #incbin "png/FE13/Miriel_Garytop_F2E_minimug.dmp"
 
 ALIGN 4
+MorganFMugData:
+#incbin "png/FE13/MorganF_Garytop_mug.dmp"
+ALIGN 4
+MorganFFramesData:
+#incbin "png/FE13/MorganF_Garytop_frames.dmp"
+MorganFPaletteData:
+#incbin "png/FE13/MorganF_Garytop_palette.dmp"
+MorganFMinimugData:
+#incbin "png/FE13/MorganF_Garytop_minimug.dmp"
+
+ALIGN 4
 MorganMugData:
-#incbin "png/FE13/Morgan_Redbean_F2E_mug.dmp"
+#incbin "png/FE13/Morgan_Garytop_mug.dmp"
 ALIGN 4
 MorganFramesData:
-#incbin "png/FE13/Morgan_Redbean_F2E_frames.dmp"
+#incbin "png/FE13/Morgan_Garytop_frames.dmp"
 MorganPaletteData:
-#incbin "png/FE13/Morgan_Redbean_F2E_palette.dmp"
+#incbin "png/FE13/Morgan_Garytop_palette.dmp"
 MorganMinimugData:
-#incbin "png/FE13/Morgan_Redbean_F2E_minimug.dmp"
+#incbin "png/FE13/Morgan_Garytop_minimug.dmp"
 
 ALIGN 4
 NahMugData:
@@ -5684,6 +5697,17 @@ LegionPaletteData:
 #incbin "png/FE1_Bosses/Legion_Glaceo_palette.dmp"
 LegionMinimugData:
 #incbin "png/FE1_Bosses/Legion_Glaceo_minimug.dmp"
+
+ALIGN 4
+LumelMugData:
+#incbin "png/FE1_Bosses/Lumel_AlexYTXG_mug.dmp"
+ALIGN 4
+LumelFramesData:
+#incbin "png/FE1_Bosses/Lumel_AlexYTXG_frames.dmp"
+LumelPaletteData:
+#incbin "png/FE1_Bosses/Lumel_AlexYTXG_palette.dmp"
+LumelMinimugData:
+#incbin "png/FE1_Bosses/Lumel_AlexYTXG_minimug.dmp"
 
 ALIGN 4
 MannuMugData:

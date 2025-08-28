@@ -361,6 +361,7 @@ Jiol portrait by Thorn
 Kannival portrait by Thorn   
 Khozen portrait by Thorn   
 Larissa portrait by Thorn   
+Lumel portrait by AlexYTXG
 Legion portrait by Glaceo       
 Mannu portrait by Thorn   
 Medeus portrait by Thorn   
@@ -849,7 +850,8 @@ Kjelle portrait by Garytop
 Cynthia portrait by Garytop     
 Severa portrait by Garytop     
 Gerome portrait by Garytop     
-Morgan portrait by RedBean     
+Morgan portrait by Garytop       
+MorganF portrait by Garytop     
 Yarne portrait by Garytop     
 Laurent portrait by Garytop     
 Noire portrait by Garytop     

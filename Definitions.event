@@ -1,5 +1,4 @@
 
-
 #define PortraitsRom 0x1030000 
 #define AnimsRom 0x1500000 
 #define EndOfAnimsRom 0x1A50000 
@@ -257,7 +256,6 @@ EphraimGreat
 // Bosses 
 
 // fe1 
-#define LumelMug     BlankMug
 #define LykkeMug     BlankMug
 #define GailMug      BlankMug
 #define TorusMug     BlankMug
@@ -388,6 +386,7 @@ Sothis
 
 
 #ifndef _FE6_
+#define RoyMasterLord MasterLord
 #define Mamkute_F Manakete_2_F
 #endif 
 
@@ -400,7 +399,7 @@ Sothis
 #undef Mercenary_F 
 #define Mercenary_F Mercenary 
 
-// RoyMasterLord 
+
 #define Knight ArmourKnight
 #define Knight_F ArmourKnight_F
 #define Fighter Axefighter

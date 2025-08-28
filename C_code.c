@@ -1798,11 +1798,26 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     int classID = GetCharOverwrittenClassID(pidStats);
     if (!classID)
     {
-        classID = VanillaClassFilter(table->defaultClass, true);
+        if (RandBitflags->class != 1 && RandBitflags->class != 2)
+        {
+            classID = VanillaClassFilter(table->defaultClass, true);
+            PutDrawText(
+                gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 14, 16), gold, 0, 0,
+                GetStringFromIndex(GetClassData(classID)->nameTextId)); // Class name
+        }
+        else
+        {
+            PutDrawText(
+                gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 14, 16), gold, 0, 0,
+                "Random"); // Class name
+        }
     }
-    PutDrawText(
-        gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 14, 16), gold, 0, 0,
-        GetStringFromIndex(GetClassData(classID)->nameTextId)); // Class name
+    else
+    {
+        PutDrawText(
+            gStatScreen.text + 6, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 14, 16), gold, 0, 0,
+            GetStringFromIndex(GetClassData(classID)->nameTextId)); // Class name
+    }
 
 #ifdef ReviseChar_MapSprites
 #ifdef FE6
@@ -2828,20 +2843,26 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     int classID = GetCharOverwrittenClassID(pidStats);
     if (!classID)
     {
-        classID = VanillaClassFilter(table->defaultClass, true);
+        if (RandBitflags->class != 1 && RandBitflags->class != 2)
+        {
+            classID = VanillaClassFilter(table->defaultClass, true);
+        }
     }
-
     ForceSyncUnitSpriteSheet();
+    if (classID)
+    {
+
 #ifdef FE6
-    struct Unit unit;
-    unit.pCharacterData = (void *)table;
-    unit.pClassData = GetClassData(classID);
-    unit.xPos = 0;
-    unit.yPos = 0;
-    PutBlendWindowUnitSprite(0, 212, 138, 0xC800, &unit);
+        struct Unit unit;
+        unit.pCharacterData = (void *)table;
+        unit.pClassData = GetClassData(classID);
+        unit.xPos = 0;
+        unit.yPos = 0;
+        PutBlendWindowUnitSprite(0, 212, 138, 0xC800, &unit);
 #else
-    PutUnitSpriteForClassId(0, 212, 138, 0xC800, classID);
+        PutUnitSpriteForClassId(0, 212, 138, 0xC800, classID);
 #endif
+    }
     if (!pidStats)
     {
         PlayErrorSfx();
@@ -10597,14 +10618,14 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     int personalWexp = 0;
     noise[2] = unit->pClassData->number;
     tmp = 0;
-    if (ShouldRandomizeClass(unit))
+    if (RandomizeRecruitment)
     {
         for (int c = 0; c < 8; ++c)
         {
             tmp = character->baseRanks[c];
             if (tmp > personalWexp)
             {
-                personalWexp = tmp;
+                personalWexp = tmp; // highest rank
             }
         }
     }
@@ -10640,7 +10661,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
             // flux is D rank, not E...
         }
 
-        if (!ShouldRandomizeClass(unit))
+        if (!RandomizeRecruitment)
         {
             if (character->baseRanks[i])
             { // original
@@ -13479,7 +13500,7 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     proc->Option[GrowthsOption] = 1;
     proc->Option[LevelupsOption] = 1;
     proc->Option[StatCapsOption] = 1;
-    proc->Option[ClassOption] = 4;
+    proc->Option[ClassOption] = 1;
     proc->Option[ItemOption] = 1;
     proc->Option[VanillaItemOption] = 1;
     proc->Option[ModeOption] = 0;        // Classic
@@ -15968,6 +15989,7 @@ int IsUnitStuck(struct Unit * unit)
     return notStuck;
 }
 // no fe6
+// CanUnitCrossTerrain
 const s8 * GetUnitMovementCost(struct Unit * unit)
 { // 80187d4
 #ifndef FE6
@@ -15976,7 +15998,7 @@ const s8 * GetUnitMovementCost(struct Unit * unit)
         return Ballista_TerrainTable;
     } // fe8 is 80BC18
 #endif
-    if (ShouldRandomizeClass(unit))
+    if (IsClassOrRecruitmentRandomized(unit))
     {
         // if (UNIT_FACTION != FACTION_BLUE) {
         int stuck = IsUnitStuck(unit);
