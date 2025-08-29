@@ -10616,36 +10616,36 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
 
     ForceEarlygameClasses(unit, noise2, 0);
 
-    int wexp = 0;
-    int tmp = 0;
-    int personalWexp = 0;
+    int classWexp = 0;
+    int charWexp = 0;
+    int highestWexp = 0;
     noise[2] = unit->pClassData->number;
-    tmp = 0;
     int randomizeClass = ShouldRandomizeClass(unit);
     if (RandomizeRecruitment)
     {
         for (int c = 0; c < 8; ++c)
         {
-            tmp = character->baseRanks[c];
-            if (tmp > personalWexp)
+            charWexp = character->baseRanks[c];
+            if (charWexp > highestWexp)
             {
-                personalWexp = tmp; // highest rank
+                highestWexp = charWexp; // highest rank
             }
         }
     }
     for (int i = 0; i < 8; ++i)
     {
-        wexp = unit->pClassData->baseRanks[i];
-        if (wexp || !randomizeClass) // replaced chars keep their weapon ranks
+        classWexp = unit->pClassData->baseRanks[i];
+        charWexp = character->baseRanks[i];
+        if (classWexp || (!randomizeClass && charWexp)) // replaced chars keep their weapon ranks
         {
-            if (personalWexp > wexp)
+            if (highestWexp > classWexp)
             {
-                wexp = personalWexp;
+                classWexp = highestWexp;
             }
         }
 
-        wexp = HashWexp(wexp, noise, i);
-        unit->ranks[i] = wexp;
+        classWexp = HashWexp(classWexp, noise, i);
+        unit->ranks[i] = classWexp;
 
         if (i == 7)
         { // dark
