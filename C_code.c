@@ -10621,6 +10621,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     int personalWexp = 0;
     noise[2] = unit->pClassData->number;
     tmp = 0;
+    int randomizeClass = ShouldRandomizeClass(unit);
     if (RandomizeRecruitment)
     {
         for (int c = 0; c < 8; ++c)
@@ -10635,7 +10636,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     for (int i = 0; i < 8; ++i)
     {
         wexp = unit->pClassData->baseRanks[i];
-        if (wexp)
+        if (wexp || !randomizeClass) // replaced chars keep their weapon ranks
         {
             if (personalWexp > wexp)
             {
