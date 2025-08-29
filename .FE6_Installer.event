@@ -396,6 +396,10 @@ ORG $881CC
 jumpToHack(SaveScreen_FE6) 
 #endif 
 
+
+ORG $6076FA 
+BYTE 1 // RoyLock 
+#ifdef VeslyBuildfile
 // roy can seize? 
 //Character Editor  (UnitFE6Form) @01 Roy2024-04-04 8:24:40 PM
 ORG $6076D0
@@ -405,6 +409,7 @@ BYTE  $EC $07 $B9 $04 $01 $01 $02 $00 $00 $01 $01 $01 $00 $02 $02 $03 $00 $00 $0
 ORG $6089C0
 BYTE  $4D $08 $0E $05 $66 $3C $BE $00 $00 $00 $00 $14 $26 $04 $03 $0B $02 $00 $12 $00 $00 $00 $00 $00 $00 $00 $00 $00 $64 $64 $64 $64 $64 $64 $64 $00 $00 $00 $00 $00 $00 $41 $00 $01 $00 $00 $00 $00;
 // make Idunn a promoted unit with 100% growths 
+#endif 
 
 // 2529C some promo something 
 
