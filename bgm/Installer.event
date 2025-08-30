@@ -109,6 +109,10 @@ POIN NewSongTable
         // AddExtraMenuOption(proc, EXTRA_MENU_OPTION_SOUND_ROOM);
 ORG $A60EA // sound room always unlocked 
 SHORT $46C0 
+
+ORG 0xA60EE
+BYTE 2 
+
 ORG $aadcc 
 SHORT $2001 $4770 // IsSoundRoomSongPlayable (always true) 
 ORG $aaefc 
