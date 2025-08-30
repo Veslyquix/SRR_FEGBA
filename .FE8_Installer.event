@@ -168,7 +168,7 @@ WORD 0
 #ifdef Reskin 
 #define RandomizerRam 0x203EA34 // 16 bytes of unit id 0x1B (Enemy) BWL data //0x203EC24 // 12 bytes of 0x3A unit BWL data 
 #else 
-#define RandomizerRam 0x203EC24 // 16 bytes of unit id 0x39 (Enemy) BWL data //0x203EC24 // 12 bytes of 0x3A unit BWL data 
+#define RandomizerRam 0x203EC14 // 16 bytes of unit id 0x39 (Enemy) BWL data //0x203EC24 // 12 bytes of 0x3A unit BWL data 
 #endif 
 #endif 
 ALIGN 4
