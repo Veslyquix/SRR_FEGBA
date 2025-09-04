@@ -1,0 +1,8084 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	DiddyKongRacingWizpigRace_grp  voicegroup000
+	#define	DiddyKongRacingWizpigRace_pri  0
+	#define	DiddyKongRacingWizpigRace_rev  0
+	#define	DiddyKongRacingWizpigRace_mvl  95
+	#define	DiddyKongRacingWizpigRace_key  0
+	#define	DiddyKongRacingWizpigRace_tbs  1
+	#define	DiddyKongRacingWizpigRace_exg  0
+	#define	DiddyKongRacingWizpigRace_cmp  1
+
+	// .rodata
+	//	DiddyKongRacingWizpigRace
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+DiddyKongRacingWizpigRace_1:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_1_B1:
+// 000   ----------------------------------------
+	BYTE	TEMPO   137*DiddyKongRacingWizpigRace_tbs/2
+	BYTE		VOICE   38
+	BYTE		PAN     c_v+0
+	BYTE		VOL     115*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		N22     Cn2   v100
+	BYTE	W24
+	BYTE		N10     An1 
+	BYTE	W12
+	BYTE		N05     Cn2   v092
+	BYTE	W12
+	BYTE		N14     Fs2   v100
+	BYTE	W24
+	BYTE		N19     Fn2 
+	BYTE	W24
+// 001   ----------------------------------------
+	BYTE		N84     En2   v104
+	BYTE	W96
+// 002   ----------------------------------------
+DiddyKongRacingWizpigRace_1_002:
+	BYTE		N22     Cn2   v100
+	BYTE	W24
+	BYTE		N08     An1   v088
+	BYTE	W12
+	BYTE		N05     Cn2 
+	BYTE	W12
+	BYTE		N14     Fs2   v112
+	BYTE	W24
+	BYTE		N18     Fn2   v092
+	BYTE	W24
+	BYTE	PEND
+// 003   ----------------------------------------
+DiddyKongRacingWizpigRace_1_003:
+	BYTE		N13     En2   v100
+	BYTE	W24
+	BYTE		        En2   v112
+	BYTE	W24
+	BYTE		N14   
+	BYTE	W24
+	BYTE		N16     En2   v120
+	BYTE	W24
+	BYTE	PEND
+// 004   ----------------------------------------
+DiddyKongRacingWizpigRace_1_004:
+	BYTE		N19     Cn2   v084
+	BYTE	W24
+	BYTE		N17     Fs1   v100
+	BYTE	W24
+	BYTE		N20     Cn2   v084
+	BYTE	W24
+	BYTE		N08     Ds2   v104
+	BYTE	W12
+	BYTE		N10     Dn2   v100
+	BYTE	W12
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 008   ----------------------------------------
+DiddyKongRacingWizpigRace_1_008:
+	BYTE		N14     As1   v112
+	BYTE	W24
+	BYTE		        As1   v120
+	BYTE	W24
+	BYTE		        Cs2   v104
+	BYTE	W24
+	BYTE		        As1 
+	BYTE	W24
+	BYTE	PEND
+// 009   ----------------------------------------
+DiddyKongRacingWizpigRace_1_009:
+	BYTE		N14     Fs2   v100
+	BYTE	W24
+	BYTE		        Fs2   v104
+	BYTE	W24
+	BYTE		        Fn2   v092
+	BYTE	W24
+	BYTE		N14   
+	BYTE	W24
+	BYTE	PEND
+// 010   ----------------------------------------
+DiddyKongRacingWizpigRace_1_010:
+	BYTE		N14     As1   v104
+	BYTE	W24
+	BYTE		N14   
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE	W24
+	BYTE		        Gs1   v092
+	BYTE	W24
+	BYTE	PEND
+// 011   ----------------------------------------
+DiddyKongRacingWizpigRace_1_011:
+	BYTE		N14     Fs1   v100
+	BYTE	W24
+	BYTE		        Fs1   v104
+	BYTE	W24
+	BYTE		        Fn1   v092
+	BYTE	W24
+	BYTE		        Fn1   v100
+	BYTE	W24
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_011
+// 016   ----------------------------------------
+DiddyKongRacingWizpigRace_1_016:
+	BYTE		N16     Cn2   v100
+	BYTE	W24
+	BYTE		        Cn2   v092
+	BYTE	W24
+	BYTE		        Cn2   v084
+	BYTE	W24
+	BYTE		        Cn2   v076
+	BYTE	W24
+	BYTE	PEND
+// 017   ----------------------------------------
+DiddyKongRacingWizpigRace_1_017:
+	BYTE		N16     Fs1   v104
+	BYTE	W24
+	BYTE		        Fs1   v088
+	BYTE	W24
+	BYTE		        Fs1   v100
+	BYTE	W24
+	BYTE		        Fs1   v104
+	BYTE	W24
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_016
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_017
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_016
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_017
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_016
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_017
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 028   ----------------------------------------
+DiddyKongRacingWizpigRace_1_028:
+	BYTE		N05     As1   v112
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W12
+	BYTE		N05     Gs1   v100
+	BYTE	W12
+	BYTE		N08     Gs1   v104
+	BYTE	W12
+	BYTE		N05     Fs1   v100
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W12
+	BYTE		N05     Fn1 
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W12
+	BYTE	PEND
+// 029   ----------------------------------------
+DiddyKongRacingWizpigRace_1_029:
+	BYTE		N05     As1   v100
+	BYTE	W12
+	BYTE		N08     As1   v104
+	BYTE	W12
+	BYTE		N05     Gs1   v100
+	BYTE	W12
+	BYTE		N08     Gs1   v104
+	BYTE	W12
+	BYTE		N05     Fs1   v100
+	BYTE	W12
+	BYTE		N08   
+	BYTE	W12
+	BYTE		N05     Fn1 
+	BYTE	W12
+	BYTE		N08     Fn1   v092
+	BYTE	W12
+	BYTE	PEND
+// 030   ----------------------------------------
+DiddyKongRacingWizpigRace_1_030:
+	BYTE		N05     As1   v100
+	BYTE	W12
+	BYTE		N08     As1   v104
+	BYTE	W12
+	BYTE		N05     Gs1   v092
+	BYTE	W12
+	BYTE		N08     Gs1   v104
+	BYTE	W12
+	BYTE		N05     Fs1   v088
+	BYTE	W12
+	BYTE		N08     Fs1   v100
+	BYTE	W12
+	BYTE		N05     Fn1   v104
+	BYTE	W12
+	BYTE		N08     Fn1   v084
+	BYTE	W12
+	BYTE	PEND
+// 031   ----------------------------------------
+DiddyKongRacingWizpigRace_1_031:
+	BYTE	W12
+	BYTE		N05     Ds1   v120
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W24
+	BYTE		N05   
+	BYTE	W12
+	BYTE		N11   
+	BYTE	W24
+	BYTE		N08   
+	BYTE	W12
+	BYTE	PEND
+// 032   ----------------------------------------
+DiddyKongRacingWizpigRace_1_032:
+	BYTE		N04     Gs1   v096
+	BYTE	W06
+	BYTE		        As1   v088
+	BYTE	W06
+	BYTE		        Gs2   v072
+	BYTE	W06
+	BYTE		        As2   v096
+	BYTE	W18
+	BYTE		        As1   v120
+	BYTE	W24
+	BYTE		        As2   v104
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W06
+	BYTE		        As1   v112
+	BYTE	W18
+	BYTE	PEND
+// 033   ----------------------------------------
+DiddyKongRacingWizpigRace_1_033:
+	BYTE	W12
+	BYTE		N04     As1   v100
+	BYTE	W12
+	BYTE		N07     Gs1   v096
+	BYTE	W12
+	BYTE		N04     As1   v100
+	BYTE	W12
+	BYTE		N10     Fs1   v096
+	BYTE	W12
+	BYTE		N04     Fs2   v088
+	BYTE	W12
+	BYTE		N10     Fn1   v100
+	BYTE	W12
+	BYTE		N04     Fn2   v088
+	BYTE	W12
+	BYTE	PEND
+// 034   ----------------------------------------
+DiddyKongRacingWizpigRace_1_034:
+	BYTE		N04     Gs1   v080
+	BYTE	W06
+	BYTE		        As1   v088
+	BYTE	W06
+	BYTE		        Gs2   v080
+	BYTE	W06
+	BYTE		        As2   v104
+	BYTE	W18
+	BYTE		N05     As1   v112
+	BYTE	W24
+	BYTE		N04     As2   v096
+	BYTE	W12
+	BYTE		        Gs1   v084
+	BYTE	W06
+	BYTE		        As1   v100
+	BYTE	W18
+	BYTE	PEND
+// 035   ----------------------------------------
+DiddyKongRacingWizpigRace_1_035:
+	BYTE	W12
+	BYTE		N03     As1   v112
+	BYTE	W24
+	BYTE		N04     Gs1   v104
+	BYTE	W12
+	BYTE		        Fs1   v112
+	BYTE	W06
+	BYTE		        Cs2   v084
+	BYTE	W06
+	BYTE		        Fs2   v096
+	BYTE	W06
+	BYTE		        Cs2   v080
+	BYTE	W06
+	BYTE		        Fn1   v120
+	BYTE	W06
+	BYTE		        Cs2   v080
+	BYTE	W06
+	BYTE		N02     Fn2   v104
+	BYTE	W06
+	BYTE		N04     Cs2   v080
+	BYTE	W06
+	BYTE	PEND
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_032
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_033
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_034
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_035
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_1_B1
+DiddyKongRacingWizpigRace_1_B2:
+// 040   ----------------------------------------
+DiddyKongRacingWizpigRace_1_040:
+	BYTE		N22     Cn2   v100
+	BYTE	W24
+	BYTE		N10     An1 
+	BYTE	W12
+	BYTE		N05     Cn2   v092
+	BYTE	W12
+	BYTE		N14     Fs2   v100
+	BYTE	W24
+	BYTE		N19     Fn2 
+	BYTE	W24
+	BYTE	PEND
+// 041   ----------------------------------------
+	BYTE		N84     En2   v104
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_002
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_003
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_008
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_009
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_010
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_011
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_008
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_009
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_010
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_011
+// 056   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_016
+// 057   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_017
+// 058   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_016
+// 059   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_017
+// 060   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_016
+// 061   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_017
+// 062   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_016
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_017
+// 064   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 065   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 066   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 067   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 068   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_028
+// 069   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_029
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_030
+// 071   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_031
+// 072   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_032
+// 073   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_033
+// 074   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_034
+// 075   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_035
+// 076   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_032
+// 077   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_033
+// 078   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_034
+// 079   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_035
+// 080   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_040
+// 081   ----------------------------------------
+	BYTE		N84     En2   v104
+	BYTE	W96
+// 082   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_002
+// 083   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_003
+// 084   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 085   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 086   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_1_004
+// 087   ----------------------------------------
+	BYTE		N19     Cn2   v084
+	BYTE	W24
+	BYTE		N17     Fs1   v100
+	BYTE	W24
+	BYTE		N20     Cn2   v084
+	BYTE	W24
+	BYTE		N08     Ds2   v104
+	BYTE	W12
+	BYTE		N10     Dn2   v100
+	BYTE	W11
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+DiddyKongRacingWizpigRace_2:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_2_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   36
+	BYTE		VOL     127*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		N02     Cn2   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        An1 
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Cn2   v096
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fs2   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fn2 
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W08
+// 001   ----------------------------------------
+DiddyKongRacingWizpigRace_2_001:
+	BYTE		N02     En2   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W10
+	BYTE	PEND
+// 002   ----------------------------------------
+DiddyKongRacingWizpigRace_2_002:
+	BYTE		N02     Cn2   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        An1   v088
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Cn2 
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W08
+	BYTE		N02     Fs2   v116
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fn2   v096
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W08
+	BYTE	PEND
+// 003   ----------------------------------------
+DiddyKongRacingWizpigRace_2_003:
+	BYTE		N02     En2   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        En2   v116
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        En2   v124
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE	PEND
+// 004   ----------------------------------------
+DiddyKongRacingWizpigRace_2_004:
+	BYTE		N02     Cn2   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W06
+	BYTE		N02     Fs1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Cn2   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Ds2   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Dn2   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 008   ----------------------------------------
+DiddyKongRacingWizpigRace_2_008:
+	BYTE		N02     As1   v116
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        As1   v124
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Cs2   v108
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        As1 
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE	PEND
+// 009   ----------------------------------------
+DiddyKongRacingWizpigRace_2_009:
+	BYTE		N02     Fs2   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fs2   v108
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fn2   v096
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE	PEND
+// 010   ----------------------------------------
+DiddyKongRacingWizpigRace_2_010:
+	BYTE		N02     As1   v108
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Cs2 
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Gs1   v096
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE	PEND
+// 011   ----------------------------------------
+DiddyKongRacingWizpigRace_2_011:
+	BYTE		N02     Fs1   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fs1   v108
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fn1   v096
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fn1   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_011
+// 016   ----------------------------------------
+DiddyKongRacingWizpigRace_2_016:
+	BYTE		N02     Cn2   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Cn2   v096
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Cn2   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Cn2   v080
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE	PEND
+// 017   ----------------------------------------
+DiddyKongRacingWizpigRace_2_017:
+	BYTE		N02     Fs1   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fs1   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fs1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fs1   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_016
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_017
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_016
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_017
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_016
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_017
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 028   ----------------------------------------
+DiddyKongRacingWizpigRace_2_028:
+	BYTE		N02     As1   v116
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Gs1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Gs1   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Fs1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Fn1 
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE	PEND
+// 029   ----------------------------------------
+DiddyKongRacingWizpigRace_2_029:
+	BYTE		N02     As1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        As1   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Gs1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Gs1   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Fs1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Fn1 
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fn1   v096
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE	PEND
+// 030   ----------------------------------------
+DiddyKongRacingWizpigRace_2_030:
+	BYTE		N02     As1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        As1   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Gs1   v096
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Gs1   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Fs1   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fs1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Fn1   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fn1   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE	PEND
+// 031   ----------------------------------------
+DiddyKongRacingWizpigRace_2_031:
+	BYTE	W12
+	BYTE		N02     Ds1   v124
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE	PEND
+// 032   ----------------------------------------
+DiddyKongRacingWizpigRace_2_032:
+	BYTE		N02     Gs1   v100
+	BYTE	W06
+	BYTE		        As1   v088
+	BYTE	W06
+	BYTE		        Gs2   v076
+	BYTE	W06
+	BYTE		        As2   v100
+	BYTE	W18
+	BYTE		        As1   v124
+	BYTE	W24
+	BYTE		        As2   v108
+	BYTE	W12
+	BYTE		        Gs1   v104
+	BYTE	W06
+	BYTE		        As1   v116
+	BYTE	W18
+	BYTE	PEND
+// 033   ----------------------------------------
+DiddyKongRacingWizpigRace_2_033:
+	BYTE	W12
+	BYTE		N02     As1   v104
+	BYTE	W12
+	BYTE		        Gs1   v100
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        As1   v104
+	BYTE	W12
+	BYTE		        Fs1   v100
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Fs2   v088
+	BYTE	W12
+	BYTE		        Fn1   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Fn2   v088
+	BYTE	W12
+	BYTE	PEND
+// 034   ----------------------------------------
+DiddyKongRacingWizpigRace_2_034:
+	BYTE		N02     Gs1   v080
+	BYTE	W06
+	BYTE		        As1   v088
+	BYTE	W06
+	BYTE		        Gs2   v080
+	BYTE	W06
+	BYTE		        As2   v108
+	BYTE	W18
+	BYTE		        As1   v116
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W20
+	BYTE		N02     As2   v100
+	BYTE	W12
+	BYTE		        Gs1   v088
+	BYTE	W06
+	BYTE		        As1   v104
+	BYTE	W18
+	BYTE	PEND
+// 035   ----------------------------------------
+DiddyKongRacingWizpigRace_2_035:
+	BYTE	W12
+	BYTE		N02     As1   v116
+	BYTE	W24
+	BYTE		        Gs1   v108
+	BYTE	W12
+	BYTE		        Fs1   v116
+	BYTE	W06
+	BYTE		        Cs2   v088
+	BYTE	W06
+	BYTE		        Fs2   v100
+	BYTE	W06
+	BYTE		        Cs2   v080
+	BYTE	W06
+	BYTE		        Fn1   v124
+	BYTE	W06
+	BYTE		        Cs2   v080
+	BYTE	W06
+	BYTE		        Fn2   v108
+	BYTE	W06
+	BYTE		        Cs2   v080
+	BYTE	W06
+	BYTE	PEND
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_032
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_033
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_034
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_035
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_2_B1
+DiddyKongRacingWizpigRace_2_B2:
+// 040   ----------------------------------------
+	BYTE		N02     Cn2   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        An1 
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Cn2   v096
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W08
+	BYTE		N02     Fs2   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fn2 
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W08
+// 041   ----------------------------------------
+	BYTE		        En2   v108
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_002
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_003
+// 044   ----------------------------------------
+DiddyKongRacingWizpigRace_2_044:
+	BYTE		N02     Cn2   v088
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Fs1   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N01   
+	BYTE	W08
+	BYTE		N02     Cn2   v088
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Ds2   v108
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Dn2   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE	PEND
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_044
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_044
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_044
+// 048   ----------------------------------------
+	BYTE	W04
+	BYTE		N02     As1   v116
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        As1   v124
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Cs2   v108
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        As1 
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_009
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_010
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_011
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_008
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_009
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_010
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_011
+// 056   ----------------------------------------
+DiddyKongRacingWizpigRace_2_056:
+	BYTE		N02     Cn2   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Cn2   v096
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Cn2   v088
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Cn2   v080
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE	PEND
+// 057   ----------------------------------------
+DiddyKongRacingWizpigRace_2_057:
+	BYTE		N02     Fs1   v108
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fs1   v088
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fs1   v104
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE		        Fs1   v108
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W06
+	BYTE		N02   
+	BYTE	W14
+	BYTE	PEND
+// 058   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_056
+// 059   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_057
+// 060   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_056
+// 061   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_057
+// 062   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_056
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_057
+// 064   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 065   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 066   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 067   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 068   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_028
+// 069   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_029
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_030
+// 071   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_031
+// 072   ----------------------------------------
+DiddyKongRacingWizpigRace_2_072:
+	BYTE		N02     Gs1   v100
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        As1   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Gs2   v076
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        As2   v100
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        As1   v124
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W22
+	BYTE		        As2   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Gs1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        As1   v116
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W16
+	BYTE	PEND
+// 073   ----------------------------------------
+DiddyKongRacingWizpigRace_2_073:
+	BYTE	W12
+	BYTE		N02     As1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Gs1   v100
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W06
+	BYTE		N02     As1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fs1   v100
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Fs2   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fn1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Fn2   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE	PEND
+// 074   ----------------------------------------
+DiddyKongRacingWizpigRace_2_074:
+	BYTE		N02     Gs1   v080
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        As1   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Gs2   v080
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        As2   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        As1   v116
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W22
+	BYTE		        As2   v100
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Gs1   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        As1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W16
+	BYTE	PEND
+// 075   ----------------------------------------
+DiddyKongRacingWizpigRace_2_075:
+	BYTE	W12
+	BYTE		N02     As1   v116
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W22
+	BYTE		N02     Gs1   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fs1   v116
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Cs2   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Fs2   v100
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Cs2   v080
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Fn1   v124
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Cs2   v080
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Fn2   v108
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Cs2   v080
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE	PEND
+// 076   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_072
+// 077   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_073
+// 078   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_074
+// 079   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_075
+// 080   ----------------------------------------
+	BYTE		N02     Cn2   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        An1 
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        Cn2   v096
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fs2   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W10
+	BYTE		N02     Fn2 
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W06
+// 081   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_001
+// 082   ----------------------------------------
+	BYTE		N02     Cn2   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		        An1   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Cn2 
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Fs2   v116
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W10
+	BYTE		N02     Fn2   v096
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+// 083   ----------------------------------------
+	BYTE		        En2   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W12
+	BYTE		N02     En2   v116
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W10
+	BYTE		N02     En2   v124
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+// 084   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 085   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 086   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_2_004
+// 087   ----------------------------------------
+	BYTE		N02     Cn2   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W06
+	BYTE		N02     Fs1   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W10
+	BYTE		        Cn2   v088
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Ds2   v108
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Dn2   v104
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N02   
+	BYTE	W03
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+DiddyKongRacingWizpigRace_3:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_3_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   4
+	BYTE		VOL     125*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+DiddyKongRacingWizpigRace_3_004:
+	BYTE		N05     Cn2   v076
+	BYTE	W06
+	BYTE		        As1 
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        Fs1 
+	BYTE	W06
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		        Fn1 
+	BYTE	W06
+	BYTE		        Fs1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        As1 
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        Ds2 
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W06
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 008   ----------------------------------------
+DiddyKongRacingWizpigRace_3_008:
+	BYTE		N10     As2   v060
+	BYTE		N10     As3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N10     Cn4 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE		N10     Cs4 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE		N10     Ds4 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N10     Fn4 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE		N10     Ds4 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE		N10     Cs4 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N10     Cn4 
+	BYTE	W12
+	BYTE	PEND
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 016   ----------------------------------------
+DiddyKongRacingWizpigRace_3_016:
+	BYTE		N10     Cn3   v060
+	BYTE		N10     Cn4 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE		N10     Dn4 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE		N10     Ds4 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N10     Fn4 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N10     Cn4 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE		N10     Dn4 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE		N10     Ds4 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N10     Fn4 
+	BYTE	W12
+	BYTE	PEND
+// 017   ----------------------------------------
+DiddyKongRacingWizpigRace_3_017:
+	BYTE		N10     Fs3   v060
+	BYTE		N10     Fs4 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE		N10     Gs4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N10     An4 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE		N10     Bn4 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE		N10     Fs4 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE		N10     Gs4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE		N10     An4 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE		N10     Bn4 
+	BYTE	W12
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_016
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_017
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_016
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_017
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_016
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_017
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 028   ----------------------------------------
+DiddyKongRacingWizpigRace_3_028:
+	BYTE		N05     As2   v048
+	BYTE		N05     As3 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		        Cs3 
+	BYTE		N05     Cs4 
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE		N05     Ds4 
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE		N05     Gs3 
+	BYTE	W06
+	BYTE		        As2 
+	BYTE		N05     As3 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		        Cs3 
+	BYTE		N05     Cs4 
+	BYTE	W06
+	BYTE		        Fs2 
+	BYTE		N05     Fs3 
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE		N05     Gs3 
+	BYTE	W06
+	BYTE		        As2 
+	BYTE		N05     As3 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		        Fn2 
+	BYTE		N05     Fn3 
+	BYTE	W06
+	BYTE		        Fs2 
+	BYTE		N05     Fs3 
+	BYTE	W06
+	BYTE		        Gs2 
+	BYTE		N05     Gs3 
+	BYTE	W06
+	BYTE		        As2 
+	BYTE		N05     As3 
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_028
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_028
+// 031   ----------------------------------------
+DiddyKongRacingWizpigRace_3_031:
+	BYTE		N05     An2   v060
+	BYTE		N05     An3 
+	BYTE	W06
+	BYTE		        As2 
+	BYTE		N05     As3 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		        As2 
+	BYTE		N05     As3 
+	BYTE	W06
+	BYTE		        An2 
+	BYTE		N05     An3 
+	BYTE	W06
+	BYTE		        As2 
+	BYTE		N05     As3 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		        As2 
+	BYTE		N05     As3 
+	BYTE	W06
+	BYTE		        An2 
+	BYTE		N05     An3 
+	BYTE	W06
+	BYTE		        As2 
+	BYTE		N05     As3 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N05     Cn4 
+	BYTE	W06
+	BYTE		        Cs3 
+	BYTE		N05     Cs4 
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE		N05     Ds4 
+	BYTE	W06
+	BYTE		        Fn3 
+	BYTE		N05     Fn4 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE		N05     Fs4 
+	BYTE	W06
+	BYTE		        Gs3 
+	BYTE		N05     Gs4 
+	BYTE	W06
+	BYTE	PEND
+// 032   ----------------------------------------
+DiddyKongRacingWizpigRace_3_032:
+	BYTE		N11     As1   v076
+	BYTE	W36
+	BYTE		        As0 
+	BYTE		N11     As1 
+	BYTE		N11     As2 
+	BYTE	W36
+	BYTE		        As0 
+	BYTE		N11     As1 
+	BYTE		N11     As2 
+	BYTE	W24
+	BYTE	PEND
+// 033   ----------------------------------------
+DiddyKongRacingWizpigRace_3_033:
+	BYTE	W12
+	BYTE		N08     As0   v076
+	BYTE		N08     As1 
+	BYTE		N08     As2 
+	BYTE	W12
+	BYTE		        Gs0 
+	BYTE		N08     Gs1 
+	BYTE		N08     Gs2 
+	BYTE	W12
+	BYTE		        As0 
+	BYTE		N08     As1 
+	BYTE		N08     As2 
+	BYTE	W12
+	BYTE		N17     Fs1 
+	BYTE		N17     Fs2 
+	BYTE		N17     Fs3 
+	BYTE	W24
+	BYTE		        Fn1 
+	BYTE		N17     Fn2 
+	BYTE		N17     Fn3 
+	BYTE	W24
+	BYTE	PEND
+// 034   ----------------------------------------
+DiddyKongRacingWizpigRace_3_034:
+	BYTE		N11     As0   v076
+	BYTE		N11     As1 
+	BYTE		N11     As2 
+	BYTE	W36
+	BYTE		        As0 
+	BYTE		N11     As1 
+	BYTE		N11     As2 
+	BYTE	W36
+	BYTE		        As0 
+	BYTE		N11     As1 
+	BYTE		N11     As2 
+	BYTE	W24
+	BYTE	PEND
+// 035   ----------------------------------------
+DiddyKongRacingWizpigRace_3_035:
+	BYTE	W12
+	BYTE		N08     As0   v076
+	BYTE		N08     As1 
+	BYTE		N08     As2 
+	BYTE	W24
+	BYTE		        Gs0 
+	BYTE		N08     Gs1 
+	BYTE		N08     Gs2 
+	BYTE	W12
+	BYTE		N17     Fs0 
+	BYTE		N17     Fs1 
+	BYTE		N17     Fs2 
+	BYTE	W24
+	BYTE		        Fn0 
+	BYTE		N17     Fn1 
+	BYTE		N17     Fn2 
+	BYTE	W24
+	BYTE	PEND
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_034
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_033
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_034
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_035
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_3_B1
+DiddyKongRacingWizpigRace_3_B2:
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_008
+// 056   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_016
+// 057   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_017
+// 058   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_016
+// 059   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_017
+// 060   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_016
+// 061   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_017
+// 062   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_016
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_017
+// 064   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 065   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 066   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 067   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 068   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_028
+// 069   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_028
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_028
+// 071   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_031
+// 072   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_032
+// 073   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_033
+// 074   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_034
+// 075   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_035
+// 076   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_034
+// 077   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_033
+// 078   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_034
+// 079   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_035
+// 080   ----------------------------------------
+	BYTE	W96
+// 081   ----------------------------------------
+	BYTE	W96
+// 082   ----------------------------------------
+	BYTE	W96
+// 083   ----------------------------------------
+	BYTE	W96
+// 084   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 085   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 086   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_3_004
+// 087   ----------------------------------------
+	BYTE		N05     Cn2   v076
+	BYTE	W06
+	BYTE		        As1 
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        Fs1 
+	BYTE	W06
+	BYTE		        En1 
+	BYTE	W06
+	BYTE		        Fn1 
+	BYTE	W06
+	BYTE		        Fs1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        As1 
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE	W06
+	BYTE		        Cn2 
+	BYTE	W06
+	BYTE		        Ds2 
+	BYTE	W06
+	BYTE		        Ds3 
+	BYTE	W06
+	BYTE		        Dn2 
+	BYTE	W06
+	BYTE		        Dn3 
+	BYTE	W05
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+DiddyKongRacingWizpigRace_4:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_4_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   57
+	BYTE		VOL     116*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		N22     Cn3   v080
+	BYTE		N22     Cn4 
+	BYTE	W24
+	BYTE		N10     An2 
+	BYTE		N10     An3 
+	BYTE	W12
+	BYTE		N07     Cn3 
+	BYTE		N07     Cn4 
+	BYTE	W12
+	BYTE		N14     Fs3 
+	BYTE		N14     Fs4 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE		N14     Fn4 
+	BYTE	W24
+// 001   ----------------------------------------
+	BYTE		N88     En3 
+	BYTE		N88     En4 
+	BYTE	W96
+// 002   ----------------------------------------
+DiddyKongRacingWizpigRace_4_002:
+	BYTE		N20     Cn3   v080
+	BYTE		N20     Cn4 
+	BYTE	W24
+	BYTE		N10     An2 
+	BYTE		N10     An3 
+	BYTE	W12
+	BYTE		N07     Cn3 
+	BYTE		N07     Cn4 
+	BYTE	W12
+	BYTE		N14     Fs3 
+	BYTE		N14     Fs4 
+	BYTE	W24
+	BYTE		N16     Fn3 
+	BYTE		N16     Fn4 
+	BYTE	W24
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE		N88     En3 
+	BYTE		N88     En4 
+	BYTE	W96
+// 004   ----------------------------------------
+DiddyKongRacingWizpigRace_4_004:
+	BYTE		N04     As2   v088
+	BYTE		N04     As3 
+	BYTE	W06
+	BYTE		N11     Cn3 
+	BYTE		N11     Cn4 
+	BYTE	W30
+	BYTE		N04     As2 
+	BYTE		N04     As3 
+	BYTE	W06
+	BYTE		N13     Cn3 
+	BYTE		N13     Cn4 
+	BYTE	W30
+	BYTE		N11     Cn3 
+	BYTE		N11     Cn4 
+	BYTE	W24
+	BYTE	PEND
+// 005   ----------------------------------------
+DiddyKongRacingWizpigRace_4_005:
+	BYTE		N04     As2   v088
+	BYTE		N04     As3 
+	BYTE	W06
+	BYTE		N11     Cn3 
+	BYTE		N11     Cn4 
+	BYTE	W30
+	BYTE		N04     As2 
+	BYTE		N04     As3 
+	BYTE	W06
+	BYTE		N11     Cn3 
+	BYTE		N11     Cn4 
+	BYTE	W30
+	BYTE		        Ds3 
+	BYTE		N08     Ds4 
+	BYTE		N08     Ds5 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE		N08     Dn5 
+	BYTE	W12
+	BYTE	PEND
+// 006   ----------------------------------------
+DiddyKongRacingWizpigRace_4_006:
+	BYTE		N04     As3   v088
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		N11     Cn4 
+	BYTE		N11     Cn5 
+	BYTE	W30
+	BYTE		N04     As3 
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		N14     Cn4 
+	BYTE		N14     Cn5 
+	BYTE	W30
+	BYTE		N10     Cn4 
+	BYTE		N10     Cn5 
+	BYTE	W24
+	BYTE	PEND
+// 007   ----------------------------------------
+DiddyKongRacingWizpigRace_4_007:
+	BYTE		N04     As3   v088
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		N11     Cn4 
+	BYTE		N11     Cn5 
+	BYTE	W30
+	BYTE		N04     As3 
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		N14     Cn4 
+	BYTE		N14     Cn5 
+	BYTE	W30
+	BYTE		N08     Ds4 
+	BYTE		N08     Ds5 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE		N08     Dn5 
+	BYTE	W12
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+DiddyKongRacingWizpigRace_4_010:
+	BYTE	W12
+	BYTE		N04     As3   v088
+	BYTE		N04     Fs4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE		N04     Fs4 
+	BYTE	W06
+	BYTE		N07     As3 
+	BYTE		N07     Fs4 
+	BYTE	W24
+	BYTE		N10     As3 
+	BYTE		N10     Fs4 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE		N10     Fn4 
+	BYTE	W36
+	BYTE	PEND
+// 011   ----------------------------------------
+DiddyKongRacingWizpigRace_4_011:
+	BYTE	W12
+	BYTE		N04     Fs3   v088
+	BYTE		N04     Ds4 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE		N04     Ds4 
+	BYTE	W06
+	BYTE		N08     Fs3 
+	BYTE		N08     Ds4 
+	BYTE	W24
+	BYTE		N10     Fs3 
+	BYTE		N10     Ds4 
+	BYTE	W12
+	BYTE		N11     Fn3 
+	BYTE		N11     Cs4 
+	BYTE	W36
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+DiddyKongRacingWizpigRace_4_014:
+	BYTE	W12
+	BYTE		N04     As3   v088
+	BYTE		N04     Fs4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE		N04     Fs4 
+	BYTE	W06
+	BYTE		N08     As3 
+	BYTE		N08     Fs4 
+	BYTE	W24
+	BYTE		N10     As3 
+	BYTE		N10     Fs4 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE		N10     Fn4 
+	BYTE	W36
+	BYTE	PEND
+// 015   ----------------------------------------
+DiddyKongRacingWizpigRace_4_015:
+	BYTE	W12
+	BYTE		N04     Fs3   v088
+	BYTE		N04     Ds4 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE		N04     Ds4 
+	BYTE	W06
+	BYTE		N08     Fs3 
+	BYTE		N08     Ds4 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N08     Cs4 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE		N08     Ds4 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N08     Cs4 
+	BYTE	W36
+	BYTE	PEND
+// 016   ----------------------------------------
+DiddyKongRacingWizpigRace_4_016:
+	BYTE		N22     Ds3   v088
+	BYTE		N22     Ds4 
+	BYTE	W24
+	BYTE		N08     Cn3 
+	BYTE		N08     Cn4 
+	BYTE	W12
+	BYTE		N07     Gn3 
+	BYTE		N07     Gn4 
+	BYTE	W12
+	BYTE		N22     Gs3 
+	BYTE		N22     Gs4 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE		N22     Gn4 
+	BYTE	W24
+	BYTE	PEND
+// 017   ----------------------------------------
+	BYTE		N72     Fs3 
+	BYTE		N72     Fs4 
+	BYTE	W96
+// 018   ----------------------------------------
+DiddyKongRacingWizpigRace_4_018:
+	BYTE		N20     Ds3   v088
+	BYTE		N20     Ds4 
+	BYTE	W24
+	BYTE		N10     Cn3 
+	BYTE		N10     Cn4 
+	BYTE	W12
+	BYTE		N07     Gn3 
+	BYTE		N07     Gn4 
+	BYTE	W12
+	BYTE		N20     Gs3 
+	BYTE		N20     Gs4 
+	BYTE	W24
+	BYTE		N11     Gn3 
+	BYTE		N11     Gn4 
+	BYTE	W24
+	BYTE	PEND
+// 019   ----------------------------------------
+DiddyKongRacingWizpigRace_4_019:
+	BYTE		N32     Fs3   v088
+	BYTE		N32     Fs4 
+	BYTE	W36
+	BYTE		N07     Cs3 
+	BYTE		N07     Cs4 
+	BYTE	W12
+	BYTE		N42     An2 
+	BYTE		N40     An3 
+	BYTE	W48
+	BYTE	PEND
+// 020   ----------------------------------------
+DiddyKongRacingWizpigRace_4_020:
+	BYTE		N22     Ds3   v088
+	BYTE		N22     Ds4 
+	BYTE	W24
+	BYTE		N08     Cn3 
+	BYTE		N08     Cn4 
+	BYTE	W12
+	BYTE		N07     Gn3 
+	BYTE		N07     Gn4 
+	BYTE	W12
+	BYTE		N22     Gs3 
+	BYTE		N22     Gs4 
+	BYTE	W24
+	BYTE		N20     Gn3 
+	BYTE		N20     Gn4 
+	BYTE	W24
+	BYTE	PEND
+// 021   ----------------------------------------
+	BYTE		N78     Fs3 
+	BYTE		N78     Fs4 
+	BYTE	W96
+// 022   ----------------------------------------
+DiddyKongRacingWizpigRace_4_022:
+	BYTE		N22     Ds3   v088
+	BYTE		N22     Ds4 
+	BYTE	W24
+	BYTE		N08     Cn3 
+	BYTE		N08     Cn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE		N08     Gn4 
+	BYTE	W12
+	BYTE		N22     Gs3 
+	BYTE		N22     Gs4 
+	BYTE	W24
+	BYTE		N16     Gn3 
+	BYTE		N16     Gn4 
+	BYTE	W24
+	BYTE	PEND
+// 023   ----------------------------------------
+DiddyKongRacingWizpigRace_4_023:
+	BYTE		N32     An3   v088
+	BYTE		N32     An4 
+	BYTE	W36
+	BYTE		N04     Gs3 
+	BYTE		N04     Gs4 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE		N04     Gn4 
+	BYTE	W06
+	BYTE		N44     Fs3 
+	BYTE		N44     Fs4 
+	BYTE	W48
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+DiddyKongRacingWizpigRace_4_025:
+	BYTE	W72
+	BYTE		N08     Ds4   v088
+	BYTE		N08     Ds5 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE		N08     Dn5 
+	BYTE	W12
+	BYTE	PEND
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+DiddyKongRacingWizpigRace_4_027:
+	BYTE	W72
+	BYTE		N08     Ds4   v088
+	BYTE		N08     Ds5 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N08     Dn4 
+	BYTE		N08     Fn4 
+	BYTE		N08     Dn5 
+	BYTE	W12
+	BYTE	PEND
+// 028   ----------------------------------------
+DiddyKongRacingWizpigRace_4_028:
+	BYTE		N11     As3   v088
+	BYTE		N11     As4 
+	BYTE	W36
+	BYTE		N08     Cn4 
+	BYTE		N08     Cn5 
+	BYTE	W12
+	BYTE		N10     Cs4 
+	BYTE		N10     Cs5 
+	BYTE	W36
+	BYTE		N07     Fn3 
+	BYTE		N07     Fn4 
+	BYTE	W12
+	BYTE	PEND
+// 029   ----------------------------------------
+DiddyKongRacingWizpigRace_4_029:
+	BYTE		N08     As3   v088
+	BYTE		N08     As4 
+	BYTE	W12
+	BYTE		N04     Cn4 
+	BYTE		N04     Cn5 
+	BYTE	W12
+	BYTE		N08     Cn4 
+	BYTE		N08     Cn5 
+	BYTE	W12
+	BYTE		N04     As3 
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE		N04     Cn5 
+	BYTE	W06
+	BYTE		N10     Cs4 
+	BYTE		N10     Cs5 
+	BYTE	W36
+	BYTE		N05     Fn3 
+	BYTE		N05     Fn4 
+	BYTE	W12
+	BYTE	PEND
+// 030   ----------------------------------------
+DiddyKongRacingWizpigRace_4_030:
+	BYTE		N08     As3   v088
+	BYTE		N08     As4 
+	BYTE	W12
+	BYTE		N04     Cn4 
+	BYTE		N04     Cn5 
+	BYTE	W12
+	BYTE		N10     Cn4 
+	BYTE		N10     Cn5 
+	BYTE	W12
+	BYTE		N04     As3 
+	BYTE		N04     As4 
+	BYTE	W12
+	BYTE		N10     Ds4 
+	BYTE		N10     Ds5 
+	BYTE	W12
+	BYTE		N04     Cs4 
+	BYTE		N04     Cs5 
+	BYTE	W12
+	BYTE		N10     Cs4 
+	BYTE		N10     Cs5 
+	BYTE	W12
+	BYTE		N07     Ds4 
+	BYTE		N07     Ds5 
+	BYTE	W12
+	BYTE	PEND
+// 031   ----------------------------------------
+DiddyKongRacingWizpigRace_4_031:
+	BYTE	W12
+	BYTE		N05     Cn4   v088
+	BYTE		N05     Cn5 
+	BYTE	W12
+	BYTE		N11     Cn4 
+	BYTE		N11     Cn5 
+	BYTE	W24
+	BYTE		N05     Cn4 
+	BYTE		N05     Cn5 
+	BYTE	W12
+	BYTE		N10     Cn4 
+	BYTE		N10     Cn5 
+	BYTE	W24
+	BYTE		N05     Cn4 
+	BYTE		N05     Cn5 
+	BYTE	W12
+	BYTE	PEND
+// 032   ----------------------------------------
+	BYTE		N11     As3 
+	BYTE		N11     As4 
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_4_B1
+DiddyKongRacingWizpigRace_4_B2:
+// 040   ----------------------------------------
+DiddyKongRacingWizpigRace_4_040:
+	BYTE		N22     Cn3   v080
+	BYTE		N22     Cn4 
+	BYTE	W24
+	BYTE		N10     An2 
+	BYTE		N10     An3 
+	BYTE	W12
+	BYTE		N07     Cn3 
+	BYTE		N07     Cn4 
+	BYTE	W12
+	BYTE		N14     Fs3 
+	BYTE		N14     Fs4 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE		N14     Fn4 
+	BYTE	W24
+	BYTE	PEND
+// 041   ----------------------------------------
+	BYTE		N88     En3 
+	BYTE		N88     En4 
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_002
+// 043   ----------------------------------------
+	BYTE		N88     En3   v080
+	BYTE		N88     En4 
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_004
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_005
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_006
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_007
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_010
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_011
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_014
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_015
+// 056   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_016
+// 057   ----------------------------------------
+	BYTE		N72     Fs3   v088
+	BYTE		N72     Fs4 
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_018
+// 059   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_019
+// 060   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_020
+// 061   ----------------------------------------
+	BYTE		N78     Fs3   v088
+	BYTE		N78     Fs4 
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_022
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_023
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_025
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_027
+// 068   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_028
+// 069   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_029
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_030
+// 071   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_031
+// 072   ----------------------------------------
+	BYTE		N11     As3   v088
+	BYTE		N11     As4 
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+// 078   ----------------------------------------
+	BYTE	W96
+// 079   ----------------------------------------
+	BYTE	W96
+// 080   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_040
+// 081   ----------------------------------------
+	BYTE		N88     En3   v080
+	BYTE		N88     En4 
+	BYTE	W96
+// 082   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_002
+// 083   ----------------------------------------
+	BYTE		N88     En3   v080
+	BYTE		N88     En4 
+	BYTE	W96
+// 084   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_004
+// 085   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_005
+// 086   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_4_006
+// 087   ----------------------------------------
+	BYTE		N04     As3   v088
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		N11     Cn4 
+	BYTE		N11     Cn5 
+	BYTE	W30
+	BYTE		N04     As3 
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		N14     Cn4 
+	BYTE		N14     Cn5 
+	BYTE	W30
+	BYTE		N08     Ds4 
+	BYTE		N08     Ds5 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE		N08     Dn5 
+	BYTE	W11
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+DiddyKongRacingWizpigRace_5:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_5_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   57
+	BYTE		VOL     101*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		N06     Cn3   v072
+	BYTE		N06     Cn4 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE		N06     An3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE		N06     Fs4 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE		N06     Fn4 
+	BYTE	W24
+// 001   ----------------------------------------
+	BYTE		        En3 
+	BYTE		N06     En4 
+	BYTE	W96
+// 002   ----------------------------------------
+DiddyKongRacingWizpigRace_5_002:
+	BYTE		N06     Cn3   v072
+	BYTE		N06     Cn4 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE		N06     An3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE		N06     Fs4 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE		N06     Fn4 
+	BYTE	W24
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE		        En3 
+	BYTE		N06     En4 
+	BYTE	W96
+// 004   ----------------------------------------
+DiddyKongRacingWizpigRace_5_004:
+	BYTE		N06     As2   v076
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W30
+	BYTE		        As2 
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W30
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W24
+	BYTE	PEND
+// 005   ----------------------------------------
+DiddyKongRacingWizpigRace_5_005:
+	BYTE		N06     As2   v076
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W30
+	BYTE		        As2 
+	BYTE		N06     As3 
+	BYTE	W06
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W30
+	BYTE		        Ds3 
+	BYTE		N06     Ds4 
+	BYTE	W24
+	BYTE	PEND
+// 006   ----------------------------------------
+DiddyKongRacingWizpigRace_5_006:
+	BYTE		N06     As3   v076
+	BYTE		N06     As4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W30
+	BYTE		        As3 
+	BYTE		N06     As4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W30
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W24
+	BYTE	PEND
+// 007   ----------------------------------------
+DiddyKongRacingWizpigRace_5_007:
+	BYTE		N06     As3   v076
+	BYTE		N06     As4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W30
+	BYTE		        As3 
+	BYTE		N06     As4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W30
+	BYTE		        Ds4 
+	BYTE		N06     Ds5 
+	BYTE	W24
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+DiddyKongRacingWizpigRace_5_010:
+	BYTE	W12
+	BYTE		N06     As3   v080
+	BYTE		N06     Fs4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE		N06     Fs4 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE		N06     Fs4 
+	BYTE	W24
+	BYTE		        As3 
+	BYTE		N06     Fs4 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE		N06     Fn4 
+	BYTE	W36
+	BYTE	PEND
+// 011   ----------------------------------------
+DiddyKongRacingWizpigRace_5_011:
+	BYTE	W12
+	BYTE		N06     Fs3   v080
+	BYTE		N06     Ds4 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE		N06     Ds4 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE		N06     Ds4 
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE		N06     Ds4 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N06     Cs4 
+	BYTE	W36
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_010
+// 015   ----------------------------------------
+DiddyKongRacingWizpigRace_5_015:
+	BYTE	W12
+	BYTE		N06     Fs3   v080
+	BYTE		N06     Ds4 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE		N06     Ds4 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE		N06     Ds4 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N06     Cs4 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE		N06     Ds4 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE		N06     Cs4 
+	BYTE	W36
+	BYTE	PEND
+// 016   ----------------------------------------
+DiddyKongRacingWizpigRace_5_016:
+	BYTE		N06     Ds3   v076
+	BYTE		N06     Ds4 
+	BYTE	W24
+	BYTE		        Cn3 
+	BYTE		N06     Cn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE		N06     Gn4 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE		N06     Gs4 
+	BYTE	W24
+	BYTE		        Gn3 
+	BYTE		N06     Gn4 
+	BYTE	W24
+	BYTE	PEND
+// 017   ----------------------------------------
+	BYTE		        Fs3 
+	BYTE		N06     Fs4 
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_016
+// 019   ----------------------------------------
+DiddyKongRacingWizpigRace_5_019:
+	BYTE		N06     Fs3   v076
+	BYTE		N06     Fs4 
+	BYTE	W36
+	BYTE		        Cs3 
+	BYTE		N06     Cs4 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE		N06     An3 
+	BYTE	W48
+	BYTE	PEND
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_016
+// 021   ----------------------------------------
+	BYTE		N06     Fs3   v076
+	BYTE		N06     Fs4 
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_016
+// 023   ----------------------------------------
+DiddyKongRacingWizpigRace_5_023:
+	BYTE		N06     An3   v076
+	BYTE		N06     An4 
+	BYTE	W36
+	BYTE		        Gs3 
+	BYTE		N06     Gs4 
+	BYTE	W06
+	BYTE		        Gn3 
+	BYTE		N06     Gn4 
+	BYTE	W06
+	BYTE		        Fs3 
+	BYTE		N06     Fs4 
+	BYTE	W48
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+DiddyKongRacingWizpigRace_5_027:
+	BYTE	W84
+	BYTE		N06     Fn3   v080
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE	PEND
+// 028   ----------------------------------------
+DiddyKongRacingWizpigRace_5_028:
+	BYTE		N06     As3   v080
+	BYTE		N06     As4 
+	BYTE	W36
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W12
+	BYTE		        Cs4 
+	BYTE		N06     Cs5 
+	BYTE	W36
+	BYTE		        Fn3 
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE	PEND
+// 029   ----------------------------------------
+DiddyKongRacingWizpigRace_5_029:
+	BYTE		N06     As3   v080
+	BYTE		N06     As4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N06     As4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W06
+	BYTE		        Cs4 
+	BYTE		N06     Cs5 
+	BYTE	W36
+	BYTE		        Fn3 
+	BYTE		N06     Fn4 
+	BYTE	W12
+	BYTE	PEND
+// 030   ----------------------------------------
+DiddyKongRacingWizpigRace_5_030:
+	BYTE		N06     As3   v080
+	BYTE		N06     As4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE		N06     As4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE		N06     Ds5 
+	BYTE	W12
+	BYTE		        Cs4 
+	BYTE		N06     Cs5 
+	BYTE	W12
+	BYTE		        Cs4 
+	BYTE		N06     Cs5 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE		N06     Ds5 
+	BYTE	W12
+	BYTE	PEND
+// 031   ----------------------------------------
+DiddyKongRacingWizpigRace_5_031:
+	BYTE	W12
+	BYTE		N06     Cn4   v080
+	BYTE		N06     Cn5 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W12
+	BYTE	PEND
+// 032   ----------------------------------------
+	BYTE		        As3 
+	BYTE		N06     As4 
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_5_B1
+DiddyKongRacingWizpigRace_5_B2:
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_002
+// 041   ----------------------------------------
+	BYTE		N06     En3   v072
+	BYTE		N06     En4 
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_002
+// 043   ----------------------------------------
+	BYTE		N06     En3   v072
+	BYTE		N06     En4 
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_004
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_005
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_006
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_007
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_010
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_011
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_010
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_015
+// 056   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_016
+// 057   ----------------------------------------
+	BYTE		N06     Fs3   v076
+	BYTE		N06     Fs4 
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_016
+// 059   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_019
+// 060   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_016
+// 061   ----------------------------------------
+	BYTE		N06     Fs3   v076
+	BYTE		N06     Fs4 
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_016
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_023
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_027
+// 068   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_028
+// 069   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_029
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_030
+// 071   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_031
+// 072   ----------------------------------------
+	BYTE		N06     As3   v080
+	BYTE		N06     As4 
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+// 078   ----------------------------------------
+	BYTE	W96
+// 079   ----------------------------------------
+	BYTE	W96
+// 080   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_002
+// 081   ----------------------------------------
+	BYTE		N06     En3   v072
+	BYTE		N06     En4 
+	BYTE	W96
+// 082   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_002
+// 083   ----------------------------------------
+	BYTE		N06     En3   v072
+	BYTE		N06     En4 
+	BYTE	W96
+// 084   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_004
+// 085   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_005
+// 086   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_5_006
+// 087   ----------------------------------------
+	BYTE		N06     As3   v076
+	BYTE		N06     As4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W30
+	BYTE		        As3 
+	BYTE		N06     As4 
+	BYTE	W06
+	BYTE		        Cn4 
+	BYTE		N06     Cn5 
+	BYTE	W30
+	BYTE		        Ds4 
+	BYTE		N06     Ds5 
+	BYTE	W23
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+DiddyKongRacingWizpigRace_6:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_6_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   40
+	BYTE		VOL     100*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		N24     Cn5   v100
+	BYTE	W24
+	BYTE	W03
+	BYTE		N07     An4 
+	BYTE	W09
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		N19     Fs5 
+	BYTE	W24
+	BYTE		N20     Fn5 
+	BYTE	W24
+// 001   ----------------------------------------
+	BYTE		N92     En5 
+	BYTE	W96
+// 002   ----------------------------------------
+DiddyKongRacingWizpigRace_6_002:
+	BYTE		N22     Cn5   v100
+	BYTE	W24
+	BYTE		N10     An4 
+	BYTE	W12
+	BYTE		N08     Cn5 
+	BYTE	W12
+	BYTE		N19     Fs5 
+	BYTE	W24
+	BYTE		        Fn5 
+	BYTE	W24
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE		N88     En5 
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+DiddyKongRacingWizpigRace_6_008:
+	BYTE	W24
+	BYTE		N10     As3   v108
+	BYTE		N10     As4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE		N10     Cn5 
+	BYTE	W12
+	BYTE		N22     Cs4 
+	BYTE		N22     Cs5 
+	BYTE	W24
+	BYTE		N10     As3 
+	BYTE		N10     As4 
+	BYTE	W24
+	BYTE	PEND
+// 009   ----------------------------------------
+DiddyKongRacingWizpigRace_6_009:
+	BYTE		N22     Cs4   v108
+	BYTE		N22     Cs5 
+	BYTE	W24
+	BYTE		N07     Ds4 
+	BYTE		N07     Ds5 
+	BYTE	W12
+	BYTE		N32     Cn4 
+	BYTE		N32     Cn5 
+	BYTE	W36
+	BYTE		N07     Gs3 
+	BYTE		N07     Gs4 
+	BYTE	W12
+	BYTE		N24     Fn3 
+	BYTE		N24     Fn4 
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_008
+// 013   ----------------------------------------
+DiddyKongRacingWizpigRace_6_013:
+	BYTE		N22     Fs4   v108
+	BYTE		N22     Fs5 
+	BYTE	W24
+	BYTE		N07     Gs4 
+	BYTE		N07     Gs5 
+	BYTE	W12
+	BYTE		N32     Fn4 
+	BYTE		N32     Fn5 
+	BYTE	W36
+	BYTE		N07     Ds4 
+	BYTE		N07     Ds5 
+	BYTE	W12
+	BYTE		N24     Fn4 
+	BYTE		N24     Fn5 
+	BYTE	W12
+	BYTE	PEND
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+DiddyKongRacingWizpigRace_6_024:
+	BYTE		TIE     Ds3   v056
+	BYTE		TIE     Fs3 
+	BYTE		TIE     An3 
+	BYTE	W96
+	BYTE	PEND
+// 025   ----------------------------------------
+	BYTE	W88
+	BYTE	W01
+	BYTE		EOT     Ds3 
+	BYTE		        Fs3 
+	BYTE		        An3 
+	BYTE	W07
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_024
+// 027   ----------------------------------------
+	BYTE	W88
+	BYTE	W01
+	BYTE		EOT     Ds3 
+	BYTE		        Fs3 
+	BYTE		        An3 
+	BYTE	W07
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+DiddyKongRacingWizpigRace_6_032:
+	BYTE		TIE     As1   v044
+	BYTE		TIE     Fn2 
+	BYTE	W96
+	BYTE	PEND
+// 033   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT   
+	BYTE	W02
+// 034   ----------------------------------------
+	BYTE		N92     Fs2 
+	BYTE	W96
+// 035   ----------------------------------------
+DiddyKongRacingWizpigRace_6_035:
+	BYTE		N92     Fn2   v044
+	BYTE	W92
+	BYTE	W02
+	BYTE	PEND
+	BYTE		EOT     As1 
+	BYTE	W02
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_6_B1
+DiddyKongRacingWizpigRace_6_B2:
+// 040   ----------------------------------------
+DiddyKongRacingWizpigRace_6_040:
+	BYTE		N24     Cn5   v100
+	BYTE	W24
+	BYTE	W03
+	BYTE		N07     An4 
+	BYTE	W09
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		N19     Fs5 
+	BYTE	W24
+	BYTE		N20     Fn5 
+	BYTE	W24
+	BYTE	PEND
+// 041   ----------------------------------------
+	BYTE		N92     En5 
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_002
+// 043   ----------------------------------------
+	BYTE		N88     En5   v100
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_008
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_009
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_008
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_013
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+DiddyKongRacingWizpigRace_6_064:
+	BYTE		TIE     Ds3   v044
+	BYTE		TIE     Fs3 
+	BYTE		TIE     An3 
+	BYTE	W96
+	BYTE	PEND
+// 065   ----------------------------------------
+	BYTE	W88
+	BYTE	W01
+	BYTE		EOT     Ds3 
+	BYTE		        Fs3 
+	BYTE		        An3 
+	BYTE	W07
+// 066   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_064
+// 067   ----------------------------------------
+	BYTE	W88
+	BYTE	W01
+	BYTE		EOT     Ds3 
+	BYTE		        Fs3 
+	BYTE		        An3 
+	BYTE	W07
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_032
+// 073   ----------------------------------------
+	BYTE	W92
+	BYTE	W02
+	BYTE		EOT     Fn2 
+	BYTE	W02
+// 074   ----------------------------------------
+	BYTE		N92     Fs2   v044
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_035
+	BYTE		EOT     As1 
+	BYTE	W02
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+// 078   ----------------------------------------
+	BYTE	W96
+// 079   ----------------------------------------
+	BYTE	W96
+// 080   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_040
+// 081   ----------------------------------------
+	BYTE		N92     En5   v100
+	BYTE	W96
+// 082   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_6_002
+// 083   ----------------------------------------
+	BYTE		N88     En5   v100
+	BYTE	W96
+// 084   ----------------------------------------
+	BYTE	W96
+// 085   ----------------------------------------
+	BYTE	W96
+// 086   ----------------------------------------
+	BYTE	W96
+// 087   ----------------------------------------
+	BYTE	W92
+	BYTE	W03
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+DiddyKongRacingWizpigRace_7:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_7_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   81
+	BYTE		PAN     c_v+2
+	BYTE		VOL     103*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE		TIE     En4   v040
+	BYTE		TIE     Fn4 
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W92
+	BYTE		EOT     En4 
+	BYTE		        Fn4 
+	BYTE	W04
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_7_B1
+DiddyKongRacingWizpigRace_7_B2:
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE		TIE     En4   v028
+	BYTE		TIE     Fn4 
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+// 078   ----------------------------------------
+	BYTE	W96
+// 079   ----------------------------------------
+	BYTE	W92
+	BYTE		EOT     En4 
+	BYTE		        Fn4 
+	BYTE	W04
+// 080   ----------------------------------------
+	BYTE	W96
+// 081   ----------------------------------------
+	BYTE	W96
+// 082   ----------------------------------------
+	BYTE	W96
+// 083   ----------------------------------------
+	BYTE	W96
+// 084   ----------------------------------------
+	BYTE	W96
+// 085   ----------------------------------------
+	BYTE	W96
+// 086   ----------------------------------------
+	BYTE	W96
+// 087   ----------------------------------------
+	BYTE	W92
+	BYTE	W03
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+DiddyKongRacingWizpigRace_8:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_8_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   77
+	BYTE		VOL     127*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		PAN     c_v+2
+	BYTE		N88     Ds2   v068
+	BYTE		N88     Fs2 
+	BYTE		N88     Cn3 
+	BYTE	W96
+// 001   ----------------------------------------
+DiddyKongRacingWizpigRace_8_001:
+	BYTE		N88     Gn2   v068
+	BYTE		N88     As2 
+	BYTE		N88     Cs3 
+	BYTE	W96
+	BYTE	PEND
+// 002   ----------------------------------------
+DiddyKongRacingWizpigRace_8_002:
+	BYTE		N88     Ds2   v068
+	BYTE		N88     Fs2 
+	BYTE		N88     Cn3 
+	BYTE	W96
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_001
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+DiddyKongRacingWizpigRace_8_008:
+	BYTE		N92     Cs2   v072
+	BYTE		N92     Fn2 
+	BYTE		N92     Gs2 
+	BYTE	W96
+	BYTE	PEND
+// 009   ----------------------------------------
+DiddyKongRacingWizpigRace_8_009:
+	BYTE		N92     As1   v072
+	BYTE		N44     Ds2 
+	BYTE		N44     Fs2 
+	BYTE	W48
+	BYTE		        Cs2 
+	BYTE		N44     Fn2 
+	BYTE	W48
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_008
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_009
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_008
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_008
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_009
+// 016   ----------------------------------------
+DiddyKongRacingWizpigRace_8_016:
+	BYTE		N92     Cn2   v068
+	BYTE		N92     Ds2 
+	BYTE		N92     Gn2 
+	BYTE	W96
+	BYTE	PEND
+// 017   ----------------------------------------
+DiddyKongRacingWizpigRace_8_017:
+	BYTE		N92     An1   v068
+	BYTE		N92     Cs2 
+	BYTE		N92     Fs2 
+	BYTE	W96
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_016
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_017
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_016
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_017
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_016
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_017
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+DiddyKongRacingWizpigRace_8_028:
+	BYTE		N44     Cs2   v060
+	BYTE		N44     Fn2 
+	BYTE		N44     As2 
+	BYTE	W48
+	BYTE		        Fs2 
+	BYTE		N44     As2 
+	BYTE		N44     Cs3 
+	BYTE	W48
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_028
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_028
+// 031   ----------------------------------------
+DiddyKongRacingWizpigRace_8_031:
+	BYTE	W12
+	BYTE		N10     Ds2   v060
+	BYTE		N10     Fs2 
+	BYTE		N10     An2 
+	BYTE	W12
+	BYTE		N22     Ds2 
+	BYTE		N22     Fs2 
+	BYTE		N22     An2 
+	BYTE	W24
+	BYTE		N10     Ds2 
+	BYTE		N10     Fs2 
+	BYTE		N10     An2 
+	BYTE	W12
+	BYTE		N22     Ds2 
+	BYTE		N22     Fs2 
+	BYTE		N22     An2 
+	BYTE	W24
+	BYTE		N10     Ds2 
+	BYTE		N10     Fs2 
+	BYTE		N10     An2 
+	BYTE	W12
+	BYTE	PEND
+// 032   ----------------------------------------
+DiddyKongRacingWizpigRace_8_032:
+	BYTE		N10     Cs2   v060
+	BYTE		N10     Fn2 
+	BYTE		N10     As2 
+	BYTE	W96
+	BYTE	PEND
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+DiddyKongRacingWizpigRace_8_036:
+	BYTE		TIE     As1   v052
+	BYTE		TIE     Cs2 
+	BYTE		TIE     Fn2 
+	BYTE	W96
+	BYTE	PEND
+// 037   ----------------------------------------
+	BYTE	W44
+	BYTE		EOT     Cs2 
+	BYTE		        Fn2 
+	BYTE	W04
+	BYTE		N22     Ds2 
+	BYTE		N22     Fs2 
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE		N22     Fn2 
+	BYTE	W22
+	BYTE		EOT     As1 
+	BYTE	W02
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_036
+// 039   ----------------------------------------
+	BYTE	W44
+	BYTE	W02
+	BYTE		EOT     Cs2 
+	BYTE		        Fn2 
+	BYTE	W02
+	BYTE		N22     Ds2   v052
+	BYTE		N22     Fs2 
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE		N22     Fn2 
+	BYTE	W22
+	BYTE		EOT     As1 
+	BYTE	W02
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_8_B1
+DiddyKongRacingWizpigRace_8_B2:
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_002
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_001
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_002
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_001
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_008
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_009
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_008
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_009
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_008
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_009
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_008
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_009
+// 056   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_016
+// 057   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_017
+// 058   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_016
+// 059   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_017
+// 060   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_016
+// 061   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_017
+// 062   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_016
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_017
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_028
+// 069   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_028
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_028
+// 071   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_031
+// 072   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_032
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_036
+// 077   ----------------------------------------
+	BYTE	W44
+	BYTE		EOT     Cs2 
+	BYTE		        Fn2 
+	BYTE	W04
+	BYTE		N22     Ds2   v052
+	BYTE		N22     Fs2 
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE		N22     Fn2 
+	BYTE	W22
+	BYTE		EOT     As1 
+	BYTE	W02
+// 078   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_036
+// 079   ----------------------------------------
+	BYTE	W44
+	BYTE	W02
+	BYTE		EOT     Cs2 
+	BYTE		        Fn2 
+	BYTE	W02
+	BYTE		N22     Ds2   v052
+	BYTE		N22     Fs2 
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE		N22     Fn2 
+	BYTE	W22
+	BYTE		EOT     As1 
+	BYTE	W02
+// 080   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_002
+// 081   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_001
+// 082   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_002
+// 083   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_8_001
+// 084   ----------------------------------------
+	BYTE	W96
+// 085   ----------------------------------------
+	BYTE	W96
+// 086   ----------------------------------------
+	BYTE	W96
+// 087   ----------------------------------------
+	BYTE	W92
+	BYTE	W03
+	BYTE	FINE
+
+//**************** Track 9 (Midi-Chn.9) ****************//
+
+DiddyKongRacingWizpigRace_9:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_9_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   60
+	BYTE		VOL     118*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		PAN     c_v-1
+	BYTE		N20     Cn3   v088
+	BYTE	W24
+	BYTE		N08     An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N20     Fs3 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W24
+// 001   ----------------------------------------
+	BYTE		N92     En3 
+	BYTE	W96
+// 002   ----------------------------------------
+DiddyKongRacingWizpigRace_9_002:
+	BYTE		N20     Cn3   v088
+	BYTE	W24
+	BYTE		N08     An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N20     Fs3 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W24
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE		N92     En3 
+	BYTE	W96
+// 004   ----------------------------------------
+DiddyKongRacingWizpigRace_9_004:
+	BYTE		N16     Cn2   v084
+	BYTE		N13     Cn3   v088
+	BYTE	W24
+	BYTE		N14     Fs1   v084
+	BYTE		N13     Fs2   v088
+	BYTE	W24
+	BYTE		N14     Cn2   v084
+	BYTE		N14     Cn3   v088
+	BYTE	W24
+	BYTE		N08     Ds2   v084
+	BYTE		N07     Ds3   v088
+	BYTE	W12
+	BYTE		        Dn2   v084
+	BYTE		N07     Dn3   v088
+	BYTE	W12
+	BYTE	PEND
+// 005   ----------------------------------------
+DiddyKongRacingWizpigRace_9_005:
+	BYTE		N14     Cn2   v084
+	BYTE		N14     Cn3   v088
+	BYTE	W24
+	BYTE		        Fs1   v084
+	BYTE		N14     Fs2   v088
+	BYTE	W24
+	BYTE		        Cn2   v084
+	BYTE		N17     Cn3   v088
+	BYTE	W24
+	BYTE		N07     Ds2   v084
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE	PEND
+// 006   ----------------------------------------
+DiddyKongRacingWizpigRace_9_006:
+	BYTE		N13     Cn2   v084
+	BYTE		N14     Cn3   v088
+	BYTE	W24
+	BYTE		N13     Fs1   v084
+	BYTE		N13     Fs2   v088
+	BYTE	W24
+	BYTE		        Cn2   v084
+	BYTE		N16     Cn3   v088
+	BYTE	W24
+	BYTE		N07     Ds2   v084
+	BYTE		N07     Ds3   v088
+	BYTE	W12
+	BYTE		N05     Dn2   v084
+	BYTE		N07     Dn3   v088
+	BYTE	W12
+	BYTE	PEND
+// 007   ----------------------------------------
+DiddyKongRacingWizpigRace_9_007:
+	BYTE		N13     Cn2   v084
+	BYTE		N14     Cn3   v088
+	BYTE	W24
+	BYTE		N13     Fs1   v084
+	BYTE		N13     Fs2   v088
+	BYTE	W24
+	BYTE		N16     Cn2   v084
+	BYTE		N17     Cn3   v088
+	BYTE	W24
+	BYTE		N05     Ds2   v084
+	BYTE	W12
+	BYTE		N08     Dn2 
+	BYTE	W12
+	BYTE	PEND
+// 008   ----------------------------------------
+DiddyKongRacingWizpigRace_9_008:
+	BYTE		N32     As1   v080
+	BYTE		N16     Cn2   v084
+	BYTE		N32     As2   v080
+	BYTE	W36
+	BYTE		N08     Cn2 
+	BYTE		N08     Cn3 
+	BYTE	W12
+	BYTE		N20     Cs2 
+	BYTE		N20     Cs3 
+	BYTE	W24
+	BYTE		        As1 
+	BYTE		N20     As2 
+	BYTE	W24
+	BYTE	PEND
+// 009   ----------------------------------------
+DiddyKongRacingWizpigRace_9_009:
+	BYTE		N44     Fs2   v080
+	BYTE		N44     Fs3 
+	BYTE	W48
+	BYTE		        Fn2 
+	BYTE		N44     Fn3 
+	BYTE	W48
+	BYTE	PEND
+// 010   ----------------------------------------
+DiddyKongRacingWizpigRace_9_010:
+	BYTE		N32     As1   v080
+	BYTE		N32     As2 
+	BYTE	W36
+	BYTE		N08     Cn2 
+	BYTE		N08     Cn3 
+	BYTE	W12
+	BYTE		N17     Cs2 
+	BYTE		N17     Cs3 
+	BYTE	W24
+	BYTE		        Gs1 
+	BYTE		N17     Gs2 
+	BYTE	W24
+	BYTE	PEND
+// 011   ----------------------------------------
+DiddyKongRacingWizpigRace_9_011:
+	BYTE		N44     Fs1   v080
+	BYTE		N44     Fs2 
+	BYTE	W48
+	BYTE		        Fn1 
+	BYTE		N44     Fn2 
+	BYTE	W48
+	BYTE	PEND
+// 012   ----------------------------------------
+DiddyKongRacingWizpigRace_9_012:
+	BYTE		N32     As1   v080
+	BYTE		N32     As2 
+	BYTE	W36
+	BYTE		N08     Cn2 
+	BYTE		N08     Cn3 
+	BYTE	W12
+	BYTE		N20     Cs2 
+	BYTE		N20     Cs3 
+	BYTE	W24
+	BYTE		        As1 
+	BYTE		N20     As2 
+	BYTE	W24
+	BYTE	PEND
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_011
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+DiddyKongRacingWizpigRace_9_017:
+	BYTE	W36
+	BYTE		N56     Fs1   v088
+	BYTE		N56     Fs2 
+	BYTE	W60
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+DiddyKongRacingWizpigRace_9_019:
+	BYTE	W36
+	BYTE		N56     An1   v088
+	BYTE		N56     An2 
+	BYTE	W60
+	BYTE	PEND
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_017
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_019
+// 024   ----------------------------------------
+DiddyKongRacingWizpigRace_9_024:
+	BYTE		N16     Cn2   v084
+	BYTE	W24
+	BYTE		N14     Fs1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		N08     Ds2 
+	BYTE	W12
+	BYTE		N07     Dn2 
+	BYTE	W12
+	BYTE	PEND
+// 025   ----------------------------------------
+DiddyKongRacingWizpigRace_9_025:
+	BYTE		N14     Cn2   v084
+	BYTE	W24
+	BYTE		        Fs1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		N07     Ds2 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE	PEND
+// 026   ----------------------------------------
+DiddyKongRacingWizpigRace_9_026:
+	BYTE		N13     Cn2   v084
+	BYTE	W24
+	BYTE		        Fs1 
+	BYTE	W24
+	BYTE		        Cn2 
+	BYTE	W24
+	BYTE		N07     Ds2 
+	BYTE	W12
+	BYTE		N05     Dn2 
+	BYTE	W12
+	BYTE	PEND
+// 027   ----------------------------------------
+DiddyKongRacingWizpigRace_9_027:
+	BYTE		N13     Cn2   v084
+	BYTE	W24
+	BYTE		        Fs1 
+	BYTE	W24
+	BYTE		N16     Cn2 
+	BYTE	W24
+	BYTE		N05     Ds2 
+	BYTE	W12
+	BYTE		N08     Dn2 
+	BYTE	W12
+	BYTE	PEND
+// 028   ----------------------------------------
+	BYTE		N16     Cn2 
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_9_B1
+DiddyKongRacingWizpigRace_9_B2:
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_002
+// 041   ----------------------------------------
+	BYTE		N92     En3   v088
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_002
+// 043   ----------------------------------------
+	BYTE		N92     En3   v088
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_004
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_005
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_006
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_007
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_008
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_009
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_010
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_011
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_012
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_009
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_010
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_011
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_017
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_019
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_017
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_019
+// 064   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_024
+// 065   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_025
+// 066   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_026
+// 067   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_027
+// 068   ----------------------------------------
+	BYTE		N16     Cn2   v084
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+// 078   ----------------------------------------
+	BYTE	W96
+// 079   ----------------------------------------
+	BYTE	W96
+// 080   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_002
+// 081   ----------------------------------------
+	BYTE		N92     En3   v088
+	BYTE	W96
+// 082   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_002
+// 083   ----------------------------------------
+	BYTE		N92     En3   v088
+	BYTE	W96
+// 084   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_004
+// 085   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_005
+// 086   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_9_006
+// 087   ----------------------------------------
+	BYTE		N13     Cn2   v084
+	BYTE		N14     Cn3   v088
+	BYTE	W24
+	BYTE		N13     Fs1   v084
+	BYTE		N13     Fs2   v088
+	BYTE	W24
+	BYTE		N16     Cn2   v084
+	BYTE		N17     Cn3   v088
+	BYTE	W24
+	BYTE		N05     Ds2   v084
+	BYTE	W12
+	BYTE		N08     Dn2 
+	BYTE	W11
+	BYTE	FINE
+
+//**************** Track 10 (Midi-Chn.11) ****************//
+
+DiddyKongRacingWizpigRace_10:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_10_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   73
+	BYTE		VOL     124*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		PAN     c_v-1
+	BYTE		N02     Cn5   v088
+	BYTE	W03
+	BYTE		        Bn4 
+	BYTE	W03
+	BYTE		        Cn5 
+	BYTE	W03
+	BYTE		        Bn4 
+	BYTE	W36
+	BYTE	W03
+	BYTE		        Fs5 
+	BYTE	W03
+	BYTE		        Fn5 
+	BYTE	W03
+	BYTE		        Fs5 
+	BYTE	W03
+	BYTE		        Fn5 
+	BYTE	W15
+	BYTE		N02   
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Fn5 
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W15
+// 001   ----------------------------------------
+DiddyKongRacingWizpigRace_10_001:
+	BYTE		N02     En5   v088
+	BYTE	W03
+	BYTE		        Ds5   v080
+	BYTE	W03
+	BYTE		        En5   v072
+	BYTE	W03
+	BYTE		        Ds5   v060
+	BYTE	W03
+	BYTE		        En5   v052
+	BYTE	W03
+	BYTE		        Ds5   v056
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Ds5   v060
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE		        En5   v064
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE		        En5   v068
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Ds5   v072
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Ds5   v076
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Ds5   v080
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE		        En5   v084
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE		        En5   v088
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Ds5 
+	BYTE	W03
+	BYTE	PEND
+// 002   ----------------------------------------
+DiddyKongRacingWizpigRace_10_002:
+	BYTE		N02     Cn5   v088
+	BYTE	W03
+	BYTE		        Bn4 
+	BYTE	W03
+	BYTE		        Cn5 
+	BYTE	W03
+	BYTE		        Bn4 
+	BYTE	W36
+	BYTE	W03
+	BYTE		        Fs5 
+	BYTE	W03
+	BYTE		        Fn5 
+	BYTE	W03
+	BYTE		        Fs5 
+	BYTE	W03
+	BYTE		        Fn5 
+	BYTE	W15
+	BYTE		N02   
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W03
+	BYTE		        Fn5 
+	BYTE	W03
+	BYTE		        En5 
+	BYTE	W15
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_10_001
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_10_B1
+DiddyKongRacingWizpigRace_10_B2:
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_10_002
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_10_001
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_10_002
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_10_001
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+// 078   ----------------------------------------
+	BYTE	W96
+// 079   ----------------------------------------
+	BYTE	W96
+// 080   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_10_002
+// 081   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_10_001
+// 082   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_10_002
+// 083   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_10_001
+// 084   ----------------------------------------
+	BYTE	W96
+// 085   ----------------------------------------
+	BYTE	W96
+// 086   ----------------------------------------
+	BYTE	W96
+// 087   ----------------------------------------
+	BYTE	W92
+	BYTE	W03
+	BYTE	FINE
+
+//**************** Track 11 (Midi-Chn.12) ****************//
+
+DiddyKongRacingWizpigRace_11:
+	BYTE		VOL     127*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_11_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   45
+	BYTE		PAN     c_v+2
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+DiddyKongRacingWizpigRace_11_032:
+	BYTE	W12
+	BYTE		N07     Fs4   v056
+	BYTE	W01
+	BYTE		        Fs5 
+	BYTE	W23
+	BYTE		        Fn4 
+	BYTE	W01
+	BYTE		        Fn5 
+	BYTE	W23
+	BYTE		        Cs4 
+	BYTE	W01
+	BYTE		        Cs5 
+	BYTE	W11
+	BYTE		        As3 
+	BYTE	W01
+	BYTE		        As4 
+	BYTE	W23
+	BYTE	PEND
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+DiddyKongRacingWizpigRace_11_034:
+	BYTE	W12
+	BYTE		N07     Fs4   v056
+	BYTE	W01
+	BYTE		        Fs5 
+	BYTE	W23
+	BYTE		        Fn4 
+	BYTE	W01
+	BYTE		        Fn5 
+	BYTE	W23
+	BYTE		        Cs4 
+	BYTE	W01
+	BYTE		        Cs5 
+	BYTE	W11
+	BYTE		        Ds4 
+	BYTE	W01
+	BYTE		        Ds5 
+	BYTE	W23
+	BYTE	PEND
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+DiddyKongRacingWizpigRace_11_036:
+	BYTE	W12
+	BYTE		N07     Fs5   v040
+	BYTE	W01
+	BYTE		        Fs6 
+	BYTE	W23
+	BYTE		        Fn5 
+	BYTE	W01
+	BYTE		        Fn6 
+	BYTE	W23
+	BYTE		        Cs5 
+	BYTE	W01
+	BYTE		        Cs6 
+	BYTE	W11
+	BYTE		        As4 
+	BYTE	W01
+	BYTE		        As5 
+	BYTE	W23
+	BYTE	PEND
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+DiddyKongRacingWizpigRace_11_038:
+	BYTE	W12
+	BYTE		N07     Fs5   v040
+	BYTE	W01
+	BYTE		        Fs6 
+	BYTE	W23
+	BYTE		        Fn5 
+	BYTE	W01
+	BYTE		        Fn6 
+	BYTE	W23
+	BYTE		        Cs5 
+	BYTE	W01
+	BYTE		        Cs6 
+	BYTE	W11
+	BYTE		        Ds5 
+	BYTE	W01
+	BYTE		        Ds6 
+	BYTE	W23
+	BYTE	PEND
+// 039   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_11_B1
+DiddyKongRacingWizpigRace_11_B2:
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_11_032
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_11_034
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_11_036
+// 077   ----------------------------------------
+	BYTE	W96
+// 078   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_11_038
+// 079   ----------------------------------------
+	BYTE	W96
+// 080   ----------------------------------------
+	BYTE	W96
+// 081   ----------------------------------------
+	BYTE	W96
+// 082   ----------------------------------------
+	BYTE	W96
+// 083   ----------------------------------------
+	BYTE	W96
+// 084   ----------------------------------------
+	BYTE	W96
+// 085   ----------------------------------------
+	BYTE	W96
+// 086   ----------------------------------------
+	BYTE	W96
+// 087   ----------------------------------------
+	BYTE	W92
+	BYTE	W03
+	BYTE	FINE
+
+//**************** Track 12 (Midi-Chn.13) ****************//
+
+DiddyKongRacingWizpigRace_12:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_12_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   86
+	BYTE		VOL     125*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		PAN     c_v-1
+	BYTE		N02     Ds2   v056
+	BYTE	W03
+	BYTE		        Fs2 
+	BYTE	W03
+	BYTE		        An2 
+	BYTE	W03
+	BYTE		        Cn3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		        Fs3 
+	BYTE	W03
+	BYTE		        An3 
+	BYTE	W03
+	BYTE		        Cn4 
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W03
+	BYTE		        Fs4 
+	BYTE	W03
+	BYTE		        An4 
+	BYTE	W03
+	BYTE		        Cn5 
+	BYTE	W03
+	BYTE		        An4 
+	BYTE	W03
+	BYTE		        Fs4 
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W03
+	BYTE		        Cn4 
+	BYTE	W03
+	BYTE		        An3 
+	BYTE	W03
+	BYTE		        Fs3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		        Cn3 
+	BYTE	W03
+	BYTE		        An2 
+	BYTE	W03
+	BYTE		        Fs2 
+	BYTE	W03
+	BYTE		        An2 
+	BYTE	W03
+	BYTE		        Cn3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		        Fs3 
+	BYTE	W03
+	BYTE		        An3 
+	BYTE	W03
+	BYTE		        Cn4 
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W03
+	BYTE		        Fs4 
+	BYTE	W03
+	BYTE		        An4 
+	BYTE	W03
+	BYTE		        Cn5 
+	BYTE	W03
+// 001   ----------------------------------------
+DiddyKongRacingWizpigRace_12_001:
+	BYTE		N02     Cs5   v056
+	BYTE	W03
+	BYTE		        As4 
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W03
+	BYTE		        En4 
+	BYTE	W03
+	BYTE		        Cs4 
+	BYTE	W03
+	BYTE		        As3 
+	BYTE	W03
+	BYTE		        Gn3 
+	BYTE	W03
+	BYTE		        En3 
+	BYTE	W03
+	BYTE		        Cs3 
+	BYTE	W03
+	BYTE		        As2 
+	BYTE	W03
+	BYTE		        Gn2 
+	BYTE	W03
+	BYTE		        En2 
+	BYTE	W03
+	BYTE		        Gn2 
+	BYTE	W03
+	BYTE		        As2 
+	BYTE	W03
+	BYTE		        Cs3 
+	BYTE	W03
+	BYTE		        En3 
+	BYTE	W03
+	BYTE		        Gn3 
+	BYTE	W03
+	BYTE		        As3 
+	BYTE	W03
+	BYTE		        Cs4 
+	BYTE	W03
+	BYTE		        En4 
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W03
+	BYTE		        As4 
+	BYTE	W03
+	BYTE		        Cs5 
+	BYTE	W03
+	BYTE		        As4 
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W03
+	BYTE		        En4 
+	BYTE	W03
+	BYTE		        Cs4 
+	BYTE	W03
+	BYTE		        As3 
+	BYTE	W03
+	BYTE		        Cs4 
+	BYTE	W03
+	BYTE		        En4 
+	BYTE	W03
+	BYTE		        Gn4 
+	BYTE	W03
+	BYTE		        As4 
+	BYTE	W03
+	BYTE	PEND
+// 002   ----------------------------------------
+DiddyKongRacingWizpigRace_12_002:
+	BYTE		N02     Ds2   v056
+	BYTE	W03
+	BYTE		        Fs2 
+	BYTE	W03
+	BYTE		        An2 
+	BYTE	W03
+	BYTE		        Cn3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		        Fs3 
+	BYTE	W03
+	BYTE		        An3 
+	BYTE	W03
+	BYTE		        Cn4 
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W03
+	BYTE		        Fs4 
+	BYTE	W03
+	BYTE		        An4 
+	BYTE	W03
+	BYTE		        Cn5 
+	BYTE	W03
+	BYTE		        An4 
+	BYTE	W03
+	BYTE		        Fs4 
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W03
+	BYTE		        Cn4 
+	BYTE	W03
+	BYTE		        An3 
+	BYTE	W03
+	BYTE		        Fs3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		        Cn3 
+	BYTE	W03
+	BYTE		        An2 
+	BYTE	W03
+	BYTE		        Fs2 
+	BYTE	W03
+	BYTE		        An2 
+	BYTE	W03
+	BYTE		        Cn3 
+	BYTE	W03
+	BYTE		        Ds3 
+	BYTE	W03
+	BYTE		        Fs3 
+	BYTE	W03
+	BYTE		        An3 
+	BYTE	W03
+	BYTE		        Cn4 
+	BYTE	W03
+	BYTE		        Ds4 
+	BYTE	W03
+	BYTE		        Fs4 
+	BYTE	W03
+	BYTE		        An4 
+	BYTE	W03
+	BYTE		        Cn5 
+	BYTE	W03
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_12_001
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_12_B1
+DiddyKongRacingWizpigRace_12_B2:
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_12_002
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_12_001
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_12_002
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_12_001
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	W96
+// 065   ----------------------------------------
+	BYTE	W96
+// 066   ----------------------------------------
+	BYTE	W96
+// 067   ----------------------------------------
+	BYTE	W96
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+// 078   ----------------------------------------
+	BYTE	W96
+// 079   ----------------------------------------
+	BYTE	W96
+// 080   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_12_002
+// 081   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_12_001
+// 082   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_12_002
+// 083   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_12_001
+// 084   ----------------------------------------
+	BYTE	W96
+// 085   ----------------------------------------
+	BYTE	W96
+// 086   ----------------------------------------
+	BYTE	W96
+// 087   ----------------------------------------
+	BYTE	W92
+	BYTE	W03
+	BYTE	FINE
+
+//**************** Track 13 (Midi-Chn.14) ****************//
+
+DiddyKongRacingWizpigRace_13:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_13_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		VOL     125*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		PAN     c_v-4
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+DiddyKongRacingWizpigRace_13_024:
+	BYTE		N04     As3   v076
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		N08     Cn4 
+	BYTE		N08     Cn5 
+	BYTE	W30
+	BYTE		N04     As3 
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		N08     Cn4 
+	BYTE		N08     Cn5 
+	BYTE	W30
+	BYTE		        Cn4 
+	BYTE		N08     Cn5 
+	BYTE	W24
+	BYTE	PEND
+// 025   ----------------------------------------
+DiddyKongRacingWizpigRace_13_025:
+	BYTE		N04     As3   v076
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		N08     Cn4 
+	BYTE		N08     Cn5 
+	BYTE	W30
+	BYTE		N04     As3 
+	BYTE		N04     As4 
+	BYTE	W06
+	BYTE		N08     Cn4 
+	BYTE		N08     Cn5 
+	BYTE	W54
+	BYTE	PEND
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_13_024
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_13_025
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE	W96
+// 033   ----------------------------------------
+	BYTE	W96
+// 034   ----------------------------------------
+	BYTE	W96
+// 035   ----------------------------------------
+	BYTE	W96
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_13_B1
+DiddyKongRacingWizpigRace_13_B2:
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+// 055   ----------------------------------------
+	BYTE	W96
+// 056   ----------------------------------------
+	BYTE	W96
+// 057   ----------------------------------------
+	BYTE	W96
+// 058   ----------------------------------------
+	BYTE	W96
+// 059   ----------------------------------------
+	BYTE	W96
+// 060   ----------------------------------------
+	BYTE	W96
+// 061   ----------------------------------------
+	BYTE	W96
+// 062   ----------------------------------------
+	BYTE	W96
+// 063   ----------------------------------------
+	BYTE	W96
+// 064   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_13_024
+// 065   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_13_025
+// 066   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_13_024
+// 067   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_13_025
+// 068   ----------------------------------------
+	BYTE	W96
+// 069   ----------------------------------------
+	BYTE	W96
+// 070   ----------------------------------------
+	BYTE	W96
+// 071   ----------------------------------------
+	BYTE	W96
+// 072   ----------------------------------------
+	BYTE	W96
+// 073   ----------------------------------------
+	BYTE	W96
+// 074   ----------------------------------------
+	BYTE	W96
+// 075   ----------------------------------------
+	BYTE	W96
+// 076   ----------------------------------------
+	BYTE	W96
+// 077   ----------------------------------------
+	BYTE	W96
+// 078   ----------------------------------------
+	BYTE	W96
+// 079   ----------------------------------------
+	BYTE	W96
+// 080   ----------------------------------------
+	BYTE	W96
+// 081   ----------------------------------------
+	BYTE	W96
+// 082   ----------------------------------------
+	BYTE	W96
+// 083   ----------------------------------------
+	BYTE	W96
+// 084   ----------------------------------------
+	BYTE	W96
+// 085   ----------------------------------------
+	BYTE	W96
+// 086   ----------------------------------------
+	BYTE	W96
+// 087   ----------------------------------------
+	BYTE	W92
+	BYTE	W03
+	BYTE	FINE
+
+//**************** Track 14 (Midi-Chn.16) ****************//
+
+DiddyKongRacingWizpigRace_14:
+	BYTE	KEYSH   DiddyKongRacingWizpigRace_key+0
+DiddyKongRacingWizpigRace_14_B1:
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     101*DiddyKongRacingWizpigRace_mvl/mxv
+	BYTE		N05     Ds1   v096
+	BYTE		N44     Cn3   v068
+	BYTE		N44     Fn6   v096
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+// 001   ----------------------------------------
+DiddyKongRacingWizpigRace_14_001:
+	BYTE		N05     Ds1   v096
+	BYTE		N44     Bn2   v068
+	BYTE		N44     Fs6   v096
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE	PEND
+// 002   ----------------------------------------
+DiddyKongRacingWizpigRace_14_002:
+	BYTE		N05     Ds1   v096
+	BYTE		N44     Cn3   v068
+	BYTE		N44     Fn6   v096
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_001
+// 004   ----------------------------------------
+DiddyKongRacingWizpigRace_14_004:
+	BYTE		N05     Ds1   v096
+	BYTE		N44     Fn6 
+	BYTE		N44     Gn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE	PEND
+// 005   ----------------------------------------
+DiddyKongRacingWizpigRace_14_005:
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N03     Gs1   v052
+	BYTE	W06
+	BYTE	PEND
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_005
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_005
+// 008   ----------------------------------------
+	BYTE		N05     Ds1   v096
+	BYTE	W07
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W05
+// 009   ----------------------------------------
+DiddyKongRacingWizpigRace_14_009:
+	BYTE	W01
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W05
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_009
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_009
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_009
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_009
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_009
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_009
+// 016   ----------------------------------------
+	BYTE	W01
+	BYTE		N05     Ds1   v096
+	BYTE		N40     Fn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W05
+// 017   ----------------------------------------
+	BYTE	W01
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6 
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+	BYTE		N06     Gs1 
+	BYTE		N04     Fs6   v088
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+// 018   ----------------------------------------
+DiddyKongRacingWizpigRace_14_018:
+	BYTE		N05     Ds1   v096
+	BYTE		N40     Fn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE	PEND
+// 019   ----------------------------------------
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		        Ds1   v096
+	BYTE		N04     Fs6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+	BYTE		N06     Gs1 
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_018
+// 021   ----------------------------------------
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_018
+// 023   ----------------------------------------
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6   v072
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v068
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6   v072
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v080
+	BYTE	W06
+	BYTE		        Ds1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v088
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_004
+// 025   ----------------------------------------
+DiddyKongRacingWizpigRace_14_025:
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE	PEND
+// 026   ----------------------------------------
+DiddyKongRacingWizpigRace_14_026:
+	BYTE		N05     Ds1   v096
+	BYTE		N16     Fn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N16     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N20     Fn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE	PEND
+// 027   ----------------------------------------
+DiddyKongRacingWizpigRace_14_027:
+	BYTE		N05     Ds1   v096
+	BYTE		N17     Fn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N14     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N20     Fn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N07     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE	PEND
+// 028   ----------------------------------------
+DiddyKongRacingWizpigRace_14_028:
+	BYTE		N05     Ds1   v096
+	BYTE		N16     Fn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE	PEND
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 032   ----------------------------------------
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fn6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fn6   v084
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fn6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N44     Fn6   v088
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+// 033   ----------------------------------------
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N10     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Fs6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N10     Fs6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Fs6   v080
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+// 034   ----------------------------------------
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fn6   v080
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fn6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fn6   v088
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N44     Fn6   v088
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+// 035   ----------------------------------------
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		        Ds1   v096
+	BYTE		N04     Fs6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v080
+	BYTE	W06
+// 036   ----------------------------------------
+	BYTE		        Ds1   v096
+	BYTE		N04     Fn6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Gn6   v084
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fn6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N44     Gn6   v088
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+// 037   ----------------------------------------
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N10     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Gn6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N10     Fs6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Gn6   v080
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+// 038   ----------------------------------------
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fn6   v080
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Gn6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fn6   v088
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N44     Gn6   v088
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+// 039   ----------------------------------------
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Gn6   v084
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Gn6   v084
+	BYTE	W06
+	BYTE		        Ds1   v096
+	BYTE		N04     Fs6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Gn6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Gn6   v080
+	BYTE	W06
+	BYTE	GoTo
+	 POIN2	DiddyKongRacingWizpigRace_14_B1
+DiddyKongRacingWizpigRace_14_B2:
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_002
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_001
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_002
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_001
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_004
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_026
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_027
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_028
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 055   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_025
+// 056   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_018
+// 057   ----------------------------------------
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+	BYTE		N06     Gs1 
+	BYTE		N04     Fs6   v088
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+// 058   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_018
+// 059   ----------------------------------------
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		        Ds1   v096
+	BYTE		N04     Fs6   v088
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+	BYTE		N06     Gs1 
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+	BYTE		N05     Ds1 
+	BYTE		N40     Fn6 
+	BYTE	W01
+// 060   ----------------------------------------
+DiddyKongRacingWizpigRace_14_060:
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W01
+	BYTE	PEND
+// 061   ----------------------------------------
+	BYTE	W05
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+	BYTE		N05     Ds1 
+	BYTE		N40     Fn6 
+	BYTE	W01
+// 062   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_060
+// 063   ----------------------------------------
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6   v072
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v068
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6   v072
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v080
+	BYTE	W06
+	BYTE		        Ds1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v088
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v096
+	BYTE	W06
+	BYTE		N05     Ds1 
+	BYTE		N44     Fn6 
+	BYTE		N44     Gn6 
+	BYTE	W01
+// 064   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_060
+// 065   ----------------------------------------
+DiddyKongRacingWizpigRace_14_065:
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N16     Fn6 
+	BYTE	W01
+	BYTE	PEND
+// 066   ----------------------------------------
+DiddyKongRacingWizpigRace_14_066:
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N16     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N20     Fn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N17     Fn6 
+	BYTE	W01
+	BYTE	PEND
+// 067   ----------------------------------------
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N14     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N20     Fn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N07     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N16     Fn6 
+	BYTE	W01
+// 068   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_060
+// 069   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_060
+// 070   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_060
+// 071   ----------------------------------------
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fn6   v088
+	BYTE	W01
+// 072   ----------------------------------------
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fn6   v084
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fn6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N44     Fn6   v088
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W01
+// 073   ----------------------------------------
+	BYTE	W05
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N10     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Fs6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N10     Fs6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Fs6   v080
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fn6   v080
+	BYTE	W01
+// 074   ----------------------------------------
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fn6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fn6   v088
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N44     Fn6   v088
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W01
+// 075   ----------------------------------------
+	BYTE	W05
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		        Ds1   v096
+	BYTE		N04     Fs6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Fs6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Fs6   v080
+	BYTE	W06
+	BYTE		        Ds1   v096
+	BYTE		N04     Fn6   v088
+	BYTE	W01
+// 076   ----------------------------------------
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Gn6   v084
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fn6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N44     Gn6   v088
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W01
+// 077   ----------------------------------------
+	BYTE	W05
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N10     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Gn6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N10     Fs6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Gn6   v080
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fn6   v080
+	BYTE	W01
+// 078   ----------------------------------------
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Gn6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fn6   v088
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N44     Gn6   v088
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W01
+// 079   ----------------------------------------
+	BYTE	W05
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N04     Ds1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Gn6   v084
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6   v084
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Gn6   v084
+	BYTE	W06
+	BYTE		        Ds1   v096
+	BYTE		N04     Fs6   v088
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE		N04     Gn6   v080
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N04     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE		N04     Gn6   v080
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N44     Cn3   v068
+	BYTE		N44     Fn6   v096
+	BYTE	W01
+// 080   ----------------------------------------
+DiddyKongRacingWizpigRace_14_080:
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N44     Bn2   v068
+	BYTE		N44     Fs6   v096
+	BYTE	W01
+	BYTE	PEND
+// 081   ----------------------------------------
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N44     Cn3   v068
+	BYTE		N44     Fn6   v096
+	BYTE	W01
+// 082   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_080
+// 083   ----------------------------------------
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE	W06
+	BYTE		        Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N44     Fn6 
+	BYTE		N44     Gn6 
+	BYTE	W01
+// 084   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_060
+// 085   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_065
+// 086   ----------------------------------------
+	BYTE	PATT
+	 POIN2	DiddyKongRacingWizpigRace_14_066
+// 087   ----------------------------------------
+	BYTE	W05
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N14     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N20     Fn6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE		N05     Ds1   v096
+	BYTE		N07     Fs6 
+	BYTE	W06
+	BYTE		N05     Gs1   v052
+	BYTE	W06
+	BYTE		N06     Gs1   v096
+	BYTE		N10     Fs6 
+	BYTE	W06
+	BYTE		N02     Gs1   v052
+	BYTE	W06
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+DiddyKongRacingWizpigRace:
+	BYTE	14	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	DiddyKongRacingWizpigRace_pri	// Priority
+	BYTE	DiddyKongRacingWizpigRace_rev	// Reverb.
+
+	POIN2	DiddyKongRacingWizpigRace_grp
+
+	POIN2	DiddyKongRacingWizpigRace_1
+	POIN2	DiddyKongRacingWizpigRace_2
+	POIN2	DiddyKongRacingWizpigRace_3
+	POIN2	DiddyKongRacingWizpigRace_4
+	POIN2	DiddyKongRacingWizpigRace_5
+	POIN2	DiddyKongRacingWizpigRace_6
+	POIN2	DiddyKongRacingWizpigRace_7
+	POIN2	DiddyKongRacingWizpigRace_8
+	POIN2	DiddyKongRacingWizpigRace_9
+	POIN2	DiddyKongRacingWizpigRace_10
+	POIN2	DiddyKongRacingWizpigRace_11
+	POIN2	DiddyKongRacingWizpigRace_12
+	POIN2	DiddyKongRacingWizpigRace_13
+	POIN2	DiddyKongRacingWizpigRace_14
+
+	

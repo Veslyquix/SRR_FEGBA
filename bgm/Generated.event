@@ -9,1343 +9,1502 @@ ALIGN 4
 #include "s/AceAttorney/AceAttorney2WantingtoFindtheTruthSurfingKyogre.event"
 }
 
+{ ; SongTable(ApolloJusticeAceAttorneyTroupeGramaryeID, ApolloJusticeAceAttorneyTroupeGramarye, 0)
+SongTable((ApolloJusticeAceAttorneyTroupeGramaryeID+1), ApolloJusticeAceAttorneyTroupeGramarye, 1)
+SoundRoom((FirstSoundRoom_ID+1), (ApolloJusticeAceAttorneyTroupeGramaryeID+1), (FirstSR_TextID+1))
+textHeader: ; txt("ApolloJusticeAceAttorneyTroupe"); BYTE 0 0
+setText((FirstSR_TextID+1), textHeader)
+ALIGN 4
+#include "s/AceAttorney/ApolloJusticeAceAttorneyTroupeGramarye.event"
+}
+
+{ ; SongTable(ApolloJusticeTellingtheTruth2009ID, ApolloJusticeTellingtheTruth2009, 0)
+SongTable((ApolloJusticeTellingtheTruth2009ID+1), ApolloJusticeTellingtheTruth2009, 1)
+SoundRoom((FirstSoundRoom_ID+2), (ApolloJusticeTellingtheTruth2009ID+1), (FirstSR_TextID+2))
+textHeader: ; txt("ApolloJusticeTellingtheTruth2009"); BYTE 0 0
+setText((FirstSR_TextID+2), textHeader)
+ALIGN 4
+#include "s/AceAttorney/ApolloJusticeTellingtheTruth2009.event"
+}
+
 { ; SongTable(PhoenixWrightAceAttorneyJusticeForAllSearchIntheMidstID, PhoenixWrightAceAttorneyJusticeForAllSearchIntheMidst, 0)
 SongTable((PhoenixWrightAceAttorneyJusticeForAllSearchIntheMidstID+1), PhoenixWrightAceAttorneyJusticeForAllSearchIntheMidst, 1)
-SoundRoom((FirstSoundRoom_ID+1), (PhoenixWrightAceAttorneyJusticeForAllSearchIntheMidstID+1), (FirstSR_TextID+1))
+SoundRoom((FirstSoundRoom_ID+3), (PhoenixWrightAceAttorneyJusticeForAllSearchIntheMidstID+1), (FirstSR_TextID+3))
 textHeader: ; txt("PhoenixWrightAceAttorneyJustice"); BYTE 0 0
-setText((FirstSR_TextID+1), textHeader)
+setText((FirstSR_TextID+3), textHeader)
 ALIGN 4
 #include "s/AceAttorney/PhoenixWrightAceAttorneyJusticeForAllSearchIntheMidst.event"
 }
 
+{ ; SongTable(PhoenixWrightTrialsandTribulationsSceneryatDuskyBridgeID, PhoenixWrightTrialsandTribulationsSceneryatDuskyBridge, 0)
+SongTable((PhoenixWrightTrialsandTribulationsSceneryatDuskyBridgeID+1), PhoenixWrightTrialsandTribulationsSceneryatDuskyBridge, 1)
+SoundRoom((FirstSoundRoom_ID+4), (PhoenixWrightTrialsandTribulationsSceneryatDuskyBridgeID+1), (FirstSR_TextID+4))
+textHeader: ; txt("PhoenixWrightTrialsand"); BYTE 0 0
+setText((FirstSR_TextID+4), textHeader)
+ALIGN 4
+#include "s/AceAttorney/PhoenixWrightTrialsandTribulationsSceneryatDuskyBridge.event"
+}
+
 { ; SongTable(BanjoKazooieTreasureTroveCoveSmeID, BanjoKazooieTreasureTroveCoveSme, 0)
 SongTable((BanjoKazooieTreasureTroveCoveSmeID+1), BanjoKazooieTreasureTroveCoveSme, 1)
-SoundRoom((FirstSoundRoom_ID+2), (BanjoKazooieTreasureTroveCoveSmeID+1), (FirstSR_TextID+2))
+SoundRoom((FirstSoundRoom_ID+5), (BanjoKazooieTreasureTroveCoveSmeID+1), (FirstSR_TextID+5))
 textHeader: ; txt("BanjoKazooieTreasureTroveCoveSme"); BYTE 0 0
-setText((FirstSR_TextID+2), textHeader)
+setText((FirstSR_TextID+5), textHeader)
 ALIGN 4
 #include "s/BanjoKazooieandTooie/BanjoKazooieTreasureTroveCoveSme.event"
 }
 
 { ; SongTable(BanjoTooieJollyRogerBayPandanID, BanjoTooieJollyRogerBayPandan, 0)
 SongTable((BanjoTooieJollyRogerBayPandanID+1), BanjoTooieJollyRogerBayPandan, 1)
-SoundRoom((FirstSoundRoom_ID+3), (BanjoTooieJollyRogerBayPandanID+1), (FirstSR_TextID+3))
+SoundRoom((FirstSoundRoom_ID+6), (BanjoTooieJollyRogerBayPandanID+1), (FirstSR_TextID+6))
 textHeader: ; txt("BanjoTooieJollyRogerBayPandan"); BYTE 0 0
-setText((FirstSR_TextID+3), textHeader)
+setText((FirstSR_TextID+6), textHeader)
 ALIGN 4
 #include "s/BanjoKazooieandTooie/BanjoTooieJollyRogerBayPandan.event"
 }
 
 { ; SongTable(BanjoTooieMayahemTempleInteriorDolkarID, BanjoTooieMayahemTempleInteriorDolkar, 0)
 SongTable((BanjoTooieMayahemTempleInteriorDolkarID+1), BanjoTooieMayahemTempleInteriorDolkar, 1)
-SoundRoom((FirstSoundRoom_ID+4), (BanjoTooieMayahemTempleInteriorDolkarID+1), (FirstSR_TextID+4))
+SoundRoom((FirstSoundRoom_ID+7), (BanjoTooieMayahemTempleInteriorDolkarID+1), (FirstSR_TextID+7))
 textHeader: ; txt("BanjoTooieMayahemTempleInterior"); BYTE 0 0
-setText((FirstSR_TextID+4), textHeader)
+setText((FirstSR_TextID+7), textHeader)
 ALIGN 4
 #include "s/BanjoKazooieandTooie/BanjoTooieMayahemTempleInteriorDolkar.event"
 }
 
 { ; SongTable(Castlevania3AquariusMeatOfJusticeID, Castlevania3AquariusMeatOfJustice, 0)
 SongTable((Castlevania3AquariusMeatOfJusticeID+1), Castlevania3AquariusMeatOfJustice, 1)
-SoundRoom((FirstSoundRoom_ID+5), (Castlevania3AquariusMeatOfJusticeID+1), (FirstSR_TextID+5))
+SoundRoom((FirstSoundRoom_ID+8), (Castlevania3AquariusMeatOfJusticeID+1), (FirstSR_TextID+8))
 textHeader: ; txt("Castlevania3AquariusMeatOf"); BYTE 0 0
-setText((FirstSR_TextID+5), textHeader)
+setText((FirstSR_TextID+8), textHeader)
 ALIGN 4
 #include "s/CastlevaniaSeries/Castlevania3AquariusMeatOfJustice.event"
 }
 
 { ; SongTable(CastlevaniaAriaofSorrowHammersShopRandomWizardID, CastlevaniaAriaofSorrowHammersShopRandomWizard, 0)
 SongTable((CastlevaniaAriaofSorrowHammersShopRandomWizardID+1), CastlevaniaAriaofSorrowHammersShopRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+6), (CastlevaniaAriaofSorrowHammersShopRandomWizardID+1), (FirstSR_TextID+6))
+SoundRoom((FirstSoundRoom_ID+9), (CastlevaniaAriaofSorrowHammersShopRandomWizardID+1), (FirstSR_TextID+9))
 textHeader: ; txt("CastlevaniaAriaofSorrowHammers"); BYTE 0 0
-setText((FirstSR_TextID+6), textHeader)
+setText((FirstSR_TextID+9), textHeader)
 ALIGN 4
 #include "s/CastlevaniaSeries/CastlevaniaAriaofSorrowHammersShopRandomWizard.event"
 }
 
+{ ; SongTable(CastlevaniaDawnofSorrowThePinnacleID, CastlevaniaDawnofSorrowThePinnacle, 0)
+SongTable((CastlevaniaDawnofSorrowThePinnacleID+1), CastlevaniaDawnofSorrowThePinnacle, 1)
+SoundRoom((FirstSoundRoom_ID+10), (CastlevaniaDawnofSorrowThePinnacleID+1), (FirstSR_TextID+10))
+textHeader: ; txt("CastlevaniaDawnofSorrowThe"); BYTE 0 0
+setText((FirstSR_TextID+10), textHeader)
+ALIGN 4
+#include "s/CastlevaniaSeries/CastlevaniaDawnofSorrowThePinnacle.event"
+}
+
+{ ; SongTable(CastlevaniaOrderofEcclesiaRhapsodyoftheForsakenID, CastlevaniaOrderofEcclesiaRhapsodyoftheForsaken, 0)
+SongTable((CastlevaniaOrderofEcclesiaRhapsodyoftheForsakenID+1), CastlevaniaOrderofEcclesiaRhapsodyoftheForsaken, 1)
+SoundRoom((FirstSoundRoom_ID+11), (CastlevaniaOrderofEcclesiaRhapsodyoftheForsakenID+1), (FirstSR_TextID+11))
+textHeader: ; txt("CastlevaniaOrderofEcclesia"); BYTE 0 0
+setText((FirstSR_TextID+11), textHeader)
+ALIGN 4
+#include "s/CastlevaniaSeries/CastlevaniaOrderofEcclesiaRhapsodyoftheForsaken.event"
+}
+
+{ ; SongTable(CastlevaniaSymphonyoftheNightDraculasCastleID, CastlevaniaSymphonyoftheNightDraculasCastle, 0)
+SongTable((CastlevaniaSymphonyoftheNightDraculasCastleID+1), CastlevaniaSymphonyoftheNightDraculasCastle, 1)
+SoundRoom((FirstSoundRoom_ID+12), (CastlevaniaSymphonyoftheNightDraculasCastleID+1), (FirstSR_TextID+12))
+textHeader: ; txt("CastlevaniaSymphonyoftheNight"); BYTE 0 0
+setText((FirstSR_TextID+12), textHeader)
+ALIGN 4
+#include "s/CastlevaniaSeries/CastlevaniaSymphonyoftheNightDraculasCastle.event"
+}
+
 { ; SongTable(ChronoTriggerBoss2RandomWizardID, ChronoTriggerBoss2RandomWizard, 0)
 SongTable((ChronoTriggerBoss2RandomWizardID+1), ChronoTriggerBoss2RandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+7), (ChronoTriggerBoss2RandomWizardID+1), (FirstSR_TextID+7))
+SoundRoom((FirstSoundRoom_ID+13), (ChronoTriggerBoss2RandomWizardID+1), (FirstSR_TextID+13))
 textHeader: ; txt("ChronoTriggerBoss2RandomWizard"); BYTE 0 0
-setText((FirstSR_TextID+7), textHeader)
+setText((FirstSR_TextID+13), textHeader)
 ALIGN 4
 #include "s/ChronoTriggerSeries/ChronoTriggerBoss2RandomWizard.event"
 }
 
 { ; SongTable(ChronoTriggerCorridorsofTimeAReliableChairID, ChronoTriggerCorridorsofTimeAReliableChair, 0)
 SongTable((ChronoTriggerCorridorsofTimeAReliableChairID+1), ChronoTriggerCorridorsofTimeAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+8), (ChronoTriggerCorridorsofTimeAReliableChairID+1), (FirstSR_TextID+8))
+SoundRoom((FirstSoundRoom_ID+14), (ChronoTriggerCorridorsofTimeAReliableChairID+1), (FirstSR_TextID+14))
 textHeader: ; txt("ChronoTriggerCorridorsofTimeA"); BYTE 0 0
-setText((FirstSR_TextID+8), textHeader)
+setText((FirstSR_TextID+14), textHeader)
 ALIGN 4
 #include "s/ChronoTriggerSeries/ChronoTriggerCorridorsofTimeAReliableChair.event"
 }
 
 { ; SongTable(ChronoTriggerFrogsThemeRandomWizardID, ChronoTriggerFrogsThemeRandomWizard, 0)
 SongTable((ChronoTriggerFrogsThemeRandomWizardID+1), ChronoTriggerFrogsThemeRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+9), (ChronoTriggerFrogsThemeRandomWizardID+1), (FirstSR_TextID+9))
+SoundRoom((FirstSoundRoom_ID+15), (ChronoTriggerFrogsThemeRandomWizardID+1), (FirstSR_TextID+15))
 textHeader: ; txt("ChronoTriggerFrogsThemeRandom"); BYTE 0 0
-setText((FirstSR_TextID+9), textHeader)
+setText((FirstSR_TextID+15), textHeader)
 ALIGN 4
 #include "s/ChronoTriggerSeries/ChronoTriggerFrogsThemeRandomWizard.event"
 }
 
 { ; SongTable(ChronoTriggerSchalasThemeTakID, ChronoTriggerSchalasThemeTak, 0)
 SongTable((ChronoTriggerSchalasThemeTakID+1), ChronoTriggerSchalasThemeTak, 1)
-SoundRoom((FirstSoundRoom_ID+10), (ChronoTriggerSchalasThemeTakID+1), (FirstSR_TextID+10))
+SoundRoom((FirstSoundRoom_ID+16), (ChronoTriggerSchalasThemeTakID+1), (FirstSR_TextID+16))
 textHeader: ; txt("ChronoTriggerSchalasThemeTak"); BYTE 0 0
-setText((FirstSR_TextID+10), textHeader)
+setText((FirstSR_TextID+16), textHeader)
 ALIGN 4
 #include "s/ChronoTriggerSeries/ChronoTriggerSchalasThemeTak.event"
 }
 
 { ; SongTable(ChronoTriggerTheTrialRandomWizardID, ChronoTriggerTheTrialRandomWizard, 0)
 SongTable((ChronoTriggerTheTrialRandomWizardID+1), ChronoTriggerTheTrialRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+11), (ChronoTriggerTheTrialRandomWizardID+1), (FirstSR_TextID+11))
+SoundRoom((FirstSoundRoom_ID+17), (ChronoTriggerTheTrialRandomWizardID+1), (FirstSR_TextID+17))
 textHeader: ; txt("ChronoTriggerTheTrialRandom"); BYTE 0 0
-setText((FirstSR_TextID+11), textHeader)
+setText((FirstSR_TextID+17), textHeader)
 ALIGN 4
 #include "s/ChronoTriggerSeries/ChronoTriggerTheTrialRandomWizard.event"
 }
 
 { ; SongTable(DKC3WaterWorldPandanID, DKC3WaterWorldPandan, 0)
 SongTable((DKC3WaterWorldPandanID+1), DKC3WaterWorldPandan, 1)
-SoundRoom((FirstSoundRoom_ID+12), (DKC3WaterWorldPandanID+1), (FirstSR_TextID+12))
+SoundRoom((FirstSoundRoom_ID+18), (DKC3WaterWorldPandanID+1), (FirstSR_TextID+18))
 textHeader: ; txt("DKC3WaterWorldPandan"); BYTE 0 0
-setText((FirstSR_TextID+12), textHeader)
+setText((FirstSR_TextID+18), textHeader)
 ALIGN 4
 #include "s/DonkeyKongSeries/DKC3WaterWorldPandan.event"
 }
 
 { ; SongTable(DKCVoicesoftheTemplePandanID, DKCVoicesoftheTemplePandan, 0)
 SongTable((DKCVoicesoftheTemplePandanID+1), DKCVoicesoftheTemplePandan, 1)
-SoundRoom((FirstSoundRoom_ID+13), (DKCVoicesoftheTemplePandanID+1), (FirstSR_TextID+13))
+SoundRoom((FirstSoundRoom_ID+19), (DKCVoicesoftheTemplePandanID+1), (FirstSR_TextID+19))
 textHeader: ; txt("DKCVoicesoftheTemplePandan"); BYTE 0 0
-setText((FirstSR_TextID+13), textHeader)
+setText((FirstSR_TextID+19), textHeader)
 ALIGN 4
 #include "s/DonkeyKongSeries/DKCVoicesoftheTemplePandan.event"
 }
 
 { ; SongTable(DOOME1M6OntheHuntSmeID, DOOME1M6OntheHuntSme, 0)
 SongTable((DOOME1M6OntheHuntSmeID+1), DOOME1M6OntheHuntSme, 1)
-SoundRoom((FirstSoundRoom_ID+14), (DOOME1M6OntheHuntSmeID+1), (FirstSR_TextID+14))
+SoundRoom((FirstSoundRoom_ID+20), (DOOME1M6OntheHuntSmeID+1), (FirstSR_TextID+20))
 textHeader: ; txt("DOOME1M6OntheHuntSme"); BYTE 0 0
-setText((FirstSR_TextID+14), textHeader)
+setText((FirstSR_TextID+20), textHeader)
 ALIGN 4
 #include "s/DOOMSeries/DOOME1M6OntheHuntSme.event"
 }
 
 { ; SongTable(DOOMIntermissionfromDoomDolkarID, DOOMIntermissionfromDoomDolkar, 0)
 SongTable((DOOMIntermissionfromDoomDolkarID+1), DOOMIntermissionfromDoomDolkar, 1)
-SoundRoom((FirstSoundRoom_ID+15), (DOOMIntermissionfromDoomDolkarID+1), (FirstSR_TextID+15))
+SoundRoom((FirstSoundRoom_ID+21), (DOOMIntermissionfromDoomDolkarID+1), (FirstSR_TextID+21))
 textHeader: ; txt("DOOMIntermissionfromDoomDolkar"); BYTE 0 0
-setText((FirstSR_TextID+15), textHeader)
+setText((FirstSR_TextID+21), textHeader)
 ALIGN 4
 #include "s/DOOMSeries/DOOMIntermissionfromDoomDolkar.event"
 }
 
+{ ; SongTable(DrawntoLifeTheNextChapterSalemID, DrawntoLifeTheNextChapterSalem, 0)
+SongTable((DrawntoLifeTheNextChapterSalemID+1), DrawntoLifeTheNextChapterSalem, 1)
+SoundRoom((FirstSoundRoom_ID+22), (DrawntoLifeTheNextChapterSalemID+1), (FirstSR_TextID+22))
+textHeader: ; txt("DrawntoLifeTheNextChapterSalem"); BYTE 0 0
+setText((FirstSR_TextID+22), textHeader)
+ALIGN 4
+#include "s/DrawnToLife/DrawntoLifeTheNextChapterSalem.event"
+}
+
+{ ; SongTable(DrawntoLifeWilfresThemeID, DrawntoLifeWilfresTheme, 0)
+SongTable((DrawntoLifeWilfresThemeID+1), DrawntoLifeWilfresTheme, 1)
+SoundRoom((FirstSoundRoom_ID+23), (DrawntoLifeWilfresThemeID+1), (FirstSR_TextID+23))
+textHeader: ; txt("DrawntoLifeWilfresTheme"); BYTE 0 0
+setText((FirstSR_TextID+23), textHeader)
+ALIGN 4
+#include "s/DrawnToLife/DrawntoLifeWilfresTheme.event"
+}
+
 { ; SongTable(EarthboundGiygas2AReliableChairID, EarthboundGiygas2AReliableChair, 0)
 SongTable((EarthboundGiygas2AReliableChairID+1), EarthboundGiygas2AReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+16), (EarthboundGiygas2AReliableChairID+1), (FirstSR_TextID+16))
+SoundRoom((FirstSoundRoom_ID+24), (EarthboundGiygas2AReliableChairID+1), (FirstSR_TextID+24))
 textHeader: ; txt("EarthboundGiygas2AReliableChair"); BYTE 0 0
-setText((FirstSR_TextID+16), textHeader)
+setText((FirstSR_TextID+24), textHeader)
 ALIGN 4
 #include "s/EarthboundandMotherSeries/EarthboundGiygas2AReliableChair.event"
 }
 
 { ; SongTable(MOTHER3LoveThemeMrGreen3339ID, MOTHER3LoveThemeMrGreen3339, 0)
 SongTable((MOTHER3LoveThemeMrGreen3339ID+1), MOTHER3LoveThemeMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+17), (MOTHER3LoveThemeMrGreen3339ID+1), (FirstSR_TextID+17))
+SoundRoom((FirstSoundRoom_ID+25), (MOTHER3LoveThemeMrGreen3339ID+1), (FirstSR_TextID+25))
 textHeader: ; txt("MOTHER3LoveThemeMrGreen3339"); BYTE 0 0
-setText((FirstSR_TextID+17), textHeader)
+setText((FirstSR_TextID+25), textHeader)
 ALIGN 4
 #include "s/EarthboundandMotherSeries/MOTHER3LoveThemeMrGreen3339.event"
 }
 
 { ; SongTable(EtrianOdyssey2ForbiddenForestAlusqID, EtrianOdyssey2ForbiddenForestAlusq, 0)
 SongTable((EtrianOdyssey2ForbiddenForestAlusqID+1), EtrianOdyssey2ForbiddenForestAlusq, 1)
-SoundRoom((FirstSoundRoom_ID+18), (EtrianOdyssey2ForbiddenForestAlusqID+1), (FirstSR_TextID+18))
+SoundRoom((FirstSoundRoom_ID+26), (EtrianOdyssey2ForbiddenForestAlusqID+1), (FirstSR_TextID+26))
 textHeader: ; txt("EtrianOdyssey2ForbiddenForest"); BYTE 0 0
-setText((FirstSR_TextID+18), textHeader)
+setText((FirstSR_TextID+26), textHeader)
 ALIGN 4
 #include "s/EtrianOdysseySeries/EtrianOdyssey2ForbiddenForestAlusq.event"
 }
 
 { ; SongTable(EtrianOdyssey2HeavensRockSeatAlusqID, EtrianOdyssey2HeavensRockSeatAlusq, 0)
 SongTable((EtrianOdyssey2HeavensRockSeatAlusqID+1), EtrianOdyssey2HeavensRockSeatAlusq, 1)
-SoundRoom((FirstSoundRoom_ID+19), (EtrianOdyssey2HeavensRockSeatAlusqID+1), (FirstSR_TextID+19))
+SoundRoom((FirstSoundRoom_ID+27), (EtrianOdyssey2HeavensRockSeatAlusqID+1), (FirstSR_TextID+27))
 textHeader: ; txt("EtrianOdyssey2HeavensRockSeat"); BYTE 0 0
-setText((FirstSR_TextID+19), textHeader)
+setText((FirstSR_TextID+27), textHeader)
 ALIGN 4
 #include "s/EtrianOdysseySeries/EtrianOdyssey2HeavensRockSeatAlusq.event"
 }
 
 { ; SongTable(EtrianOdysseyDyedInScarletDolkarID, EtrianOdysseyDyedInScarletDolkar, 0)
 SongTable((EtrianOdysseyDyedInScarletDolkarID+1), EtrianOdysseyDyedInScarletDolkar, 1)
-SoundRoom((FirstSoundRoom_ID+20), (EtrianOdysseyDyedInScarletDolkarID+1), (FirstSR_TextID+20))
+SoundRoom((FirstSoundRoom_ID+28), (EtrianOdysseyDyedInScarletDolkarID+1), (FirstSR_TextID+28))
 textHeader: ; txt("EtrianOdysseyDyedInScarletDolkar"); BYTE 0 0
-setText((FirstSR_TextID+20), textHeader)
+setText((FirstSR_TextID+28), textHeader)
 ALIGN 4
 #include "s/EtrianOdysseySeries/EtrianOdysseyDyedInScarletDolkar.event"
 }
 
 { ; SongTable(FF10BattleRSflameID, FF10BattleRSflame, 0)
 SongTable((FF10BattleRSflameID+1), FF10BattleRSflame, 1)
-SoundRoom((FirstSoundRoom_ID+21), (FF10BattleRSflameID+1), (FirstSR_TextID+21))
+SoundRoom((FirstSoundRoom_ID+29), (FF10BattleRSflameID+1), (FirstSR_TextID+29))
 textHeader: ; txt("FF10BattleRSflame"); BYTE 0 0
-setText((FirstSR_TextID+21), textHeader)
+setText((FirstSR_TextID+29), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF10BattleRSflame.event"
 }
 
 { ; SongTable(FF10BrassdeChocoboTakID, FF10BrassdeChocoboTak, 0)
 SongTable((FF10BrassdeChocoboTakID+1), FF10BrassdeChocoboTak, 1)
-SoundRoom((FirstSoundRoom_ID+22), (FF10BrassdeChocoboTakID+1), (FirstSR_TextID+22))
+SoundRoom((FirstSoundRoom_ID+30), (FF10BrassdeChocoboTakID+1), (FirstSR_TextID+30))
 textHeader: ; txt("FF10BrassdeChocoboTak"); BYTE 0 0
-setText((FirstSR_TextID+22), textHeader)
+setText((FirstSR_TextID+30), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF10BrassdeChocoboTak.event"
 }
 
 { ; SongTable(FF10EnemyAttackAReliableChairID, FF10EnemyAttackAReliableChair, 0)
 SongTable((FF10EnemyAttackAReliableChairID+1), FF10EnemyAttackAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+23), (FF10EnemyAttackAReliableChairID+1), (FirstSR_TextID+23))
+SoundRoom((FirstSoundRoom_ID+31), (FF10EnemyAttackAReliableChairID+1), (FirstSR_TextID+31))
 textHeader: ; txt("FF10EnemyAttackAReliableChair"); BYTE 0 0
-setText((FirstSR_TextID+23), textHeader)
+setText((FirstSR_TextID+31), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF10EnemyAttackAReliableChair.event"
 }
 
 { ; SongTable(FF10ToZanarkandAReliableChairID, FF10ToZanarkandAReliableChair, 0)
 SongTable((FF10ToZanarkandAReliableChairID+1), FF10ToZanarkandAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+24), (FF10ToZanarkandAReliableChairID+1), (FirstSR_TextID+24))
+SoundRoom((FirstSoundRoom_ID+32), (FF10ToZanarkandAReliableChairID+1), (FirstSR_TextID+32))
 textHeader: ; txt("FF10ToZanarkandAReliableChair"); BYTE 0 0
-setText((FirstSR_TextID+24), textHeader)
+setText((FirstSR_TextID+32), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF10ToZanarkandAReliableChair.event"
 }
 
 { ; SongTable(FF5BattleontheBigBridgePandanID, FF5BattleontheBigBridgePandan, 0)
 SongTable((FF5BattleontheBigBridgePandanID+1), FF5BattleontheBigBridgePandan, 1)
-SoundRoom((FirstSoundRoom_ID+25), (FF5BattleontheBigBridgePandanID+1), (FirstSR_TextID+25))
+SoundRoom((FirstSoundRoom_ID+33), (FF5BattleontheBigBridgePandanID+1), (FirstSR_TextID+33))
 textHeader: ; txt("FF5BattleontheBigBridgePandan"); BYTE 0 0
-setText((FirstSR_TextID+25), textHeader)
+setText((FirstSR_TextID+33), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF5BattleontheBigBridgePandan.event"
 }
 
 { ; SongTable(FF6CyanThemeShinKumaID, FF6CyanThemeShinKuma, 0)
 SongTable((FF6CyanThemeShinKumaID+1), FF6CyanThemeShinKuma, 1)
-SoundRoom((FirstSoundRoom_ID+26), (FF6CyanThemeShinKumaID+1), (FirstSR_TextID+26))
+SoundRoom((FirstSoundRoom_ID+34), (FF6CyanThemeShinKumaID+1), (FirstSR_TextID+34))
 textHeader: ; txt("FF6CyanThemeShinKuma"); BYTE 0 0
-setText((FirstSR_TextID+26), textHeader)
+setText((FirstSR_TextID+34), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF6CyanThemeShinKuma.event"
 }
 
 { ; SongTable(FF6DancingMadPt5ShinKumaID, FF6DancingMadPt5ShinKuma, 0)
 SongTable((FF6DancingMadPt5ShinKumaID+1), FF6DancingMadPt5ShinKuma, 1)
-SoundRoom((FirstSoundRoom_ID+27), (FF6DancingMadPt5ShinKumaID+1), (FirstSR_TextID+27))
+SoundRoom((FirstSoundRoom_ID+35), (FF6DancingMadPt5ShinKumaID+1), (FirstSR_TextID+35))
 textHeader: ; txt("FF6DancingMadPt5ShinKuma"); BYTE 0 0
-setText((FirstSR_TextID+27), textHeader)
+setText((FirstSR_TextID+35), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF6DancingMadPt5ShinKuma.event"
 }
 
 { ; SongTable(FF6TheUnforgivenRandomWizardID, FF6TheUnforgivenRandomWizard, 0)
 SongTable((FF6TheUnforgivenRandomWizardID+1), FF6TheUnforgivenRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+28), (FF6TheUnforgivenRandomWizardID+1), (FirstSR_TextID+28))
+SoundRoom((FirstSoundRoom_ID+36), (FF6TheUnforgivenRandomWizardID+1), (FirstSR_TextID+36))
 textHeader: ; txt("FF6TheUnforgivenRandomWizard"); BYTE 0 0
-setText((FirstSR_TextID+28), textHeader)
+setText((FirstSR_TextID+36), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF6TheUnforgivenRandomWizard.event"
 }
 
 { ; SongTable(FF6TroopsMarchonTristanHollowID, FF6TroopsMarchonTristanHollow, 0)
 SongTable((FF6TroopsMarchonTristanHollowID+1), FF6TroopsMarchonTristanHollow, 1)
-SoundRoom((FirstSoundRoom_ID+29), (FF6TroopsMarchonTristanHollowID+1), (FirstSR_TextID+29))
+SoundRoom((FirstSoundRoom_ID+37), (FF6TroopsMarchonTristanHollowID+1), (FirstSR_TextID+37))
 textHeader: ; txt("FF6TroopsMarchonTristanHollow"); BYTE 0 0
-setText((FirstSR_TextID+29), textHeader)
+setText((FirstSR_TextID+37), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF6TroopsMarchonTristanHollow.event"
 }
 
 { ; SongTable(FF7BarretsThemePandanID, FF7BarretsThemePandan, 0)
 SongTable((FF7BarretsThemePandanID+1), FF7BarretsThemePandan, 1)
-SoundRoom((FirstSoundRoom_ID+30), (FF7BarretsThemePandanID+1), (FirstSR_TextID+30))
+SoundRoom((FirstSoundRoom_ID+38), (FF7BarretsThemePandanID+1), (FirstSR_TextID+38))
 textHeader: ; txt("FF7BarretsThemePandan"); BYTE 0 0
-setText((FirstSR_TextID+30), textHeader)
+setText((FirstSR_TextID+38), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF7BarretsThemePandan.event"
 }
 
 { ; SongTable(FF9BossBattleAReliableChairID, FF9BossBattleAReliableChair, 0)
 SongTable((FF9BossBattleAReliableChairID+1), FF9BossBattleAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+31), (FF9BossBattleAReliableChairID+1), (FirstSR_TextID+31))
+SoundRoom((FirstSoundRoom_ID+39), (FF9BossBattleAReliableChairID+1), (FirstSR_TextID+39))
 textHeader: ; txt("FF9BossBattleAReliableChair"); BYTE 0 0
-setText((FirstSR_TextID+31), textHeader)
+setText((FirstSR_TextID+39), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FF9BossBattleAReliableChair.event"
 }
 
 { ; SongTable(FFTAPubThemeAReliableChairID, FFTAPubThemeAReliableChair, 0)
 SongTable((FFTAPubThemeAReliableChairID+1), FFTAPubThemeAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+32), (FFTAPubThemeAReliableChairID+1), (FirstSR_TextID+32))
+SoundRoom((FirstSoundRoom_ID+40), (FFTAPubThemeAReliableChairID+1), (FirstSR_TextID+40))
 textHeader: ; txt("FFTAPubThemeAReliableChair"); BYTE 0 0
-setText((FirstSR_TextID+32), textHeader)
+setText((FirstSR_TextID+40), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FFTAPubThemeAReliableChair.event"
 }
 
 { ; SongTable(FFTASnowBattleAReliableChairID, FFTASnowBattleAReliableChair, 0)
 SongTable((FFTASnowBattleAReliableChairID+1), FFTASnowBattleAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+33), (FFTASnowBattleAReliableChairID+1), (FirstSR_TextID+33))
+SoundRoom((FirstSoundRoom_ID+41), (FFTASnowBattleAReliableChairID+1), (FirstSR_TextID+41))
 textHeader: ; txt("FFTASnowBattleAReliableChair"); BYTE 0 0
-setText((FirstSR_TextID+33), textHeader)
+setText((FirstSR_TextID+41), textHeader)
 ALIGN 4
 #include "s/FinalFantasySeries/FFTASnowBattleAReliableChair.event"
 }
 
 { ; SongTable(FE02AlmEnemyPhasehypergammaspacesID, FE02AlmEnemyPhasehypergammaspaces, 0)
 SongTable((FE02AlmEnemyPhasehypergammaspacesID+1), FE02AlmEnemyPhasehypergammaspaces, 1)
-SoundRoom((FirstSoundRoom_ID+34), (FE02AlmEnemyPhasehypergammaspacesID+1), (FirstSR_TextID+34))
+SoundRoom((FirstSoundRoom_ID+42), (FE02AlmEnemyPhasehypergammaspacesID+1), (FirstSR_TextID+42))
 textHeader: ; txt("FE02AlmEnemy"); BYTE 0 0
-setText((FirstSR_TextID+34), textHeader)
+setText((FirstSR_TextID+42), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE02AlmEnemyPhasehypergammaspaces.event"
 }
 
 { ; SongTable(FE02AlmPlayerPhase1hypergammaspacesID, FE02AlmPlayerPhase1hypergammaspaces, 0)
 SongTable((FE02AlmPlayerPhase1hypergammaspacesID+1), FE02AlmPlayerPhase1hypergammaspaces, 1)
-SoundRoom((FirstSoundRoom_ID+35), (FE02AlmPlayerPhase1hypergammaspacesID+1), (FirstSR_TextID+35))
+SoundRoom((FirstSoundRoom_ID+43), (FE02AlmPlayerPhase1hypergammaspacesID+1), (FirstSR_TextID+43))
 textHeader: ; txt("FE02AlmPlayer"); BYTE 0 0
-setText((FirstSR_TextID+35), textHeader)
+setText((FirstSR_TextID+43), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE02AlmPlayerPhase1hypergammaspaces.event"
 }
 
 { ; SongTable(FE02BossBattlehypergammaspacesID, FE02BossBattlehypergammaspaces, 0)
 SongTable((FE02BossBattlehypergammaspacesID+1), FE02BossBattlehypergammaspaces, 1)
-SoundRoom((FirstSoundRoom_ID+36), (FE02BossBattlehypergammaspacesID+1), (FirstSR_TextID+36))
+SoundRoom((FirstSoundRoom_ID+44), (FE02BossBattlehypergammaspacesID+1), (FirstSR_TextID+44))
 textHeader: ; txt("FE02BossBattlehypergammaspaces"); BYTE 0 0
-setText((FirstSR_TextID+36), textHeader)
+setText((FirstSR_TextID+44), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE02BossBattlehypergammaspaces.event"
 }
 
 { ; SongTable(FE02CelicaEnemyPhasehypergammaspacesID, FE02CelicaEnemyPhasehypergammaspaces, 0)
 SongTable((FE02CelicaEnemyPhasehypergammaspacesID+1), FE02CelicaEnemyPhasehypergammaspaces, 1)
-SoundRoom((FirstSoundRoom_ID+37), (FE02CelicaEnemyPhasehypergammaspacesID+1), (FirstSR_TextID+37))
+SoundRoom((FirstSoundRoom_ID+45), (FE02CelicaEnemyPhasehypergammaspacesID+1), (FirstSR_TextID+45))
 textHeader: ; txt("FE02CelicaEnemy"); BYTE 0 0
-setText((FirstSR_TextID+37), textHeader)
+setText((FirstSR_TextID+45), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE02CelicaEnemyPhasehypergammaspaces.event"
 }
 
 { ; SongTable(FE04SilesianForcesRSflameID, FE04SilesianForcesRSflame, 0)
 SongTable((FE04SilesianForcesRSflameID+1), FE04SilesianForcesRSflame, 1)
-SoundRoom((FirstSoundRoom_ID+38), (FE04SilesianForcesRSflameID+1), (FirstSR_TextID+38))
+SoundRoom((FirstSoundRoom_ID+46), (FE04SilesianForcesRSflameID+1), (FirstSR_TextID+46))
 textHeader: ; txt("FE04SilesianForcesRSflame"); BYTE 0 0
-setText((FirstSR_TextID+38), textHeader)
+setText((FirstSR_TextID+46), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE04SilesianForcesRSflame.event"
 }
 
 { ; SongTable(FE05ThreatApproachingFinalChapterSurfingKyogreID, FE05ThreatApproachingFinalChapterSurfingKyogre, 0)
 SongTable((FE05ThreatApproachingFinalChapterSurfingKyogreID+1), FE05ThreatApproachingFinalChapterSurfingKyogre, 1)
-SoundRoom((FirstSoundRoom_ID+39), (FE05ThreatApproachingFinalChapterSurfingKyogreID+1), (FirstSR_TextID+39))
+SoundRoom((FirstSoundRoom_ID+47), (FE05ThreatApproachingFinalChapterSurfingKyogreID+1), (FirstSR_TextID+47))
 textHeader: ; txt("FE05ThreatApproachingFinal"); BYTE 0 0
-setText((FirstSR_TextID+39), textHeader)
+setText((FirstSR_TextID+47), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE05ThreatApproachingFinalChapterSurfingKyogre.event"
 }
 
 { ; SongTable(FE06BeneathaNewLightAliceID, FE06BeneathaNewLightAlice, 0)
 SongTable((FE06BeneathaNewLightAliceID+1), FE06BeneathaNewLightAlice, 1)
-SoundRoom((FirstSoundRoom_ID+40), (FE06BeneathaNewLightAliceID+1), (FirstSR_TextID+40))
+SoundRoom((FirstSoundRoom_ID+48), (FE06BeneathaNewLightAliceID+1), (FirstSR_TextID+48))
 textHeader: ; txt("FE06BeneathaNewLightAlice"); BYTE 0 0
-setText((FirstSR_TextID+40), textHeader)
+setText((FirstSR_TextID+48), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE06BeneathaNewLightAlice.event"
 }
 
 { ; SongTable(FE06TheLastDragonAliceID, FE06TheLastDragonAlice, 0)
 SongTable((FE06TheLastDragonAliceID+1), FE06TheLastDragonAlice, 1)
-SoundRoom((FirstSoundRoom_ID+41), (FE06TheLastDragonAliceID+1), (FirstSR_TextID+41))
+SoundRoom((FirstSoundRoom_ID+49), (FE06TheLastDragonAliceID+1), (FirstSR_TextID+49))
 textHeader: ; txt("FE06TheLastDragonAlice"); BYTE 0 0
-setText((FirstSR_TextID+41), textHeader)
+setText((FirstSR_TextID+49), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE06TheLastDragonAlice.event"
 }
 
 { ; SongTable(FE07DistantTravelsRemixAReliableChairID, FE07DistantTravelsRemixAReliableChair, 0)
 SongTable((FE07DistantTravelsRemixAReliableChairID+1), FE07DistantTravelsRemixAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+42), (FE07DistantTravelsRemixAReliableChairID+1), (FirstSR_TextID+42))
+SoundRoom((FirstSoundRoom_ID+50), (FE07DistantTravelsRemixAReliableChairID+1), (FirstSR_TextID+50))
 textHeader: ; txt("FE07DistantTravelsRemixAReliable"); BYTE 0 0
-setText((FirstSR_TextID+42), textHeader)
+setText((FirstSR_TextID+50), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE07DistantTravelsRemixAReliableChair.event"
 }
 
 { ; SongTable(FE07InescapableFateAliceID, FE07InescapableFateAlice, 0)
 SongTable((FE07InescapableFateAliceID+1), FE07InescapableFateAlice, 1)
-SoundRoom((FirstSoundRoom_ID+43), (FE07InescapableFateAliceID+1), (FirstSR_TextID+43))
+SoundRoom((FirstSoundRoom_ID+51), (FE07InescapableFateAliceID+1), (FirstSR_TextID+51))
 textHeader: ; txt("FE07InescapableFateAlice"); BYTE 0 0
-setText((FirstSR_TextID+43), textHeader)
+setText((FirstSR_TextID+51), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE07InescapableFateAlice.event"
 }
 
 { ; SongTable(FE07RisetotheChallengeAliceID, FE07RisetotheChallengeAlice, 0)
 SongTable((FE07RisetotheChallengeAliceID+1), FE07RisetotheChallengeAlice, 1)
-SoundRoom((FirstSoundRoom_ID+44), (FE07RisetotheChallengeAliceID+1), (FirstSR_TextID+44))
+SoundRoom((FirstSoundRoom_ID+52), (FE07RisetotheChallengeAliceID+1), (FirstSR_TextID+52))
 textHeader: ; txt("FE07RisetotheChallengeAlice"); BYTE 0 0
-setText((FirstSR_TextID+44), textHeader)
+setText((FirstSR_TextID+52), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE07RisetotheChallengeAlice.event"
 }
 
 { ; SongTable(FE09ClashSaXortheNobodyID, FE09ClashSaXortheNobody, 0)
 SongTable((FE09ClashSaXortheNobodyID+1), FE09ClashSaXortheNobody, 1)
-SoundRoom((FirstSoundRoom_ID+45), (FE09ClashSaXortheNobodyID+1), (FirstSR_TextID+45))
+SoundRoom((FirstSoundRoom_ID+53), (FE09ClashSaXortheNobodyID+1), (FirstSR_TextID+53))
 textHeader: ; txt("FE09ClashSaXortheNobody"); BYTE 0 0
-setText((FirstSR_TextID+45), textHeader)
+setText((FirstSR_TextID+53), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE09ClashSaXortheNobody.event"
 }
 
 { ; SongTable(FE09WithUsSmeID, FE09WithUsSme, 0)
 SongTable((FE09WithUsSmeID+1), FE09WithUsSme, 1)
-SoundRoom((FirstSoundRoom_ID+46), (FE09WithUsSmeID+1), (FirstSR_TextID+46))
+SoundRoom((FirstSoundRoom_ID+54), (FE09WithUsSmeID+1), (FirstSR_TextID+54))
 textHeader: ; txt("FE09WithUsSme"); BYTE 0 0
-setText((FirstSR_TextID+46), textHeader)
+setText((FirstSR_TextID+54), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE09WithUsSme.event"
 }
 
 { ; SongTable(FE10AscentMrGreen3339ID, FE10AscentMrGreen3339, 0)
 SongTable((FE10AscentMrGreen3339ID+1), FE10AscentMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+47), (FE10AscentMrGreen3339ID+1), (FirstSR_TextID+47))
+SoundRoom((FirstSoundRoom_ID+55), (FE10AscentMrGreen3339ID+1), (FirstSR_TextID+55))
 textHeader: ; txt("FE10AscentMrGreen3339"); BYTE 0 0
-setText((FirstSR_TextID+47), textHeader)
+setText((FirstSR_TextID+55), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE10AscentMrGreen3339.event"
 }
 
 { ; SongTable(FE10MarchSaXortheNobodyID, FE10MarchSaXortheNobody, 0)
 SongTable((FE10MarchSaXortheNobodyID+1), FE10MarchSaXortheNobody, 1)
-SoundRoom((FirstSoundRoom_ID+48), (FE10MarchSaXortheNobodyID+1), (FirstSR_TextID+48))
+SoundRoom((FirstSoundRoom_ID+56), (FE10MarchSaXortheNobodyID+1), (FirstSR_TextID+56))
 textHeader: ; txt("FE10MarchSaXortheNobody"); BYTE 0 0
-setText((FirstSR_TextID+48), textHeader)
+setText((FirstSR_TextID+56), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE10MarchSaXortheNobody.event"
 }
 
 { ; SongTable(FE13DutyAblazeAzulaID, FE13DutyAblazeAzula, 0)
 SongTable((FE13DutyAblazeAzulaID+1), FE13DutyAblazeAzula, 1)
-SoundRoom((FirstSoundRoom_ID+49), (FE13DutyAblazeAzulaID+1), (FirstSR_TextID+49))
+SoundRoom((FirstSoundRoom_ID+57), (FE13DutyAblazeAzulaID+1), (FirstSR_TextID+57))
 textHeader: ; txt("FE13DutyAblazeAzula"); BYTE 0 0
-setText((FirstSR_TextID+49), textHeader)
+setText((FirstSR_TextID+57), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE13DutyAblazeAzula.event"
 }
 
 { ; SongTable(FE13WedBestPrepareForCombatJustToBeSafeAzulaAliceID, FE13WedBestPrepareForCombatJustToBeSafeAzulaAlice, 0)
 SongTable((FE13WedBestPrepareForCombatJustToBeSafeAzulaAliceID+1), FE13WedBestPrepareForCombatJustToBeSafeAzulaAlice, 1)
-SoundRoom((FirstSoundRoom_ID+50), (FE13WedBestPrepareForCombatJustToBeSafeAzulaAliceID+1), (FirstSR_TextID+50))
+SoundRoom((FirstSoundRoom_ID+58), (FE13WedBestPrepareForCombatJustToBeSafeAzulaAliceID+1), (FirstSR_TextID+58))
 textHeader: ; txt("FE13WedBestPrepareForCombatJust"); BYTE 0 0
-setText((FirstSR_TextID+50), textHeader)
+setText((FirstSR_TextID+58), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE13WedBestPrepareForCombatJustToBeSafeAzulaAlice.event"
 }
 
 { ; SongTable(FE13YouMayCallMeMarthMysteriousDancerID, FE13YouMayCallMeMarthMysteriousDancer, 0)
 SongTable((FE13YouMayCallMeMarthMysteriousDancerID+1), FE13YouMayCallMeMarthMysteriousDancer, 1)
-SoundRoom((FirstSoundRoom_ID+51), (FE13YouMayCallMeMarthMysteriousDancerID+1), (FirstSR_TextID+51))
+SoundRoom((FirstSoundRoom_ID+59), (FE13YouMayCallMeMarthMysteriousDancerID+1), (FirstSR_TextID+59))
 textHeader: ; txt("FE13YouMayCallMeMarthMysterious"); BYTE 0 0
-setText((FirstSR_TextID+51), textHeader)
+setText((FirstSR_TextID+59), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE13YouMayCallMeMarthMysteriousDancer.event"
 }
 
 { ; SongTable(FE14ADarkFallFireMycahelID, FE14ADarkFallFireMycahel, 0)
 SongTable((FE14ADarkFallFireMycahelID+1), FE14ADarkFallFireMycahel, 1)
-SoundRoom((FirstSoundRoom_ID+52), (FE14ADarkFallFireMycahelID+1), (FirstSR_TextID+52))
+SoundRoom((FirstSoundRoom_ID+60), (FE14ADarkFallFireMycahelID+1), (FirstSR_TextID+60))
 textHeader: ; txt("FE14ADarkFallFireMycahel"); BYTE 0 0
-setText((FirstSR_TextID+52), textHeader)
+setText((FirstSR_TextID+60), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE14ADarkFallFireMycahel.event"
 }
 
 { ; SongTable(FE14GloryRuinDeedsMycahelID, FE14GloryRuinDeedsMycahel, 0)
 SongTable((FE14GloryRuinDeedsMycahelID+1), FE14GloryRuinDeedsMycahel, 1)
-SoundRoom((FirstSoundRoom_ID+53), (FE14GloryRuinDeedsMycahelID+1), (FirstSR_TextID+53))
+SoundRoom((FirstSoundRoom_ID+61), (FE14GloryRuinDeedsMycahelID+1), (FirstSR_TextID+61))
 textHeader: ; txt("FE14GloryRuinDeedsMycahel"); BYTE 0 0
-setText((FirstSR_TextID+53), textHeader)
+setText((FirstSR_TextID+61), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE14GloryRuinDeedsMycahel.event"
 }
 
 { ; SongTable(FE15LordofaDeadEmpireAblazeMycahelID, FE15LordofaDeadEmpireAblazeMycahel, 0)
 SongTable((FE15LordofaDeadEmpireAblazeMycahelID+1), FE15LordofaDeadEmpireAblazeMycahel, 1)
-SoundRoom((FirstSoundRoom_ID+54), (FE15LordofaDeadEmpireAblazeMycahelID+1), (FirstSR_TextID+54))
+SoundRoom((FirstSoundRoom_ID+62), (FE15LordofaDeadEmpireAblazeMycahelID+1), (FirstSR_TextID+62))
 textHeader: ; txt("FE15LordofaDeadEmpireAblaze"); BYTE 0 0
-setText((FirstSR_TextID+54), textHeader)
+setText((FirstSR_TextID+62), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE15LordofaDeadEmpireAblazeMycahel.event"
 }
 
 { ; SongTable(FE15TwilightOfTheGodsSmeID, FE15TwilightOfTheGodsSme, 0)
 SongTable((FE15TwilightOfTheGodsSmeID+1), FE15TwilightOfTheGodsSme, 1)
-SoundRoom((FirstSoundRoom_ID+55), (FE15TwilightOfTheGodsSmeID+1), (FirstSR_TextID+55))
+SoundRoom((FirstSoundRoom_ID+63), (FE15TwilightOfTheGodsSmeID+1), (FirstSR_TextID+63))
 textHeader: ; txt("FE15TwilightOfTheGodsSme"); BYTE 0 0
-setText((FirstSR_TextID+55), textHeader)
+setText((FirstSR_TextID+63), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE15TwilightOfTheGodsSme.event"
 }
 
 { ; SongTable(FE16AFuneralofFlowersThunderMrGreen3339ID, FE16AFuneralofFlowersThunderMrGreen3339, 0)
 SongTable((FE16AFuneralofFlowersThunderMrGreen3339ID+1), FE16AFuneralofFlowersThunderMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+56), (FE16AFuneralofFlowersThunderMrGreen3339ID+1), (FirstSR_TextID+56))
+SoundRoom((FirstSoundRoom_ID+64), (FE16AFuneralofFlowersThunderMrGreen3339ID+1), (FirstSR_TextID+64))
 textHeader: ; txt("FE16AFuneralofFlowersThunderMr"); BYTE 0 0
-setText((FirstSR_TextID+56), textHeader)
+setText((FirstSR_TextID+64), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE16AFuneralofFlowersThunderMrGreen3339.event"
 }
 
 { ; SongTable(FE16GodShatteringStarRainMrGreen3339ID, FE16GodShatteringStarRainMrGreen3339, 0)
 SongTable((FE16GodShatteringStarRainMrGreen3339ID+1), FE16GodShatteringStarRainMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+57), (FE16GodShatteringStarRainMrGreen3339ID+1), (FirstSR_TextID+57))
+SoundRoom((FirstSoundRoom_ID+65), (FE16GodShatteringStarRainMrGreen3339ID+1), (FirstSR_TextID+65))
 textHeader: ; txt("FE16GodShatteringStarRainMr"); BYTE 0 0
-setText((FirstSR_TextID+57), textHeader)
+setText((FirstSR_TextID+65), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE16GodShatteringStarRainMrGreen3339.event"
 }
 
 { ; SongTable(FE17BrightSandstormKaidrasID, FE17BrightSandstormKaidras, 0)
 SongTable((FE17BrightSandstormKaidrasID+1), FE17BrightSandstormKaidras, 1)
-SoundRoom((FirstSoundRoom_ID+58), (FE17BrightSandstormKaidrasID+1), (FirstSR_TextID+58))
+SoundRoom((FirstSoundRoom_ID+66), (FE17BrightSandstormKaidrasID+1), (FirstSR_TextID+66))
 textHeader: ; txt("FE17BrightSandstormKaidras"); BYTE 0 0
-setText((FirstSR_TextID+58), textHeader)
+setText((FirstSR_TextID+66), textHeader)
 ALIGN 4
 #include "s/FireEmblemSeries/FE17BrightSandstormKaidras.event"
 }
 
+{ ; SongTable(FireEmblemBindingBlade_ArenaBattleID, FireEmblemBindingBlade_ArenaBattle, 0)
+SongTable((FireEmblemBindingBlade_ArenaBattleID+1), FireEmblemBindingBlade_ArenaBattle, 1)
+SoundRoom((FirstSoundRoom_ID+67), (FireEmblemBindingBlade_ArenaBattleID+1), (FirstSR_TextID+67))
+textHeader: ; txt("FireEmblemBindingBlade_Arena"); BYTE 0 0
+setText((FirstSR_TextID+67), textHeader)
+ALIGN 4
+#include "s/FireEmblemSeries/FireEmblemBindingBlade_ArenaBattle.event"
+}
+
+{ ; SongTable(FireEmblemEngageEnjoytheEveningDivineOneSurfingKyogre1ID, FireEmblemEngageEnjoytheEveningDivineOneSurfingKyogre1, 0)
+SongTable((FireEmblemEngageEnjoytheEveningDivineOneSurfingKyogre1ID+1), FireEmblemEngageEnjoytheEveningDivineOneSurfingKyogre1, 1)
+SoundRoom((FirstSoundRoom_ID+68), (FireEmblemEngageEnjoytheEveningDivineOneSurfingKyogre1ID+1), (FirstSR_TextID+68))
+textHeader: ; txt("FireEmblemEngageEnjoytheEvening"); BYTE 0 0
+setText((FirstSR_TextID+68), textHeader)
+ALIGN 4
+#include "s/FireEmblemSeries/FireEmblemEngageEnjoytheEveningDivineOneSurfingKyogre1.event"
+}
+
+{ ; SongTable(FireEmblemEngage_AnotherDayofTrainingID, FireEmblemEngage_AnotherDayofTraining, 0)
+SongTable((FireEmblemEngage_AnotherDayofTrainingID+1), FireEmblemEngage_AnotherDayofTraining, 1)
+SoundRoom((FirstSoundRoom_ID+69), (FireEmblemEngage_AnotherDayofTrainingID+1), (FirstSR_TextID+69))
+textHeader: ; txt("FireEmblemEngage_AnotherDayof"); BYTE 0 0
+setText((FirstSR_TextID+69), textHeader)
+ALIGN 4
+#include "s/FireEmblemSeries/FireEmblemEngage_AnotherDayofTraining.event"
+}
+
+{ ; SongTable(FireEmblemEngage_FallenPetalsNewID, FireEmblemEngage_FallenPetalsNew, 0)
+SongTable((FireEmblemEngage_FallenPetalsNewID+1), FireEmblemEngage_FallenPetalsNew, 1)
+SoundRoom((FirstSoundRoom_ID+70), (FireEmblemEngage_FallenPetalsNewID+1), (FirstSR_TextID+70))
+textHeader: ; txt("FireEmblemEngage_FallenPetalsNew"); BYTE 0 0
+setText((FirstSR_TextID+70), textHeader)
+ALIGN 4
+#include "s/FireEmblemSeries/FireEmblemEngage_FallenPetalsNew.event"
+}
+
 { ; SongTable(GoldenSunDarkDawnBattle1MrGreen3339ID, GoldenSunDarkDawnBattle1MrGreen3339, 0)
 SongTable((GoldenSunDarkDawnBattle1MrGreen3339ID+1), GoldenSunDarkDawnBattle1MrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+59), (GoldenSunDarkDawnBattle1MrGreen3339ID+1), (FirstSR_TextID+59))
+SoundRoom((FirstSoundRoom_ID+71), (GoldenSunDarkDawnBattle1MrGreen3339ID+1), (FirstSR_TextID+71))
 textHeader: ; txt("GoldenSunDarkDawnBattle1Mr"); BYTE 0 0
-setText((FirstSR_TextID+59), textHeader)
+setText((FirstSR_TextID+71), textHeader)
 ALIGN 4
 #include "s/GoldenSunSeries/GoldenSunDarkDawnBattle1MrGreen3339.event"
 }
 
 { ; SongTable(GoldenSunIsaacsBattleThemeMeatOfJusticeID, GoldenSunIsaacsBattleThemeMeatOfJustice, 0)
 SongTable((GoldenSunIsaacsBattleThemeMeatOfJusticeID+1), GoldenSunIsaacsBattleThemeMeatOfJustice, 1)
-SoundRoom((FirstSoundRoom_ID+60), (GoldenSunIsaacsBattleThemeMeatOfJusticeID+1), (FirstSR_TextID+60))
+SoundRoom((FirstSoundRoom_ID+72), (GoldenSunIsaacsBattleThemeMeatOfJusticeID+1), (FirstSR_TextID+72))
 textHeader: ; txt("GoldenSunIsaacsBattleThemeMeatOf"); BYTE 0 0
-setText((FirstSR_TextID+60), textHeader)
+setText((FirstSR_TextID+72), textHeader)
 ALIGN 4
 #include "s/GoldenSunSeries/GoldenSunIsaacsBattleThemeMeatOfJustice.event"
 }
 
 { ; SongTable(GoldenSunSaturosandMenardiBattleMrGreen3339ID, GoldenSunSaturosandMenardiBattleMrGreen3339, 0)
 SongTable((GoldenSunSaturosandMenardiBattleMrGreen3339ID+1), GoldenSunSaturosandMenardiBattleMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+61), (GoldenSunSaturosandMenardiBattleMrGreen3339ID+1), (FirstSR_TextID+61))
+SoundRoom((FirstSoundRoom_ID+73), (GoldenSunSaturosandMenardiBattleMrGreen3339ID+1), (FirstSR_TextID+73))
 textHeader: ; txt("GoldenSunSaturosandMenardiBattle"); BYTE 0 0
-setText((FirstSR_TextID+61), textHeader)
+setText((FirstSR_TextID+73), textHeader)
 ALIGN 4
 #include "s/GoldenSunSeries/GoldenSunSaturosandMenardiBattleMrGreen3339.event"
 }
 
 { ; SongTable(GoldenSunSaturosBattleTristanHollowID, GoldenSunSaturosBattleTristanHollow, 0)
 SongTable((GoldenSunSaturosBattleTristanHollowID+1), GoldenSunSaturosBattleTristanHollow, 1)
-SoundRoom((FirstSoundRoom_ID+62), (GoldenSunSaturosBattleTristanHollowID+1), (FirstSR_TextID+62))
+SoundRoom((FirstSoundRoom_ID+74), (GoldenSunSaturosBattleTristanHollowID+1), (FirstSR_TextID+74))
 textHeader: ; txt("GoldenSunSaturosBattleTristan"); BYTE 0 0
-setText((FirstSR_TextID+62), textHeader)
+setText((FirstSR_TextID+74), textHeader)
 ALIGN 4
 #include "s/GoldenSunSeries/GoldenSunSaturosBattleTristanHollow.event"
 }
 
 { ; SongTable(GoldenSunVenusLighthouseAReliableChairID, GoldenSunVenusLighthouseAReliableChair, 0)
 SongTable((GoldenSunVenusLighthouseAReliableChairID+1), GoldenSunVenusLighthouseAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+63), (GoldenSunVenusLighthouseAReliableChairID+1), (FirstSR_TextID+63))
+SoundRoom((FirstSoundRoom_ID+75), (GoldenSunVenusLighthouseAReliableChairID+1), (FirstSR_TextID+75))
 textHeader: ; txt("GoldenSunVenusLighthouseA"); BYTE 0 0
-setText((FirstSR_TextID+63), textHeader)
+setText((FirstSR_TextID+75), textHeader)
 ALIGN 4
 #include "s/GoldenSunSeries/GoldenSunVenusLighthouseAReliableChair.event"
 }
 
+{ ; SongTable(GoldenSun_CaveThemeID, GoldenSun_CaveTheme, 0)
+SongTable((GoldenSun_CaveThemeID+1), GoldenSun_CaveTheme, 1)
+SoundRoom((FirstSoundRoom_ID+76), (GoldenSun_CaveThemeID+1), (FirstSR_TextID+76))
+textHeader: ; txt("GoldenSun_CaveTheme"); BYTE 0 0
+setText((FirstSR_TextID+76), textHeader)
+ALIGN 4
+#include "s/GoldenSunSeries/GoldenSun_CaveTheme.event"
+}
+
+{ ; SongTable(GoldenSun_EnemyBattleID, GoldenSun_EnemyBattle, 0)
+SongTable((GoldenSun_EnemyBattleID+1), GoldenSun_EnemyBattle, 1)
+SoundRoom((FirstSoundRoom_ID+77), (GoldenSun_EnemyBattleID+1), (FirstSR_TextID+77))
+textHeader: ; txt("GoldenSun_EnemyBattle"); BYTE 0 0
+setText((FirstSR_TextID+77), textHeader)
+ALIGN 4
+#include "s/GoldenSunSeries/GoldenSun_EnemyBattle.event"
+}
+
 { ; SongTable(GSTLAWalkingForwardWithDeterminationRandomWizardID, GSTLAWalkingForwardWithDeterminationRandomWizard, 0)
 SongTable((GSTLAWalkingForwardWithDeterminationRandomWizardID+1), GSTLAWalkingForwardWithDeterminationRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+64), (GSTLAWalkingForwardWithDeterminationRandomWizardID+1), (FirstSR_TextID+64))
+SoundRoom((FirstSoundRoom_ID+78), (GSTLAWalkingForwardWithDeterminationRandomWizardID+1), (FirstSR_TextID+78))
 textHeader: ; txt("GSTLAWalkingForwardWith"); BYTE 0 0
-setText((FirstSR_TextID+64), textHeader)
+setText((FirstSR_TextID+78), textHeader)
 ALIGN 4
 #include "s/GoldenSunSeries/GSTLAWalkingForwardWithDeterminationRandomWizard.event"
 }
 
 { ; SongTable(GuiltyGearXAdvanceKyKiskesThemeMeatOfJusticeID, GuiltyGearXAdvanceKyKiskesThemeMeatOfJustice, 0)
 SongTable((GuiltyGearXAdvanceKyKiskesThemeMeatOfJusticeID+1), GuiltyGearXAdvanceKyKiskesThemeMeatOfJustice, 1)
-SoundRoom((FirstSoundRoom_ID+65), (GuiltyGearXAdvanceKyKiskesThemeMeatOfJusticeID+1), (FirstSR_TextID+65))
+SoundRoom((FirstSoundRoom_ID+79), (GuiltyGearXAdvanceKyKiskesThemeMeatOfJusticeID+1), (FirstSR_TextID+79))
 textHeader: ; txt("GuiltyGearXAdvanceKyKiskesTheme"); BYTE 0 0
-setText((FirstSR_TextID+65), textHeader)
+setText((FirstSR_TextID+79), textHeader)
 ALIGN 4
 #include "s/GuiltyGearSeries/GuiltyGearXAdvanceKyKiskesThemeMeatOfJustice.event"
 }
 
 { ; SongTable(GuiltyGearXAdvanceSolBadguysThemeMeatOfJusticeID, GuiltyGearXAdvanceSolBadguysThemeMeatOfJustice, 0)
 SongTable((GuiltyGearXAdvanceSolBadguysThemeMeatOfJusticeID+1), GuiltyGearXAdvanceSolBadguysThemeMeatOfJustice, 1)
-SoundRoom((FirstSoundRoom_ID+66), (GuiltyGearXAdvanceSolBadguysThemeMeatOfJusticeID+1), (FirstSR_TextID+66))
+SoundRoom((FirstSoundRoom_ID+80), (GuiltyGearXAdvanceSolBadguysThemeMeatOfJusticeID+1), (FirstSR_TextID+80))
 textHeader: ; txt("GuiltyGearXAdvanceSolBadguys"); BYTE 0 0
-setText((FirstSR_TextID+66), textHeader)
+setText((FirstSR_TextID+80), textHeader)
 ALIGN 4
 #include "s/GuiltyGearSeries/GuiltyGearXAdvanceSolBadguysThemeMeatOfJustice.event"
 }
 
 { ; SongTable(BerwickSagaTheKnightsPrideMrGreen3339ID, BerwickSagaTheKnightsPrideMrGreen3339, 0)
 SongTable((BerwickSagaTheKnightsPrideMrGreen3339ID+1), BerwickSagaTheKnightsPrideMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+67), (BerwickSagaTheKnightsPrideMrGreen3339ID+1), (FirstSR_TextID+67))
+SoundRoom((FirstSoundRoom_ID+81), (BerwickSagaTheKnightsPrideMrGreen3339ID+1), (FirstSR_TextID+81))
 textHeader: ; txt("BerwickSagaTheKnightsPrideMr"); BYTE 0 0
-setText((FirstSR_TextID+67), textHeader)
+setText((FirstSR_TextID+81), textHeader)
 ALIGN 4
 #include "s/KagaSagaTitles/BerwickSagaTheKnightsPrideMrGreen3339.event"
 }
 
 { ; SongTable(TRSBerwickSagaBringtheWindRSflameID, TRSBerwickSagaBringtheWindRSflame, 0)
 SongTable((TRSBerwickSagaBringtheWindRSflameID+1), TRSBerwickSagaBringtheWindRSflame, 1)
-SoundRoom((FirstSoundRoom_ID+68), (TRSBerwickSagaBringtheWindRSflameID+1), (FirstSR_TextID+68))
+SoundRoom((FirstSoundRoom_ID+82), (TRSBerwickSagaBringtheWindRSflameID+1), (FirstSR_TextID+82))
 textHeader: ; txt("TRSBerwickSagaBringtheWindR"); BYTE 0 0
-setText((FirstSR_TextID+68), textHeader)
+setText((FirstSR_TextID+82), textHeader)
 ALIGN 4
 #include "s/KagaSagaTitles/TRSBerwickSagaBringtheWindRSflame.event"
 }
 
 { ; SongTable(KH2ScherzoDiNotteTristanHollowID, KH2ScherzoDiNotteTristanHollow, 0)
 SongTable((KH2ScherzoDiNotteTristanHollowID+1), KH2ScherzoDiNotteTristanHollow, 1)
-SoundRoom((FirstSoundRoom_ID+69), (KH2ScherzoDiNotteTristanHollowID+1), (FirstSR_TextID+69))
+SoundRoom((FirstSoundRoom_ID+83), (KH2ScherzoDiNotteTristanHollowID+1), (FirstSR_TextID+83))
 textHeader: ; txt("KH2ScherzoDiNotteTristanHollow"); BYTE 0 0
-setText((FirstSR_TextID+69), textHeader)
+setText((FirstSR_TextID+83), textHeader)
 ALIGN 4
 #include "s/KingdomHeartsSeries/KH2ScherzoDiNotteTristanHollow.event"
 }
 
 { ; SongTable(KHCoMHandinHandAzulaID, KHCoMHandinHandAzula, 0)
 SongTable((KHCoMHandinHandAzulaID+1), KHCoMHandinHandAzula, 1)
-SoundRoom((FirstSoundRoom_ID+70), (KHCoMHandinHandAzulaID+1), (FirstSR_TextID+70))
+SoundRoom((FirstSoundRoom_ID+84), (KHCoMHandinHandAzulaID+1), (FirstSR_TextID+84))
 textHeader: ; txt("KHCoMHandinHandAzula"); BYTE 0 0
-setText((FirstSR_TextID+70), textHeader)
+setText((FirstSR_TextID+84), textHeader)
 ALIGN 4
 #include "s/KingdomHeartsSeries/KHCoMHandinHandAzula.event"
 }
 
 { ; SongTable(KHCoMMonstrousMonstroAzulaID, KHCoMMonstrousMonstroAzula, 0)
 SongTable((KHCoMMonstrousMonstroAzulaID+1), KHCoMMonstrousMonstroAzula, 1)
-SoundRoom((FirstSoundRoom_ID+71), (KHCoMMonstrousMonstroAzulaID+1), (FirstSR_TextID+71))
+SoundRoom((FirstSoundRoom_ID+85), (KHCoMMonstrousMonstroAzulaID+1), (FirstSR_TextID+85))
 textHeader: ; txt("KHCoMMonstrousMonstroAzula"); BYTE 0 0
-setText((FirstSR_TextID+71), textHeader)
+setText((FirstSR_TextID+85), textHeader)
 ALIGN 4
 #include "s/KingdomHeartsSeries/KHCoMMonstrousMonstroAzula.event"
 }
 
 { ; SongTable(KHCoMNamineMycahelID, KHCoMNamineMycahel, 0)
 SongTable((KHCoMNamineMycahelID+1), KHCoMNamineMycahel, 1)
-SoundRoom((FirstSoundRoom_ID+72), (KHCoMNamineMycahelID+1), (FirstSR_TextID+72))
+SoundRoom((FirstSoundRoom_ID+86), (KHCoMNamineMycahelID+1), (FirstSR_TextID+86))
 textHeader: ; txt("KHCoMNamineMycahel"); BYTE 0 0
-setText((FirstSR_TextID+72), textHeader)
+setText((FirstSR_TextID+86), textHeader)
 ALIGN 4
 #include "s/KingdomHeartsSeries/KHCoMNamineMycahel.event"
 }
 
 { ; SongTable(KHNightofFateRandomWizardID, KHNightofFateRandomWizard, 0)
 SongTable((KHNightofFateRandomWizardID+1), KHNightofFateRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+73), (KHNightofFateRandomWizardID+1), (FirstSR_TextID+73))
+SoundRoom((FirstSoundRoom_ID+87), (KHNightofFateRandomWizardID+1), (FirstSR_TextID+87))
 textHeader: ; txt("KHNightofFateRandomWizard"); BYTE 0 0
-setText((FirstSR_TextID+73), textHeader)
+setText((FirstSR_TextID+87), textHeader)
 ALIGN 4
 #include "s/KingdomHeartsSeries/KHNightofFateRandomWizard.event"
 }
 
 { ; SongTable(KirbyDreamLandRippleField1PandanID, KirbyDreamLandRippleField1Pandan, 0)
 SongTable((KirbyDreamLandRippleField1PandanID+1), KirbyDreamLandRippleField1Pandan, 1)
-SoundRoom((FirstSoundRoom_ID+74), (KirbyDreamLandRippleField1PandanID+1), (FirstSR_TextID+74))
+SoundRoom((FirstSoundRoom_ID+88), (KirbyDreamLandRippleField1PandanID+1), (FirstSR_TextID+88))
 textHeader: ; txt("KirbyDreamLandRippleField1Pandan"); BYTE 0 0
-setText((FirstSR_TextID+74), textHeader)
+setText((FirstSR_TextID+88), textHeader)
 ALIGN 4
 #include "s/KirbySeries/KirbyDreamLandRippleField1Pandan.event"
 }
 
 { ; SongTable(KirbyMassAttackTimetoShineRSflameID, KirbyMassAttackTimetoShineRSflame, 0)
 SongTable((KirbyMassAttackTimetoShineRSflameID+1), KirbyMassAttackTimetoShineRSflame, 1)
-SoundRoom((FirstSoundRoom_ID+75), (KirbyMassAttackTimetoShineRSflameID+1), (FirstSR_TextID+75))
+SoundRoom((FirstSoundRoom_ID+89), (KirbyMassAttackTimetoShineRSflameID+1), (FirstSR_TextID+89))
 textHeader: ; txt("KirbyMassAttackTimetoShineR"); BYTE 0 0
-setText((FirstSR_TextID+75), textHeader)
+setText((FirstSR_TextID+89), textHeader)
 ALIGN 4
 #include "s/KirbySeries/KirbyMassAttackTimetoShineRSflame.event"
 }
 
 { ; SongTable(KirbySuperStarMetaKnightsthemeRSflame1ID, KirbySuperStarMetaKnightsthemeRSflame1, 0)
 SongTable((KirbySuperStarMetaKnightsthemeRSflame1ID+1), KirbySuperStarMetaKnightsthemeRSflame1, 1)
-SoundRoom((FirstSoundRoom_ID+76), (KirbySuperStarMetaKnightsthemeRSflame1ID+1), (FirstSR_TextID+76))
+SoundRoom((FirstSoundRoom_ID+90), (KirbySuperStarMetaKnightsthemeRSflame1ID+1), (FirstSR_TextID+90))
 textHeader: ; txt("KirbySuperStarMetaKnightsthemeR"); BYTE 0 0
-setText((FirstSR_TextID+76), textHeader)
+setText((FirstSR_TextID+90), textHeader)
 ALIGN 4
 #include "s/KirbySeries/KirbySuperStarMetaKnightsthemeRSflame1.event"
 }
 
 { ; SongTable(KirbyTripleDeluxeBouncingBossBattleRandomWizardID, KirbyTripleDeluxeBouncingBossBattleRandomWizard, 0)
 SongTable((KirbyTripleDeluxeBouncingBossBattleRandomWizardID+1), KirbyTripleDeluxeBouncingBossBattleRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+77), (KirbyTripleDeluxeBouncingBossBattleRandomWizardID+1), (FirstSR_TextID+77))
+SoundRoom((FirstSoundRoom_ID+91), (KirbyTripleDeluxeBouncingBossBattleRandomWizardID+1), (FirstSR_TextID+91))
 textHeader: ; txt("KirbyTripleDeluxeBouncingBoss"); BYTE 0 0
-setText((FirstSR_TextID+77), textHeader)
+setText((FirstSR_TextID+91), textHeader)
 ALIGN 4
 #include "s/KirbySeries/KirbyTripleDeluxeBouncingBossBattleRandomWizard.event"
 }
 
+{ ; SongTable(LocksQuestEmiID, LocksQuestEmi, 0)
+SongTable((LocksQuestEmiID+1), LocksQuestEmi, 1)
+SoundRoom((FirstSoundRoom_ID+92), (LocksQuestEmiID+1), (FirstSR_TextID+92))
+textHeader: ; txt("LocksQuestEmi"); BYTE 0 0
+setText((FirstSR_TextID+92), textHeader)
+ALIGN 4
+#include "s/LocksQuest/LocksQuestEmi.event"
+}
+
+{ ; SongTable(LocksQuestWarMachineID, LocksQuestWarMachine, 0)
+SongTable((LocksQuestWarMachineID+1), LocksQuestWarMachine, 1)
+SoundRoom((FirstSoundRoom_ID+93), (LocksQuestWarMachineID+1), (FirstSR_TextID+93))
+textHeader: ; txt("LocksQuestWarMachine"); BYTE 0 0
+setText((FirstSR_TextID+93), textHeader)
+ALIGN 4
+#include "s/LocksQuest/LocksQuestWarMachine.event"
+}
+
+{ ; SongTable(MarioKartDSChocoMountainID, MarioKartDSChocoMountain, 0)
+SongTable((MarioKartDSChocoMountainID+1), MarioKartDSChocoMountain, 1)
+SoundRoom((FirstSoundRoom_ID+94), (MarioKartDSChocoMountainID+1), (FirstSR_TextID+94))
+textHeader: ; txt("MarioKartDSChocoMountain"); BYTE 0 0
+setText((FirstSR_TextID+94), textHeader)
+ALIGN 4
+#include "s/MarioSeries/MarioKartDSChocoMountain.event"
+}
+
 { ; SongTable(MarioKartWiiMapleTreewaySmeID, MarioKartWiiMapleTreewaySme, 0)
 SongTable((MarioKartWiiMapleTreewaySmeID+1), MarioKartWiiMapleTreewaySme, 1)
-SoundRoom((FirstSoundRoom_ID+78), (MarioKartWiiMapleTreewaySmeID+1), (FirstSR_TextID+78))
+SoundRoom((FirstSoundRoom_ID+95), (MarioKartWiiMapleTreewaySmeID+1), (FirstSR_TextID+95))
 textHeader: ; txt("MarioKartWiiMapleTreewaySme"); BYTE 0 0
-setText((FirstSR_TextID+78), textHeader)
+setText((FirstSR_TextID+95), textHeader)
 ALIGN 4
 #include "s/MarioSeries/MarioKartWiiMapleTreewaySme.event"
 }
 
 { ; SongTable(MarioKartWiiMushroomGorgeSmeID, MarioKartWiiMushroomGorgeSme, 0)
 SongTable((MarioKartWiiMushroomGorgeSmeID+1), MarioKartWiiMushroomGorgeSme, 1)
-SoundRoom((FirstSoundRoom_ID+79), (MarioKartWiiMushroomGorgeSmeID+1), (FirstSR_TextID+79))
+SoundRoom((FirstSoundRoom_ID+96), (MarioKartWiiMushroomGorgeSmeID+1), (FirstSR_TextID+96))
 textHeader: ; txt("MarioKartWiiMushroomGorgeSme"); BYTE 0 0
-setText((FirstSR_TextID+79), textHeader)
+setText((FirstSR_TextID+96), textHeader)
 ALIGN 4
 #include "s/MarioSeries/MarioKartWiiMushroomGorgeSme.event"
 }
 
 { ; SongTable(MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23ID, MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23, 0)
 SongTable((MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23ID+1), MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23, 1)
-SoundRoom((FirstSoundRoom_ID+80), (MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23ID+1), (FirstSR_TextID+80))
+SoundRoom((FirstSoundRoom_ID+97), (MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23ID+1), (FirstSR_TextID+97))
 textHeader: ; txt("MLBowsersInsideStoryTheGrand"); BYTE 0 0
-setText((FirstSR_TextID+80), textHeader)
+setText((FirstSR_TextID+97), textHeader)
 ALIGN 4
 #include "s/MarioSeries/MLBowsersInsideStoryTheGrandFinaleFE8MeteorSR23.event"
 }
 
 { ; SongTable(MLSuperstarSagaCacklettaBattleDolkarID, MLSuperstarSagaCacklettaBattleDolkar, 0)
 SongTable((MLSuperstarSagaCacklettaBattleDolkarID+1), MLSuperstarSagaCacklettaBattleDolkar, 1)
-SoundRoom((FirstSoundRoom_ID+81), (MLSuperstarSagaCacklettaBattleDolkarID+1), (FirstSR_TextID+81))
+SoundRoom((FirstSoundRoom_ID+98), (MLSuperstarSagaCacklettaBattleDolkarID+1), (FirstSR_TextID+98))
 textHeader: ; txt("MLSuperstarSagaCacklettaBattle"); BYTE 0 0
-setText((FirstSR_TextID+81), textHeader)
+setText((FirstSR_TextID+98), textHeader)
 ALIGN 4
 #include "s/MarioSeries/MLSuperstarSagaCacklettaBattleDolkar.event"
 }
 
 { ; SongTable(MLSuperstarSagaPoppleBattleSmeID, MLSuperstarSagaPoppleBattleSme, 0)
 SongTable((MLSuperstarSagaPoppleBattleSmeID+1), MLSuperstarSagaPoppleBattleSme, 1)
-SoundRoom((FirstSoundRoom_ID+82), (MLSuperstarSagaPoppleBattleSmeID+1), (FirstSR_TextID+82))
+SoundRoom((FirstSoundRoom_ID+99), (MLSuperstarSagaPoppleBattleSmeID+1), (FirstSR_TextID+99))
 textHeader: ; txt("MLSuperstarSagaPoppleBattleSme"); BYTE 0 0
-setText((FirstSR_TextID+82), textHeader)
+setText((FirstSR_TextID+99), textHeader)
 ALIGN 4
 #include "s/MarioSeries/MLSuperstarSagaPoppleBattleSme.event"
 }
 
 { ; SongTable(NewSuperMarioBrosCastleRandomWizardID, NewSuperMarioBrosCastleRandomWizard, 0)
 SongTable((NewSuperMarioBrosCastleRandomWizardID+1), NewSuperMarioBrosCastleRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+83), (NewSuperMarioBrosCastleRandomWizardID+1), (FirstSR_TextID+83))
+SoundRoom((FirstSoundRoom_ID+100), (NewSuperMarioBrosCastleRandomWizardID+1), (FirstSR_TextID+100))
 textHeader: ; txt("NewSuperMarioBrosCastleRandom"); BYTE 0 0
-setText((FirstSR_TextID+83), textHeader)
+setText((FirstSR_TextID+100), textHeader)
 ALIGN 4
 #include "s/MarioSeries/NewSuperMarioBrosCastleRandomWizard.event"
 }
 
 { ; SongTable(NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339ID, NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339, 0)
 SongTable((NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339ID+1), NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+84), (NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339ID+1), (FirstSR_TextID+84))
+SoundRoom((FirstSoundRoom_ID+101), (NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339ID+1), (FirstSR_TextID+101))
 textHeader: ; txt("NewSuperMarioBrosWiiFinalBoss"); BYTE 0 0
-setText((FirstSR_TextID+84), textHeader)
+setText((FirstSR_TextID+101), textHeader)
 ALIGN 4
 #include "s/MarioSeries/NewSuperMarioBrosWiiFinalBossPhase2MrGreen3339.event"
 }
 
 { ; SongTable(SuperMario3DLandAirshipMeteorSR23ID, SuperMario3DLandAirshipMeteorSR23, 0)
 SongTable((SuperMario3DLandAirshipMeteorSR23ID+1), SuperMario3DLandAirshipMeteorSR23, 1)
-SoundRoom((FirstSoundRoom_ID+85), (SuperMario3DLandAirshipMeteorSR23ID+1), (FirstSR_TextID+85))
+SoundRoom((FirstSoundRoom_ID+102), (SuperMario3DLandAirshipMeteorSR23ID+1), (FirstSR_TextID+102))
 textHeader: ; txt("SuperMario3DLandAirshipMeteorS"); BYTE 0 0
-setText((FirstSR_TextID+85), textHeader)
+setText((FirstSR_TextID+102), textHeader)
 ALIGN 4
 #include "s/MarioSeries/SuperMario3DLandAirshipMeteorSR23.event"
 }
 
 { ; SongTable(SuperMarioBros2OverworldPandanID, SuperMarioBros2OverworldPandan, 0)
 SongTable((SuperMarioBros2OverworldPandanID+1), SuperMarioBros2OverworldPandan, 1)
-SoundRoom((FirstSoundRoom_ID+86), (SuperMarioBros2OverworldPandanID+1), (FirstSR_TextID+86))
+SoundRoom((FirstSoundRoom_ID+103), (SuperMarioBros2OverworldPandanID+1), (FirstSR_TextID+103))
 textHeader: ; txt("SuperMarioBros2OverworldPandan"); BYTE 0 0
-setText((FirstSR_TextID+86), textHeader)
+setText((FirstSR_TextID+103), textHeader)
 ALIGN 4
 #include "s/MarioSeries/SuperMarioBros2OverworldPandan.event"
 }
 
 { ; SongTable(SuperMarioBros2UnderworldPandanID, SuperMarioBros2UnderworldPandan, 0)
 SongTable((SuperMarioBros2UnderworldPandanID+1), SuperMarioBros2UnderworldPandan, 1)
-SoundRoom((FirstSoundRoom_ID+87), (SuperMarioBros2UnderworldPandanID+1), (FirstSR_TextID+87))
+SoundRoom((FirstSoundRoom_ID+104), (SuperMarioBros2UnderworldPandanID+1), (FirstSR_TextID+104))
 textHeader: ; txt("SuperMarioBros2UnderworldPandan"); BYTE 0 0
-setText((FirstSR_TextID+87), textHeader)
+setText((FirstSR_TextID+104), textHeader)
 ALIGN 4
 #include "s/MarioSeries/SuperMarioBros2UnderworldPandan.event"
 }
 
 { ; SongTable(SuperMarioBros3AirshipThemeMrGreen3339ID, SuperMarioBros3AirshipThemeMrGreen3339, 0)
 SongTable((SuperMarioBros3AirshipThemeMrGreen3339ID+1), SuperMarioBros3AirshipThemeMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+88), (SuperMarioBros3AirshipThemeMrGreen3339ID+1), (FirstSR_TextID+88))
+SoundRoom((FirstSoundRoom_ID+105), (SuperMarioBros3AirshipThemeMrGreen3339ID+1), (FirstSR_TextID+105))
 textHeader: ; txt("SuperMarioBros3AirshipThemeMr"); BYTE 0 0
-setText((FirstSR_TextID+88), textHeader)
+setText((FirstSR_TextID+105), textHeader)
 ALIGN 4
 #include "s/MarioSeries/SuperMarioBros3AirshipThemeMrGreen3339.event"
 }
 
 { ; SongTable(SuperMarioRPGBewaretheForestMushroomsPandanID, SuperMarioRPGBewaretheForestMushroomsPandan, 0)
 SongTable((SuperMarioRPGBewaretheForestMushroomsPandanID+1), SuperMarioRPGBewaretheForestMushroomsPandan, 1)
-SoundRoom((FirstSoundRoom_ID+89), (SuperMarioRPGBewaretheForestMushroomsPandanID+1), (FirstSR_TextID+89))
+SoundRoom((FirstSoundRoom_ID+106), (SuperMarioRPGBewaretheForestMushroomsPandanID+1), (FirstSR_TextID+106))
 textHeader: ; txt("SuperMarioRPGBewaretheForest"); BYTE 0 0
-setText((FirstSR_TextID+89), textHeader)
+setText((FirstSR_TextID+106), textHeader)
 ALIGN 4
 #include "s/MarioSeries/SuperMarioRPGBewaretheForestMushroomsPandan.event"
 }
 
 { ; SongTable(SuperSmashBrosMeleeMenuMrGreen3339ID, SuperSmashBrosMeleeMenuMrGreen3339, 0)
 SongTable((SuperSmashBrosMeleeMenuMrGreen3339ID+1), SuperSmashBrosMeleeMenuMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+90), (SuperSmashBrosMeleeMenuMrGreen3339ID+1), (FirstSR_TextID+90))
+SoundRoom((FirstSoundRoom_ID+107), (SuperSmashBrosMeleeMenuMrGreen3339ID+1), (FirstSR_TextID+107))
 textHeader: ; txt("SuperSmashBrosMeleeMenuMr"); BYTE 0 0
-setText((FirstSR_TextID+90), textHeader)
+setText((FirstSR_TextID+107), textHeader)
 ALIGN 4
 #include "s/MarioSeries/SuperSmashBrosMeleeMenuMrGreen3339.event"
 }
 
 { ; SongTable(SuperSmashBrosUltimateMenuMrGreen3339ID, SuperSmashBrosUltimateMenuMrGreen3339, 0)
 SongTable((SuperSmashBrosUltimateMenuMrGreen3339ID+1), SuperSmashBrosUltimateMenuMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+91), (SuperSmashBrosUltimateMenuMrGreen3339ID+1), (FirstSR_TextID+91))
+SoundRoom((FirstSoundRoom_ID+108), (SuperSmashBrosUltimateMenuMrGreen3339ID+1), (FirstSR_TextID+108))
 textHeader: ; txt("SuperSmashBrosUltimateMenuMr"); BYTE 0 0
-setText((FirstSR_TextID+91), textHeader)
+setText((FirstSR_TextID+108), textHeader)
 ALIGN 4
 #include "s/MarioSeries/SuperSmashBrosUltimateMenuMrGreen3339.event"
 }
 
 { ; SongTable(MegamanBattleNetwork3BossThemeThegisID, MegamanBattleNetwork3BossThemeThegis, 0)
 SongTable((MegamanBattleNetwork3BossThemeThegisID+1), MegamanBattleNetwork3BossThemeThegis, 1)
-SoundRoom((FirstSoundRoom_ID+92), (MegamanBattleNetwork3BossThemeThegisID+1), (FirstSR_TextID+92))
+SoundRoom((FirstSoundRoom_ID+109), (MegamanBattleNetwork3BossThemeThegisID+1), (FirstSR_TextID+109))
 textHeader: ; txt("MegamanBattleNetwork3BossTheme"); BYTE 0 0
-setText((FirstSR_TextID+92), textHeader)
+setText((FirstSR_TextID+109), textHeader)
 ALIGN 4
 #include "s/MegamanSeries/MegamanBattleNetwork3BossThemeThegis.event"
 }
 
 { ; SongTable(MegamanXArmoredArmadilloRandomWizardID, MegamanXArmoredArmadilloRandomWizard, 0)
 SongTable((MegamanXArmoredArmadilloRandomWizardID+1), MegamanXArmoredArmadilloRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+93), (MegamanXArmoredArmadilloRandomWizardID+1), (FirstSR_TextID+93))
+SoundRoom((FirstSoundRoom_ID+110), (MegamanXArmoredArmadilloRandomWizardID+1), (FirstSR_TextID+110))
 textHeader: ; txt("MegamanXArmoredArmadilloRandom"); BYTE 0 0
-setText((FirstSR_TextID+93), textHeader)
+setText((FirstSR_TextID+110), textHeader)
 ALIGN 4
 #include "s/MegamanSeries/MegamanXArmoredArmadilloRandomWizard.event"
 }
 
 { ; SongTable(MegamanXStormEagleAReliableChairID, MegamanXStormEagleAReliableChair, 0)
 SongTable((MegamanXStormEagleAReliableChairID+1), MegamanXStormEagleAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+94), (MegamanXStormEagleAReliableChairID+1), (FirstSR_TextID+94))
+SoundRoom((FirstSoundRoom_ID+111), (MegamanXStormEagleAReliableChairID+1), (FirstSR_TextID+111))
 textHeader: ; txt("MegamanXStormEagleAReliableChair"); BYTE 0 0
-setText((FirstSR_TextID+94), textHeader)
+setText((FirstSR_TextID+111), textHeader)
 ALIGN 4
 #include "s/MegamanSeries/MegamanXStormEagleAReliableChair.event"
 }
 
 { ; SongTable(MegamanZXAdventSoulAblazeTakID, MegamanZXAdventSoulAblazeTak, 0)
 SongTable((MegamanZXAdventSoulAblazeTakID+1), MegamanZXAdventSoulAblazeTak, 1)
-SoundRoom((FirstSoundRoom_ID+95), (MegamanZXAdventSoulAblazeTakID+1), (FirstSR_TextID+95))
+SoundRoom((FirstSoundRoom_ID+112), (MegamanZXAdventSoulAblazeTakID+1), (FirstSR_TextID+112))
 textHeader: ; txt("MegamanZXAdventSoulAblazeTak"); BYTE 0 0
-setText((FirstSR_TextID+95), textHeader)
+setText((FirstSR_TextID+112), textHeader)
 ALIGN 4
 #include "s/MegamanSeries/MegamanZXAdventSoulAblazeTak.event"
 }
 
 { ; SongTable(MegamanZXDoomsdayDeviceAreaNTakID, MegamanZXDoomsdayDeviceAreaNTak, 0)
 SongTable((MegamanZXDoomsdayDeviceAreaNTakID+1), MegamanZXDoomsdayDeviceAreaNTak, 1)
-SoundRoom((FirstSoundRoom_ID+96), (MegamanZXDoomsdayDeviceAreaNTakID+1), (FirstSR_TextID+96))
+SoundRoom((FirstSoundRoom_ID+113), (MegamanZXDoomsdayDeviceAreaNTakID+1), (FirstSR_TextID+113))
 textHeader: ; txt("MegamanZXDoomsdayDeviceAreaNTak"); BYTE 0 0
-setText((FirstSR_TextID+96), textHeader)
+setText((FirstSR_TextID+113), textHeader)
 ALIGN 4
 #include "s/MegamanSeries/MegamanZXDoomsdayDeviceAreaNTak.event"
 }
 
 { ; SongTable(OgreBattle64WallofDefenseAlusqID, OgreBattle64WallofDefenseAlusq, 0)
 SongTable((OgreBattle64WallofDefenseAlusqID+1), OgreBattle64WallofDefenseAlusq, 1)
-SoundRoom((FirstSoundRoom_ID+97), (OgreBattle64WallofDefenseAlusqID+1), (FirstSR_TextID+97))
+SoundRoom((FirstSoundRoom_ID+114), (OgreBattle64WallofDefenseAlusqID+1), (FirstSR_TextID+114))
 textHeader: ; txt("OgreBattle64WallofDefenseAlusq"); BYTE 0 0
-setText((FirstSR_TextID+97), textHeader)
+setText((FirstSR_TextID+114), textHeader)
 ALIGN 4
 #include "s/OgreBattleSeries/OgreBattle64WallofDefenseAlusq.event"
 }
 
 { ; SongTable(TacticsOgreTheKnightofLodisHeroinesThemePsycheID, TacticsOgreTheKnightofLodisHeroinesThemePsyche, 0)
 SongTable((TacticsOgreTheKnightofLodisHeroinesThemePsycheID+1), TacticsOgreTheKnightofLodisHeroinesThemePsyche, 1)
-SoundRoom((FirstSoundRoom_ID+98), (TacticsOgreTheKnightofLodisHeroinesThemePsycheID+1), (FirstSR_TextID+98))
+SoundRoom((FirstSoundRoom_ID+115), (TacticsOgreTheKnightofLodisHeroinesThemePsycheID+1), (FirstSR_TextID+115))
 textHeader: ; txt("TacticsOgreTheKnightofLodis"); BYTE 0 0
-setText((FirstSR_TextID+98), textHeader)
+setText((FirstSR_TextID+115), textHeader)
 ALIGN 4
 #include "s/OgreBattleSeries/TacticsOgreTheKnightofLodisHeroinesThemePsyche.event"
 }
 
+{ ; SongTable(BattleForBikiniBottomBikiniBottomID, BattleForBikiniBottomBikiniBottom, 0)
+SongTable((BattleForBikiniBottomBikiniBottomID+1), BattleForBikiniBottomBikiniBottom, 1)
+SoundRoom((FirstSoundRoom_ID+116), (BattleForBikiniBottomBikiniBottomID+1), (FirstSR_TextID+116))
+textHeader: ; txt("BattleForBikiniBottomBikini"); BYTE 0 0
+setText((FirstSR_TextID+116), textHeader)
+ALIGN 4
+#include "s/Other/BattleForBikiniBottomBikiniBottom.event"
+}
+
+{ ; SongTable(DiddyKongRacingWizpigRaceID, DiddyKongRacingWizpigRace, 0)
+SongTable((DiddyKongRacingWizpigRaceID+1), DiddyKongRacingWizpigRace, 1)
+SoundRoom((FirstSoundRoom_ID+117), (DiddyKongRacingWizpigRaceID+1), (FirstSR_TextID+117))
+textHeader: ; txt("DiddyKongRacingWizpigRace"); BYTE 0 0
+setText((FirstSR_TextID+117), textHeader)
+ALIGN 4
+#include "s/Other/DiddyKongRacingWizpigRace.event"
+}
+
+{ ; SongTable(ShovelKnightRequiemOfShieldKnightID, ShovelKnightRequiemOfShieldKnight, 0)
+SongTable((ShovelKnightRequiemOfShieldKnightID+1), ShovelKnightRequiemOfShieldKnight, 1)
+SoundRoom((FirstSoundRoom_ID+118), (ShovelKnightRequiemOfShieldKnightID+1), (FirstSR_TextID+118))
+textHeader: ; txt("ShovelKnightRequiemOfShield"); BYTE 0 0
+setText((FirstSR_TextID+118), textHeader)
+ALIGN 4
+#include "s/Other/ShovelKnightRequiemOfShieldKnight.event"
+}
+
 { ; SongTable(PokemonB2W2PWTFinalTakID, PokemonB2W2PWTFinalTak, 0)
 SongTable((PokemonB2W2PWTFinalTakID+1), PokemonB2W2PWTFinalTak, 1)
-SoundRoom((FirstSoundRoom_ID+99), (PokemonB2W2PWTFinalTakID+1), (FirstSR_TextID+99))
+SoundRoom((FirstSoundRoom_ID+119), (PokemonB2W2PWTFinalTakID+1), (FirstSR_TextID+119))
 textHeader: ; txt("PokemonB2W2PWTFinalTak"); BYTE 0 0
-setText((FirstSR_TextID+99), textHeader)
+setText((FirstSR_TextID+119), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonB2W2PWTFinalTak.event"
 }
 
 { ; SongTable(PokemonDPPtApproachingCynthiaZoramineFaeID, PokemonDPPtApproachingCynthiaZoramineFae, 0)
 SongTable((PokemonDPPtApproachingCynthiaZoramineFaeID+1), PokemonDPPtApproachingCynthiaZoramineFae, 1)
-SoundRoom((FirstSoundRoom_ID+100), (PokemonDPPtApproachingCynthiaZoramineFaeID+1), (FirstSR_TextID+100))
+SoundRoom((FirstSoundRoom_ID+120), (PokemonDPPtApproachingCynthiaZoramineFaeID+1), (FirstSR_TextID+120))
 textHeader: ; txt("PokemonDPPtApproachingCynthia"); BYTE 0 0
-setText((FirstSR_TextID+100), textHeader)
+setText((FirstSR_TextID+120), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonDPPtApproachingCynthiaZoramineFae.event"
 }
 
 { ; SongTable(PokemonFRLGToFuchsiaDonkinDoID, PokemonFRLGToFuchsiaDonkinDo, 0)
 SongTable((PokemonFRLGToFuchsiaDonkinDoID+1), PokemonFRLGToFuchsiaDonkinDo, 1)
-SoundRoom((FirstSoundRoom_ID+101), (PokemonFRLGToFuchsiaDonkinDoID+1), (FirstSR_TextID+101))
+SoundRoom((FirstSoundRoom_ID+121), (PokemonFRLGToFuchsiaDonkinDoID+1), (FirstSR_TextID+121))
 textHeader: ; txt("PokemonFRLGToFuchsiaDonkinDo"); BYTE 0 0
-setText((FirstSR_TextID+101), textHeader)
+setText((FirstSR_TextID+121), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonFRLGToFuchsiaDonkinDo.event"
 }
 
 { ; SongTable(PokemonGSGoldenrodCityAReliableChairID, PokemonGSGoldenrodCityAReliableChair, 0)
 SongTable((PokemonGSGoldenrodCityAReliableChairID+1), PokemonGSGoldenrodCityAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+102), (PokemonGSGoldenrodCityAReliableChairID+1), (FirstSR_TextID+102))
+SoundRoom((FirstSoundRoom_ID+122), (PokemonGSGoldenrodCityAReliableChairID+1), (FirstSR_TextID+122))
 textHeader: ; txt("PokemonGSGoldenrodCityAReliable"); BYTE 0 0
-setText((FirstSR_TextID+102), textHeader)
+setText((FirstSR_TextID+122), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonGSGoldenrodCityAReliableChair.event"
 }
 
 { ; SongTable(PokemonHGSSGameCornerSmeID, PokemonHGSSGameCornerSme, 0)
 SongTable((PokemonHGSSGameCornerSmeID+1), PokemonHGSSGameCornerSme, 1)
-SoundRoom((FirstSoundRoom_ID+103), (PokemonHGSSGameCornerSmeID+1), (FirstSR_TextID+103))
+SoundRoom((FirstSoundRoom_ID+123), (PokemonHGSSGameCornerSmeID+1), (FirstSR_TextID+123))
 textHeader: ; txt("PokemonHGSSGameCornerSme"); BYTE 0 0
-setText((FirstSR_TextID+103), textHeader)
+setText((FirstSR_TextID+123), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonHGSSGameCornerSme.event"
 }
 
 { ; SongTable(PokemonHGSSKantoBattlePandanID, PokemonHGSSKantoBattlePandan, 0)
 SongTable((PokemonHGSSKantoBattlePandanID+1), PokemonHGSSKantoBattlePandan, 1)
-SoundRoom((FirstSoundRoom_ID+104), (PokemonHGSSKantoBattlePandanID+1), (FirstSR_TextID+104))
+SoundRoom((FirstSoundRoom_ID+124), (PokemonHGSSKantoBattlePandanID+1), (FirstSR_TextID+124))
 textHeader: ; txt("PokemonHGSSKantoBattlePandan"); BYTE 0 0
-setText((FirstSR_TextID+104), textHeader)
+setText((FirstSR_TextID+124), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonHGSSKantoBattlePandan.event"
 }
 
 { ; SongTable(PokemonMDExplorersBossBattleRandomWizardID, PokemonMDExplorersBossBattleRandomWizard, 0)
 SongTable((PokemonMDExplorersBossBattleRandomWizardID+1), PokemonMDExplorersBossBattleRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+105), (PokemonMDExplorersBossBattleRandomWizardID+1), (FirstSR_TextID+105))
+SoundRoom((FirstSoundRoom_ID+125), (PokemonMDExplorersBossBattleRandomWizardID+1), (FirstSR_TextID+125))
 textHeader: ; txt("PokemonMDExplorersBossBattle"); BYTE 0 0
-setText((FirstSR_TextID+105), textHeader)
+setText((FirstSR_TextID+125), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonMDExplorersBossBattleRandomWizard.event"
 }
 
+{ ; SongTable(PokemonMysteryDungeonExplorersofSkyInTheMorningSunID, PokemonMysteryDungeonExplorersofSkyInTheMorningSun, 0)
+SongTable((PokemonMysteryDungeonExplorersofSkyInTheMorningSunID+1), PokemonMysteryDungeonExplorersofSkyInTheMorningSun, 1)
+SoundRoom((FirstSoundRoom_ID+126), (PokemonMysteryDungeonExplorersofSkyInTheMorningSunID+1), (FirstSR_TextID+126))
+textHeader: ; txt("PokemonMysteryDungeonExplorersof"); BYTE 0 0
+setText((FirstSR_TextID+126), textHeader)
+ALIGN 4
+#include "s/PokemonSeries/PokemonMysteryDungeonExplorersofSkyInTheMorningSun.event"
+}
+
+{ ; SongTable(PokemonMysteryDungeonExplorersofSkyTimeGearID, PokemonMysteryDungeonExplorersofSkyTimeGear, 0)
+SongTable((PokemonMysteryDungeonExplorersofSkyTimeGearID+1), PokemonMysteryDungeonExplorersofSkyTimeGear, 1)
+SoundRoom((FirstSoundRoom_ID+127), (PokemonMysteryDungeonExplorersofSkyTimeGearID+1), (FirstSR_TextID+127))
+textHeader: ; txt("PokemonMysteryDungeonExplorersof"); BYTE 0 0
+setText((FirstSR_TextID+127), textHeader)
+ALIGN 4
+#include "s/PokemonSeries/PokemonMysteryDungeonExplorersofSkyTimeGear.event"
+}
+
 { ; SongTable(PokemonPinballBluePandanID, PokemonPinballBluePandan, 0)
 SongTable((PokemonPinballBluePandanID+1), PokemonPinballBluePandan, 1)
-SoundRoom((FirstSoundRoom_ID+106), (PokemonPinballBluePandanID+1), (FirstSR_TextID+106))
+SoundRoom((FirstSoundRoom_ID+128), (PokemonPinballBluePandanID+1), (FirstSR_TextID+128))
 textHeader: ; txt("PokemonPinballBluePandan"); BYTE 0 0
-setText((FirstSR_TextID+106), textHeader)
+setText((FirstSR_TextID+128), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonPinballBluePandan.event"
 }
 
 { ; SongTable(PokemonRSEBattleEliteFourMeatOfJusticeID, PokemonRSEBattleEliteFourMeatOfJustice, 0)
 SongTable((PokemonRSEBattleEliteFourMeatOfJusticeID+1), PokemonRSEBattleEliteFourMeatOfJustice, 1)
-SoundRoom((FirstSoundRoom_ID+107), (PokemonRSEBattleEliteFourMeatOfJusticeID+1), (FirstSR_TextID+107))
+SoundRoom((FirstSoundRoom_ID+129), (PokemonRSEBattleEliteFourMeatOfJusticeID+1), (FirstSR_TextID+129))
 textHeader: ; txt("PokemonRSEBattleEliteFourMeatOf"); BYTE 0 0
-setText((FirstSR_TextID+107), textHeader)
+setText((FirstSR_TextID+129), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonRSEBattleEliteFourMeatOfJustice.event"
 }
 
 { ; SongTable(PokemonRSERoute113PandanID, PokemonRSERoute113Pandan, 0)
 SongTable((PokemonRSERoute113PandanID+1), PokemonRSERoute113Pandan, 1)
-SoundRoom((FirstSoundRoom_ID+108), (PokemonRSERoute113PandanID+1), (FirstSR_TextID+108))
+SoundRoom((FirstSoundRoom_ID+130), (PokemonRSERoute113PandanID+1), (FirstSR_TextID+130))
 textHeader: ; txt("PokemonRSERoute113Pandan"); BYTE 0 0
-setText((FirstSR_TextID+108), textHeader)
+setText((FirstSR_TextID+130), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonRSERoute113Pandan.event"
 }
 
 { ; SongTable(PokemonSunandMoonEliteFourTakID, PokemonSunandMoonEliteFourTak, 0)
 SongTable((PokemonSunandMoonEliteFourTakID+1), PokemonSunandMoonEliteFourTak, 1)
-SoundRoom((FirstSoundRoom_ID+109), (PokemonSunandMoonEliteFourTakID+1), (FirstSR_TextID+109))
+SoundRoom((FirstSoundRoom_ID+131), (PokemonSunandMoonEliteFourTakID+1), (FirstSR_TextID+131))
 textHeader: ; txt("PokemonSunandMoonEliteFourTak"); BYTE 0 0
-setText((FirstSR_TextID+109), textHeader)
+setText((FirstSR_TextID+131), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonSunandMoonEliteFourTak.event"
 }
 
 { ; SongTable(PokemonTCG2GrandmasterDuelPandanID, PokemonTCG2GrandmasterDuelPandan, 0)
 SongTable((PokemonTCG2GrandmasterDuelPandanID+1), PokemonTCG2GrandmasterDuelPandan, 1)
-SoundRoom((FirstSoundRoom_ID+110), (PokemonTCG2GrandmasterDuelPandanID+1), (FirstSR_TextID+110))
+SoundRoom((FirstSoundRoom_ID+132), (PokemonTCG2GrandmasterDuelPandanID+1), (FirstSR_TextID+132))
 textHeader: ; txt("PokemonTCG2GrandmasterDuelPandan"); BYTE 0 0
-setText((FirstSR_TextID+110), textHeader)
+setText((FirstSR_TextID+132), textHeader)
 ALIGN 4
 #include "s/PokemonSeries/PokemonTCG2GrandmasterDuelPandan.event"
 }
 
 { ; SongTable(RomancingSaga3TheLastBattle7743ID, RomancingSaga3TheLastBattle7743, 0)
 SongTable((RomancingSaga3TheLastBattle7743ID+1), RomancingSaga3TheLastBattle7743, 1)
-SoundRoom((FirstSoundRoom_ID+111), (RomancingSaga3TheLastBattle7743ID+1), (FirstSR_TextID+111))
+SoundRoom((FirstSoundRoom_ID+133), (RomancingSaga3TheLastBattle7743ID+1), (FirstSR_TextID+133))
 textHeader: ; txt("RomancingSaga3TheLastBattle7743"); BYTE 0 0
-setText((FirstSR_TextID+111), textHeader)
+setText((FirstSR_TextID+133), textHeader)
 ALIGN 4
 #include "s/RomancingSaga/RomancingSaga3TheLastBattle7743.event"
 }
 
 { ; SongTable(RomancingSagaCoupdeGraceRSflameID, RomancingSagaCoupdeGraceRSflame, 0)
 SongTable((RomancingSagaCoupdeGraceRSflameID+1), RomancingSagaCoupdeGraceRSflame, 1)
-SoundRoom((FirstSoundRoom_ID+112), (RomancingSagaCoupdeGraceRSflameID+1), (FirstSR_TextID+112))
+SoundRoom((FirstSoundRoom_ID+134), (RomancingSagaCoupdeGraceRSflameID+1), (FirstSR_TextID+134))
 textHeader: ; txt("RomancingSagaCoupdeGraceRSflame"); BYTE 0 0
-setText((FirstSR_TextID+112), textHeader)
+setText((FirstSR_TextID+134), textHeader)
 ALIGN 4
 #include "s/RomancingSaga/RomancingSagaCoupdeGraceRSflame.event"
 }
 
 { ; SongTable(Sonic2BossSmeID, Sonic2BossSme, 0)
 SongTable((Sonic2BossSmeID+1), Sonic2BossSme, 1)
-SoundRoom((FirstSoundRoom_ID+113), (Sonic2BossSmeID+1), (FirstSR_TextID+113))
+SoundRoom((FirstSoundRoom_ID+135), (Sonic2BossSmeID+1), (FirstSR_TextID+135))
 textHeader: ; txt("Sonic2BossSme"); BYTE 0 0
-setText((FirstSR_TextID+113), textHeader)
+setText((FirstSR_TextID+135), textHeader)
 ALIGN 4
 #include "s/SonicSeries/Sonic2BossSme.event"
 }
 
 { ; SongTable(Sonic2EmeraldHillZoneSmeID, Sonic2EmeraldHillZoneSme, 0)
 SongTable((Sonic2EmeraldHillZoneSmeID+1), Sonic2EmeraldHillZoneSme, 1)
-SoundRoom((FirstSoundRoom_ID+114), (Sonic2EmeraldHillZoneSmeID+1), (FirstSR_TextID+114))
+SoundRoom((FirstSoundRoom_ID+136), (Sonic2EmeraldHillZoneSmeID+1), (FirstSR_TextID+136))
 textHeader: ; txt("Sonic2EmeraldHillZoneSme"); BYTE 0 0
-setText((FirstSR_TextID+114), textHeader)
+setText((FirstSR_TextID+136), textHeader)
 ALIGN 4
 #include "s/SonicSeries/Sonic2EmeraldHillZoneSme.event"
 }
 
 { ; SongTable(SonicAdvance3ChaosAngelAct1MeatOfJusticeID, SonicAdvance3ChaosAngelAct1MeatOfJustice, 0)
 SongTable((SonicAdvance3ChaosAngelAct1MeatOfJusticeID+1), SonicAdvance3ChaosAngelAct1MeatOfJustice, 1)
-SoundRoom((FirstSoundRoom_ID+115), (SonicAdvance3ChaosAngelAct1MeatOfJusticeID+1), (FirstSR_TextID+115))
+SoundRoom((FirstSoundRoom_ID+137), (SonicAdvance3ChaosAngelAct1MeatOfJusticeID+1), (FirstSR_TextID+137))
 textHeader: ; txt("SonicAdvance3ChaosAngelAct1Meat"); BYTE 0 0
-setText((FirstSR_TextID+115), textHeader)
+setText((FirstSR_TextID+137), textHeader)
 ALIGN 4
 #include "s/SonicSeries/SonicAdvance3ChaosAngelAct1MeatOfJustice.event"
 }
 
 { ; SongTable(StreetFighter2KenThemeScraizaID, StreetFighter2KenThemeScraiza, 0)
 SongTable((StreetFighter2KenThemeScraizaID+1), StreetFighter2KenThemeScraiza, 1)
-SoundRoom((FirstSoundRoom_ID+116), (StreetFighter2KenThemeScraizaID+1), (FirstSR_TextID+116))
+SoundRoom((FirstSoundRoom_ID+138), (StreetFighter2KenThemeScraizaID+1), (FirstSR_TextID+138))
 textHeader: ; txt("StreetFighter2KenThemeScraiza"); BYTE 0 0
-setText((FirstSR_TextID+116), textHeader)
+setText((FirstSR_TextID+138), textHeader)
 ALIGN 4
 #include "s/StreetFighterSeries/StreetFighter2KenThemeScraiza.event"
 }
 
 { ; SongTable(StreetFighter2RyusThemeMeatOfJusticeID, StreetFighter2RyusThemeMeatOfJustice, 0)
 SongTable((StreetFighter2RyusThemeMeatOfJusticeID+1), StreetFighter2RyusThemeMeatOfJustice, 1)
-SoundRoom((FirstSoundRoom_ID+117), (StreetFighter2RyusThemeMeatOfJusticeID+1), (FirstSR_TextID+117))
+SoundRoom((FirstSoundRoom_ID+139), (StreetFighter2RyusThemeMeatOfJusticeID+1), (FirstSR_TextID+139))
 textHeader: ; txt("StreetFighter2RyusThemeMeatOf"); BYTE 0 0
-setText((FirstSR_TextID+117), textHeader)
+setText((FirstSR_TextID+139), textHeader)
 ALIGN 4
 #include "s/StreetFighterSeries/StreetFighter2RyusThemeMeatOfJustice.event"
 }
 
 { ; SongTable(StreetFighter33rdStikeJazzyNYC99AlexKenTakID, StreetFighter33rdStikeJazzyNYC99AlexKenTak, 0)
 SongTable((StreetFighter33rdStikeJazzyNYC99AlexKenTakID+1), StreetFighter33rdStikeJazzyNYC99AlexKenTak, 1)
-SoundRoom((FirstSoundRoom_ID+118), (StreetFighter33rdStikeJazzyNYC99AlexKenTakID+1), (FirstSR_TextID+118))
+SoundRoom((FirstSoundRoom_ID+140), (StreetFighter33rdStikeJazzyNYC99AlexKenTakID+1), (FirstSR_TextID+140))
 textHeader: ; txt("StreetFighter33rdStikeJazzyNYC99"); BYTE 0 0
-setText((FirstSR_TextID+118), textHeader)
+setText((FirstSR_TextID+140), textHeader)
 ALIGN 4
 #include "s/StreetFighterSeries/StreetFighter33rdStikeJazzyNYC99AlexKenTak.event"
 }
 
 { ; SongTable(TalesofEterniaEternalMindSaXortheNobodyID, TalesofEterniaEternalMindSaXortheNobody, 0)
 SongTable((TalesofEterniaEternalMindSaXortheNobodyID+1), TalesofEterniaEternalMindSaXortheNobody, 1)
-SoundRoom((FirstSoundRoom_ID+119), (TalesofEterniaEternalMindSaXortheNobodyID+1), (FirstSR_TextID+119))
+SoundRoom((FirstSoundRoom_ID+141), (TalesofEterniaEternalMindSaXortheNobodyID+1), (FirstSR_TextID+141))
 textHeader: ; txt("TalesofEterniaEternalMindSa"); BYTE 0 0
-setText((FirstSR_TextID+119), textHeader)
+setText((FirstSR_TextID+141), textHeader)
 ALIGN 4
 #include "s/TalesOfSeries/TalesofEterniaEternalMindSaXortheNobody.event"
 }
 
 { ; SongTable(TalesofPhantasiaMintsThemeAReliableChairID, TalesofPhantasiaMintsThemeAReliableChair, 0)
 SongTable((TalesofPhantasiaMintsThemeAReliableChairID+1), TalesofPhantasiaMintsThemeAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+120), (TalesofPhantasiaMintsThemeAReliableChairID+1), (FirstSR_TextID+120))
+SoundRoom((FirstSoundRoom_ID+142), (TalesofPhantasiaMintsThemeAReliableChairID+1), (FirstSR_TextID+142))
 textHeader: ; txt("TalesofPhantasiaMintsThemeA"); BYTE 0 0
-setText((FirstSR_TextID+120), textHeader)
+setText((FirstSR_TextID+142), textHeader)
 ALIGN 4
 #include "s/TalesOfSeries/TalesofPhantasiaMintsThemeAReliableChair.event"
 }
 
 { ; SongTable(TalesOfSymphoniaAnchoretAReliableChairID, TalesOfSymphoniaAnchoretAReliableChair, 0)
 SongTable((TalesOfSymphoniaAnchoretAReliableChairID+1), TalesOfSymphoniaAnchoretAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+121), (TalesOfSymphoniaAnchoretAReliableChairID+1), (FirstSR_TextID+121))
+SoundRoom((FirstSoundRoom_ID+143), (TalesOfSymphoniaAnchoretAReliableChairID+1), (FirstSR_TextID+143))
 textHeader: ; txt("TalesOfSymphoniaAnchoretA"); BYTE 0 0
-setText((FirstSR_TextID+121), textHeader)
+setText((FirstSR_TextID+143), textHeader)
 ALIGN 4
 #include "s/TalesOfSeries/TalesOfSymphoniaAnchoretAReliableChair.event"
 }
 
 { ; SongTable(TalesOfSymphoniaEncounterWithTheRenegadesAReliableChairID, TalesOfSymphoniaEncounterWithTheRenegadesAReliableChair, 0)
 SongTable((TalesOfSymphoniaEncounterWithTheRenegadesAReliableChairID+1), TalesOfSymphoniaEncounterWithTheRenegadesAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+122), (TalesOfSymphoniaEncounterWithTheRenegadesAReliableChairID+1), (FirstSR_TextID+122))
+SoundRoom((FirstSoundRoom_ID+144), (TalesOfSymphoniaEncounterWithTheRenegadesAReliableChairID+1), (FirstSR_TextID+144))
 textHeader: ; txt("TalesOfSymphoniaEncounterWithThe"); BYTE 0 0
-setText((FirstSR_TextID+122), textHeader)
+setText((FirstSR_TextID+144), textHeader)
 ALIGN 4
 #include "s/TalesOfSeries/TalesOfSymphoniaEncounterWithTheRenegadesAReliableChair.event"
 }
 
 { ; SongTable(TalesOfSymphoniaLikeAGlintOfLightAReliableChairID, TalesOfSymphoniaLikeAGlintOfLightAReliableChair, 0)
 SongTable((TalesOfSymphoniaLikeAGlintOfLightAReliableChairID+1), TalesOfSymphoniaLikeAGlintOfLightAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+123), (TalesOfSymphoniaLikeAGlintOfLightAReliableChairID+1), (FirstSR_TextID+123))
+SoundRoom((FirstSoundRoom_ID+145), (TalesOfSymphoniaLikeAGlintOfLightAReliableChairID+1), (FirstSR_TextID+145))
 textHeader: ; txt("TalesOfSymphoniaLikeAGlintOf"); BYTE 0 0
-setText((FirstSR_TextID+123), textHeader)
+setText((FirstSR_TextID+145), textHeader)
 ALIGN 4
 #include "s/TalesOfSeries/TalesOfSymphoniaLikeAGlintOfLightAReliableChair.event"
 }
 
 { ; SongTable(DeltaruneSpamtonRetinaID, DeltaruneSpamtonRetina, 0)
 SongTable((DeltaruneSpamtonRetinaID+1), DeltaruneSpamtonRetina, 1)
-SoundRoom((FirstSoundRoom_ID+124), (DeltaruneSpamtonRetinaID+1), (FirstSR_TextID+124))
+SoundRoom((FirstSoundRoom_ID+146), (DeltaruneSpamtonRetinaID+1), (FirstSR_TextID+146))
 textHeader: ; txt("DeltaruneSpamtonRetina"); BYTE 0 0
-setText((FirstSR_TextID+124), textHeader)
+setText((FirstSR_TextID+146), textHeader)
 ALIGN 4
 #include "s/TobyfoxsGames/DeltaruneSpamtonRetina.event"
 }
 
 { ; SongTable(UndertaleAnEndingAzulaID, UndertaleAnEndingAzula, 0)
 SongTable((UndertaleAnEndingAzulaID+1), UndertaleAnEndingAzula, 1)
-SoundRoom((FirstSoundRoom_ID+125), (UndertaleAnEndingAzulaID+1), (FirstSR_TextID+125))
+SoundRoom((FirstSoundRoom_ID+147), (UndertaleAnEndingAzulaID+1), (FirstSR_TextID+147))
 textHeader: ; txt("UndertaleAnEndingAzula"); BYTE 0 0
-setText((FirstSR_TextID+125), textHeader)
+setText((FirstSR_TextID+147), textHeader)
 ALIGN 4
 #include "s/TobyfoxsGames/UndertaleAnEndingAzula.event"
 }
 
 { ; SongTable(UndertaleMegalovaniaSmeID, UndertaleMegalovaniaSme, 0)
 SongTable((UndertaleMegalovaniaSmeID+1), UndertaleMegalovaniaSme, 1)
-SoundRoom((FirstSoundRoom_ID+126), (UndertaleMegalovaniaSmeID+1), (FirstSR_TextID+126))
+SoundRoom((FirstSoundRoom_ID+148), (UndertaleMegalovaniaSmeID+1), (FirstSR_TextID+148))
 textHeader: ; txt("UndertaleMegalovaniaSme"); BYTE 0 0
-setText((FirstSR_TextID+126), textHeader)
+setText((FirstSR_TextID+148), textHeader)
 ALIGN 4
 #include "s/TobyfoxsGames/UndertaleMegalovaniaSme.event"
 }
 
 { ; SongTable(UndertaleSongThatMightPlayWhenYouFightSansSmeID, UndertaleSongThatMightPlayWhenYouFightSansSme, 0)
 SongTable((UndertaleSongThatMightPlayWhenYouFightSansSmeID+1), UndertaleSongThatMightPlayWhenYouFightSansSme, 1)
-SoundRoom((FirstSoundRoom_ID+127), (UndertaleSongThatMightPlayWhenYouFightSansSmeID+1), (FirstSR_TextID+127))
+SoundRoom((FirstSoundRoom_ID+149), (UndertaleSongThatMightPlayWhenYouFightSansSmeID+1), (FirstSR_TextID+149))
 textHeader: ; txt("UndertaleSongThatMightPlayWhen"); BYTE 0 0
-setText((FirstSR_TextID+127), textHeader)
+setText((FirstSR_TextID+149), textHeader)
 ALIGN 4
 #include "s/TobyfoxsGames/UndertaleSongThatMightPlayWhenYouFightSansSme.event"
 }
 
 { ; SongTable(Touhou4InanimateDreamZoramineFaeID, Touhou4InanimateDreamZoramineFae, 0)
 SongTable((Touhou4InanimateDreamZoramineFaeID+1), Touhou4InanimateDreamZoramineFae, 1)
-SoundRoom((FirstSoundRoom_ID+128), (Touhou4InanimateDreamZoramineFaeID+1), (FirstSR_TextID+128))
+SoundRoom((FirstSoundRoom_ID+150), (Touhou4InanimateDreamZoramineFaeID+1), (FirstSR_TextID+150))
 textHeader: ; txt("Touhou4InanimateDreamZoramineFae"); BYTE 0 0
-setText((FirstSR_TextID+128), textHeader)
+setText((FirstSR_TextID+150), textHeader)
 ALIGN 4
 #include "s/TouhouSeries/Touhou4InanimateDreamZoramineFae.event"
 }
 
 { ; SongTable(Touhou5EndOfTheWorldZoramineFaeID, Touhou5EndOfTheWorldZoramineFae, 0)
 SongTable((Touhou5EndOfTheWorldZoramineFaeID+1), Touhou5EndOfTheWorldZoramineFae, 1)
-SoundRoom((FirstSoundRoom_ID+129), (Touhou5EndOfTheWorldZoramineFaeID+1), (FirstSR_TextID+129))
+SoundRoom((FirstSoundRoom_ID+151), (Touhou5EndOfTheWorldZoramineFaeID+1), (FirstSR_TextID+151))
 textHeader: ; txt("Touhou5EndOfTheWorldZoramineFae"); BYTE 0 0
-setText((FirstSR_TextID+129), textHeader)
+setText((FirstSR_TextID+151), textHeader)
 ALIGN 4
 #include "s/TouhouSeries/Touhou5EndOfTheWorldZoramineFae.event"
 }
 
 { ; SongTable(Touhou6BelovedTomboyishGirlPikmin1211ID, Touhou6BelovedTomboyishGirlPikmin1211, 0)
 SongTable((Touhou6BelovedTomboyishGirlPikmin1211ID+1), Touhou6BelovedTomboyishGirlPikmin1211, 1)
-SoundRoom((FirstSoundRoom_ID+130), (Touhou6BelovedTomboyishGirlPikmin1211ID+1), (FirstSR_TextID+130))
+SoundRoom((FirstSoundRoom_ID+152), (Touhou6BelovedTomboyishGirlPikmin1211ID+1), (FirstSR_TextID+152))
 textHeader: ; txt("Touhou6BelovedTomboyishGirl"); BYTE 0 0
-setText((FirstSR_TextID+130), textHeader)
+setText((FirstSR_TextID+152), textHeader)
 ALIGN 4
 #include "s/TouhouSeries/Touhou6BelovedTomboyishGirlPikmin1211.event"
 }
 
 { ; SongTable(AdvanceWarsAndysThemeMrGreen3339ID, AdvanceWarsAndysThemeMrGreen3339, 0)
 SongTable((AdvanceWarsAndysThemeMrGreen3339ID+1), AdvanceWarsAndysThemeMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+131), (AdvanceWarsAndysThemeMrGreen3339ID+1), (FirstSR_TextID+131))
+SoundRoom((FirstSoundRoom_ID+153), (AdvanceWarsAndysThemeMrGreen3339ID+1), (FirstSR_TextID+153))
 textHeader: ; txt("AdvanceWarsAndysThemeMrGreen3339"); BYTE 0 0
-setText((FirstSR_TextID+131), textHeader)
+setText((FirstSR_TextID+153), textHeader)
 ALIGN 4
 #include "s/WarsSeries/AdvanceWarsAndysThemeMrGreen3339.event"
 }
 
 { ; SongTable(AdvanceWarsDualStrikeJavierLemonTartID, AdvanceWarsDualStrikeJavierLemonTart, 0)
 SongTable((AdvanceWarsDualStrikeJavierLemonTartID+1), AdvanceWarsDualStrikeJavierLemonTart, 1)
-SoundRoom((FirstSoundRoom_ID+132), (AdvanceWarsDualStrikeJavierLemonTartID+1), (FirstSR_TextID+132))
+SoundRoom((FirstSoundRoom_ID+154), (AdvanceWarsDualStrikeJavierLemonTartID+1), (FirstSR_TextID+154))
 textHeader: ; txt("AdvanceWarsDualStrikeJavierLemon"); BYTE 0 0
-setText((FirstSR_TextID+132), textHeader)
+setText((FirstSR_TextID+154), textHeader)
 ALIGN 4
 #include "s/WarsSeries/AdvanceWarsDualStrikeJavierLemonTart.event"
 }
 
 { ; SongTable(SuperFamicomWarsFonRossoDerTheVaporeonID, SuperFamicomWarsFonRossoDerTheVaporeon, 0)
 SongTable((SuperFamicomWarsFonRossoDerTheVaporeonID+1), SuperFamicomWarsFonRossoDerTheVaporeon, 1)
-SoundRoom((FirstSoundRoom_ID+133), (SuperFamicomWarsFonRossoDerTheVaporeonID+1), (FirstSR_TextID+133))
-textHeader: ; txt("SuperFamicomWarsFonRossoDerThe"); BYTE 0 0
-setText((FirstSR_TextID+133), textHeader)
 ALIGN 4
 #include "s/WarsSeries/SuperFamicomWarsFonRossoDerTheVaporeon.event"
 }
 
 { ; SongTable(Xenoblade2WantedNiaMonopolyRubixmidibyKianMID, Xenoblade2WantedNiaMonopolyRubixmidibyKianM, 0)
 SongTable((Xenoblade2WantedNiaMonopolyRubixmidibyKianMID+1), Xenoblade2WantedNiaMonopolyRubixmidibyKianM, 1)
-SoundRoom((FirstSoundRoom_ID+134), (Xenoblade2WantedNiaMonopolyRubixmidibyKianMID+1), (FirstSR_TextID+134))
-textHeader: ; txt("Xenoblade2WantedNiaMonopoly"); BYTE 0 0
-setText((FirstSR_TextID+134), textHeader)
 ALIGN 4
 #include "s/XenobladeSeries/Xenoblade2WantedNiaMonopolyRubixmidibyKianM.event"
 }
 
 { ; SongTable(XenobladeChroniclesTragicDecisionRandomWizardID, XenobladeChroniclesTragicDecisionRandomWizard, 0)
 SongTable((XenobladeChroniclesTragicDecisionRandomWizardID+1), XenobladeChroniclesTragicDecisionRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+135), (XenobladeChroniclesTragicDecisionRandomWizardID+1), (FirstSR_TextID+135))
-textHeader: ; txt("XenobladeChroniclesTragic"); BYTE 0 0
-setText((FirstSR_TextID+135), textHeader)
 ALIGN 4
 #include "s/XenobladeSeries/XenobladeChroniclesTragicDecisionRandomWizard.event"
 }
 
 { ; SongTable(YggdraUnionGulcasaThemeShinKumaID, YggdraUnionGulcasaThemeShinKuma, 0)
 SongTable((YggdraUnionGulcasaThemeShinKumaID+1), YggdraUnionGulcasaThemeShinKuma, 1)
-SoundRoom((FirstSoundRoom_ID+136), (YggdraUnionGulcasaThemeShinKumaID+1), (FirstSR_TextID+136))
-textHeader: ; txt("YggdraUnionGulcasaThemeShinKuma"); BYTE 0 0
-setText((FirstSR_TextID+136), textHeader)
 ALIGN 4
 #include "s/YggdraSeries/YggdraUnionGulcasaThemeShinKuma.event"
 }
 
 { ; SongTable(YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobodyID, YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobody, 0)
 SongTable((YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobodyID+1), YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobody, 1)
-SoundRoom((FirstSoundRoom_ID+137), (YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobodyID+1), (FirstSR_TextID+137))
-textHeader: ; txt("YggdraUnionWellNeverFightAlone"); BYTE 0 0
-setText((FirstSR_TextID+137), textHeader)
 ALIGN 4
 #include "s/YggdraSeries/YggdraUnionWellNeverFightAloneAeginaSortieSaXortheNobody.event"
 }
 
+{ ; SongTable(LegendofZeldaOcarinaofTimeMinigame1ID, LegendofZeldaOcarinaofTimeMinigame1, 0)
+SongTable((LegendofZeldaOcarinaofTimeMinigame1ID+1), LegendofZeldaOcarinaofTimeMinigame1, 1)
+ALIGN 4
+#include "s/ZeldaSeries/LegendofZeldaOcarinaofTimeMinigame1.event"
+}
+
+{ ; SongTable(LegendofZeldaOcarinaofTimeOwlThemesID, LegendofZeldaOcarinaofTimeOwlThemes, 0)
+SongTable((LegendofZeldaOcarinaofTimeOwlThemesID+1), LegendofZeldaOcarinaofTimeOwlThemes, 1)
+ALIGN 4
+#include "s/ZeldaSeries/LegendofZeldaOcarinaofTimeOwlThemes.event"
+}
+
 { ; SongTable(LoZFourSwordsBossThemeRandomWizardID, LoZFourSwordsBossThemeRandomWizard, 0)
 SongTable((LoZFourSwordsBossThemeRandomWizardID+1), LoZFourSwordsBossThemeRandomWizard, 1)
-SoundRoom((FirstSoundRoom_ID+138), (LoZFourSwordsBossThemeRandomWizardID+1), (FirstSR_TextID+138))
-textHeader: ; txt("LoZFourSwordsBossThemeRandom"); BYTE 0 0
-setText((FirstSR_TextID+138), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZFourSwordsBossThemeRandomWizard.event"
 }
 
 { ; SongTable(LoZMajorasMaskMayorsThemePandanID, LoZMajorasMaskMayorsThemePandan, 0)
 SongTable((LoZMajorasMaskMayorsThemePandanID+1), LoZMajorasMaskMayorsThemePandan, 1)
-SoundRoom((FirstSoundRoom_ID+139), (LoZMajorasMaskMayorsThemePandanID+1), (FirstSR_TextID+139))
-textHeader: ; txt("LoZMajorasMaskMayorsThemePandan"); BYTE 0 0
-setText((FirstSR_TextID+139), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZMajorasMaskMayorsThemePandan.event"
 }
 
 { ; SongTable(LoZOcarinaofTimeLostWoodsAReliableChairID, LoZOcarinaofTimeLostWoodsAReliableChair, 0)
 SongTable((LoZOcarinaofTimeLostWoodsAReliableChairID+1), LoZOcarinaofTimeLostWoodsAReliableChair, 1)
-SoundRoom((FirstSoundRoom_ID+140), (LoZOcarinaofTimeLostWoodsAReliableChairID+1), (FirstSR_TextID+140))
-textHeader: ; txt("LoZOcarinaofTimeLostWoodsA"); BYTE 0 0
-setText((FirstSR_TextID+140), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZOcarinaofTimeLostWoodsAReliableChair.event"
 }
 
 { ; SongTable(LoZOcarinaofTimeShopSmeID, LoZOcarinaofTimeShopSme, 0)
 SongTable((LoZOcarinaofTimeShopSmeID+1), LoZOcarinaofTimeShopSme, 1)
-SoundRoom((FirstSoundRoom_ID+141), (LoZOcarinaofTimeShopSmeID+1), (FirstSR_TextID+141))
-textHeader: ; txt("LoZOcarinaofTimeShopSme"); BYTE 0 0
-setText((FirstSR_TextID+141), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZOcarinaofTimeShopSme.event"
 }
 
 { ; SongTable(LoZPhantomHourglassBattleRSflameID, LoZPhantomHourglassBattleRSflame, 0)
 SongTable((LoZPhantomHourglassBattleRSflameID+1), LoZPhantomHourglassBattleRSflame, 1)
-SoundRoom((FirstSoundRoom_ID+142), (LoZPhantomHourglassBattleRSflameID+1), (FirstSR_TextID+142))
-textHeader: ; txt("LoZPhantomHourglassBattleRSflame"); BYTE 0 0
-setText((FirstSR_TextID+142), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZPhantomHourglassBattleRSflame.event"
 }
 
 { ; SongTable(LoZPhantomHourglassLinebecksThemeSmeID, LoZPhantomHourglassLinebecksThemeSme, 0)
 SongTable((LoZPhantomHourglassLinebecksThemeSmeID+1), LoZPhantomHourglassLinebecksThemeSme, 1)
-SoundRoom((FirstSoundRoom_ID+143), (LoZPhantomHourglassLinebecksThemeSmeID+1), (FirstSR_TextID+143))
-textHeader: ; txt("LoZPhantomHourglassLinebecks"); BYTE 0 0
-setText((FirstSR_TextID+143), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZPhantomHourglassLinebecksThemeSme.event"
 }
 
 { ; SongTable(LoZPhantomHourglassMercayIslandFeierID, LoZPhantomHourglassMercayIslandFeier, 0)
 SongTable((LoZPhantomHourglassMercayIslandFeierID+1), LoZPhantomHourglassMercayIslandFeier, 1)
-SoundRoom((FirstSoundRoom_ID+144), (LoZPhantomHourglassMercayIslandFeierID+1), (FirstSR_TextID+144))
-textHeader: ; txt("LoZPhantomHourglassMercayIsland"); BYTE 0 0
-setText((FirstSR_TextID+144), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZPhantomHourglassMercayIslandFeier.event"
 }
 
 { ; SongTable(LoZSongofHealingMysteriousDancerID, LoZSongofHealingMysteriousDancer, 0)
 SongTable((LoZSongofHealingMysteriousDancerID+1), LoZSongofHealingMysteriousDancer, 1)
-SoundRoom((FirstSoundRoom_ID+145), (LoZSongofHealingMysteriousDancerID+1), (FirstSR_TextID+145))
-textHeader: ; txt("LoZSongofHealingMysteriousDancer"); BYTE 0 0
-setText((FirstSR_TextID+145), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZSongofHealingMysteriousDancer.event"
 }
 
 { ; SongTable(LoZSpiritTracksFullSteamAheadRSflameID, LoZSpiritTracksFullSteamAheadRSflame, 0)
 SongTable((LoZSpiritTracksFullSteamAheadRSflameID+1), LoZSpiritTracksFullSteamAheadRSflame, 1)
-SoundRoom((FirstSoundRoom_ID+146), (LoZSpiritTracksFullSteamAheadRSflameID+1), (FirstSR_TextID+146))
-textHeader: ; txt("LoZSpiritTracksFullSteamAheadR"); BYTE 0 0
-setText((FirstSR_TextID+146), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZSpiritTracksFullSteamAheadRSflame.event"
 }
 
 { ; SongTable(LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339ID, LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339, 0)
 SongTable((LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339ID+1), LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339, 1)
-SoundRoom((FirstSoundRoom_ID+147), (LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339ID+1), (FirstSR_TextID+147))
-textHeader: ; txt("LoZTheWindWakerPuppetGanonSnake"); BYTE 0 0
-setText((FirstSR_TextID+147), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZTheWindWakerPuppetGanonSnakeFormMrGreen3339.event"
 }
 
 { ; SongTable(LoZTwilightPrincessHiddenVillagePandanID, LoZTwilightPrincessHiddenVillagePandan, 0)
 SongTable((LoZTwilightPrincessHiddenVillagePandanID+1), LoZTwilightPrincessHiddenVillagePandan, 1)
-SoundRoom((FirstSoundRoom_ID+148), (LoZTwilightPrincessHiddenVillagePandanID+1), (FirstSR_TextID+148))
-textHeader: ; txt("LoZTwilightPrincessHiddenVillage"); BYTE 0 0
-setText((FirstSR_TextID+148), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZTwilightPrincessHiddenVillagePandan.event"
 }
 
 { ; SongTable(LoZWindWakerEarthGodsLyricPandanID, LoZWindWakerEarthGodsLyricPandan, 0)
 SongTable((LoZWindWakerEarthGodsLyricPandanID+1), LoZWindWakerEarthGodsLyricPandan, 1)
-SoundRoom((FirstSoundRoom_ID+149), (LoZWindWakerEarthGodsLyricPandanID+1), (FirstSR_TextID+149))
-textHeader: ; txt("LoZWindWakerEarthGodsLyricPandan"); BYTE 0 0
-setText((FirstSR_TextID+149), textHeader)
 ALIGN 4
 #include "s/ZeldaSeries/LoZWindWakerEarthGodsLyricPandan.event"
 }
@@ -1353,6 +1512,6 @@ ALIGN 4
 
 ALIGN 12
 MaxBGMID:
-WORD FirstBGM_ID+300
+WORD FirstBGM_ID+348
 
 

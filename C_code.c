@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.0.8"
+#define VersionNumber " SRR V2.0.9"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -1255,6 +1255,11 @@ struct PidStatsChar * GetPidStatsSafe(int i)
     {
         return NULL;
     }
+    if (IsCharIdInvalidForGame(i))
+    {
+        return NULL;
+    }
+
     return pidStats;
 }
 
@@ -12238,6 +12243,8 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
     // brk;
     // table = GetCharacterData(1);
     // table--;
+    list[c].find = NULL;
+    list[c].replace = NULL;
 
     for (int i = 0; i < end; ++i)
     {
@@ -12247,7 +12254,6 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
         {
             continue;
         }
-
         table2 = GetReorderedCharacter(table);
 
         if (table->nameTextId == table2->nameTextId)
@@ -12269,7 +12275,6 @@ void InitReplaceTextListAntiHuffman(struct ReplaceTextStruct list[])
         list[c].replace = (void *)(value2 & 0x7FFFFFFF);
         c++;
     }
-
     list[c].find = NULL;
 }
 
@@ -12624,6 +12629,10 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
     // #endif
     // #endif
     int replacedLen = 0;
+    if (!ReplaceTextList[0].find)
+    {
+        return;
+    }
 
     for (int i = 0; i < TextBufferSize; ++i)
     {
