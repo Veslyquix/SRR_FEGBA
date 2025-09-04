@@ -2,24 +2,464 @@
 ALIGN 4 
 
 #ifdef _FE8_ 
+    #define EphraimLordLanceID 0x01
+    #define EphraimLordUnarmedID 0x02
+    #define EirikaLordSwordID 0x03
+    #define EirikaLordUnarmedID 0x04
+    #define EphraimGreatLordLanceID 0x05
+    #define EphraimGreatLordUnarmedID 0x07
+    #define EirikaGreatSwordID 0x08
+    #define EirikaGreatUnarmedID 0x0A
+    #define MercenarySwordID 0x0B
+    #define MercenaryUnarmedID 0x0C
+    #define HeroSwordID 0x0D
+    #define HeroAxeID 0x0E
+    #define HeroHandaxeID 0x0F
+    #define HeroUnarmedID 0x10
+    #define MyrmidonSwordID 0x11
+    #define MyrmidonUnarmedID 0x12
+    #define MyrmidonFSwordID 0x13
+    #define MyrmidonFUnarmedID 0x14
+    #define SwordmasterSwordID 0x15
+    #define SwordmasterUnarmedID 0x16
+    #define SwordmasterFSwordID 0x17
+    #define SwordmasterFUnarmedID 0x18
+    #define FighterAxeID 0x19
+    #define FighterHandaxeID 0x1A
+    #define FighterUnarmedID 0x1B
+    #define WarriorAxeID 0x1C
+    #define WarriorHandaxeID 0x1D
+    #define WarriorBowID 0x1E
+    #define WarriorUnarmedID 0x1F
+    #define BrigandAxeID 0x20
+    #define BrigandHandaxeID 0x21
+    #define BrigandUnarmedID 0x22
+    #define BerserkerAxeID 0x23
+    #define BerserkerHandaxeID 0x24
+    #define BerserkerUnarmedID 0x25
+    #define ArcherBowID 0x26
+    #define ArcherUnarmedID 0x27
+    #define ArcherFBowID 0x28
+    #define ArcherFUnarmedID 0x29
+    #define SniperBowID 0x2A
+    #define SniperUnarmedID 0x2B
+    #define SniperFBowID 0x2C
+    #define SniperFUnarmedID 0x2D
+    #define RangerSwordID 0x2E
+    #define RangerBowID 0x2F
+    #define RangerUnarmedID 0x30
+    #define RangerFSwordID 0x31
+    #define RangerFBowID 0x32
+    #define RangerFUnarmedID 0x33
+    #define CavalierSwordID 0x34
+    #define CavalierLanceID 0x35
+    #define CavalierUnarmedID 0x36
+    #define CavalierFSwordID 0x37
+    #define CavalierFLanceID 0x38
+    #define CavalierFUnarmedID 0x39
+    #define PaladinSwordID 0x3A
+    #define PaladinLanceID 0x3B
+    #define PaladinUnarmedID 0x3C
+    #define PaladinFSwordID 0x3D
+    #define PaladinFLanceID 0x3E
+    #define PaladinFUnarmedID 0x3F
+    #define KnightLanceID 0x40
+    #define KnightUnarmedID 0x41
+    #define KnightFLanceID 0x42 // Copy
+    #define KnightFUnarmedID 0x43 // Copy
+    #define GeneralSwordID 0x44
+    #define GeneralLanceID 0x45
+    #define GeneralAxeID 0x46
+    #define GeneralHandaxeID 0x47
+    #define GeneralUnarmedID 0x48
+    #define GeneralFSwordID 0x49 // Copy
+    #define GeneralFLanceID 0x4A // Copy
+    #define GeneralFAxeID 0x4B // Copy
+    #define GeneralFHandaxeID 0x4C // Copy
+    #define GeneralFUnarmedID 0x4D // Copy
+    #define GreatKnightSwordID 0x4E
+    #define GreatKnightLanceID 0x4F
+    #define GreatKnightAxeID 0x50
+    #define GreatKnightHandaxeID 0x51
+    #define GreatKnightUnarmedID 0x52
+    #define GreatKnightFSwordID 0x53 // Copy
+    #define GreatKnightFLanceID 0x54 // Copy
+    #define GreatKnightFAxeID 0x55 // Copy
+    #define GreatKnightFHandaxeID 0x56 // Copy
+    #define GreatKnightFUnarmedID 0x57 // Copy
     #define WyvernRiderLanceID 0x58 // From Vanilla Battle Animations table 
     #define WyvernRiderUnarmedID 0x59 
-    // more defs here 
-
+    #define WyvernRiderFLanceID 0x5A // Copy
+    #define WyvernRiderFUnarmedID 0x5B // Copy
+    #define WyvernLordSwordID 0x5C 
+    #define WyvernLordLanceID 0x5D 
+    #define WyvernLordUnarmedID 0x5E 
+    #define WyvernLordFSwordID 0x5F // Copy 
+    #define WyvernLordFLanceID 0x60 // Copy 
+    #define WyvernLordFUnarmedID 0x61 // Copy 
+    #define WyvernKnightLanceID 0x62
+    #define WyvernKnightUnarmedID 0x63 
+    //#define WyvernKnightFLanceID 0x64 Copy and not even used (uses male IDs)
+    //#define WyvernKnightFUnarmedID 0x65 Copy and not even used (uses male IDs)
+    #define PegasusKnightLanceID 0x66
+    #define PegasusKnightUnarmedID 0x67 
+    #define FalconKnightSwordID 0x68 
+    #define FalconKnightLanceID 0x69 
+    #define FalconKnightUnarmedID 0x6A
+    #define MageMagicID 0x6B 
+    #define MageFMagicID 0x6C 
+    #define SageMagicID 0x6D 
+    #define SageStaffID 0x6E 
+    #define SageFMagicID 0x6F 
+    #define SageFStaffID 0x70 
+    #define MageKnightMagicID 0x71
+    #define MageKnightStaffID 0x72 
+    #define MageKnightFMagicID 0x73 
+    #define MageKnightFStaffID 0x74
+    #define ShamanMagicID 0x75
+    #define ShamanFMagicID 0x76
+    #define DruidMagicID 0x77
+    #define DruidStaffID 0x78 
+    #define DruidFMagicID 0x79 
+    #define DruidtFStaffID 0x7A
+    #define SummonerMagicID 0x7B
+    #define SummonerStaffID 0x7C
+    #define MonkMagicID 0x7D
+    #define PriestUnarmedID 0x7E
+    #define PriestStaffID 0x7F 
+    #define ClericStaffID 0x80 
+    #define BishopUnarmedID 0x81 
+    #define BishopMagicID 0x82 
+    #define BishopFMagicID 0x83 
+    #define BishopFUnarmedID 0x84 // Seems to actually be a staff animation, but a staff uses the above animation instead.
+    #define TroubadourUnarmedID 0x85
+    #define TroubadourStaffID 0x86 
+    #define ValkyrieMagicID 0x87
+    #define ValkyrieStaffID 0x88
+    #define ThiefSwordID 0x89
+    #define ThiefUnarmedID 0x8A
+    #define AssassinSwordID 0x8B
+    #define AssassinUnarmedID 0x8C
+    #define AssassinFSwordID 0x8D // Copy 
+    #define AssassinFUnarmedID 0x8E // Copy 
+    #define RogueSwordID 0x8F
+    #define RogueUnarmedID 0x90
+    #define DancerRefresh 0x91
+    #define JourneymanAxeID 0x92
+    #define JourneymanHandaxeID 0x93
+    #define JourneymanUnarmedID 0x94
+    #define PupilMagic 0x95
+    #define RecruitLanceID 0x96
+    #define RecruitUnarmedID 0x97
+    #define SoldierLanceID 0x98
+    #define SoldierUnarmedID 0x99
+    #define PirateAxeID 0x9A
+    #define PirateHandaxeID 0x9B
+    #define PirateUnarmedID 0x9C
+    #define NecromancerMagicID 0x9D
+    #define NecromancerStaffID 0x9E
+    #define RevenantMonsterID 0xA0
+    #define EntombedMonsterID 0xA1
+    #define BonewalkerSwordID 0xA2
+    #define BonewalkerLanceID 0xA3
+    #define BonewalkerUnarmedID 0xA4
+    #define BonewalkerBowID 0xA5
+    #define BonewalkerUnarmedCopyID 0xA6 // Copy
+    #define WightSwordID 0xA7
+    #define WightLanceID 0xA8
+    #define WightUnarmedID 0xA9
+    #define WightBowID 0xAA
+    #define WightUnarmedCopyID 0xAB // Copy
+    #define BaelMonsterID 0xAC
+    #define ElderBaelMonsterID 0xAD
+    #define CyclopsAxeID 0xAE
+    #define CyclopsHandaxeID 0xAF
+    #define CyclopsUnarmedID 0xB0
+    #define MautheDoogMonsterID 0xB1
+    #define GwyllgiMonsterID 0xB2
+    #define TarvosAxeID 0xB3
+    #define TarvosHandaxeID 0xB4
+    #define TarvosUnarmedID 0xB5
+    #define MaelduinAxeID 0xB6
+    #define MaelduinHandaxeID 0xB7
+    #define MaelduinBowID 0xB8
+    #define MaelduinUnarmedID 0xB9
+    #define MogallMagicID 0xBA
+    #define ArchMogallMagicID 0xBB
+    #define GorgonMagicID 0xBC
+    #define GargoyleLanceID 0xBD
+    #define GargoyleUnarmedID 0xBE
+    #define DeathgoyleLanceID 0xBF
+    #define DeathgoyleUnarmedID 0xC0
+    #define DracoZombieMonsterID 0xC1
+    #define DemonKingMonsterID 0xC2
+    #define DemonKingMagicID 0xC3
+    #define ManaketeFID 0xC7
+    #define ClericUnarmedID 0xC8 
+    #define ManaketeID 0xC9
 #endif 
 
 
 #ifdef _FE7_ 
+    #define EliwoodLordSwordID 0x01 
+    #define EliwoodLordUnarmedID 0x02 
+    #define KnightLordSwordID 0x03
+    #define KnightLordDurandalID 0x04
+    #define KnightLordLanceID 0x05
+    #define KnightLordUnarmedID 0x06 
+    #define HectorLordAxeID 0x07
+    #define HectorLordHandaxeID 0x08
+    #define HectorLordUnarmedID 0x09
+    #define HectorGreatLordAxeID 0x0A
+    #define HectorGreatLordHandaxeID 0x0B
+    #define HectorGreatLordArmadsID 0x0C
+    #define HectorGreatLordSwordID 0x0D
+    #define HectorGreatLordUnarmedID 0x0E
+    #define LynLordSwordID 0x0F
+    #define LynLordUnarmedID 0x10 
+    #define BladeLordSwordID 0x11
+    #define BladeLordSolKattiID 0x12
+    #define BladeLordBowID 0x13
+    #define BladeLordUnarmedID 0x14 
+    #define BrigandAxeID 0x15
+    #define BrigandHandaxeID 0x16
+    #define BrigandUnarmedID 0x17
+    #define PirateAxeID 0x18
+    #define PirateHandaxeID 0x19
+    #define PirateUnarmedID 0x1A
+    #define FighterAxeID 0x1E
+    #define FighterHandaxeID 0x1F
+    #define FighterUnarmedID 0x20
+    #define WarriorAxeID 0x21
+    #define WarriorHandaxeID 0x22
+    #define WarriorBowID 0x23
+    #define WarriorUnarmedID 0x24
+    #define ArcherBowID 0x25
+    #define ArcherUnarmedID 0x26
+    #define ArcherFBowID 0x27
+    #define ArcherFUnarmedID 0x28
+    #define SniperBowID 0x29
+    #define SniperUnarmedID 0x2A
+    #define SniperFBowID 0x2B
+    #define SniperFUnarmedID 0x2C
+    #define MercenarySwordID 0x2D
+    #define MercenaryUnarmedID 0x2E
+    #define HeroSwordID 0x2F
+    #define HeroAxeID 0x30
+    #define HeroHandaxeID 0x31
+    #define HeroUnarmedID 0x32
+    #define MyrmidonSwordID 0x33
+    #define MyrmidonUnarmedID 0x34
+    #define SwordmasterSwordID 0x35
+    #define SwordmasterUnarmedID 0x36
+    #define SwordmasterFSwordID 0x39
+    #define SwordmasterFUnarmedID 0x3A
+    #define CavalierLanceID 0x3B
+    #define CavalierSwordID 0x3C
+    #define CavalierUnarmedID 0x3D
+    #define CavalierFLanceID 0x3E // This is a weird copy
+    #define PaladinAxeID 0x41
+    #define PaladinHandaxeID 0x42
+    #define PaladinSwordID 0x43
+    #define PaladinLanceID 0x44
+    #define PaladinUnarmedID 0x45
+    //#define PaladinFAxeID 0x46 // Copy
+    //#define PaladinFHandaxeID 0x47 // Copy
+    //#define PaladinFSwordID 0x48 // Copy
+    //#define PaladinFLanceID 0x49 // Copy
+    //#define PaladinFUnarmedID 0x4A // Copy
+    #define PaladinFAxeID 0x4B
+    #define PaladinFHandaxeID 0x4C
+    #define PaladinFSwordID 0x4D
+    #define PaladinFLanceID 0x4E
+    #define PaladinFUnarmedID 0x4F
+    #define SoldierLanceID 0x50
+    #define SoldierUnarmedID 0x51   
+    #define KnightLanceID 0x52
+    #define KnightUnarmedID 0x53
+    #define GeneralLanceID 0x54
+    #define GeneralAxeID 0x55
+    #define GeneralHandaxeID 0x56
+    #define GeneralUnarmedID 0x57
+    #define MageMagicID 0x58 
+    #define MageFMagicID 0x59 
+    #define SageMagicID 0x5A 
+    #define SageStaffID 0x5B 
+    #define SageFMagicID 0x5C
+    #define SageFStaffID 0x5D 
+    #define PriestStaffID 0x60 // No way, he was here all along?! 
+    #define PriestUnarmedID 0x61
+    #define ClericStaffID 0x62
+    #define ClericUnarmedID 0x63
+    #define MonkMagicID 0x64
+    #define BishopMagicID 0x65 
+    #define BishopStaffID 0x66 
+    #define BishopFMagicID 0x67
+    #define BishopFStaffID 0x68
+    #define ShamanMagicID 0x69
+    #define DruidMagicID 0x6A
+    #define DruidStaffID 0x6B 
+    #define DarkDruidMagicID 0x6C
+    #define DarkDruidStaffID 0x6D // Broken 
+    #define TroubadourStaffID 0x6E 
+    #define TroubadourUnarmedID 0x6F
+    #define ValkyrieMagicID 0x70
+    #define ValkyrieStaffID 0x71
+    #define Archsage_AthosMagicID 0x72
+    #define Archsage_AthosStaffID 0x73 
+    #define NomadBowID 0x74
+    #define NomadUnarmedID 0x75
+    #define NomadTrooperSwordID 0x76
+    #define NomadTrooperBowID 0x77
+    #define NomadTrooperUnarmedID 0x78
+    #define ThiefSwordID 0x79
+    #define ThiefUnarmedID 0x7A
+    #define ThiefFSwordID 0x7D
+    #define ThiefFUnarmedID 0x7E
+    #define AssassinSwordID 0x7F
+    #define AssassinUnarmedID 0x80
+    #define PegasusKnightLanceID 0x81
+    #define PegasusKnightUnarmedID 0x82 
+    #define FalconKnightSwordID 0x83
+    #define FalconKnightLanceID 0x84 
+    #define FalconKnightUnarmedID 0x85
     #define WyvernRiderLanceID 0x86 
     #define WyvernRiderUnarmedID 0x87 
-
+    #define WyvernLordLanceID 0x88 
+    #define WyvernLordSwordID 0x89 
+    #define WyvernLordUnarmedID 0x8A
+    #define FireDragonID 0x8B
+    #define DancerRefreshID 0x8D
+    #define BardRefreshID 0x8E
+    #define BishopUnarmedID 0x97 
+    #define BishopFUnarmedID 0x98 
+    #define BerserkerAxeID 0x9D
+    #define BerserkerHandaxeID 0x9E
+    #define BerserkerUnarmedID 0x9F
+    #define TransporterUnarmedID 0xA1
+    #define Merlinus_TransportUnarmed 0xA2
 #endif 
 
 
 #ifdef _FE6_ 
+    #define KnightLanceID 0x01
+    #define PirateAxeID 0x02
+    #define BerserkerAxeID 0x03
+    #define BrigandAxeID 0x04
+    #define SniperBowID 0x05
+    #define SniperFBowID 0x06
+    #define MercenarySwordID 0x07
+    #define MercenaryUnarmedID 0x08
+    #define CavalierLanceID 0x09
+    #define CavalierSwordID 0x0A
+    #define FalconKnightSwordID 0x0C
+    #define CavalierUnarmedID 0x0B
+    #define MageMagicID 0x0D
+    #define MageFMagicID 0x0E 
+    #define ArcherBowID 0x0F
+    #define ArcherFBowID 0x10
+    #define RoyLordSwordID 0x11
+    #define SageFMagicID 0x12
+    #define SoldierLanceID 0x13
+    #define DruidMagicID 0x14
+    #define RoyLordUnarmedID 0x15
+    #define HeroSwordID 0x16
+    #define DancerRefreshID 0x17
+    #define BardRefreshID 0x18
+    #define ClericStaffID 0x19 
+    #define PriestStaffID 0x1A
+    #define PaladinLanceID 0x1B
+    #define NomadBowID 0x1C
+    #define NomadUnarmedID 0x1D
+    #define NomadFBowID 0x1E
+    #define NomadFUnarmedID 0x1F
+    #define KnightUnarmedID 0x20
+    #define ClericUnarmedID 0x21
+    #define PriestUnarmedID 0x22
+    #define FighterAxeID 0x23
+    #define FighterUnarmedID 0x24
+    #define BishopMagicID 0x25 
+    #define BishopStaffID 0x26 
+    #define BishopFMagicID 0x27
+    #define BishopFStaffID 0x28
+    #define ManaketeUnarmedID 0x29 
+    #define ManaketeFUnarmedID 0x2A
+    #define BrigandUnarmedID 0x2B
+    #define BerserkerUnarmedID 0x2C
+    #define ShamanMagicID 0x2D
+    #define ShamanFMagicID 0x2E
+    #define WarriorAxeID 0x2F
+    #define WarriorUnarmedID 0x30
+    #define PirateUnarmedID 0x31
+    #define TroubadourStaffID 0x32
+    #define TroubadourUnarmedID 0x33
+    #define ValkyrieMagicID 0x34
+    #define ValkyrieStaffID 0x35
+    #define SageMagicID 0x36 
+    #define HeroUnarmedID 0x37
+    #define PegasusKnightLanceID 0x38
+    #define PegasusKnightUnarmedID 0x39 
+    #define ThiefSwordID 0x3A
+    #define ThiefUnarmedID 0x3B
+    #define ThiefFSwordID 0x3C
+    #define ThiefFUnarmedID 0x3D
+    #define HeroFSwordID 0x3E
+    #define HeroFUnarmedID 0x3F
+    #define MyrmidonSwordID 0x40
+    #define MyrmidonUnarmedID 0x41
+    #define PaladinAxeID 0x42
+    #define PaladinSwordID 0x43
+    #define PaladinUnarmedID 0x44
+    #define ArcherUnarmedID 0x45
+    #define ArcherFUnarmedID 0x46
+    #define SoldierUnarmedID 0x47   
+    #define WarriorBowID 0x48
+    #define MyrmidonFSwordID 0x49
+    #define MyrmidonFUnarmedID 0x4A
+    #define HeroAxeID 0x4B
+    #define HeroFAxeID 0x4C
     #define WyvernRiderLanceID 0x4d 
     #define WyvernRiderUnarmedID 0x4e 
-
+    #define RoyLordBindingBladeID 0x4F
+    #define NomadTrooperSwordID 0x50
+    #define NomadTrooperFSwordID 0x51
+    #define NomadTrooperBowID 0x52
+    #define NomadTrooperFBowID 0x53
+    #define NomadTrooperUnarmedID 0x54
+    #define NomadTrooperFUnarmedID 0x55
+    #define FireDragonID 0x56
+    #define SwordmasterSwordID 0x57
+    #define SwordmasterUnarmedID 0x58
+    #define SwordmasterFSwordID 0x59
+    #define SwordmasterFUnarmedID 0x5A
+    #define DruidStaffID 0x5B 
+    #define DivineDragonMagicID 0x5C
+    #define PirateHandaxeID 0x5D
+    #define BerserkerHandaxeID 0x5E
+    #define BrigandHandaxeID 0x5F
+    #define FighterHandaxeID 0x60
+    #define HeroHandaxeID 0x61
+    #define HeroFHandaxeID 0x62
+    #define PaladinHandaxeID 0x63
+    #define WarriorHandaxeID 0x64
+    #define WyvernLordLanceID 0x65 
+    #define WyvernLordSwordID 0x66 
+    #define WyvernLordUnarmedID 0x67
+    #define GeneralHandaxeID 0x69
+    #define BishopUnarmedID 0x6A
+    #define BishopFUnarmedID 0x6B 
+    #define GeneralLanceID 0x6E
+    #define GeneralAxeID 0x6F
+    #define GeneralUnarmedID 0x70
+    #define DruidFMagicID 0x71 
+    #define DruidtFStaffID 0x72
+    #define FalconKnightLanceID 0x73 
+    #define FalconKnightUnarmedID 0x74
+    #define KingSwordID 0x76
+    #define SniperUnarmedID 0x77
+    #define SniperFUnarmedID 0x78
+    #define SageStaffID 0x79
+    #define SageFStaffID 0x7A 
 #endif 
 
 
@@ -31,10 +471,611 @@ UnarmedAnim(WyvernRiderUnarmedID)
 weaponAnimEnd(2)
 
 
+Mercenary_Anim:
+animEntry(MercenarySwordID)
+SwordAnim(MercenarySwordID) 
+UnarmedAnim(MercenaryUnarmedID)
+weaponAnimEnd(2)
 
+Hero_Anim:
+animEntry(HeroHandaxeID)
+SwordAnim(HeroSwordID) 
+LanceAnim(HeroSwordID) 
+AxeAnim(HeroAxeID)
+HandAxeAnim(HeroHandaxeID)
+UnarmedAnim(HeroUnarmedID)
+weaponAnimEnd(4)
 
+Hero_F_Anim:
+animEntry(HeroFHandaxeID)
+SwordAnim(HeroFSwordID) 
+LanceAnim(HeroFSwordID) 
+AxeAnim(HeroFAxeID)
+HandAxeAnim(HeroFHandaxeID)
+UnarmedAnim(HeroFUnarmedID)
+weaponAnimEnd(4)
 
+Cavalier_Anim:
+animEntry(CavalierLanceID)
+SwordAnim(CavalierSwordID) 
+LanceAnim(CavalierLanceID) 
+UnarmedAnim(CavalierUnarmedID)
+weaponAnimEnd(3)
 
+Cavalier_F_Anim:
+animEntry(CavalierFLanceID)
+SwordAnim(CavalierFSwordID) 
+LanceAnim(CavalierFLanceID) 
+UnarmedAnim(CavalierFUnarmedID)
+weaponAnimEnd(3)
+
+Knight_Anim:
+animEntry(KnightLanceID) 
+LanceAnim(KnightLanceID) 
+UnarmedAnim(KnightUnarmedID)
+weaponAnimEnd(2)
+
+Knight_F_Anim:
+animEntry(KnightFLanceID) 
+LanceAnim(KnightFLanceID) 
+UnarmedAnim(KnightFUnarmedID)
+weaponAnimEnd(2)
+
+PegasusKnight_Anim:
+animEntry(PegasusKnightLanceID) 
+LanceAnim(PegasusKnightLanceID) 
+UnarmedAnim(PegasusKnightUnarmedID)
+weaponAnimEnd(2)
+
+FalconKnight_Anim:
+animEntry(FalconKnightLanceID) 
+SwordAnim(FalconKnightSwordID) 
+LanceAnim(FalconKnightLanceID) 
+UnarmedAnim(FalconKnightUnarmedID)
+weaponAnimEnd(3)
+
+Paladin_Anim:
+animEntry(PaladinSwordID)
+SwordAnim(PaladinSwordID) 
+LanceAnim(PaladinLanceID) 
+AxeAnim(PaladinAxeID)
+HandAxeAnim(PaladinHandaxeID)
+UnarmedAnim(PaladinUnarmedID)
+weaponAnimEnd(5)
+
+Paladin_F_Anim:
+animEntry(PaladinFSwordID)
+SwordAnim(PaladinFSwordID) 
+LanceAnim(PaladinFLanceID) 
+AxeAnim(PaladinFAxeID)
+HandAxeAnim(PaladinFHandaxeID)
+UnarmedAnim(PaladinFUnarmedID)
+weaponAnimEnd(5)
+
+GreatKnight_Anim:
+animEntry(GreatKnightHandaxeID)
+SwordAnim(GreatKnightSwordID) 
+LanceAnim(GreatKnightLanceID) 
+AxeAnim(GreatKnightAxeID)
+HandAxeAnim(GreatKnightHandaxeID)
+UnarmedAnim(GreatKnightUnarmedID)
+weaponAnimEnd(5)
+
+GreatKnight_F_Anim:
+animEntry(GreatKnightFHandaxeID)
+SwordAnim(GreatKnightFSwordID) 
+LanceAnim(GreatKnightFLanceID) 
+AxeAnim(GreatKnightFAxeID)
+HandAxeAnim(GreatKnightFHandaxeID)
+UnarmedAnim(GreatKnightFUnarmedID)
+weaponAnimEnd(5)
+
+WyvernRider_F_Anim:
+animEntry(WyvernRiderFLanceID) 
+LanceAnim(WyvernRiderFLanceID) 
+UnarmedAnim(WyvernRiderFUnarmedID)
+weaponAnimEnd(2)
+
+WyvernLord_Anim:
+animEntry(WyvernLordSwordID) 
+SwordAnim(WyvernLordSwordID) 
+LanceAnim(WyvernLordLanceID) 
+UnarmedAnim(WyvernLordUnarmedID)
+weaponAnimEnd(3)
+
+WyvernLord_F_Anim:
+animEntry(WyvernLordFSwordID) 
+SwordAnim(WyvernLordFSwordID) 
+LanceAnim(WyvernLordFLanceID) 
+UnarmedAnim(WyvernLordFUnarmedID)
+weaponAnimEnd(3)
+
+WyvernKnight_Anim:
+animEntry(WyvernKnightLanceID) 
+LanceAnim(WyvernKnightLanceID) 
+UnarmedAnim(WyvernKnightUnarmedID)
+weaponAnimEnd(2)
+
+Myrmidon_Anim:
+animEntry(MyrmidonSwordID)
+SwordAnim(MyrmidonSwordID) 
+UnarmedAnim(MyrmidonUnarmedID)
+weaponAnimEnd(2)
+
+Myrmidon_F_Anim:
+animEntry(MyrmidonFSwordID)
+SwordAnim(MyrmidonFSwordID) 
+UnarmedAnim(MyrmidonFUnarmedID)
+weaponAnimEnd(2)
+
+Fighter_Anim:
+animEntry(FighterHandaxeID) 
+SwordAnim(FighterAxeID) 
+LanceAnim(FighterAxeID) 
+AxeAnim(FighterAxeID) 
+HandAxeAnim(FighterHandaxeID)
+UnarmedAnim(FighterUnarmedID)
+weaponAnimEnd(3)
+
+Warrior_Anim:
+animEntry(WarriorHandaxeID) 
+SwordAnim(WarriorAxeID) 
+LanceAnim(WarriorAxeID) 
+AxeAnim(WarriorAxeID) 
+HandAxeAnim(WarriorHandaxeID)
+BowAnim(WarriorBowID) 
+UnarmedAnim(WarriorUnarmedID)
+weaponAnimEnd(4)
+
+Pirate_Anim:
+animEntry(PirateHandaxeID) 
+SwordAnim(PirateAxeID) 
+LanceAnim(PirateAxeID) 
+AxeAnim(PirateAxeID) 
+HandAxeAnim(PirateHandaxeID)
+UnarmedAnim(PirateUnarmedID)
+weaponAnimEnd(3)
+
+Brigand_Anim:
+animEntry(BrigandHandaxeID) 
+SwordAnim(BrigandAxeID) 
+LanceAnim(BrigandAxeID) 
+AxeAnim(BrigandAxeID) 
+HandAxeAnim(BrigandHandaxeID)
+UnarmedAnim(BrigandUnarmedID)
+weaponAnimEnd(3)
+
+Berserker_Anim:
+animEntry(BerserkerHandaxeID) 
+SwordAnim(BerserkerAxeID) 
+LanceAnim(BerserkerAxeID) 
+AxeAnim(BerserkerAxeID) 
+HandAxeAnim(BerserkerHandaxeID)
+UnarmedAnim(BerserkerUnarmedID)
+weaponAnimEnd(3)
+
+Thief_Anim:
+animEntry(ThiefSwordID)
+SwordAnim(ThiefSwordID) 
+UnarmedAnim(ThiefUnarmedID)
+weaponAnimEnd(2)
+
+Thief_F_Anim:
+animEntry(ThiefFSwordID)
+SwordAnim(ThiefFSwordID) 
+UnarmedAnim(ThiefFUnarmedID)
+weaponAnimEnd(2)
+
+Assassin_Anim:
+animEntry(AssassinSwordID)
+SwordAnim(AssassinSwordID) 
+UnarmedAnim(AssassinUnarmedID)
+weaponAnimEnd(2)
+
+Assassin_F_Anim:
+animEntry(AssassinFSwordID)
+SwordAnim(AssassinFSwordID) 
+UnarmedAnim(AssassinFUnarmedID)
+weaponAnimEnd(2)
+
+Rogue_Anim:
+animEntry(RogueSwordID)
+SwordAnim(RogueSwordID) 
+UnarmedAnim(RogueUnarmedID)
+weaponAnimEnd(2)
+
+Swordmaster_Anim:
+animEntry(SwordmasterSwordID)
+SwordAnim(SwordmasterSwordID) 
+UnarmedAnim(SwordmasterUnarmedID)
+weaponAnimEnd(2)
+
+Swordmaster_F_Anim:
+animEntry(SwordmasterFSwordID)
+SwordAnim(SwordmasterFSwordID) 
+UnarmedAnim(SwordmasterFUnarmedID)
+weaponAnimEnd(2)
+
+Archer_Anim:
+animEntry(ArcherBowID)
+BowAnim(ArcherBowID) 
+UnarmedAnim(ArcherUnarmedID)
+weaponAnimEnd(2)
+
+Archer_F_Anim:
+animEntry(ArcherFBowID)
+BowAnim(ArcherFBowID) 
+UnarmedAnim(ArcherFUnarmedID)
+weaponAnimEnd(2)
+
+Nomad_Anim:
+animEntry(NomadBowID)
+BowAnim(NomadBowID) 
+UnarmedAnim(NomadUnarmedID)
+weaponAnimEnd(2)
+
+Nomad_F_Anim:
+animEntry(NomadFBowID)
+BowAnim(NomadFBowID) 
+UnarmedAnim(NomadFUnarmedID)
+weaponAnimEnd(2)
+
+NomadTrooper_Anim:
+animEntry(NomadTrooperBowID)
+SwordAnim(NomadTrooperSwordID) 
+LanceAnim(NomadTrooperSwordID) 
+AxeAnim(NomadTrooperSwordID) 
+BowAnim(NomadTrooperBowID) 
+UnarmedAnim(NomadTrooperUnarmedID)
+weaponAnimEnd(3)
+
+NomadTrooper_F_Anim:
+animEntry(NomadTrooperFBowID)
+SwordAnim(NomadTrooperFSwordID) 
+LanceAnim(NomadTrooperFSwordID) 
+AxeAnim(NomadTrooperFSwordID) 
+BowAnim(NomadTrooperFBowID) 
+UnarmedAnim(NomadTrooperFUnarmedID)
+weaponAnimEnd(3)
+
+Ranger_Anim:
+animEntry(RangerBowID)
+SwordAnim(RangerSwordID) 
+LanceAnim(RangerSwordID) 
+AxeAnim(RangerSwordID) 
+BowAnim(RangerBowID) 
+UnarmedAnim(RangerUnarmedID)
+weaponAnimEnd(3)
+
+Ranger_F_Anim:
+animEntry(RangerFBowID)
+SwordAnim(RangerFSwordID) 
+LanceAnim(RangerFSwordID) 
+AxeAnim(RangerFSwordID) 
+BowAnim(RangerFBowID) 
+UnarmedAnim(RangerFUnarmedID)
+weaponAnimEnd(3)
+
+Sniper_Anim:
+animEntry(SniperBowID)
+BowAnim(SniperBowID) 
+UnarmedAnim(SniperUnarmedID)
+weaponAnimEnd(2)
+
+Sniper_F_Anim:
+animEntry(SniperFBowID)
+BowAnim(SniperFBowID) 
+UnarmedAnim(SniperFUnarmedID)
+weaponAnimEnd(2)
+
+Dancer_Anim:
+animEntry(DancerRefresh)
+weaponAnimEnd(1)
+
+Bard_Anim:
+animEntry(BardRefresh)
+weaponAnimEnd(1)
+
+Manakete_Anim:
+animEntry(ManaketeUnarmedID)
+weaponAnimEnd(1)
+
+Manakete_F_Anim:
+animEntry(ManaketeFUnarmedID)
+weaponAnimEnd(1)
+
+Revenant_Anim:
+animEntry(RevenantMonsterID)
+weaponAnimEnd(1)
+
+Entombed_Anim:
+animEntry(EntombedMonsterID)
+weaponAnimEnd(1)
+
+Bonewalker_Anim:
+animEntry(BonewalkerBowID)
+SwordAnim(BonewalkerSwordID) 
+LanceAnim(BonewalkerLanceID) 
+AxeAnim(BonewalkerSwordID) 
+BowAnim(BonewalkerBowID) 
+UnarmedAnim(BonewalkerUnarmedID)
+weaponAnimEnd(5)
+
+Wight_Anim:
+animEntry(WightBowID)
+SwordAnim(WightSwordID) 
+LanceAnim(WightLanceID) 
+AxeAnim(WightSwordID) 
+BowAnim(WightBowID) 
+UnarmedAnim(WightUnarmedID)
+weaponAnimEnd(4)
+
+Bael_Anim:
+animEntry(BaelMonsterID)
+weaponAnimEnd(1)
+
+ElderBael_Anim:
+animEntry(ElderBaelMonsterID)
+weaponAnimEnd(1)
+
+Cyclops_Anim:
+animEntry(CyclopsHandaxeID) 
+SwordAnim(CyclopsAxeID) 
+LanceAnim(CyclopsAxeID) 
+AxeAnim(CyclopsAxeID) 
+HandAxeAnim(CyclopsHandaxeID)
+UnarmedAnim(CyclopsUnarmedID)
+weaponAnimEnd(3)
+
+MautheDoog_Anim:
+animEntry(MautheDoogMonsterID)
+weaponAnimEnd(1)
+
+Gwyllgi_Anim:
+animEntry(GwyllgiMonsterID)
+weaponAnimEnd(1)
+
+Tarvos_Anim:
+animEntry(TarvosHandaxeID) 
+SwordAnim(TarvosAxeID) 
+LanceAnim(TarvosAxeID) 
+AxeAnim(TarvosAxeID) 
+HandAxeAnim(TarvosHandaxeID)
+UnarmedAnim(TarvosUnarmedID)
+weaponAnimEnd(3)
+
+Maelduin_Anim:
+animEntry(MaelduinHandaxeID) 
+SwordAnim(MaelduinAxeID) 
+LanceAnim(MaelduinAxeID) 
+AxeAnim(MaelduinAxeID) 
+BowAnim(MaelduinBowID) 
+HandAxeAnim(MaelduinHandaxeID)
+UnarmedAnim(MaelduinUnarmedID)
+weaponAnimEnd(4)
+
+Mogall_Anim:
+animEntry(MogallMagicID)
+weaponAnimEnd(1)
+
+ArchMogall_Anim:
+animEntry(ArchMogallMagicID)
+weaponAnimEnd(1)
+
+Gorgon_Anim:
+animEntry(GorgonMagicID)
+weaponAnimEnd(1)
+
+Gargoyle_Anim:
+animEntry(GargoyleLanceID) 
+LanceAnim(GargoyleLanceID) 
+UnarmedAnim(GargoyleUnarmedID)
+weaponAnimEnd(2)
+
+Deathgoyle_Anim:
+animEntry(DeathgoyleLanceID) 
+LanceAnim(DeathgoyleLanceID) 
+UnarmedAnim(DeathgoyleUnarmedID)
+weaponAnimEnd(2)
+
+DracoZombie_Anim:
+animEntry(DracoZombieMonsterID)
+weaponAnimEnd(1)
+
+DemonKing_Anim:
+animEntry(DemonKingMagicID) 
+MonsterAnim(DemonKingMonsterID) 
+SwordAnim(DemonKingMonsterID) 
+LanceAnim(DemonKingMonsterID) 
+AxeAnim(DemonKingMonsterID) 
+UnarmedAnim(DemonKingMagicID)
+weaponAnimEnd(2)
+
+FireDragon_Anim:
+animEntry(FireDragonID)
+weaponAnimEnd(1)
+
+DivineDragon_Anim:
+animEntry(DivineDragonMagicID)
+weaponAnimEnd(1)
+
+Mage_Anim:
+animEntry(MageMagicID)
+weaponAnimEnd(1)
+
+Mage_F_Anim:
+animEntry(MageFMagicID)
+weaponAnimEnd(1)
+
+Shaman_Anim:
+animEntry(ShamanMagicID)
+weaponAnimEnd(1)
+
+Shaman_F_Anim:
+animEntry(ShamanFMagicID)
+weaponAnimEnd(1)
+
+Monk_Anim:
+animEntry(MonkMagicID)
+weaponAnimEnd(1)
+
+Pupil_Anim:
+animEntry(PupilMagicID)
+weaponAnimEnd(1)
+
+Journeyman_Anim:
+animEntry(JourneymanHandaxeID) 
+SwordAnim(JourneymanAxeID)
+LanceAnim(JourneymanAxeID)
+AxeAnim(JourneymanAxeID) 
+HandAxeAnim(JourneymanHandaxeID)
+UnarmedAnim(JourneymanUnarmedID)
+weaponAnimEnd(5)
+
+Recruit_Anim:
+animEntry(RecruitLanceID) 
+LanceAnim(RecruitLanceID) 
+UnarmedAnim(RecruitUnarmedID)
+weaponAnimEnd(2)
+
+Soldier_Anim:
+animEntry(SoldierLanceID) 
+LanceAnim(SoldierLanceID) 
+UnarmedAnim(SoldierUnarmedID)
+weaponAnimEnd(2)
+
+Priest_Anim:
+animEntry(PriestStaffID) 
+StaffAnim(PriestStaffID) 
+UnarmedAnim(PriestUnarmedID)
+weaponAnimEnd(2)
+
+Cleric_Anim:
+animEntry(ClericStaffID) 
+StaffAnim(ClericStaffID) 
+UnarmedAnim(ClericUnarmedID)
+weaponAnimEnd(2)
+
+Troubadour_Anim:
+animEntry(TroubadourStaffID) 
+StaffAnim(TroubadourStaffID) 
+UnarmedAnim(TroubadourUnarmedID)
+weaponAnimEnd(2)
+
+Bishop_Anim:
+animEntry(BishopMagicID) 
+StaffAnim(BishopStaffID) 
+UnarmedAnim(BishopUnarmedID)
+weaponAnimEnd(3)
+
+Bishop_F_Anim:
+animEntry(BishopFMagicID) 
+StaffAnim(BishopFStaffID) 
+UnarmedAnim(BishopFUnarmedID)
+weaponAnimEnd(3)
+
+Sage_Anim:
+animEntry(SageMagicID) 
+StaffAnim(SageStaffID) 
+weaponAnimEnd(2)
+
+Sage_F_Anim:
+animEntry(SageFMagicID) 
+StaffAnim(SageFStaffID) 
+weaponAnimEnd(2)
+
+Druid_Anim:
+animEntry(DruidMagicID) 
+StaffAnim(DruidStaffID) 
+weaponAnimEnd(2)
+
+Druid_F_Anim:
+animEntry(DruidFMagicID) 
+StaffAnim(DruidFStaffID) 
+weaponAnimEnd(2)
+
+DarkDruid_Anim:
+animEntry(DarkDruidMagicID) 
+StaffAnim(DarkDruidStaffID) 
+weaponAnimEnd(2)
+
+Valkyrie_Anim:
+animEntry(ValkyrieMagicID) 
+StaffAnim(ValkyrieStaffID) 
+weaponAnimEnd(2)
+
+MageKnight_Anim:
+animEntry(MageKnightMagicID) 
+StaffAnim(MageKnightStaffID) 
+weaponAnimEnd(2)
+
+MageKnight_F_Anim:
+animEntry(MageKnightFMagicID) 
+StaffAnim(MageKnightFStaffID) 
+weaponAnimEnd(2)
+
+Summoner_Anim:
+animEntry(SummonerMagicID) 
+StaffAnim(SummonerStaffID) 
+weaponAnimEnd(2)
+
+Necromancer_Anim:
+animEntry(NecromancerMagicID) 
+StaffAnim(NecromancerStaffID) 
+weaponAnimEnd(2)
+
+EliwoodLord_Anim:
+animEntry(EliwoodLordSwordID)
+SwordAnim(EliwoodLordSwordID) 
+UnarmedAnim(EliwoodLordUnarmedID)
+weaponAnimEnd(2)
+
+KnightLord_Anim:
+animEntry(KnightLordSwordID)
+SwordAnim(KnightLordSwordID) 
+LanceAnim(KnightLordLanceID) 
+UnarmedAnim(KnightLordUnarmedID)
+weaponAnimEnd(4)
+
+HectorLord_Anim:
+animEntry(HectorLordHandaxeID) 
+SwordAnim(HectorLordAxeID) 
+LanceAnim(HectorLordAxeID) 
+AxeAnim(HectorLordAxeID) 
+HandAxeAnim(HectorLordHandaxeID)
+UnarmedAnim(HectorLordUnarmedID)
+weaponAnimEnd(3)
+
+HectorGreatLord_Anim:
+animEntry(HectorGreatLordHandaxeID) 
+SwordAnim(HectorGreatLordSwordID) 
+LanceAnim(HectorGreatLordSwordID) 
+AxeAnim(HectorGreatLordAxeID) 
+HandAxeAnim(HectorGreatLordHandaxeID)
+UnarmedAnim(HectorGreatLordUnarmedID)
+weaponAnimEnd(5)
+
+General_Anim:
+animEntry(GeneralHandaxeID)
+SwordAnim(GeneralSwordID) 
+LanceAnim(GeneralLanceID) 
+AxeAnim(GeneralAxeID)
+HandAxeAnim(GeneralHandaxeID)
+UnarmedAnim(GeneralUnarmedID)
+weaponAnimEnd(5)
+
+General_F_Anim:
+animEntry(GeneralFHandaxeID)
+SwordAnim(GeneralFSwordID) 
+LanceAnim(GeneralFLanceID) 
+AxeAnim(GeneralFAxeID)
+HandAxeAnim(GeneralFHandaxeID)
+UnarmedAnim(GeneralFUnarmedID)
+weaponAnimEnd(5)
+
+King_Anim:
+animEntry(KingSwordID)
+weaponAnimEnd(1)
 
 // Custom classes below 
 
@@ -60,6 +1101,7 @@ animEntry(Elffin_FancyMagic)
 AnimaAnim(Elffin_FancyMagic)
 LightAnim(Elffin_FancyMagic)
 DarkAnim(Elffin_FancyMagic)
+RefreshAnim(Elffin_FancyRefresh)
 UnarmedAnim(Elffin_FancyMagic)
 weaponAnimEnd(4)
 
@@ -148,7 +1190,7 @@ animEntry(Merlinus_TransportBow)
 BowAnim(Merlinus_TransportBow)
 StaffAnim(Merlinus_TransportStaff)
 SwordAnim(Merlinus_TransportSword)
-UnarmedAnim(Merlinus_TransportUnarmed)
+UnarmedAnim(Merlinus_TransportUnarmed) // This is a single frame, should use staff instead
 weaponAnimEnd(4)
 
 Chicken_Anim:
@@ -282,6 +1324,7 @@ War_Cleric_Anim:
 animEntry(War_ClericAxe)
 AxeAnim(War_ClericAxe)
 HandAxeAnim(War_ClericHandaxe)
+StaffAnim(War_ClericMagic)
 AnimaAnim(War_ClericMagic)
 LightAnim(War_ClericMagic)
 DarkAnim(War_ClericMagic)
@@ -302,7 +1345,7 @@ animEntry(KishunaMagic)
 AnimaAnim(KishunaMagic)
 LightAnim(KishunaMagic)
 DarkAnim(KishunaMagic)
-UnarmedAnim(KishunaUnarmed)
+UnarmedAnim(KishunaUnarmed) // Unnecessary, Magic has identical dodge
 weaponAnimEnd(4)
 
 Angel_Anim:
@@ -380,10 +1423,10 @@ UnarmedAnim(Leif_LordUnarmed)
 weaponAnimEnd(2)
 
 Marth_Slash_Anim:
-animEntry(Marth_SlashMonster)
-MonsterAnim(Marth_SlashMonster)
-SwordAnim(Marth_SlashSword)
-weaponAnimEnd(2)
+animEntry(Marth_SlashMonster) // Sword Stab
+MonsterAnim(Marth_SlashMonster) // Sword Stab
+SwordAnim(Marth_SlashSword) // Sword Slash
+weaponAnimEnd(2) // Weird. An unarmed animation exists but is missing here.
 
 Harbinger_Anim:
 animEntry(HarbingerAxe)
@@ -396,7 +1439,7 @@ DarkAnim(HarbingerMagic)
 UnarmedAnim(HarbingerMagic)
 StaffAnim(HarbingerStaff)
 SwordAnim(HarbingerSword)
-UnarmedAnim(HarbingerUnarmed)
+UnarmedAnim(HarbingerUnarmed) // Actually not identical to Magic dodge, it has a smaller shadow, but still kind of pointless
 weaponAnimEnd(9)
 
 Heavy_Infantry_Anim:
@@ -421,8 +1464,8 @@ UnarmedAnim(Ike_LordUnarmed)
 weaponAnimEnd(2)
 
 Ike_Ranger_Anim:
-animEntry(Ike_RangerMonster)
-MonsterAnim(Ike_RangerMonster)
+animEntry(Ike_RangerMonster) // Legendary Sword
+MonsterAnim(Ike_RangerMonster) // Legendary Sword
 SwordAnim(Ike_RangerSword)
 UnarmedAnim(Ike_RangerUnarmed)
 weaponAnimEnd(3)
@@ -451,7 +1494,7 @@ LightAnim(ShieldGeneralMagic)
 DarkAnim(ShieldGeneralMagic)
 UnarmedAnim(ShieldGeneralMagic)
 SwordAnim(ShieldGeneralSword)
-UnarmedAnim(ShieldGeneralUnarmed)
+UnarmedAnim(ShieldGeneralUnarmed) // Actually not identical to Magic dodge
 weaponAnimEnd(9)
 
 FE10Knight_Anim:
@@ -465,7 +1508,7 @@ LightAnim(FE10KnightMagic)
 DarkAnim(FE10KnightMagic)
 UnarmedAnim(FE10KnightMagic)
 SwordAnim(FE10KnightSword)
-UnarmedAnim(FE10KnightUnarmed)
+UnarmedAnim(FE10KnightUnarmed) // Magic has identical dodge
 weaponAnimEnd(9)
 
 HelmetlessKnight_Anim:
@@ -524,7 +1567,7 @@ UnarmedAnim(SamuraiUnarmed)
 weaponAnimEnd(2)
 
 Gaiden_Priestess_Anim:
-animEntry(Gaiden_PriestessMagic)
+animEntry(Gaiden_PriestessSword)
 AnimaAnim(Gaiden_PriestessMagic)
 LightAnim(Gaiden_PriestessMagic)
 DarkAnim(Gaiden_PriestessMagic)
@@ -534,7 +1577,7 @@ SwordAnim(Gaiden_PriestessSword)
 weaponAnimEnd(6)
 
 PriestessT1_Anim:
-animEntry(PriestessT1Magic)
+animEntry(PriestessT1Sword)
 AnimaAnim(PriestessT1Magic)
 LightAnim(PriestessT1Magic)
 DarkAnim(PriestessT1Magic)
@@ -544,7 +1587,7 @@ SwordAnim(PriestessT1Sword)
 weaponAnimEnd(6)
 
 Red_Mage_by_Reyk_Anim:
-animEntry(Red_Mage_by_ReykMagic)
+animEntry(Red_Mage_by_ReykSword)
 AnimaAnim(Red_Mage_by_ReykMagic)
 LightAnim(Red_Mage_by_ReykMagic)
 DarkAnim(Red_Mage_by_ReykMagic)
@@ -593,7 +1636,7 @@ LightAnim(Dread_FighterMagic)
 DarkAnim(Dread_FighterMagic)
 UnarmedAnim(Dread_FighterMagic)
 SwordAnim(Dread_FighterSword)
-UnarmedAnim(Dread_FighterUnarmed)
+UnarmedAnim(Dread_FighterUnarmed) // Unnecessary, Magic has identical dodge
 weaponAnimEnd(6)
 
 Dark_Prince_Anim:
@@ -605,7 +1648,7 @@ UnarmedAnim(Dark_PrinceMagic)
 weaponAnimEnd(4)
 
 Red_mage_by_Mycahel_Anim:
-animEntry(Red_mage_by_MycahelMagic)
+animEntry(Red_mage_by_MycahelSword)
 AnimaAnim(Red_mage_by_MycahelMagic)
 LightAnim(Red_mage_by_MycahelMagic)
 DarkAnim(Red_mage_by_MycahelMagic)
@@ -615,10 +1658,11 @@ SwordAnim(Red_mage_by_MycahelSword)
 weaponAnimEnd(6)
 
 Executioner_Anim:
-animEntry(ExecutionerMagic)
+animEntry(ExecutionerSword)
 AnimaAnim(ExecutionerMagic)
 LightAnim(ExecutionerMagic)
 DarkAnim(ExecutionerMagic)
+StaffAnim(ExecutionerMagic)
 UnarmedAnim(ExecutionerMagic)
 SwordAnim(ExecutionerSword)
 UnarmedAnim(ExecutionerUnarmed)
@@ -632,7 +1676,7 @@ LightAnim(Moloch_SorcererMagic)
 DarkAnim(Moloch_SorcererMagic)
 UnarmedAnim(Moloch_SorcererMagic)
 StaffAnim(Moloch_SorcererStaff)
-UnarmedAnim(Moloch_SorcererUnarmed)
+UnarmedAnim(Moloch_SorcererUnarmed) // Lance has identical dodge
 weaponAnimEnd(7)
 
 Archsage_Athos_Anim:
@@ -653,7 +1697,7 @@ UnarmedAnim(TacticianMagic)
 weaponAnimEnd(4)
 
 F_Trickster_Anim:
-animEntry(F_TricksterBow)
+animEntry(F_TricksterSword)
 BowAnim(F_TricksterBow)
 AnimaAnim(F_TricksterMagic)
 LightAnim(F_TricksterMagic)
@@ -664,7 +1708,7 @@ SwordAnim(F_TricksterSword)
 weaponAnimEnd(7)
 
 M_Trickster_Anim:
-animEntry(M_TricksterBow)
+animEntry(M_TricksterSword)
 BowAnim(M_TricksterBow)
 AnimaAnim(M_TricksterMagic)
 LightAnim(M_TricksterMagic)
@@ -769,29 +1813,29 @@ MasterLord_Anim:
 animEntry(RoyMasterLordSword)
 SwordAnim(RoyMasterLordSword)
 UnarmedAnim(RoyMasterLordUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd(3) // These are identical to unpromoted Roy.
 
+#ifndef _FE8_
 EirikaLord_Anim:
 animEntry(EirikaLordSword)
 SwordAnim(EirikaLordSword)
 UnarmedAnim(EirikaLordUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd(2)
 
 EirikaGreat_Anim:
 animEntry(EirikaGreatSword)
 SwordAnim(EirikaGreatSword)
 UnarmedAnim(EirikaGreatUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd(2)
 
 EphraimLord_Anim:
 animEntry(EphraimLordLance)
 LanceAnim(EphraimLordLance)
 UnarmedAnim(EphraimLordUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd(2)
 
 EphraimGreat_Anim:
 animEntry(EphraimGreatLordLance) // animEntry goes first, I think 
 LanceAnim(EphraimGreatLordLance)
 UnarmedAnim(EphraimGreatLordUnarmed)
-weaponAnimEnd(3)
-
+weaponAnimEnd(2)
