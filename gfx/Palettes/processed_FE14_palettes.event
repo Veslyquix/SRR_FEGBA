@@ -402,7 +402,7 @@ palEntry(Izana, MageKnight, IzanaPal_MageKnight_FE8)
 palEntry(Yukimura, Nomad, YukimuraPal_Nomad_FE6FE7)
 #endif
 #ifndef _FE8_
-palEntry(Yukimura, NmdTrooper, YukimuraPal_NmdTrooper_FE6FE7)
+palEntry(Yukimura, NomadTrooper, YukimuraPal_NomadTrooper_FE6FE7)
 #endif
 palEntry(Yukimura, Archer, YukimuraPal_Archer)
 palEntry(Yukimura, Sniper, YukimuraPal_Sniper)
@@ -1389,10 +1389,10 @@ BYTE $00 $7E $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $BE $77 $F2 $3D
 BYTE $9C $67 $CE $35 $4A $25 $C6 $14 $FF $77 $18 $57 $8C $2D $A5 $14
 
 YukimuraPal_Nomad_FE6FE7:
-BYTE $00 $7E $FF $7F $DF $57 $DD $3A $10 $52 $08 $29 $8F $52 $EB $3D
-BYTE $18 $7F $52 $6E $8C $49 $29 $35 $19 $3F $52 $32 $26 $25 $A5 $14
+BYTE $00 $7E $FF $7F $DF $57 $DD $3A $10 $52 $8C $3D $EB $3D $26 $25
+BYTE $18 $7F $52 $6E $8C $49 $29 $35 $19 $3F $52 $32 $08 $29 $A5 $14
 
-YukimuraPal_NmdTrooper_FE6FE7:
+YukimuraPal_NomadTrooper_FE6FE7:
 BYTE $00 $7E $FF $7F $10 $52 $DD $3A $D5 $11 $08 $29 $8F $52 $26 $25
 BYTE $18 $7F $52 $6E $8C $49 $29 $35 $BE $37 $97 $1E $2D $11 $A5 $14
 

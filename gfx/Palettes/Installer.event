@@ -6,7 +6,7 @@ POIN processed_FE1_palettes
 POIN Pal_FE4 
 POIN Pal_FE5 
 #ifndef _FE6_ 
-POIN Pal_FE6 
+POIN processed_FE6_palettes 
 #endif 
 #ifndef _FE7_ 
 POIN Pal_FE7 
@@ -42,7 +42,6 @@ Pal_FE4:
 Pal_FE4_Bosses: 
 Pal_FE5: 
 Pal_FE5_Bosses: 
-Pal_FE6: 
 Pal_FE6_Bosses: 
 Pal_FE7: 
 Pal_FE7_Bosses: 
@@ -77,7 +76,10 @@ WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator
 
 
 
+
+
 #include "FE1_defs.event" 
+#include "FE6_defs.event" 
 #include "FE13_defs.event" 
 #include "FE14_defs.event" 
 
