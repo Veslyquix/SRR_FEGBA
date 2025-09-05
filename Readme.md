@@ -1253,6 +1253,10 @@ DonkinDo
 Azula  
 LemonTart  
 DerTheVaporeon  
+SurfingKyogre   
+hunteraurzo   
+SaXortheNobody   
+Trikkinikki   
    
 For details on specific tracks, please see the files in `bgm/s`  
  
