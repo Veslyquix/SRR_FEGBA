@@ -99,7 +99,7 @@ POP
 #define wA(weaponID, ID)  "BYTE weaponID 0; SHORT ID;"
 
 // for all weapon types 
-#define animEntry(ID) "{ Label: ; wTA(0, ID); wTA(1, ID); wTA(2, ID); wTA(3, ID); wTA(4, ID); wTA(5, ID); wTA(6, ID); wTA(7, ID); wTA(8, ID); wTA(9, ID); wTA(10, ID); wTA(11, ID); wTA(11, ID); wTA(13, ID); wA(HandAxe, ID); WORD 0 0 ORG Label; } " 
+#define animEntry(ID) "{ Label: ; wTA(0, ID); wTA(1, ID); wTA(2, ID); wTA(3, ID); wTA(4, ID); wTA(5, ID); wTA(6, ID); wTA(7, ID); wTA(8, ID); wTA(9, ID); wTA(10, ID); wTA(11, ID); wTA(11, ID); wTA(13, ID); wA(HandAxe, ID); WORD 0 0; ORG Label; } " 
 #define weaponAnimEnd "{ Label: ; ORG Label + (15 * 4); WORD 0; }" // class with 1 wep 
 // #define weaponAnimEnd(NumberOfWeps) "{ Label: ; ORG Label + ((14 + NumberOfWeps) * 4); WORD 0; }"
 #define weaponAnimEnd(NumberOfWeps) "{ Label: ; ORG Label + ((14 + NumberOfWeps) * 4); WORD 0; }"

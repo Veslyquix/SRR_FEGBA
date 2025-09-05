@@ -531,23 +531,27 @@ animEntry(WyvernRiderLanceID) // this makes it the default animation to use for 
 LanceAnim(WyvernRiderLanceID) 
 // AxeAnim(WyvernRiderAxe) // optionally uncomment after adding an animation for this  
 UnarmedAnim(WyvernRiderUnarmedID)
-weaponAnimEnd(2) // This number is how many lines other than animEntry and weaponAnimEnd
+weaponAnimEnd 
+
+// weaponAnimEnd(2) // This number is only for setting a class with multiple unique weapon animations 
+// eg. Roy with Binding Blade and some other unique anim 
+// this is never the case in vanilla, so no need to put a number for anything 
 
 
 Mercenary_Anim:
 animEntry(MercenarySwordID)
-SwordAnim(MercenarySwordID) // 1 
-UnarmedAnim(MercenaryUnarmedID)// 2 
-weaponAnimEnd(2)// so this is 2 
+SwordAnim(MercenarySwordID) 
+UnarmedAnim(MercenaryUnarmedID)
+weaponAnimEnd
 
 Hero_Anim:
 animEntry(HeroHandaxeID)
-SwordAnim(HeroSwordID) // 1 
-LanceAnim(HeroSwordID) // 2 
-AxeAnim(HeroAxeID) // 3 
-HandAxeAnim(HeroHandaxeID) // 4 
-UnarmedAnim(HeroUnarmedID) // 5 
-weaponAnimEnd(5) // so this is 5 
+SwordAnim(HeroSwordID) 
+LanceAnim(HeroSwordID) 
+AxeAnim(HeroAxeID) 
+HandAxeAnim(HeroHandaxeID) 
+UnarmedAnim(HeroUnarmedID) 
+weaponAnimEnd 
 
 Hero_F_Anim:
 animEntry(HeroFHandaxeID)
@@ -556,47 +560,47 @@ LanceAnim(HeroFSwordID)
 AxeAnim(HeroFAxeID)
 HandAxeAnim(HeroFHandaxeID)
 UnarmedAnim(HeroFUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Cavalier_Anim:
 animEntry(CavalierLanceID)
 SwordAnim(CavalierSwordID) 
 LanceAnim(CavalierLanceID) 
 UnarmedAnim(CavalierUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Cavalier_F_Anim:
 animEntry(CavalierFLanceID)
 SwordAnim(CavalierFSwordID) 
 LanceAnim(CavalierFLanceID) 
 UnarmedAnim(CavalierFUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Knight_Anim:
 animEntry(KnightLanceID) 
 LanceAnim(KnightLanceID) 
 UnarmedAnim(KnightUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Knight_F_Anim:
 animEntry(KnightFLanceID) 
 LanceAnim(KnightFLanceID) 
 UnarmedAnim(KnightFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 
 PegasusKnight_Anim:
 animEntry(PegasusKnightLanceID) 
 LanceAnim(PegasusKnightLanceID) 
 UnarmedAnim(PegasusKnightUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 FalconKnight_Anim:
 animEntry(FalconKnightLanceID) 
 SwordAnim(FalconKnightSwordID) 
 LanceAnim(FalconKnightLanceID) 
 UnarmedAnim(FalconKnightUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 #ifdef _FE8_ // no axe anim 
 Paladin_Anim:
@@ -604,14 +608,14 @@ animEntry(PaladinSwordID)
 SwordAnim(PaladinSwordID) 
 LanceAnim(PaladinLanceID) 
 UnarmedAnim(PaladinUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Paladin_F_Anim:
 animEntry(PaladinFSwordID)
 SwordAnim(PaladinFSwordID) 
 LanceAnim(PaladinFLanceID) 
 UnarmedAnim(PaladinFUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 #else 
 
@@ -622,7 +626,7 @@ LanceAnim(PaladinLanceID)
 AxeAnim(PaladinAxeID)
 HandAxeAnim(PaladinHandaxeID)
 UnarmedAnim(PaladinUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Paladin_F_Anim:
 animEntry(PaladinFSwordID)
@@ -631,7 +635,7 @@ LanceAnim(PaladinFLanceID)
 AxeAnim(PaladinFAxeID)
 HandAxeAnim(PaladinFHandaxeID)
 UnarmedAnim(PaladinFUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 #endif 
 
 #ifdef _FE8_ 
@@ -642,7 +646,7 @@ LanceAnim(GreatKnightLanceID)
 AxeAnim(GreatKnightAxeID)
 HandAxeAnim(GreatKnightHandaxeID)
 UnarmedAnim(GreatKnightUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 GreatKnight_F_Anim:
 animEntry(GreatKnightFHandaxeID)
@@ -651,21 +655,21 @@ LanceAnim(GreatKnightFLanceID)
 AxeAnim(GreatKnightFAxeID)
 HandAxeAnim(GreatKnightFHandaxeID)
 UnarmedAnim(GreatKnightFUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 #endif 
 
 WyvernRider_F_Anim:
 animEntry(WyvernRiderFLanceID) 
 LanceAnim(WyvernRiderFLanceID) 
 UnarmedAnim(WyvernRiderFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 WyvernLord_Anim:
 animEntry(WyvernLordSwordID) 
 SwordAnim(WyvernLordSwordID) 
 LanceAnim(WyvernLordLanceID) 
 UnarmedAnim(WyvernLordUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 
 WyvernLord_F_Anim:
@@ -673,34 +677,34 @@ animEntry(WyvernLordFSwordID)
 SwordAnim(WyvernLordFSwordID) 
 LanceAnim(WyvernLordFLanceID) 
 UnarmedAnim(WyvernLordFUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 
 WyvernKnight_Anim:
 animEntry(WyvernKnightLanceID) 
 LanceAnim(WyvernKnightLanceID) 
 UnarmedAnim(WyvernKnightUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 WyvernKnight_F_Anim:
 animEntry(WyvernKnightFLanceID) 
 LanceAnim(WyvernKnightFLanceID) 
 UnarmedAnim(WyvernKnightFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 
 Myrmidon_Anim:
 animEntry(MyrmidonSwordID)
 SwordAnim(MyrmidonSwordID) 
 UnarmedAnim(MyrmidonUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 #ifndef _FE7_ 
 Myrmidon_F_Anim:
 animEntry(MyrmidonFSwordID)
 SwordAnim(MyrmidonFSwordID) 
 UnarmedAnim(MyrmidonFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 #endif 
 
 Fighter_Anim:
@@ -710,7 +714,7 @@ LanceAnim(FighterAxeID)
 AxeAnim(FighterAxeID) 
 HandAxeAnim(FighterHandaxeID)
 UnarmedAnim(FighterUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Warrior_Anim:
 animEntry(WarriorHandaxeID) 
@@ -720,7 +724,7 @@ AxeAnim(WarriorAxeID)
 HandAxeAnim(WarriorHandaxeID)
 BowAnim(WarriorBowID) 
 UnarmedAnim(WarriorUnarmedID)
-weaponAnimEnd(6)
+weaponAnimEnd
 
 Pirate_Anim:
 animEntry(PirateHandaxeID) 
@@ -729,7 +733,7 @@ LanceAnim(PirateAxeID)
 AxeAnim(PirateAxeID) 
 HandAxeAnim(PirateHandaxeID)
 UnarmedAnim(PirateUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Brigand_Anim:
 animEntry(BrigandHandaxeID) 
@@ -738,7 +742,7 @@ LanceAnim(BrigandAxeID)
 AxeAnim(BrigandAxeID) 
 HandAxeAnim(BrigandHandaxeID)
 UnarmedAnim(BrigandUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Berserker_Anim:
 animEntry(BerserkerHandaxeID) 
@@ -747,20 +751,20 @@ LanceAnim(BerserkerAxeID)
 AxeAnim(BerserkerAxeID) 
 HandAxeAnim(BerserkerHandaxeID)
 UnarmedAnim(BerserkerUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Thief_Anim:
 animEntry(ThiefSwordID)
 SwordAnim(ThiefSwordID) 
 UnarmedAnim(ThiefUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 #ifndef _FE8_ 
 Thief_F_Anim:
 animEntry(ThiefFSwordID)
 SwordAnim(ThiefFSwordID) 
 UnarmedAnim(ThiefFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 #endif 
 
 #ifndef _FE6_ 
@@ -768,7 +772,7 @@ Assassin_Anim:
 animEntry(AssassinSwordID)
 SwordAnim(AssassinSwordID) 
 UnarmedAnim(AssassinUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 #endif 
 
 #ifdef _FE8_ 
@@ -776,52 +780,52 @@ Assassin_F_Anim:
 animEntry(AssassinFSwordID)
 SwordAnim(AssassinFSwordID) 
 UnarmedAnim(AssassinFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 
 Rogue_Anim:
 animEntry(RogueSwordID)
 SwordAnim(RogueSwordID) 
 UnarmedAnim(RogueUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 #endif 
 
 Swordmaster_Anim:
 animEntry(SwordmasterSwordID)
 SwordAnim(SwordmasterSwordID) 
 UnarmedAnim(SwordmasterUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Swordmaster_F_Anim:
 animEntry(SwordmasterFSwordID)
 SwordAnim(SwordmasterFSwordID) 
 UnarmedAnim(SwordmasterFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Archer_Anim:
 animEntry(ArcherBowID)
 BowAnim(ArcherBowID) 
 UnarmedAnim(ArcherUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Archer_F_Anim:
 animEntry(ArcherFBowID)
 BowAnim(ArcherFBowID) 
 UnarmedAnim(ArcherFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 #ifndef _FE8_ 
 Nomad_Anim:
 animEntry(NomadBowID)
 BowAnim(NomadBowID) 
 UnarmedAnim(NomadUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Nomad_F_Anim:
 animEntry(NomadFBowID)
 BowAnim(NomadFBowID) 
 UnarmedAnim(NomadFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 NomadTrooper_F_Anim:
 animEntry(NomadTrooperFBowID)
@@ -830,7 +834,7 @@ LanceAnim(NomadTrooperFSwordID)
 AxeAnim(NomadTrooperFSwordID) 
 BowAnim(NomadTrooperFBowID) 
 UnarmedAnim(NomadTrooperFUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 
 NomadTrooper_Anim:
@@ -840,7 +844,7 @@ LanceAnim(NomadTrooperSwordID)
 AxeAnim(NomadTrooperSwordID) 
 BowAnim(NomadTrooperBowID) 
 UnarmedAnim(NomadTrooperUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 #endif 
 
 #ifdef _FE8_ 
@@ -851,7 +855,7 @@ LanceAnim(RangerSwordID)
 AxeAnim(RangerSwordID) 
 BowAnim(RangerBowID) 
 UnarmedAnim(RangerUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Ranger_F_Anim:
 animEntry(RangerFBowID)
@@ -860,51 +864,51 @@ LanceAnim(RangerFSwordID)
 AxeAnim(RangerFSwordID) 
 BowAnim(RangerFBowID) 
 UnarmedAnim(RangerFUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 #endif 
 
 Sniper_Anim:
 animEntry(SniperBowID)
 BowAnim(SniperBowID) 
 UnarmedAnim(SniperUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Sniper_F_Anim:
 animEntry(SniperFBowID)
 BowAnim(SniperFBowID) 
 UnarmedAnim(SniperFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Dancer_Anim:
 animEntry(DancerRefreshID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 #ifndef _FE8_ 
 Bard_Anim:
 animEntry(BardRefreshID)
-weaponAnimEnd(1)
+weaponAnimEnd
 #endif 
 
 #ifdef _FE6_ 
 Manakete_Anim:
 animEntry(ManaketeUnarmedID)
-weaponAnimEnd(1)
+weaponAnimEnd
 #endif 
 
 #ifndef _FE7_ 
 Manakete_F_Anim:
 animEntry(ManaketeFID)
-weaponAnimEnd(1)
+weaponAnimEnd
 #endif 
 
 #ifdef _FE8_ 
 Revenant_Anim:
 animEntry(RevenantMonsterID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Entombed_Anim:
 animEntry(EntombedMonsterID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Bonewalker_Anim:
 animEntry(BonewalkerBowID)
@@ -913,7 +917,7 @@ LanceAnim(BonewalkerLanceID)
 AxeAnim(BonewalkerSwordID) 
 BowAnim(BonewalkerBowID) 
 UnarmedAnim(BonewalkerUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Wight_Anim:
 animEntry(WightBowID)
@@ -922,15 +926,15 @@ LanceAnim(WightLanceID)
 AxeAnim(WightSwordID) 
 BowAnim(WightBowID) 
 UnarmedAnim(WightUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Bael_Anim:
 animEntry(BaelMonsterID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 ElderBael_Anim:
 animEntry(ElderBaelMonsterID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Cyclops_Anim:
 animEntry(CyclopsHandaxeID) 
@@ -939,15 +943,15 @@ LanceAnim(CyclopsAxeID)
 AxeAnim(CyclopsAxeID) 
 HandAxeAnim(CyclopsHandaxeID)
 UnarmedAnim(CyclopsUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 MautheDoog_Anim:
 animEntry(MautheDoogMonsterID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Gwyllgi_Anim:
 animEntry(GwyllgiMonsterID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Tarvos_Anim:
 animEntry(TarvosHandaxeID) 
@@ -956,7 +960,7 @@ LanceAnim(TarvosAxeID)
 AxeAnim(TarvosAxeID) 
 HandAxeAnim(TarvosHandaxeID)
 UnarmedAnim(TarvosUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Maelduin_Anim:
 animEntry(MaelduinHandaxeID) 
@@ -966,35 +970,35 @@ AxeAnim(MaelduinAxeID)
 BowAnim(MaelduinBowID) 
 HandAxeAnim(MaelduinHandaxeID)
 UnarmedAnim(MaelduinUnarmedID)
-weaponAnimEnd(6)
+weaponAnimEnd
 
 Mogall_Anim:
 animEntry(MogallMagicID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 ArchMogall_Anim:
 animEntry(ArchMogallMagicID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Gorgon_Anim:
 animEntry(GorgonMagicID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Gargoyle_Anim:
 animEntry(GargoyleLanceID) 
 LanceAnim(GargoyleLanceID) 
 UnarmedAnim(GargoyleUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Deathgoyle_Anim:
 animEntry(DeathgoyleLanceID) 
 LanceAnim(DeathgoyleLanceID) 
 UnarmedAnim(DeathgoyleUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 DracoZombie_Anim:
 animEntry(DracoZombieMonsterID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 DemonKing_Anim:
 animEntry(DemonKingMagicID) 
@@ -1003,53 +1007,53 @@ SwordAnim(DemonKingMonsterID)
 LanceAnim(DemonKingMonsterID) 
 AxeAnim(DemonKingMonsterID) 
 UnarmedAnim(DemonKingMagicID)
-weaponAnimEnd(5)
+weaponAnimEnd
 #endif 
 
 #ifndef _FE8_ 
 FireDragon_Anim:
 animEntry(FireDragonID)
-weaponAnimEnd(1)
+weaponAnimEnd
 #endif 
 
 
 #ifdef _FE6_ 
 DivineDragon_Anim:
 animEntry(DivineDragonMagicID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 DemonDragon_Anim: 
 animEntry(ManaketeUnarmedID)
-weaponAnimEnd(1)
+weaponAnimEnd
 #endif 
 
 Mage_Anim:
 animEntry(MageMagicID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Mage_F_Anim:
 animEntry(MageFMagicID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Shaman_Anim:
 animEntry(ShamanMagicID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Shaman_F_Anim:
 animEntry(ShamanFMagicID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 
 #ifndef _FE6_ 
 Monk_Anim:
 animEntry(MonkMagicID)
-weaponAnimEnd(1)
+weaponAnimEnd
 #endif 
 
 #ifdef _FE8_ 
 Pupil_Anim:
 animEntry(PupilMagicID)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Journeyman_Anim:
 animEntry(JourneymanHandaxeID) 
@@ -1058,105 +1062,105 @@ LanceAnim(JourneymanAxeID)
 AxeAnim(JourneymanAxeID) 
 HandAxeAnim(JourneymanHandaxeID)
 UnarmedAnim(JourneymanUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Recruit_Anim:
 animEntry(RecruitLanceID) 
 LanceAnim(RecruitLanceID) 
 UnarmedAnim(RecruitUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 #endif 
 
 Soldier_Anim:
 animEntry(SoldierLanceID) 
 LanceAnim(SoldierLanceID) 
 UnarmedAnim(SoldierUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Priest_Anim:
 animEntry(PriestStaffID) 
 StaffAnim(PriestStaffID) 
 UnarmedAnim(PriestUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Cleric_Anim:
 animEntry(ClericStaffID) 
 StaffAnim(ClericStaffID) 
 UnarmedAnim(ClericUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Troubadour_Anim:
 animEntry(TroubadourStaffID) 
 StaffAnim(TroubadourStaffID) 
 UnarmedAnim(TroubadourUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Bishop_Anim:
 animEntry(BishopMagicID) 
 StaffAnim(BishopFMagicID) // ? 
 UnarmedAnim(BishopUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Bishop_F_Anim:
 animEntry(BishopFMagicID) 
 StaffAnim(BishopFMagicID) 
 UnarmedAnim(BishopFUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Sage_Anim:
 animEntry(SageMagicID) 
 StaffAnim(SageStaffID) 
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Sage_F_Anim:
 animEntry(SageFMagicID) 
 StaffAnim(SageFStaffID) 
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Druid_Anim:
 animEntry(DruidMagicID) 
 StaffAnim(DruidStaffID) 
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Druid_F_Anim:
 animEntry(DruidFMagicID) 
 StaffAnim(DruidFStaffID) 
-weaponAnimEnd(1)
+weaponAnimEnd
 
 
 #ifdef _FE7_ 
 DarkDruid_Anim:
 animEntry(DarkDruidMagicID) 
 StaffAnim(DarkDruidStaffID) 
-weaponAnimEnd(1)
+weaponAnimEnd
 #endif 
 
 Valkyrie_Anim:
 animEntry(ValkyrieMagicID) 
 StaffAnim(ValkyrieStaffID) 
-weaponAnimEnd(1)
+weaponAnimEnd
 
 #ifdef _FE8_ 
 MageKnight_Anim:
 animEntry(MageKnightMagicID) 
 StaffAnim(MageKnightStaffID) 
-weaponAnimEnd(1)
+weaponAnimEnd
 
 MageKnight_F_Anim:
 animEntry(MageKnightFMagicID) 
 StaffAnim(MageKnightFStaffID) 
-weaponAnimEnd(1)
+weaponAnimEnd
 
 
 Summoner_Anim:
 animEntry(SummonerMagicID) 
 StaffAnim(SummonerStaffID) 
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Necromancer_Anim:
 animEntry(NecromancerMagicID) 
 StaffAnim(NecromancerStaffID) 
-weaponAnimEnd(1)
+weaponAnimEnd
 #endif 
 
 #ifdef _FE7_ 
@@ -1164,14 +1168,17 @@ EliwoodLord_Anim:
 animEntry(EliwoodLordSwordID)
 SwordAnim(EliwoodLordSwordID) 
 UnarmedAnim(EliwoodLordUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd 
 
 KnightLord_Anim:
+#ifdef _FE7_ 
+wA(Durandal, KnightLordDurandalID) 
+#endif 
 animEntry(KnightLordSwordID)
 SwordAnim(KnightLordSwordID) 
 LanceAnim(KnightLordLanceID) 
 UnarmedAnim(KnightLordUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd 
 
 HectorLord_Anim:
 animEntry(HectorLordHandaxeID) 
@@ -1180,17 +1187,20 @@ LanceAnim(HectorLordAxeID)
 AxeAnim(HectorLordAxeID) 
 HandAxeAnim(HectorLordHandaxeID)
 UnarmedAnim(HectorLordUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 HectorGreatLord_Anim:
+#ifdef _FE7_ 
+wA(Armads, HectorGreatLordArmadsID) 
+#endif 
 animEntry(HectorGreatLordHandaxeID) 
 SwordAnim(HectorGreatLordSwordID) 
 LanceAnim(HectorGreatLordSwordID) 
 AxeAnim(HectorGreatLordAxeID) 
 HandAxeAnim(HectorGreatLordHandaxeID)
 UnarmedAnim(HectorGreatLordUnarmedID)
-weaponAnimEnd(5)
-#endif 
+weaponAnimEnd 
+
 
 
 General_Anim:
@@ -1200,7 +1210,7 @@ LanceAnim(GeneralLanceID)
 AxeAnim(GeneralAxeID)
 HandAxeAnim(GeneralHandaxeID)
 UnarmedAnim(GeneralUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 General_F_Anim:
 animEntry(GeneralFHandaxeID)
@@ -1209,13 +1219,13 @@ LanceAnim(GeneralFLanceID)
 AxeAnim(GeneralFAxeID)
 HandAxeAnim(GeneralFHandaxeID)
 UnarmedAnim(GeneralFUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 
 #ifdef _FE6_ 
 King_Anim:
 animEntry(KingSwordID)
-weaponAnimEnd(1)
+weaponAnimEnd
 #endif 
 
 // Custom classes below 
@@ -1225,7 +1235,7 @@ Fletchling_Anim:
 animEntry(FletchlingBow)
 BowAnim(FletchlingBow)
 UnarmedAnim(FletchlingUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Oni_Chieftain_Anim:
 animEntry(Oni_ChieftainAxe)
@@ -1235,7 +1245,7 @@ AnimaAnim(Oni_ChieftainMagic)
 LightAnim(Oni_ChieftainMagic)
 DarkAnim(Oni_ChieftainMagic)
 UnarmedAnim(Oni_ChieftainMagic)
-weaponAnimEnd(6)
+weaponAnimEnd
 
 Elffin_Fancy_Anim:
 animEntry(Elffin_FancyMagic)
@@ -1244,7 +1254,7 @@ LightAnim(Elffin_FancyMagic)
 DarkAnim(Elffin_FancyMagic)
 // RefreshAnim(Elffin_FancyRefresh)
 UnarmedAnim(Elffin_FancyMagic)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Mounted_Marauder_Anim:
 animEntry(Mounted_MarauderAxe)
@@ -1252,31 +1262,31 @@ AxeAnim(Mounted_MarauderAxe)
 BowAnim(Mounted_MarauderBow)
 HandAxeAnim(Mounted_MarauderHandaxe)
 UnarmedAnim(Mounted_MarauderUnarmed)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Mechanist_Anim:
 animEntry(MechanistBow)
 BowAnim(MechanistBow)
 UnarmedAnim(MechanistUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Dragoon_Anim:
 animEntry(DragoonLance)
 LanceAnim(DragoonLance)
 UnarmedAnim(DragoonUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Lancer_by_SALVAGED_Anim:
 animEntry(Lancer_by_SALVAGEDLance)
 LanceAnim(Lancer_by_SALVAGEDLance)
 UnarmedAnim(Lancer_by_SALVAGEDUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Militia_Anim:
 animEntry(MilitiaLance)
 LanceAnim(MilitiaLance)
 UnarmedAnim(MilitiaUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Sentinel_Anim:
 animEntry(SentinelAxe)
@@ -1285,7 +1295,7 @@ HandAxeAnim(SentinelHandaxe)
 LanceAnim(SentinelLance)
 SwordAnim(SentinelSword)
 UnarmedAnim(SentinelUnarmed)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 FE8_Tethys_Anim:
 animEntry(FE8_TethysRefresh)
@@ -1296,14 +1306,14 @@ UnarmedAnim(FE8_TethysMagic)
 // RefreshAnim(FE8_TethysRefresh) // makes rings show battle anim and crash game 
 StaffAnim(FE8_TethysStaff)
 SwordAnim(FE8_TethysSword)
-weaponAnimEnd(7)
+weaponAnimEnd
 
 T1_Lancer_Anim:
 animEntry(T1_LancerLance)
 LanceAnim(T1_LancerLance)
 SwordAnim(T1_LancerSword)
 UnarmedAnim(T1_LancerUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Gladiator_Anim:
 animEntry(GladiatorAxe)
@@ -1311,20 +1321,20 @@ AxeAnim(GladiatorAxe)
 HandAxeAnim(GladiatorHandaxe)
 SwordAnim(GladiatorSword)
 UnarmedAnim(GladiatorUnarmed)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Hunter_Anim:
 animEntry(HunterBow)
 BowAnim(HunterBow)
 UnarmedAnim(HunterUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Supplier_Anna_Anim:
 animEntry(SupplierAnnaBow)
 BowAnim(SupplierAnnaBow)
 LanceAnim(SupplierAnnaLance)
 StaffAnim(SupplierAnnaStaff)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Merlinus_Transport_Anim:
 animEntry(Merlinus_TransportBow)
@@ -1332,17 +1342,17 @@ BowAnim(Merlinus_TransportBow)
 StaffAnim(Merlinus_TransportStaff)
 SwordAnim(Merlinus_TransportSword)
 UnarmedAnim(Merlinus_TransportUnarmed) // This is a single frame, should use staff instead
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Chicken_Anim:
 animEntry(ChickenMonster)
 MonsterAnim(ChickenMonster)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Cursed_Sword_Anim:
 animEntry(Cursed_SwordSword)
 SwordAnim(Cursed_SwordSword)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Tomes_Anim:
 animEntry(TomesMagic)
@@ -1350,7 +1360,7 @@ AnimaAnim(TomesMagic)
 LightAnim(TomesMagic)
 DarkAnim(TomesMagic)
 UnarmedAnim(TomesMagic)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Mimic_Chest_Anim:
 animEntry(Mimic_ChestMagic)
@@ -1358,19 +1368,19 @@ AnimaAnim(Mimic_ChestMagic)
 LightAnim(Mimic_ChestMagic)
 DarkAnim(Mimic_ChestMagic)
 UnarmedAnim(Mimic_ChestMagic)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Mosquito_Anim:
 animEntry(MosquitoMonster)
 MonsterAnim(MosquitoMonster)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Phantom_by_TBA_Anim:
 animEntry(Phantom_by_TBAAxe)
 AxeAnim(Phantom_by_TBAAxe)
 HandAxeAnim(Phantom_by_TBAHandaxe)
 UnarmedAnim(Phantom_by_TBAUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 
 
@@ -1381,39 +1391,39 @@ LightAnim(SlimeMagic)
 DarkAnim(SlimeMagic)
 UnarmedAnim(SlimeMagic)
 StaffAnim(SlimeStaff)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Warbird_Anim:
 animEntry(WarbirdBow)
 BowAnim(WarbirdBow)
 LanceAnim(WarbirdLance)
 UnarmedAnim(WarbirdUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Sandworm_Anim:
 animEntry(SandwormMonster)
 MonsterAnim(SandwormMonster)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Adventurer_Anim:
 animEntry(AdventurerBow)
 BowAnim(AdventurerBow)
 StaffAnim(AdventurerStaff)
 UnarmedAnim(AdventurerUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Egyptian_Anim:
 animEntry(EgyptianStaff)
 StaffAnim(EgyptianStaff)
 UnarmedAnim(EgyptianUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Brighid_Anim:
 animEntry(BrighidAxe)
 AxeAnim(BrighidAxe)
 HandAxeAnim(BrighidHandaxe)
 UnarmedAnim(BrighidUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Cantor_by_Anim:
 animEntry(Cantor_byMagic)
@@ -1422,7 +1432,7 @@ LightAnim(Cantor_byMagic)
 DarkAnim(Cantor_byMagic)
 UnarmedAnim(Cantor_byMagic)
 StaffAnim(Cantor_byStaff)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Cantor_Jedah_Anim:
 animEntry(Cantor_JedahMagic)
@@ -1431,7 +1441,7 @@ LightAnim(Cantor_JedahMagic)
 DarkAnim(Cantor_JedahMagic)
 UnarmedAnim(Cantor_JedahMagic)
 StaffAnim(Cantor_JedahStaff)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Arcanist_by_Nuramon_Anim:
 animEntry(Arcanist_by_NuramonMagic)
@@ -1440,7 +1450,7 @@ LightAnim(Arcanist_by_NuramonMagic)
 DarkAnim(Arcanist_by_NuramonMagic)
 UnarmedAnim(Arcanist_by_NuramonMagic)
 StaffAnim(Arcanist_by_NuramonStaff)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Halberdier_Anim:
 animEntry(HalberdierAxe)
@@ -1448,7 +1458,7 @@ AxeAnim(HalberdierAxe)
 HandAxeAnim(HalberdierHandaxe)
 LanceAnim(HalberdierLance)
 UnarmedAnim(HalberdierUnarmed)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Miko_Anim:
 animEntry(MikoBow)
@@ -1459,7 +1469,7 @@ LightAnim(MikoMagic)
 DarkAnim(MikoMagic)
 UnarmedAnim(MikoMagic)
 StaffAnim(MikoStaff)
-weaponAnimEnd(6)
+weaponAnimEnd
 
 War_Cleric_Anim:
 animEntry(War_ClericAxe)
@@ -1470,7 +1480,7 @@ AnimaAnim(War_ClericMagic)
 LightAnim(War_ClericMagic)
 DarkAnim(War_ClericMagic)
 UnarmedAnim(War_ClericMagic)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Witch_Anim:
 animEntry(WitchMagic)
@@ -1479,7 +1489,7 @@ LightAnim(WitchMagic)
 DarkAnim(WitchMagic)
 UnarmedAnim(WitchMagic)
 StaffAnim(WitchStaff)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Kishuna_Anim:
 animEntry(KishunaMagic)
@@ -1487,7 +1497,7 @@ AnimaAnim(KishunaMagic)
 LightAnim(KishunaMagic)
 DarkAnim(KishunaMagic)
 UnarmedAnim(KishunaUnarmed) // Unnecessary, Magic has identical dodge
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Angel_Anim:
 animEntry(AngelMagic)
@@ -1495,7 +1505,7 @@ AnimaAnim(AngelMagic)
 LightAnim(AngelMagic)
 DarkAnim(AngelMagic)
 UnarmedAnim(AngelMagic)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Arcanist_by_Devisian_Nights_Anim:
 animEntry(Arcanist_by_Devisian_NightsMagic)
@@ -1503,7 +1513,7 @@ AnimaAnim(Arcanist_by_Devisian_NightsMagic)
 LightAnim(Arcanist_by_Devisian_NightsMagic)
 DarkAnim(Arcanist_by_Devisian_NightsMagic)
 UnarmedAnim(Arcanist_by_Devisian_NightsMagic)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Magician_Anim:
 animEntry(MagicianMagic)
@@ -1511,7 +1521,7 @@ AnimaAnim(MagicianMagic)
 LightAnim(MagicianMagic)
 DarkAnim(MagicianMagic)
 UnarmedAnim(MagicianUnarmed)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Occultist_Anim:
 animEntry(OccultistMagic)
@@ -1519,7 +1529,7 @@ AnimaAnim(OccultistMagic)
 LightAnim(OccultistMagic)
 DarkAnim(OccultistMagic)
 UnarmedAnim(OccultistMagic)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Parson_Anim:
 animEntry(ParsonMagic)
@@ -1528,46 +1538,46 @@ LightAnim(ParsonMagic)
 DarkAnim(ParsonMagic)
 UnarmedAnim(ParsonUnarmed)
 StaffAnim(ParsonStaff)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Vanguard_Anim:
 animEntry(VanguardAxe)
 AxeAnim(VanguardAxe)
 HandAxeAnim(VanguardHandaxe)
 SwordAnim(VanguardSword)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Alm_T1_Anim:
 animEntry(Alm_T1Sword)
 SwordAnim(Alm_T1Sword)
 UnarmedAnim(Alm_T1Unarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Alm_T2_Anim:
 animEntry(Alm_T2Bow)
 BowAnim(Alm_T2Bow)
 SwordAnim(Alm_T2Sword)
 UnarmedAnim(Alm_T2Unarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Seliph_Anim:
 animEntry(SeliphLance)
 LanceAnim(SeliphLance)
 SwordAnim(SeliphSword)
 UnarmedAnim(SeliphUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Leif_Lord_Anim:
 animEntry(Leif_LordSword)
 SwordAnim(Leif_LordSword)
 UnarmedAnim(Leif_LordUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Marth_Slash_Anim:
 animEntry(Marth_SlashMonster) // Sword Stab
 MonsterAnim(Marth_SlashMonster) // Sword Stab
 SwordAnim(Marth_SlashSword) // Sword Slash
-weaponAnimEnd(2) // Weird. An unarmed animation exists but is missing here.
+weaponAnimEnd // Weird. An unarmed animation exists but is missing here.
 
 Harbinger_Anim:
 animEntry(HarbingerAxe)
@@ -1581,7 +1591,7 @@ UnarmedAnim(HarbingerMagic)
 StaffAnim(HarbingerStaff)
 SwordAnim(HarbingerSword)
 UnarmedAnim(HarbingerUnarmed) // Actually not identical to Magic dodge, it has a smaller shadow, but still kind of pointless
-weaponAnimEnd(9)
+weaponAnimEnd
 
 Heavy_Infantry_Anim:
 animEntry(Heavy_InfantryAxe)
@@ -1590,26 +1600,26 @@ HandAxeAnim(Heavy_InfantryHandaxe)
 LanceAnim(Heavy_InfantryLance)
 SwordAnim(Heavy_InfantrySword)
 UnarmedAnim(Heavy_InfantryUnarmed)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Flail_Knight_Anim:
 animEntry(Flail_KnightAxe)
 AxeAnim(Flail_KnightAxe)
 UnarmedAnim(Flail_KnightUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Ike_Lord_Anim:
 animEntry(Ike_LordSword)
 SwordAnim(Ike_LordSword)
 UnarmedAnim(Ike_LordUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Ike_Ranger_Anim:
 animEntry(Ike_RangerMonster) // Legendary Sword
 MonsterAnim(Ike_RangerMonster) // Legendary Sword
 SwordAnim(Ike_RangerSword)
 UnarmedAnim(Ike_RangerUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Baron_Anim:
 animEntry(BaronAxe)
@@ -1623,7 +1633,7 @@ DarkAnim(BaronMagic)
 UnarmedAnim(BaronMagic)
 StaffAnim(BaronStaff)
 SwordAnim(BaronSword)
-weaponAnimEnd(9)
+weaponAnimEnd
 
 ShieldGeneral_Anim:
 animEntry(ShieldGeneralAxe)
@@ -1636,7 +1646,7 @@ DarkAnim(ShieldGeneralMagic)
 UnarmedAnim(ShieldGeneralMagic)
 SwordAnim(ShieldGeneralSword)
 UnarmedAnim(ShieldGeneralUnarmed) // Actually not identical to Magic dodge
-weaponAnimEnd(9)
+weaponAnimEnd
 
 FE10Knight_Anim:
 animEntry(FE10KnightAxe)
@@ -1650,7 +1660,7 @@ DarkAnim(FE10KnightMagic)
 UnarmedAnim(FE10KnightMagic)
 SwordAnim(FE10KnightSword)
 UnarmedAnim(FE10KnightUnarmed) // Magic has identical dodge
-weaponAnimEnd(9)
+weaponAnimEnd
 
 HelmetlessKnight_Anim:
 animEntry(HelmetlessKnightAxe)
@@ -1660,7 +1670,7 @@ HandAxeAnim(HelmetlessKnightHandaxe)
 LanceAnim(HelmetlessKnightLance)
 SwordAnim(HelmetlessKnightSword)
 UnarmedAnim(HelmetlessKnightUnarmed)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Mercenary_by_SALVAGED_Anim:
 animEntry(Mercenary_by_SALVAGEDAxe)
@@ -1668,7 +1678,7 @@ AxeAnim(Mercenary_by_SALVAGEDAxe)
 HandAxeAnim(Mercenary_by_SALVAGEDHandaxe)
 SwordAnim(Mercenary_by_SALVAGEDSword)
 UnarmedAnim(Mercenary_by_SALVAGEDUnarmed)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Skeleton_Rider_Anim:
 animEntry(Skeleton_RiderBow)
@@ -1677,7 +1687,7 @@ AnimaAnim(Skeleton_RiderMagic)
 LightAnim(Skeleton_RiderMagic)
 DarkAnim(Skeleton_RiderMagic)
 UnarmedAnim(Skeleton_RiderMagic)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Skirt_Pupil_Anim:
 animEntry(Skirt_PupilMagic)
@@ -1685,13 +1695,13 @@ AnimaAnim(Skirt_PupilMagic)
 LightAnim(Skirt_PupilMagic)
 DarkAnim(Skirt_PupilMagic)
 UnarmedAnim(Skirt_PupilMagic)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Mia_by_Redbean_Anim:
 animEntry(Mia_by_RedbeanSword)
 SwordAnim(Mia_by_RedbeanSword)
 UnarmedAnim(Mia_by_RedbeanUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 PupilReskin_Anim:
 animEntry(PupilReskinMagic)
@@ -1699,13 +1709,13 @@ AnimaAnim(PupilReskinMagic)
 LightAnim(PupilReskinMagic)
 DarkAnim(PupilReskinMagic)
 UnarmedAnim(PupilReskinMagic)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Samurai_Anim:
 animEntry(SamuraiSword)
 SwordAnim(SamuraiSword)
 UnarmedAnim(SamuraiUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Gaiden_Priestess_Anim:
 animEntry(Gaiden_PriestessSword)
@@ -1715,7 +1725,7 @@ DarkAnim(Gaiden_PriestessMagic)
 UnarmedAnim(Gaiden_PriestessMagic)
 StaffAnim(Gaiden_PriestessStaff)
 SwordAnim(Gaiden_PriestessSword)
-weaponAnimEnd(6)
+weaponAnimEnd
 
 PriestessT1_Anim:
 animEntry(PriestessT1Sword)
@@ -1725,7 +1735,7 @@ DarkAnim(PriestessT1Magic)
 UnarmedAnim(PriestessT1Magic)
 StaffAnim(PriestessT1Staff)
 SwordAnim(PriestessT1Sword)
-weaponAnimEnd(6)
+weaponAnimEnd
 
 Red_Mage_by_Reyk_Anim:
 animEntry(Red_Mage_by_ReykSword)
@@ -1736,39 +1746,39 @@ UnarmedAnim(Red_Mage_by_ReykMagic)
 StaffAnim(Red_Mage_by_ReykStaff)
 SwordAnim(Red_Mage_by_ReykSword)
 UnarmedAnim(Red_Mage_by_ReykUnarmed)
-weaponAnimEnd(7)
+weaponAnimEnd
 
 Fir_by_Redbean_Anim:
 animEntry(Fir_by_RedbeanLance)
 LanceAnim(Fir_by_RedbeanLance)
 SwordAnim(Fir_by_RedbeanSword)
 UnarmedAnim(Fir_by_RedbeanUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Trueblade_Anim:
 animEntry(TruebladeSword)
 SwordAnim(TruebladeSword)
 UnarmedAnim(TruebladeUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Katarina_Fencer_Anim:
 animEntry(Katarina_FencerSword)
 SwordAnim(Katarina_FencerSword)
 UnarmedAnim(Katarina_FencerUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Ninja_Anim:
 animEntry(NinjaKnife)
 KnifeAnim(NinjaKnife)
 SwordAnim(NinjaSword)
 UnarmedAnim(NinjaUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Thug_Anim:
 animEntry(ThugSword)
 SwordAnim(ThugSword)
 UnarmedAnim(ThugUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Dread_Fighter_Anim:
 animEntry(Dread_FighterMagic)
@@ -1778,7 +1788,7 @@ DarkAnim(Dread_FighterMagic)
 UnarmedAnim(Dread_FighterMagic)
 SwordAnim(Dread_FighterSword)
 UnarmedAnim(Dread_FighterUnarmed) // Unnecessary, Magic has identical dodge
-weaponAnimEnd(6)
+weaponAnimEnd
 
 Dark_Prince_Anim:
 animEntry(Dark_PrinceMagic)
@@ -1786,7 +1796,7 @@ AnimaAnim(Dark_PrinceMagic)
 LightAnim(Dark_PrinceMagic)
 DarkAnim(Dark_PrinceMagic)
 UnarmedAnim(Dark_PrinceMagic)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Red_mage_by_Mycahel_Anim:
 animEntry(Red_mage_by_MycahelSword)
@@ -1796,7 +1806,7 @@ DarkAnim(Red_mage_by_MycahelMagic)
 UnarmedAnim(Red_mage_by_MycahelMagic)
 StaffAnim(Red_mage_by_MycahelStaff)
 SwordAnim(Red_mage_by_MycahelSword)
-weaponAnimEnd(6)
+weaponAnimEnd
 
 Executioner_Anim:
 animEntry(ExecutionerSword)
@@ -1807,7 +1817,7 @@ StaffAnim(ExecutionerMagic)
 UnarmedAnim(ExecutionerMagic)
 SwordAnim(ExecutionerSword)
 UnarmedAnim(ExecutionerUnarmed)
-weaponAnimEnd(6)
+weaponAnimEnd
 
 Moloch_Sorcerer_Anim:
 animEntry(Moloch_SorcererLance)
@@ -1818,7 +1828,7 @@ DarkAnim(Moloch_SorcererMagic)
 UnarmedAnim(Moloch_SorcererMagic)
 StaffAnim(Moloch_SorcererStaff)
 UnarmedAnim(Moloch_SorcererUnarmed) // Lance has identical dodge
-weaponAnimEnd(7)
+weaponAnimEnd
 
 Archsage_Athos_Anim:
 animEntry(Archsage_AthosMagic)
@@ -1827,7 +1837,7 @@ LightAnim(Archsage_AthosMagic)
 DarkAnim(Archsage_AthosMagic)
 UnarmedAnim(Archsage_AthosMagic)
 StaffAnim(Archsage_AthosStaff)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Tactician_Anim:
 animEntry(TacticianMagic)
@@ -1835,7 +1845,7 @@ AnimaAnim(TacticianMagic)
 LightAnim(TacticianMagic)
 DarkAnim(TacticianMagic)
 UnarmedAnim(TacticianMagic)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 F_Trickster_Anim:
 animEntry(F_TricksterSword)
@@ -1846,7 +1856,7 @@ DarkAnim(F_TricksterMagic)
 UnarmedAnim(F_TricksterMagic)
 StaffAnim(F_TricksterStaff)
 SwordAnim(F_TricksterSword)
-weaponAnimEnd(7)
+weaponAnimEnd
 
 M_Trickster_Anim:
 animEntry(M_TricksterSword)
@@ -1857,19 +1867,19 @@ DarkAnim(M_TricksterMagic)
 UnarmedAnim(M_TricksterMagic)
 StaffAnim(M_TricksterStaff)
 SwordAnim(M_TricksterSword)
-weaponAnimEnd(7)
+weaponAnimEnd
 
 F_Villager_Anim:
 animEntry(F_VillagerSword)
 SwordAnim(F_VillagerSword)
 UnarmedAnim(F_VillagerUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 M_Villager_Anim:
 animEntry(M_VillagerSword)
 SwordAnim(M_VillagerSword)
 UnarmedAnim(M_VillagerUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Legion_King_Anim:
 animEntry(Legion_KingAxe)
@@ -1879,34 +1889,33 @@ LanceAnim(Legion_KingLance)
 AnimaAnim(Legion_KingMagic)
 LightAnim(Legion_KingMagic)
 DarkAnim(Legion_KingMagic)
-UnarmedAnim(Legion_KingMagic)
 SwordAnim(Legion_KingSword)
 UnarmedAnim(Legion_KingUnarmed)
-weaponAnimEnd(9)
+weaponAnimEnd
 
 Grand_Mahout_Anim:
 animEntry(Grand_MahoutBow)
 BowAnim(Grand_MahoutBow)
 LanceAnim(Grand_MahoutLance)
 MonsterAnim(Grand_MahoutMonster)
-weaponAnimEnd(3)
+weaponAnimEnd
 
 Brawler_Anim:
 animEntry(BrawlerMelee)
 UnarmedAnim(BrawlerMelee)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 Enchanter_Anim:
 animEntry(EnchanterKnife)
 KnifeAnim(EnchanterKnife)
 UnarmedAnim(EnchanterMelee)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Black_Dragon_Anim:
 animEntry(Black_DragonMonster)
 MonsterAnim(Black_DragonMonster)
 UnarmedAnim(Black_DragonUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 Djinn_Anim:
 animEntry(DjinnMagic)
@@ -1915,7 +1924,7 @@ LightAnim(DjinnMagic)
 DarkAnim(DjinnMagic)
 UnarmedAnim(DjinnMagic)
 SwordAnim(DjinnSword)
-weaponAnimEnd(5)
+weaponAnimEnd
 
 Living_Armor_Anim:
 animEntry(Living_ArmorAxe)
@@ -1923,60 +1932,73 @@ AxeAnim(Living_ArmorAxe)
 HandAxeAnim(Living_ArmorHandaxe)
 SwordAnim(Living_ArmorSword)
 UnarmedAnim(Living_ArmorUnarmed)
-weaponAnimEnd(4)
+weaponAnimEnd
 
 Fellbeast_Anim:
 animEntry(FellbeastMagic)
 SwordAnim(FellbeastMonster)
 MonsterAnim(FellbeastMonster)
-weaponAnimEnd(1)
+weaponAnimEnd
 
 LynLord_Anim:
 animEntry(LynLordSword)
 SwordAnim(LynLordSword)
 UnarmedAnim(LynLordUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 BladeLord_Anim:
+#ifdef _FE7_ 
+wA(SolKatti, BladeLordSolKattiID)
+#endif 
 animEntry(BladeLordSword)
 SwordAnim(BladeLordSword)
 BowAnim(BladeLordBow)
 UnarmedAnim(BladeLordUnarmed)
-weaponAnimEnd(4)
+weaponAnimEnd
+
 
 RoyLord_Anim:
+#ifdef _FE6_ 
+wA(SwordofSeals, RoyLordBindingBladeID)
+#endif 
 animEntry(RoyLordSword)
 SwordAnim(RoyLordSword)
 UnarmedAnim(RoyLordUnarmed)
-weaponAnimEnd(3)
+weaponAnimEnd
 
-MasterLord_Anim:
+
+MasterLord_Anim: // These are identical to unpromoted Roy.
+#ifdef _FE6_ 
+wA(SwordofSeals, RoyLordBindingBladeID)
+#endif 
 animEntry(RoyMasterLordSword)
 SwordAnim(RoyMasterLordSword)
 UnarmedAnim(RoyMasterLordUnarmed)
-weaponAnimEnd(3) // These are identical to unpromoted Roy.
+weaponAnimEnd
+
+
 
 EirikaLord_Anim:
 animEntry(EirikaLordSword)
 SwordAnim(EirikaLordSword)
 UnarmedAnim(EirikaLordUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 EirikaGreat_Anim:
 animEntry(EirikaGreatSword)
 SwordAnim(EirikaGreatSword)
 UnarmedAnim(EirikaGreatUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 EphraimLord_Anim:
 animEntry(EphraimLordLance)
 LanceAnim(EphraimLordLance)
 UnarmedAnim(EphraimLordUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
 EphraimGreat_Anim:
 animEntry(EphraimGreatLordLance) // animEntry goes first, I think 
 LanceAnim(EphraimGreatLordLance)
 UnarmedAnim(EphraimGreatLordUnarmed)
-weaponAnimEnd(2)
+weaponAnimEnd
 
