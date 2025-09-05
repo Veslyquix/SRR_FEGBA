@@ -9,7 +9,7 @@ POIN Pal_FE5
 POIN processed_FE6_palettes 
 #endif 
 #ifndef _FE7_ 
-POIN Pal_FE7 
+POIN processed_FE7_palettes 
 #endif 
 #ifndef _FE8_ 
 POIN Pal_FE8 
@@ -80,6 +80,7 @@ WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator
 
 #include "FE1_defs.event" 
 #include "FE6_defs.event" 
+#include "FE7_defs.event" 
 #include "FE13_defs.event" 
 #include "FE14_defs.event" 
 
