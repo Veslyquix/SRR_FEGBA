@@ -13,9 +13,13 @@ ALIGN 4
     #define MercenarySwordID 0x0B
     #define MercenaryUnarmedID 0x0C
     #define HeroSwordID 0x0D
+    #define HeroFSwordID 0x0D // copy
     #define HeroAxeID 0x0E
+    #define HeroFAxeID 0x0E // copy
     #define HeroHandaxeID 0x0F
+    #define HeroFHandaxeID 0x0F // copy
     #define HeroUnarmedID 0x10
+    #define HeroFUnarmedID 0x10 // copy
     #define MyrmidonSwordID 0x11
     #define MyrmidonUnarmedID 0x12
     #define MyrmidonFSwordID 0x13
@@ -99,8 +103,8 @@ ALIGN 4
     #define WyvernLordFUnarmedID 0x61 // Copy 
     #define WyvernKnightLanceID 0x62
     #define WyvernKnightUnarmedID 0x63 
-    //#define WyvernKnightFLanceID 0x64 Copy and not even used (uses male IDs)
-    //#define WyvernKnightFUnarmedID 0x65 Copy and not even used (uses male IDs)
+    #define WyvernKnightFLanceID 0x64 //Copy and not even used (uses male IDs)
+    #define WyvernKnightFUnarmedID 0x65 //Copy and not even used (uses male IDs)
     #define PegasusKnightLanceID 0x66
     #define PegasusKnightUnarmedID 0x67 
     #define FalconKnightSwordID 0x68 
@@ -245,9 +249,13 @@ ALIGN 4
     #define MercenarySwordID 0x2D
     #define MercenaryUnarmedID 0x2E
     #define HeroSwordID 0x2F
+    #define HeroFSwordID 0x2F // copy
     #define HeroAxeID 0x30
+    #define HeroFAxeID 0x30 // copy
     #define HeroHandaxeID 0x31
+    #define HeroFHandaxeID 0x31 // copy
     #define HeroUnarmedID 0x32
+    #define HeroFUnarmedID 0x32 // copy
     #define MyrmidonSwordID 0x33
     #define MyrmidonUnarmedID 0x34
     #define SwordmasterSwordID 0x35
@@ -287,6 +295,13 @@ ALIGN 4
     #define GeneralAxeID 0x55
     #define GeneralHandaxeID 0x56
     #define GeneralUnarmedID 0x57
+    
+    #define GeneralFLanceID 0x54 // copy 
+    #define GeneralFSwordID 0x54 // copy 
+    #define GeneralFAxeID 0x55 // copy 
+    #define GeneralFHandaxeID 0x56 // copy 
+    #define GeneralFUnarmedID 0x57 // copy 
+    
     #define MageMagicID 0x58 
     #define MageFMagicID 0x59 
     #define SageMagicID 0x5A 
@@ -303,8 +318,11 @@ ALIGN 4
     #define BishopFMagicID 0x67
     #define BishopFStaffID 0x68
     #define ShamanMagicID 0x69
+    #define ShamanFMagicID 0x69 // copy 
     #define DruidMagicID 0x6A
+    #define DruidFMagicID 0x6A // copy 
     #define DruidStaffID 0x6B 
+    #define DruidFStaffID 0x6B  // copy 
     #define DarkDruidMagicID 0x6C
     #define DarkDruidStaffID 0x6D // Broken 
     #define TroubadourStaffID 0x6E 
@@ -314,10 +332,15 @@ ALIGN 4
     #define Archsage_AthosMagicID 0x72
     #define Archsage_AthosStaffID 0x73 
     #define NomadBowID 0x74
+    #define NomadFBowID 0x74 // copy 
     #define NomadUnarmedID 0x75
+    #define NomadFUnarmedID 0x75 // copy 
     #define NomadTrooperSwordID 0x76
+    #define NomadTrooperFSwordID 0x76 // copy 
     #define NomadTrooperBowID 0x77
+    #define NomadTrooperFBowID 0x77 // copy 
     #define NomadTrooperUnarmedID 0x78
+    #define NomadTrooperFUnarmedID 0x78 // copy 
     #define ThiefSwordID 0x79
     #define ThiefUnarmedID 0x7A
     #define ThiefFSwordID 0x7D
@@ -330,10 +353,19 @@ ALIGN 4
     #define FalconKnightLanceID 0x84 
     #define FalconKnightUnarmedID 0x85
     #define WyvernRiderLanceID 0x86 
+    #define WyvernRiderFLanceID 0x86 // copy 
+    #define WyvernKnightLanceID 0x86 // fe7 calls unpromoted Wyvern as WyvernKnight 
+    #define WyvernKnightFLanceID 0x86 // fe7 calls unpromoted Wyvern as WyvernKnight 
     #define WyvernRiderUnarmedID 0x87 
+    #define WyvernRiderFUnarmedID 0x87 // copy 
+    #define WyvernKnightUnarmedID 0x87 // fe7 calls unpromoted Wyvern as WyvernKnight 
+    #define WyvernKnightFUnarmedID 0x87 // fe7 calls unpromoted Wyvern as WyvernKnight 
     #define WyvernLordLanceID 0x88 
+    #define WyvernLordFLanceID 0x88 // copy  
     #define WyvernLordSwordID 0x89 
+    #define WyvernLordFSwordID 0x89 // copy  
     #define WyvernLordUnarmedID 0x8A
+    #define WyvernLordFUnarmedID 0x8A // copy 
     #define FireDragonID 0x8B
     #define DancerRefreshID 0x8D
     #define BardRefreshID 0x8E
@@ -349,6 +381,7 @@ ALIGN 4
 
 #ifdef _FE6_ 
     #define KnightLanceID 0x01
+    #define KnightFLanceID 0x01 // copy 
     #define PirateAxeID 0x02
     #define BerserkerAxeID 0x03
     #define BrigandAxeID 0x04
@@ -357,9 +390,12 @@ ALIGN 4
     #define MercenarySwordID 0x07
     #define MercenaryUnarmedID 0x08
     #define CavalierLanceID 0x09
+    #define CavalierFLanceID 0x09 // copy 
     #define CavalierSwordID 0x0A
-    #define FalconKnightSwordID 0x0C
+    #define CavalierFSwordID 0x0A // copy 
     #define CavalierUnarmedID 0x0B
+    #define CavalierFUnarmedID 0x0B // copy 
+    #define FalconKnightSwordID 0x0C
     #define MageMagicID 0x0D
     #define MageFMagicID 0x0E 
     #define ArcherBowID 0x0F
@@ -375,11 +411,13 @@ ALIGN 4
     #define ClericStaffID 0x19 
     #define PriestStaffID 0x1A
     #define PaladinLanceID 0x1B
+    #define PaladinFLanceID 0x1B // copy 
     #define NomadBowID 0x1C
     #define NomadUnarmedID 0x1D
     #define NomadFBowID 0x1E
     #define NomadFUnarmedID 0x1F
     #define KnightUnarmedID 0x20
+    #define KnightFUnarmedID 0x20 // copy 
     #define ClericUnarmedID 0x21
     #define PriestUnarmedID 0x22
     #define FighterAxeID 0x23
@@ -389,7 +427,7 @@ ALIGN 4
     #define BishopFMagicID 0x27
     #define BishopFStaffID 0x28
     #define ManaketeUnarmedID 0x29 
-    #define ManaketeFUnarmedID 0x2A
+    #define ManaketeFID 0x2A
     #define BrigandUnarmedID 0x2B
     #define BerserkerUnarmedID 0x2C
     #define ShamanMagicID 0x2D
@@ -414,8 +452,11 @@ ALIGN 4
     #define MyrmidonSwordID 0x40
     #define MyrmidonUnarmedID 0x41
     #define PaladinAxeID 0x42
+    #define PaladinFAxeID 0x42 // copy 
     #define PaladinSwordID 0x43
+    #define PaladinFSwordID 0x43 // copy 
     #define PaladinUnarmedID 0x44
+    #define PaladinFUnarmedID 0x44 // copy 
     #define ArcherUnarmedID 0x45
     #define ArcherFUnarmedID 0x46
     #define SoldierUnarmedID 0x47   
@@ -425,7 +466,13 @@ ALIGN 4
     #define HeroAxeID 0x4B
     #define HeroFAxeID 0x4C
     #define WyvernRiderLanceID 0x4d 
+    #define WyvernKnightLanceID 0x4d  // copy 
+    #define WyvernRiderFLanceID 0x4d // copy  
+    #define WyvernKnightFLanceID 0x4d // copy  
     #define WyvernRiderUnarmedID 0x4e 
+    #define WyvernKnightUnarmedID 0x4e  // copy 
+    #define WyvernRiderFUnarmedID 0x4e // copy  
+    #define WyvernKnightFUnarmedID 0x4e // copy  
     #define RoyLordBindingBladeID 0x4F
     #define NomadTrooperSwordID 0x50
     #define NomadTrooperFSwordID 0x51
@@ -447,17 +494,26 @@ ALIGN 4
     #define HeroHandaxeID 0x61
     #define HeroFHandaxeID 0x62
     #define PaladinHandaxeID 0x63
+    #define PaladinFHandaxeID 0x63 // copy 
     #define WarriorHandaxeID 0x64
     #define WyvernLordLanceID 0x65 
+    #define WyvernLordFLanceID 0x65 // copy  
     #define WyvernLordSwordID 0x66 
+    #define WyvernLordFSwordID 0x66 // copy  
     #define WyvernLordUnarmedID 0x67
+    #define WyvernLordFUnarmedID 0x67 // copy 
     #define GeneralHandaxeID 0x69
+    #define GeneralFHandaxeID 0x69 // copy 
     #define BishopUnarmedID 0x6A
     #define BishopFUnarmedID 0x6B 
     #define GeneralLanceID 0x6E
-    #define GeneralSwordID 0x6E // copy 
+    #define GeneralFLanceID 0x6E // copy 
+    #define GeneralSwordID 0x6E // copy - not a sword 
+    #define GeneralFSwordID 0x6E // copy 
     #define GeneralAxeID 0x6F
+    #define GeneralFAxeID 0x6F // copy 
     #define GeneralUnarmedID 0x70
+    #define GeneralFUnarmedID 0x70 // copy 
     #define DruidFMagicID 0x71 
     #define DruidFStaffID 0x72
     #define FalconKnightLanceID 0x73 
@@ -475,34 +531,32 @@ animEntry(WyvernRiderLanceID) // this makes it the default animation to use for 
 LanceAnim(WyvernRiderLanceID) 
 // AxeAnim(WyvernRiderAxe) // optionally uncomment after adding an animation for this  
 UnarmedAnim(WyvernRiderUnarmedID)
-weaponAnimEnd(2)
+weaponAnimEnd(2) // This number is how many lines other than animEntry and weaponAnimEnd
 
 
 Mercenary_Anim:
 animEntry(MercenarySwordID)
-SwordAnim(MercenarySwordID) 
-UnarmedAnim(MercenaryUnarmedID)
-weaponAnimEnd(2)
+SwordAnim(MercenarySwordID) // 1 
+UnarmedAnim(MercenaryUnarmedID)// 2 
+weaponAnimEnd(2)// so this is 2 
 
 Hero_Anim:
-Hero_F_Anim:
 animEntry(HeroHandaxeID)
-SwordAnim(HeroSwordID) 
-LanceAnim(HeroSwordID) 
-AxeAnim(HeroAxeID)
-HandAxeAnim(HeroHandaxeID)
-UnarmedAnim(HeroUnarmedID)
-weaponAnimEnd(4)
+SwordAnim(HeroSwordID) // 1 
+LanceAnim(HeroSwordID) // 2 
+AxeAnim(HeroAxeID) // 3 
+HandAxeAnim(HeroHandaxeID) // 4 
+UnarmedAnim(HeroUnarmedID) // 5 
+weaponAnimEnd(5) // so this is 5 
 
-// fe8 lacks this 
-// Hero_F_Anim:
-// animEntry(HeroFHandaxeID)
-// SwordAnim(HeroFSwordID) 
-// LanceAnim(HeroFSwordID) 
-// AxeAnim(HeroFAxeID)
-// HandAxeAnim(HeroFHandaxeID)
-// UnarmedAnim(HeroFUnarmedID)
-// weaponAnimEnd(4)
+Hero_F_Anim:
+animEntry(HeroFHandaxeID)
+SwordAnim(HeroFSwordID) 
+LanceAnim(HeroFSwordID) 
+AxeAnim(HeroFAxeID)
+HandAxeAnim(HeroFHandaxeID)
+UnarmedAnim(HeroFUnarmedID)
+weaponAnimEnd(5)
 
 Cavalier_Anim:
 animEntry(CavalierLanceID)
@@ -511,14 +565,12 @@ LanceAnim(CavalierLanceID)
 UnarmedAnim(CavalierUnarmedID)
 weaponAnimEnd(3)
 
-#ifndef _FE6_ 
 Cavalier_F_Anim:
 animEntry(CavalierFLanceID)
 SwordAnim(CavalierFSwordID) 
 LanceAnim(CavalierFLanceID) 
 UnarmedAnim(CavalierFUnarmedID)
 weaponAnimEnd(3)
-#endif 
 
 Knight_Anim:
 animEntry(KnightLanceID) 
@@ -526,13 +578,12 @@ LanceAnim(KnightLanceID)
 UnarmedAnim(KnightUnarmedID)
 weaponAnimEnd(2)
 
-#ifndef _FE6_ 
 Knight_F_Anim:
 animEntry(KnightFLanceID) 
 LanceAnim(KnightFLanceID) 
 UnarmedAnim(KnightFUnarmedID)
 weaponAnimEnd(2)
-#endif 
+
 
 PegasusKnight_Anim:
 animEntry(PegasusKnightLanceID) 
@@ -547,22 +598,38 @@ LanceAnim(FalconKnightLanceID)
 UnarmedAnim(FalconKnightUnarmedID)
 weaponAnimEnd(3)
 
+#ifdef _FE8_ // no axe anim 
 Paladin_Anim:
 animEntry(PaladinSwordID)
 SwordAnim(PaladinSwordID) 
 LanceAnim(PaladinLanceID) 
-// AxeAnim(PaladinAxeID)
-// HandAxeAnim(PaladinHandaxeID)
 UnarmedAnim(PaladinUnarmedID)
-weaponAnimEnd(5)
+weaponAnimEnd(3)
 
-#ifndef _FE6_ 
 Paladin_F_Anim:
 animEntry(PaladinFSwordID)
 SwordAnim(PaladinFSwordID) 
 LanceAnim(PaladinFLanceID) 
-// AxeAnim(PaladinFAxeID)
-// HandAxeAnim(PaladinFHandaxeID)
+UnarmedAnim(PaladinFUnarmedID)
+weaponAnimEnd(3)
+
+#else 
+
+Paladin_Anim:
+animEntry(PaladinSwordID)
+SwordAnim(PaladinSwordID) 
+LanceAnim(PaladinLanceID) 
+AxeAnim(PaladinAxeID)
+HandAxeAnim(PaladinHandaxeID)
+UnarmedAnim(PaladinUnarmedID)
+weaponAnimEnd(5)
+
+Paladin_F_Anim:
+animEntry(PaladinFSwordID)
+SwordAnim(PaladinFSwordID) 
+LanceAnim(PaladinFLanceID) 
+AxeAnim(PaladinFAxeID)
+HandAxeAnim(PaladinFHandaxeID)
 UnarmedAnim(PaladinFUnarmedID)
 weaponAnimEnd(5)
 #endif 
@@ -585,7 +652,7 @@ AxeAnim(GreatKnightFAxeID)
 HandAxeAnim(GreatKnightFHandaxeID)
 UnarmedAnim(GreatKnightFUnarmedID)
 weaponAnimEnd(5)
-
+#endif 
 
 WyvernRider_F_Anim:
 animEntry(WyvernRiderFLanceID) 
@@ -608,12 +675,19 @@ LanceAnim(WyvernLordFLanceID)
 UnarmedAnim(WyvernLordFUnarmedID)
 weaponAnimEnd(3)
 
+
 WyvernKnight_Anim:
 animEntry(WyvernKnightLanceID) 
 LanceAnim(WyvernKnightLanceID) 
 UnarmedAnim(WyvernKnightUnarmedID)
 weaponAnimEnd(2)
-#endif 
+
+WyvernKnight_F_Anim:
+animEntry(WyvernKnightFLanceID) 
+LanceAnim(WyvernKnightFLanceID) 
+UnarmedAnim(WyvernKnightFUnarmedID)
+weaponAnimEnd(2)
+
 
 Myrmidon_Anim:
 animEntry(MyrmidonSwordID)
@@ -636,7 +710,7 @@ LanceAnim(FighterAxeID)
 AxeAnim(FighterAxeID) 
 HandAxeAnim(FighterHandaxeID)
 UnarmedAnim(FighterUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 
 Warrior_Anim:
 animEntry(WarriorHandaxeID) 
@@ -646,7 +720,7 @@ AxeAnim(WarriorAxeID)
 HandAxeAnim(WarriorHandaxeID)
 BowAnim(WarriorBowID) 
 UnarmedAnim(WarriorUnarmedID)
-weaponAnimEnd(4)
+weaponAnimEnd(6)
 
 Pirate_Anim:
 animEntry(PirateHandaxeID) 
@@ -655,7 +729,7 @@ LanceAnim(PirateAxeID)
 AxeAnim(PirateAxeID) 
 HandAxeAnim(PirateHandaxeID)
 UnarmedAnim(PirateUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 
 Brigand_Anim:
 animEntry(BrigandHandaxeID) 
@@ -664,7 +738,7 @@ LanceAnim(BrigandAxeID)
 AxeAnim(BrigandAxeID) 
 HandAxeAnim(BrigandHandaxeID)
 UnarmedAnim(BrigandUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 
 Berserker_Anim:
 animEntry(BerserkerHandaxeID) 
@@ -673,7 +747,7 @@ LanceAnim(BerserkerAxeID)
 AxeAnim(BerserkerAxeID) 
 HandAxeAnim(BerserkerHandaxeID)
 UnarmedAnim(BerserkerUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 
 Thief_Anim:
 animEntry(ThiefSwordID)
@@ -743,7 +817,6 @@ BowAnim(NomadBowID)
 UnarmedAnim(NomadUnarmedID)
 weaponAnimEnd(2)
 
-#ifdef _FE6_ 
 Nomad_F_Anim:
 animEntry(NomadFBowID)
 BowAnim(NomadFBowID) 
@@ -757,9 +830,8 @@ LanceAnim(NomadTrooperFSwordID)
 AxeAnim(NomadTrooperFSwordID) 
 BowAnim(NomadTrooperFBowID) 
 UnarmedAnim(NomadTrooperFUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 
-#endif 
 
 NomadTrooper_Anim:
 animEntry(NomadTrooperBowID)
@@ -768,7 +840,7 @@ LanceAnim(NomadTrooperSwordID)
 AxeAnim(NomadTrooperSwordID) 
 BowAnim(NomadTrooperBowID) 
 UnarmedAnim(NomadTrooperUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 #endif 
 
 #ifdef _FE8_ 
@@ -779,7 +851,7 @@ LanceAnim(RangerSwordID)
 AxeAnim(RangerSwordID) 
 BowAnim(RangerBowID) 
 UnarmedAnim(RangerUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 
 Ranger_F_Anim:
 animEntry(RangerFBowID)
@@ -788,7 +860,7 @@ LanceAnim(RangerFSwordID)
 AxeAnim(RangerFSwordID) 
 BowAnim(RangerFBowID) 
 UnarmedAnim(RangerFUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 #endif 
 
 Sniper_Anim:
@@ -819,11 +891,13 @@ animEntry(ManaketeUnarmedID)
 weaponAnimEnd(1)
 #endif 
 
-#ifdef _FE8_ 
+#ifndef _FE7_ 
 Manakete_F_Anim:
 animEntry(ManaketeFID)
 weaponAnimEnd(1)
+#endif 
 
+#ifdef _FE8_ 
 Revenant_Anim:
 animEntry(RevenantMonsterID)
 weaponAnimEnd(1)
@@ -848,7 +922,7 @@ LanceAnim(WightLanceID)
 AxeAnim(WightSwordID) 
 BowAnim(WightBowID) 
 UnarmedAnim(WightUnarmedID)
-weaponAnimEnd(4)
+weaponAnimEnd(5)
 
 Bael_Anim:
 animEntry(BaelMonsterID)
@@ -865,7 +939,7 @@ LanceAnim(CyclopsAxeID)
 AxeAnim(CyclopsAxeID) 
 HandAxeAnim(CyclopsHandaxeID)
 UnarmedAnim(CyclopsUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 
 MautheDoog_Anim:
 animEntry(MautheDoogMonsterID)
@@ -882,7 +956,7 @@ LanceAnim(TarvosAxeID)
 AxeAnim(TarvosAxeID) 
 HandAxeAnim(TarvosHandaxeID)
 UnarmedAnim(TarvosUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 
 Maelduin_Anim:
 animEntry(MaelduinHandaxeID) 
@@ -892,7 +966,7 @@ AxeAnim(MaelduinAxeID)
 BowAnim(MaelduinBowID) 
 HandAxeAnim(MaelduinHandaxeID)
 UnarmedAnim(MaelduinUnarmedID)
-weaponAnimEnd(4)
+weaponAnimEnd(6)
 
 Mogall_Anim:
 animEntry(MogallMagicID)
@@ -929,10 +1003,10 @@ SwordAnim(DemonKingMonsterID)
 LanceAnim(DemonKingMonsterID) 
 AxeAnim(DemonKingMonsterID) 
 UnarmedAnim(DemonKingMagicID)
-weaponAnimEnd(2)
+weaponAnimEnd(5)
 #endif 
 
-#ifdef _FE7_ 
+#ifndef _FE8_ 
 FireDragon_Anim:
 animEntry(FireDragonID)
 weaponAnimEnd(1)
@@ -942,6 +1016,10 @@ weaponAnimEnd(1)
 #ifdef _FE6_ 
 DivineDragon_Anim:
 animEntry(DivineDragonMagicID)
+weaponAnimEnd(1)
+
+DemonDragon_Anim: 
+animEntry(ManaketeUnarmedID)
 weaponAnimEnd(1)
 #endif 
 
@@ -957,11 +1035,10 @@ Shaman_Anim:
 animEntry(ShamanMagicID)
 weaponAnimEnd(1)
 
-#ifndef _FE7_ 
 Shaman_F_Anim:
 animEntry(ShamanFMagicID)
 weaponAnimEnd(1)
-#endif 
+
 
 #ifndef _FE6_ 
 Monk_Anim:
@@ -1018,69 +1095,68 @@ Bishop_Anim:
 animEntry(BishopMagicID) 
 StaffAnim(BishopFMagicID) // ? 
 UnarmedAnim(BishopUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(2)
 
 Bishop_F_Anim:
 animEntry(BishopFMagicID) 
 StaffAnim(BishopFMagicID) 
 UnarmedAnim(BishopFUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(2)
 
 Sage_Anim:
 animEntry(SageMagicID) 
 StaffAnim(SageStaffID) 
-weaponAnimEnd(2)
+weaponAnimEnd(1)
 
 Sage_F_Anim:
 animEntry(SageFMagicID) 
 StaffAnim(SageFStaffID) 
-weaponAnimEnd(2)
+weaponAnimEnd(1)
 
 Druid_Anim:
 animEntry(DruidMagicID) 
 StaffAnim(DruidStaffID) 
-weaponAnimEnd(2)
+weaponAnimEnd(1)
 
-#ifndef _FE7_ 
 Druid_F_Anim:
 animEntry(DruidFMagicID) 
 StaffAnim(DruidFStaffID) 
-weaponAnimEnd(2)
-#endif 
+weaponAnimEnd(1)
+
 
 #ifdef _FE7_ 
 DarkDruid_Anim:
 animEntry(DarkDruidMagicID) 
 StaffAnim(DarkDruidStaffID) 
-weaponAnimEnd(2)
+weaponAnimEnd(1)
 #endif 
 
 Valkyrie_Anim:
 animEntry(ValkyrieMagicID) 
 StaffAnim(ValkyrieStaffID) 
-weaponAnimEnd(2)
+weaponAnimEnd(1)
 
 #ifdef _FE8_ 
 MageKnight_Anim:
 animEntry(MageKnightMagicID) 
 StaffAnim(MageKnightStaffID) 
-weaponAnimEnd(2)
+weaponAnimEnd(1)
 
 MageKnight_F_Anim:
 animEntry(MageKnightFMagicID) 
 StaffAnim(MageKnightFStaffID) 
-weaponAnimEnd(2)
+weaponAnimEnd(1)
 
 
 Summoner_Anim:
 animEntry(SummonerMagicID) 
 StaffAnim(SummonerStaffID) 
-weaponAnimEnd(2)
+weaponAnimEnd(1)
 
 Necromancer_Anim:
 animEntry(NecromancerMagicID) 
 StaffAnim(NecromancerStaffID) 
-weaponAnimEnd(2)
+weaponAnimEnd(1)
 #endif 
 
 #ifdef _FE7_ 
@@ -1095,7 +1171,7 @@ animEntry(KnightLordSwordID)
 SwordAnim(KnightLordSwordID) 
 LanceAnim(KnightLordLanceID) 
 UnarmedAnim(KnightLordUnarmedID)
-weaponAnimEnd(4)
+weaponAnimEnd(3)
 
 HectorLord_Anim:
 animEntry(HectorLordHandaxeID) 
@@ -1104,7 +1180,7 @@ LanceAnim(HectorLordAxeID)
 AxeAnim(HectorLordAxeID) 
 HandAxeAnim(HectorLordHandaxeID)
 UnarmedAnim(HectorLordUnarmedID)
-weaponAnimEnd(3)
+weaponAnimEnd(5)
 
 HectorGreatLord_Anim:
 animEntry(HectorGreatLordHandaxeID) 
@@ -1116,6 +1192,7 @@ UnarmedAnim(HectorGreatLordUnarmedID)
 weaponAnimEnd(5)
 #endif 
 
+
 General_Anim:
 animEntry(GeneralHandaxeID)
 SwordAnim(GeneralSwordID) 
@@ -1125,7 +1202,6 @@ HandAxeAnim(GeneralHandaxeID)
 UnarmedAnim(GeneralUnarmedID)
 weaponAnimEnd(5)
 
-#ifdef _FE8_ 
 General_F_Anim:
 animEntry(GeneralFHandaxeID)
 SwordAnim(GeneralFSwordID) 
@@ -1134,7 +1210,7 @@ AxeAnim(GeneralFAxeID)
 HandAxeAnim(GeneralFHandaxeID)
 UnarmedAnim(GeneralFUnarmedID)
 weaponAnimEnd(5)
-#endif 
+
 
 #ifdef _FE6_ 
 King_Anim:
