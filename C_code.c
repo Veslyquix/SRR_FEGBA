@@ -842,13 +842,6 @@ int IsCharIdInvalidForGame(int charId)
     }
 #endif
 #ifdef FE8
-    if (VeslyBuildfile_Link)
-    {
-        if (charId > 0x22 && charId < 0x6e)
-        { // to stop Lyon from becoming someone else
-            return true;
-        }
-    }
     if ((charId > 0x3a && charId < 0x6e) || (charId > 0x7f && charId < 0x95) || (charId == 0x99) || (charId == 0x9F) ||
         (charId > 0xA5 && charId < 0xC5) || (charId > 0xA7 && charId < 0xC5) || (charId == 0xC6) || (charId > 0xCC))
     {
@@ -1266,6 +1259,15 @@ struct PidStatsChar * GetPidStatsSafe(int i)
     {
         return NULL;
     }
+#ifdef FE8
+    if (VeslyBuildfile_Link)
+    {
+        if (i > 0x22 && i < 0x6e)
+        { // to stop Lyon from becoming someone else
+            return NULL;
+        }
+    }
+#endif
 
     return pidStats;
 }
