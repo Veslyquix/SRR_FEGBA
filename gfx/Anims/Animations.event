@@ -1164,43 +1164,43 @@ weaponAnimEnd
 #endif 
 
 #ifdef _FE7_ 
-EliwoodLord_Anim:
-animEntry(EliwoodLordSwordID)
-SwordAnim(EliwoodLordSwordID) 
-UnarmedAnim(EliwoodLordUnarmedID)
-weaponAnimEnd 
+    EliwoodLord_Anim:
+    animEntry(EliwoodLordSwordID)
+    SwordAnim(EliwoodLordSwordID) 
+    UnarmedAnim(EliwoodLordUnarmedID)
+    weaponAnimEnd 
 
-KnightLord_Anim:
-#ifdef _FE7_ 
-wA(Durandal, KnightLordDurandalID) 
+    KnightLord_Anim:
+    #ifdef _FE7_ 
+    wA(Durandal, KnightLordDurandalID) 
+    #endif 
+    animEntry(KnightLordSwordID)
+    SwordAnim(KnightLordSwordID) 
+    LanceAnim(KnightLordLanceID) 
+    UnarmedAnim(KnightLordUnarmedID)
+    weaponAnimEnd 
+
+    HectorLord_Anim:
+    animEntry(HectorLordHandaxeID) 
+    SwordAnim(HectorLordAxeID) 
+    LanceAnim(HectorLordAxeID) 
+    AxeAnim(HectorLordAxeID) 
+    HandAxeAnim(HectorLordHandaxeID)
+    UnarmedAnim(HectorLordUnarmedID)
+    weaponAnimEnd
+
+    HectorGreatLord_Anim:
+    #ifdef _FE7_ 
+    wA(Armads, HectorGreatLordArmadsID) 
+    #endif 
+    animEntry(HectorGreatLordHandaxeID) 
+    SwordAnim(HectorGreatLordSwordID) 
+    LanceAnim(HectorGreatLordSwordID) 
+    AxeAnim(HectorGreatLordAxeID) 
+    HandAxeAnim(HectorGreatLordHandaxeID)
+    UnarmedAnim(HectorGreatLordUnarmedID)
+    weaponAnimEnd 
 #endif 
-animEntry(KnightLordSwordID)
-SwordAnim(KnightLordSwordID) 
-LanceAnim(KnightLordLanceID) 
-UnarmedAnim(KnightLordUnarmedID)
-weaponAnimEnd 
-
-HectorLord_Anim:
-animEntry(HectorLordHandaxeID) 
-SwordAnim(HectorLordAxeID) 
-LanceAnim(HectorLordAxeID) 
-AxeAnim(HectorLordAxeID) 
-HandAxeAnim(HectorLordHandaxeID)
-UnarmedAnim(HectorLordUnarmedID)
-weaponAnimEnd
-
-HectorGreatLord_Anim:
-#ifdef _FE7_ 
-wA(Armads, HectorGreatLordArmadsID) 
-#endif 
-animEntry(HectorGreatLordHandaxeID) 
-SwordAnim(HectorGreatLordSwordID) 
-LanceAnim(HectorGreatLordSwordID) 
-AxeAnim(HectorGreatLordAxeID) 
-HandAxeAnim(HectorGreatLordHandaxeID)
-UnarmedAnim(HectorGreatLordUnarmedID)
-weaponAnimEnd 
-
 
 
 General_Anim:
