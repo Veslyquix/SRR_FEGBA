@@ -238,6 +238,11 @@ palEntry(Lucina, Hero_F, LucinaPal_Hero_F)
 #ifdef _FE8_
 palEntry(Lucina, Ranger_F, LucinaPal_Ranger_F_FE8)
 #endif
+palEntry(Lucina, Myrmidon, LucinaPal_Myrmidon)
+#ifndef _FE6_
+palEntry(Lucina, Assassin, LucinaPal_Assassin_FE7FE8)
+#endif
+palEntry(Lucina, Swordmaster, LucinaPal_Swordmaster)
 palEntry(Sayri, Myrmidon_F, SayriPal_Myrmidon_F)
 #ifndef _FE6_
 palEntry(Sayri, Assassin_F, SayriPal_Assassin_F_FE7FE8)
@@ -922,6 +927,18 @@ BYTE $98 $77 $F3 $6E $4E $5A $8A $59 $07 $3D $C5 $2C $37 $2E $A5 $14
 LucinaPal_Ranger_F_FE8:
 BYTE $55 $53 $FF $7F $FF $4B $BD $2E $F4 $1D $07 $3D $AC $61 $28 $41
 BYTE $DE $7F $5A $6F $52 $4E $29 $29 $FC $22 $8A $59 $2D $11 $A5 $14
+
+LucinaPal_Myrmidon:
+BYTE $55 $53 $FF $7F $FF $6B $3F $4B $2E $19 $AC $61 $28 $41 $E6 $30
+BYTE $56 $7B $6F $5E $CA $49 $0D $76 $8A $59 $07 $3D $C5 $2C $A5 $14
+
+LucinaPal_Assassin_FE7FE8:
+BYTE $00 $7E $FF $7F $9D $5F $FB $46 $4C $19 $0D $76 $AC $61 $E6 $30
+BYTE $56 $7B $6F $5E $8A $59 $35 $3A $8A $59 $07 $3D $C5 $2C $A5 $14
+
+LucinaPal_Swordmaster:
+BYTE $00 $7E $FF $7F $DF $57 $BC $36 $91 $25 $AC $61 $28 $41 $E6 $30
+BYTE $56 $7B $6F $5E $CA $49 $0D $76 $8A $59 $07 $3D $C5 $2C $A5 $14
 
 SayriPal_Myrmidon_F:
 BYTE $55 $53 $FF $7F $FF $6B $3F $4B $2E $19 $10 $42 $8C $31 $08 $21

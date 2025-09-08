@@ -481,8 +481,10 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 #ifndef _FE8_ 
     #define EirikaLord (Lord_F_Eirika_Sword_ISwalk+1)
     #define EirikaGreat (Great_Lord_F_Eirika_Sword_ISwalk+1)
+    #define EirikaMasterLord EirikaGreat 
     #define EphraimLord (Lord_M_Ephraim_Lance_ISwalk+1)
     #define EphraimGreat (Great_Lord_M_Ephraim_Lance_ISwalk+1) 
+    #define EphraimMasterLord EphraimGreat
 #else 
     #define EirikaGreat EirikaMasterLord // from ea std lib  
     #define EphraimGreat EphraimMasterLord // from ea std lib
