@@ -200,14 +200,14 @@ palEntry(Camilla, WyvernLord_F, CamillaPal_WyvernLord_F)
 palEntry(Camilla, WyvernKnight_F, CamillaPal_WyvernKnight_F_FE8)
 #endif
 #ifdef _FE6_
-palEntry(Selena, Mercenary, SelenaPal_Mercenary_FE6)
+palEntry(SelenaFE14, Mercenary, SelenaFE14Pal_Mercenary_FE6)
 #endif
 #ifndef _FE6_
-palEntry(Selena, Mercenary_F, SelenaPal_Mercenary_F_FE7FE8)
+palEntry(SelenaFE14, Mercenary_F, SelenaFE14Pal_Mercenary_F_FE7FE8)
 #endif
-palEntry(Selena, Hero_F, SelenaPal_Hero_F)
+palEntry(SelenaFE14, Hero_F, SelenaFE14Pal_Hero_F)
 #ifdef _FE8_
-palEntry(Selena, Ranger_F, SelenaPal_Ranger_F_FE8)
+palEntry(SelenaFE14, Ranger_F, SelenaFE14Pal_Ranger_F_FE8)
 #endif
 palEntry(Beruka, WyvernRider_F, BerukaPal_WyvernRider_F)
 palEntry(Beruka, WyvernLord_F, BerukaPal_WyvernLord_F)
@@ -984,19 +984,19 @@ CamillaPal_WyvernKnight_F_FE8:
 BYTE $00 $7E $FF $7F $1F $7C $00 $00 $18 $3A $1E $4B $B0 $2D $DA $7A
 BYTE $13 $5E $77 $6A $54 $62 $8E $41 $2A $31 $C7 $20 $C8 $10 $A5 $14
 
-SelenaPal_Mercenary_FE6:
+SelenaFE14Pal_Mercenary_FE6:
 BYTE $00 $7E $FF $7F $4E $19 $F2 $3D $0C $52 $98 $77 $F9 $1C $D3 $18
 BYTE $F3 $6E $57 $4A $FF $6B $9E $4B $4F $19 $9C $42 $CC $18 $A5 $14
 
-SelenaPal_Mercenary_F_FE7FE8:
+SelenaFE14Pal_Mercenary_F_FE7FE8:
 BYTE $00 $7E $FF $7F $4E $19 $F2 $3D $0C $52 $98 $77 $F9 $1C $D3 $18
 BYTE $F3 $6E $57 $4A $DF $5F $D6 $21 $CC $18 $1F $4B $E9 $1C $A5 $14
 
-SelenaPal_Hero_F:
+SelenaFE14Pal_Hero_F:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $1D $F9 $1C $D3 $18 $CC $18
 BYTE $98 $77 $F3 $6E $4E $5A $57 $4A $F2 $3D $E9 $1C $37 $2E $A5 $14
 
-SelenaPal_Ranger_F_FE8:
+SelenaFE14Pal_Ranger_F_FE8:
 BYTE $55 $53 $FF $7F $FF $4B $BD $2E $F4 $1D $E9 $1C $F9 $1C $D3 $18
 BYTE $1F $63 $9F $31 $B2 $14 $6C $0C $FC $22 $F2 $3D $2D $11 $A5 $14
 
