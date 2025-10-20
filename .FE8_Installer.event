@@ -472,6 +472,12 @@ WORD 0
 
 PUSH 
 
+// I was trying to fix a bug with movement costs > 2 that could cause an infinite loop 
+// but changing this also changed how far enemies could move 
+ORG $81B // in MapFloodCoreStep
+// BYTE $2a // bcs instead of vanilla bhi
+// copied into 3003D70 / 300487c
+
 #define jumpToHack_r6(offset) "BYTE 0x00 0x4E 0x30 0x47; POIN (offset|0x1); PROTECT CURRENTOFFSET-8 CURRENTOFFSET-1"
 
 #ifndef ShopExpansion_NoRandItems 

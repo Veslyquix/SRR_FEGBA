@@ -53,10 +53,11 @@ POIN NewItemIcons
 #ifdef _FE6_ 
 
 ORG $4A98 
-SHORT $1FE $100 
+// SHORT $1FE $100 
 // WORD 0x2025B6C 
-WORD 0x2022B08 //gBG2TilemapBuffer
+// WORD 0x2022B08 //gBG2TilemapBuffer
 // This might break something 
+// indeed, it broke prep screen text display 
 
 ORG $4CEC
 POIN NewItemIcons

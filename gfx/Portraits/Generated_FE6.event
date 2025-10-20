@@ -996,12 +996,14 @@ MugEntry(HaydenMug, HaydenMugData, HaydenMinimugData, HaydenPaletteData,  2, 5, 
 MugEntry(InnesMug, InnesMugData, InnesMinimugData, InnesPaletteData,  2, 5, 3, 3)
 MugEntry(IsmaireMug, IsmaireMugData, IsmaireMinimugData, IsmairePaletteData,  2, 6, 3, 4)
 MugEntry(JoshuaMug, JoshuaMugData, JoshuaMinimugData, JoshuaPaletteData,  2, 5, 3, 3)
+MugEntry(KlimtMug, KlimtMugData, KlimtMinimugData, KlimtPaletteData,  2, 5, 3, 3)
 MugEntry(KnollMug, KnollMugData, KnollMinimugData, KnollPaletteData,  2, 5, 3, 3)
 MugEntry(KyleMug, KyleMugData, KyleMinimugData, KylePaletteData,  2, 5, 3, 3)
 MugEntry(LarachelMug, LarachelMugData, LarachelMinimugData, LarachelPaletteData,  2, 6, 3, 4)
 MugEntry(LuteMug, LuteMugData, LuteMinimugData, LutePaletteData,  2, 6, 3, 4)
 MugEntry(LyonMug, LyonMugData, LyonMinimugData, LyonPaletteData,  2, 5, 3, 3)
 MugEntry(MarisaMug, MarisaMugData, MarisaMinimugData, MarisaPaletteData,  2, 6, 3, 4)
+MugEntry(MessengerFE8Mug, MessengerFE8MugData, MessengerFE8MinimugData, MessengerFE8PaletteData,  2, 5, 3, 3)
 MugEntry(MoulderMug, MoulderMugData, MoulderMinimugData, MoulderPaletteData,  2, 5, 3, 3)
 MugEntry(MyrrhMug, MyrrhMugData, MyrrhMinimugData, MyrrhPaletteData,  2, 7, 3, 5)
 MugEntry(NatashaMug, NatashaMugData, NatashaMinimugData, NatashaPaletteData,  2, 6, 3, 4)
@@ -1137,11 +1139,13 @@ MugEntry(KayacheyMug, KayacheyMugData, KayacheyMinimugData, KayacheyPaletteData,
 MugEntry(KezhdaMug, KezhdaMugData, KezhdaMinimugData, KezhdaPaletteData,  4, 6, 2, 4)
 MugEntry(KimaarsiMug, KimaarsiMugData, KimaarsiMinimugData, KimaarsiPaletteData,  3, 5, 3, 2)
 MugEntry(KotaffMug, KotaffMugData, KotaffMinimugData, KotaffPaletteData,  3, 4, 3, 2)
+MugEntry(LavertonMug, LavertonMugData, LavertonMinimugData, LavertonPaletteData,  2, 5, 2, 3)
 MugEntry(LekainMug, LekainMugData, LekainMinimugData, LekainPaletteData,  2, 5, 2, 3)
 MugEntry(MackoyaMug, MackoyaMugData, MackoyaMinimugData, MackoyaPaletteData,  4, 4, 4, 2)
 MugEntry(MaijinMug, MaijinMugData, MaijinMinimugData, MaijinPaletteData,  3, 4, 3, 2)
 MugEntry(NedataMug, NedataMugData, NedataMinimugData, NedataPaletteData,  3, 5, 3, 3)
 MugEntry(NorrisMug, NorrisMugData, NorrisMinimugData, NorrisPaletteData,  3, 4, 2, 2)
+MugEntry(NumidaMug, NumidaMugData, NumidaMinimugData, NumidaPaletteData,  2, 6, 2, 4)
 MugEntry(PetrineMug, PetrineMugData, PetrineMinimugData, PetrinePaletteData,  3, 5, 3, 3)
 MugEntry(PugoMug, PugoMugData, PugoMinimugData, PugoPaletteData,  3, 5, 3, 3)
 MugEntry(RikardMug, RikardMugData, RikardMinimugData, RikardPaletteData,  3, 4, 3, 2)
@@ -4109,12 +4113,12 @@ ClarisseMinimugData:
 
 ALIGN 4
 CordMugData:
-#incbin "png/FE1FE3FE11FE12/Cord_Frigid_Nickt_Glaceo_F2E_portrait_frames_fe6.dmp"
+#incbin "png/FE1FE3FE11FE12/Cord_Frigid_Nickt_Glaceo_portrait_frames_fe6.dmp"
 ALIGN 4
 CordPaletteData:
-#incbin "png/FE1FE3FE11FE12/Cord_Frigid_Nickt_Glaceo_F2E_palette.dmp"
+#incbin "png/FE1FE3FE11FE12/Cord_Frigid_Nickt_Glaceo_palette.dmp"
 CordMinimugData:
-#incbin "png/FE1FE3FE11FE12/Cord_Frigid_Nickt_Glaceo_F2E_minimugfe6.dmp"
+#incbin "png/FE1FE3FE11FE12/Cord_Frigid_Nickt_Glaceo_minimugfe6.dmp"
 
 ALIGN 4
 DarrosMugData:
@@ -4325,12 +4329,12 @@ LindeMinimugData:
 
 ALIGN 4
 LorenzMugData:
-#incbin "png/FE1FE3FE11FE12/Lorenz_Melia_F2E_portrait_frames_fe6.dmp"
+#incbin "png/FE1FE3FE11FE12/Lorenz_Melia_portrait_frames_fe6.dmp"
 ALIGN 4
 LorenzPaletteData:
-#incbin "png/FE1FE3FE11FE12/Lorenz_Melia_F2E_palette.dmp"
+#incbin "png/FE1FE3FE11FE12/Lorenz_Melia_palette.dmp"
 LorenzMinimugData:
-#incbin "png/FE1FE3FE11FE12/Lorenz_Melia_F2E_minimugfe6.dmp"
+#incbin "png/FE1FE3FE11FE12/Lorenz_Melia_minimugfe6.dmp"
 
 ALIGN 4
 LukeMugData:
@@ -10111,6 +10115,15 @@ JoshuaMinimugData:
 #incbin "png/FE8/Joshua_minimugfe6.dmp"
 
 ALIGN 4
+KlimtMugData:
+#incbin "png/FE8/Klimt_portrait_frames_fe6.dmp"
+ALIGN 4
+KlimtPaletteData:
+#incbin "png/FE8/Klimt_palette.dmp"
+KlimtMinimugData:
+#incbin "png/FE8/Klimt_minimugfe6.dmp"
+
+ALIGN 4
 KnollMugData:
 #incbin "png/FE8/Knoll_portrait_frames_fe6.dmp"
 ALIGN 4
@@ -10163,6 +10176,15 @@ MarisaPaletteData:
 #incbin "png/FE8/Marisa_palette.dmp"
 MarisaMinimugData:
 #incbin "png/FE8/Marisa_minimugfe6.dmp"
+
+ALIGN 4
+MessengerFE8MugData:
+#incbin "png/FE8/MessengerFE8_portrait_frames_fe6.dmp"
+ALIGN 4
+MessengerFE8PaletteData:
+#incbin "png/FE8/MessengerFE8_palette.dmp"
+MessengerFE8MinimugData:
+#incbin "png/FE8/MessengerFE8_minimugfe6.dmp"
 
 ALIGN 4
 MoulderMugData:
@@ -11380,6 +11402,15 @@ KotaffMinimugData:
 #incbin "png/FE9FE10_Bosses/Kotaff_Nickt_minimugfe6.dmp"
 
 ALIGN 4
+LavertonMugData:
+#incbin "png/FE9FE10_Bosses/Laverton_Eden_portrait_frames_fe6.dmp"
+ALIGN 4
+LavertonPaletteData:
+#incbin "png/FE9FE10_Bosses/Laverton_Eden_palette.dmp"
+LavertonMinimugData:
+#incbin "png/FE9FE10_Bosses/Laverton_Eden_minimugfe6.dmp"
+
+ALIGN 4
 LekainMugData:
 #incbin "png/FE9FE10_Bosses/Lekain_quotedotlass_portrait_frames_fe6.dmp"
 ALIGN 4
@@ -11423,6 +11454,15 @@ NorrisPaletteData:
 #incbin "png/FE9FE10_Bosses/Norris_Nickt_palette.dmp"
 NorrisMinimugData:
 #incbin "png/FE9FE10_Bosses/Norris_Nickt_minimugfe6.dmp"
+
+ALIGN 4
+NumidaMugData:
+#incbin "png/FE9FE10_Bosses/Numida_Eden_portrait_frames_fe6.dmp"
+ALIGN 4
+NumidaPaletteData:
+#incbin "png/FE9FE10_Bosses/Numida_Eden_palette.dmp"
+NumidaMinimugData:
+#incbin "png/FE9FE10_Bosses/Numida_Eden_minimugfe6.dmp"
 
 ALIGN 4
 PetrineMugData:

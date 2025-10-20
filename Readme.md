@@ -771,7 +771,7 @@ Kayachey portrait by Nickt
 Kezhda portrait by Canigetfrozen, Norikins      
 Kimaarsi portrait by Nickt    
 Kotaff portrait by Nickt      
-Laverton portrait by Nickt    
+Laverton portrait by Eden    
 Lekain portrait by quotedotlass      
 Levail portrait by Nickt      
 Lombroso portrait by Nickt    
@@ -782,7 +782,7 @@ Maraj portrait by Nickt
 Nedata portrait by Nickt      
 Nickt portrait by Nickt       
 Norris portrait by Nickt      
-Numida portrait by Nickt      
+Numida portrait by Eden      
 Pain portrait by Nickt        
 Petrine portrait by Garytop     
 Pugo portrait by Nickt, Cygnus        
