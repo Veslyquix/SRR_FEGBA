@@ -1563,6 +1563,266 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     DisplayUiVArrow(176, 101, 0x3240, 0);
     // DisplayUiVArrow(176, 141, 0x3240, 0);
 }
+extern const int SRR_TotalOptions;
+
+#ifdef FE8
+extern int IsClassesOptionAvailable(void);
+extern int IsGrowthsOptionAvailable(void);
+extern int IsStatCapsOptionAvailable(void);
+extern int IsCasualModeOptionAvailable(void);
+extern int IsFromGameOptionAvailable(void);
+extern int IsBonusLevelsOptionAvailable(void);
+extern int IsRecruitmentOptionAvailable(void);
+extern int IsFilterClassesOptionAvailable(void);
+extern int IsFilterCharsOptionAvailable(void);
+extern int IsSkillsOptionAvailable(void);
+extern int IsTimedHitsOptionAvailable(void);
+extern int IsClutter1OptionAvailable(void);
+extern int IsClutter2OptionAvailable(void);
+extern int IsClutter3OptionAvailable(void);
+extern int IsClutter4OptionAvailable(void);
+
+/*
+// a switch case doesn't compile because these options are extern ints, not definitions
+int IsConfigMenuOptionAvailable(int id)
+{
+
+    switch (id)
+    {
+        case SeedOption:
+        case SaveOption:
+        case SettingsOption:
+        case VarianceOption:
+        case ItemOption:
+        case ReloadUnitsOption:
+        case DebuggerOption:
+        {
+            return true;
+        }
+
+        case PlayerRecruitmentOption:
+        case PlayerBossOption:
+        case EnemyRecruitmentOption:
+        case EnemyPlayerOption:
+        {
+            return IsRecruitmentOptionAvailable();
+        }
+        case FromGameOption:
+        case EnemyFromGameOption:
+        {
+            return IsFromGameOptionAvailable();
+        }
+
+        case FilterCharsOption:
+        case PreviewCharsOption:
+        {
+            return IsFilterCharsOptionAvailable();
+        }
+
+        case GrowthsOption:
+        {
+            return IsGrowthsOptionAvailable();
+        }
+
+        case StatCapsOption:
+        {
+            return IsStatCapsOptionAvailable();
+        }
+        case ClassOption:
+        {
+            return IsClassesOptionAvailable();
+        }
+        case FilterClassOption:
+        case FilterEnemyClassOption:
+        {
+            return IsFilterClassesOptionAvailable();
+        }
+
+        case ModeOption:
+        {
+            return IsCasualModeOptionAvailable();
+        }
+
+        case BaseStatsOption:
+        case LevelupsOption:
+        case DangerBonesOption:
+        case VanillaItemOption:
+        case DurabilityOption:
+
+        {
+            return IsClutter1OptionAvailable();
+        }
+
+        case MusicOption:
+        case BattleBGMOption:
+        {
+            return IsClutter2OptionAvailable();
+        }
+
+        case PortraitsOption:
+        case ColoursOption:
+        case UiOption:
+        case BGOption:
+        {
+            return IsClutter3OptionAvailable();
+        }
+
+        case PlayerBonusOption:
+        case PlayerBonusGrowthOption:
+        case EnemyBonusOption:
+        case EnemyBonusGrowthOption:
+        {
+            return IsBonusLevelsOptionAvailable();
+        }
+
+        case FogOption:
+        case SoftlockOption:
+        {
+            return IsClutter4OptionAvailable();
+        }
+
+        case SkipChOption:
+        {
+            return false;
+        }
+
+        case TimedHitsOption:
+        {
+            return IsTimedHitsOptionAvailable();
+        }
+        case SkillsOption:
+        {
+            return IsSkillsOptionAvailable();
+        }
+    }
+
+    return true;
+}
+*/
+int IsConfigMenuOptionAvailable(int id)
+{
+    if (id == SeedOption || id == SaveOption || id == SettingsOption || id == VarianceOption || id == ItemOption ||
+        id == ReloadUnitsOption || id == DebuggerOption)
+    {
+        return true;
+    }
+
+    else if (
+        id == PlayerRecruitmentOption || id == PlayerBossOption || id == EnemyRecruitmentOption ||
+        id == EnemyPlayerOption)
+    {
+        return IsRecruitmentOptionAvailable();
+    }
+
+    else if (id == FromGameOption || id == EnemyFromGameOption)
+    {
+        return IsFromGameOptionAvailable();
+    }
+
+    else if (id == FilterCharsOption || id == PreviewCharsOption)
+    {
+        return IsFilterCharsOptionAvailable();
+    }
+
+    else if (id == GrowthsOption)
+    {
+        return IsGrowthsOptionAvailable();
+    }
+
+    else if (id == StatCapsOption)
+    {
+        return IsStatCapsOptionAvailable();
+    }
+
+    else if (id == ClassOption)
+    {
+        return IsClassesOptionAvailable();
+    }
+
+    else if (id == FilterClassOption || id == FilterEnemyClassOption)
+    {
+        return IsFilterClassesOptionAvailable();
+    }
+
+    else if (id == ModeOption)
+    {
+        return IsCasualModeOptionAvailable();
+    }
+
+    else if (
+        id == BaseStatsOption || id == LevelupsOption || id == DangerBonesOption || id == VanillaItemOption ||
+        id == DurabilityOption)
+    {
+        return IsClutter1OptionAvailable();
+    }
+
+    else if (id == MusicOption || id == BattleBGMOption)
+    {
+        return IsClutter2OptionAvailable();
+    }
+
+    else if (id == PortraitsOption || id == ColoursOption || id == UiOption || id == BGOption)
+    {
+        return IsClutter3OptionAvailable();
+    }
+
+    else if (
+        id == PlayerBonusOption || id == PlayerBonusGrowthOption || id == EnemyBonusOption ||
+        id == EnemyBonusGrowthOption)
+    {
+        return IsBonusLevelsOptionAvailable();
+    }
+
+    else if (id == FogOption || id == SoftlockOption)
+    {
+        return IsClutter4OptionAvailable();
+    }
+
+    else if (id == SkipChOption)
+    {
+        return false;
+    }
+
+    else if (id == TimedHitsOption)
+    {
+        return IsTimedHitsOptionAvailable();
+    }
+
+    else if (id == SkillsOption)
+    {
+        return IsSkillsOptionAvailable();
+    }
+
+    return true;
+}
+#endif
+#ifndef FE8
+int IsConfigMenuOptionAvailable(int id)
+{
+    return true;
+}
+#endif
+
+void BuildAvailableOptionsForMenu(s8 * buf)
+{
+    int c = 0;
+    for (int i = 0; i <= SRR_TotalOptions; ++i)
+    {
+        buf[i] = (-1);
+        if (IsConfigMenuOptionAvailable(i))
+        {
+            buf[c] = i;
+            c++;
+        }
+    }
+}
+
+int GetReorderedMenuId(int id)
+{
+    s8 buf[SRR_TotalOptions + 1];
+    BuildAvailableOptionsForMenu(buf);
+    return buf[id];
+}
 
 struct FaceData
 {
@@ -12742,7 +13002,7 @@ extern int DisplayRandomSkillsOption;
 extern int DisplayTimedHitsOption;
 const int SRR_MAXDISP = 7;
 const int SRR_NUMBERDISP = 8;
-extern const int SRR_TotalOptions;
+
 #define MaxTW 8
 #define MaxRTW 16
 
@@ -12757,11 +13017,15 @@ const char * GetSRRText(int id1, int id2)
     return string;
 }
 
-void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
+void DrawSRRText(ConfigMenuProc * proc, int i, int offset, int id)
 {
+    if (id < 0)
+    {
+        return;
+    }
     struct Text * th = gStatScreen.text;
     // const char ** textEntry = SRRText_POIN[i + offset];
-    const char * string = GetSRRText(i + offset, proc->Option[i + offset]);
+    const char * string = GetSRRText(id, proc->Option[id]);
     // if (i + offset == FromGameOption)
     // {
     // if (CountOptionAmount(i + offset) == proc->Option[i + offset])
@@ -12854,7 +13118,8 @@ void DrawConfigMenu(ConfigMenuProc * proc)
 
     for (int i = 0; i < SRR_NUMBERDISP; ++i)
     {
-        DrawSRRText(proc, i, offset2);
+        // DrawSRRText(proc, i, offset2, i+offset2);
+        DrawSRRText(proc, i, offset2, GetReorderedMenuId(i + offset2));
     }
     BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
@@ -13589,6 +13854,14 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     int id = proc->id;
     int offset = proc->offset;
+    int id_adj = GetReorderedMenuId(id + offset);
+    if (id_adj < 0)
+    {
+        proc->id = 0;
+        proc->offset = 0;
+        RedrawAllText(proc);
+        return;
+    }
     if (proc->helpBox)
     {
         keys |= sKeyStatusBuffer.repeatedKeys;
@@ -13647,17 +13920,17 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             PlayScrollMenuSfx();
             id += offset;
-            if (proc->Option[id] < (CountOptionAmount(id)))
+            if (proc->Option[id_adj] < (CountOptionAmount(id_adj)))
             {
-                proc->Option[id]++;
-                if (proc->Option[id] == CountDispOptionAmount(id))
+                proc->Option[id_adj]++;
+                if (proc->Option[id_adj] == CountDispOptionAmount(id_adj))
                 {
-                    proc->Option[id] = CountOptionAmount(id);
+                    proc->Option[id_adj] = CountOptionAmount(id_adj);
                 }
             }
             else
             {
-                proc->Option[id] = 0;
+                proc->Option[id_adj] = 0;
             }
             proc->redraw = RedrawSome;
             proc->clear = true;
@@ -13667,17 +13940,17 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             PlayScrollMenuSfx();
             id += offset;
-            if (proc->Option[id] > 0)
+            if (proc->Option[id_adj] > 0)
             {
-                proc->Option[id]--;
-                if (proc->Option[id] > CountDispOptionAmount(id))
+                proc->Option[id_adj]--;
+                if (proc->Option[id_adj] > CountDispOptionAmount(id_adj))
                 {
-                    proc->Option[id] = CountDispOptionAmount(id) - 1;
+                    proc->Option[id_adj] = CountDispOptionAmount(id_adj) - 1;
                 }
             }
             else
             {
-                proc->Option[id] = CountOptionAmount(id);
+                proc->Option[id_adj] = CountOptionAmount(id_adj);
             }
             proc->redraw = RedrawSome;
             proc->clear = true;
@@ -13715,7 +13988,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     if ((keys & START_BUTTON) || (keys & A_BUTTON))
     { // press A or Start to continue
 
-        if ((id + offset) == SaveOption)
+        if ((id_adj) == SaveOption)
         {
             if (proc->Option[SaveOption] == 0)
             {
@@ -13735,7 +14008,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
                 }
             }
         }
-        if ((id + offset) == SettingsOption)
+        if ((id_adj) == SettingsOption)
         {
             CopyConfigProcIntoRam(proc);
             if (proc->Option[SettingsOption] == 0)
@@ -13755,7 +14028,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             return;
         }
 
-        if (((id + offset) != SaveOption) && (id + offset) != SettingsOption)
+        if (((id_adj) != SaveOption) && (id_adj) != SettingsOption)
         {
             CopyConfigProcIntoRam(proc);
             PlaySuccessSfx();
@@ -13770,7 +14043,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
     // Handle seed
 
-    if (id + offset == SeedOption)
+    if (id_adj == SeedOption)
     {
         // if (proc->digit == 9) {
         if (!proc->freezeSeed)
@@ -13857,7 +14130,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     //
 
-    if (((id + offset) == SkillsOption) && (proc->Option[SkillsOption] == 3) && (proc->choosingSkill))
+    if (((id_adj) == SkillsOption) && (proc->Option[SkillsOption] == 3) && (proc->choosingSkill))
     {
 
         if (keys & DPAD_UP)
@@ -13948,18 +14221,18 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     {
         PlayScrollMenuSfx();
         id += offset;
-        if (proc->Option[id] < (CountOptionAmount(id)))
+        if (proc->Option[id_adj] < (CountOptionAmount(id_adj)))
         {
-            proc->Option[id]++;
-            if (proc->Option[id] ==
-                CountDispOptionAmount(id)) // DispOptionAmount is for the FromGame to skip the bosses options
+            proc->Option[id_adj]++;
+            if (proc->Option[id_adj] ==
+                CountDispOptionAmount(id_adj)) // DispOptionAmount is for the FromGame to skip the bosses options
             {
-                proc->Option[id] = CountOptionAmount(id);
+                proc->Option[id_adj] = CountOptionAmount(id_adj);
             }
         }
         else
         {
-            proc->Option[id] = 0;
+            proc->Option[id_adj] = 0;
         }
         proc->redraw = RedrawSome;
         proc->clear = true;
@@ -13969,17 +14242,17 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     {
         PlayScrollMenuSfx();
         id += offset;
-        if (proc->Option[id] > 0)
+        if (proc->Option[id_adj] > 0)
         {
-            proc->Option[id]--;
-            if (proc->Option[id] > CountDispOptionAmount(id))
+            proc->Option[id_adj]--;
+            if (proc->Option[id_adj] > CountDispOptionAmount(id_adj))
             {
-                proc->Option[id] = CountDispOptionAmount(id) - 1;
+                proc->Option[id_adj] = CountDispOptionAmount(id_adj) - 1;
             }
         }
         else
         {
-            proc->Option[id] = CountOptionAmount(id);
+            proc->Option[id_adj] = CountOptionAmount(id_adj);
         }
         proc->redraw = RedrawSome;
         proc->clear = true;
@@ -13988,7 +14261,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0);
     if (proc->redraw == RedrawSome)
     {
-        if (((id + offset) == SkillsOption) && (proc->Option[SkillsOption] == 3))
+        if (((id_adj) == SkillsOption) && (proc->Option[SkillsOption] == 3))
         {
             proc->choosingSkill = true;
         }
@@ -14004,18 +14277,22 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
 extern const char * RandomizerText;
 const char * GetSRRMenuText(ConfigMenuProc * proc, int index);
-void DrawSRRHeader(ConfigMenuProc * proc, int id, int offset2)
+void DrawSRRHeader(ConfigMenuProc * proc, int i, int offset2, int id)
 {
+    if (id < 0)
+    {
+        return;
+    }
     int colour = gold;
-    if ((id + offset2 == FilterCharsOption) || (id + offset2 == PreviewCharsOption) ||
-        (id + offset2 == FilterClassOption) || (id + offset2 == FilterEnemyClassOption))
+    if ((i + offset2 == FilterCharsOption) || (i + offset2 == PreviewCharsOption) ||
+        (i + offset2 == FilterClassOption) || (i + offset2 == FilterEnemyClassOption))
     {
         colour = white;
     }
     struct Text * th = gStatScreen.text; // max 34 normally
     PutDrawText(
-        &th[id], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((id) * 2)), colour, 0, MaxTW,
-        PutStringInBuffer((void *)GetSRRMenuText(proc, id + offset2), false));
+        &th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), colour, 0, MaxTW,
+        PutStringInBuffer((void *)GetSRRMenuText(proc, id), false));
 }
 
 void RedrawAllText(ConfigMenuProc * proc)
@@ -14034,7 +14311,8 @@ void RedrawAllText(ConfigMenuProc * proc)
 
     for (int i = 0; i < SRR_NUMBERDISP; ++i)
     {
-        DrawSRRHeader(proc, i, offset2);
+        // DrawSRRHeader(proc, i, offset2, i+offset2);
+        DrawSRRHeader(proc, i, offset2, GetReorderedMenuId(i + offset2));
     }
 
     DrawConfigMenu(proc);
