@@ -637,7 +637,7 @@ SRRMenu(UiOpt);                 txt("User Interface")
 SRRDesc(UiOpt); txt("Changes the visual style of\various menus in the game."); 
 SRRMenu(DebuggerOpt);           txt("Debugger")
 SRRDesc(DebuggerOpt,0); txt("Pressing B on units does nothing."); 
-SRRDesc(DebuggerOpt,1); txt("Pressing B on units opens the debugger,\'The tool for everything'."); 
+SRRDesc(DebuggerOpt,1); txt("Pressing B on units opens the debugger,\'The tool for everything'.\Disables achievements."); 
 SRRMenu(BGOpt);                 txt("Backgrounds")
 SRRDesc(BGOpt,0); txt("Backgrounds in events are\unchanged."); 
 SRRDesc(BGOpt,1); txt("This is like being in another\place, regardless of story."); 
