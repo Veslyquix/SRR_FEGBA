@@ -5,35 +5,80 @@
 [[config.modules]]
   name = "TilemapZane"
 
-[[config.modules]]
-  name = "FullInventoryFirstFixed"
-
-  [[config.definitions]]
-    name = "INVENTORY_ICON_X"
-    value = 48
-
-  [[config.definitions]]
-    name = "INVENTORY_ICON_Y"
-    value = 8
-
-  [[config.definitions]]
-    name = "INVENTORY_ICON_2_X"
-    value = 28
-
-  [[config.definitions]]
-    name = "INVENTORY_ICON_2_Y"
-    value = 8
 
 [[config.modules]]
-  name = "Affinity"
+  name = "AttackLabel"
+  [[module.definitions]]
+    name = "ATK_LABEL_X"
+    value = 0
+  [[module.definitions]]
+    name = "ATK_LABEL_Y"
+    value = 0
 
-  [[config.definitions]]
-    name = "AFFINITY_X"
-    value = 83
+[[config.modules]]
+  name = "Attack"
+  [[module.definitions]]
+    name = "ATK_X"
+    value = 32
+    # changing this value doesn't seem to do anything atm 
 
-  [[config.definitions]]
-    name = "AFFINITY_Y"
-    value = 24
+  [[module.definitions]]
+    name = "ATK_Y"
+    value = 32
+
+
+# [[config.modules]]
+  # name = "DefenseLabel"
+  # [[module.definitions]]
+    # name = "DEF_LABEL_X"
+    # value = 0
+  # [[module.definitions]]
+    # name = "DEF_LABEL_Y"
+    # value = 8
+
+# [[config.modules]]
+  # name = "Defense"
+  # [[module.definitions]]
+    # name = "DEF_X"
+    # value = 8
+
+  # [[module.definitions]]
+    # name = "DEF_Y"
+    # value = 8
+
+
+
+
+
+# [[config.modules]]
+  # name = "FullInventoryFirstFixed"
+
+  # [[config.definitions]]
+    # name = "INVENTORY_ICON_X"
+    # value = 48
+
+  # [[config.definitions]]
+    # name = "INVENTORY_ICON_Y"
+    # value = 8
+
+  # [[config.definitions]]
+    # name = "INVENTORY_ICON_2_X"
+    # value = 28
+
+  # [[config.definitions]]
+    # name = "INVENTORY_ICON_2_Y"
+    # value = 8
+
+# [[config.modules]]
+  # name = "Affinity"
+
+  # [[config.definitions]]
+    # name = "AFFINITY_X"
+    # value = 83
+
+  # [[config.definitions]]
+    # name = "AFFINITY_Y"
+    # value = 24
 
 [[config.modules]]
   name = "MinimugStandard"
