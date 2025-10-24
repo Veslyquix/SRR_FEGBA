@@ -1809,7 +1809,7 @@ int IsConfigMenuOptionAvailable(int id)
 }
 #endif
 
-void BuildAvailableOptionsForMenu(s8 * buf)
+int BuildAvailableOptionsForMenu(s8 * buf)
 {
     int c = 0;
     for (int i = 0; i <= SRR_TotalOptions; ++i)
@@ -1821,6 +1821,7 @@ void BuildAvailableOptionsForMenu(s8 * buf)
             c++;
         }
     }
+    return c - 1;
 }
 
 int GetReorderedMenuId(int id)
@@ -1828,6 +1829,11 @@ int GetReorderedMenuId(int id)
     s8 buf[SRR_TotalOptions + 1];
     BuildAvailableOptionsForMenu(buf);
     return buf[id];
+}
+int GetLastMenuId()
+{
+    s8 buf[SRR_TotalOptions + 1];
+    return BuildAvailableOptionsForMenu(buf);
 }
 
 struct FaceData
@@ -14045,7 +14051,8 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         DisplayUiVArrow(MENU_X + (9 * 8), MENU_Y + 8, 0x3240, 1); // up arrow
     }
     // should display down arrow?
-    if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP)))
+    int max_id = GetLastMenuId();
+    if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (max_id - SRR_MAXDISP)))
     {
         DisplayUiVArrow(MENU_X + (9 * 8), MENU_Y + (16 * 9), 0x3240, 0);
     }
@@ -14061,8 +14068,16 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     int id_adj = GetReorderedMenuId(id + offset);
     if (id_adj < 0)
     {
-        proc->id = 0;
-        proc->offset = 0;
+        if (SRR_MAXDISP > max_id)
+        {
+            proc->id = max_id;
+            proc->offset = 0;
+        }
+        else
+        {
+            proc->id = SRR_MAXDISP;
+            proc->offset = max_id - SRR_MAXDISP;
+        }
         RedrawAllText(proc);
         return;
     }
@@ -14087,12 +14102,18 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             {
                 proc->id++;
             }
-            else if ((id + offset) < SRR_TotalOptions)
+            else if ((id + offset) < max_id) // id+offset, not id_adj here
             {
                 proc->offset++;
                 proc->redraw = RedrawAll;
             }
             else
+            {
+                proc->id = 0;
+                proc->offset = 0;
+                proc->redraw = RedrawAll;
+            }
+            if (id + offset >= max_id)
             {
                 proc->id = 0;
                 proc->offset = 0;
@@ -14105,8 +14126,16 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             PlayScrollMenuSfx();
             if ((id + offset) <= 0)
             {
-                proc->id = SRR_MAXDISP;
-                proc->offset = SRR_TotalOptions - SRR_MAXDISP;
+                if (SRR_MAXDISP > max_id)
+                {
+                    proc->id = max_id;
+                    proc->offset = 0;
+                }
+                else
+                {
+                    proc->id = SRR_MAXDISP;
+                    proc->offset = max_id - SRR_MAXDISP;
+                }
                 proc->redraw = RedrawAll;
             }
             else if ((!id) && (offset))
@@ -14387,12 +14416,18 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             proc->id++;
         }
-        else if ((id + offset) < SRR_TotalOptions)
+        else if ((id + offset) < max_id) // id+offset, not id_adj here
         {
             proc->offset++;
             proc->redraw = RedrawAll;
         }
         else
+        {
+            proc->id = 0;
+            proc->offset = 0;
+            proc->redraw = RedrawAll;
+        }
+        if (id + offset >= max_id)
         {
             proc->id = 0;
             proc->offset = 0;
@@ -14405,8 +14440,16 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         PlayScrollMenuSfx();
         if ((id + offset) <= 0)
         {
-            proc->id = SRR_MAXDISP;
-            proc->offset = SRR_TotalOptions - SRR_MAXDISP;
+            if (SRR_MAXDISP > max_id)
+            {
+                proc->id = max_id;
+                proc->offset = 0;
+            }
+            else
+            {
+                proc->id = SRR_MAXDISP;
+                proc->offset = max_id - SRR_MAXDISP;
+            }
             proc->redraw = RedrawAll;
         }
         else if ((!id) && (offset))
