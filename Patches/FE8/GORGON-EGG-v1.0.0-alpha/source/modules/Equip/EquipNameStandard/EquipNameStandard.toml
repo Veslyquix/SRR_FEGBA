@@ -1,0 +1,287 @@
+
+[module]
+  name = "EquipNameStandard"
+
+[[module.statics]]
+  name = "EquipNameStandard_Static"
+  file = "EquipNameStandard.lyn.event"
+
+# `EQUIP_NAME_` definitions are shared between all of the `EquipName`
+# modules. To decouple this module's definitions from the other `EquipName`
+# modules, override the `EQUIP_NAME_STANDARD_` definitions in your config.
+
+[[module.definitions]]
+  name = "EQUIP_NAME_X"
+  value = 1
+
+[[module.definitions]]
+  name = "EQUIP_NAME_Y"
+  value = 1
+
+[[module.definitions]]
+  name = "EQUIP_NAME_WIDTH"
+  value = 7
+
+[[module.definitions]]
+  name = "EQUIP_NAME_COLOR"
+  value = "TEXT_COLOR_BLACK"
+
+[[module.definitions]]
+  name = "EQUIP_NAME_ALIGNMENT"
+  value = "EQUIP_NAME_CENTERED"
+
+[[module.definitions]]
+  name = "EquipNameAlignments"
+  body = '''
+enum EquipNameAlignments
+{
+  EQUIP_NAME_CENTERED,
+  EQUIP_NAME_LEFT_ALIGNED,
+  EQUIP_NAME_RIGHT_ALIGNED,
+};
+'''
+
+[[module.definitions]]
+  name = "EQUIP_NAME_STANDARD_X"
+  value = "EQUIP_NAME_X"
+
+[[module.definitions]]
+  name = "EQUIP_NAME_STANDARD_Y"
+  value = "EQUIP_NAME_Y"
+
+[[module.definitions]]
+  name = "EQUIP_NAME_STANDARD_WIDTH"
+  value = "EQUIP_NAME_WIDTH"
+
+[[module.definitions]]
+  name = "EQUIP_NAME_STANDARD_COLOR"
+  value = "EQUIP_NAME_COLOR"
+
+[[module.definitions]]
+  name = "EQUIP_NAME_STANDARD_ALIGNMENT"
+  value = "EQUIP_NAME_ALIGNMENT"
+
+
+[[module.asm_definitions]]
+  name = "Text_InitDB"
+  body = "SET_FUNC Text_InitDB, 0x08005828 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Clear"
+  body = "SET_FUNC Text_Clear, 0x080058EC | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextCenteredPos"
+  body = "SET_FUNC Text_GetStringTextCenteredPos, 0x08005CD8 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextWidth"
+  body = "SET_FUNC Text_GetStringTextWidth, 0x08005B94 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_SetParameters"
+  body = "SET_FUNC Text_SetParameters, 0x08005A78 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_DrawString"
+  body = "SET_FUNC Text_DrawString, 0x08005DA4 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Display"
+  body = "SET_FUNC Text_Display, 0x08005AB4 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemName"
+  body = "SET_FUNC GetItemName, 0x08017130 | 1"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "Text_InitDB"
+  body = "SET_FUNC Text_InitDB, 0x0800549C | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_Clear"
+  body = "SET_FUNC Text_Clear, 0x080054E0 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextCenteredPos"
+  body = "SET_FUNC Text_GetStringTextCenteredPos, 0x080056A8 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextWidth"
+  body = "SET_FUNC Text_GetStringTextWidth, 0x080055FC | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_SetParameters"
+  body = "SET_FUNC Text_SetParameters, 0x08005588 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_DrawString"
+  body = "SET_FUNC Text_DrawString, 0x08005718 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_Display"
+  body = "SET_FUNC Text_Display, 0x08005590 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x08012CBC | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemName"
+  body = "SET_FUNC GetItemName, 0x080171BC | 1"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "Text_InitDB"
+  body = "SET_FUNC Text_InitDB, 0x0800536C | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Clear"
+  body = "SET_FUNC Text_Clear, 0x080053B0 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextCenteredPos"
+  body = "SET_FUNC Text_GetStringTextCenteredPos, 0x08005564 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextWidth"
+  body = "SET_FUNC Text_GetStringTextWidth, 0x080054CC | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_SetParameters"
+  body = "SET_FUNC Text_SetParameters, 0x08005458 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_DrawString"
+  body = "SET_FUNC Text_DrawString, 0x080055DC | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Display"
+  body = "SET_FUNC Text_Display, 0x08005460 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x08013374 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemName"
+  body = "SET_FUNC GetItemName, 0x08017610 | 1"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "Text_InitDB"
+  body = "SET_FUNC Text_InitDB, 0x08003D84 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_Clear"
+  body = "SET_FUNC Text_Clear, 0x08003DC8 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextCenteredPos"
+  body = "SET_FUNC Text_GetStringTextCenteredPos, 0x08003F90 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextWidth"
+  body = "SET_FUNC Text_GetStringTextWidth, 0x08003EDC | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_SetParameters"
+  body = "SET_FUNC Text_SetParameters, 0x08003E68 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_DrawString"
+  body = "SET_FUNC Text_DrawString, 0x08004004 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_Display"
+  body = "SET_FUNC Text_Display, 0x08003E70 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x0800A2A4 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemName"
+  body = "SET_FUNC GetItemName, 0x080174F4 | 1"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "Text_InitDB"
+  body = "SET_FUNC Text_InitDB, 0x08003CB4 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Clear"
+  body = "SET_FUNC Text_Clear, 0x08003CF8 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextCenteredPos"
+  body = "SET_FUNC Text_GetStringTextCenteredPos, 0x08003EAC | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextWidth"
+  body = "SET_FUNC Text_GetStringTextWidth, 0x08003E0C | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_SetParameters"
+  body = "SET_FUNC Text_SetParameters, 0x08003D98 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_DrawString"
+  body = "SET_FUNC Text_DrawString, 0x08003F28 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Display"
+  body = "SET_FUNC Text_Display, 0x08003DA0 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x0800A004 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemName"
+  body = "SET_FUNC GetItemName, 0x0801729C | 1"
+  games = [ "FE8J" ]

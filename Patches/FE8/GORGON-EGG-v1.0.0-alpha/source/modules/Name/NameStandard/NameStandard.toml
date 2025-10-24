@@ -1,0 +1,325 @@
+
+[module]
+  name = "NameStandard"
+
+[[module.statics]]
+  name = "NameStandard_Static"
+  file = "NameStandard.lyn.event"
+
+# `NAME_` definitions are shared between all of the `Name` modules.
+# To decouple this module's definitions from the other `Name`
+# modules, override the `NAME_STANDARD_` definitions in your config.
+
+[[module.definitions]]
+  name = "NAME_X"
+  value = 1
+
+[[module.definitions]]
+  name = "NAME_Y"
+  value = 1
+
+[[module.definitions]]
+  name = "NAME_WIDTH"
+  value = 7
+
+[[module.definitions]]
+  name = "NAME_COLOR"
+  value = "TEXT_COLOR_BLACK"
+
+[[module.definitions]]
+  name = "NAME_ALIGNMENT"
+  value = "NAME_CENTERED"
+
+[[module.definitions]]
+  name = "NameAlignments"
+  body = '''
+enum NameAlignments
+{
+  NAME_CENTERED,
+  NAME_LEFT_ALIGNED,
+  NAME_RIGHT_ALIGNED,
+  NAME_SHIFTED_RIGHT,
+};
+'''
+
+[[module.definitions]]
+  name = "NAME_STANDARD_X"
+  value = "NAME_X"
+
+[[module.definitions]]
+  name = "NAME_STANDARD_Y"
+  value = "NAME_Y"
+
+[[module.definitions]]
+  name = "NAME_STANDARD_WIDTH"
+  value = "NAME_WIDTH"
+
+[[module.definitions]]
+  name = "NAME_STANDARD_COLOR"
+  value = "NAME_COLOR"
+
+[[module.definitions]]
+  name = "NAME_STANDARD_ALIGNMENT"
+  value = "NAME_ALIGNMENT"
+
+[[module.definitions]]
+  name = "NAME_STANDARD_SHIFT_CONDITION"
+  value = "( GetUnitAffinityIcon(udp->unit) > 0 )"
+
+[[module.definitions]]
+  name = "NAME_STANDARD_SHIFT"
+  value = 16
+
+[[module.definitions]]
+  name = "GetUnitAffinityIcon"
+  body = "int GetUnitAffinityIcon(struct Unit* unit);"
+
+
+[[module.asm_definitions]]
+  name = "Text_InitDB"
+  body = "SET_FUNC Text_InitDB, 0x08005828 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Clear"
+  body = "SET_FUNC Text_Clear, 0x080058EC | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextCenteredPos"
+  body = "SET_FUNC Text_GetStringTextCenteredPos, 0x08005CD8 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextWidth"
+  body = "SET_FUNC Text_GetStringTextWidth, 0x08005B94 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_SetParameters"
+  body = "SET_FUNC Text_SetParameters, 0x08005A78 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_DrawString"
+  body = "SET_FUNC Text_DrawString, 0x08005DA4 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Display"
+  body = "SET_FUNC Text_Display, 0x08005AB4 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08013AD0 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitAffinityIcon"
+  body = "SET_FUNC GetUnitAffinityIcon, 0x08022F44 | 1"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "Text_InitDB"
+  body = "SET_FUNC Text_InitDB, 0x0800549C | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_Clear"
+  body = "SET_FUNC Text_Clear, 0x080054E0 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextCenteredPos"
+  body = "SET_FUNC Text_GetStringTextCenteredPos, 0x080056A8 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextWidth"
+  body = "SET_FUNC Text_GetStringTextWidth, 0x080055FC | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_SetParameters"
+  body = "SET_FUNC Text_SetParameters, 0x08005588 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_DrawString"
+  body = "SET_FUNC Text_DrawString, 0x08005718 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Text_Display"
+  body = "SET_FUNC Text_Display, 0x08005590 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x08012CBC | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08012C60 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitAffinityIcon"
+  body = "SET_FUNC GetUnitAffinityIcon, 0x08026B24 | 1"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "Text_InitDB"
+  body = "SET_FUNC Text_InitDB, 0x0800536C | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Clear"
+  body = "SET_FUNC Text_Clear, 0x080053B0 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextCenteredPos"
+  body = "SET_FUNC Text_GetStringTextCenteredPos, 0x08005564 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextWidth"
+  body = "SET_FUNC Text_GetStringTextWidth, 0x080054CC | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_SetParameters"
+  body = "SET_FUNC Text_SetParameters, 0x08005458 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_DrawString"
+  body = "SET_FUNC Text_DrawString, 0x080055DC | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Display"
+  body = "SET_FUNC Text_Display, 0x08005460 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x08013374 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08013318 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitAffinityIcon"
+  body = "SET_FUNC GetUnitAffinityIcon, 0x08026FB0 | 1"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "Text_InitDB"
+  body = "SET_FUNC Text_InitDB, 0x08003D84 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_Clear"
+  body = "SET_FUNC Text_Clear, 0x08003DC8 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextCenteredPos"
+  body = "SET_FUNC Text_GetStringTextCenteredPos, 0x08003F90 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextWidth"
+  body = "SET_FUNC Text_GetStringTextWidth, 0x08003EDC | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_SetParameters"
+  body = "SET_FUNC Text_SetParameters, 0x08003E68 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_DrawString"
+  body = "SET_FUNC Text_DrawString, 0x08004004 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Text_Display"
+  body = "SET_FUNC Text_Display, 0x08003E70 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x0800A2A4 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x0800A240 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitAffinityIcon"
+  body = "SET_FUNC GetUnitAffinityIcon, 0x080286BC | 1"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "Text_InitDB"
+  body = "SET_FUNC Text_InitDB, 0x08003CB4 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Clear"
+  body = "SET_FUNC Text_Clear, 0x08003CF8 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextCenteredPos"
+  body = "SET_FUNC Text_GetStringTextCenteredPos, 0x08003EAC | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_GetStringTextWidth"
+  body = "SET_FUNC Text_GetStringTextWidth, 0x08003E0C | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_SetParameters"
+  body = "SET_FUNC Text_SetParameters, 0x08003D98 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_DrawString"
+  body = "SET_FUNC Text_DrawString, 0x08003F28 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Text_Display"
+  body = "SET_FUNC Text_Display, 0x08003DA0 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x0800A004 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08009FA8 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitAffinityIcon"
+  body = "SET_FUNC GetUnitAffinityIcon, 0x08028650 | 1"
+  games = [ "FE8J" ]

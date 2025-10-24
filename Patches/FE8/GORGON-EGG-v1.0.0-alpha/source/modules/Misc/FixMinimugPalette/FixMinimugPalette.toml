@@ -1,0 +1,202 @@
+
+[module]
+  name = "FixMinimugPalette"
+  # FE6J does not compress its minimugs and uses the buffered
+  # writer that we use for this fix anyway.
+  games = [ "FE7U", "FE7J", "FE8U", "FE8J" ]
+
+[[module.includes]]
+  file = "Installer.event"
+
+[[module.definitions]]
+  name = "MINIMUG_WIDTH"
+  value = 4
+
+[[module.definitions]]
+  name = "MINIMUG_HEIGHT"
+  value = 4
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002B04 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013CA4 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "DecompressMinimugGraphics"
+  body = "SET_FUNC DecompressMinimugGraphics, 0x0800889C | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetPortraitData"
+  body = "SET_FUNC GetPortraitData, 0x08007FC0 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetGenericMinimugGfx"
+  body = "SET_FUNC GetGenericMinimugGfx, 0x08008DB8 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "LoadGenericMinimugPalette"
+  body = "SET_FUNC LoadGenericMinimugPalette, 0x08008E00 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gMinimugTempBuffer"
+  # Minimap RAM
+  body = "SET_DATA gMinimugTempBuffer, 0x02000000"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08003078 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013168 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "DecompressMinimugGraphics"
+  body = "SET_FUNC DecompressMinimugGraphics, 0x08006F1C | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetPortraitData"
+  body = "SET_FUNC GetPortraitData, 0x08006B20 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetGenericMinimugGfx"
+  body = "SET_FUNC GetGenericMinimugGfx, 0x08007598 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "LoadGenericMinimugPalette"
+  body = "SET_FUNC LoadGenericMinimugPalette, 0x080075C8 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gMinimugTempBuffer"
+  # Sound room RAM
+  body = "SET_DATA gMinimugTempBuffer, 0x0201EA50"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002F54 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013688 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "DecompressMinimugGraphics"
+  body = "SET_FUNC DecompressMinimugGraphics, 0x08006DAC | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetPortraitData"
+  body = "SET_FUNC GetPortraitData, 0x080069B0 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetGenericMinimugGfx"
+  body = "SET_FUNC GetGenericMinimugGfx, 0x08007428 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "LoadGenericMinimugPalette"
+  body = "SET_FUNC LoadGenericMinimugPalette, 0x08007458 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gMinimugTempBuffer"
+  # Sound room RAM
+  body = "SET_DATA gMinimugTempBuffer, 0x0201EA50"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002014 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08012F50 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "DecompressMinimugGraphics"
+  body = "SET_FUNC DecompressMinimugGraphics, 0x08005924 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetPortraitData"
+  body = "SET_FUNC GetPortraitData, 0x08005514 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetGenericMinimugGfx"
+  body = "SET_FUNC GetGenericMinimugGfx, 0x08005F6C | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "LoadGenericMinimugPalette"
+  body = "SET_FUNC LoadGenericMinimugPalette, 0x08005F9C | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gMinimugTempBuffer"
+  # Sound room RAM
+  body = "SET_DATA gMinimugTempBuffer, 0x0201F148"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08001F64 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013008 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "DecompressMinimugGraphics"
+  body = "SET_FUNC DecompressMinimugGraphics, 0x0800582C | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetPortraitData"
+  body = "SET_FUNC GetPortraitData, 0x0800541C | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetGenericMinimugGfx"
+  body = "SET_FUNC GetGenericMinimugGfx, 0x08005E70 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "LoadGenericMinimugPalette"
+  body = "SET_FUNC LoadGenericMinimugPalette, 0x08005EA0 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gMinimugTempBuffer"
+  # Sound room RAM
+  body = "SET_DATA gMinimugTempBuffer, 0x0201F148"
+  games = [ "FE8J" ]

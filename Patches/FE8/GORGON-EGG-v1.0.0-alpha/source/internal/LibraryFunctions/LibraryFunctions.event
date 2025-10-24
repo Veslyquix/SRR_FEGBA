@@ -1,0 +1,602 @@
+
+// This file provides the addresses of existing library functions and 
+// links requested nonexisting library functions.
+
+// See the `src/COPYING` and `src/COPYING.RUNTIME` files for libgcc's original licensing.
+
+// Function addresses
+
+  // FE7J is missing a large number of library functions
+  // compared to the other games.
+
+  // agbcc outputs these functions with their libgcc names,
+  // but devkitARM outputs their aeabi names.
+
+  #ifdef _FE6J_
+
+    #define __ashldi3     (0x0809DE9C | 1)
+    //      __ashrdi3
+    #define __divsi3      (0x0809DF4C | 1)
+    //      __divdi3
+    #define __lshrdi3     (0x0809DEDC | 1)
+    #define __modsi3      (0x0809DFE4 | 1)
+    //      __moddi3
+    #define __muldi3      (0x0809F908 | 1)
+    #define __negdi2      (0x0809F978 | 1)
+    #define __udivsi3     (0x0809E0B4 | 1)
+    //      __udivdi3
+    //      __divmoddi4
+    //      __udivmoddi4
+    #define __umodsi3     (0x0809E12C | 1)
+    //      __umoddi3
+    //      __cmpdi2
+    //      __ucmpdi2
+    //      __clzsi2
+    //      __clzdi2
+    //      __ctzsi2
+    //      __ctzdi2
+    //      __ffsdi2
+    //      __paritysi2
+    //      __paritydi2
+    //      __popcountsi2
+    //      __popcountdi2
+    //      __bswapsi2
+    //      __bswapdi2
+    #define __addsf3      (0x0809F238 | 1)
+    #define __adddf3      (0x0809E678 | 1)
+    #define __subsf3      (0x0809F264 | 1)
+    #define __subdf3      (0x0809E6A8 | 1)
+    #define __mulsf3      (0x0809F298 | 1)
+    #define __muldf3      (0x0809E6E0 | 1)
+    #define __divsf3      (0x0809F3FC | 1)
+    #define __divdf3      (0x0809E988 | 1)
+    #define __negsf2      (0x0809F86C | 1)
+    #define __negdf2      (0x0809EEF4 | 1)
+    #define __extendsfdf2 (0x0809F8A8 | 1)
+    #define __truncdfsf2  (0x0809EF44 | 1)
+    #define __fixsfsi     (0x0809F804 | 1)
+    #define __fixdfsi     (0x0809EE80 | 1)
+    //      __fixsfdi
+    //      __fixdfdi
+    //      __fixunssfsi
+    //      __fixunsdfsi
+    //      __fixunssfdi
+    //      __fixunsdfdi
+    #define __floatsisf   (0x0809F7A4 | 1)
+    #define __floatsidf   (0x0809EE04 | 1)
+    //      __floatdisf
+    //      __floatdidf
+    //      __floatunsisf
+    //      __floatunsidf
+    //      __floatundisf
+    //      __floatundidf
+    #define __cmpsf2      (0x0809F5CC | 1)
+    #define __cmpdf2      (0x0809EC10 | 1)
+    //      __unordsf2
+    //      __unorddf2
+    #define __eqsf2       (0x0809F5F4 | 1)
+    #define __eqdf2       (0x0809EC3C | 1)
+    #define __nesf2       (0x0809F63C | 1)
+    #define __nedf2       (0x0809EC88 | 1)
+    #define __gesf2       (0x0809F6CC | 1)
+    #define __gedf2       (0x0809ED20 | 1)
+    #define __ltsf2       (0x0809F714 | 1)
+    #define __ltdf2       (0x0809ED6C | 1)
+    #define __lesf2       (0x0809F75C | 1)
+    #define __ledf2       (0x0809EDB8 | 1)
+    #define __gtsf2       (0x0809F684 | 1)
+    #define __gtdf2       (0x0809ECD4 | 1)
+    //      __powisf2
+    //      __powidf2
+    #define __div0        (0x0809DFE0 | 1)
+
+  #endif // _FE6J_
+
+  #ifdef _FE7U_
+
+    #define __ashldi3     (0x080BFC18 | 1)
+    //      __ashrdi3
+    #define __divsi3      (0x080BFC88 | 1)
+    //      __divdi3
+    #define __lshrdi3     (0x080C5760 | 1)
+    #define __modsi3      (0x080BFD20 | 1)
+    //      __moddi3
+    #define __muldi3      (0x080BFDF0 | 1)
+    #define __negdi2      (0x080C5794 | 1)
+    #define __udivsi3     (0x080BFE60 | 1)
+    //      __udivdi3
+    //      __udivmoddi4
+    #define __umodsi3     (0x080BFED8 | 1)
+    //      __umoddi3
+    //      __cmpdi2
+    //      __ucmpdi2
+    //      __clzsi2
+    //      __clzdi2
+    //      __ctzsi2
+    //      __ctzdi2
+    //      __ffsdi2
+    //      __paritysi2
+    //      __paritydi2
+    //      __popcountsi2
+    //      __popcountdi2
+    //      __bswapsi2
+    //      __bswapdi2
+    #define __addsf3      (0x080C50C4 | 1)
+    #define __adddf3      (0x080C4504 | 1)
+    #define __subsf3      (0x080C50F0 | 1)
+    #define __subdf3      (0x080C4534 | 1)
+    #define __mulsf3      (0x080C5124 | 1)
+    #define __muldf3      (0x080C456C | 1)
+    #define __divsf3      (0x080C5288 | 1)
+    #define __divdf3      (0x080C4814 | 1)
+    #define __negsf2      (0x080C56F8 | 1)
+    #define __negdf2      (0x080C4D80 | 1)
+    #define __extendsfdf2 (0x080C5734 | 1)
+    #define __truncdfsf2  (0x080C4DD0 | 1)
+    #define __fixsfsi     (0x080C5690 | 1)
+    #define __fixdfsi     (0x080C4D0C | 1)
+    //      __fixsfdi
+    //      __fixdfdi
+    //      __fixunssfsi
+    //      __fixunsdfsi
+    //      __fixunssfdi
+    //      __fixunsdfdi
+    #define __floatsisf   (0x080C5630 | 1)
+    #define __floatsidf   (0x080C4C90 | 1)
+    //      __floatdisf
+    //      __floatdidf
+    //      __floatunsisf
+    //      __floatunsidf
+    //      __floatundisf
+    //      __floatundidf
+    #define __cmpsf2      (0x080C5458 | 1)
+    #define __cmpdf2      (0x080C4A9C | 1)
+    //      __unordsf2
+    //      __unorddf2
+    #define __eqsf2       (0x080C5480 | 1)
+    #define __eqdf2       (0x080C4AC8 | 1)
+    #define __nesf2       (0x080C54C8 | 1)
+    #define __nedf2       (0x080C4B14 | 1)
+    #define __gesf2       (0x080C5558 | 1)
+    #define __gedf2       (0x080C4BAC | 1)
+    #define __ltsf2       (0x080C55A0 | 1)
+    #define __ltdf2       (0x080C4BF8 | 1)
+    #define __lesf2       (0x080C55E8 | 1)
+    #define __ledf2       (0x080C4C44 | 1)
+    #define __gtsf2       (0x080C5510 | 1)
+    #define __gtdf2       (0x080C4B60 | 1)
+    //      __powisf2
+    //      __powidf2
+    #define __div0        (0x080BFD1C | 1)
+
+  #endif // _FE7U_
+
+  #ifdef _FE7J_
+
+    #define __ashldi3     (0x080C075C | 1)
+    //      __ashrdi3
+    #define __divsi3      (0x080C07CC | 1)
+    //      __divdi3
+    //      __lshrdi3     // MISSING
+    #define __modsi3      (0x080C0864 | 1)
+    //      __moddi3
+    #define __muldi3      (0x080D6760 | 1)
+    //      __negdi2      // MISSING
+    #define __udivsi3     (0x080C09A4 | 1)
+    //      __udivdi3
+    //      __divmoddi4
+    //      __udivmoddi4
+    #define __umodsi3     (0x080C0A1C | 1)
+    //      __umoddi3
+    //      __cmpdi2
+    //      __ucmpdi2
+    //      __clzsi2
+    //      __clzdi2
+    //      __ctzsi2
+    //      __ctzdi2
+    //      __ffsdi2
+    //      __paritysi2
+    //      __paritydi2
+    //      __popcountsi2
+    //      __popcountdi2
+    //      __bswapsi2
+    //      __bswapdi2
+    //      __addsf3      // MISSING
+    //      __adddf3      // MISSING
+    //      __subsf3      // MISSING
+    //      __subdf3      // MISSING
+    //      __mulsf3      // MISSING
+    //      __muldf3      // MISSING
+    //      __divsf3      // MISSING
+    //      __divdf3      // MISSING
+    //      __negsf2      // MISSING
+    //      __negdf2      // MISSING
+    //      __extendsfdf2 // MISSING
+    //      __truncdfsf2  // MISSING
+    //      __fixsfsi     // MISSING
+    //      __fixdfsi     // MISSING
+    //      __fixsfdi
+    //      __fixdfdi
+    //      __fixunssfsi
+    //      __fixunsdfsi
+    //      __fixunssfdi
+    //      __fixunsdfdi
+    //      __floatsisf   // MISSING
+    //      __floatsidf   // MISSING
+    //      __floatdisf
+    //      __floatdidf
+    //      __floatunsisf
+    //      __floatunsidf
+    //      __floatundisf
+    //      __floatundidf
+    //      __cmpsf2      // MISSING
+    //      __cmpdf2      // MISSING
+    //      __unordsf2
+    //      __unorddf2
+    //      __eqsf2       // MISSING
+    //      __eqdf2       // MISSING
+    //      __nesf2       // MISSING
+    //      __nedf2       // MISSING
+    //      __gesf2       // MISSING
+    //      __gedf2       // MISSING
+    //      __ltsf2       // MISSING
+    //      __ltdf2       // MISSING
+    //      __lesf2       // MISSING
+    //      __ledf2       // MISSING
+    //      __gtsf2       // MISSING
+    //      __gtdf2       // MISSING
+    //      __powisf2
+    //      __powidf2
+    #define __div0    (0x080C0860 | 1)
+
+  #endif // _FE7J_
+
+  #ifdef _FE8U_
+
+    #define __ashldi3     (0x080D188C | 1)
+    //      __ashrdi3
+    #define __divsi3      (0x080D18FC | 1)
+    //      __divdi3
+    #define __lshrdi3     (0x080D744C | 1)
+    #define __modsi3      (0x080D1994 | 1)
+    //      __moddi3
+    #define __muldi3      (0x080D1A64 | 1)
+    #define __negdi2      (0x080D7480 | 1)
+    #define __udivsi3     (0x080D1AD4 | 1)
+    //      __udivdi3
+    //      __divmoddi4
+    //      __udivmoddi4
+    #define __umodsi3     (0x080D1B4C | 1)
+    //      __umoddi3
+    //      __cmpdi2
+    //      __ucmpdi2
+    //      __clzsi2
+    //      __clzdi2
+    //      __ctzsi2
+    //      __ctzdi2
+    //      __ffsdi2
+    //      __paritysi2
+    //      __paritydi2
+    //      __popcountsi2
+    //      __popcountdi2
+    //      __bswapsi2
+    //      __bswapdi2
+    #define __addsf3      (0x080D6DB0 | 1)
+    #define __adddf3      (0x080D61F0 | 1)
+    #define __subsf3      (0x080D6DDC | 1)
+    #define __subdf3      (0x080D6220 | 1)
+    #define __mulsf3      (0x080D6E10 | 1)
+    #define __muldf3      (0x080D6258 | 1)
+    #define __divsf3      (0x080D6F74 | 1)
+    #define __divdf3      (0x080D6500 | 1)
+    #define __negsf2      (0x080D73E4 | 1)
+    #define __negdf2      (0x080D6A6C | 1)
+    #define __extendsfdf2 (0x080D7420 | 1)
+    #define __truncdfsf2  (0x080D6ABC | 1)
+    #define __fixsfsi     (0x080D737C | 1)
+    #define __fixdfsi     (0x080D69F8 | 1)
+    //      __fixsfdi
+    //      __fixdfdi
+    //      __fixunssfsi
+    //      __fixunsdfsi
+    //      __fixunssfdi
+    //      __fixunsdfdi
+    #define __floatsisf   (0x080D731C | 1)
+    #define __floatsidf   (0x080D697C | 1)
+    //      __floatdisf
+    //      __floatdidf
+    //      __floatunsisf
+    //      __floatunsidf
+    //      __floatundisf
+    //      __floatundidf
+    #define __cmpsf2      (0x080D7144 | 1)
+    #define __cmpdf2      (0x080D6788 | 1)
+    //      __unordsf2
+    //      __unorddf2
+    #define __eqsf2       (0x080D716C | 1)
+    #define __eqdf2       (0x080D67B4 | 1)
+    #define __nesf2       (0x080D71B4 | 1)
+    #define __nedf2       (0x080D6800 | 1)
+    #define __gesf2       (0x080D7244 | 1)
+    #define __gedf2       (0x080D6898 | 1)
+    #define __ltsf2       (0x080D728C | 1)
+    #define __ltdf2       (0x080D68E4 | 1)
+    #define __lesf2       (0x080D72D4 | 1)
+    #define __ledf2       (0x080D6930 | 1)
+    #define __gtsf2       (0x080D71FC | 1)
+    #define __gtdf2       (0x080D684C | 1)
+    //      __powisf2
+    //      __powidf2
+    #define __div0        (0x080D1990 | 1)
+
+  #endif // _FE8U_
+
+  #ifdef _FE8J_
+
+    #define __ashldi3     (0x080D6588 | 1)
+    //      __ashrdi3
+    #define __divsi3      (0x080D65F8 | 1)
+    //      __divdi3
+    #define __lshrdi3     (0x080DC088 | 1)
+    #define __modsi3      (0x080D6690 | 1)
+    //      __moddi3
+    #define __muldi3      (0x080D6760 | 1)
+    #define __negdi2      (0x080DC0BC | 1)
+    #define __udivsi3     (0x080D67D0 | 1)
+    //      __udivdi3
+    //      __divmoddi4
+    //      __udivmoddi4
+    #define __umodsi3 (0x080D6848 | 1)
+    //      __umoddi3
+    //      __cmpdi2
+    //      __ucmpdi2
+    //      __clzsi2
+    //      __clzdi2
+    //      __ctzsi2
+    //      __ctzdi2
+    //      __ffsdi2
+    //      __paritysi2
+    //      __paritydi2
+    //      __popcountsi2
+    //      __popcountdi2
+    //      __bswapsi2
+    //      __bswapdi2
+    #define __addsf3      (0x080DB9EC | 1)
+    #define __adddf3      (0x080DAE2C | 1)
+    #define __subsf3      (0x080DBA18 | 1)
+    #define __subdf3      (0x080DAE5C | 1)
+    #define __mulsf3      (0x080DBA4C | 1)
+    #define __muldf3      (0x080DAE94 | 1)
+    #define __divsf3      (0x080DBBB0 | 1)
+    #define __divdf3      (0x080DB13C | 1)
+    #define __negsf2      (0x080DC020 | 1)
+    #define __negdf2      (0x080DB6A8 | 1)
+    #define __extendsfdf2 (0x080DC05C | 1)
+    #define __truncdfsf2  (0x080DB6F8 | 1)
+    #define __fixsfsi     (0x080DBFB8 | 1)
+    #define __fixdfsi     (0x080DB634 | 1)
+    //      __fixsfdi
+    //      __fixdfdi
+    //      __fixunssfsi
+    //      __fixunsdfsi
+    //      __fixunssfdi
+    //      __fixunsdfdi
+    #define __floatsisf   (0x080DBF58 | 1)
+    #define __floatsidf   (0x080DB5B8 | 1)
+    //      __floatdisf
+    //      __floatdidf
+    //      __floatunsisf
+    //      __floatunsidf
+    //      __floatundisf
+    //      __floatundidf
+    #define __cmpsf2      (0x080DBD80 | 1)
+    #define __cmpdf2      (0x080DB3C4 | 1)
+    //      __unordsf2
+    //      __unorddf2
+    #define __eqsf2       (0x080DBDA8 | 1)
+    #define __eqdf2       (0x080DB3F0 | 1)
+    #define __nesf2       (0x080DBDF0 | 1)
+    #define __nedf2       (0x080DB43C | 1)
+    #define __gesf2       (0x080DBE80 | 1)
+    #define __gedf2       (0x080DB4D4 | 1)
+    #define __ltsf2       (0x080DBEC8 | 1)
+    #define __ltdf2       (0x080DB520 | 1)
+    #define __lesf2       (0x080DBF10 | 1)
+    #define __ledf2       (0x080DB56C | 1)
+    #define __gtsf2       (0x080DBE38 | 1)
+    #define __gtdf2       (0x080DB488 | 1)
+    //      __powisf2
+    //      __powidf2
+    #define __div0        (0x080D668C | 1)
+
+  #endif // _FE8J_
+
+
+// Aliases
+
+  #define __aeabi_llsl   __ashldi3
+  #define __aeabi_lasr   __ashrdi3
+  #define __aeabi_idiv   __divsi3
+  //                     __divdi3
+  #define __aeabi_llsr   __lshrdi3
+  //                     __modsi3
+  //                     __moddi3
+  #define __aeabi_lmul   __muldi3
+  //                     __negdi2
+  #define __aeabi_uidiv  __udivsi3
+  //                     __udivdi3
+  //                     __divmoddi4
+  //                     __udivmoddi4
+  //                     __umodsi3
+  //                     __umoddi3
+  //                     __cmpdi2
+  //                     __ucmpdi2
+  //                     __clzsi2
+  //                     __clzdi2
+  //                     __ctzsi2
+  //                     __ctzdi2
+  //                     __ffsdi2
+  //                     __paritysi2
+  //                     __paritydi2
+  //                     __popcountsi2
+  //                     __popcountdi2
+  //                     __bswapsi2
+  //                     __bswapdi2
+  #define __aeabi_fadd   __addsf3
+  #define __aeabi_dadd   __adddf3
+  #define __aeabi_fsub   __subsf3
+  #define __aeabi_dsub   __subdf3
+  #define __aeabi_fmul   __mulsf3
+  #define __aeabi_dmul   __muldf3
+  #define __aeabi_fdiv   __divsf3
+  #define __aeabi_ddiv   __divdf3
+  #define __aeabi_fneg   __negsf2
+  #define __aeabi_dneg   __negdf2
+  #define __aeabi_f2d    __extendsfdf2
+  #define __aeabi_d2f    __truncdfsf2
+  #define __aeabi_f2iz   __fixsfsi
+  #define __aeabi_d2iz   __fixdfsi
+  #define __aeabi_f2lz   __fixsfdi
+  #define __aeabi_d2lz   __fixdfdi
+  #define __aeabi_f2uiz  __fixunssfsi
+  #define __aeabi_d2uiz  __fixunsdfsi
+  #define __aeabi_f2ulz  __fixunssfdi
+  #define __aeabi_d2ulz  __fixunsdfdi
+  #define __aeabi_i2f    __floatsisf
+  #define __aeabi_i2d    __floatsidf
+  #define __aeabi_l2f    __floatdisf
+  #define __aeabi_l2d    __floatdidf
+  #define __aeabi_ui2f   __floatunsisf
+  #define __aeabi_ui2d   __floatunsidf
+  #define __aeabi_ul2f   __floatundisf
+  #define __aeabi_ul2d   __floatundidf
+  //                     __cmpsf2
+  //                     __cmpdf2
+  #define __aeabi_fcmpun __unordsf2
+  #define __aeabi_dcmpun __unorddf2
+  //                     __eqsf2
+  //                     __eqdf2
+  //                     __nesf2
+  //                     __nedf2
+  //                     __gesf2
+  //                     __gedf2
+  //                     __ltsf2
+  //                     __ltdf2
+  //                     __lesf2
+  //                     __ledf2
+  //                     __gtsf2
+  //                     __gtdf2
+  //                     __powisf2
+  //                     __powidf2
+  #define __aeabi_idiv0  __div0
+  #define __aeabi_ldiv0  __div0
+
+
+// Library sources
+
+  // TODO: pretty much every commented-out thing in the _FE7J_ section
+  /* TODO:
+
+    __aeabi_d2f
+    __aeabi_idiv
+    __aeabi_idivmod
+    __aeabi_uidiv
+    __aeabi_uidivmod
+    __aeabi_lmul
+    __aeabi_ldivmod
+    __aeabi_uldivmod
+    __aeabi_dadd
+    __aeabi_dsub
+    __aeabi_dmul
+    __aeabi_ddiv
+    __aeabi_fadd
+    __aeabi_f2d
+    __aeabi_fsub
+    __aeabi_fmul
+    __aeabi_fdiv
+    __aeabi_d2iz
+    __aeabi_f2iz
+    __aeabi_i2d
+    __aeabi_i2f
+    __aeabi_dcmpeq
+    __aeabi_dcmplt
+    __aeabi_dcmpgt
+    __aeabi_dcmple
+    __aeabi_dcmpge
+    __aeabi_fcmpeq
+    __aeabi_fcmplt
+    __aeabi_fcmpgt
+    __aeabi_fcmple
+    __aeabi_fcmpge
+
+    other gcc functions, too!
+
+   */
+
+  #ifndef __ashrdi3
+    #include "src/ashrdi3.lyn.event"
+  #endif // __ashrdi3
+
+  #ifndef __divdi3
+    #include "src/divdi3.lyn.event"
+  #endif // __divdi3
+
+  #ifndef __udivmoddi4
+    #include "src/udivmoddi4.lyn.event"
+  #endif // __udivmoddi4
+
+  #ifndef __aeabi_idivmod
+    #include "src/aeabi_idivmod.lyn.event"
+  #endif // __aeabi_idivmod
+
+  #ifndef __aeabi_uidivmod
+    #include "src/aeabi_uidivmod.lyn.event"
+  #endif // __aeabi_uidivmod
+
+  #ifndef __aeabi_ldivmod
+    #include "src/aeabi_ldivmod.lyn.event"
+  #endif // __aeabi_ldivmod
+
+  #ifndef __lshrdi3
+    #include "src/lshrdi3.lyn.event"
+  #endif // __lshrdi3
+
+  #ifndef __clzdi2
+    #include "src/clzdi2.lyn.event"
+  #endif // __clzdi2
+
+  #ifndef __clzsi2
+    #include "src/clzsi2.lyn.event"
+  #endif // __clzsi2
+
+  #ifndef __ctzsi2
+    #include "src/ctzsi2.lyn.event"
+  #endif // __ctzsi2
+
+  #ifndef __cmpdi2
+    #include "src/cmpdi2.lyn.event"
+  #endif // __cmpdi2
+
+  #ifndef __ucmpdi2
+    #include "src/ucmpdi2.lyn.event"
+  #endif // __ucmpdi2
+
+  #ifndef __gnu_thumb1_case_sqi
+    #include "src/gnu_thumb1_case_sqi.lyn.event"
+  #endif // __gnu_thumb1_case_sqi
+
+  #ifndef __gnu_thumb1_case_uqi
+    #include "src/gnu_thumb1_case_uqi.lyn.event"
+  #endif // __gnu_thumb1_case_uqi
+
+  #ifndef __gnu_thumb1_case_shi
+    #include "src/gnu_thumb1_case_shi.lyn.event"
+  #endif // __gnu_thumb1_case_shi
+
+  #ifndef __gnu_thumb1_case_uhi
+    #include "src/gnu_thumb1_case_uhi.lyn.event"
+  #endif // __gnu_thumb1_case_uhi
+
+  #ifndef __gnu_thumb1_case_si
+    #include "src/gnu_thumb1_case_si.lyn.event"
+  #endif // __gnu_thumb1_case_si

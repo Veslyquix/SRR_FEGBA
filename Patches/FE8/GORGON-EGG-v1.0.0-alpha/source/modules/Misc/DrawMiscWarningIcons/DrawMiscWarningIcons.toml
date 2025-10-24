@@ -1,0 +1,270 @@
+
+[module]
+  name = "DrawMiscWarningIcons"
+
+[[module.inits]]
+  name = "DrawMiscWarningIcons_Init"
+  file = "DrawMiscWarningIcons.lyn.event"
+
+[[module.dynamics]]
+  name = "DrawMiscWarningIcons_Dynamic"
+  file = "DrawMiscWarningIcons.lyn.event"
+
+[[module.includes]]
+  file = "Graphics.event"
+  games = [ "FE6J", "FE7U", "FE7J" ]
+
+[[module.definitions]]
+  name = "MISC_WARNINGS_X"
+  value = 8
+
+[[module.definitions]]
+  name = "MISC_WARNINGS_Y"
+  value = 24
+
+[[module.definitions]]
+  name = "MISC_WARNINGS_BASE_TILE"
+  value = 0x030C
+
+[[module.definitions]]
+  name = "MISC_WARNING_CRIT_THRESHOLD"
+  value = 25
+
+[[module.definitions]]
+  name = "MISC_WARNING_RANGE_THRESHOLD"
+  value = 3
+
+[[module.definitions]]
+  name = "MISC_WARNINGS_PALETTE"
+  value = 21
+
+[[module.definitions]]
+  name = "US_DROP_ITEM"
+  value = "(1 << 12)"
+  games = [ "FE7U", "FE7J", "FE8U", "FE8J" ]
+
+
+[[module.definitions]]
+  name = "ITEM_STAFF_SILENCE"
+  value = 0x4B
+  games = [ "FE6J" ]
+
+[[module.definitions]]
+  name = "ITEM_STAFF_SLEEP"
+  value = 0x4C
+  games = [ "FE6J" ]
+
+[[module.definitions]]
+  name = "ITEM_STAFF_BERSERK"
+  value = 0x50
+  games = [ "FE6J" ]
+
+
+[[module.definitions]]
+  name = "ITEM_STAFF_SILENCE"
+  value = 0x50
+  games = [ "FE7U", "FE7J" ]
+
+[[module.definitions]]
+  name = "ITEM_STAFF_SLEEP"
+  value = 0x51
+  games = [ "FE7U", "FE7J" ]
+
+[[module.definitions]]
+  name = "ITEM_STAFF_BERSERK"
+  value = 0x52
+  games = [ "FE7U", "FE7J" ]
+
+
+[[module.definitions]]
+  name = "ITEM_STAFF_SILENCE"
+  value = 0x51
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "ITEM_STAFF_SLEEP"
+  value = 0x52
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "ITEM_STAFF_BERSERK"
+  value = 0x53
+  games = [ "FE8U", "FE8J" ]
+
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013CA4 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitItemCount"
+  body = "SET_FUNC GetUnitItemCount, 0x08017520 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemEffectiveness"
+  body = "SET_FUNC GetItemEffectiveness, 0x080172B0 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemCrit"
+  body = "SET_FUNC GetItemCrit, 0x08017224 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemMaxRange"
+  body = "SET_FUNC GetItemMaxRange, 0x08017270 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemAttributes"
+  body = "SET_FUNC GetItemAttributes, 0x08017190 | 1"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013168 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitItemCount"
+  body = "SET_FUNC GetUnitItemCount, 0x080176DC | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemEffectiveness"
+  body = "SET_FUNC GetItemEffectiveness, 0x080173D0 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemCrit"
+  body = "SET_FUNC GetItemCrit, 0x08017328 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemMaxRange"
+  body = "SET_FUNC GetItemMaxRange, 0x08017384 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemAttributes"
+  body = "SET_FUNC GetItemAttributes, 0x0801727C | 1"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013688 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitItemCount"
+  body = "SET_FUNC GetUnitItemCount, 0x08017ACC | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemEffectiveness"
+  body = "SET_FUNC GetItemEffectiveness, 0x080177D8 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemCrit"
+  body = "SET_FUNC GetItemCrit, 0x08017730 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemMaxRange"
+  body = "SET_FUNC GetItemMaxRange, 0x0801778C | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemAttributes"
+  body = "SET_FUNC GetItemAttributes, 0x08017684 | 1"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08012F50 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitItemCount"
+  body = "SET_FUNC GetUnitItemCount, 0x080179D8 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemEffectiveness"
+  body = "SET_FUNC GetItemEffectiveness, 0x080176D0 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemCrit"
+  body = "SET_FUNC GetItemCrit, 0x08017624 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemMaxRange"
+  body = "SET_FUNC GetItemMaxRange, 0x08017684 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemAttributes"
+  body = "SET_FUNC GetItemAttributes, 0x0801756C | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gMiscWMGraphics"
+  body = "SET_DATA gMiscWMGraphics, 0x08A97A80"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gMiscWMPalette"
+  body = "SET_DATA gMiscWMPalette, 0x08A99120"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013008 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitItemCount"
+  body = "SET_FUNC GetUnitItemCount, 0x08017780 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemEffectiveness"
+  body = "SET_FUNC GetItemEffectiveness, 0x08017478 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemCrit"
+  body = "SET_FUNC GetItemCrit, 0x080173CC | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemMaxRange"
+  body = "SET_FUNC GetItemMaxRange, 0x0801742C | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemAttributes"
+  body = "SET_FUNC GetItemAttributes, 0x08017314 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gMiscWMGraphics"
+  body = "SET_DATA gMiscWMGraphics, 0x08B1CD14"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gMiscWMPalette"
+  body = "SET_DATA gMiscWMPalette, 0x08B1E998"
+  games = [ "FE8J" ]
+
+
+

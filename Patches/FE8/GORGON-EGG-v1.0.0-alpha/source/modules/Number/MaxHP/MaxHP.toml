@@ -1,0 +1,129 @@
+
+[module]
+  name = "MaxHP"
+
+[[module.dynamics]]
+  name = "MaxHP_Dynamic"
+  file = "MaxHP.lyn.event"
+
+[[module.internals]]
+  file = "DrawNumber/DrawNumber.event"
+
+[[module.definitions]]
+  name = "NEED_NUMBER_2_DIGITS"
+  value = 1
+
+[[module.definitions]]
+  name = "MAX_HP_RENDERER_DEFS"
+  body = '''
+void DrawUnsignedNumberRightAligned(int number, int x, int y, u16 baseObj);
+#define NEED_NUMBER_UNSIGNED_RIGHT_ALIGNED
+'''
+
+[[module.definitions]]
+  name = "MAX_HP_RENDERER"
+  value = "DrawUnsignedNumberRightAligned"
+
+[[module.definitions]]
+  name = "MAX_HP_X"
+  value = 16
+
+[[module.definitions]]
+  name = "MAX_HP_Y"
+  value = 8
+
+[[module.definitions]]
+  name = "NUMBER_BASE_TILE"
+  value = 0x02E0
+
+[[module.definitions]]
+  name = "NUMBER_PALETTE"
+  value = 8
+
+[[module.definitions]]
+  name = "MAX_HP_BASE_TILE"
+  value = "NUMBER_BASE_TILE"
+
+[[module.definitions]]
+  name = "MAX_HP_PALETTE"
+  value = "NUMBER_PALETTE"
+
+
+[[module.asm_definitions]]
+  name = "ConvertNumberToStringOrDashes"
+  body = "SET_FUNC ConvertNumberToStringOrDashes, 0x080050F8 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x080183C8 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "NumberStringSpace"
+  body = "SET_DATA NumberStringSpace, 0x02027BA0"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "ConvertNumberToStringOrDashes"
+  body = "SET_FUNC ConvertNumberToStringOrDashes, 0x08005080 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08018AB0 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "NumberStringSpace"
+  body = "SET_DATA NumberStringSpace, 0x02028D44"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "ConvertNumberToStringOrDashes"
+  body = "SET_FUNC ConvertNumberToStringOrDashes, 0x08004F5C | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08018EA0 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "NumberStringSpace"
+  body = "SET_DATA NumberStringSpace, 0x02028D3C"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "ConvertNumberToStringOrDashes"
+  body = "SET_FUNC ConvertNumberToStringOrDashes, 0x0800391C | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08019190 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "NumberStringSpace"
+  body = "SET_DATA NumberStringSpace, 0x02028E44"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "ConvertNumberToStringOrDashes"
+  body = "SET_FUNC ConvertNumberToStringOrDashes, 0x08003868 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08018EA4 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "NumberStringSpace"
+  body = "SET_DATA NumberStringSpace, 0x02028E44"
+  games = [ "FE8J" ]

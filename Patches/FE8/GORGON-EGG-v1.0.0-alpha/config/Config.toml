@@ -1,0 +1,113 @@
+
+[[config.modules]]
+  name = "DrawStandard"
+
+[[config.modules]]
+  name = "TilemapZane"
+
+[[config.modules]]
+  name = "FullInventoryFirstFixed"
+
+  [[config.definitions]]
+    name = "INVENTORY_ICON_X"
+    value = 48
+
+  [[config.definitions]]
+    name = "INVENTORY_ICON_Y"
+    value = 8
+
+  [[config.definitions]]
+    name = "INVENTORY_ICON_2_X"
+    value = 28
+
+  [[config.definitions]]
+    name = "INVENTORY_ICON_2_Y"
+    value = 8
+
+[[config.modules]]
+  name = "Affinity"
+
+  [[config.definitions]]
+    name = "AFFINITY_X"
+    value = 83
+
+  [[config.definitions]]
+    name = "AFFINITY_Y"
+    value = 24
+
+[[config.modules]]
+  name = "MinimugStandard"
+
+  [[config.modules]]
+    name = "FixMinimugPalette"
+    # FE6J doesn't need this.
+    games = [ "FE7U", "FE7J", "FE8U", "FE8J" ]
+
+  [[config.definitions]]
+    name = "MINIMUG_X"
+    value = 8
+
+[[config.modules]]
+  name = "HPLabelStandard"
+
+  [[config.definitions]]
+    name = "HP_LABEL_X"
+    value = 1
+
+  [[config.definitions]]
+    name = "HP_LABEL_Y"
+    value = 4
+
+[[config.modules]]
+  name = "HPBarStandard"
+
+  [[config.definitions]]
+    name = "HPBAR_X"
+    value = 3
+
+  [[config.definitions]]
+    name = "HPBAR_Y"
+    value = 4
+
+  [[config.definitions]]
+    name = "HPBAR_WIDTH"
+    value = 5
+
+[[config.modules]]
+  name = "ReplaceBarGraphics"
+
+  # Ensure that the HP bar is using our different
+  # bar palette slot.
+  [[config.definitions]]
+    name = "HPBAR_PALETTE"
+    value = "BAR_PALETTE"
+
+[[config.modules]]
+  name = "DrawMiscWarningIcons"
+  
+[[config.modules]]
+  name = "NameSmall"
+  games = [ "FE7U", "FE8U" ]
+
+[[config.modules]]
+  name = "NameSmallSJIS"
+  games = [ "FE6J", "FE7J", "FE8J" ]
+
+[[config.definitions]]
+  name = "NAME_SMALL_COLOR"
+  value = "TEXT_COLOR_NORMAL"
+  games = [ "FE8U", "FE8J" ]
+
+[[config.modules]]
+  name = "ReplaceNumberGraphics"
+
+[[config.modules]]
+  name = "CurrentHP"
+
+  [[config.definitions]]
+    name = "CURRENT_HP_X"
+    value = 44
+
+  [[config.definitions]]
+    name = "CURRENT_HP_Y"
+    value = 32

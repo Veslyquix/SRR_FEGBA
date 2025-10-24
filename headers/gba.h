@@ -205,3 +205,5 @@ enum
     OBJPAL_UNITSPRITE_GREEN = OBJPAL_MAPSPRITES + 2,
     OBJPAL_UNITSPRITE_GRAY = OBJPAL_MAPSPRITES + 3,
 };
+#include "gba/syscall.h"
+#include "gba/macro.h"

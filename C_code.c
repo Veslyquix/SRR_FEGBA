@@ -34,6 +34,9 @@ extern const int VeslyBuildfile_Link;
 #define FilterEnemyClassesLabel 3
 #define PreviewCharLabel 4
 #define ReviseCharProcLabel 5
+#define ConfirmationLabel 6
+#define SaveSettingsLabel 7
+#define LoopLabel 10
 
 #define EndLabel 99
 
@@ -1064,6 +1067,7 @@ void EndAllRecruitmentProcs(void)
 }
 extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 void ClearPlayerBWL(void);
+#define PopupBoxCHR 0x180
 
 void ClearConfigGfx(ConfigMenuProc * proc)
 {
@@ -1081,6 +1085,8 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     InitSystemTextFont();
     LoadObjUIGfx();
     UnpackUiVArrowGfx(0x240, 3);
+    int lines = 3;
+    CpuFastFill(0, (void *)0x6010000 + (PopupBoxCHR << 5), 0x800 * lines);
 
     ResetText();  // need this
     ResetFaces(); // without this, it was duplicating the face on both sides
@@ -1837,10 +1843,9 @@ struct FaceData
 };
 extern const struct FaceData * GetPortraitData(int fid);
 extern void Decompress(const void * src, void * dst);
-extern void CpuFastSet(const void * src, void * dest, u32 control);
 extern void CopyToPaletteBuffer(const void * src, int b, int size);
 extern void PutFaceTm(u16 * tm, u8 * data, int tileref, s8 isFlipped);
-#define CpuFastCopy(src, dest, size) CpuFastSet(src, dest, ((size) / (32 / 8) & 0x1FFFFF))
+
 void UnpackFaceChibiGraphics_Bulk(int fid, int chr, int pal)
 {
     const struct FaceData * info = GetPortraitData(fid);
@@ -6715,12 +6720,6 @@ int MaybeRandomizeColours(void)
     }
     return result;
 }
-
-void CpuSet(const void * src, void * dest, u32 control);
-#define CPU_SET_16BIT 0x00000000
-#define CPU_COPY(src, dest, size, bit) CpuSet(src, dest, CPU_SET_##bit##BIT | ((size) / (bit / 8) & 0x1FFFFF))
-
-#define CpuCopy16(src, dest, size) CPU_COPY(src, dest, size, 16)
 
 #define NumOfCharPals 11
 struct gCharPal_EntryStruct
@@ -12279,6 +12278,192 @@ void StartCloudsEffect(ConfigMenuProc * proc);
 void EndCloudsEffect(void);
 void EndAllMenus(void); // 804A490 8041A38
 void ConfigMenuLoop(ConfigMenuProc * proc);
+
+extern void DisplayHelpBoxObj(int x, int y, int w, int h, int unk);
+extern int Text_GetCursor(struct Text * text);
+void InitSpriteTextFont(struct Font * font, void * vramDest, int c);
+void InitSpriteText(struct Text * th);
+extern const u8 gGfx_HelpTextBox[];
+extern const u8 gGfx_HelpTextBox2[];
+extern const u8 gGfx_HelpTextBox3[];
+extern const u8 gGfx_HelpTextBox4[];
+extern const u8 gGfx_HelpTextBox5[];
+extern const u16 gPal_HelpTextBox[];
+void SpriteText_DrawBackground(struct Text *);
+extern struct Font * gActiveFont;
+struct Glyph
+{
+    struct Glyph * sjisNext; // (only used in Shift-JIS fonts) next element in linked list
+    u8 sjisByte1;            // (only used in Shift-JIS fonts) second byte of character
+    u8 width;                // width of the glyph in pixels
+    u32 bitmap[16];          // image data of the glyph (16x16 pixels, 2 bits per pixel)
+};
+struct HelpBoxSt
+{
+    /* 00 */ struct Font font;
+    /* 16 */ struct Text text[3];
+    /* 30 */ u16 oam2_base;
+};
+
+extern struct HelpBoxSt gHelpBoxSt;
+extern struct GuideSt * const gGuideSt;
+
+extern const char * Text_DrawCharacterAscii(struct Text * text, const char * str);
+#define CHAR_NEWLINE 1
+#define CHAR_SPACE 0x20
+#define MAX_LINE_WIDTH 184
+char * SRRPrintText(struct Text * th, const char * str, u8 * line)
+{
+    char * iter = (void *)str;
+    int curX;
+    int forceNewLine = false;
+
+    int nextWordWidth = 0;
+
+    while (*iter > CHAR_NEWLINE)
+    {
+
+        curX = Text_GetCursor(th); // current x position
+        if (*iter == CHAR_SPACE)
+        {
+            char * lookahead = iter + 1;
+            nextWordWidth = gActiveFont->glyphs[(u8)*iter]->width; // include the space in width
+
+            while (*lookahead > CHAR_NEWLINE && *lookahead != ' ' && *lookahead != CHAR_NEWLINE)
+            {
+                struct Glyph * glyph = gActiveFont->glyphs[(u8)*lookahead++];
+                nextWordWidth += glyph->width;
+            }
+
+            // If the next word doesn't fit, break before this space
+            if (curX + nextWordWidth > MAX_LINE_WIDTH)
+            {
+                forceNewLine = true;
+                break; // wrap before the next word
+            }
+        }
+        if (curX > MAX_LINE_WIDTH || *iter == CHAR_NEWLINE)
+        {
+            forceNewLine = true;
+            break;
+        }
+        iter = (void *)Text_DrawCharacterAscii(th, (void *)iter);
+        break;
+    }
+    if (*iter == CHAR_NEWLINE || forceNewLine)
+    {
+        line[0]++;
+        brk;
+        while (*iter == CHAR_SPACE || *iter == CHAR_NEWLINE)
+        {
+            iter++;
+        }
+    }
+
+    return iter;
+}
+
+void SRRDrawInstantSpriteText(char * str, struct Text * th)
+{
+    struct Font * font = gActiveFont;
+    SetTextFont(&gHelpBoxSt.font); // use our own chr_counter
+    u8 line[1];
+    line[0] = 0;
+    while (str && *str)
+    {
+        str = SRRPrintText(&th[line[0]], str, line); // updates line as well
+    }
+    SetTextFont(font);
+}
+
+void ConfirmPopupInit(ConfigMenuProc * proc, struct Text * th)
+{
+    struct Font * font = gActiveFont;
+    int pal = 0x12;
+    void * vram = (void *)(VRAM + (void *)0x10000 + (PopupBoxCHR << 5));
+
+    InitSpriteTextFont(&gHelpBoxSt.font, vram, pal);
+    SetTextFontGlyphs(1);
+
+    Decompress(gGfx_HelpTextBox, vram + 0x360);
+    Decompress(gGfx_HelpTextBox2, vram + 0x760);
+    Decompress(gGfx_HelpTextBox3, vram + 0xb60);
+    Decompress(gGfx_HelpTextBox4, vram + 0xf60);
+    Decompress(gGfx_HelpTextBox5, vram + 0x1360);
+    gHelpBoxSt.oam2_base = (((u32)vram << 0x11) >> 0x16) + (pal & 0xF) * 0x1000;
+    ApplyPalette(gPal_HelpTextBox, pal);
+
+    int lines = 3;
+    for (int i = 0; i < lines; ++i)
+    {
+        InitSpriteText(&th[i]);
+        SpriteText_DrawBackground(&th[i]);
+    }
+    gActiveFont = font;
+}
+
+void ConfirmPopupReloadUnitsMsg(ConfigMenuProc * proc)
+{
+    struct Font * font = gActiveFont;
+    struct Text * th = &gHelpBoxSt.text[0];
+    ConfirmPopupInit(proc, th);
+    SRRDrawInstantSpriteText("Some units will be reloaded.", &th[0]);
+    SRRDrawInstantSpriteText("Press A to confirm and reload units.", &th[1]);
+    SRRDrawInstantSpriteText("Press B to leave units unchanged.", &th[2]);
+    gActiveFont = font;
+}
+
+void ConfirmPopupSaveSettingsMsg(ConfigMenuProc * proc)
+{
+    struct Font * font = gActiveFont;
+    struct Text * th = &gHelpBoxSt.text[0];
+    ConfirmPopupInit(proc, th);
+    SRRDrawInstantSpriteText("Save settings for future runs?", &th[0]);
+    SRRDrawInstantSpriteText("Press Start to save settings.", &th[1]);
+    SRRDrawInstantSpriteText("Otherwise, press A or B to continue.", &th[2]);
+    gActiveFont = font;
+}
+
+void ConfigMenuConfirmReloadUnits(ConfigMenuProc * proc)
+{
+
+    int x = 10;
+    int y = 60;
+    int lines = 3;                                  // max 3 without Vesly's extend desc box
+    DisplayHelpBoxObj(x, y, 184, lines * 16, true); // true: do not show "Help" text
+
+    u16 keys = sKeyStatusBuffer.newKeys;
+    if (keys & A_BUTTON)
+    {
+        Proc_Goto(proc, EndLabel);
+    }
+    if (keys & B_BUTTON)
+    {
+        proc->Option[ReloadUnitsOption] = 0;
+        Proc_Goto(proc, EndLabel);
+    }
+}
+void SaveConfigOptions(ConfigMenuProc * proc);
+void ConfigMenuConfirmSaveSettings(ConfigMenuProc * proc)
+{
+
+    int x = 10;
+    int y = 60;
+    int lines = 3;                                  // max 3 without Vesly's extend desc box
+    DisplayHelpBoxObj(x, y, 184, lines * 16, true); // true: do not show "Help" text
+
+    u16 keys = sKeyStatusBuffer.newKeys;
+    if (keys & START_BUTTON)
+    {
+        SaveConfigOptions(proc);
+        Proc_Goto(proc, EndLabel);
+    }
+    if (keys & (A_BUTTON | B_BUTTON))
+    {
+        Proc_Goto(proc, EndLabel);
+    }
+}
+
 void EnableBGDisplay(void)
 {
     gLCDControlBuffer.dispcnt.bg0_on = 1;
@@ -12300,7 +12485,17 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_REPEAT(WaitForFade),
     PROC_CALL(InitDraw),
     PROC_CALL(EnableBGDisplay),
+
+    PROC_LABEL(LoopLabel),
     PROC_REPEAT(ConfigMenuLoop),
+
+    PROC_LABEL(ConfirmationLabel),
+    PROC_CALL(ConfirmPopupReloadUnitsMsg),
+    PROC_REPEAT(ConfigMenuConfirmReloadUnits),
+
+    PROC_LABEL(SaveSettingsLabel),
+    PROC_CALL(ConfirmPopupSaveSettingsMsg),
+    PROC_REPEAT(ConfigMenuConfirmSaveSettings),
 
     PROC_LABEL(PreviewCharLabel),
     PROC_CALL(StartFastFadeToBlack),
@@ -13339,6 +13534,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 {
     int id = proc->id;
     int offset = proc->offset;
+    int id_adj = GetReorderedMenuId(id + offset);
     // see if anything changed
     int reloadPlayers = false;
     int reloadEnemies = false;
@@ -13453,16 +13649,16 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 
     if (proc->calledFromChapter)
     { // are you sure units should be reloaded?
-        if ((id + offset) != ReloadUnitsOption)
+        if (id_adj != SaveOption && id_adj != SettingsOption)
         {
-            if (((id + offset) != FilterCharsOption) && ((id + offset) != PreviewCharsOption) &&
-                ((id + offset) != FilterClassOption) && ((id + offset) != FilterEnemyClassOption))
+            if (((id_adj) != FilterCharsOption) && ((id_adj) != PreviewCharsOption) &&
+                ((id_adj) != FilterClassOption) && ((id_adj) != FilterEnemyClassOption))
             {
-                if ((id + offset) != SkipChOption)
+                if ((id_adj) != SkipChOption)
                 {
-                    proc->id = SRR_MAXDISP; // SRR_NUMBERDISP
-                    proc->offset = SkipChOption - 5;
-                    proc->redraw = RedrawAll;
+                    // proc->id = SRR_MAXDISP; // SRR_NUMBERDISP
+                    // proc->offset = SkipChOption - 5;
+                    // proc->redraw = RedrawAll;
                     proc->Option[ReloadUnitsOption] = 0;
                     if (reloadPlayers)
                     {
@@ -13476,7 +13672,15 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
                     {
                         proc->Option[ReloadUnitsOption] = 1;
                     }
-                    DrawConfigMenu(proc);
+                    if (!proc->Option[ReloadUnitsOption])
+                    {
+                        Proc_Goto(proc, SaveSettingsLabel);
+                    }
+                    else
+                    {
+                        Proc_Goto(proc, ConfirmationLabel); // units will be reloaded warning
+                    }
+                    // DrawConfigMenu(proc);
                     return;
                 }
             }
@@ -13636,7 +13840,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 #endif
     int fog = proc->Option[FogOption];
     RandBitflags->fog = proc->Option[FogOption];
-    if (((id + offset) == SaveOption) || ((id + offset) == SettingsOption))
+    if (((id_adj) == SaveOption) || ((id_adj) == SettingsOption))
     {
         return; // done copying to ram
     }
@@ -13699,10 +13903,10 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     }
 
 #ifdef FE8
-    if (proc->Option[SkipChOption] && ((id + offset) == SkipChOption))
+    if (proc->Option[SkipChOption] && ((id_adj) == SkipChOption))
     {
 #else
-    if (proc->Option[SkipChOption] && ((id + offset) == SkipChOption))
+    if (proc->Option[SkipChOption] && ((id_adj) == SkipChOption))
     {
 #endif
         if (proc->calledFromChapter)
@@ -13726,23 +13930,23 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     //	ClearText(&th[i]);
     //}
     EndCloudsEffect();
-    if ((proc->id + proc->offset) == FilterCharsOption)
+    if ((id_adj) == FilterCharsOption)
     {
         Proc_Goto(proc, FilterUnitsLabel);
         return;
     }
-    if ((proc->id + proc->offset) == PreviewCharsOption)
+    if ((id_adj) == PreviewCharsOption)
     {
         proc->previewId = ConfirmCommandID;
         Proc_Goto(proc, PreviewCharLabel);
         return;
     }
-    if ((proc->id + proc->offset) == FilterClassOption)
+    if ((id_adj) == FilterClassOption)
     {
         Proc_Goto(proc, FilterClassesLabel);
         return;
     }
-    if ((proc->id + proc->offset) == FilterEnemyClassOption)
+    if ((id_adj) == FilterEnemyClassOption)
     {
         Proc_Goto(proc, FilterEnemyClassesLabel);
         return;

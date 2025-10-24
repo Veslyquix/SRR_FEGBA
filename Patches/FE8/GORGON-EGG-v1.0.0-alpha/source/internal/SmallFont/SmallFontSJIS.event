@@ -1,0 +1,762 @@
+
+#ifndef GetColorLut
+
+  #ifdef _FE6J_
+    #define GetColorLut (0x08006050 | 1)
+  #endif // _FE6J
+
+  #ifdef _FE7U_
+    #define GetColorLut (0x080058A0 | 1)
+  #endif // _FE7U_
+
+  #ifdef _FE7J_
+    #define GetColorLut (0x08005764 | 1)
+  #endif // _FE7J_
+
+  #ifdef _FE8U_
+    #define GetColorLut (0x08004208 | 1)
+  #endif // _FE8U_
+
+  #ifdef _FE8J_
+    #define GetColorLut (0x08004140 | 1)
+  #endif // _FE8J_
+
+#endif // GetColorLut
+
+ALIGN 4; gSmallFontSJISPage82: {
+  #incbin "Page82.2bpp"
+};
+
+ALIGN 4; gSmallFontSJISPage83: {
+  #incbin "Page83.2bpp"
+};
+
+// ASCII font
+ALIGN 4; gSmallFont: {
+  #incbin "FontSJIS.2bpp"
+};
+
+// I'd wrap this in brackets but EA doesn't allow
+// references to scopes from the outside.
+ALIGN 4; gSmallFontSJISExceptionPage:
+  SJIS_5B81: #incbin "SJISExceptions/5B81.2bpp"
+  SJIS_5E81: #incbin "SJISExceptions/5E81.2bpp"
+  SJIS_7A81: #incbin "SJISExceptions/7A81.2bpp"
+  SJIS_7B81: #incbin "SJISExceptions/7B81.2bpp"
+  SJIS_7C81: #incbin "SJISExceptions/7C81.2bpp"
+  SJIS_7E81: #incbin "SJISExceptions/7E81.2bpp"
+  SJIS_9A81: #incbin "SJISExceptions/9A81.2bpp"
+  SJIS_4081: #incbin "SJISExceptions/4081.2bpp"
+  SJIS_4181: #incbin "SJISExceptions/4181.2bpp"
+  SJIS_4281: #incbin "SJISExceptions/4281.2bpp"
+  SJIS_4381: #incbin "SJISExceptions/4381.2bpp"
+  SJIS_4481: #incbin "SJISExceptions/4481.2bpp"
+  SJIS_4581: #incbin "SJISExceptions/4581.2bpp"
+  SJIS_4681: #incbin "SJISExceptions/4681.2bpp"
+  SJIS_4781: #incbin "SJISExceptions/4781.2bpp"
+  SJIS_4881: #incbin "SJISExceptions/4881.2bpp"
+  SJIS_4981: #incbin "SJISExceptions/4981.2bpp"
+  SJIS_5881: #incbin "SJISExceptions/5881.2bpp"
+  SJIS_6081: #incbin "SJISExceptions/6081.2bpp"
+  SJIS_6781: #incbin "SJISExceptions/6781.2bpp"
+  SJIS_6881: #incbin "SJISExceptions/6881.2bpp"
+  SJIS_6981: #incbin "SJISExceptions/6981.2bpp"
+  SJIS_6A81: #incbin "SJISExceptions/6A81.2bpp"
+  SJIS_7581: #incbin "SJISExceptions/7581.2bpp"
+  SJIS_7681: #incbin "SJISExceptions/7681.2bpp"
+  SJIS_7781: #incbin "SJISExceptions/7781.2bpp"
+  SJIS_7881: #incbin "SJISExceptions/7881.2bpp"
+  SJIS_7981: #incbin "SJISExceptions/7981.2bpp"
+  SJIS_9381: #incbin "SJISExceptions/9381.2bpp"
+  SJIS_A881: #incbin "SJISExceptions/A881.2bpp"
+
+  SJIS_A781: #incbin "SJISExceptions/A781.2bpp"
+
+  // These roman numerals are used for a hacky encoding
+  // that FE6J does for halfwidth katakana, but other games
+  // actually want the tactician to be able to use them.
+
+  #define WANT_SJIS_NUMERALS
+
+  #ifdef _FE6J_
+
+    #ifndef NO_SJIS_HACKS
+
+      #undef WANT_SJIS_NUMERALS
+
+    #endif // NO_SJIS_HACKS
+
+  #endif // _FE6J_
+
+  #ifdef WANT_SJIS_NUMERALS
+
+    SJIS_5487: #incbin "SJISExceptions/5487.2bpp"
+    SJIS_5587: #incbin "SJISExceptions/5587.2bpp"
+    SJIS_5687: #incbin "SJISExceptions/5687.2bpp"
+    SJIS_5787: #incbin "SJISExceptions/5787.2bpp"
+    SJIS_5887: #incbin "SJISExceptions/5887.2bpp"
+
+  #endif // WANT_SJIS_NUMERALS
+
+  SJIS_BA95: #incbin "SJISExceptions/BA95.2bpp"
+  SJIS_958C: #incbin "SJISExceptions/958C.2bpp"
+  SJIS_AF91: #incbin "SJISExceptions/AF91.2bpp"
+  SJIS_6D8E: #incbin "SJISExceptions/6D8E.2bpp"
+  SJIS_8296: #incbin "SJISExceptions/8296.2bpp"
+  SJIS_7C8B: #incbin "SJISExceptions/7C8B.2bpp"
+  SJIS_528B: #incbin "SJISExceptions/528B.2bpp"
+  SJIS_D28E: #incbin "SJISExceptions/D28E.2bpp"
+  SJIS_AF96: #incbin "SJISExceptions/AF96.2bpp"
+  SJIS_B397: #incbin "SJISExceptions/B397.2bpp"
+  SJIS_528E: #incbin "SJISExceptions/528E.2bpp"
+  SJIS_F395: #incbin "SJISExceptions/F395.2bpp"
+  SJIS_CA8B: #incbin "SJISExceptions/CA8B.2bpp"
+  SJIS_ED90: #incbin "SJISExceptions/ED90.2bpp"
+  SJIS_E591: #incbin "SJISExceptions/E591.2bpp"
+  SJIS_9093: #incbin "SJISExceptions/9093.2bpp"
+  SJIS_718E: #incbin "SJISExceptions/718E.2bpp"
+  SJIS_738E: #incbin "SJISExceptions/738E.2bpp"
+  SJIS_5693: #incbin "SJISExceptions/5693.2bpp"
+  SJIS_6392: #incbin "SJISExceptions/6392.2bpp"
+  SJIS_7196: #incbin "SJISExceptions/7196.2bpp"
+  SJIS_5697: #incbin "SJISExceptions/5697.2bpp"
+  SJIS_B993: #incbin "SJISExceptions/B993.2bpp"
+  SJIS_E78E: #incbin "SJISExceptions/E78E.2bpp"
+  SJIS_6297: #incbin "SJISExceptions/6297.2bpp"
+  SJIS_438A: #incbin "SJISExceptions/438A.2bpp"
+  SJIS_E091: #incbin "SJISExceptions/E091.2bpp"
+  SJIS_918F: #incbin "SJISExceptions/918F.2bpp"
+  SJIS_978F: #incbin "SJISExceptions/978F.2bpp"
+  SJIS_A489: #incbin "SJISExceptions/A489.2bpp"
+  SJIS_5F90: #incbin "SJISExceptions/5F90.2bpp"
+  SJIS_AB8C: #incbin "SJISExceptions/AB8C.2bpp"
+  SJIS_B091: #incbin "SJISExceptions/B091.2bpp"
+  SJIS_FB95: #incbin "SJISExceptions/FB95.2bpp"
+  SJIS_BC90: #incbin "SJISExceptions/BC90.2bpp"
+  SJIS_DC92: #incbin "SJISExceptions/DC92.2bpp"
+  SJIS_D697: #incbin "SJISExceptions/D697.2bpp"
+  SJIS_D88F: #incbin "SJISExceptions/D88F.2bpp"
+  SJIS_CE90: #incbin "SJISExceptions/CE90.2bpp"
+  SJIS_B792: #incbin "SJISExceptions/B792.2bpp"
+  SJIS_9F8B: #incbin "SJISExceptions/9F8B.2bpp"
+  SJIS_7897: #incbin "SJISExceptions/7897.2bpp"
+  SJIS_D58D: #incbin "SJISExceptions/D58D.2bpp"
+  SJIS_698E: #incbin "SJISExceptions/698E.2bpp"
+  SJIS_4597: #incbin "SJISExceptions/4597.2bpp"
+  SJIS_958D: #incbin "SJISExceptions/958D.2bpp"
+  SJIS_8193: #incbin "SJISExceptions/8193.2bpp"
+  SJIS_6093: #incbin "SJISExceptions/6093.2bpp"
+  SJIS_EC8C: #incbin "SJISExceptions/EC8C.2bpp"
+  SJIS_E589: #incbin "SJISExceptions/E589.2bpp"
+  SJIS_CE89: #incbin "SJISExceptions/CE89.2bpp"
+  SJIS_528C: #incbin "SJISExceptions/528C.2bpp"
+  SJIS_4D94: #incbin "SJISExceptions/4D94.2bpp"
+  SJIS_D490: #incbin "SJISExceptions/D490.2bpp"
+  SJIS_C290: #incbin "SJISExceptions/C290.2bpp"
+  SJIS_9294: #incbin "SJISExceptions/9294.2bpp"
+  SJIS_778E: #incbin "SJISExceptions/778E.2bpp"
+  SJIS_B193: #incbin "SJISExceptions/B193.2bpp"
+  SJIS_F38B: #incbin "SJISExceptions/F38B.2bpp"
+  SJIS_EE96: #incbin "SJISExceptions/EE96.2bpp"
+  SJIS_CD8F: #incbin "SJISExceptions/CD8F.2bpp"
+  SJIS_4D8C: #incbin "SJISExceptions/4D8C.2bpp"
+  SJIS_5997: #incbin "SJISExceptions/5997.2bpp"
+  SJIS_7089: #incbin "SJISExceptions/7089.2bpp"
+  SJIS_4889: #incbin "SJISExceptions/4889.2bpp"
+  SJIS_DF88: #incbin "SJISExceptions/DF88.2bpp"
+  SJIS_678E: #incbin "SJISExceptions/678E.2bpp"
+  SJIS_E994: #incbin "SJISExceptions/E994.2bpp"
+  SJIS_5A92: #incbin "SJISExceptions/5A92.2bpp"
+  SJIS_F388: #incbin "SJISExceptions/F388.2bpp"
+  SJIS_C38C: #incbin "SJISExceptions/C38C.2bpp"
+  SJIS_C795: #incbin "SJISExceptions/C795.2bpp"
+  SJIS_F389: #incbin "SJISExceptions/F389.2bpp"
+  SJIS_E88E: #incbin "SJISExceptions/E88E.2bpp"
+  SJIS_8A91: #incbin "SJISExceptions/8A91.2bpp"
+  SJIS_CE91: #incbin "SJISExceptions/CE91.2bpp"
+  SJIS_9495: #incbin "SJISExceptions/9495.2bpp"
+  SJIS_6E94: #incbin "SJISExceptions/6E94.2bpp"
+  SJIS_7298: #incbin "SJISExceptions/7298.2bpp"
+  SJIS_618E: #incbin "SJISExceptions/618E.2bpp"
+  SJIS_DC8E: #incbin "SJISExceptions/DC8E.2bpp"
+  SJIS_F58C: #incbin "SJISExceptions/F58C.2bpp"
+  SJIS_8F8D: #incbin "SJISExceptions/8F8D.2bpp"
+  SJIS_6594: #incbin "SJISExceptions/6594.2bpp"
+  SJIS_F18F: #incbin "SJISExceptions/F18F.2bpp"
+  SJIS_C588: #incbin "SJISExceptions/C588.2bpp"
+  SJIS_6098: #incbin "SJISExceptions/6098.2bpp"
+  SJIS_4D8B: #incbin "SJISExceptions/4D8B.2bpp"
+  SJIS_9595: #incbin "SJISExceptions/9595.2bpp"
+  SJIS_438F: #incbin "SJISExceptions/438F.2bpp"
+  SJIS_9791: #incbin "SJISExceptions/9791.2bpp"
+  SJIS_4197: #incbin "SJISExceptions/4197.2bpp"
+  SJIS_918D: #incbin "SJISExceptions/918D.2bpp"
+  SJIS_B597: #incbin "SJISExceptions/B597.2bpp"
+  SJIS_6D91: #incbin "SJISExceptions/6D91.2bpp"
+  SJIS_A895: #incbin "SJISExceptions/A895.2bpp"
+  SJIS_D896: #incbin "SJISExceptions/D896.2bpp"
+  SJIS_AC93: #incbin "SJISExceptions/AC93.2bpp"
+  SJIS_AF8A: #incbin "SJISExceptions/AF8A.2bpp"
+  SJIS_9097: #incbin "SJISExceptions/9097.2bpp"
+  SJIS_BD94: #incbin "SJISExceptions/BD94.2bpp"
+  SJIS_AB8F: #incbin "SJISExceptions/AB8F.2bpp"
+  SJIS_C08E: #incbin "SJISExceptions/C08E.2bpp"
+  SJIS_7A97: #incbin "SJISExceptions/7A97.2bpp"
+  SJIS_BE91: #incbin "SJISExceptions/BE91.2bpp"
+  SJIS_8E8C: #incbin "SJISExceptions/8E8C.2bpp"
+  SJIS_E08B: #incbin "SJISExceptions/E08B.2bpp"
+  SJIS_6592: #incbin "SJISExceptions/6592.2bpp"
+  SJIS_C388: #incbin "SJISExceptions/C388.2bpp"
+  SJIS_AE93: #incbin "SJISExceptions/AE93.2bpp"
+  SJIS_6794: #incbin "SJISExceptions/6794.2bpp"
+  SJIS_B68C: #incbin "SJISExceptions/B68C.2bpp"
+  SJIS_6A94: #incbin "SJISExceptions/6A94.2bpp"
+  SJIS_6692: #incbin "SJISExceptions/6692.2bpp"
+  SJIS_828C: #incbin "SJISExceptions/828C.2bpp"
+  SJIS_C58F: #incbin "SJISExceptions/C58F.2bpp"
+  SJIS_B296: #incbin "SJISExceptions/B296.2bpp"
+  SJIS_AB88: #incbin "SJISExceptions/AB88.2bpp"
+  SJIS_BD8E: #incbin "SJISExceptions/BD8E.2bpp"
+  SJIS_9D8C: #incbin "SJISExceptions/9D8C.2bpp"
+  SJIS_C596: #incbin "SJISExceptions/C596.2bpp"
+  SJIS_F28F: #incbin "SJISExceptions/F28F.2bpp"
+  SJIS_7395: #incbin "SJISExceptions/7395.2bpp"
+  SJIS_7394: #incbin "SJISExceptions/7394.2bpp"
+  SJIS_8595: #incbin "SJISExceptions/8595.2bpp"
+  SJIS_7491: #incbin "SJISExceptions/7491.2bpp"
+  SJIS_8095: #incbin "SJISExceptions/8095.2bpp"
+  SJIS_8491: #incbin "SJISExceptions/8491.2bpp"
+  SJIS_468B: #incbin "SJISExceptions/468B.2bpp"
+  SJIS_7B93: #incbin "SJISExceptions/7B93.2bpp"
+  SJIS_CD97: #incbin "SJISExceptions/CD97.2bpp"
+  SJIS_458A: #incbin "SJISExceptions/458A.2bpp"
+  SJIS_8B8C: #incbin "SJISExceptions/8B8C.2bpp"
+  SJIS_F196: #incbin "SJISExceptions/F196.2bpp"
+  SJIS_BE90: #incbin "SJISExceptions/BE90.2bpp"
+  SJIS_6E92: #incbin "SJISExceptions/6E92.2bpp"
+  SJIS_BF95: #incbin "SJISExceptions/BF95.2bpp"
+  SJIS_B990: #incbin "SJISExceptions/B990.2bpp"
+  SJIS_B48B: #incbin "SJISExceptions/B48B.2bpp"
+  SJIS_638D: #incbin "SJISExceptions/638D.2bpp"
+  SJIS_B38B: #incbin "SJISExceptions/B38B.2bpp"
+  SJIS_9197: #incbin "SJISExceptions/9197.2bpp"
+  SJIS_EC97: #incbin "SJISExceptions/EC97.2bpp"
+  SJIS_5396: #incbin "SJISExceptions/5396.2bpp"
+  SJIS_4491: #incbin "SJISExceptions/4491.2bpp"
+  SJIS_6C90: #incbin "SJISExceptions/6C90.2bpp"
+  SJIS_5690: #incbin "SJISExceptions/5690.2bpp"
+  SJIS_4B8F: #incbin "SJISExceptions/4B8F.2bpp"
+  SJIS_A98C: #incbin "SJISExceptions/A98C.2bpp"
+  SJIS_B68B: #incbin "SJISExceptions/B68B.2bpp"
+  SJIS_CE8C: #incbin "SJISExceptions/CE8C.2bpp"
+  SJIS_B58F: #incbin "SJISExceptions/B58F.2bpp"
+  SJIS_D08D: #incbin "SJISExceptions/D08D.2bpp"
+  SJIS_648F: #incbin "SJISExceptions/648F.2bpp"
+  SJIS_DF97: #incbin "SJISExceptions/DF97.2bpp"
+  SJIS_848E: #incbin "SJISExceptions/848E.2bpp"
+  SJIS_7D93: #incbin "SJISExceptions/7D93.2bpp"
+  SJIS_638E: #incbin "SJISExceptions/638E.2bpp"
+  SJIS_748E: #incbin "SJISExceptions/748E.2bpp"
+  SJIS_4793: #incbin "SJISExceptions/4793.2bpp"
+  SJIS_9997: #incbin "SJISExceptions/9997.2bpp"
+
+  #ifndef NO_SJIS_HACKS
+
+
+    #ifdef _FE6J_
+
+      #define NEED_SJIS_THUNDERSTORM
+      #define NEED_SJIS_DRAGONMASTER
+      #define NEED_SJIS_FALCOKNIGHT
+
+    #endif // _FE6J_
+
+    #ifdef _FE7J_
+
+      #define NEED_SJIS_THUNDERSTORM
+      #define NEED_SJIS_DRAGONMASTER
+      #define NEED_SJIS_FALCOKNIGHT
+
+    #endif // _FE7J_
+
+    #ifdef _FE8J_
+
+      #define NEED_SJIS_THUNDERSTORM
+      #define NEED_SJIS_DRAGONMASTER
+      #define NEED_SJIS_FALCOKNIGHT
+      #define NEED_SJIS_FORESTKNIGHT
+      #define NEED_SJIS_WYVERNKNIGHT
+      #define NEED_SJIS_MAUTHEDOOG
+      #define NEED_SJIS_DEATHGARGOYLE
+      #define NEED_SJIS_DRAGONZOMBIE
+      #define NEED_SJIS_GORGONEGG
+
+    #endif // _FE8J_
+
+    #ifdef NEED_SJIS_THUNDERSTORM
+
+      // ｻﾝﾀﾞｰｽﾄｰﾑ
+      // "Thunderstorm"
+
+      SJIS_Thunderstorm: #incbin "SJISExceptions/Thunderstorm.2bpp"
+
+    #endif // NEED_SJIS_THUNDERSTORM
+
+    #ifdef NEED_SJIS_DRAGONMASTER
+
+      // ﾄﾞﾗｺﾞﾝﾏｽﾀｰ
+      // "Dragonmaster"
+
+      SJIS_Dragonmaster: #incbin "SJISExceptions/Dragonmaster.2bpp"
+
+    #endif // NEED_SJIS_DRAGONMASTER
+
+    #ifdef NEED_SJIS_FALCOKNIGHT
+
+      // ﾌｧﾙｺﾝﾅｲﾄ
+      // "Falcoknight"
+
+      SJIS_Falcoknight: #incbin "SJISExceptions/Falcoknight.2bpp"
+
+    #endif // NEED_SJIS_FALCOKNIGHT
+
+    #ifdef NEED_SJIS_FORESTKNIGHT
+
+      // ﾌｫﾚｽﾄﾅｲﾄ
+      // "Forestknight"
+
+      SJIS_Forestknight: #incbin "SJISExceptions/Forestknight.2bpp"
+
+    #endif // NEED_SJIS_FORESTKNIGHT
+
+    #ifdef NEED_SJIS_WYVERNKNIGHT
+
+      // ﾜｲﾊﾞｰﾝﾅｲﾄ
+      // "Wyvernknight"
+
+      SJIS_Wyvernknight: #incbin "SJISExceptions/Wyvernknight.2bpp"
+
+    #endif // NEED_SJIS_WYVERNKNIGHT
+
+    #ifdef NEED_SJIS_MAUTHEDOOG
+
+      // ﾓｰｻﾄﾞｩｰｸﾞ
+      // "Mauthedoog"
+      SJIS_Mauthedoog: #incbin "SJISExceptions/Mauthedoog.2bpp"
+
+    #endif // NEED_SJIS_MAUTHEDOOG
+
+    #ifdef NEED_SJIS_DEATHGARGOYLE
+
+      // ﾃﾞｽｶﾞｰｺﾞｲﾙ
+      // "Deathgargoyle"
+
+      SJIS_Deathgargoyle: #incbin "SJISExceptions/Deathgargoyle.2bpp"
+
+    #endif // NEED_SJIS_DEATHGARGOYLE
+
+    #ifdef NEED_SJIS_DRAGONZOMBIE
+
+      // ﾄﾞﾗｺﾞﾝｿﾞﾝﾋﾞ
+      // "Dragonzombie"
+
+      SJIS_Dragonzombie: #incbin "SJISExceptions/Dragonzombie.2bpp"
+
+    #endif // NEED_SJIS_DRAGONZOMBIE
+
+    #ifdef NEED_SJIS_GORGONEGG
+
+      // ｺﾞｰｺﾞﾝの卵
+      // "Gorgon egg"
+
+      SJIS_Gorgonegg: #incbin "SJISExceptions/Gorgonegg.2bpp"
+
+    #endif // NEED_SJIS_GORGONEGG
+
+  #endif // NO_SJIS_HACKS
+
+
+ALIGN 4; gSmallFontSJISPages: {
+
+  #define SJISPage(page, graphics) "POIN (graphics); WORD (page)"
+  #define SJISPageTerminator "WORD 0"
+
+  SJISPage(0x82, gSmallFontSJISPage82)
+  SJISPage(0x83, gSmallFontSJISPage83)
+  SJISPageTerminator
+};
+
+ALIGN 4; gSmallFontSJISExceptions: {
+
+  #define SJISException(glyph, graphic) "SHORT glyph ((graphic - gSmallFontSJISExceptionPage) / 0x10)"
+  #define SJISExceptionTerminator "SHORT 0"
+
+  SJISException(0x5B81, SJIS_5B81)
+  SJISException(0x5E81, SJIS_5E81)
+  SJISException(0x7A81, SJIS_7A81)
+  SJISException(0x7B81, SJIS_7B81)
+  SJISException(0x7C81, SJIS_7C81)
+  SJISException(0x7E81, SJIS_7E81)
+  SJISException(0x9A81, SJIS_9A81)
+  SJISException(0x4081, SJIS_4081)
+  SJISException(0x4181, SJIS_4181)
+  SJISException(0x4281, SJIS_4281)
+  SJISException(0x4381, SJIS_4381)
+  SJISException(0x4481, SJIS_4481)
+  SJISException(0x4581, SJIS_4581)
+  SJISException(0x4681, SJIS_4681)
+  SJISException(0x4781, SJIS_4781)
+  SJISException(0x4881, SJIS_4881)
+  SJISException(0x4981, SJIS_4981)
+  SJISException(0x5881, SJIS_5881)
+  SJISException(0x6081, SJIS_6081)
+  SJISException(0x6781, SJIS_6781)
+  SJISException(0x6881, SJIS_6881)
+  SJISException(0x6981, SJIS_6981)
+  SJISException(0x6A81, SJIS_6A81)
+  SJISException(0x7581, SJIS_7581)
+  SJISException(0x7681, SJIS_7681)
+  SJISException(0x7781, SJIS_7781)
+  SJISException(0x7881, SJIS_7881)
+  SJISException(0x7981, SJIS_7981)
+  SJISException(0x9381, SJIS_9381)
+  SJISException(0xA881, SJIS_A881)
+
+  SJISException(0xA781, SJIS_A781)
+
+  #ifdef WANT_SJIS_NUMERALS
+
+    SJISException(0x5487, SJIS_5487)
+    SJISException(0x5587, SJIS_5587)
+    SJISException(0x5687, SJIS_5687)
+    SJISException(0x5787, SJIS_5787)
+    SJISException(0x5887, SJIS_5887)
+
+  #endif // WANT_SJIS_NUMERALS
+
+  SJISException(0xBA95, SJIS_BA95)
+  SJISException(0x958C, SJIS_958C)
+  SJISException(0xAF91, SJIS_AF91)
+  SJISException(0x6D8E, SJIS_6D8E)
+  SJISException(0x8296, SJIS_8296)
+  SJISException(0x7C8B, SJIS_7C8B)
+  SJISException(0x528B, SJIS_528B)
+  SJISException(0xD28E, SJIS_D28E)
+  SJISException(0xAF96, SJIS_AF96)
+  SJISException(0xB397, SJIS_B397)
+  SJISException(0x528E, SJIS_528E)
+  SJISException(0xF395, SJIS_F395)
+  SJISException(0xCA8B, SJIS_CA8B)
+  SJISException(0xED90, SJIS_ED90)
+  SJISException(0xE591, SJIS_E591)
+  SJISException(0x9093, SJIS_9093)
+  SJISException(0x718E, SJIS_718E)
+  SJISException(0x738E, SJIS_738E)
+  SJISException(0x5693, SJIS_5693)
+  SJISException(0x6392, SJIS_6392)
+  SJISException(0x7196, SJIS_7196)
+  SJISException(0x5697, SJIS_5697)
+  SJISException(0xB993, SJIS_B993)
+  SJISException(0xE78E, SJIS_E78E)
+  SJISException(0x6297, SJIS_6297)
+  SJISException(0x438A, SJIS_438A)
+  SJISException(0xE091, SJIS_E091)
+  SJISException(0x918F, SJIS_918F)
+  SJISException(0x978F, SJIS_978F)
+  SJISException(0xA489, SJIS_A489)
+  SJISException(0x5F90, SJIS_5F90)
+  SJISException(0xAB8C, SJIS_AB8C)
+  SJISException(0xB091, SJIS_B091)
+  SJISException(0xFB95, SJIS_FB95)
+  SJISException(0xBC90, SJIS_BC90)
+  SJISException(0xDC92, SJIS_DC92)
+  SJISException(0xD697, SJIS_D697)
+  SJISException(0xD88F, SJIS_D88F)
+  SJISException(0xCE90, SJIS_CE90)
+  SJISException(0xB792, SJIS_B792)
+  SJISException(0x9F8B, SJIS_9F8B)
+  SJISException(0x7897, SJIS_7897)
+  SJISException(0xD58D, SJIS_D58D)
+  SJISException(0x698E, SJIS_698E)
+  SJISException(0x4597, SJIS_4597)
+  SJISException(0x958D, SJIS_958D)
+  SJISException(0x8193, SJIS_8193)
+  SJISException(0x6093, SJIS_6093)
+  SJISException(0xEC8C, SJIS_EC8C)
+  SJISException(0xE589, SJIS_E589)
+  SJISException(0xCE89, SJIS_CE89)
+  SJISException(0x7681, SJIS_7681)
+  SJISException(0x7581, SJIS_7581)
+  SJISException(0x528C, SJIS_528C)
+  SJISException(0x4D94, SJIS_4D94)
+  SJISException(0xD490, SJIS_D490)
+  SJISException(0xC290, SJIS_C290)
+  SJISException(0x9294, SJIS_9294)
+  SJISException(0x778E, SJIS_778E)
+  SJISException(0xB193, SJIS_B193)
+  SJISException(0xF38B, SJIS_F38B)
+  SJISException(0xEE96, SJIS_EE96)
+  SJISException(0xCD8F, SJIS_CD8F)
+  SJISException(0x4D8C, SJIS_4D8C)
+  SJISException(0x5997, SJIS_5997)
+  SJISException(0x7089, SJIS_7089)
+  SJISException(0x4889, SJIS_4889)
+  SJISException(0xDF88, SJIS_DF88)
+  SJISException(0x678E, SJIS_678E)
+  SJISException(0xE994, SJIS_E994)
+  SJISException(0x5A92, SJIS_5A92)
+  SJISException(0xF388, SJIS_F388)
+  SJISException(0xC38C, SJIS_C38C)
+  SJISException(0xC795, SJIS_C795)
+  SJISException(0xF389, SJIS_F389)
+  SJISException(0xE88E, SJIS_E88E)
+  SJISException(0x8A91, SJIS_8A91)
+  SJISException(0xCE91, SJIS_CE91)
+  SJISException(0x9495, SJIS_9495)
+  SJISException(0x6E94, SJIS_6E94)
+  SJISException(0x7298, SJIS_7298)
+  SJISException(0x618E, SJIS_618E)
+  SJISException(0xDC8E, SJIS_DC8E)
+  SJISException(0xF58C, SJIS_F58C)
+  SJISException(0x8F8D, SJIS_8F8D)
+  SJISException(0x6594, SJIS_6594)
+  SJISException(0x4581, SJIS_4581)
+  SJISException(0xF18F, SJIS_F18F)
+  SJISException(0xC588, SJIS_C588)
+  SJISException(0x6098, SJIS_6098)
+  SJISException(0x4D8B, SJIS_4D8B)
+  SJISException(0x9595, SJIS_9595)
+  SJISException(0x438F, SJIS_438F)
+  SJISException(0x9791, SJIS_9791)
+  SJISException(0x4197, SJIS_4197)
+  SJISException(0x918D, SJIS_918D)
+  SJISException(0xB597, SJIS_B597)
+  SJISException(0x6D91, SJIS_6D91)
+  SJISException(0xA895, SJIS_A895)
+  SJISException(0xD896, SJIS_D896)
+  SJISException(0xAC93, SJIS_AC93)
+  SJISException(0xAF8A, SJIS_AF8A)
+  SJISException(0x9097, SJIS_9097)
+  SJISException(0xBD94, SJIS_BD94)
+  SJISException(0xAB8F, SJIS_AB8F)
+  SJISException(0xC08E, SJIS_C08E)
+  SJISException(0x7A97, SJIS_7A97)
+  SJISException(0xBE91, SJIS_BE91)
+  SJISException(0x8E8C, SJIS_8E8C)
+  SJISException(0xE08B, SJIS_E08B)
+  SJISException(0x6592, SJIS_6592)
+  SJISException(0xC388, SJIS_C388)
+  SJISException(0xAE93, SJIS_AE93)
+  SJISException(0x6794, SJIS_6794)
+  SJISException(0xB68C, SJIS_B68C)
+  SJISException(0x6A94, SJIS_6A94)
+  SJISException(0x6692, SJIS_6692)
+  SJISException(0x828C, SJIS_828C)
+  SJISException(0xC58F, SJIS_C58F)
+  SJISException(0xB296, SJIS_B296)
+  SJISException(0xAB88, SJIS_AB88)
+  SJISException(0xBD8E, SJIS_BD8E)
+  SJISException(0x9D8C, SJIS_9D8C)
+  SJISException(0xC596, SJIS_C596)
+  SJISException(0xF28F, SJIS_F28F)
+  SJISException(0x7395, SJIS_7395)
+  SJISException(0x7394, SJIS_7394)
+  SJISException(0x8595, SJIS_8595)
+  SJISException(0x7491, SJIS_7491)
+  SJISException(0x8095, SJIS_8095)
+  SJISException(0x8491, SJIS_8491)
+  SJISException(0x468B, SJIS_468B)
+  SJISException(0x7B93, SJIS_7B93)
+  SJISException(0xCD97, SJIS_CD97)
+  SJISException(0x458A, SJIS_458A)
+  SJISException(0x8B8C, SJIS_8B8C)
+  SJISException(0xF196, SJIS_F196)
+  SJISException(0xBE90, SJIS_BE90)
+  SJISException(0x6E92, SJIS_6E92)
+  SJISException(0xBF95, SJIS_BF95)
+  SJISException(0xB990, SJIS_B990)
+  SJISException(0xB48B, SJIS_B48B)
+  SJISException(0x638D, SJIS_638D)
+  SJISException(0xB38B, SJIS_B38B)
+  SJISException(0x9197, SJIS_9197)
+  SJISException(0xEC97, SJIS_EC97)
+  SJISException(0x5396, SJIS_5396)
+  SJISException(0x4491, SJIS_4491)
+  SJISException(0x6C90, SJIS_6C90)
+  SJISException(0x5690, SJIS_5690)
+  SJISException(0x4B8F, SJIS_4B8F)
+  SJISException(0xA98C, SJIS_A98C)
+  SJISException(0xB68B, SJIS_B68B)
+  SJISException(0xCE8C, SJIS_CE8C)
+  SJISException(0xB58F, SJIS_B58F)
+  SJISException(0xD08D, SJIS_D08D)
+  SJISException(0x648F, SJIS_648F)
+  SJISException(0xDF97, SJIS_DF97)
+  SJISException(0x848E, SJIS_848E)
+  SJISException(0x7D93, SJIS_7D93)
+  SJISException(0x638E, SJIS_638E)
+  SJISException(0x748E, SJIS_748E)
+  SJISException(0x4793, SJIS_4793)
+  SJISException(0x9997, SJIS_9997)
+
+  #ifndef NO_SJIS_HACKS
+
+    #define SJISExceptionImage(glyph, tile, image) "SHORT glyph (((image - gSmallFontSJISExceptionPage) / 0x10) + tile)"
+
+    #ifdef _FE6J_
+
+      // ｻﾝﾀﾞｰｽﾄｰﾑ
+      // "Thunderstorm"
+
+      SJISExceptionImage(0x4087, 0, SJIS_Thunderstorm)
+      SJISExceptionImage(0x4187, 1, SJIS_Thunderstorm)
+      SJISExceptionImage(0x4287, 2, SJIS_Thunderstorm)
+      SJISExceptionImage(0x4387, 3, SJIS_Thunderstorm)
+      SJISExceptionImage(0x4487, 4, SJIS_Thunderstorm)
+      SJISExceptionImage(0x4587, 5, SJIS_Thunderstorm)
+      SJISExceptionImage(0x4687, 6, SJIS_Thunderstorm)
+
+      // ﾄﾞﾗｺﾞﾝﾏｽﾀｰ
+      // "Dragonmaster"
+
+      SJISExceptionImage(0x4A87, 0, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4B87, 1, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4C87, 2, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4D87, 3, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4E87, 4, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4F87, 5, SJIS_Dragonmaster)
+      SJISExceptionImage(0x5087, 6, SJIS_Dragonmaster)
+
+      // ﾌｧﾙｺﾝﾅｲﾄ
+      // "Falcoknight"
+
+      SJISExceptionImage(0x5487, 0, SJIS_Falcoknight)
+      SJISExceptionImage(0x5587, 1, SJIS_Falcoknight)
+      SJISExceptionImage(0x5687, 2, SJIS_Falcoknight)
+      SJISExceptionImage(0x5787, 3, SJIS_Falcoknight)
+      SJISExceptionImage(0x5887, 4, SJIS_Falcoknight)
+      SJISExceptionImage(0x5987, 5, SJIS_Falcoknight)
+      SJISExceptionImage(0x5A87, 6, SJIS_Falcoknight)
+
+    #endif // _FE6J_
+
+    #ifdef _FE7J_
+
+      // ｻﾝﾀﾞｰｽﾄｰﾑ
+      // "Thunderstorm"
+
+      SJISExceptionImage(0x4E87, 0, SJIS_Thunderstorm)
+      SJISExceptionImage(0x4F87, 1, SJIS_Thunderstorm)
+      SJISExceptionImage(0x5087, 2, SJIS_Thunderstorm)
+      SJISExceptionImage(0x5187, 3, SJIS_Thunderstorm)
+      SJISExceptionImage(0x5287, 4, SJIS_Thunderstorm)
+      SJISExceptionImage(0x5387, 5, SJIS_Thunderstorm)
+      SJISExceptionImage(0xBE83, 6, SJIS_Thunderstorm)
+
+      // ﾄﾞﾗｺﾞﾝﾏｽﾀｰ
+      // "Dragonmaster"
+
+      SJISExceptionImage(0x4087, 0, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4187, 1, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4287, 2, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4387, 3, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4487, 4, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4587, 5, SJIS_Dragonmaster)
+      SJISExceptionImage(0x4687, 6, SJIS_Dragonmaster)
+
+      // ﾌｧﾙｺﾝﾅｲﾄ
+      // "Falcoknight"
+
+      SJISExceptionImage(0x4787, 0, SJIS_Falcoknight)
+      SJISExceptionImage(0x4887, 1, SJIS_Falcoknight)
+      SJISExceptionImage(0x4987, 2, SJIS_Falcoknight)
+      SJISExceptionImage(0x4A87, 3, SJIS_Falcoknight)
+      SJISExceptionImage(0x4B87, 4, SJIS_Falcoknight)
+      SJISExceptionImage(0x4C87, 5, SJIS_Falcoknight)
+      SJISExceptionImage(0x4D87, 6, SJIS_Falcoknight)
+
+    #endif // _FE7J_
+
+    #ifdef _FE8J_
+
+      // ｻﾝﾀﾞｰｽﾄｰﾑ
+      // "Thunderstorm"
+
+      SJISExceptionImage(0x7E84, 0, SJIS_Thunderstorm)
+      SJISExceptionImage(0x8084, 1, SJIS_Thunderstorm)
+      SJISExceptionImage(0x8184, 2, SJIS_Thunderstorm)
+      SJISExceptionImage(0x8284, 3, SJIS_Thunderstorm)
+
+      // ﾌｫﾚｽﾄﾅｲﾄ
+      // "Forestknight"
+
+      SJISExceptionImage(0xBC81, 0, SJIS_Forestknight)
+      SJISExceptionImage(0xBD81, 1, SJIS_Forestknight)
+      SJISExceptionImage(0xA184, 2, SJIS_Forestknight)
+      SJISExceptionImage(0xA284, 3, SJIS_Forestknight)
+
+      // ﾄﾞﾗｺﾞﾝﾏｽﾀｰ
+      // "Dragonmaster"
+
+      SJISExceptionImage(0x7084, 0, SJIS_Dragonmaster)
+      SJISExceptionImage(0x7184, 1, SJIS_Dragonmaster)
+      SJISExceptionImage(0x7284, 2, SJIS_Dragonmaster)
+      SJISExceptionImage(0x7384, 3, SJIS_Dragonmaster)
+
+      // ﾜｲﾊﾞｰﾝﾅｲﾄ
+      // "Wyvern Knight"
+
+      SJISExceptionImage(0x8A84, 0, SJIS_Wyvernknight)
+      SJISExceptionImage(0x8B84, 1, SJIS_Wyvernknight)
+      SJISExceptionImage(0x8C84, 2, SJIS_Wyvernknight)
+      SJISExceptionImage(0x8D84, 3, SJIS_Wyvernknight)
+
+      // ﾌｧﾙｺﾝﾅｲﾄ
+      // "Falcoknight"
+
+      SJISExceptionImage(0x7784, 0, SJIS_Falcoknight)
+      SJISExceptionImage(0x7884, 1, SJIS_Falcoknight)
+      SJISExceptionImage(0x7984, 2, SJIS_Falcoknight)
+      SJISExceptionImage(0x7A84, 3, SJIS_Falcoknight)
+
+      // ﾓｰｻﾄﾞｩｰｸﾞ
+      // "Mauthedoog"
+
+      SJISExceptionImage(0x8781, 0, SJIS_Mauthedoog)
+      SJISExceptionImage(0xA884, 1, SJIS_Mauthedoog)
+      SJISExceptionImage(0xDA81, 2, SJIS_Mauthedoog)
+      SJISExceptionImage(0xC881, 3, SJIS_Mauthedoog)
+
+      // ﾃﾞｽｶﾞｰｺﾞｲﾙ
+      // "Deathgargoyle"
+
+      SJISExceptionImage(0xDE81, 0, SJIS_Deathgargoyle)
+      SJISExceptionImage(0xB881, 1, SJIS_Deathgargoyle)
+      SJISExceptionImage(0xB981, 2, SJIS_Deathgargoyle)
+      SJISExceptionImage(0xA584, 3, SJIS_Deathgargoyle)
+
+      // ﾄﾞﾗｺﾞﾝｿﾞﾝﾋﾞ
+      // "Dragonzombie"
+
+      SJISExceptionImage(0x8281, 0, SJIS_Dragonzombie)
+      SJISExceptionImage(0xDF81, 1, SJIS_Dragonzombie)
+      SJISExceptionImage(0x8581, 2, SJIS_Dragonzombie)
+      SJISExceptionImage(0x8681, 3, SJIS_Dragonzombie)
+
+      // ｺﾞｰｺﾞﾝの卵
+      // "Gorgon egg"
+
+      SJISExceptionImage(0xBE81, 0, SJIS_Gorgonegg)
+      SJISExceptionImage(0xE781, 1, SJIS_Gorgonegg)
+      SJISExceptionImage(0xE881, 2, SJIS_Gorgonegg)
+      SJISExceptionImage(0x8881, 3, SJIS_Gorgonegg)
+
+    #endif // _FE8J_
+
+  #endif // NO_SJIS_HACKS
+
+  SJISExceptionTerminator
+};
+
+#include "SmallFont.lyn.event"
+#include "SmallFontSJIS.lyn.event"

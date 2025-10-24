@@ -1,0 +1,33 @@
+
+[module]
+  name = "HPDividerStandard"
+
+[[module.statics]]
+  name = "HPDividerStandard_Static"
+  file = "HPDividerStandard.lyn.event"
+
+[[module.definitions]]
+  name = "HP_DIVIDER_X"
+  value = 9
+
+[[module.definitions]]
+  name = "HP_DIVIDER_Y"
+  value = 2
+
+[[module.definitions]]
+  name = "HP_DIVIDER_BASE_TILE"
+  value = 0x013E
+
+[[module.definitions]]
+  name = "HP_DIVIDER_PALETTE"
+  value = 2
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "HP_DIVIDER_PALETTE"
+  value = 0
+  games = [ "FE6J", "FE7U", "FE7J" ]
+
+[[module.definitions]]
+  name = "HP_DIVIDER_WIDTH"
+  value = 1

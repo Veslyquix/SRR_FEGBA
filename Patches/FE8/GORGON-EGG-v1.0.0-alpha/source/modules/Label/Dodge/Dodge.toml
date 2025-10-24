@@ -1,0 +1,70 @@
+
+[module]
+  name = "DodgeLabel"
+
+[[module.inits]]
+  name = "DodgeLabel_Init"
+  file = "Dodge.lyn.event"
+
+[[module.statics]]
+  name = "DodgeLabel_Static"
+  file = "Dodge.lyn.event"
+
+[[module.includes]]
+  file = "Label.event"
+
+[[module.definitions]]
+  name = "DOD_LABEL_X"
+  value = 5
+
+[[module.definitions]]
+  name = "DOD_LABEL_Y"
+  value = 2
+
+[[module.definitions]]
+  name = "DOD_LABEL_BASE_TILE"
+  value = 0x016A
+
+[[module.definitions]]
+  name = "DOD_LABEL_PALETTE"
+  value = 2
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "DOD_LABEL_PALETTE"
+  value = 0
+  games = [ "FE6J", "FE7U", "FE7J" ]
+
+[[module.definitions]]
+  name = "DOD_LABEL_WIDTH"
+  value = 2
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002B04 | 1"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08003078 | 1"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002F54 | 1"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002014 | 1"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08001F64 | 1"
+  games = [ "FE8J" ]

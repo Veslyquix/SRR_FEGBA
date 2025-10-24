@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="13" height="6" tilewidth="8" tileheight="8" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" name="MenuTiles_FE6J" tilewidth="8" tileheight="8" tilecount="11" columns="11">
+  <properties>
+   <property name="Offset" value="0x2AA0"/>
+   <property name="Palette" value="3"/>
+  </properties>
+  <image source="../../../../tools/MenuTiles_FE6J.png" width="88" height="8"/>
+ </tileset>
+ <tileset firstgid="12" name="MenuTiles_FE6J_Alt" tilewidth="8" tileheight="8" tilecount="128" columns="32">
+  <properties>
+   <property name="Offset" value="0x0000"/>
+   <property name="Palette" value="1"/>
+  </properties>
+  <image source="../../../../tools/MenuTiles_FE6J_Alt.png" width="256" height="32"/>
+ </tileset>
+ <layer id="1" name="BG1" width="13" height="6">
+  <properties>
+   <property name="Layer" value="1"/>
+  </properties>
+  <data encoding="csv">
+1,2,2,2,2,2,2,2,2,2,2,2,3,
+4,5,5,5,5,5,5,5,5,5,5,5,6,
+4,5,5,5,5,5,5,5,5,5,5,5,6,
+4,5,5,5,5,5,5,5,5,5,5,5,6,
+4,5,5,5,5,5,5,5,5,5,5,5,6,
+7,8,8,8,8,8,8,8,8,8,8,8,9
+</data>
+ </layer>
+</map>

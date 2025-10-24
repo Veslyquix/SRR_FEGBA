@@ -1,0 +1,56 @@
+
+#include "include/Helpers.event"
+
+// Fixed-location components
+
+  // Proc
+
+  #ifdef _FE6J_
+    #define UI1_Start (0x006781D4)
+    #define UI1_End   (0x00678254)
+  #endif
+
+  #ifdef _FE7U_
+    #define UI1_Start (0x00CC2C60)
+    #define UI1_End   (0x00CC2CE8)
+  #endif
+
+  #ifdef _FE7J_
+    #define UI1_Start (0x00D8B200)
+    #define UI1_End   (0x00D8B288)
+  #endif
+
+  #ifdef _FE8U_
+    #define UI1_Start (0x00A0190C)
+    #define UI1_End   (0x00A01994)
+  #endif
+
+  #ifdef _FE8J_
+    #define UI1_Start (0x00A739C4)
+    #define UI1_End   (0x00A73A4C)
+  #endif
+
+  PUSH; ORG UI1_Start;
+    #include "MainProc.lyn.event"
+    ALIGN 4;
+
+    UI1_Name: { String(GORGON); BYTE 0; };
+
+    RESERVE(UI1_Start, UI1_End);
+  POP;
+
+// Freespace components
+
+  #include "CheckForUnit.lyn.event"
+  #include "CopyTilemap.lyn.event"
+  #include "GetWindowPosition.lyn.event"
+  #include "Extend.lyn.event"
+  #include "Retract.lyn.event"
+  #include "Init.lyn.event"
+  #include "Reset.lyn.event"
+  #include "Static.lyn.event"
+  #include "Dynamic.lyn.event"
+  #include "UnitData.lyn.event"
+  #include "Update.lyn.event"
+
+  #include "GeneratedInstaller.event"

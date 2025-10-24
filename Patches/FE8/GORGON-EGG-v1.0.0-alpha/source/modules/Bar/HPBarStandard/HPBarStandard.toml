@@ -1,0 +1,97 @@
+
+[module]
+  name = "HPBarStandard"
+
+[[module.statics]]
+  name = "HPBarStandard_Static"
+  file = "HPBarStandard.lyn.event"
+
+[[module.internals]]
+  file = "LibraryFunctions/LibraryFunctions.event"
+
+[[module.internals]]
+  file = "DrawBarStandard/DrawBarStandard.lyn.event"
+
+
+[[module.definitions]]
+  name = "HPBAR_X"
+  value = 5
+
+[[module.definitions]]
+  name = "HPBAR_Y"
+  value = 4
+
+[[module.definitions]]
+  name = "HPBAR_WIDTH"
+  value = 7
+
+[[module.definitions]]
+  name = "HPBAR_BASE_TILE"
+  value = 0x140
+
+
+[[module.definitions]]
+  name = "HPBAR_PALETTE"
+  value = 3
+  games = [ "FE6J", "FE7U", "FE7J" ]
+
+
+[[module.definitions]]
+  name = "HPBAR_PALETTE"
+  value = 1
+  games = [ "FE8U", "FE8J" ]
+
+
+[[module.asm_definitions]]
+  name = "GetUnitCurrentHp"
+  body = "SET_FUNC GetUnitCurrentHp, 0x08018388 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x080183C8 | 1"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "GetUnitCurrentHp"
+  body = "SET_FUNC GetUnitCurrentHp, 0x08018A70 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08018AB0 | 1"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "GetUnitCurrentHp"
+  body = "SET_FUNC GetUnitCurrentHp, 0x08018E60 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08018EA0 | 1"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "GetUnitCurrentHp"
+  body = "SET_FUNC GetUnitCurrentHp, 0x08019150 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08019190 | 1"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "GetUnitCurrentHp"
+  body = "SET_FUNC GetUnitCurrentHp, 0x08018E64 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08018EA4 | 1"
+  games = [ "FE8J" ]

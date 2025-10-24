@@ -1,0 +1,115 @@
+
+[module]
+  name = "ReplaceBarGraphics"
+
+[[module.inits]]
+  name = "ReplaceBarGraphics_Init"
+  file = "ReplaceBarGraphics.lyn.event"
+
+[[module.includes]]
+  file = "Graphics.event"
+  games = [ "FE6J", "FE7U", "FE7J" ]
+
+[[module.definitions]]
+  name = "gBarGraphics"
+  value = "gMapBattleInfoHPBar"
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "gBarPalette"
+  value = "gMapBattleInfoNumberPalette"
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "BAR_BASE_TILE"
+  value = 0x0140
+
+[[module.definitions]]
+  name = "BAR_PALETTE"
+  # This needs to be different than vanilla
+  # because the vanilla bar shares a palette slot
+  # with the main UI palette.
+  value = 5
+
+[[module.definitions]]
+  name = "BAR_GRAPHICS_WIDTH"
+  value = 21
+
+[[module.definitions]]
+  name = "BAR_GRAPHICS_COMPRESSED"
+  value = "TRUE"
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002B04 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013CA4 | 1"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08003078 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013168 | 1"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002F54 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013688 | 1"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002014 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08012F50 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleInfoHPBar"
+  body = "SET_DATA gMapBattleInfoHPBar, 0x089AD78C"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleInfoNumberPalette"
+  body = "SET_DATA gMapBattleInfoNumberPalette, 0x08A1D79C"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08001F64 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013008 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleInfoHPBar"
+  body = "SET_DATA gMapBattleInfoHPBar, 0x08A1DE14"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleInfoNumberPalette"
+  body = "SET_DATA gMapBattleInfoNumberPalette, 0x08A99FA8"
+  games = [ "FE8J" ]
