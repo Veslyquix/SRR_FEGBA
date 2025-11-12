@@ -6880,6 +6880,10 @@ int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
         result |= newTableID;
     }
     result |= ShouldChangeWeaponForUnit(unit);
+    if (result)
+    {
+        result = 1;
+    }
     return result;
 }
 
