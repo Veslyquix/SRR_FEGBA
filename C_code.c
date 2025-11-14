@@ -462,6 +462,7 @@ extern u8 * AlwaysSkill;
 extern const int SeedOption;
 extern const int SaveOption;
 extern const int SettingsOption;
+extern const int AchievementsOption;
 extern const int VarianceOption;
 extern const int PlayerRecruitmentOption;
 extern const int PlayerBossOption;
@@ -1786,7 +1787,7 @@ int IsConfigMenuOptionAvailable(int id)
 
     else if (id == SkipChOption)
     {
-        return false;
+        return true;
     }
 
     else if (id == TimedHitsOption)
@@ -12445,12 +12446,13 @@ void ConfigMenuConfirmReloadUnits(ConfigMenuProc * proc)
     u16 keys = sKeyStatusBuffer.newKeys;
     if (keys & A_BUTTON)
     {
-        Proc_Goto(proc, EndLabel);
+        // Proc_Goto(proc, EndLabel);
+        Proc_Break(proc);
     }
     if (keys & B_BUTTON)
     {
         proc->Option[ReloadUnitsOption] = 0;
-        Proc_Goto(proc, EndLabel);
+        Proc_Break(proc);
     }
 }
 void SaveConfigOptions(ConfigMenuProc * proc);
@@ -12466,11 +12468,11 @@ void ConfigMenuConfirmSaveSettings(ConfigMenuProc * proc)
     if (keys & START_BUTTON)
     {
         SaveConfigOptions(proc);
-        Proc_Goto(proc, EndLabel);
+        Proc_Break(proc);
     }
     if (keys & (A_BUTTON | B_BUTTON))
     {
-        Proc_Goto(proc, EndLabel);
+        Proc_Break(proc);
     }
 }
 
@@ -12481,6 +12483,7 @@ void EnableBGDisplay(void)
     gLCDControlBuffer.dispcnt.bg2_on = 1;
     gLCDControlBuffer.dispcnt.bg3_on = 1;
 }
+void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc);
 void InitDraw(ConfigMenuProc * proc);
 void RedrawAllText(ConfigMenuProc * proc);
 const struct ProcCmd ConfigMenuProcCmd[] = {
@@ -12502,10 +12505,14 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_LABEL(ConfirmationLabel),
     PROC_CALL(ConfirmPopupReloadUnitsMsg),
     PROC_REPEAT(ConfigMenuConfirmReloadUnits),
+    PROC_CALL(ContinueCopyConfigProcIntoRam),
+    PROC_GOTO(EndLabel),
 
     PROC_LABEL(SaveSettingsLabel),
     PROC_CALL(ConfirmPopupSaveSettingsMsg),
     PROC_REPEAT(ConfigMenuConfirmSaveSettings),
+    PROC_CALL(ContinueCopyConfigProcIntoRam),
+    PROC_GOTO(EndLabel),
 
     PROC_LABEL(PreviewCharLabel),
     PROC_CALL(StartFastFadeToBlack),
@@ -13539,6 +13546,7 @@ void SetVanillaTagValues(void)
 }
 
 void RestoreConfigOptions(ConfigMenuProc * proc);
+extern void SetAchievementsTo(int);
 
 void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 {
@@ -13696,6 +13704,13 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
             }
         }
     }
+    ContinueCopyConfigProcIntoRam(proc);
+}
+void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
+{
+    int id = proc->id;
+    int offset = proc->offset;
+    int id_adj = GetReorderedMenuId(id + offset);
     if (proc->Option[ReloadUnitsOption] == 0)
     {
         proc->reloadPlayers = false;
@@ -13730,6 +13745,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     }
 
     RandValues->seed = proc->seed;
+    SetAchievementsTo(proc->Option[AchievementsOption]);
     RandValues->variance = proc->Option[VarianceOption];
     RecruitValues->playerRecruitmentOrder = proc->Option[PlayerRecruitmentOption];
     RecruitValues->playerIntoBosses = proc->Option[PlayerBossOption];
@@ -13997,7 +14013,8 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     }
     SetDefaultTagValues();
     // proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
-    proc->Option[VarianceOption] = 10; // start on 50%
+    proc->Option[AchievementsOption] = 1; // start on on
+    proc->Option[VarianceOption] = 10;    // start on 50%
     proc->Option[PlayerRecruitmentOption] = RandomOrder;
     proc->Option[EnemyRecruitmentOption] = VanillaOrder;
     proc->Option[PlayerBossOption] = 0;
@@ -14045,6 +14062,7 @@ LocationTable RText_LocationTable[] = {
     { RTextLoc, (Y_HAND * 8) + (12 * 8) }, { RTextLoc, (Y_HAND * 8) + (14 * 8) }, { RTextLoc, (Y_HAND * 8) + (16 * 8) },
 };
 extern void CloseHelpBox(void);
+extern void LoadHelpBoxGfx(void * vram, int palId);
 const char * GetSRRMenuDesc(ConfigMenuProc * proc, int index);
 void ClearHelpBoxText_SRR(void);
 void ConfigMenuLoop(ConfigMenuProc * proc)
@@ -14095,6 +14113,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             proc->helpBox = NULL;
             CloseHelpBox();
             LoadObjUIGfx();
+            // LoadHelpBoxGfx(NULL, -1);
             UnpackUiVArrowGfx(0x240, 3);
             return;
             // ClearHelpBoxText_SRR();
@@ -14195,9 +14214,10 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         if (keys & 0xF0) // #define DPAD_ANY        0x00F0
         {
+            id_adj = GetReorderedMenuId(proc->id + proc->offset);
             StartHelpBoxString_SRR(
                 proc, RText_LocationTable[proc->id].x, RText_LocationTable[proc->id].y,
-                (void *)GetSRRMenuDesc(proc, proc->offset + proc->id));
+                (void *)GetSRRMenuDesc(proc, id_adj));
         }
         if (proc->redraw == RedrawSome)
         {
@@ -14214,9 +14234,11 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     if (keys & R_BUTTON)
     {
+        LoadHelpBoxGfx(NULL, -1);
         proc->helpBox = (void *)-1;
+        id_adj = GetReorderedMenuId(id + offset);
         StartHelpBoxString_SRR(
-            proc, RText_LocationTable[id].x, RText_LocationTable[id].y, (void *)GetSRRMenuDesc(proc, offset + id));
+            proc, RText_LocationTable[id].x, RText_LocationTable[id].y, (void *)GetSRRMenuDesc(proc, id_adj));
 
         // Proc_StartBlocking(gProcScr_SRRHelpboxListener, proc);
         return;
@@ -14667,13 +14689,13 @@ void InitDraw(ConfigMenuProc * proc)
     // StartGreenText(proc);
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
-extern void LoadHelpBoxGfx(void * vram, int palId);
-
+extern int AreAchievementsEnabled();
 void RestoreConfigOptions(ConfigMenuProc * proc)
 {
 
     // pull up your previously saved options
 
+    proc->Option[AchievementsOption] = AreAchievementsEnabled();
     proc->Option[VarianceOption] = RandValues->variance;
     proc->Option[PlayerRecruitmentOption] = RecruitValues->playerRecruitmentOrder;
     proc->Option[EnemyRecruitmentOption] = RecruitValues->enemyRecruitmentOrder;

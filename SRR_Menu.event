@@ -100,6 +100,12 @@ POIN t0 t1 t2 0
 }
 
 {
+t0:  txt("Off");                     t1:  txt("On");   
+ALIGN 4; SRRHeader(AchievementsOpt)
+POIN t0 t1 0 
+}
+
+{
 t0:  txt("0%");   t1:  txt("5%");   t2:  txt("10%");  t3:  txt("15%");  t4:  txt("20%");
 t5:  txt("25%");  t6:  txt("30%");  t7:  txt("35%");  t8:  txt("40%");  t9:  txt("45%");
 t10: txt("50%");  t11: txt("55%");  t12: txt("60%");  t13: txt("65%");  t14: txt("70%");
@@ -508,6 +514,10 @@ SRRDesc(SettingsOpt,0); txt("Change all settings to vanilla.");
 SRRDesc(SettingsOpt,1); txt("Change all settings to the defaults."); 
 SRRDesc(SettingsOpt,2); txt("Randomize all settings."); 
 
+SRRMenu(AchievementsOpt); txt("Achievements") 
+SRRDesc(AchievementsOpt, 0); txt("Ingame achievements and\progression are disabled.") 
+SRRDesc(AchievementsOpt, 1); txt("Ingame achievements and\progression are enabled.") 
+
 SRRMenu(VarianceOpt);           txt("Variance")
 SRRDesc(VarianceOpt); txt("Diversity of gameplay.\Stats/Growths will vary +/-\this much."); 
 
@@ -658,6 +668,8 @@ SaveOption:
 WORD SaveOpt
 SettingsOption:
 WORD SettingsOpt 
+AchievementsOption:
+WORD AchievementsOpt 
 VarianceOption:
 WORD VarianceOpt 
 PlayerRecruitmentOption:

@@ -112,8 +112,14 @@ IsClutter2OptionAvailable:
 IsBonusLevelsOptionAvailable:
 IsClutter4OptionAvailable:
 IsTimedHitsOptionAvailable:
+SetAchievementsTo:
 POP 
 SHORT $2001 $4770 // mov r0, #1 - bx lr 
+PUSH 
+ORG CURRENTOFFSET+1 
+AreAchievementsEnabled: 
+POP 
+SHORT $2000 $4770 // mov r0, #0 - bx lr 
 #endif 
 
 #ifdef VeslyBuildfile
@@ -866,7 +872,7 @@ ALIGN 4
 NewChMenu:
 // MenuStartConfigMenu
 #ifdef INCLUDE_ACHIEVEMENTS 
-BYTE $A4 $7E $0D $08; SHORT 0x593 0x6a2; BYTE $00 $78 $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00; POIN MapMenu_AchievementsCommand ; BYTE 0 0 0 0 0 0 0 0 0 0 0 0
+BYTE $A4 $7E $0D $08; SHORT 0x593 0x6a2; BYTE $00 $78 $00 $00; POIN MapMenu_IsAchievementsCommandAvailable; BYTE $00 $00 $00 $00; POIN MapMenu_AchievementsCommand ; BYTE 0 0 0 0 0 0 0 0 0 0 0 0
 #endif 
 
 BYTE $DC $7E $0D $08 $9A $06 $DF $06 $00 $6E $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $0D $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $D4 $7E $0D $08 $90 $06 $E0 $06 $00 $6F $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $51 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $CC $7E $0D $08 $9C $06 $E5 $06 $04 $74 $00 $00 $61 $26 $02 $08 $79 $26 $02 $08 $E5 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $C4 $7E $0D $08 $9E $06 $E3 $06 $00 $70 $00 $00 $41 $4C $02 $08 $00 $00 $00 $00 $BD $4C $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $BC $7E $0D $08 $9B $06 $E1 $06 $00 $71 $00 $00 $49 $F4 $04 $08 $00 $00 $00 $00 $29 $26 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $B4 $7E $0D $08 $9D $06 $E2 $06 $00 $72 $00 $00 $CD $4C $02 $08 $00 $00 $00 $00 $E1 $4C $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $AC $7E $0D $08 $9F $06 $E4 $06 $00 $73 $00 $00 $B1 $25 $02 $08 $00 $00 $00 $00 $D1 $25 $02 $08 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 
@@ -1385,15 +1391,15 @@ ALIGN 4
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
     #ifdef C_SKILLSYS 
-    WORD 38
+    WORD 39
     #endif 
     #ifdef SKILLSYS_INSTALLED 
-    WORD 40 // 43+ will overflow, watch out 
+    WORD 41 // 43+ will overflow, watch out 
     #else 
-    WORD 39
+    WORD 40
     #endif  
 #else 
-WORD 37
+WORD 38
 #endif 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
