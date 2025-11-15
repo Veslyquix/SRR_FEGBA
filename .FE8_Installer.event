@@ -91,6 +91,18 @@
 #include "../ASM/DangerBones/Installer.event" 
 
 
+
+#ifdef VeslyBuildfile
+#include "../ASM/ExtendWeaponDescBox/Installer.event" // for monster weapons 
+#endif 
+#ifndef C_SKILLSYS // already included 
+    #include "../ASM/Debugger/Installer.event" 
+    ALIGN 4 
+    CMagCharTable:
+    WORD 0 
+#endif 
+
+
 #ifdef INCLUDE_ACHIEVEMENTS 
 #include "../ASM/Achievements/Installer.event"  
 #else 
@@ -122,15 +134,7 @@ POP
 SHORT $2000 $4770 // mov r0, #0 - bx lr 
 #endif 
 
-#ifdef VeslyBuildfile
-#include "../ASM/ExtendWeaponDescBox/Installer.event" // for monster weapons 
-#endif 
-#ifndef C_SKILLSYS // already included 
-    #include "../ASM/Debugger/Installer.event" 
-    ALIGN 4 
-    CMagCharTable:
-    WORD 0 
-#endif 
+
 //#ifdef VeslyBuildfile 
 #include "../ASM/Reclass/Installer.event" 
 #ifndef NoAltUI 
