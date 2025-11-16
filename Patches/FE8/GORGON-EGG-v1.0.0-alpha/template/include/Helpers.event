@@ -1,0 +1,56 @@
+
+// This can be checked against to see if GORGON-EGG is installed in a buildfile.
+#define __GORGON_EGG__
+#define __GORGON_EGG_MAJOR__ 1
+#define __GORGON_EGG_MINOR__ 0
+#define __GORGON_EGG_PATCH__ 0
+
+
+// The following game-related definitions are in case users are building
+// with Nintenlord's Event Assembler instead of ColorzCore or are building
+// with the typical `FE6`, `FE7`, or `FE8` options with ColorzCore.
+
+// We assume that `FE6` means `FE6J`.
+#ifdef _FE6_
+  #ifndef _FE6J_
+    #define _FE6J_
+  #endif // _FE6J_
+#endif // _FE6_
+
+// We assume that `FE7` means `FE7U`.
+#ifdef _FE7_
+  #ifndef _FE7J_
+    #ifndef _FE7U_
+      #define _FE7U_
+    #endif // _FE7U_
+  #endif // _FE7J_
+#endif // _FE7_
+
+// We assume that `FE8` means `FE8U`.
+#ifdef _FE8_
+  #ifndef _FE8J_
+    #ifndef _FE8U_
+      #define _FE8U_
+    #endif // _FE8U_
+  #endif // _FE8J_
+#endif // _FE8_
+
+
+#ifndef RESERVE
+
+  /* RESERVE(Start, End)
+   * 
+   * This helper greedily reserves a block of space, throwing an error
+   * if the current assembly offset is past the end or if something
+   * else overwrites the space.
+   * 
+   * Example:
+   * 
+   * ORG 1200
+   * #include "Foo.lyn.event" // This errors if bigger than 100 bytes.
+   * RESERVE(1200, 1300)
+   * ORG 1210; BYTE 1 // Trying to overwrite the area errors.
+   */
+  #define RESERVE(Start, End) "PROTECT Start End; ASSERT ((End | 0x08000000) - CURRENTOFFSET);"
+
+#endif // RESERVE

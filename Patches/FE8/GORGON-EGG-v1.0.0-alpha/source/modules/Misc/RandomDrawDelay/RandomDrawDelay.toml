@@ -1,0 +1,41 @@
+
+[module]
+  name = "RandomDrawDelay"
+
+[[module.invalid_positions]]
+  name = "RandomDrawDelay_InvalidPosition"
+  file = "RandomDrawDelay.lyn.event"
+
+[[module.definitions]]
+  name = "UI1_DELAY"
+  value = 60
+
+
+[[module.asm_definitions]]
+  name = "AdvanceGetLCGRNValue"
+  body = "SET_FUNC AdvanceGetLCGRNValue, 0x08000EB4 | 1"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "AdvanceGetLCGRNValue"
+  body = "SET_FUNC AdvanceGetLCGRNValue, 0x08000EDC | 1"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "AdvanceGetLCGRNValue"
+  body = "SET_FUNC AdvanceGetLCGRNValue, 0x08000EB4 | 1"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "AdvanceGetLCGRNValue"
+  body = "SET_FUNC AdvanceGetLCGRNValue, 0x08000CE8 | 1"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "AdvanceGetLCGRNValue"
+  body = "SET_FUNC AdvanceGetLCGRNValue, 0x08000CC0 | 1"
+  games = [ "FE8J" ]

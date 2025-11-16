@@ -1,0 +1,161 @@
+
+[module]
+  name = "FullInventoryDroppable"
+  games = [ "FE7U", "FE7J", "FE8U", "FE8J" ]
+
+[[module.statics]]
+  name = "FullInventoryDroppable_Static"
+  file = "FullInventoryDroppable.lyn.event"
+
+[[module.dynamics]]
+  name = "FullInventoryDroppable_Dynamic"
+  file = "FullInventoryDroppable.lyn.event"
+
+[[module.includes]]
+  file = "Icon.event"
+
+[[module.definitions]]
+  name = "INVENTORY_ICON_X"
+  value = 40
+
+[[module.definitions]]
+  name = "INVENTORY_ICON_Y"
+  value = 8
+
+[[module.definitions]]
+  name = "INVENTORY_ICON_BASE_TILE"
+  value = 0x0300
+
+[[module.definitions]]
+  name = "INVENTORY_ICON_PALETTE"
+  value = 20
+
+[[module.definitions]]
+  name = "ITEM_ICON_PAGE"
+  value = 0
+
+[[module.definitions]]
+  name = "DROPPABLE_ICON_BASE_TILE"
+  value = 0x030A
+
+[[module.definitions]]
+  name = "DROPPABLE_ICON_PALETTE"
+  value = 21
+
+[[module.definitions]]
+  name = "ItemIconPalettes"
+  body = '''
+enum ItemIconPalettes
+{
+  ITEM_ICON_PALETTE_ITEMS,
+  ITEM_ICON_PALETTE_AFFINITIES,
+};
+'''
+
+[[module.definitions]]
+  name = "US_DROP_ITEM"
+  value = "(1 << 12)"
+
+
+[[module.asm_definitions]]
+  name = "LoadIconPalette"
+  body = "SET_FUNC LoadIconPalette, 0x08004D44 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "LoadIconObjectGraphics"
+  body = "SET_FUNC LoadIconObjectGraphics, 0x08004E98 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemIconId"
+  body = "SET_FUNC GetItemIconId, 0x08017400 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitItemCount"
+  body = "SET_FUNC GetUnitItemCount, 0x080176DC | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08003078 | 1"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "LoadIconPalette"
+  body = "SET_FUNC LoadIconPalette, 0x08004C20 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "LoadIconObjectGraphics"
+  body = "SET_FUNC LoadIconObjectGraphics, 0x08004D74 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemIconId"
+  body = "SET_FUNC GetItemIconId, 0x08017808 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitItemCount"
+  body = "SET_FUNC GetUnitItemCount, 0x08017ACC | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002F54 | 1"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "LoadIconPalette"
+  body = "SET_FUNC LoadIconPalette, 0x080035D4 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "LoadIconObjectGraphics"
+  body = "SET_FUNC LoadIconObjectGraphics, 0x0800372C | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetItemIconId"
+  body = "SET_FUNC GetItemIconId, 0x08017700 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitItemCount"
+  body = "SET_FUNC GetUnitItemCount, 0x080179D8 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002014 | 1"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "LoadIconPalette"
+  body = "SET_FUNC LoadIconPalette, 0x08003520 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "LoadIconObjectGraphics"
+  body = "SET_FUNC LoadIconObjectGraphics, 0x08003678 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetItemIconId"
+  body = "SET_FUNC GetItemIconId, 0x080174A8 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitItemCount"
+  body = "SET_FUNC GetUnitItemCount, 0x08017780 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08001F64 | 1"
+  games = [ "FE8J" ]

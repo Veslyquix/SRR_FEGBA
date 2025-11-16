@@ -1,0 +1,33 @@
+
+[module]
+  name = "HPLabelStandard"
+
+[[module.statics]]
+  name = "HPLabelStandard_Static"
+  file = "HPLabelStandard.lyn.event"
+
+[[module.definitions]]
+  name = "HP_LABEL_X"
+  value = 9
+
+[[module.definitions]]
+  name = "HP_LABEL_Y"
+  value = 1
+
+[[module.definitions]]
+  name = "HP_LABEL_BASE_TILE"
+  value = 0x0120
+
+[[module.definitions]]
+  name = "HP_LABEL_PALETTE"
+  value = 2
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "HP_LABEL_PALETTE"
+  value = 0
+  games = [ "FE6J", "FE7U", "FE7J" ]
+
+[[module.definitions]]
+  name = "HP_LABEL_WIDTH"
+  value = 2

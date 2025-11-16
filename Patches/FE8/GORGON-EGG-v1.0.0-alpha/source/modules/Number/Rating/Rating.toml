@@ -1,0 +1,279 @@
+
+[module]
+  name = "Rating"
+
+[[module.dynamics]]
+  name = "Rating_Dynamic"
+  file = "Rating.lyn.event"
+
+[[module.internals]]
+  file = "DrawNumber/DrawNumber.event"
+
+[[module.definitions]]
+  name = "NEED_NUMBER_3_DIGITS"
+  value = 1
+
+[[module.definitions]]
+  name = "RTG_RENDERER_DEFS"
+  body = '''
+void DrawUnsignedNumberRightAligned(int number, int x, int y, u16 baseObj);
+#define NEED_NUMBER_UNSIGNED_RIGHT_ALIGNED
+'''
+
+[[module.definitions]]
+  name = "RTG_RENDERER"
+  value = "DrawUnsignedNumberRightAligned"
+
+[[module.definitions]]
+  name = "RTG_X"
+  value = 16
+
+[[module.definitions]]
+  name = "RTG_Y"
+  value = 8
+
+[[module.definitions]]
+  name = "NUMBER_BASE_TILE"
+  value = 0x02E0
+
+[[module.definitions]]
+  name = "NUMBER_PALETTE"
+  value = 8
+
+[[module.definitions]]
+  name = "RTG_BASE_TILE"
+  value = "NUMBER_BASE_TILE"
+
+[[module.definitions]]
+  name = "RTG_PALETTE"
+  value = "NUMBER_PALETTE"
+
+
+[[module.asm_definitions]]
+  name = "ConvertNumberToStringOrDashes"
+  body = "SET_FUNC ConvertNumberToStringOrDashes, 0x080050F8 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x080183C8 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitPower"
+  body = "SET_FUNC GetUnitPower, 0x080183E8 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitSkill"
+  body = "SET_FUNC GetUnitSkill, 0x08018408 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitSpeed"
+  body = "SET_FUNC GetUnitSpeed, 0x08018448 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitLuck"
+  body = "SET_FUNC GetUnitLuck, 0x080184D0 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitDefense"
+  body = "SET_FUNC GetUnitDefense, 0x08018488 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitResistance"
+  body = "SET_FUNC GetUnitResistance, 0x080184A8 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "NumberStringSpace"
+  body = "SET_DATA NumberStringSpace, 0x02027BA0"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "ConvertNumberToStringOrDashes"
+  body = "SET_FUNC ConvertNumberToStringOrDashes, 0x08005080 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08018AB0 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitPower"
+  body = "SET_FUNC GetUnitPower, 0x08018AD0 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitSkill"
+  body = "SET_FUNC GetUnitSkill, 0x08018AF0 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitSpeed"
+  body = "SET_FUNC GetUnitSpeed, 0x08018B30 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitLuck"
+  body = "SET_FUNC GetUnitLuck, 0x08018BB8 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitDefense"
+  body = "SET_FUNC GetUnitDefense, 0x08018B70 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitResistance"
+  body = "SET_FUNC GetUnitResistance, 0x08018B90 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "NumberStringSpace"
+  body = "SET_DATA NumberStringSpace, 0x02028D44"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "ConvertNumberToStringOrDashes"
+  body = "SET_FUNC ConvertNumberToStringOrDashes, 0x08004F5C | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08018EA0 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitPower"
+  body = "SET_FUNC GetUnitPower, 0x08018EC0 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitSkill"
+  body = "SET_FUNC GetUnitSkill, 0x08018EE0 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitSpeed"
+  body = "SET_FUNC GetUnitSpeed, 0x08018F20 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitLuck"
+  body = "SET_FUNC GetUnitLuck, 0x08018FA8 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitDefense"
+  body = "SET_FUNC GetUnitDefense, 0x08018F60 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitResistance"
+  body = "SET_FUNC GetUnitResistance, 0x08018F80 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "NumberStringSpace"
+  body = "SET_DATA NumberStringSpace, 0x02028D3C"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "ConvertNumberToStringOrDashes"
+  body = "SET_FUNC ConvertNumberToStringOrDashes, 0x0800391C | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08019190 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitPower"
+  body = "SET_FUNC GetUnitPower, 0x080191B0 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitSkill"
+  body = "SET_FUNC GetUnitSkill, 0x080191D0 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitSpeed"
+  body = "SET_FUNC GetUnitSpeed, 0x08019210 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitLuck"
+  body = "SET_FUNC GetUnitLuck, 0x08019298 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitDefense"
+  body = "SET_FUNC GetUnitDefense, 0x08019250 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitResistance"
+  body = "SET_FUNC GetUnitResistance, 0x08019270 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "NumberStringSpace"
+  body = "SET_DATA NumberStringSpace, 0x02028E44"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "ConvertNumberToStringOrDashes"
+  body = "SET_FUNC ConvertNumberToStringOrDashes, 0x08003868 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMaxHp"
+  body = "SET_FUNC GetUnitMaxHp, 0x08018EA4 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitPower"
+  body = "SET_FUNC GetUnitPower, 0x08018EC4 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitSkill"
+  body = "SET_FUNC GetUnitSkill, 0x08018EE4 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitSpeed"
+  body = "SET_FUNC GetUnitSpeed, 0x08018F24 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitLuck"
+  body = "SET_FUNC GetUnitLuck, 0x08018FAC | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitDefense"
+  body = "SET_FUNC GetUnitDefense, 0x08018F64 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitResistance"
+  body = "SET_FUNC GetUnitResistance, 0x08018F84 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "NumberStringSpace"
+  body = "SET_DATA NumberStringSpace, 0x02028E44"
+  games = [ "FE8J" ]

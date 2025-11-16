@@ -1,0 +1,74 @@
+
+[module]
+  name = "DrawStandard"
+
+[[module.tilemap_destinations]]
+  name = "DrawStandard_TilemapDestination"
+  file = "DrawStandard.lyn.event"
+
+[[module.invalid_positions]]
+  name = "DrawStandard_InvalidPosition"
+  file = "DrawStandard.lyn.event"
+
+[[module.extends]]
+  name = "DrawStandard_Extend"
+  file = "DrawStandard.lyn.event"
+
+[[module.retracts]]
+  name = "DrawStandard_Retract"
+  file = "DrawStandard.lyn.event"
+
+
+[[module.asm_definitions]]
+  name = "TileMap_FillRect"
+  body = "SET_FUNC TileMap_FillRect, 0x0809FAA0 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gProc_TI"
+  body = "SET_DATA gProc_TI, 0x08678174"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "TileMap_FillRect"
+  body = "SET_FUNC TileMap_FillRect, 0x080C57BC | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gProc_TI"
+  body = "SET_DATA gProc_TI, 0x08CC2C00"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "TileMap_FillRect"
+  body = "SET_FUNC TileMap_FillRect, 0x080C0C30 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gProc_TI"
+  body = "SET_DATA gProc_TI, 0x08D8B1A0"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "TileMap_FillRect"
+  body = "SET_FUNC TileMap_FillRect, 0x080D74A8 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gProc_TI"
+  body = "SET_DATA gProc_TI, 0x08A018AC"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "TileMap_FillRect"
+  body = "SET_FUNC TileMap_FillRect, 0x080DC0E4 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gProc_TI"
+  body = "SET_DATA gProc_TI, 0x08A73964"
+  games = [ "FE8J" ]

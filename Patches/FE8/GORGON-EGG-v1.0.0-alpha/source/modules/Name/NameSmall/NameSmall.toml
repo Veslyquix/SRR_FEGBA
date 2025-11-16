@@ -1,0 +1,132 @@
+
+[module]
+  name = "NameSmall"
+  games = [ "FE7U", "FE8U" ]
+
+[[module.statics]]
+  name = "NameSmall_Static"
+  file = "NameSmall.lyn.event"
+
+[[module.internals]]
+  file = "SmallFont/SmallFont.event"
+
+[[module.asm_definitions]]
+  name = "NEED_clzsi2"
+  value = 1
+
+[[module.internals]]
+  file = "LibraryFunctions/LibraryFunctions.event"
+
+[[module.definitions]]
+  name = "NAME_SMALL_BASE_TILE_0"
+  value = 0x160
+
+[[module.definitions]]
+  name = "NAME_SMALL_BASE_TILE_1"
+  value = 0x165
+
+[[module.definitions]]
+  name = "NAME_SMALL_COLOR"
+  value = "TEXT_COLOR_BLACK"
+
+[[module.definitions]]
+  name = "NAME_SMALL_X"
+  value = 3
+
+[[module.definitions]]
+  name = "NAME_SMALL_Y"
+  value = 3
+
+[[module.definitions]]
+  name = "NameSmallAlignments"
+  body = '''
+enum NameSmallAlignments
+{
+  NAME_SMALL_CENTERED,
+  NAME_SMALL_LEFT_ALIGNED,
+  NAME_SMALL_RIGHT_ALIGNED,
+};
+'''
+
+[[module.definitions]]
+  name = "NAME_SMALL_ALIGNMENT"
+  value = "NAME_SMALL_CENTERED"
+
+[[module.definitions]]
+  name = "NAME_SMALL_WIDTH"
+  value = 5
+
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08013AD0 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gGenericBuffer"
+  body = "SET_DATA gGenericBuffer, 0x0201F0E8"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08012C60 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x08012CBC | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gGenericBuffer"
+  body = "SET_DATA gGenericBuffer, 0x02020140"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08013318 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x08013374 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gGenericBuffer"
+  body = "SET_DATA gGenericBuffer, 0x02020140"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x0800A240 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x0800A2A4 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gGenericBuffer"
+  body = "SET_DATA gGenericBuffer, 0x02020188"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08009FA8 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x0800A004 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gGenericBuffer"
+  body = "SET_DATA gGenericBuffer, 0x02020188"
+  games = [ "FE8J" ]

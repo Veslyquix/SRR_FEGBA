@@ -1,0 +1,92 @@
+
+[module]
+  name = "MinimugStandard"
+
+[[module.statics]]
+  name = "MinimugStandard_Static"
+  file = "MinimugStandard.lyn.event"
+
+[[module.definitions]]
+  name = "MINIMUG_WIDTH"
+  value = 4
+
+[[module.definitions]]
+  name = "MINIMUG_HEIGHT"
+  value = 4
+
+[[module.definitions]]
+  name = "MINIMUG_X"
+  value = 1
+
+[[module.definitions]]
+  name = "MINIMUG_Y"
+  value = 1
+
+[[module.definitions]]
+  name = "MINIMUG_PALETTE"
+  value = 4
+
+[[module.definitions]]
+  name = "MINIMUG_BASE_TILE"
+  value = 0x1A0
+
+
+[[module.definitions]]
+  name = "US_BIT23"
+  value = "(1 << 23)"
+  games = [ "FE8U", "FE8J" ]
+
+
+[[module.asm_definitions]]
+  name = "DrawMinimug"
+  body = "SET_FUNC DrawMinimug, 0x08008928 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMinimugID"
+  body = "SET_FUNC GetUnitMinimugID, 0x08018500 | 1"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "DrawMinimug"
+  body = "SET_FUNC DrawMinimug, 0x08006F80 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMinimugID"
+  body = "SET_FUNC GetUnitMinimugID, 0x08018BF4 | 1"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "DrawMinimug"
+  body = "SET_FUNC DrawMinimug, 0x08006E10 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMinimugID"
+  body = "SET_FUNC GetUnitMinimugID, 0x08018FE4 | 1"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "DrawMinimug"
+  body = "SET_FUNC DrawMinimug, 0x08005988 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMinimugID"
+  body = "SET_FUNC GetUnitMinimugID, 0x080192F4 | 1"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "DrawMinimug"
+  body = "SET_FUNC DrawMinimug, 0x08005890 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "GetUnitMinimugID"
+  body = "SET_FUNC GetUnitMinimugID, 0x08018FEC | 1"
+  games = [ "FE8J" ]

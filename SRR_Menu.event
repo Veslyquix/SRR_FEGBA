@@ -71,13 +71,13 @@ txt("Page")
 
 ALIGN 64 
 gSRRMenuText: 
-FILL((MaxRTextOpt+1) * 4 * 42) // max 42 options 
+FILL((MaxRTextOpt+1) * 4 * 43) // max 42 options 
 
 
 #define SRRHeader(id) "{ ; header: ; PUSH; ORG SRRText_POIN + (id * 4); POIN header; POP ; } " 
 ALIGN 4 
 SRRText_POIN:
-FILL(4 * 40) 
+FILL(4 * 43) 
 
 
 {
@@ -97,6 +97,12 @@ POIN t0 t1 0
 t0:  txt("Set all to Vanilla");                     t1:  txt("Set all to Defaults");           t2:  txt("Randomize settings");
 ALIGN 4; SRRHeader(SettingsOpt)
 POIN t0 t1 t2 0 
+}
+
+{
+t0:  txt("Off");                     t1:  txt("On");   
+ALIGN 4; SRRHeader(AchievementsOpt)
+POIN t0 t1 0 
 }
 
 {
@@ -280,6 +286,11 @@ ALIGN 4; SRRHeader(BattleBGMOpt)
 POIN t0 t1 0
 }
 
+{
+t0:  txt("Off");                     t1:  txt("On");   
+ALIGN 4; SRRHeader(BgmNotifOpt)
+POIN t0 t1 0 
+}
 {
 t0:  txt("Vanilla Colours");  t1:  txt("Random Colours");
 ALIGN 4; SRRHeader(PortraitsOpt)
@@ -508,6 +519,10 @@ SRRDesc(SettingsOpt,0); txt("Change all settings to vanilla.");
 SRRDesc(SettingsOpt,1); txt("Change all settings to the defaults."); 
 SRRDesc(SettingsOpt,2); txt("Randomize all settings."); 
 
+SRRMenu(AchievementsOpt); txt("Achievements") 
+SRRDesc(AchievementsOpt, 0); txt("Ingame achievements and\progression are disabled.") 
+SRRDesc(AchievementsOpt, 1); txt("Ingame achievements and\progression are enabled.") 
+
 SRRMenu(VarianceOpt);           txt("Variance")
 SRRDesc(VarianceOpt); txt("Diversity of gameplay.\Stats/Growths will vary +/-\this much."); 
 
@@ -596,6 +611,11 @@ SRRDesc(MusicOpt,2); txt("Background music will be\random tracks from various ga
 SRRMenu(BattleBGMOpt);              txt("Battle BGM")
 SRRDesc(BattleBGMOpt,0); txt("A different BGM track will\play during battles."); 
 SRRDesc(BattleBGMOpt,1); txt("The map's current BGM\will play during battles."); 
+
+SRRMenu(BgmNotifOpt); txt("BGM Popups") 
+SRRDesc(BgmNotifOpt, 0); txt("Popups will not display when\the BGM changes.") 
+SRRDesc(BgmNotifOpt, 1); txt("Popups will display when\the BGM changes.") 
+
 SRRMenu(PortraitsOpt);            txt("Portraits")
 SRRDesc(PortraitsOpt,0); txt("Portraits have their usual colours."); 
 SRRDesc(PortraitsOpt,1); txt("Portraits have random colours."); 
@@ -637,7 +657,7 @@ SRRMenu(UiOpt);                 txt("User Interface")
 SRRDesc(UiOpt); txt("Changes the visual style of\various menus in the game."); 
 SRRMenu(DebuggerOpt);           txt("Debugger")
 SRRDesc(DebuggerOpt,0); txt("Pressing B on units does nothing."); 
-SRRDesc(DebuggerOpt,1); txt("Pressing B on units opens the debugger,\'The tool for everything'."); 
+SRRDesc(DebuggerOpt,1); txt("Pressing B on units opens the debugger,\'The tool for everything'.\Disables achievements."); 
 SRRMenu(BGOpt);                 txt("Backgrounds")
 SRRDesc(BGOpt,0); txt("Backgrounds in events are\unchanged."); 
 SRRDesc(BGOpt,1); txt("This is like being in another\place, regardless of story."); 
@@ -658,6 +678,8 @@ SaveOption:
 WORD SaveOpt
 SettingsOption:
 WORD SettingsOpt 
+AchievementsOption:
+WORD AchievementsOpt 
 VarianceOption:
 WORD VarianceOpt 
 PlayerRecruitmentOption:
@@ -704,6 +726,9 @@ MusicOption:
 WORD MusicOpt
 BattleBGMOption:
 WORD BattleBGMOpt
+BgmNotifOption:
+WORD BgmNotifOpt 
+
 PortraitsOption:
 WORD PortraitsOpt
 ColoursOption:

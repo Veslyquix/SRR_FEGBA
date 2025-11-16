@@ -1,0 +1,30 @@
+
+#ifndef GetColorLut
+
+  #ifdef _FE6J_
+    #define GetColorLut (0x08006050 | 1)
+  #endif // _FE6J
+
+  #ifdef _FE7U_
+    #define GetColorLut (0x080058A0 | 1)
+  #endif // _FE7U_
+
+  #ifdef _FE7J_
+    #define GetColorLut (0x08005764 | 1)
+  #endif // _FE7J_
+
+  #ifdef _FE8U_
+    #define GetColorLut (0x08004208 | 1)
+  #endif // _FE8U_
+
+  #ifdef _FE8J_
+    #define GetColorLut (0x08004140 | 1)
+  #endif // _FE8J_
+
+#endif // GetColorLut
+
+ALIGN 4; gSmallFont: {
+  #incbin "Font.2bpp"
+};
+
+#include "SmallFont.lyn.event"

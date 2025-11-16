@@ -1,0 +1,237 @@
+
+[module]
+  name = "TextViewer"
+
+[[module.statics]]
+  name = "TextViewer_Static"
+  file = "TextViewer.lyn.event"
+
+[[module.dynamics]]
+  name = "TextViewer_Dynamic"
+  file = "TextViewer.lyn.event"
+
+[[module.internals]]
+  file = "SmallFont/SmallFontSJIS.event"
+
+[[module.asm_definitions]]
+  name = "NEED_clzsi2"
+  value = 1
+
+[[module.internals]]
+  file = "LibraryFunctions/LibraryFunctions.event"
+
+[[module.definitions]]
+  name = "TV_BASE_TILE"
+  value = 0x160
+
+[[module.definitions]]
+  name = "TV_X"
+  value = 1
+
+[[module.definitions]]
+  name = "TV_Y"
+  value = 1
+
+[[module.definitions]]
+  name = "TV_WIDTH"
+  value = 12
+
+
+[[module.definitions]]
+  name = "CHARACTER_MAX"
+  value = 0xE2
+  games = [ "FE6J" ]
+
+[[module.definitions]]
+  name = "CLASS_MAX"
+  value = 0x4B
+  games = [ "FE6J" ]
+
+[[module.definitions]]
+  name = "ITEM_MAX"
+  value = 0x7F
+  games = [ "FE6J" ]
+
+
+[[module.definitions]]
+  name = "CHARACTER_MAX"
+  value = 0xFD
+  games = [ "FE7U", "FE7J" ]
+
+[[module.definitions]]
+  name = "CLASS_MAX"
+  value = 0x63
+  games = [ "FE7U", "FE7J" ]
+
+[[module.definitions]]
+  name = "ITEM_MAX"
+  value = 0x9E
+  games = [ "FE7U", "FE7J" ]
+
+
+[[module.definitions]]
+  name = "CHARACTER_MAX"
+  value = 0xFF
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "CLASS_MAX"
+  value = 0x7F
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "ITEM_MAX"
+  value = 0xCD
+  games = [ "FE8U", "FE8J" ]
+
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08013AD0 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gKeyStatusPtr"
+  body = "SET_DATA gKeyStatusPtr, 0x0858E578"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gCharacterData"
+  body = "SET_DATA gCharacterData, 0x086076D0"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gClassData"
+  body = "SET_DATA gClassData, 0x0860A0E8"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gItemData"
+  body = "SET_DATA gItemData, 0x0860B648"
+  games = [ "FE6J" ]
+
+
+
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08012C60 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x08012CBC | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gKeyStatusPtr"
+  body = "SET_DATA gKeyStatusPtr, 0x08B857F8"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gCharacterData"
+  body = "SET_DATA gCharacterData, 0x08BDCE4C"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gClassData"
+  body = "SET_DATA gClassData, 0x08BE015C"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gItemData"
+  body = "SET_DATA gItemData, 0x08BE222C"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08013318 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x08013374 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gKeyStatusPtr"
+  body = "SET_DATA gKeyStatusPtr, 0x08BBFC7C"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gCharacterData"
+  body = "SET_DATA gCharacterData, 0x08C4C158"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gClassData"
+  body = "SET_DATA gClassData, 0x08C4F468"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gItemData"
+  body = "SET_DATA gItemData, 0x08C51538"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x0800A240 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x0800A2A4 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gKeyStatusPtr"
+  body = "SET_DATA gKeyStatusPtr, 0x0858791C"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gCharacterData"
+  body = "SET_DATA gCharacterData, 0x08803D64"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gClassData"
+  body = "SET_DATA gClassData, 0x08807110"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gItemData"
+  body = "SET_DATA gItemData, 0x08809B10"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "GetStringFromIndex"
+  body = "SET_FUNC GetStringFromIndex, 0x08009FA8 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "String_ExpandNames"
+  body = "SET_FUNC String_ExpandNames, 0x0800A004 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gKeyStatusPtr"
+  body = "SET_DATA gKeyStatusPtr, 0x085775CC"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gCharacterData"
+  body = "SET_DATA gCharacterData, 0x088582BC"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gClassData"
+  body = "SET_DATA gClassData, 0x0885B668"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gItemData"
+  body = "SET_DATA gItemData, 0x0885E068"
+  games = [ "FE8J" ]

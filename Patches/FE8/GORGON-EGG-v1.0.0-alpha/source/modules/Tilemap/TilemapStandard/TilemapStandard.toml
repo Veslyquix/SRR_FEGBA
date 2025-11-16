@@ -1,0 +1,183 @@
+
+[module]
+  name = "TilemapStandard"
+
+[[module.statics]]
+  name = "TilemapStandard_Static"
+  file = "TilemapStandard.lyn.event"
+
+[[module.definitions]]
+  name = "UI1_TILEMAP_PALETTE"
+  value = 3
+
+
+[[module.definitions]]
+  name = "UI1_WIDTH"
+  value = 12
+  games = [ "FE6J", "FE7U", "FE7J" ]
+
+[[module.definitions]]
+  name = "UI1_HEIGHT"
+  value = 6
+  games = [ "FE6J", "FE7U", "FE7J" ]
+
+
+[[module.includes]]
+  file = "UI1Tilemap_FE6J.lyn.event"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "TileMap_Apply"
+  body = "SET_FUNC TileMap_Apply, 0x0809FA98 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Blue"
+  body = "SET_DATA gPal_PlayerInterface_Blue, 0x0831906C"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Red"
+  body = "SET_DATA gPal_PlayerInterface_Red, 0x0831908C"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Green"
+  body = "SET_DATA gPal_PlayerInterface_Green, 0x083190AC"
+  games = [ "FE6J" ]
+
+[[module.definitions]]
+  name = "UI1Tilemap_1"
+  body = "#define UI1Tilemap_1 UI1Tilemap_FE6J_1"
+  games = [ "FE6J" ]
+
+
+[[module.includes]]
+  file = "UI1Tilemap_FE7U.lyn.event"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "TileMap_Apply"
+  body = "SET_FUNC TileMap_Apply, 0x080C57B4 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Blue"
+  body = "SET_DATA gPal_PlayerInterface_Blue, 0x0840453C"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Red"
+  body = "SET_DATA gPal_PlayerInterface_Red, 0x0840455C"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Green"
+  body = "SET_DATA gPal_PlayerInterface_Green, 0x0840457C"
+  games = [ "FE7U" ]
+
+[[module.definitions]]
+  name = "UI1Tilemap_1"
+  body = "#define UI1Tilemap_1 UI1Tilemap_FE7U_1"
+  games = [ "FE7U" ]
+
+
+[[module.includes]]
+  file = "UI1Tilemap_FE7J.lyn.event"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "TileMap_Apply"
+  body = "SET_FUNC TileMap_Apply, 0x080C0C28 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Blue"
+  body = "SET_DATA gPal_PlayerInterface_Blue, 0x0841C754"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Red"
+  body = "SET_DATA gPal_PlayerInterface_Red, 0x0841C774"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Green"
+  body = "SET_DATA gPal_PlayerInterface_Green, 0x0841C794"
+  games = [ "FE7J" ]
+
+[[module.definitions]]
+  name = "UI1Tilemap_1"
+  body = "#define UI1Tilemap_1 UI1Tilemap_FE7J_1"
+  games = [ "FE7J" ]
+
+
+[[module.definitions]]
+  name = "UI1_WIDTH"
+  value = 13
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "UI1_HEIGHT"
+  value = 6
+  games = [ "FE8U", "FE8J" ]
+
+
+[[module.includes]]
+  file = "UI1Tilemap_FE8U.lyn.event"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "TileMap_Apply"
+  body = "SET_FUNC TileMap_Apply, 0x080D74A0 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Blue"
+  body = "SET_DATA gPal_PlayerInterface_Blue, 0x08A1738C"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Red"
+  body = "SET_DATA gPal_PlayerInterface_Red, 0x08A173AC"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Green"
+  body = "SET_DATA gPal_PlayerInterface_Green, 0x08A173CC"
+  games = [ "FE8U" ]
+
+[[module.definitions]]
+  name = "UI1Tilemap_1"
+  body = "#define UI1Tilemap_1 UI1Tilemap_FE8U_1"
+  games = [ "FE8U" ]
+
+
+[[module.includes]]
+  file = "UI1Tilemap_FE8J.lyn.event"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "TileMap_Apply"
+  body = "SET_FUNC TileMap_Apply, 0x080DC0DC | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Blue"
+  body = "SET_DATA gPal_PlayerInterface_Blue, 0x08A930D8"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Red"
+  body = "SET_DATA gPal_PlayerInterface_Red, 0x08A930F8"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gPal_PlayerInterface_Green"
+  body = "SET_DATA gPal_PlayerInterface_Green, 0x08A93118"
+  games = [ "FE8J" ]
+
+[[module.definitions]]
+  name = "UI1Tilemap_1"
+  body = "#define UI1Tilemap_1 UI1Tilemap_FE8J_1"
+  games = [ "FE8J" ]

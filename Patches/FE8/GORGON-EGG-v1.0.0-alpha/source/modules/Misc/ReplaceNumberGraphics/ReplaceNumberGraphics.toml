@@ -1,0 +1,142 @@
+
+[module]
+  name = "ReplaceNumberGraphics"
+
+[[module.inits]]
+  name = "ReplaceNumberGraphics_Init"
+  file = "ReplaceNumberGraphics.lyn.event"
+
+[[module.definitions]]
+  name = "gNumberGraphics"
+  value = "gMapBattleNumberGraphics"
+
+[[module.definitions]]
+  name = "gNumberPalette"
+  value = "gMapBattleNumberPalette"
+
+[[module.definitions]]
+  name = "NUMBER_BASE_TILE"
+  value = 0x02E0
+
+[[module.definitions]]
+  name = "NUMBER_PALETTE"
+  value = 8
+
+[[module.definitions]]
+  name = "NUMBER_GRAPHICS_COMPRESSED"
+  value = "TRUE"
+
+[[module.definitions]]
+  name = "NUMBER_GRAPHICS_WIDTH"
+  value = 11
+  games = [ "FE8U", "FE8J" ]
+
+[[module.definitions]]
+  name = "NUMBER_GRAPHICS_WIDTH"
+  value = 10
+  games = [ "FE6J", "FE7U", "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002B04 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013CA4 | 1"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleNumberGraphics"
+  body = "SET_DATA gMapBattleNumberGraphics, 0x082DC618"
+  games = [ "FE6J" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleNumberPalette"
+  body = "SET_DATA gMapBattleNumberPalette, 0x082E278C"
+  games = [ "FE6J" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08003078 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013168 | 1"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleNumberGraphics"
+  body = "SET_DATA gMapBattleNumberGraphics, 0x083F3FA4"
+  games = [ "FE7U" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleNumberPalette"
+  body = "SET_DATA gMapBattleNumberPalette, 0x083FA12C"
+  games = [ "FE7U" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002F54 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013688 | 1"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleNumberGraphics"
+  body = "SET_DATA gMapBattleNumberGraphics, 0x083FAA20"
+  games = [ "FE7J" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleNumberPalette"
+  body = "SET_DATA gMapBattleNumberPalette, 0x08400BA8"
+  games = [ "FE7J" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08002014 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08012F50 | 1"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleNumberGraphics"
+  body = "SET_DATA gMapBattleNumberGraphics, 0x089AD868"
+  games = [ "FE8U" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleNumberPalette"
+  body = "SET_DATA gMapBattleNumberPalette, 0x08A1D79C"
+  games = [ "FE8U" ]
+
+
+[[module.asm_definitions]]
+  name = "RegisterTileGraphics"
+  body = "SET_FUNC RegisterTileGraphics, 0x08001F64 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "Decompress"
+  body = "SET_FUNC Decompress, 0x08013008 | 1"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleNumberGraphics"
+  body = "SET_DATA gMapBattleNumberGraphics, 0x08A1DEF0"
+  games = [ "FE8J" ]
+
+[[module.asm_definitions]]
+  name = "gMapBattleNumberPalette"
+  body = "SET_DATA gMapBattleNumberPalette, 0x08A99FA8"
+  games = [ "FE8J" ]

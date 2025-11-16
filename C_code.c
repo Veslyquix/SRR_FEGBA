@@ -34,6 +34,9 @@ extern const int VeslyBuildfile_Link;
 #define FilterEnemyClassesLabel 3
 #define PreviewCharLabel 4
 #define ReviseCharProcLabel 5
+#define ConfirmationLabel 6
+#define SaveSettingsLabel 7
+#define LoopLabel 10
 
 #define EndLabel 99
 
@@ -61,7 +64,7 @@ typedef struct
 
     s8 previewId;
     u8 reviseMenuId;
-    s8 Option[40]; // max is 42. past that we'll overflow
+    s8 Option[42]; // max is 42. past that we'll overflow
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -459,6 +462,8 @@ extern u8 * AlwaysSkill;
 extern const int SeedOption;
 extern const int SaveOption;
 extern const int SettingsOption;
+extern const int AchievementsOption;
+extern const int BgmNotifOption;
 extern const int VarianceOption;
 extern const int PlayerRecruitmentOption;
 extern const int PlayerBossOption;
@@ -1064,6 +1069,7 @@ void EndAllRecruitmentProcs(void)
 }
 extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 void ClearPlayerBWL(void);
+#define PopupBoxCHR 0x180
 
 void ClearConfigGfx(ConfigMenuProc * proc)
 {
@@ -1081,6 +1087,8 @@ void ClearConfigGfx(ConfigMenuProc * proc)
     InitSystemTextFont();
     LoadObjUIGfx();
     UnpackUiVArrowGfx(0x240, 3);
+    int lines = 3;
+    CpuFastFill(0, (void *)0x6010000 + (PopupBoxCHR << 5), 0x800 * lines);
 
     ResetText();  // need this
     ResetFaces(); // without this, it was duplicating the face on both sides
@@ -1563,6 +1571,165 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
     DisplayUiVArrow(176, 101, 0x3240, 0);
     // DisplayUiVArrow(176, 141, 0x3240, 0);
 }
+extern const int SRR_TotalOptions;
+
+#ifdef FE8
+extern int IsClassesOptionAvailable(void);
+extern int IsGrowthsOptionAvailable(void);
+extern int IsStatCapsOptionAvailable(void);
+extern int IsCasualModeOptionAvailable(void);
+extern int IsFromGameOptionAvailable(void);
+extern int IsBonusLevelsOptionAvailable(void);
+extern int IsRecruitmentOptionAvailable(void);
+extern int IsFilterClassesOptionAvailable(void);
+extern int IsFilterCharsOptionAvailable(void);
+extern int IsSkillsOptionAvailable(void);
+extern int IsTimedHitsOptionAvailable(void);
+extern int IsClutter1OptionAvailable(void);
+extern int IsClutter2OptionAvailable(void);
+extern int IsClutter3OptionAvailable(void);
+extern int IsClutter4OptionAvailable(void);
+
+extern int AchievementsExist;
+int DoAchievementsExist(void)
+{
+    return AchievementsExist;
+}
+
+// a switch case doesn't compile because these options are extern ints, not definitions
+int IsConfigMenuOptionAvailable(int id)
+{
+    if (id == SeedOption || id == SaveOption || id == SettingsOption || id == VarianceOption || id == ItemOption ||
+        id == ReloadUnitsOption || id == DebuggerOption)
+    {
+        return true;
+    }
+    else if (id == AchievementsOption || id == BgmNotifOption)
+    {
+        return DoAchievementsExist();
+    }
+    else if (
+        id == PlayerRecruitmentOption || id == PlayerBossOption || id == EnemyRecruitmentOption ||
+        id == EnemyPlayerOption)
+    {
+        return IsRecruitmentOptionAvailable();
+    }
+
+    else if (id == FromGameOption || id == EnemyFromGameOption)
+    {
+        return IsFromGameOptionAvailable();
+    }
+
+    else if (id == FilterCharsOption || id == PreviewCharsOption)
+    {
+        return IsFilterCharsOptionAvailable();
+    }
+
+    else if (id == GrowthsOption)
+    {
+        return IsGrowthsOptionAvailable();
+    }
+
+    else if (id == StatCapsOption)
+    {
+        return IsStatCapsOptionAvailable();
+    }
+
+    else if (id == ClassOption)
+    {
+        return IsClassesOptionAvailable();
+    }
+
+    else if (id == FilterClassOption || id == FilterEnemyClassOption)
+    {
+        return IsFilterClassesOptionAvailable();
+    }
+
+    else if (id == ModeOption)
+    {
+        return IsCasualModeOptionAvailable();
+    }
+
+    else if (
+        id == BaseStatsOption || id == LevelupsOption || id == DangerBonesOption || id == VanillaItemOption ||
+        id == DurabilityOption)
+    {
+        return IsClutter1OptionAvailable();
+    }
+
+    else if (id == MusicOption || id == BattleBGMOption)
+    {
+        return IsClutter2OptionAvailable();
+    }
+
+    else if (id == PortraitsOption || id == ColoursOption || id == UiOption || id == BGOption)
+    {
+        return IsClutter3OptionAvailable();
+    }
+
+    else if (
+        id == PlayerBonusOption || id == PlayerBonusGrowthOption || id == EnemyBonusOption ||
+        id == EnemyBonusGrowthOption)
+    {
+        return IsBonusLevelsOptionAvailable();
+    }
+
+    else if (id == FogOption || id == SoftlockOption)
+    {
+        return IsClutter4OptionAvailable();
+    }
+
+    else if (id == SkipChOption)
+    {
+        return true;
+    }
+
+    else if (id == TimedHitsOption)
+    {
+        return IsTimedHitsOptionAvailable();
+    }
+
+    else if (id == SkillsOption)
+    {
+        return IsSkillsOptionAvailable();
+    }
+
+    return true;
+}
+#endif
+#ifndef FE8
+int IsConfigMenuOptionAvailable(int id)
+{
+    return true;
+}
+#endif
+
+int BuildAvailableOptionsForMenu(s8 * buf)
+{
+    int c = 0;
+    for (int i = 0; i <= SRR_TotalOptions; ++i)
+    {
+        buf[i] = (-1);
+        if (IsConfigMenuOptionAvailable(i))
+        {
+            buf[c] = i;
+            c++;
+        }
+    }
+    return c - 1;
+}
+
+int GetReorderedMenuId(int id)
+{
+    s8 buf[SRR_TotalOptions + 1];
+    BuildAvailableOptionsForMenu(buf);
+    return buf[id];
+}
+int GetLastMenuId()
+{
+    s8 buf[SRR_TotalOptions + 1];
+    return BuildAvailableOptionsForMenu(buf);
+}
 
 struct FaceData
 {
@@ -1577,10 +1744,9 @@ struct FaceData
 };
 extern const struct FaceData * GetPortraitData(int fid);
 extern void Decompress(const void * src, void * dst);
-extern void CpuFastSet(const void * src, void * dest, u32 control);
 extern void CopyToPaletteBuffer(const void * src, int b, int size);
 extern void PutFaceTm(u16 * tm, u8 * data, int tileref, s8 isFlipped);
-#define CpuFastCopy(src, dest, size) CpuFastSet(src, dest, ((size) / (32 / 8) & 0x1FFFFF))
+
 void UnpackFaceChibiGraphics_Bulk(int fid, int chr, int pal)
 {
     const struct FaceData * info = GetPortraitData(fid);
@@ -6456,12 +6622,6 @@ int MaybeRandomizeColours(void)
     return result;
 }
 
-void CpuSet(const void * src, void * dest, u32 control);
-#define CPU_SET_16BIT 0x00000000
-#define CPU_COPY(src, dest, size, bit) CpuSet(src, dest, CPU_SET_##bit##BIT | ((size) / (bit / 8) & 0x1FFFFF))
-
-#define CpuCopy16(src, dest, size) CPU_COPY(src, dest, size, 16)
-
 #define NumOfCharPals 11
 struct gCharPal_EntryStruct
 {
@@ -6615,6 +6775,10 @@ int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
         result |= newTableID;
     }
     result |= ShouldChangeWeaponForUnit(unit);
+    if (result)
+    {
+        result = 1;
+    }
     return result;
 }
 
@@ -12019,6 +12183,193 @@ void StartCloudsEffect(ConfigMenuProc * proc);
 void EndCloudsEffect(void);
 void EndAllMenus(void); // 804A490 8041A38
 void ConfigMenuLoop(ConfigMenuProc * proc);
+
+extern void DisplayHelpBoxObj(int x, int y, int w, int h, int unk);
+extern int Text_GetCursor(struct Text * text);
+void InitSpriteTextFont(struct Font * font, void * vramDest, int c);
+void InitSpriteText(struct Text * th);
+extern const u8 gGfx_HelpTextBox[];
+extern const u8 gGfx_HelpTextBox2[];
+extern const u8 gGfx_HelpTextBox3[];
+extern const u8 gGfx_HelpTextBox4[];
+extern const u8 gGfx_HelpTextBox5[];
+extern const u16 gPal_HelpTextBox[];
+void SpriteText_DrawBackground(struct Text *);
+extern struct Font * gActiveFont;
+struct Glyph
+{
+    struct Glyph * sjisNext; // (only used in Shift-JIS fonts) next element in linked list
+    u8 sjisByte1;            // (only used in Shift-JIS fonts) second byte of character
+    u8 width;                // width of the glyph in pixels
+    u32 bitmap[16];          // image data of the glyph (16x16 pixels, 2 bits per pixel)
+};
+struct HelpBoxSt
+{
+    /* 00 */ struct Font font;
+    /* 16 */ struct Text text[3];
+    /* 30 */ u16 oam2_base;
+};
+
+extern struct HelpBoxSt gHelpBoxSt;
+extern struct GuideSt * const gGuideSt;
+
+extern const char * Text_DrawCharacterAscii(struct Text * text, const char * str);
+#define CHAR_NEWLINE 1
+#define CHAR_SPACE 0x20
+#define MAX_LINE_WIDTH 184
+char * SRRPrintText(struct Text * th, const char * str, u8 * line)
+{
+    char * iter = (void *)str;
+    int curX;
+    int forceNewLine = false;
+
+    int nextWordWidth = 0;
+
+    while (*iter > CHAR_NEWLINE)
+    {
+
+        curX = Text_GetCursor(th); // current x position
+        if (*iter == CHAR_SPACE)
+        {
+            char * lookahead = iter + 1;
+            nextWordWidth = gActiveFont->glyphs[(u8)*iter]->width; // include the space in width
+
+            while (*lookahead > CHAR_NEWLINE && *lookahead != ' ' && *lookahead != CHAR_NEWLINE)
+            {
+                struct Glyph * glyph = gActiveFont->glyphs[(u8)*lookahead++];
+                nextWordWidth += glyph->width;
+            }
+
+            // If the next word doesn't fit, break before this space
+            if (curX + nextWordWidth > MAX_LINE_WIDTH)
+            {
+                forceNewLine = true;
+                break; // wrap before the next word
+            }
+        }
+        if (curX > MAX_LINE_WIDTH || *iter == CHAR_NEWLINE)
+        {
+            forceNewLine = true;
+            break;
+        }
+        iter = (void *)Text_DrawCharacterAscii(th, (void *)iter);
+        break;
+    }
+    if (*iter == CHAR_NEWLINE || forceNewLine)
+    {
+        line[0]++;
+        brk;
+        while (*iter == CHAR_SPACE || *iter == CHAR_NEWLINE)
+        {
+            iter++;
+        }
+    }
+
+    return iter;
+}
+
+void SRRDrawInstantSpriteText(char * str, struct Text * th)
+{
+    struct Font * font = gActiveFont;
+    SetTextFont(&gHelpBoxSt.font); // use our own chr_counter
+    u8 line[1];
+    line[0] = 0;
+    while (str && *str)
+    {
+        str = SRRPrintText(&th[line[0]], str, line); // updates line as well
+    }
+    SetTextFont(font);
+}
+
+void ConfirmPopupInit(ConfigMenuProc * proc, struct Text * th)
+{
+    struct Font * font = gActiveFont;
+    int pal = 0x12;
+    void * vram = (void *)(VRAM + (void *)0x10000 + (PopupBoxCHR << 5));
+
+    InitSpriteTextFont(&gHelpBoxSt.font, vram, pal);
+    SetTextFontGlyphs(1);
+
+    Decompress(gGfx_HelpTextBox, vram + 0x360);
+    Decompress(gGfx_HelpTextBox2, vram + 0x760);
+    Decompress(gGfx_HelpTextBox3, vram + 0xb60);
+    Decompress(gGfx_HelpTextBox4, vram + 0xf60);
+    Decompress(gGfx_HelpTextBox5, vram + 0x1360);
+    gHelpBoxSt.oam2_base = (((u32)vram << 0x11) >> 0x16) + (pal & 0xF) * 0x1000;
+    ApplyPalette(gPal_HelpTextBox, pal);
+
+    int lines = 3;
+    for (int i = 0; i < lines; ++i)
+    {
+        InitSpriteText(&th[i]);
+        SpriteText_DrawBackground(&th[i]);
+    }
+    gActiveFont = font;
+}
+
+void ConfirmPopupReloadUnitsMsg(ConfigMenuProc * proc)
+{
+    struct Font * font = gActiveFont;
+    struct Text * th = &gHelpBoxSt.text[0];
+    ConfirmPopupInit(proc, th);
+    SRRDrawInstantSpriteText("Some units will be reloaded.", &th[0]);
+    SRRDrawInstantSpriteText("Press A to confirm and reload units.", &th[1]);
+    SRRDrawInstantSpriteText("Press B to leave units unchanged.", &th[2]);
+    gActiveFont = font;
+}
+
+void ConfirmPopupSaveSettingsMsg(ConfigMenuProc * proc)
+{
+    struct Font * font = gActiveFont;
+    struct Text * th = &gHelpBoxSt.text[0];
+    ConfirmPopupInit(proc, th);
+    SRRDrawInstantSpriteText("Save settings for future runs?", &th[0]);
+    SRRDrawInstantSpriteText("Press Start to save settings.", &th[1]);
+    SRRDrawInstantSpriteText("Otherwise, press A or B to continue.", &th[2]);
+    gActiveFont = font;
+}
+
+void ConfigMenuConfirmReloadUnits(ConfigMenuProc * proc)
+{
+
+    int x = 10;
+    int y = 60;
+    int lines = 3;                                  // max 3 without Vesly's extend desc box
+    DisplayHelpBoxObj(x, y, 184, lines * 16, true); // true: do not show "Help" text
+
+    u16 keys = sKeyStatusBuffer.newKeys;
+    if (keys & A_BUTTON)
+    {
+        // Proc_Goto(proc, EndLabel);
+        Proc_Break(proc);
+    }
+    if (keys & B_BUTTON)
+    {
+        proc->Option[ReloadUnitsOption] = 0;
+        Proc_Break(proc);
+    }
+}
+void SaveConfigOptions(ConfigMenuProc * proc);
+void ConfigMenuConfirmSaveSettings(ConfigMenuProc * proc)
+{
+
+    int x = 10;
+    int y = 60;
+    int lines = 3;                                  // max 3 without Vesly's extend desc box
+    DisplayHelpBoxObj(x, y, 184, lines * 16, true); // true: do not show "Help" text
+
+    u16 keys = sKeyStatusBuffer.newKeys;
+    if (keys & START_BUTTON)
+    {
+        SaveConfigOptions(proc);
+        Proc_Break(proc);
+    }
+    if (keys & (A_BUTTON | B_BUTTON))
+    {
+        Proc_Break(proc);
+    }
+}
+
 void EnableBGDisplay(void)
 {
     gLCDControlBuffer.dispcnt.bg0_on = 1;
@@ -12026,6 +12377,7 @@ void EnableBGDisplay(void)
     gLCDControlBuffer.dispcnt.bg2_on = 1;
     gLCDControlBuffer.dispcnt.bg3_on = 1;
 }
+void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc);
 void InitDraw(ConfigMenuProc * proc);
 void RedrawAllText(ConfigMenuProc * proc);
 const struct ProcCmd ConfigMenuProcCmd[] = {
@@ -12040,7 +12392,21 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_REPEAT(WaitForFade),
     PROC_CALL(InitDraw),
     PROC_CALL(EnableBGDisplay),
+
+    PROC_LABEL(LoopLabel),
     PROC_REPEAT(ConfigMenuLoop),
+
+    PROC_LABEL(ConfirmationLabel),
+    PROC_CALL(ConfirmPopupReloadUnitsMsg),
+    PROC_REPEAT(ConfigMenuConfirmReloadUnits),
+    PROC_CALL(ContinueCopyConfigProcIntoRam),
+    PROC_GOTO(EndLabel),
+
+    PROC_LABEL(SaveSettingsLabel),
+    PROC_CALL(ConfirmPopupSaveSettingsMsg),
+    PROC_REPEAT(ConfigMenuConfirmSaveSettings),
+    PROC_CALL(ContinueCopyConfigProcIntoRam),
+    PROC_GOTO(EndLabel),
 
     PROC_LABEL(PreviewCharLabel),
     PROC_CALL(StartFastFadeToBlack),
@@ -12742,7 +13108,7 @@ extern int DisplayRandomSkillsOption;
 extern int DisplayTimedHitsOption;
 const int SRR_MAXDISP = 7;
 const int SRR_NUMBERDISP = 8;
-extern const int SRR_TotalOptions;
+
 #define MaxTW 8
 #define MaxRTW 16
 
@@ -12757,11 +13123,15 @@ const char * GetSRRText(int id1, int id2)
     return string;
 }
 
-void DrawSRRText(ConfigMenuProc * proc, int i, int offset)
+void DrawSRRText(ConfigMenuProc * proc, int i, int offset, int id)
 {
+    if (id < 0)
+    {
+        return;
+    }
     struct Text * th = gStatScreen.text;
     // const char ** textEntry = SRRText_POIN[i + offset];
-    const char * string = GetSRRText(i + offset, proc->Option[i + offset]);
+    const char * string = GetSRRText(id, proc->Option[id]);
     // if (i + offset == FromGameOption)
     // {
     // if (CountOptionAmount(i + offset) == proc->Option[i + offset])
@@ -12854,7 +13224,8 @@ void DrawConfigMenu(ConfigMenuProc * proc)
 
     for (int i = 0; i < SRR_NUMBERDISP; ++i)
     {
-        DrawSRRText(proc, i, offset2);
+        // DrawSRRText(proc, i, offset2, i+offset2);
+        DrawSRRText(proc, i, offset2, GetReorderedMenuId(i + offset2));
     }
     BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
@@ -13069,11 +13440,14 @@ void SetVanillaTagValues(void)
 }
 
 void RestoreConfigOptions(ConfigMenuProc * proc);
+extern void SetAchievementsTo(int);
+extern void SetBgmNotifTo(int);
 
 void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 {
     int id = proc->id;
     int offset = proc->offset;
+    int id_adj = GetReorderedMenuId(id + offset);
     // see if anything changed
     int reloadPlayers = false;
     int reloadEnemies = false;
@@ -13188,16 +13562,16 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 
     if (proc->calledFromChapter)
     { // are you sure units should be reloaded?
-        if ((id + offset) != ReloadUnitsOption)
+        if (id_adj != SaveOption && id_adj != SettingsOption)
         {
-            if (((id + offset) != FilterCharsOption) && ((id + offset) != PreviewCharsOption) &&
-                ((id + offset) != FilterClassOption) && ((id + offset) != FilterEnemyClassOption))
+            if (((id_adj) != FilterCharsOption) && ((id_adj) != PreviewCharsOption) &&
+                ((id_adj) != FilterClassOption) && ((id_adj) != FilterEnemyClassOption))
             {
-                if ((id + offset) != SkipChOption)
+                if ((id_adj) != SkipChOption)
                 {
-                    proc->id = SRR_MAXDISP; // SRR_NUMBERDISP
-                    proc->offset = SkipChOption - 5;
-                    proc->redraw = RedrawAll;
+                    // proc->id = SRR_MAXDISP; // SRR_NUMBERDISP
+                    // proc->offset = SkipChOption - 5;
+                    // proc->redraw = RedrawAll;
                     proc->Option[ReloadUnitsOption] = 0;
                     if (reloadPlayers)
                     {
@@ -13211,12 +13585,27 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
                     {
                         proc->Option[ReloadUnitsOption] = 1;
                     }
-                    DrawConfigMenu(proc);
+                    if (!proc->Option[ReloadUnitsOption])
+                    {
+                        Proc_Goto(proc, SaveSettingsLabel);
+                    }
+                    else
+                    {
+                        Proc_Goto(proc, ConfirmationLabel); // units will be reloaded warning
+                    }
+                    // DrawConfigMenu(proc);
                     return;
                 }
             }
         }
     }
+    ContinueCopyConfigProcIntoRam(proc);
+}
+void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
+{
+    int id = proc->id;
+    int offset = proc->offset;
+    int id_adj = GetReorderedMenuId(id + offset);
     if (proc->Option[ReloadUnitsOption] == 0)
     {
         proc->reloadPlayers = false;
@@ -13251,6 +13640,8 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     }
 
     RandValues->seed = proc->seed;
+    SetAchievementsTo(proc->Option[AchievementsOption]);
+    SetBgmNotifTo(proc->Option[BgmNotifOption]);
     RandValues->variance = proc->Option[VarianceOption];
     RecruitValues->playerRecruitmentOrder = proc->Option[PlayerRecruitmentOption];
     RecruitValues->playerIntoBosses = proc->Option[PlayerBossOption];
@@ -13371,7 +13762,7 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 #endif
     int fog = proc->Option[FogOption];
     RandBitflags->fog = proc->Option[FogOption];
-    if (((id + offset) == SaveOption) || ((id + offset) == SettingsOption))
+    if (((id_adj) == SaveOption) || ((id_adj) == SettingsOption))
     {
         return; // done copying to ram
     }
@@ -13434,10 +13825,10 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     }
 
 #ifdef FE8
-    if (proc->Option[SkipChOption] && ((id + offset) == SkipChOption))
+    if (proc->Option[SkipChOption] && ((id_adj) == SkipChOption))
     {
 #else
-    if (proc->Option[SkipChOption] && ((id + offset) == SkipChOption))
+    if (proc->Option[SkipChOption] && ((id_adj) == SkipChOption))
     {
 #endif
         if (proc->calledFromChapter)
@@ -13461,23 +13852,23 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     //	ClearText(&th[i]);
     //}
     EndCloudsEffect();
-    if ((proc->id + proc->offset) == FilterCharsOption)
+    if ((id_adj) == FilterCharsOption)
     {
         Proc_Goto(proc, FilterUnitsLabel);
         return;
     }
-    if ((proc->id + proc->offset) == PreviewCharsOption)
+    if ((id_adj) == PreviewCharsOption)
     {
         proc->previewId = ConfirmCommandID;
         Proc_Goto(proc, PreviewCharLabel);
         return;
     }
-    if ((proc->id + proc->offset) == FilterClassOption)
+    if ((id_adj) == FilterClassOption)
     {
         Proc_Goto(proc, FilterClassesLabel);
         return;
     }
-    if ((proc->id + proc->offset) == FilterEnemyClassOption)
+    if ((id_adj) == FilterEnemyClassOption)
     {
         Proc_Goto(proc, FilterEnemyClassesLabel);
         return;
@@ -13518,7 +13909,9 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     }
     SetDefaultTagValues();
     // proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
-    proc->Option[VarianceOption] = 10; // start on 50%
+    proc->Option[AchievementsOption] = DoAchievementsExist(); // start on on
+    proc->Option[BgmNotifOption] = DoAchievementsExist();     // start on on
+    proc->Option[VarianceOption] = 10;                        // start on 50%
     proc->Option[PlayerRecruitmentOption] = RandomOrder;
     proc->Option[EnemyRecruitmentOption] = VanillaOrder;
     proc->Option[PlayerBossOption] = 0;
@@ -13566,6 +13959,7 @@ LocationTable RText_LocationTable[] = {
     { RTextLoc, (Y_HAND * 8) + (12 * 8) }, { RTextLoc, (Y_HAND * 8) + (14 * 8) }, { RTextLoc, (Y_HAND * 8) + (16 * 8) },
 };
 extern void CloseHelpBox(void);
+extern void LoadHelpBoxGfx(void * vram, int palId);
 const char * GetSRRMenuDesc(ConfigMenuProc * proc, int index);
 void ClearHelpBoxText_SRR(void);
 void ConfigMenuLoop(ConfigMenuProc * proc)
@@ -13576,7 +13970,8 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         DisplayUiVArrow(MENU_X + (9 * 8), MENU_Y + 8, 0x3240, 1); // up arrow
     }
     // should display down arrow?
-    if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (SRR_TotalOptions - SRR_MAXDISP)))
+    int max_id = GetLastMenuId();
+    if ((SRR_TotalOptions > SRR_MAXDISP) && (proc->offset < (max_id - SRR_MAXDISP)))
     {
         DisplayUiVArrow(MENU_X + (9 * 8), MENU_Y + (16 * 9), 0x3240, 0);
     }
@@ -13589,6 +13984,22 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     int id = proc->id;
     int offset = proc->offset;
+    int id_adj = GetReorderedMenuId(id + offset);
+    if (id_adj < 0)
+    {
+        if (SRR_MAXDISP > max_id)
+        {
+            proc->id = max_id;
+            proc->offset = 0;
+        }
+        else
+        {
+            proc->id = SRR_MAXDISP;
+            proc->offset = max_id - SRR_MAXDISP;
+        }
+        RedrawAllText(proc);
+        return;
+    }
     if (proc->helpBox)
     {
         keys |= sKeyStatusBuffer.repeatedKeys;
@@ -13599,6 +14010,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             proc->helpBox = NULL;
             CloseHelpBox();
             LoadObjUIGfx();
+            // LoadHelpBoxGfx(NULL, -1);
             UnpackUiVArrowGfx(0x240, 3);
             return;
             // ClearHelpBoxText_SRR();
@@ -13610,12 +14022,18 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             {
                 proc->id++;
             }
-            else if ((id + offset) < SRR_TotalOptions)
+            else if ((id + offset) < max_id) // id+offset, not id_adj here
             {
                 proc->offset++;
                 proc->redraw = RedrawAll;
             }
             else
+            {
+                proc->id = 0;
+                proc->offset = 0;
+                proc->redraw = RedrawAll;
+            }
+            if (id + offset >= max_id)
             {
                 proc->id = 0;
                 proc->offset = 0;
@@ -13628,8 +14046,16 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             PlayScrollMenuSfx();
             if ((id + offset) <= 0)
             {
-                proc->id = SRR_MAXDISP;
-                proc->offset = SRR_TotalOptions - SRR_MAXDISP;
+                if (SRR_MAXDISP > max_id)
+                {
+                    proc->id = max_id;
+                    proc->offset = 0;
+                }
+                else
+                {
+                    proc->id = SRR_MAXDISP;
+                    proc->offset = max_id - SRR_MAXDISP;
+                }
                 proc->redraw = RedrawAll;
             }
             else if ((!id) && (offset))
@@ -13647,17 +14073,17 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             PlayScrollMenuSfx();
             id += offset;
-            if (proc->Option[id] < (CountOptionAmount(id)))
+            if (proc->Option[id_adj] < (CountOptionAmount(id_adj)))
             {
-                proc->Option[id]++;
-                if (proc->Option[id] == CountDispOptionAmount(id))
+                proc->Option[id_adj]++;
+                if (proc->Option[id_adj] == CountDispOptionAmount(id_adj))
                 {
-                    proc->Option[id] = CountOptionAmount(id);
+                    proc->Option[id_adj] = CountOptionAmount(id_adj);
                 }
             }
             else
             {
-                proc->Option[id] = 0;
+                proc->Option[id_adj] = 0;
             }
             proc->redraw = RedrawSome;
             proc->clear = true;
@@ -13667,17 +14093,17 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             PlayScrollMenuSfx();
             id += offset;
-            if (proc->Option[id] > 0)
+            if (proc->Option[id_adj] > 0)
             {
-                proc->Option[id]--;
-                if (proc->Option[id] > CountDispOptionAmount(id))
+                proc->Option[id_adj]--;
+                if (proc->Option[id_adj] > CountDispOptionAmount(id_adj))
                 {
-                    proc->Option[id] = CountDispOptionAmount(id) - 1;
+                    proc->Option[id_adj] = CountDispOptionAmount(id_adj) - 1;
                 }
             }
             else
             {
-                proc->Option[id] = CountOptionAmount(id);
+                proc->Option[id_adj] = CountOptionAmount(id_adj);
             }
             proc->redraw = RedrawSome;
             proc->clear = true;
@@ -13685,9 +14111,15 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         if (keys & 0xF0) // #define DPAD_ANY        0x00F0
         {
+            id_adj = GetReorderedMenuId(proc->id + proc->offset);
             StartHelpBoxString_SRR(
                 proc, RText_LocationTable[proc->id].x, RText_LocationTable[proc->id].y,
-                (void *)GetSRRMenuDesc(proc, proc->offset + proc->id));
+                (void *)GetSRRMenuDesc(proc, id_adj));
+        }
+        if (id_adj == AchievementsOption && proc->redraw == RedrawSome)
+        {
+            SetAchievementsTo(proc->Option[AchievementsOption]);
+            proc->redraw = RedrawAll;
         }
         if (proc->redraw == RedrawSome)
         {
@@ -13704,9 +14136,11 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     if (keys & R_BUTTON)
     {
+        LoadHelpBoxGfx(NULL, -1);
         proc->helpBox = (void *)-1;
+        id_adj = GetReorderedMenuId(id + offset);
         StartHelpBoxString_SRR(
-            proc, RText_LocationTable[id].x, RText_LocationTable[id].y, (void *)GetSRRMenuDesc(proc, offset + id));
+            proc, RText_LocationTable[id].x, RText_LocationTable[id].y, (void *)GetSRRMenuDesc(proc, id_adj));
 
         // Proc_StartBlocking(gProcScr_SRRHelpboxListener, proc);
         return;
@@ -13715,7 +14149,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     if ((keys & START_BUTTON) || (keys & A_BUTTON))
     { // press A or Start to continue
 
-        if ((id + offset) == SaveOption)
+        if ((id_adj) == SaveOption)
         {
             if (proc->Option[SaveOption] == 0)
             {
@@ -13735,7 +14169,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
                 }
             }
         }
-        if ((id + offset) == SettingsOption)
+        if ((id_adj) == SettingsOption)
         {
             CopyConfigProcIntoRam(proc);
             if (proc->Option[SettingsOption] == 0)
@@ -13755,7 +14189,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             return;
         }
 
-        if (((id + offset) != SaveOption) && (id + offset) != SettingsOption)
+        if (((id_adj) != SaveOption) && (id_adj) != SettingsOption)
         {
             CopyConfigProcIntoRam(proc);
             PlaySuccessSfx();
@@ -13770,7 +14204,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
     // Handle seed
 
-    if (id + offset == SeedOption)
+    if (id_adj == SeedOption)
     {
         // if (proc->digit == 9) {
         if (!proc->freezeSeed)
@@ -13857,7 +14291,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     }
     //
 
-    if (((id + offset) == SkillsOption) && (proc->Option[SkillsOption] == 3) && (proc->choosingSkill))
+    if (((id_adj) == SkillsOption) && (proc->Option[SkillsOption] == 3) && (proc->choosingSkill))
     {
 
         if (keys & DPAD_UP)
@@ -13910,12 +14344,18 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         {
             proc->id++;
         }
-        else if ((id + offset) < SRR_TotalOptions)
+        else if ((id + offset) < max_id) // id+offset, not id_adj here
         {
             proc->offset++;
             proc->redraw = RedrawAll;
         }
         else
+        {
+            proc->id = 0;
+            proc->offset = 0;
+            proc->redraw = RedrawAll;
+        }
+        if (id + offset >= max_id)
         {
             proc->id = 0;
             proc->offset = 0;
@@ -13928,8 +14368,16 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         PlayScrollMenuSfx();
         if ((id + offset) <= 0)
         {
-            proc->id = SRR_MAXDISP;
-            proc->offset = SRR_TotalOptions - SRR_MAXDISP;
+            if (SRR_MAXDISP > max_id)
+            {
+                proc->id = max_id;
+                proc->offset = 0;
+            }
+            else
+            {
+                proc->id = SRR_MAXDISP;
+                proc->offset = max_id - SRR_MAXDISP;
+            }
             proc->redraw = RedrawAll;
         }
         else if ((!id) && (offset))
@@ -13948,18 +14396,18 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     {
         PlayScrollMenuSfx();
         id += offset;
-        if (proc->Option[id] < (CountOptionAmount(id)))
+        if (proc->Option[id_adj] < (CountOptionAmount(id_adj)))
         {
-            proc->Option[id]++;
-            if (proc->Option[id] ==
-                CountDispOptionAmount(id)) // DispOptionAmount is for the FromGame to skip the bosses options
+            proc->Option[id_adj]++;
+            if (proc->Option[id_adj] ==
+                CountDispOptionAmount(id_adj)) // DispOptionAmount is for the FromGame to skip the bosses options
             {
-                proc->Option[id] = CountOptionAmount(id);
+                proc->Option[id_adj] = CountOptionAmount(id_adj);
             }
         }
         else
         {
-            proc->Option[id] = 0;
+            proc->Option[id_adj] = 0;
         }
         proc->redraw = RedrawSome;
         proc->clear = true;
@@ -13969,26 +14417,31 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     {
         PlayScrollMenuSfx();
         id += offset;
-        if (proc->Option[id] > 0)
+        if (proc->Option[id_adj] > 0)
         {
-            proc->Option[id]--;
-            if (proc->Option[id] > CountDispOptionAmount(id))
+            proc->Option[id_adj]--;
+            if (proc->Option[id_adj] > CountDispOptionAmount(id_adj))
             {
-                proc->Option[id] = CountDispOptionAmount(id) - 1;
+                proc->Option[id_adj] = CountDispOptionAmount(id_adj) - 1;
             }
         }
         else
         {
-            proc->Option[id] = CountOptionAmount(id);
+            proc->Option[id_adj] = CountOptionAmount(id_adj);
         }
         proc->redraw = RedrawSome;
         proc->clear = true;
         id -= offset;
     }
     DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0);
+    if (id_adj == AchievementsOption && proc->redraw == RedrawSome)
+    {
+        SetAchievementsTo(proc->Option[AchievementsOption]);
+        proc->redraw = RedrawAll;
+    }
     if (proc->redraw == RedrawSome)
     {
-        if (((id + offset) == SkillsOption) && (proc->Option[SkillsOption] == 3))
+        if (((id_adj) == SkillsOption) && (proc->Option[SkillsOption] == 3))
         {
             proc->choosingSkill = true;
         }
@@ -14004,18 +14457,22 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 
 extern const char * RandomizerText;
 const char * GetSRRMenuText(ConfigMenuProc * proc, int index);
-void DrawSRRHeader(ConfigMenuProc * proc, int id, int offset2)
+void DrawSRRHeader(ConfigMenuProc * proc, int i, int offset2, int id)
 {
+    if (id < 0)
+    {
+        return;
+    }
     int colour = gold;
-    if ((id + offset2 == FilterCharsOption) || (id + offset2 == PreviewCharsOption) ||
-        (id + offset2 == FilterClassOption) || (id + offset2 == FilterEnemyClassOption))
+    if ((i + offset2 == FilterCharsOption) || (i + offset2 == PreviewCharsOption) ||
+        (i + offset2 == FilterClassOption) || (i + offset2 == FilterEnemyClassOption))
     {
         colour = white;
     }
     struct Text * th = gStatScreen.text; // max 34 normally
     PutDrawText(
-        &th[id], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((id) * 2)), colour, 0, MaxTW,
-        PutStringInBuffer((void *)GetSRRMenuText(proc, id + offset2), false));
+        &th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), colour, 0, MaxTW,
+        PutStringInBuffer((void *)GetSRRMenuText(proc, id), false));
 }
 
 void RedrawAllText(ConfigMenuProc * proc)
@@ -14034,7 +14491,8 @@ void RedrawAllText(ConfigMenuProc * proc)
 
     for (int i = 0; i < SRR_NUMBERDISP; ++i)
     {
-        DrawSRRHeader(proc, i, offset2);
+        // DrawSRRHeader(proc, i, offset2, i+offset2);
+        DrawSRRHeader(proc, i, offset2, GetReorderedMenuId(i + offset2));
     }
 
     DrawConfigMenu(proc);
@@ -14138,13 +14596,15 @@ void InitDraw(ConfigMenuProc * proc)
     // StartGreenText(proc);
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
-extern void LoadHelpBoxGfx(void * vram, int palId);
-
+extern int AreAchievementsEnabled();
+extern int AreBgmNotifsEnabled();
 void RestoreConfigOptions(ConfigMenuProc * proc)
 {
 
     // pull up your previously saved options
 
+    proc->Option[AchievementsOption] = AreAchievementsEnabled();
+    proc->Option[BgmNotifOption] = AreBgmNotifsEnabled();
     proc->Option[VarianceOption] = RandValues->variance;
     proc->Option[PlayerRecruitmentOption] = RecruitValues->playerRecruitmentOrder;
     proc->Option[EnemyRecruitmentOption] = RecruitValues->enemyRecruitmentOrder;
@@ -14947,7 +15407,7 @@ void DrawStatus(int x, int y)
 
         if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
         {
-            PutNumberSmall(gUiTmScratchA + TILEMAP_INDEX(x, y), 0, gStatScreen.unit->statusDuration);
+            PutNumberSmall(gUiTmScratchA + TILEMAP_INDEX(x + 2, y), 0, gStatScreen.unit->statusDuration);
         }
     }
     else
