@@ -1415,34 +1415,35 @@ ldr r5, =0x203E110 @ added
 ldr r1, =0x8057A14
 ldr r4, [r1] @ 203E1DC
 cmp r0, #1 
-beq GenericPaletteFalse
+beq CheckDfdrForGenericPalette
 ldr r0, =0x8057A10
 ldr r0, [r0] @ 202BCF0
 add r0, #0x40 
 ldrb r0, [r0] 
 lsl r0, #0x1f 
 cmp r0, #0 
-beq GenericPaletteFalse
-GenericPaletteTrue: 
+beq CheckDfdrForGenericPalette
+BothSideGenericPalette: 
+@ play state of always generic palettes 
 mov r0, #1 
 strh r0, [r4] 
 strh r0, [r4, #2] 
 b ExitGenericPalette_FE8 
 
-GenericPaletteFalse: 
+CheckDfdrForGenericPalette: 
 mov r0, r9 @ dfdr 
 bl IsClassOrRecruitmentRandomized 
 strh r0, [r4] 
 cmp r0, #0 
-beq DontOverwriteDfdr 
+beq CheckAtkrForGenericPalette 
 mov r0, r9 
 bl ShouldUnitDoJankyPalettes
 cmp r0, #0 
-bne DontOverwriteDfdr 
+bne CheckAtkrForGenericPalette 
 mov r1, #0 
 sub r1, #1 
 strh r1, [r5] 
-DontOverwriteDfdr: 
+CheckAtkrForGenericPalette: 
 
 
 mov r0, r10 @ atkr 

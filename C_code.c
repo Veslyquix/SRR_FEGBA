@@ -64,7 +64,7 @@ typedef struct
 
     s8 previewId;
     u8 reviseMenuId;
-    s8 Option[40]; // max is 42. past that we'll overflow
+    s8 Option[42]; // max is 42. past that we'll overflow
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -463,6 +463,7 @@ extern const int SeedOption;
 extern const int SaveOption;
 extern const int SettingsOption;
 extern const int AchievementsOption;
+extern const int BgmNotifOption;
 extern const int VarianceOption;
 extern const int PlayerRecruitmentOption;
 extern const int PlayerBossOption;
@@ -1589,123 +1590,13 @@ extern int IsClutter2OptionAvailable(void);
 extern int IsClutter3OptionAvailable(void);
 extern int IsClutter4OptionAvailable(void);
 
-/*
-// a switch case doesn't compile because these options are extern ints, not definitions
-int IsConfigMenuOptionAvailable(int id)
+extern int AchievementsExist;
+int DoAchievementsExist(void)
 {
-
-    switch (id)
-    {
-        case SeedOption:
-        case SaveOption:
-        case SettingsOption:
-        case VarianceOption:
-        case ItemOption:
-        case ReloadUnitsOption:
-        case DebuggerOption:
-        {
-            return true;
-        }
-
-        case PlayerRecruitmentOption:
-        case PlayerBossOption:
-        case EnemyRecruitmentOption:
-        case EnemyPlayerOption:
-        {
-            return IsRecruitmentOptionAvailable();
-        }
-        case FromGameOption:
-        case EnemyFromGameOption:
-        {
-            return IsFromGameOptionAvailable();
-        }
-
-        case FilterCharsOption:
-        case PreviewCharsOption:
-        {
-            return IsFilterCharsOptionAvailable();
-        }
-
-        case GrowthsOption:
-        {
-            return IsGrowthsOptionAvailable();
-        }
-
-        case StatCapsOption:
-        {
-            return IsStatCapsOptionAvailable();
-        }
-        case ClassOption:
-        {
-            return IsClassesOptionAvailable();
-        }
-        case FilterClassOption:
-        case FilterEnemyClassOption:
-        {
-            return IsFilterClassesOptionAvailable();
-        }
-
-        case ModeOption:
-        {
-            return IsCasualModeOptionAvailable();
-        }
-
-        case BaseStatsOption:
-        case LevelupsOption:
-        case DangerBonesOption:
-        case VanillaItemOption:
-        case DurabilityOption:
-
-        {
-            return IsClutter1OptionAvailable();
-        }
-
-        case MusicOption:
-        case BattleBGMOption:
-        {
-            return IsClutter2OptionAvailable();
-        }
-
-        case PortraitsOption:
-        case ColoursOption:
-        case UiOption:
-        case BGOption:
-        {
-            return IsClutter3OptionAvailable();
-        }
-
-        case PlayerBonusOption:
-        case PlayerBonusGrowthOption:
-        case EnemyBonusOption:
-        case EnemyBonusGrowthOption:
-        {
-            return IsBonusLevelsOptionAvailable();
-        }
-
-        case FogOption:
-        case SoftlockOption:
-        {
-            return IsClutter4OptionAvailable();
-        }
-
-        case SkipChOption:
-        {
-            return false;
-        }
-
-        case TimedHitsOption:
-        {
-            return IsTimedHitsOptionAvailable();
-        }
-        case SkillsOption:
-        {
-            return IsSkillsOptionAvailable();
-        }
-    }
-
-    return true;
+    return AchievementsExist;
 }
-*/
+
+// a switch case doesn't compile because these options are extern ints, not definitions
 int IsConfigMenuOptionAvailable(int id)
 {
     if (id == SeedOption || id == SaveOption || id == SettingsOption || id == VarianceOption || id == ItemOption ||
@@ -1713,7 +1604,10 @@ int IsConfigMenuOptionAvailable(int id)
     {
         return true;
     }
-
+    else if (id == AchievementsOption || id == BgmNotifOption)
+    {
+        return DoAchievementsExist();
+    }
     else if (
         id == PlayerRecruitmentOption || id == PlayerBossOption || id == EnemyRecruitmentOption ||
         id == EnemyPlayerOption)
@@ -13547,6 +13441,7 @@ void SetVanillaTagValues(void)
 
 void RestoreConfigOptions(ConfigMenuProc * proc);
 extern void SetAchievementsTo(int);
+extern void SetBgmNotifTo(int);
 
 void CopyConfigProcIntoRam(ConfigMenuProc * proc)
 {
@@ -13746,6 +13641,7 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
 
     RandValues->seed = proc->seed;
     SetAchievementsTo(proc->Option[AchievementsOption]);
+    SetBgmNotifTo(proc->Option[BgmNotifOption]);
     RandValues->variance = proc->Option[VarianceOption];
     RecruitValues->playerRecruitmentOrder = proc->Option[PlayerRecruitmentOption];
     RecruitValues->playerIntoBosses = proc->Option[PlayerBossOption];
@@ -14013,8 +13909,9 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     }
     SetDefaultTagValues();
     // proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
-    proc->Option[AchievementsOption] = 1; // start on on
-    proc->Option[VarianceOption] = 10;    // start on 50%
+    proc->Option[AchievementsOption] = DoAchievementsExist(); // start on on
+    proc->Option[BgmNotifOption] = DoAchievementsExist();     // start on on
+    proc->Option[VarianceOption] = 10;                        // start on 50%
     proc->Option[PlayerRecruitmentOption] = RandomOrder;
     proc->Option[EnemyRecruitmentOption] = VanillaOrder;
     proc->Option[PlayerBossOption] = 0;
@@ -14218,6 +14115,11 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
             StartHelpBoxString_SRR(
                 proc, RText_LocationTable[proc->id].x, RText_LocationTable[proc->id].y,
                 (void *)GetSRRMenuDesc(proc, id_adj));
+        }
+        if (id_adj == AchievementsOption && proc->redraw == RedrawSome)
+        {
+            SetAchievementsTo(proc->Option[AchievementsOption]);
+            proc->redraw = RedrawAll;
         }
         if (proc->redraw == RedrawSome)
         {
@@ -14532,6 +14434,11 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         id -= offset;
     }
     DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0);
+    if (id_adj == AchievementsOption && proc->redraw == RedrawSome)
+    {
+        SetAchievementsTo(proc->Option[AchievementsOption]);
+        proc->redraw = RedrawAll;
+    }
     if (proc->redraw == RedrawSome)
     {
         if (((id_adj) == SkillsOption) && (proc->Option[SkillsOption] == 3))
@@ -14690,12 +14597,14 @@ void InitDraw(ConfigMenuProc * proc)
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
 extern int AreAchievementsEnabled();
+extern int AreBgmNotifsEnabled();
 void RestoreConfigOptions(ConfigMenuProc * proc)
 {
 
     // pull up your previously saved options
 
     proc->Option[AchievementsOption] = AreAchievementsEnabled();
+    proc->Option[BgmNotifOption] = AreBgmNotifsEnabled();
     proc->Option[VarianceOption] = RandValues->variance;
     proc->Option[PlayerRecruitmentOption] = RecruitValues->playerRecruitmentOrder;
     proc->Option[EnemyRecruitmentOption] = RecruitValues->enemyRecruitmentOrder;
@@ -15498,7 +15407,7 @@ void DrawStatus(int x, int y)
 
         if (gStatScreen.unit->statusIndex != UNIT_STATUS_NONE)
         {
-            PutNumberSmall(gUiTmScratchA + TILEMAP_INDEX(x, y), 0, gStatScreen.unit->statusDuration);
+            PutNumberSmall(gUiTmScratchA + TILEMAP_INDEX(x + 2, y), 0, gStatScreen.unit->statusDuration);
         }
     }
     else

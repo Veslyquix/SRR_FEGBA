@@ -71,13 +71,13 @@ txt("Page")
 
 ALIGN 64 
 gSRRMenuText: 
-FILL((MaxRTextOpt+1) * 4 * 42) // max 42 options 
+FILL((MaxRTextOpt+1) * 4 * 43) // max 42 options 
 
 
 #define SRRHeader(id) "{ ; header: ; PUSH; ORG SRRText_POIN + (id * 4); POIN header; POP ; } " 
 ALIGN 4 
 SRRText_POIN:
-FILL(4 * 40) 
+FILL(4 * 43) 
 
 
 {
@@ -286,6 +286,11 @@ ALIGN 4; SRRHeader(BattleBGMOpt)
 POIN t0 t1 0
 }
 
+{
+t0:  txt("Off");                     t1:  txt("On");   
+ALIGN 4; SRRHeader(BgmNotifOpt)
+POIN t0 t1 0 
+}
 {
 t0:  txt("Vanilla Colours");  t1:  txt("Random Colours");
 ALIGN 4; SRRHeader(PortraitsOpt)
@@ -606,6 +611,11 @@ SRRDesc(MusicOpt,2); txt("Background music will be\random tracks from various ga
 SRRMenu(BattleBGMOpt);              txt("Battle BGM")
 SRRDesc(BattleBGMOpt,0); txt("A different BGM track will\play during battles."); 
 SRRDesc(BattleBGMOpt,1); txt("The map's current BGM\will play during battles."); 
+
+SRRMenu(BgmNotifOpt); txt("BGM Popups") 
+SRRDesc(BgmNotifOpt, 0); txt("Popups will not display when\the BGM changes.") 
+SRRDesc(BgmNotifOpt, 1); txt("Popups will display when\the BGM changes.") 
+
 SRRMenu(PortraitsOpt);            txt("Portraits")
 SRRDesc(PortraitsOpt,0); txt("Portraits have their usual colours."); 
 SRRDesc(PortraitsOpt,1); txt("Portraits have random colours."); 
@@ -716,6 +726,9 @@ MusicOption:
 WORD MusicOpt
 BattleBGMOption:
 WORD BattleBGMOpt
+BgmNotifOption:
+WORD BgmNotifOpt 
+
 PortraitsOption:
 WORD PortraitsOpt
 ColoursOption:

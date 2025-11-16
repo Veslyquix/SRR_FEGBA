@@ -20,6 +20,9 @@
 #define FreeSpace 0x1B6A710
 ORG FreeSpace 
 
+#define JankyPalettes 
+// TMGC has some hooks to UpdateBanimFrame related to palettes 
+
 //#include "../.FE8_Installer.event"
 //#include "../.FE8_FebuilderSkillsys2020ish.event"
 //#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"

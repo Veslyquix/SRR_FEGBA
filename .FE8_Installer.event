@@ -105,8 +105,12 @@
 
 #ifdef INCLUDE_ACHIEVEMENTS 
 #include "../ASM/Achievements/Installer.event"  
+AchievementsExist:
+WORD 1 
 #else 
-ALIGN 4 
+ALIGN 4
+AchievementsExist:
+WORD 0
 PUSH 
 ORG CURRENTOFFSET+1 
 IsSkillsOptionAvailable:
@@ -125,11 +129,13 @@ IsBonusLevelsOptionAvailable:
 IsClutter4OptionAvailable:
 IsTimedHitsOptionAvailable:
 SetAchievementsTo:
+SetBgmNotifTo:
 POP 
 SHORT $2001 $4770 // mov r0, #1 - bx lr 
 PUSH 
 ORG CURRENTOFFSET+1 
 AreAchievementsEnabled: 
+AreBgmNotifsEnabled: 
 POP 
 SHORT $2000 $4770 // mov r0, #0 - bx lr 
 #endif 
@@ -772,6 +778,8 @@ SHORT $46c0 $46c0 $46c0 $46c0 $46c0
 //SHORT $2100 // always use generic palette (by Vesly) 
 #endif 
 
+
+
 #define callHackNewr7(offset) 		"BYTE $01 $4F $BE $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
 ORG $57430 
 callHackNewr7(MaybeUseJankyPalette_FE8) 
@@ -1395,15 +1403,15 @@ ALIGN 4
 SRR_TotalOptions:
 #ifdef VeslyBuildfile 
     #ifdef C_SKILLSYS 
-    WORD 39
+    WORD 40
     #endif 
     #ifdef SKILLSYS_INSTALLED 
-    WORD 41 // 43+ will overflow, watch out 
+    WORD 42 // 43+ will overflow, watch out 
     #else 
-    WORD 40
+    WORD 41
     #endif  
 #else 
-WORD 38
+WORD 39
 #endif 
 NeverRandomizeBGM:
 #ifdef NeverRandomizeMusic
