@@ -25,7 +25,8 @@ MMBDrawNumberOAM:
 	@ 0-9 in r2 is the number
 	@ 0x0A in r2 is a dash
 
-	ldr		r3, =0x82E0 @ Number base tile
+	@ldr		r3, =0x82E0 @ Number base tile
+	ldr		r3, =0x86E0 @ priority 1 instead of 0 - Vesly 
 
 	add		r3, r2, r3
 
