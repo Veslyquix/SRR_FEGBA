@@ -17,9 +17,9 @@ POIN processed_FE8_palettes
 POIN processed_FE9_10_palettes 
 POIN processed_FE13_palettes
 POIN processed_FE14_palettes 
-POIN Pal_FE15 
-POIN Pal_FE16 
-POIN Pal_FE17 
+POIN processed_FE2_15_palettes 
+POIN processed_FE16_palettes 
+POIN processed_FE17_palettes 
 POIN 0 // Vanilla bosses 
 POIN Pal_FE1_Bosses 
 POIN Pal_FE4_Bosses 
@@ -48,11 +48,8 @@ Pal_FE8_Bosses:
 Pal_FE10_Bosses: 
 Pal_FE13_Bosses:
 Pal_FE14_Bosses: 
-Pal_FE15: 
 Pal_FE15_Bosses: 
-Pal_FE16: 
 Pal_FE16_Bosses: 
-Pal_FE17: 
 Pal_FE17_Bosses: 
 WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator 
 
@@ -74,12 +71,15 @@ WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator
 
 
 #include "FE1_defs.event" 
+#include "FE2_defs.event" 
 #include "FE6_defs.event" 
 #include "FE7_defs.event" 
 #include "FE8_defs.event" 
 #include "FE9_10_defs.event" 
 #include "FE13_defs.event" 
 #include "FE14_defs.event" 
+#include "FE16_defs.event" 
+#include "FE17_defs.event" 
 
 
 
