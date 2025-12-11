@@ -4,7 +4,7 @@ setlocal enabledelayedexpansion
 SET startDir=C:\devkitPro\devkitARM\bin\
 SET as="%startDir%arm-none-eabi-as"
 
-SET lyn=%~dp0Tools\lyn
+SET lyn=%~dp0Tools\lyn.exe
 SET png2dmp=%~dp0Tools\EventAssembler\Tools\Png2Dmp
 
 cd %~dp0Internal

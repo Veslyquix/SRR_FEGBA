@@ -13601,11 +13601,113 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
     }
     ContinueCopyConfigProcIntoRam(proc);
 }
+
+void SetHiddenOptionsToVanilla(ConfigMenuProc * proc)
+{
+
+    // if (id == SeedOption || id == SaveOption || id == SettingsOption || id == VarianceOption || id == ItemOption ||
+    // id == ReloadUnitsOption || id == DebuggerOption)
+    // {
+    // continue;
+    // }
+
+    if (!DoAchievementsExist())
+    {
+        return;
+    }
+
+    if (!IsRecruitmentOptionAvailable())
+    {
+        proc->Option[PlayerRecruitmentOption] = 0;
+        proc->Option[PlayerBossOption] = 0;
+        proc->Option[EnemyRecruitmentOption] = 0;
+        proc->Option[EnemyPlayerOption] = 0;
+    }
+
+    if (!IsFromGameOptionAvailable())
+    {
+        proc->Option[FromGameOption] = 0;
+        proc->Option[EnemyFromGameOption] = 0;
+    }
+
+    if (!IsFilterCharsOptionAvailable())
+    {
+        proc->Option[FilterCharsOption] = 0;
+        proc->Option[PreviewCharsOption] = 0;
+    }
+    if (!IsGrowthsOptionAvailable())
+    {
+        proc->Option[GrowthsOption] = 0;
+    }
+    if (!IsStatCapsOptionAvailable())
+    {
+        proc->Option[StatCapsOption] = 0;
+    }
+    if (!IsClassesOptionAvailable())
+    {
+        proc->Option[ClassOption] = 0;
+    }
+    if (!IsFilterClassesOptionAvailable())
+    {
+        proc->Option[FilterClassOption] = 0;
+        proc->Option[FilterEnemyClassOption] = 0;
+    }
+    if (!IsCasualModeOptionAvailable())
+    {
+        proc->Option[ModeOption] = 0;
+    }
+    if (!IsClutter1OptionAvailable())
+    {
+        proc->Option[BaseStatsOption] = 0;
+        proc->Option[LevelupsOption] = 0;
+        proc->Option[DangerBonesOption] = 0;
+        proc->Option[VanillaItemOption] = 0;
+        proc->Option[DurabilityOption] = 0;
+    }
+    if (!IsClutter2OptionAvailable())
+    {
+        proc->Option[MusicOption] = 0;
+        proc->Option[BattleBGMOption] = 0;
+    }
+    if (!IsClutter3OptionAvailable())
+    {
+        proc->Option[PortraitsOption] = 0;
+        proc->Option[ColoursOption] = 0;
+        proc->Option[UiOption] = 0;
+        proc->Option[BGOption] = 0;
+    }
+    if (!IsBonusLevelsOptionAvailable())
+    {
+        proc->Option[PlayerBonusOption] = 0;
+        proc->Option[PlayerBonusGrowthOption] = 0;
+        proc->Option[EnemyBonusOption] = 0;
+        proc->Option[EnemyBonusGrowthOption] = 0;
+    }
+    if (!IsClutter4OptionAvailable())
+    {
+        proc->Option[FogOption] = 0;
+        proc->Option[SoftlockOption] = 0;
+    }
+    // if (some??()) // SkipChOption
+    // {
+    // proc->Option[SkipChOption] = 0;
+    // }
+    if (!IsTimedHitsOptionAvailable())
+    {
+        proc->Option[TimedHitsOption] = 0;
+    }
+    if (!IsSkillsOptionAvailable())
+    {
+        proc->Option[SkillsOption] = 0;
+    }
+}
+
 void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
 {
     int id = proc->id;
     int offset = proc->offset;
     int id_adj = GetReorderedMenuId(id + offset);
+    SetHiddenOptionsToVanilla(proc);
     if (proc->Option[ReloadUnitsOption] == 0)
     {
         proc->reloadPlayers = false;
@@ -14116,7 +14218,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
                 proc, RText_LocationTable[proc->id].x, RText_LocationTable[proc->id].y,
                 (void *)GetSRRMenuDesc(proc, id_adj));
         }
-        if (id_adj == AchievementsOption && proc->redraw == RedrawSome)
+        if (id_adj == AchievementsOption && proc->redraw == RedrawSome && (keys & (DPAD_LEFT | DPAD_RIGHT)))
         {
             SetAchievementsTo(proc->Option[AchievementsOption]);
             proc->redraw = RedrawAll;
@@ -14434,7 +14536,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         id -= offset;
     }
     DisplayHand(SRR_CursorLocationTable[id].x, SRR_CursorLocationTable[id].y, 0);
-    if (id_adj == AchievementsOption && proc->redraw == RedrawSome)
+    if (id_adj == AchievementsOption && proc->redraw == RedrawSome && (keys & (DPAD_LEFT | DPAD_RIGHT)))
     {
         SetAchievementsTo(proc->Option[AchievementsOption]);
         proc->redraw = RedrawAll;

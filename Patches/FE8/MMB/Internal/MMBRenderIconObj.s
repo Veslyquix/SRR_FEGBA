@@ -43,8 +43,9 @@ MMBRenderIconObj:
 	add		r1, r1, r4
 
 Continue:
-
-	mov		r3, r2
+    mov r3, #0x40 
+    lsl r3, #4 
+	orr		r3, r2
 
 	ldr		r2, =SpriteData16x16
 
