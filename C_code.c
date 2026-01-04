@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.0.9"
+#define VersionNumber " SRR V2.1.0"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -1573,7 +1573,6 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
 }
 extern const int SRR_TotalOptions;
 
-#ifdef FE8
 extern int IsClassesOptionAvailable(void);
 extern int IsGrowthsOptionAvailable(void);
 extern int IsStatCapsOptionAvailable(void);
@@ -1595,6 +1594,8 @@ int DoAchievementsExist(void)
 {
     return AchievementsExist;
 }
+
+#ifdef FE8
 
 // a switch case doesn't compile because these options are extern ints, not definitions
 int IsConfigMenuOptionAvailable(int id)
@@ -12209,7 +12210,6 @@ struct HelpBoxSt
     /* 16 */ struct Text text[3];
     /* 30 */ u16 oam2_base;
 };
-
 extern struct HelpBoxSt gHelpBoxSt;
 extern struct GuideSt * const gGuideSt;
 
@@ -12280,23 +12280,37 @@ void SRRDrawInstantSpriteText(char * str, struct Text * th)
     }
     SetTextFont(font);
 }
-
+extern void LoadHelpBoxGfx(void * vram, int palId);
+const u8 HelpBoxPalette[32] = { 0x55, 0x53, 0xA6, 0x2C, 0x97, 0x36, 0x8E, 0x25, 0x9C, 0x6F, 0xFB,
+                                0x5E, 0x3F, 0x57, 0x14, 0x00, 0x55, 0x53, 0x55, 0x53, 0x55, 0x53,
+                                0x55, 0x53, 0x55, 0x53, 0x7B, 0x6F, 0xF7, 0x5E, 0xA5, 0x14 };
+// copied from fe8 gPal_HelpTextBox
+// palettes are u16, but hxd gives bytes
 void ConfirmPopupInit(ConfigMenuProc * proc, struct Text * th)
 {
     struct Font * font = gActiveFont;
     int pal = 0x12;
+#ifndef FE8
+    pal = 0x15;
+#endif
     void * vram = (void *)(VRAM + (void *)0x10000 + (PopupBoxCHR << 5));
 
     InitSpriteTextFont(&gHelpBoxSt.font, vram, pal);
     SetTextFontGlyphs(1);
 
+#ifdef FE8
     Decompress(gGfx_HelpTextBox, vram + 0x360);
     Decompress(gGfx_HelpTextBox2, vram + 0x760);
     Decompress(gGfx_HelpTextBox3, vram + 0xb60);
     Decompress(gGfx_HelpTextBox4, vram + 0xf60);
     Decompress(gGfx_HelpTextBox5, vram + 0x1360);
+#else
+    Decompress(gGfx_HelpTextBox, vram);
+#endif
+
     gHelpBoxSt.oam2_base = (((u32)vram << 0x11) >> 0x16) + (pal & 0xF) * 0x1000;
-    ApplyPalette(gPal_HelpTextBox, pal);
+    // ApplyPalette(gPal_HelpTextBox, pal);
+    ApplyPalette(HelpBoxPalette, pal);
 
     int lines = 3;
     for (int i = 0; i < lines; ++i)
@@ -12307,14 +12321,21 @@ void ConfirmPopupInit(ConfigMenuProc * proc, struct Text * th)
     gActiveFont = font;
 }
 
+extern char ReloadUnitsText1;
+extern char ReloadUnitsText2;
+extern char ReloadUnitsText3;
+extern char SaveSettingsText1;
+extern char SaveSettingsText2;
+extern char SaveSettingsText3;
+
 void ConfirmPopupReloadUnitsMsg(ConfigMenuProc * proc)
 {
     struct Font * font = gActiveFont;
     struct Text * th = &gHelpBoxSt.text[0];
     ConfirmPopupInit(proc, th);
-    SRRDrawInstantSpriteText("Some units will be reloaded.", &th[0]);
-    SRRDrawInstantSpriteText("Press A to confirm and reload units.", &th[1]);
-    SRRDrawInstantSpriteText("Press B to leave units unchanged.", &th[2]);
+    SRRDrawInstantSpriteText(&ReloadUnitsText1, &th[0]);
+    SRRDrawInstantSpriteText(&ReloadUnitsText2, &th[1]);
+    SRRDrawInstantSpriteText(&ReloadUnitsText3, &th[2]);
     gActiveFont = font;
 }
 
@@ -12323,9 +12344,9 @@ void ConfirmPopupSaveSettingsMsg(ConfigMenuProc * proc)
     struct Font * font = gActiveFont;
     struct Text * th = &gHelpBoxSt.text[0];
     ConfirmPopupInit(proc, th);
-    SRRDrawInstantSpriteText("Save settings for future runs?", &th[0]);
-    SRRDrawInstantSpriteText("Press Start to save settings.", &th[1]);
-    SRRDrawInstantSpriteText("Otherwise, press A or B to continue.", &th[2]);
+    SRRDrawInstantSpriteText(&SaveSettingsText1, &th[0]);
+    SRRDrawInstantSpriteText(&SaveSettingsText2, &th[1]);
+    SRRDrawInstantSpriteText(&SaveSettingsText3, &th[2]);
     gActiveFont = font;
 }
 
@@ -14061,7 +14082,7 @@ LocationTable RText_LocationTable[] = {
     { RTextLoc, (Y_HAND * 8) + (12 * 8) }, { RTextLoc, (Y_HAND * 8) + (14 * 8) }, { RTextLoc, (Y_HAND * 8) + (16 * 8) },
 };
 extern void CloseHelpBox(void);
-extern void LoadHelpBoxGfx(void * vram, int palId);
+
 const char * GetSRRMenuDesc(ConfigMenuProc * proc, int index);
 void ClearHelpBoxText_SRR(void);
 void ConfigMenuLoop(ConfigMenuProc * proc)
@@ -16872,12 +16893,7 @@ struct ProcHelpBoxIntroString
     /* 60 */ int unk_60;
     /* 64 */ s16 pretext_lines; /* lines for  prefix */
 };
-struct HelpBoxSt
-{
-    /* 00 */ struct Font font;
-    /* 16 */ struct Text text[3];
-    /* 30 */ u16 oam2_base;
-};
+
 struct HelpBoxScrollProc // identical to fe6
 {
     /* 00 */ PROC_HEADER;
@@ -16917,7 +16933,7 @@ struct ProcHelpBoxIntro // only used for extern declaration
     /* 60 */ int unk_60;
     /* 64 */ s16 pretext_lines; /* lines for  prefix */
 };
-extern struct HelpBoxSt gHelpBoxSt;
+
 extern struct ProcCmd ProcHelpBoxIntro[];
 extern struct ProcCmd gProcScr_HelpBoxTextScroll[];
 extern struct ProcCmd ProcScr_HelpBoxIntro[];

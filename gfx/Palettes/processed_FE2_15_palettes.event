@@ -119,10 +119,10 @@ palEntry(Tatiana, Bishop_F, TatianaPal_Bishop_F_FE6FE8)
 palEntry(Tatiana, Bishop_F, TatianaPal_Bishop_F_FE7)
 #endif
 palEntry(Tatiana, Valkyrie, TatianaPal_Valkyrie)
-palEntry(Zeke, Cavalier, ZekePal_Cavalier)
-palEntry(Zeke, Paladin, ZekePal_Paladin)
+palEntry(Zeke_FE2, Cavalier, Zeke_FE2Pal_Cavalier)
+palEntry(Zeke_FE2, Paladin, Zeke_FE2Pal_Paladin)
 #ifdef _FE8_
-palEntry(Zeke, GreatKnight, ZekePal_GreatKnight_FE8)
+palEntry(Zeke_FE2, GreatKnight, Zeke_FE2Pal_GreatKnight_FE8)
 #endif
 palEntry(Mycen, Cavalier, MycenPal_Cavalier)
 palEntry(Mycen, Paladin, MycenPal_Paladin)
@@ -591,15 +591,15 @@ TatianaPal_Valkyrie:
 BYTE $00 $7E $FF $7F $DF $57 $DD $3A $50 $1D $0A $3A $36 $57 $90 $4A
 BYTE $FE $77 $17 $5B $0F $3A $8B $29 $FA $7B $B3 $67 $07 $1D $A5 $14
 
-ZekePal_Cavalier:
+Zeke_FE2Pal_Cavalier:
 BYTE $00 $7E $FF $7F $FF $5B $38 $0D $F4 $31 $D0 $08 $7E $4F $54 $36
 BYTE $D1 $2D $2B $1D $E8 $18 $A6 $10 $1D $47 $36 $32 $4E $1D $A5 $14
 
-ZekePal_Paladin:
+Zeke_FE2Pal_Paladin:
 BYTE $00 $7E $FF $7F $FF $6F $BD $2E $D1 $31 $FF $27 $38 $0D $D0 $08
 BYTE $D1 $2D $2B $1D $E8 $18 $A6 $10 $BD $7F $D5 $66 $0E $4E $A5 $14
 
-ZekePal_GreatKnight_FE8:
+Zeke_FE2Pal_GreatKnight_FE8:
 BYTE $00 $7E $DE $7B $FF $5B $1F $4B $B2 $29 $99 $52 $F4 $3D $4F $29
 BYTE $AA $14 $5A $7F $B5 $7E $CD $59 $D1 $2D $2B $1D $A6 $10 $A5 $14
 
