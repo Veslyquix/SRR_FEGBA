@@ -44,6 +44,7 @@ CALL :BUILDFUNC "ShadowDragonFR"
 CALL :BUILDFUNC "BlessedHeart"
 CALL :BUILDFUNC "Holoemblem"
 CALL :BUILDFUNC "HagInWhite"
+CALL :BUILDFUNC "FlamesOfRedemption"
 
 set "vanilla_rom=%~dp0FE7.gba"
 CALL :BUILDFUNC "ElysiumAblaze"
@@ -51,6 +52,7 @@ CALL :BUILDFUNC "ElysiumAblaze"
 set "vanilla_rom=%~dp0FE6.gba"
 CALL :BUILDFUNC "LynsBizarreAdventure"
 CALL :BUILDFUNC "Eckesachs"
+CALL :BUILDFUNC "ProjectEmber"
 
 echo:
 echo Done!

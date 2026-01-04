@@ -1,0 +1,20 @@
+// https://feuniverse.us/t/fe6-project-ember-v1-85-as-of-8-16-2021-dorothy-edition/6414
+// v1.85
+#define _FE6_ 
+#undef _FE8_ 
+
+#ifndef TextTable 
+    #define TextTable "0x180A394"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+#define NoWepLock
+
+
+#define FreeSpace 0x182E480
+ORG FreeSpace 
+
+#include "../.FE6_Installer.event"
+

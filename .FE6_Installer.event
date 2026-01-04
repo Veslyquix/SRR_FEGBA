@@ -68,13 +68,46 @@ MESSAGE Graphics end at currentoffset
 #include "../ASM/DangerBones/Installer.event" 
 #include "../ASM/AnimsFastForward/Installer.event" 
 
-//#define PROJECT_EMBER // to use this installer on project ember 
+
+#ifdef INCLUDE_ACHIEVEMENTS 
+#include "../ASM/Achievements/Installer.event"  
+AchievementsExist:
+WORD 1 
+#else 
+ALIGN 4
+AchievementsExist:
+WORD 0
+PUSH 
+ORG CURRENTOFFSET+1 
+IsSkillsOptionAvailable:
+IsRecruitmentOptionAvailable:
+IsFilterCharsOptionAvailable:
+IsFromGameOptionAvailable:
+IsClutter1OptionAvailable:
+IsFilterClassesOptionAvailable:
+IsGrowthsOptionAvailable:
+IsStatCapsOptionAvailable:
+IsClassesOptionAvailable:
+IsClutter3OptionAvailable:
+IsCasualModeOptionAvailable:
+IsClutter2OptionAvailable:
+IsBonusLevelsOptionAvailable:
+IsClutter4OptionAvailable:
+IsTimedHitsOptionAvailable:
+SetAchievementsTo:
+SetBgmNotifTo:
+POP 
+SHORT $2001 $4770 // mov r0, #1 - bx lr 
+PUSH 
+ORG CURRENTOFFSET+1 
+AreAchievementsEnabled: 
+AreBgmNotifsEnabled: 
+POP 
+SHORT $2000 $4770 // mov r0, #0 - bx lr 
+#endif 
 
 #ifndef TextTable 
 	#define TextTable 0x833530 
-	#ifdef PROJECT_EMBER 
-		#define TextTable 0x180A394
-	#endif 
 #endif 
 
 #inctbl "FE6TR" "EventAssembler/fe6_tr.tbl"
@@ -92,7 +125,7 @@ ReadConfigFromSRAM:
 #ifdef VeslyBuildfile 
 WORD True 
 #else 
-WORD 0 
+WORD 1
 #endif 
 VeslyBuildfile_Link:
 #ifdef VeslyBuildfile 
@@ -707,7 +740,7 @@ ALIGN 4
 IconOrr:
 WORD IconOrrValue
 SRR_TotalOptions:
-WORD 36
+WORD 37
 
 // if you don't have a max hp getter, these are used 
 PlayerMaxHP:
@@ -1007,6 +1040,7 @@ ALIGN 32 ; SetName(0x08AC); STRING "Enemy" "FE6TR" ;
 ALIGN 32 ; SetName(0x08AD); STRING "Broken Wall" "FE6TR" ;
 ORG NameStrings + (32*256) 
 
+#include "Patches/FE6/StatClassEx_FE6/Installer.event" 
 
 ALIGN 32
 WORD 0 0 0 0 0 0 0 0

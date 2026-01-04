@@ -1,0 +1,73 @@
+// https://feuniverse.us/t/fe8-complete-fire-emblem-flames-of-redemption-version-1-5-out/9237
+// v1.5
+
+#ifndef TextTable 
+    #define TextTable "0x176D5DC"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+//#define NoWepLock
+
+#define MagCharTable 0x08B2C1AC
+#define MagClassTable 0x08B2C3AC
+#define Skill_Getter 0x08BAD890
+
+//#define FreeSpace 0x19C7280
+//ORG FreeSpace 
+
+//#include "../.FE8_Installer.event"
+#include "../.FE8_FebuilderSkillsys2020ish.event"
+//#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"
+// #include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
+
+
+
+
+//NeverChangeItem(0x1) // Iron Sword 
+//NeverChangeClass(0x1) // EirikaLord  
+//NeverChangeChar(0x1) // Eirika 
+
+
+NeverChangeItem(0x09) // Karmin
+NeverChangeItems(0x35, 0x37) // Vanilla ballistae
+NeverChangeItem(0x44) // Dummy
+NeverChangeItem(0x77) // Gold
+NeverChangeItems(0x7D, 0x80) // Dummy
+NeverChangeItem(0x8A) // Dummy
+NeverChangeItems(0xA3, 0xA9) // Vulnerary dupes, Dance item (?) and Demon King weapons
+NeverChangeItems(0xB6, 0xB7) // Alacalibur, Karmin
+NeverChangeItems(0xBD, 0xCD) // Dummy
+NeverChangeItems(0xCE, 0xD2) // Special Fleet Weapons
+NeverChangeItem(0xD7) // Devil Killing Edge
+NeverChangeItem(0xDD) // Leviathan
+NeverChangeItem(0xE1) // Unused Magic Ring 
+
+NeverChangeClass(0x37) // Villager
+NeverChangeClass(0x3C) // Final boss class
+NeverChangeClasses(0x3D, 0x3E) // Lumberjack and Bookworm dupe
+NeverChangeClass(0x50) // Fleet
+NeverChangeClass(0x73) // Noble
+NeverChangeClass(0x7A) // Witch
+NeverChangeClass(0x7E) // Bookworm
+
+NeverChangeChar(0x1B) // Enemy (FE8 leftover)
+NeverChangeChars(0x2D, 0x2F) // Enemy
+NeverChangeChars(0x32, 0x37) // Enemy
+NeverChangeChar(0x3D) // Summonern
+NeverChangeChars(0x41, 0x45) // Unused vanilla bosses
+NeverChangeChar(0x55) // Enemy
+NeverChangeChars(0x58, 0x59) // Enemy
+NeverChangeChars(0x5E, 0x5F) // Cutscene characters
+NeverChangeChar(0x66) // Bandit
+NeverChangeChars(0x6B, 0x6C) // Event bosses with insane bases
+NeverChangeChars(0x6F, 0x73) // Cutscene characters
+NeverChangeChar(0x76) // Final Boss
+NeverChangeChars(0x79, 0x7E) // Event characters and Enemy
+NeverChangeChars(0x81, 0x88) // Units for battleship maps
+NeverChangeChars(0x98, 0xA5) // Event units and Enemy
+NeverChangeChars(0xAC, 0xAE) // Unit duplicates used for an event
+NeverChangeChars(0xBF, 0xCA) // FE8 leftover event units
+NeverChangeChars(0xCC, 0xFC) // More FE8 leftovers
+NeverChangeChars(0xFD, 0xFF) // Arena enemy, wall, snag.

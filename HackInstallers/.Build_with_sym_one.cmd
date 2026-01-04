@@ -35,7 +35,7 @@ SETLOCAL
 @rem CALL :BUILDFUNC "RestorationArmy"
 @rem CALL :BUILDFUNC "ShackledPower"
 @rem CALL :BUILDFUNC "TalesoftheConquerors"
-CALL :BUILDFUNC "TMGC"
+@rem CALL :BUILDFUNC "TMGC"
 @rem CALL :BUILDFUNC "TouhouEmblem"
 @rem CALL :BUILDFUNC "FourKings"
 @rem CALL :BUILDFUNC "InfernalBlade"
@@ -44,13 +44,15 @@ CALL :BUILDFUNC "TMGC"
 @rem CALL :BUILDFUNC "BlessedHeart"
 @rem CALL :BUILDFUNC "Holoemblem"
 @rem CALL :BUILDFUNC "HagInWhite"
+@rem CALL :BUILDFUNC "FlamesOfRedemption"
 @rem 
 @rem set "vanilla_rom=%~dp0FE7.gba"
 @rem CALL :BUILDFUNC "ElysiumAblaze"
 @rem 
-@rem set "vanilla_rom=%~dp0FE6.gba"
+set "vanilla_rom=%~dp0FE6.gba"
 @rem CALL :BUILDFUNC "LynsBizarreAdventure"
 @rem CALL :BUILDFUNC "Eckesachs"
+CALL :BUILDFUNC "ProjectEmber"
 
 echo:
 echo Done!
