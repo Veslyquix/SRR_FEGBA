@@ -1595,8 +1595,6 @@ int DoAchievementsExist(void)
     return AchievementsExist;
 }
 
-#ifdef FE8
-
 // a switch case doesn't compile because these options are extern ints, not definitions
 int IsConfigMenuOptionAvailable(int id)
 {
@@ -1697,13 +1695,13 @@ int IsConfigMenuOptionAvailable(int id)
 
     return true;
 }
-#endif
-#ifndef FE8
-int IsConfigMenuOptionAvailable(int id)
-{
-    return true;
-}
-#endif
+
+// #ifndef FE8
+// int IsConfigMenuOptionAvailable(int id)
+// {
+// return true;
+// }
+// #endif
 
 int BuildAvailableOptionsForMenu(s8 * buf)
 {
@@ -3090,7 +3088,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     }
 
     int menuID = proc->reviseMenuId;
-    if (menuID == reviseGameIdOption)
+    if (menuID == reviseGameIdOption && IsFromGameOptionAvailable())
     {
         if (keys & DPAD_LEFT)
         {

@@ -82,7 +82,9 @@ ORG CURRENTOFFSET+1
 IsSkillsOptionAvailable:
 IsRecruitmentOptionAvailable:
 IsFilterCharsOptionAvailable:
+#ifdef VeslyBuildfile 
 IsFromGameOptionAvailable:
+#endif 
 IsClutter1OptionAvailable:
 IsFilterClassesOptionAvailable:
 IsGrowthsOptionAvailable:
@@ -102,6 +104,9 @@ PUSH
 ORG CURRENTOFFSET+1 
 AreAchievementsEnabled: 
 AreBgmNotifsEnabled: 
+#ifndef VeslyBuildfile 
+IsFromGameOptionAvailable:
+#endif 
 POP 
 SHORT $2000 $4770 // mov r0, #0 - bx lr 
 #endif 
