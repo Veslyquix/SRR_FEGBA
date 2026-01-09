@@ -704,9 +704,13 @@ ReplaceTextList:
 //SHORT 0; BYTE 0xff 0; POIN TextE TextF 
 WORD 0 0 0// terminator 
 #ifdef VeslyBuildfile
-	#define SetName(id) "{ addr: ; SetText(id, addr) ; }"
+	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
 #else 
-	#define SetName(id) "ALIGN 16"
+	#ifdef Reskin 
+		#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+	#else 
+		#define SetName(id) "ALIGN 16"
+	#endif 
 #endif 
 
 ALIGN 16

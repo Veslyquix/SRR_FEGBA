@@ -329,11 +329,7 @@ NeverChangeIntoItem(0x70) // crashes animations
 
 NeverChangeChar(0xE1) // arena enemy randomized breaks things 
 
-#ifdef VeslyBuildfile
-	#define SetName(id) "{ addr: ; SetText(id, addr) ; }"
-#else 
-	#define SetName(id) "ALIGN 32"
-#endif 
+
 
 
 
@@ -365,6 +361,24 @@ BYTE $FD $3D $A3 $48 $EC $8A $9F $8F $8F $CF $11 $84 $5A $EF $FE $FB $73 $7B $01
 
 #define SetText(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset|0x80000000); POP"
 #define SetTextWithHuffman(textID, offset) "PUSH; ORG (TextTable+4*textID); POIN (offset); POP"
+
+#ifndef setText 
+#define setText(textID, offset) "PUSH; ORG (TextTable+(4*textID)); POIN (offset|0x80000000); POP"
+#endif 
+#ifndef txt 
+    #define txt(string2) STRING string2 "FE6TR"; BYTE 0 0; // fe6 version 
+#endif 
+
+#ifdef VeslyBuildfile
+	#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+#else 
+	#ifdef Reskin 
+		#define SetName(id) "{ addr: ; setText(id, addr) ; }"
+	#else 
+		#define SetName(id) "ALIGN 32"
+	#endif 
+#endif 
+
 ALIGN 4 
 //SetTextWithHuffman(0xB6E, VarianceText) // no longer necessary 
 SetTextWithHuffman(0xB80, MovText)
@@ -545,11 +559,12 @@ ORG $8874C; SHORT $46C0 // hard selectable from new game by 7743
 // AiGetConsumableAttemptId
 ORG $34a9A; SHORT $46C0 // any ai can use lockpick from 8034a60
 
+#ifndef ProjectEmber // some hook here in project ember
 // fe6 hard mode store w/ translation 
 // 807ad6c calls 807a84c calls 807a59c calls 807a268 at 7a4f0 calls 79424 which sets shop existing or not 
 ORG $7943a 
 BYTE $20 // never hard mode for prep ? 
-
+#endif 
 
 // Antihuffman 
 //ORG 0x384c;  BYTE $03 $B5 $02 $B0 $C2 $0F $00 $2A $01 $D0 $05 $4A $97 $46 $03 $4A $12 $68 $9A $F0 $5B $FB $01 $BC $00 $47 $00 $00 $80 $37 $00 $03 $60 $C4 $2D $08
@@ -604,6 +619,7 @@ SHORT $880A // ldrh r2, [r1]
 // callHackNew(DisableMouthFrames_FE6) 
 // SHORT $46c0 
 
+#ifndef ProjectEmber 
 // make supports appear in febuilder 
 ORG $6afDE 
 SHORT $e014 // b 0x806b00A 
@@ -613,6 +629,7 @@ SHORT $1c0d // mov r5, r1
 SHORT $3510 // add r5, #0x10 
 SHORT $B0A9 // sub sp, #0xA4 
 SHORT $e7e8 // b 0x806AFE4 
+#endif 
 
 ORG $184F0
 jumpToHack(GetUnitPortraitId_FE7)  // same code 
@@ -773,9 +790,7 @@ WORD 0
 // #inctbl "FE8TR" "EventAssembler/fe8_tr.tbl"
 
 // #define txt(string2) STRING string2 "FE8TR"; BYTE 0 0; 
-#ifndef txt 
-    #define txt(string2) STRING string2 "FE6TR"; BYTE 0 0; // fe6 version 
-#endif 
+
 
 #include "SRR_Menu.event" 
 
