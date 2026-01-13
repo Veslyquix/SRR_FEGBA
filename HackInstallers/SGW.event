@@ -1,0 +1,27 @@
+// https://feuniverse.us/t/fe8-complete-the-sun-gods-wrath-final-release-27-chapters-no-fatigue-100-growth-now-added-5-22-2022/6207
+// "Final release" 2022
+
+#ifndef TextTable 
+    #define TextTable "0x1DD8BE0"
+#else 
+    #define FEBUILDER_INSTALLATION 
+#endif 
+
+#define DoNotUseAutoGetters
+//#define NoWepLock
+
+#define MagCharTable 0x09ED2DC8
+#define MagClassTable 0x09ED2FC8
+#define Skill_Getter 0x9efb87c 
+
+#define FreeSpace 0x1F7A628
+ORG FreeSpace 
+
+//#include "../.FE8_Installer.event"
+#include "../.FE8_FebuilderSkillsys2020ish.event"
+//#include "../.FE8_FebuilderSkillsys2020ishNoStrMag.event"
+// #include "../.FE8_FebuilderSkillsys2021_or_later_Installer.event"
+
+//NeverChangeItem(0x1) // Iron Sword 
+//NeverChangeClass(0x1) // EirikaLord  
+//NeverChangeChar(0x1) // Eirika 
