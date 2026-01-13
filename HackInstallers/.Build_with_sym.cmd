@@ -45,6 +45,8 @@ CALL :BUILDFUNC "BlessedHeart"
 CALL :BUILDFUNC "Holoemblem"
 CALL :BUILDFUNC "HagInWhite"
 CALL :BUILDFUNC "FlamesOfRedemption"
+CALL :BUILDFUNC "SGW"
+CALL :BUILDFUNC "MyrmEmblem"
 
 set "vanilla_rom=%~dp0FE7.gba"
 CALL :BUILDFUNC "ElysiumAblaze"
