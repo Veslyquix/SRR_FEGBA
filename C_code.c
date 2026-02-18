@@ -12925,6 +12925,8 @@ int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * re
 {
     int i;
     char * buffer = &b[c];
+    if (!find[0])
+        return 0;
     for (i = 0; find[i]; ++i) // while find[i] is non-zero (eg. a character), compare
     {
         if (buffer[i] != find[i])
@@ -13092,7 +13094,6 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
                 }
             }
         }
-
         for (int c = 0; c < ListSize; ++c)
         {
             if (!b[i])
@@ -13109,7 +13110,7 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
             {
                 i += replacedLen - 1;
                 break;
-            };
+            }
         }
     }
 }
