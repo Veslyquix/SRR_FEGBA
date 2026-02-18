@@ -12545,6 +12545,17 @@ struct ReplaceTextStruct
     const char * find;
     const char * replace;
 };
+struct RomReplaceTextStruct
+{
+    // conditions
+    u16 flag;
+    u8 chapterID;
+    u8 pad;
+    const char * find;
+    const char * replace;
+};
+extern struct RomReplaceTextStruct PronounReplaceTextList[];
+
 int CountBWLUnits(void)
 {
     const struct CharacterData * table = GetCharacterData(1);
@@ -12995,11 +13006,10 @@ char * GetStringFromIndex(int index) // so we can set sActiveMsg as the index
 #endif
     return sMsgString;
 }
-
+extern int OnlyReplaceTextAfterControlCode;
 extern u8 TextIDExceptionTable[];
 void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800384C
 {
-
     int length[1] = { 0 };
     length[0] = DecompText(a, b);
     if (!ShouldReplaceCharacters())
@@ -13030,10 +13040,10 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
     // #endif
     // #endif
     int replacedLen = 0;
-    if (!ReplaceTextList[0].find)
-    {
-        return;
-    }
+    // if (!ReplaceTextList[0].find)
+    // {
+    // return;
+    // }
 
     for (int i = 0; i < TextBufferSize; ++i)
     {
@@ -13041,6 +13051,48 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
         {
             return;
         }
+        if (i && b[i] != 0x5B && OnlyReplaceTextAfterControlCode && b[i - 1] > 0x20) // names are after control codes
+        {
+            continue;
+        }
+        if (b[i] == 0x5B)
+        {
+            for (int c = 0; c < ListSize; ++c)
+            {
+                if (!b[i])
+                {
+                    return;
+                }
+                if (!PronounReplaceTextList[c].find)
+                {
+                    break;
+                }
+                if (PronounReplaceTextList[c].flag)
+                {
+                    // asm("mov r11, r11");
+                    if (!CheckFlag(PronounReplaceTextList[c].flag))
+                    {
+                        continue;
+                    }
+                }
+                if (PronounReplaceTextList[c].chapterID != 0xFF)
+                {
+                    if (gCh != PronounReplaceTextList[c].chapterID)
+                    {
+                        continue;
+                    }
+                }
+
+                replacedLen =
+                    ReplaceIfMatching(length, PronounReplaceTextList[c].find, PronounReplaceTextList[c].replace, i, b);
+                if (replacedLen)
+                {
+                    i += replacedLen - 1;
+                    break;
+                }
+            }
+        }
+
         for (int c = 0; c < ListSize; ++c)
         {
             if (!b[i])

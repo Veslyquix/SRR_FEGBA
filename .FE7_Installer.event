@@ -118,6 +118,9 @@ SHORT $2000 $4770 // mov r0, #0 - bx lr
 
 //#define NeverRandomizeMusic // comment this out if you want music randomized 
 // it only knows of vanilla song IDs though 
+ALIGN 4
+OnlyReplaceTextAfterControlCode:
+WORD 1 // Speedup text, but it's possible there might be a name used that isn't after a space, new line, or control code 
 
 #ifndef TextTable 
 	#define TextTable 0xB808AC 

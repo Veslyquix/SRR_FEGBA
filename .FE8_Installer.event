@@ -145,6 +145,11 @@ POP
 SHORT $2000 $4770 // mov r0, #0 - bx lr 
 #endif 
 
+ALIGN 4
+OnlyReplaceTextAfterControlCode:
+WORD 1 // Speedup text, but it's possible there might be a name used that isn't after a space, new line, or control code 
+
+
 
 //#ifdef VeslyBuildfile 
 #include "../ASM/Reclass/Installer.event" 
@@ -1449,6 +1454,176 @@ MaxClassesPlayer:
 WORD 0x203EC30
 MaxClassesEnemy:
 WORD 0x203EC31
+
+
+
+#define TheyPronounFlag 0x112 
+#define HePronounFlag 0x113
+#define ShePronounFlag 0x114
+PronounReplaceTextList:
+// required flag, required chapter, pad, text to find, replacement text 
+// SHORT 0; 			BYTE 0xFF 		0; 	POIN TextA 			TextB 
+/* [they] / [They] 
+E.g. 
+They have the toy. 
+He has the toy.
+She has the toy. 
+*/ 
+SHORT TheyPronounFlag; BYTE 0xFF 0; POIN code_they text_they 
+SHORT HePronounFlag;   BYTE 0xFF 0; POIN code_they text_he 
+SHORT ShePronounFlag;  BYTE 0xFF 0; POIN code_they text_she 
+SHORT TheyPronounFlag; BYTE 0xFF 0; POIN code_They text_They 
+SHORT HePronounFlag;   BYTE 0xFF 0; POIN code_They text_He 
+SHORT ShePronounFlag;  BYTE 0xFF 0; POIN code_They text_She 
+
+
+/* [have] / [Have]
+they have 
+he has 
+she has 
+*/ 
+SHORT TheyPronounFlag; BYTE 0xFF 0; POIN code_have text_have
+SHORT HePronounFlag;   BYTE 0xFF 0; POIN code_have text_has
+SHORT ShePronounFlag;  BYTE 0xFF 0; POIN code_have text_has 
+SHORT TheyPronounFlag; BYTE 0xFF 0; POIN code_Have text_Have 
+SHORT HePronounFlag;   BYTE 0xFF 0; POIN code_Have text_Has
+SHORT ShePronounFlag;  BYTE 0xFF 0; POIN code_Have text_Has 
+
+
+/* [them] / [Them]
+The toy belongs to him. 
+The toy belongs to her. 
+The toy belongs to them. 
+*/
+SHORT TheyPronounFlag; BYTE 0xFF 0; POIN code_them text_them
+SHORT HePronounFlag;   BYTE 0xFF 0; POIN code_them text_him
+SHORT ShePronounFlag;  BYTE 0xFF 0; POIN code_them text_her 
+SHORT TheyPronounFlag; BYTE 0xFF 0; POIN code_Them text_Them
+SHORT HePronounFlag;   BYTE 0xFF 0; POIN code_Them text_Him
+SHORT ShePronounFlag;  BYTE 0xFF 0; POIN code_Them text_Her 
+
+
+/* [their] / [Their] 
+His toy is red.
+Her toy is red.
+Their toy is red. 
+*/ 
+SHORT TheyPronounFlag; BYTE 0xFF 0; POIN code_their text_their
+SHORT HePronounFlag;   BYTE 0xFF 0; POIN code_their text_his
+SHORT ShePronounFlag;  BYTE 0xFF 0; POIN code_their text_her 
+SHORT TheyPronounFlag; BYTE 0xFF 0; POIN code_Their text_Their
+SHORT HePronounFlag;   BYTE 0xFF 0; POIN code_Their text_His
+SHORT ShePronounFlag;  BYTE 0xFF 0; POIN code_Their text_Her 
+
+
+/* [theirs] / [Theirs]
+The toy is his.
+The toy is hers. 
+The toy is theirs. 
+*/ 
+SHORT TheyPronounFlag; BYTE 0xFF 0; POIN code_theirs text_theirs
+SHORT HePronounFlag;   BYTE 0xFF 0; POIN code_theirs text_his
+SHORT ShePronounFlag;  BYTE 0xFF 0; POIN code_theirs text_hers 
+SHORT TheyPronounFlag; BYTE 0xFF 0; POIN code_Theirs text_Theirs
+SHORT HePronounFlag;   BYTE 0xFF 0; POIN code_Theirs text_His
+SHORT ShePronounFlag;  BYTE 0xFF 0; POIN code_Theirs text_Hers 
+
+
+
+WORD 0 0 0// terminator 
+
+
+code_they:
+txt("[they]")
+code_They: 
+txt("[They]")
+
+
+text_they:
+txt("they");  
+text_he:
+txt("he");  
+text_she: 
+txt("she");  
+text_They:
+txt("They");  
+text_He:
+txt("He");  
+text_She: 
+txt("She");  
+
+
+code_have:
+txt("have") 
+code_Have:
+txt("[Have]")
+text_have:
+txt("have")
+text_has:
+txt("has")
+text_Have:
+txt("Have")
+text_Has:
+txt("Has")
+
+
+
+code_them:
+txt("[them]")
+code_Them:
+txt("[Them]")
+text_them:
+txt("them")
+text_him:
+txt("him")
+text_Her:
+txt("her")
+text_Them:
+txt("Them")
+text_Him:
+txt("Him")
+// text_Her:
+// txt("Her")
+
+
+code_their:
+txt("[their]")
+code_Their:
+txt("[Their]")
+text_their:
+txt("their")
+text_his:
+txt("his")
+text_her:
+txt("her")
+text_Their:
+txt("Their")
+text_His:
+txt("His")
+// text_Her:
+// txt("Her")
+
+
+code_theirs:
+txt("[theirs]")
+code_Theirs:
+txt("[Theirs]") 
+text_theirs:
+txt("theirs")
+// text_his:
+// txt("his")
+text_hers: 
+txt("hers")
+text_Theirs:
+txt("Theirs")
+// text_His:
+// txt("His")
+text_Hers: 
+txt("Hers") 
+
+
+
+
 
 ALIGN 32 
 WORD 0 0 0 0 0 0 0 0 
