@@ -1456,10 +1456,10 @@ MaxClassesEnemy:
 WORD 0x203EC31
 
 
-ALIGN 4 
-code_tact2:
-txt("[tact2]") 
-#define TACT2_RAM 0x203EC34 
+// ALIGN 4 
+// code_tact2:
+// txt("[tact2]") 
+// #define TACT2_RAM 0x203EC34 
 
 
 #define TheyPronounFlag 0x112 
@@ -1469,7 +1469,7 @@ ALIGN 4
 PronounReplaceTextList:
 // required flag, required chapter, pad, text to find, replacement text 
 // SHORT 0; 			BYTE 0xFF 		0; 	POIN TextA 			TextB 
-SHORT 0; BYTE 0xFF 0; POIN code_tact2; WORD TACT2_RAM
+// SHORT 0; BYTE 0xFF 0; POIN code_tact2; WORD TACT2_RAM
 
 /* [they] / [They] 
 E.g. 
