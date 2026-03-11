@@ -1421,7 +1421,8 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
         if (proc->previewId == ConfirmCommandID)
         {
             PlaySuccessSfx();
-            Proc_Goto(proc, EndLabel);
+            // Proc_Goto(proc, EndLabel);
+            Proc_Goto(proc, ConfigMenuLabel);
             return;
         }
         if (proc->previewId == RerollCommandID)
@@ -14634,6 +14635,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 }
 
 extern const char * RandomizerText;
+int GetSRRMenuColour(ConfigMenuProc * proc, int index);
 const char * GetSRRMenuText(ConfigMenuProc * proc, int index);
 void DrawSRRHeader(ConfigMenuProc * proc, int i, int offset2, int id)
 {
@@ -14641,12 +14643,7 @@ void DrawSRRHeader(ConfigMenuProc * proc, int i, int offset2, int id)
     {
         return;
     }
-    int colour = gold;
-    if ((i + offset2 == FilterCharsOption) || (i + offset2 == PreviewCharsOption) ||
-        (i + offset2 == FilterClassOption) || (i + offset2 == FilterEnemyClassOption))
-    {
-        colour = white;
-    }
+    int colour = GetSRRMenuColour(proc, id);
     struct Text * th = gStatScreen.text; // max 34 normally
     PutDrawText(
         &th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), colour, 0, MaxTW,
@@ -17268,6 +17265,18 @@ int CountSRRMenuItems(ConfigMenuProc * proc)
 
 extern char blankString;
 extern int MaxRTextOptions;
+int GetSRRMenuColour(ConfigMenuProc * proc, int index)
+{
+    int result = gold;
+    index += CountSRRMenuItems(proc);
+    if ((index == FilterCharsOption) || (index == PreviewCharsOption) || (index == FilterClassOption) ||
+        (index == FilterEnemyClassOption))
+    {
+        result = white;
+    }
+    return result;
+}
+
 const char * GetSRRMenuText(ConfigMenuProc * proc, int index)
 {
     // index += proc->page * NumberOfOptions;
