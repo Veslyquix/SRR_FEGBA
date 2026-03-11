@@ -430,7 +430,7 @@ ORG $2cc88
 replaceWithHack(FE7PromoHook)
 
 ORG $37D84
-jumpToHack(MaybeChargeAtPlayer)
+// jumpToHack(MaybeChargeAtPlayer)
 
 ORG $CE3F0C //ORG $CE45EC // in CE45E4 //B9395C //CE49D8
 PROC_CALL_ROUTINE_2(FE7_StartDifficultySelection)

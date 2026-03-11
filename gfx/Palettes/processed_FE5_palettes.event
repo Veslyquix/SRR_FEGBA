@@ -174,15 +174,15 @@ palEntry(Alva, Paladin, AlvaPal_Paladin)
 palEntry(Alva, GreatKnight, AlvaPal_GreatKnight_FE8)
 #endif
 #ifndef _FE8_
-palEntry(Robert, Nomad, RobertPal_Nomad_FE6FE7)
+palEntry(Robert_FE5, Nomad, Robert_FE5Pal_Nomad_FE6FE7)
 #endif
 #ifndef _FE8_
-palEntry(Robert, NomadTrooper, RobertPal_NomadTrooper_FE6FE7)
+palEntry(Robert_FE5, NomadTrooper, Robert_FE5Pal_NomadTrooper_FE6FE7)
 #endif
-palEntry(Robert, Cavalier, RobertPal_Cavalier)
-palEntry(Robert, Paladin, RobertPal_Paladin)
+palEntry(Robert_FE5, Cavalier, Robert_FE5Pal_Cavalier)
+palEntry(Robert_FE5, Paladin, Robert_FE5Pal_Paladin)
 #ifdef _FE8_
-palEntry(Robert, GreatKnight, RobertPal_GreatKnight_FE8)
+palEntry(Robert_FE5, GreatKnight, Robert_FE5Pal_GreatKnight_FE8)
 #endif
 palEntry(Fred, Cavalier, FredPal_Cavalier)
 palEntry(Fred, Paladin, FredPal_Paladin)
@@ -766,23 +766,23 @@ AlvaPal_GreatKnight_FE8:
 BYTE $00 $7E $DE $7B $FF $5B $1F $4B $B2 $29 $34 $5B $8F $46 $EA $31
 BYTE $45 $1D $5A $7F $B5 $7E $CD $59 $9F $11 $3A $0D $D1 $08 $A5 $14
 
-RobertPal_Nomad_FE6FE7:
+Robert_FE5Pal_Nomad_FE6FE7:
 BYTE $00 $7E $FF $7F $DF $57 $DD $3A $8E $7E $EB $61 $7A $15 $F1 $0C
 BYTE $DD $7F $79 $77 $51 $52 $29 $29 $19 $3F $52 $32 $47 $41 $A5 $14
 
-RobertPal_NomadTrooper_FE6FE7:
+Robert_FE5Pal_NomadTrooper_FE6FE7:
 BYTE $00 $7E $FF $7F $EB $61 $DD $3A $D5 $11 $47 $41 $7A $15 $F1 $0C
 BYTE $DD $7F $79 $77 $51 $52 $29 $29 $BE $37 $97 $1E $0E $15 $A5 $14
 
-RobertPal_Cavalier:
+Robert_FE5Pal_Cavalier:
 BYTE $00 $7E $FF $7F $FF $5B $79 $77 $F4 $31 $51 $52 $7A $15 $F1 $0C
 BYTE $8E $7E $EB $61 $47 $41 $A4 $20 $1D $47 $36 $32 $4E $1D $A5 $14
 
-RobertPal_Paladin:
+Robert_FE5Pal_Paladin:
 BYTE $00 $7E $FF $7F $FF $6F $BD $2E $D1 $31 $FF $27 $79 $77 $51 $52
 BYTE $8E $7E $EB $61 $47 $41 $A4 $20 $BD $7F $D5 $66 $0E $4E $A5 $14
 
-RobertPal_GreatKnight_FE8:
+Robert_FE5Pal_GreatKnight_FE8:
 BYTE $00 $7E $DE $7B $FF $5B $1F $4B $B2 $29 $F7 $62 $52 $4E $AD $39
 BYTE $08 $25 $5A $7F $B5 $7E $CD $59 $8E $7E $EB $61 $47 $41 $A5 $14
 
