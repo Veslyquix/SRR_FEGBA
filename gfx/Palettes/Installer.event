@@ -3,8 +3,8 @@ ALIGN 4
 gCharPal: 
 POIN 0 // Vanilla does nothing 
 POIN processed_FE1_palettes 
-POIN Pal_FE4 
-POIN Pal_FE5 
+POIN processed_FE4_palettes 
+POIN processed_FE5_palettes 
 #ifndef _FE6_ 
 POIN processed_FE6_palettes 
 #endif 
@@ -38,9 +38,7 @@ POIN 0
 // nothing for all of these that are uncommented 
 // Pal_FE1: // we have this one 
 Pal_FE1_Bosses: 
-Pal_FE4: 
 Pal_FE4_Bosses: 
-Pal_FE5: 
 Pal_FE5_Bosses: 
 Pal_FE6_Bosses: 
 Pal_FE7_Bosses: 
@@ -72,6 +70,8 @@ WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator
 
 #include "FE1_defs.event" 
 #include "FE2_defs.event" 
+#include "FE4_defs.event" 
+#include "FE5_defs.event" 
 #include "FE6_defs.event" 
 #include "FE7_defs.event" 
 #include "FE8_defs.event" 
