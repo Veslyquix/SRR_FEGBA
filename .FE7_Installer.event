@@ -1298,7 +1298,9 @@ MaxClassesPlayer:
 WORD 0x203EBCC
 MaxClassesEnemy:
 WORD 0x203EBCD
-
+ALIGN 4 
+PronounReplaceTextList:
+WORD 0 0 0 
 
 #include "Patches/FE7/StatClassEx_FE7/Installer.event" 
 

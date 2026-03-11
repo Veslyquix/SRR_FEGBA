@@ -6766,9 +6766,13 @@ int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
             result |= forcedClass;
         }
         int newCharID = pidStats->newCharID;
-        if (unit->pCharacterData->number != newCharID)
+        if (newCharID && unit->pCharacterData->number != newCharID)
         {
-            result |= newCharID;
+            if (unit->pCharacterData->nameTextId != GetCharacterData(newCharID)->nameTextId)
+            {
+                // make sure they haven't been replaced by a duplicate of themself
+                result |= newCharID;
+            }
         }
         int newTableID = pidStats->charTableID;
         result |= newTableID;
