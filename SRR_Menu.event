@@ -538,7 +538,7 @@ SRRDesc(AchievementsOpt, 1); txt("Ingame achievements and\progression are enable
 SRRMenu(VarianceOpt);           txt("Variance")
 SRRDesc(VarianceOpt); txt("Diversity of gameplay.\Stats/Growths will vary +/-\this much."); 
 
-SRRMenu(PlayerRecruitmentOpt);         txt("Recruitment")
+SRRMenu(PlayerRecruitmentOpt);         txt("Player Order")
 SRRDesc(PlayerRecruitmentOpt, 0); txt("Playable characters will be\recruited in the usual order."); 
 SRRDesc(PlayerRecruitmentOpt, 1); txt("Playable characters will be\recruited in reverse order."); 
 SRRDesc(PlayerRecruitmentOpt, 2); txt("Playable characters will be\recruited in random order."); 

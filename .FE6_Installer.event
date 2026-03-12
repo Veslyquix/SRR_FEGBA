@@ -110,6 +110,9 @@ IsFromGameOptionAvailable:
 POP 
 SHORT $2000 $4770 // mov r0, #0 - bx lr 
 #endif 
+ALIGN 4
+OnlyReplaceTextAfterControlCode:
+WORD 1 // Speedup text, but it's possible there might be a name used that isn't after a space, new line, or control code 
 
 #ifndef TextTable 
 	#define TextTable 0x833530 
@@ -438,7 +441,7 @@ SHORT $46c0
 //BYTE $B 
 
 ORG $31740 //$37D84
-jumpToHack(MaybeChargeAtPlayer)
+// jumpToHack(MaybeChargeAtPlayer)
 
 #ifdef VeslyBuildfile
 ORG $9B54C
@@ -1059,6 +1062,10 @@ ALIGN 32 ; SetName(0x0830); STRING "Bandit" "FE6TR" ;
 ALIGN 32 ; SetName(0x08AC); STRING "Enemy" "FE6TR" ;
 ALIGN 32 ; SetName(0x08AD); STRING "Broken Wall" "FE6TR" ;
 ORG NameStrings + (32*256) 
+
+ALIGN 4 
+PronounReplaceTextList:
+WORD 0 0 0 
 
 #include "Patches/FE6/StatClassEx_FE6/Installer.event" 
 

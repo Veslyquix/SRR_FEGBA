@@ -118,6 +118,9 @@ SHORT $2000 $4770 // mov r0, #0 - bx lr
 
 //#define NeverRandomizeMusic // comment this out if you want music randomized 
 // it only knows of vanilla song IDs though 
+ALIGN 4
+OnlyReplaceTextAfterControlCode:
+WORD 1 // Speedup text, but it's possible there might be a name used that isn't after a space, new line, or control code 
 
 #ifndef TextTable 
 	#define TextTable 0xB808AC 
@@ -427,7 +430,7 @@ ORG $2cc88
 replaceWithHack(FE7PromoHook)
 
 ORG $37D84
-jumpToHack(MaybeChargeAtPlayer)
+// jumpToHack(MaybeChargeAtPlayer)
 
 ORG $CE3F0C //ORG $CE45EC // in CE45E4 //B9395C //CE49D8
 PROC_CALL_ROUTINE_2(FE7_StartDifficultySelection)
@@ -1295,7 +1298,9 @@ MaxClassesPlayer:
 WORD 0x203EBCC
 MaxClassesEnemy:
 WORD 0x203EBCD
-
+ALIGN 4 
+PronounReplaceTextList:
+WORD 0 0 0 
 
 #include "Patches/FE7/StatClassEx_FE7/Installer.event" 
 

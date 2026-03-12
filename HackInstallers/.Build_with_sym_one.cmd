@@ -41,7 +41,7 @@ SETLOCAL
 @rem CALL :BUILDFUNC "InfernalBlade"
 @rem CALL :BUILDFUNC "TheDeepSea"
 @rem CALL :BUILDFUNC "ShadowDragonFR"
-@rem CALL :BUILDFUNC "BlessedHeart"
+CALL :BUILDFUNC "BlessedHeart"
 @rem CALL :BUILDFUNC "Holoemblem"
 @rem CALL :BUILDFUNC "HagInWhite"
 @rem CALL :BUILDFUNC "FlamesOfRedemption"
@@ -49,10 +49,10 @@ SETLOCAL
 @rem set "vanilla_rom=%~dp0FE7.gba"
 @rem CALL :BUILDFUNC "ElysiumAblaze"
 @rem 
-set "vanilla_rom=%~dp0FE6.gba"
+@rem set "vanilla_rom=%~dp0FE6.gba"
 @rem CALL :BUILDFUNC "LynsBizarreAdventure"
 @rem CALL :BUILDFUNC "Eckesachs"
-CALL :BUILDFUNC "ProjectEmber"
+@rem CALL :BUILDFUNC "ProjectEmber"
 
 echo:
 echo Done!

@@ -544,19 +544,24 @@ SwordAnim(MercenarySwordID)
 UnarmedAnim(MercenaryUnarmedID)
 weaponAnimEnd
 
+Mercenary_F_Anim:
+animEntry(MercenarySwordID)
+SwordAnim(MercenarySwordID) 
+UnarmedAnim(MercenaryUnarmedID)
+weaponAnimEnd
+
+
 Hero_Anim:
-animEntry(HeroHandaxeID)
+animEntry(HeroSwordID)
 SwordAnim(HeroSwordID) 
-LanceAnim(HeroSwordID) 
 AxeAnim(HeroAxeID) 
 HandAxeAnim(HeroHandaxeID) 
 UnarmedAnim(HeroUnarmedID) 
 weaponAnimEnd 
 
 Hero_F_Anim:
-animEntry(HeroFHandaxeID)
+animEntry(HeroFSwordID)
 SwordAnim(HeroFSwordID) 
-LanceAnim(HeroFSwordID) 
 AxeAnim(HeroFAxeID)
 HandAxeAnim(HeroFHandaxeID)
 UnarmedAnim(HeroFUnarmedID)
@@ -640,7 +645,7 @@ weaponAnimEnd
 
 #ifdef _FE8_ 
 GreatKnight_Anim:
-animEntry(GreatKnightHandaxeID)
+animEntry(GreatKnightLanceID)
 SwordAnim(GreatKnightSwordID) 
 LanceAnim(GreatKnightLanceID) 
 AxeAnim(GreatKnightAxeID)
@@ -649,7 +654,7 @@ UnarmedAnim(GreatKnightUnarmedID)
 weaponAnimEnd
 
 GreatKnight_F_Anim:
-animEntry(GreatKnightFHandaxeID)
+animEntry(GreatKnightFLanceID)
 SwordAnim(GreatKnightFSwordID) 
 LanceAnim(GreatKnightFLanceID) 
 AxeAnim(GreatKnightFAxeID)
@@ -717,7 +722,7 @@ UnarmedAnim(FighterUnarmedID)
 weaponAnimEnd
 
 Warrior_Anim:
-animEntry(WarriorHandaxeID) 
+animEntry(WarriorBowID) 
 SwordAnim(WarriorAxeID) 
 LanceAnim(WarriorAxeID) 
 AxeAnim(WarriorAxeID) 
@@ -963,7 +968,7 @@ UnarmedAnim(TarvosUnarmedID)
 weaponAnimEnd
 
 Maelduin_Anim:
-animEntry(MaelduinHandaxeID) 
+animEntry(MaelduinBowID) 
 SwordAnim(MaelduinAxeID) 
 LanceAnim(MaelduinAxeID) 
 AxeAnim(MaelduinAxeID) 
@@ -1193,9 +1198,8 @@ weaponAnimEnd
     #ifdef _FE7_ 
     wA(Armads, HectorGreatLordArmadsID) 
     #endif 
-    animEntry(HectorGreatLordHandaxeID) 
+    animEntry(HectorGreatLordSwordID) 
     SwordAnim(HectorGreatLordSwordID) 
-    LanceAnim(HectorGreatLordSwordID) 
     AxeAnim(HectorGreatLordAxeID) 
     HandAxeAnim(HectorGreatLordHandaxeID)
     UnarmedAnim(HectorGreatLordUnarmedID)
@@ -1204,7 +1208,7 @@ weaponAnimEnd
 
 
 General_Anim:
-animEntry(GeneralHandaxeID)
+animEntry(GeneralLanceID)
 SwordAnim(GeneralSwordID) 
 LanceAnim(GeneralLanceID) 
 AxeAnim(GeneralAxeID)
@@ -1213,7 +1217,7 @@ UnarmedAnim(GeneralUnarmedID)
 weaponAnimEnd
 
 General_F_Anim:
-animEntry(GeneralFHandaxeID)
+animEntry(GeneralFLanceID)
 SwordAnim(GeneralFSwordID) 
 LanceAnim(GeneralFLanceID) 
 AxeAnim(GeneralFAxeID)
@@ -1241,6 +1245,8 @@ Oni_Chieftain_Anim:
 animEntry(Oni_ChieftainAxe)
 AxeAnim(Oni_ChieftainAxe)
 HandAxeAnim(Oni_ChieftainHandaxe)
+BowAnim(Oni_ChieftainMagic)
+StaffAnim(Oni_ChieftainMagic)
 AnimaAnim(Oni_ChieftainMagic)
 LightAnim(Oni_ChieftainMagic)
 DarkAnim(Oni_ChieftainMagic)
@@ -1289,7 +1295,7 @@ UnarmedAnim(MilitiaUnarmed)
 weaponAnimEnd
 
 Sentinel_Anim:
-animEntry(SentinelAxe)
+animEntry(SentinelLance)
 AxeAnim(SentinelAxe)
 HandAxeAnim(SentinelHandaxe)
 LanceAnim(SentinelLance)
@@ -1316,7 +1322,7 @@ UnarmedAnim(T1_LancerUnarmed)
 weaponAnimEnd
 
 Gladiator_Anim:
-animEntry(GladiatorAxe)
+animEntry(GladiatorSword)
 AxeAnim(GladiatorAxe)
 HandAxeAnim(GladiatorHandaxe)
 SwordAnim(GladiatorSword)
@@ -1330,17 +1336,22 @@ UnarmedAnim(HunterUnarmed)
 weaponAnimEnd
 
 Supplier_Anna_Anim:
-animEntry(SupplierAnnaBow)
+animEntry(SupplierAnnaStaff)
 BowAnim(SupplierAnnaBow)
 LanceAnim(SupplierAnnaLance)
+SwordAnim(SupplierAnnaLance)
+AxeAnim(SupplierAnnaLance)
+HandAxeAnim(SupplierAnnaLance)
 StaffAnim(SupplierAnnaStaff)
 weaponAnimEnd
 
 Merlinus_Transport_Anim:
-animEntry(Merlinus_TransportBow)
+animEntry(Merlinus_TransportStaff)
 BowAnim(Merlinus_TransportBow)
 StaffAnim(Merlinus_TransportStaff)
 SwordAnim(Merlinus_TransportSword)
+AxeAnim(Merlinus_TransportSword)
+LanceAnim(Merlinus_TransportSword)
 UnarmedAnim(Merlinus_TransportUnarmed) // This is a single frame, should use staff instead
 weaponAnimEnd
 
@@ -1453,7 +1464,7 @@ StaffAnim(Arcanist_by_NuramonStaff)
 weaponAnimEnd
 
 Halberdier_Anim:
-animEntry(HalberdierAxe)
+animEntry(HalberdierLance)
 AxeAnim(HalberdierAxe)
 HandAxeAnim(HalberdierHandaxe)
 LanceAnim(HalberdierLance)
@@ -1541,7 +1552,7 @@ StaffAnim(ParsonStaff)
 weaponAnimEnd
 
 Vanguard_Anim:
-animEntry(VanguardAxe)
+animEntry(VanguardSword)
 AxeAnim(VanguardAxe)
 HandAxeAnim(VanguardHandaxe)
 SwordAnim(VanguardSword)
@@ -1594,7 +1605,7 @@ UnarmedAnim(HarbingerUnarmed) // Actually not identical to Magic dodge, it has a
 weaponAnimEnd
 
 Heavy_Infantry_Anim:
-animEntry(Heavy_InfantryAxe)
+animEntry(Heavy_InfantryLance)
 AxeAnim(Heavy_InfantryAxe)
 HandAxeAnim(Heavy_InfantryHandaxe)
 LanceAnim(Heavy_InfantryLance)

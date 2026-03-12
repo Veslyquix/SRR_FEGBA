@@ -1421,7 +1421,8 @@ void LoopCharConfirmPage(ConfigMenuProc * proc)
         if (proc->previewId == ConfirmCommandID)
         {
             PlaySuccessSfx();
-            Proc_Goto(proc, EndLabel);
+            // Proc_Goto(proc, EndLabel);
+            Proc_Goto(proc, ConfigMenuLabel);
             return;
         }
         if (proc->previewId == RerollCommandID)
@@ -1594,14 +1595,27 @@ int DoAchievementsExist(void)
 {
     return AchievementsExist;
 }
-
+int IsAntiSoftlockAvailable(void)
+{
+    return false;
+}
+const struct ProcCmd ConfigMenuProcCmd[];
 // a switch case doesn't compile because these options are extern ints, not definitions
 int IsConfigMenuOptionAvailable(int id)
 {
     if (id == SeedOption || id == SaveOption || id == SettingsOption || id == VarianceOption || id == ItemOption ||
-        id == ReloadUnitsOption || id == DebuggerOption)
+        id == DebuggerOption)
     {
         return true;
+    }
+    else if (id == ReloadUnitsOption)
+    {
+        ConfigMenuProc * proc = Proc_Find(ConfigMenuProcCmd);
+        if (proc && proc->calledFromChapter)
+        {
+            return true;
+        }
+        return false;
     }
     else if (id == AchievementsOption || id == BgmNotifOption)
     {
@@ -1673,14 +1687,19 @@ int IsConfigMenuOptionAvailable(int id)
         return IsBonusLevelsOptionAvailable();
     }
 
-    else if (id == FogOption || id == SoftlockOption)
+    else if (id == FogOption)
     {
         return IsClutter4OptionAvailable();
     }
 
+    else if (id == SoftlockOption)
+    {
+        return IsAntiSoftlockAvailable();
+    }
+
     else if (id == SkipChOption)
     {
-        return true;
+        return false; // moved into the debugger, so unnecessary
     }
 
     else if (id == TimedHitsOption)
@@ -1906,6 +1925,7 @@ void PutBlendWindowUnitSprite(int layer, int x, int y, u16 oam2, struct Unit * u
 
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
+    int fromGameAvailable = IsFromGameOptionAvailable();
     RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
     // GetReorderedCharacter(GetCharacterData(1));
     int charID = GetReviseCharID(proc);
@@ -1946,9 +1966,12 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
         gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y), table->nameTextId, maxWidth, gold);
     TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, 2, y), 11, 0, 0x380);
     TileMap_FillRect(TILEMAP_LOCATED(gBG1TilemapBuffer, x + 13, y), 11, 0, 0x380);
-    PutDrawText(
-        gStatScreen.text + 3, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 18), green, 0, 0,
-        PutStringInBuffer((const char *)&GameText, 0));
+    if (fromGameAvailable)
+    {
+        PutDrawText(
+            gStatScreen.text + 3, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 18), green, 0, 0,
+            PutStringInBuffer((const char *)&GameText, 0));
+    }
 
     int tableID = 0;
     struct PidStatsChar * pidStats = GetPidStatsSafe(charID);
@@ -1962,9 +1985,12 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
             }
         }
     }
-    PutDrawText(
-        gStatScreen.text, TILEMAP_LOCATED(gBG0TilemapBuffer, 12, 18), green, 0, 0,
-        (void *)GetSRRText(FromGameOption, tableID));
+    if (fromGameAvailable)
+    {
+        PutDrawText(
+            gStatScreen.text, TILEMAP_LOCATED(gBG0TilemapBuffer, 12, 18), green, 0, 0,
+            (void *)GetSRRText(FromGameOption, tableID));
+    }
 
     PutDrawText(
         gStatScreen.text + 4, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y), green, 0, 0,
@@ -3011,7 +3037,14 @@ void SetNextClass(struct PidStatsChar * pidStats, int dir)
     // break;
     // }
 }
-
+int GetReviseCharNumOpts(ConfigMenuProc * proc)
+{
+    if (IsFromGameOptionAvailable())
+    {
+        return 12;
+    }
+    return 11;
+}
 void LoopReviseCharPage(ConfigMenuProc * proc)
 {
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
@@ -3067,6 +3100,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     }
 
     // int tableID = 0;
+    int numOpts = GetReviseCharNumOpts(proc);
 
     int tmp = 0;
     int changed = false;
@@ -3075,15 +3109,15 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         tmp = proc->reviseMenuId - 1;
         if (tmp < 0)
         {
-            tmp = 11;
+            tmp = numOpts - 1;
         }
-        proc->reviseMenuId = Mod(tmp, 12);
+        proc->reviseMenuId = Mod(tmp, numOpts);
         PlayScrollMenuSfx();
     }
     if (keys & DPAD_DOWN)
     {
         proc->reviseMenuId++;
-        proc->reviseMenuId = Mod(proc->reviseMenuId, 12);
+        proc->reviseMenuId = Mod(proc->reviseMenuId, numOpts);
         PlayScrollMenuSfx();
     }
 
@@ -6766,9 +6800,13 @@ int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
             result |= forcedClass;
         }
         int newCharID = pidStats->newCharID;
-        if (unit->pCharacterData->number != newCharID)
+        if (newCharID && unit->pCharacterData->number != newCharID)
         {
-            result |= newCharID;
+            if (unit->pCharacterData->nameTextId != GetCharacterData(newCharID)->nameTextId)
+            {
+                // make sure they haven't been replaced by a duplicate of themself
+                result |= newCharID;
+            }
         }
         int newTableID = pidStats->charTableID;
         result |= newTableID;
@@ -12545,6 +12583,17 @@ struct ReplaceTextStruct
     const char * find;
     const char * replace;
 };
+struct RomReplaceTextStruct
+{
+    // conditions
+    u16 flag;
+    u8 chapterID;
+    u8 pad;
+    const char * find;
+    const char * replace;
+};
+extern struct RomReplaceTextStruct PronounReplaceTextList[];
+
 int CountBWLUnits(void)
 {
     const struct CharacterData * table = GetCharacterData(1);
@@ -12914,6 +12963,8 @@ int ReplaceIfMatching(int usedBufferLength[], const char * find, const char * re
 {
     int i;
     char * buffer = &b[c];
+    if (!find[0])
+        return 0;
     for (i = 0; find[i]; ++i) // while find[i] is non-zero (eg. a character), compare
     {
         if (buffer[i] != find[i])
@@ -12995,11 +13046,10 @@ char * GetStringFromIndex(int index) // so we can set sActiveMsg as the index
 #endif
     return sMsgString;
 }
-
+extern int OnlyReplaceTextAfterControlCode;
 extern u8 TextIDExceptionTable[];
 void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800384C
 {
-
     int length[1] = { 0 };
     length[0] = DecompText(a, b);
     if (!ShouldReplaceCharacters())
@@ -13030,16 +13080,57 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
     // #endif
     // #endif
     int replacedLen = 0;
-    if (!ReplaceTextList[0].find)
-    {
-        return;
-    }
+    // if (!ReplaceTextList[0].find)
+    // {
+    // return;
+    // }
 
     for (int i = 0; i < TextBufferSize; ++i)
     {
         if (!b[i])
         {
             return;
+        }
+        if (i && b[i] != 0x5B && OnlyReplaceTextAfterControlCode && b[i - 1] > 0x20) // names are after control codes
+        {
+            continue;
+        }
+        if (b[i] == 0x5B)
+        {
+            for (int c = 0; c < ListSize; ++c)
+            {
+                if (!b[i])
+                {
+                    return;
+                }
+                if (!PronounReplaceTextList[c].find)
+                {
+                    break;
+                }
+                if (PronounReplaceTextList[c].flag)
+                {
+                    // asm("mov r11, r11");
+                    if (!CheckFlag(PronounReplaceTextList[c].flag))
+                    {
+                        continue;
+                    }
+                }
+                if (PronounReplaceTextList[c].chapterID != 0xFF)
+                {
+                    if (gCh != PronounReplaceTextList[c].chapterID)
+                    {
+                        continue;
+                    }
+                }
+
+                replacedLen =
+                    ReplaceIfMatching(length, PronounReplaceTextList[c].find, PronounReplaceTextList[c].replace, i, b);
+                if (replacedLen)
+                {
+                    i += replacedLen - 1;
+                    break;
+                }
+            }
         }
         for (int c = 0; c < ListSize; ++c)
         {
@@ -13057,7 +13148,7 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
             {
                 i += replacedLen - 1;
                 break;
-            };
+            }
         }
     }
 }
@@ -13705,6 +13796,9 @@ void SetHiddenOptionsToVanilla(ConfigMenuProc * proc)
     if (!IsClutter4OptionAvailable())
     {
         proc->Option[FogOption] = 0;
+    }
+    if (!IsAntiSoftlockAvailable())
+    {
         proc->Option[SoftlockOption] = 0;
     }
     // if (some??()) // SkipChOption
@@ -14031,7 +14125,7 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     SetDefaultTagValues();
     // proc->Option[VarianceOption] = CountOptionAmount(VarianceOption); // start on 100%
     proc->Option[AchievementsOption] = DoAchievementsExist(); // start on on
-    proc->Option[BgmNotifOption] = DoAchievementsExist();     // start on on
+    proc->Option[BgmNotifOption] = 0;                         // start off
     proc->Option[VarianceOption] = 10;                        // start on 50%
     proc->Option[PlayerRecruitmentOption] = RandomOrder;
     proc->Option[EnemyRecruitmentOption] = VanillaOrder;
@@ -14577,6 +14671,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
 }
 
 extern const char * RandomizerText;
+int GetSRRMenuColour(ConfigMenuProc * proc, int index);
 const char * GetSRRMenuText(ConfigMenuProc * proc, int index);
 void DrawSRRHeader(ConfigMenuProc * proc, int i, int offset2, int id)
 {
@@ -14584,12 +14679,7 @@ void DrawSRRHeader(ConfigMenuProc * proc, int i, int offset2, int id)
     {
         return;
     }
-    int colour = gold;
-    if ((i + offset2 == FilterCharsOption) || (i + offset2 == PreviewCharsOption) ||
-        (i + offset2 == FilterClassOption) || (i + offset2 == FilterEnemyClassOption))
-    {
-        colour = white;
-    }
+    int colour = GetSRRMenuColour(proc, id);
     struct Text * th = gStatScreen.text; // max 34 normally
     PutDrawText(
         &th[i], TILEMAP_LOCATED(gBG0TilemapBuffer, 3, 3 + ((i) * 2)), colour, 0, MaxTW,
@@ -15045,7 +15135,7 @@ extern void PrintDebugStringToBG(u16 * dest, const char * str); // 8004F70
 extern void SetupDebugFontForBG(int bg, int tileDataOffset);    // 8004EF8
 extern void StatScreen_Display(struct Proc * proc);             // 808119C
 extern void StartStatScreenHelp(int page_id, ProcPtr proc);     // 80814F4
-
+extern int VramDest_DebugFont;
 void PrintDebugNumberToBG(int bg, int x, int y, int n)
 {
     while (n != 0)
@@ -15055,6 +15145,24 @@ void PrintDebugNumberToBG(int bg, int x, int y, int n)
         n /= 10;
         PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(x, y), (char *)&c);
         x--;
+    }
+}
+void PrintDebugSeed(void)
+{
+    return;
+    if (IsAnythingRandomized())
+    {
+#ifdef FE6
+        SetupDebugFontForBG(0, 0x5400);
+#endif
+#ifdef FE7
+        SetupDebugFontForBG(0, 0x3000);
+#endif
+#ifdef FE8
+        SetupDebugFontForBG(0, VramDest_DebugFont);
+#endif
+        PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed");
+        PrintDebugNumberToBG(0, 11, 0x13, RandValues->seed);
     }
 }
 
@@ -15130,7 +15238,6 @@ void DrawGrowthWithDifference(int x, int y, int base, int modified)
     NewPutNumberBonus(diff, gUiTmScratchA + TILEMAP_INDEX(x, y), base);
 }
 
-extern int VramDest_DebugFont;
 int GetUnitCon(struct Unit * unit)
 {
     return UNIT_CON(unit);
@@ -15404,23 +15511,6 @@ void DrawBarsOrGrowths(void)
     }
     // PutDrawText(gStatScreen.text + 21,   gUiTmScratchA + TILEMAP_INDEX(1, 0x12),  white, 0, 12, "SRR v1.01
     // Seed:");
-    if (IsAnythingRandomized())
-    {
-#ifdef FE6
-        SetupDebugFontForBG(0, 0x5400);
-#endif
-#ifdef FE7
-        SetupDebugFontForBG(0, 0x3000);
-#endif
-#ifdef FE8
-        SetupDebugFontForBG(0, VramDest_DebugFont);
-#endif
-
-        PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed");
-        // PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 0x12, 0x12), white, RandValues->seed);
-        PrintDebugNumberToBG(0, 11, 0x13, RandValues->seed);
-        // PutNumberSmall(TILEMAP_LOCATED(gBG0TilemapBuffer, 13, 0x12), white, 123456);
-    }
 }
 
 #endif
@@ -16090,17 +16180,7 @@ void DrawBarsOrGrowths(void)
     //     gStatScreen.unit->state & US_RESCUING
     //         ? GetUnitMaxSpd(gStatScreen.unit)/2
     //         : GetUnitMaxSpd(gStatScreen.unit));
-    if (IsAnythingRandomized())
-    {
-#ifdef FE8
-// make a black box behind Seed
-// TileMap_FillRect(TILEMAP_LOCATED(gBG3TilemapBuffer, 0, 0x13), 11, 0, 0);
-// BG_EnableSyncByMask(BG3_SYNC_BIT);
-#endif
-        SetupDebugFontForBG(0, VramDest_DebugFont);
-        PrintDebugStringToBG(gBG0TilemapBuffer + TILEMAP_INDEX(0, 0x13), "Seed");
-        PrintDebugNumberToBG(0, 11, 0x13, RandValues->seed);
-    }
+    PrintDebugSeed();
 }
 
 extern int SS_EnableBWL;
@@ -17211,6 +17291,18 @@ int CountSRRMenuItems(ConfigMenuProc * proc)
 
 extern char blankString;
 extern int MaxRTextOptions;
+int GetSRRMenuColour(ConfigMenuProc * proc, int index)
+{
+    int result = gold;
+    index += CountSRRMenuItems(proc);
+    if ((index == FilterCharsOption) || (index == PreviewCharsOption) || (index == FilterClassOption) ||
+        (index == FilterEnemyClassOption))
+    {
+        result = white;
+    }
+    return result;
+}
+
 const char * GetSRRMenuText(ConfigMenuProc * proc, int index)
 {
     // index += proc->page * NumberOfOptions;
