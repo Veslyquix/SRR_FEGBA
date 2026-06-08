@@ -388,6 +388,7 @@ Sothis
 #ifndef _FE6_
 #define RoyMasterLord MasterLord
 #define Mamkute_F Manakete_2_F
+#define King LegionKing 
 #endif 
 
 #ifdef _FE6_ 
@@ -444,7 +445,7 @@ Sothis
 #define Peer_F Paladin_F
 #define Transporter Storage
 #define Archsage Sage
-// #define FireDragon Mamkute 
+// #define FireDragon Mamkute_F 
 #endif 
 
 
@@ -688,6 +689,8 @@ Sothis
 
 // fe13 
 #ifndef _FE7_ 
+#define DarkDruid Druid 
+
 #define Tactician Mage 
 #endif 
 #ifdef _FE8_

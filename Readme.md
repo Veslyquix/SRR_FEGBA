@@ -18,13 +18,6 @@ Norikins, Mimikyudis, GeorgeCalibur, Eden, AthenaBaer
 Circles for the 2018 FE8 Self Randomizer as a reference.   
 FE8U Decomp Contributors, as many functions were copied from the decomp.   
 Gringe: FE6 translation used with permission (FE6 only).   
-
-
-Character Palettes:  
--  
-chaotix27  
-Norikins  
-  
    
 Patches:   
 -   
@@ -653,6 +646,7 @@ Elbert minimug by Levin64
 Durban minimug by redlightning  
 Bramimond minimug by Levin64  
 Roland minimug by redlightning  
+Fire Dragon portrait by Fenriel   
   
 // fe8  
 Dara minimug by topazlight  

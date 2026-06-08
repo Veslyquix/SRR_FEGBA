@@ -1000,11 +1000,13 @@ MugEntry(CameronMug, CameronMugData, CameronMinimugData, CameronFramesData, Came
 MugEntry(CarjigaMug, CarjigaMugData, CarjigaMinimugData, CarjigaFramesData, CarjigaPaletteData,  2, 5, 3, 3)
 MugEntry(DamianMug, DamianMugData, DamianMinimugData, DamianFramesData, DamianPaletteData,  2, 4, 2, 2)
 MugEntry(DarinMug, DarinMugData, DarinMinimugData, DarinFramesData, DarinPaletteData,  2, 5, 3, 3)
+MugEntry(DenningMug, DenningMugData, DenningMinimugData, DenningFramesData, DenningPaletteData,  3, 5, 3, 3)
 MugEntry(DurbanMug, DurbanMugData, DurbanMinimugData, DurbanFramesData, DurbanPaletteData,  2, 5, 3, 3)
 MugEntry(EaglerMug, EaglerMugData, EaglerMinimugData, EaglerFramesData, EaglerPaletteData,  2, 5, 3, 3)
 MugEntry(EphidelMug, EphidelMugData, EphidelMinimugData, EphidelFramesData, EphidelPaletteData,  2, 5, 3, 3)
 MugEntry(ErikFE7BossMug, ErikFE7BossMugData, ErikFE7BossMinimugData, ErikFE7BossFramesData, ErikFE7BossPaletteData,  2, 5, 2, 3)
 MugEntry(EubansMug, EubansMugData, EubansMinimugData, EubansFramesData, EubansPaletteData,  2, 5, 3, 3)
+MugEntry(FireDragonMug, FireDragonMugData, FireDragonMinimugData, FireDragonFramesData, FireDragonPaletteData,  4, 7, 4, 5)
 MugEntry(GeorgMug, GeorgMugData, GeorgMinimugData, GeorgFramesData, GeorgPaletteData,  3, 5, 3, 3)
 MugEntry(GlassMug, GlassMugData, GlassMinimugData, GlassFramesData, GlassPaletteData,  2, 5, 3, 3)
 MugEntry(GroznyiMug, GroznyiMugData, GroznyiMinimugData, GroznyiFramesData, GroznyiPaletteData,  2, 5, 3, 2)
@@ -12213,6 +12215,17 @@ DarinMinimugData:
 #incbin "png/FE7_Bosses/Darin_minimug.dmp"
 
 ALIGN 4
+DenningMugData:
+#incbin "png/FE7_Bosses/Denning_mug.dmp"
+ALIGN 4
+DenningFramesData:
+#incbin "png/FE7_Bosses/Denning_frames.dmp"
+DenningPaletteData:
+#incbin "png/FE7_Bosses/Denning_palette.dmp"
+DenningMinimugData:
+#incbin "png/FE7_Bosses/Denning_minimug.dmp"
+
+ALIGN 4
 DurbanMugData:
 #incbin "png/FE7_Bosses/Durban_redlightning_mug.dmp"
 ALIGN 4
@@ -12266,6 +12279,17 @@ EubansPaletteData:
 #incbin "png/FE7_Bosses/Eubans_palette.dmp"
 EubansMinimugData:
 #incbin "png/FE7_Bosses/Eubans_minimug.dmp"
+
+ALIGN 4
+FireDragonMugData:
+#incbin "png/FE7_Bosses/FireDragon_Fenriel_mug.dmp"
+ALIGN 4
+FireDragonFramesData:
+#incbin "png/FE7_Bosses/FireDragon_Fenriel_frames.dmp"
+FireDragonPaletteData:
+#incbin "png/FE7_Bosses/FireDragon_Fenriel_palette.dmp"
+FireDragonMinimugData:
+#incbin "png/FE7_Bosses/FireDragon_Fenriel_minimug.dmp"
 
 ALIGN 4
 GeorgMugData:

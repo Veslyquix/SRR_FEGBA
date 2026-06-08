@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.1.0"
+#define VersionNumber " SRR V2.1.1"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -727,10 +727,10 @@ const struct FE8CharacterData
 #endif
             gCharacterDataFE1_Bosses,  gCharacterDataFE4_Bosses,  gCharacterDataFE5_Bosses,
 #ifdef FE8
-            gCharacterDataPlaceholder, gCharacterDataFE7_Bosses, // fe6 / 7
+            gCharacterDataFE6_Bosses,  gCharacterDataFE7_Bosses,
 #endif
 #ifdef FE7
-            gCharacterDataPlaceholder, gCharacterDataFE8_Bosses,
+            gCharacterDataFE6_Bosses,  gCharacterDataFE8_Bosses,
 #endif
 #ifdef FE6
             gCharacterDataFE7_Bosses,  gCharacterDataFE8_Bosses,
