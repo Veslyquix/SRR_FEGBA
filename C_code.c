@@ -13091,11 +13091,11 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
         {
             return;
         }
-        if (i && b[i] != 0x5B && OnlyReplaceTextAfterControlCode && b[i - 1] > 0x20) // names are after control codes
+        if (i && b[i] != 0x3C && OnlyReplaceTextAfterControlCode && b[i - 1] > 0x20) // names are after control codes
         {
             continue;
         }
-        if (b[i] == 0x5B)
+        if (b[i] == 0x3C)
         {
             for (int c = 0; c < ListSize; ++c)
             {
