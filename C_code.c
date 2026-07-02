@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.1.1"
+#define VersionNumber " SRR V2.1.2"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -13250,14 +13250,14 @@ void DrawSRRText(ConfigMenuProc * proc, int i, int offset, int id)
     // }
     // }
 
-    if (i + offset == SeedOption)
+    if (id == SeedOption)
     {
         TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 7, Y_HAND), 9, 2, 0); // seed first
         PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 1, 3 + ((i) * 2)), white, proc->seed);
         return;
     }
 #ifdef FE8
-    if (i + offset == SkillsOption)
+    if (id == SkillsOption)
     {
         if (DisplayRandomSkillsOption)
         {
