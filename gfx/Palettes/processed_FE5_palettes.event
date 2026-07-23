@@ -400,6 +400,17 @@ palEntry(Ced, Sage, CedPal_Sage)
 #ifdef _FE8_
 palEntry(Ced, MageKnight, CedPal_MageKnight_FE8)
 #endif
+palEntry(Galzus, Mercenary2, GalzusPal_Mercenary2)
+#ifdef _FE6_
+palEntry(Galzus, Mercenary, GalzusPal_Mercenary_FE6)
+#endif
+#ifndef _FE6_
+palEntry(Galzus, Mercenary, GalzusPal_Mercenary_FE7FE8)
+#endif
+palEntry(Galzus, Hero, GalzusPal_Hero)
+#ifdef _FE8_
+palEntry(Galzus, Ranger, GalzusPal_Ranger_FE8)
+#endif
 palEntry(0, 0, 0)
 
 LeifPal_LeifLord:
@@ -1177,3 +1188,23 @@ BYTE $2B $72 $A8 $55 $25 $39 $FF $7B $DE $77 $F7 $5A $EF $39 $A5 $14
 CedPal_MageKnight_FE8:
 BYTE $00 $7E $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $C8 $3E $E5 $29
 BYTE $2B $72 $A8 $55 $DE $77 $F7 $5A $DE $77 $F7 $5A $EF $39 $A5 $14
+
+GalzusPal_Mercenary2:
+BYTE $12 $4B $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $55 $42 $D0 $31
+BYTE $2B $21 $98 $77 $2D $56 $69 $3D $10 $3A $8C $2D $08 $1D $A5 $14
+
+GalzusPal_Mercenary_FE6:
+BYTE $55 $53 $FF $7F $08 $1D $8C $2D $4E $5A $98 $77 $55 $42 $D0 $31
+BYTE $F3 $6E $10 $3A $FF $6B $9E $4B $4F $19 $9C $42 $2B $21 $A5 $14
+
+GalzusPal_Mercenary_FE7FE8:
+BYTE $00 $7E $FF $7F $4E $19 $8C $2D $0C $52 $98 $77 $55 $42 $D0 $31
+BYTE $F3 $6E $10 $3A $DF $5F $D6 $21 $2B $21 $1F $4B $08 $1D $A5 $14
+
+GalzusPal_Hero:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $1D $55 $42 $D0 $31 $2B $21
+BYTE $98 $77 $F3 $6E $4E $5A $10 $3A $8C $2D $08 $1D $37 $2E $A5 $14
+
+GalzusPal_Ranger_FE8:
+BYTE $55 $53 $FF $7F $FF $4B $BD $2E $F4 $1D $53 $10 $55 $42 $8E $2D
+BYTE $10 $3A $8C $2D $08 $1D $84 $10 $FC $22 $7C $18 $2D $11 $A5 $14
