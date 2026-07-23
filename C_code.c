@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.1.2"
+#define VersionNumber " SRR V2.1.3"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -6677,7 +6677,7 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
     {
         return NULL;
     }
-
+    // int timeToBreak = false;
     int classID = unit->pClassData->number;
     while (entry->charID)
     {
@@ -6693,9 +6693,12 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
                 if (entry->classID[i] == classID)
                 {
                     pal = entry->pal[i];
+
                     break;
                 }
             }
+            break; // stop looking once the valid entry is found
+            // (otherwise entry keeps being updated, and pal becomes wrong)
         }
         entry++;
     }

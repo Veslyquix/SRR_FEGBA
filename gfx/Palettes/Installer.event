@@ -21,9 +21,9 @@ POIN processed_FE2_15_palettes
 POIN processed_FE16_palettes 
 POIN processed_FE17_palettes 
 POIN 0 // Vanilla bosses 
-POIN Pal_FE1_Bosses 
-POIN Pal_FE4_Bosses 
-POIN Pal_FE5_Bosses 
+POIN processed_FE6_boss_palettes 
+POIN processed_FE4_boss_palettes 
+POIN processed_FE6_boss_palettes 
 #ifndef _FE6_ 
 POIN processed_FE6_boss_palettes 
 #endif 
@@ -36,21 +36,16 @@ POIN processed_FE8_boss_palettes
 POIN Pal_FE10_Bosses 
 POIN Pal_FE13_Bosses
 POIN Pal_FE14_Bosses 
-POIN Pal_FE15_Bosses 
+POIN processed_FE2_boss_palettes 
 POIN Pal_FE16_Bosses 
 POIN Pal_FE17_Bosses 
 POIN 0 
 
 
 // nothing for all of these that are uncommented 
-// Pal_FE1: // we have this one 
-Pal_FE1_Bosses: 
-Pal_FE4_Bosses: 
-Pal_FE5_Bosses: 
 Pal_FE10_Bosses: 
 Pal_FE13_Bosses:
 Pal_FE14_Bosses: 
-Pal_FE15_Bosses: 
 Pal_FE16_Bosses: 
 Pal_FE17_Bosses: 
 WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator 
@@ -85,6 +80,10 @@ WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator
 #include "FE16_defs.event" 
 #include "FE17_defs.event" 
 
+#include "FE1_boss_defs.event"
+#include "FE2_boss_defs.event"
+#include "FE4_boss_defs.event"
+#include "FE5_boss_defs.event"
 #include "FE6_boss_defs.event"
 
 #ifndef _FE7_ 

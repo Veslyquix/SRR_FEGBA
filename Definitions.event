@@ -385,6 +385,11 @@ Sothis
 #define LightningAffinity 2 // ThunderAffinity
 
 
+
+
+
+
+
 #ifndef _FE6_
 #define RoyMasterLord MasterLord
 #define Mamkute_F Manakete_2_F
@@ -439,6 +444,7 @@ Sothis
 #define GreatLord Knight
 #define Manakete Mamkute 
 #define Manakete_2_F Mamkute_F
+#define Manakete_2_FTransformed Manakete_2_F
 #define Manakete_F Mamkute_F
 #define Manakete_2 Mamkute 
 #define Necromancer DarkPrince 
@@ -458,6 +464,8 @@ Sothis
 #define Priest Parson
 #define Manakete FireDragon 
 #define Manakete_2_F FireDragon
+#define Manakete_2_FTransformed FireDragon
+
 // #define EphraimLord EliwoodLord
 // #define EirikaLord LynLord
 #define WyvernRider WyvernKnight
@@ -478,6 +486,8 @@ Sothis
 #ifdef _FE8_ 
 #define Dracoknight WyvernKnight 
 #define Manakete_F Manakete_2_F 
+#define Manakete_2_FTransformed Manakete_2_F 
+
 #define FireDragon Manakete_2_F 
 #define Nomad Hunter 
 #define Nomad_F Hunter 
