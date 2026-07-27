@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.1.3"
+#define VersionNumber " SRR V2.1.4"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -6673,34 +6673,43 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
     }
     const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
     const u16 * pal = NULL;
+    const u16 * jankyPal = NULL;
     if (!entry) // no pointer
     {
         return NULL;
     }
     // int timeToBreak = false;
     int classID = unit->pClassData->number;
+    int shouldBreak = false;
     while (entry->charID)
     {
         if (entry->charID == charID)
         {
-            if (RandBitflags->colours == 2)
+            if (RandBitflags->colours == 2 && !jankyPal)
             {
-                pal =
+                jankyPal =
                     entry->pal[0]; // default if none found, but only used if non-vanilla colours (eg. Janky) is chosen
+                // shouldBreak = true;
             }
             for (int i = 0; i < NumOfCharPals; ++i)
             {
                 if (entry->classID[i] == classID)
                 {
                     pal = entry->pal[i];
+                    shouldBreak = true;
 
                     break;
                 }
             }
-            break; // stop looking once the valid entry is found
+            if (shouldBreak)
+                break; // stop looking once the valid entry is found
             // (otherwise entry keeps being updated, and pal becomes wrong)
         }
         entry++;
+    }
+    if (!pal)
+    {
+        pal = jankyPal;
     }
     if (pal)
     {
@@ -14148,7 +14157,7 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     proc->Option[MusicOption] = 1;       // Random BGM
     proc->Option[BattleBGMOption] = 0;   // Separate battle BGM
     proc->Option[PortraitsOption] = 0;   // Random portrait colours off by default now
-    proc->Option[ColoursOption] = 0;     // Random Colours off by default now
+    proc->Option[ColoursOption] = 2;     // Custom palettes for every character by default
     proc->skill = GetNextAlwaysSkill(0);
     proc->Option[UiOption] = 0;       // ui default: vanilla style
     proc->Option[DebuggerOption] = 1; // debugger
