@@ -13046,7 +13046,58 @@ int DecompText(const char * a, char * b)
     }
     return length;
 }
+static int ShouldCheckReplaceAt(const char * b, int i)
+{
+    u8 ch = b[i];
 
+    if (i > 0)
+    {
+        u8 prev = b[i - 1];
+
+        if (prev < 0x20) // not multibyte & some control code
+        {
+            return 1;
+        }
+    }
+
+#ifdef FE6
+    u8 next = b[i + 1];
+
+    if (ch == 0x83)
+    {
+        return next == 0x43; // FE6 "<"
+    }
+
+    if (i > 1)
+    {
+        u8 prev0 = b[i - 2];
+        u8 prev1 = b[i - 1];
+
+        if (prev0 == 0x81 && prev1 == 0x80)
+        {
+            return 1; // FE6 space
+        }
+
+        if (prev0 == 0x82 && (prev1 == 0xB6 || prev1 == 0xB8))
+        {
+            return 1; // FE6 alternate space entries
+        }
+
+        if (prev0 == 0x83 && prev1 == 0x47)
+        {
+            return 1; // after FE6 ">"
+        }
+    }
+    return false;
+#else
+    if (i > 0 && (b[i - 1] == ' ' || b[i - 1] == '>'))
+    {
+        return 1;
+    }
+
+    return ch == '<' || ch == '>';
+#endif
+}
 char * GetStringFromIndex(int index) // so we can set sActiveMsg as the index
 {
     // if (index == sActiveMsg)
@@ -13103,11 +13154,16 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
         {
             return;
         }
-        if (i && b[i] != 0x3C && OnlyReplaceTextAfterControlCode && b[i - 1] > 0x20) // names are after control codes
+        if (i && OnlyReplaceTextAfterControlCode && !ShouldCheckReplaceAt(b, i)) // names are after control codes
         {
             continue;
         }
-        if (b[i] == 0x3C)
+#ifdef FE6
+        if (b[i] == 0x83 && b[i + 1] == 0x43) // fe6 <
+#else
+        if (b[i] == 0x3C) // fe7/fe8 <
+#endif
+
         {
             for (int c = 0; c < ListSize; ++c)
             {
@@ -13121,7 +13177,6 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
                 }
                 if (PronounReplaceTextList[c].flag)
                 {
-                    // asm("mov r11, r11");
                     if (!CheckFlag(PronounReplaceTextList[c].flag))
                     {
                         continue;

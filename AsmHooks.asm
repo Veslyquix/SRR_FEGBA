@@ -1,5 +1,9 @@
 .thumb 
-
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
 
 @.global __aeabi_idivmod
 @.type __aeabi_idivmod, %function 
@@ -705,8 +709,8 @@ BreakWithValue:
 mov r11, r11 
 bx lr 
 
-.global CallEndEvent_FE6
-.type CallEndEvent_FE6, %function 
+@.global CallEndEvent_FE6
+@.type CallEndEvent_FE6, %function 
 CallEndEvent_FE6:
 push {lr} 
 mov r0, #0xE 
