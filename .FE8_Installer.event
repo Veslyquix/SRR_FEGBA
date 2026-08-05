@@ -78,6 +78,9 @@
 
 #ifdef VeslyBuildfile 
 // #define INCLUDE_ACHIEVEMENTS 
+#ifdef _FE8_ 
+#define GetBGMTrack GetBGMTrack // this is so random BGM and debugger bgm override can peacefully coexist 
+#endif 
 #endif 
 
 #inctext DateTimeSetter

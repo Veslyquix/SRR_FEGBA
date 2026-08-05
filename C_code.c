@@ -6025,11 +6025,13 @@ extern void StartBgm(int songId, struct Proc * proc);
 extern int GetCurrentBgmSong(void);
 extern void Sound_FadeOutBGM(int speed);
 extern void StartBgmExt(int songId, int speed, struct Proc * proc);
-void StartMapSongBgm(void)
+#ifndef FE8
+void StartMapSongBgm(void)      // fe8 is now in debugger
 {                               // 8015F84, 80163E4
     StartBgm(GetBGMTrack(), 0); // 8003890, 8003210
     return;
 }
+#endif
 struct PhaseIntroSubProc
 {
     PROC_HEADER;
@@ -6041,6 +6043,7 @@ extern u8 gSfx;
 #define PlaySoundEffect(id)                                                                                            \
     if (!(gSfx & 0x2))                                                                                                 \
     m4aSongNumStart((id)) // 80BE594, 809C860
+#ifndef FE8               // now in debugger
 void PhaseIntroInitText(struct PhaseIntroSubProc * proc)
 {
     if (GetCurrentBgmSong() != GetBGMTrack()) // 80034DC, 8002F68
@@ -6058,7 +6061,9 @@ void PhaseIntroInitText(struct PhaseIntroSubProc * proc)
 
     proc->timer = 15;
 }
+#endif
 //! FE8U = 0x080328B0
+#ifndef FE8 // // fe8 is now in debugger
 void sub_80328B0(void)
 {
     int bgmIdx = GetBGMTrack();
@@ -6070,6 +6075,7 @@ void sub_80328B0(void)
 
     return;
 }
+#endif
 extern unsigned GetGameClock(void); // 8000F14
 extern u16 const gObject_8x8[];     // 85c39A0 8B905B0
 
