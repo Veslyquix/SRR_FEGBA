@@ -1,0 +1,936 @@
+palEntry(Garrick, Brigand, GarrickPal_Brigand)
+palEntry(Garrick, Warrior, GarrickPal_Warrior)
+palEntry(Garrick, Berserker, GarrickPal_Berserker)
+palEntry(Raimi, Knight_F, RaimiPal_Knight_F)
+palEntry(Raimi, General_F, RaimiPal_General_F)
+#ifdef _FE8_
+palEntry(Raimi, GreatKnight_F, RaimiPal_GreatKnight_F_FE8)
+#endif
+palEntry(MarthLucina, MarthLord, MarthLucinaPal_MarthLord)
+#ifdef _FE6_
+palEntry(MarthLucina, Mercenary, MarthLucinaPal_Mercenary_FE6)
+#endif
+#ifndef _FE6_
+palEntry(MarthLucina, Mercenary_F, MarthLucinaPal_Mercenary_F_FE7FE8)
+#endif
+palEntry(MarthLucina, Hero_F, MarthLucinaPal_Hero_F)
+#ifdef _FE8_
+palEntry(MarthLucina, Ranger_F, MarthLucinaPal_Ranger_F_FE8)
+#endif
+palEntry(MarthLucina, Myrmidon, MarthLucinaPal_Myrmidon)
+#ifndef _FE6_
+palEntry(MarthLucina, Assassin, MarthLucinaPal_Assassin_FE7FE8)
+#endif
+palEntry(MarthLucina, Swordmaster, MarthLucinaPal_Swordmaster)
+palEntry(Orton, WyvernRider, OrtonPal_WyvernRider)
+palEntry(Orton, WyvernLord, OrtonPal_WyvernLord)
+#ifdef _FE8_
+palEntry(Orton, WyvernKnight, OrtonPal_WyvernKnight_FE8)
+#endif
+palEntry(Vasto, WyvernRider, VastoPal_WyvernRider)
+palEntry(Vasto, WyvernLord, VastoPal_WyvernLord)
+#ifdef _FE8_
+palEntry(Vasto, WyvernKnight, VastoPal_WyvernKnight_FE8)
+#endif
+palEntry(Chalard, Shaman, ChalardPal_Shaman)
+palEntry(Chalard, Druid, ChalardPal_Druid)
+#ifdef _FE8_
+palEntry(Chalard, Summoner, ChalardPal_Summoner_FE8)
+#endif
+palEntry(Roddick, Brigand, RoddickPal_Brigand)
+palEntry(Roddick, Warrior, RoddickPal_Warrior)
+palEntry(Roddick, Berserker, RoddickPal_Berserker)
+palEntry(Campari, Knight, CampariPal_Knight)
+palEntry(Campari, General, CampariPal_General)
+#ifdef _FE8_
+palEntry(Campari, GreatKnight, CampariPal_GreatKnight_FE8)
+#endif
+palEntry(Mustafa, Brigand, MustafaPal_Brigand)
+palEntry(Mustafa, Warrior, MustafaPal_Warrior)
+palEntry(Mustafa, Berserker, MustafaPal_Berserker)
+palEntry(Dalton, Cavalier, DaltonPal_Cavalier)
+palEntry(Dalton, Paladin, DaltonPal_Paladin)
+#ifdef _FE8_
+palEntry(Dalton, GreatKnight, DaltonPal_GreatKnight_FE8)
+#endif
+palEntry(IgnatiusFE13, Knight, IgnatiusFE13Pal_Knight)
+palEntry(IgnatiusFE13, General, IgnatiusFE13Pal_General)
+#ifdef _FE8_
+palEntry(IgnatiusFE13, GreatKnight, IgnatiusFE13Pal_GreatKnight_FE8)
+#endif
+#ifdef _FE6_
+palEntry(Farber, Mage, FarberPal_Mage_FE6)
+#endif
+#ifndef _FE6_
+palEntry(Farber, Mage, FarberPal_Mage_FE7FE8)
+#endif
+palEntry(Farber, Sage, FarberPal_Sage)
+#ifdef _FE8_
+palEntry(Farber, MageKnight, FarberPal_MageKnight_FE8)
+#endif
+palEntry(Cervantes, Knight, CervantesPal_Knight)
+palEntry(Cervantes, General, CervantesPal_General)
+#ifdef _FE8_
+palEntry(Cervantes, GreatKnight, CervantesPal_GreatKnight_FE8)
+#endif
+#ifndef _FE7_
+palEntry(Pheros, Troubadour, PherosPal_Troubadour_FE6FE8)
+#endif
+#ifdef _FE7_
+palEntry(Pheros, Troubadour, PherosPal_Troubadour_FE7)
+#endif
+palEntry(Pheros, Valkyrie, PherosPal_Valkyrie)
+#ifdef _FE8_
+palEntry(Pheros, MageKnight_F, PherosPal_MageKnight_F_FE8)
+#endif
+#ifdef _FE6_
+palEntry(Excellus, Mage, ExcellusPal_Mage_FE6)
+#endif
+#ifndef _FE6_
+palEntry(Excellus, Mage, ExcellusPal_Mage_FE7FE8)
+#endif
+palEntry(Excellus, Sage, ExcellusPal_Sage)
+#ifdef _FE8_
+palEntry(Excellus, MageKnight, ExcellusPal_MageKnight_FE8)
+#endif
+palEntry(Algol, Brigand, AlgolPal_Brigand)
+palEntry(Algol, Warrior, AlgolPal_Warrior)
+palEntry(Algol, Berserker, AlgolPal_Berserker)
+palEntry(Victor, Brigand, VictorPal_Brigand)
+palEntry(Victor, Warrior, VictorPal_Warrior)
+palEntry(Victor, Berserker, VictorPal_Berserker)
+palEntry(Vincent, Brigand, VincentPal_Brigand)
+palEntry(Vincent, Warrior, VincentPal_Warrior)
+palEntry(Vincent, Berserker, VincentPal_Berserker)
+#ifdef _FE6_
+palEntry(Gecko, Thief, GeckoPal_Thief_FE6)
+#endif
+#ifndef _FE6_
+palEntry(Gecko, Thief, GeckoPal_Thief_FE7FE8)
+#endif
+#ifndef _FE6_
+palEntry(Gecko, Assassin, GeckoPal_Assassin_FE7FE8)
+#endif
+#ifdef _FE8_
+palEntry(Gecko, Rogue, GeckoPal_Rogue_FE8)
+#endif
+#ifdef _FE6_
+palEntry(JamilFE13, Thief, JamilFE13Pal_Thief_FE6)
+#endif
+#ifndef _FE6_
+palEntry(JamilFE13, Thief, JamilFE13Pal_Thief_FE7FE8)
+#endif
+#ifndef _FE6_
+palEntry(JamilFE13, Assassin, JamilFE13Pal_Assassin_FE7FE8)
+#endif
+#ifdef _FE8_
+palEntry(JamilFE13, Rogue, JamilFE13Pal_Rogue_FE8)
+#endif
+#ifdef _FE6_
+palEntry(Xalbador, Mercenary, XalbadorPal_Mercenary_FE6)
+#endif
+#ifndef _FE6_
+palEntry(Xalbador, Mercenary, XalbadorPal_Mercenary_FE7FE8)
+#endif
+palEntry(Xalbador, Hero, XalbadorPal_Hero)
+#ifdef _FE8_
+palEntry(Xalbador, Ranger, XalbadorPal_Ranger_FE8)
+#endif
+palEntry(Cassius, Shaman, CassiusPal_Shaman)
+palEntry(Cassius, Druid, CassiusPal_Druid)
+#ifdef _FE8_
+palEntry(Cassius, Summoner, CassiusPal_Summoner_FE8)
+#endif
+palEntry(Ruger, Tactician2, RugerPal_Tactician2)
+palEntry(Ruger, RedMage2, RugerPal_RedMage2)
+#ifdef _FE6_
+palEntry(Ruger, Thief, RugerPal_Thief_FE6)
+#endif
+#ifndef _FE6_
+palEntry(Ruger, Thief, RugerPal_Thief_FE7FE8)
+#endif
+#ifndef _FE6_
+palEntry(Ruger, Assassin, RugerPal_Assassin_FE7FE8)
+#endif
+#ifdef _FE8_
+palEntry(Ruger, Rogue, RugerPal_Rogue_FE8)
+#endif
+#ifdef _FE6_
+palEntry(Nelson, Mage, NelsonPal_Mage_FE6)
+#endif
+#ifndef _FE6_
+palEntry(Nelson, Mage, NelsonPal_Mage_FE7FE8)
+#endif
+palEntry(Nelson, Sage, NelsonPal_Sage)
+#ifdef _FE8_
+palEntry(Nelson, MageKnight, NelsonPal_MageKnight_FE8)
+#endif
+palEntry(Morristan, Brigand, MorristanPal_Brigand)
+palEntry(Morristan, Warrior, MorristanPal_Warrior)
+palEntry(Morristan, Berserker, MorristanPal_Berserker)
+palEntry(Gyral, Knight, GyralPal_Knight)
+palEntry(Gyral, General, GyralPal_General)
+#ifdef _FE8_
+palEntry(Gyral, GreatKnight, GyralPal_GreatKnight_FE8)
+#endif
+palEntry(Dalen, Cavalier, DalenPal_Cavalier)
+palEntry(Dalen, Paladin, DalenPal_Paladin)
+#ifdef _FE8_
+palEntry(Dalen, GreatKnight, DalenPal_GreatKnight_FE8)
+#endif
+palEntry(Nombry, Fighter, NombryPal_Fighter)
+palEntry(Nombry, Hero, NombryPal_Hero)
+palEntry(Nombry, Warrior, NombryPal_Warrior)
+#ifndef _FE8_
+palEntry(Ezra, Nomad, EzraPal_Nomad_FE6FE7)
+#endif
+#ifndef _FE8_
+palEntry(Ezra, NomadTrooper, EzraPal_NomadTrooper_FE6FE7)
+#endif
+palEntry(Ezra, Archer, EzraPal_Archer)
+palEntry(Ezra, Sniper, EzraPal_Sniper)
+#ifdef _FE8_
+palEntry(Ezra, Ranger, EzraPal_Ranger_FE8)
+#endif
+palEntry(Zanth, Pirate, ZanthPal_Pirate)
+palEntry(Zanth, Warrior, ZanthPal_Warrior)
+palEntry(Zanth, Berserker, ZanthPal_Berserker)
+palEntry(Ardri, Cantor, ArdriPal_Cantor)
+palEntry(Ardri, Cantor2, ArdriPal_Cantor2)
+#ifdef _FE8_
+palEntry(Ardri, Necromancer, ArdriPal_Necromancer_FE8)
+#endif
+#ifdef _FE7_
+palEntry(Ardri, DarkDruid, ArdriPal_DarkDruid_FE7)
+#endif
+palEntry(Ardri, Shaman, ArdriPal_Shaman)
+palEntry(Ardri, Druid, ArdriPal_Druid)
+#ifdef _FE8_
+palEntry(Ardri, Summoner, ArdriPal_Summoner_FE8)
+#endif
+palEntry(Mus, Knight, MusPal_Knight)
+palEntry(Mus, General, MusPal_General)
+#ifdef _FE8_
+palEntry(Mus, GreatKnight, MusPal_GreatKnight_FE8)
+#endif
+#ifndef _FE8_
+palEntry(Bovis, Nomad, BovisPal_Nomad_FE6FE7)
+#endif
+#ifndef _FE8_
+palEntry(Bovis, NomadTrooper, BovisPal_NomadTrooper_FE6FE7)
+#endif
+palEntry(Bovis, Archer, BovisPal_Archer)
+palEntry(Bovis, Sniper, BovisPal_Sniper)
+#ifdef _FE8_
+palEntry(Bovis, Ranger, BovisPal_Ranger_FE8)
+#endif
+palEntry(Tigris, Fighter, TigrisPal_Fighter)
+palEntry(Tigris, Hero, TigrisPal_Hero)
+palEntry(Tigris, Warrior, TigrisPal_Warrior)
+palEntry(Draco, Archer_F, DracoPal_Archer_F)
+palEntry(Draco, Sniper_F, DracoPal_Sniper_F)
+#ifdef _FE8_
+palEntry(Draco, Ranger_F, DracoPal_Ranger_F_FE8)
+#endif
+#ifdef _FE6_
+palEntry(Porcus, Thief, PorcusPal_Thief_FE6)
+#endif
+#ifndef _FE6_
+palEntry(Porcus, Thief, PorcusPal_Thief_FE7FE8)
+#endif
+#ifndef _FE6_
+palEntry(Porcus, Assassin, PorcusPal_Assassin_FE7FE8)
+#endif
+#ifdef _FE8_
+palEntry(Porcus, Rogue, PorcusPal_Rogue_FE8)
+#endif
+palEntry(AnnaApotheosis, Militia, AnnaApotheosisPal_Militia)
+palEntry(AnnaApotheosis, Dragoon, AnnaApotheosisPal_Dragoon)
+palEntry(AnnaApotheosis, Knight_F, AnnaApotheosisPal_Knight_F)
+palEntry(AnnaApotheosis, General_F, AnnaApotheosisPal_General_F)
+#ifdef _FE8_
+palEntry(AnnaApotheosis, GreatKnight_F, AnnaApotheosisPal_GreatKnight_F_FE8)
+#endif
+palEntry(RisenChief, Gladiator, RisenChiefPal_Gladiator)
+palEntry(RisenChief, Harbinger, RisenChiefPal_Harbinger)
+palEntry(RisenChief, Knight, RisenChiefPal_Knight)
+palEntry(RisenChief, General, RisenChiefPal_General)
+#ifdef _FE8_
+palEntry(RisenChief, GreatKnight, RisenChiefPal_GreatKnight_FE8)
+#endif
+palEntry(Validar, Cantor, ValidarPal_Cantor)
+palEntry(Validar, Cantor2, ValidarPal_Cantor2)
+#ifdef _FE8_
+palEntry(Validar, Necromancer, ValidarPal_Necromancer_FE8)
+#endif
+#ifdef _FE7_
+palEntry(Validar, DarkDruid, ValidarPal_DarkDruid_FE7)
+#endif
+palEntry(Validar, Shaman, ValidarPal_Shaman)
+palEntry(Validar, Druid, ValidarPal_Druid)
+#ifdef _FE8_
+palEntry(Validar, Summoner, ValidarPal_Summoner_FE8)
+#endif
+palEntry(Grima, BlackDragon, GrimaPal_BlackDragon)
+#ifdef _FE6_
+palEntry(Grima, Mamkute, GrimaPal_Mamkute_FE6)
+#endif
+#ifdef _FE6_
+palEntry(Grima, FireDragon, GrimaPal_FireDragon_FE6)
+#endif
+#ifdef _FE7_
+palEntry(Grima, FireDragon, GrimaPal_FireDragon_FE7)
+#endif
+#ifdef _FE8_
+palEntry(Grima, Manakete_2_F, GrimaPal_Manakete_2_F_FE8)
+#endif
+palEntry(GrimaF, BlackDragon, GrimaFPal_BlackDragon)
+#ifdef _FE6_
+palEntry(GrimaF, Mamkute, GrimaFPal_Mamkute_FE6)
+#endif
+#ifdef _FE6_
+palEntry(GrimaF, FireDragon, GrimaFPal_FireDragon_FE6)
+#endif
+#ifdef _FE7_
+palEntry(GrimaF, FireDragon, GrimaFPal_FireDragon_FE7)
+#endif
+#ifdef _FE8_
+palEntry(GrimaF, Manakete_2_F, GrimaFPal_Manakete_2_F_FE8)
+#endif
+palEntry(0, 0, 0)
+
+GarrickPal_Brigand:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $5A $32 $D6 $21 $5C $3A $93 $25
+BYTE $B9 $7B $14 $73 $6F $5E $2E $19 $7E $35 $17 $29 $AF $1C $A5 $14
+
+GarrickPal_Warrior:
+BYTE $00 $7E $FF $7F $FF $6B $FF $46 $5A $32 $D6 $21 $2E $19 $DE $42
+BYTE $98 $7F $D1 $66 $0C $52 $F4 $2D $7E $35 $F4 $24 $8A $14 $A5 $14
+
+GarrickPal_Berserker:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $39 $2E $B5 $1D $2E $19 $F6 $5A
+BYTE $DE $42 $37 $32 $6F $21 $FF $07 $7E $35 $17 $29 $AF $1C $A5 $14
+
+RaimiPal_Knight_F:
+BYTE $00 $7E $C6 $14 $8B $29 $F1 $39 $50 $3E $D9 $52 $F5 $52 $E5 $17
+BYTE $35 $57 $BF $6F $98 $46 $4C $25 $F2 $35 $DE $7B $FE $7B $A5 $14
+
+RaimiPal_General_F:
+BYTE $00 $7E $FF $7F $BF $6F $D9 $52 $F2 $35 $4C $25 $F1 $39 $09 $1D
+BYTE $59 $67 $6E $5A $AA $41 $BA $67 $F5 $52 $50 $3E $8B $29 $A5 $14
+
+RaimiPal_GreatKnight_F_FE8:
+BYTE $00 $7E $DE $7B $BF $6F $D9 $52 $F1 $39 $B7 $52 $12 $3E $6D $29
+BYTE $C8 $14 $5A $7F $B5 $7E $CD $59 $F5 $52 $50 $3E $8B $29 $A5 $14
+
+MarthLucinaPal_MarthLord:
+BYTE $55 $53 $FF $6B $F9 $2E $9E $3B $30 $00 $39 $00 $1F $4B $A5 $14
+BYTE $82 $1C $46 $45 $EB $5D $E5 $30 $69 $41 $89 $41 $2F $5A $B0 $66
+
+MarthLucinaPal_Mercenary_FE6:
+BYTE $55 $53 $FF $7F $C5 $2C $07 $3D $4E $5A $98 $77 $AC $61 $28 $41
+BYTE $F3 $6E $8A $59 $FF $6B $9E $4B $4F $19 $9C $42 $E6 $30 $A5 $14
+
+MarthLucinaPal_Mercenary_F_FE7FE8:
+BYTE $00 $7E $FF $7F $4E $19 $07 $3D $0C $52 $98 $77 $AC $61 $28 $41
+BYTE $F3 $6E $8A $59 $DF $5F $D6 $21 $E6 $30 $1F $4B $C5 $2C $A5 $14
+
+MarthLucinaPal_Hero_F:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $1D $AC $61 $28 $41 $E6 $30
+BYTE $98 $77 $F3 $6E $4E $5A $8A $59 $07 $3D $C5 $2C $37 $2E $A5 $14
+
+MarthLucinaPal_Ranger_F_FE8:
+BYTE $55 $53 $FF $7F $FF $4B $BD $2E $F4 $1D $07 $3D $AC $61 $28 $41
+BYTE $DE $7F $5A $6F $52 $4E $29 $29 $FC $22 $8A $59 $2D $11 $A5 $14
+
+MarthLucinaPal_Myrmidon:
+BYTE $55 $53 $FF $7F $FF $6B $3F $4B $2E $19 $AC $61 $28 $41 $E6 $30
+BYTE $56 $7B $6F $5E $CA $49 $0D $76 $8A $59 $07 $3D $C5 $2C $A5 $14
+
+MarthLucinaPal_Assassin_FE7FE8:
+BYTE $00 $7E $FF $7F $9D $5F $FB $46 $4C $19 $0D $76 $AC $61 $E6 $30
+BYTE $56 $7B $6F $5E $8A $59 $35 $3A $8A $59 $07 $3D $C5 $2C $A5 $14
+
+MarthLucinaPal_Swordmaster:
+BYTE $00 $7E $FF $7F $DF $57 $BC $36 $91 $25 $AC $61 $28 $41 $E6 $30
+BYTE $56 $7B $6F $5E $CA $49 $0D $76 $8A $59 $07 $3D $C5 $2C $A5 $14
+
+OrtonPal_WyvernRider:
+BYTE $00 $7E $FF $7F $CF $2D $B8 $42 $18 $3A $1E $4B $B0 $2D $9F $4B
+BYTE $75 $32 $1A $3F $9B $25 $55 $1D $F0 $14 $AA $10 $C8 $10 $A5 $14
+
+OrtonPal_WyvernLord:
+BYTE $00 $7E $DF $73 $F0 $24 $58 $39 $18 $3A $1E $4B $B0 $2D $9F $4B
+BYTE $75 $32 $1A $3F $9B $25 $55 $1D $F0 $14 $AA $10 $C8 $10 $A5 $14
+
+OrtonPal_WyvernKnight_FE8:
+BYTE $00 $7E $FF $7F $1F $7C $00 $00 $18 $3A $1E $4B $B0 $2D $9F $4B
+BYTE $75 $32 $1A $3F $9B $25 $55 $1D $F0 $14 $AA $10 $C8 $10 $A5 $14
+
+VastoPal_WyvernRider:
+BYTE $00 $7E $FF $7F $CF $2D $B8 $42 $18 $3A $1E $4B $B0 $2D $9F $4B
+BYTE $75 $32 $1A $3F $3C $3A $D7 $31 $51 $25 $EB $18 $C8 $10 $A5 $14
+
+VastoPal_WyvernLord:
+BYTE $00 $7E $DF $73 $12 $19 $9B $25 $18 $3A $1E $4B $B0 $2D $9F $4B
+BYTE $75 $32 $1A $3F $3C $3A $D7 $31 $51 $25 $EB $18 $C8 $10 $A5 $14
+
+VastoPal_WyvernKnight_FE8:
+BYTE $00 $7E $FF $7F $1F $7C $00 $00 $18 $3A $1E $4B $B0 $2D $9F $4B
+BYTE $75 $32 $1A $3F $3C $3A $D7 $31 $51 $25 $EB $18 $C8 $10 $A5 $14
+
+ChalardPal_Shaman:
+BYTE $00 $7E $FF $7F $FF $6B $DF $2E $2E $19 $7B $1B $3A $16 $93 $21
+BYTE $5D $4F $34 $36 $2A $1D $30 $25 $EC $1C $A8 $14 $44 $08 $A5 $14
+
+ChalardPal_Druid:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $E7 $18 $39 $63 $73 $4A $AD $31
+BYTE $5D $4F $34 $36 $2A $1D $30 $25 $EC $1C $A8 $14 $44 $08 $A5 $14
+
+ChalardPal_Summoner_FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $39 $63 $31 $42 $CE $39
+BYTE $29 $25 $BF $57 $D9 $42 $F1 $2D $30 $25 $EC $1C $A8 $14 $A5 $14
+
+RoddickPal_Brigand:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $5A $32 $D6 $21 $5C $3A $93 $25
+BYTE $B9 $7B $14 $73 $6F $5E $2E $19 $7E $35 $17 $29 $AF $1C $A5 $14
+
+RoddickPal_Warrior:
+BYTE $00 $7E $FF $7F $FF $6B $FF $46 $5A $32 $D6 $21 $2E $19 $DE $42
+BYTE $98 $7F $D1 $66 $0C $52 $F4 $2D $7E $35 $F4 $24 $8A $14 $A5 $14
+
+RoddickPal_Berserker:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $39 $2E $B5 $1D $2E $19 $F6 $5A
+BYTE $DE $42 $37 $32 $6F $21 $FF $07 $7E $35 $17 $29 $AF $1C $A5 $14
+
+CampariPal_Knight:
+BYTE $00 $7E $89 $0C $11 $19 $F1 $31 $9A $25 $F9 $46 $1F $32 $E5 $17
+BYTE $35 $57 $DF $5F $98 $46 $4C $25 $F2 $35 $DE $7B $FE $7B $A5 $14
+
+CampariPal_General:
+BYTE $00 $7E $FF $7F $DF $5F $F9 $46 $F2 $35 $4C $25 $F1 $31 $09 $19
+BYTE $59 $67 $6E $5A $AA $41 $BF $46 $1F $32 $9A $25 $11 $19 $A5 $14
+
+CampariPal_GreatKnight_FE8:
+BYTE $00 $7E $DE $7B $DF $5F $F9 $46 $F1 $31 $B7 $52 $12 $3E $6D $29
+BYTE $C8 $14 $5A $7F $B5 $7E $CD $59 $1F $32 $9A $25 $11 $19 $A5 $14
+
+MustafaPal_Brigand:
+BYTE $00 $7E $1B $4F $BA $46 $37 $36 $93 $25 $0E $15 $33 $46 $6D $2D
+BYTE $D8 $46 $32 $36 $6C $25 $C9 $10 $9C $21 $35 $19 $CE $10 $A5 $14
+
+MustafaPal_Warrior:
+BYTE $00 $7E $1B $4F $BA $46 $37 $36 $93 $25 $0E $15 $C9 $10 $5C $63
+BYTE $D8 $46 $32 $36 $6C $25 $33 $42 $9C $21 $13 $15 $8A $08 $A5 $14
+
+MustafaPal_Berserker:
+BYTE $00 $7E $FF $7F $BA $46 $37 $36 $93 $25 $0E $15 $C9 $10 $F6 $5A
+BYTE $D8 $46 $32 $36 $6C $25 $5C $63 $9C $21 $35 $19 $CE $10 $A5 $14
+
+DaltonPal_Cavalier:
+BYTE $00 $7E $FF $7F $FF $5B $5F $3B $F4 $31 $55 $26 $18 $47 $10 $2E
+BYTE $9E $2D $37 $21 $CF $14 $68 $08 $1D $47 $36 $32 $4E $1D $A5 $14
+
+DaltonPal_Paladin:
+BYTE $00 $7E $FF $7F $FF $6F $1C $2F $B1 $2D $FF $03 $5F $3B $55 $26
+BYTE $9E $2D $37 $21 $CF $14 $68 $08 $BD $7F $D5 $66 $0E $4E $A5 $14
+
+DaltonPal_GreatKnight_FE8:
+BYTE $00 $7E $DE $7B $5F $3B $98 $2E $B0 $1D $F6 $52 $51 $3E $AC $29
+BYTE $07 $15 $5A $7F $B5 $7E $CD $59 $9E $2D $37 $21 $CF $14 $A5 $14
+
+IgnatiusFE13Pal_Knight:
+BYTE $00 $7E $68 $08 $AF $0C $EF $3D $17 $15 $D6 $5A $5E $19 $E5 $17
+BYTE $35 $57 $BD $77 $98 $46 $4C $25 $F2 $35 $DE $7B $FE $7B $A5 $14
+
+IgnatiusFE13Pal_General:
+BYTE $00 $7E $FF $7F $BD $77 $D6 $5A $F2 $35 $4C $25 $EF $3D $08 $21
+BYTE $59 $67 $6E $5A $AA $41 $FF $2D $5E $19 $17 $15 $AF $0C $A5 $14
+
+IgnatiusFE13Pal_GreatKnight_FE8:
+BYTE $00 $7E $DE $7B $BD $77 $D6 $5A $EF $3D $B7 $52 $12 $3E $6D $29
+BYTE $C8 $14 $5A $7F $B5 $7E $CD $59 $5E $19 $17 $15 $AF $0C $A5 $14
+
+FarberPal_Mage_FE6:
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $38 $36 $3A $4B $31 $32
+BYTE $6C $25 $09 $1D $A6 $14 $3F $46 $9F $31 $38 $25 $D0 $18 $A5 $14
+
+FarberPal_Mage_FE7FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $72 $56 $3A $4B $31 $32
+BYTE $6C $25 $09 $1D $A6 $14 $9C $77 $9F $31 $38 $25 $D0 $18 $A5 $14
+
+FarberPal_Sage:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $3A $4B $74 $3A $AD $25
+BYTE $6C $25 $09 $1D $A6 $14 $3F $46 $9F $31 $38 $25 $D0 $18 $A5 $14
+
+FarberPal_MageKnight_FE8:
+BYTE $00 $7E $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $3A $4B $31 $32
+BYTE $6C $25 $E8 $18 $9F $31 $15 $21 $DF $39 $78 $2D $F0 $1C $A5 $14
+
+CervantesPal_Knight:
+BYTE $00 $7E $67 $08 $CE $10 $CF $35 $35 $19 $B6 $52 $9C $21 $E5 $17
+BYTE $35 $57 $9D $6B $55 $42 $2B $21 $D0 $31 $DE $7B $FE $7B $A5 $14
+
+CervantesPal_General:
+BYTE $00 $7E $FF $7F $9D $6B $B6 $52 $D0 $31 $2B $21 $CF $35 $E8 $1C
+BYTE $59 $67 $6E $5A $AA $41 $FF $29 $9C $21 $35 $19 $CE $10 $A5 $14
+
+CervantesPal_GreatKnight_FE8:
+BYTE $00 $7E $DE $7B $9D $6B $B6 $52 $CF $35 $B7 $52 $12 $3E $6D $29
+BYTE $C8 $14 $5A $7F $B5 $7E $CD $59 $9C $21 $35 $19 $CE $10 $A5 $14
+
+PherosPal_Troubadour_FE6FE8:
+BYTE $00 $7E $FF $7F $FF $6B $FE $3E $50 $1D $DE $2F $9D $63 $74 $42
+BYTE $DF $35 $7A $29 $F1 $1C $89 $0C $1A $43 $55 $2E $EA $14 $A5 $14
+
+PherosPal_Troubadour_FE7:
+BYTE $00 $7E $FF $7F $FF $6B $FE $3E $50 $1D $D1 $14 $9D $63 $74 $42
+BYTE $39 $21 $DF $35 $7A $29 $F1 $1C $1A $43 $55 $2E $EA $14 $A5 $14
+
+PherosPal_Valkyrie:
+BYTE $00 $7E $FF $7F $DF $57 $DD $3A $50 $1D $CA $41 $9D $63 $74 $42
+BYTE $DF $35 $7A $29 $F1 $1C $CE $14 $FA $7F $33 $77 $89 $0C $A5 $14
+
+PherosPal_MageKnight_F_FE8:
+BYTE $55 $53 $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $9D $63 $74 $42
+BYTE $39 $21 $D1 $14 $1A $3F $11 $2A $DF $35 $7A $29 $F1 $1C $A5 $14
+
+ExcellusPal_Mage_FE6:
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $38 $36 $8E $51 $09 $35
+BYTE $8E $4A $EB $39 $47 $25 $5F $46 $BE $31 $57 $25 $EF $18 $A5 $14
+
+ExcellusPal_Mage_FE7FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $72 $56 $8E $51 $09 $35
+BYTE $8E $4A $EB $39 $47 $25 $9C $77 $BE $31 $57 $25 $EF $18 $A5 $14
+
+ExcellusPal_Sage:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $8E $51 $2B $3D $C7 $28
+BYTE $8E $4A $EB $39 $47 $25 $5F $46 $BE $31 $57 $25 $EF $18 $A5 $14
+
+ExcellusPal_MageKnight_FE8:
+BYTE $00 $7E $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $8E $51 $09 $35
+BYTE $8E $4A $A9 $31 $BE $31 $34 $21 $1F $3A $98 $2D $10 $1D $A5 $14
+
+AlgolPal_Brigand:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $5A $32 $D6 $21 $38 $46 $70 $2D
+BYTE $B9 $7B $14 $73 $6F $5E $2E $19 $7C $21 $15 $19 $AE $10 $A5 $14
+
+AlgolPal_Warrior:
+BYTE $00 $7E $FF $7F $FF $6B $FF $46 $5A $32 $D6 $21 $2E $19 $1F $7F
+BYTE $98 $7F $D1 $66 $0C $52 $15 $56 $7C $21 $F3 $14 $8A $08 $A5 $14
+
+AlgolPal_Berserker:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $39 $2E $B5 $1D $2E $19 $F6 $5A
+BYTE $1F $7F $58 $62 $90 $41 $FF $07 $7C $21 $15 $19 $AE $10 $A5 $14
+
+VictorPal_Brigand:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $5A $32 $D6 $21 $8F $31 $0A $21
+BYTE $B9 $7B $14 $73 $6F $5E $2E $19 $DF $52 $3A $3E $71 $29 $A5 $14
+
+VictorPal_Warrior:
+BYTE $00 $7E $FF $7F $FF $6B $FF $46 $5A $32 $D6 $21 $2E $19 $7B $63
+BYTE $98 $7F $D1 $66 $0C $52 $52 $42 $DF $52 $F5 $39 $0B $1D $A5 $14
+
+VictorPal_Berserker:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $39 $2E $B5 $1D $2E $19 $F6 $5A
+BYTE $7B $63 $B5 $4A $CE $31 $FF $07 $DF $52 $3A $3E $71 $29 $A5 $14
+
+VincentPal_Brigand:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $5A $32 $D6 $21 $D8 $25 $30 $19
+BYTE $B9 $7B $14 $73 $6F $5E $2E $19 $5E $72 $D7 $55 $2F $39 $A5 $14
+
+VincentPal_Warrior:
+BYTE $00 $7E $FF $7F $FF $6B $FF $46 $5A $32 $D6 $21 $2E $19 $7B $63
+BYTE $98 $7F $D1 $66 $0C $52 $52 $42 $5E $72 $94 $4D $CA $28 $A5 $14
+
+VincentPal_Berserker:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $39 $2E $B5 $1D $2E $19 $F6 $5A
+BYTE $7B $63 $B5 $4A $CE $31 $FF $07 $5E $72 $D7 $55 $2F $39 $A5 $14
+
+GeckoPal_Thief_FE6:
+BYTE $55 $53 $FF $7F $FF $6B $D2 $29 $E9 $14 $58 $53 $92 $3E $AC $29
+BYTE $56 $7B $6F $5E $88 $41 $6E $21 $5F $42 $DB $31 $32 $21 $A5 $14
+
+GeckoPal_Thief_FE7FE8:
+BYTE $00 $7E $FF $7F $FF $6B $FF $42 $E9 $14 $58 $53 $92 $3E $AC $29
+BYTE $56 $7B $6F $5E $88 $41 $6E $21 $D2 $29 $DB $31 $32 $21 $A5 $14
+
+GeckoPal_Assassin_FE7FE8:
+BYTE $00 $7E $FF $7F $9D $5F $FB $46 $E9 $14 $D2 $29 $58 $53 $30 $36
+BYTE $56 $7B $6F $5E $6E $21 $4D $1D $DB $31 $75 $25 $EE $18 $A5 $14
+
+GeckoPal_Rogue_FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1E $37 $2E $19 $D2 $29 $6E $21 $E9 $14
+BYTE $58 $53 $30 $36 $EF $3D $29 $25 $DB $31 $75 $25 $EE $18 $A5 $14
+
+JamilFE13Pal_Thief_FE6:
+BYTE $55 $53 $FF $7F $FF $6B $D2 $29 $E9 $14 $58 $53 $92 $3E $AC $29
+BYTE $56 $7B $6F $5E $88 $41 $6E $21 $5F $42 $DB $31 $32 $21 $A5 $14
+
+JamilFE13Pal_Thief_FE7FE8:
+BYTE $00 $7E $FF $7F $FF $6B $FF $42 $E9 $14 $58 $53 $92 $3E $AC $29
+BYTE $56 $7B $6F $5E $88 $41 $6E $21 $D2 $29 $DB $31 $32 $21 $A5 $14
+
+JamilFE13Pal_Assassin_FE7FE8:
+BYTE $00 $7E $FF $7F $9D $5F $FB $46 $E9 $14 $D2 $29 $58 $53 $30 $36
+BYTE $56 $7B $6F $5E $6E $21 $4D $1D $DB $31 $75 $25 $EE $18 $A5 $14
+
+JamilFE13Pal_Rogue_FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1E $37 $2E $19 $D2 $29 $6E $21 $E9 $14
+BYTE $58 $53 $30 $36 $EF $3D $29 $25 $DB $31 $75 $25 $EE $18 $A5 $14
+
+XalbadorPal_Mercenary_FE6:
+BYTE $55 $53 $FF $7F $D0 $25 $B8 $3A $4E $5A $98 $77 $58 $39 $12 $2D
+BYTE $F3 $6E $9F $4B $FF $6B $9E $4B $4F $19 $9C $42 $AC $1C $A5 $14
+
+XalbadorPal_Mercenary_FE7FE8:
+BYTE $00 $7E $FF $7F $4E $19 $B8 $3A $0C $52 $98 $77 $58 $39 $12 $2D
+BYTE $F3 $6E $9F $4B $DF $5F $D6 $21 $AC $1C $1F $4B $D0 $25 $A5 $14
+
+XalbadorPal_Hero:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $1D $58 $39 $12 $2D $AC $1C
+BYTE $98 $77 $F3 $6E $4E $5A $9F $4B $B8 $3A $D0 $25 $37 $2E $A5 $14
+
+XalbadorPal_Ranger_FE8:
+BYTE $55 $53 $FF $7F $FF $4B $BD $2E $F4 $1D $12 $19 $58 $39 $F0 $24
+BYTE $9F $4B $B8 $3A $D0 $25 $E8 $14 $1D $47 $9B $25 $4E $1D $A5 $14
+
+CassiusPal_Shaman:
+BYTE $00 $7E $FF $7F $FF $6B $DF $2E $2E $19 $7B $1B $3A $16 $93 $21
+BYTE $1F $57 $16 $3A $0B $1D $4C $29 $09 $21 $A6 $14 $63 $0C $A5 $14
+
+CassiusPal_Druid:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $E7 $14 $3A $47 $74 $36 $AD $25
+BYTE $1F $57 $16 $3A $0B $1D $4C $29 $09 $21 $A6 $14 $63 $0C $A5 $14
+
+CassiusPal_Summoner_FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $3A $47 $31 $2E $EF $3D
+BYTE $4A $29 $5F $63 $9B $4A $B2 $31 $4C $29 $09 $21 $A6 $14 $A5 $14
+
+RugerPal_Tactician2:
+BYTE $55 $53 $FF $6B $5F $43 $18 $2A $91 $25 $D2 $29 $6E $21 $E9 $14
+BYTE $58 $53 $30 $36 $FB $3E $35 $2A $DB $31 $75 $25 $EE $18 $A5 $14
+
+RugerPal_RedMage2:
+BYTE $55 $53 $A9 $10 $A6 $10 $2C $1D $32 $21 $DB $31 $D2 $29 $30 $36
+BYTE $58 $53 $14 $32 $DD $36 $43 $08 $56 $7B $FF $6B $FF $7F $00 $00
+
+RugerPal_Thief_FE6:
+BYTE $55 $53 $FF $7F $FF $6B $D2 $29 $E9 $14 $58 $53 $92 $3E $AC $29
+BYTE $56 $7B $6F $5E $88 $41 $6E $21 $5F $42 $DB $31 $32 $21 $A5 $14
+
+RugerPal_Thief_FE7FE8:
+BYTE $00 $7E $FF $7F $FF $6B $FF $42 $E9 $14 $58 $53 $92 $3E $AC $29
+BYTE $56 $7B $6F $5E $88 $41 $6E $21 $D2 $29 $DB $31 $32 $21 $A5 $14
+
+RugerPal_Assassin_FE7FE8:
+BYTE $00 $7E $FF $7F $9D $5F $FB $46 $E9 $14 $D2 $29 $58 $53 $30 $36
+BYTE $56 $7B $6F $5E $6E $21 $4D $1D $DB $31 $75 $25 $EE $18 $A5 $14
+
+RugerPal_Rogue_FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1E $37 $2E $19 $D2 $29 $6E $21 $E9 $14
+BYTE $58 $53 $30 $36 $EF $3D $29 $25 $DB $31 $75 $25 $EE $18 $A5 $14
+
+NelsonPal_Mage_FE6:
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $38 $36 $EF $3D $4A $29
+BYTE $4C $29 $09 $21 $A6 $14 $9C $4A $16 $3A $91 $2D $0B $1D $A5 $14
+
+NelsonPal_Mage_FE7FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $72 $56 $EF $3D $4A $29
+BYTE $4C $29 $09 $21 $A6 $14 $9C $77 $16 $3A $91 $2D $0B $1D $A5 $14
+
+NelsonPal_Sage:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $EF $3D $8C $31 $08 $21
+BYTE $4C $29 $09 $21 $A6 $14 $9C $4A $16 $3A $91 $2D $0B $1D $A5 $14
+
+NelsonPal_MageKnight_FE8:
+BYTE $00 $7E $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $EF $3D $4A $29
+BYTE $4C $29 $E8 $1C $16 $3A $6F $25 $7A $46 $F4 $35 $4D $25 $A5 $14
+
+MorristanPal_Brigand:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $5A $32 $D6 $21 $38 $46 $70 $2D
+BYTE $B9 $7B $14 $73 $6F $5E $2E $19 $7C $21 $15 $19 $AE $10 $A5 $14
+
+MorristanPal_Warrior:
+BYTE $00 $7E $FF $7F $FF $6B $FF $46 $5A $32 $D6 $21 $2E $19 $1F $7F
+BYTE $98 $7F $D1 $66 $0C $52 $15 $56 $7C $21 $F3 $14 $8A $08 $A5 $14
+
+MorristanPal_Berserker:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $39 $2E $B5 $1D $2E $19 $F6 $5A
+BYTE $1F $7F $58 $62 $90 $41 $FF $07 $7C $21 $15 $19 $AE $10 $A5 $14
+
+GyralPal_Knight:
+BYTE $00 $7E $89 $0C $11 $19 $F1 $31 $9A $25 $F9 $46 $1F $32 $E5 $17
+BYTE $35 $57 $DF $5F $98 $46 $4C $25 $F2 $35 $DE $7B $FE $7B $A5 $14
+
+GyralPal_General:
+BYTE $00 $7E $FF $7F $DF $5F $F9 $46 $F2 $35 $4C $25 $F1 $31 $09 $19
+BYTE $59 $67 $6E $5A $AA $41 $BF $46 $1F $32 $9A $25 $11 $19 $A5 $14
+
+GyralPal_GreatKnight_FE8:
+BYTE $00 $7E $DE $7B $DF $5F $F9 $46 $F1 $31 $B7 $52 $12 $3E $6D $29
+BYTE $C8 $14 $5A $7F $B5 $7E $CD $59 $1F $32 $9A $25 $11 $19 $A5 $14
+
+DalenPal_Cavalier:
+BYTE $00 $7E $FF $7F $FF $5B $5F $3B $F4 $31 $55 $26 $18 $47 $10 $2E
+BYTE $9E $2D $37 $21 $CF $14 $68 $08 $1D $47 $36 $32 $4E $1D $A5 $14
+
+DalenPal_Paladin:
+BYTE $00 $7E $FF $7F $FF $6F $1C $2F $B1 $2D $FF $03 $5F $3B $55 $26
+BYTE $9E $2D $37 $21 $CF $14 $68 $08 $BD $7F $D5 $66 $0E $4E $A5 $14
+
+DalenPal_GreatKnight_FE8:
+BYTE $00 $7E $DE $7B $5F $3B $98 $2E $B0 $1D $F6 $52 $51 $3E $AC $29
+BYTE $07 $15 $5A $7F $B5 $7E $CD $59 $9E $2D $37 $21 $CF $14 $A5 $14
+
+NombryPal_Fighter:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $5A $32 $D6 $21 $5C $3A $93 $25
+BYTE $B9 $7B $14 $73 $6F $5E $70 $1D $7E $35 $17 $29 $AF $1C $A5 $14
+
+NombryPal_Hero:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $1D $5C $3A $D5 $2D $2E $1D
+BYTE $98 $77 $F3 $6E $4E $5A $7E $35 $17 $29 $AF $1C $37 $2E $A5 $14
+
+NombryPal_Warrior:
+BYTE $00 $7E $FF $7F $FF $6B $FF $46 $5A $32 $D6 $21 $2E $19 $DE $42
+BYTE $98 $7F $D1 $66 $0C $52 $F4 $2D $7E $35 $F4 $24 $8A $14 $A5 $14
+
+EzraPal_Nomad_FE6FE7:
+BYTE $55 $53 $FF $7F $DF $57 $DD $3A $DB $31 $75 $25 $30 $36 $AC $29
+BYTE $58 $3A $D2 $2D $2C $1D $A6 $10 $58 $53 $D4 $46 $EE $18 $A5 $14
+
+EzraPal_NomadTrooper_FE6FE7:
+BYTE $00 $7E $FF $7F $DB $31 $DD $3A $D5 $11 $32 $21 $58 $53 $30 $36
+BYTE $58 $3A $D2 $2D $2C $1D $A6 $10 $BE $37 $97 $1E $0E $15 $A5 $14
+
+EzraPal_Archer:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $C8 $14 $58 $53 $92 $3E $AC $29
+BYTE $58 $3A $90 $25 $77 $7F $DB $31 $75 $25 $EE $18 $87 $0C $A5 $14
+
+EzraPal_Sniper:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $58 $53 $92 $3E $AC $29
+BYTE $58 $3A $90 $25 $C8 $14 $DB $31 $75 $25 $EE $18 $87 $0C $A5 $14
+
+EzraPal_Ranger_FE8:
+BYTE $55 $53 $FF $7F $FF $4B $BD $2E $F4 $1D $32 $21 $58 $53 $30 $36
+BYTE $58 $3A $D2 $2D $2C $1D $A6 $10 $1D $47 $DB $31 $4E $1D $A5 $14
+
+ZanthPal_Pirate:
+BYTE $55 $53 $FF $7F $FF $6B $1D $47 $39 $2E $B5 $1D $2E $19 $FF $7F
+BYTE $98 $77 $F3 $6E $4E $5A $7E $35 $7E $35 $17 $29 $AF $1C $A5 $14
+
+ZanthPal_Warrior:
+BYTE $00 $7E $FF $7F $FF $6B $FF $46 $5A $32 $D6 $21 $2E $19 $DE $42
+BYTE $98 $7F $D1 $66 $0C $52 $F4 $2D $7E $35 $F4 $24 $8A $14 $A5 $14
+
+ZanthPal_Berserker:
+BYTE $00 $7E $FF $7F $FF $6B $1D $47 $39 $2E $B5 $1D $2E $19 $F6 $5A
+BYTE $DE $42 $37 $32 $6F $21 $FF $07 $7E $35 $17 $29 $AF $1C $A5 $14
+
+ArdriPal_Cantor:
+BYTE $55 $53 $DE $7B $FF $6B $1F $4B $2E $19 $5D $4F $96 $3E $AF $29
+BYTE $39 $63 $73 $4A $AD $31 $E7 $18 $30 $25 $EC $1C $A8 $14 $A5 $14
+
+ArdriPal_Cantor2:
+BYTE $55 $53 $FF $6B $1F $4B $2E $19 $FF $7B $39 $63 $73 $4A $AD $31
+BYTE $5D $4F $34 $36 $95 $55 $0E $39 $30 $25 $EC $1C $A8 $14 $A5 $14
+
+ArdriPal_Necromancer_FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $D4 $29 $5D $4F $34 $36 $39 $63
+BYTE $31 $42 $94 $31 $0D $21 $87 $10 $72 $49 $0E $39 $A9 $24 $A5 $14
+
+ArdriPal_DarkDruid_FE7:
+BYTE $00 $7E $FF $7F $BB $55 $CB $7F $6B $7E $FF $7B $18 $5F $10 $3E
+BYTE $5D $4F $34 $36 $2A $1D $30 $25 $EC $1C $A8 $14 $44 $08 $A5 $14
+
+ArdriPal_Shaman:
+BYTE $00 $7E $FF $7F $FF $6B $DF $2E $2E $19 $7B $1B $3A $16 $93 $21
+BYTE $5D $4F $34 $36 $2A $1D $30 $25 $EC $1C $A8 $14 $44 $08 $A5 $14
+
+ArdriPal_Druid:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $E7 $18 $39 $63 $73 $4A $AD $31
+BYTE $5D $4F $34 $36 $2A $1D $30 $25 $EC $1C $A8 $14 $44 $08 $A5 $14
+
+ArdriPal_Summoner_FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $39 $63 $31 $42 $CE $39
+BYTE $29 $25 $BF $57 $D9 $42 $F1 $2D $30 $25 $EC $1C $A8 $14 $A5 $14
+
+MusPal_Knight:
+BYTE $00 $7E $45 $18 $89 $30 $0E $32 $CE $48 $15 $4B $13 $5D $E5 $17
+BYTE $35 $57 $FB $63 $35 $11 $AB $08 $F0 $0C $DE $7B $FE $7B $A5 $14
+
+MusPal_General:
+BYTE $00 $7E $FF $7F $FB $63 $15 $4B $35 $11 $CE $0C $0E $32 $07 $19
+BYTE $59 $67 $6E $5A $AA $41 $58 $75 $13 $5D $CE $48 $89 $30 $A5 $14
+
+MusPal_GreatKnight_FE8:
+BYTE $00 $7E $DE $7B $FB $63 $15 $4B $0E $32 $B7 $52 $12 $3E $6D $29
+BYTE $C8 $14 $5A $7F $B5 $7E $CD $59 $13 $5D $CE $48 $89 $30 $A5 $14
+
+BovisPal_Nomad_FE6FE7:
+BYTE $00 $7E $FE $77 $FB $63 $78 $3B $7C $18 $53 $10 $EF $35 $8E $2D
+BYTE $10 $3A $8C $2D $08 $1D $84 $10 $16 $47 $50 $3A $2A $08 $A5 $14
+
+BovisPal_NomadTrooper_FE6FE7:
+BYTE $00 $7E $FE $77 $7C $18 $78 $3B $51 $12 $53 $10 $55 $42 $8E $2D
+BYTE $10 $3A $8C $2D $08 $1D $84 $10 $FB $63 $F6 $16 $8B $0D $A5 $14
+
+BovisPal_Archer:
+BYTE $00 $7E $FE $77 $FB $63 $78 $3B $C6 $14 $55 $42 $D0 $31 $2B $21
+BYTE $10 $3A $6B $25 $FB $5F $7C $18 $55 $14 $4E $0C $27 $08 $A5 $14
+
+BovisPal_Sniper:
+BYTE $00 $7E $FE $77 $FB $63 $78 $3B $CC $1D $55 $42 $D0 $31 $2B $21
+BYTE $10 $3A $6B $25 $C6 $14 $7C $18 $55 $14 $4E $0C $27 $08 $A5 $14
+
+BovisPal_Ranger_FE8:
+BYTE $55 $53 $FE $77 $FB $63 $78 $3B $51 $12 $53 $10 $55 $42 $8E $2D
+BYTE $10 $3A $8C $2D $08 $1D $84 $10 $F6 $16 $7C $18 $8B $0D $A5 $14
+
+TigrisPal_Fighter:
+BYTE $00 $7E $FE $77 $FB $63 $78 $3B $F6 $16 $12 $16 $92 $21 $0C $15
+BYTE $B9 $7B $14 $73 $6F $5E $6C $0D $DE $26 $37 $1E $6F $15 $A5 $14
+
+TigrisPal_Hero:
+BYTE $00 $7E $FE $77 $FB $63 $78 $3B $6C $0D $92 $21 $2E $19 $C9 $10
+BYTE $9B $6B $B5 $52 $CE $35 $DE $26 $37 $1E $6F $15 $F6 $16 $A5 $14
+
+TigrisPal_Warrior:
+BYTE $00 $7E $FE $77 $FB $63 $78 $3B $F6 $16 $12 $16 $6C $0D $DE $26
+BYTE $9B $6B $B5 $52 $CE $35 $37 $1E $0C $72 $89 $55 $06 $39 $A5 $14
+
+DracoPal_Archer_F:
+BYTE $00 $7E $FE $77 $FB $63 $78 $3B $A6 $14 $FF $57 $99 $36 $33 $15
+BYTE $D2 $39 $2C $25 $FB $5F $1F $33 $7F $1E $B5 $15 $EB $0C $A5 $14
+
+DracoPal_Sniper_F:
+BYTE $00 $7E $FE $77 $FB $63 $78 $3B $CC $1D $FF $57 $99 $36 $33 $15
+BYTE $D2 $39 $2C $25 $A6 $14 $1F $33 $7F $1E $B5 $15 $EB $0C $A5 $14
+
+DracoPal_Ranger_F_FE8:
+BYTE $55 $53 $FE $77 $FB $63 $78 $3B $51 $12 $2C $25 $FF $57 $F6 $25
+BYTE $1F $33 $7F $1E $B5 $15 $EB $0C $F6 $16 $D2 $39 $8B $0D $A5 $14
+
+PorcusPal_Thief_FE6:
+BYTE $55 $53 $FF $7F $FB $63 $1F $33 $90 $19 $78 $2D $12 $21 $AC $14
+BYTE $56 $7B $6F $5E $88 $41 $58 $26 $1D $5A $96 $45 $0F $2D $A5 $14
+
+PorcusPal_Thief_FE7FE8:
+BYTE $00 $7E $FF $7F $FB $63 $78 $3B $90 $19 $78 $2D $12 $21 $AC $14
+BYTE $56 $7B $6F $5E $88 $41 $58 $26 $1F $33 $96 $45 $0F $2D $A5 $14
+
+PorcusPal_Assassin_FE7FE8:
+BYTE $00 $7E $FF $7F $FB $63 $78 $3B $4C $19 $1F $33 $12 $21 $AC $14
+BYTE $56 $7B $6F $5E $58 $26 $35 $3A $1D $5A $96 $45 $0F $2D $A5 $14
+
+PorcusPal_Rogue_FE8:
+BYTE $00 $7E $FF $7F $FB $63 $78 $3B $CC $1D $1F $33 $58 $26 $90 $19
+BYTE $12 $21 $AC $14 $EF $3D $29 $25 $1D $5A $96 $45 $0F $2D $A5 $14
+
+AnnaApotheosisPal_Militia:
+BYTE $55 $53 $FF $7F $BF $5F $BD $2E $70 $19 $0B $19 $11 $1D $AB $14
+BYTE $7D $4B $B6 $3A $CF $25 $35 $2E $BF $52 $1A $3E $71 $29 $A5 $14
+
+AnnaApotheosisPal_Dragoon:
+BYTE $55 $53 $1A $3E $BF $52 $39 $26 $2D $19 $3E $4F $FF $6B $A5 $14
+BYTE $AB $14 $11 $1D $76 $25 $67 $39 $6F $5E $56 $7B $FF $7F $71 $29
+
+AnnaApotheosisPal_Knight_F:
+BYTE $00 $7E $C9 $14 $71 $29 $CF $25 $1A $3E $B6 $3A $BF $52 $E5 $17
+BYTE $35 $57 $7D $4B $18 $2E $0C $15 $92 $21 $DE $7B $FE $7B $A5 $14
+
+AnnaApotheosisPal_General_F:
+BYTE $00 $7E $FF $7F $7D $4B $B6 $3A $76 $25 $EF $18 $CF $25 $E8 $14
+BYTE $59 $67 $6E $5A $AA $41 $5F $67 $BF $52 $1A $3E $71 $29 $A5 $14
+
+AnnaApotheosisPal_GreatKnight_F_FE8:
+BYTE $00 $7E $DE $7B $7D $4B $B6 $3A $CF $25 $98 $52 $F3 $3D $4E $29
+BYTE $A9 $14 $5A $7F $B5 $7E $CD $59 $BF $52 $1A $3E $71 $29 $A5 $14
+
+RisenChiefPal_Gladiator:
+BYTE $55 $53 $5B $57 $97 $3A $D3 $25 $2C $25 $18 $30 $12 $24 $0C $18
+BYTE $FF $7F $98 $77 $F3 $6E $2D $56 $F3 $45 $8F $35 $0A $25 $A5 $14
+
+RisenChiefPal_Harbinger:
+BYTE $55 $53 $FF $7F $7F $7B $5F $62 $18 $30 $10 $20 $98 $77 $2D $56
+BYTE $5B $57 $95 $42 $AE $2D $E7 $18 $F3 $45 $8F $35 $0A $25 $A5 $14
+
+RisenChiefPal_Knight:
+BYTE $00 $7E $A7 $18 $4D $2D $AE $2D $F3 $45 $95 $42 $99 $5A $E5 $17
+BYTE $35 $57 $5B $57 $18 $30 $0C $18 $12 $24 $DE $7B $FE $7B $A5 $14
+
+RisenChiefPal_General:
+BYTE $00 $7E $FF $7F $5B $57 $95 $42 $18 $30 $10 $20 $AE $2D $E7 $18
+BYTE $59 $67 $6E $5A $AA $41 $3F $73 $99 $5A $F3 $45 $4D $2D $A5 $14
+
+RisenChiefPal_GreatKnight_FE8:
+BYTE $00 $7E $DE $7B $5B $57 $95 $42 $AE $2D $94 $52 $EF $3D $4A $29
+BYTE $E7 $1C $5A $7F $B5 $7E $CD $59 $99 $5A $F3 $45 $4D $2D $A5 $14
+
+ValidarPal_Cantor:
+BYTE $55 $53 $DE $7B $D8 $56 $32 $42 $6C $2D $DF $63 $5B $4B $32 $32
+BYTE $31 $42 $8C $2D $29 $21 $C6 $14 $38 $7A $B2 $5D $2C $3D $A5 $14
+
+ValidarPal_Cantor2:
+BYTE $55 $53 $D8 $56 $32 $42 $6C $2D $31 $42 $8C $2D $29 $21 $C6 $14
+BYTE $DF $63 $D8 $42 $38 $7A $70 $51 $8C $39 $29 $2D $C6 $1C $A5 $14
+
+ValidarPal_Necromancer_FE8:
+BYTE $00 $7E $1A $5F $D8 $56 $32 $42 $6C $2D $DF $63 $D8 $42 $8C $2D
+BYTE $08 $1D $8C $39 $08 $25 $84 $14 $38 $7A $B2 $5D $2C $3D $A5 $14
+
+ValidarPal_DarkDruid_FE7:
+BYTE $00 $7E $FF $7F $BB $55 $CB $7F $6B $7E $DF $63 $5B $4B $32 $32
+BYTE $38 $7A $70 $51 $C8 $28 $8C $39 $29 $2D $C6 $1C $63 $10 $A5 $14
+
+ValidarPal_Shaman:
+BYTE $00 $7E $FF $7F $D8 $56 $F0 $39 $08 $1D $7B $1B $3A $16 $93 $21
+BYTE $38 $7A $70 $51 $C8 $28 $8C $39 $29 $2D $C6 $1C $63 $10 $A5 $14
+
+ValidarPal_Druid:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $29 $19 $DF $63 $5B $4B $32 $32
+BYTE $38 $7A $70 $51 $C8 $28 $8C $39 $29 $2D $C6 $1C $63 $10 $A5 $14
+
+ValidarPal_Summoner_FE8:
+BYTE $00 $7E $F9 $5A $D8 $56 $F0 $39 $08 $1D $DF $63 $D8 $42 $8C $2D
+BYTE $08 $1D $5A $7E $D4 $65 $2D $45 $8C $39 $29 $2D $C6 $1C $A5 $14
+
+GrimaPal_BlackDragon:
+BYTE $34 $4F $96 $4E $32 $42 $AE $35 $4B $29 $5D $68 $56 $50 $2E $34
+BYTE $FF $7F $18 $7F $52 $6A $8C $45 $2B $39 $E9 $2C $A6 $1C $A5 $14
+
+GrimaPal_Mamkute_FE6:
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $5D $68 $56 $50 $2E $34
+BYTE $B4 $39 $4F $2D $EA $1C $EF $3D $8C $31 $29 $25 $C6 $18 $A5 $14
+
+GrimaPal_FireDragon_FE6:
+BYTE $55 $53 $6E $49 $FF $63 $1F $13 $5D $11 $FF $7F $5D $68 $B0 $55
+BYTE $6E $49 $2B $39 $E9 $2C $A6 $1C $A6 $1C $5D $67 $96 $4E $63 $10
+
+GrimaPal_FireDragon_FE7:
+BYTE $B9 $67 $FF $7F $B0 $55 $6E $49 $2B $39 $E9 $2C $9C $73 $73 $4E
+BYTE $A6 $1C $FF $7B $9F $27 $BF $16 $FE $09 $FB $00 $BB $00 $63 $10
+
+GrimaPal_Manakete_2_F_FE8:
+BYTE $00 $7E $DE $7B $FF $5B $1F $4B $A6 $1C $6E $49 $2B $39 $E9 $2C
+BYTE $BF $6B $D8 $52 $F0 $35 $EF $3D $4A $29 $5D $68 $56 $50 $A5 $14
+
+GrimaFPal_BlackDragon:
+BYTE $34 $4F $96 $4E $32 $42 $AE $35 $4B $29 $5D $68 $56 $50 $2E $34
+BYTE $FF $7F $18 $7F $52 $6A $8C $45 $2B $39 $E9 $2C $A6 $1C $A5 $14
+
+GrimaFPal_Mamkute_FE6:
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $5D $68 $56 $50 $2E $34
+BYTE $B4 $39 $4F $2D $EA $1C $EF $3D $8C $31 $29 $25 $C6 $18 $A5 $14
+
+GrimaFPal_FireDragon_FE6:
+BYTE $55 $53 $6E $49 $FF $63 $1F $13 $5D $11 $FF $7F $5D $68 $B0 $55
+BYTE $6E $49 $2B $39 $E9 $2C $A6 $1C $A6 $1C $5D $67 $96 $4E $63 $10
+
+GrimaFPal_FireDragon_FE7:
+BYTE $B9 $67 $FF $7F $B0 $55 $6E $49 $2B $39 $E9 $2C $9C $73 $73 $4E
+BYTE $A6 $1C $FF $7B $9F $27 $BF $16 $FE $09 $FB $00 $BB $00 $63 $10
+
+GrimaFPal_Manakete_2_F_FE8:
+BYTE $00 $7E $DE $7B $FF $5B $1F $4B $A6 $1C $6E $49 $2B $39 $E9 $2C
+BYTE $BF $6B $D8 $52 $F0 $35 $EF $3D $4A $29 $5D $68 $56 $50 $A5 $14

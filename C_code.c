@@ -36,6 +36,7 @@ extern const int VeslyBuildfile_Link;
 #define ReviseCharProcLabel 5
 #define ConfirmationLabel 6
 #define SaveSettingsLabel 7
+#define ReviseCharPalProcLabel 8
 #define LoopLabel 10
 
 #define EndLabel 99
@@ -48,23 +49,24 @@ typedef struct
     /* 00 */ PROC_HEADER;
     s8 id; // menu id
     u8 offset;
-    u8 redraw;
-    /* 2c */ int seed;
+    u8 redraw : 2; // RedrawNone / RedrawSome / RedrawAll
+    u8 freezeSeed : 1;
+    u8 calledFromChapter : 1;
+    u8 reloadPlayers : 1;
+    u8 reloadEnemies : 1;
+    u8 choosingSkill : 1;
+    u8 clear : 1;
+    int seed;
     char * helpBox;
     u16 globalChecksum;
     s8 digit;
-    u8 freezeSeed;
-    u8 calledFromChapter;
-    u8 reloadPlayers;
-    u8 reloadEnemies;
     u8 skill;
-    u8 choosingSkill;
-    u8 clear;
     s8 previewPage;
 
     s8 previewId;
     u8 reviseMenuId;
-    s8 Option[42]; // max is 42. past that we'll overflow
+    s16 revisePalId; // gCharPalOverride[charID]'s value before editing began - see LoopReviseCharPalPage
+    s8 Option[42];   // max is 46ish. past that we'll overflow
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -3093,7 +3095,7 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
     if (keys & (B_BUTTON | A_BUTTON))
     {
         PlayBackOutSfx();
-        Proc_Goto(proc, PreviewCharLabel);
+        Proc_Goto(proc, ReviseCharPalProcLabel);
         EndFaceById(0);
         EndFaceById(1);
         return;
@@ -3561,7 +3563,7 @@ struct Vec2u
 {
     u16 x, y;
 };
-
+extern struct Unit * GetUnitFromCharId(s16 pid); // fe7 8017D34 fe6 8017ABC
 struct Vec2u GetReorderedCharIDAndTableIDByPIDStats(const struct CharacterData * table, struct PidStatsChar * pidStats)
 {
     struct Vec2u result;
@@ -3714,6 +3716,186 @@ struct Vec2u GetReorderedCharIDAndTableID(const struct CharacterData * table)
     struct PidStatsChar * pidStats = GetPidStatsSafe(table->number);
     struct Vec2u result = GetReorderedCharIDAndTableIDByPIDStats(table, pidStats);
     return result;
+}
+
+extern u16 gCharPalOverride[0x46];
+int CountCharPalOptionsForClassID(int classID);
+const u16 * GetNthCharPalForClassID(int classID, int index);
+// Fixed RAM (Definitions.s), so it is NOT zero-initialised - see CharPalOptionsBuiltMagic.
+#define CharPalOptionsBuiltMagic 0xC0DE5A5A
+extern u32 sCharPalOptionsBuilt;
+
+// From ASM/Debugger/C_Code.c - made non-static there so they can be linked in here.
+extern void StartDebuggerBanimPreview(int classId, struct Unit * unit, int weapon, int palOverride);
+extern void EndDebuggerBanimPreview(void);
+extern int GetDebuggerDefaultPreviewWeapon(int classId);
+
+// The class this revise-menu slot's preview should use: the character's actual current
+// class if they're already deployed on the map, else any class override the revise page
+// itself has applied, else their default class. gCharPalOverride is keyed by charID (a
+// fixed slot, at most ~0x45 of them), but which of that slot's registered palettes index
+// V actually resolves to depends on THIS - see GetNthCharPalForClassID().
+int GetReviseClassID(ConfigMenuProc * proc)
+{
+    int origCharID = GetReviseCharID(proc);
+    struct FE8CharacterData * table = (struct FE8CharacterData *)GetCharacterData(origCharID);
+    int classID = GetCharOverwrittenClassID(GetPidStatsSafe(origCharID));
+    struct Unit * realUnit = GetUnitFromCharId(origCharID);
+    if (UNIT_IS_VALID(realUnit))
+    {
+        classID = realUnit->pClassData->number;
+    }
+    if (!classID)
+    {
+        classID = VanillaClassFilter(table->defaultClass, true);
+    }
+    return classID;
+}
+
+static void RedrawReviseCharPalPage(ConfigMenuProc * proc)
+{
+    int origCharID = GetReviseCharID(proc);
+    int classID = GetReviseClassID(proc);
+    int count = CountCharPalOptionsForClassID(classID);
+    int current = (origCharID > 0 && origCharID < 0x46) ? gCharPalOverride[origCharID] : 0;
+
+    RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
+    ResetText();
+
+    int x = 4;
+    int y = 10;
+    EndFaceById(0);
+    EndFaceById(1);
+    for (int i = 0; i < 4; ++i)
+    {
+        InitText(gStatScreen.text + i, 8);
+        ClearText(gStatScreen.text + i);
+    }
+
+    PutDrawText(gStatScreen.text + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y + 4), green, 0, 0, "Palette");
+
+    if (current <= 0)
+    {
+        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), white, 0, 0, "Default");
+    }
+    else
+    {
+        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), gold, 0, 0, "Custom");
+    }
+    PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y + 4), white, current);
+    PutDrawText(gStatScreen.text + 3, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 18, y + 4), white, 0, 0, "/");
+    PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 20, y + 4), white, count);
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+// (Re)starts the live preview from scratch so it picks up whatever's currently in
+// gCharPalOverride[origCharID]. This mini-anim preview path (unlike a real battle) only
+// ever loads its palette once, during setup - see ApplyDebuggerCharPalOverride() in
+// Debugger/C_Code.c - so scrolling to a new palette has to restart the whole preview
+// rather than patch anything after the fact.
+static void StartReviseCharPalPreview(ConfigMenuProc * proc)
+{
+    int origCharID = GetReviseCharID(proc);
+    int classID = GetReviseClassID(proc);
+
+    if (classID)
+    {
+        // pCharacterData->number must be origCharID - the id gCharPalOverride is keyed by
+        // - so ApplyDebuggerCharPalOverride() (Debugger/C_Code.c) can read it straight off
+        // this. palOverride stays -1: that's the vanilla charPalId slot, unrelated to our
+        // gCharPal override, which ApplyDebuggerCharPalOverride applies separately.
+        struct Unit previewUnit;
+        previewUnit.pCharacterData = GetCharacterData(origCharID);
+        StartDebuggerBanimPreview(classID, &previewUnit, GetDebuggerDefaultPreviewWeapon(classID), -1);
+    }
+    else
+    {
+        EndDebuggerBanimPreview();
+    }
+}
+
+void DrawReviseCharPalPage(ConfigMenuProc * proc)
+{
+    // Force a fresh scan on entry rather than trust whatever is in that fixed RAM.
+    sCharPalOptionsBuilt = 0;
+
+    int origCharID = GetReviseCharID(proc);
+    int classID = GetReviseClassID(proc);
+    int count = CountCharPalOptionsForClassID(classID);
+    bool validCharID = (origCharID > 0 && origCharID < 0x46);
+
+    // The value being browsed lives directly in gCharPalOverride[origCharID] from here on,
+    // so GetUniqueCharPal() picks it up naturally. revisePalId just remembers what it was
+    // before we started editing, to restore on cancel - see LoopReviseCharPalPage.
+    int previous = validCharID ? gCharPalOverride[origCharID] : 0;
+    proc->revisePalId = previous;
+    if (validCharID && (previous < 0 || previous > count))
+    {
+        gCharPalOverride[origCharID] = 0;
+    }
+
+    StartReviseCharPalPreview(proc);
+    RedrawReviseCharPalPage(proc);
+}
+
+void LoopReviseCharPalPage(ConfigMenuProc * proc)
+{
+    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
+    int origCharID = GetReviseCharID(proc);
+    int classID = GetReviseClassID(proc);
+    int count = CountCharPalOptionsForClassID(classID);
+    bool validCharID = (origCharID > 0 && origCharID < 0x46);
+
+    if (keys & (A_BUTTON | B_BUTTON | START_BUTTON))
+    {
+        if (keys & A_BUTTON)
+        {
+            // gCharPalOverride[origCharID] already holds the value being browsed - it's
+            // already "saved", nothing more to do.
+            PlaySuccessSfx();
+        }
+        else
+        {
+            if (validCharID)
+            {
+                gCharPalOverride[origCharID] = proc->revisePalId; // restore what it was before editing
+            }
+            PlayBackOutSfx();
+        }
+        EndDebuggerBanimPreview();
+        Proc_Goto(proc, PreviewCharLabel);
+        EndFaceById(0);
+        EndFaceById(1);
+        return;
+    }
+
+    int dir = 0;
+    if (keys & DPAD_LEFT)
+    {
+        dir = -1;
+    }
+    else if (keys & DPAD_RIGHT)
+    {
+        dir = 1;
+    }
+
+    if (dir && validCharID)
+    {
+        int tmp = gCharPalOverride[origCharID] + dir;
+        if (tmp < 0)
+        {
+            tmp = count;
+        }
+        else if (tmp > count)
+        {
+            tmp = 0;
+        }
+        gCharPalOverride[origCharID] = tmp;
+        StartReviseCharPalPreview(proc);
+        RedrawReviseCharPalPage(proc);
+        PlayScrollMenuSfx();
+    }
 }
 
 // each vanilla portrait is assigned to a new portrait from any char table
@@ -6671,11 +6853,149 @@ struct gCharPal_EntryStruct
 
 extern const struct gCharPal_EntryStruct * const gCharPal[];
 extern s16 gBanimUniquePal[2];
+
+// Player-set override for the palette a character uses in battle, indexed by the
+// character's ORIGINAL (recruit-slot) charID - never the reordered/game-table-adjusted
+// id, since a slot only ever has one of these regardless of which game's portrait/name
+// it's currently displaying (see GetReviseCharID()). 0 = no override (fall back to the
+// normal GetUniqueCharPal lookup below). A nonzero value V selects flat option (V - 1)
+// out of every gCharPal palette registered for the character's CURRENT class (or a class
+// one promotion away from it) - see GetNthCharPalForClassID(). Storage/SRAM placement is
+// handled elsewhere.
+extern u16 gCharPalOverride[0x46];
+
+int GetPromotedClass(const struct ClassData * data);
+
+// Whether a gCharPal slot registered under registeredClassID should be considered a match
+// when browsing/looking up palettes for classID - same class, or one promotion step away
+// in either direction (a recolor registered for the base tier should still show up while
+// previewing/playing the promoted tier, and vice versa).
+static bool DoesCharPalClassMatch(int registeredClassID, int classID)
+{
+    if (!registeredClassID)
+    {
+        return false;
+    }
+    if (registeredClassID == classID)
+    {
+        return true;
+    }
+    if (GetPromotedClass(GetClassData(registeredClassID)) == classID)
+    {
+        return true;
+    }
+    if (GetPromotedClass(GetClassData(classID)) == registeredClassID)
+    {
+        return true;
+    }
+    return false;
+}
+
+// A full gCharPal scan (every entry in every table, each slot checked against classID
+// via DoesCharPalClassMatch, which itself walks a class promotion chain) is too slow to
+// redo on every single call - the revise-pal screen calls CountCharPalOptionsForClassID
+// unconditionally every frame it's open. classID never changes while that screen is up
+// (see GetReviseClassID()), so instead this buffers the matching palettes for whichever
+// classID was scanned last, and only rescans when classID actually changes; every other
+// call (i.e. nearly every frame) just reads the buffer built on the first one.
+// Fixed RAM, see Definitions.s (SET_DATA) - sCharPalOptionsBuffer 0x20288c0 (0x200 bytes,
+// 128 pointers), then sCharPalOptionsCount 0x2028ac0, sCharPalOptionsClassID 0x2028ac4,
+// sCharPalOptionsBuilt 0x2028ac8.
+// NB: this RAM is NOT zero-initialised, and GetUniqueCharPal() reads through this cache
+// during real battles, not just on the config screen. A plain true/false "built" flag
+// would therefore be trusted on the strength of whatever garbage happened to be sitting
+// at 0x2028ac8 on boot - and if sCharPalOptionsClassID's garbage happened to match the
+// class being queried, the lookup would hand back pointers out of a buffer that was never
+// filled. The full 32-bit magic below makes that effectively impossible.
+#define CharPalOptionsBufferMax 128
+extern const u16 * sCharPalOptionsBuffer[CharPalOptionsBufferMax];
+extern int sCharPalOptionsCount;
+extern int sCharPalOptionsClassID;
+extern u32 sCharPalOptionsBuilt;
+
+static void RebuildCharPalOptionsBuffer(int classID)
+{
+    sCharPalOptionsClassID = classID;
+    sCharPalOptionsBuilt = CharPalOptionsBuiltMagic;
+    sCharPalOptionsCount = 0;
+
+    if (classID <= 0)
+    {
+        return;
+    }
+
+    for (int t = 0; t < NumberOfCharTables && sCharPalOptionsCount < CharPalOptionsBufferMax; ++t)
+    {
+        const struct gCharPal_EntryStruct * entry = gCharPal[t];
+        if (!entry)
+        {
+            continue;
+        }
+        while (entry->charID && sCharPalOptionsCount < CharPalOptionsBufferMax)
+        {
+            for (int i = 0; i < NumOfCharPals && sCharPalOptionsCount < CharPalOptionsBufferMax; ++i)
+            {
+                if (entry->pal[i] && DoesCharPalClassMatch(entry->classID[i], classID))
+                {
+                    sCharPalOptionsBuffer[sCharPalOptionsCount++] = entry->pal[i];
+                }
+            }
+            entry++;
+        }
+    }
+}
+
+static void EnsureCharPalOptionsBuffer(int classID)
+{
+    if (sCharPalOptionsBuilt == CharPalOptionsBuiltMagic && sCharPalOptionsClassID == classID)
+    {
+        return;
+    }
+    RebuildCharPalOptionsBuffer(classID);
+}
+
+// Every (table, entry, slot) triple across ALL of gCharPal - any character's entries,
+// not just one - whose slot class matches classID (see DoesCharPalClassMatch), flattened
+// into a single 0-based index in table order, then entry order, then slot order.
+const u16 * GetNthCharPalForClassID(int classID, int index)
+{
+    EnsureCharPalOptionsBuffer(classID);
+    if (index < 0 || index >= sCharPalOptionsCount)
+    {
+        return NULL;
+    }
+    return sCharPalOptionsBuffer[index];
+}
+
+int CountCharPalOptionsForClassID(int classID)
+{
+    EnsureCharPalOptionsBuffer(classID);
+    return sCharPalOptionsCount;
+}
+
 const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
 {
     if (!VeslyBuildfile_Link)
     {
         return NULL;
+    }
+    // Keyed by the character's ORIGINAL (recruit-slot) id - the same id the revise-palette
+    // screen writes with (GetReviseCharID) - NOT the `charID` parameter. Both battle call
+    // sites pass GetReorderedCharIDAndTableID().x there, which is the character this slot
+    // was randomised INTO (pidStats->newCharID), so indexing by it reads a slot the menu
+    // never wrote. unit->pCharacterData->number is still the original id: the reordering is
+    // resolved at display time rather than baked into the unit, which is exactly why
+    // GetReorderedCharIDAndTableID() can take pCharacterData and derive the new id from it.
+    int overrideCharID = unit->pCharacterData->number;
+    if (overrideCharID > 0 && overrideCharID < 0x46 && gCharPalOverride[overrideCharID])
+    {
+        const u16 * overridePal =
+            GetNthCharPalForClassID(unit->pClassData->number, gCharPalOverride[overrideCharID] - 1);
+        if (overridePal)
+        {
+            gBanimUniquePal[pos] = 0;
+            return overridePal;
+        }
     }
     const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
     const u16 * pal = NULL;
@@ -12503,6 +12823,16 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(DrawReviseCharPage),
     PROC_REPEAT(LoopReviseCharPage),
 
+    PROC_LABEL(ReviseCharPalProcLabel),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(DrawReviseCharPalPage),
+    PROC_REPEAT(LoopReviseCharPalPage),
+
     PROC_LABEL(FilterUnitsLabel),
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
@@ -15385,7 +15715,7 @@ struct ChapterEventGroup
     /* 04 */ const void * characterBasedEvents; // must be 32-Aligned?
 };
 const struct ChapterEventGroup * GetChapterEventDataPointer(unsigned chIndex); // 80315BC fe6 802BBA0
-extern struct Unit * GetUnitFromCharId(s16 pid);                               // fe7 8017D34 fe6 8017ABC
+
 struct TalkEventCond
 {
     u16 eventType;

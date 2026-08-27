@@ -1,3 +1,7 @@
+// ProcScr_eobjLvup 
+// ProcScr_ekrsubAnimeEmulator
+// ProcScr_EfxPartsofScroll 
+// ProcScr_ekrBaseAppear 
 
 ALIGN 4 
 gCharPal: 
@@ -21,9 +25,9 @@ POIN processed_FE2_15_palettes
 POIN processed_FE16_palettes 
 POIN processed_FE17_palettes 
 POIN 0 // Vanilla bosses 
-POIN processed_FE6_boss_palettes 
+POIN processed_FE1_boss_palettes 
 POIN processed_FE4_boss_palettes 
-POIN processed_FE6_boss_palettes 
+POIN processed_FE5_boss_palettes 
 #ifndef _FE6_ 
 POIN processed_FE6_boss_palettes 
 #endif 
@@ -33,8 +37,8 @@ POIN processed_FE7_boss_palettes
 #ifndef _FE8_ 
 POIN processed_FE8_boss_palettes 
 #endif 
-POIN Pal_FE10_Bosses 
-POIN Pal_FE13_Bosses
+POIN processed_FE9_10_boss_palettes 
+POIN processed_FE13_boss_palettes
 POIN Pal_FE14_Bosses 
 POIN processed_FE2_boss_palettes 
 POIN Pal_FE16_Bosses 
@@ -42,9 +46,7 @@ POIN Pal_FE17_Bosses
 POIN 0 
 
 
-// nothing for all of these that are uncommented 
-Pal_FE10_Bosses: 
-Pal_FE13_Bosses:
+// nothing for these
 Pal_FE14_Bosses: 
 Pal_FE16_Bosses: 
 Pal_FE17_Bosses: 
@@ -85,6 +87,8 @@ WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator
 #include "FE4_boss_defs.event"
 #include "FE5_boss_defs.event"
 #include "FE6_boss_defs.event"
+#include "FE9_10_boss_defs.event"
+#include "FE13_boss_defs.event"
 
 #ifndef _FE7_ 
 #include "FE7_boss_defs.event"
