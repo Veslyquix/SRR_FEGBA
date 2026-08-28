@@ -112,6 +112,60 @@ WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator
 
 #include "master.event"
 
+// How many palettes each gCharPal table holds - one SHORT per gCharPal entry, in the SAME
+// ORDER and behind the SAME #ifndef guards, so gCharPalCounts[t] always describes
+// gCharPal[t]. Lets GetNthRawCharPal() (C_code.c) skip an entire table in O(1) rather than
+// walking all ~4000 palEntries to reach one palette by index.
+//
+// Must come AFTER "master.event" above: the _NumPals values are #defines from it, and EA
+// substitutes those textually, so they have to already be defined by this point (unlike
+// the POIN labels in gCharPal, which the assembler resolves in a later pass).
+//
+// KEEP IN SYNC WITH gCharPal AT THE TOP OF THIS FILE - if an entry is added, removed, or
+// reordered there, do the same here. A mismatch makes GetNthRawCharPal silently skip the
+// wrong number of palettes rather than fail loudly.
+ALIGN 4
+gCharPalCounts:
+SHORT 0 // Vanilla does nothing
+SHORT processed_FE1_palettes_NumPals
+SHORT processed_FE4_palettes_NumPals
+SHORT processed_FE5_palettes_NumPals
+#ifndef _FE6_
+SHORT processed_FE6_palettes_NumPals
+#endif
+#ifndef _FE7_
+SHORT processed_FE7_palettes_NumPals
+#endif
+#ifndef _FE8_
+SHORT processed_FE8_palettes_NumPals
+#endif
+SHORT processed_FE9_10_palettes_NumPals
+SHORT processed_FE13_palettes_NumPals
+SHORT processed_FE14_palettes_NumPals
+SHORT processed_FE2_15_palettes_NumPals
+SHORT processed_FE16_palettes_NumPals
+SHORT processed_FE17_palettes_NumPals
+SHORT 0 // Vanilla bosses
+SHORT processed_FE1_boss_palettes_NumPals
+SHORT processed_FE4_boss_palettes_NumPals
+SHORT processed_FE5_boss_palettes_NumPals
+#ifndef _FE6_
+SHORT processed_FE6_boss_palettes_NumPals
+#endif
+#ifndef _FE7_
+SHORT processed_FE7_boss_palettes_NumPals
+#endif
+#ifndef _FE8_
+SHORT processed_FE8_boss_palettes_NumPals
+#endif
+SHORT processed_FE9_10_boss_palettes_NumPals
+SHORT processed_FE13_boss_palettes_NumPals
+SHORT 0 // Pal_FE14_Bosses - empty stub
+SHORT processed_FE2_boss_palettes_NumPals
+SHORT 0 // Pal_FE16_Bosses - empty stub
+SHORT 0 // Pal_FE17_Bosses - empty stub
+SHORT 0
+
 
 
 

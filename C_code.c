@@ -3744,16 +3744,13 @@ const u16 * GetNthRawCharPal(int index);
 const u16 * ResolveCharPalOverride(int classID, int adjustedCharID, int tableID, int storedValue);
 int FindLastRawCharPalIndex(void);
 
-// gCharPal is static ROM data - the total number of raw/unfiltered palettes (see
-// GetNthRawCharPal) never changes during a play session, so unlike the class-filtered
-// buffer this needs no invalidation key, just "has it been computed yet". Cached (fixed
-// RAM, so not zero-initialised - same CharPalOptionsBuiltMagic guard) so scrolling through
-// raw mode doesn't need to re-walk all of gCharPal from scratch just to find the boundary
-// of "does the next/previous raw index exist" - only GetNthRawCharPal's own O(index) walk
-// to fetch the actual palette pointer is unavoidable, and it's not feasible to buffer
-// thousands of those pointers the way the (much smaller) filtered list is buffered.
-extern int sRawCharPalCount;
-extern u32 sRawCharPalCountBuilt;
+// How many palettes each gCharPal table holds - built by ProcessCSV.py into master.event
+// as <table>_NumPals, assembled into this array by gfx/Palettes/Installer.event. One entry
+// per gCharPal entry, same order, same #ifndef guards, so gCharPalCounts[t] always
+// describes gCharPal[t]. This is ROM data, so it needs no RAM cache and no invalidation -
+// it replaces the sRawCharPalCount/sRawCharPalCountBuilt pair that used to cache a
+// computed total in fixed RAM.
+extern const u16 gCharPalCounts[];
 int GetRawCharPalCount(void);
 
 // From ASM/Debugger/C_Code.c - made non-static there so they can be linked in here.
@@ -7160,11 +7157,19 @@ int CountCharPalOptionsForClassID(int classID, int adjustedCharID, int tableID)
 
 // Every (table, entry, slot) triple across ALL of gCharPal with a non-NULL palette, in
 // table/entry/slot order - no class filtering, no character filtering, nothing. This is
-// the "scroll through ALL palettes, from ALL games" mode: unlike GetNthCharPalForClassID,
-// nothing here is filtered out, so there's no "how many valid ones came before index N" to
-// count - index N's location is just wherever forward-walking N non-NULL palettes lands,
-// which needs no buffering/caching (see LoopReviseCharPalPage - this only ever runs once
-// per scroll button press, not every frame).
+// the "scroll through ALL palettes, from ALL games" mode.
+//
+// gCharPalCounts lets whole tables be skipped arithmetically instead of walked: only the
+// one table the index actually falls inside gets scanned. That matters because there are
+// ~4000 palettes across ~24 tables, and this used to walk every entry of every preceding
+// table (~4000 entries x 11 slots) for a high index - enough to drop frames while a scroll
+// input was held.
+//
+// Deliberately still walks entries WITHIN the target table rather than indexing straight to
+// entry[index]: that shortcut would assume exactly one palette per palEntry, which is true
+// of everything ProcessCSV.py generates today but is not enforced by the data format (the
+// palEntry macro takes up to 11 classes/palettes). Skipping tables needs no such assumption
+// - it only trusts the counts - and already removes almost all of the work.
 const u16 * GetNthRawCharPal(int index)
 {
     if (index < 0)
@@ -7173,6 +7178,13 @@ const u16 * GetNthRawCharPal(int index)
     }
     for (int t = 0; t < NumberOfCharTables; ++t)
     {
+        int tableCount = gCharPalCounts[t];
+        if (index >= tableCount)
+        {
+            index -= tableCount; // whole table skipped without touching it
+            continue;
+        }
+
         const struct gCharPal_EntryStruct * entry = gCharPal[t];
         if (!entry)
         {
@@ -7193,43 +7205,28 @@ const u16 * GetNthRawCharPal(int index)
             }
             entry++;
         }
+        // Only reachable if gCharPalCounts[t] overcounted this table (it and gCharPal are
+        // generated together, so this means they have drifted out of sync).
+        return NULL;
     }
     return NULL;
 }
 
-// One linear pass counting every non-NULL palette in gCharPal - no class/character
-// filtering, nothing. Cached (see the comment on sRawCharPalCount's declaration): gCharPal
-// is static ROM data, so once this has been computed it's correct for the rest of the
-// program's life, unlike the class-filtered buffer which has to invalidate whenever
-// classID/adjustedCharID/tableID change.
+// Total palettes reachable in raw mode. Just sums the ~24 ROM shorts, which is cheap
+// enough to need no caching at all - the old version walked all ~4000 entries and so had
+// to cache its result in fixed RAM (sRawCharPalCount/sRawCharPalCountBuilt, both now gone).
+//
+// Summed from gCharPalCounts rather than read from master.event's gCharPalTotalPals so it
+// stays correct automatically: which tables gCharPal actually references is decided by
+// Installer.event's #ifndef guards, and this array is built right alongside that list.
 int GetRawCharPalCount(void)
 {
-    if (sRawCharPalCountBuilt != CharPalOptionsBuiltMagic)
+    int count = 0;
+    for (int t = 0; t < NumberOfCharTables; ++t)
     {
-        int count = 0;
-        for (int t = 0; t < NumberOfCharTables; ++t)
-        {
-            const struct gCharPal_EntryStruct * entry = gCharPal[t];
-            if (!entry)
-            {
-                continue;
-            }
-            while (entry->charID)
-            {
-                for (int i = 0; i < NumOfCharPals; ++i)
-                {
-                    if (entry->pal[i])
-                    {
-                        ++count;
-                    }
-                }
-                entry++;
-            }
-        }
-        sRawCharPalCount = count;
-        sRawCharPalCountBuilt = CharPalOptionsBuiltMagic;
+        count += gCharPalCounts[t];
     }
-    return sRawCharPalCount;
+    return count;
 }
 
 // Only called on the rare LEFT-from-Default transition (LoopReviseCharPalPage), to find
