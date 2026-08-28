@@ -3842,7 +3842,7 @@ static void RedrawReviseCharPalPage(ConfigMenuProc * proc)
         }
         int slashXpos = x + 17;
 
-        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), gold, 0, 0, "Matching(?)");
+        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), gold, 0, 0, "Matching");
         PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y + 4), white, current);
         PutDrawText(gStatScreen.text + 3, TILEMAP_LOCATED(gBG0TilemapBuffer, slashXpos, y + 4), white, 0, 0, "/");
         PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, slashXpos + countDigits, y + 4), white, count);
@@ -7017,14 +7017,14 @@ static bool DoesCharPalClassMatch(int registeredClassID, int classID)
     {
         return true;
     }
-    if (GetPromotedClass(GetClassData(registeredClassID)) == classID)
-    {
-        return true;
-    }
-    if (GetPromotedClass(GetClassData(classID)) == registeredClassID)
-    {
-        return true;
-    }
+    // if (GetPromotedClass(GetClassData(registeredClassID)) == classID)
+    // {
+    // return true;
+    // }
+    // if (GetPromotedClass(GetClassData(classID)) == registeredClassID)
+    // {
+    // return true;
+    // }
     return false;
 }
 
