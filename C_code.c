@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.1.4"
+#define VersionNumber " SRR V2.1.5"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -3719,11 +3719,36 @@ struct Vec2u GetReorderedCharIDAndTableID(const struct CharacterData * table)
 }
 
 extern u16 gCharPalOverride[0x46];
-int CountCharPalOptionsForClassID(int classID);
-const u16 * GetNthCharPalForClassID(int classID, int index);
+int CountCharPalOptionsForClassID(int classID, int adjustedCharID, int tableID);
+const u16 * GetNthCharPalForClassID(int classID, int adjustedCharID, int tableID, int index);
 // Fixed RAM (Definitions.s), so it is NOT zero-initialised - see CharPalOptionsBuiltMagic.
 #define CharPalOptionsBuiltMagic 0xC0DE5A5A
 extern u32 sCharPalOptionsBuilt;
+
+// gCharPalOverride[] stored-value encoding - shared by LoopReviseCharPalPage (assigns
+// these while scrolling) and ResolveCharPalOverride (interprets them, for both real
+// battles and the preview):
+//   0                        no override
+//   1 .. count               tier1+tier2 filtered index+1 - GetNthCharPalForClassID()
+//   RawCharPalOverrideBase+N raw/unfiltered index N, no class filtering at all - GetNth
+//                            RawCharPalOverride(). Must stay above CharPalOptionsBufferMax
+//                            (128) so it can never collide with a filtered index.
+#define RawCharPalOverrideBase 200
+const u16 * GetNthRawCharPal(int index);
+const u16 * ResolveCharPalOverride(int classID, int adjustedCharID, int tableID, int storedValue);
+int FindLastRawCharPalIndex(void);
+
+// gCharPal is static ROM data - the total number of raw/unfiltered palettes (see
+// GetNthRawCharPal) never changes during a play session, so unlike the class-filtered
+// buffer this needs no invalidation key, just "has it been computed yet". Cached (fixed
+// RAM, so not zero-initialised - same CharPalOptionsBuiltMagic guard) so scrolling through
+// raw mode doesn't need to re-walk all of gCharPal from scratch just to find the boundary
+// of "does the next/previous raw index exist" - only GetNthRawCharPal's own O(index) walk
+// to fetch the actual palette pointer is unavoidable, and it's not feasible to buffer
+// thousands of those pointers the way the (much smaller) filtered list is buffered.
+extern int sRawCharPalCount;
+extern u32 sRawCharPalCountBuilt;
+int GetRawCharPalCount(void);
 
 // From ASM/Debugger/C_Code.c - made non-static there so they can be linked in here.
 extern void StartDebuggerBanimPreview(int classId, struct Unit * unit, int weapon, int palOverride);
@@ -3752,11 +3777,27 @@ int GetReviseClassID(ConfigMenuProc * proc)
     return classID;
 }
 
+// The character/table this revise-menu slot's preview should treat as "the specific
+// character these palettes were made for" - tier 1 of GetNthCharPalForClassID()'s buffer.
+// .x <= 0 (or an invalid GetReviseCharID()) means "nothing to look up" - tier 1 is skipped
+// and only the all-games class-matching tier remains.
+struct Vec2u GetReviseAdjustedCharAndTable(ConfigMenuProc * proc)
+{
+    int origCharID = GetReviseCharID(proc);
+    struct Vec2u result = { 0, -1 };
+    if (origCharID > 0 && origCharID != 0xFF)
+    {
+        result = GetReorderedCharIDAndTableID(GetCharacterData(origCharID));
+    }
+    return result;
+}
+
 static void RedrawReviseCharPalPage(ConfigMenuProc * proc)
 {
     int origCharID = GetReviseCharID(proc);
     int classID = GetReviseClassID(proc);
-    int count = CountCharPalOptionsForClassID(classID);
+    struct Vec2u adjusted = GetReviseAdjustedCharAndTable(proc);
+    int count = CountCharPalOptionsForClassID(classID, adjusted.x, adjusted.y);
     int current = (origCharID > 0 && origCharID < 0x46) ? gCharPalOverride[origCharID] : 0;
 
     RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
@@ -3771,20 +3812,38 @@ static void RedrawReviseCharPalPage(ConfigMenuProc * proc)
         InitText(gStatScreen.text + i, 8);
         ClearText(gStatScreen.text + i);
     }
-
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 13, y + 4), 6, 2, 0);
     PutDrawText(gStatScreen.text + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y + 4), green, 0, 0, "Palette");
 
     if (current <= 0)
     {
-        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), white, 0, 0, "Default");
+        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), white, 0, 0, "Generic");
+    }
+    else if (current >= RawCharPalOverrideBase)
+    {
+        // Raw/unfiltered mode has no cheap total to show as a denominator (see
+        // GetNthRawCharPal) - just show which raw entry this is.
+        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), gold, 0, 0, "All");
+        PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y + 4), white, current - RawCharPalOverrideBase);
     }
     else
     {
-        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), gold, 0, 0, "Custom");
+        int countDigits = 1;
+        if (count >= 10)
+        {
+            countDigits = 2;
+        }
+        if (count >= 100)
+        {
+            countDigits = 3;
+        }
+        int slashXpos = x + 17;
+
+        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), gold, 0, 0, "Matching(?)");
+        PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y + 4), white, current);
+        PutDrawText(gStatScreen.text + 3, TILEMAP_LOCATED(gBG0TilemapBuffer, slashXpos, y + 4), white, 0, 0, "/");
+        PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, slashXpos + countDigits, y + 4), white, count);
     }
-    PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y + 4), white, current);
-    PutDrawText(gStatScreen.text + 3, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 18, y + 4), white, 0, 0, "/");
-    PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 20, y + 4), white, count);
 
     BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
 }
@@ -3822,7 +3881,8 @@ void DrawReviseCharPalPage(ConfigMenuProc * proc)
 
     int origCharID = GetReviseCharID(proc);
     int classID = GetReviseClassID(proc);
-    int count = CountCharPalOptionsForClassID(classID);
+    struct Vec2u adjusted = GetReviseAdjustedCharAndTable(proc);
+    int count = CountCharPalOptionsForClassID(classID, adjusted.x, adjusted.y);
     bool validCharID = (origCharID > 0 && origCharID < 0x46);
 
     // The value being browsed lives directly in gCharPalOverride[origCharID] from here on,
@@ -3830,7 +3890,9 @@ void DrawReviseCharPalPage(ConfigMenuProc * proc)
     // before we started editing, to restore on cancel - see LoopReviseCharPalPage.
     int previous = validCharID ? gCharPalOverride[origCharID] : 0;
     proc->revisePalId = previous;
-    if (validCharID && (previous < 0 || previous > count))
+    bool previousIsValid = (previous == 0) || (previous >= 1 && previous <= count) ||
+        (previous >= RawCharPalOverrideBase && (previous - RawCharPalOverrideBase) < GetRawCharPalCount());
+    if (validCharID && !previousIsValid)
     {
         gCharPalOverride[origCharID] = 0;
     }
@@ -3844,7 +3906,8 @@ void LoopReviseCharPalPage(ConfigMenuProc * proc)
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
     int origCharID = GetReviseCharID(proc);
     int classID = GetReviseClassID(proc);
-    int count = CountCharPalOptionsForClassID(classID);
+    struct Vec2u adjusted = GetReviseAdjustedCharAndTable(proc);
+    int count = CountCharPalOptionsForClassID(classID, adjusted.x, adjusted.y);
     bool validCharID = (origCharID > 0 && origCharID < 0x46);
 
     if (keys & (A_BUTTON | B_BUTTON | START_BUTTON))
@@ -3882,15 +3945,47 @@ void LoopReviseCharPalPage(ConfigMenuProc * proc)
 
     if (dir && validCharID)
     {
-        int tmp = gCharPalOverride[origCharID] + dir;
-        if (tmp < 0)
+        // Scroll order: Default(0) -> filtered tier1+tier2(1..count) ->
+        // raw/unfiltered(RawCharPalOverrideBase..) -> wraps back to Default. See the
+        // gCharPalOverride[] encoding comment near RawCharPalOverrideBase's #define.
+        int cur = gCharPalOverride[origCharID];
+        int tmp;
+
+        if (cur >= RawCharPalOverrideBase)
         {
-            tmp = count;
+            int rawIndex = (cur - RawCharPalOverrideBase) + dir;
+            if (rawIndex < 0)
+            {
+                tmp = count; // step back down to the top of the filtered list (0 if none)
+            }
+            else if (rawIndex < GetRawCharPalCount())
+            {
+                tmp = RawCharPalOverrideBase + rawIndex;
+            }
+            else
+            {
+                tmp = 0; // ran off the end of raw mode - wrap to Default
+            }
         }
-        else if (tmp > count)
+        else
         {
-            tmp = 0;
+            tmp = cur + dir;
+            if (tmp > count)
+            {
+                // Step up past the filtered list into raw mode, at its start - unless
+                // there's nothing in gCharPal at all, in which case there's no raw mode
+                // to enter and this just wraps straight to Default.
+                tmp = GetRawCharPalCount() > 0 ? RawCharPalOverrideBase : 0;
+            }
+            else if (tmp < 0)
+            {
+                // LEFT from Default: wrap around to the END of raw mode if it has
+                // anything, else to the top of the filtered list.
+                int lastRaw = FindLastRawCharPalIndex();
+                tmp = (lastRaw >= 0) ? (RawCharPalOverrideBase + lastRaw) : count;
+            }
         }
+
         gCharPalOverride[origCharID] = tmp;
         StartReviseCharPalPreview(proc);
         RedrawReviseCharPalPage(proc);
@@ -6864,6 +6959,42 @@ extern s16 gBanimUniquePal[2];
 // handled elsewhere.
 extern u16 gCharPalOverride[0x46];
 
+// Debugger/C_Code.c calls this instead of reading gCharPalOverride directly, so the array
+// only ever needs a single SET_DATA in THIS project's Definitions.s - no more keeping a
+// second copy of the address in sync across two separate projects' Definitions.s files
+// (see the "gCharPalOverride is ALSO defined in..." incident this replaces).
+u16 GetCharPalOverride(int charID)
+{
+    if (charID <= 0 || charID >= 0x46)
+    {
+        return 0;
+    }
+    return gCharPalOverride[charID];
+}
+
+// Debugger/C_Code.c calls these two (given origCharID from unit->pCharacterData, same as
+// GetCharPalOverride's argument) to get the adjusted charID/tableID GetNthCharPalForClassID
+// needs for tier 1 of its buffer - see GetReviseAdjustedCharAndTable() for the menu-side
+// equivalent, and the comment on GetUniqueCharPal()'s override lookup for why this is a
+// DIFFERENT id than GetCharPalOverride's.
+int GetAdjustedCharID(int origCharID)
+{
+    if (origCharID <= 0 || origCharID == 0xFF)
+    {
+        return 0;
+    }
+    return GetReorderedCharIDAndTableID(GetCharacterData(origCharID)).x;
+}
+
+int GetAdjustedCharTableID(int origCharID)
+{
+    if (origCharID <= 0 || origCharID == 0xFF)
+    {
+        return -1;
+    }
+    return GetReorderedCharIDAndTableID(GetCharacterData(origCharID)).y;
+}
+
 int GetPromotedClass(const struct ClassData * data);
 
 // Whether a gCharPal slot registered under registeredClassID should be considered a match
@@ -6894,34 +7025,73 @@ static bool DoesCharPalClassMatch(int registeredClassID, int classID)
 // A full gCharPal scan (every entry in every table, each slot checked against classID
 // via DoesCharPalClassMatch, which itself walks a class promotion chain) is too slow to
 // redo on every single call - the revise-pal screen calls CountCharPalOptionsForClassID
-// unconditionally every frame it's open. classID never changes while that screen is up
-// (see GetReviseClassID()), so instead this buffers the matching palettes for whichever
-// classID was scanned last, and only rescans when classID actually changes; every other
-// call (i.e. nearly every frame) just reads the buffer built on the first one.
-// Fixed RAM, see Definitions.s (SET_DATA) - sCharPalOptionsBuffer 0x20288c0 (0x200 bytes,
-// 128 pointers), then sCharPalOptionsCount 0x2028ac0, sCharPalOptionsClassID 0x2028ac4,
-// sCharPalOptionsBuilt 0x2028ac8.
+// unconditionally every frame it's open. (classID, adjustedCharID, tableID) never change
+// while that screen is up for a given character (see GetReviseClassID()/
+// GetReviseAdjustedCharAndTable()), so instead this buffers the matching palettes for
+// whichever combination was scanned last, and only rescans when it actually changes;
+// every other call (i.e. nearly every frame) just reads the buffer built on the first one.
+// Fixed RAM, see Definitions.s (SET_DATA) - sCharPalOptionsBuilt 0x20287bc, then
+// gCharPalOverride 0x20287c0, sCharPalOptionsBuffer 0x20288c0 (0x200 bytes, 128 pointers),
+// sCharPalOptionsCount 0x2028ac0, sCharPalOptionsClassID 0x2028ac4, sCharPalOptionsCharID
+// 0x2028ac8, sCharPalOptionsTableID 0x2028acc.
 // NB: this RAM is NOT zero-initialised, and GetUniqueCharPal() reads through this cache
 // during real battles, not just on the config screen. A plain true/false "built" flag
 // would therefore be trusted on the strength of whatever garbage happened to be sitting
-// at 0x2028ac8 on boot - and if sCharPalOptionsClassID's garbage happened to match the
-// class being queried, the lookup would hand back pointers out of a buffer that was never
-// filled. The full 32-bit magic below makes that effectively impossible.
+// at 0x20287bc on boot - and if the cache key's garbage happened to match the query, the
+// lookup would hand back pointers out of a buffer that was never filled. The full 32-bit
+// magic below makes that effectively impossible.
 #define CharPalOptionsBufferMax 128
 extern const u16 * sCharPalOptionsBuffer[CharPalOptionsBufferMax];
 extern int sCharPalOptionsCount;
 extern int sCharPalOptionsClassID;
 extern u32 sCharPalOptionsBuilt;
+extern int sCharPalOptionsCharID;
+extern int sCharPalOptionsTableID;
 
-static void RebuildCharPalOptionsBuffer(int classID)
+// Fills the buffer in two tiers, in priority order:
+//  1. Palettes registered specifically for (adjustedCharID, tableID) - the exact character
+//     this slot currently represents, in the exact game its portrait/name is drawn from.
+//     Normally just a handful (at most NumOfCharPals, from that one gCharPal entry).
+//  2. Every other gCharPal palette, from any character in any table, whose class matches
+//     classID (see DoesCharPalClassMatch) - "scroll through ALL palettes, from ALL games".
+//     The (tableID, adjustedCharID) entry tier 1 already fully covered is skipped here so
+//     nothing appears twice.
+// adjustedCharID <= 0 (or tableID out of range) skips tier 1 entirely - GetReviseAdjusted
+// CharAndTable()/GetAdjustedCharID() etc. return that when there's nothing to look up yet.
+static void RebuildCharPalOptionsBuffer(int classID, int adjustedCharID, int tableID)
 {
     sCharPalOptionsClassID = classID;
+    sCharPalOptionsCharID = adjustedCharID;
+    sCharPalOptionsTableID = tableID;
     sCharPalOptionsBuilt = CharPalOptionsBuiltMagic;
     sCharPalOptionsCount = 0;
 
     if (classID <= 0)
     {
         return;
+    }
+
+    if (adjustedCharID > 0 && tableID >= 0 && tableID < NumberOfCharTables)
+    {
+        const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
+        if (entry)
+        {
+            while (entry->charID)
+            {
+                if (entry->charID == adjustedCharID)
+                {
+                    for (int i = 0; i < NumOfCharPals && sCharPalOptionsCount < CharPalOptionsBufferMax; ++i)
+                    {
+                        if (entry->pal[i] && DoesCharPalClassMatch(entry->classID[i], classID))
+                        {
+                            sCharPalOptionsBuffer[sCharPalOptionsCount++] = entry->pal[i];
+                        }
+                    }
+                    break; // one entry per charID per table, same assumption GetUniqueCharPal makes
+                }
+                entry++;
+            }
+        }
     }
 
     for (int t = 0; t < NumberOfCharTables && sCharPalOptionsCount < CharPalOptionsBufferMax; ++t)
@@ -6933,6 +7103,11 @@ static void RebuildCharPalOptionsBuffer(int classID)
         }
         while (entry->charID && sCharPalOptionsCount < CharPalOptionsBufferMax)
         {
+            if (t == tableID && entry->charID == adjustedCharID)
+            {
+                entry++;
+                continue; // already added by tier 1 above
+            }
             for (int i = 0; i < NumOfCharPals && sCharPalOptionsCount < CharPalOptionsBufferMax; ++i)
             {
                 if (entry->pal[i] && DoesCharPalClassMatch(entry->classID[i], classID))
@@ -6945,21 +7120,22 @@ static void RebuildCharPalOptionsBuffer(int classID)
     }
 }
 
-static void EnsureCharPalOptionsBuffer(int classID)
+static void EnsureCharPalOptionsBuffer(int classID, int adjustedCharID, int tableID)
 {
-    if (sCharPalOptionsBuilt == CharPalOptionsBuiltMagic && sCharPalOptionsClassID == classID)
+    if (sCharPalOptionsBuilt == CharPalOptionsBuiltMagic && sCharPalOptionsClassID == classID &&
+        sCharPalOptionsCharID == adjustedCharID && sCharPalOptionsTableID == tableID)
     {
         return;
     }
-    RebuildCharPalOptionsBuffer(classID);
+    RebuildCharPalOptionsBuffer(classID, adjustedCharID, tableID);
 }
 
-// Every (table, entry, slot) triple across ALL of gCharPal - any character's entries,
-// not just one - whose slot class matches classID (see DoesCharPalClassMatch), flattened
-// into a single 0-based index in table order, then entry order, then slot order.
-const u16 * GetNthCharPalForClassID(int classID, int index)
+// index is 0-based into the buffer RebuildCharPalOptionsBuffer() built - tier 1
+// (adjustedCharID/tableID's own palettes) first, then tier 2 (every other class-matching
+// palette, from every table). See RebuildCharPalOptionsBuffer() for the exact ordering.
+const u16 * GetNthCharPalForClassID(int classID, int adjustedCharID, int tableID, int index)
 {
-    EnsureCharPalOptionsBuffer(classID);
+    EnsureCharPalOptionsBuffer(classID, adjustedCharID, tableID);
     if (index < 0 || index >= sCharPalOptionsCount)
     {
         return NULL;
@@ -6967,10 +7143,110 @@ const u16 * GetNthCharPalForClassID(int classID, int index)
     return sCharPalOptionsBuffer[index];
 }
 
-int CountCharPalOptionsForClassID(int classID)
+int CountCharPalOptionsForClassID(int classID, int adjustedCharID, int tableID)
 {
-    EnsureCharPalOptionsBuffer(classID);
+    EnsureCharPalOptionsBuffer(classID, adjustedCharID, tableID);
     return sCharPalOptionsCount;
+}
+
+// Every (table, entry, slot) triple across ALL of gCharPal with a non-NULL palette, in
+// table/entry/slot order - no class filtering, no character filtering, nothing. This is
+// the "scroll through ALL palettes, from ALL games" mode: unlike GetNthCharPalForClassID,
+// nothing here is filtered out, so there's no "how many valid ones came before index N" to
+// count - index N's location is just wherever forward-walking N non-NULL palettes lands,
+// which needs no buffering/caching (see LoopReviseCharPalPage - this only ever runs once
+// per scroll button press, not every frame).
+const u16 * GetNthRawCharPal(int index)
+{
+    if (index < 0)
+    {
+        return NULL;
+    }
+    for (int t = 0; t < NumberOfCharTables; ++t)
+    {
+        const struct gCharPal_EntryStruct * entry = gCharPal[t];
+        if (!entry)
+        {
+            continue;
+        }
+        while (entry->charID)
+        {
+            for (int i = 0; i < NumOfCharPals; ++i)
+            {
+                if (entry->pal[i])
+                {
+                    if (index == 0)
+                    {
+                        return entry->pal[i];
+                    }
+                    --index;
+                }
+            }
+            entry++;
+        }
+    }
+    return NULL;
+}
+
+// One linear pass counting every non-NULL palette in gCharPal - no class/character
+// filtering, nothing. Cached (see the comment on sRawCharPalCount's declaration): gCharPal
+// is static ROM data, so once this has been computed it's correct for the rest of the
+// program's life, unlike the class-filtered buffer which has to invalidate whenever
+// classID/adjustedCharID/tableID change.
+int GetRawCharPalCount(void)
+{
+    if (sRawCharPalCountBuilt != CharPalOptionsBuiltMagic)
+    {
+        int count = 0;
+        for (int t = 0; t < NumberOfCharTables; ++t)
+        {
+            const struct gCharPal_EntryStruct * entry = gCharPal[t];
+            if (!entry)
+            {
+                continue;
+            }
+            while (entry->charID)
+            {
+                for (int i = 0; i < NumOfCharPals; ++i)
+                {
+                    if (entry->pal[i])
+                    {
+                        ++count;
+                    }
+                }
+                entry++;
+            }
+        }
+        sRawCharPalCount = count;
+        sRawCharPalCountBuilt = CharPalOptionsBuiltMagic;
+    }
+    return sRawCharPalCount;
+}
+
+// Only called on the rare LEFT-from-Default transition (LoopReviseCharPalPage), to find
+// where raw mode's last entry is so wrapping around lands there instead of skipping raw
+// mode entirely.
+int FindLastRawCharPalIndex(void)
+{
+    return GetRawCharPalCount() - 1;
+}
+
+// Resolves a gCharPalOverride[]-style stored value against (classID, adjustedCharID,
+// tableID) - see the encoding comment near RawCharPalOverrideBase's #define. Shared by
+// GetUniqueCharPal (real battles, below) and Debugger/C_Code.c's GetDebuggerCharPalOverride
+// (the live preview), so the two can never disagree on what a stored value resolves to -
+// exactly the kind of drift that broke this feature once already.
+const u16 * ResolveCharPalOverride(int classID, int adjustedCharID, int tableID, int storedValue)
+{
+    if (storedValue <= 0)
+    {
+        return NULL;
+    }
+    if (storedValue >= RawCharPalOverrideBase)
+    {
+        return GetNthRawCharPal(storedValue - RawCharPalOverrideBase);
+    }
+    return GetNthCharPalForClassID(classID, adjustedCharID, tableID, storedValue - 1);
 }
 
 const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
@@ -6979,18 +7255,23 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
     {
         return NULL;
     }
-    // Keyed by the character's ORIGINAL (recruit-slot) id - the same id the revise-palette
-    // screen writes with (GetReviseCharID) - NOT the `charID` parameter. Both battle call
-    // sites pass GetReorderedCharIDAndTableID().x there, which is the character this slot
-    // was randomised INTO (pidStats->newCharID), so indexing by it reads a slot the menu
-    // never wrote. unit->pCharacterData->number is still the original id: the reordering is
-    // resolved at display time rather than baked into the unit, which is exactly why
-    // GetReorderedCharIDAndTableID() can take pCharacterData and derive the new id from it.
+    // Override VALUE is keyed by the character's ORIGINAL (recruit-slot) id - the same id
+    // the revise-palette screen writes with (GetReviseCharID) - NOT the `charID` parameter.
+    // Both battle call sites pass GetReorderedCharIDAndTableID().x there, which is the
+    // character this slot was randomised INTO (pidStats->newCharID), so indexing THAT by
+    // charID reads a slot the menu never wrote. unit->pCharacterData->number is still the
+    // original id: the reordering is resolved at display time rather than baked into the
+    // unit, which is exactly why GetReorderedCharIDAndTableID() can take pCharacterData and
+    // derive the new id from it.
+    //
+    // The (charID, tableID) PARAMETERS, on the other hand, already ARE that adjusted
+    // id/table (see above) - exactly what tier 1 of GetNthCharPalForClassID()'s buffer
+    // needs, no recomputing required.
     int overrideCharID = unit->pCharacterData->number;
     if (overrideCharID > 0 && overrideCharID < 0x46 && gCharPalOverride[overrideCharID])
     {
         const u16 * overridePal =
-            GetNthCharPalForClassID(unit->pClassData->number, gCharPalOverride[overrideCharID] - 1);
+            ResolveCharPalOverride(unit->pClassData->number, charID, tableID, gCharPalOverride[overrideCharID]);
         if (overridePal)
         {
             gBanimUniquePal[pos] = 0;
