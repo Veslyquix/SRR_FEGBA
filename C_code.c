@@ -3718,6 +3718,12 @@ struct Vec2u GetReorderedCharIDAndTableID(const struct CharacterData * table)
     return result;
 }
 
+// The whole gCharPalOverride / revise-palette-screen feature is FE8-only: its fixed RAM
+// (Definitions.s) and the Debugger banim-preview functions it drives are only defined for
+// FE8, so none of this links for FE6/FE7. Everything guarded by this #ifdef has a matching
+// FE8-only counterpart further down (GetCharPalOverride/ResolveCharPalOverride/the buffer,
+// the override branch in GetUniqueCharPal, and the ReviseCharPalProcLabel proc block).
+#ifdef FE8
 extern u16 gCharPalOverride[0x46];
 int CountCharPalOptionsForClassID(int classID, int adjustedCharID, int tableID);
 const u16 * GetNthCharPalForClassID(int classID, int adjustedCharID, int tableID, int index);
@@ -3992,6 +3998,7 @@ void LoopReviseCharPalPage(ConfigMenuProc * proc)
         PlayScrollMenuSfx();
     }
 }
+#endif // FE8 - gCharPalOverride revise-palette screen
 
 // each vanilla portrait is assigned to a new portrait from any char table
 // text replace must search all tables
@@ -6949,6 +6956,8 @@ struct gCharPal_EntryStruct
 extern const struct gCharPal_EntryStruct * const gCharPal[];
 extern s16 gBanimUniquePal[2];
 
+// FE8-only, same as the revise-palette screen further up - see the #ifdef FE8 there.
+#ifdef FE8
 // Player-set override for the palette a character uses in battle, indexed by the
 // character's ORIGINAL (recruit-slot) charID - never the reordered/game-table-adjusted
 // id, since a slot only ever has one of these regardless of which game's portrait/name
@@ -7248,6 +7257,7 @@ const u16 * ResolveCharPalOverride(int classID, int adjustedCharID, int tableID,
     }
     return GetNthCharPalForClassID(classID, adjustedCharID, tableID, storedValue - 1);
 }
+#endif // FE8 - gCharPalOverride lookup/resolution
 
 const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
 {
@@ -7255,6 +7265,7 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
     {
         return NULL;
     }
+#ifdef FE8
     // Override VALUE is keyed by the character's ORIGINAL (recruit-slot) id - the same id
     // the revise-palette screen writes with (GetReviseCharID) - NOT the `charID` parameter.
     // Both battle call sites pass GetReorderedCharIDAndTableID().x there, which is the
@@ -7267,6 +7278,8 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
     // The (charID, tableID) PARAMETERS, on the other hand, already ARE that adjusted
     // id/table (see above) - exactly what tier 1 of GetNthCharPalForClassID()'s buffer
     // needs, no recomputing required.
+    //
+    // FE6/FE7 have no override screen at all, so they skip straight to the normal lookup.
     int overrideCharID = unit->pCharacterData->number;
     if (overrideCharID > 0 && overrideCharID < 0x46 && gCharPalOverride[overrideCharID])
     {
@@ -7278,6 +7291,7 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
             return overridePal;
         }
     }
+#endif // FE8
     const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
     const u16 * pal = NULL;
     const u16 * jankyPal = NULL;
@@ -13105,6 +13119,7 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_REPEAT(LoopReviseCharPage),
 
     PROC_LABEL(ReviseCharPalProcLabel),
+#ifdef FE8
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
     PROC_YIELD,
@@ -13113,6 +13128,14 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_REPEAT(WaitForFade),
     PROC_CALL(DrawReviseCharPalPage),
     PROC_REPEAT(LoopReviseCharPalPage),
+#else
+    // FE6/FE7 have no palette-override screen (the whole feature is #ifdef FE8). The label
+    // still has to exist, because LoopReviseCharPage's Proc_Goto(ReviseCharPalProcLabel) is
+    // NOT guarded - so it ends immediately by handing straight back to PreviewCharLabel,
+    // which is exactly where that goto went before this screen existed. The explicit GOTO
+    // matters: an empty label would fall through into FilterUnitsLabel's body below.
+    PROC_GOTO(PreviewCharLabel),
+#endif
 
     PROC_LABEL(FilterUnitsLabel),
     PROC_CALL(StartFastFadeToBlack),
