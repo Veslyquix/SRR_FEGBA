@@ -1,0 +1,124 @@
+
+#undef SentinelLance
+#define StartingAnimID 202
+#include "definitions.event" 
+
+// #define MAKE_CACHE_ROM
+
+MESSAGE Installing Animations at CURRENTOFFSET
+
+ALIGN 0x10000 
+NewAnimTable: 
+#ifdef MAKE_CACHE_ROM
+#include "Internals.event" 
+#include "GeneratedInstaller.event" 
+#else 
+// ORG $600000 + CURRENTOFFSET
+#ifdef _FE6_ 
+ORG EndOfAnimsRom
+// #incbin "../../animsfe6cache.dmp" 
+#endif 
+#ifdef _FE7_ 
+ORG EndOfAnimsRom
+// #incbin "../../animsfe7cache.dmp" 
+#endif 
+#ifdef _FE8_ 
+ORG EndOfAnimsRom
+// #incbin "../../animsfe8cache.dmp" 
+#endif 
+#endif 
+MESSAGE Animations end at CURRENTOFFSET 
+
+#ifndef MAKE_CACHE_ROM
+
+
+PUSH 
+
+#ifdef _FE6_ 
+ORG $4B0F8 
+POIN NewAnimTable
+ORG $4BB4C 
+POIN NewAnimTable
+ORG $4BBD8 
+POIN NewAnimTable
+ORG $4BD38 
+POIN NewAnimTable
+#endif 
+
+#ifdef _FE7_ 
+ORG $541F4 
+POIN NewAnimTable
+ORG $54AE8
+POIN NewAnimTable
+ORG $54B78
+POIN NewAnimTable
+ORG $54D00 
+POIN NewAnimTable
+#endif 
+
+#ifdef _FE8_ 
+ORG $59BD8 
+POIN NewAnimTable
+ORG $5A600
+POIN NewAnimTable
+ORG $5A694
+POIN NewAnimTable
+ORG $5A82C
+POIN NewAnimTable
+ORG $6F6A8
+POIN NewAnimTable
+ORG $70940
+POIN NewAnimTable
+ORG $70A60
+POIN NewAnimTable
+#endif // fe8 
+POP 
+
+
+#define WepTypeAnim(Animation, typeID) "{ Label: ; ORG Label + (typeID * 4); BYTE typeID 0x01 ; SHORT Animation; ORG Label; }"
+#define ItemAnim(Animation, itemID) "{ Label: ; ORG Label + (14 * 4); BYTE itemID 0 ; SHORT Animation; ORG Label; }"
+#define SwordAnim(Animation) "WepTypeAnim(Animation, 0)" 
+#define KnifeAnim(Animation) "WepTypeAnim(Animation, 0)" 
+#define LanceAnim(Animation) "WepTypeAnim(Animation, 1)" 
+#define AxeAnim(Animation) "WepTypeAnim(Animation, 2)" 
+#define HandAxeAnim(Animation) "ItemAnim(Animation, HandAxe)" 
+#define HandaxeAnim(Animation) "ItemAnim(Animation, HandAxe)" 
+#define BowAnim(Animation) "WepTypeAnim(Animation, 3)" 
+#define StaffAnim(Animation) "WepTypeAnim(Animation, 4)" 
+#define AnimaAnim(Animation) "WepTypeAnim(Animation, 5)" 
+#define LightAnim(Animation) "WepTypeAnim(Animation, 6)" 
+#define DarkAnim(Animation) "WepTypeAnim(Animation, 7)" 
+#define UnarmedAnim(Animation) "WepTypeAnim(Animation, 9)" 
+#define MonsterAnim(Animation) "WepTypeAnim(Animation, 11)" 
+
+
+//#define BallistaAnim(Animation) "BYTE Ballista 0x00 ; SHORT Animation ; BYTE IronBallista 0x00 ; SHORT Animation ; BYTE KillerBallista 0x00 ; SHORT Animation"
+#define RingAnim(Animation) "WepTypeAnim(Animation, 12)" 
+
+#define wTA(weaponType, ID)  "BYTE weaponType 1; SHORT ID;"
+#define wA(weaponID, ID)  "BYTE weaponID 0; SHORT ID;"
+
+// for all weapon types 
+#define animEntry(ID) "{ Label: ; wTA(0, ID); wTA(1, ID); wTA(2, ID); wTA(3, ID); wTA(4, ID); wTA(5, ID); wTA(6, ID); wTA(7, ID); wTA(8, ID); wTA(9, ID); wTA(10, ID); wTA(11, ID); wTA(11, ID); wTA(13, ID); wA(HandAxe, ID); WORD 0 0; ORG Label; } " 
+#define weaponAnimEnd "{ Label: ; ORG Label + (15 * 4); WORD 0; }" // class with 1 wep 
+// #define weaponAnimEnd(NumberOfWeps) "{ Label: ; ORG Label + ((14 + NumberOfWeps) * 4); WORD 0; }"
+#define weaponAnimEnd(NumberOfWeps) "{ Label: ; ORG Label + ((14 + NumberOfWeps) * 4); WORD 0; }"
+// This sets a default animation for all weapon types and for handaxes 
+// with the handaxe as default thrown axe patch, there is no need to repeatedly set anims for other axes 
+
+#include "Animations.event" 
+
+
+// if you want more weapons to have unique animations: 
+//ORG EirikaT1_Anim + (15 * 4)
+//wA(Tomahawk, 3) 
+//wA(Hatchet, 3) 
+//WORD 0 // terminator 
+
+
+
+
+
+
+
+#endif 
