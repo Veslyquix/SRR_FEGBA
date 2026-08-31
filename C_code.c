@@ -742,6 +742,7 @@ const struct FE8CharacterData
         };
 
 const int NumberOfCharTables = 24;
+const int NumberOfPalCharTables = 27; // 3 more: one for classes, one for vanilla players, one for boss players
 // unused currently
 int ShouldRandomizeUsedCharTable(void)
 {
@@ -7077,7 +7078,7 @@ static void RebuildCharPalOptionsBuffer(int classID, int adjustedCharID, int tab
         return;
     }
 
-    if (adjustedCharID > 0 && tableID >= 0 && tableID < NumberOfCharTables)
+    if (adjustedCharID > 0 && tableID >= 0 && tableID < NumberOfPalCharTables)
     {
         const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
         if (entry)
@@ -7100,7 +7101,7 @@ static void RebuildCharPalOptionsBuffer(int classID, int adjustedCharID, int tab
         }
     }
 
-    for (int t = 0; t < NumberOfCharTables && sCharPalOptionsCount < CharPalOptionsBufferMax; ++t)
+    for (int t = 0; t < NumberOfPalCharTables && sCharPalOptionsCount < CharPalOptionsBufferMax; ++t)
     {
         const struct gCharPal_EntryStruct * entry = gCharPal[t];
         if (!entry)
@@ -7176,7 +7177,7 @@ const u16 * GetNthRawCharPal(int index)
     {
         return NULL;
     }
-    for (int t = 0; t < NumberOfCharTables; ++t)
+    for (int t = 0; t < NumberOfPalCharTables; ++t)
     {
         int tableCount = gCharPalCounts[t];
         if (index >= tableCount)
@@ -7222,7 +7223,7 @@ const u16 * GetNthRawCharPal(int index)
 int GetRawCharPalCount(void)
 {
     int count = 0;
-    for (int t = 0; t < NumberOfCharTables; ++t)
+    for (int t = 0; t < NumberOfPalCharTables; ++t)
     {
         count += gCharPalCounts[t];
     }

@@ -39,7 +39,8 @@
 #define processed_FE8_palettes_NumPals 93
 #define processed_FE9_10_boss_palettes_NumPals 106
 #define processed_FE9_10_palettes_NumPals 186
-#define gCharPalTotalPals 2324
+#define processed_custom_class_palettes_NumPals 2
+#define gCharPalTotalPals 2326
 #endif
 
 #ifdef _FE7_
@@ -64,7 +65,8 @@
 #define processed_FE8_palettes_NumPals 100
 #define processed_FE9_10_boss_palettes_NumPals 105
 #define processed_FE9_10_palettes_NumPals 198
-#define gCharPalTotalPals 2402
+#define processed_custom_class_palettes_NumPals 2
+#define gCharPalTotalPals 2404
 #endif
 
 #ifdef _FE8_
@@ -89,7 +91,8 @@
 #define processed_FE8_palettes_NumPals 181
 #define processed_FE9_10_boss_palettes_NumPals 129
 #define processed_FE9_10_palettes_NumPals 246
-#define gCharPalTotalPals 3175
+#define processed_custom_class_palettes_NumPals 2
+#define gCharPalTotalPals 3177
 #endif
 
 #ifndef gCharPalTotalPals
@@ -114,9 +117,13 @@
 #define processed_FE8_palettes_NumPals 97
 #define processed_FE9_10_boss_palettes_NumPals 108
 #define processed_FE9_10_palettes_NumPals 196
-#define gCharPalTotalPals 2615
+#define processed_custom_class_palettes_NumPals 2
+#define gCharPalTotalPals 2617
 #endif
 
+ALIGN 4
+processed_custom_class_palettes:
+#include "processed_custom_class_palettes.event"
 ALIGN 4
 processed_FE13_boss_palettes:
 #include "processed_FE13_boss_palettes.event"

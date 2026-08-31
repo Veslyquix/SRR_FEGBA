@@ -1,4 +1,5 @@
 
+#define Unused 0xFF
 
 ALIGN 4 
 gCharPal: 
@@ -40,6 +41,20 @@ POIN Pal_FE14_Bosses
 POIN processed_FE2_boss_palettes 
 POIN Pal_FE16_Bosses 
 POIN Pal_FE17_Bosses 
+POIN processed_custom_class_palettes
+
+#ifdef _FE6_ // so these appear in the char pal preview screen (fe8 only) 
+POIN processed_FE6_palettes 
+POIN processed_FE6_boss_palettes 
+#endif 
+#ifdef _FE7_ 
+POIN processed_FE7_palettes 
+POIN processed_FE7_boss_palettes 
+#endif 
+#ifdef _FE8_ 
+POIN processed_FE8_palettes 
+POIN processed_FE8_boss_palettes 
+#endif 
 POIN 0 
 
 
