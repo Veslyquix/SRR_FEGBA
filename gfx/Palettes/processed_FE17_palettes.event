@@ -319,12 +319,12 @@ palEntry(Madeline, GreatKnight_F, MadelinePal_GreatKnight_F_FE8)
 palEntry(0, 0, 0)
 
 AlearPal_RoyLord:
-BYTE $55 $53 $FF $7F $FF $6B $98 $77 $DF $7B $1F $4B $F3 $6E $3A $67
-BYTE $2D $56 $95 $52 $91 $25 $46 $7E $23 $71 $C2 $4C $4B $29 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $91 $25 $23 $71 $46 $7E $C2 $4C
+BYTE $98 $77 $F3 $6E $2D $56 $DF $7B $3A $67 $95 $52 $4B $29 $A5 $14
 
 AlearPal_RoyMasterLord:
-BYTE $55 $53 $FF $7F $FF $6B $98 $77 $DF $7B $1F $4B $F3 $6E $3A $67
-BYTE $2D $56 $95 $52 $91 $25 $46 $7E $23 $71 $C2 $4C $4B $29 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $91 $25 $23 $71 $46 $7E $C2 $4C
+BYTE $98 $77 $F3 $6E $2D $56 $DF $7B $3A $67 $95 $52 $4B $29 $A5 $14
 
 AlearPal_Mercenary_FE6:
 BYTE $55 $53 $FF $7F $4B $29 $3A $67 $4E $5A $98 $77 $46 $7E $23 $71
@@ -343,20 +343,20 @@ BYTE $55 $53 $FF $7F $FF $4B $BD $2E $F4 $1D $3A $67 $46 $7E $23 $71
 BYTE $FF $3D $1F $00 $19 $00 $0D $00 $FC $22 $DF $7B $2D $11 $A5 $14
 
 AlearFPal_EirikaLord:
-BYTE $00 $7E $FF $7F $FF $6B $DF $7B $46 $7E $1F $4B $95 $52 $23 $71
-BYTE $18 $2A $1E $00 $4B $29 $2E $19 $C2 $4C $14 $00 $0F $00 $A5 $14
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $46 $7E $23 $71
+BYTE $C2 $4C $DF $7B $95 $52 $4B $29 $1E $00 $14 $00 $0F $00 $A5 $14
 
 AlearFPal_EirikaMasterLord:
-BYTE $55 $53 $FF $7F $FF $5B $DF $7B $90 $7B $1F $4B $0F $77 $95 $52
-BYTE $46 $7E $F4 $31 $1E $00 $4B $29 $C2 $4C $14 $00 $0F $00 $A5 $14
+BYTE $55 $53 $FF $7F $FF $5B $1F $4B $F4 $31 $90 $7B $0F $77 $46 $7E
+BYTE $C2 $4C $DF $7B $95 $52 $4B $29 $1E $00 $14 $00 $0F $00 $A5 $14
 
 AlearFPal_LynLord:
-BYTE $00 $7E $FF $7F $FF $6B $5F $33 $DF $7B $56 $7B $DD $16 $46 $7E
-BYTE $6F $5E $3A $67 $CA $49 $23 $71 $71 $1D $95 $52 $C2 $4C $A5 $14
+BYTE $00 $7E $FF $7F $FF $6B $5F $33 $71 $1D $46 $7E $23 $71 $C2 $4C
+BYTE $56 $7B $6F $5E $CA $49 $DD $16 $DF $7B $3A $67 $95 $52 $A5 $14
 
 AlearFPal_BladeLord:
-BYTE $00 $7E $FF $7F $FF $6B $99 $7F $5F $33 $12 $77 $DD $16 $DF $7B
-BYTE $46 $7E $3A $67 $0B $56 $23 $71 $71 $1D $95 $52 $C2 $4C $A5 $14
+BYTE $00 $7E $FF $7F $FF $6B $5F $33 $71 $1D $46 $7E $23 $71 $C2 $4C
+BYTE $99 $7F $12 $77 $0B $56 $DD $16 $DF $7B $3A $67 $95 $52 $A5 $14
 
 AlearFPal_Myrmidon_F:
 BYTE $55 $53 $FF $7F $FF $6B $3F $4B $2E $19 $46 $7E $23 $71 $C2 $4C
@@ -567,12 +567,12 @@ BYTE $00 $7E $FF $7F $DF $57 $BC $36 $91 $25 $5F $67 $9B $4E $D7 $35
 BYTE $76 $7F $6F $5E $CA $49 $9B $10 $74 $0C $4D $08 $27 $04 $A5 $14
 
 DiamantPal_RoyLord:
-BYTE $55 $53 $FF $7F $FF $6B $98 $77 $DF $10 $1F $4B $F3 $6E $9A $08
-BYTE $2D $56 $72 $08 $91 $25 $38 $21 $D0 $14 $68 $0C $29 $04 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $91 $25 $D0 $14 $38 $21 $68 $0C
+BYTE $98 $77 $F3 $6E $2D $56 $DF $10 $9A $08 $72 $08 $29 $04 $A5 $14
 
 DiamantPal_RoyMasterLord:
-BYTE $55 $53 $FF $7F $FF $6B $98 $77 $DF $10 $1F $4B $F3 $6E $9A $08
-BYTE $2D $56 $72 $08 $91 $25 $38 $21 $D0 $14 $68 $0C $29 $04 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $91 $25 $D0 $14 $38 $21 $68 $0C
+BYTE $98 $77 $F3 $6E $2D $56 $DF $10 $9A $08 $72 $08 $29 $04 $A5 $14
 
 DiamantPal_Mercenary_FE6:
 BYTE $55 $53 $FF $7F $29 $04 $72 $08 $4E $5A $98 $77 $38 $21 $D0 $14
