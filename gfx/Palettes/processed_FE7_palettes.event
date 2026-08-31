@@ -353,12 +353,12 @@ palEntry(Uther, GreatKnight, UtherPal_GreatKnight_FE8)
 palEntry(0, 0, 0)
 
 LynPal_LynLord:
-BYTE $55 $53 $FF $7F $FF $6B $3F $3F $71 $1D $49 $33 $64 $1A $84 $15
-BYTE $56 $7B $6F $5E $CA $49 $9E $1A $92 $7F $A8 $7E $43 $69 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $3F $3F $92 $7F $56 $7B $9E $1A $49 $33
+BYTE $6F $5E $A8 $7E $CA $49 $64 $1A $71 $1D $43 $69 $84 $15 $A5 $14
 
 LynPal_BladeLord:
-BYTE $55 $53 $FF $7F $FF $6B $3F $3F $71 $1D $49 $33 $64 $1A $A3 $11
-BYTE $99 $7F $12 $77 $0B $56 $9E $1A $49 $6F $69 $62 $82 $55 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $99 $7F $3F $3F $12 $77 $9E $1A $49 $6F
+BYTE $49 $33 $69 $62 $0B $56 $64 $1A $71 $1D $82 $55 $A3 $11 $A5 $14
 
 LynPal_Myrmidon_F:
 BYTE $55 $53 $FF $7F $FF $6B $3F $4B $2E $19 $49 $33 $64 $1A $84 $15
@@ -477,8 +477,8 @@ BYTE $55 $53 $FF $7F $FC $15 $DD $3A $D5 $11 $14 $01 $10 $2B $C9 $1D
 BYTE $F0 $7F $0F $7F $A8 $79 $84 $54 $BE $37 $97 $1E $0E $15 $A5 $14
 
 RathPal_Hunter:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $70 $2E $C7 $1D
-BYTE $0F $7F $A8 $79 $84 $54 $87 $11 $FC $15 $14 $01 $AD $00 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $0F $7F $1F $4B $FC $15 $A8 $79 $70 $2E
+BYTE $18 $2A $14 $01 $C7 $1D $2E $19 $84 $54 $87 $11 $AD $00 $A5 $14
 
 RathPal_Archer:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $49 $19 $70 $2E $C7 $1D $83 $11
@@ -513,12 +513,12 @@ BYTE $55 $53 $FF $7F $FF $6B $3F $4F $2E $19 $92 $73 $C2 $66 $65 $4D
 BYTE $1A $3B $98 $1E $D1 $09 $D7 $4B $4C $3F $C7 $4E $C4 $45 $A5 $14
 
 NilsPal_Bard_FE7FE8:
-BYTE $55 $53 $FF $7F $FF $6B $3F $4F $2E $19 $92 $73 $C2 $66 $65 $4D
-BYTE $1A $3B $98 $1E $D1 $09 $D7 $4B $4C $3F $C7 $4E $C4 $45 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $D7 $4B $92 $73 $3F $4F $C2 $66 $1A $3B
+BYTE $98 $1E $4C $3F $65 $4D $D1 $09 $C7 $4E $2E $19 $C4 $45 $A5 $14
 
 LuciusPal_Parson:
-BYTE $55 $53 $18 $6F $96 $01 $BF $4B $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $44 $59 $61 $76 $4F $7F $61 $76 $4F $7F $29 $31 $EF $49
+BYTE $55 $53 $FF $7F $FF $6B $4F $7F $1E $37 $4F $7F $18 $6F $61 $76
+BYTE $BF $4B $96 $01 $61 $76 $EF $49 $2E $19 $44 $59 $29 $31 $A5 $14
 
 LuciusPal_Monk_FE7FE8:
 BYTE $55 $53 $FF $7F $FF $6B $3F $4F $91 $25 $BF $4B $1F $27 $96 $01
@@ -557,12 +557,12 @@ BYTE $55 $53 $FF $7F $9E $63 $1F $4B $39 $2A $5A $00 $1F $20 $52 $00
 BYTE $98 $77 $D2 $6A $CB $49 $73 $7F $6C $76 $68 $61 $85 $50 $A5 $14
 
 EliwoodFE7Pal_LeifLord:
-BYTE $55 $53 $FF $6B $1F $4B $7B $2A $1F $20 $52 $00 $9E $3F $A5 $14
-BYTE $6C $76 $68 $61 $85 $50 $BD $7F $94 $5A $5A $00 $52 $00 $63 $29
+BYTE $55 $53 $6C $76 $FF $6B $1F $4B $68 $61 $9E $3F $7B $2A $85 $50
+BYTE $BD $7F $1F $20 $5A $00 $63 $29 $94 $5A $52 $00 $52 $00 $A5 $14
 
 EliwoodFE7Pal_SeliphLord:
-BYTE $34 $4F $68 $61 $6C $76 $69 $3D $50 $5E $F3 $6E $98 $77 $FF $7F
-BYTE $A5 $14 $10 $04 $85 $50 $52 $00 $5A $00 $1F $20 $1F $4B $FF $6B
+BYTE $34 $4F $FF $7F $FF $6B $1F $20 $98 $77 $1F $4B $F3 $6E $5A $00
+BYTE $50 $5E $6C $76 $52 $00 $69 $3D $68 $61 $85 $50 $A5 $14 $10 $04
 
 EliwoodFE7Pal_Myrmidon:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $1F $20 $5A $00 $52 $00
@@ -945,8 +945,8 @@ BYTE $55 $53 $FF $7F $FF $4F $FC $2E $91 $25 $B5 $52 $CE $35 $4A $21
 BYTE $76 $7F $6F $5E $CA $49 $DE $7B $D8 $77 $12 $5F $06 $21 $A5 $14
 
 RenaultPal_Parson:
-BYTE $55 $53 $9C $7F $E8 $39 $ED $5A $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $AE $34 $91 $4D $57 $72 $D7 $7E $9C $7F $CF $55 $D7 $7E
+BYTE $55 $53 $FF $7F $FF $6B $57 $72 $1E $37 $9C $7F $9C $7F $91 $4D
+BYTE $ED $5A $E8 $39 $D7 $7E $D7 $7E $2E $19 $AE $34 $CF $55 $A5 $14
 
 RenaultPal_Priest_FE6FE8:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $ED $5A $6B $4A $E8 $39

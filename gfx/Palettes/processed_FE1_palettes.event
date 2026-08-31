@@ -654,8 +654,8 @@ palEntry(Clarisse, Ranger_F, ClarissePal_Ranger_F_FE8)
 palEntry(0, 0, 0)
 
 MarthPal_MarthLord:
-BYTE $55 $53 $FF $6B $F9 $2E $9E $3B $30 $00 $39 $00 $1F $4B $A5 $14
-BYTE $82 $1C $46 $45 $EB $5D $E5 $30 $69 $41 $89 $41 $2F $5A $B0 $66
+BYTE $55 $53 $FF $6B $9E $3B $1F $4B $F9 $2E $B0 $66 $2F $5A $EB $5D
+BYTE $89 $41 $69 $41 $46 $45 $39 $00 $E5 $30 $30 $00 $A5 $14 $82 $1C
 
 MarthPal_Myrmidon:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $8C $76 $A8 $4D $E4 $28
@@ -742,8 +742,8 @@ BYTE $55 $53 $DE $7B $7F $3B $77 $0A $B2 $29 $D8 $6E $F2 $5D $2C $49
 BYTE $C9 $38 $12 $5A $8C $4D $E7 $3C $A9 $59 $27 $3D $E7 $2C $A5 $14
 
 WrysPal_Parson:
-BYTE $55 $53 $98 $4B $FF $63 $FF $63 $D3 $25 $5F $3B $FF $63 $78 $7B
-BYTE $A5 $14 $8A $4D $4F $5E $78 $7B $8A $4D $4F $5E $2C $25 $B1 $4A
+BYTE $55 $53 $78 $7B $FF $63 $78 $7B $5F $3B $4F $5E $98 $4B $4F $5E
+BYTE $FF $63 $FF $63 $8A $4D $B1 $4A $D3 $25 $8A $4D $2C $25 $A5 $14
 
 WrysPal_Priest_FE6FE8:
 BYTE $55 $53 $9B $77 $FF $63 $7D $2A $2E $19 $FF $63 $FF $63 $FF $63
@@ -826,8 +826,8 @@ BYTE $55 $53 $FF $7F $9F $67 $1F $4B $5B $32 $D6 $21 $74 $19 $F0 $6A
 BYTE $58 $6B $6E $56 $26 $29 $69 $5E $1C $53 $36 $3A $2C $25 $A5 $14
 
 CastorPal_Hunter:
-BYTE $5D $41 $DF $73 $FF $63 $5F $3B $D3 $25 $2C $25 $2A $4E $86 $39
-BYTE $3B $5B $0D $15 $87 $0C $05 $25 $35 $7B $4E $6E $05 $25 $A5 $14
+BYTE $5D $41 $DF $73 $FF $63 $3B $5B $5F $3B $35 $7B $0D $15 $2A $4E
+BYTE $D3 $25 $4E $6E $86 $39 $2C $25 $87 $0C $05 $25 $05 $25 $A5 $14
 
 CastorPal_NmdTrooper_FE6FE7:
 BYTE $55 $53 $FF $7F $48 $59 $5F $3B $6E $19 $26 $35 $2A $4E $86 $39
@@ -1350,16 +1350,16 @@ BYTE $55 $53 $DE $7B $FF $37 $7B $43 $6E $0D $DA $42 $B4 $09 $ED $04
 BYTE $EB $00 $5A $7F $B5 $7E $CD $59 $8F $4D $4D $41 $2C $3D $A5 $14
 
 XanePal_Bard2:
-BYTE $55 $53 $FE $7F $FF $63 $1F $4B $87 $08 $3E $00 $98 $10 $D0 $1C
-BYTE $0E $46 $EF $0C $AA $08 $57 $67 $7F $0C $76 $08 $4F $08 $A5 $14
+BYTE $55 $53 $FE $7F $FF $63 $57 $67 $3E $00 $1F $4B $98 $10 $0E $46
+BYTE $EF $0C $7F $0C $D0 $1C $AA $08 $76 $08 $87 $08 $4F $08 $A5 $14
 
 XanePal_Bard_FE6:
 BYTE $55 $53 $FE $7F $FF $6B $3F $4F $2E $19 $3E $00 $98 $10 $D0 $1C
 BYTE $54 $11 $EF $0C $AA $08 $BF $35 $7F $0C $76 $08 $4F $08 $A5 $14
 
 XanePal_Bard_FE7FE8:
-BYTE $55 $53 $FE $7F $FF $6B $3F $4F $2E $19 $3E $00 $98 $10 $D0 $1C
-BYTE $54 $11 $EF $0C $AA $08 $BF $35 $7F $0C $76 $08 $4F $08 $A5 $14
+BYTE $55 $53 $FE $7F $FF $6B $BF $35 $3E $00 $3F $4F $98 $10 $54 $11
+BYTE $EF $0C $7F $0C $D0 $1C $AA $08 $76 $08 $2E $19 $4F $08 $A5 $14
 
 TikiFE1Pal_Mamkute_F_FE6:
 BYTE $55 $53 $FF $7F $DF $6F $3F $47 $2E $19 $11 $2B $0B $1A $26 $0D
@@ -1526,8 +1526,8 @@ BYTE $00 $7E $FF $7F $DF $57 $DD $3A $50 $1D $CA $41 $50 $72 $CC $55
 BYTE $9F $77 $B9 $5A $D1 $3D $6E $31 $FA $7F $33 $77 $E9 $20 $A5 $14
 
 WarrenPal_Hunter:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $FC $2E $13 $22
-BYTE $54 $2A $CF $1D $2A $15 $87 $11 $15 $3B $50 $2E $8B $1D $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $54 $2A $1F $4B $15 $3B $CF $1D $FC $2E
+BYTE $18 $2A $50 $2E $13 $22 $2E $19 $2A $15 $87 $11 $8B $1D $A5 $14
 
 WarrenPal_NmdTrooper_FE6FE7:
 BYTE $00 $7E $FF $7F $B2 $36 $DD $3A $D5 $11 $EE $25 $FC $2E $13 $22
@@ -1654,8 +1654,8 @@ BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $FF $1B $9E $1A $1D $36
 BYTE $FA $1C $FF $3D $FA $1C $B2 $14 $97 $62 $F1 $49 $4C $31 $A5 $20
 
 PhinaPal_Dancer2:
-BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $DF $66 $FB $4D $17 $31
-BYTE $9F $4F $1B $3F $12 $2A $FF $1B $9F $77 $FC $62 $6E $31 $A5 $14
+BYTE $00 $7E $FF $7F $FF $6B $9F $77 $FF $1B $1F $4B $DF $66 $9F $4F
+BYTE $FC $62 $FB $4D $6E $31 $1B $3F $2E $19 $12 $2A $17 $31 $A5 $14
 
 PhinaPal_Dancer_FE6:
 BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $DF $66 $FB $4D $17 $31
@@ -1802,8 +1802,8 @@ BYTE $00 $7E $DE $7B $FF $5B $1F $4B $B2 $29 $B8 $56 $13 $42 $6E $2D
 BYTE $C9 $18 $5A $7F $B5 $7E $CD $59 $5B $4D $D8 $3C $54 $28 $A5 $14
 
 FrostPal_Parson:
-BYTE $55 $53 $7B $73 $D0 $39 $B7 $56 $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $84 $20 $08 $41 $8C $61 $52 $4E $7B $73 $29 $29 $52 $4E
+BYTE $55 $53 $FF $7F $FF $6B $8C $61 $1E $37 $7B $73 $7B $73 $08 $41
+BYTE $B7 $56 $D0 $39 $52 $4E $52 $4E $2E $19 $84 $20 $29 $29 $A5 $14
 
 FrostPal_Priest_FE6FE8:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $9E $73 $B7 $56 $D0 $39

@@ -413,12 +413,12 @@ palEntry(Guinivere, MageKnight_F, GuiniverePal_MageKnight_F_FE8)
 palEntry(0, 0, 0)
 
 RoyPal_RoyLord:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $91 $25 $5A $00 $1F $20 $52 $00
-BYTE $98 $77 $F3 $6E $2D $56 $D3 $7F $EE $7E $A9 $79 $65 $58 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $98 $77 $D3 $7F $1F $4B $F3 $6E $EE $7E
+BYTE $2D $56 $A9 $79 $91 $25 $1F $20 $5A $00 $52 $00 $65 $58 $A5 $14
 
 RoyPal_RoyMasterLord:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $91 $25 $5A $00 $1F $20 $52 $00
-BYTE $98 $77 $F3 $6E $2D $56 $D3 $7F $EE $7E $A9 $79 $65 $58 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $98 $77 $D3 $7F $1F $4B $F3 $6E $EE $7E
+BYTE $2D $56 $A9 $79 $91 $25 $1F $20 $5A $00 $52 $00 $65 $58 $A5 $14
 
 RoyPal_Mercenary_FE7FE8:
 BYTE $00 $7E $FF $7F $4E $19 $A9 $79 $0C $52 $98 $77 $1F $20 $5A $00
@@ -625,8 +625,8 @@ BYTE $55 $53 $FF $7F $DF $57 $BC $36 $91 $25 $79 $3E $D3 $29 $4E $1D
 BYTE $B5 $7F $8E $66 $E9 $51 $DE $2D $39 $19 $92 $00 $08 $00 $A5 $14
 
 SaulPal_Parson:
-BYTE $55 $53 $7F $21 $87 $7D $CF $7E $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $C8 $34 $4D $5D $31 $7E $6E $52 $B5 $7B $8B $0C $F6 $14
+BYTE $55 $53 $FF $7F $FF $6B $31 $7E $1E $37 $B5 $7B $7F $21 $4D $5D
+BYTE $CF $7E $87 $7D $6E $52 $F6 $14 $2E $19 $C8 $34 $8B $0C $A5 $14
 
 SaulPal_Priest_FE6FE8:
 BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $10 $7F $C8 $79 $E7 $58
@@ -669,8 +669,8 @@ BYTE $55 $53 $FF $7F $DF $1D $DD $3A $D5 $11 $1A $00 $4E $2B $27 $0E
 BYTE $F0 $7F $0F $7F $A8 $79 $84 $54 $BE $37 $97 $1E $0E $15 $A5 $14
 
 SuePal_Hunter:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $A5 $02 $C1 $01
-BYTE $0F $7F $A8 $79 $84 $54 $87 $11 $DF $1D $1A $00 $12 $00 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $0F $7F $1F $4B $DF $1D $A8 $79 $A5 $02
+BYTE $18 $2A $1A $00 $C1 $01 $2E $19 $84 $54 $87 $11 $12 $00 $A5 $14
 
 SuePal_Archer_F:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $49 $19 $B0 $17 $A5 $02 $C1 $01
@@ -817,8 +817,8 @@ BYTE $55 $53 $FF $7F $28 $03 $DD $3A $D5 $11 $60 $02 $10 $2B $C9 $1D
 BYTE $F0 $7F $0F $7F $A8 $79 $84 $54 $BE $37 $97 $1E $0E $15 $A5 $14
 
 SinPal_Hunter:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $0E $2A $67 $1D
-BYTE $0F $7F $A8 $79 $84 $54 $87 $11 $90 $3B $AC $1E $83 $11 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $0F $7F $1F $4B $90 $3B $A8 $79 $0E $2A
+BYTE $18 $2A $AC $1E $67 $1D $2E $19 $84 $54 $87 $11 $83 $11 $A5 $14
 
 SinPal_Archer:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $B2 $36 $0E $2A $67 $1D
@@ -913,8 +913,8 @@ BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $97 $47 $D3 $36 $0E $22
 BYTE $1A $3B $55 $1A $D1 $09 $F5 $7F $48 $7F $65 $66 $40 $41 $A5 $14
 
 ElffinPal_Bard_FE7FE8:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $97 $47 $D3 $36 $0E $22
-BYTE $1A $3B $55 $1A $D1 $09 $F5 $7F $48 $7F $65 $66 $40 $41 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $F5 $7F $97 $47 $1F $4B $D3 $36 $1A $3B
+BYTE $55 $1A $48 $7F $0E $22 $D1 $09 $65 $66 $2E $19 $40 $41 $A5 $14
 
 BartreFE6Pal_Fighter:
 BYTE $00 $7E $FF $7F $FF $6B $1D $47 $5A $32 $D6 $21 $B3 $1A $EB $11
@@ -1137,8 +1137,8 @@ BYTE $55 $53 $FF $7F $5D $03 $FE $3E $D5 $11 $B7 $02 $10 $2B $C9 $1D
 BYTE $F0 $7F $0F $7F $A8 $79 $84 $54 $BE $37 $97 $1E $0E $15 $A5 $14
 
 DayanPal_Hunter:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $10 $2B $C9 $1D
-BYTE $0F $7F $A8 $79 $84 $54 $87 $11 $5D $03 $B7 $02 $6C $01 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $0F $7F $1F $4B $5D $03 $A8 $79 $10 $2B
+BYTE $18 $2A $B7 $02 $C9 $1D $2E $19 $84 $54 $87 $11 $6C $01 $A5 $14
 
 DayanPal_Archer:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $49 $19 $10 $2B $C9 $1D $46 $15
@@ -1153,8 +1153,8 @@ BYTE $55 $53 $FF $7F $BE $37 $FE $3E $D5 $11 $B7 $02 $10 $2B $C9 $1D
 BYTE $F0 $7F $0F $7F $A8 $79 $84 $54 $FC $22 $5D $03 $0E $15 $A5 $14
 
 YoderPal_Parson:
-BYTE $55 $53 $8C $7D $8F $56 $BB $77 $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $A6 $4D $4D $5A $74 $7F $2E $56 $35 $7F $84 $44 $08 $69
+BYTE $55 $53 $FF $7F $FF $6B $74 $7F $1E $37 $35 $7F $8C $7D $4D $5A
+BYTE $BB $77 $8F $56 $2E $56 $08 $69 $2E $19 $A6 $4D $84 $44 $A5 $14
 
 YoderPal_Priest_FE6FE8:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $BB $77 $8F $56 $AA $39

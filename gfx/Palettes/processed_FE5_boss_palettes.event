@@ -365,8 +365,8 @@ BYTE $00 $7E $DE $7B $BF $3B $D8 $2E $F0 $1D $B4 $62 $0F $4E $6A $39
 BYTE $C5 $20 $5A $7F $B5 $7E $CD $59 $9F $26 $FF $11 $55 $0D $A5 $14
 
 OltophPal_Parson:
-BYTE $55 $53 $AD $35 $2D $15 $B4 $21 $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $2E $01 $B5 $01 $3B $02 $8C $31 $52 $4A $E7 $1C $4A $29
+BYTE $55 $53 $FF $7F $FF $6B $3B $02 $1E $37 $52 $4A $AD $35 $B5 $01
+BYTE $B4 $21 $2D $15 $8C $31 $4A $29 $2E $19 $2E $01 $E7 $1C $A5 $14
 
 OltophPal_Priest_FE6FE8:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $B4 $21 $4F $19 $EA $10
@@ -421,8 +421,8 @@ BYTE $00 $7E $DE $7B $BF $3B $D8 $2E $F0 $1D $B4 $62 $0F $4E $6A $39
 BYTE $C5 $20 $5A $7F $B5 $7E $CD $59 $BD $35 $56 $29 $EF $1C $A5 $14
 
 PaulusPal_Baron:
-BYTE $55 $53 $FF $7F $BF $3B $D8 $2E $F1 $55 $4B $39 $F0 $1D $08 $11
-BYTE $16 $77 $51 $5A $8B $3D $BF $5D $DC $38 $B5 $2C $6E $1C $A5 $14
+BYTE $55 $53 $FF $7F $BF $3B $BF $5D $16 $77 $DC $38 $D8 $2E $51 $5A
+BYTE $F1 $55 $B5 $2C $8B $3D $F0 $1D $4B $39 $6E $1C $08 $11 $A5 $14
 
 PaulusPal_Knight:
 BYTE $00 $7E $47 $10 $6E $1C $F0 $1D $B5 $2C $D8 $2E $DC $38 $E5 $17
@@ -461,8 +461,8 @@ BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $97 $7D $0F $55 $CE $39
 BYTE $29 $25 $BF $53 $5D $3F $34 $2A $4A $0E $C8 $09 $25 $05 $A5 $14
 
 EichmannPal_Mercenary2:
-BYTE $12 $4B $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $D4 $25 $6F $1D
-BYTE $EA $14 $16 $77 $51 $5A $8B $3D $C3 $7E $22 $72 $61 $4D $A5 $14
+BYTE $12 $4B $FF $7F $FF $6B $16 $77 $1F $4B $C3 $7E $18 $2A $D4 $25
+BYTE $51 $5A $6F $1D $22 $72 $8B $3D $2E $19 $EA $14 $61 $4D $A5 $14
 
 EichmannPal_Mercenary_FE6:
 BYTE $55 $53 $FF $7F $61 $4D $22 $72 $8B $3D $16 $77 $D4 $25 $6F $1D
@@ -585,8 +585,8 @@ BYTE $00 $7E $DE $7B $BF $3B $D8 $2E $F0 $1D $B4 $62 $0F $4E $6A $39
 BYTE $C5 $20 $5A $7F $B5 $7E $CD $59 $EA $12 $28 $0E $65 $09 $A5 $14
 
 GustafPal_Baron:
-BYTE $55 $53 $FF $7F $BF $3B $D8 $2E $FC $09 $53 $05 $F0 $1D $08 $11
-BYTE $16 $77 $51 $5A $8B $3D $ED $6E $4B $56 $C8 $41 $25 $2D $A5 $14
+BYTE $55 $53 $FF $7F $BF $3B $ED $6E $16 $77 $4B $56 $D8 $2E $51 $5A
+BYTE $FC $09 $C8 $41 $8B $3D $F0 $1D $53 $05 $25 $2D $08 $11 $A5 $14
 
 GustafPal_Knight:
 BYTE $00 $7E $A3 $18 $25 $2D $F0 $1D $C8 $41 $D8 $2E $4B $56 $E5 $17
@@ -601,8 +601,8 @@ BYTE $00 $7E $DE $7B $BF $3B $D8 $2E $F0 $1D $B4 $62 $0F $4E $6A $39
 BYTE $C5 $20 $5A $7F $B5 $7E $CD $59 $4B $56 $C8 $41 $25 $2D $A5 $14
 
 WolffePal_Baron:
-BYTE $55 $53 $FF $7F $BF $3B $D8 $2E $59 $15 $F1 $0C $F0 $1D $08 $11
-BYTE $16 $77 $51 $5A $8B $3D $39 $7F $94 $6A $EF $51 $4A $35 $A5 $14
+BYTE $55 $53 $FF $7F $BF $3B $39 $7F $16 $77 $94 $6A $D8 $2E $51 $5A
+BYTE $59 $15 $EF $51 $8B $3D $F0 $1D $F1 $0C $4A $35 $08 $11 $A5 $14
 
 WolffePal_Knight:
 BYTE $00 $7E $A5 $1C $4A $35 $F0 $1D $EF $51 $D8 $2E $94 $6A $E5 $17
@@ -617,8 +617,8 @@ BYTE $00 $7E $DE $7B $BF $3B $D8 $2E $F0 $1D $B4 $62 $0F $4E $6A $39
 BYTE $C5 $20 $5A $7F $B5 $7E $CD $59 $94 $6A $EF $51 $4A $35 $A5 $14
 
 BarathPal_Baron:
-BYTE $55 $53 $FF $7F $BF $3B $D8 $2E $8C $31 $08 $21 $F0 $1D $08 $11
-BYTE $16 $77 $51 $5A $8B $3D $9D $34 $77 $2C $51 $20 $2B $14 $A5 $14
+BYTE $55 $53 $FF $7F $BF $3B $9D $34 $16 $77 $77 $2C $D8 $2E $51 $5A
+BYTE $8C $31 $51 $20 $8B $3D $F0 $1D $08 $21 $2B $14 $08 $11 $A5 $14
 
 BarathPal_Knight:
 BYTE $00 $7E $26 $0C $2B $14 $F0 $1D $51 $20 $D8 $2E $77 $2C $E5 $17
@@ -645,8 +645,8 @@ BYTE $00 $7E $FF $7F $1F $7C $00 $00 $18 $3A $1E $4B $B0 $2D $3B $72
 BYTE $72 $4D $D7 $61 $F2 $52 $4E $42 $CB $31 $27 $21 $C8 $10 $A5 $14
 
 FrausPal_Parson:
-BYTE $55 $53 $AD $35 $30 $4A $38 $6B $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $6E $1C $B5 $2C $DB $38 $8C $31 $52 $4A $E7 $1C $4A $29
+BYTE $55 $53 $FF $7F $FF $6B $DB $38 $1E $37 $52 $4A $AD $35 $B5 $2C
+BYTE $38 $6B $30 $4A $8C $31 $4A $29 $2E $19 $6E $1C $E7 $1C $A5 $14
 
 FrausPal_Priest_FE6FE8:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $38 $6B $72 $52 $AC $35
@@ -665,8 +665,8 @@ BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $38 $6B $72 $52 $AC $35
 BYTE $AD $35 $4A $29 $E7 $1C $1F $49 $DB $38 $B5 $2C $6E $1C $A5 $14
 
 ZaomPal_Baron:
-BYTE $55 $53 $FF $7F $BF $3B $D8 $2E $11 $5E $6B $3D $F0 $1D $08 $11
-BYTE $16 $77 $51 $5A $8B $3D $5F $5A $BD $45 $56 $35 $EF $24 $A5 $14
+BYTE $55 $53 $FF $7F $BF $3B $5F $5A $16 $77 $BD $45 $D8 $2E $51 $5A
+BYTE $11 $5E $56 $35 $8B $3D $F0 $1D $6B $3D $EF $24 $08 $11 $A5 $14
 
 ZaomPal_Knight:
 BYTE $00 $7E $68 $14 $EF $24 $F0 $1D $56 $35 $D8 $2E $BD $45 $E5 $17
@@ -697,8 +697,8 @@ BYTE $00 $7E $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $4C $2D $E8 $1C
 BYTE $1F $29 $B5 $1C $6B $35 $E7 $24 $AD $41 $4A $31 $E7 $20 $A5 $14
 
 CohenPal_Baron:
-BYTE $55 $53 $FF $7F $BF $3B $D8 $2E $97 $76 $AF $51 $F0 $1D $08 $11
-BYTE $16 $77 $51 $5A $8B $3D $3F $4A $9F $35 $9C $14 $73 $0C $A5 $14
+BYTE $55 $53 $FF $7F $BF $3B $3F $4A $16 $77 $9F $35 $D8 $2E $51 $5A
+BYTE $97 $76 $9C $14 $8B $3D $F0 $1D $AF $51 $73 $0C $08 $11 $A5 $14
 
 CohenPal_Knight:
 BYTE $00 $7E $2A $08 $73 $0C $F0 $1D $9C $14 $D8 $2E $9F $35 $E5 $17
@@ -749,8 +749,8 @@ BYTE $00 $7E $FF $7F $1F $7C $00 $00 $18 $3A $1E $4B $B0 $2D $B5 $7E
 BYTE $CE $55 $52 $6A $90 $32 $0D $2A $8A $1D $06 $15 $C8 $10 $A5 $14
 
 RaydrikPal_Baron:
-BYTE $55 $53 $FF $7F $BF $3B $D8 $2E $76 $00 $4F $00 $F0 $1D $08 $11
-BYTE $16 $77 $51 $5A $8B $3D $58 $75 $13 $5D $CE $48 $89 $30 $A5 $14
+BYTE $55 $53 $FF $7F $BF $3B $58 $75 $16 $77 $13 $5D $D8 $2E $51 $5A
+BYTE $76 $00 $CE $48 $8B $3D $F0 $1D $4F $00 $89 $30 $08 $11 $A5 $14
 
 RaydrikPal_Knight:
 BYTE $00 $7E $45 $18 $89 $30 $F0 $1D $CE $48 $D8 $2E $13 $5D $E5 $17

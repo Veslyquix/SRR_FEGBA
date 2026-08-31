@@ -457,20 +457,20 @@ palEntry(Glen, WyvernKnight, GlenPal_WyvernKnight_FE8)
 palEntry(0, 0, 0)
 
 EirikaPal_EirikaLord:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $B3 $7F $89 $7A
-BYTE $62 $5D $FF $1B $9E $1A $94 $01 $1C $01 $76 $08 $6F $0C $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $FF $1B $B3 $7F $1F $4B $9E $1A $89 $7A
+BYTE $18 $2A $1C $01 $94 $01 $2E $19 $62 $5D $76 $08 $6F $0C $A5 $14
 
 EirikaPal_EirikaMasterLord:
-BYTE $55 $53 $FF $7F $FF $5B $1F $4B $F4 $31 $95 $7B $0F $77 $8A $76
-BYTE $43 $51 $FF $1B $9E $1A $94 $01 $1C $01 $76 $08 $6F $0C $A5 $14
+BYTE $55 $53 $FF $7F $FF $5B $FF $1B $95 $7B $1F $4B $0F $77 $9E $1A
+BYTE $8A $76 $F4 $31 $1C $01 $94 $01 $43 $51 $76 $08 $6F $0C $A5 $14
 
 EirikaPal_LynLord:
-BYTE $00 $7E $FF $7F $FF $6B $3F $3F $71 $1D $B3 $7F $89 $7A $62 $5D
-BYTE $56 $7B $6F $5E $CA $49 $9E $1A $1C $01 $76 $08 $6F $0C $A5 $14
+BYTE $00 $7E $FF $7F $FF $6B $3F $3F $1C $01 $56 $7B $9E $1A $B3 $7F
+BYTE $6F $5E $76 $08 $CA $49 $89 $7A $71 $1D $6F $0C $62 $5D $A5 $14
 
 EirikaPal_BladeLord:
-BYTE $00 $7E $FF $7F $FF $6B $3F $3F $71 $1D $B3 $7F $89 $7A $62 $5D
-BYTE $99 $7F $12 $77 $0B $56 $9E $1A $1C $01 $76 $08 $6F $0C $A5 $14
+BYTE $00 $7E $FF $7F $FF $6B $99 $7F $3F $3F $12 $77 $9E $1A $1C $01
+BYTE $B3 $7F $76 $08 $0B $56 $89 $7A $71 $1D $6F $0C $62 $5D $A5 $14
 
 EirikaPal_Myrmidon_F:
 BYTE $55 $53 $FF $7F $FF $6B $3F $4B $2E $19 $B3 $7F $89 $7A $62 $5D
@@ -549,8 +549,8 @@ BYTE $55 $53 $FF $7F $D7 $6F $EA $56 $40 $46 $80 $2D $95 $67 $53 $5F
 BYTE $1F $7C $FF $0B $3C $4E $77 $29 $9D $7E $6B $3D $C6 $24 $A5 $14
 
 MoulderPal_Parson:
-BYTE $55 $53 $BF $4B $8E $19 $58 $2E $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $8E $00 $75 $01 $1A $16 $FB $3E $BF $4B $8E $21 $FB $3E
+BYTE $55 $53 $FF $7F $FF $6B $1A $16 $1E $37 $BF $4B $BF $4B $75 $01
+BYTE $58 $2E $8E $19 $FB $3E $FB $3E $2E $19 $8E $00 $8E $21 $A5 $14
 
 MoulderPal_Priest_FE6FE8:
 BYTE $55 $53 $DE $67 $FF $6B $1F $4B $2E $19 $98 $1A $B1 $09 $EB $04
@@ -693,8 +693,8 @@ BYTE $55 $53 $FF $47 $18 $37 $12 $1E $3A $04 $2F $08 $39 $47 $73 $36
 BYTE $4B $15 $AD $76 $C9 $61 $45 $41 $C9 $59 $25 $41 $E7 $28 $A5 $14
 
 ArturPal_Parson:
-BYTE $55 $53 $F4 $7F $58 $05 $FF $19 $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $42 $41 $E7 $55 $CE $72 $EF $6A $F4 $7F $88 $35 $EF $6A
+BYTE $55 $53 $FF $7F $FF $6B $CE $72 $1E $37 $F4 $7F $F4 $7F $E7 $55
+BYTE $FF $19 $58 $05 $EF $6A $EF $6A $2E $19 $42 $41 $88 $35 $A5 $14
 
 ArturPal_Monk_FE7FE8:
 BYTE $55 $53 $FF $7F $FF $6B $5F $43 $91 $25 $1F $1A $79 $05 $14 $05
@@ -797,12 +797,12 @@ BYTE $55 $53 $FF $47 $18 $37 $12 $1E $3A $04 $2F $08 $DC $08 $34 $04
 BYTE $2D $08 $DC $08 $34 $04 $2D $08 $B0 $56 $0B $42 $66 $2D $A5 $14
 
 EphraimPal_EphraimLord:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $B3 $7F $89 $7A
-BYTE $62 $55 $FA $04 $90 $0C $98 $77 $F3 $6E $50 $5E $69 $3D $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $98 $77 $B3 $7F $1F $4B $F3 $6E $50 $5E
+BYTE $89 $7A $18 $2A $FA $04 $69 $3D $2E $19 $62 $55 $90 $0C $A5 $14
 
 EphraimPal_EphraimMasterLord:
-BYTE $55 $53 $FF $7F $FF $5B $1F $4B $F4 $31 $B3 $7F $89 $7A $62 $55
-BYTE $98 $77 $FA $04 $90 $0C $98 $77 $F3 $6E $50 $5E $69 $3D $A5 $14
+BYTE $55 $53 $FF $7F $FF $5B $98 $77 $98 $77 $B3 $7F $1F $4B $F3 $6E
+BYTE $50 $5E $89 $7A $F4 $31 $FA $04 $69 $3D $62 $55 $90 $0C $A5 $14
 
 EphraimPal_EliwoodLord_FE7:
 BYTE $00 $7E $FF $7F $9E $63 $1F $4B $39 $2A $89 $7A $B3 $7F $62 $55
@@ -813,12 +813,12 @@ BYTE $00 $7E $FF $7F $9E $63 $1F $4B $39 $2A $89 $7A $B3 $7F $62 $55
 BYTE $98 $77 $D2 $6A $CB $49 $D2 $7A $2E $5E $69 $3D $C5 $20 $A5 $14
 
 EphraimPal_RoyLord:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $91 $25 $89 $7A $B3 $7F $62 $55
-BYTE $98 $77 $F3 $6E $2D $56 $D2 $7A $2E $5E $69 $3D $C5 $20 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $98 $77 $D2 $7A $1F $4B $F3 $6E $2E $5E
+BYTE $2D $56 $69 $3D $91 $25 $B3 $7F $89 $7A $62 $55 $C5 $20 $A5 $14
 
 EphraimPal_RoyMasterLord:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $91 $25 $89 $7A $B3 $7F $62 $55
-BYTE $98 $77 $F3 $6E $2D $56 $D2 $7A $2E $5E $69 $3D $C5 $20 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $98 $77 $D2 $7A $1F $4B $F3 $6E $2E $5E
+BYTE $2D $56 $69 $3D $91 $25 $B3 $7F $89 $7A $62 $55 $C5 $20 $A5 $14
 
 EphraimPal_Bonewalker_FE8:
 BYTE $55 $53 $FF $7F $F3 $6E $50 $5E $69 $3D $19 $6B $52 $56 $08 $35

@@ -414,12 +414,12 @@ palEntry(Galzus, Ranger, GalzusPal_Ranger_FE8)
 palEntry(0, 0, 0)
 
 LeifPal_LeifLord:
-BYTE $55 $53 $FF $6B $1F $4B $18 $2A $71 $09 $EB $04 $9E $1A $A5 $14
-BYTE $FF $7F $F6 $62 $2C $4E $8B $49 $07 $2D $5A $00 $52 $00 $63 $29
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $F6 $62 $9E $1A $18 $2A $2C $4E
+BYTE $8B $49 $71 $09 $5A $00 $63 $29 $07 $2D $EB $04 $52 $00 $A5 $14
 
 LeifPal_SeliphLord:
-BYTE $34 $4F $77 $2A $3F $37 $08 $1D $EF $35 $D7 $4E $BE $67 $FF $7F
-BYTE $A5 $14 $10 $04 $B0 $1D $EB $04 $71 $09 $D6 $09 $1F $4B $FF $6B
+BYTE $34 $4F $FF $7F $FF $6B $D6 $09 $BE $67 $1F $4B $D7 $4E $71 $09
+BYTE $EF $35 $3F $37 $EB $04 $08 $1D $77 $2A $B0 $1D $A5 $14 $10 $04
 
 LeifPal_Myrmidon:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $D6 $09 $71 $09 $EB $04
@@ -610,8 +610,8 @@ BYTE $00 $7E $FF $7F $FF $6B $7E $53 $2E $19 $7F $45 $1A $35 $B1 $24
 BYTE $90 $31 $0B $21 $EF $3D $29 $25 $5E $3B $97 $2E $AF $1D $A5 $14
 
 LaraPal_Dancer2:
-BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $15 $42 $90 $31 $0B $21
-BYTE $7F $45 $F5 $2C $8B $18 $FF $1B $DF $4B $5E $3B $34 $26 $A5 $14
+BYTE $00 $7E $FF $7F $FF $6B $DF $4B $FF $1B $1F $4B $15 $42 $7F $45
+BYTE $5E $3B $90 $31 $34 $26 $F5 $2C $2E $19 $8B $18 $0B $21 $A5 $14
 
 LaraPal_Dancer_FE6:
 BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $15 $42 $90 $31 $0B $21
@@ -938,8 +938,8 @@ BYTE $00 $7E $FF $7F $1F $7C $00 $00 $18 $3A $1E $4B $B0 $2D $7F $24
 BYTE $57 $18 $7B $20 $D1 $43 $ED $32 $E9 $21 $05 $11 $C8 $10 $A5 $14
 
 HomerPal_Parson:
-BYTE $55 $53 $B4 $7A $2E $45 $B2 $5D $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $CE $3D $B5 $5E $9C $7B $73 $0D $3C $16 $6A $3D $0F $5E
+BYTE $55 $53 $FF $7F $FF $6B $9C $7B $1E $37 $3C $16 $B4 $7A $B5 $5E
+BYTE $B2 $5D $2E $45 $73 $0D $0F $5E $2E $19 $CE $3D $6A $3D $A5 $14
 
 HomerPal_Monk_FE7FE8:
 BYTE $00 $7E $FF $7F $FF $6B $3F $4F $91 $25 $D6 $69 $70 $51 $EB $34
@@ -978,8 +978,8 @@ BYTE $00 $7E $FF $7F $DF $57 $DD $3A $50 $1D $90 $31 $9E $52 $D8 $39
 BYTE $F0 $77 $0C $5B $08 $3E $86 $31 $BF $77 $FD $5E $04 $21 $A5 $14
 
 RalphPal_Mercenary2:
-BYTE $12 $4B $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $71 $15 $0D $11
-BYTE $A9 $0C $98 $77 $2D $56 $69 $3D $AC $51 $49 $3D $E6 $28 $A5 $14
+BYTE $12 $4B $FF $7F $FF $6B $98 $77 $1F $4B $AC $51 $18 $2A $71 $15
+BYTE $2D $56 $0D $11 $49 $3D $69 $3D $2E $19 $A9 $0C $E6 $28 $A5 $14
 
 RalphPal_Mercenary_FE6:
 BYTE $55 $53 $FF $7F $E6 $28 $49 $3D $4E $5A $98 $77 $71 $15 $0D $11
@@ -1014,8 +1014,8 @@ BYTE $00 $7E $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $46 $26 $84 $19
 BYTE $30 $61 $CB $40 $94 $59 $2F $45 $94 $59 $2F $45 $CA $2C $A5 $14
 
 SleufPal_Parson:
-BYTE $55 $53 $D0 $6E $F2 $0D $FD $12 $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $CE $39 $B5 $56 $7B $6F $EB $49 $D0 $6E $06 $25 $EB $49
+BYTE $55 $53 $FF $7F $FF $6B $7B $6F $1E $37 $D0 $6E $D0 $6E $B5 $56
+BYTE $FD $12 $F2 $0D $EB $49 $EB $49 $2E $19 $CE $39 $06 $25 $A5 $14
 
 SleufPal_Priest_FE6FE8:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $DF $17 $FD $12 $F2 $0D
@@ -1154,8 +1154,8 @@ BYTE $55 $53 $FF $7F $FF $4B $BD $2E $F4 $1D $09 $25 $5D $27 $33 $1A
 BYTE $C8 $33 $E6 $26 $E4 $19 $02 $0D $FC $22 $4C $31 $2D $11 $A5 $14
 
 SaiasPal_Parson:
-BYTE $55 $53 $DE $7B $75 $21 $DC $2D $2E $19 $1E $37 $FF $6B $FF $7F
-BYTE $A5 $14 $08 $29 $EF $4D $D6 $76 $EF $3D $F7 $5E $EF $3D $F7 $5E
+BYTE $55 $53 $FF $7F $FF $6B $D6 $76 $1E $37 $F7 $5E $DE $7B $EF $4D
+BYTE $DC $2D $75 $21 $EF $3D $F7 $5E $2E $19 $08 $29 $EF $3D $A5 $14
 
 SaiasPal_Priest_FE6FE8:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $DC $2D $75 $21 $EE $14
@@ -1190,8 +1190,8 @@ BYTE $00 $7E $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $C8 $3E $E5 $29
 BYTE $2B $72 $A8 $55 $DE $77 $F7 $5A $DE $77 $F7 $5A $EF $39 $A5 $14
 
 GalzusPal_Mercenary2:
-BYTE $12 $4B $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $55 $42 $D0 $31
-BYTE $2B $21 $98 $77 $2D $56 $69 $3D $10 $3A $8C $2D $08 $1D $A5 $14
+BYTE $12 $4B $FF $7F $FF $6B $98 $77 $1F $4B $10 $3A $18 $2A $55 $42
+BYTE $2D $56 $D0 $31 $8C $2D $69 $3D $2E $19 $2B $21 $08 $1D $A5 $14
 
 GalzusPal_Mercenary_FE6:
 BYTE $55 $53 $FF $7F $08 $1D $8C $2D $4E $5A $98 $77 $55 $42 $D0 $31

@@ -1,10 +1,12 @@
 @echo off
 @rem ---------------------------------------------------------------------------
-@rem Standardise every animation palette (index 0 transparent, 1 lightest ->
-@rem 15 darkest), sync the matching gfx/Palettes rows, then assemble as usual.
+@rem Standardise every weapon's palette (index 0 transparent, 1 lightest ->
+@rem 15 darkest), embed each one's real enemy/NPC/other colours (extracted from
+@rem its .bin before deleting it - see ReorderPalettes.py's docstring), sync
+@rem the matching gfx/Palettes rows, then assemble with AAA.py as usual.
 @rem
-@rem This is the *incremental* variant: animations whose palette did not move are
-@rem left alone, so AA.exe only rebuilds what actually changed.  Anything the
+@rem This is the *incremental* variant: weapons whose palette did not move are
+@rem left alone, so AAA.py only rebuilds what actually changed.  Anything the
 @rem reorder does touch has its "<Weapon> Installer.event" dropped automatically,
 @rem so the assembler regenerates it from the new palette order.
 @rem
