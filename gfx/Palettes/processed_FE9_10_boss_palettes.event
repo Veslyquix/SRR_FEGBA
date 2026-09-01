@@ -170,6 +170,11 @@ palEntry(Zaitan, General, ZaitanPal_General)
 #ifdef _FE8_
 palEntry(Zaitan, GreatKnight, ZaitanPal_GreatKnight_FE8)
 #endif
+palEntry(Laverton, Cavalier, LavertonPal_Cavalier)
+palEntry(Laverton, Paladin, LavertonPal_Paladin)
+#ifdef _FE8_
+palEntry(Laverton, GreatKnight, LavertonPal_GreatKnight_FE8)
+#endif
 palEntry(Kezhda, Myrmidon, KezhdaPal_Myrmidon)
 #ifndef _FE6_
 palEntry(Kezhda, Assassin, KezhdaPal_Assassin_FE7FE8)
@@ -191,6 +196,17 @@ palEntry(Valtome, Bishop, ValtomePal_Bishop_FE6)
 palEntry(Valtome, Bishop, ValtomePal_Bishop_FE7FE8)
 #endif
 palEntry(Valtome, Sage, ValtomePal_Sage)
+palEntry(Numida, Parson, NumidaPal_Parson)
+#ifndef _FE7_
+palEntry(Numida, Priest, NumidaPal_Priest_FE6FE8)
+#endif
+#ifdef _FE6_
+palEntry(Numida, Bishop, NumidaPal_Bishop_FE6)
+#endif
+#ifndef _FE6_
+palEntry(Numida, Bishop, NumidaPal_Bishop_FE7FE8)
+#endif
+palEntry(Numida, Sage, NumidaPal_Sage)
 palEntry(Hetzel, Parson, HetzelPal_Parson)
 #ifndef _FE7_
 palEntry(Hetzel, Priest, HetzelPal_Priest_FE6FE8)
@@ -225,6 +241,9 @@ palEntry(Dheginsea, FireDragon, DheginseaPal_FireDragon_FE7)
 #endif
 #ifdef _FE8_
 palEntry(Dheginsea, Manakete_2_F, DheginseaPal_Manakete_2_F_FE8)
+#endif
+#ifdef _FE8_
+palEntry(Dheginsea, Manakete_2_FTransformed, DheginseaPal_Manakete_2_FTransformed_FE8)
 #endif
 palEntry(Ashera, Witch, AsheraPal_Witch)
 palEntry(Ashera, Shaman_F, AsheraPal_Shaman_F)
@@ -665,6 +684,18 @@ ZaitanPal_GreatKnight_FE8:
 BYTE $00 $7E $DE $7B $9F $73 $B8 $56 $D0 $39 $D4 $5A $2F $46 $8A $31
 BYTE $E5 $1C $5A $7F $B5 $7E $CD $59 $9D $21 $36 $19 $CF $10 $A5 $14
 
+LavertonPal_Cavalier:
+BYTE $00 $7E $FF $7F $FF $5B $8E $51 $F4 $31 $09 $35 $32 $46 $6C $2D
+BYTE $BF $25 $58 $1D $F0 $14 $68 $08 $1D $47 $36 $32 $4E $1D $A5 $14
+
+LavertonPal_Paladin:
+BYTE $00 $7E $FF $7F $FF $6F $1C $2F $B1 $2D $FF $03 $8E $51 $09 $35
+BYTE $BF $25 $58 $1D $F0 $14 $68 $08 $BD $7F $D5 $66 $0E $4E $A5 $14
+
+LavertonPal_GreatKnight_FE8:
+BYTE $00 $7E $DE $7B $BE $7F $F8 $6A $F0 $45 $94 $62 $EF $4D $4A $39
+BYTE $A5 $24 $5A $7F $B5 $7E $CD $59 $BF $25 $58 $1D $F0 $14 $A5 $14
+
 KezhdaPal_Myrmidon:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $3A $5F $74 $4A $AD $31
 BYTE $D7 $56 $32 $42 $6C $2D $1D $15 $D6 $10 $8F $0C $48 $04 $A5 $14
@@ -708,6 +739,26 @@ BYTE $3E $59 $F9 $72 $F1 $4D $DF $77 $95 $52 $F7 $44 $AF $2C $A5 $14
 ValtomePal_Sage:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $9F $16 $F8 $11 $50 $0D
 BYTE $DF $77 $F8 $5A $F0 $3D $7F $72 $3E $59 $F7 $44 $AF $2C $A5 $14
+
+NumidaPal_Parson:
+BYTE $55 $53 $FF $7F $FF $6B $AB $65 $1E $37 $5C $57 $BF $63 $49 $4D
+BYTE $11 $42 $6B $2D $33 $3A $D8 $4A $2E $19 $E6 $34 $F0 $31 $A5 $14
+
+NumidaPal_Priest_FE6FE8:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $11 $42 $8D $31 $09 $21
+BYTE $FB $3E $35 $2A $D2 $6A $BF $63 $D8 $4A $F0 $31 $08 $19 $A5 $14
+
+NumidaPal_Bishop_FE6:
+BYTE $55 $53 $FF $7F $FF $6B $BF $22 $2E $19 $11 $42 $6B $2D $FF $0B
+BYTE $D5 $09 $56 $7F $2F $56 $BF $63 $D8 $4A $F0 $31 $08 $19 $A5 $14
+
+NumidaPal_Bishop_FE7FE8:
+BYTE $00 $7E $FF $7F $FF $6B $FF $32 $2F $19 $11 $42 $6B $2D $FF $0B
+BYTE $BF $63 $56 $7F $2F $56 $AB $65 $27 $45 $D8 $4A $4B $21 $A5 $14
+
+NumidaPal_Sage:
+BYTE $00 $7E $FF $7F $FF $6B $1F $4B $2E $19 $11 $42 $8D $31 $09 $21
+BYTE $BF $63 $D8 $4A $F0 $31 $2E $7E $AB $65 $49 $4D $E6 $34 $A5 $14
 
 HetzelPal_Parson:
 BYTE $55 $53 $FF $7F $FF $6B $D2 $5E $1E $37 $39 $67 $7C $53 $2E $4A
@@ -768,6 +819,10 @@ BYTE $E7 $18 $FF $7B $9F $27 $BF $16 $FE $09 $FB $00 $BB $00 $84 $0C
 DheginseaPal_Manakete_2_F_FE8:
 BYTE $00 $7E $3F $43 $9D $36 $D8 $25 $E7 $18 $10 $3E $AD $31 $4A $25
 BYTE $8C $4A $E9 $39 $46 $25 $6D $15 $E9 $0C $1F $04 $19 $04 $A5 $14
+
+DheginseaPal_Manakete_2_FTransformed_FE8:
+BYTE $00 $7E $52 $46 $EF $39 $6B $29 $37 $6B $2C $4E $FF $7F $1F $04
+BYTE $19 $04 $12 $04 $73 $4A $10 $3E $AD $31 $29 $21 $E7 $18 $A5 $14
 
 AsheraPal_Witch:
 BYTE $55 $53 $FF $7F $DF $6F $7C $2D $3F $47 $8D $42 $15 $1D $7D $2E
