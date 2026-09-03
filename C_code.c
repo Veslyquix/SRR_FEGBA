@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.1.5"
+#define VersionNumber " SRR V2.1.6"
 #define brk asm("mov r11, r11");
 // 547282
 
@@ -37,7 +37,9 @@ extern const int VeslyBuildfile_Link;
 #define ConfirmationLabel 6
 #define SaveSettingsLabel 7
 #define ReviseCharPalProcLabel 8
+#define FilterGamesLabel 9
 #define LoopLabel 10
+#define FilterEnemyGamesLabel 11
 
 #define EndLabel 99
 
@@ -180,6 +182,29 @@ union TagUnion
 extern union TagUnion * TagValues;
 extern union TagUnion * ClassTags;
 extern union TagUnion * EnemyClassTags;
+// Two independent game filters, gating what "Players From: Random" and "Enemies From:
+// Random" may draw on - see the game filter screen further down.
+//
+// One bit per character table in each: bit g is the player table for game g, and bit
+// g + NumberOfGameTags is that same game's boss table. So the player pool and the boss
+// pool are filtered separately within one filter - you can take players from FE4 while
+// taking bosses from FE6.
+//
+// cData[] holds NumberOfCharTables entries: the first half are the player tables (one
+// per source game), the second half their boss counterparts, so there are
+// NumberOfCharTables >> 1 games. Spelled as a literal because NumberOfCharTables is a
+// const int, which C won't accept as a static array bound - BuildFilteredCharsList()
+// clamps against the real value in case cData[] grows without this following it.
+#define NumberOfGameTags 12
+#define NumberOfGameFilterBits (NumberOfGameTags * 2)
+#define AllGamesMask ((1u << NumberOfGameFilterBits) - 1)
+// Spare high bit, set whenever a filter is written on purpose, so uninitialised RAM (or
+// a config saved before these fields existed) can't read back as a partial filter and
+// silently drop tables from the pool.
+#define GameFilterInitFlag 0x80000000u
+extern u32 * GameFilterValues;
+extern u32 * EnemyGameFilterValues;
+u32 GetEnabledGamesMask(int allegiance);
 
 extern struct TimedHitsDifficultyStruct * TimedHitsDifficultyRam;
 
@@ -2170,6 +2195,16 @@ extern int Text_GetColor(struct Text * th);
 #define TagWidth 7
 extern const char * tags[];
 
+// Game filter screen layout: 4 columns x 6 rows = NumberOfGameFilterBits cells, the
+// same geometry as the tag screen but two rows shorter. Columns 0-1 are the per-game
+// player tables, columns 2-3 the matching boss tables. NumberOfGameTags / AllGamesMask
+// are declared up with GameFilterValues, since BuildFilteredCharsList needs them earlier.
+#define GameTagWidth TagWidth
+#define GameTagRows 6
+#define GameTagColumns 4
+// game_tags[NumberOfGameTags] is the screen title, matching how tags[32..34] work.
+extern const char * game_tags[];
+
 #ifdef FE8
 extern void DrawUiFrame(u16 * tilemap, int x, int y, int width, int height, int tilebase, int style);
 #else
@@ -2530,6 +2565,266 @@ void DrawFilterEnemyClassPage(ConfigMenuProc * proc)
     PutText(&th[32], gBG0TilemapBuffer + TILEMAP_INDEX(10, 0));
 
     BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+// ---------------------------------------------------------------------------------
+// Game filter
+//
+// "Players From"/"Enemies From" can pick one specific source game or "Random". This
+// screen narrows what "Random" draws from, so you can roll from (say) only FE4+FE5
+// rather than all-or-one. BuildFilteredCharsList() is what actually applies it, when
+// it decides which character tables to pull the pool from; the mask lives in the last
+// 2 bytes of the TagValues block, which the existing 16-byte config save already covers.
+// ---------------------------------------------------------------------------------
+
+// The enemy pool ("Enemies From") is driven by RecruitValues->enemyCharTable and the
+// player pool by forcedCharTable, so each gets its own filter.
+u32 * GetGameFilterFor(int allegiance)
+{
+    if (allegiance == BossesPool)
+    {
+        return EnemyGameFilterValues;
+    }
+    return GameFilterValues;
+}
+
+u32 GetEnabledGamesMask(int allegiance)
+{
+    u32 raw = *GetGameFilterFor(allegiance);
+    if (!(raw & GameFilterInitFlag))
+    {
+        return AllGamesMask; // never set on this config - see GameFilterInitFlag
+    }
+    u32 mask = raw & AllGamesMask;
+    // Nothing ticked at all would leave the randomiser with no table to pick from -
+    // treat it as "no filter", which is what Random meant before this screen existed.
+    // (Each half falls back on its own too, in BuildFilteredCharsList.)
+    if (!mask)
+    {
+        return AllGamesMask;
+    }
+    return mask;
+}
+
+// Called on entry to the screen, so the ticks shown always match what the randomiser
+// will actually use - including the first time it's opened on a pre-existing config.
+void NormaliseGameFilter(u32 * filter)
+{
+    if (!(*filter & GameFilterInitFlag))
+    {
+        *filter = GameFilterInitFlag | AllGamesMask;
+    }
+}
+
+void DrawFilterGamePage(ConfigMenuProc * proc);
+void DrawFilterEnemyGamePage(ConfigMenuProc * proc);
+
+// Shared by the player and enemy screens - they differ only in which filter word they
+// edit and which title they show, so the layout/cursor/toggle code lives here once.
+// titleTag indexes game_tags past the NumberOfGameFilterBits entries.
+void GameFilterInit(ConfigMenuProc * proc, u32 * filter, int titleTag)
+{
+    NormaliseGameFilter(filter);
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+
+    BG_Fill(gBG0TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+    SetTextFont(0);
+    ClearBg0Bg1();
+    ResetText();
+
+    int x = 1;
+    int y = 1;
+    int w = 29;
+    int h = 18;
+
+    DrawUiFrame(
+        BG_GetMapBuffer(1),            // back BG
+        x, y, w, h, TILEREF(0, 0), 0); // style as 0 ?
+
+    struct Text * th = gStatScreen.text;
+    InitText(&th[32], 20);
+    for (int i = 0; i < NumberOfGameFilterBits; ++i)
+    {
+        InitText(&th[i], GameTagWidth);
+        Text_SetColor(&th[i], gray);
+        Text_DrawString(&th[i], game_tags[i]);
+    }
+
+    Text_SetColor(&th[32], green);
+    Text_DrawString(&th[32], game_tags[titleTag]);
+}
+
+void DrawGameFilterPage(ConfigMenuProc * proc, u32 * filter)
+{
+    int c = 0;
+    struct Text * th = gStatScreen.text;
+
+    u32 curGames = *filter & AllGamesMask;
+
+    for (int i = 0; i < NumberOfGameFilterBits; ++i)
+    {
+        c = curGames & (1u << i);
+        if (c)
+        {
+            c = blue;
+        }
+        else
+        {
+            c = grey;
+        }
+
+        if (Text_GetColor(&th[i]) != c)
+        {
+            ClearText(&th[i]);
+            Text_SetColor(&th[i], c);
+            Text_DrawString(&th[i], game_tags[i]);
+        }
+    }
+
+    c = 0;
+    int x = 2;
+    int y = 2;
+    // Columns 0-1 are the per-game player tables, 2-3 the matching boss tables.
+    for (int col = 0; col < GameTagColumns; ++col)
+    {
+        for (int i = 0; i < GameTagRows; ++i)
+        {
+            if (c >= NumberOfGameFilterBits)
+            {
+                break;
+            }
+            PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+            c++;
+        }
+        x += GameTagWidth;
+    }
+    PutText(&th[32], gBG0TilemapBuffer + TILEMAP_INDEX(6, 0));
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+static LocationTable GameTagsCursorLocationTable[NumberOfGameFilterBits] = {
+    { 8, 16 },
+    { 8, 32 },
+    { 8, 48 },
+    { 8, 64 },
+    { 8, 80 },
+    { 8, 96 },
+    { 8 + (8 * GameTagWidth), 16 },
+    { 8 + (8 * GameTagWidth), 32 },
+    { 8 + (8 * GameTagWidth), 48 },
+    { 8 + (8 * GameTagWidth), 64 },
+    { 8 + (8 * GameTagWidth), 80 },
+    { 8 + (8 * GameTagWidth), 96 },
+    { 8 + (16 * GameTagWidth), 16 },
+    { 8 + (16 * GameTagWidth), 32 },
+    { 8 + (16 * GameTagWidth), 48 },
+    { 8 + (16 * GameTagWidth), 64 },
+    { 8 + (16 * GameTagWidth), 80 },
+    { 8 + (16 * GameTagWidth), 96 },
+    { 8 + (24 * GameTagWidth), 16 },
+    { 8 + (24 * GameTagWidth), 32 },
+    { 8 + (24 * GameTagWidth), 48 },
+    { 8 + (24 * GameTagWidth), 64 },
+    { 8 + (24 * GameTagWidth), 80 },
+    { 8 + (24 * GameTagWidth), 96 },
+};
+
+void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(ConfigMenuProc *))
+{
+    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
+    if ((keys & START_BUTTON) || (keys & B_BUTTON))
+    { // press B or Start to keep the filter and go back
+        PlaySuccessSfx();
+        Proc_Goto(proc, ConfigMenuLabel);
+        proc->previewId = ConfirmCommandID;
+        return;
+    }
+    // Signed, and wrapped by hand rather than the tag screen's "id -= 8; id %= 32":
+    // that only lands right because 32 divides 2^32 evenly. 24 doesn't, so left from
+    // the first column would land on the wrong row.
+    int id = proc->previewId;
+    if (id < 0 || id >= NumberOfGameFilterBits)
+    {
+        id = 0; // arriving from another screen that left a different cursor index behind
+        proc->previewId = id;
+    }
+    if ((keys & A_BUTTON))
+    {
+        *filter ^= (1u << id);
+        redraw(proc);
+    }
+
+    DisplayUiHand(GameTagsCursorLocationTable[id].x, GameTagsCursorLocationTable[id].y);
+    int moved = id;
+    if (keys & DPAD_RIGHT)
+    {
+        moved += GameTagRows;
+    }
+    if (keys & DPAD_LEFT)
+    {
+        moved -= GameTagRows;
+    }
+    if (keys & DPAD_UP)
+    {
+        if (!(moved % GameTagRows))
+        {
+            moved += GameTagRows;
+        }
+        moved--;
+    }
+    if (keys & DPAD_DOWN)
+    {
+        moved++;
+        if (!(moved % GameTagRows))
+        {
+            moved -= GameTagRows;
+        }
+    }
+
+    if (moved != id)
+    {
+        moved %= NumberOfGameFilterBits;
+        if (moved < 0)
+        {
+            moved += NumberOfGameFilterBits;
+        }
+        proc->previewId = moved;
+        redraw(proc);
+        PlayScrollMenuSfx();
+    }
+}
+
+// Player-pool filter ("Players From")
+void FilterGameInit(ConfigMenuProc * proc)
+{
+    GameFilterInit(proc, GameFilterValues, NumberOfGameFilterBits);
+}
+void DrawFilterGamePage(ConfigMenuProc * proc)
+{
+    DrawGameFilterPage(proc, GameFilterValues);
+}
+void LoopFilterGamePage(ConfigMenuProc * proc)
+{
+    LoopGameFilterPage(proc, GameFilterValues, DrawFilterGamePage);
+}
+
+// Enemy-pool filter ("Enemies From")
+void FilterEnemyGameInit(ConfigMenuProc * proc)
+{
+    GameFilterInit(proc, EnemyGameFilterValues, NumberOfGameFilterBits + 1);
+}
+void DrawFilterEnemyGamePage(ConfigMenuProc * proc)
+{
+    DrawGameFilterPage(proc, EnemyGameFilterValues);
+}
+void LoopFilterEnemyGamePage(ConfigMenuProc * proc)
+{
+    LoopGameFilterPage(proc, EnemyGameFilterValues, DrawFilterEnemyGamePage);
 }
 
 static LocationTable TagsCursorLocationTable[] = {
@@ -5223,13 +5518,57 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
             return false;
         }
     }
-    int end = t + 1;
-
     int tableID = t;
-    if (t >= NumberOfCharTables)
+
+    // Which character tables this pool draws from. A specific "From Game" contributes
+    // exactly one table; "Random" used to mean the whole contiguous run 0..games-1, and
+    // now means every game still ticked on the game filter screen - which isn't
+    // contiguous, hence a list rather than the old t..end range.
+    int games = NumberOfCharTables >> 1;
+    u8 playerTables[NumberOfGameTags];
+    u8 bossTables[NumberOfGameTags];
+    int playerTableCount = 0;
+    int bossTableCount = 0;
+
+    int limit = (games > NumberOfGameTags) ? NumberOfGameTags : games;
+
+    if (tableID >= NumberOfCharTables)
+    { // From game: random
+        u32 mask = GetEnabledGamesMask(allegiance);
+        for (int g = 0; g < limit; ++g)
+        {
+            if (mask & (1u << g))
+            {
+                playerTables[playerTableCount++] = g;
+            }
+            if (mask & (1u << (g + NumberOfGameTags)))
+            {
+                bossTables[bossTableCount++] = g + games;
+            }
+        }
+        // Leaving a half with nothing selected would hand the caller an empty pool, and
+        // it divides by these counts - so an all-unticked half means "no filter" for
+        // that half rather than "no characters".
+        if (!playerTableCount)
+        {
+            for (int g = 0; g < limit; ++g)
+            {
+                playerTables[playerTableCount++] = g;
+            }
+        }
+        if (!bossTableCount)
+        {
+            for (int g = 0; g < limit; ++g)
+            {
+                bossTables[bossTableCount++] = g + games;
+            }
+        }
+    }
+    else
     {
-        t = 0;
-        end = NumberOfCharTables >> 1;
+        playerTables[playerTableCount++] = tableID;
+        // From vanilla game, bosses come out of the vanilla table too, not table 0+games.
+        bossTables[bossTableCount++] = tableID ? (tableID + games) : 0;
     }
 
     u8 recruitmentOrder[0x45] = { 0 };
@@ -5238,8 +5577,9 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
 
     // pool of players
 
-    for (; t < end; ++t)
+    for (int n = 0; n < playerTableCount; ++n)
     {
+        t = playerTables[n];
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
             id = i;
@@ -5296,25 +5636,11 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
         }
     }
 
-    // Now do the same for bosses, but using the boss tables
+    // Now do the same for bosses, but using the boss tables (see bossTables above)
 
-    t = tableID + (NumberOfCharTables >> 1); // from specific game
-    end += (NumberOfCharTables >> 1);
-
-    if (tableID >= NumberOfCharTables) // from game: random
+    for (int n = 0; n < bossTableCount; ++n)
     {
-        t = (NumberOfCharTables >> 1);
-        // end += NumberOfCharTables >> 1;
-    }
-
-    if (!tableID) // from vanilla game
-    {
-        t = 0;
-        end = 1;
-    }
-
-    for (; t < end; ++t)
-    {
+        t = bossTables[n];
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
 
@@ -13168,6 +13494,28 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(DrawFilterEnemyClassPage),
     PROC_REPEAT(LoopFilterEnemyClassPage),
 
+    PROC_LABEL(FilterGamesLabel),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(FilterGameInit),
+    PROC_CALL(DrawFilterGamePage),
+    PROC_REPEAT(LoopFilterGamePage),
+
+    PROC_LABEL(FilterEnemyGamesLabel),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(FilterEnemyGameInit),
+    PROC_CALL(DrawFilterEnemyGamePage),
+    PROC_REPEAT(LoopFilterEnemyGamePage),
+
     PROC_LABEL(EndLabel),
     // PROC_CALL(SaveLastUsedConfig),
     PROC_CALL(EndCloudsEffect),
@@ -14242,6 +14590,9 @@ void SetDefaultTagValues(void)
     ClassTags->raw = 0xF9FF9FFF;      // default: early thief, no civilians or manaketes
     EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
+    // default: "Random" may use every game, players and bosses alike
+    *GameFilterValues = GameFilterInitFlag | AllGamesMask;
+    *EnemyGameFilterValues = GameFilterInitFlag | AllGamesMask;
 }
 // same but vanilla classes only
 void SetVanillaTagValues(void)
@@ -14252,6 +14603,9 @@ void SetVanillaTagValues(void)
     EnemyClassTags->raw =
         0xCFFF1FBF; // default: no dancers, civilians, monsters, or manaketes, and no non-vanilla classes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
+    // default: "Random" may use every game, players and bosses alike
+    *GameFilterValues = GameFilterInitFlag | AllGamesMask;
+    *EnemyGameFilterValues = GameFilterInitFlag | AllGamesMask;
 }
 
 void RestoreConfigOptions(ConfigMenuProc * proc);
@@ -14792,6 +15146,25 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
     {
         Proc_Goto(proc, FilterEnemyClassesLabel);
         return;
+    }
+    // A on "Players From"/"Enemies From" opens that pool's game filter, the same way A
+    // on the Filter Units / Player Classes / Enemy Classes rows opens theirs. The filter
+    // only affects the "Random" setting, so there's nothing to open when the option is
+    // unavailable (that row is hidden then anyway).
+    if (IsFromGameOptionAvailable())
+    {
+        if ((id_adj) == FromGameOption)
+        {
+            proc->previewId = 0;
+            Proc_Goto(proc, FilterGamesLabel);
+            return;
+        }
+        if ((id_adj) == EnemyFromGameOption)
+        {
+            proc->previewId = 0;
+            Proc_Goto(proc, FilterEnemyGamesLabel);
+            return;
+        }
     }
     Proc_Goto(proc, EndLabel);
 }
@@ -18001,7 +18374,7 @@ int GetSRRMenuColour(ConfigMenuProc * proc, int index)
     int result = gold;
     index += CountSRRMenuItems(proc);
     if ((index == FilterCharsOption) || (index == PreviewCharsOption) || (index == FilterClassOption) ||
-        (index == FilterEnemyClassOption))
+        (index == FilterEnemyClassOption) || (index == FromGameOption) || (index == EnemyFromGameOption))
     {
         result = white;
     }

@@ -830,6 +830,16 @@ MaxClassesPlayer:
 WORD 0x203D910
 MaxClassesEnemy:
 WORD 0x203D911
+// TODO(addresses): both are u32 now (24 bits used: bits 0-11 the per-game player
+// tables, bits 12-23 the matching boss tables), so they no longer fit in the 2 spare
+// bytes at the end of the TagValues block that the old u16 used. They need 8 bytes of
+// free RAM. NOTE: only the 16 bytes from TagValues are copied to SRAM by
+// SaveLastUsedConfig/LoadLastUsedConfig - anywhere outside that will not persist
+// between runs unless that copy is widened too.
+GameFilterValues:
+WORD 0x203D912
+EnemyGameFilterValues:
+WORD 0x203D912+4
 
 ALIGN 32
 NameStrings: 

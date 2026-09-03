@@ -2,6 +2,7 @@
 #define MaxRTextOpt 7 
 #define SRRMenu(id) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4); POIN addr; POP }"
 #define tag(id) "{ addr: ; PUSH; ORG tags + (id * 4); POIN addr; POP }"
+#define game_tag(id) "{ addr: ; PUSH; ORG game_tags + (id * 4); POIN addr; POP }"
 #define growth_entry(id) "{ addr: ; PUSH; ORG growth_names + (id * 4); POIN addr; POP }"
 #define SRRDesc(id) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4) + 4; POIN addr; POP }"
 #define SRRDesc(id, opt) "{ addr: ; PUSH; ORG gSRRMenuText + (id * (MaxRTextOpt+1) * 4) + (4*(opt+1)); POIN addr; POP }"
@@ -459,8 +460,70 @@ tag(32); txt("Filter Characters");
 tag(33); txt("Filter Player Classes");
 tag(34); txt("Filter Enemy Classes");
 
-ALIGN 4 
-growth_names: 
+
+// Game filter screens (C_code.c: GameFilterInit / DrawGameFilterPage). One entry per
+// character table, in the SAME ORDER as cData[] - index N here is char table N there -
+// so 0..11 are the per-game player tables and 12..23 their boss counterparts. 24 and 25
+// are the two screen titles. Names are kept short because the screen lays them out in 4
+// columns of GameTagWidth (7) tiles; the longer forms live in the "Players From"
+// dropdown (FromGameOpt) above.
+ALIGN 64
+game_tags:
+FILL(4 * 32)
+
+game_tag(0);  txt("Vanilla");
+game_tag(1);  txt("FE1/3");
+game_tag(2);  txt("FE4");
+game_tag(3);  txt("FE5");
+#ifdef _FE8_
+game_tag(4);  txt("FE6");
+game_tag(5);  txt("FE7");
+#endif
+#ifdef _FE7_
+game_tag(4);  txt("FE6");
+game_tag(5);  txt("FE8");
+#endif
+#ifdef _FE6_
+game_tag(4);  txt("FE7");
+game_tag(5);  txt("FE8");
+#endif
+game_tag(6);  txt("FE9/10");
+game_tag(7);  txt("FE13");
+game_tag(8);  txt("FE14");
+game_tag(9);  txt("FE2/15");
+game_tag(10); txt("FE16");
+game_tag(11); txt("FE17");
+
+// Boss tables - same games, second half of cData[]. "B" suffix since the columns sit
+// next to the player ones.
+game_tag(12); txt("VanillaB");
+game_tag(13); txt("FE1/3 B");
+game_tag(14); txt("FE4 B");
+game_tag(15); txt("FE5 B");
+#ifdef _FE8_
+game_tag(16); txt("FE6 B");
+game_tag(17); txt("FE7 B");
+#endif
+#ifdef _FE7_
+game_tag(16); txt("FE6 B");
+game_tag(17); txt("FE8 B");
+#endif
+#ifdef _FE6_
+game_tag(16); txt("FE7 B");
+game_tag(17); txt("FE8 B");
+#endif
+game_tag(18); txt("FE9/10B");
+game_tag(19); txt("FE13 B");
+game_tag(20); txt("FE14 B");
+game_tag(21); txt("FE2/15B");
+game_tag(22); txt("FE16 B");
+game_tag(23); txt("FE17 B");
+
+game_tag(24); txt("Filter Player Games");
+game_tag(25); txt("Filter Enemy Games");
+
+ALIGN 4
+growth_names:
 FILL(4 * 40) 
 
 
