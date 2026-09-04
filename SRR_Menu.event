@@ -622,9 +622,9 @@ SRRDesc(EnemyPlayerOpt,2); txt("Enemy bosses will be\from the pool of players an
 
 
 SRRMenu(FromGameOpt);           txt("Players From")
-SRRDesc(FromGameOpt); txt("Units can be from\specific or random FE games."); 
+SRRDesc(FromGameOpt); txt("Player characters will be from\your selection of FE games."); 
 SRRMenu(EnemyFromGameOpt);           txt("Enemies From")
-SRRDesc(EnemyFromGameOpt); txt("Units can be from\specific or random FE games."); 
+SRRDesc(EnemyFromGameOpt); txt("Enemy characters will be from\your selection of FE games."); 
 SRRMenu(FilterCharsOpt);           txt("Filter Units")
 SRRDesc(FilterCharsOpt); txt("Only include characters with\specific weapon types or traits."); 
 SRRMenu(PreviewCharsOpt);           txt("Preview Units")
