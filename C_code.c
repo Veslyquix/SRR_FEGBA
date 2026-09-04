@@ -5701,7 +5701,11 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
             {
                 break;
             }
-            if (IsCharIdInvalidForGame(id) && t)
+            // IsCharIdInvalidForGame marks the ID ranges a custom table has no data for -
+            // vanilla bosses among them. cData[NumberOfCharTables >> 1] is gCharacterData
+            // itself though (there is no separate vanilla boss table, boss-ness comes from
+            // CA_BOSS), so applying it to that table skipped every vanilla boss.
+            if (IsCharIdInvalidForGame(id) && IsNonVanillaCharTable(t))
             {
                 continue;
             }
