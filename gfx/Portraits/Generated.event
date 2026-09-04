@@ -228,6 +228,7 @@ MugEntry(VelouriaMug, VelouriaMugData, VelouriaMinimugData, VelouriaFramesData, 
 MugEntry(XanderMug, XanderMugData, XanderMinimugData, XanderFramesData, XanderPaletteData,  3, 5, 3, 3)
 MugEntry(YukimuraMug, YukimuraMugData, YukimuraMinimugData, YukimuraFramesData, YukimuraPaletteData,  3, 5, 3, 3)
 MugEntry(AnankosMug, AnankosMugData, AnankosMinimugData, AnankosFramesData, AnankosPaletteData,  2, 5, 2, 3)
+MugEntry(AnthonyMug, AnthonyMugData, AnthonyMinimugData, AnthonyFramesData, AnthonyPaletteData,  3, 6, 3, 4)
 MugEntry(AreteMug, AreteMugData, AreteMinimugData, AreteFramesData, AretePaletteData,  2, 6, 3, 4)
 MugEntry(CandaceMug, CandaceMugData, CandaceMinimugData, CandaceFramesData, CandacePaletteData,  3, 6, 3, 4)
 MugEntry(DaichiMug, DaichiMugData, DaichiMinimugData, DaichiFramesData, DaichiPaletteData,  3, 5, 3, 3)
@@ -3721,6 +3722,17 @@ AnankosPaletteData:
 #incbin "png/FE14_Bosses/Anankos_Garytop_palette.dmp"
 AnankosMinimugData:
 #incbin "png/FE14_Bosses/Anankos_Garytop_minimug.dmp"
+
+ALIGN 4
+AnthonyMugData:
+#incbin "png/FE14_Bosses/Anthony_Garytop_mug.dmp"
+ALIGN 4
+AnthonyFramesData:
+#incbin "png/FE14_Bosses/Anthony_Garytop_frames.dmp"
+AnthonyPaletteData:
+#incbin "png/FE14_Bosses/Anthony_Garytop_palette.dmp"
+AnthonyMinimugData:
+#incbin "png/FE14_Bosses/Anthony_Garytop_minimug.dmp"
 
 ALIGN 4
 AreteMugData:

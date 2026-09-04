@@ -796,8 +796,8 @@ const struct FE8CharacterData
 #ifdef FE6
             gCharacterDataFE7_Bosses,  gCharacterDataFE8_Bosses,
 #endif
-            gCharacterDataFE10_Bosses, gCharacterDataFE13_Bosses, gCharacterDataPlaceholder,
-            gCharacterDataFE15_Bosses, gCharacterDataPlaceholder, gCharacterDataPlaceholder,
+            gCharacterDataFE10_Bosses, gCharacterDataFE13_Bosses, gCharacterDataFE14_Bosses,
+            gCharacterDataFE15_Bosses, gCharacterDataFE16_Bosses, gCharacterDataFE17_Bosses,
         };
 
 const int NumberOfCharTables = 24;
