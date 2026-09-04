@@ -373,9 +373,66 @@ typedef struct
 #define RecruitmentCacheSeedOffset (SRRBufferSize - 8)
 #define RecruitmentCacheTablesOffset (RecruitmentCacheSeedOffset - RecruitmentCacheEntries)
 #define RecruitmentCacheCharsOffset (RecruitmentCacheTablesOffset - RecruitmentCacheEntries)
+// The palette caches share the same spare room, from the other end: BuildRecruitmentCache
+// only uses the low 2 * UnitListSize (2400) bytes as scratch, and the recruitment cache
+// starts at RecruitmentCacheCharsOffset (4856), so everything between is free. Putting
+// them here rather than in new Definitions.s SET_DATA entries is what lets this work on
+// FE6/FE7 as well - their SRRBuffer is already carved out, their spare RAM maps are not.
+#define PalCacheBase 2400 // == UnitListSize * 2, which is not #defined this early
+#define CharPalOverrideEntries 0x46
+#define EnemyPalCacheEntries 64 // gUnitArrayRed holds 50; index is unit->index & 0x3F
+
+// FE8 keeps gCharPalOverride at its Definitions.s address because Debugger/C_Code.c reads
+// it; FE6/FE7 have no such definition, so theirs lives here. Everything goes through
+// GetCharPalOverrideArray() so the rest of the file cannot tell the difference.
+#define CharPalOverrideOffset PalCacheBase
+// The class each auto-assigned override was picked for. A stored index only means anything
+// against the class it was chosen for, so when a unit promotes (or is otherwise reclassed)
+// this is what tells us to pick again instead of resolving a stale index.
+#define CharPalClassOffset (CharPalOverrideOffset + (CharPalOverrideEntries * 2))
+// Enemies share character IDs freely, so theirs is keyed by unit index, resolved to a
+// palette pointer once at load. The key is charID << 8 | classID: mid-chapter save loads
+// restore units without going through UnitInitFromDefinition, so a slot has to be able to
+// say whether it still describes the unit asking.
+#define EnemyPalCacheOffset ((CharPalClassOffset + CharPalOverrideEntries + 3) & ~3)
+#define EnemyPalCacheKeyOffset (EnemyPalCacheOffset + (EnemyPalCacheEntries * 4))
+#define EnemyPalCacheMagicOffset (EnemyPalCacheKeyOffset + (EnemyPalCacheEntries * 2))
+#define PalCacheEnd (EnemyPalCacheMagicOffset + 4)
+
+// Encoding band for values the automatic assignment writes into gCharPalOverride, beside
+// the revise screen bands (see RawCharPalOverrideBase). Clear of both: filtered indices
+// stop at CharPalOptionsBufferMax (128) and raw ones at 200 + roughly 4000.
+#define AutoCharPalNone 8191
+#define AutoCharPalBase 8192
+
 extern u8 SRRBuffer[SRRBufferSize];
 
 void BuildRecruitmentCache(void);
+
+#ifdef FE8
+extern u16 gCharPalOverride[CharPalOverrideEntries];
+#endif
+
+u16 * GetCharPalOverrideArray(void)
+{
+#ifdef FE8
+    return gCharPalOverride;
+#else
+    return (u16 *)&SRRBuffer[CharPalOverrideOffset];
+#endif
+}
+u8 * GetCharPalClassArray(void)
+{
+    return &SRRBuffer[CharPalClassOffset];
+}
+const u16 ** GetEnemyPalCache(void)
+{
+    return (const u16 **)&SRRBuffer[EnemyPalCacheOffset];
+}
+u16 * GetEnemyPalCacheKeys(void)
+{
+    return (u16 *)&SRRBuffer[EnemyPalCacheKeyOffset];
+}
 
 u8 * GetRecruitmentCacheChars(void)
 {
@@ -4285,6 +4342,12 @@ static void RedrawReviseCharPalPage(ConfigMenuProc * proc)
     struct Vec2u adjusted = GetReviseAdjustedCharAndTable(proc);
     int count = CountCharPalOptionsForClassID(classID, adjusted.x, adjusted.y);
     int current = (origCharID > 0 && origCharID < 0x46) ? gCharPalOverride[origCharID] : 0;
+    // shown as Default: it IS what the character will use, but it was not chosen here and
+    // its index is into a different list than the ones this screen scrolls
+    if (current >= AutoCharPalNone)
+    {
+        current = 0;
+    }
 
     RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
     ResetText();
@@ -4436,6 +4499,15 @@ void LoopReviseCharPalPage(ConfigMenuProc * proc)
         // gCharPalOverride[] encoding comment near RawCharPalOverrideBase's #define.
         int cur = gCharPalOverride[origCharID];
         int tmp;
+
+        // An automatically assigned value sits above the raw band, so the raw arithmetic
+        // below would read it as a wildly out-of-range raw index. Scrolling off an
+        // automatic pick starts from Default instead, which is where the filtered list
+        // (their own matching recolors first) begins.
+        if (cur >= AutoCharPalNone)
+        {
+            cur = 0;
+        }
 
         if (cur >= RawCharPalOverrideBase)
         {
@@ -7305,40 +7377,34 @@ extern s16 gBanimUniquePal[2];
 
 int GetPromotedClass(const struct ClassData * data);
 
-// Whether a gCharPal slot registered under registeredClassID should be considered a match
-// when browsing/looking up palettes for classID - same class, or one promotion step away
-// in either direction (a recolor registered for the base tier should still show up while
-// previewing/playing the promoted tier, and vice versa).
+// Whether a gCharPal slot registered under registeredClassID counts as a match for
+// classID. Exact class only: matching one promotion step either way was tried and taken
+// back out, because a base-tier and promoted-tier recolor of the same character are
+// usually the same palette, and accepting both filled the list with duplicates.
 static bool DoesCharPalClassMatch(int registeredClassID, int classID)
 {
     if (!registeredClassID)
     {
         return false;
     }
-    if (registeredClassID == classID)
-    {
-        return true;
-    }
-    // if (GetPromotedClass(GetClassData(registeredClassID)) == classID)
-    // {
-    // return true;
-    // }
-    // if (GetPromotedClass(GetClassData(classID)) == registeredClassID)
-    // {
-    // return true;
-    // }
-    return false;
+    return registeredClassID == classID;
 }
 
 extern const int NumberOfPalCharTables;
 u32 GetNthRN_Simple(int n, u32 seed, u32 currentRN);
 
-// Every palette in gCharPal, from any character in any game, whose class matches classID.
-// Used to answer "this character has no recolor of their own for the class they ended up
-// in - give them somebody else's, as long as it was drawn for this class".
-int CountClassMatchingCharPals(int classID)
+extern const int NumberOfPalCharTables;
+u32 GetNthRN_Simple(int n, u32 seed, u32 currentRN);
+u32 HashByte_Simple(u32 rn, int max);
+
+// One walk over every palette in gCharPal, from any character in any game, whose class
+// matches classID. Returns the total and, through ownIndex, where the first one drawn for
+// THIS character in THIS game sits - their own recolor, which always wins when it exists.
+// ownIndex comes back -1 when they have none for this class.
+int ScanClassMatchingCharPals(int classID, int adjustedCharID, int tableID, int * ownIndex)
 {
     int count = 0;
+    *ownIndex = -1;
     for (int t = 0; t < NumberOfPalCharTables; ++t)
     {
         const struct gCharPal_EntryStruct * entry = gCharPal[t];
@@ -7348,10 +7414,15 @@ int CountClassMatchingCharPals(int classID)
         }
         while (entry->charID)
         {
+            int isOwn = (t == tableID) && (entry->charID == adjustedCharID);
             for (int i = 0; i < NumOfCharPals; ++i)
             {
                 if (entry->pal[i] && DoesCharPalClassMatch(entry->classID[i], classID))
                 {
+                    if (isOwn && *ownIndex < 0)
+                    {
+                        *ownIndex = count;
+                    }
                     count++;
                 }
             }
@@ -7363,6 +7434,10 @@ int CountClassMatchingCharPals(int classID)
 
 const u16 * GetNthClassMatchingCharPal(int classID, int index)
 {
+    if (index < 0)
+    {
+        return NULL;
+    }
     for (int t = 0; t < NumberOfPalCharTables; ++t)
     {
         const struct gCharPal_EntryStruct * entry = gCharPal[t];
@@ -7388,23 +7463,164 @@ const u16 * GetNthClassMatchingCharPal(int classID, int index)
     return NULL;
 }
 
-// A stable pick among those. Seeded on the run's seed plus the character and the class, so
-// it is the same palette every battle, survives a soft reset or a save reload without
-// needing to be stored anywhere, and re-picks a class-appropriate one by itself when the
-// character promotes into a class they have no recolor for either.
-//
-// Two full scans rather than the revise screen's RAM buffer on purpose: this runs once
-// when a battle animation loads, not every frame, and the buffer is FE8-only fixed RAM
-// while this path has to work for FE6 and FE7 too.
-const u16 * GetRandomClassMatchingCharPal(int classID, int charID)
+// Their own recolor for this class if one exists, else a stable pick among everyone
+// elses for that class. -1 when gCharPal holds nothing for this class at all. The pick is
+// seeded on the run seed plus who and what class, so it is the same palette every battle
+// and would survive a soft reset even if it were not written down.
+int PickAutoCharPalIndex(int classID, int adjustedCharID, int tableID, int seedKey)
 {
-    int count = CountClassMatchingCharPals(classID);
+    int own = -1;
+    int count = ScanClassMatchingCharPals(classID, adjustedCharID, tableID, &own);
     if (!count)
+    {
+        return -1;
+    }
+    if (own >= 0)
+    {
+        return own;
+    }
+    return HashByte_Simple(GetNthRN_Simple(seedKey, RandValues->seed, classID), count);
+}
+
+const u16 * ResolveAutoCharPal(int classID, int storedValue)
+{
+    if (storedValue < AutoCharPalBase)
     {
         return NULL;
     }
-    return GetNthClassMatchingCharPal(
-        classID, HashByte_Simple(GetNthRN_Simple(charID, RandValues->seed, classID), count));
+    return GetNthClassMatchingCharPal(classID, storedValue - AutoCharPalBase);
+}
+
+// Janky recolors everyone, so it wants the whole ladder. Vanilla Colours still wants the
+// matching recolors and a class-appropriate stand-in when there is none - it just stops
+// short of the last rung, so a character palette never lands on a class it was never
+// drawn for (no Chrom palette on a chicken); it falls back to generic instead.
+void EnsurePalCaches(void);
+
+int ShouldAutoAssignCharPal(void)
+{
+    return RandBitflags->colours == 0 || RandBitflags->colours == 2;
+}
+
+// Fills gCharPalOverride for a player-slot character at unit load, and again whenever they
+// are in a different class than the one the stored index was chosen for - an index only
+// means anything against its own class, so promotion has to re-pick. A value the revise
+// screen wrote (below AutoCharPalNone) is left alone: a deliberate choice outranks a
+// generated one.
+void MaybeAutoAssignCharPal(int charID, int classID, int adjustedCharID, int tableID)
+{
+    if (charID <= 0 || charID >= CharPalOverrideEntries || classID <= 0)
+    {
+        return;
+    }
+    if (!ShouldAutoAssignCharPal())
+    {
+        return;
+    }
+    EnsurePalCaches();
+    u16 * overrides = GetCharPalOverrideArray();
+    u8 * classes = GetCharPalClassArray();
+    int stored = overrides[charID];
+    if (stored && stored < AutoCharPalNone)
+    {
+        return; // picked on the revise screen
+    }
+    if (stored && classes[charID] == (u8)classID)
+    {
+        return; // already generated, and still for the class they are in
+    }
+    int index = PickAutoCharPalIndex(classID, adjustedCharID, tableID, charID);
+    overrides[charID] = (index < 0) ? AutoCharPalNone : (u16)(AutoCharPalBase + index);
+    classes[charID] = (u8)classID;
+}
+
+// Enemies cannot use that array at all: several of them share one character id, so this
+// cache is keyed by unit index instead (gUnitArrayRed holds 50, and FACTION_RED indices
+// run from 0x81, hence & 0x3F). Resolved once as the unit loads, so the scan does not land
+// in the middle of a battle animation starting.
+//
+// The key is charID << 8 | classID because a mid-chapter save load restores units without
+// going through UnitInitFromDefinition, so a slot has to be able to say whether it still
+// describes the unit asking. The magic word guards the same thing the recruitment cache
+// magic does: this is fixed RAM, so it holds whatever was there on boot.
+#define EnemyPalCacheMagic 0x53525250u // SRRP
+u32 * GetEnemyPalCacheMagic(void)
+{
+    return (u32 *)&SRRBuffer[EnemyPalCacheMagicOffset];
+}
+
+// All of this is fixed RAM, so on a cold boot it holds whatever was there - and a stored
+// value between 1 and AutoCharPalNone reads as "the player chose this on the revise
+// screen", which would wedge automatic assignment off for that character permanently. The
+// seed is folded into the magic so a reroll also starts everyone over: the characters
+// behind those slots have all changed, so the picks (deliberate ones included, since they
+// were made for the old seed) no longer describe anything.
+void EnsurePalCaches(void)
+{
+    u32 expected = EnemyPalCacheMagic + (u32)RandValues->seed;
+    if (*GetEnemyPalCacheMagic() == expected)
+    {
+        return;
+    }
+    u16 * keys = GetEnemyPalCacheKeys();
+    for (int i = 0; i < EnemyPalCacheEntries; ++i)
+    {
+        keys[i] = 0;
+    }
+    u16 * overrides = GetCharPalOverrideArray();
+    u8 * classes = GetCharPalClassArray();
+    for (int i = 0; i < CharPalOverrideEntries; ++i)
+    {
+        overrides[i] = 0;
+        classes[i] = 0;
+    }
+    *GetEnemyPalCacheMagic() = expected;
+}
+
+const u16 * GetEnemyCharPal(struct Unit * unit, int classID, int adjustedCharID, int tableID)
+{
+    if (!ShouldAutoAssignCharPal() || classID <= 0 || adjustedCharID <= 0)
+    {
+        return NULL;
+    }
+    int slot = unit->index & 0x3F;
+    if (slot >= EnemyPalCacheEntries)
+    {
+        return NULL;
+    }
+    EnsurePalCaches();
+    u16 key = (u16)(((adjustedCharID & 0xFF) << 8) | (classID & 0xFF));
+    if (GetEnemyPalCacheKeys()[slot] != key)
+    {
+        // seeded on the unit index, not the character - two enemies sharing a character id
+        // should not both end up in the same borrowed palette
+        int index = PickAutoCharPalIndex(classID, adjustedCharID, tableID, unit->index + 0x100);
+        GetEnemyPalCache()[slot] = GetNthClassMatchingCharPal(classID, index);
+        GetEnemyPalCacheKeys()[slot] = key;
+    }
+    return GetEnemyPalCache()[slot];
+}
+
+// Called from UnitInitFromDefinition, so the scanning happens while a unit loads rather
+// than when a battle animation starts.
+void SetUnitPalCache(struct Unit * unit)
+{
+    if (!ShouldAutoAssignCharPal())
+    {
+        return;
+    }
+    if (!unit->pCharacterData || !unit->pClassData || !unit->pCharacterData->portraitId)
+    {
+        return;
+    }
+    struct Vec2u adjusted = GetReorderedCharIDAndTableID(unit->pCharacterData);
+    int classID = unit->pClassData->number;
+    if (UNIT_FACTION(unit) == FACTION_RED)
+    {
+        GetEnemyCharPal(unit, classID, adjusted.x, adjusted.y);
+        return;
+    }
+    MaybeAutoAssignCharPal(unit->pCharacterData->number, classID, adjusted.x, adjusted.y);
 }
 
 // FE8-only, same as the revise-palette screen further up - see the #ifdef FE8 there.
@@ -7675,6 +7891,12 @@ const u16 * ResolveCharPalOverride(int classID, int adjustedCharID, int tableID,
     {
         return NULL;
     }
+    // automatic band first: it sits above the raw band, so checking raw first would send
+    // an auto value off to GetNthRawCharPal and hand back an unrelated palette
+    if (storedValue >= AutoCharPalNone)
+    {
+        return ResolveAutoCharPal(classID, storedValue);
+    }
     if (storedValue >= RawCharPalOverrideBase)
     {
         return GetNthRawCharPal(storedValue - RawCharPalOverrideBase);
@@ -7689,7 +7911,6 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
     {
         return NULL;
     }
-#ifdef FE8
     // Override VALUE is keyed by the character's ORIGINAL (recruit-slot) id - the same id
     // the revise-palette screen writes with (GetReviseCharID) - NOT the `charID` parameter.
     // Both battle call sites pass GetReorderedCharIDAndTableID().x there, which is the
@@ -7700,22 +7921,51 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
     // derive the new id from it.
     //
     // The (charID, tableID) PARAMETERS, on the other hand, already ARE that adjusted
-    // id/table (see above) - exactly what tier 1 of GetNthCharPalForClassID()'s buffer
-    // needs, no recomputing required.
-    //
-    // FE6/FE7 have no override screen at all, so they skip straight to the normal lookup.
+    // id/table (see above) - exactly what ScanClassMatchingCharPals needs to recognise a
+    // palette as the character's own, no recomputing required.
     int overrideCharID = unit->pCharacterData->number;
-    if (overrideCharID > 0 && overrideCharID < 0x46 && gCharPalOverride[overrideCharID])
+    int classID = unit->pClassData->number;
+
+    if (UNIT_FACTION(unit) == FACTION_RED)
     {
-        const u16 * overridePal =
-            ResolveCharPalOverride(unit->pClassData->number, charID, tableID, gCharPalOverride[overrideCharID]);
+        // enemies share character ids, so they are cached per unit index instead - normally
+        // already filled by SetUnitPalCache when the unit loaded
+        const u16 * enemyPal = GetEnemyCharPal(unit, classID, charID, tableID);
+        if (enemyPal)
+        {
+            gBanimUniquePal[pos] = 0;
+            return enemyPal;
+        }
+    }
+    else if (overrideCharID > 0 && overrideCharID < CharPalOverrideEntries)
+    {
+        // normally a no-op: SetUnitPalCache filled this at load. It still runs here because
+        // a class change since then has to re-pick, and that is cheapest to notice at the
+        // point of use.
+        MaybeAutoAssignCharPal(overrideCharID, classID, charID, tableID);
+        int stored = GetCharPalOverrideArray()[overrideCharID];
+        const u16 * overridePal = NULL;
+        if (stored >= AutoCharPalNone)
+        {
+            overridePal = ResolveAutoCharPal(classID, stored);
+        }
+#ifdef FE8
+        // the filtered/raw bands belong to the revise screen, which is FE8-only
+        else if (stored)
+        {
+            overridePal = ResolveCharPalOverride(classID, charID, tableID, stored);
+        }
+#endif
         if (overridePal)
         {
             gBanimUniquePal[pos] = 0;
             return overridePal;
         }
     }
-#endif // FE8
+
+    // Nothing assigned, or nothing in gCharPal was drawn for this class. Janky still falls
+    // back to the character's own default recolor; Vanilla Colours deliberately does not,
+    // and drops through to the generic palette.
     const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
     const u16 * pal = NULL;
     const u16 * jankyPal = NULL;
@@ -7724,7 +7974,6 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
         return NULL;
     }
     // int timeToBreak = false;
-    int classID = unit->pClassData->number;
     int shouldBreak = false;
     while (entry->charID)
     {
@@ -7751,14 +8000,6 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
             // (otherwise entry keeps being updated, and pal becomes wrong)
         }
         entry++;
-    }
-    // No recolor of their own for this class. Rather than dropping straight to their
-    // default (which is drawn for whatever class the palette set was built around, and
-    // looks wrong on anything else), borrow one that WAS drawn for this class. Gated the
-    // same way the default-janky fallback below is, so it only applies to Janky Colours.
-    if (!pal && jankyPal)
-    {
-        pal = GetRandomClassMatchingCharPal(classID, charID);
     }
     if (!pal)
     {
@@ -12287,6 +12528,7 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
     // Resolve this enemy's replacement once, here, so every later lookup reads the unit
     // struct rather than going back through the recruitment procs.
     SetUnitReorderCache(unit);
+    SetUnitPalCache(unit);
     UnitCheckStatCaps(unit);
 }
 
