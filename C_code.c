@@ -359,10 +359,66 @@ typedef struct
     u16 count;
     u8 id[0x40];
 } RecruitmentProc;
-RecruitmentProc * InitRandomRecruitmentProc(int procID);
-void LoopRandomRecruitmentProc(RecruitmentProc * proc)
+
+// The character-ID -> replacement mapping used to live in eight procs of 0x40 bytes each,
+// four for the new character ID and four for the table it came from. It's a plain cache in
+// the tail of SRRBuffer now: BuildRecruitmentCache only ever uses the low 2 * UnitListSize
+// bytes as scratch, so the top of the buffer was going spare.
+//
+// Indexing is flat by character ID (cache[id - 1]) rather than the old
+// procN->id[(id & 0x3F) - 1], which underflowed to procN->id[-1] for ids 0x40/0x80/0xC0.
+#define SRRBufferSize 0x1500
+#define RecruitmentCacheEntries 0x100
+#define RecruitmentCacheMagic 0x53525243u // 'SRRC'
+#define RecruitmentCacheMagicOffset (SRRBufferSize - 4)
+#define RecruitmentCacheSeedOffset (SRRBufferSize - 8)
+#define RecruitmentCacheTablesOffset (RecruitmentCacheSeedOffset - RecruitmentCacheEntries)
+#define RecruitmentCacheCharsOffset (RecruitmentCacheTablesOffset - RecruitmentCacheEntries)
+extern u8 SRRBuffer[SRRBufferSize];
+
+void BuildRecruitmentCache(void);
+
+u8 * GetRecruitmentCacheChars(void)
 {
-    return;
+    return &SRRBuffer[RecruitmentCacheCharsOffset];
+}
+u8 * GetRecruitmentCacheTables(void)
+{
+    return &SRRBuffer[RecruitmentCacheTablesOffset];
+}
+u32 * GetRecruitmentCacheMagic(void)
+{
+    return (u32 *)&SRRBuffer[RecruitmentCacheMagicOffset];
+}
+u32 * GetRecruitmentCacheSeed(void)
+{
+    return (u32 *)&SRRBuffer[RecruitmentCacheSeedOffset];
+}
+// The magic value is what says the mapping in the buffer belongs to the current settings.
+// Clearing it is how you invalidate; RAM comes up as anything on a fresh boot, so this
+// also stops us trusting whatever was already there.
+//
+// The seed is checked too. The old procs died whenever their tree was torn down, so
+// loading a different save rebuilt the mapping by accident; a static buffer survives that
+// (and a soft reset), so the seed it was built for has to be part of the check.
+int IsRecruitmentCacheBuilt(void)
+{
+    if (*GetRecruitmentCacheMagic() != RecruitmentCacheMagic)
+    {
+        return false;
+    }
+    return *GetRecruitmentCacheSeed() == (u32)RandValues->seed;
+}
+void InvalidateRecruitmentCache(void)
+{
+    *GetRecruitmentCacheMagic() = 0;
+}
+void EnsureRecruitmentCache(void)
+{
+    if (!IsRecruitmentCacheBuilt())
+    {
+        BuildRecruitmentCache();
+    }
 }
 extern void RegisterBlankTile(int a);
 extern void ClearBg0Bg1();
@@ -378,55 +434,7 @@ extern void CallEvent(const u16 * events, u8 execType);
 extern int EventEngineExists(void);
 
 #endif
-const struct ProcCmd RecruitmentProcCmd1[] = {
-    PROC_NAME("ReorderedRecruitment_One"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
 
-const struct ProcCmd RecruitmentProcCmd2[] = {
-    PROC_NAME("ReorderedRecruitment_Two"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd3[] = {
-    PROC_NAME("ReorderedRecruitment_Three"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd4[] = {
-    PROC_NAME("ReorderedRecruitment_Four"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd5[] = {
-    PROC_NAME("TableID_Proc_One"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd6[] = {
-    PROC_NAME("TableID_Proc_Two"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd7[] = {
-    PROC_NAME("TableID_Proc_Three"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd8[] = {
-    PROC_NAME("TableID_Proc_Four"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
 
 extern void ForceHardModeFE8(void);
 void MaybeForceHardModeFE8(void)
@@ -455,6 +463,7 @@ int ShouldRandomizeRecruitmentForUnitID(int id)
 // counterpart. A character pulled from either of those is holding the game's own data, so
 // their default weapon is already the right one.
 int GetResolvedCharTableID(const struct CharacterData * table);
+int GetResolvedCharTableIDForUnit(struct Unit * unit);
 extern const int NumberOfCharTables;
 int IsNonVanillaCharTable(int tableID)
 {
@@ -484,7 +493,7 @@ int ShouldChangeWeaponForUnit(struct Unit * unit)
     // instead: which table did this unit's data actually come from? Enemies have no pid
     // stats of their own, and GetReorderedCharIDAndTableID falls back to the recruitment
     // procs for them, so this answers for both sides.
-    return IsNonVanillaCharTable(GetResolvedCharTableID(table));
+    return IsNonVanillaCharTable(GetResolvedCharTableIDForUnit(unit));
 }
 
 int ShouldRandomizeRecruitmentForPortraitID(int id)
@@ -1116,14 +1125,7 @@ int GetReviseCharByID(int id);
 extern int SetActiveTalkFace(int slot);
 void EndAllRecruitmentProcs(void)
 {
-    Proc_EndEach(RecruitmentProcCmd1);
-    Proc_EndEach(RecruitmentProcCmd2);
-    Proc_EndEach(RecruitmentProcCmd3);
-    Proc_EndEach(RecruitmentProcCmd4);
-    Proc_EndEach(RecruitmentProcCmd5);
-    Proc_EndEach(RecruitmentProcCmd6);
-    Proc_EndEach(RecruitmentProcCmd7);
-    Proc_EndEach(RecruitmentProcCmd8);
+    InvalidateRecruitmentCache();
 }
 extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 void ClearPlayerBWL(void);
@@ -3926,74 +3928,17 @@ struct Vec2u GetReorderedCharIDAndTableIDByPIDStats(const struct CharacterData *
         return result;
     }
 
-    RecruitmentProc * proc = NULL;
-    RecruitmentProc * tableID_proc = NULL;
-
     int tableID = 0; // GetCharTableID(table); // default
 
-    int procID = id >> 6; // 0, 1, 2, or 3
+    EnsureRecruitmentCache();
 
-    switch (procID)
-    {
-        case 0:
-        {
-            proc = Proc_Find(RecruitmentProcCmd1);
-            break;
-        }
-        case 1:
-        {
-            proc = Proc_Find(RecruitmentProcCmd2);
-            break;
-        }
-        case 2:
-        {
-            proc = Proc_Find(RecruitmentProcCmd3);
-            break;
-        }
-        case 3:
-        {
-            proc = Proc_Find(RecruitmentProcCmd4);
-            break;
-        }
-        default:
-    }
-
-    if (!proc)
-    {
-        proc = InitRandomRecruitmentProc(procID);
-    }
-    switch (procID)
-    {
-        case 0:
-        {
-            tableID_proc = Proc_Find(RecruitmentProcCmd5);
-            break;
-        }
-        case 1:
-        {
-            tableID_proc = Proc_Find(RecruitmentProcCmd6);
-            break;
-        }
-        case 2:
-        {
-            tableID_proc = Proc_Find(RecruitmentProcCmd7);
-            break;
-        }
-        case 3:
-        {
-            tableID_proc = Proc_Find(RecruitmentProcCmd8);
-            break;
-        }
-        default:
-    }
-
-    int unitID = proc->id[(id & 0x3F) - 1];
+    int unitID = GetRecruitmentCacheChars()[id - 1];
     if (!unitID)
     {
         unitID = id;
     }
 
-    int tmp = tableID_proc->id[(id & 0x3F) - 1];
+    int tmp = GetRecruitmentCacheTables()[id - 1];
     if (tmp < NumberOfCharTables)
     {
         tableID = tmp;
@@ -4056,6 +4001,69 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     struct PidStatsChar * pidStats = GetPidStatsSafe(table->number);
     const struct CharacterData * result = GetReorderedCharacterByPIDStats(table, pidStats);
     return result;
+}
+
+// Players cache their resolved character in pid stats; enemies have none, so they cache
+// it in the support partner bytes instead, which red units never fill in.
+//
+// supports[0] is deliberately skipped - vanilla does use it for a handful of characters
+// (Lloyd and Linus in FE7) - and supports[6] is UNIT_LEADER_CHARACTER, the danger radius
+// leader, which InitUnitDef still reads. 1 and 2 are ours.
+#define UnitCacheCharIdIndex 1
+#define UnitCacheTableIdIndex 2
+
+struct Vec2u GetReorderedCharIDAndTableID(const struct CharacterData * table);
+
+int IsUnitReorderCacheable(struct Unit * unit)
+{
+    if (!unit || !unit->pCharacterData)
+    {
+        return false;
+    }
+    if (UNIT_FACTION(unit) != FACTION_RED)
+    {
+        return false;
+    }
+    return unit->pCharacterData->portraitId ? true : false;
+}
+
+void SetUnitReorderCache(struct Unit * unit)
+{
+    if (!IsUnitReorderCacheable(unit))
+    {
+        return;
+    }
+    struct Vec2u result = GetReorderedCharIDAndTableID(unit->pCharacterData);
+    unit->supports[UnitCacheCharIdIndex] = result.x & 0xFF;
+    unit->supports[UnitCacheTableIdIndex] = result.y & 0xFF;
+}
+
+struct Vec2u GetReorderedCharIDAndTableIDForUnit(struct Unit * unit)
+{
+    struct Vec2u result;
+    if (IsUnitReorderCacheable(unit))
+    {
+        // A character ID of 0 is never valid, so it doubles as "nothing cached yet" - if
+        // anything clears the byte we just fall back to the procs and refill, rather than
+        // handing back a wrong answer.
+        int cached = unit->supports[UnitCacheCharIdIndex];
+        if (cached)
+        {
+            result.x = cached;
+            result.y = unit->supports[UnitCacheTableIdIndex];
+            return result;
+        }
+        result = GetReorderedCharIDAndTableID(unit->pCharacterData);
+        unit->supports[UnitCacheCharIdIndex] = result.x & 0xFF;
+        unit->supports[UnitCacheTableIdIndex] = result.y & 0xFF;
+        return result;
+    }
+    return GetReorderedCharIDAndTableID(unit->pCharacterData);
+}
+
+int GetResolvedCharTableIDForUnit(struct Unit * unit)
+{
+    return GetReorderedCharIDAndTableIDForUnit(unit).y;
 }
 
 struct Vec2u GetReorderedCharIDAndTableID(const struct CharacterData * table)
@@ -4354,11 +4362,21 @@ void LoopReviseCharPalPage(ConfigMenuProc * proc)
 // text replace must search all tables
 const struct CharacterData * GetReorderedUnit(struct Unit * unit)
 {
-    return GetReorderedCharacter(unit->pCharacterData);
+    if (!IsUnitReorderCacheable(unit))
+    {
+        return GetReorderedCharacter(unit->pCharacterData);
+    }
+    struct Vec2u result = GetReorderedCharIDAndTableIDForUnit(unit);
+    const struct CharacterData * table = (const struct CharacterData *)NewGetCharacterData(result.x, result.y);
+    if (!table->portraitId)
+    {
+        return unit->pCharacterData;
+    }
+    return table;
 }
 int GetReorderedUnitID(struct Unit * unit)
 {
-    return GetReorderedCharacter(unit->pCharacterData)->number;
+    return GetReorderedUnit(unit)->number;
 }
 int GetReorderedCharacterPortraitByPortrait(int portraitID)
 {
@@ -5714,16 +5732,13 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
     return true;
 }
 
-u8 SRRBuffer[0x1500]; // 2025B8C + #1200 = 202603C
-RecruitmentProc * InitRandomRecruitmentProc(int procID)
+u8 SRRBuffer[SRRBufferSize] __attribute__((aligned(4))); // 2025B8C + #1200 = 202603C
+void BuildRecruitmentCache(void)
 {
-    // if (ShouldRandomizeUsedCharTable())
-    // {
-    // InitAllGamesRandomRecruitmentProc(procID);
-    // return;
-    // }
     u8 * unit = SRRBuffer;
     u8 * tables = &SRRBuffer[UnitListSize];
+    u8 * cacheChars = GetRecruitmentCacheChars();
+    u8 * cacheTables = GetRecruitmentCacheTables();
 
     // u8 * combinedUnit = SRRBuffer;
 
@@ -5744,38 +5759,11 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     int b = 0; // bosses count
     int seed = RandValues->seed;
 
-    RecruitmentProc * proc1 = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3);
-    RecruitmentProc * proc2 = Proc_Start(RecruitmentProcCmd2, PROC_TREE_3);
-    RecruitmentProc * proc3 = Proc_Start(RecruitmentProcCmd3, PROC_TREE_3);
-    RecruitmentProc * proc4 = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3);
-    RecruitmentProc * proc5 = Proc_Start(RecruitmentProcCmd5, PROC_TREE_3);
-    RecruitmentProc * proc6 = Proc_Start(RecruitmentProcCmd6, PROC_TREE_3);
-    RecruitmentProc * proc7 = Proc_Start(RecruitmentProcCmd7, PROC_TREE_3);
-    RecruitmentProc * proc8 = Proc_Start(RecruitmentProcCmd8, PROC_TREE_3);
-    RecruitmentProc * proc = proc1;
-    RecruitmentProc * tableProc = proc5;
-    proc->id[0] = 0;
-
-    for (int i = 1; i <= MAX_CHAR_ID; ++i)
+    for (int i = 0; i < RecruitmentCacheEntries; ++i)
     {
-        if (i == 0x40)
-        {
-            proc = proc2;
-            tableProc = proc6;
-        }
-        if (i == 0x80)
-        {
-            proc = proc3;
-            tableProc = proc7;
-        }
-        if (i == 0xC0)
-        {
-            proc = proc4;
-            tableProc = proc8;
-        }
-        proc->id[i & 0x3F] = 0x0;
+        cacheChars[i] = 0;
+        cacheTables[i] = 0;
     }
-    proc = proc1;
 
     struct Vec2u counter_val = { 0, 0 };
     struct Vec2u * counter = &counter_val;
@@ -5796,8 +5784,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     int d_max = d;
     int num;
     u32 rn = 0;
-    proc = proc1;
-    tableProc = proc5;
     int id = 0;
     u8 recruitmentOrder[0x45] = { 0 };
     BuildRecruitmentOrderList(recruitmentOrder, 0);
@@ -5809,16 +5795,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         for (int i = 0; i < 0x45; ++i)
         {
             id = recruitmentOrder[i];
-            if (id < 0x40)
-            {
-                proc = proc1;
-                tableProc = proc5;
-            }
-            else
-            {
-                proc = proc2;
-                tableProc = proc6;
-            }
             table = GetCharacterData(id);
             if (GetCharOriginalPool(table) != PlayerPool)
             {
@@ -5850,21 +5826,21 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     {
                         num = c; // reverse, so always last in list
                     }
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[c];
-                            tables[c] = tableProc->id[(id & 0x3F) - 1];
+                            tables[c] = cacheTables[id - 1];
                         }
                         unit[num] = unit[c]; // move last entry to one we just used
-                        unit[c] = proc->id[(id & 0x3F) - 1];
+                        unit[c] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -5889,21 +5865,21 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     {
                         num = b + c_max; // reverse, so always last in list
                     }
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[b + c_max];
-                            tables[b + c_max] = tableProc->id[(id & 0x3F) - 1];
+                            tables[b + c_max] = cacheTables[id - 1];
                         }
                         unit[num] = unit[b + c_max]; // move last entry to one we just used
-                        unit[b + c_max] = proc->id[(id & 0x3F) - 1];
+                        unit[b + c_max] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -5947,21 +5923,21 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         RandomlyOrdered = false;
                     }
 
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
                     if (RandomlyOrdered)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[d];
-                            tables[d] = tableProc->id[(id & 0x3F) - 1];
+                            tables[d] = cacheTables[id - 1];
                         }
                         unit[num] = unit[d]; // move last entry to one we just used
-                        unit[d] = proc->id[(id & 0x3F) - 1];
+                        unit[d] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -5991,27 +5967,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         for (int i = 0; i < MAX_CHAR_ID; ++i)
         {
             id = i + 1;
-
-            if (id < 0x40)
-            {
-                proc = proc1;
-                tableProc = proc5;
-            }
-            if (id >= 0x40)
-            {
-                proc = proc2;
-                tableProc = proc6;
-            }
-            if (id >= 0x80)
-            {
-                proc = proc3;
-                tableProc = proc7;
-            }
-            if (id >= 0xC0)
-            {
-                proc = proc4;
-                tableProc = proc8;
-            }
             table = GetCharacterData(id);
             if (GetCharOriginalPool(table) != BossesPool)
             {
@@ -6050,21 +6005,21 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     {
                         num = c; // reverse, so always last in list
                     }
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[c];
-                            tables[c] = tableProc->id[(id & 0x3F) - 1];
+                            tables[c] = cacheTables[id - 1];
                         }
                         unit[num] = unit[c]; // move last entry to one we just used
-                        unit[c] = proc->id[(id & 0x3F) - 1];
+                        unit[c] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -6089,21 +6044,21 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     {
                         num = b + c_max; // reverse, so always last in list
                     }
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[b + c_max];
-                            tables[b + c_max] = tableProc->id[(id & 0x3F) - 1];
+                            tables[b + c_max] = cacheTables[id - 1];
                         }
                         unit[num] = unit[b + c_max]; // move last entry to one we just used
-                        unit[b + c_max] = proc->id[(id & 0x3F) - 1];
+                        unit[b + c_max] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -6147,23 +6102,23 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         RandomlyOrdered = false;
                     }
 
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
 
                     if (RandomlyOrdered)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[d];
-                            tables[d] = tableProc->id[(id & 0x3F) - 1];
+                            tables[d] = cacheTables[id - 1];
                         }
 
                         unit[num] = unit[d]; // move last entry to one we just used
-                        unit[d] = proc->id[(id & 0x3F) - 1];
+                        unit[d] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -6179,94 +6134,28 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     // }
                     //// if (b < 0) { proc->id[(i&0x3F)-1] = 0xFD; continue; }
                     // num = HashByte_Simple(rn, b);
-                    // proc->id[(id & 0x3F) - 1] = bosses[num];
+                    // cacheChars[id - 1] = bosses[num];
                     // bosses[num] = bosses[b]; // move last entry to one we just used
-                    // bosses[b] = proc->id[(id & 0x3F) - 1];
+                    // bosses[b] = cacheChars[id - 1];
                     // break;
                     // }
             }
         }
     }
 
-    proc = proc1;
-    tableProc = proc5;
-
     // now copy stuff over to account for duplicate characters
     for (int i = 1; i < MAX_CHAR_ID; ++i)
     {
-        if (i >= 0x40)
-        {
-            proc = proc2;
-            tableProc = proc6;
-        }
-        if (i >= 0x80)
-        {
-            proc = proc3;
-            tableProc = proc7;
-        }
-        if (i >= 0xC0)
-        {
-            proc = proc4;
-            tableProc = proc8;
-        }
         table = GetCharacterData(i); // check for morphs and duplicates in vanilla table
         num = GetAdjustedCharacterID(table);
         if (num != (i + 1))
         {
-            switch (num >> 6)
-            {
-                case 0:
-                {
-                    proc->id[(i & 0x3F) - 1] = proc1->id[(num & 0x3F) - 1];
-                    break;
-                }
-                case 1:
-                {
-                    proc->id[(i & 0x3F) - 1] = proc2->id[(num & 0x3F) - 1];
-                    break;
-                }
-                case 2:
-                {
-                    proc->id[(i & 0x3F) - 1] = proc3->id[(num & 0x3F) - 1];
-                    break;
-                }
-                case 3:
-                {
-                    proc->id[(i & 0x3F) - 1] = proc4->id[(num & 0x3F) - 1];
-                    break;
-                }
-                default:
-            }
+            cacheChars[i - 1] = cacheChars[num - 1];
         }
-        //}
     }
 
-    // #endif
-    switch (procID)
-    {
-        case 0:
-        {
-            return proc1;
-            break;
-        }
-        case 1:
-        {
-            return proc2;
-            break;
-        }
-        case 2:
-        {
-            return proc3;
-            break;
-        }
-        case 3:
-        {
-            return proc4;
-            break;
-        }
-        default:
-    }
-    return NULL;
+    *GetRecruitmentCacheSeed() = (u32)seed;
+    *GetRecruitmentCacheMagic() = RecruitmentCacheMagic;
 }
 
 void HbPopulate_SSCharacter(struct HelpBoxProc * proc) // fe7 0x80816FC fe6 0x80704DC
@@ -12184,6 +12073,9 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         }
     }
 #endif
+    // Resolve this enemy's replacement once, here, so every later lookup reads the unit
+    // struct rather than going back through the recruitment procs.
+    SetUnitReorderCache(unit);
     UnitCheckStatCaps(unit);
 }
 
@@ -15075,46 +14967,8 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
         }
     }
 
-    RecruitmentProc * recruitmentProc = Proc_Find(RecruitmentProcCmd1);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd2);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd3);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd4);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd5);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd6);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd7);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd8);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
+    // Breaking the old procs is what used to throw the mapping away; same job, one word.
+    InvalidateRecruitmentCache();
 
 #ifdef FE8
     if (proc->Option[SkipChOption] && ((id_adj) == SkipChOption))
