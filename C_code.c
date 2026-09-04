@@ -389,24 +389,57 @@ u32 * GetRecruitmentCacheMagic(void)
 {
     return (u32 *)&SRRBuffer[RecruitmentCacheMagicOffset];
 }
-u32 * GetRecruitmentCacheSeed(void)
+u32 * GetRecruitmentCacheStampSlot(void)
 {
     return (u32 *)&SRRBuffer[RecruitmentCacheSeedOffset];
+}
+
+// Fold a block of settings into a running hash a byte at a time - these live in
+// packed bitfield structs whose alignment we do not control, and a misaligned
+// word load on ARM7 rotates rather than faults, which would silently hash the
+// wrong bytes.
+u32 FoldRecruitmentCacheInput(u32 stamp, const void * src, int size)
+{
+    const u8 * p = src;
+    while (size--)
+    {
+        stamp = (stamp * 31) + *p++;
+    }
+    return stamp;
+}
+
+// Everything BuildRecruitmentCache reads that the player can change: the seed, the
+// character tag filter (FilterCharOut), both game filters (BuildFilteredCharsList),
+// the randomizer bitflags, and the recruitment settings (GetPlayerRecruitmentOrder
+// and friends). Everything else it touches is ROM-constant, so if this word has not
+// moved the mapping in the buffer is still the right one.
+u32 GetRecruitmentCacheStamp(void)
+{
+    u32 stamp = (u32)RandValues->seed;
+    stamp = (stamp * 31) + TagValues->raw;
+    stamp = (stamp * 31) + *GameFilterValues;
+    stamp = (stamp * 31) + *EnemyGameFilterValues;
+    stamp = FoldRecruitmentCacheInput(stamp, RandBitflags, sizeof(struct RandomizerSettings));
+    stamp = FoldRecruitmentCacheInput(stamp, RecruitValues, sizeof(struct RecruitmentValues));
+    return stamp;
 }
 // The magic value is what says the mapping in the buffer belongs to the current settings.
 // Clearing it is how you invalidate; RAM comes up as anything on a fresh boot, so this
 // also stops us trusting whatever was already there.
 //
-// The seed is checked too. The old procs died whenever their tree was torn down, so
-// loading a different save rebuilt the mapping by accident; a static buffer survives that
-// (and a soft reset), so the seed it was built for has to be part of the check.
+// The settings stamp is checked too. The old procs died whenever their tree was torn
+// down, so loading a different save rebuilt the mapping by accident; a static buffer
+// survives that (and a soft reset). Stamping every input the mapping depends on - not
+// just the seed - also means callers no longer have to invalidate by hand on the chance
+// something changed: if nothing moved, the cache stays valid and the check costs a
+// dozen loads.
 int IsRecruitmentCacheBuilt(void)
 {
     if (*GetRecruitmentCacheMagic() != RecruitmentCacheMagic)
     {
         return false;
     }
-    return *GetRecruitmentCacheSeed() == (u32)RandValues->seed;
+    return *GetRecruitmentCacheStampSlot() == GetRecruitmentCacheStamp();
 }
 void InvalidateRecruitmentCache(void)
 {
@@ -6248,7 +6281,7 @@ void BuildRecruitmentCache(void)
         }
     }
 
-    *GetRecruitmentCacheSeed() = (u32)seed;
+    *GetRecruitmentCacheStampSlot() = GetRecruitmentCacheStamp();
     *GetRecruitmentCacheMagic() = RecruitmentCacheMagic;
 }
 
@@ -13425,7 +13458,10 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
     PROC_YIELD,
-    PROC_CALL(ClearConfigGfxAndRecruitmentProcs),
+    // plain ClearConfigGfx: dropping the recruitment cache here rebuilt the whole
+    // mapping every time you backed out of a revise page, where nothing it depends on
+    // had changed. IsRecruitmentCacheBuilt's stamp catches the cases that matter.
+    PROC_CALL(ClearConfigGfx),
     PROC_CALL(StartFastFadeFromBlack),
     PROC_REPEAT(WaitForFade),
     PROC_CALL(DrawCharConfirmPage),
@@ -14944,7 +14980,9 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
     }
     if (proc->reloadPlayers)
     {
-        EndAllRecruitmentProcs();
+        // no invalidate here: this runs *before* the RandValues/RecruitValues writes
+        // below, so it used to rebuild the mapping against the settings being replaced.
+        // The stamp rebuilds it on the next read, once the new settings are in.
         ClearPlayerBWL();
         GetReorderedCharacter(GetCharacterData(1));
     }
@@ -15095,8 +15133,6 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
         }
     }
 
-    // Breaking the old procs is what used to throw the mapping away; same job, one word.
-    InvalidateRecruitmentCache();
 
 #ifdef FE8
     if (proc->Option[SkipChOption] && ((id_adj) == SkipChOption))
