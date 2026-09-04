@@ -1403,6 +1403,11 @@ static const LocationTable CharPreviewLoc[NumberOfOptions_CharPreview] = {
 struct PidStatsChar * GetPidStatsSafe(int i)
 {
     struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(i);
+    if ((void *)pidStats == (void *)GameFilterValues)
+    {
+        return NULL;
+    }
+
     if ((void *)pidStats == (void *)RandValues)
     {
         return NULL;
