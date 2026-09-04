@@ -14591,7 +14591,7 @@ void SetDefaultTagValues(void)
     EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
     // default: "Random" may use every game, players and bosses alike
-    *GameFilterValues = GameFilterInitFlag | AllGamesMask;
+    *GameFilterValues = GameFilterInitFlag | AllGamesMask; // this initializes our ram back
     *EnemyGameFilterValues = GameFilterInitFlag | AllGamesMask;
 }
 // same but vanilla classes only
@@ -14734,7 +14734,8 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
         if (id_adj != SaveOption && id_adj != SettingsOption)
         {
             if (((id_adj) != FilterCharsOption) && ((id_adj) != PreviewCharsOption) &&
-                ((id_adj) != FilterClassOption) && ((id_adj) != FilterEnemyClassOption))
+                ((id_adj) != FilterClassOption) && ((id_adj) != FilterEnemyClassOption) &&
+                ((id_adj) != FromGameOption) && ((id_adj) != EnemyFromGameOption))
             {
                 if ((id_adj) != SkipChOption)
                 {
@@ -16131,6 +16132,8 @@ int MenuStartConfigMenu(ProcPtr parent)
     u32 tags = TagValues->raw;
     u32 classtags = ClassTags->raw;
     u32 enemyclasstags = EnemyClassTags->raw;
+    u32 playerGames = *GameFilterValues;
+    u32 enemyGames = *EnemyGameFilterValues;
 
     ConfigMenuProc * proc = StartConfigMenu(parent);
     proc->calledFromChapter = true;
@@ -16138,6 +16141,8 @@ int MenuStartConfigMenu(ProcPtr parent)
     TagValues->raw = tags;
     ClassTags->raw = classtags;
     EnemyClassTags->raw = enemyclasstags;
+    *GameFilterValues = playerGames;
+    *EnemyGameFilterValues = enemyGames;
 
     gLCDControlBuffer.dispcnt.bg0_on = 0;
     return ME_DISABLE | ME_PLAY_BEEP; // | ME_CLEAR_GFX;
