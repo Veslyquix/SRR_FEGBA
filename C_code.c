@@ -198,6 +198,9 @@ extern union TagUnion * EnemyClassTags;
 #define NumberOfGameTags 12
 #define NumberOfGameFilterBits (NumberOfGameTags * 2)
 #define AllGamesMask ((1u << NumberOfGameFilterBits) - 1)
+// Game 0 is vanilla; the boss half of the word starts at NumberOfGameTags.
+#define VanillaPlayerTableBit (1u << 0)
+#define VanillaBossTableBit (1u << NumberOfGameTags)
 // Spare high bit, set whenever a filter is written on purpose, so uninitialised RAM (or
 // a config saved before these fields existed) can't read back as a partial filter and
 // silently drop tables from the pool.
@@ -205,6 +208,7 @@ extern union TagUnion * EnemyClassTags;
 extern u32 * GameFilterValues;
 extern u32 * EnemyGameFilterValues;
 u32 GetEnabledGamesMask(int allegiance);
+int IsFromGameMenuOption(int id);
 
 extern struct TimedHitsDifficultyStruct * TimedHitsDifficultyRam;
 
@@ -447,17 +451,40 @@ int ShouldRandomizeRecruitmentForUnitID(int id)
     }
     return ShouldReplaceCharacters();
 }
+// Table 0 is the vanilla player table and table 0 + (NumberOfCharTables >> 1) its boss
+// counterpart. A character pulled from either of those is holding the game's own data, so
+// their default weapon is already the right one.
+int GetResolvedCharTableID(const struct CharacterData * table);
+extern const int NumberOfCharTables;
+int IsNonVanillaCharTable(int tableID)
+{
+    return (tableID != 0) && (tableID != (NumberOfCharTables >> 1));
+}
+
 int ShouldChangeWeaponForUnit(struct Unit * unit)
 {
-    if (!unit->pCharacterData->portraitId)
+    const struct CharacterData * table = unit->pCharacterData;
+    if (!table->portraitId)
     {
         return false;
     }
     if (UNIT_FACTION(unit) == FACTION_RED)
     {
-        return GetEnemyRecruitmentOrder() || CanEnemyBecomePlayer() || RecruitValues->enemyCharTable;
+        if (GetEnemyRecruitmentOrder())
+        {
+            return true;
+        }
     }
-    return GetPlayerRecruitmentOrder() || CanPlayerBecomeBoss() || RecruitValues->forcedCharTable;
+    else if (GetPlayerRecruitmentOrder())
+    {
+        return true;
+    }
+    // This used to read RecruitValues->forcedCharTable / enemyCharTable, but those are
+    // pinned to RandomCharTable now, so the check was always true. Ask per character
+    // instead: which table did this unit's data actually come from? Enemies have no pid
+    // stats of their own, and GetReorderedCharIDAndTableID falls back to the recruitment
+    // procs for them, so this answers for both sides.
+    return IsNonVanillaCharTable(GetResolvedCharTableID(table));
 }
 
 int ShouldRandomizeRecruitmentForPortraitID(int id)
@@ -767,6 +794,9 @@ const struct FE8CharacterData
         };
 
 const int NumberOfCharTables = 24;
+// forcedCharTable / enemyCharTable sentinel for "any game", i.e. anything >= the table
+// count. Both are pinned to this now - see CopyConfigProcIntoRam.
+#define RandomCharTable NumberOfCharTables
 const int NumberOfPalCharTables = 27; // 3 more: one for classes, one for vanilla players, one for boss players
 // unused currently
 int ShouldRandomizeUsedCharTable(void)
@@ -1649,9 +1679,15 @@ int IsConfigMenuOptionAvailable(int id)
     {
         return DoAchievementsExist();
     }
-    else if (
-        id == PlayerRecruitmentOption || id == PlayerBossOption || id == EnemyRecruitmentOption ||
-        id == EnemyPlayerOption)
+    else if (id == PlayerBossOption || id == EnemyPlayerOption)
+    {
+        // Superseded by the game filter screens. Mixing bosses into the player pool is
+        // now done by ticking those games' boss tables on "Players From", and vice
+        // versa on "Enemies From", so a separate swap setting would only fight with it.
+        return false;
+    }
+
+    else if (id == PlayerRecruitmentOption || id == EnemyRecruitmentOption)
     {
         return IsRecruitmentOptionAvailable();
     }
@@ -2577,8 +2613,13 @@ void DrawFilterEnemyClassPage(ConfigMenuProc * proc)
 // 2 bytes of the TagValues block, which the existing 16-byte config save already covers.
 // ---------------------------------------------------------------------------------
 
-// The enemy pool ("Enemies From") is driven by RecruitValues->enemyCharTable and the
-// player pool by forcedCharTable, so each gets its own filter.
+// The two menu rows that open a game filter screen instead of holding a value.
+int IsFromGameMenuOption(int id)
+{
+    return (id == FromGameOption) || (id == EnemyFromGameOption);
+}
+
+// The enemy pool ("Enemies From") gets its own filter, separate from the player one.
 u32 * GetGameFilterFor(int allegiance)
 {
     if (allegiance == BossesPool)
@@ -2734,7 +2775,7 @@ static LocationTable GameTagsCursorLocationTable[NumberOfGameFilterBits] = {
     { 8 + (24 * GameTagWidth), 96 },
 };
 
-void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(ConfigMenuProc *))
+void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(ConfigMenuProc *), int forEnemies)
 {
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
     if ((keys & START_BUTTON) || (keys & B_BUTTON))
@@ -2756,6 +2797,16 @@ void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(Conf
     if ((keys & A_BUTTON))
     {
         *filter ^= (1u << id);
+        // The filter lives in its own RAM rather than in proc->Option, so
+        // CopyConfigProcIntoRam can't spot the change - flag it here.
+        if (forEnemies)
+        {
+            proc->reloadEnemies = true;
+        }
+        else
+        {
+            proc->reloadPlayers = true;
+        }
         redraw(proc);
     }
 
@@ -2810,7 +2861,7 @@ void DrawFilterGamePage(ConfigMenuProc * proc)
 }
 void LoopFilterGamePage(ConfigMenuProc * proc)
 {
-    LoopGameFilterPage(proc, GameFilterValues, DrawFilterGamePage);
+    LoopGameFilterPage(proc, GameFilterValues, DrawFilterGamePage, false);
 }
 
 // Enemy-pool filter ("Enemies From")
@@ -2824,7 +2875,7 @@ void DrawFilterEnemyGamePage(ConfigMenuProc * proc)
 }
 void LoopFilterEnemyGamePage(ConfigMenuProc * proc)
 {
-    LoopGameFilterPage(proc, EnemyGameFilterValues, DrawFilterEnemyGamePage);
+    LoopGameFilterPage(proc, EnemyGameFilterValues, DrawFilterEnemyGamePage, true);
 }
 
 static LocationTable TagsCursorLocationTable[] = {
@@ -4014,6 +4065,12 @@ struct Vec2u GetReorderedCharIDAndTableID(const struct CharacterData * table)
     return result;
 }
 
+// struct Vec2u isn't declared where ShouldChangeWeaponForUnit lives, hence the shim.
+int GetResolvedCharTableID(const struct CharacterData * table)
+{
+    return GetReorderedCharIDAndTableID(table).y;
+}
+
 // The whole gCharPalOverride / revise-palette-screen feature is FE8-only: its fixed RAM
 // (Definitions.s) and the Debugger banim-preview functions it drives are only defined for
 // FE8, so none of this links for FE6/FE7. Everything guarded by this #ifdef has a matching
@@ -4525,37 +4582,11 @@ int GetCharNewPool(const struct CharacterData * table)
         return NoPool;
     }
 
-    if (IsEnemy)
-    {
-        if (MustEnemyStayBoss())
-        {
-            return BossesPool;
-        }
-        if (MustEnemyBecomePlayer())
-        {
-            return PlayerPool;
-        }
-        else
-        {
-            return CombinedPool;
-        }
-    }
-
-    // player
-    if (MustPlayerBecomeBoss())
-    {
-        return BossesPool;
-    }
-    if (CanPlayerBecomeBoss())
-    {
-        return CombinedPool;
-    }
-    else
-    {
-        return PlayerPool;
-    }
-
-    return NoPool;
+    // Every slot draws from the whole pool. What's actually IN that pool - player
+    // tables, boss tables, or a mix - is decided by the game filter screens, which
+    // replaced the old Player Swap / Boss Swap options: unticking every boss table on
+    // "Players From" is what "players stay players" means now.
+    return CombinedPool;
 }
 
 #define UnitListSize 1200
@@ -5500,30 +5531,21 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
     int c = 0;
 
     // proc = proc1;
-    int t = RecruitValues->forcedCharTable;
     int order = GetPlayerRecruitmentOrder();
     if (allegiance == BossesPool)
     {
-        t = RecruitValues->enemyCharTable;
         order = GetEnemyRecruitmentOrder();
     }
-    if (!t && !order)
-    {
-        if (allegiance == PlayerPool && !CanPlayerBecomeBoss())
-        {
-            return false;
-        }
-        if (allegiance == BossesPool && !CanEnemyBecomePlayer())
-        {
-            return false;
-        }
-    }
-    int tableID = t;
 
-    // Which character tables this pool draws from. A specific "From Game" contributes
-    // exactly one table; "Random" used to mean the whole contiguous run 0..games-1, and
-    // now means every game still ticked on the game filter screen - which isn't
-    // contiguous, hence a list rather than the old t..end range.
+    // Which character tables this pool draws from - purely the game filter now.
+    // "Players From"/"Enemies From" no longer pick a single game (they're always
+    // "Random"), and Player Swap / Boss Swap are gone, so ticking a game's player table
+    // and/or its boss table on the filter screen is the whole control surface: both
+    // halves are filtered independently out of the same 24-bit word.
+    //
+    // The two halves stay separate lists because they land in one array either side of
+    // c_max, which the VanillaOrder/ReverseOrder paths downstream use as the boundary
+    // between "player-ish" and "boss-ish" entries.
     int games = NumberOfCharTables >> 1;
     u8 playerTables[NumberOfGameTags];
     u8 bossTables[NumberOfGameTags];
@@ -5532,48 +5554,34 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
 
     int limit = (games > NumberOfGameTags) ? NumberOfGameTags : games;
 
-    if (tableID >= NumberOfCharTables)
-    { // From game: random
-        u32 mask = GetEnabledGamesMask(allegiance);
-        for (int g = 0; g < limit; ++g)
+    u32 mask = GetEnabledGamesMask(allegiance);
+    for (int g = 0; g < limit; ++g)
+    {
+        if (mask & (1u << g))
         {
-            if (mask & (1u << g))
-            {
-                playerTables[playerTableCount++] = g;
-            }
-            if (mask & (1u << (g + NumberOfGameTags)))
-            {
-                bossTables[bossTableCount++] = g + games;
-            }
+            playerTables[playerTableCount++] = g;
         }
-        // Leaving a half with nothing selected would hand the caller an empty pool, and
-        // it divides by these counts - so an all-unticked half means "no filter" for
-        // that half rather than "no characters".
-        if (!playerTableCount)
+        if (mask & (1u << (g + NumberOfGameTags)))
         {
-            for (int g = 0; g < limit; ++g)
-            {
-                playerTables[playerTableCount++] = g;
-            }
-        }
-        if (!bossTableCount)
-        {
-            for (int g = 0; g < limit; ++g)
-            {
-                bossTables[bossTableCount++] = g + games;
-            }
+            bossTables[bossTableCount++] = g + games;
         }
     }
-    else
+    // A half with nothing ticked just contributes nothing - that's how you say "no
+    // bosses in the player pool". Both halves empty would hand the caller an empty
+    // pool though, and it divides by these counts, so that falls back to everything.
+    if (!playerTableCount && !bossTableCount)
     {
-        playerTables[playerTableCount++] = tableID;
-        // From vanilla game, bosses come out of the vanilla table too, not table 0+games.
-        bossTables[bossTableCount++] = tableID ? (tableID + games) : 0;
+        for (int g = 0; g < limit; ++g)
+        {
+            playerTables[playerTableCount++] = g;
+            bossTables[bossTableCount++] = g + games;
+        }
     }
 
     u8 recruitmentOrder[0x45] = { 0 };
     BuildRecruitmentOrderList(recruitmentOrder, 0);
     int id;
+    int t;
 
     // pool of players
 
@@ -7765,8 +7773,13 @@ int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
                 result |= newCharID;
             }
         }
+        // 0x3F is the "not resolved yet" marker, and the vanilla tables hold the weapons
+        // the unit would have had anyway - neither counts as a change.
         int newTableID = pidStats->charTableID;
-        result |= newTableID;
+        if ((newTableID != 0x3F) && IsNonVanillaCharTable(newTableID))
+        {
+            result |= 1;
+        }
     }
     result |= ShouldChangeWeaponForUnit(unit);
     if (result)
@@ -14293,6 +14306,12 @@ void DrawSRRText(ConfigMenuProc * proc, int i, int offset, int id)
         return;
     }
     struct Text * th = gStatScreen.text;
+    // "Players From"/"Enemies From" are just doors to their game filter screens now -
+    // there's no selectable value left to show beside them.
+    if (id == FromGameOption || id == EnemyFromGameOption)
+    {
+        return;
+    }
     // const char ** textEntry = SRRText_POIN[i + offset];
     const char * string = GetSRRText(id, proc->Option[id]);
     // if (i + offset == FromGameOption)
@@ -14603,9 +14622,10 @@ void SetVanillaTagValues(void)
     EnemyClassTags->raw =
         0xCFFF1FBF; // default: no dancers, civilians, monsters, or manaketes, and no non-vanilla classes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
-    // default: "Random" may use every game, players and bosses alike
-    *GameFilterValues = GameFilterInitFlag | AllGamesMask;
-    *EnemyGameFilterValues = GameFilterInitFlag | AllGamesMask;
+    // Vanilla means vanilla: players come from the vanilla player table only, and
+    // enemies from the vanilla boss table only. Nobody crosses over.
+    *GameFilterValues = GameFilterInitFlag | VanillaPlayerTableBit;
+    *EnemyGameFilterValues = GameFilterInitFlag | VanillaBossTableBit;
 }
 
 void RestoreConfigOptions(ConfigMenuProc * proc);
@@ -14647,14 +14667,9 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
         reloadEnemies = true;
     }
 
-    if (RecruitValues->forcedCharTable != proc->Option[FromGameOption])
-    {
-        reloadPlayers = true;
-    }
-    if (RecruitValues->enemyCharTable != proc->Option[EnemyFromGameOption])
-    {
-        reloadEnemies = true;
-    }
+    // Both are pinned to RandomCharTable now (the option isn't selectable), so there's
+    // nothing to compare here - the game filter screens set proc->reloadPlayers /
+    // reloadEnemies themselves when a table is toggled.
 
     if (RandBitflags->base != proc->Option[BaseStatsOption])
     {
@@ -14922,8 +14937,10 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
     RecruitValues->playerIntoBosses = proc->Option[PlayerBossOption];
     RecruitValues->enemyRecruitmentOrder = proc->Option[EnemyRecruitmentOption];
     RecruitValues->enemyIntoPlayer = proc->Option[EnemyPlayerOption];
-    RecruitValues->forcedCharTable = proc->Option[FromGameOption];
-    RecruitValues->enemyCharTable = proc->Option[EnemyFromGameOption];
+    // Always "Random": the pool is chosen by the game filter screens instead, so these
+    // stay pinned rather than tracking a (no longer selectable) menu value.
+    RecruitValues->forcedCharTable = RandomCharTable;
+    RecruitValues->enemyCharTable = RandomCharTable;
     RecruitValues->pauseNameReplace = false;
     RandBitflags->base = proc->Option[BaseStatsOption];
     RandBitflags->growth = proc->Option[GrowthsOption];
@@ -15365,6 +15382,12 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         else if (keys & DPAD_RIGHT)
         {
+            // "Players From"/"Enemies From" have no value to cycle any more - they just
+            // open their game filter screen with A - so left/right do nothing on them.
+            if (IsFromGameMenuOption(id_adj))
+            {
+                return;
+            }
             PlayScrollMenuSfx();
             id += offset;
             if (proc->Option[id_adj] < (CountOptionAmount(id_adj)))
@@ -15385,6 +15408,10 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         else if (keys & DPAD_LEFT)
         {
+            if (IsFromGameMenuOption(id_adj))
+            {
+                return;
+            }
             PlayScrollMenuSfx();
             id += offset;
             if (proc->Option[id_adj] > 0)
