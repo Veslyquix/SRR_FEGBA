@@ -2096,8 +2096,7 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
 
     if (IsReviseCharPaletteAvailable())
     {
-        PutDrawText(
-            gStatScreen.text + 15, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 16), green, 0, 0, "Palette");
+        PutDrawText(gStatScreen.text + 15, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 16), green, 0, 0, "Palette");
     }
 
     PutDrawText(
@@ -7304,6 +7303,110 @@ struct gCharPal_EntryStruct
 extern const struct gCharPal_EntryStruct * const gCharPal[];
 extern s16 gBanimUniquePal[2];
 
+int GetPromotedClass(const struct ClassData * data);
+
+// Whether a gCharPal slot registered under registeredClassID should be considered a match
+// when browsing/looking up palettes for classID - same class, or one promotion step away
+// in either direction (a recolor registered for the base tier should still show up while
+// previewing/playing the promoted tier, and vice versa).
+static bool DoesCharPalClassMatch(int registeredClassID, int classID)
+{
+    if (!registeredClassID)
+    {
+        return false;
+    }
+    if (registeredClassID == classID)
+    {
+        return true;
+    }
+    // if (GetPromotedClass(GetClassData(registeredClassID)) == classID)
+    // {
+    // return true;
+    // }
+    // if (GetPromotedClass(GetClassData(classID)) == registeredClassID)
+    // {
+    // return true;
+    // }
+    return false;
+}
+
+extern const int NumberOfPalCharTables;
+u32 GetNthRN_Simple(int n, u32 seed, u32 currentRN);
+
+// Every palette in gCharPal, from any character in any game, whose class matches classID.
+// Used to answer "this character has no recolor of their own for the class they ended up
+// in - give them somebody else's, as long as it was drawn for this class".
+int CountClassMatchingCharPals(int classID)
+{
+    int count = 0;
+    for (int t = 0; t < NumberOfPalCharTables; ++t)
+    {
+        const struct gCharPal_EntryStruct * entry = gCharPal[t];
+        if (!entry)
+        {
+            continue;
+        }
+        while (entry->charID)
+        {
+            for (int i = 0; i < NumOfCharPals; ++i)
+            {
+                if (entry->pal[i] && DoesCharPalClassMatch(entry->classID[i], classID))
+                {
+                    count++;
+                }
+            }
+            entry++;
+        }
+    }
+    return count;
+}
+
+const u16 * GetNthClassMatchingCharPal(int classID, int index)
+{
+    for (int t = 0; t < NumberOfPalCharTables; ++t)
+    {
+        const struct gCharPal_EntryStruct * entry = gCharPal[t];
+        if (!entry)
+        {
+            continue;
+        }
+        while (entry->charID)
+        {
+            for (int i = 0; i < NumOfCharPals; ++i)
+            {
+                if (entry->pal[i] && DoesCharPalClassMatch(entry->classID[i], classID))
+                {
+                    if (!index--)
+                    {
+                        return entry->pal[i];
+                    }
+                }
+            }
+            entry++;
+        }
+    }
+    return NULL;
+}
+
+// A stable pick among those. Seeded on the run's seed plus the character and the class, so
+// it is the same palette every battle, survives a soft reset or a save reload without
+// needing to be stored anywhere, and re-picks a class-appropriate one by itself when the
+// character promotes into a class they have no recolor for either.
+//
+// Two full scans rather than the revise screen's RAM buffer on purpose: this runs once
+// when a battle animation loads, not every frame, and the buffer is FE8-only fixed RAM
+// while this path has to work for FE6 and FE7 too.
+const u16 * GetRandomClassMatchingCharPal(int classID, int charID)
+{
+    int count = CountClassMatchingCharPals(classID);
+    if (!count)
+    {
+        return NULL;
+    }
+    return GetNthClassMatchingCharPal(
+        classID, HashByte_Simple(GetNthRN_Simple(charID, RandValues->seed, classID), count));
+}
+
 // FE8-only, same as the revise-palette screen further up - see the #ifdef FE8 there.
 #ifdef FE8
 // Player-set override for the palette a character uses in battle, indexed by the
@@ -7350,33 +7453,6 @@ int GetAdjustedCharTableID(int origCharID)
         return -1;
     }
     return GetReorderedCharIDAndTableID(GetCharacterData(origCharID)).y;
-}
-
-int GetPromotedClass(const struct ClassData * data);
-
-// Whether a gCharPal slot registered under registeredClassID should be considered a match
-// when browsing/looking up palettes for classID - same class, or one promotion step away
-// in either direction (a recolor registered for the base tier should still show up while
-// previewing/playing the promoted tier, and vice versa).
-static bool DoesCharPalClassMatch(int registeredClassID, int classID)
-{
-    if (!registeredClassID)
-    {
-        return false;
-    }
-    if (registeredClassID == classID)
-    {
-        return true;
-    }
-    // if (GetPromotedClass(GetClassData(registeredClassID)) == classID)
-    // {
-    // return true;
-    // }
-    // if (GetPromotedClass(GetClassData(classID)) == registeredClassID)
-    // {
-    // return true;
-    // }
-    return false;
 }
 
 // A full gCharPal scan (every entry in every table, each slot checked against classID
@@ -7675,6 +7751,14 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
             // (otherwise entry keeps being updated, and pal becomes wrong)
         }
         entry++;
+    }
+    // No recolor of their own for this class. Rather than dropping straight to their
+    // default (which is drawn for whatever class the palette set was built around, and
+    // looks wrong on anything else), borrow one that WAS drawn for this class. Gated the
+    // same way the default-janky fallback below is, so it only applies to Janky Colours.
+    if (!pal && jankyPal)
+    {
+        pal = GetRandomClassMatchingCharPal(classID, charID);
     }
     if (!pal)
     {
@@ -15132,7 +15216,6 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
             UpdateMapViewWithFog(-1);
         }
     }
-
 
 #ifdef FE8
     if (proc->Option[SkipChOption] && ((id_adj) == SkipChOption))
