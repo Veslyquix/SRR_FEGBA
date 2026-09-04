@@ -1987,6 +1987,7 @@ void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int class);
 void PutBlendWindowUnitSprite(int layer, int x, int y, u16 oam2, struct Unit * unit);
 #endif
 
+int IsReviseCharPaletteAvailable(void);
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
     int fromGameAvailable = IsFromGameOptionAvailable();
@@ -2004,7 +2005,7 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     int x = 4;
     int y = 10;
     EndFaceById(0);
-    for (int i = 0; i < 15; ++i)
+    for (int i = 0; i < 16; ++i)
     {
         InitText(gStatScreen.text + i, 8);
         ClearText(gStatScreen.text + i);
@@ -2059,6 +2060,12 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     PutDrawText(
         gStatScreen.text + 4, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y), green, 0, 0,
         (void *)growth_names[0]); // Growths
+
+    if (IsReviseCharPaletteAvailable())
+    {
+        PutDrawText(
+            gStatScreen.text + 15, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 16), green, 0, 0, "Palette");
+    }
 
     PutDrawText(
         gStatScreen.text + 5, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, 16), green, 0, 0,
@@ -3249,8 +3256,9 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
 #define reviseResOption 7
 #define reviseLckOption 8
 #define reviseMagOption 9
-#define reviseClassIdOption 10
-#define reviseGameIdOption 11
+#define reviseCharPaletteOption 10
+#define reviseClassIdOption 11
+#define reviseGameIdOption 12
 inline int IsClassInvalid(int i)
 {
     return ClassExceptions[i].NeverChangeInto;
@@ -3407,13 +3415,58 @@ void SetNextClass(struct PidStatsChar * pidStats, int dir)
     // break;
     // }
 }
+// Palette and Game are both gated on IsFromGameOptionAvailable. Game is last so
+// the option count alone hides it, but Palette sits in the middle of the list,
+// so the cursor has to step over it as well.
+int IsReviseCharPaletteAvailable(void)
+{
+#ifdef FE8
+    return IsFromGameOptionAvailable();
+#else
+    // FE6/FE7 have no palette-override screen at all - the whole feature is #ifdef FE8,
+    // and ReviseCharPalProcLabel there is just a PROC_GOTO back to PreviewCharLabel.
+    return false;
+#endif
+}
+
+int IsReviseCharOptionAvailable(int menuID)
+{
+    if (menuID == reviseCharPaletteOption)
+    {
+        return IsReviseCharPaletteAvailable();
+    }
+    if (menuID == reviseGameIdOption)
+    {
+        return IsFromGameOptionAvailable();
+    }
+    return true;
+}
+
+int GetNextReviseCharOption(int menuID, int dir, int numOpts)
+{
+    for (int i = 0; i < numOpts; ++i)
+    {
+        menuID += dir;
+        if (menuID < 0)
+        {
+            menuID = numOpts - 1;
+        }
+        menuID = Mod(menuID, numOpts);
+        if (IsReviseCharOptionAvailable(menuID))
+        {
+            break;
+        }
+    }
+    return menuID;
+}
+
 int GetReviseCharNumOpts(ConfigMenuProc * proc)
 {
     if (IsFromGameOptionAvailable())
     {
-        return 12;
+        return 13;
     }
-    return 11;
+    return 12;
 }
 void LoopReviseCharPage(ConfigMenuProc * proc)
 {
@@ -3453,41 +3506,49 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         EndFaceById(1);
         return;
     }
+    // int tableID = 0;
+    int numOpts = GetReviseCharNumOpts(proc);
+
+    // the cursor can be left parked on Palette from a run where the game filter
+    // was available, so nudge it off before anything reads it
+    if (!IsReviseCharOptionAvailable(proc->reviseMenuId))
+    {
+        proc->reviseMenuId = GetNextReviseCharOption(proc->reviseMenuId, 1, numOpts);
+    }
+
     if (keys & A_BUTTON)
     {
+        if (proc->reviseMenuId == reviseCharPaletteOption)
+        {
+            PlaySuccessSfx();
+            Proc_Goto(proc, ReviseCharPalProcLabel);
+            EndFaceById(0);
+            EndFaceById(1);
+            return;
+        }
         pidStats->selected = true;
         PlaySuccessSfx();
         // save some change?
-        // Proc_Goto(proc, PreviewCharLabel);
     }
     if (keys & (B_BUTTON | A_BUTTON))
     {
         PlayBackOutSfx();
-        Proc_Goto(proc, ReviseCharPalProcLabel);
+        Proc_Goto(proc, PreviewCharLabel);
         EndFaceById(0);
         EndFaceById(1);
         return;
     }
 
-    // int tableID = 0;
-    int numOpts = GetReviseCharNumOpts(proc);
-
     int tmp = 0;
     int changed = false;
     if (keys & DPAD_UP)
     {
-        tmp = proc->reviseMenuId - 1;
-        if (tmp < 0)
-        {
-            tmp = numOpts - 1;
-        }
-        proc->reviseMenuId = Mod(tmp, numOpts);
+        proc->reviseMenuId = GetNextReviseCharOption(proc->reviseMenuId, -1, numOpts);
         PlayScrollMenuSfx();
     }
     if (keys & DPAD_DOWN)
     {
-        proc->reviseMenuId++;
-        proc->reviseMenuId = Mod(proc->reviseMenuId, numOpts);
+        proc->reviseMenuId = GetNextReviseCharOption(proc->reviseMenuId, 1, numOpts);
         PlayScrollMenuSfx();
     }
 
@@ -3739,6 +3800,11 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
             changed = true;
             break;
         }
+        case reviseCharPaletteOption:
+        {
+            ;
+            break;
+        }
         case reviseClassIdOption:
         {
             SetNextClass(pidStats, dir);
@@ -3810,6 +3876,11 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         case reviseMagOption:
         {
             DisplayUiHand(210, 112);
+            break;
+        }
+        case reviseCharPaletteOption:
+        {
+            DisplayUiHand(34, 128);
             break;
         }
         case reviseClassIdOption:
