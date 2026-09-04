@@ -5,8 +5,14 @@
   .short 0xf800
 .endm
 
-@.global __aeabi_idivmod
-@.type __aeabi_idivmod, %function 
+.if FE7 == true 
+.global __aeabi_idivmod
+.type __aeabi_idivmod, %function 
+.endif 
+.if FE6 == true 
+.global __aeabi_idivmod
+.type __aeabi_idivmod, %function 
+.endif 
 .global Mod
 .type Mod, %function 
 __aeabi_idivmod:

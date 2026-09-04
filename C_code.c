@@ -198,6 +198,8 @@ extern union TagUnion * EnemyClassTags;
 #define NumberOfGameTags 12
 #define NumberOfGameFilterBits (NumberOfGameTags * 2)
 #define AllGamesMask ((1u << NumberOfGameFilterBits) - 1)
+#define PlayerGamesMask ((1u << NumberOfGameTags) - 1)
+#define EnemyGamesMask (AllGamesMask & ~PlayerGamesMask)
 // Game 0 is vanilla; the boss half of the word starts at NumberOfGameTags.
 #define VanillaPlayerTableBit (1u << 0)
 #define VanillaBossTableBit (1u << NumberOfGameTags)
@@ -364,9 +366,6 @@ typedef struct
 // four for the new character ID and four for the table it came from. It's a plain cache in
 // the tail of SRRBuffer now: BuildRecruitmentCache only ever uses the low 2 * UnitListSize
 // bytes as scratch, so the top of the buffer was going spare.
-//
-// Indexing is flat by character ID (cache[id - 1]) rather than the old
-// procN->id[(id & 0x3F) - 1], which underflowed to procN->id[-1] for ids 0x40/0x80/0xC0.
 #define SRRBufferSize 0x1500
 #define RecruitmentCacheEntries 0x100
 #define RecruitmentCacheMagic 0x53525243u // 'SRRC'
@@ -434,7 +433,6 @@ extern void CallEvent(const u16 * events, u8 execType);
 extern int EventEngineExists(void);
 
 #endif
-
 
 extern void ForceHardModeFE8(void);
 void MaybeForceHardModeFE8(void)
@@ -2777,6 +2775,23 @@ static LocationTable GameTagsCursorLocationTable[NumberOfGameFilterBits] = {
     { 8 + (24 * GameTagWidth), 96 },
 };
 
+// Row within a column on the 6x4 grid. GCC strength-reduces "% 6" on FE8 but emits a call
+// to __aeabi_idivmod on FE6/FE7, and a handful of subtractions is cheaper than a division
+// routine for a value this small anyway. Matches C's truncating % over the range this can
+// actually see, which is -7 to 30.
+int GameTagRowOf(int id)
+{
+    while (id >= GameTagRows)
+    {
+        id -= GameTagRows;
+    }
+    while (id <= -GameTagRows)
+    {
+        id += GameTagRows;
+    }
+    return id;
+}
+
 void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(ConfigMenuProc *), int forEnemies)
 {
     u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
@@ -2824,7 +2839,7 @@ void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(Conf
     }
     if (keys & DPAD_UP)
     {
-        if (!(moved % GameTagRows))
+        if (!GameTagRowOf(moved))
         {
             moved += GameTagRows;
         }
@@ -2833,7 +2848,7 @@ void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(Conf
     if (keys & DPAD_DOWN)
     {
         moved++;
-        if (!(moved % GameTagRows))
+        if (!GameTagRowOf(moved))
         {
             moved -= GameTagRows;
         }
@@ -2841,10 +2856,14 @@ void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(Conf
 
     if (moved != id)
     {
-        moved %= NumberOfGameFilterBits;
+        // moved can only be -7 to 30 here, so one correction either way is the whole wrap.
         if (moved < 0)
         {
             moved += NumberOfGameFilterBits;
+        }
+        if (moved >= NumberOfGameFilterBits)
+        {
+            moved -= NumberOfGameFilterBits;
         }
         proc->previewId = moved;
         redraw(proc);
@@ -14502,8 +14521,8 @@ void SetDefaultTagValues(void)
     EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
     // default: "Random" may use every game, players and bosses alike
-    *GameFilterValues = GameFilterInitFlag | AllGamesMask; // this initializes our ram back
-    *EnemyGameFilterValues = GameFilterInitFlag | AllGamesMask;
+    *GameFilterValues = GameFilterInitFlag | PlayerGamesMask; // this initializes our ram back
+    *EnemyGameFilterValues = GameFilterInitFlag | EnemyGamesMask;
 }
 // same but vanilla classes only
 void SetVanillaTagValues(void)
