@@ -14214,6 +14214,39 @@ const char * GetSRRText(int id1, int id2)
     return string;
 }
 
+// Screen row that `option` currently sits on, or -1 when it is scrolled out of
+// view. Has to walk the same reordered buffer DrawConfigMenu indexes through.
+int GetMenuRowOfOption(ConfigMenuProc * proc, int option)
+{
+    s8 buf[SRR_TotalOptions + 1];
+    BuildAvailableOptionsForMenu(buf);
+    for (int i = 0; i < SRR_NUMBERDISP; ++i)
+    {
+        int id = i + proc->offset;
+        if (id > SRR_TotalOptions)
+        {
+            break;
+        }
+        if (buf[id] == option)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// called like every frame until proc->freezeSeed is set
+void DrawSeedNumber(ConfigMenuProc * proc, int row)
+{
+    if (row < 0)
+    {
+        return;
+    }
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 7, Y_HAND - 1 + (row * 2)), 9, 2, 0);
+    PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 1, Y_HAND + (row * 2)), white, proc->seed);
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
 void DrawSRRText(ConfigMenuProc * proc, int i, int offset, int id)
 {
     if (id < 0)
@@ -14239,8 +14272,9 @@ void DrawSRRText(ConfigMenuProc * proc, int i, int offset, int id)
 
     if (id == SeedOption)
     {
-        TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 7, Y_HAND), 9, 2, 0); // seed first
-        PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 1, 3 + ((i) * 2)), white, proc->seed);
+        // the clear used to be pinned to Y_HAND while the number went to row i,
+        // so a scrolled seed row wiped the top row instead of its own
+        DrawSeedNumber(proc, i);
         return;
     }
 #ifdef FE8
@@ -15168,7 +15202,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     if (!proc->freezeSeed)
     {
         proc->seed = GetInitialSeed(2, proc);
-        proc->redraw = true;
+        DrawSeedNumber(proc, GetMenuRowOfOption(proc, SeedOption));
     }
     int id = proc->id;
     int offset = proc->offset;
