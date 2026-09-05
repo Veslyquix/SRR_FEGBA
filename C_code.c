@@ -397,7 +397,12 @@ typedef struct
 #define EnemyPalCacheOffset ((CharPalClassOffset + CharPalOverrideEntries + 3) & ~3)
 #define EnemyPalCacheKeyOffset (EnemyPalCacheOffset + (EnemyPalCacheEntries * 4))
 #define EnemyPalCacheMagicOffset (EnemyPalCacheKeyOffset + (EnemyPalCacheEntries * 2))
-#define PalCacheEnd (EnemyPalCacheMagicOffset + 4)
+// Players get the resolved pointer cached too, exactly like enemies do. Without this the
+// battle path had to turn the stored index back into a palette every single time, and
+// that means walking every entry of all NumberOfPalCharTables tables - the thing this
+// whole cache exists to avoid.
+#define CharPalPtrOffset (EnemyPalCacheMagicOffset + 4)
+#define PalCacheEnd (CharPalPtrOffset + (CharPalOverrideEntries * 4))
 
 // Encoding band for values the automatic assignment writes into gCharPalOverride, beside
 // the revise screen bands (see RawCharPalOverrideBase). Clear of both: filtered indices
@@ -432,6 +437,10 @@ const u16 ** GetEnemyPalCache(void)
 u16 * GetEnemyPalCacheKeys(void)
 {
     return (u16 *)&SRRBuffer[EnemyPalCacheKeyOffset];
+}
+const u16 ** GetCharPalPtrCache(void)
+{
+    return (const u16 **)&SRRBuffer[CharPalPtrOffset];
 }
 
 u8 * GetRecruitmentCacheChars(void)
@@ -7406,10 +7415,12 @@ u32 HashByte_Simple(u32 rn, int max);
 // matches classID. Returns the total and, through ownIndex, where the first one drawn for
 // THIS character in THIS game sits - their own recolor, which always wins when it exists.
 // ownIndex comes back -1 when they have none for this class.
-int ScanClassMatchingCharPals(int classID, int adjustedCharID, int tableID, int * ownIndex)
+int ScanClassMatchingCharPals(
+    int classID, int adjustedCharID, int tableID, int * ownIndex, const u16 ** ownPal)
 {
     int count = 0;
     *ownIndex = -1;
+    *ownPal = NULL;
     for (int t = 0; t < NumberOfPalCharTables; ++t)
     {
         const struct gCharPal_EntryStruct * entry = gCharPal[t];
@@ -7427,6 +7438,7 @@ int ScanClassMatchingCharPals(int classID, int adjustedCharID, int tableID, int 
                     if (isOwn && *ownIndex < 0)
                     {
                         *ownIndex = count;
+                        *ownPal = entry->pal[i]; // saves the second walk in the common case
                     }
                     count++;
                 }
@@ -7472,19 +7484,28 @@ const u16 * GetNthClassMatchingCharPal(int classID, int index)
 // elses for that class. -1 when gCharPal holds nothing for this class at all. The pick is
 // seeded on the run seed plus who and what class, so it is the same palette every battle
 // and would survive a soft reset even if it were not written down.
-int PickAutoCharPalIndex(int classID, int adjustedCharID, int tableID, int seedKey)
+// Returns the palette and, through outIndex, where it sits in the class-matching list.
+// The index is what gets stored (the revise screen and the debugger preview resolve
+// stored values by index); the pointer is what gets cached, so nothing has to resolve it
+// again later. Walking gCharPal twice is only needed when the character has no recolor of
+// their own for this class - otherwise the counting pass already found the answer.
+const u16 * PickAutoCharPal(int classID, int adjustedCharID, int tableID, int seedKey, int * outIndex)
 {
     int own = -1;
-    int count = ScanClassMatchingCharPals(classID, adjustedCharID, tableID, &own);
+    const u16 * ownPal = NULL;
+    int count = ScanClassMatchingCharPals(classID, adjustedCharID, tableID, &own, &ownPal);
     if (!count)
     {
-        return -1;
+        *outIndex = -1;
+        return NULL;
     }
     if (own >= 0)
     {
-        return own;
+        *outIndex = own;
+        return ownPal;
     }
-    return HashByte_Simple(GetNthRN_Simple(seedKey, RandValues->seed, classID), count);
+    *outIndex = HashByte_Simple(GetNthRN_Simple(seedKey, RandValues->seed, classID), count);
+    return GetNthClassMatchingCharPal(classID, *outIndex);
 }
 
 const u16 * ResolveAutoCharPal(int classID, int storedValue)
@@ -7534,9 +7555,11 @@ void MaybeAutoAssignCharPal(int charID, int classID, int adjustedCharID, int tab
     {
         return; // already generated, and still for the class they are in
     }
-    int index = PickAutoCharPalIndex(classID, adjustedCharID, tableID, charID);
+    int index;
+    const u16 * pal = PickAutoCharPal(classID, adjustedCharID, tableID, charID, &index);
     overrides[charID] = (index < 0) ? AutoCharPalNone : (u16)(AutoCharPalBase + index);
     classes[charID] = (u8)classID;
+    GetCharPalPtrCache()[charID] = pal;
 }
 
 // Enemies cannot use that array at all: several of them share one character id, so this
@@ -7574,10 +7597,12 @@ void EnsurePalCaches(void)
     }
     u16 * overrides = GetCharPalOverrideArray();
     u8 * classes = GetCharPalClassArray();
+    const u16 ** pals = GetCharPalPtrCache();
     for (int i = 0; i < CharPalOverrideEntries; ++i)
     {
         overrides[i] = 0;
         classes[i] = 0;
+        pals[i] = NULL;
     }
     *GetEnemyPalCacheMagic() = expected;
 }
@@ -7599,8 +7624,9 @@ const u16 * GetEnemyCharPal(struct Unit * unit, int classID, int adjustedCharID,
     {
         // seeded on the unit index, not the character - two enemies sharing a character id
         // should not both end up in the same borrowed palette
-        int index = PickAutoCharPalIndex(classID, adjustedCharID, tableID, unit->index + 0x100);
-        GetEnemyPalCache()[slot] = GetNthClassMatchingCharPal(classID, index);
+        int index;
+        GetEnemyPalCache()[slot] =
+            PickAutoCharPal(classID, adjustedCharID, tableID, unit->index + 0x100, &index);
         GetEnemyPalCacheKeys()[slot] = key;
     }
     return GetEnemyPalCache()[slot];
@@ -7952,7 +7978,10 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
         const u16 * overridePal = NULL;
         if (stored >= AutoCharPalNone)
         {
-            overridePal = ResolveAutoCharPal(classID, stored);
+            // MaybeAutoAssignCharPal above has just guaranteed this is current: it
+            // re-picks whenever the class no longer matches the one it was chosen for.
+            // Resolving the index instead would walk all of gCharPal on every battle.
+            overridePal = GetCharPalPtrCache()[overrideCharID];
         }
 #ifdef FE8
         // the filtered/raw bands belong to the revise screen, which is FE8-only
