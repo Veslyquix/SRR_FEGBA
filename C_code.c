@@ -402,7 +402,14 @@ typedef struct
 // that means walking every entry of all NumberOfPalCharTables tables - the thing this
 // whole cache exists to avoid.
 #define CharPalPtrOffset (EnemyPalCacheMagicOffset + 4)
-#define PalCacheEnd (CharPalPtrOffset + (CharPalOverrideEntries * 4))
+// GetUniqueCharPal has two entry points - MaybeApplyUniqueCharPal and the ASM-side
+// ShouldUnitDoJankyPalettes - and the banim engine calls them repeatedly while a battle
+// runs. Everything past the cached-override early return walks gCharPal[tableID] entry by
+// entry, so the answer is memoised per combatant instead. Two slots is all it can ever
+// need: pos is EKR_POS_L or EKR_POS_R.
+#define UniquePalMemoSlots 2
+#define UniquePalMemoOffset (CharPalPtrOffset + (CharPalOverrideEntries * 4))
+#define PalCacheEnd (UniquePalMemoOffset + (UniquePalMemoSlots * 12))
 
 // Encoding band for values the automatic assignment writes into gCharPalOverride, beside
 // the revise screen bands (see RawCharPalOverrideBase). Clear of both: filtered indices
@@ -441,6 +448,11 @@ u16 * GetEnemyPalCacheKeys(void)
 const u16 ** GetCharPalPtrCache(void)
 {
     return (const u16 **)&SRRBuffer[CharPalPtrOffset];
+}
+// 3 words per slot: two key words and the resulting palette.
+u32 * GetUniquePalMemo(int slot)
+{
+    return (u32 *)&SRRBuffer[UniquePalMemoOffset + (slot * 12)];
 }
 
 u8 * GetRecruitmentCacheChars(void)
@@ -7604,6 +7616,13 @@ void EnsurePalCaches(void)
         classes[i] = 0;
         pals[i] = NULL;
     }
+    for (int i = 0; i < UniquePalMemoSlots; ++i)
+    {
+        u32 * memo = GetUniquePalMemo(i);
+        memo[0] = 0;
+        memo[1] = 0;
+        memo[2] = 0;
+    }
     *GetEnemyPalCacheMagic() = expected;
 }
 
@@ -7936,7 +7955,7 @@ const u16 * ResolveCharPalOverride(int classID, int adjustedCharID, int tableID,
 }
 #endif // FE8 - gCharPalOverride lookup/resolution
 
-const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
+const u16 * ComputeUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
 {
     if (!VeslyBuildfile_Link)
     {
@@ -8044,6 +8063,44 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
         gBanimUniquePal[pos] = 0;
     }
 
+    return pal;
+}
+
+// The result depends only on these plus the colours setting, and none of them move while
+// a battle animation is running - so once per combatant is enough, however many times the
+// engine asks. Without this every call walked gCharPal[tableID] from the top.
+const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
+{
+    if (pos < 0 || pos >= UniquePalMemoSlots)
+    {
+        return ComputeUniqueCharPal(charID, tableID, unit, pos);
+    }
+    // the memo is fixed RAM, and the auto-assign paths that normally run this are skipped
+    // entirely on the Random/Generic colour settings - so do it here, where every call
+    // goes, rather than trusting whatever was at these addresses on boot
+    EnsurePalCaches();
+
+    u32 key1 = ((u32)(charID & 0xFF)) | ((u32)(tableID & 0xFF) << 8) |
+               ((u32)(unit->pClassData->number & 0xFF) << 16) |
+               ((u32)(RandBitflags->colours & 3) << 24);
+    u32 key2 = ((u32)(unit->pCharacterData->number & 0xFF)) | ((u32)(unit->index & 0xFF) << 8) |
+               0x10000u; // never zero, so a cleared slot cannot look like a hit
+
+    u32 * memo = GetUniquePalMemo(pos);
+    if (memo[0] == key1 && memo[1] == key2)
+    {
+        const u16 * pal = (const u16 *)memo[2];
+        if (pal)
+        {
+            gBanimUniquePal[pos] = 0; // the side effect the worker would have had
+        }
+        return pal;
+    }
+
+    const u16 * pal = ComputeUniqueCharPal(charID, tableID, unit, pos);
+    memo[0] = key1;
+    memo[1] = key2;
+    memo[2] = (u32)pal;
     return pal;
 }
 
