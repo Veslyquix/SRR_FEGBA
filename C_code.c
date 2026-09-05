@@ -409,7 +409,16 @@ typedef struct
 // need: pos is EKR_POS_L or EKR_POS_R.
 #define UniquePalMemoSlots 2
 #define UniquePalMemoOffset (CharPalPtrOffset + (CharPalOverrideEntries * 4))
-#define PalCacheEnd (UniquePalMemoOffset + (UniquePalMemoSlots * 12))
+
+// GetReorderedCharIDAndTableID is asked the same question over and over - the battle
+// palette path alone calls it twice per combatant before it even reaches the palette
+// memo, and the display code leans on it too. One u16 per character id: the resolved
+// id in the low byte, its table in the high one. The id is never 0, so a zero entry
+// means "not worked out yet".
+#define ReorderMemoEntries 0x100
+#define ReorderMemoOffset (UniquePalMemoOffset + (UniquePalMemoSlots * 12))
+#define ReorderMemoStampOffset (ReorderMemoOffset + (ReorderMemoEntries * 2))
+#define PalCacheEnd (ReorderMemoStampOffset + 4)
 
 // Encoding band for values the automatic assignment writes into gCharPalOverride, beside
 // the revise screen bands (see RawCharPalOverrideBase). Clear of both: filtered indices
@@ -453,6 +462,14 @@ const u16 ** GetCharPalPtrCache(void)
 u32 * GetUniquePalMemo(int slot)
 {
     return (u32 *)&SRRBuffer[UniquePalMemoOffset + (slot * 12)];
+}
+u16 * GetReorderMemo(void)
+{
+    return (u16 *)&SRRBuffer[ReorderMemoOffset];
+}
+u32 * GetReorderMemoStamp(void)
+{
+    return (u32 *)&SRRBuffer[ReorderMemoStampOffset];
 }
 
 u8 * GetRecruitmentCacheChars(void)
@@ -4271,10 +4288,48 @@ int GetResolvedCharTableIDForUnit(struct Unit * unit)
     return GetReorderedCharIDAndTableIDForUnit(unit).y;
 }
 
+// Deliberately NOT memoised while CharConfirmPage is set: on the preview/revise screens
+// the answer also depends on each character's pidStats overrides, which the player edits
+// there without anything invalidating the recruitment cache. Those screens are not the
+// hot path anyway - battles are, and CharConfirmPage is false there.
+//
+// EnsureRecruitmentCache still runs on every call, hit or miss. It is what notices a
+// settings change and rebuilds, and skipping it would let a stale mapping survive a
+// filter change; its stamp is then exactly the right generation to key the memo on,
+// since anything that changes the mapping changes the stamp.
 struct Vec2u GetReorderedCharIDAndTableID(const struct CharacterData * table)
 {
-    struct PidStatsChar * pidStats = GetPidStatsSafe(table->number);
-    struct Vec2u result = GetReorderedCharIDAndTableIDByPIDStats(table, pidStats);
+    int id = table->number;
+    if (CharConfirmPage || id <= 0 || id >= ReorderMemoEntries)
+    {
+        struct PidStatsChar * pidStats = GetPidStatsSafe(id);
+        return GetReorderedCharIDAndTableIDByPIDStats(table, pidStats);
+    }
+
+    EnsureRecruitmentCache();
+    u32 gen = *GetRecruitmentCacheStampSlot();
+    u16 * memo = GetReorderMemo();
+    if (*GetReorderMemoStamp() != gen)
+    {
+        for (int i = 0; i < ReorderMemoEntries; ++i)
+        {
+            memo[i] = 0;
+        }
+        *GetReorderMemoStamp() = gen;
+    }
+
+    struct Vec2u result;
+    u16 cached = memo[id];
+    if (cached)
+    {
+        result.x = cached & 0xFF;
+        result.y = (cached >> 8) & 0xFF;
+        return result;
+    }
+
+    struct PidStatsChar * pidStats = GetPidStatsSafe(id);
+    result = GetReorderedCharIDAndTableIDByPIDStats(table, pidStats);
+    memo[id] = (u16)((result.x & 0xFF) | ((result.y & 0xFF) << 8));
     return result;
 }
 
