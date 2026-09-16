@@ -237,7 +237,7 @@ POIN t0 t1 t2 0
 }
 
 {
-t0:  txt("Vanilla");   t1:  txt("Random");   t2:  txt("0"); 
+t0:  txt("Vanilla");   t1:  txt("Random");   t2:  txt("Random 20-60"); 
 t3:  txt("15");        t4:  txt("30");        t5:  txt("45"); 
 t6:  txt("60");
 ALIGN 4; SRRHeader(StatCapsOpt)
@@ -648,11 +648,16 @@ SRRDesc(LevelupsOpt,2); txt("Stats will levelup based on\the average at that lev
 SRRMenu(StatCapsOpt);           txt("Stat Caps") 
 SRRDesc(StatCapsOpt,0); txt("Stats mostly cap between\20 and 30."); 
 SRRDesc(StatCapsOpt,1); txt("Stats randomly cap between\0 and 30, but rarely\very low."); 
-SRRDesc(StatCapsOpt,2); txt("Stats always cap at 0.\Good luck lol."); 
-SRRDesc(StatCapsOpt,3); txt("Stats always cap at 15.\Stats/growths are a little lower."); 
-SRRDesc(StatCapsOpt,4); txt("Stats always cap at 30.\Stats/growths are normal."); 
-SRRDesc(StatCapsOpt,5); txt("Stats always cap at 45.\Stats/growths are a little higher."); 
-SRRDesc(StatCapsOpt,6); txt("Stats always cap at 60.\Stats/growths are higher than normal."); 
+SRRDesc(StatCapsOpt,2); txt("Stats randomly cap between\20 and 60."); 
+// SRRDesc(StatCapsOpt,2); txt("Stats always cap at 0.\Good luck lol."); 
+// SRRDesc(StatCapsOpt,3); txt("Stats always cap at 15.\Stats/growths are a little lower."); 
+SRRDesc(StatCapsOpt,3); txt("Stats always cap at 15."); 
+// SRRDesc(StatCapsOpt,4); txt("Stats always cap at 30.\Stats/growths are normal."); 
+SRRDesc(StatCapsOpt,4); txt("Stats always cap at 30."); 
+// SRRDesc(StatCapsOpt,5); txt("Stats always cap at 45.\Stats/growths are a little higher."); 
+SRRDesc(StatCapsOpt,5); txt("Stats always cap at 45."); 
+// SRRDesc(StatCapsOpt,6); txt("Stats always cap at 60.\Stats/growths are higher than normal."); 
+SRRDesc(StatCapsOpt,6); txt("Stats always cap at 60."); 
 SRRMenu(ClassOpt);              txt("Class") 
 SRRDesc(ClassOpt,0); txt("Characters start in their\original class."); 
 SRRDesc(ClassOpt,1); txt("Starting class is randomized."); 
@@ -703,8 +708,8 @@ SRRDesc(ColoursOpt,3); txt("Battle animations always\use generic colours.");
 SRRMenu(DurabilityOpt);         txt("Item Uses")
 SRRDesc(DurabilityOpt,0); txt("Items and weapons have\their standard number of uses."); 
 SRRDesc(DurabilityOpt,1); txt("E rank weapons and\vulneraries never break."); 
-SRRDesc(DurabilityOpt,2); txt("Consumable items have infinite uses!"); 
-SRRDesc(DurabilityOpt,3); txt("You don't want items/weapons\to break? MAKE IT INFINITE!"); 
+SRRDesc(DurabilityOpt,2); txt("Weapons have infinite uses."); 
+SRRDesc(DurabilityOpt,3); txt("Items and weapons have\infinite uses."); 
 SRRMenu(PlayerBonusOpt);        txt("Player Bonus")
 SRRDesc(PlayerBonusOpt); txt("Player starting stats will increase or\decrease as if they had this many\extra/fewer levels."); 
 SRRMenu(PlayerBonusGrowthOpt);  txt("Growth Bonus")

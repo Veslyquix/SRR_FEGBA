@@ -1,7 +1,9 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.2.0"
+#define VersionNumber " SRR V2.2.1"
 #define brk asm("mov r11, r11");
+
+// #define ADJUST_VALUES_FROM_STAT_CAPS also edit StatCapsOpt in SRR_Menu.event
 // 547282
 
 #ifdef FE8
@@ -93,7 +95,7 @@ struct RandomizerSettings
     u32 base : 2;     // vanilla, random, zero, max
     u32 growth : 2;   // vanilla, randomized, 0%, 100%
     u32 levelups : 2; // vanilla, seeded, fixed, pad
-    u32 caps : 3;     // vanilla, randomized, 0, 15, 30, 45, 60
+    u32 caps : 3;     // vanilla, randomized 0-30, random 20-60, 15, 30, 45, 60
     u32 class : 2;    // vanilla, randomized, players only, enemies only
     u32 shopItems : 1;
     u32 foundItems : 1;   // vanilla, random
@@ -514,7 +516,10 @@ u32 GetRecruitmentCacheStamp(void)
     stamp = (stamp * 31) + TagValues->raw;
     stamp = (stamp * 31) + *GameFilterValues;
     stamp = (stamp * 31) + *EnemyGameFilterValues;
-    stamp = FoldRecruitmentCacheInput(stamp, RandBitflags, sizeof(struct RandomizerSettings));
+    struct RandomizerSettings data = *RandBitflags;
+    data.disp = 0; // exempt stat screen viewing growths or not from the cache stamp. Otherwise, pressing select will
+                   // rebuild the cache every time.
+    stamp = FoldRecruitmentCacheInput(stamp, &data, sizeof(struct RandomizerSettings));
     stamp = FoldRecruitmentCacheInput(stamp, RecruitValues, sizeof(struct RecruitmentValues));
     return stamp;
 }
@@ -6591,7 +6596,7 @@ u16 GetItemAfterUse(int item)
 
 int GetItemUses(int item)
 {
-    if ((GetItemAttributes(item) & IA_UNBREAKABLE) || RandBitflags->itemDur)
+    if ((GetItemAttributes(item) & IA_UNBREAKABLE))
         return 0xFF;
     else
         return (item & 0xFF00) >> 8;
@@ -6599,7 +6604,7 @@ int GetItemUses(int item)
 
 int GetItemMaxUses(int item)
 {
-    if ((GetItemAttributes(item) & IA_UNBREAKABLE) || RandBitflags->itemDur)
+    if ((GetItemAttributes(item) & IA_UNBREAKABLE))
         return 0xFF;
     else
         return GetItemData(item & 0xFF)->maxUses;
@@ -7482,8 +7487,7 @@ u32 HashByte_Simple(u32 rn, int max);
 // matches classID. Returns the total and, through ownIndex, where the first one drawn for
 // THIS character in THIS game sits - their own recolor, which always wins when it exists.
 // ownIndex comes back -1 when they have none for this class.
-int ScanClassMatchingCharPals(
-    int classID, int adjustedCharID, int tableID, int * ownIndex, const u16 ** ownPal)
+int ScanClassMatchingCharPals(int classID, int adjustedCharID, int tableID, int * ownIndex, const u16 ** ownPal)
 {
     int count = 0;
     *ownIndex = -1;
@@ -7667,6 +7671,18 @@ void EnsurePalCaches(void)
     const u16 ** pals = GetCharPalPtrCache();
     for (int i = 0; i < CharPalOverrideEntries; ++i)
     {
+        // A value in (0, AutoCharPalNone) is a deliberate revise-screen choice, loaded
+        // straight out of SRAM into this same array (see GetCharPalOverrideArray) - it
+        // never touches classes[]/pals[] (ComputeUniqueCharPal resolves it fresh via
+        // ResolveCharPalOverride every time), so nothing about it is stale RAM state.
+        // Wiping it here would silently discard the player's setting on every cold boot,
+        // since this magic word itself lives in plain RAM and never matches on power-on.
+        // Only the auto-assigned band (>= AutoCharPalNone) caches a raw pointer/class that
+        // really can be garbage after a reboot and needs regenerating.
+        if (overrides[i] > 0 && overrides[i] < AutoCharPalNone)
+        {
+            continue;
+        }
         overrides[i] = 0;
         classes[i] = 0;
         pals[i] = NULL;
@@ -7699,8 +7715,7 @@ const u16 * GetEnemyCharPal(struct Unit * unit, int classID, int adjustedCharID,
         // seeded on the unit index, not the character - two enemies sharing a character id
         // should not both end up in the same borrowed palette
         int index;
-        GetEnemyPalCache()[slot] =
-            PickAutoCharPal(classID, adjustedCharID, tableID, unit->index + 0x100, &index);
+        GetEnemyPalCache()[slot] = PickAutoCharPal(classID, adjustedCharID, tableID, unit->index + 0x100, &index);
         GetEnemyPalCacheKeys()[slot] = key;
     }
     return GetEnemyPalCache()[slot];
@@ -8135,11 +8150,25 @@ const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int po
     // goes, rather than trusting whatever was at these addresses on boot
     EnsurePalCaches();
 
-    u32 key1 = ((u32)(charID & 0xFF)) | ((u32)(tableID & 0xFF) << 8) |
-               ((u32)(unit->pClassData->number & 0xFF) << 16) |
-               ((u32)(RandBitflags->colours & 3) << 24);
-    u32 key2 = ((u32)(unit->pCharacterData->number & 0xFF)) | ((u32)(unit->index & 0xFF) << 8) |
-               0x10000u; // never zero, so a cleared slot cannot look like a hit
+    // The player's override buffer (gCharPalOverride, via GetCharPalOverrideArray) can
+    // change at any time from the revise-palette screen, without a reseed - so it has to be
+    // part of the memo key. Otherwise the first battle to compute a given (charID, tableID,
+    // classID, colours, origCharID, unit index) combination bakes in whatever override was
+    // set at that moment, and a later change on the revise screen is silently ignored here
+    // even though GetDebuggerCharPalOverride (the menu preview) reads it uncached and shows
+    // the change immediately.
+    int overrideCharID = unit->pCharacterData->number;
+    u16 storedOverride = 0;
+    if (UNIT_FACTION(unit) != FACTION_RED && overrideCharID > 0 && overrideCharID < CharPalOverrideEntries)
+    {
+        MaybeAutoAssignCharPal(overrideCharID, unit->pClassData->number, charID, tableID);
+        storedOverride = GetCharPalOverrideArray()[overrideCharID];
+    }
+
+    u32 key1 = ((u32)(charID & 0xFF)) | ((u32)(tableID & 0xFF) << 8) | ((u32)(unit->pClassData->number & 0xFF) << 16) |
+        ((u32)(RandBitflags->colours & 3) << 24) | 0x4000000u; // never zero, so a cleared slot cannot look like a hit
+    u32 key2 =
+        ((u32)(unit->pCharacterData->number & 0xFF)) | ((u32)(unit->index & 0xFF) << 8) | ((u32)storedOverride << 16);
 
     u32 * memo = GetUniquePalMemo(pos);
     if (memo[0] == key1 && memo[1] == key2)
@@ -8577,7 +8606,7 @@ extern void WriteGlobalSaveInfoNoChecksum(struct GlobalSaveInfo2 * header);
 extern void (*ReadSramFast)(void const * src, void * dest, u32 size);
 u32 WriteAndVerifySramFast(void const * src, void * dest, u32 size);
 
-#define ConfigSRAM ((void *)CART_SRAM_ADDR + CART_SRAM_SIZE - 0x20)
+#define ConfigSRAM ((void *)CART_SRAM_ADDR + CART_SRAM_SIZE - 0x30)
 
 int LoadLastUsedConfig()
 {
@@ -8585,17 +8614,18 @@ int LoadLastUsedConfig()
     {
         return false;
     }
-    u8 tmp[0x20] = { 0 };
+    u8 tmp[0x30] = { 0 };
 
-    ReadSramFast(ConfigSRAM, (void *)tmp, 0x20);
-    if (tmp[12] == 0xFF)
+    ReadSramFast(ConfigSRAM, (void *)tmp, 0x30);
+    if (tmp[28] == 0xFF)
     {
         return false; // don't use default 0xFFFFFFFF sram
     }
 
     // CpuCopy16(ConfigSRAM, (void *)tmp, 0x20);
-    CpuCopy16(tmp, (void *)RandValues, 16);
-    CpuCopy16(&tmp[0x10], (void *)TagValues, 16);
+    CpuCopy16(tmp, (void *)GameFilterValues, 16);
+    CpuCopy16(&tmp[0x10], (void *)RandValues, 16);
+    CpuCopy16(&tmp[0x20], (void *)TagValues, 16);
     return true;
 }
 
@@ -8605,10 +8635,11 @@ void SaveLastUsedConfig(ConfigMenuProc * proc)
     {
         return;
     }
-    u8 tmp[0x20] = { 0 };
-    CpuCopy16((void *)RandValues, (void *)tmp, 16);
-    CpuCopy16((void *)TagValues, (void *)&tmp[0x10], 16);
-    WriteAndVerifySramFast((void *)tmp, ConfigSRAM, 0x20);
+    u8 tmp[0x30] = { 0 };
+    CpuCopy16((void *)GameFilterValues, (void *)tmp, 16);
+    CpuCopy16((void *)RandValues, (void *)&tmp[0x10], 16);
+    CpuCopy16((void *)TagValues, (void *)&tmp[0x20], 16);
+    WriteAndVerifySramFast((void *)tmp, ConfigSRAM, 0x30);
 }
 // no$gba -> utility -> binarydump -> saveas RNTable.dmp
 /*
@@ -9886,6 +9917,9 @@ void NewPopup_GoldGot(int value, ProcPtr parent) // fe6 120D0
 
 int AdjustGrowthForStatInflation(int growth)
 {
+#ifndef ADJUST_VALUES_FROM_STAT_CAPS
+    return growth;
+#endif
     int result = growth;
     switch (RandBitflags->caps)
     {
@@ -9901,7 +9935,7 @@ int AdjustGrowthForStatInflation(int growth)
         }
         case 2:
         {
-            result = 0 * growth;
+            result = growth;
             break;
         }
         case 3:
@@ -9945,7 +9979,7 @@ int GetGeneralStatCap(void)
         }
         case 2:
         {
-            result = 0;
+            result = (-2);
             break;
         }
         case 3:
@@ -9983,11 +10017,31 @@ int GetGlobalStatCap(void)
     {
         result = 30;
     }
+    if (result == (-2))
+    {
+        result = 60;
+    }
     return result;
 }
-
+int GetGlobalStatCapMin(void)
+{
+    int min = 0;
+    int cap = GetGeneralStatCap();
+    // if (cap == (-1))
+    // {
+    // result = 30;
+    // }
+    if (cap == (-2))
+    {
+        min = 20;
+    }
+    return min;
+}
 int AdjustStatForInflatedNumbers(int stat)
 {
+#ifndef ADJUST_VALUES_FROM_STAT_CAPS
+    return stat;
+#endif
     int result = stat;
     switch (RandBitflags->caps)
     {
@@ -10003,7 +10057,7 @@ int AdjustStatForInflatedNumbers(int stat)
         }
         case 2:
         {
-            result = 0 * stat;
+            result = stat;
             break;
         }
         case 3:
@@ -10036,6 +10090,9 @@ int AdjustStatForInflatedNumbers(int stat)
 
 int SlightlyAdjustStatForInflatedNumbers(int stat)
 {
+#ifndef ADJUST_VALUES_FROM_STAT_CAPS
+    return stat;
+#endif
     int result = stat;
     switch (RandBitflags->caps)
     {
@@ -10051,7 +10108,7 @@ int SlightlyAdjustStatForInflatedNumbers(int stat)
         }
         case 2:
         {
-            result = 0 * stat;
+            result = stat;
             break;
         }
         case 3:
@@ -10392,21 +10449,20 @@ int GetUnitMaxMag(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
+
     int noise[4] = { 0, 0, 0, 0 };
     noise[0] = unit->pClassData->number;
+
     int result = HashByPercent(cap, noise, 77);
     if (result < (cap >> 1))
     {
         result += HashByte_Global(cap, (cap >> 1), noise, 73);
     }
-    if (result > cap)
-    {
-        result = cap;
-    }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -12756,7 +12812,7 @@ int GetUnitMaxPow(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -12767,6 +12823,7 @@ int GetUnitMaxPow(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 13);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -12786,7 +12843,7 @@ int GetUnitMaxSkl(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -12797,6 +12854,7 @@ int GetUnitMaxSkl(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 23);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -12816,7 +12874,7 @@ int GetUnitMaxSpd(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -12827,6 +12885,7 @@ int GetUnitMaxSpd(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 33);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -12846,7 +12905,7 @@ int GetUnitMaxDef(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -12857,6 +12916,7 @@ int GetUnitMaxDef(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 43);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -12876,7 +12936,7 @@ int GetUnitMaxRes(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -12887,6 +12947,7 @@ int GetUnitMaxRes(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 53);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -12906,7 +12967,7 @@ int GetUnitMaxLck(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -12917,6 +12978,7 @@ int GetUnitMaxLck(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 63);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -14583,7 +14645,7 @@ static int ShouldCheckReplaceAt(const char * b, int i)
     }
     return false;
 #else
-    if (i > 0 && (b[i - 1] == ' ' || b[i - 1] == '>'))
+    if (i > 0 && (b[i - 1] == ' ' || b[i - 1] == '>' || b[i - 1] == '-'))
     {
         return 1;
     }
