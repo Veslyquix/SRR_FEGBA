@@ -739,8 +739,9 @@ def main():
         (rtlOAMData, ltrOAMData) = buildOAMData(frame.spriteChunks, rtlOAMData, ltrOAMData)
         (rtlOAMData, ltrOAMData) = buildOAMData(frame.spriteChunksP, rtlOAMData, ltrOAMData)
         frameImage.close()
-        oamOffset1 = 0 if not len(frame.spriteChunks) else oamOffset
-        oamOffsetP = 0 if not len(frame.spriteChunksP) else oamOffset1 + (len(frame.spriteChunks) + 1) * 12
+        # use Frame's offsets; recomputing them broke pierce frames with an empty first half
+        oamOffset1 = frame.oamOffset1
+        oamOffsetP = frame.oamOffsetP
         if len(frame.spriteChunks):
           oamOffset += (len(frame.spriteChunks)+1) * 12
         if len(frame.spriteChunksP):
@@ -761,7 +762,12 @@ def main():
       continue
       
   scriptFile.close()
-  
+
+  # the game's OAM buffer only fits 0x57F0 bytes. "@ EMPTYTILEPER64 2" can help
+  if len(rtlOAMData) > 0x57F0:
+    print("WARNING: OAM data is " + hex(len(rtlOAMData)) + " bytes, over the game's 0x57F0 limit by " +
+          hex(len(rtlOAMData) - 0x57F0) + ". Frames at the end will glitch.")
+
   # Write data to installer file.
   # Anim entry.
   settingBitfield = UNCOMPPALDATA | (UNCOMPFRAMEDATA<<1) | (UNCOMPOAMDATA<<2) | (_2PALETTES<<3)

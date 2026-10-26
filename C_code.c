@@ -6180,7 +6180,7 @@ void BuildRecruitmentCache(void)
                     }
                     num = HashByte_Simple(rn, d);
                     int RandomlyOrdered = true;
-                    // GetCharNewPool always returns CombinedPool now, so every unit passes this
+                    // everyone is CombinedPool now
                     if (order == VanillaOrder)
                     {
                         num = d_max - (d + 1); // vanilla table order
@@ -6344,7 +6344,7 @@ void BuildRecruitmentCache(void)
                     }
                     num = HashByte_Simple(rn, d);
                     int RandomlyOrdered = true;
-                    // GetCharNewPool always returns CombinedPool now, so every unit passes this
+                    // everyone is CombinedPool now
                     if (order == VanillaOrder)
                     {
                         num = d_max - (d + 1); // vanilla table order
@@ -6542,7 +6542,7 @@ int AdjustVanillaCharPalByte(struct Unit * unit, int palByte)
 {
     if (!palByte)
     {
-        return palByte; // generic was chosen on purpose
+        return palByte; // keep generic
     }
     int pal = GetVanillaCharBanimPal(unit, GetReorderedCharIDAndTableID(unit->pCharacterData));
     if (pal >= 0)
@@ -6573,7 +6573,7 @@ int ShouldUnitDoJankyPalettes(struct BattleUnit * bunit)
     struct Vec2u charTableID = GetReorderedCharIDAndTableID(bunit->unit.pCharacterData);
     if (GetVanillaCharBanimPal(&bunit->unit, charTableID) >= 0)
     {
-        return true; // so the hook takes the unique palette path; MaybeApplyUniqueCharPal loads it
+        return true; // use their vanilla pal
     }
     const u16 * pal = GetUniqueCharPal(charTableID.x, charTableID.y, &bunit->unit, pos);
     if (pal)
@@ -7644,7 +7644,7 @@ void EnsurePalCaches(void);
 
 int ShouldAutoAssignCharPal(void)
 {
-    return RandBitflags->colours == 0 || RandBitflags->colours == 2;
+    return RandBitflags->colours == 0; // janky just uses their own pal
 }
 
 // Fills gCharPalOverride for a player-slot character at unit load, and again whenever they
@@ -8118,7 +8118,10 @@ const u16 * ComputeUniqueCharPal(int charID, int tableID, struct Unit * unit, in
             // MaybeAutoAssignCharPal above has just guaranteed this is current: it
             // re-picks whenever the class no longer matches the one it was chosen for.
             // Resolving the index instead would walk all of gCharPal on every battle.
-            overridePal = GetCharPalPtrCache()[overrideCharID];
+            if (ShouldAutoAssignCharPal()) // stale on janky
+            {
+                overridePal = GetCharPalPtrCache()[overrideCharID];
+            }
         }
 #ifdef FE8
         // the filtered/raw bands belong to the revise screen, which is FE8-only
@@ -8257,7 +8260,7 @@ int MaybeApplyUniqueCharPal(u32 * buf, int pos)
 #else
     if (GetVanillaCharBanimPal(&bu->unit, charTableID) >= 0)
     {
-        return true; // AdjustVanillaCharPalByte already had the engine load it into buf
+        return true; // engine already loaded it
     }
 #endif
     const u16 * pal = GetUniqueCharPal(charTableID.x, charTableID.y, &bu->unit, pos);

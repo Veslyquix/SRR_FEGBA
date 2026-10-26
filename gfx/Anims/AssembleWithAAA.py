@@ -117,6 +117,9 @@ def main():
                 if result.returncode != 0 or not os.path.isfile(raw_output):
                     failed.append((rel_dir, (result.stderr or result.stdout)[-400:]))
                     continue
+                for line in result.stdout.splitlines():
+                    if line.startswith("WARNING"):
+                        print(f"  {rel_dir}: {line}")
                 with open(raw_output, encoding="utf-8") as fh:
                     text = fh.read()
                 with open(raw_output, "w", encoding="utf-8") as fh:
