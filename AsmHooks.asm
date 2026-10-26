@@ -5,8 +5,15 @@
   .short 0xf800
 .endm
 
-@.global __aeabi_idivmod
-@.type __aeabi_idivmod, %function 
+
+.if FE7 == true 
+.global __aeabi_idivmod
+.type __aeabi_idivmod, %function 
+.endif 
+.if FE6 == true 
+.global __aeabi_idivmod
+.type __aeabi_idivmod, %function 
+.endif 
 .global Mod
 .type Mod, %function 
 __aeabi_idivmod:
@@ -709,8 +716,8 @@ BreakWithValue:
 mov r11, r11 
 bx lr 
 
-.global CallEndEvent_FE6
-.type CallEndEvent_FE6, %function 
+@.global CallEndEvent_FE6
+@.type CallEndEvent_FE6, %function 
 CallEndEvent_FE6:
 push {lr} 
 mov r0, #0xE 

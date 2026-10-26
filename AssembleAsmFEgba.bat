@@ -5,10 +5,15 @@ SET as="%startDir%arm-none-eabi-as"
 SET LYN="C:\devkitPro\lyn.exe"
 
 
-@rem Assemble into an elf
-%as% -g -mcpu=arm7tdmi -mthumb-interwork %1 -o "%~dp0Patches\%~n1.elf"
+@rem AsmHooks.asm guards __aeabi_idivmod behind ".if FE6 == true" / ".if FE7 == true".
+@rem Without --defsym those are undefined, the .global never runs, the symbol stays local
+@rem and lyn drops it - so the alias onto Mod never reaches the .lyn.event. That means
+@rem assembling the source once per game rather than once up front.
 if exist "%~dp0Patches\FE6_defs.s" (
 	
+	@rem Assemble the source for this game, so its .if blocks are taken
+	%as% -g -mcpu=arm7tdmi -mthumb-interwork --defsym true=1 --defsym false=0 --defsym FE6=1 --defsym FE7=0 --defsym FE8=0 %1 -o "%~dp0Patches\%~n1.elf"
+
 	@rem Assemble definitions into a .elf if exists	
 	%as% -g -mcpu=arm7tdmi -mthumb-interwork "%~dp0Patches\FE6_defs.s" -o "%~dp0Patches\FE6_defs.elf"
 
@@ -24,6 +29,9 @@ if exist "%~dp0Patches\FE6_defs.s" (
 
 if exist "%~dp0Patches\FE7_defs.s" (
 	
+	@rem Assemble the source for this game, so its .if blocks are taken
+	%as% -g -mcpu=arm7tdmi -mthumb-interwork --defsym true=1 --defsym false=0 --defsym FE6=0 --defsym FE7=1 --defsym FE8=0 %1 -o "%~dp0Patches\%~n1.elf"
+
 	@rem Assemble definitions into a .elf if exists	
 	%as% -g -mcpu=arm7tdmi -mthumb-interwork "%~dp0Patches\FE7_defs.s" -o "%~dp0Patches\FE7_defs.elf"
 
@@ -38,6 +46,9 @@ if exist "%~dp0Patches\FE7_defs.s" (
 @cd %~dp0
 if exist "%~dp0Patches\FE8_defs.s" (
 	
+	@rem Assemble the source for this game, so its .if blocks are taken
+	%as% -g -mcpu=arm7tdmi -mthumb-interwork --defsym true=1 --defsym false=0 --defsym FE6=0 --defsym FE7=0 --defsym FE8=1 %1 -o "%~dp0Patches\%~n1.elf"
+
 	@rem Assemble definitions into a .elf if exists	
 	%as% -g -mcpu=arm7tdmi -mthumb-interwork "%~dp0Patches\FE8_defs.s" -o "%~dp0Patches\FE8_defs.elf"
 

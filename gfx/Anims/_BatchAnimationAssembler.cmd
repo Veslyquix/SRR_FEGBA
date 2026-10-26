@@ -2,39 +2,20 @@
 @echo Renaming folders...
 py .renameThings.py 
 
-@echo Processing files... 
-@set "AnimationAssembler=%~dp0/../../Tools/AA/AA.exe"
-@rem @set "AnimationAssembler=%~dp0/AAA.py"
-
-@cd %~dp0/png
-
-@for /d %%i in (.\*) do ( 
-@cd %~dp0/png
-cd "%%i"  
-cd
-@for /R %%m in (.) do (
-	cd "%%m"
-	@rem cd
-	if exist *.bin ( 
-		@dir *.bin /b > bin.txt
-		@for /f "tokens=*" %%n in (bin.txt) do ( 
-			if not exist "%%~nn Installer.event" (
-			"%AnimationAssembler%" "%%n" 
-			)
-		)
-		@dir *.event /b > event.txt
-		@for /f "tokens=*" %%n in (event.txt) do ( 
-			if not exist "%~dp0Event/%%i_%%~nn.event" ( 
-			@echo "%%~nn.event"
-			@copy /-y "%%~nn.event" "%~dp0Event/%%i_%%~nn.event"  > nul 
-			)
-		)
-	)  
-) 
+@echo Processing files...
+@rem Compiles with AAA.py (this folder's AAA.py, replacing Tools/AA/AA.exe - see the
+@rem note at the top of ReorderPalettes.py for why) and copies each weapon's Installer
+@rem .event into event/, same as the old per-weapon loop this replaces.
+@cd /d "%~dp0"
+py AssembleWithAAA.py -v
+@if errorlevel 1 (
+    @echo.
+    @echo Animation assembly FAILED.
+    @pause
+    @exit /b 1
 )
 
-
-@cd %~dp0/event 
+@cd %~dp0/event
 
 
 @dir *.event /b > event.txt 

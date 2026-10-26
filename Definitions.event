@@ -1,4 +1,4 @@
-
+// PROTECT $1c21fd8
 #define PortraitsRom 0x1030000 
 #define AnimsRom 0x1520000 
 #define EndOfAnimsRom 0x1A70000 
@@ -253,9 +253,72 @@ EphraimGreat
 #define EndMug 0xFF // don't look for characters past this 
 
 
+
 // Bosses 
 
-// fe1 
+// fe18 characters 
+#define EshmelMug       BlankMug
+#define CaiMug          BlankMug
+#define TiallaMug       BlankMug
+#define PeterMug        BlankMug
+#define UltandMug       BlankMug
+#define DietrichMug     BlankMug
+#define FabioMug        BlankMug
+#define EsmeraldaMug    BlankMug
+#define MikaelaMug      BlankMug
+#define TheodoraMug     BlankMug
+#define BonaventureMug  BlankMug
+#define TobiasMug       BlankMug
+#define LysanderMug     BlankMug
+#define LilianMug       BlankMug
+#define LedaMug         BlankMug
+#define BuccarMug       BlankMug
+#define SiroccoMug      BlankMug
+#define MuMug           BlankMug
+#define OlympiaMug      BlankMug
+#define OrchelMug       BlankMug
+#define DiegoMug        BlankMug
+#define NinaeMug        BlankMug
+#define AnatoliaMug     BlankMug
+#define ShaLanMug       BlankMug
+#define NezhaMug        BlankMug
+#define BenditzMug      BlankMug
+#define AlexandraMug    BlankMug
+#define NuzzuoMug       BlankMug
+#define GuzranMug       BlankMug
+#define NydineMug       BlankMug
+#define IoMug           BlankMug
+#define CataniaMug      BlankMug
+#define NoctulaMug      BlankMug
+#define YangJieMug      BlankMug
+
+// fe18 bosses 
+#define BalboaMug      BlankMug
+#define BartolomeMug   BlankMug
+#define BertrandMug    BlankMug
+#define BjorMug        BlankMug
+#define CreekMug       BlankMug
+#define DadaoMug       BlankMug
+#define DyanMug        BlankMug
+#define FiannaMug      BlankMug
+#define GoliathMug     BlankMug
+#define HalvinMug      BlankMug
+#define HannibalFE18Mug    BlankMug
+#define JasmineFE18Mug     BlankMug
+#define LechnerMug     BlankMug
+#define LindMug        BlankMug
+#define LongMug        BlankMug
+#define LudiaMug       BlankMug
+#define MajideMug      BlankMug
+#define MariaFE18Mug       BlankMug
+#define NathanMug      BlankMug
+#define TalimunMug     BlankMug
+#define UrsulaFE18Mug      BlankMug
+#define ZarconeMug    BlankMug
+
+
+
+// fe1 bosses 
 #define LykkeMug     BlankMug
 #define GailMug      BlankMug
 #define TorusMug     BlankMug
@@ -266,12 +329,11 @@ EphraimGreat
 #define NehringMug   BlankMug
 
 
-// fe9/10 
+// fe9/10 bosses 
 #define BurtonMug     BlankMug
 #define PainMug       BlankMug
 #define AgonyMug      BlankMug
 #define WystanMug     BlankMug
-// #define LavertonMug   BlankMug
 #define DjurMug       BlankMug
 #define RadminMug     BlankMug
 #define JarodMug      BlankMug
@@ -291,8 +353,57 @@ EphraimGreat
 #define SergeiMug     BlankMug
 #define GoranMug      BlankMug
 #define YumaMug       BlankMug
-// #define NumidaMug     BlankMug
 #define LevailMug     BlankMug
+
+
+// fe16 bosses 
+#define OchsMug         BlankMug
+#define NaderMug        BlankMug
+#define GwendalMug      BlankMug
+#define BaronDominicMug BlankMug
+#define MysonMug        BlankMug
+#define OdesseMug       BlankMug
+#define ChilonMug       BlankMug
+#define PittacusMug     BlankMug
+#define SeriosMug       BlankMug
+#define ImmovableMug    BlankMug
+#define WindCallerMug   BlankMug
+#define BlaiddydMug     BlankMug
+#define CharonMug       BlankMug
+#define DaphnelMug      BlankMug
+#define DominicMug      BlankMug
+#define FraldariusMug   BlankMug
+#define GloucesterMug   BlankMug
+#define GonerilMug      BlankMug
+#define RieganMug       BlankMug
+#define LamineMug       BlankMug
+#define MauriceMug      BlankMug
+#define NemesisMug      BlankMug
+
+
+// fe17 bosses 
+#define LumeraMug       BlankMug
+#define AbymeMug        BlankMug
+#define RodineMug       BlankMug
+#define NelucceMug      BlankMug
+#define MorionMug       BlankMug
+#define HyacinthMug     BlankMug
+#define ZephiaMug       BlankMug
+#define MarniMug        BlankMug
+#define TetchieMug      BlankMug
+#define TotchieMug      BlankMug
+#define GrissMug        BlankMug
+#define CorruptedAlearMug BlankMug
+#define SombronMug      BlankMug
+#define TerondaMug    BlankMug
+#define EvilVeyleMug  BlankMug
+#define PastAlearMMug BlankMug
+#define PastAlearFMug BlankMug
+
+
+
+// #define MitanMug        BlankMug
+
 
 #define Lyon2Mug 0
 #define Orson2Mug 0
@@ -385,6 +496,11 @@ Sothis
 #define LightningAffinity 2 // ThunderAffinity
 
 
+
+
+
+
+
 #ifndef _FE6_
 #define RoyMasterLord MasterLord
 #define Mamkute_F Manakete_2_F
@@ -439,6 +555,7 @@ Sothis
 #define GreatLord Knight
 #define Manakete Mamkute 
 #define Manakete_2_F Mamkute_F
+#define Manakete_2_FTransformed Manakete_2_F
 #define Manakete_F Mamkute_F
 #define Manakete_2 Mamkute 
 #define Necromancer DarkPrince 
@@ -458,6 +575,8 @@ Sothis
 #define Priest Parson
 #define Manakete FireDragon 
 #define Manakete_2_F FireDragon
+#define Manakete_2_FTransformed FireDragon
+
 // #define EphraimLord EliwoodLord
 // #define EirikaLord LynLord
 #define WyvernRider WyvernKnight
@@ -478,6 +597,8 @@ Sothis
 #ifdef _FE8_ 
 #define Dracoknight WyvernKnight 
 #define Manakete_F Manakete_2_F 
+#define Manakete_2_FTransformed Manakete_2_F 
+
 #define FireDragon Manakete_2_F 
 #define Nomad Hunter 
 #define Nomad_F Hunter 

@@ -348,12 +348,12 @@ palEntry(Fernand, GreatKnight, FernandPal_GreatKnight_FE8)
 palEntry(0, 0, 0)
 
 AlmPal_AlmT1:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $D7 $2D $E8 $73 $E3 $52 $C4 $31
-BYTE $14 $7B $0D $5A $27 $3D $4A $7F $67 $7E $63 $61 $02 $3D $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $1F $4B $E8 $73 $14 $7B $4A $7F $67 $7E
+BYTE $E3 $52 $D7 $2D $0D $5A $C4 $31 $63 $61 $27 $3D $02 $3D $A5 $14
 
 AlmPal_AlmT2:
-BYTE $55 $53 $FF $7F $DE $6B $1F $4B $18 $2A $E8 $73 $E3 $52 $C4 $31
-BYTE $98 $77 $2D $56 $98 $08 $50 $04 $4A $7F $67 $7E $63 $61 $A5 $14
+BYTE $55 $53 $FF $7F $DE $6B $98 $77 $1F $4B $E8 $73 $4A $7F $18 $2A
+BYTE $67 $7E $E3 $52 $2D $56 $C4 $31 $63 $61 $98 $08 $50 $04 $A5 $14
 
 AlmPal_Mercenary_FE6:
 BYTE $55 $53 $FF $7F $02 $3D $63 $61 $4E $5A $98 $77 $4D $5B $8A $46
@@ -376,8 +376,8 @@ BYTE $00 $7E $FF $7F $FF $6B $1F $4B $87 $10 $DC $41 $75 $31 $EE $20
 BYTE $98 $77 $F3 $6E $EC $51 $DF $2D $77 $25 $F0 $18 $88 $0C $A5 $14
 
 LukasPal_Halberdier:
-BYTE $00 $7E $FF $6B $1E $4B $18 $2A $2E $19 $DF $2D $77 $25 $F0 $18
-BYTE $DC $41 $75 $31 $EE $20 $98 $77 $F4 $72 $EC $51 $FF $7F $A5 $14
+BYTE $00 $7E $FF $7F $FF $6B $98 $77 $1E $4B $DC $41 $F4 $72 $18 $2A
+BYTE $DF $2D $75 $31 $EC $51 $EE $20 $77 $25 $2E $19 $F0 $18 $A5 $14
 
 LukasPal_General:
 BYTE $00 $7E $FF $7F $BD $5F $DA $3A $75 $31 $EE $20 $B3 $15 $A9 $00
@@ -408,8 +408,8 @@ BYTE $00 $7E $FF $7F $BB $46 $14 $36 $6E $25 $2A $1D $C7 $14 $F6 $5A
 BYTE $98 $77 $F3 $6E $2D $56 $FF $07 $B5 $2E $CE $1D $4A $15 $A5 $14
 
 TobinPal_Fletchling:
-BYTE $55 $53 $FF $7F $98 $7F $D1 $66 $38 $26 $70 $19 $70 $21 $EB $14
-BYTE $FF $6B $1F $4B $2E $19 $DF $32 $9E $73 $B7 $56 $CF $39 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $98 $7F $1F $4B $DF $32 $D1 $66 $38 $26
+BYTE $9E $73 $70 $21 $B7 $56 $70 $19 $2E $19 $EB $14 $A5 $14 $CF $39
 
 TobinPal_Archer:
 BYTE $00 $7E $FF $7F $FF $6B $1F $4B $70 $19 $D5 $2D $70 $21 $EB $14
@@ -504,8 +504,8 @@ BYTE $00 $7E $FF $7F $FF $6B $1F $4B $A7 $0C $39 $2E $B3 $21 $2D $15
 BYTE $98 $77 $F3 $6E $EC $51 $BC $2B $D5 $1E $EE $15 $07 $0D $A5 $14
 
 ForsythPal_Halberdier:
-BYTE $00 $7E $FF $6B $1E $4B $18 $2A $2E $19 $D5 $1E $EE $15 $07 $0D
-BYTE $39 $2E $B3 $21 $2D $15 $98 $77 $F4 $72 $EC $51 $FF $7F $A5 $14
+BYTE $00 $7E $FF $7F $FF $6B $98 $77 $1E $4B $39 $2E $F4 $72 $18 $2A
+BYTE $D5 $1E $B3 $21 $EC $51 $2D $15 $EE $15 $2E $19 $07 $0D $A5 $14
 
 ForsythPal_General:
 BYTE $00 $7E $FF $7F $BD $5F $DA $3A $B3 $21 $2D $15 $B3 $15 $A9 $00
@@ -616,8 +616,8 @@ BYTE $00 $7E $DE $7B $FF $5B $1F $4B $B2 $29 $98 $52 $F3 $3D $4E $29
 BYTE $A9 $14 $5A $7F $B5 $7E $CD $59 $F9 $52 $33 $3E $6D $29 $A5 $14
 
 FayePal_Pupil2:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $5C $57 $77 $3E $92 $25
-BYTE $18 $2A $5B $42 $92 $2D $5E $2D $D4 $25 $2D $19 $A7 $0C $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $D4 $25 $5B $42 $1F $4B $92 $2D $2D $19
+BYTE $18 $2A $5C $57 $A7 $0C $5E $2D $2E $19 $77 $3E $92 $25 $A5 $14
 
 FayePal_Mage_F_FE6:
 BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $5C $57 $77 $3E $92 $25
@@ -640,12 +640,12 @@ BYTE $55 $53 $FF $7F $DF $57 $DD $3A $16 $2E $4E $1D $5C $57 $77 $3E
 BYTE $5B $42 $D5 $31 $D4 $25 $2D $19 $D4 $25 $2D $19 $A7 $0C $A5 $14
 
 CelicaPal_PriestessT1:
-BYTE $55 $53 $6B $08 $18 $22 $1F $4B $FF $6B $2C $5A $56 $7B $FF $7F
-BYTE $A5 $14 $E9 $18 $D0 $34 $D8 $1C $1E $1E $94 $01 $9E $1A $FF $1B
+BYTE $55 $53 $FF $7F $FF $6B $FF $1B $1F $4B $56 $7B $9E $1A $1E $1E
+BYTE $18 $22 $2C $5A $94 $01 $D8 $1C $D0 $34 $E9 $18 $6B $08 $A5 $14
 
 CelicaPal_GaidenPriestess:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $A9 $23 $84 $1E
-BYTE $80 $21 $FF $1B $9E $1A $94 $01 $1F $26 $FC $10 $73 $04 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $94 $01 $18 $2A $1F $26 $73 $04 $84 $1E
+BYTE $9E $1A $FF $1B $80 $21 $1F $4B $2E $19 $FC $10 $A9 $23 $A5 $14
 
 CelicaPal_Mage_F_FE6:
 BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $9F $3E $1D $36 $35 $21
@@ -940,12 +940,12 @@ BYTE $00 $7E $DE $7B $FF $5B $1F $4B $B2 $29 $D4 $52 $2F $3E $8A $29
 BYTE $E5 $14 $5A $7F $B5 $7E $CD $59 $9B $53 $B4 $3E $CD $29 $A5 $14
 
 YuzuPal_PriestessT1:
-BYTE $55 $53 $A5 $18 $18 $22 $1F $4B $FF $6B $D1 $51 $1A $73 $FF $7F
-BYTE $A5 $14 $E9 $18 $2A $31 $AF $49 $34 $62 $10 $3A $18 $5B $FF $77
+BYTE $55 $53 $FF $7F $FF $6B $FF $77 $1F $4B $1A $73 $18 $5B $34 $62
+BYTE $18 $22 $D1 $51 $10 $3A $AF $49 $2A $31 $E9 $18 $A5 $18 $A5 $14
 
 YuzuPal_GaidenPriestess:
-BYTE $55 $53 $FF $7F $FF $6B $1F $4B $18 $2A $2E $19 $B8 $7F $D2 $72
-BYTE $EC $4D $78 $7B $8E $5E $67 $39 $34 $62 $AF $49 $2A $31 $A5 $14
+BYTE $55 $53 $FF $7F $FF $6B $67 $39 $18 $2A $34 $62 $2A $31 $D2 $72
+BYTE $8E $5E $78 $7B $EC $4D $1F $4B $2E $19 $AF $49 $B8 $7F $A5 $14
 
 YuzuPal_Mage_F_FE6:
 BYTE $55 $53 $FF $7F $FF $6B $1F $4B $2E $19 $34 $62 $AF $49 $2A $31

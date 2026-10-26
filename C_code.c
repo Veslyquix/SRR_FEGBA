@@ -1,7 +1,9 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.1.1"
+#define VersionNumber " SRR V2.2.1"
 #define brk asm("mov r11, r11");
+
+// #define ADJUST_VALUES_FROM_STAT_CAPS also edit StatCapsOpt in SRR_Menu.event
 // 547282
 
 #ifdef FE8
@@ -36,7 +38,10 @@ extern const int VeslyBuildfile_Link;
 #define ReviseCharProcLabel 5
 #define ConfirmationLabel 6
 #define SaveSettingsLabel 7
+#define ReviseCharPalProcLabel 8
+#define FilterGamesLabel 9
 #define LoopLabel 10
+#define FilterEnemyGamesLabel 11
 
 #define EndLabel 99
 
@@ -48,23 +53,24 @@ typedef struct
     /* 00 */ PROC_HEADER;
     s8 id; // menu id
     u8 offset;
-    u8 redraw;
-    /* 2c */ int seed;
+    u8 redraw : 2; // RedrawNone / RedrawSome / RedrawAll
+    u8 freezeSeed : 1;
+    u8 calledFromChapter : 1;
+    u8 reloadPlayers : 1;
+    u8 reloadEnemies : 1;
+    u8 choosingSkill : 1;
+    u8 clear : 1;
+    int seed;
     char * helpBox;
     u16 globalChecksum;
     s8 digit;
-    u8 freezeSeed;
-    u8 calledFromChapter;
-    u8 reloadPlayers;
-    u8 reloadEnemies;
     u8 skill;
-    u8 choosingSkill;
-    u8 clear;
     s8 previewPage;
 
     s8 previewId;
     u8 reviseMenuId;
-    s8 Option[42]; // max is 42. past that we'll overflow
+    s16 revisePalId; // gCharPalOverride[charID]'s value before editing began - see LoopReviseCharPalPage
+    s8 Option[42];   // max is 46ish. past that we'll overflow
 } ConfigMenuProc;
 void ReloadAllUnits(ConfigMenuProc *);
 int Div(int a, int b) PUREFUNC;
@@ -89,7 +95,7 @@ struct RandomizerSettings
     u32 base : 2;     // vanilla, random, zero, max
     u32 growth : 2;   // vanilla, randomized, 0%, 100%
     u32 levelups : 2; // vanilla, seeded, fixed, pad
-    u32 caps : 3;     // vanilla, randomized, 0, 15, 30, 45, 60
+    u32 caps : 3;     // vanilla, randomized 0-30, random 20-60, 15, 30, 45, 60
     u32 class : 2;    // vanilla, randomized, players only, enemies only
     u32 shopItems : 1;
     u32 foundItems : 1;   // vanilla, random
@@ -178,6 +184,35 @@ union TagUnion
 extern union TagUnion * TagValues;
 extern union TagUnion * ClassTags;
 extern union TagUnion * EnemyClassTags;
+// Two independent game filters, gating what "Players From: Random" and "Enemies From:
+// Random" may draw on - see the game filter screen further down.
+//
+// One bit per character table in each: bit g is the player table for game g, and bit
+// g + NumberOfGameTags is that same game's boss table. So the player pool and the boss
+// pool are filtered separately within one filter - you can take players from FE4 while
+// taking bosses from FE6.
+//
+// cData[] holds NumberOfCharTables entries: the first half are the player tables (one
+// per source game), the second half their boss counterparts, so there are
+// NumberOfCharTables >> 1 games. Spelled as a literal because NumberOfCharTables is a
+// const int, which C won't accept as a static array bound - BuildFilteredCharsList()
+// clamps against the real value in case cData[] grows without this following it.
+#define NumberOfGameTags 12
+#define NumberOfGameFilterBits (NumberOfGameTags * 2)
+#define AllGamesMask ((1u << NumberOfGameFilterBits) - 1)
+#define PlayerGamesMask ((1u << NumberOfGameTags) - 1)
+#define EnemyGamesMask (AllGamesMask & ~PlayerGamesMask)
+// Game 0 is vanilla; the boss half of the word starts at NumberOfGameTags.
+#define VanillaPlayerTableBit (1u << 0)
+#define VanillaBossTableBit (1u << NumberOfGameTags)
+// Spare high bit, set whenever a filter is written on purpose, so uninitialised RAM (or
+// a config saved before these fields existed) can't read back as a partial filter and
+// silently drop tables from the pool.
+#define GameFilterInitFlag 0x80000000u
+extern u32 * GameFilterValues;
+extern u32 * EnemyGameFilterValues;
+u32 GetEnabledGamesMask(int allegiance);
+int IsFromGameMenuOption(int id);
 
 extern struct TimedHitsDifficultyStruct * TimedHitsDifficultyRam;
 
@@ -328,10 +363,194 @@ typedef struct
     u16 count;
     u8 id[0x40];
 } RecruitmentProc;
-RecruitmentProc * InitRandomRecruitmentProc(int procID);
-void LoopRandomRecruitmentProc(RecruitmentProc * proc)
+
+// The character-ID -> replacement mapping used to live in eight procs of 0x40 bytes each,
+// four for the new character ID and four for the table it came from. It's a plain cache in
+// the tail of SRRBuffer now: BuildRecruitmentCache only ever uses the low 2 * UnitListSize
+// bytes as scratch, so the top of the buffer was going spare.
+#define SRRBufferSize 0x1500
+#define RecruitmentCacheEntries 0x100
+#define RecruitmentCacheMagic 0x53525243u // 'SRRC'
+#define RecruitmentCacheMagicOffset (SRRBufferSize - 4)
+#define RecruitmentCacheSeedOffset (SRRBufferSize - 8)
+#define RecruitmentCacheTablesOffset (RecruitmentCacheSeedOffset - RecruitmentCacheEntries)
+#define RecruitmentCacheCharsOffset (RecruitmentCacheTablesOffset - RecruitmentCacheEntries)
+// The palette caches share the same spare room, from the other end: BuildRecruitmentCache
+// only uses the low 2 * UnitListSize (2400) bytes as scratch, and the recruitment cache
+// starts at RecruitmentCacheCharsOffset (4856), so everything between is free. Putting
+// them here rather than in new Definitions.s SET_DATA entries is what lets this work on
+// FE6/FE7 as well - their SRRBuffer is already carved out, their spare RAM maps are not.
+#define PalCacheBase 2400 // == UnitListSize * 2, which is not #defined this early
+#define CharPalOverrideEntries 0x46
+#define EnemyPalCacheEntries 64 // gUnitArrayRed holds 50; index is unit->index & 0x3F
+
+// FE8 keeps gCharPalOverride at its Definitions.s address because Debugger/C_Code.c reads
+// it; FE6/FE7 have no such definition, so theirs lives here. Everything goes through
+// GetCharPalOverrideArray() so the rest of the file cannot tell the difference.
+#define CharPalOverrideOffset PalCacheBase
+// The class each auto-assigned override was picked for. A stored index only means anything
+// against the class it was chosen for, so when a unit promotes (or is otherwise reclassed)
+// this is what tells us to pick again instead of resolving a stale index.
+#define CharPalClassOffset (CharPalOverrideOffset + (CharPalOverrideEntries * 2))
+// Enemies share character IDs freely, so theirs is keyed by unit index, resolved to a
+// palette pointer once at load. The key is charID << 8 | classID: mid-chapter save loads
+// restore units without going through UnitInitFromDefinition, so a slot has to be able to
+// say whether it still describes the unit asking.
+#define EnemyPalCacheOffset ((CharPalClassOffset + CharPalOverrideEntries + 3) & ~3)
+#define EnemyPalCacheKeyOffset (EnemyPalCacheOffset + (EnemyPalCacheEntries * 4))
+#define EnemyPalCacheMagicOffset (EnemyPalCacheKeyOffset + (EnemyPalCacheEntries * 2))
+// Players get the resolved pointer cached too, exactly like enemies do. Without this the
+// battle path had to turn the stored index back into a palette every single time, and
+// that means walking every entry of all NumberOfPalCharTables tables - the thing this
+// whole cache exists to avoid.
+#define CharPalPtrOffset (EnemyPalCacheMagicOffset + 4)
+// GetUniqueCharPal has two entry points - MaybeApplyUniqueCharPal and the ASM-side
+// ShouldUnitDoJankyPalettes - and the banim engine calls them repeatedly while a battle
+// runs. Everything past the cached-override early return walks gCharPal[tableID] entry by
+// entry, so the answer is memoised per combatant instead. Two slots is all it can ever
+// need: pos is EKR_POS_L or EKR_POS_R.
+#define UniquePalMemoSlots 2
+#define UniquePalMemoOffset (CharPalPtrOffset + (CharPalOverrideEntries * 4))
+
+// GetReorderedCharIDAndTableID is asked the same question over and over - the battle
+// palette path alone calls it twice per combatant before it even reaches the palette
+// memo, and the display code leans on it too. One u16 per character id: the resolved
+// id in the low byte, its table in the high one. The id is never 0, so a zero entry
+// means "not worked out yet".
+#define ReorderMemoEntries 0x100
+#define ReorderMemoOffset (UniquePalMemoOffset + (UniquePalMemoSlots * 12))
+#define ReorderMemoStampOffset (ReorderMemoOffset + (ReorderMemoEntries * 2))
+#define PalCacheEnd (ReorderMemoStampOffset + 4)
+
+// Encoding band for values the automatic assignment writes into gCharPalOverride, beside
+// the revise screen bands (see RawCharPalOverrideBase). Clear of both: filtered indices
+// stop at CharPalOptionsBufferMax (128) and raw ones at 200 + roughly 4000.
+#define AutoCharPalNone 8191
+#define AutoCharPalBase 8192
+
+extern u8 SRRBuffer[SRRBufferSize];
+
+void BuildRecruitmentCache(void);
+
+#ifdef FE8
+extern u16 gCharPalOverride[CharPalOverrideEntries];
+#endif
+
+u16 * GetCharPalOverrideArray(void)
 {
-    return;
+#ifdef FE8
+    return gCharPalOverride;
+#else
+    return (u16 *)&SRRBuffer[CharPalOverrideOffset];
+#endif
+}
+u8 * GetCharPalClassArray(void)
+{
+    return &SRRBuffer[CharPalClassOffset];
+}
+const u16 ** GetEnemyPalCache(void)
+{
+    return (const u16 **)&SRRBuffer[EnemyPalCacheOffset];
+}
+u16 * GetEnemyPalCacheKeys(void)
+{
+    return (u16 *)&SRRBuffer[EnemyPalCacheKeyOffset];
+}
+const u16 ** GetCharPalPtrCache(void)
+{
+    return (const u16 **)&SRRBuffer[CharPalPtrOffset];
+}
+// 3 words per slot: two key words and the resulting palette.
+u32 * GetUniquePalMemo(int slot)
+{
+    return (u32 *)&SRRBuffer[UniquePalMemoOffset + (slot * 12)];
+}
+u16 * GetReorderMemo(void)
+{
+    return (u16 *)&SRRBuffer[ReorderMemoOffset];
+}
+u32 * GetReorderMemoStamp(void)
+{
+    return (u32 *)&SRRBuffer[ReorderMemoStampOffset];
+}
+
+u8 * GetRecruitmentCacheChars(void)
+{
+    return &SRRBuffer[RecruitmentCacheCharsOffset];
+}
+u8 * GetRecruitmentCacheTables(void)
+{
+    return &SRRBuffer[RecruitmentCacheTablesOffset];
+}
+u32 * GetRecruitmentCacheMagic(void)
+{
+    return (u32 *)&SRRBuffer[RecruitmentCacheMagicOffset];
+}
+u32 * GetRecruitmentCacheStampSlot(void)
+{
+    return (u32 *)&SRRBuffer[RecruitmentCacheSeedOffset];
+}
+
+// Fold a block of settings into a running hash a byte at a time - these live in
+// packed bitfield structs whose alignment we do not control, and a misaligned
+// word load on ARM7 rotates rather than faults, which would silently hash the
+// wrong bytes.
+u32 FoldRecruitmentCacheInput(u32 stamp, const void * src, int size)
+{
+    const u8 * p = src;
+    while (size--)
+    {
+        stamp = (stamp * 31) + *p++;
+    }
+    return stamp;
+}
+
+// Everything BuildRecruitmentCache reads that the player can change: the seed, the
+// character tag filter (FilterCharOut), both game filters (BuildFilteredCharsList),
+// the randomizer bitflags, and the recruitment settings (GetPlayerRecruitmentOrder
+// and friends). Everything else it touches is ROM-constant, so if this word has not
+// moved the mapping in the buffer is still the right one.
+u32 GetRecruitmentCacheStamp(void)
+{
+    u32 stamp = (u32)RandValues->seed;
+    stamp = (stamp * 31) + TagValues->raw;
+    stamp = (stamp * 31) + *GameFilterValues;
+    stamp = (stamp * 31) + *EnemyGameFilterValues;
+    struct RandomizerSettings data = *RandBitflags;
+    data.disp = 0; // exempt stat screen viewing growths or not from the cache stamp. Otherwise, pressing select will
+                   // rebuild the cache every time.
+    stamp = FoldRecruitmentCacheInput(stamp, &data, sizeof(struct RandomizerSettings));
+    stamp = FoldRecruitmentCacheInput(stamp, RecruitValues, sizeof(struct RecruitmentValues));
+    return stamp;
+}
+// The magic value is what says the mapping in the buffer belongs to the current settings.
+// Clearing it is how you invalidate; RAM comes up as anything on a fresh boot, so this
+// also stops us trusting whatever was already there.
+//
+// The settings stamp is checked too. The old procs died whenever their tree was torn
+// down, so loading a different save rebuilt the mapping by accident; a static buffer
+// survives that (and a soft reset). Stamping every input the mapping depends on - not
+// just the seed - also means callers no longer have to invalidate by hand on the chance
+// something changed: if nothing moved, the cache stays valid and the check costs a
+// dozen loads.
+int IsRecruitmentCacheBuilt(void)
+{
+    if (*GetRecruitmentCacheMagic() != RecruitmentCacheMagic)
+    {
+        return false;
+    }
+    return *GetRecruitmentCacheStampSlot() == GetRecruitmentCacheStamp();
+}
+void InvalidateRecruitmentCache(void)
+{
+    *GetRecruitmentCacheMagic() = 0;
+}
+void EnsureRecruitmentCache(void)
+{
+    if (!IsRecruitmentCacheBuilt())
+    {
+        BuildRecruitmentCache();
+    }
 }
 extern void RegisterBlankTile(int a);
 extern void ClearBg0Bg1();
@@ -347,55 +566,6 @@ extern void CallEvent(const u16 * events, u8 execType);
 extern int EventEngineExists(void);
 
 #endif
-const struct ProcCmd RecruitmentProcCmd1[] = {
-    PROC_NAME("ReorderedRecruitment_One"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-
-const struct ProcCmd RecruitmentProcCmd2[] = {
-    PROC_NAME("ReorderedRecruitment_Two"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd3[] = {
-    PROC_NAME("ReorderedRecruitment_Three"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd4[] = {
-    PROC_NAME("ReorderedRecruitment_Four"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd5[] = {
-    PROC_NAME("TableID_Proc_One"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd6[] = {
-    PROC_NAME("TableID_Proc_Two"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd7[] = {
-    PROC_NAME("TableID_Proc_Three"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
-const struct ProcCmd RecruitmentProcCmd8[] = {
-    PROC_NAME("TableID_Proc_Four"),
-    PROC_YIELD,
-    PROC_REPEAT(LoopRandomRecruitmentProc),
-    PROC_END,
-};
 
 extern void ForceHardModeFE8(void);
 void MaybeForceHardModeFE8(void)
@@ -420,17 +590,41 @@ int ShouldRandomizeRecruitmentForUnitID(int id)
     }
     return ShouldReplaceCharacters();
 }
+// Table 0 is the vanilla player table and table 0 + (NumberOfCharTables >> 1) its boss
+// counterpart. A character pulled from either of those is holding the game's own data, so
+// their default weapon is already the right one.
+int GetResolvedCharTableID(const struct CharacterData * table);
+int GetResolvedCharTableIDForUnit(struct Unit * unit);
+extern const int NumberOfCharTables;
+int IsNonVanillaCharTable(int tableID)
+{
+    return (tableID != 0) && (tableID != (NumberOfCharTables >> 1));
+}
+
 int ShouldChangeWeaponForUnit(struct Unit * unit)
 {
-    if (!unit->pCharacterData->portraitId)
+    const struct CharacterData * table = unit->pCharacterData;
+    if (!table->portraitId)
     {
         return false;
     }
     if (UNIT_FACTION(unit) == FACTION_RED)
     {
-        return GetEnemyRecruitmentOrder() || CanEnemyBecomePlayer() || RecruitValues->enemyCharTable;
+        if (GetEnemyRecruitmentOrder())
+        {
+            return true;
+        }
     }
-    return GetPlayerRecruitmentOrder() || CanPlayerBecomeBoss() || RecruitValues->forcedCharTable;
+    else if (GetPlayerRecruitmentOrder())
+    {
+        return true;
+    }
+    // This used to read RecruitValues->forcedCharTable / enemyCharTable, but those are
+    // pinned to RandomCharTable now, so the check was always true. Ask per character
+    // instead: which table did this unit's data actually come from? Enemies have no pid
+    // stats of their own, and GetReorderedCharIDAndTableID falls back to the recruitment
+    // procs for them, so this answers for both sides.
+    return IsNonVanillaCharTable(GetResolvedCharTableIDForUnit(unit));
 }
 
 int ShouldRandomizeRecruitmentForPortraitID(int id)
@@ -735,11 +929,15 @@ const struct FE8CharacterData
 #ifdef FE6
             gCharacterDataFE7_Bosses,  gCharacterDataFE8_Bosses,
 #endif
-            gCharacterDataFE10_Bosses, gCharacterDataFE13_Bosses, gCharacterDataPlaceholder,
-            gCharacterDataFE15_Bosses, gCharacterDataPlaceholder, gCharacterDataPlaceholder,
+            gCharacterDataFE10_Bosses, gCharacterDataFE13_Bosses, gCharacterDataFE14_Bosses,
+            gCharacterDataFE15_Bosses, gCharacterDataFE16_Bosses, gCharacterDataFE17_Bosses,
         };
 
 const int NumberOfCharTables = 24;
+// forcedCharTable / enemyCharTable sentinel for "any game", i.e. anything >= the table
+// count. Both are pinned to this now - see CopyConfigProcIntoRam.
+#define RandomCharTable NumberOfCharTables
+const int NumberOfPalCharTables = 27; // 3 more: one for classes, one for vanilla players, one for boss players
 // unused currently
 int ShouldRandomizeUsedCharTable(void)
 {
@@ -1058,14 +1256,7 @@ int GetReviseCharByID(int id);
 extern int SetActiveTalkFace(int slot);
 void EndAllRecruitmentProcs(void)
 {
-    Proc_EndEach(RecruitmentProcCmd1);
-    Proc_EndEach(RecruitmentProcCmd2);
-    Proc_EndEach(RecruitmentProcCmd3);
-    Proc_EndEach(RecruitmentProcCmd4);
-    Proc_EndEach(RecruitmentProcCmd5);
-    Proc_EndEach(RecruitmentProcCmd6);
-    Proc_EndEach(RecruitmentProcCmd7);
-    Proc_EndEach(RecruitmentProcCmd8);
+    InvalidateRecruitmentCache();
 }
 extern struct ProcCmd const gProcScr_HelpPromptSpr[];
 void ClearPlayerBWL(void);
@@ -1255,6 +1446,11 @@ static const LocationTable CharPreviewLoc[NumberOfOptions_CharPreview] = {
 struct PidStatsChar * GetPidStatsSafe(int i)
 {
     struct PidStatsChar * pidStats = (struct PidStatsChar *)GetPidStats(i);
+    if ((void *)pidStats == (void *)GameFilterValues)
+    {
+        return NULL;
+    }
+
     if ((void *)pidStats == (void *)RandValues)
     {
         return NULL;
@@ -1621,9 +1817,15 @@ int IsConfigMenuOptionAvailable(int id)
     {
         return DoAchievementsExist();
     }
-    else if (
-        id == PlayerRecruitmentOption || id == PlayerBossOption || id == EnemyRecruitmentOption ||
-        id == EnemyPlayerOption)
+    else if (id == PlayerBossOption || id == EnemyPlayerOption)
+    {
+        // Superseded by the game filter screens. Mixing bosses into the player pool is
+        // now done by ticking those games' boss tables on "Players From", and vice
+        // versa on "Enemies From", so a separate swap setting would only fight with it.
+        return false;
+    }
+
+    else if (id == PlayerRecruitmentOption || id == EnemyRecruitmentOption)
     {
         return IsRecruitmentOptionAvailable();
     }
@@ -1923,6 +2125,7 @@ void PutUnitSpriteForClassId(int layer, int x, int y, u16 oam2, int class);
 void PutBlendWindowUnitSprite(int layer, int x, int y, u16 oam2, struct Unit * unit);
 #endif
 
+int IsReviseCharPaletteAvailable(void);
 void DrawReviseCharPage(ConfigMenuProc * proc)
 {
     int fromGameAvailable = IsFromGameOptionAvailable();
@@ -1940,7 +2143,7 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     int x = 4;
     int y = 10;
     EndFaceById(0);
-    for (int i = 0; i < 15; ++i)
+    for (int i = 0; i < 16; ++i)
     {
         InitText(gStatScreen.text + i, 8);
         ClearText(gStatScreen.text + i);
@@ -1995,6 +2198,11 @@ void DrawReviseCharPage(ConfigMenuProc * proc)
     PutDrawText(
         gStatScreen.text + 4, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y), green, 0, 0,
         (void *)growth_names[0]); // Growths
+
+    if (IsReviseCharPaletteAvailable())
+    {
+        PutDrawText(gStatScreen.text + 15, TILEMAP_LOCATED(gBG0TilemapBuffer, 5, 16), green, 0, 0, "Palette");
+    }
 
     PutDrawText(
         gStatScreen.text + 5, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 10, 16), green, 0, 0,
@@ -2166,6 +2374,16 @@ extern int Text_GetColor(struct Text * th);
 #define NumberOfTags 32
 #define TagWidth 7
 extern const char * tags[];
+
+// Game filter screen layout: 4 columns x 6 rows = NumberOfGameFilterBits cells, the
+// same geometry as the tag screen but two rows shorter. Columns 0-1 are the per-game
+// player tables, columns 2-3 the matching boss tables. NumberOfGameTags / AllGamesMask
+// are declared up with GameFilterValues, since BuildFilteredCharsList needs them earlier.
+#define GameTagWidth TagWidth
+#define GameTagRows 6
+#define GameTagColumns 4
+// game_tags[NumberOfGameTags] is the screen title, matching how tags[32..34] work.
+extern const char * game_tags[];
 
 #ifdef FE8
 extern void DrawUiFrame(u16 * tilemap, int x, int y, int width, int height, int tilebase, int style);
@@ -2529,6 +2747,302 @@ void DrawFilterEnemyClassPage(ConfigMenuProc * proc)
     BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
 
+// ---------------------------------------------------------------------------------
+// Game filter
+//
+// "Players From"/"Enemies From" can pick one specific source game or "Random". This
+// screen narrows what "Random" draws from, so you can roll from (say) only FE4+FE5
+// rather than all-or-one. BuildFilteredCharsList() is what actually applies it, when
+// it decides which character tables to pull the pool from; the mask lives in the last
+// 2 bytes of the TagValues block, which the existing 16-byte config save already covers.
+// ---------------------------------------------------------------------------------
+
+// The two menu rows that open a game filter screen instead of holding a value.
+int IsFromGameMenuOption(int id)
+{
+    return (id == FromGameOption) || (id == EnemyFromGameOption);
+}
+
+// The enemy pool ("Enemies From") gets its own filter, separate from the player one.
+u32 * GetGameFilterFor(int allegiance)
+{
+    if (allegiance == BossesPool)
+    {
+        return EnemyGameFilterValues;
+    }
+    return GameFilterValues;
+}
+
+u32 GetEnabledGamesMask(int allegiance)
+{
+    u32 raw = *GetGameFilterFor(allegiance);
+    if (!(raw & GameFilterInitFlag))
+    {
+        return AllGamesMask; // never set on this config - see GameFilterInitFlag
+    }
+    u32 mask = raw & AllGamesMask;
+    // Nothing ticked at all would leave the randomiser with no table to pick from -
+    // treat it as "no filter", which is what Random meant before this screen existed.
+    // (Each half falls back on its own too, in BuildFilteredCharsList.)
+    if (!mask)
+    {
+        return AllGamesMask;
+    }
+    return mask;
+}
+
+// Called on entry to the screen, so the ticks shown always match what the randomiser
+// will actually use - including the first time it's opened on a pre-existing config.
+void NormaliseGameFilter(u32 * filter)
+{
+    if (!(*filter & GameFilterInitFlag))
+    {
+        *filter = GameFilterInitFlag | AllGamesMask;
+    }
+}
+
+void DrawFilterGamePage(ConfigMenuProc * proc);
+void DrawFilterEnemyGamePage(ConfigMenuProc * proc);
+
+// Shared by the player and enemy screens - they differ only in which filter word they
+// edit and which title they show, so the layout/cursor/toggle code lives here once.
+// titleTag indexes game_tags past the NumberOfGameFilterBits entries.
+void GameFilterInit(ConfigMenuProc * proc, u32 * filter, int titleTag)
+{
+    NormaliseGameFilter(filter);
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+
+    BG_Fill(gBG0TilemapBuffer, 0);
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+    ResetTextFont();
+    SetTextFontGlyphs(0);
+    SetTextFont(0);
+    ClearBg0Bg1();
+    ResetText();
+
+    int x = 1;
+    int y = 1;
+    int w = 29;
+    int h = 18;
+
+    DrawUiFrame(
+        BG_GetMapBuffer(1),            // back BG
+        x, y, w, h, TILEREF(0, 0), 0); // style as 0 ?
+
+    struct Text * th = gStatScreen.text;
+    InitText(&th[32], 20);
+    for (int i = 0; i < NumberOfGameFilterBits; ++i)
+    {
+        InitText(&th[i], GameTagWidth);
+        Text_SetColor(&th[i], gray);
+        Text_DrawString(&th[i], game_tags[i]);
+    }
+
+    Text_SetColor(&th[32], green);
+    Text_DrawString(&th[32], game_tags[titleTag]);
+}
+
+void DrawGameFilterPage(ConfigMenuProc * proc, u32 * filter)
+{
+    int c = 0;
+    struct Text * th = gStatScreen.text;
+
+    u32 curGames = *filter & AllGamesMask;
+
+    for (int i = 0; i < NumberOfGameFilterBits; ++i)
+    {
+        c = curGames & (1u << i);
+        if (c)
+        {
+            c = blue;
+        }
+        else
+        {
+            c = grey;
+        }
+
+        if (Text_GetColor(&th[i]) != c)
+        {
+            ClearText(&th[i]);
+            Text_SetColor(&th[i], c);
+            Text_DrawString(&th[i], game_tags[i]);
+        }
+    }
+
+    c = 0;
+    int x = 2;
+    int y = 2;
+    // Columns 0-1 are the per-game player tables, 2-3 the matching boss tables.
+    for (int col = 0; col < GameTagColumns; ++col)
+    {
+        for (int i = 0; i < GameTagRows; ++i)
+        {
+            if (c >= NumberOfGameFilterBits)
+            {
+                break;
+            }
+            PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
+            c++;
+        }
+        x += GameTagWidth;
+    }
+    PutText(&th[32], gBG0TilemapBuffer + TILEMAP_INDEX(6, 0));
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
+static LocationTable GameTagsCursorLocationTable[NumberOfGameFilterBits] = {
+    { 8, 16 },
+    { 8, 32 },
+    { 8, 48 },
+    { 8, 64 },
+    { 8, 80 },
+    { 8, 96 },
+    { 8 + (8 * GameTagWidth), 16 },
+    { 8 + (8 * GameTagWidth), 32 },
+    { 8 + (8 * GameTagWidth), 48 },
+    { 8 + (8 * GameTagWidth), 64 },
+    { 8 + (8 * GameTagWidth), 80 },
+    { 8 + (8 * GameTagWidth), 96 },
+    { 8 + (16 * GameTagWidth), 16 },
+    { 8 + (16 * GameTagWidth), 32 },
+    { 8 + (16 * GameTagWidth), 48 },
+    { 8 + (16 * GameTagWidth), 64 },
+    { 8 + (16 * GameTagWidth), 80 },
+    { 8 + (16 * GameTagWidth), 96 },
+    { 8 + (24 * GameTagWidth), 16 },
+    { 8 + (24 * GameTagWidth), 32 },
+    { 8 + (24 * GameTagWidth), 48 },
+    { 8 + (24 * GameTagWidth), 64 },
+    { 8 + (24 * GameTagWidth), 80 },
+    { 8 + (24 * GameTagWidth), 96 },
+};
+
+// Row within a column on the 6x4 grid. GCC strength-reduces "% 6" on FE8 but emits a call
+// to __aeabi_idivmod on FE6/FE7, and a handful of subtractions is cheaper than a division
+// routine for a value this small anyway. Matches C's truncating % over the range this can
+// actually see, which is -7 to 30.
+int GameTagRowOf(int id)
+{
+    while (id >= GameTagRows)
+    {
+        id -= GameTagRows;
+    }
+    while (id <= -GameTagRows)
+    {
+        id += GameTagRows;
+    }
+    return id;
+}
+
+void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(ConfigMenuProc *), int forEnemies)
+{
+    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
+    if ((keys & START_BUTTON) || (keys & B_BUTTON))
+    { // press B or Start to keep the filter and go back
+        PlaySuccessSfx();
+        Proc_Goto(proc, ConfigMenuLabel);
+        proc->previewId = ConfirmCommandID;
+        return;
+    }
+    // Signed, and wrapped by hand rather than the tag screen's "id -= 8; id %= 32":
+    // that only lands right because 32 divides 2^32 evenly. 24 doesn't, so left from
+    // the first column would land on the wrong row.
+    int id = proc->previewId;
+    if (id < 0 || id >= NumberOfGameFilterBits)
+    {
+        id = 0; // arriving from another screen that left a different cursor index behind
+        proc->previewId = id;
+    }
+    if ((keys & A_BUTTON))
+    {
+        *filter ^= (1u << id);
+        // The filter lives in its own RAM rather than in proc->Option, so
+        // CopyConfigProcIntoRam can't spot the change - flag it here.
+        if (forEnemies)
+        {
+            proc->reloadEnemies = true;
+        }
+        else
+        {
+            proc->reloadPlayers = true;
+        }
+        redraw(proc);
+    }
+
+    DisplayUiHand(GameTagsCursorLocationTable[id].x, GameTagsCursorLocationTable[id].y);
+    int moved = id;
+    if (keys & DPAD_RIGHT)
+    {
+        moved += GameTagRows;
+    }
+    if (keys & DPAD_LEFT)
+    {
+        moved -= GameTagRows;
+    }
+    if (keys & DPAD_UP)
+    {
+        if (!GameTagRowOf(moved))
+        {
+            moved += GameTagRows;
+        }
+        moved--;
+    }
+    if (keys & DPAD_DOWN)
+    {
+        moved++;
+        if (!GameTagRowOf(moved))
+        {
+            moved -= GameTagRows;
+        }
+    }
+
+    if (moved != id)
+    {
+        // moved can only be -7 to 30 here, so one correction either way is the whole wrap.
+        if (moved < 0)
+        {
+            moved += NumberOfGameFilterBits;
+        }
+        if (moved >= NumberOfGameFilterBits)
+        {
+            moved -= NumberOfGameFilterBits;
+        }
+        proc->previewId = moved;
+        redraw(proc);
+        PlayScrollMenuSfx();
+    }
+}
+
+// Player-pool filter ("Players From")
+void FilterGameInit(ConfigMenuProc * proc)
+{
+    GameFilterInit(proc, GameFilterValues, NumberOfGameFilterBits);
+}
+void DrawFilterGamePage(ConfigMenuProc * proc)
+{
+    DrawGameFilterPage(proc, GameFilterValues);
+}
+void LoopFilterGamePage(ConfigMenuProc * proc)
+{
+    LoopGameFilterPage(proc, GameFilterValues, DrawFilterGamePage, false);
+}
+
+// Enemy-pool filter ("Enemies From")
+void FilterEnemyGameInit(ConfigMenuProc * proc)
+{
+    GameFilterInit(proc, EnemyGameFilterValues, NumberOfGameFilterBits + 1);
+}
+void DrawFilterEnemyGamePage(ConfigMenuProc * proc)
+{
+    DrawGameFilterPage(proc, EnemyGameFilterValues);
+}
+void LoopFilterEnemyGamePage(ConfigMenuProc * proc)
+{
+    LoopGameFilterPage(proc, EnemyGameFilterValues, DrawFilterEnemyGamePage, true);
+}
+
 static LocationTable TagsCursorLocationTable[] = {
     //{(NUMBER_X*8) - (0 * 8) - 4, Y_HAND*8},
     { 8, 16 },
@@ -2879,8 +3393,9 @@ void SetPrevValidCharID(int id, struct PidStatsChar * pidStats)
 #define reviseResOption 7
 #define reviseLckOption 8
 #define reviseMagOption 9
-#define reviseClassIdOption 10
-#define reviseGameIdOption 11
+#define reviseCharPaletteOption 10
+#define reviseClassIdOption 11
+#define reviseGameIdOption 12
 inline int IsClassInvalid(int i)
 {
     return ClassExceptions[i].NeverChangeInto;
@@ -3037,13 +3552,58 @@ void SetNextClass(struct PidStatsChar * pidStats, int dir)
     // break;
     // }
 }
+// Palette and Game are both gated on IsFromGameOptionAvailable. Game is last so
+// the option count alone hides it, but Palette sits in the middle of the list,
+// so the cursor has to step over it as well.
+int IsReviseCharPaletteAvailable(void)
+{
+#ifdef FE8
+    return IsFromGameOptionAvailable();
+#else
+    // FE6/FE7 have no palette-override screen at all - the whole feature is #ifdef FE8,
+    // and ReviseCharPalProcLabel there is just a PROC_GOTO back to PreviewCharLabel.
+    return false;
+#endif
+}
+
+int IsReviseCharOptionAvailable(int menuID)
+{
+    if (menuID == reviseCharPaletteOption)
+    {
+        return IsReviseCharPaletteAvailable();
+    }
+    if (menuID == reviseGameIdOption)
+    {
+        return IsFromGameOptionAvailable();
+    }
+    return true;
+}
+
+int GetNextReviseCharOption(int menuID, int dir, int numOpts)
+{
+    for (int i = 0; i < numOpts; ++i)
+    {
+        menuID += dir;
+        if (menuID < 0)
+        {
+            menuID = numOpts - 1;
+        }
+        menuID = Mod(menuID, numOpts);
+        if (IsReviseCharOptionAvailable(menuID))
+        {
+            break;
+        }
+    }
+    return menuID;
+}
+
 int GetReviseCharNumOpts(ConfigMenuProc * proc)
 {
     if (IsFromGameOptionAvailable())
     {
-        return 12;
+        return 13;
     }
-    return 11;
+    return 12;
 }
 void LoopReviseCharPage(ConfigMenuProc * proc)
 {
@@ -3083,12 +3643,29 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         EndFaceById(1);
         return;
     }
+    // int tableID = 0;
+    int numOpts = GetReviseCharNumOpts(proc);
+
+    // the cursor can be left parked on Palette from a run where the game filter
+    // was available, so nudge it off before anything reads it
+    if (!IsReviseCharOptionAvailable(proc->reviseMenuId))
+    {
+        proc->reviseMenuId = GetNextReviseCharOption(proc->reviseMenuId, 1, numOpts);
+    }
+
     if (keys & A_BUTTON)
     {
+        if (proc->reviseMenuId == reviseCharPaletteOption)
+        {
+            PlaySuccessSfx();
+            Proc_Goto(proc, ReviseCharPalProcLabel);
+            EndFaceById(0);
+            EndFaceById(1);
+            return;
+        }
         pidStats->selected = true;
         PlaySuccessSfx();
         // save some change?
-        // Proc_Goto(proc, PreviewCharLabel);
     }
     if (keys & (B_BUTTON | A_BUTTON))
     {
@@ -3099,25 +3676,16 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         return;
     }
 
-    // int tableID = 0;
-    int numOpts = GetReviseCharNumOpts(proc);
-
     int tmp = 0;
     int changed = false;
     if (keys & DPAD_UP)
     {
-        tmp = proc->reviseMenuId - 1;
-        if (tmp < 0)
-        {
-            tmp = numOpts - 1;
-        }
-        proc->reviseMenuId = Mod(tmp, numOpts);
+        proc->reviseMenuId = GetNextReviseCharOption(proc->reviseMenuId, -1, numOpts);
         PlayScrollMenuSfx();
     }
     if (keys & DPAD_DOWN)
     {
-        proc->reviseMenuId++;
-        proc->reviseMenuId = Mod(proc->reviseMenuId, numOpts);
+        proc->reviseMenuId = GetNextReviseCharOption(proc->reviseMenuId, 1, numOpts);
         PlayScrollMenuSfx();
     }
 
@@ -3369,6 +3937,11 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
             changed = true;
             break;
         }
+        case reviseCharPaletteOption:
+        {
+            ;
+            break;
+        }
         case reviseClassIdOption:
         {
             SetNextClass(pidStats, dir);
@@ -3440,6 +4013,11 @@ void LoopReviseCharPage(ConfigMenuProc * proc)
         case reviseMagOption:
         {
             DisplayUiHand(210, 112);
+            break;
+        }
+        case reviseCharPaletteOption:
+        {
+            DisplayUiHand(34, 128);
             break;
         }
         case reviseClassIdOption:
@@ -3561,7 +4139,7 @@ struct Vec2u
 {
     u16 x, y;
 };
-
+extern struct Unit * GetUnitFromCharId(s16 pid); // fe7 8017D34 fe6 8017ABC
 struct Vec2u GetReorderedCharIDAndTableIDByPIDStats(const struct CharacterData * table, struct PidStatsChar * pidStats)
 {
     struct Vec2u result;
@@ -3577,74 +4155,17 @@ struct Vec2u GetReorderedCharIDAndTableIDByPIDStats(const struct CharacterData *
         return result;
     }
 
-    RecruitmentProc * proc = NULL;
-    RecruitmentProc * tableID_proc = NULL;
-
     int tableID = 0; // GetCharTableID(table); // default
 
-    int procID = id >> 6; // 0, 1, 2, or 3
+    EnsureRecruitmentCache();
 
-    switch (procID)
-    {
-        case 0:
-        {
-            proc = Proc_Find(RecruitmentProcCmd1);
-            break;
-        }
-        case 1:
-        {
-            proc = Proc_Find(RecruitmentProcCmd2);
-            break;
-        }
-        case 2:
-        {
-            proc = Proc_Find(RecruitmentProcCmd3);
-            break;
-        }
-        case 3:
-        {
-            proc = Proc_Find(RecruitmentProcCmd4);
-            break;
-        }
-        default:
-    }
-
-    if (!proc)
-    {
-        proc = InitRandomRecruitmentProc(procID);
-    }
-    switch (procID)
-    {
-        case 0:
-        {
-            tableID_proc = Proc_Find(RecruitmentProcCmd5);
-            break;
-        }
-        case 1:
-        {
-            tableID_proc = Proc_Find(RecruitmentProcCmd6);
-            break;
-        }
-        case 2:
-        {
-            tableID_proc = Proc_Find(RecruitmentProcCmd7);
-            break;
-        }
-        case 3:
-        {
-            tableID_proc = Proc_Find(RecruitmentProcCmd8);
-            break;
-        }
-        default:
-    }
-
-    int unitID = proc->id[(id & 0x3F) - 1];
+    int unitID = GetRecruitmentCacheChars()[id - 1];
     if (!unitID)
     {
         unitID = id;
     }
 
-    int tmp = tableID_proc->id[(id & 0x3F) - 1];
+    int tmp = GetRecruitmentCacheTables()[id - 1];
     if (tmp < NumberOfCharTables)
     {
         tableID = tmp;
@@ -3709,22 +4230,433 @@ const struct CharacterData * GetReorderedCharacter(const struct CharacterData * 
     return result;
 }
 
+// Players cache their resolved character in pid stats; enemies have none, so they cache
+// it in the support partner bytes instead, which red units never fill in.
+//
+// supports[0] is deliberately skipped - vanilla does use it for a handful of characters
+// (Lloyd and Linus in FE7) - and supports[6] is UNIT_LEADER_CHARACTER, the danger radius
+// leader, which InitUnitDef still reads. 1 and 2 are ours.
+#define UnitCacheCharIdIndex 1
+#define UnitCacheTableIdIndex 2
+
+struct Vec2u GetReorderedCharIDAndTableID(const struct CharacterData * table);
+
+int IsUnitReorderCacheable(struct Unit * unit)
+{
+    if (!unit || !unit->pCharacterData)
+    {
+        return false;
+    }
+    if (UNIT_FACTION(unit) != FACTION_RED)
+    {
+        return false;
+    }
+    return unit->pCharacterData->portraitId ? true : false;
+}
+
+void SetUnitReorderCache(struct Unit * unit)
+{
+    if (!IsUnitReorderCacheable(unit))
+    {
+        return;
+    }
+    struct Vec2u result = GetReorderedCharIDAndTableID(unit->pCharacterData);
+    unit->supports[UnitCacheCharIdIndex] = result.x & 0xFF;
+    unit->supports[UnitCacheTableIdIndex] = result.y & 0xFF;
+}
+
+struct Vec2u GetReorderedCharIDAndTableIDForUnit(struct Unit * unit)
+{
+    struct Vec2u result;
+    if (IsUnitReorderCacheable(unit))
+    {
+        // A character ID of 0 is never valid, so it doubles as "nothing cached yet" - if
+        // anything clears the byte we just fall back to the procs and refill, rather than
+        // handing back a wrong answer.
+        int cached = unit->supports[UnitCacheCharIdIndex];
+        if (cached)
+        {
+            result.x = cached;
+            result.y = unit->supports[UnitCacheTableIdIndex];
+            return result;
+        }
+        result = GetReorderedCharIDAndTableID(unit->pCharacterData);
+        unit->supports[UnitCacheCharIdIndex] = result.x & 0xFF;
+        unit->supports[UnitCacheTableIdIndex] = result.y & 0xFF;
+        return result;
+    }
+    return GetReorderedCharIDAndTableID(unit->pCharacterData);
+}
+
+int GetResolvedCharTableIDForUnit(struct Unit * unit)
+{
+    return GetReorderedCharIDAndTableIDForUnit(unit).y;
+}
+
+// Deliberately NOT memoised while CharConfirmPage is set: on the preview/revise screens
+// the answer also depends on each character's pidStats overrides, which the player edits
+// there without anything invalidating the recruitment cache. Those screens are not the
+// hot path anyway - battles are, and CharConfirmPage is false there.
+//
+// EnsureRecruitmentCache still runs on every call, hit or miss. It is what notices a
+// settings change and rebuilds, and skipping it would let a stale mapping survive a
+// filter change; its stamp is then exactly the right generation to key the memo on,
+// since anything that changes the mapping changes the stamp.
 struct Vec2u GetReorderedCharIDAndTableID(const struct CharacterData * table)
 {
-    struct PidStatsChar * pidStats = GetPidStatsSafe(table->number);
-    struct Vec2u result = GetReorderedCharIDAndTableIDByPIDStats(table, pidStats);
+    int id = table->number;
+    if (CharConfirmPage || id <= 0 || id >= ReorderMemoEntries)
+    {
+        struct PidStatsChar * pidStats = GetPidStatsSafe(id);
+        return GetReorderedCharIDAndTableIDByPIDStats(table, pidStats);
+    }
+
+    EnsureRecruitmentCache();
+    u32 gen = *GetRecruitmentCacheStampSlot();
+    u16 * memo = GetReorderMemo();
+    if (*GetReorderMemoStamp() != gen)
+    {
+        for (int i = 0; i < ReorderMemoEntries; ++i)
+        {
+            memo[i] = 0;
+        }
+        *GetReorderMemoStamp() = gen;
+    }
+
+    struct Vec2u result;
+    u16 cached = memo[id];
+    if (cached)
+    {
+        result.x = cached & 0xFF;
+        result.y = (cached >> 8) & 0xFF;
+        return result;
+    }
+
+    struct PidStatsChar * pidStats = GetPidStatsSafe(id);
+    result = GetReorderedCharIDAndTableIDByPIDStats(table, pidStats);
+    memo[id] = (u16)((result.x & 0xFF) | ((result.y & 0xFF) << 8));
     return result;
 }
+
+// struct Vec2u isn't declared where ShouldChangeWeaponForUnit lives, hence the shim.
+int GetResolvedCharTableID(const struct CharacterData * table)
+{
+    return GetReorderedCharIDAndTableID(table).y;
+}
+
+// The whole gCharPalOverride / revise-palette-screen feature is FE8-only: its fixed RAM
+// (Definitions.s) and the Debugger banim-preview functions it drives are only defined for
+// FE8, so none of this links for FE6/FE7. Everything guarded by this #ifdef has a matching
+// FE8-only counterpart further down (GetCharPalOverride/ResolveCharPalOverride/the buffer,
+// the override branch in GetUniqueCharPal, and the ReviseCharPalProcLabel proc block).
+#ifdef FE8
+extern u16 gCharPalOverride[0x46];
+int CountCharPalOptionsForClassID(int classID, int adjustedCharID, int tableID);
+const u16 * GetNthCharPalForClassID(int classID, int adjustedCharID, int tableID, int index);
+// Fixed RAM (Definitions.s), so it is NOT zero-initialised - see CharPalOptionsBuiltMagic.
+#define CharPalOptionsBuiltMagic 0xC0DE5A5A
+extern u32 sCharPalOptionsBuilt;
+
+// gCharPalOverride[] stored-value encoding - shared by LoopReviseCharPalPage (assigns
+// these while scrolling) and ResolveCharPalOverride (interprets them, for both real
+// battles and the preview):
+//   0                        no override
+//   1 .. count               tier1+tier2 filtered index+1 - GetNthCharPalForClassID()
+//   RawCharPalOverrideBase+N raw/unfiltered index N, no class filtering at all - GetNth
+//                            RawCharPalOverride(). Must stay above CharPalOptionsBufferMax
+//                            (128) so it can never collide with a filtered index.
+#define RawCharPalOverrideBase 200
+const u16 * GetNthRawCharPal(int index);
+const u16 * ResolveCharPalOverride(int classID, int adjustedCharID, int tableID, int storedValue);
+int FindLastRawCharPalIndex(void);
+
+// How many palettes each gCharPal table holds - built by ProcessCSV.py into master.event
+// as <table>_NumPals, assembled into this array by gfx/Palettes/Installer.event. One entry
+// per gCharPal entry, same order, same #ifndef guards, so gCharPalCounts[t] always
+// describes gCharPal[t]. This is ROM data, so it needs no RAM cache and no invalidation -
+// it replaces the sRawCharPalCount/sRawCharPalCountBuilt pair that used to cache a
+// computed total in fixed RAM.
+extern const u16 gCharPalCounts[];
+int GetRawCharPalCount(void);
+
+// From ASM/Debugger/C_Code.c - made non-static there so they can be linked in here.
+extern void StartDebuggerBanimPreview(int classId, struct Unit * unit, int weapon, int palOverride);
+extern void EndDebuggerBanimPreview(void);
+extern int GetDebuggerDefaultPreviewWeapon(int classId);
+
+// The class this revise-menu slot's preview should use: the character's actual current
+// class if they're already deployed on the map, else any class override the revise page
+// itself has applied, else their default class. gCharPalOverride is keyed by charID (a
+// fixed slot, at most ~0x45 of them), but which of that slot's registered palettes index
+// V actually resolves to depends on THIS - see GetNthCharPalForClassID().
+int GetReviseClassID(ConfigMenuProc * proc)
+{
+    int origCharID = GetReviseCharID(proc);
+    struct FE8CharacterData * table = (struct FE8CharacterData *)GetCharacterData(origCharID);
+    int classID = GetCharOverwrittenClassID(GetPidStatsSafe(origCharID));
+    struct Unit * realUnit = GetUnitFromCharId(origCharID);
+    if (UNIT_IS_VALID(realUnit))
+    {
+        classID = realUnit->pClassData->number;
+    }
+    if (!classID)
+    {
+        classID = VanillaClassFilter(table->defaultClass, true);
+    }
+    return classID;
+}
+
+// The character/table this revise-menu slot's preview should treat as "the specific
+// character these palettes were made for" - tier 1 of GetNthCharPalForClassID()'s buffer.
+// .x <= 0 (or an invalid GetReviseCharID()) means "nothing to look up" - tier 1 is skipped
+// and only the all-games class-matching tier remains.
+struct Vec2u GetReviseAdjustedCharAndTable(ConfigMenuProc * proc)
+{
+    int origCharID = GetReviseCharID(proc);
+    struct Vec2u result = { 0, -1 };
+    if (origCharID > 0 && origCharID != 0xFF)
+    {
+        result = GetReorderedCharIDAndTableID(GetCharacterData(origCharID));
+    }
+    return result;
+}
+
+static void RedrawReviseCharPalPage(ConfigMenuProc * proc)
+{
+    int origCharID = GetReviseCharID(proc);
+    int classID = GetReviseClassID(proc);
+    struct Vec2u adjusted = GetReviseAdjustedCharAndTable(proc);
+    int count = CountCharPalOptionsForClassID(classID, adjusted.x, adjusted.y);
+    int current = (origCharID > 0 && origCharID < 0x46) ? gCharPalOverride[origCharID] : 0;
+    // shown as Default: it IS what the character will use, but it was not chosen here and
+    // its index is into a different list than the ones this screen scrolls
+    if (current >= AutoCharPalNone)
+    {
+        current = 0;
+    }
+
+    RegisterDataMove(greyTile, (void *)0x6007000, 0x20);
+    ResetText();
+
+    int x = 4;
+    int y = 10;
+    EndFaceById(0);
+    EndFaceById(1);
+    for (int i = 0; i < 4; ++i)
+    {
+        InitText(gStatScreen.text + i, 8);
+        ClearText(gStatScreen.text + i);
+    }
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 13, y + 4), 6, 2, 0);
+    PutDrawText(gStatScreen.text + 1, TILEMAP_LOCATED(gBG0TilemapBuffer, x, y + 4), green, 0, 0, "Palette");
+
+    if (current <= 0)
+    {
+        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), white, 0, 0, "Generic");
+    }
+    else if (current >= RawCharPalOverrideBase)
+    {
+        // Raw/unfiltered mode has no cheap total to show as a denominator (see
+        // GetNthRawCharPal) - just show which raw entry this is.
+        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), gold, 0, 0, "All");
+        PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y + 4), white, current - RawCharPalOverrideBase);
+    }
+    else
+    {
+        int countDigits = 1;
+        if (count >= 10)
+        {
+            countDigits = 2;
+        }
+        if (count >= 100)
+        {
+            countDigits = 3;
+        }
+        int slashXpos = x + 17;
+
+        PutDrawText(gStatScreen.text + 2, TILEMAP_LOCATED(gBG0TilemapBuffer, x + 8, y + 4), gold, 0, 0, "Matching");
+        PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, x + 16, y + 4), white, current);
+        PutDrawText(gStatScreen.text + 3, TILEMAP_LOCATED(gBG0TilemapBuffer, slashXpos, y + 4), white, 0, 0, "/");
+        PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, slashXpos + countDigits, y + 4), white, count);
+    }
+
+    BG_EnableSyncByMask(BG0_SYNC_BIT | BG1_SYNC_BIT);
+}
+
+// (Re)starts the live preview from scratch so it picks up whatever's currently in
+// gCharPalOverride[origCharID]. This mini-anim preview path (unlike a real battle) only
+// ever loads its palette once, during setup - see ApplyDebuggerCharPalOverride() in
+// Debugger/C_Code.c - so scrolling to a new palette has to restart the whole preview
+// rather than patch anything after the fact.
+static void StartReviseCharPalPreview(ConfigMenuProc * proc)
+{
+    int origCharID = GetReviseCharID(proc);
+    int classID = GetReviseClassID(proc);
+
+    if (classID)
+    {
+        // pCharacterData->number must be origCharID - the id gCharPalOverride is keyed by
+        // - so ApplyDebuggerCharPalOverride() (Debugger/C_Code.c) can read it straight off
+        // this. palOverride stays -1: that's the vanilla charPalId slot, unrelated to our
+        // gCharPal override, which ApplyDebuggerCharPalOverride applies separately.
+        struct Unit previewUnit;
+        previewUnit.pCharacterData = GetCharacterData(origCharID);
+        StartDebuggerBanimPreview(classID, &previewUnit, GetDebuggerDefaultPreviewWeapon(classID), -1);
+    }
+    else
+    {
+        EndDebuggerBanimPreview();
+    }
+}
+
+void DrawReviseCharPalPage(ConfigMenuProc * proc)
+{
+    // Force a fresh scan on entry rather than trust whatever is in that fixed RAM.
+    sCharPalOptionsBuilt = 0;
+
+    int origCharID = GetReviseCharID(proc);
+    int classID = GetReviseClassID(proc);
+    struct Vec2u adjusted = GetReviseAdjustedCharAndTable(proc);
+    int count = CountCharPalOptionsForClassID(classID, adjusted.x, adjusted.y);
+    bool validCharID = (origCharID > 0 && origCharID < 0x46);
+
+    // The value being browsed lives directly in gCharPalOverride[origCharID] from here on,
+    // so GetUniqueCharPal() picks it up naturally. revisePalId just remembers what it was
+    // before we started editing, to restore on cancel - see LoopReviseCharPalPage.
+    int previous = validCharID ? gCharPalOverride[origCharID] : 0;
+    proc->revisePalId = previous;
+    bool previousIsValid = (previous == 0) || (previous >= 1 && previous <= count) ||
+        (previous >= RawCharPalOverrideBase && (previous - RawCharPalOverrideBase) < GetRawCharPalCount());
+    if (validCharID && !previousIsValid)
+    {
+        gCharPalOverride[origCharID] = 0;
+    }
+
+    StartReviseCharPalPreview(proc);
+    RedrawReviseCharPalPage(proc);
+}
+
+void LoopReviseCharPalPage(ConfigMenuProc * proc)
+{
+    u16 keys = sKeyStatusBuffer.newKeys | sKeyStatusBuffer.repeatedKeys;
+    int origCharID = GetReviseCharID(proc);
+    int classID = GetReviseClassID(proc);
+    struct Vec2u adjusted = GetReviseAdjustedCharAndTable(proc);
+    int count = CountCharPalOptionsForClassID(classID, adjusted.x, adjusted.y);
+    bool validCharID = (origCharID > 0 && origCharID < 0x46);
+
+    if (keys & (A_BUTTON | B_BUTTON | START_BUTTON))
+    {
+        if (keys & A_BUTTON)
+        {
+            // gCharPalOverride[origCharID] already holds the value being browsed - it's
+            // already "saved", nothing more to do.
+            PlaySuccessSfx();
+        }
+        else
+        {
+            if (validCharID)
+            {
+                gCharPalOverride[origCharID] = proc->revisePalId; // restore what it was before editing
+            }
+            PlayBackOutSfx();
+        }
+        EndDebuggerBanimPreview();
+        Proc_Goto(proc, PreviewCharLabel);
+        EndFaceById(0);
+        EndFaceById(1);
+        return;
+    }
+
+    int dir = 0;
+    if (keys & DPAD_LEFT)
+    {
+        dir = -1;
+    }
+    else if (keys & DPAD_RIGHT)
+    {
+        dir = 1;
+    }
+
+    if (dir && validCharID)
+    {
+        // Scroll order: Default(0) -> filtered tier1+tier2(1..count) ->
+        // raw/unfiltered(RawCharPalOverrideBase..) -> wraps back to Default. See the
+        // gCharPalOverride[] encoding comment near RawCharPalOverrideBase's #define.
+        int cur = gCharPalOverride[origCharID];
+        int tmp;
+
+        // An automatically assigned value sits above the raw band, so the raw arithmetic
+        // below would read it as a wildly out-of-range raw index. Scrolling off an
+        // automatic pick starts from Default instead, which is where the filtered list
+        // (their own matching recolors first) begins.
+        if (cur >= AutoCharPalNone)
+        {
+            cur = 0;
+        }
+
+        if (cur >= RawCharPalOverrideBase)
+        {
+            int rawIndex = (cur - RawCharPalOverrideBase) + dir;
+            if (rawIndex < 0)
+            {
+                tmp = count; // step back down to the top of the filtered list (0 if none)
+            }
+            else if (rawIndex < GetRawCharPalCount())
+            {
+                tmp = RawCharPalOverrideBase + rawIndex;
+            }
+            else
+            {
+                tmp = 0; // ran off the end of raw mode - wrap to Default
+            }
+        }
+        else
+        {
+            tmp = cur + dir;
+            if (tmp > count)
+            {
+                // Step up past the filtered list into raw mode, at its start - unless
+                // there's nothing in gCharPal at all, in which case there's no raw mode
+                // to enter and this just wraps straight to Default.
+                tmp = GetRawCharPalCount() > 0 ? RawCharPalOverrideBase : 0;
+            }
+            else if (tmp < 0)
+            {
+                // LEFT from Default: wrap around to the END of raw mode if it has
+                // anything, else to the top of the filtered list.
+                int lastRaw = FindLastRawCharPalIndex();
+                tmp = (lastRaw >= 0) ? (RawCharPalOverrideBase + lastRaw) : count;
+            }
+        }
+
+        gCharPalOverride[origCharID] = tmp;
+        StartReviseCharPalPreview(proc);
+        RedrawReviseCharPalPage(proc);
+        PlayScrollMenuSfx();
+    }
+}
+#endif // FE8 - gCharPalOverride revise-palette screen
 
 // each vanilla portrait is assigned to a new portrait from any char table
 // text replace must search all tables
 const struct CharacterData * GetReorderedUnit(struct Unit * unit)
 {
-    return GetReorderedCharacter(unit->pCharacterData);
+    if (!IsUnitReorderCacheable(unit))
+    {
+        return GetReorderedCharacter(unit->pCharacterData);
+    }
+    struct Vec2u result = GetReorderedCharIDAndTableIDForUnit(unit);
+    const struct CharacterData * table = (const struct CharacterData *)NewGetCharacterData(result.x, result.y);
+    if (!table->portraitId)
+    {
+        return unit->pCharacterData;
+    }
+    return table;
 }
 int GetReorderedUnitID(struct Unit * unit)
 {
-    return GetReorderedCharacter(unit->pCharacterData)->number;
+    return GetReorderedUnit(unit)->number;
 }
 int GetReorderedCharacterPortraitByPortrait(int portraitID)
 {
@@ -3948,37 +4880,11 @@ int GetCharNewPool(const struct CharacterData * table)
         return NoPool;
     }
 
-    if (IsEnemy)
-    {
-        if (MustEnemyStayBoss())
-        {
-            return BossesPool;
-        }
-        if (MustEnemyBecomePlayer())
-        {
-            return PlayerPool;
-        }
-        else
-        {
-            return CombinedPool;
-        }
-    }
-
-    // player
-    if (MustPlayerBecomeBoss())
-    {
-        return BossesPool;
-    }
-    if (CanPlayerBecomeBoss())
-    {
-        return CombinedPool;
-    }
-    else
-    {
-        return PlayerPool;
-    }
-
-    return NoPool;
+    // Every slot draws from the whole pool. What's actually IN that pool - player
+    // tables, boss tables, or a mix - is decided by the game filter screens, which
+    // replaced the old Player Swap / Boss Swap options: unticking every boss table on
+    // "Players From" is what "players stay players" means now.
+    return CombinedPool;
 }
 
 #define UnitListSize 1200
@@ -4923,41 +5829,63 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
     int c = 0;
 
     // proc = proc1;
-    int t = RecruitValues->forcedCharTable;
     int order = GetPlayerRecruitmentOrder();
     if (allegiance == BossesPool)
     {
-        t = RecruitValues->enemyCharTable;
         order = GetEnemyRecruitmentOrder();
     }
-    if (!t && !order)
+
+    // Which character tables this pool draws from - purely the game filter now.
+    // "Players From"/"Enemies From" no longer pick a single game (they're always
+    // "Random"), and Player Swap / Boss Swap are gone, so ticking a game's player table
+    // and/or its boss table on the filter screen is the whole control surface: both
+    // halves are filtered independently out of the same 24-bit word.
+    //
+    // The two halves stay separate lists because they land in one array either side of
+    // c_max, which the VanillaOrder/ReverseOrder paths downstream use as the boundary
+    // between "player-ish" and "boss-ish" entries.
+    int games = NumberOfCharTables >> 1;
+    u8 playerTables[NumberOfGameTags];
+    u8 bossTables[NumberOfGameTags];
+    int playerTableCount = 0;
+    int bossTableCount = 0;
+
+    int limit = (games > NumberOfGameTags) ? NumberOfGameTags : games;
+
+    u32 mask = GetEnabledGamesMask(allegiance);
+    for (int g = 0; g < limit; ++g)
     {
-        if (allegiance == PlayerPool && !CanPlayerBecomeBoss())
+        if (mask & (1u << g))
         {
-            return false;
+            playerTables[playerTableCount++] = g;
         }
-        if (allegiance == BossesPool && !CanEnemyBecomePlayer())
+        if (mask & (1u << (g + NumberOfGameTags)))
         {
-            return false;
+            bossTables[bossTableCount++] = g + games;
         }
     }
-    int end = t + 1;
-
-    int tableID = t;
-    if (t >= NumberOfCharTables)
+    // A half with nothing ticked just contributes nothing - that's how you say "no
+    // bosses in the player pool". Both halves empty would hand the caller an empty
+    // pool though, and it divides by these counts, so that falls back to everything.
+    if (!playerTableCount && !bossTableCount)
     {
-        t = 0;
-        end = NumberOfCharTables >> 1;
+        for (int g = 0; g < limit; ++g)
+        {
+            playerTables[playerTableCount++] = g;
+            bossTables[bossTableCount++] = g + games;
+        }
     }
 
     u8 recruitmentOrder[0x45] = { 0 };
     BuildRecruitmentOrderList(recruitmentOrder, 0);
     int id;
+    int t;
 
     // pool of players
 
-    for (; t < end; ++t)
+    for (int n = 0; n < playerTableCount; ++n)
     {
+        t = playerTables[n];
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
             id = i;
@@ -5014,25 +5942,11 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
         }
     }
 
-    // Now do the same for bosses, but using the boss tables
+    // Now do the same for bosses, but using the boss tables (see bossTables above)
 
-    t = tableID + (NumberOfCharTables >> 1); // from specific game
-    end += (NumberOfCharTables >> 1);
-
-    if (tableID >= NumberOfCharTables) // from game: random
+    for (int n = 0; n < bossTableCount; ++n)
     {
-        t = (NumberOfCharTables >> 1);
-        // end += NumberOfCharTables >> 1;
-    }
-
-    if (!tableID) // from vanilla game
-    {
-        t = 0;
-        end = 1;
-    }
-
-    for (; t < end; ++t)
-    {
+        t = bossTables[n];
         for (int i = 1; i <= MAX_CHAR_ID; ++i)
         {
 
@@ -5048,7 +5962,11 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
             {
                 break;
             }
-            if (IsCharIdInvalidForGame(id) && t)
+            // IsCharIdInvalidForGame marks the ID ranges a custom table has no data for -
+            // vanilla bosses among them. cData[NumberOfCharTables >> 1] is gCharacterData
+            // itself though (there is no separate vanilla boss table, boss-ness comes from
+            // CA_BOSS), so applying it to that table skipped every vanilla boss.
+            if (IsCharIdInvalidForGame(id) && IsNonVanillaCharTable(t))
             {
                 continue;
             }
@@ -5098,16 +6016,13 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
     return true;
 }
 
-u8 SRRBuffer[0x1500]; // 2025B8C + #1200 = 202603C
-RecruitmentProc * InitRandomRecruitmentProc(int procID)
+u8 SRRBuffer[SRRBufferSize] __attribute__((aligned(4))); // 2025B8C + #1200 = 202603C
+void BuildRecruitmentCache(void)
 {
-    // if (ShouldRandomizeUsedCharTable())
-    // {
-    // InitAllGamesRandomRecruitmentProc(procID);
-    // return;
-    // }
     u8 * unit = SRRBuffer;
     u8 * tables = &SRRBuffer[UnitListSize];
+    u8 * cacheChars = GetRecruitmentCacheChars();
+    u8 * cacheTables = GetRecruitmentCacheTables();
 
     // u8 * combinedUnit = SRRBuffer;
 
@@ -5128,38 +6043,11 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     int b = 0; // bosses count
     int seed = RandValues->seed;
 
-    RecruitmentProc * proc1 = Proc_Start(RecruitmentProcCmd1, PROC_TREE_3);
-    RecruitmentProc * proc2 = Proc_Start(RecruitmentProcCmd2, PROC_TREE_3);
-    RecruitmentProc * proc3 = Proc_Start(RecruitmentProcCmd3, PROC_TREE_3);
-    RecruitmentProc * proc4 = Proc_Start(RecruitmentProcCmd4, PROC_TREE_3);
-    RecruitmentProc * proc5 = Proc_Start(RecruitmentProcCmd5, PROC_TREE_3);
-    RecruitmentProc * proc6 = Proc_Start(RecruitmentProcCmd6, PROC_TREE_3);
-    RecruitmentProc * proc7 = Proc_Start(RecruitmentProcCmd7, PROC_TREE_3);
-    RecruitmentProc * proc8 = Proc_Start(RecruitmentProcCmd8, PROC_TREE_3);
-    RecruitmentProc * proc = proc1;
-    RecruitmentProc * tableProc = proc5;
-    proc->id[0] = 0;
-
-    for (int i = 1; i <= MAX_CHAR_ID; ++i)
+    for (int i = 0; i < RecruitmentCacheEntries; ++i)
     {
-        if (i == 0x40)
-        {
-            proc = proc2;
-            tableProc = proc6;
-        }
-        if (i == 0x80)
-        {
-            proc = proc3;
-            tableProc = proc7;
-        }
-        if (i == 0xC0)
-        {
-            proc = proc4;
-            tableProc = proc8;
-        }
-        proc->id[i & 0x3F] = 0x0;
+        cacheChars[i] = 0;
+        cacheTables[i] = 0;
     }
-    proc = proc1;
 
     struct Vec2u counter_val = { 0, 0 };
     struct Vec2u * counter = &counter_val;
@@ -5180,8 +6068,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
     int d_max = d;
     int num;
     u32 rn = 0;
-    proc = proc1;
-    tableProc = proc5;
     int id = 0;
     u8 recruitmentOrder[0x45] = { 0 };
     BuildRecruitmentOrderList(recruitmentOrder, 0);
@@ -5193,16 +6079,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         for (int i = 0; i < 0x45; ++i)
         {
             id = recruitmentOrder[i];
-            if (id < 0x40)
-            {
-                proc = proc1;
-                tableProc = proc5;
-            }
-            else
-            {
-                proc = proc2;
-                tableProc = proc6;
-            }
             table = GetCharacterData(id);
             if (GetCharOriginalPool(table) != PlayerPool)
             {
@@ -5234,21 +6110,21 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     {
                         num = c; // reverse, so always last in list
                     }
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[c];
-                            tables[c] = tableProc->id[(id & 0x3F) - 1];
+                            tables[c] = cacheTables[id - 1];
                         }
                         unit[num] = unit[c]; // move last entry to one we just used
-                        unit[c] = proc->id[(id & 0x3F) - 1];
+                        unit[c] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -5273,21 +6149,21 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     {
                         num = b + c_max; // reverse, so always last in list
                     }
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[b + c_max];
-                            tables[b + c_max] = tableProc->id[(id & 0x3F) - 1];
+                            tables[b + c_max] = cacheTables[id - 1];
                         }
                         unit[num] = unit[b + c_max]; // move last entry to one we just used
-                        unit[b + c_max] = proc->id[(id & 0x3F) - 1];
+                        unit[b + c_max] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -5331,21 +6207,21 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         RandomlyOrdered = false;
                     }
 
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
                     if (RandomlyOrdered)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[d];
-                            tables[d] = tableProc->id[(id & 0x3F) - 1];
+                            tables[d] = cacheTables[id - 1];
                         }
                         unit[num] = unit[d]; // move last entry to one we just used
-                        unit[d] = proc->id[(id & 0x3F) - 1];
+                        unit[d] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -5375,27 +6251,6 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
         for (int i = 0; i < MAX_CHAR_ID; ++i)
         {
             id = i + 1;
-
-            if (id < 0x40)
-            {
-                proc = proc1;
-                tableProc = proc5;
-            }
-            if (id >= 0x40)
-            {
-                proc = proc2;
-                tableProc = proc6;
-            }
-            if (id >= 0x80)
-            {
-                proc = proc3;
-                tableProc = proc7;
-            }
-            if (id >= 0xC0)
-            {
-                proc = proc4;
-                tableProc = proc8;
-            }
             table = GetCharacterData(id);
             if (GetCharOriginalPool(table) != BossesPool)
             {
@@ -5434,21 +6289,21 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     {
                         num = c; // reverse, so always last in list
                     }
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[c];
-                            tables[c] = tableProc->id[(id & 0x3F) - 1];
+                            tables[c] = cacheTables[id - 1];
                         }
                         unit[num] = unit[c]; // move last entry to one we just used
-                        unit[c] = proc->id[(id & 0x3F) - 1];
+                        unit[c] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -5473,21 +6328,21 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     {
                         num = b + c_max; // reverse, so always last in list
                     }
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
                     if (order == RandomOrder)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[b + c_max];
-                            tables[b + c_max] = tableProc->id[(id & 0x3F) - 1];
+                            tables[b + c_max] = cacheTables[id - 1];
                         }
                         unit[num] = unit[b + c_max]; // move last entry to one we just used
-                        unit[b + c_max] = proc->id[(id & 0x3F) - 1];
+                        unit[b + c_max] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -5531,23 +6386,23 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                         RandomlyOrdered = false;
                     }
 
-                    proc->id[(id & 0x3F) - 1] = unit[num]; // proc + offset set to nth char
+                    cacheChars[id - 1] = unit[num]; // proc + offset set to nth char
                     if (tables[num] != 0xFF)
                     {
-                        tableProc->id[(id & 0x3F) - 1] = tables[num];
+                        cacheTables[id - 1] = tables[num];
                     }
 
                     if (RandomlyOrdered)
                     {
                         if (tables[num] != 0xFF)
                         {
-                            tableProc->id[(id & 0x3F) - 1] = tables[num];
+                            cacheTables[id - 1] = tables[num];
                             tables[num] = tables[d];
-                            tables[d] = tableProc->id[(id & 0x3F) - 1];
+                            tables[d] = cacheTables[id - 1];
                         }
 
                         unit[num] = unit[d]; // move last entry to one we just used
-                        unit[d] = proc->id[(id & 0x3F) - 1];
+                        unit[d] = cacheChars[id - 1];
                     }
                     break;
                 }
@@ -5563,94 +6418,28 @@ RecruitmentProc * InitRandomRecruitmentProc(int procID)
                     // }
                     //// if (b < 0) { proc->id[(i&0x3F)-1] = 0xFD; continue; }
                     // num = HashByte_Simple(rn, b);
-                    // proc->id[(id & 0x3F) - 1] = bosses[num];
+                    // cacheChars[id - 1] = bosses[num];
                     // bosses[num] = bosses[b]; // move last entry to one we just used
-                    // bosses[b] = proc->id[(id & 0x3F) - 1];
+                    // bosses[b] = cacheChars[id - 1];
                     // break;
                     // }
             }
         }
     }
 
-    proc = proc1;
-    tableProc = proc5;
-
     // now copy stuff over to account for duplicate characters
     for (int i = 1; i < MAX_CHAR_ID; ++i)
     {
-        if (i >= 0x40)
-        {
-            proc = proc2;
-            tableProc = proc6;
-        }
-        if (i >= 0x80)
-        {
-            proc = proc3;
-            tableProc = proc7;
-        }
-        if (i >= 0xC0)
-        {
-            proc = proc4;
-            tableProc = proc8;
-        }
         table = GetCharacterData(i); // check for morphs and duplicates in vanilla table
         num = GetAdjustedCharacterID(table);
         if (num != (i + 1))
         {
-            switch (num >> 6)
-            {
-                case 0:
-                {
-                    proc->id[(i & 0x3F) - 1] = proc1->id[(num & 0x3F) - 1];
-                    break;
-                }
-                case 1:
-                {
-                    proc->id[(i & 0x3F) - 1] = proc2->id[(num & 0x3F) - 1];
-                    break;
-                }
-                case 2:
-                {
-                    proc->id[(i & 0x3F) - 1] = proc3->id[(num & 0x3F) - 1];
-                    break;
-                }
-                case 3:
-                {
-                    proc->id[(i & 0x3F) - 1] = proc4->id[(num & 0x3F) - 1];
-                    break;
-                }
-                default:
-            }
+            cacheChars[i - 1] = cacheChars[num - 1];
         }
-        //}
     }
 
-    // #endif
-    switch (procID)
-    {
-        case 0:
-        {
-            return proc1;
-            break;
-        }
-        case 1:
-        {
-            return proc2;
-            break;
-        }
-        case 2:
-        {
-            return proc3;
-            break;
-        }
-        case 3:
-        {
-            return proc4;
-            break;
-        }
-        default:
-    }
-    return NULL;
+    *GetRecruitmentCacheStampSlot() = GetRecruitmentCacheStamp();
+    *GetRecruitmentCacheMagic() = RecruitmentCacheMagic;
 }
 
 void HbPopulate_SSCharacter(struct HelpBoxProc * proc) // fe7 0x80816FC fe6 0x80704DC
@@ -5807,7 +6596,7 @@ u16 GetItemAfterUse(int item)
 
 int GetItemUses(int item)
 {
-    if ((GetItemAttributes(item) & IA_UNBREAKABLE) || RandBitflags->itemDur)
+    if ((GetItemAttributes(item) & IA_UNBREAKABLE))
         return 0xFF;
     else
         return (item & 0xFF00) >> 8;
@@ -5815,7 +6604,7 @@ int GetItemUses(int item)
 
 int GetItemMaxUses(int item)
 {
-    if ((GetItemAttributes(item) & IA_UNBREAKABLE) || RandBitflags->itemDur)
+    if ((GetItemAttributes(item) & IA_UNBREAKABLE))
         return 0xFF;
     else
         return GetItemData(item & 0xFF)->maxUses;
@@ -6025,11 +6814,13 @@ extern void StartBgm(int songId, struct Proc * proc);
 extern int GetCurrentBgmSong(void);
 extern void Sound_FadeOutBGM(int speed);
 extern void StartBgmExt(int songId, int speed, struct Proc * proc);
-void StartMapSongBgm(void)
+#ifndef FE8
+void StartMapSongBgm(void)      // fe8 is now in debugger
 {                               // 8015F84, 80163E4
     StartBgm(GetBGMTrack(), 0); // 8003890, 8003210
     return;
 }
+#endif
 struct PhaseIntroSubProc
 {
     PROC_HEADER;
@@ -6041,6 +6832,7 @@ extern u8 gSfx;
 #define PlaySoundEffect(id)                                                                                            \
     if (!(gSfx & 0x2))                                                                                                 \
     m4aSongNumStart((id)) // 80BE594, 809C860
+#ifndef FE8               // now in debugger
 void PhaseIntroInitText(struct PhaseIntroSubProc * proc)
 {
     if (GetCurrentBgmSong() != GetBGMTrack()) // 80034DC, 8002F68
@@ -6058,7 +6850,9 @@ void PhaseIntroInitText(struct PhaseIntroSubProc * proc)
 
     proc->timer = 15;
 }
+#endif
 //! FE8U = 0x080328B0
+#ifndef FE8 // // fe8 is now in debugger
 void sub_80328B0(void)
 {
     int bgmIdx = GetBGMTrack();
@@ -6070,6 +6864,7 @@ void sub_80328B0(void)
 
     return;
 }
+#endif
 extern unsigned GetGameClock(void); // 8000F14
 extern u16 const gObject_8x8[];     // 85c39A0 8B905B0
 
@@ -6665,45 +7460,731 @@ struct gCharPal_EntryStruct
 
 extern const struct gCharPal_EntryStruct * const gCharPal[];
 extern s16 gBanimUniquePal[2];
-const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
+
+int GetPromotedClass(const struct ClassData * data);
+
+// Whether a gCharPal slot registered under registeredClassID counts as a match for
+// classID. Exact class only: matching one promotion step either way was tried and taken
+// back out, because a base-tier and promoted-tier recolor of the same character are
+// usually the same palette, and accepting both filled the list with duplicates.
+static bool DoesCharPalClassMatch(int registeredClassID, int classID)
+{
+    if (!registeredClassID)
+    {
+        return false;
+    }
+    return registeredClassID == classID;
+}
+
+extern const int NumberOfPalCharTables;
+u32 GetNthRN_Simple(int n, u32 seed, u32 currentRN);
+
+extern const int NumberOfPalCharTables;
+u32 GetNthRN_Simple(int n, u32 seed, u32 currentRN);
+u32 HashByte_Simple(u32 rn, int max);
+
+// One walk over every palette in gCharPal, from any character in any game, whose class
+// matches classID. Returns the total and, through ownIndex, where the first one drawn for
+// THIS character in THIS game sits - their own recolor, which always wins when it exists.
+// ownIndex comes back -1 when they have none for this class.
+int ScanClassMatchingCharPals(int classID, int adjustedCharID, int tableID, int * ownIndex, const u16 ** ownPal)
+{
+    int count = 0;
+    *ownIndex = -1;
+    *ownPal = NULL;
+    for (int t = 0; t < NumberOfPalCharTables; ++t)
+    {
+        const struct gCharPal_EntryStruct * entry = gCharPal[t];
+        if (!entry)
+        {
+            continue;
+        }
+        while (entry->charID)
+        {
+            int isOwn = (t == tableID) && (entry->charID == adjustedCharID);
+            for (int i = 0; i < NumOfCharPals; ++i)
+            {
+                if (entry->pal[i] && DoesCharPalClassMatch(entry->classID[i], classID))
+                {
+                    if (isOwn && *ownIndex < 0)
+                    {
+                        *ownIndex = count;
+                        *ownPal = entry->pal[i]; // saves the second walk in the common case
+                    }
+                    count++;
+                }
+            }
+            entry++;
+        }
+    }
+    return count;
+}
+
+const u16 * GetNthClassMatchingCharPal(int classID, int index)
+{
+    if (index < 0)
+    {
+        return NULL;
+    }
+    for (int t = 0; t < NumberOfPalCharTables; ++t)
+    {
+        const struct gCharPal_EntryStruct * entry = gCharPal[t];
+        if (!entry)
+        {
+            continue;
+        }
+        while (entry->charID)
+        {
+            for (int i = 0; i < NumOfCharPals; ++i)
+            {
+                if (entry->pal[i] && DoesCharPalClassMatch(entry->classID[i], classID))
+                {
+                    if (!index--)
+                    {
+                        return entry->pal[i];
+                    }
+                }
+            }
+            entry++;
+        }
+    }
+    return NULL;
+}
+
+// Their own recolor for this class if one exists, else a stable pick among everyone
+// elses for that class. -1 when gCharPal holds nothing for this class at all. The pick is
+// seeded on the run seed plus who and what class, so it is the same palette every battle
+// and would survive a soft reset even if it were not written down.
+// Returns the palette and, through outIndex, where it sits in the class-matching list.
+// The index is what gets stored (the revise screen and the debugger preview resolve
+// stored values by index); the pointer is what gets cached, so nothing has to resolve it
+// again later. Walking gCharPal twice is only needed when the character has no recolor of
+// their own for this class - otherwise the counting pass already found the answer.
+const u16 * PickAutoCharPal(int classID, int adjustedCharID, int tableID, int seedKey, int * outIndex)
+{
+    int own = -1;
+    const u16 * ownPal = NULL;
+    int count = ScanClassMatchingCharPals(classID, adjustedCharID, tableID, &own, &ownPal);
+    if (!count)
+    {
+        *outIndex = -1;
+        return NULL;
+    }
+    if (own >= 0)
+    {
+        *outIndex = own;
+        return ownPal;
+    }
+    *outIndex = HashByte_Simple(GetNthRN_Simple(seedKey, RandValues->seed, classID), count);
+    return GetNthClassMatchingCharPal(classID, *outIndex);
+}
+
+const u16 * ResolveAutoCharPal(int classID, int storedValue)
+{
+    if (storedValue < AutoCharPalBase)
+    {
+        return NULL;
+    }
+    return GetNthClassMatchingCharPal(classID, storedValue - AutoCharPalBase);
+}
+
+// Janky recolors everyone, so it wants the whole ladder. Vanilla Colours still wants the
+// matching recolors and a class-appropriate stand-in when there is none - it just stops
+// short of the last rung, so a character palette never lands on a class it was never
+// drawn for (no Chrom palette on a chicken); it falls back to generic instead.
+void EnsurePalCaches(void);
+
+int ShouldAutoAssignCharPal(void)
+{
+    return RandBitflags->colours == 0 || RandBitflags->colours == 2;
+}
+
+// Fills gCharPalOverride for a player-slot character at unit load, and again whenever they
+// are in a different class than the one the stored index was chosen for - an index only
+// means anything against its own class, so promotion has to re-pick. A value the revise
+// screen wrote (below AutoCharPalNone) is left alone: a deliberate choice outranks a
+// generated one.
+void MaybeAutoAssignCharPal(int charID, int classID, int adjustedCharID, int tableID)
+{
+    if (charID <= 0 || charID >= CharPalOverrideEntries || classID <= 0)
+    {
+        return;
+    }
+    if (!ShouldAutoAssignCharPal())
+    {
+        return;
+    }
+    EnsurePalCaches();
+    u16 * overrides = GetCharPalOverrideArray();
+    u8 * classes = GetCharPalClassArray();
+    int stored = overrides[charID];
+    if (stored && stored < AutoCharPalNone)
+    {
+        return; // picked on the revise screen
+    }
+    if (stored && classes[charID] == (u8)classID)
+    {
+        return; // already generated, and still for the class they are in
+    }
+    int index;
+    const u16 * pal = PickAutoCharPal(classID, adjustedCharID, tableID, charID, &index);
+    overrides[charID] = (index < 0) ? AutoCharPalNone : (u16)(AutoCharPalBase + index);
+    classes[charID] = (u8)classID;
+    GetCharPalPtrCache()[charID] = pal;
+}
+
+// Enemies cannot use that array at all: several of them share one character id, so this
+// cache is keyed by unit index instead (gUnitArrayRed holds 50, and FACTION_RED indices
+// run from 0x81, hence & 0x3F). Resolved once as the unit loads, so the scan does not land
+// in the middle of a battle animation starting.
+//
+// The key is charID << 8 | classID because a mid-chapter save load restores units without
+// going through UnitInitFromDefinition, so a slot has to be able to say whether it still
+// describes the unit asking. The magic word guards the same thing the recruitment cache
+// magic does: this is fixed RAM, so it holds whatever was there on boot.
+#define EnemyPalCacheMagic 0x53525250u // SRRP
+u32 * GetEnemyPalCacheMagic(void)
+{
+    return (u32 *)&SRRBuffer[EnemyPalCacheMagicOffset];
+}
+
+// All of this is fixed RAM, so on a cold boot it holds whatever was there - and a stored
+// value between 1 and AutoCharPalNone reads as "the player chose this on the revise
+// screen", which would wedge automatic assignment off for that character permanently. The
+// seed is folded into the magic so a reroll also starts everyone over: the characters
+// behind those slots have all changed, so the picks (deliberate ones included, since they
+// were made for the old seed) no longer describe anything.
+void EnsurePalCaches(void)
+{
+    u32 expected = EnemyPalCacheMagic + (u32)RandValues->seed;
+    if (*GetEnemyPalCacheMagic() == expected)
+    {
+        return;
+    }
+    u16 * keys = GetEnemyPalCacheKeys();
+    for (int i = 0; i < EnemyPalCacheEntries; ++i)
+    {
+        keys[i] = 0;
+    }
+    u16 * overrides = GetCharPalOverrideArray();
+    u8 * classes = GetCharPalClassArray();
+    const u16 ** pals = GetCharPalPtrCache();
+    for (int i = 0; i < CharPalOverrideEntries; ++i)
+    {
+        // A value in (0, AutoCharPalNone) is a deliberate revise-screen choice, loaded
+        // straight out of SRAM into this same array (see GetCharPalOverrideArray) - it
+        // never touches classes[]/pals[] (ComputeUniqueCharPal resolves it fresh via
+        // ResolveCharPalOverride every time), so nothing about it is stale RAM state.
+        // Wiping it here would silently discard the player's setting on every cold boot,
+        // since this magic word itself lives in plain RAM and never matches on power-on.
+        // Only the auto-assigned band (>= AutoCharPalNone) caches a raw pointer/class that
+        // really can be garbage after a reboot and needs regenerating.
+        if (overrides[i] > 0 && overrides[i] < AutoCharPalNone)
+        {
+            continue;
+        }
+        overrides[i] = 0;
+        classes[i] = 0;
+        pals[i] = NULL;
+    }
+    for (int i = 0; i < UniquePalMemoSlots; ++i)
+    {
+        u32 * memo = GetUniquePalMemo(i);
+        memo[0] = 0;
+        memo[1] = 0;
+        memo[2] = 0;
+    }
+    *GetEnemyPalCacheMagic() = expected;
+}
+
+const u16 * GetEnemyCharPal(struct Unit * unit, int classID, int adjustedCharID, int tableID)
+{
+    if (!ShouldAutoAssignCharPal() || classID <= 0 || adjustedCharID <= 0)
+    {
+        return NULL;
+    }
+    int slot = unit->index & 0x3F;
+    if (slot >= EnemyPalCacheEntries)
+    {
+        return NULL;
+    }
+    EnsurePalCaches();
+    u16 key = (u16)(((adjustedCharID & 0xFF) << 8) | (classID & 0xFF));
+    if (GetEnemyPalCacheKeys()[slot] != key)
+    {
+        // seeded on the unit index, not the character - two enemies sharing a character id
+        // should not both end up in the same borrowed palette
+        int index;
+        GetEnemyPalCache()[slot] = PickAutoCharPal(classID, adjustedCharID, tableID, unit->index + 0x100, &index);
+        GetEnemyPalCacheKeys()[slot] = key;
+    }
+    return GetEnemyPalCache()[slot];
+}
+
+// Called from UnitInitFromDefinition, so the scanning happens while a unit loads rather
+// than when a battle animation starts.
+void SetUnitPalCache(struct Unit * unit)
+{
+    if (!ShouldAutoAssignCharPal())
+    {
+        return;
+    }
+    if (!unit->pCharacterData || !unit->pClassData || !unit->pCharacterData->portraitId)
+    {
+        return;
+    }
+    struct Vec2u adjusted = GetReorderedCharIDAndTableID(unit->pCharacterData);
+    int classID = unit->pClassData->number;
+    if (UNIT_FACTION(unit) == FACTION_RED)
+    {
+        GetEnemyCharPal(unit, classID, adjusted.x, adjusted.y);
+        return;
+    }
+    MaybeAutoAssignCharPal(unit->pCharacterData->number, classID, adjusted.x, adjusted.y);
+}
+
+// FE8-only, same as the revise-palette screen further up - see the #ifdef FE8 there.
+#ifdef FE8
+// Player-set override for the palette a character uses in battle, indexed by the
+// character's ORIGINAL (recruit-slot) charID - never the reordered/game-table-adjusted
+// id, since a slot only ever has one of these regardless of which game's portrait/name
+// it's currently displaying (see GetReviseCharID()). 0 = no override (fall back to the
+// normal GetUniqueCharPal lookup below). A nonzero value V selects flat option (V - 1)
+// out of every gCharPal palette registered for the character's CURRENT class (or a class
+// one promotion away from it) - see GetNthCharPalForClassID(). Storage/SRAM placement is
+// handled elsewhere.
+extern u16 gCharPalOverride[0x46];
+
+// Debugger/C_Code.c calls this instead of reading gCharPalOverride directly, so the array
+// only ever needs a single SET_DATA in THIS project's Definitions.s - no more keeping a
+// second copy of the address in sync across two separate projects' Definitions.s files
+// (see the "gCharPalOverride is ALSO defined in..." incident this replaces).
+u16 GetCharPalOverride(int charID)
+{
+    if (charID <= 0 || charID >= 0x46)
+    {
+        return 0;
+    }
+    return gCharPalOverride[charID];
+}
+
+// Debugger/C_Code.c calls these two (given origCharID from unit->pCharacterData, same as
+// GetCharPalOverride's argument) to get the adjusted charID/tableID GetNthCharPalForClassID
+// needs for tier 1 of its buffer - see GetReviseAdjustedCharAndTable() for the menu-side
+// equivalent, and the comment on GetUniqueCharPal()'s override lookup for why this is a
+// DIFFERENT id than GetCharPalOverride's.
+int GetAdjustedCharID(int origCharID)
+{
+    if (origCharID <= 0 || origCharID == 0xFF)
+    {
+        return 0;
+    }
+    return GetReorderedCharIDAndTableID(GetCharacterData(origCharID)).x;
+}
+
+int GetAdjustedCharTableID(int origCharID)
+{
+    if (origCharID <= 0 || origCharID == 0xFF)
+    {
+        return -1;
+    }
+    return GetReorderedCharIDAndTableID(GetCharacterData(origCharID)).y;
+}
+
+// A full gCharPal scan (every entry in every table, each slot checked against classID
+// via DoesCharPalClassMatch, which itself walks a class promotion chain) is too slow to
+// redo on every single call - the revise-pal screen calls CountCharPalOptionsForClassID
+// unconditionally every frame it's open. (classID, adjustedCharID, tableID) never change
+// while that screen is up for a given character (see GetReviseClassID()/
+// GetReviseAdjustedCharAndTable()), so instead this buffers the matching palettes for
+// whichever combination was scanned last, and only rescans when it actually changes;
+// every other call (i.e. nearly every frame) just reads the buffer built on the first one.
+// Fixed RAM, see Definitions.s (SET_DATA) - sCharPalOptionsBuilt 0x20287bc, then
+// gCharPalOverride 0x20287c0, sCharPalOptionsBuffer 0x20288c0 (0x200 bytes, 128 pointers),
+// sCharPalOptionsCount 0x2028ac0, sCharPalOptionsClassID 0x2028ac4, sCharPalOptionsCharID
+// 0x2028ac8, sCharPalOptionsTableID 0x2028acc.
+// NB: this RAM is NOT zero-initialised, and GetUniqueCharPal() reads through this cache
+// during real battles, not just on the config screen. A plain true/false "built" flag
+// would therefore be trusted on the strength of whatever garbage happened to be sitting
+// at 0x20287bc on boot - and if the cache key's garbage happened to match the query, the
+// lookup would hand back pointers out of a buffer that was never filled. The full 32-bit
+// magic below makes that effectively impossible.
+#define CharPalOptionsBufferMax 128
+extern const u16 * sCharPalOptionsBuffer[CharPalOptionsBufferMax];
+extern int sCharPalOptionsCount;
+extern int sCharPalOptionsClassID;
+extern u32 sCharPalOptionsBuilt;
+extern int sCharPalOptionsCharID;
+extern int sCharPalOptionsTableID;
+
+// Fills the buffer in two tiers, in priority order:
+//  1. Palettes registered specifically for (adjustedCharID, tableID) - the exact character
+//     this slot currently represents, in the exact game its portrait/name is drawn from.
+//     Normally just a handful (at most NumOfCharPals, from that one gCharPal entry).
+//  2. Every other gCharPal palette, from any character in any table, whose class matches
+//     classID (see DoesCharPalClassMatch) - "scroll through ALL palettes, from ALL games".
+//     The (tableID, adjustedCharID) entry tier 1 already fully covered is skipped here so
+//     nothing appears twice.
+// adjustedCharID <= 0 (or tableID out of range) skips tier 1 entirely - GetReviseAdjusted
+// CharAndTable()/GetAdjustedCharID() etc. return that when there's nothing to look up yet.
+static void RebuildCharPalOptionsBuffer(int classID, int adjustedCharID, int tableID)
+{
+    sCharPalOptionsClassID = classID;
+    sCharPalOptionsCharID = adjustedCharID;
+    sCharPalOptionsTableID = tableID;
+    sCharPalOptionsBuilt = CharPalOptionsBuiltMagic;
+    sCharPalOptionsCount = 0;
+
+    if (classID <= 0)
+    {
+        return;
+    }
+
+    if (adjustedCharID > 0 && tableID >= 0 && tableID < NumberOfPalCharTables)
+    {
+        const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
+        if (entry)
+        {
+            while (entry->charID)
+            {
+                if (entry->charID == adjustedCharID)
+                {
+                    for (int i = 0; i < NumOfCharPals && sCharPalOptionsCount < CharPalOptionsBufferMax; ++i)
+                    {
+                        if (entry->pal[i] && DoesCharPalClassMatch(entry->classID[i], classID))
+                        {
+                            sCharPalOptionsBuffer[sCharPalOptionsCount++] = entry->pal[i];
+                        }
+                    }
+                    break; // one entry per charID per table, same assumption GetUniqueCharPal makes
+                }
+                entry++;
+            }
+        }
+    }
+
+    for (int t = 0; t < NumberOfPalCharTables && sCharPalOptionsCount < CharPalOptionsBufferMax; ++t)
+    {
+        const struct gCharPal_EntryStruct * entry = gCharPal[t];
+        if (!entry)
+        {
+            continue;
+        }
+        while (entry->charID && sCharPalOptionsCount < CharPalOptionsBufferMax)
+        {
+            if (t == tableID && entry->charID == adjustedCharID)
+            {
+                entry++;
+                continue; // already added by tier 1 above
+            }
+            for (int i = 0; i < NumOfCharPals && sCharPalOptionsCount < CharPalOptionsBufferMax; ++i)
+            {
+                if (entry->pal[i] && DoesCharPalClassMatch(entry->classID[i], classID))
+                {
+                    sCharPalOptionsBuffer[sCharPalOptionsCount++] = entry->pal[i];
+                }
+            }
+            entry++;
+        }
+    }
+}
+
+static void EnsureCharPalOptionsBuffer(int classID, int adjustedCharID, int tableID)
+{
+    if (sCharPalOptionsBuilt == CharPalOptionsBuiltMagic && sCharPalOptionsClassID == classID &&
+        sCharPalOptionsCharID == adjustedCharID && sCharPalOptionsTableID == tableID)
+    {
+        return;
+    }
+    RebuildCharPalOptionsBuffer(classID, adjustedCharID, tableID);
+}
+
+// index is 0-based into the buffer RebuildCharPalOptionsBuffer() built - tier 1
+// (adjustedCharID/tableID's own palettes) first, then tier 2 (every other class-matching
+// palette, from every table). See RebuildCharPalOptionsBuffer() for the exact ordering.
+const u16 * GetNthCharPalForClassID(int classID, int adjustedCharID, int tableID, int index)
+{
+    EnsureCharPalOptionsBuffer(classID, adjustedCharID, tableID);
+    if (index < 0 || index >= sCharPalOptionsCount)
+    {
+        return NULL;
+    }
+    return sCharPalOptionsBuffer[index];
+}
+
+int CountCharPalOptionsForClassID(int classID, int adjustedCharID, int tableID)
+{
+    EnsureCharPalOptionsBuffer(classID, adjustedCharID, tableID);
+    return sCharPalOptionsCount;
+}
+
+// Every (table, entry, slot) triple across ALL of gCharPal with a non-NULL palette, in
+// table/entry/slot order - no class filtering, no character filtering, nothing. This is
+// the "scroll through ALL palettes, from ALL games" mode.
+//
+// gCharPalCounts lets whole tables be skipped arithmetically instead of walked: only the
+// one table the index actually falls inside gets scanned. That matters because there are
+// ~4000 palettes across ~24 tables, and this used to walk every entry of every preceding
+// table (~4000 entries x 11 slots) for a high index - enough to drop frames while a scroll
+// input was held.
+//
+// Deliberately still walks entries WITHIN the target table rather than indexing straight to
+// entry[index]: that shortcut would assume exactly one palette per palEntry, which is true
+// of everything ProcessCSV.py generates today but is not enforced by the data format (the
+// palEntry macro takes up to 11 classes/palettes). Skipping tables needs no such assumption
+// - it only trusts the counts - and already removes almost all of the work.
+const u16 * GetNthRawCharPal(int index)
+{
+    if (index < 0)
+    {
+        return NULL;
+    }
+    for (int t = 0; t < NumberOfPalCharTables; ++t)
+    {
+        int tableCount = gCharPalCounts[t];
+        if (index >= tableCount)
+        {
+            index -= tableCount; // whole table skipped without touching it
+            continue;
+        }
+
+        const struct gCharPal_EntryStruct * entry = gCharPal[t];
+        if (!entry)
+        {
+            continue;
+        }
+        while (entry->charID)
+        {
+            for (int i = 0; i < NumOfCharPals; ++i)
+            {
+                if (entry->pal[i])
+                {
+                    if (index == 0)
+                    {
+                        return entry->pal[i];
+                    }
+                    --index;
+                }
+            }
+            entry++;
+        }
+        // Only reachable if gCharPalCounts[t] overcounted this table (it and gCharPal are
+        // generated together, so this means they have drifted out of sync).
+        return NULL;
+    }
+    return NULL;
+}
+
+// Total palettes reachable in raw mode. Just sums the ~24 ROM shorts, which is cheap
+// enough to need no caching at all - the old version walked all ~4000 entries and so had
+// to cache its result in fixed RAM (sRawCharPalCount/sRawCharPalCountBuilt, both now gone).
+//
+// Summed from gCharPalCounts rather than read from master.event's gCharPalTotalPals so it
+// stays correct automatically: which tables gCharPal actually references is decided by
+// Installer.event's #ifndef guards, and this array is built right alongside that list.
+int GetRawCharPalCount(void)
+{
+    int count = 0;
+    for (int t = 0; t < NumberOfPalCharTables; ++t)
+    {
+        count += gCharPalCounts[t];
+    }
+    return count;
+}
+
+// Only called on the rare LEFT-from-Default transition (LoopReviseCharPalPage), to find
+// where raw mode's last entry is so wrapping around lands there instead of skipping raw
+// mode entirely.
+int FindLastRawCharPalIndex(void)
+{
+    return GetRawCharPalCount() - 1;
+}
+
+// Resolves a gCharPalOverride[]-style stored value against (classID, adjustedCharID,
+// tableID) - see the encoding comment near RawCharPalOverrideBase's #define. Shared by
+// GetUniqueCharPal (real battles, below) and Debugger/C_Code.c's GetDebuggerCharPalOverride
+// (the live preview), so the two can never disagree on what a stored value resolves to -
+// exactly the kind of drift that broke this feature once already.
+const u16 * ResolveCharPalOverride(int classID, int adjustedCharID, int tableID, int storedValue)
+{
+    if (storedValue <= 0)
+    {
+        return NULL;
+    }
+    // automatic band first: it sits above the raw band, so checking raw first would send
+    // an auto value off to GetNthRawCharPal and hand back an unrelated palette
+    if (storedValue >= AutoCharPalNone)
+    {
+        return ResolveAutoCharPal(classID, storedValue);
+    }
+    if (storedValue >= RawCharPalOverrideBase)
+    {
+        return GetNthRawCharPal(storedValue - RawCharPalOverrideBase);
+    }
+    return GetNthCharPalForClassID(classID, adjustedCharID, tableID, storedValue - 1);
+}
+#endif // FE8 - gCharPalOverride lookup/resolution
+
+const u16 * ComputeUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
 {
     if (!VeslyBuildfile_Link)
     {
         return NULL;
     }
+    // Override VALUE is keyed by the character's ORIGINAL (recruit-slot) id - the same id
+    // the revise-palette screen writes with (GetReviseCharID) - NOT the `charID` parameter.
+    // Both battle call sites pass GetReorderedCharIDAndTableID().x there, which is the
+    // character this slot was randomised INTO (pidStats->newCharID), so indexing THAT by
+    // charID reads a slot the menu never wrote. unit->pCharacterData->number is still the
+    // original id: the reordering is resolved at display time rather than baked into the
+    // unit, which is exactly why GetReorderedCharIDAndTableID() can take pCharacterData and
+    // derive the new id from it.
+    //
+    // The (charID, tableID) PARAMETERS, on the other hand, already ARE that adjusted
+    // id/table (see above) - exactly what ScanClassMatchingCharPals needs to recognise a
+    // palette as the character's own, no recomputing required.
+    int overrideCharID = unit->pCharacterData->number;
+    int classID = unit->pClassData->number;
+
+    if (UNIT_FACTION(unit) == FACTION_RED)
+    {
+        // enemies share character ids, so they are cached per unit index instead - normally
+        // already filled by SetUnitPalCache when the unit loaded
+        const u16 * enemyPal = GetEnemyCharPal(unit, classID, charID, tableID);
+        if (enemyPal)
+        {
+            gBanimUniquePal[pos] = 0;
+            return enemyPal;
+        }
+    }
+    else if (overrideCharID > 0 && overrideCharID < CharPalOverrideEntries)
+    {
+        // normally a no-op: SetUnitPalCache filled this at load. It still runs here because
+        // a class change since then has to re-pick, and that is cheapest to notice at the
+        // point of use.
+        MaybeAutoAssignCharPal(overrideCharID, classID, charID, tableID);
+        int stored = GetCharPalOverrideArray()[overrideCharID];
+        const u16 * overridePal = NULL;
+        if (stored >= AutoCharPalNone)
+        {
+            // MaybeAutoAssignCharPal above has just guaranteed this is current: it
+            // re-picks whenever the class no longer matches the one it was chosen for.
+            // Resolving the index instead would walk all of gCharPal on every battle.
+            overridePal = GetCharPalPtrCache()[overrideCharID];
+        }
+#ifdef FE8
+        // the filtered/raw bands belong to the revise screen, which is FE8-only
+        else if (stored)
+        {
+            overridePal = ResolveCharPalOverride(classID, charID, tableID, stored);
+        }
+#endif
+        if (overridePal)
+        {
+            gBanimUniquePal[pos] = 0;
+            return overridePal;
+        }
+    }
+
+    // Nothing assigned, or nothing in gCharPal was drawn for this class. Janky still falls
+    // back to the character's own default recolor; Vanilla Colours deliberately does not,
+    // and drops through to the generic palette.
     const struct gCharPal_EntryStruct * entry = gCharPal[tableID];
     const u16 * pal = NULL;
+    const u16 * jankyPal = NULL;
     if (!entry) // no pointer
     {
         return NULL;
     }
-
-    int classID = unit->pClassData->number;
+    // int timeToBreak = false;
+    int shouldBreak = false;
     while (entry->charID)
     {
         if (entry->charID == charID)
         {
-            if (RandBitflags->colours == 2)
+            if (RandBitflags->colours == 2 && !jankyPal)
             {
-                pal =
+                jankyPal =
                     entry->pal[0]; // default if none found, but only used if non-vanilla colours (eg. Janky) is chosen
+                // shouldBreak = true;
             }
             for (int i = 0; i < NumOfCharPals; ++i)
             {
                 if (entry->classID[i] == classID)
                 {
                     pal = entry->pal[i];
+                    shouldBreak = true;
+
                     break;
                 }
             }
+            if (shouldBreak)
+                break; // stop looking once the valid entry is found
+            // (otherwise entry keeps being updated, and pal becomes wrong)
         }
         entry++;
+    }
+    if (!pal)
+    {
+        pal = jankyPal;
     }
     if (pal)
     {
         gBanimUniquePal[pos] = 0;
     }
 
+    return pal;
+}
+
+// The result depends only on these plus the colours setting, and none of them move while
+// a battle animation is running - so once per combatant is enough, however many times the
+// engine asks. Without this every call walked gCharPal[tableID] from the top.
+const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos)
+{
+    if (pos < 0 || pos >= UniquePalMemoSlots)
+    {
+        return ComputeUniqueCharPal(charID, tableID, unit, pos);
+    }
+    // the memo is fixed RAM, and the auto-assign paths that normally run this are skipped
+    // entirely on the Random/Generic colour settings - so do it here, where every call
+    // goes, rather than trusting whatever was at these addresses on boot
+    EnsurePalCaches();
+
+    // The player's override buffer (gCharPalOverride, via GetCharPalOverrideArray) can
+    // change at any time from the revise-palette screen, without a reseed - so it has to be
+    // part of the memo key. Otherwise the first battle to compute a given (charID, tableID,
+    // classID, colours, origCharID, unit index) combination bakes in whatever override was
+    // set at that moment, and a later change on the revise screen is silently ignored here
+    // even though GetDebuggerCharPalOverride (the menu preview) reads it uncached and shows
+    // the change immediately.
+    int overrideCharID = unit->pCharacterData->number;
+    u16 storedOverride = 0;
+    if (UNIT_FACTION(unit) != FACTION_RED && overrideCharID > 0 && overrideCharID < CharPalOverrideEntries)
+    {
+        MaybeAutoAssignCharPal(overrideCharID, unit->pClassData->number, charID, tableID);
+        storedOverride = GetCharPalOverrideArray()[overrideCharID];
+    }
+
+    u32 key1 = ((u32)(charID & 0xFF)) | ((u32)(tableID & 0xFF) << 8) | ((u32)(unit->pClassData->number & 0xFF) << 16) |
+        ((u32)(RandBitflags->colours & 3) << 24) | 0x4000000u; // never zero, so a cleared slot cannot look like a hit
+    u32 key2 =
+        ((u32)(unit->pCharacterData->number & 0xFF)) | ((u32)(unit->index & 0xFF) << 8) | ((u32)storedOverride << 16);
+
+    u32 * memo = GetUniquePalMemo(pos);
+    if (memo[0] == key1 && memo[1] == key2)
+    {
+        const u16 * pal = (const u16 *)memo[2];
+        if (pal)
+        {
+            gBanimUniquePal[pos] = 0; // the side effect the worker would have had
+        }
+        return pal;
+    }
+
+    const u16 * pal = ComputeUniqueCharPal(charID, tableID, unit, pos);
+    memo[0] = key1;
+    memo[1] = key2;
+    memo[2] = (u32)pal;
     return pal;
 }
 
@@ -6808,8 +8289,13 @@ int IsClassOrRecruitmentRandomized(struct Unit * unit) // for replacing weps
                 result |= newCharID;
             }
         }
+        // 0x3F is the "not resolved yet" marker, and the vanilla tables hold the weapons
+        // the unit would have had anyway - neither counts as a change.
         int newTableID = pidStats->charTableID;
-        result |= newTableID;
+        if ((newTableID != 0x3F) && IsNonVanillaCharTable(newTableID))
+        {
+            result |= 1;
+        }
     }
     result |= ShouldChangeWeaponForUnit(unit);
     if (result)
@@ -7120,7 +8606,7 @@ extern void WriteGlobalSaveInfoNoChecksum(struct GlobalSaveInfo2 * header);
 extern void (*ReadSramFast)(void const * src, void * dest, u32 size);
 u32 WriteAndVerifySramFast(void const * src, void * dest, u32 size);
 
-#define ConfigSRAM ((void *)CART_SRAM_ADDR + CART_SRAM_SIZE - 0x20)
+#define ConfigSRAM ((void *)CART_SRAM_ADDR + CART_SRAM_SIZE - 0x30)
 
 int LoadLastUsedConfig()
 {
@@ -7128,17 +8614,18 @@ int LoadLastUsedConfig()
     {
         return false;
     }
-    u8 tmp[0x20] = { 0 };
+    u8 tmp[0x30] = { 0 };
 
-    ReadSramFast(ConfigSRAM, (void *)tmp, 0x20);
-    if (tmp[12] == 0xFF)
+    ReadSramFast(ConfigSRAM, (void *)tmp, 0x30);
+    if (tmp[28] == 0xFF)
     {
         return false; // don't use default 0xFFFFFFFF sram
     }
 
     // CpuCopy16(ConfigSRAM, (void *)tmp, 0x20);
-    CpuCopy16(tmp, (void *)RandValues, 16);
-    CpuCopy16(&tmp[0x10], (void *)TagValues, 16);
+    CpuCopy16(tmp, (void *)GameFilterValues, 16);
+    CpuCopy16(&tmp[0x10], (void *)RandValues, 16);
+    CpuCopy16(&tmp[0x20], (void *)TagValues, 16);
     return true;
 }
 
@@ -7148,10 +8635,11 @@ void SaveLastUsedConfig(ConfigMenuProc * proc)
     {
         return;
     }
-    u8 tmp[0x20] = { 0 };
-    CpuCopy16((void *)RandValues, (void *)tmp, 16);
-    CpuCopy16((void *)TagValues, (void *)&tmp[0x10], 16);
-    WriteAndVerifySramFast((void *)tmp, ConfigSRAM, 0x20);
+    u8 tmp[0x30] = { 0 };
+    CpuCopy16((void *)GameFilterValues, (void *)tmp, 16);
+    CpuCopy16((void *)RandValues, (void *)&tmp[0x10], 16);
+    CpuCopy16((void *)TagValues, (void *)&tmp[0x20], 16);
+    WriteAndVerifySramFast((void *)tmp, ConfigSRAM, 0x30);
 }
 // no$gba -> utility -> binarydump -> saveas RNTable.dmp
 /*
@@ -8429,6 +9917,9 @@ void NewPopup_GoldGot(int value, ProcPtr parent) // fe6 120D0
 
 int AdjustGrowthForStatInflation(int growth)
 {
+#ifndef ADJUST_VALUES_FROM_STAT_CAPS
+    return growth;
+#endif
     int result = growth;
     switch (RandBitflags->caps)
     {
@@ -8444,7 +9935,7 @@ int AdjustGrowthForStatInflation(int growth)
         }
         case 2:
         {
-            result = 0 * growth;
+            result = growth;
             break;
         }
         case 3:
@@ -8488,7 +9979,7 @@ int GetGeneralStatCap(void)
         }
         case 2:
         {
-            result = 0;
+            result = (-2);
             break;
         }
         case 3:
@@ -8526,11 +10017,31 @@ int GetGlobalStatCap(void)
     {
         result = 30;
     }
+    if (result == (-2))
+    {
+        result = 60;
+    }
     return result;
 }
-
+int GetGlobalStatCapMin(void)
+{
+    int min = 0;
+    int cap = GetGeneralStatCap();
+    // if (cap == (-1))
+    // {
+    // result = 30;
+    // }
+    if (cap == (-2))
+    {
+        min = 20;
+    }
+    return min;
+}
 int AdjustStatForInflatedNumbers(int stat)
 {
+#ifndef ADJUST_VALUES_FROM_STAT_CAPS
+    return stat;
+#endif
     int result = stat;
     switch (RandBitflags->caps)
     {
@@ -8546,7 +10057,7 @@ int AdjustStatForInflatedNumbers(int stat)
         }
         case 2:
         {
-            result = 0 * stat;
+            result = stat;
             break;
         }
         case 3:
@@ -8579,6 +10090,9 @@ int AdjustStatForInflatedNumbers(int stat)
 
 int SlightlyAdjustStatForInflatedNumbers(int stat)
 {
+#ifndef ADJUST_VALUES_FROM_STAT_CAPS
+    return stat;
+#endif
     int result = stat;
     switch (RandBitflags->caps)
     {
@@ -8594,7 +10108,7 @@ int SlightlyAdjustStatForInflatedNumbers(int stat)
         }
         case 2:
         {
-            result = 0 * stat;
+            result = stat;
             break;
         }
         case 3:
@@ -8935,21 +10449,20 @@ int GetUnitMaxMag(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
+
     int noise[4] = { 0, 0, 0, 0 };
     noise[0] = unit->pClassData->number;
+
     int result = HashByPercent(cap, noise, 77);
     if (result < (cap >> 1))
     {
         result += HashByte_Global(cap, (cap >> 1), noise, 73);
     }
-    if (result > cap)
-    {
-        result = cap;
-    }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -11214,6 +12727,10 @@ void UnitInitFromDefinition(struct Unit * unit, const struct UnitDefinition * uD
         }
     }
 #endif
+    // Resolve this enemy's replacement once, here, so every later lookup reads the unit
+    // struct rather than going back through the recruitment procs.
+    SetUnitReorderCache(unit);
+    SetUnitPalCache(unit);
     UnitCheckStatCaps(unit);
 }
 
@@ -11295,7 +12812,7 @@ int GetUnitMaxPow(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -11306,6 +12823,7 @@ int GetUnitMaxPow(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 13);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -11325,7 +12843,7 @@ int GetUnitMaxSkl(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -11336,6 +12854,7 @@ int GetUnitMaxSkl(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 23);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -11355,7 +12874,7 @@ int GetUnitMaxSpd(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -11366,6 +12885,7 @@ int GetUnitMaxSpd(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 33);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -11385,7 +12905,7 @@ int GetUnitMaxDef(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -11396,6 +12916,7 @@ int GetUnitMaxDef(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 43);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -11415,7 +12936,7 @@ int GetUnitMaxRes(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -11426,6 +12947,7 @@ int GetUnitMaxRes(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 53);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -11445,7 +12967,7 @@ int GetUnitMaxLck(struct Unit * unit)
         return cap;
     }
     int max = GetGeneralStatCap();
-    if (max != (-1))
+    if (max != (-1) && max != (-2))
     {
         return max;
     }
@@ -11456,6 +12978,7 @@ int GetUnitMaxLck(struct Unit * unit)
     {
         result += HashByte_Global(cap, (cap / 2), noise, 63);
     }
+    result += GetGlobalStatCapMin();
     if (result > GetGlobalStatCap())
     {
         result = GetGlobalStatCap();
@@ -12469,7 +13992,10 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(StartFastFadeToBlack),
     PROC_REPEAT(WaitForFade),
     PROC_YIELD,
-    PROC_CALL(ClearConfigGfxAndRecruitmentProcs),
+    // plain ClearConfigGfx: dropping the recruitment cache here rebuilt the whole
+    // mapping every time you backed out of a revise page, where nothing it depends on
+    // had changed. IsRecruitmentCacheBuilt's stamp catches the cases that matter.
+    PROC_CALL(ClearConfigGfx),
     PROC_CALL(StartFastFadeFromBlack),
     PROC_REPEAT(WaitForFade),
     PROC_CALL(DrawCharConfirmPage),
@@ -12484,6 +14010,25 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_REPEAT(WaitForFade),
     PROC_CALL(DrawReviseCharPage),
     PROC_REPEAT(LoopReviseCharPage),
+
+    PROC_LABEL(ReviseCharPalProcLabel),
+#ifdef FE8
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(DrawReviseCharPalPage),
+    PROC_REPEAT(LoopReviseCharPalPage),
+#else
+    // FE6/FE7 have no palette-override screen (the whole feature is #ifdef FE8). The label
+    // still has to exist, because LoopReviseCharPage's Proc_Goto(ReviseCharPalProcLabel) is
+    // NOT guarded - so it ends immediately by handing straight back to PreviewCharLabel,
+    // which is exactly where that goto went before this screen existed. The explicit GOTO
+    // matters: an empty label would fall through into FilterUnitsLabel's body below.
+    PROC_GOTO(PreviewCharLabel),
+#endif
 
     PROC_LABEL(FilterUnitsLabel),
     PROC_CALL(StartFastFadeToBlack),
@@ -12517,6 +14062,28 @@ const struct ProcCmd ConfigMenuProcCmd[] = {
     PROC_CALL(FilterEnemyClassInit),
     PROC_CALL(DrawFilterEnemyClassPage),
     PROC_REPEAT(LoopFilterEnemyClassPage),
+
+    PROC_LABEL(FilterGamesLabel),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(FilterGameInit),
+    PROC_CALL(DrawFilterGamePage),
+    PROC_REPEAT(LoopFilterGamePage),
+
+    PROC_LABEL(FilterEnemyGamesLabel),
+    PROC_CALL(StartFastFadeToBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_YIELD,
+    PROC_CALL(ClearConfigGfx),
+    PROC_CALL(StartFastFadeFromBlack),
+    PROC_REPEAT(WaitForFade),
+    PROC_CALL(FilterEnemyGameInit),
+    PROC_CALL(DrawFilterEnemyGamePage),
+    PROC_REPEAT(LoopFilterEnemyGamePage),
 
     PROC_LABEL(EndLabel),
     // PROC_CALL(SaveLastUsedConfig),
@@ -13034,7 +14601,58 @@ int DecompText(const char * a, char * b)
     }
     return length;
 }
+static int ShouldCheckReplaceAt(const char * b, int i)
+{
+    u8 ch = b[i];
 
+    if (i > 0)
+    {
+        u8 prev = b[i - 1];
+
+        if (prev < 0x20) // not multibyte & some control code
+        {
+            return 1;
+        }
+    }
+
+#ifdef FE6
+    u8 next = b[i + 1];
+
+    if (ch == 0x83)
+    {
+        return next == 0x43; // FE6 "<"
+    }
+
+    if (i > 1)
+    {
+        u8 prev0 = b[i - 2];
+        u8 prev1 = b[i - 1];
+
+        if (prev0 == 0x81 && prev1 == 0x80)
+        {
+            return 1; // FE6 space
+        }
+
+        if (prev0 == 0x82 && (prev1 == 0xB6 || prev1 == 0xB8))
+        {
+            return 1; // FE6 alternate space entries
+        }
+
+        if (prev0 == 0x83 && prev1 == 0x47)
+        {
+            return 1; // after FE6 ">"
+        }
+    }
+    return false;
+#else
+    if (i > 0 && (b[i - 1] == ' ' || b[i - 1] == '>' || b[i - 1] == '-'))
+    {
+        return 1;
+    }
+
+    return ch == '<' || ch == '>';
+#endif
+}
 char * GetStringFromIndex(int index) // so we can set sActiveMsg as the index
 {
     // if (index == sActiveMsg)
@@ -13091,11 +14709,16 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
         {
             return;
         }
-        if (i && b[i] != 0x5B && OnlyReplaceTextAfterControlCode && b[i - 1] > 0x20) // names are after control codes
+        if (i && OnlyReplaceTextAfterControlCode && !ShouldCheckReplaceAt(b, i)) // names are after control codes
         {
             continue;
         }
-        if (b[i] == 0x5B)
+#ifdef FE6
+        if (b[i] == 0x83 && b[i + 1] == 0x43) // fe6 <
+#else
+        if (b[i] == 0x3C) // fe7/fe8 <
+#endif
+
         {
             for (int c = 0; c < ListSize; ++c)
             {
@@ -13109,7 +14732,6 @@ void CallARM_DecompText(const char * a, char * b) // 2ba4 // fe7 8004364 fe6 800
                 }
                 if (PronounReplaceTextList[c].flag)
                 {
-                    // asm("mov r11, r11");
                     if (!CheckFlag(PronounReplaceTextList[c].flag))
                     {
                         continue;
@@ -13233,6 +14855,39 @@ const char * GetSRRText(int id1, int id2)
     return string;
 }
 
+// Screen row that `option` currently sits on, or -1 when it is scrolled out of
+// view. Has to walk the same reordered buffer DrawConfigMenu indexes through.
+int GetMenuRowOfOption(ConfigMenuProc * proc, int option)
+{
+    s8 buf[SRR_TotalOptions + 1];
+    BuildAvailableOptionsForMenu(buf);
+    for (int i = 0; i < SRR_NUMBERDISP; ++i)
+    {
+        int id = i + proc->offset;
+        if (id > SRR_TotalOptions)
+        {
+            break;
+        }
+        if (buf[id] == option)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// called like every frame until proc->freezeSeed is set
+void DrawSeedNumber(ConfigMenuProc * proc, int row)
+{
+    if (row < 0)
+    {
+        return;
+    }
+    TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 7, Y_HAND - 1 + (row * 2)), 9, 2, 0);
+    PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 1, Y_HAND + (row * 2)), white, proc->seed);
+    BG_EnableSyncByMask(BG0_SYNC_BIT);
+}
+
 void DrawSRRText(ConfigMenuProc * proc, int i, int offset, int id)
 {
     if (id < 0)
@@ -13240,6 +14895,12 @@ void DrawSRRText(ConfigMenuProc * proc, int i, int offset, int id)
         return;
     }
     struct Text * th = gStatScreen.text;
+    // "Players From"/"Enemies From" are just doors to their game filter screens now -
+    // there's no selectable value left to show beside them.
+    if (id == FromGameOption || id == EnemyFromGameOption)
+    {
+        return;
+    }
     // const char ** textEntry = SRRText_POIN[i + offset];
     const char * string = GetSRRText(id, proc->Option[id]);
     // if (i + offset == FromGameOption)
@@ -13250,14 +14911,15 @@ void DrawSRRText(ConfigMenuProc * proc, int i, int offset, int id)
     // }
     // }
 
-    if (i + offset == SeedOption)
+    if (id == SeedOption)
     {
-        TileMap_FillRect(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 7, Y_HAND), 9, 2, 0); // seed first
-        PutNumber(TILEMAP_LOCATED(gBG0TilemapBuffer, NUMBER_X - 1, 3 + ((i) * 2)), white, proc->seed);
+        // the clear used to be pinned to Y_HAND while the number went to row i,
+        // so a scrolled seed row wiped the top row instead of its own
+        DrawSeedNumber(proc, i);
         return;
     }
 #ifdef FE8
-    if (i + offset == SkillsOption)
+    if (id == SkillsOption)
     {
         if (DisplayRandomSkillsOption)
         {
@@ -13537,6 +15199,9 @@ void SetDefaultTagValues(void)
     ClassTags->raw = 0xF9FF9FFF;      // default: early thief, no civilians or manaketes
     EnemyClassTags->raw = 0xFFFF1FBF; // default: no dancers, civilians, monsters, or manaketes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
+    // default: "Random" may use every game, players and bosses alike
+    *GameFilterValues = GameFilterInitFlag | PlayerGamesMask; // this initializes our ram back
+    *EnemyGameFilterValues = GameFilterInitFlag | EnemyGamesMask;
 }
 // same but vanilla classes only
 void SetVanillaTagValues(void)
@@ -13547,6 +15212,10 @@ void SetVanillaTagValues(void)
     EnemyClassTags->raw =
         0xCFFF1FBF; // default: no dancers, civilians, monsters, or manaketes, and no non-vanilla classes
     // EnemyClassTags->raw = 0xFFFF8000; // default: no dancers, civilians, or manaketes
+    // Vanilla means vanilla: players come from the vanilla player table only, and
+    // enemies from the vanilla boss table only. Nobody crosses over.
+    *GameFilterValues = GameFilterInitFlag | VanillaPlayerTableBit;
+    *EnemyGameFilterValues = GameFilterInitFlag | VanillaBossTableBit;
 }
 
 void RestoreConfigOptions(ConfigMenuProc * proc);
@@ -13588,14 +15257,9 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
         reloadEnemies = true;
     }
 
-    if (RecruitValues->forcedCharTable != proc->Option[FromGameOption])
-    {
-        reloadPlayers = true;
-    }
-    if (RecruitValues->enemyCharTable != proc->Option[EnemyFromGameOption])
-    {
-        reloadEnemies = true;
-    }
+    // Both are pinned to RandomCharTable now (the option isn't selectable), so there's
+    // nothing to compare here - the game filter screens set proc->reloadPlayers /
+    // reloadEnemies themselves when a table is toggled.
 
     if (RandBitflags->base != proc->Option[BaseStatsOption])
     {
@@ -13675,7 +15339,8 @@ void CopyConfigProcIntoRam(ConfigMenuProc * proc)
         if (id_adj != SaveOption && id_adj != SettingsOption)
         {
             if (((id_adj) != FilterCharsOption) && ((id_adj) != PreviewCharsOption) &&
-                ((id_adj) != FilterClassOption) && ((id_adj) != FilterEnemyClassOption))
+                ((id_adj) != FilterClassOption) && ((id_adj) != FilterEnemyClassOption) &&
+                ((id_adj) != FromGameOption) && ((id_adj) != EnemyFromGameOption))
             {
                 if ((id_adj) != SkipChOption)
                 {
@@ -13849,7 +15514,9 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
     }
     if (proc->reloadPlayers)
     {
-        EndAllRecruitmentProcs();
+        // no invalidate here: this runs *before* the RandValues/RecruitValues writes
+        // below, so it used to rebuild the mapping against the settings being replaced.
+        // The stamp rebuilds it on the next read, once the new settings are in.
         ClearPlayerBWL();
         GetReorderedCharacter(GetCharacterData(1));
     }
@@ -13862,8 +15529,10 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
     RecruitValues->playerIntoBosses = proc->Option[PlayerBossOption];
     RecruitValues->enemyRecruitmentOrder = proc->Option[EnemyRecruitmentOption];
     RecruitValues->enemyIntoPlayer = proc->Option[EnemyPlayerOption];
-    RecruitValues->forcedCharTable = proc->Option[FromGameOption];
-    RecruitValues->enemyCharTable = proc->Option[EnemyFromGameOption];
+    // Always "Random": the pool is chosen by the game filter screens instead, so these
+    // stay pinned rather than tracking a (no longer selectable) menu value.
+    RecruitValues->forcedCharTable = RandomCharTable;
+    RecruitValues->enemyCharTable = RandomCharTable;
     RecruitValues->pauseNameReplace = false;
     RandBitflags->base = proc->Option[BaseStatsOption];
     RandBitflags->growth = proc->Option[GrowthsOption];
@@ -13998,47 +15667,6 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
         }
     }
 
-    RecruitmentProc * recruitmentProc = Proc_Find(RecruitmentProcCmd1);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd2);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd3);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd4);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd5);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd6);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd7);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-    recruitmentProc = Proc_Find(RecruitmentProcCmd8);
-    if (recruitmentProc)
-    {
-        Proc_Break(recruitmentProc);
-    }
-
 #ifdef FE8
     if (proc->Option[SkipChOption] && ((id_adj) == SkipChOption))
     {
@@ -14087,6 +15715,25 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
     {
         Proc_Goto(proc, FilterEnemyClassesLabel);
         return;
+    }
+    // A on "Players From"/"Enemies From" opens that pool's game filter, the same way A
+    // on the Filter Units / Player Classes / Enemy Classes rows opens theirs. The filter
+    // only affects the "Random" setting, so there's nothing to open when the option is
+    // unavailable (that row is hidden then anyway).
+    if (IsFromGameOptionAvailable())
+    {
+        if ((id_adj) == FromGameOption)
+        {
+            proc->previewId = 0;
+            Proc_Goto(proc, FilterGamesLabel);
+            return;
+        }
+        if ((id_adj) == EnemyFromGameOption)
+        {
+            proc->previewId = 0;
+            Proc_Goto(proc, FilterEnemyGamesLabel);
+            return;
+        }
     }
     Proc_Goto(proc, EndLabel);
 }
@@ -14145,7 +15792,7 @@ void SetAllConfigOptionsToDefault(ConfigMenuProc * proc)
     proc->Option[MusicOption] = 1;       // Random BGM
     proc->Option[BattleBGMOption] = 0;   // Separate battle BGM
     proc->Option[PortraitsOption] = 0;   // Random portrait colours off by default now
-    proc->Option[ColoursOption] = 0;     // Random Colours off by default now
+    proc->Option[ColoursOption] = 2;     // Custom palettes for every character by default
     proc->skill = GetNextAlwaysSkill(0);
     proc->Option[UiOption] = 0;       // ui default: vanilla style
     proc->Option[DebuggerOption] = 1; // debugger
@@ -14195,7 +15842,7 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
     if (!proc->freezeSeed)
     {
         proc->seed = GetInitialSeed(2, proc);
-        proc->redraw = true;
+        DrawSeedNumber(proc, GetMenuRowOfOption(proc, SeedOption));
     }
     int id = proc->id;
     int offset = proc->offset;
@@ -14286,6 +15933,12 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         else if (keys & DPAD_RIGHT)
         {
+            // "Players From"/"Enemies From" have no value to cycle any more - they just
+            // open their game filter screen with A - so left/right do nothing on them.
+            if (IsFromGameMenuOption(id_adj))
+            {
+                return;
+            }
             PlayScrollMenuSfx();
             id += offset;
             if (proc->Option[id_adj] < (CountOptionAmount(id_adj)))
@@ -14306,6 +15959,10 @@ void ConfigMenuLoop(ConfigMenuProc * proc)
         }
         else if (keys & DPAD_LEFT)
         {
+            if (IsFromGameMenuOption(id_adj))
+            {
+                return;
+            }
             PlayScrollMenuSfx();
             id += offset;
             if (proc->Option[id_adj] > 0)
@@ -15053,6 +16710,8 @@ int MenuStartConfigMenu(ProcPtr parent)
     u32 tags = TagValues->raw;
     u32 classtags = ClassTags->raw;
     u32 enemyclasstags = EnemyClassTags->raw;
+    u32 playerGames = *GameFilterValues;
+    u32 enemyGames = *EnemyGameFilterValues;
 
     ConfigMenuProc * proc = StartConfigMenu(parent);
     proc->calledFromChapter = true;
@@ -15060,6 +16719,8 @@ int MenuStartConfigMenu(ProcPtr parent)
     TagValues->raw = tags;
     ClassTags->raw = classtags;
     EnemyClassTags->raw = enemyclasstags;
+    *GameFilterValues = playerGames;
+    *EnemyGameFilterValues = enemyGames;
 
     gLCDControlBuffer.dispcnt.bg0_on = 0;
     return ME_DISABLE | ME_PLAY_BEEP; // | ME_CLEAR_GFX;
@@ -15312,7 +16973,7 @@ struct ChapterEventGroup
     /* 04 */ const void * characterBasedEvents; // must be 32-Aligned?
 };
 const struct ChapterEventGroup * GetChapterEventDataPointer(unsigned chIndex); // 80315BC fe6 802BBA0
-extern struct Unit * GetUnitFromCharId(s16 pid);                               // fe7 8017D34 fe6 8017ABC
+
 struct TalkEventCond
 {
     u16 eventType;
@@ -17296,7 +18957,7 @@ int GetSRRMenuColour(ConfigMenuProc * proc, int index)
     int result = gold;
     index += CountSRRMenuItems(proc);
     if ((index == FilterCharsOption) || (index == PreviewCharsOption) || (index == FilterClassOption) ||
-        (index == FilterEnemyClassOption))
+        (index == FilterEnemyClassOption) || (index == FromGameOption) || (index == EnemyFromGameOption))
     {
         result = white;
     }

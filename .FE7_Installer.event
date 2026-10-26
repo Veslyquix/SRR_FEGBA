@@ -4,7 +4,7 @@
 //#define SKILLSYS_INSTALLED 
 //#define STRMAG_INSTALLED 
 
-
+// PROTECT $4B1B0
 
 #ifdef VeslyBuildfile 
 #include "Text/repointedTextTable.event"
@@ -1298,6 +1298,13 @@ MaxClassesPlayer:
 WORD 0x203EBCC
 MaxClassesEnemy:
 WORD 0x203EBCD
+// 0x203EBCE - 0x203EBCF free 
+GameFilterValues: // "Bandit" 
+WORD 0x203EBB0
+EnemyGameFilterValues:
+WORD 0x203EBB4
+// 0x203EBB8 - 0x203EBBF free 
+
 ALIGN 4 
 PronounReplaceTextList:
 WORD 0 0 0 

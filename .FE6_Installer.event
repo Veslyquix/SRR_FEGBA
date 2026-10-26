@@ -830,6 +830,12 @@ MaxClassesPlayer:
 WORD 0x203D910
 MaxClassesEnemy:
 WORD 0x203D911
+// 0x203D912 - 0x203D913 free 
+GameFilterValues:
+WORD 0x203D934 // Geese2 (unused) 
+EnemyGameFilterValues:
+WORD 0x203D938
+// 0x203D93C - 0x203D943 free 
 
 ALIGN 32
 NameStrings: 
