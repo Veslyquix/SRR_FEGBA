@@ -1,5 +1,5 @@
 @echo off 
 
-portraits2dmp.py 
+py portraits2dmp.py 
 
 pause 

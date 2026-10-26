@@ -5,11 +5,14 @@ set "parsefile=%~dp0EventAssembler\Tools\ParseFileUTF8.exe"
 set "source_rom=%~dp0FE8.gba"
 set "base_dir=%~dp0"
 
+set "python=py"
+where py >nul 2>&1 || set "python=python"
+
   cd "%base_dir%Text"
-  echo: | ("%textprocess%" text_buildfile.txt --parser-exe "%parsefile%" --installer "InstallTextData.event" --definitions "TextDefinitions.event")
+  echo: | (%python% "%textprocess%" text_buildfile.txt --parser-exe "%parsefile%" --installer "InstallTextData.event" --definitions "TextDefinitions.event")
 
   cd "%base_dir%TextFE6"
-  echo: | ("%textprocessfe6%" text_buildfile.txt --parser-exe "%parsefile%" --installer "InstallTextData.event" --definitions "TextDefinitions.event")
+  echo: | (%python% "%textprocessfe6%" text_buildfile.txt --parser-exe "%parsefile%" --installer "InstallTextData.event" --definitions "TextDefinitions.event")
 
 
 echo:

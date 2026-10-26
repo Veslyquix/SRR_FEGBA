@@ -1,6 +1,6 @@
 @echo off
-@FormatImages.py
-@GenerateInstaller.py 
+@py FormatImages.py
+@py GenerateInstaller.py 
 @echo making stuff 
 make
 

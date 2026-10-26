@@ -1,6 +1,6 @@
 @echo off
-@FixFilenames.py
-@GenerateInstaller.py 
+@py FixFilenames.py
+@py GenerateInstaller.py 
 @echo making stuff 
 make
 

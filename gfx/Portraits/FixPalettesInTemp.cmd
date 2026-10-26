@@ -1,5 +1,5 @@
 @echo off 
 
-fixpalettes.py 
+py fixpalettes.py 
 
 pause 
