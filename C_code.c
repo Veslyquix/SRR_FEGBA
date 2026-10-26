@@ -1,6 +1,6 @@
 
 // #define FORCE_SPECIFIC_SEED
-#define VersionNumber " SRR V2.2.1"
+#define VersionNumber " SRR V2.2.2"
 #define brk asm("mov r11, r11");
 
 // #define ADJUST_VALUES_FROM_STAT_CAPS also edit StatCapsOpt in SRR_Menu.event
@@ -6180,30 +6180,15 @@ void BuildRecruitmentCache(void)
                     }
                     num = HashByte_Simple(rn, d);
                     int RandomlyOrdered = true;
+                    // GetCharNewPool always returns CombinedPool now, so every unit passes this
                     if (order == VanillaOrder)
                     {
-                        if (num & 1)
-                        { // combined pool but vanilla order lol
-                            // so randomly decide for each unit to be either player or boss
-                            num = d_max - (d + 1) + c_max; // boss order
-                        }
-
-                        else
-                        {
-                            num = d_max - (d + 1); // player order
-                        }
+                        num = d_max - (d + 1); // vanilla table order
                         RandomlyOrdered = false;
                     }
                     if (order == ReverseOrder)
                     {
-                        if (num & 1)
-                        {
-                            num = (d_max - d) + c_max; // reverse boss, so always last in list
-                        }
-                        else
-                        {
-                            num = c_max - (d_max - d); // reverse player
-                        }
+                        num = d; // reverse, so always last in list
                         RandomlyOrdered = false;
                     }
 
@@ -6359,30 +6344,15 @@ void BuildRecruitmentCache(void)
                     }
                     num = HashByte_Simple(rn, d);
                     int RandomlyOrdered = true;
+                    // GetCharNewPool always returns CombinedPool now, so every unit passes this
                     if (order == VanillaOrder)
                     {
-                        if (num & 1)
-                        { // combined pool but vanilla order lol
-                            // so randomly decide for each unit to be either player or boss
-                            num = d_max - (d + 1) + c_max; // boss order
-                        }
-
-                        else
-                        {
-                            num = d_max - (d + 1); // player order
-                        }
+                        num = d_max - (d + 1); // vanilla table order
                         RandomlyOrdered = false;
                     }
                     if (order == ReverseOrder)
                     {
-                        if (num & 1)
-                        {
-                            num = (d_max - d) + c_max; // reverse boss, so always last in list
-                        }
-                        else
-                        {
-                            num = c_max - (d_max - d); // reverse player
-                        }
+                        num = d; // reverse, so always last in list
                         RandomlyOrdered = false;
                     }
 
