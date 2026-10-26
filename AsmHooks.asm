@@ -1300,9 +1300,13 @@ mov r0, r4
 bl ShouldUnitDoJankyPalettes
 cmp r0, #0 
 bne VanillaClassPaletteMethod_FE6
-mov r5, #0 @ always 0 if classes are randomized 
-VanillaClassPaletteMethod_FE6: 
-mov r0, r5 
+mov r5, #0 @ always 0 if classes are randomized
+VanillaClassPaletteMethod_FE6:
+mov r0, r4 @ unit
+mov r1, r5
+bl AdjustVanillaCharPalByte @ palette of who the slot is now, not the slot's own character
+mov r5, r0
+mov r0, r5
 sub r0, #1 
 pop {r4-r5} 
 pop {r3} 
@@ -1312,7 +1316,8 @@ bx r3
 .global MaybeUseGenericPalette_FE7
 .type MaybeUseGenericPalette_FE7, %function 
 MaybeUseGenericPalette_FE7: 
-push {r4-r5, lr} 
+push {r4-r6, lr} 
+mov r6, r3 
 mov r4, r0
 ldr r1, [r0, #4]  
 ldr r0, [r2, #0x28] 
@@ -1334,12 +1339,16 @@ mov r0, r4 @ unit
 bl ShouldUnitDoJankyPalettes
 cmp r0, #0 
 bne VanillaClassPaletteMethod_FE7
-mov r5, #0 @ always 0 if classes are randomized 
-VanillaClassPaletteMethod_FE7: 
-strh r5, [r3] 
+mov r5, #0 @ always 0 if classes are randomized
+VanillaClassPaletteMethod_FE7:
+mov r0, r4 @ unit
+mov r1, r5
+bl AdjustVanillaCharPalByte @ palette of who the slot is now, not the slot's own character
+mov r5, r0
+strh r5, [r6]
 mov r0, r5 
 sub r0, #1 
-pop {r4-r5} 
+pop {r4-r6} 
 pop {r3} 
 bx r3 
 .ltorg 

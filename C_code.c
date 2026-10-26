@@ -6478,6 +6478,80 @@ int ShouldRandomizeColours(void)
 extern struct BattleUnit * gpEkrBattleUnitLeft;
 extern struct BattleUnit * gpEkrBattleUnitRight;
 const u16 * GetUniqueCharPal(int charID, int tableID, struct Unit * unit, int pos);
+
+#ifdef FE8
+#define VanillaAnimCharaPalConfig ((const u8(*)[7])0x895E0A4)
+#define VanillaAnimCharaPalIt ((const u8(*)[7])0x895EEA4)
+#define VanillaCharaPalTable ((const struct BattleAnimCharaPal_SRR *)0x8EF8008)
+#define VanillaLZ77UnCompWram ((void (*)(const void *, void *))0x80D1695)
+struct BattleAnimCharaPal_SRR
+{
+    char abbr[12];
+    const void * pal;
+};
+#endif
+
+// do vanilla char pals when the vanilla char matches their class 
+int GetPromotedClass(const struct ClassData * data);
+int GetVanillaCharBanimPal(struct Unit * unit, struct Vec2u charTableID)
+{
+    int pid = charTableID.x - 1;
+    if (IsNonVanillaCharTable(charTableID.y) || pid < 0 || pid >= 0x100)
+    {
+        return -1;
+    }
+    int origCharID = unit->pCharacterData->number;
+    if (UNIT_FACTION(unit) != FACTION_RED && origCharID > 0 && origCharID < CharPalOverrideEntries)
+    {
+        int stored = GetCharPalOverrideArray()[origCharID];
+        if (stored > 0 && stored < AutoCharPalNone)
+        {
+            return -1;
+        }
+    }
+    int jid = unit->pClassData->number;
+#ifdef FE8
+    for (int i = 0; i < 7; ++i)
+    {
+        if (VanillaAnimCharaPalConfig[pid][i] == jid)
+        {
+            return VanillaAnimCharaPalIt[pid][i] - 1;
+        }
+    }
+#else
+    const struct CharacterData * table = GetCharacterData(charTableID.x);
+    const struct ClassData * baseClass = GetClassData(table->defaultClass);
+    int pal = 0;
+    if (jid == baseClass->number)
+    {
+        pal = (baseClass->attributes & CA_PROMOTED) ? table->_u24 : table->_u23;
+    }
+    else if (jid == GetPromotedClass(baseClass))
+    {
+        pal = table->_u24;
+    }
+    if (pal)
+    {
+        return pal - 1;
+    }
+#endif
+    return -1;
+}
+
+int AdjustVanillaCharPalByte(struct Unit * unit, int palByte)
+{
+    if (!palByte)
+    {
+        return palByte; // generic was chosen on purpose
+    }
+    int pal = GetVanillaCharBanimPal(unit, GetReorderedCharIDAndTableID(unit->pCharacterData));
+    if (pal >= 0)
+    {
+        return pal + 1;
+    }
+    return palByte;
+}
+
 int ShouldUnitDoJankyPalettes(struct BattleUnit * bunit)
 {
     int result = false;
@@ -6497,6 +6571,10 @@ int ShouldUnitDoJankyPalettes(struct BattleUnit * bunit)
     }
 
     struct Vec2u charTableID = GetReorderedCharIDAndTableID(bunit->unit.pCharacterData);
+    if (GetVanillaCharBanimPal(&bunit->unit, charTableID) >= 0)
+    {
+        return true; // so the hook takes the unique palette path; MaybeApplyUniqueCharPal loads it
+    }
     const u16 * pal = GetUniqueCharPal(charTableID.x, charTableID.y, &bunit->unit, pos);
     if (pal)
     {
@@ -8169,6 +8247,19 @@ int MaybeApplyUniqueCharPal(u32 * buf, int pos)
         bu = gpEkrBattleUnitRight;
 
     struct Vec2u charTableID = GetReorderedCharIDAndTableID(bu->unit.pCharacterData);
+#ifdef FE8
+    int vanillaPal = GetVanillaCharBanimPal(&bu->unit, charTableID);
+    if (vanillaPal >= 0)
+    {
+        VanillaLZ77UnCompWram(VanillaCharaPalTable[vanillaPal].pal, buf);
+        return true;
+    }
+#else
+    if (GetVanillaCharBanimPal(&bu->unit, charTableID) >= 0)
+    {
+        return true; // AdjustVanillaCharPalByte already had the engine load it into buf
+    }
+#endif
     const u16 * pal = GetUniqueCharPal(charTableID.x, charTableID.y, &bu->unit, pos);
     if (pal)
     {
