@@ -197,7 +197,7 @@ extern union TagUnion * EnemyClassTags;
 // NumberOfCharTables >> 1 games. Spelled as a literal because NumberOfCharTables is a
 // const int, which C won't accept as a static array bound - BuildFilteredCharsList()
 // clamps against the real value in case cData[] grows without this following it.
-#define NumberOfGameTags 12
+#define NumberOfGameTags 13
 #define NumberOfGameFilterBits (NumberOfGameTags * 2)
 #define AllGamesMask ((1u << NumberOfGameFilterBits) - 1)
 #define PlayerGamesMask ((1u << NumberOfGameTags) - 1)
@@ -208,7 +208,9 @@ extern union TagUnion * EnemyClassTags;
 // Spare high bit, set whenever a filter is written on purpose, so uninitialised RAM (or
 // a config saved before these fields existed) can't read back as a partial filter and
 // silently drop tables from the pool.
-#define GameFilterInitFlag 0x80000000u
+// Was 0x80000000 while there were 12 games: adding FE18 moved every boss bit up one, so
+// filters saved with the old flag are treated as never set rather than read shifted.
+#define GameFilterInitFlag 0x40000000u
 extern u32 * GameFilterValues;
 extern u32 * EnemyGameFilterValues;
 u32 GetEnabledGamesMask(int allegiance);
@@ -856,6 +858,8 @@ extern const struct FE8CharacterData gCharacterDataFE16[];
 extern const struct FE8CharacterData gCharacterDataFE16_Bosses[];
 extern const struct FE8CharacterData gCharacterDataFE17[];
 extern const struct FE8CharacterData gCharacterDataFE17_Bosses[];
+extern const struct FE8CharacterData gCharacterDataFE18[];
+extern const struct FE8CharacterData gCharacterDataFE18_Bosses[];
 extern const struct FE8CharacterData gCharacterDataPlaceholder[];
 #endif
 
@@ -884,6 +888,8 @@ extern const struct CharacterData gCharacterDataFE16[];
 extern const struct CharacterData gCharacterDataFE16_Bosses[];
 extern const struct CharacterData gCharacterDataFE17[];
 extern const struct CharacterData gCharacterDataFE17_Bosses[];
+extern const struct CharacterData gCharacterDataFE18[];
+extern const struct CharacterData gCharacterDataFE18_Bosses[];
 extern const struct CharacterData gCharacterDataPlaceholder[];
 
 #endif
@@ -912,6 +918,7 @@ const struct FE8CharacterData
 #endif
             gCharacterDataFE10,        gCharacterDataFE13,        gCharacterDataFE14,
             gCharacterDataFE15,        gCharacterDataFE16,        gCharacterDataFE17,
+            gCharacterDataFE18,
 
 // bosses
 #ifdef FE6
@@ -931,13 +938,14 @@ const struct FE8CharacterData
 #endif
             gCharacterDataFE10_Bosses, gCharacterDataFE13_Bosses, gCharacterDataFE14_Bosses,
             gCharacterDataFE15_Bosses, gCharacterDataFE16_Bosses, gCharacterDataFE17_Bosses,
+            gCharacterDataFE18_Bosses,
         };
 
-const int NumberOfCharTables = 24;
+const int NumberOfCharTables = 26;
 // forcedCharTable / enemyCharTable sentinel for "any game", i.e. anything >= the table
 // count. Both are pinned to this now - see CopyConfigProcIntoRam.
 #define RandomCharTable NumberOfCharTables
-const int NumberOfPalCharTables = 27; // 3 more: one for classes, one for vanilla players, one for boss players
+const int NumberOfPalCharTables = 29; // 3 more: one for classes, one for vanilla players, one for boss players
 // unused currently
 int ShouldRandomizeUsedCharTable(void)
 {
@@ -2375,13 +2383,14 @@ extern int Text_GetColor(struct Text * th);
 #define TagWidth 7
 extern const char * tags[];
 
-// Game filter screen layout: 4 columns x 6 rows = NumberOfGameFilterBits cells, the
-// same geometry as the tag screen but two rows shorter. Columns 0-1 are the per-game
-// player tables, columns 2-3 the matching boss tables. NumberOfGameTags / AllGamesMask
+// Game filter screen layout: 4 columns x 7 rows of cells. Columns 0-1 are the per-game
+// player tables, columns 2-3 the matching boss tables; with 13 games the last row of
+// columns 1 and 3 is empty (see GameFilterCellBit). NumberOfGameTags / AllGamesMask
 // are declared up with GameFilterValues, since BuildFilteredCharsList needs them earlier.
 #define GameTagWidth TagWidth
-#define GameTagRows 6
+#define GameTagRows 7
 #define GameTagColumns 4
+#define GameTagCells (GameTagRows * GameTagColumns)
 // game_tags[NumberOfGameTags] is the screen title, matching how tags[32..34] work.
 extern const char * game_tags[];
 
@@ -2804,6 +2813,24 @@ void NormaliseGameFilter(u32 * filter)
 void DrawFilterGamePage(ConfigMenuProc * proc);
 void DrawFilterEnemyGamePage(ConfigMenuProc * proc);
 
+// -> the filter bit shown in a grid cell (column-major, GameTagRows per column), or -1
+// for the empty cells left at the bottom of the second player and boss columns
+int GameFilterCellBit(int cell)
+{
+    int col = 0;
+    while (cell >= GameTagRows)
+    {
+        cell -= GameTagRows;
+        col++;
+    }
+    int bit = ((col & 1) ? GameTagRows : 0) + cell;
+    if (bit >= NumberOfGameTags)
+    {
+        return -1;
+    }
+    return (col >= 2) ? bit + NumberOfGameTags : bit;
+}
+
 // Shared by the player and enemy screens - they differ only in which filter word they
 // edit and which title they show, so the layout/cursor/toggle code lives here once.
 // titleTag indexes game_tags past the NumberOfGameFilterBits entries.
@@ -2878,11 +2905,11 @@ void DrawGameFilterPage(ConfigMenuProc * proc, u32 * filter)
     {
         for (int i = 0; i < GameTagRows; ++i)
         {
-            if (c >= NumberOfGameFilterBits)
+            int bit = GameFilterCellBit(c);
+            if (bit >= 0)
             {
-                break;
+                PutText(&th[bit], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
             }
-            PutText(&th[c], gBG0TilemapBuffer + TILEMAP_INDEX(x, y + (i * 2)));
             c++;
         }
         x += GameTagWidth;
@@ -2892,37 +2919,10 @@ void DrawGameFilterPage(ConfigMenuProc * proc, u32 * filter)
     BG_EnableSyncByMask(BG0_SYNC_BIT);
 }
 
-static LocationTable GameTagsCursorLocationTable[NumberOfGameFilterBits] = {
-    { 8, 16 },
-    { 8, 32 },
-    { 8, 48 },
-    { 8, 64 },
-    { 8, 80 },
-    { 8, 96 },
-    { 8 + (8 * GameTagWidth), 16 },
-    { 8 + (8 * GameTagWidth), 32 },
-    { 8 + (8 * GameTagWidth), 48 },
-    { 8 + (8 * GameTagWidth), 64 },
-    { 8 + (8 * GameTagWidth), 80 },
-    { 8 + (8 * GameTagWidth), 96 },
-    { 8 + (16 * GameTagWidth), 16 },
-    { 8 + (16 * GameTagWidth), 32 },
-    { 8 + (16 * GameTagWidth), 48 },
-    { 8 + (16 * GameTagWidth), 64 },
-    { 8 + (16 * GameTagWidth), 80 },
-    { 8 + (16 * GameTagWidth), 96 },
-    { 8 + (24 * GameTagWidth), 16 },
-    { 8 + (24 * GameTagWidth), 32 },
-    { 8 + (24 * GameTagWidth), 48 },
-    { 8 + (24 * GameTagWidth), 64 },
-    { 8 + (24 * GameTagWidth), 80 },
-    { 8 + (24 * GameTagWidth), 96 },
-};
-
-// Row within a column on the 6x4 grid. GCC strength-reduces "% 6" on FE8 but emits a call
+// Row within a column on the 7x4 grid. GCC strength-reduces "% 7" on FE8 but emits a call
 // to __aeabi_idivmod on FE6/FE7, and a handful of subtractions is cheaper than a division
 // routine for a value this small anyway. Matches C's truncating % over the range this can
-// actually see, which is -7 to 30.
+// actually see, which is -8 to 35.
 int GameTagRowOf(int id)
 {
     while (id >= GameTagRows)
@@ -2947,17 +2947,17 @@ void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(Conf
         return;
     }
     // Signed, and wrapped by hand rather than the tag screen's "id -= 8; id %= 32":
-    // that only lands right because 32 divides 2^32 evenly. 24 doesn't, so left from
-    // the first column would land on the wrong row.
+    // that only lands right because 32 divides 2^32 evenly. 28 doesn't, so left from
+    // the first column would land on the wrong row. id is a grid cell, not a filter bit.
     int id = proc->previewId;
-    if (id < 0 || id >= NumberOfGameFilterBits)
+    if (id < 0 || id >= GameTagCells || GameFilterCellBit(id) < 0)
     {
         id = 0; // arriving from another screen that left a different cursor index behind
         proc->previewId = id;
     }
     if ((keys & A_BUTTON))
     {
-        *filter ^= (1u << id);
+        *filter ^= (1u << GameFilterCellBit(id));
         // The filter lives in its own RAM rather than in proc->Option, so
         // CopyConfigProcIntoRam can't spot the change - flag it here.
         if (forEnemies)
@@ -2971,7 +2971,13 @@ void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(Conf
         redraw(proc);
     }
 
-    DisplayUiHand(GameTagsCursorLocationTable[id].x, GameTagsCursorLocationTable[id].y);
+    int row = GameTagRowOf(id);
+    int col = 0;
+    for (int c = id - row; c > 0; c -= GameTagRows)
+    {
+        col++;
+    }
+    DisplayUiHand(8 + (col * 8 * GameTagWidth), 16 + (row * 16));
     int moved = id;
     if (keys & DPAD_RIGHT)
     {
@@ -3000,14 +3006,20 @@ void LoopGameFilterPage(ConfigMenuProc * proc, u32 * filter, void (*redraw)(Conf
 
     if (moved != id)
     {
-        // moved can only be -7 to 30 here, so one correction either way is the whole wrap.
+        // moved can only be -8 to 35 here, so one correction either way is the whole wrap.
         if (moved < 0)
         {
-            moved += NumberOfGameFilterBits;
+            moved += GameTagCells;
         }
-        if (moved >= NumberOfGameFilterBits)
+        if (moved >= GameTagCells)
         {
-            moved -= NumberOfGameFilterBits;
+            moved -= GameTagCells;
+        }
+        // the only empty cells are bottom rows: step back up onto the row above, or wrap
+        // to the top of the column when moving down
+        if (GameFilterCellBit(moved) < 0)
+        {
+            moved -= (keys & DPAD_DOWN) ? (GameTagRows - 1) : 1;
         }
         proc->previewId = moved;
         redraw(proc);

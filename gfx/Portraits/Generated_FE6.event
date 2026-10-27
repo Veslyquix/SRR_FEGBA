@@ -374,6 +374,12 @@ MugEntry(YunakaMug, YunakaMugData, YunakaMinimugData, YunakaPaletteData,  3, 5, 
 MugEntry(ZelestiaMug, ZelestiaMugData, ZelestiaMinimugData, ZelestiaPaletteData,  4, 6, 4, 4)
 MugEntry(ZelkovMug, ZelkovMugData, ZelkovMinimugData, ZelkovPaletteData,  2, 5, 2, 3)
 MugEntry(MitanMug, MitanMugData, MitanMinimugData, MitanPaletteData,  2, 5, 2, 4)
+MugEntry(AnnaFE18Mug, AnnaFE18MugData, AnnaFE18MinimugData, AnnaFE18PaletteData,  3, 6, 3, 4)
+MugEntry(HongHuaMug, HongHuaMugData, HongHuaMinimugData, HongHuaPaletteData,  3, 5, 3, 3)
+MugEntry(LedaMug, LedaMugData, LedaMinimugData, LedaPaletteData,  3, 6, 3, 4)
+MugEntry(MikaelaMug, MikaelaMugData, MikaelaMinimugData, MikaelaPaletteData,  4, 5, 4, 3)
+MugEntry(SetethFE18Mug, SetethFE18MugData, SetethFE18MinimugData, SetethFE18PaletteData,  3, 5, 3, 3)
+MugEntry(TheodoraMug, TheodoraMugData, TheodoraMinimugData, TheodoraPaletteData,  2, 5, 2, 3)
 MugEntry(AbelMug, AbelMugData, AbelMinimugData, AbelPaletteData,  3, 5, 3, 3)
 MugEntry(ArlenMug, ArlenMugData, ArlenMinimugData, ArlenPaletteData,  3, 4, 2, 2)
 MugEntry(ArranMug, ArranMugData, ArranMinimugData, ArranPaletteData,  3, 5, 3, 3)
@@ -4582,6 +4588,60 @@ MitanPaletteData:
 #incbin "png/FE17_Bosses/Mitan_GarytopF2E_palette.dmp"
 MitanMinimugData:
 #incbin "png/FE17_Bosses/Mitan_GarytopF2E_minimugfe6.dmp"
+
+ALIGN 4
+AnnaFE18MugData:
+#incbin "png/FE18/AnnaFE18_Garytop_portrait_frames_fe6.dmp"
+ALIGN 4
+AnnaFE18PaletteData:
+#incbin "png/FE18/AnnaFE18_Garytop_palette.dmp"
+AnnaFE18MinimugData:
+#incbin "png/FE18/AnnaFE18_Garytop_minimugfe6.dmp"
+
+ALIGN 4
+HongHuaMugData:
+#incbin "png/FE18/HongHua_Garytop_portrait_frames_fe6.dmp"
+ALIGN 4
+HongHuaPaletteData:
+#incbin "png/FE18/HongHua_Garytop_palette.dmp"
+HongHuaMinimugData:
+#incbin "png/FE18/HongHua_Garytop_minimugfe6.dmp"
+
+ALIGN 4
+LedaMugData:
+#incbin "png/FE18/Leda_Garytop_portrait_frames_fe6.dmp"
+ALIGN 4
+LedaPaletteData:
+#incbin "png/FE18/Leda_Garytop_palette.dmp"
+LedaMinimugData:
+#incbin "png/FE18/Leda_Garytop_minimugfe6.dmp"
+
+ALIGN 4
+MikaelaMugData:
+#incbin "png/FE18/Mikaela_Garytop_portrait_frames_fe6.dmp"
+ALIGN 4
+MikaelaPaletteData:
+#incbin "png/FE18/Mikaela_Garytop_palette.dmp"
+MikaelaMinimugData:
+#incbin "png/FE18/Mikaela_Garytop_minimugfe6.dmp"
+
+ALIGN 4
+SetethFE18MugData:
+#incbin "png/FE18/SetethFE18_Garytop_portrait_frames_fe6.dmp"
+ALIGN 4
+SetethFE18PaletteData:
+#incbin "png/FE18/SetethFE18_Garytop_palette.dmp"
+SetethFE18MinimugData:
+#incbin "png/FE18/SetethFE18_Garytop_minimugfe6.dmp"
+
+ALIGN 4
+TheodoraMugData:
+#incbin "png/FE18/Theodora_Garytop_portrait_frames_fe6.dmp"
+ALIGN 4
+TheodoraPaletteData:
+#incbin "png/FE18/Theodora_Garytop_palette.dmp"
+TheodoraMinimugData:
+#incbin "png/FE18/Theodora_Garytop_minimugfe6.dmp"
 
 ALIGN 4
 AbelMugData:

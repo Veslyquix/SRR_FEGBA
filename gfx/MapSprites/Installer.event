@@ -385,12 +385,18 @@ Magician, Cantor2, Parson, RedMage2, Chicken, Sandworm,
 
 
 
-	// #define  189
-	// #define  190
-#define Lord_M_Eliwood_Sword_ISwalk 207 
-    #define Knight_Lord_M_Eliwood_Sword_ISwalk 208 
-#define Lord_M_Hector_Axe_ISwalk 209
-    #define Great_Lord_M_Hector_ISwalk 210
+// FE8 has its own Eirika/Ephraim classes, so their slots above are free there
+#ifdef _FE8_
+#define Lord_M_Eliwood_Sword_ISwalk 201
+    #define Knight_Lord_M_Eliwood_Sword_ISwalk 202
+#define Lord_M_Hector_Axe_ISwalk 203
+    #define Great_Lord_M_Hector_ISwalk 204
+#else
+#define Lord_M_Eliwood_Sword_ISwalk 205
+    #define Knight_Lord_M_Eliwood_Sword_ISwalk 206
+#define Lord_M_Hector_Axe_ISwalk 207
+    #define Great_Lord_M_Hector_ISwalk 208
+#endif
 
 
 
@@ -767,7 +773,9 @@ SetMMS(Executioner_U_Huichelaar_IS_Lexouwalk, Executioner_U_Huichelaar_IS_Lexouw
 SetMMS(FE15Myrmidon_U_Sword_Nuramonwalk, FE15Myrmidon_U_Sword_Nuramonwalk_Data, DemonKingAP) 
 SetMMS(Fighter_M_Flail_Knight_L95_Stephanowalk, Fighter_M_Flail_Knight_L95_Stephanowalk_Data, DemonKingAP) 
 SetMMS(Gladiator_M_Sword_Pikmin_L95_Pushwallwalk, Gladiator_M_Sword_Pikmin_L95_Pushwallwalk_Data, DemonKingAP) 
-SetMMS(Great_Lord_M_Ephraim_Lance_ISwalk, Great_Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
+#ifndef _FE8_ // FE8 gives this slot to Eliwood/Hector
+SetMMS(Great_Lord_M_Ephraim_Lance_ISwalk, Great_Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP)
+#endif
 SetMMS(Great_Lord_M_HectorHarbinger_SD9Kwalk, Great_Lord_M_HectorHarbinger_SD9Kwalk_Data, DemonKingAP) 
 SetMMS(Great_Lord_M_Hector_ISwalk, Great_Lord_M_Hector_ISwalk_Data, DemonKingAP) 
 SetMMS(Halberdier_M_2_0_TBAwalk, Halberdier_M_2_0_TBAwalk_Data, DemonKingAP) 
@@ -775,7 +783,9 @@ SetMMS(Hunter_M_MeatOfJusticestyle_knabepicerwalk, Hunter_M_MeatOfJusticestyle_k
 SetMMS(Knight_Lord_M_Eliwood_Sword_ISwalk, Knight_Lord_M_Eliwood_Sword_ISwalk_Data, DemonKingAP) 
 SetMMS(Lancer_M_Brown_Hair_SALVAGEDwalk, Lancer_M_Brown_Hair_SALVAGEDwalk_Data, DemonKingAP)  
 SetMMS(Lord_M_Eliwood_Sword_ISwalk, Lord_M_Eliwood_Sword_ISwalk_Data, DemonKingAP) 
-SetMMS(Lord_M_Ephraim_Lance_ISwalk, Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
+#ifndef _FE8_
+SetMMS(Lord_M_Ephraim_Lance_ISwalk, Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP)
+#endif
 SetMMS(Lord_M_Hector_Axe_ISwalk, Lord_M_Hector_Axe_ISwalk_Data, DemonKingAP) 
 SetMMS(Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk, Lord_M_Marth_Dominus_Vobiscum_Snewpingwalk_Data, DemonKingAP) 
 SetMMS(RoyLord_ISwalk, RoyLord_ISwalk_Data, DemonKingAP) 
@@ -800,10 +810,12 @@ SetMMS(Witch_F_Aruka_Kenpuhuwalk, Witch_F_Aruka_Kenpuhuwalk_Data, DemonKingAP)
 SetMMS(Ninja_Derwalk, Ninja_Derwalk_Data, DemonKingAP)
 SetMMS(PriestessT1_Blood_Redbeanwalk, PriestessT1_Blood_Redbeanwalk_Data, DemonKingAP)
 SetMMS(Blade_Lord_F_Lyn_Sword_ISwalk, Blade_Lord_F_Lyn_Sword_ISwalk_Data, DemonKingAP)
-SetMMS(Lord_F_Eirika_Sword_ISwalk, Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP) 
-SetMMS(Great_Lord_F_Eirika_Sword_ISwalk, Great_Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP) 
-SetMMS(Lord_M_Ephraim_Lance_ISwalk, Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
-SetMMS(Great_Lord_M_Ephraim_Lance_ISwalk, Great_Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP) 
+#ifndef _FE8_ // FE8 gives these slots to Eliwood/Hector
+SetMMS(Lord_F_Eirika_Sword_ISwalk, Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP)
+SetMMS(Great_Lord_F_Eirika_Sword_ISwalk, Great_Lord_F_Eirika_Sword_ISwalk_Data, DemonKingAP)
+SetMMS(Lord_M_Ephraim_Lance_ISwalk, Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP)
+SetMMS(Great_Lord_M_Ephraim_Lance_ISwalk, Great_Lord_M_Ephraim_Lance_ISwalk_Data, DemonKingAP)
+#endif
  
 POP 
 //Copy until here 

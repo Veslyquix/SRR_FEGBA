@@ -1207,6 +1207,17 @@ Rafal portrait by Sterling_Glovner
 Zelestia portrait by Sterling_Glovner  
 Gregory portrait by Sterling_Glovner  
 Madeline portrait by Sterling_Glovner  
+   
+   
+   
+// fe18    
+   
+Anna portrait by Garytop  
+Hong Hua portrait by Garytop  
+Leda portrait by Garytop  
+Mikaela portrait by Garytop  
+Seteth portrait by Garytop  
+Theodora portrait by Garytop  
     
    
    

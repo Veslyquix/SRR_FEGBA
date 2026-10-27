@@ -21,8 +21,9 @@ POIN processed_FE13_palettes
 POIN processed_FE14_palettes 
 POIN processed_FE2_15_palettes 
 POIN processed_FE16_palettes 
-POIN processed_FE17_palettes 
-POIN 0 // Vanilla bosses 
+POIN processed_FE17_palettes
+POIN Pal_FE18
+POIN 0 // Vanilla bosses
 POIN processed_FE1_boss_palettes 
 POIN processed_FE4_boss_palettes 
 POIN processed_FE5_boss_palettes 
@@ -40,7 +41,8 @@ POIN processed_FE13_boss_palettes
 POIN Pal_FE14_Bosses 
 POIN processed_FE2_boss_palettes 
 POIN Pal_FE16_Bosses 
-POIN Pal_FE17_Bosses 
+POIN Pal_FE17_Bosses
+POIN Pal_FE18_Bosses
 POIN processed_custom_class_palettes
 
 #ifdef _FE6_ // so these appear in the char pal preview screen (fe8 only) 
@@ -61,7 +63,9 @@ POIN 0
 // nothing for these
 Pal_FE14_Bosses: 
 Pal_FE16_Bosses: 
-Pal_FE17_Bosses: 
+Pal_FE17_Bosses:
+Pal_FE18:
+Pal_FE18_Bosses:
 WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 // Terminator 
 
 // all 
@@ -157,6 +161,7 @@ SHORT processed_FE14_palettes_NumPals
 SHORT processed_FE2_15_palettes_NumPals
 SHORT processed_FE16_palettes_NumPals
 SHORT processed_FE17_palettes_NumPals
+SHORT 0 // Pal_FE18 - empty stub
 SHORT 0 // Vanilla bosses
 SHORT processed_FE1_boss_palettes_NumPals
 SHORT processed_FE4_boss_palettes_NumPals
@@ -176,6 +181,7 @@ SHORT 0 // Pal_FE14_Bosses - empty stub
 SHORT processed_FE2_boss_palettes_NumPals
 SHORT 0 // Pal_FE16_Bosses - empty stub
 SHORT 0 // Pal_FE17_Bosses - empty stub
+SHORT 0 // Pal_FE18_Bosses - empty stub
 SHORT 0
 
 

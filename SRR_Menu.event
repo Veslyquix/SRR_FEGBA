@@ -174,33 +174,35 @@ t5:  txt("FE8: Sacred Stones");
 #endif 
 t6:  txt("FE9/FE10: Radiant Dawn");       t7:  txt("FE13: Awakening"); 
 t8:  txt("FE14: Fates");                  t9:  txt("FE2/15: Echoes");
-t10: txt("FE16: Three Houses");           t11: txt("FE17: Engage");                
+t10: txt("FE16: Three Houses");           t11: txt("FE17: Engage");
+t12: txt("FE18: Fortune's Weave");
 
-t12:  txt("Vanilla Bosses");                      t13:  txt("FE1/3: Shadow Drgn Bosses");         t14:  txt("FE4: Genealogy Bosses"); 
-t15:  txt("FE5: Thracia 776 Bosses");             
-#ifdef _FE8_ 
-t16:  txt("FE6: Binding Blade Bosses");
-t17:  txt("FE7: Blazing Blade Bosses");  
-#endif 
-#ifdef _FE7_ 
-t16:  txt("FE6: Binding Blade Bosses");
-t17:  txt("FE8: Sacred Stones Bosses");  
-#endif 
-#ifdef _FE6_ 
-t16:  txt("FE7: Blazing Blade Bosses");
-t17:  txt("FE8: Sacred Stones Bosses");  
-#endif 
-t18:  txt("FE9/FE10: Radiant Bosses");       t19:  txt("FE13: Awakening Bosses"); 
-t20:  txt("FE14: Fates Bosses");                  t21:  txt("FE2/15: Echoes Bosses");
-t22: txt("FE16: Three Houses Bosses");           t23: txt("FE17: Engage Bosses");                 t24: txt("Random");
+t13:  txt("Vanilla Bosses");                      t14:  txt("FE1/3: Shadow Drgn Bosses");         t15:  txt("FE4: Genealogy Bosses");
+t16:  txt("FE5: Thracia 776 Bosses");
+#ifdef _FE8_
+t17:  txt("FE6: Binding Blade Bosses");
+t18:  txt("FE7: Blazing Blade Bosses");
+#endif
+#ifdef _FE7_
+t17:  txt("FE6: Binding Blade Bosses");
+t18:  txt("FE8: Sacred Stones Bosses");
+#endif
+#ifdef _FE6_
+t17:  txt("FE7: Blazing Blade Bosses");
+t18:  txt("FE8: Sacred Stones Bosses");
+#endif
+t19:  txt("FE9/FE10: Radiant Bosses");       t20:  txt("FE13: Awakening Bosses");
+t21:  txt("FE14: Fates Bosses");                  t22:  txt("FE2/15: Echoes Bosses");
+t23: txt("FE16: Three Houses Bosses");           t24: txt("FE17: Engage Bosses");                 t25: txt("FE18: Fortune's Bosses");
+t26: txt("Random");
 
 
 
 
 ALIGN 4; SRRHeader(FromGameOpt)
-POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 0
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 0
 ALIGN 4; SRRHeader(EnemyFromGameOpt)
-POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 0
+POIN t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 t10 t11 t12 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 0
 }
 
 
@@ -463,7 +465,7 @@ tag(34); txt("Filter Enemy Classes");
 
 // Game filter screens (C_code.c: GameFilterInit / DrawGameFilterPage). One entry per
 // character table, in the SAME ORDER as cData[] - index N here is char table N there -
-// so 0..11 are the per-game player tables and 12..23 their boss counterparts. 24 and 25
+// so 0..12 are the per-game player tables and 13..25 their boss counterparts. 26 and 27
 // are the two screen titles. Names are kept short because the screen lays them out in 4
 // columns of GameTagWidth (7) tiles; the longer forms live in the "Players From"
 // dropdown (FromGameOpt) above.
@@ -493,34 +495,36 @@ game_tag(8);  txt("FE14");
 game_tag(9);  txt("FE2/15");
 game_tag(10); txt("FE16");
 game_tag(11); txt("FE17");
+game_tag(12); txt("FE18");
 
 // Boss tables - same games, second half of cData[]. "B" suffix since the columns sit
 // next to the player ones.
-game_tag(12); txt("VanillaBoss");
-game_tag(13); txt("FE1/3 B");
-game_tag(14); txt("FE4 B");
-game_tag(15); txt("FE5 B");
+game_tag(13); txt("VanillaBoss");
+game_tag(14); txt("FE1/3 B");
+game_tag(15); txt("FE4 B");
+game_tag(16); txt("FE5 B");
 #ifdef _FE8_
-game_tag(16); txt("FE6 B");
-game_tag(17); txt("FE7 B");
+game_tag(17); txt("FE6 B");
+game_tag(18); txt("FE7 B");
 #endif
 #ifdef _FE7_
-game_tag(16); txt("FE6 B");
-game_tag(17); txt("FE8 B");
+game_tag(17); txt("FE6 B");
+game_tag(18); txt("FE8 B");
 #endif
 #ifdef _FE6_
-game_tag(16); txt("FE7 B");
-game_tag(17); txt("FE8 B");
+game_tag(17); txt("FE7 B");
+game_tag(18); txt("FE8 B");
 #endif
-game_tag(18); txt("FE9/10 B");
-game_tag(19); txt("FE13 B");
-game_tag(20); txt("FE14 B");
-game_tag(21); txt("FE2/15 B");
-game_tag(22); txt("FE16 B");
-game_tag(23); txt("FE17 B");
+game_tag(19); txt("FE9/10 B");
+game_tag(20); txt("FE13 B");
+game_tag(21); txt("FE14 B");
+game_tag(22); txt("FE2/15 B");
+game_tag(23); txt("FE16 B");
+game_tag(24); txt("FE17 B");
+game_tag(25); txt("FE18 B");
 
-game_tag(24); txt("Filter Player Games");
-game_tag(25); txt("Filter Enemy Games");
+game_tag(26); txt("Filter Player Games");
+game_tag(27); txt("Filter Enemy Games");
 
 ALIGN 4
 growth_names:

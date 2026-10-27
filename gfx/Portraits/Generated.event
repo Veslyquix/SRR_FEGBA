@@ -374,6 +374,12 @@ MugEntry(YunakaMug, YunakaMugData, YunakaMinimugData, YunakaFramesData, YunakaPa
 MugEntry(ZelestiaMug, ZelestiaMugData, ZelestiaMinimugData, ZelestiaFramesData, ZelestiaPaletteData,  4, 6, 4, 4)
 MugEntry(ZelkovMug, ZelkovMugData, ZelkovMinimugData, ZelkovFramesData, ZelkovPaletteData,  2, 5, 2, 3)
 MugEntry(MitanMug, MitanMugData, MitanMinimugData, MitanFramesData, MitanPaletteData,  2, 5, 2, 4)
+MugEntry(AnnaFE18Mug, AnnaFE18MugData, AnnaFE18MinimugData, AnnaFE18FramesData, AnnaFE18PaletteData,  3, 6, 3, 4)
+MugEntry(HongHuaMug, HongHuaMugData, HongHuaMinimugData, HongHuaFramesData, HongHuaPaletteData,  3, 5, 3, 3)
+MugEntry(LedaMug, LedaMugData, LedaMinimugData, LedaFramesData, LedaPaletteData,  3, 6, 3, 4)
+MugEntry(MikaelaMug, MikaelaMugData, MikaelaMinimugData, MikaelaFramesData, MikaelaPaletteData,  4, 5, 4, 3)
+MugEntry(SetethFE18Mug, SetethFE18MugData, SetethFE18MinimugData, SetethFE18FramesData, SetethFE18PaletteData,  3, 5, 3, 3)
+MugEntry(TheodoraMug, TheodoraMugData, TheodoraMinimugData, TheodoraFramesData, TheodoraPaletteData,  2, 5, 2, 3)
 MugEntry(AbelMug, AbelMugData, AbelMinimugData, AbelFramesData, AbelPaletteData,  3, 5, 3, 3)
 MugEntry(ArlenMug, ArlenMugData, ArlenMinimugData, ArlenFramesData, ArlenPaletteData,  3, 4, 2, 2)
 MugEntry(ArranMug, ArranMugData, ArranMinimugData, ArranFramesData, ArranPaletteData,  3, 5, 3, 3)
@@ -5328,6 +5334,72 @@ MitanPaletteData:
 #incbin "png/FE17_Bosses/Mitan_GarytopF2E_palette.dmp"
 MitanMinimugData:
 #incbin "png/FE17_Bosses/Mitan_GarytopF2E_minimug.dmp"
+
+ALIGN 4
+AnnaFE18MugData:
+#incbin "png/FE18/AnnaFE18_Garytop_mug.dmp"
+ALIGN 4
+AnnaFE18FramesData:
+#incbin "png/FE18/AnnaFE18_Garytop_frames.dmp"
+AnnaFE18PaletteData:
+#incbin "png/FE18/AnnaFE18_Garytop_palette.dmp"
+AnnaFE18MinimugData:
+#incbin "png/FE18/AnnaFE18_Garytop_minimug.dmp"
+
+ALIGN 4
+HongHuaMugData:
+#incbin "png/FE18/HongHua_Garytop_mug.dmp"
+ALIGN 4
+HongHuaFramesData:
+#incbin "png/FE18/HongHua_Garytop_frames.dmp"
+HongHuaPaletteData:
+#incbin "png/FE18/HongHua_Garytop_palette.dmp"
+HongHuaMinimugData:
+#incbin "png/FE18/HongHua_Garytop_minimug.dmp"
+
+ALIGN 4
+LedaMugData:
+#incbin "png/FE18/Leda_Garytop_mug.dmp"
+ALIGN 4
+LedaFramesData:
+#incbin "png/FE18/Leda_Garytop_frames.dmp"
+LedaPaletteData:
+#incbin "png/FE18/Leda_Garytop_palette.dmp"
+LedaMinimugData:
+#incbin "png/FE18/Leda_Garytop_minimug.dmp"
+
+ALIGN 4
+MikaelaMugData:
+#incbin "png/FE18/Mikaela_Garytop_mug.dmp"
+ALIGN 4
+MikaelaFramesData:
+#incbin "png/FE18/Mikaela_Garytop_frames.dmp"
+MikaelaPaletteData:
+#incbin "png/FE18/Mikaela_Garytop_palette.dmp"
+MikaelaMinimugData:
+#incbin "png/FE18/Mikaela_Garytop_minimug.dmp"
+
+ALIGN 4
+SetethFE18MugData:
+#incbin "png/FE18/SetethFE18_Garytop_mug.dmp"
+ALIGN 4
+SetethFE18FramesData:
+#incbin "png/FE18/SetethFE18_Garytop_frames.dmp"
+SetethFE18PaletteData:
+#incbin "png/FE18/SetethFE18_Garytop_palette.dmp"
+SetethFE18MinimugData:
+#incbin "png/FE18/SetethFE18_Garytop_minimug.dmp"
+
+ALIGN 4
+TheodoraMugData:
+#incbin "png/FE18/Theodora_Garytop_mug.dmp"
+ALIGN 4
+TheodoraFramesData:
+#incbin "png/FE18/Theodora_Garytop_frames.dmp"
+TheodoraPaletteData:
+#incbin "png/FE18/Theodora_Garytop_palette.dmp"
+TheodoraMinimugData:
+#incbin "png/FE18/Theodora_Garytop_minimug.dmp"
 
 ALIGN 4
 AbelMugData:
