@@ -80,6 +80,13 @@ VCF(BladeLord,	Swordmaster_F)
 VCF(RoyLord, Mercenary)
 VCF(MasterLord, Hero)
 
+#ifndef _FE7_
+VCF(EliwoodLord, Mercenary)
+VCF(KnightLord, Paladin)
+VCF(HectorLord, Fighter)
+VCF(GreatLord, General)
+#endif
+
 #ifdef _FE7_ 
 VCF(Cantor2,  DarkDruid)
 VCF(DarkPrince, DarkDruid)

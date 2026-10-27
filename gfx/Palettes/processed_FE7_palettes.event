@@ -97,12 +97,8 @@ palEntry(Wallace, General, WallacePal_General)
 #ifdef _FE8_
 palEntry(Wallace, GreatKnight, WallacePal_GreatKnight_FE8)
 #endif
-#ifdef _FE7_
-palEntry(EliwoodFE7, EliwoodLord, EliwoodFE7Pal_EliwoodLord_FE7)
-#endif
-#ifdef _FE7_
-palEntry(EliwoodFE7, KnightLord, EliwoodFE7Pal_KnightLord_FE7)
-#endif
+palEntry(EliwoodFE7, EliwoodLord, EliwoodFE7Pal_EliwoodLord)
+palEntry(EliwoodFE7, KnightLord, EliwoodFE7Pal_KnightLord)
 palEntry(EliwoodFE7, LeifLord, EliwoodFE7Pal_LeifLord)
 palEntry(EliwoodFE7, SeliphLord, EliwoodFE7Pal_SeliphLord)
 palEntry(EliwoodFE7, Myrmidon, EliwoodFE7Pal_Myrmidon)
@@ -128,12 +124,8 @@ palEntry(Rebecca, Ranger_F, RebeccaPal_Ranger_F_FE8)
 palEntry(BartreFE7, Fighter, BartreFE7Pal_Fighter)
 palEntry(BartreFE7, Hero, BartreFE7Pal_Hero)
 palEntry(BartreFE7, Warrior, BartreFE7Pal_Warrior)
-#ifdef _FE7_
-palEntry(HectorFE7, HectorLord, HectorFE7Pal_HectorLord_FE7)
-#endif
-#ifdef _FE7_
-palEntry(HectorFE7, GreatLord, HectorFE7Pal_GreatLord_FE7)
-#endif
+palEntry(HectorFE7, HectorLord, HectorFE7Pal_HectorLord)
+palEntry(HectorFE7, GreatLord, HectorFE7Pal_GreatLord)
 palEntry(HectorFE7, Knight, HectorFE7Pal_Knight)
 palEntry(HectorFE7, General, HectorFE7Pal_General)
 #ifdef _FE8_
@@ -548,13 +540,13 @@ WallacePal_GreatKnight_FE8:
 BYTE $00 $7E $DE $7B $FF $5B $1F $4B $B2 $29 $D6 $5A $31 $46 $8C $31
 BYTE $E7 $1C $5A $7F $B5 $7E $CD $59 $39 $67 $94 $52 $CE $39 $A5 $14
 
-EliwoodFE7Pal_EliwoodLord_FE7:
-BYTE $55 $53 $FF $7F $9E $63 $1F $4B $39 $2A $5A $00 $1F $20 $52 $00
-BYTE $98 $77 $D2 $6A $CB $49 $73 $7F $6C $76 $68 $61 $85 $50 $A5 $14
+EliwoodFE7Pal_EliwoodLord:
+BYTE $55 $53 $FF $7F $9E $63 $98 $77 $1F $4B $73 $7F $D2 $6A $39 $2A
+BYTE $6C $76 $CB $49 $68 $61 $1F $20 $5A $00 $52 $00 $85 $50 $A5 $14
 
-EliwoodFE7Pal_KnightLord_FE7:
-BYTE $55 $53 $FF $7F $9E $63 $1F $4B $39 $2A $5A $00 $1F $20 $52 $00
-BYTE $98 $77 $D2 $6A $CB $49 $73 $7F $6C $76 $68 $61 $85 $50 $A5 $14
+EliwoodFE7Pal_KnightLord:
+BYTE $55 $53 $FF $7F $9E $63 $98 $77 $1F $4B $73 $7F $D2 $6A $39 $2A
+BYTE $6C $76 $CB $49 $68 $61 $1F $20 $5A $00 $52 $00 $85 $50 $A5 $14
 
 EliwoodFE7Pal_LeifLord:
 BYTE $55 $53 $6C $76 $FF $6B $1F $4B $68 $61 $9E $3F $7B $2A $85 $50
@@ -624,13 +616,13 @@ BartreFE7Pal_Warrior:
 BYTE $55 $53 $FF $7F $FF $6B $FF $46 $5A $32 $D6 $21 $2E $19 $7A $6B
 BYTE $98 $7F $D1 $66 $0C $52 $10 $46 $E8 $7E $65 $6D $00 $44 $A5 $14
 
-HectorFE7Pal_HectorLord_FE7:
-BYTE $55 $53 $FF $7F $BE $6B $1E $3B $0E $15 $EF $7A $07 $72 $44 $5D
-BYTE $98 $77 $F3 $6E $2D $56 $8C $66 $89 $5D $65 $48 $F5 $29 $A5 $14
+HectorFE7Pal_HectorLord:
+BYTE $55 $53 $FF $7F $BE $6B $98 $77 $1E $3B $F3 $6E $EF $7A $8C $66
+BYTE $2D $56 $F5 $29 $07 $72 $89 $5D $44 $5D $0E $15 $65 $48 $A5 $14
 
-HectorFE7Pal_GreatLord_FE7:
-BYTE $55 $53 $FF $7F $BE $6B $1E $3B $0E $15 $EF $7A $07 $72 $44 $5D
-BYTE $98 $77 $F3 $6E $CB $49 $CE $72 $A9 $61 $65 $50 $F5 $29 $A5 $14
+HectorFE7Pal_GreatLord:
+BYTE $55 $53 $FF $7F $BE $6B $98 $77 $1E $3B $F3 $6E $EF $7A $CE $72
+BYTE $F5 $29 $07 $72 $CB $49 $A9 $61 $44 $5D $0E $15 $65 $50 $A5 $14
 
 HectorFE7Pal_Knight:
 BYTE $00 $7E $44 $3C $89 $5D $65 $48 $0B $62 $07 $55 $8C $66 $E5 $17

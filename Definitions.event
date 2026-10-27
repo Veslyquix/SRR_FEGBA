@@ -1,7 +1,7 @@
 // PROTECT $1c21fd8
 #define PortraitsRom 0x1030000 
 #define AnimsRom 0x1520000 
-#define EndOfAnimsRom 0x1A70000 
+#define EndOfAnimsRom 0x1A80000
 
 
 // New classes 
@@ -86,8 +86,12 @@ EirikaLord
 EirikaGreat
 EphraimLord
 EphraimGreat
+EliwoodLord
+KnightLord
+HectorLord
+GreatLord
 
-*/ 
+*/
 
 
 #include "gfx/ItemIcons/Defs.event" 
@@ -547,13 +551,9 @@ Sothis
 
 #define MageKnight_F Valkyrie 
 
-#define Summoner Druid 
+#define Summoner Druid
 
-#define EliwoodLord Mercenary
-#define HectorLord Knight
-#define KnightLord Mercenary
-#define GreatLord Knight
-#define Manakete Mamkute 
+#define Manakete Mamkute
 #define Manakete_2_F Mamkute_F
 #define Manakete_2_FTransformed Manakete_2_F
 #define Manakete_F Mamkute_F
@@ -605,13 +605,7 @@ Sothis
 #define NomadTrooper Ranger 
 #define NomadTrooper_F Ranger_F
 
-#define EliwoodLord LeifLord
-#define HectorLord Knight
-
-#define KnightLord Mercenary
-#define GreatLord Knight
-
-#define Thief_F Thief 
+#define Thief_F Thief
 #define Peer_F Paladin_F
 #define Transporter Tent
 #define Archsage Sage 

@@ -25,7 +25,8 @@ primary_keywords = ["Egyptian", "Cantor_by", "Cantor_Jedah", "Arcanist_by_Nuramo
     "Phantom_by_TBA", "Slime", "Warbird", "Adventurer", "Grand_Mahout", "Brawler",
     "Enchanter", "Black_Dragon", "Djinn", "Living_Armor", "Fellbeast", "Brawler2", 
     "LynLord", "PriestessT1", "BladeLord", "EirikaLord", "EirikaGreat", "EphraimLord",
-    "EphraimGreatLord", "RoyLord", "RoyMasterLord"]
+    "EphraimGreatLord", "RoyLord", "RoyMasterLord", "EliwoodLord", "KnightLord",
+    "HectorGreatLord", "HectorLord"]
 
 # List of weapon types to append to the primary keyword
 weapon_keywords = ["Unarmed", "Knife", "Handaxe", "Magic", "Sword",  "Axe", "Bow", "Lance",  "Ranged", "Staff", "Refresh", "Monster", "Melee", "Supply"]
