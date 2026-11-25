@@ -1,5 +1,5 @@
 // https://feuniverse.us/t/fe8-holoemblem-the-search-for-seiso-42-chapters-v-1-6-1-out-now/20690
-// v1.61
+// v1.8.2 
 
 #ifndef TextTable 
     #define TextTable "0x1D5F498"
@@ -13,8 +13,8 @@
 #define MagClassTable 0x08B2A940
 #define Skill_Getter 0x8B606C8
 
-// #define FreeSpace 0x 
-// ORG FreeSpace 
+#define FreeSpace 0x1E12000
+ORG FreeSpace 
 
 // #include "../.FE8_Installer.event"
 // #include "../.FE8_FebuilderSkillsys2020ish.event"

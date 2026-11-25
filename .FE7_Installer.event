@@ -73,6 +73,7 @@ MESSAGE Graphics end at currentoffset
 #include "../ASM/Debugger/Installer.event" 
 #include "../ASM/DangerBones/Installer.event" 
 #include "../ASM/AnimsFastForward/Installer.event" 
+#include "../ASM/MapFloodFix_AI_ASSISTED/Installer.event" 
 
 
 #ifdef INCLUDE_ACHIEVEMENTS 
@@ -382,6 +383,9 @@ WORD 0
 
 PUSH 
 
+
+ORG 0x58D84
+BYTE 0x8 // Fimbulvetr procs 
 
 ORG $a0566 
 SHORT $46c0 // GetPidStats even if no affinity 

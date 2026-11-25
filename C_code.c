@@ -1108,7 +1108,7 @@ const struct FE8CharacterData *
     const struct CharacterData * table = NULL;
 #endif
     table = cData[tableID] + (charId - 1);
-    if (!tableID)
+    if (!tableID || !VeslyBuildfile_Link)
     {
 #ifdef FE6
         return (const struct FE8CharacterData *)GetCharacterData(charId);
@@ -1135,7 +1135,7 @@ const struct FE8CharacterData *
     if (charId < 1)
         return NULL;
 
-    if (!tableID)
+    if (!tableID || !VeslyBuildfile_Link)
     {
 #ifdef FE6
         return (const struct FE8CharacterData *)GetCharacterData(charId);
@@ -1505,6 +1505,38 @@ void RerollPage(ConfigMenuProc * proc)
     RandValues->seed++;
     EndAllRecruitmentProcs();
 }
+void BuildRecruitmentOrderList_Terminator(u8 * list, int t);
+// to undo SetAll when ResetPage is used. 
+void ResetCharsNotOnPages(void)
+{
+    u8 list[0x45] = { 0 };
+    u8 onPage[0x46] = { 0 };
+    BuildRecruitmentOrderList_Terminator(list, 0);
+    for (int c = 0; c < 0x45 && list[c]; ++c)
+    {
+        if (list[c] <= 0x45)
+        {
+            onPage[list[c]] = true;
+        }
+    }
+    struct PidStatsChar * pidStats;
+    for (int i = 1; i <= 0x45; ++i)
+    {
+        if (onPage[i])
+        {
+            continue;
+        }
+        pidStats = GetPidStatsSafe(i);
+        if (!pidStats || !pidStats->selected)
+        {
+            continue;
+        }
+        pidStats->charTableID = 0x3F;
+        pidStats->selected = false;
+        pidStats->newCharID = 0;
+    }
+}
+
 void ResetPage(ConfigMenuProc * proc)
 {
     struct PidStatsChar * pidStats;
@@ -1523,6 +1555,7 @@ void ResetPage(ConfigMenuProc * proc)
         pidStats->selected = true;
         pidStats->newCharID = id;
     }
+    ResetCharsNotOnPages();
 }
 
 void SetAllCharConfirm(ConfigMenuProc * proc)
@@ -5942,6 +5975,12 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
                     }
                     if (FilterCharOut(table, GetClassData(table->defaultClass)))
                     {
+                        if (order != RandomOrder)
+                        {
+                            tables[c] = 0xFF;
+                            unit[c] = 0;
+                            c++;
+                        }
                         continue;
                     }
                     tables[c] = t;
@@ -6012,6 +6051,12 @@ int BuildFilteredCharsList(struct Vec2u * counter, u8 * unit, u8 * tables, int a
                     }
                     if (FilterCharOut(table, GetClassData(table->defaultClass)))
                     {
+                        if (order != RandomOrder)
+                        { // keep the slot, as for players above
+                            tables[c + b] = 0xFF;
+                            unit[c + b] = 0;
+                            b++;
+                        }
                         continue;
                     }
                     tables[c + b] = t;
@@ -15282,8 +15327,7 @@ void SetDefaultTagValues(void)
 // same but vanilla classes only
 void SetVanillaTagValues(void)
 {
-    // TagValues->raw = 0xFFFFDFFF;      // default: no civilians
-    TagValues->raw = 0xFFFF9FFF; // default: no civilians or manaketes
+    TagValues->raw = 0xFFFF9FFF; // vanilla: no civilians
     ClassTags->raw = 0xC9FF9FFF; // default: early thief, no civilians or manaketes, and no non-vanilla classes
     EnemyClassTags->raw =
         0xCFFF1FBF; // default: no dancers, civilians, monsters, or manaketes, and no non-vanilla classes
@@ -15712,11 +15756,11 @@ void ContinueCopyConfigProcIntoRam(ConfigMenuProc * proc)
         }
         if (timedHits == 2)
         {
-            TimedHitsDifficultyRam->difficulty = 2;
+            TimedHitsDifficultyRam->difficulty = 1;
         }
         if (timedHits == 3)
         {
-            TimedHitsDifficultyRam->difficulty = 3;
+            TimedHitsDifficultyRam->difficulty = 2;
         }
     }
 #endif
@@ -19296,9 +19340,10 @@ int PidStatsGetExpGain(u8 pid)
 {
     return 9999;
 }
+
 int PidStatsGetTotalLevel(void)
 {
-    return 40;
+    return 9999;
 }
 
 // 8024a88

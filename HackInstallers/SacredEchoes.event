@@ -24,6 +24,151 @@ ORG FreeSpace
 
 //NeverChangeItem(0x1) // Iron Sword 
 //NeverChangeClass(0x1) // EirikaLord  
-//NeverChangeChar(0x1) // Eirika 
+//NeverChangeChar(0x1) // Eirika
+
+
+// Class-based spell lists
+// SpellAssociationTable 0x8B4B16C
+
+PUSH
+ORG 0xB4B75A; SHORT 0x6861         // Spells_Getter: ldr r1, [r4, #4]
+ORG 0xB4B7D4; POIN SE_ClassSpellTable
+ORG 0xB3ED50; SHORT 0x6841         // stat screen spell list: ldr r1, [r0, #4]
+ORG 0xB3ED54; SHORT 0x29FF         
+ORG 0xB3EDA0; POIN SE_ClassSpellTable
+ORG 0xB44C14; SHORT 0x6861         // level-up "learned spell" popup: ldr r1, [r4, #4]
+ORG 0xB44C7C; POIN SE_ClassSpellTable
+ORG 0xB44CB6; SHORT 0x6861         // promotion "learned spell" popup: ldr r1, [r4, #4]
+ORG 0xB44D20; POIN SE_ClassSpellTable
+POP
+
+#define SE_Fire      0x38
+#define SE_Thunder   0x39
+#define SE_Sagittae  0x3A
+#define SE_Ragnarok  0x3C
+#define SE_Excalibur 0x3E
+#define SE_Nosferatu 0x3F
+#define SE_Seraphim  0x41
+#define SE_Aura      0x43
+#define SE_Miasma    0x45
+#define SE_Selene    0x46
+#define SE_Mire      0x48
+#define SE_Medusa    0x49
+#define SE_Thanatos  0x4A
+#define SE_Heal      0x4B
+#define SE_Expel     0x4C
+#define SE_Fortify   0x4F
+#define SE_Restore   0x50
+#define SE_Silence   0x51
+#define SE_Entrap    0x53
+#define SE_Warp      0x54
+#define SE_Invoke    0x57
+#define SE_Unlock    0x58
+#define SE_Rewarp    0x59
+
+// Each list: BYTE level spell, ending with BYTE 0 0.
+// Levels $21 and up are promoted levels ($20 + level).
+ALIGN 4
+SE_ClassSpellTable:
+FILL (256*4)
+
+#define SE_ClassSpells(classID, list) "PUSH; ORG SE_ClassSpellTable+(4*classID); POIN list; POP"
+
+// Boey's list
+SE_MageSpells:
+BYTE $01 SE_Fire
+BYTE $03 SE_Thunder
+BYTE $0C SE_Sagittae
+BYTE $12 SE_Excalibur
+BYTE $21 SE_Heal
+BYTE $26 SE_Unlock
+BYTE 0 0
+SE_ClassSpells(0x25, SE_MageSpells) // Mage
+SE_ClassSpells(0x27, SE_MageSpells) // Sage
+
+// Mae's (Mage) list
+SE_FemaleMageSpells:
+BYTE $01 SE_Fire
+BYTE $01 SE_Thunder
+BYTE $09 SE_Aura
+BYTE $0E SE_Seraphim
+BYTE $21 SE_Heal
+BYTE $26 SE_Silence
+BYTE 0 0
+SE_ClassSpells(0x26, SE_FemaleMageSpells) // Mage (F)
+SE_ClassSpells(0x28, SE_FemaleMageSpells) // Priestess
+SE_ClassSpells(0x16, SE_FemaleMageSpells) // Dread Fighter (F)
+
+// Silque's list
+SE_ClericSpells:
+BYTE $01 SE_Nosferatu
+BYTE $21 SE_Seraphim
+BYTE $01 SE_Heal
+BYTE $07 SE_Warp
+BYTE $0E SE_Expel
+BYTE $12 SE_Invoke
+BYTE 0 0
+SE_ClassSpells(0x4A, SE_ClericSpells) // Cleric
+SE_ClassSpells(0x2C, SE_ClericSpells) // Saint
+
+// Nomah's list
+SE_BishopSpells:
+BYTE $01 SE_Fire
+BYTE $01 SE_Excalibur
+BYTE $01 SE_Sagittae
+BYTE $21 SE_Fortify
+BYTE $21 SE_Restore
+BYTE $25 SE_Warp
+BYTE 0 0
+SE_ClassSpells(0x2B, SE_BishopSpells) // Bishop
+
+// Sonya's (Mage) list
+SE_WitchSpells:
+BYTE $01 SE_Fire
+BYTE $01 SE_Excalibur
+BYTE $0A SE_Mire
+BYTE $21 SE_Selene
+BYTE $25 SE_Rewarp
+BYTE $2A SE_Entrap
+BYTE 0 0
+SE_ClassSpells(0x2A, SE_WitchSpells) // Witch
+SE_ClassSpells(0x29, SE_WitchSpells) // Witch (Rinea)
+
+// Celica's list
+SE_CelicaSpells:
+BYTE $01 SE_Fire
+BYTE $05 SE_Seraphim
+BYTE $08 SE_Thunder
+BYTE $09 SE_Heal
+BYTE $0F SE_Excalibur
+BYTE $14 SE_Ragnarok
+BYTE 0 0
+SE_ClassSpells(0x01, SE_CelicaSpells) // Priestess (Celica)
+SE_ClassSpells(0x03, SE_CelicaSpells) // Princess (Celica)
+
+// No playable dark mage exists in the hack, so this list is new
+SE_DarkMageSpells:
+BYTE $01 SE_Miasma
+BYTE $08 SE_Mire
+BYTE $21 SE_Heal
+BYTE $25 SE_Thanatos
+BYTE 0 0
+SE_ClassSpells(0x2D, SE_DarkMageSpells) // Shaman
+SE_ClassSpells(0x2E, SE_DarkMageSpells) // Shaman (F)
+SE_ClassSpells(0x2F, SE_DarkMageSpells) // Arcanist
+SE_ClassSpells(0x30, SE_DarkMageSpells) // Arcanist (F)
+SE_ClassSpells(0x31, SE_DarkMageSpells) // Cantor
+SE_ClassSpells(0x32, SE_DarkMageSpells) // Cantor (F)
+
+// Nuibaba's list
+SE_NecromancerSpells:
+BYTE $01 SE_Miasma
+BYTE $01 SE_Mire
+BYTE $01 SE_Thanatos
+BYTE $01 SE_Medusa
+BYTE $01 SE_Silence
+BYTE 0 0
+SE_ClassSpells(0x4F, SE_NecromancerSpells) // Necromancer
+ALIGN 4
 
 

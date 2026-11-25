@@ -67,6 +67,10 @@
     ALIGN 4 
     MaxBGID:
     WORD 0 
+    // No character palettes in hack installs: all NumberOfPalCharTables (29) tables are empty
+    gCharPalCounts:
+    SHORT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    ALIGN 4 
     gCharPal: 
 #include "gfx/Clouds/Installer.event" 
 
@@ -74,6 +78,7 @@
 #endif 
 #include "FixMugs_FE8.event" 
 #include "Patches/FE8.lyn.event" 
+#define SRR_CharPalFuncsLinked // the debugger skips its stubs of GetCharPalOverride etc.
 #include "Patches/FE8_AsmHooks.lyn.event" 
 #include "Patches/all/Installer.event"
 
@@ -534,11 +539,9 @@ WORD 0
 
 PUSH 
 
-// I was trying to fix a bug with movement costs > 2 that could cause an infinite loop 
-// but changing this also changed how far enemies could move 
-ORG $81B // in MapFloodCoreStep
-// BYTE $2a // bcs instead of vanilla bhi
-// copied into 3003D70 / 300487c
+ORG 0x5E520
+BYTE 0x8 // Fimbulvetr procs
+
 
 #define jumpToHack_r6(offset) "BYTE 0x00 0x4E 0x30 0x47; POIN (offset|0x1); PROTECT CURRENTOFFSET-8 CURRENTOFFSET-1"
 
